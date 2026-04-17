@@ -1,0 +1,238 @@
+import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useConstituencyDetail } from '../hooks/useConstituencyDetail';
+import { useDashboardData } from '../hooks/useDashboardData';
+import { useElection } from '../hooks/useElection';
+import Spinner from '../components/atoms/Spinner';
+import ShareButtons from '../components/atoms/ShareButtons';
+import CandidateTable from '../components/organisms/CandidateTable';
+import ErrorBoundary from '../components/ErrorBoundary';
+import { 
+  ConstituencyModalStats, 
+  ConstituencyModalInsights 
+} from '../components/organisms/ConstituencyModalSubComponents';
+
+/**
+ * PAGE: Constituency Detail (MVC: View)
+ * Highly optimized ultra-focused dashboard layout.
+ */
+export default function ConstituencyDetail() {
+  const { electionId, constId } = useParams<{ electionId: string; constId: string }>();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { election } = useElection();
+  const { standings, manifestData } = useDashboardData(election);
+
+  const { 
+    constituency, 
+    analysis, 
+    stats, 
+    badges, 
+    formattedDemographics, 
+    loading, 
+    error 
+  } = useConstituencyDetail(electionId!, constId!, standings, manifestData);
+
+  if (loading) return <Spinner label={t('loading')} />;
+
+  if (error || !constituency) {
+    return (
+      <div className="empty-state">
+        <h3>{t('error_occurred')}</h3>
+        <p>{error || 'Constituency not found'}</p>
+        <button onClick={() => navigate(-1)} className="btn btn-primary">← {t('back')}</button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="fade-in" style={styles.pageRoot}>
+      <DetailHeader constituency={constituency} navigate={navigate} />
+
+      <div className="page-container" style={styles.container}>
+        <div className="constituency-grid" style={styles.grid}>
+          
+          <aside style={styles.leftCol}>
+            <ErrorBoundary>
+              <div className="card-elevated" style={styles.cardPadding}>
+                <h3 className="card-title-tiny" style={styles.briefingTitle}>AI STRATEGIC BRIEFING</h3>
+                <p className="bio-text" style={styles.briefingText}>
+                  {analysis?.ai_briefing || "Analysis is being processed for this constituency."}
+                </p>
+              </div>
+            </ErrorBoundary>
+
+            <div style={styles.twoColGrid}>
+              {formattedDemographics && formattedDemographics.length > 0 && (
+                <ErrorBoundary>
+                  <DemographicsCard data={formattedDemographics} />
+                </ErrorBoundary>
+              )}
+
+              {analysis?.ai_key_issues && analysis.ai_key_issues.length > 0 && (
+                <ErrorBoundary>
+                  <KeyIssuesCard issues={analysis.ai_key_issues} />
+                </ErrorBoundary>
+              )}
+            </div>
+          </aside>
+
+          <div style={styles.rightCol}>
+            <ErrorBoundary>
+              <div className="card-elevated" style={styles.statsCard}>
+                <ConstituencyModalStats
+                  totalElectors={constituency.total_electors || undefined}
+                  totalVotesPolled={stats?.totalVotesPolled || 0}
+                  voterTurnout={constituency.voter_turnout ? Number(constituency.voter_turnout) : null}
+                  winMargin={stats?.winner?.margin}
+                  t={t}
+                />
+                <div style={styles.statsDivider}>
+                  <ConstituencyModalInsights
+                    badges={badges}
+                    seatType={(analysis?.incumbency as any)?.seat_type}
+                    incumbencyEntry={analysis?.incumbency as any}
+                    totalVotesPolled={stats?.totalVotesPolled || 0}
+                  />
+                </div>
+              </div>
+            </ErrorBoundary>
+
+            <ErrorBoundary>
+              <div className="card-elevated">
+                <div style={styles.tableHeader}>
+                  <h3 style={styles.tableTitle}>Candidate Standings</h3>
+                  <span style={styles.tableCount}>{stats?.candidatesWithShare?.length}</span>
+                </div>
+                <div style={{ padding: '0' }}>
+                  {stats?.candidatesWithShare && (
+                    <CandidateTable 
+                      candidates={stats.candidatesWithShare} 
+                      onPersonClick={(pid) => navigate(`/person/${pid}`)}
+                    />
+                  )}
+                </div>
+              </div>
+            </ErrorBoundary>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- Internal Sub-Components ---
+
+function DetailHeader({ constituency, navigate }: { constituency: any, navigate: any }) {
+  return (
+    <div style={styles.headerRoot}>
+      <div style={styles.headerContent}>
+        <div style={styles.headerLeft}>
+          <button onClick={() => navigate(-1)} style={styles.backButton}>← BACK</button>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={styles.breadcrumb}>
+              {constituency.state?.name} / {constituency.district?.name}
+            </span>
+            <h1 style={styles.pageTitle}>{constituency.name}</h1>
+          </div>
+          <span className={`badge badge-${constituency.type?.toLowerCase()}`} style={styles.typeBadge}>
+            {constituency.type}
+          </span>
+        </div>
+        <ShareButtons text={`${constituency.name} Results`} />
+      </div>
+    </div>
+  );
+}
+
+function DemographicsCard({ data }: { data: any[] }) {
+  return (
+    <div className="card-elevated" style={styles.cardPadding}>
+      <h3 className="card-title-tiny" style={{ marginBottom: 'var(--space-4)' }}>COMMUNITY DATA</h3>
+      <div style={{ display: 'grid', gap: '10px' }}>
+        {data.map((item) => (
+          <div key={item.label} style={styles.demographicRow}>
+            <span style={styles.demographicLabel}>{item.label}</span>
+            <span style={styles.demographicValue}>{item.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function KeyIssuesCard({ issues }: { issues: string[] }) {
+  return (
+    <div className="card-elevated" style={styles.cardPadding}>
+      <h3 className="card-title-tiny" style={{ marginBottom: 'var(--space-4)' }}>LOCAL BATTLEGROUND ISSUES</h3>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        {issues.map((issue: string) => (
+          <span key={issue} className="badge badge-neutral" style={styles.issueBadge}>
+            {issue}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// --- Styles ---
+
+const styles = {
+  pageRoot: { background: 'var(--bg-secondary)', minHeight: '100%' },
+  headerRoot: { 
+    background: 'var(--bg-primary)', 
+    borderBottom: '1px solid var(--border)', 
+    padding: 'var(--space-2) var(--space-6)', 
+    position: 'sticky' as const, 
+    top: 0, 
+    zIndex: 100 
+  },
+  headerContent: { width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
+  headerLeft: { display: 'flex', alignItems: 'center', gap: 'var(--space-4)' },
+  backButton: { 
+    background: 'var(--bg-secondary)', border: '1px solid var(--border)', 
+    borderRadius: 'var(--radius-sm)', padding: '4px 10px', fontSize: '10px', 
+    fontWeight: 800, cursor: 'pointer', color: 'var(--text-secondary)' 
+  },
+  breadcrumb: { 
+    fontSize: '9px', fontWeight: 800, color: 'var(--text-muted)', 
+    textTransform: 'uppercase' as const, letterSpacing: '0.08em' 
+  },
+  pageTitle: { fontSize: '18px', fontWeight: 900, margin: 0, lineHeight: 1, color: 'var(--text-primary)' },
+  typeBadge: { fontSize: '9px', padding: '1px 6px' },
+  container: { padding: 'var(--space-6)', height: 'auto', overflow: 'visible', maxWidth: 'none' },
+  grid: { 
+    display: 'grid', 
+    gridTemplateColumns: '1fr 500px', 
+    gap: 'var(--space-6)', 
+    alignItems: 'start' 
+  },
+  leftCol: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', minWidth: 0 },
+  rightCol: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', width: '500px', flexShrink: 0 },
+  cardPadding: { padding: 'var(--space-6)' },
+  briefingTitle: { color: 'var(--accent)', marginBottom: 'var(--space-4)' },
+  briefingText: { fontSize: '15px', lineHeight: 1.8, color: 'var(--text-primary)', margin: 0, maxWidth: '1100px' },
+  twoColGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 'var(--space-6)' },
+  demographicRow: { 
+    display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', 
+    fontSize: '13px', borderBottom: '1px solid var(--bg-secondary)', paddingBottom: '10px', gap: '16px' 
+  },
+  demographicLabel: { 
+    color: 'var(--text-muted)', fontWeight: 700, textTransform: 'uppercase' as const, 
+    whiteSpace: 'nowrap' as const, fontSize: '10px', letterSpacing: '0.04em' 
+  },
+  demographicValue: { fontWeight: 700, color: 'var(--text-primary)', textAlign: 'right' as const },
+  issueBadge: { fontSize: '11px', padding: '6px 12px', fontWeight: 700 },
+  statsCard: { padding: 'var(--space-5)' },
+  statsDivider: { marginTop: 'var(--space-4)', borderTop: '1px solid var(--border)', paddingTop: 'var(--space-4)' },
+  tableHeader: { 
+    padding: '12px 16px', borderBottom: '1px solid var(--border)', 
+    display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--bg-secondary)' 
+  },
+  tableTitle: { 
+    fontSize: '11px', fontWeight: 900, margin: 0, 
+    textTransform: 'uppercase' as const, letterSpacing: '0.1em', color: 'var(--text-secondary)' 
+  },
+  tableCount: { fontSize: '10px', color: 'var(--text-muted)', fontWeight: 800 },
+};

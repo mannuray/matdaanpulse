@@ -1,0 +1,204 @@
+{
+  "state": "Puducherry",
+  "state_code": "PY",
+  "year": 2021,
+  "type": "VS",
+  "total_seats": 30,
+  "_note": "Winner names and margin available, individual vote counts not available from source",
+  "results": [
+    {
+      "const_no": 1,
+      "const_name": "MANNADIPET",
+      "winner": { "name": "A. Namassivayam", "party": "BJP" },
+      "margin": 2750
+    },
+    {
+      "const_no": 2,
+      "const_name": "THIRUBHUVANAI",
+      "winner": { "name": "P. Angalane", "party": "IND" },
+      "margin": 2359
+    },
+    {
+      "const_no": 3,
+      "const_name": "OUSSUDU",
+      "winner": { "name": "Ak Sai J Saravanan Kumar", "party": "BJP" },
+      "margin": 1880
+    },
+    {
+      "const_no": 4,
+      "const_name": "MANGALAM",
+      "winner": { "name": "Djeacoumar C", "party": "AINRC" },
+      "margin": 2751
+    },
+    {
+      "const_no": 5,
+      "const_name": "VILLIANUR",
+      "winner": { "name": "R. Siva", "party": "DMK" },
+      "margin": 6950
+    },
+    {
+      "const_no": 6,
+      "const_name": "OZHUKARAI",
+      "winner": { "name": "M. Sivasankar", "party": "IND" },
+      "margin": 819
+    },
+    {
+      "const_no": 7,
+      "const_name": "KADIRGAMAM",
+      "winner": { "name": "K.S.P. @ S. Ramesh", "party": "AINRC" },
+      "margin": 12246
+    },
+    {
+      "const_no": 8,
+      "const_name": "INDIRA NAGAR",
+      "winner": { "name": "V. Aroumougame @ Akd", "party": "AINRC" },
+      "margin": 18531
+    },
+    {
+      "const_no": 9,
+      "const_name": "THATTANCHAVADY",
+      "winner": { "name": "N. Rangasamy", "party": "AINRC" },
+      "margin": 5456
+    },
+    {
+      "const_no": 10,
+      "const_name": "KAMRAJ NAGAR",
+      "winner": { "name": "A. Johnkumar", "party": "BJP" },
+      "margin": 7229
+    },
+    {
+      "const_no": 11,
+      "const_name": "LAWSPET",
+      "winner": { "name": "M. Vaithianathan", "party": "INC" },
+      "margin": 5701
+    },
+    {
+      "const_no": 12,
+      "const_name": "KALAPET",
+      "winner": { "name": "P.M.L. Kalyanasundaram", "party": "BJP" },
+      "margin": 3508
+    },
+    {
+      "const_no": 13,
+      "const_name": "MUTHIALPET",
+      "winner": { "name": "J. Prakash Kumar", "party": "IND" },
+      "margin": 934
+    },
+    {
+      "const_no": 14,
+      "const_name": "RAJ BHAVAN",
+      "winner": { "name": "K. Lakshminarayanan", "party": "AINRC" },
+      "margin": 3732
+    },
+    {
+      "const_no": 15,
+      "const_name": "OUPALAM",
+      "winner": { "name": "Annibal Kennedy", "party": "DMK" },
+      "margin": 4780
+    },
+    {
+      "const_no": 16,
+      "const_name": "ORLEAMPETH",
+      "winner": { "name": "G. Nehru @ Kuppusamy", "party": "IND" },
+      "margin": 2093
+    },
+    {
+      "const_no": 17,
+      "const_name": "NELLITHOPE",
+      "winner": { "name": "Richards Johnkumar", "party": "BJP" },
+      "margin": 496
+    },
+    {
+      "const_no": 18,
+      "const_name": "MUDALIARPET",
+      "winner": { "name": "L. Sambath", "party": "DMK" },
+      "margin": 4179
+    },
+    {
+      "const_no": 19,
+      "const_name": "ARIANKUPPAM",
+      "winner": { "name": "R. Baskar @ Datchanamourtty", "party": "AINRC" },
+      "margin": 6418
+    },
+    {
+      "const_no": 20,
+      "const_name": "MANAVELY",
+      "winner": { "name": "Embalam Selvam @ R. Selvam", "party": "BJP" },
+      "margin": 8132
+    },
+    {
+      "const_no": 21,
+      "const_name": "EMBALAM",
+      "winner": { "name": "U. Lakshmikandhan", "party": "AINRC" },
+      "margin": 2240
+    },
+    {
+      "const_no": 22,
+      "const_name": "NETTAPAKKAM",
+      "winner": { "name": "P. Rajavelu", "party": "AINRC" },
+      "margin": 6638
+    },
+    {
+      "const_no": 23,
+      "const_name": "BAHOUR",
+      "winner": { "name": "R. Senthilkumar", "party": "DMK" },
+      "margin": 211
+    },
+    {
+      "const_no": 24,
+      "const_name": "NEDUNGADU",
+      "winner": { "name": "Chandira Priyanga", "party": "AINRC" },
+      "margin": 2214
+    },
+    {
+      "const_no": 25,
+      "const_name": "THIRUNALLAR",
+      "winner": { "name": "P.R. Siva", "party": "IND" },
+      "margin": 1380
+    },
+    {
+      "const_no": 26,
+      "const_name": "KARAIKAL NORTH",
+      "winner": { "name": "P.R.N. Thirumurugan", "party": "AINRC" },
+      "margin": 135
+    },
+    {
+      "const_no": 27,
+      "const_name": "KARAIKAL SOUTH",
+      "winner": { "name": "A.M.H. Nazim", "party": "DMK" },
+      "margin": 12034
+    },
+    {
+      "const_no": 28,
+      "const_name": "NERAVY- T.R. PATTIN",
+      "winner": { "name": "M. Nagathiyagarajan", "party": "DMK" },
+      "margin": 5511
+    },
+    {
+      "const_no": 29,
+      "const_name": "MAHE",
+      "winner": { "name": "Ramesh Parambath", "party": "INC" },
+      "margin": 300
+    },
+    {
+      "const_no": 30,
+      "const_name": "YANAM",
+      "winner": { "name": "Gollapalli Srinivas Ashok", "party": "IND" },
+      "margin": 655
+    }
+  ],
+  "geo_mismatches": [
+    {
+      "const_no": 10,
+      "eci_name": "KAMARAJ NAGAR",
+      "geojson_name": "KAMRAJ NAGAR",
+      "note": "Missing 'A' in GeoJSON — KAMARAJ vs KAMRAJ"
+    },
+    {
+      "const_no": 28,
+      "eci_name": "NERAVY T.R. PATTINAM",
+      "geojson_name": "NERAVY- T.R. PATTIN",
+      "note": "Truncated in GeoJSON — PATTINAM vs PATTIN, extra hyphen"
+    }
+  ]
+}

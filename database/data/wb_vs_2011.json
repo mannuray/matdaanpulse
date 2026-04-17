@@ -1,0 +1,4486 @@
+{
+  "state": "West Bengal",
+  "state_code": "WB",
+  "year": 2011,
+  "type": "VS",
+  "total_seats": 294,
+  "results": [
+    {
+      "const_no": 1,
+      "const_name": "MEKLIGANJ",
+      "winner": {
+        "name": "ADHIKARY PARESH CHANDRA",
+        "party": "AIFB",
+        "votes": 72040
+      },
+      "runner_up": {
+        "name": "JAYANTA KUMAR RAY",
+        "party": "NIC",
+        "votes": 39408
+      },
+      "margin": 32632
+    },
+    {
+      "const_no": 2,
+      "const_name": "MATHABHANGA",
+      "winner": {
+        "name": "BINAY KRISHNA BARMAN",
+        "party": "AITC",
+        "votes": 78249
+      },
+      "runner_up": {
+        "name": "ANANTA ROY",
+        "party": "CPM",
+        "votes": 72925
+      },
+      "margin": 5324
+    },
+    {
+      "const_no": 3,
+      "const_name": "COOCH BEHAR UTTAR",
+      "winner": {
+        "name": "NAGENDRA NATH ROY",
+        "party": "AIFB",
+        "votes": 84825
+      },
+      "runner_up": {
+        "name": "PRASENJIT BARMAN",
+        "party": "AITC",
+        "votes": 82628
+      },
+      "margin": 2197
+    },
+    {
+      "const_no": 4,
+      "const_name": "COOCH BEHAR DAKSHIN",
+      "winner": {
+        "name": "AKSHAY THAKUR",
+        "party": "AIFB",
+        "votes": 72028
+      },
+      "runner_up": {
+        "name": "ABDUL JALIL AHMED",
+        "party": "AITC",
+        "votes": 69165
+      },
+      "margin": 2863
+    },
+    {
+      "const_no": 5,
+      "const_name": "SITALKUCHI",
+      "winner": {
+        "name": "HITEN BARMAN",
+        "party": "AITC",
+        "votes": 84651
+      },
+      "runner_up": {
+        "name": "BISWANATH PRAMANIK",
+        "party": "CPM",
+        "votes": 84394
+      },
+      "margin": 257
+    },
+    {
+      "const_no": 6,
+      "const_name": "SITAI",
+      "winner": {
+        "name": "KESHAB CH. RAY",
+        "party": "INC",
+        "votes": 79791
+      },
+      "runner_up": {
+        "name": "DIPAK KUMAR ROY",
+        "party": "AIFB",
+        "votes": 78214
+      },
+      "margin": 1577
+    },
+    {
+      "const_no": 7,
+      "const_name": "DINHATA",
+      "winner": {
+        "name": "UDAYAN GUHA",
+        "party": "AIFB",
+        "votes": 93050
+      },
+      "runner_up": {
+        "name": "DR. MD. FAZLE HAQUE",
+        "party": "IND",
+        "votes": 63024
+      },
+      "margin": 30026
+    },
+    {
+      "const_no": 8,
+      "const_name": "NATABARI",
+      "winner": {
+        "name": "RABINDRA NATH GHOSH",
+        "party": "AITC",
+        "votes": 81951
+      },
+      "runner_up": {
+        "name": "TAMSER ALI",
+        "party": "CPM",
+        "votes": 74386
+      },
+      "margin": 7565
+    },
+    {
+      "const_no": 9,
+      "const_name": "TUFANGANJ",
+      "winner": {
+        "name": "ARGHYA ROY PRADHAN",
+        "party": "AITC",
+        "votes": 73721
+      },
+      "runner_up": {
+        "name": "DHANANJOY RAVA",
+        "party": "CPM",
+        "votes": 67539
+      },
+      "margin": 6182
+    },
+    {
+      "const_no": 10,
+      "const_name": "KUMARGRAM",
+      "winner": {
+        "name": "DASRATH TIRKEY",
+        "party": "RSP",
+        "votes": 71545
+      },
+      "runner_up": {
+        "name": "JOACHIM BAXLA",
+        "party": "AITC",
+        "votes": 58964
+      },
+      "margin": 12581
+    },
+    {
+      "const_no": 11,
+      "const_name": "KALCHINI",
+      "winner": {
+        "name": "WILSON CHAMPRAMARY",
+        "party": "IND",
+        "votes": 46455
+      },
+      "runner_up": {
+        "name": "BINAY BHUSAN KERKETTA",
+        "party": "RSP",
+        "votes": 39210
+      },
+      "margin": 7245
+    },
+    {
+      "const_no": 12,
+      "const_name": "ALIPURDUARS",
+      "winner": {
+        "name": "DEBAPRASAD ROY",
+        "party": "INC",
+        "votes": 79605
+      },
+      "runner_up": {
+        "name": "KSHITI GOSWAMI",
+        "party": "RSP",
+        "votes": 72822
+      },
+      "margin": 6783
+    },
+    {
+      "const_no": 13,
+      "const_name": "FALAKATA",
+      "winner": {
+        "name": "ANIL ADHIKARI",
+        "party": "AITC",
+        "votes": 77821
+      },
+      "runner_up": {
+        "name": "RABINDRA NATH BARMAN",
+        "party": "CPM",
+        "votes": 69775
+      },
+      "margin": 8046
+    },
+    {
+      "const_no": 14,
+      "const_name": "MADARIHAT",
+      "winner": {
+        "name": "KUMARI KUJUR",
+        "party": "RSP",
+        "votes": 42539
+      },
+      "runner_up": {
+        "name": "MANOJ TIGGA",
+        "party": "BJP",
+        "votes": 34630
+      },
+      "margin": 7909
+    },
+    {
+      "const_no": 15,
+      "const_name": "DHUPGURI",
+      "winner": {
+        "name": "MAMATA ROY",
+        "party": "CPM",
+        "votes": 73644
+      },
+      "runner_up": {
+        "name": "MINA BARMAN",
+        "party": "AITC",
+        "votes": 69406
+      },
+      "margin": 4238
+    },
+    {
+      "const_no": 16,
+      "const_name": "MAYNAGURI",
+      "winner": {
+        "name": "ANANTA DEB ADHIKARI",
+        "party": "RSP",
+        "votes": 84887
+      },
+      "runner_up": {
+        "name": "JUTHIKA ROY BASUNIA",
+        "party": "AITC",
+        "votes": 68611
+      },
+      "margin": 16276
+    },
+    {
+      "const_no": 17,
+      "const_name": "JALPAIGURI",
+      "winner": {
+        "name": "SUKHBILAS BARMA",
+        "party": "INC",
+        "votes": 86273
+      },
+      "runner_up": {
+        "name": "GOBINDA CHANDRA ROY",
+        "party": "AIFB",
+        "votes": 75222
+      },
+      "margin": 11051
+    },
+    {
+      "const_no": 18,
+      "const_name": "RAJGANJ",
+      "winner": {
+        "name": "KHAGESWAR ROY",
+        "party": "AITC",
+        "votes": 74546
+      },
+      "runner_up": {
+        "name": "AMULYA KUMAR ROY",
+        "party": "CPM",
+        "votes": 67526
+      },
+      "margin": 7020
+    },
+    {
+      "const_no": 19,
+      "const_name": "DABGRAM-PHULBARI",
+      "winner": {
+        "name": "GOUTAM DEB",
+        "party": "AITC",
+        "votes": 84649
+      },
+      "runner_up": {
+        "name": "DILIP SINGH",
+        "party": "CPM",
+        "votes": 73413
+      },
+      "margin": 11236
+    },
+    {
+      "const_no": 20,
+      "const_name": "MAL",
+      "winner": {
+        "name": "BULU CHIK BARAIK",
+        "party": "CPM",
+        "votes": 62037
+      },
+      "runner_up": {
+        "name": "HIRAMAN ORAON",
+        "party": "INC",
+        "votes": 57821
+      },
+      "margin": 4216
+    },
+    {
+      "const_no": 21,
+      "const_name": "NAGRAKATA",
+      "winner": {
+        "name": "JOSEPH MUNDA",
+        "party": "INC",
+        "votes": 46537
+      },
+      "runner_up": {
+        "name": "SUKHMOITH ORAON",
+        "party": "CPM",
+        "votes": 45774
+      },
+      "margin": 763
+    },
+    {
+      "const_no": 22,
+      "const_name": "KALIMPONG",
+      "winner": {
+        "name": "DR. HARKA BAHADUR CHETTRI",
+        "party": "GOJAM",
+        "votes": 109102
+      },
+      "runner_up": {
+        "name": "PRAKASH DAHAL",
+        "party": "GNLF",
+        "votes": 7427
+      },
+      "margin": 101675
+    },
+    {
+      "const_no": 23,
+      "const_name": "DARJEELING",
+      "winner": {
+        "name": "TRILOK KUMAR DEWAN",
+        "party": "GOJAM",
+        "votes": 120532
+      },
+      "runner_up": {
+        "name": "BIM SUBBA",
+        "party": "GNLF",
+        "votes": 13977
+      },
+      "margin": 106555
+    },
+    {
+      "const_no": 24,
+      "const_name": "KURSEONG",
+      "winner": {
+        "name": "ROHIT SHARMA",
+        "party": "GOJAM",
+        "votes": 114297
+      },
+      "runner_up": {
+        "name": "PEMU CHHETRI",
+        "party": "GNLF",
+        "votes": 21201
+      },
+      "margin": 93096
+    },
+    {
+      "const_no": 25,
+      "const_name": "MATIGARA-NAXALBARI",
+      "winner": {
+        "name": "SANKAR MALAKAR",
+        "party": "INC",
+        "votes": 74334
+      },
+      "runner_up": {
+        "name": "JHAREN ROY",
+        "party": "CPM",
+        "votes": 67501
+      },
+      "margin": 6833
+    },
+    {
+      "const_no": 26,
+      "const_name": "SILIGURI",
+      "winner": {
+        "name": "RUDRA NATH BHATTACHARYA",
+        "party": "AITC",
+        "votes": 72019
+      },
+      "runner_up": {
+        "name": "ASOK NARAYAN BHATTACHARYA",
+        "party": "CPM",
+        "votes": 67013
+      },
+      "margin": 5006
+    },
+    {
+      "const_no": 27,
+      "const_name": "PHANSIDEWA",
+      "winner": {
+        "name": "SUNIL CHANDRA TIRKEY",
+        "party": "INC",
+        "votes": 61388
+      },
+      "runner_up": {
+        "name": "CHHOTAN KISKU",
+        "party": "CPM",
+        "votes": 59151
+      },
+      "margin": 2237
+    },
+    {
+      "const_no": 28,
+      "const_name": "CHOPRA",
+      "winner": {
+        "name": "HAMIDUL RAHAMAN",
+        "party": "IND",
+        "votes": 64289
+      },
+      "runner_up": {
+        "name": "ANWARUL HAQUE",
+        "party": "CPM",
+        "votes": 57719
+      },
+      "margin": 6570
+    },
+    {
+      "const_no": 29,
+      "const_name": "ISLAMPUR",
+      "winner": {
+        "name": "ABDUL KARIM CHOWDHARY",
+        "party": "AITC",
+        "votes": 49326
+      },
+      "runner_up": {
+        "name": "SAYEDA FARHAT AFROZ",
+        "party": "CPM",
+        "votes": 38054
+      },
+      "margin": 11272
+    },
+    {
+      "const_no": 30,
+      "const_name": "GOALPOKHAR",
+      "winner": {
+        "name": "MD. GHULAM RABBANI",
+        "party": "INC",
+        "votes": 61313
+      },
+      "runner_up": {
+        "name": "SAFIUR RAHAMAN",
+        "party": "AIFB",
+        "votes": 47900
+      },
+      "margin": 13413
+    },
+    {
+      "const_no": 31,
+      "const_name": "CHAKULIA",
+      "winner": {
+        "name": "ALI IMRAN RAMZ",
+        "party": "AIFB",
+        "votes": 65265
+      },
+      "runner_up": {
+        "name": "SERAJUL ISLAM",
+        "party": "INC",
+        "votes": 44852
+      },
+      "margin": 20413
+    },
+    {
+      "const_no": 32,
+      "const_name": "KARANDIGHI",
+      "winner": {
+        "name": "GOKUL ROY",
+        "party": "AIFB",
+        "votes": 57023
+      },
+      "runner_up": {
+        "name": "SUBHAS GOSWAMI",
+        "party": "INC",
+        "votes": 51245
+      },
+      "margin": 5778
+    },
+    {
+      "const_no": 33,
+      "const_name": "HEMTABAD",
+      "winner": {
+        "name": "KHAGENDRA NATH SINHA",
+        "party": "CPM",
+        "votes": 71553
+      },
+      "runner_up": {
+        "name": "SHEKHAR CHANDRA ROY",
+        "party": "AITC",
+        "votes": 35849
+      },
+      "margin": 35704
+    },
+    {
+      "const_no": 34,
+      "const_name": "KALIAGANJ",
+      "winner": {
+        "name": "PRAMATHA NATH RAY",
+        "party": "INC",
+        "votes": 84873
+      },
+      "runner_up": {
+        "name": "NANI GOPAL ROY",
+        "party": "CPM",
+        "votes": 77583
+      },
+      "margin": 7290
+    },
+    {
+      "const_no": 35,
+      "const_name": "RAIGANJ",
+      "winner": {
+        "name": "MOHIT SENGUPTA",
+        "party": "INC",
+        "votes": 62864
+      },
+      "runner_up": {
+        "name": "KIRANMAY NANDA",
+        "party": "SP",
+        "votes": 57455
+      },
+      "margin": 5409
+    },
+    {
+      "const_no": 36,
+      "const_name": "ITAHAR",
+      "winner": {
+        "name": "AMAL ACHARJEE",
+        "party": "AITC",
+        "votes": 61707
+      },
+      "runner_up": {
+        "name": "SRIKUMAR MUKHERJEE",
+        "party": "CPI",
+        "votes": 54655
+      },
+      "margin": 7052
+    },
+    {
+      "const_no": 37,
+      "const_name": "KUSHMANDI",
+      "winner": {
+        "name": "NARMADA CHANDRA ROY",
+        "party": "RSP",
+        "votes": 66368
+      },
+      "runner_up": {
+        "name": "PARTHASARATHI SARKAR",
+        "party": "INC",
+        "votes": 62725
+      },
+      "margin": 3643
+    },
+    {
+      "const_no": 38,
+      "const_name": "KUMARGANJ",
+      "winner": {
+        "name": "BEGAM MAHAMUDA",
+        "party": "AITC",
+        "votes": 62212
+      },
+      "runner_up": {
+        "name": "KHATUN MAFUJA",
+        "party": "CPM",
+        "votes": 57994
+      },
+      "margin": 4218
+    },
+    {
+      "const_no": 39,
+      "const_name": "BALURGHAT",
+      "winner": {
+        "name": "CHAKRABORTY SHANKAR",
+        "party": "AITC",
+        "votes": 67495
+      },
+      "runner_up": {
+        "name": "BISWANATH CHOUDHURY",
+        "party": "RSP",
+        "votes": 49204
+      },
+      "margin": 18291
+    },
+    {
+      "const_no": 40,
+      "const_name": "TAPAN",
+      "winner": {
+        "name": "BACHCHU HANSDA",
+        "party": "AITC",
+        "votes": 72643
+      },
+      "runner_up": {
+        "name": "KHARA SOREN",
+        "party": "RSP",
+        "votes": 53986
+      },
+      "margin": 18657
+    },
+    {
+      "const_no": 41,
+      "const_name": "GANGARAMPUR",
+      "winner": {
+        "name": "SATYENDRA NATH ROY",
+        "party": "AITC",
+        "votes": 65666
+      },
+      "runner_up": {
+        "name": "NANDALAL HAZRA",
+        "party": "CPM",
+        "votes": 64998
+      },
+      "margin": 668
+    },
+    {
+      "const_no": 42,
+      "const_name": "HARIRAMPUR",
+      "winner": {
+        "name": "BIPLAB MITRA",
+        "party": "AITC",
+        "votes": 65099
+      },
+      "runner_up": {
+        "name": "NARAYAN BISWAS",
+        "party": "CPM",
+        "votes": 58032
+      },
+      "margin": 7067
+    },
+    {
+      "const_no": 43,
+      "const_name": "HABIBPUR",
+      "winner": {
+        "name": "KHAGEN MURMU",
+        "party": "CPM",
+        "votes": 59286
+      },
+      "runner_up": {
+        "name": "MOHAN TUDU",
+        "party": "AITC",
+        "votes": 57028
+      },
+      "margin": 2258
+    },
+    {
+      "const_no": 44,
+      "const_name": "GAZOLE",
+      "winner": {
+        "name": "SUSHIL CHANDRA RAY",
+        "party": "INC",
+        "votes": 74654
+      },
+      "runner_up": {
+        "name": "GOBINDA MANDAL",
+        "party": "CPM",
+        "votes": 69070
+      },
+      "margin": 5584
+    },
+    {
+      "const_no": 45,
+      "const_name": "CHANCHAL",
+      "winner": {
+        "name": "ASIF MEHBUB",
+        "party": "INC",
+        "votes": 68586
+      },
+      "runner_up": {
+        "name": "ANJUMAN ARA BEGAM",
+        "party": "CPM",
+        "votes": 54399
+      },
+      "margin": 14187
+    },
+    {
+      "const_no": 46,
+      "const_name": "HARISHCHANDRAPUR",
+      "winner": {
+        "name": "TAJMUL HOSSAIN",
+        "party": "AIFB",
+        "votes": 62019
+      },
+      "runner_up": {
+        "name": "ALAM MOSTAQUE",
+        "party": "INC",
+        "votes": 59578
+      },
+      "margin": 2441
+    },
+    {
+      "const_no": 47,
+      "const_name": "MALATIPUR",
+      "winner": {
+        "name": "ABDUR RAHIM BOXI",
+        "party": "RSP",
+        "votes": 54794
+      },
+      "runner_up": {
+        "name": "AL-BERUNI",
+        "party": "IND",
+        "votes": 48093
+      },
+      "margin": 6701
+    },
+    {
+      "const_no": 48,
+      "const_name": "RATUA",
+      "winner": {
+        "name": "SAMAR MUKHERJEE",
+        "party": "INC",
+        "votes": 74936
+      },
+      "runner_up": {
+        "name": "SAILEN SARKAR",
+        "party": "CPM",
+        "votes": 68075
+      },
+      "margin": 6861
+    },
+    {
+      "const_no": 49,
+      "const_name": "MANIKCHAK",
+      "winner": {
+        "name": "SABITRI MITRA",
+        "party": "AITC",
+        "votes": 64641
+      },
+      "runner_up": {
+        "name": "RATNA BHATTACHARYA",
+        "party": "CPM",
+        "votes": 58424
+      },
+      "margin": 6217
+    },
+    {
+      "const_no": 50,
+      "const_name": "MALDAHA",
+      "winner": {
+        "name": "BHUPENDRA NATH HALDER",
+        "party": "INC",
+        "votes": 68155
+      },
+      "runner_up": {
+        "name": "RAHUL RANJAN DAS",
+        "party": "CPM",
+        "votes": 57400
+      },
+      "margin": 10755
+    },
+    {
+      "const_no": 51,
+      "const_name": "ENGLISH BAZAR",
+      "winner": {
+        "name": "KRISHNENDU NARAYAN CHOUDHURY",
+        "party": "INC",
+        "votes": 89421
+      },
+      "runner_up": {
+        "name": "SAMAR ROY",
+        "party": "CPM",
+        "votes": 67592
+      },
+      "margin": 21829
+    },
+    {
+      "const_no": 52,
+      "const_name": "MOTHABARI",
+      "winner": {
+        "name": "SABINA YEASMIN",
+        "party": "INC",
+        "votes": 47466
+      },
+      "runner_up": {
+        "name": "NAIMUDDIN SHEIKH",
+        "party": "CPM",
+        "votes": 41446
+      },
+      "margin": 6020
+    },
+    {
+      "const_no": 53,
+      "const_name": "SUJAPUR",
+      "winner": {
+        "name": "ABU NASAR KHAN CHOUDHURY",
+        "party": "INC",
+        "votes": 70640
+      },
+      "runner_up": {
+        "name": "HAZI KETABUDDIN",
+        "party": "CPM",
+        "votes": 53279
+      },
+      "margin": 17361
+    },
+    {
+      "const_no": 54,
+      "const_name": "BAISNABNAGAR",
+      "winner": {
+        "name": "ISHA KHAN CHOUDHURY",
+        "party": "INC",
+        "votes": 62589
+      },
+      "runner_up": {
+        "name": "BISWANATH GHOSH",
+        "party": "CPM",
+        "votes": 57566
+      },
+      "margin": 5023
+    },
+    {
+      "const_no": 55,
+      "const_name": "FARAKKA",
+      "winner": {
+        "name": "MAINUL HAQUE",
+        "party": "INC",
+        "votes": 52780
+      },
+      "runner_up": {
+        "name": "ABDUS SALAM",
+        "party": "CPM",
+        "votes": 48041
+      },
+      "margin": 4739
+    },
+    {
+      "const_no": 56,
+      "const_name": "SAMSERGANJ",
+      "winner": {
+        "name": "TOUAB ALI",
+        "party": "CPM",
+        "votes": 61138
+      },
+      "runner_up": {
+        "name": "MOUSUMI BEGUM",
+        "party": "INC",
+        "votes": 53349
+      },
+      "margin": 7789
+    },
+    {
+      "const_no": 57,
+      "const_name": "SUTI",
+      "winner": {
+        "name": "EMANI BISWAS",
+        "party": "INC",
+        "votes": 73465
+      },
+      "runner_up": {
+        "name": "JANE ALAM MIAN",
+        "party": "RSP",
+        "votes": 56056
+      },
+      "margin": 17409
+    },
+    {
+      "const_no": 58,
+      "const_name": "JANGIPUR",
+      "winner": {
+        "name": "MD. SOHRAB",
+        "party": "INC",
+        "votes": 68699
+      },
+      "runner_up": {
+        "name": "PURNIMA BHATTACHARYA",
+        "party": "CPM",
+        "votes": 62363
+      },
+      "margin": 6336
+    },
+    {
+      "const_no": 59,
+      "const_name": "RAGHUNATHGANJ",
+      "winner": {
+        "name": "AKHRUZZAMAN",
+        "party": "INC",
+        "votes": 74683
+      },
+      "runner_up": {
+        "name": "ABUL HASNAT",
+        "party": "RSP",
+        "votes": 59143
+      },
+      "margin": 15540
+    },
+    {
+      "const_no": 60,
+      "const_name": "SAGARDIGHI",
+      "winner": {
+        "name": "SUBRATA SAHA",
+        "party": "AITC",
+        "votes": 54708
+      },
+      "runner_up": {
+        "name": "ISMAIL SEKH",
+        "party": "CPM",
+        "votes": 50134
+      },
+      "margin": 4574
+    },
+    {
+      "const_no": 61,
+      "const_name": "LALGOLA",
+      "winner": {
+        "name": "ABU HENA",
+        "party": "INC",
+        "votes": 74317
+      },
+      "runner_up": {
+        "name": "MD YEAN ALI",
+        "party": "CPM",
+        "votes": 58133
+      },
+      "margin": 16184
+    },
+    {
+      "const_no": 62,
+      "const_name": "BHAGABANGOLA",
+      "winner": {
+        "name": "CHAND MOHAMMAD",
+        "party": "SP",
+        "votes": 62862
+      },
+      "runner_up": {
+        "name": "SAGIR HOSSAIN",
+        "party": "AITC",
+        "votes": 49528
+      },
+      "margin": 13334
+    },
+    {
+      "const_no": 63,
+      "const_name": "RANINAGAR",
+      "winner": {
+        "name": "FIROZA BEGAM",
+        "party": "INC",
+        "votes": 76092
+      },
+      "runner_up": {
+        "name": "MST. MAKSUDA BEGUM",
+        "party": "AIFB",
+        "votes": 75003
+      },
+      "margin": 1089
+    },
+    {
+      "const_no": 64,
+      "const_name": "MURSHIDABAD",
+      "winner": {
+        "name": "SHAONI SINGHA ROY",
+        "party": "INC",
+        "votes": 75441
+      },
+      "runner_up": {
+        "name": "BIVAS CHAKRABORTY",
+        "party": "AIFB",
+        "votes": 69089
+      },
+      "margin": 6352
+    },
+    {
+      "const_no": 65,
+      "const_name": "NABAGRAM",
+      "winner": {
+        "name": "KANAI CHANDRA MANDAL",
+        "party": "CPM",
+        "votes": 78703
+      },
+      "runner_up": {
+        "name": "PROBAL SARKAR",
+        "party": "INC",
+        "votes": 71147
+      },
+      "margin": 7556
+    },
+    {
+      "const_no": 66,
+      "const_name": "KHARGRAM",
+      "winner": {
+        "name": "ASHIS MARJIT",
+        "party": "INC",
+        "votes": 74093
+      },
+      "runner_up": {
+        "name": "GOUTAM MONDAL",
+        "party": "CPM",
+        "votes": 65123
+      },
+      "margin": 8970
+    },
+    {
+      "const_no": 67,
+      "const_name": "BURWAN",
+      "winner": {
+        "name": "PROTIMA RAJAK",
+        "party": "INC",
+        "votes": 66304
+      },
+      "runner_up": {
+        "name": "BINOY SARKAR",
+        "party": "RSP",
+        "votes": 65688
+      },
+      "margin": 616
+    },
+    {
+      "const_no": 68,
+      "const_name": "KANDI",
+      "winner": {
+        "name": "APURBA SARKAR",
+        "party": "INC",
+        "votes": 66513
+      },
+      "runner_up": {
+        "name": "AINAL HAQUE",
+        "party": "CPI",
+        "votes": 58703
+      },
+      "margin": 7810
+    },
+    {
+      "const_no": 69,
+      "const_name": "BHARATPUR",
+      "winner": {
+        "name": "ID MOHAMMAD",
+        "party": "RSP",
+        "votes": 70658
+      },
+      "runner_up": {
+        "name": "DALIYA BEGUM",
+        "party": "INC",
+        "votes": 68729
+      },
+      "margin": 1929
+    },
+    {
+      "const_no": 70,
+      "const_name": "REJINAGAR",
+      "winner": {
+        "name": "HUMAYUN KABIR",
+        "party": "INC",
+        "votes": 77542
+      },
+      "runner_up": {
+        "name": "SIRAJUL ISLAM MONDAL",
+        "party": "RSP",
+        "votes": 68781
+      },
+      "margin": 8761
+    },
+    {
+      "const_no": 71,
+      "const_name": "BELDANGA",
+      "winner": {
+        "name": "SAFIUJJAMAN SEIKH",
+        "party": "INC",
+        "votes": 67888
+      },
+      "runner_up": {
+        "name": "MD. REFATULLAH",
+        "party": "RSP",
+        "votes": 54005
+      },
+      "margin": 13883
+    },
+    {
+      "const_no": 72,
+      "const_name": "BAHARAMPUR",
+      "winner": {
+        "name": "MANOJ CHAKRABORTY",
+        "party": "INC",
+        "votes": 91578
+      },
+      "runner_up": {
+        "name": "TARIT KUMAR BRAHMACHARI",
+        "party": "RSP",
+        "votes": 48265
+      },
+      "margin": 43313
+    },
+    {
+      "const_no": 73,
+      "const_name": "HARIHARPARA",
+      "winner": {
+        "name": "INSAR ALI BISWAS",
+        "party": "CPM",
+        "votes": 58293
+      },
+      "runner_up": {
+        "name": "NIAMOT SHEIKH",
+        "party": "AITC",
+        "votes": 51935
+      },
+      "margin": 6358
+    },
+    {
+      "const_no": 74,
+      "const_name": "NAODA",
+      "winner": {
+        "name": "ABU TAHER KHAN",
+        "party": "INC",
+        "votes": 80758
+      },
+      "runner_up": {
+        "name": "JAYANTA KUMAR BISWAS",
+        "party": "RSP",
+        "votes": 66963
+      },
+      "margin": 13795
+    },
+    {
+      "const_no": 75,
+      "const_name": "DOMKAL",
+      "winner": {
+        "name": "ANISUR RAHAMAN",
+        "party": "CPM",
+        "votes": 81812
+      },
+      "runner_up": {
+        "name": "SOUMIK HOSSAIN",
+        "party": "INC",
+        "votes": 78737
+      },
+      "margin": 3075
+    },
+    {
+      "const_no": 76,
+      "const_name": "JALANGI",
+      "winner": {
+        "name": "ABDUR RAZZAK",
+        "party": "CPM",
+        "votes": 85144
+      },
+      "runner_up": {
+        "name": "IDRIS ALI",
+        "party": "AITC",
+        "votes": 47283
+      },
+      "margin": 37861
+    },
+    {
+      "const_no": 77,
+      "const_name": "KARIMPUR",
+      "winner": {
+        "name": "SAMARENDRANATH GHOSH",
+        "party": "CPM",
+        "votes": 82244
+      },
+      "runner_up": {
+        "name": "DR. RAMENDRA NATH SARKAR",
+        "party": "AITC",
+        "votes": 77159
+      },
+      "margin": 5085
+    },
+    {
+      "const_no": 78,
+      "const_name": "TEHATTA",
+      "winner": {
+        "name": "RANJIT KUMAR MANDAL",
+        "party": "CPM",
+        "votes": 75445
+      },
+      "runner_up": {
+        "name": "TAPAS KUMAR SAHA",
+        "party": "IND",
+        "votes": 56248
+      },
+      "margin": 19197
+    },
+    {
+      "const_no": 79,
+      "const_name": "PALASHIPARA",
+      "winner": {
+        "name": "S.M. SADI",
+        "party": "CPM",
+        "votes": 73619
+      },
+      "runner_up": {
+        "name": "MANIK BHATTACHARJEE",
+        "party": "AITC",
+        "votes": 71967
+      },
+      "margin": 1652
+    },
+    {
+      "const_no": 80,
+      "const_name": "KALIGANJ",
+      "winner": {
+        "name": "NASIRUDDIN AHAMED",
+        "party": "AITC",
+        "votes": 74091
+      },
+      "runner_up": {
+        "name": "SANKAR SARKAR",
+        "party": "RSP",
+        "votes": 56913
+      },
+      "margin": 17178
+    },
+    {
+      "const_no": 81,
+      "const_name": "NAKASHIPARA",
+      "winner": {
+        "name": "KOLLOL KHAN",
+        "party": "AITC",
+        "votes": 79644
+      },
+      "runner_up": {
+        "name": "GAYATRI SARDAR",
+        "party": "CPM",
+        "votes": 63170
+      },
+      "margin": 16474
+    },
+    {
+      "const_no": 82,
+      "const_name": "CHAPRA",
+      "winner": {
+        "name": "RUKBANUR RAHMAN",
+        "party": "AITC",
+        "votes": 77435
+      },
+      "runner_up": {
+        "name": "SHAMSUL ISLAM MOLLAH",
+        "party": "CPM",
+        "votes": 74802
+      },
+      "margin": 2633
+    },
+    {
+      "const_no": 83,
+      "const_name": "KRISHNANAGAR UTTAR",
+      "winner": {
+        "name": "ABANI MOHAN JOARDAR",
+        "party": "AITC",
+        "votes": 96677
+      },
+      "runner_up": {
+        "name": "GHOSH SUBINAY",
+        "party": "CPM",
+        "votes": 61567
+      },
+      "margin": 35110
+    },
+    {
+      "const_no": 84,
+      "const_name": "NABADWIP",
+      "winner": {
+        "name": "PUNDARIKAKSHYA SAHA",
+        "party": "AITC",
+        "votes": 94117
+      },
+      "runner_up": {
+        "name": "BISWAS SUMIT",
+        "party": "CPM",
+        "votes": 71282
+      },
+      "margin": 22835
+    },
+    {
+      "const_no": 85,
+      "const_name": "KRISHNANAGAR DAKSHIN",
+      "winner": {
+        "name": "UJJAL BISWAS",
+        "party": "AITC",
+        "votes": 71392
+      },
+      "runner_up": {
+        "name": "BISWAS RAMA",
+        "party": "CPM",
+        "votes": 60364
+      },
+      "margin": 11028
+    },
+    {
+      "const_no": 86,
+      "const_name": "SANTIPUR",
+      "winner": {
+        "name": "AJOY DEY",
+        "party": "INC",
+        "votes": 98902
+      },
+      "runner_up": {
+        "name": "IYAR MALLIK",
+        "party": "RCPI(R)",
+        "votes": 60744
+      },
+      "margin": 38158
+    },
+    {
+      "const_no": 87,
+      "const_name": "RANAGHAT UTTAR PASCHIM",
+      "winner": {
+        "name": "PARTHA SARATHI CHATTERJEE",
+        "party": "AITC",
+        "votes": 101395
+      },
+      "runner_up": {
+        "name": "BHATTACHARYA MINA",
+        "party": "CPM",
+        "votes": 74051
+      },
+      "margin": 27344
+    },
+    {
+      "const_no": 88,
+      "const_name": "KRISHNAGANJ",
+      "winner": {
+        "name": "SUSHIL BISWAS",
+        "party": "AITC",
+        "votes": 96550
+      },
+      "runner_up": {
+        "name": "BARUN BISWAS",
+        "party": "CPM",
+        "votes": 75616
+      },
+      "margin": 20934
+    },
+    {
+      "const_no": 89,
+      "const_name": "RANAGHAT UTTAR PURBA",
+      "winner": {
+        "name": "SAMIR KUMAR PODDAR",
+        "party": "AITC",
+        "votes": 93836
+      },
+      "runner_up": {
+        "name": "ARCHANA BISWAS",
+        "party": "CPM",
+        "votes": 62644
+      },
+      "margin": 31192
+    },
+    {
+      "const_no": 90,
+      "const_name": "RANAGHAT DAKSHIN",
+      "winner": {
+        "name": "ABIR RANJAN BISWAS",
+        "party": "AITC",
+        "votes": 99432
+      },
+      "runner_up": {
+        "name": "ALOKE KUMAR DAS",
+        "party": "CPM",
+        "votes": 79824
+      },
+      "margin": 19608
+    },
+    {
+      "const_no": 91,
+      "const_name": "CHAKDAHA",
+      "winner": {
+        "name": "NARESH CHANDRA CHAKI",
+        "party": "AITC",
+        "votes": 88771
+      },
+      "runner_up": {
+        "name": "BISWANATH GUPTA",
+        "party": "CPM",
+        "votes": 74672
+      },
+      "margin": 14099
+    },
+    {
+      "const_no": 92,
+      "const_name": "KALYANI",
+      "winner": {
+        "name": "DR. RAMENDRA NATH BISWAS",
+        "party": "AITC",
+        "votes": 92322
+      },
+      "runner_up": {
+        "name": "JYOTSNA SARKAR",
+        "party": "CPM",
+        "votes": 76632
+      },
+      "margin": 15690
+    },
+    {
+      "const_no": 93,
+      "const_name": "HARINGHATA",
+      "winner": {
+        "name": "NILIMA NAG",
+        "party": "AITC",
+        "votes": 83366
+      },
+      "runner_up": {
+        "name": "BISWAJIT PAUL",
+        "party": "CPM",
+        "votes": 70363
+      },
+      "margin": 13003
+    },
+    {
+      "const_no": 94,
+      "const_name": "BAGDA",
+      "winner": {
+        "name": "UPENDRA NATH BISWAS",
+        "party": "AITC",
+        "votes": 91821
+      },
+      "runner_up": {
+        "name": "MRINAL KANTI SIKDAR",
+        "party": "AIFB",
+        "votes": 70865
+      },
+      "margin": 20956
+    },
+    {
+      "const_no": 95,
+      "const_name": "BANGAON UTTAR",
+      "winner": {
+        "name": "BISWAJIT DAS",
+        "party": "AITC",
+        "votes": 89265
+      },
+      "runner_up": {
+        "name": "DR. BISWAJIT KUMAR BISWAS",
+        "party": "CPM",
+        "votes": 65645
+      },
+      "margin": 23620
+    },
+    {
+      "const_no": 96,
+      "const_name": "BANGAON DAKSHIN",
+      "winner": {
+        "name": "SURAJIT KUMAR BISWAS",
+        "party": "AITC",
+        "votes": 87677
+      },
+      "runner_up": {
+        "name": "ANUJ BARAN SARKAR",
+        "party": "CPM",
+        "votes": 65788
+      },
+      "margin": 21889
+    },
+    {
+      "const_no": 97,
+      "const_name": "GAIGHATA",
+      "winner": {
+        "name": "MANJUL KRISHNA THAKUR",
+        "party": "AITC",
+        "votes": 91487
+      },
+      "runner_up": {
+        "name": "MANOJ KANTI BISWAS",
+        "party": "CPI",
+        "votes": 66040
+      },
+      "margin": 25447
+    },
+    {
+      "const_no": 98,
+      "const_name": "SWARUPNAGAR",
+      "winner": {
+        "name": "BINA MONDAL",
+        "party": "AITC",
+        "votes": 83641
+      },
+      "runner_up": {
+        "name": "SIVA PADA DAS",
+        "party": "CPM",
+        "votes": 76227
+      },
+      "margin": 7414
+    },
+    {
+      "const_no": 99,
+      "const_name": "BADURIA",
+      "winner": {
+        "name": "ABDUL GAFFAR QUAZI",
+        "party": "INC",
+        "votes": 89952
+      },
+      "runner_up": {
+        "name": "MD. SHELIM GAIN",
+        "party": "CPM",
+        "votes": 66992
+      },
+      "margin": 22960
+    },
+    {
+      "const_no": 100,
+      "const_name": "HABRA",
+      "winner": {
+        "name": "JYOTI PRIYA MALLICK",
+        "party": "AITC",
+        "votes": 86218
+      },
+      "runner_up": {
+        "name": "PRANAB KUMAR BHATTACHARYYA",
+        "party": "CPM",
+        "votes": 60826
+      },
+      "margin": 25392
+    },
+    {
+      "const_no": 101,
+      "const_name": "ASHOKENAGAR",
+      "winner": {
+        "name": "DHIMAN ROY",
+        "party": "AITC",
+        "votes": 94451
+      },
+      "runner_up": {
+        "name": "SATYASEBI KAR",
+        "party": "CPM",
+        "votes": 66759
+      },
+      "margin": 27692
+    },
+    {
+      "const_no": 102,
+      "const_name": "AMDANGA",
+      "winner": {
+        "name": "RAFIQUR RAHAMAN",
+        "party": "AITC",
+        "votes": 87162
+      },
+      "runner_up": {
+        "name": "ABDUS SATTAR",
+        "party": "CPM",
+        "votes": 65605
+      },
+      "margin": 21557
+    },
+    {
+      "const_no": 103,
+      "const_name": "BIJPUR",
+      "winner": {
+        "name": "SUBHRANSHU ROY",
+        "party": "AITC",
+        "votes": 65479
+      },
+      "runner_up": {
+        "name": "DR. NIRJHARINI CHAKRABORTY",
+        "party": "CPM",
+        "votes": 52867
+      },
+      "margin": 12612
+    },
+    {
+      "const_no": 104,
+      "const_name": "NAIHATI",
+      "winner": {
+        "name": "PARTHA BHOWMICK",
+        "party": "AITC",
+        "votes": 75482
+      },
+      "runner_up": {
+        "name": "RANJIT KUNDU",
+        "party": "CPM",
+        "votes": 48012
+      },
+      "margin": 27470
+    },
+    {
+      "const_no": 105,
+      "const_name": "BHATPARA",
+      "winner": {
+        "name": "ARJUN SINGH",
+        "party": "AITC",
+        "votes": 66938
+      },
+      "runner_up": {
+        "name": "NEPALDEB BHATTACHARYYA",
+        "party": "CPM",
+        "votes": 22553
+      },
+      "margin": 44385
+    },
+    {
+      "const_no": 106,
+      "const_name": "JAGATDAL",
+      "winner": {
+        "name": "PARASH DUTTA",
+        "party": "AITC",
+        "votes": 86388
+      },
+      "runner_up": {
+        "name": "HARIPADA BISWAS",
+        "party": "AIFB",
+        "votes": 50356
+      },
+      "margin": 36032
+    },
+    {
+      "const_no": 107,
+      "const_name": "NOAPARA",
+      "winner": {
+        "name": "MANJU BASU",
+        "party": "AITC",
+        "votes": 100369
+      },
+      "runner_up": {
+        "name": "KUSADHWAJ GHOSH",
+        "party": "CPM",
+        "votes": 59221
+      },
+      "margin": 41148
+    },
+    {
+      "const_no": 108,
+      "const_name": "BARRACKPUR",
+      "winner": {
+        "name": "SILBHADRA DATTA",
+        "party": "AITC",
+        "votes": 79515
+      },
+      "runner_up": {
+        "name": "DR. MADHUSUDAN SAMANTA",
+        "party": "CPM",
+        "votes": 43392
+      },
+      "margin": 36123
+    },
+    {
+      "const_no": 109,
+      "const_name": "KHARDAHA",
+      "winner": {
+        "name": "AMIT MITRA",
+        "party": "AITC",
+        "votes": 83608
+      },
+      "runner_up": {
+        "name": "ASIM KUMAR DASGUPTA",
+        "party": "CPM",
+        "votes": 57454
+      },
+      "margin": 26154
+    },
+    {
+      "const_no": 110,
+      "const_name": "DUM DUM UTTAR",
+      "winner": {
+        "name": "CHANDRIMA BHATTACHARYA",
+        "party": "AITC",
+        "votes": 94676
+      },
+      "runner_up": {
+        "name": "REKHA GOSWAMI",
+        "party": "CPM",
+        "votes": 75650
+      },
+      "margin": 19026
+    },
+    {
+      "const_no": 111,
+      "const_name": "PANIHATI",
+      "winner": {
+        "name": "NIRMAL GHOSH",
+        "party": "AITC",
+        "votes": 88334
+      },
+      "runner_up": {
+        "name": "AHIBHUSAN CHAKRABORTY",
+        "party": "CPM",
+        "votes": 56902
+      },
+      "margin": 31432
+    },
+    {
+      "const_no": 112,
+      "const_name": "KAMARHATI",
+      "winner": {
+        "name": "MADAN MITRA",
+        "party": "AITC",
+        "votes": 74112
+      },
+      "runner_up": {
+        "name": "MANASH MUKHERJEE",
+        "party": "CPM",
+        "votes": 49758
+      },
+      "margin": 24354
+    },
+    {
+      "const_no": 113,
+      "const_name": "BARANAGAR",
+      "winner": {
+        "name": "TAPAS ROY",
+        "party": "AITC",
+        "votes": 89883
+      },
+      "runner_up": {
+        "name": "SUKUMAR GHOSH",
+        "party": "RSP",
+        "votes": 53055
+      },
+      "margin": 36828
+    },
+    {
+      "const_no": 114,
+      "const_name": "DUM DUM",
+      "winner": {
+        "name": "BRATYA BASU",
+        "party": "AITC",
+        "votes": 92635
+      },
+      "runner_up": {
+        "name": "GAUTAM DEB",
+        "party": "CPM",
+        "votes": 61138
+      },
+      "margin": 31497
+    },
+    {
+      "const_no": 115,
+      "const_name": "RAJARHAT NEW TOWN",
+      "winner": {
+        "name": "SABYASACHI DUTTA",
+        "party": "AITC",
+        "votes": 80738
+      },
+      "runner_up": {
+        "name": "TAPASH CHATTERJEE",
+        "party": "CPM",
+        "votes": 72991
+      },
+      "margin": 7747
+    },
+    {
+      "const_no": 116,
+      "const_name": "BIDHANNAGAR",
+      "winner": {
+        "name": "SUJIT BOSE",
+        "party": "AITC",
+        "votes": 88642
+      },
+      "runner_up": {
+        "name": "PALASH DAS",
+        "party": "CPM",
+        "votes": 52717
+      },
+      "margin": 35925
+    },
+    {
+      "const_no": 117,
+      "const_name": "RAJARHAT GOPALPUR",
+      "winner": {
+        "name": "PURNENDU BASU",
+        "party": "AITC",
+        "votes": 89829
+      },
+      "runner_up": {
+        "name": "RABINDRA NATH MANDAL",
+        "party": "CPM",
+        "votes": 54104
+      },
+      "margin": 35725
+    },
+    {
+      "const_no": 118,
+      "const_name": "MADHYAMGRAM",
+      "winner": {
+        "name": "RATHIN GHOSH",
+        "party": "AITC",
+        "votes": 99841
+      },
+      "runner_up": {
+        "name": "RANJIT CHOWDHURY",
+        "party": "AIFB",
+        "votes": 65173
+      },
+      "margin": 34668
+    },
+    {
+      "const_no": 119,
+      "const_name": "BARASAT",
+      "winner": {
+        "name": "CHIRANJEET CHAKRABARTI",
+        "party": "AITC",
+        "votes": 103954
+      },
+      "runner_up": {
+        "name": "SANJIB CHATTOPADHAYA",
+        "party": "AIFB",
+        "votes": 63743
+      },
+      "margin": 40211
+    },
+    {
+      "const_no": 120,
+      "const_name": "DEGANGA",
+      "winner": {
+        "name": "DR. M. NURUZZAMAN",
+        "party": "AITC",
+        "votes": 78395
+      },
+      "runner_up": {
+        "name": "DR. MORTOZA HOSSAIN",
+        "party": "AIFB",
+        "votes": 61095
+      },
+      "margin": 17300
+    },
+    {
+      "const_no": 121,
+      "const_name": "HAROA",
+      "winner": {
+        "name": "JULFIKAR MOLLA",
+        "party": "AITC",
+        "votes": 76627
+      },
+      "runner_up": {
+        "name": "IMTIAZ HOSSAIN",
+        "party": "CPM",
+        "votes": 75503
+      },
+      "margin": 1124
+    },
+    {
+      "const_no": 122,
+      "const_name": "MINAKHAN",
+      "winner": {
+        "name": "USHA RANI MONDAL",
+        "party": "AITC",
+        "votes": 73533
+      },
+      "runner_up": {
+        "name": "DILIP ROY",
+        "party": "CPM",
+        "votes": 66397
+      },
+      "margin": 7136
+    },
+    {
+      "const_no": 123,
+      "const_name": "SANDESHKHALI",
+      "winner": {
+        "name": "NIRAPADA SARDAR",
+        "party": "CPM",
+        "votes": 66815
+      },
+      "runner_up": {
+        "name": "SRIMATI PADMA MAHATO",
+        "party": "AITC",
+        "votes": 62583
+      },
+      "margin": 4232
+    },
+    {
+      "const_no": 124,
+      "const_name": "BASIRHAT DAKSHIN",
+      "winner": {
+        "name": "NARAYAN MUKHERJEE",
+        "party": "CPM",
+        "votes": 66914
+      },
+      "runner_up": {
+        "name": "NARAYAN GOSWAMI",
+        "party": "AITC",
+        "votes": 54514
+      },
+      "margin": 12400
+    },
+    {
+      "const_no": 125,
+      "const_name": "BASIRHAT UTTAR",
+      "winner": {
+        "name": "MOSTAFA BIN QUASEM",
+        "party": "CPM",
+        "votes": 75575
+      },
+      "runner_up": {
+        "name": "SARDAR AMJAD ALI",
+        "party": "AITC",
+        "votes": 71632
+      },
+      "margin": 3943
+    },
+    {
+      "const_no": 126,
+      "const_name": "HINGALGANJ",
+      "winner": {
+        "name": "ANANDAMAY MANDAL",
+        "party": "CPI",
+        "votes": 72741
+      },
+      "runner_up": {
+        "name": "DEBES MANDAL",
+        "party": "AITC",
+        "votes": 71726
+      },
+      "margin": 1015
+    },
+    {
+      "const_no": 127,
+      "const_name": "GOSABA",
+      "winner": {
+        "name": "JAYANTA NASKAR",
+        "party": "AITC",
+        "votes": 78840
+      },
+      "runner_up": {
+        "name": "SAMARENDRA NATH MONDAL",
+        "party": "RSP",
+        "votes": 68158
+      },
+      "margin": 10682
+    },
+    {
+      "const_no": 128,
+      "const_name": "BASANTI",
+      "winner": {
+        "name": "SUBHAS NASKAR",
+        "party": "RSP",
+        "votes": 72871
+      },
+      "runner_up": {
+        "name": "ARNAB RAY",
+        "party": "INC",
+        "votes": 66636
+      },
+      "margin": 6235
+    },
+    {
+      "const_no": 129,
+      "const_name": "KULTALI",
+      "winner": {
+        "name": "RAMSANKAR HALDER",
+        "party": "CPM",
+        "votes": 81297
+      },
+      "runner_up": {
+        "name": "JOY KRISHNA HALDER",
+        "party": "SUCI",
+        "votes": 76484
+      },
+      "margin": 4813
+    },
+    {
+      "const_no": 130,
+      "const_name": "PATHARPRATIMA",
+      "winner": {
+        "name": "SAMIR KUMAR JANA",
+        "party": "AITC",
+        "votes": 95422
+      },
+      "runner_up": {
+        "name": "JAJNESWAR DAS",
+        "party": "CPM",
+        "votes": 80649
+      },
+      "margin": 14773
+    },
+    {
+      "const_no": 131,
+      "const_name": "KAKDWIP",
+      "winner": {
+        "name": "MANTURAM PAKHIRA",
+        "party": "AITC",
+        "votes": 84483
+      },
+      "runner_up": {
+        "name": "MILAN BHATTACHARYYA",
+        "party": "CPM",
+        "votes": 73980
+      },
+      "margin": 10503
+    },
+    {
+      "const_no": 132,
+      "const_name": "SAGAR",
+      "winner": {
+        "name": "BANKIM CHANDRA HAZRA",
+        "party": "AITC",
+        "votes": 94264
+      },
+      "runner_up": {
+        "name": "MILAN PARUA",
+        "party": "CPM",
+        "votes": 86115
+      },
+      "margin": 8149
+    },
+    {
+      "const_no": 133,
+      "const_name": "KULPI",
+      "winner": {
+        "name": "JOGORANJAN HALDER",
+        "party": "AITC",
+        "votes": 76693
+      },
+      "runner_up": {
+        "name": "SAKUNTALA PAIK",
+        "party": "CPM",
+        "votes": 58414
+      },
+      "margin": 18279
+    },
+    {
+      "const_no": 134,
+      "const_name": "RAIDIGHI",
+      "winner": {
+        "name": "DEBASREE ROY",
+        "party": "AITC",
+        "votes": 93236
+      },
+      "runner_up": {
+        "name": "KANTI GANGULY",
+        "party": "CPM",
+        "votes": 87683
+      },
+      "margin": 5553
+    },
+    {
+      "const_no": 135,
+      "const_name": "MANDIRBAZAR",
+      "winner": {
+        "name": "JOYDEB HALDER",
+        "party": "AITC",
+        "votes": 83524
+      },
+      "runner_up": {
+        "name": "DR. SARAT CHANDRA HALDER",
+        "party": "CPM",
+        "votes": 64883
+      },
+      "margin": 18641
+    },
+    {
+      "const_no": 136,
+      "const_name": "JAYNAGAR",
+      "winner": {
+        "name": "SUKUMAR HANSDA",
+        "party": "AITC",
+        "votes": 69464
+      },
+      "runner_up": {
+        "name": "AMAR BASU",
+        "party": "CPM",
+        "votes": 54191
+      },
+      "margin": 15273
+    },
+    {
+      "const_no": 137,
+      "const_name": "BARUIPUR PURBA",
+      "winner": {
+        "name": "NIRMAL CHANDRA MANDAL",
+        "party": "AITC",
+        "votes": 83636
+      },
+      "runner_up": {
+        "name": "BIMAL MISTRY",
+        "party": "CPM",
+        "votes": 65157
+      },
+      "margin": 18479
+    },
+    {
+      "const_no": 138,
+      "const_name": "CANNING PASCHIM",
+      "winner": {
+        "name": "SHYAMAL MONDAL",
+        "party": "AITC",
+        "votes": 81736
+      },
+      "runner_up": {
+        "name": "JAYDEB PURKAIT",
+        "party": "CPM",
+        "votes": 62122
+      },
+      "margin": 19614
+    },
+    {
+      "const_no": 139,
+      "const_name": "CANNING PURBA",
+      "winner": {
+        "name": "ABDUR RAZZAK MOLLA",
+        "party": "CPM",
+        "votes": 85105
+      },
+      "runner_up": {
+        "name": "IBRAHIM MOLYA",
+        "party": "INC",
+        "votes": 63992
+      },
+      "margin": 21113
+    },
+    {
+      "const_no": 140,
+      "const_name": "BARUIPUR PASCHIM",
+      "winner": {
+        "name": "BIMAN BANERJEE",
+        "party": "AITC",
+        "votes": 88187
+      },
+      "runner_up": {
+        "name": "KANAK KANTI PARIA",
+        "party": "CPM",
+        "votes": 56299
+      },
+      "margin": 31888
+    },
+    {
+      "const_no": 141,
+      "const_name": "MAGRAHAT PURBA",
+      "winner": {
+        "name": "NAMITA SAHA",
+        "party": "AITC",
+        "votes": 75217
+      },
+      "runner_up": {
+        "name": "CHANDAN SAHA",
+        "party": "CPM",
+        "votes": 66414
+      },
+      "margin": 8803
+    },
+    {
+      "const_no": 142,
+      "const_name": "MAGRAHAT PASCHIM",
+      "winner": {
+        "name": "GIASUDDIN MOLLA",
+        "party": "AITC",
+        "votes": 66878
+      },
+      "runner_up": {
+        "name": "DR. ABUL HASNAT",
+        "party": "CPM",
+        "votes": 54908
+      },
+      "margin": 11970
+    },
+    {
+      "const_no": 143,
+      "const_name": "DIAMOND HARBOUR",
+      "winner": {
+        "name": "DIPAK KUMAR HALDER",
+        "party": "AITC",
+        "votes": 87645
+      },
+      "runner_up": {
+        "name": "SUBHRA SAU",
+        "party": "CPM",
+        "votes": 66871
+      },
+      "margin": 20774
+    },
+    {
+      "const_no": 144,
+      "const_name": "FALTA",
+      "winner": {
+        "name": "TAMONASH GHOSH",
+        "party": "AITC",
+        "votes": 86966
+      },
+      "runner_up": {
+        "name": "ARDHENDU SEKHAR BINDU",
+        "party": "CPM",
+        "votes": 59295
+      },
+      "margin": 27671
+    },
+    {
+      "const_no": 145,
+      "const_name": "SATGACHHIA",
+      "winner": {
+        "name": "SONALI GUHA",
+        "party": "AITC",
+        "votes": 93902
+      },
+      "runner_up": {
+        "name": "BARUN NASKAR",
+        "party": "CPM",
+        "votes": 75792
+      },
+      "margin": 18110
+    },
+    {
+      "const_no": 146,
+      "const_name": "BISHNUPUR",
+      "winner": {
+        "name": "SHYAMA PRASAD MUKHERJEE",
+        "party": "AITC",
+        "votes": 77662
+      },
+      "runner_up": {
+        "name": "GHOSH SWAPAN",
+        "party": "CPM",
+        "votes": 67805
+      },
+      "margin": 9857
+    },
+    {
+      "const_no": 147,
+      "const_name": "SONARPUR DAKSHIN",
+      "winner": {
+        "name": "JIBAN MUKHOPADHYAY",
+        "party": "AITC",
+        "votes": 100243
+      },
+      "runner_up": {
+        "name": "TARIT CHAKRABORTY",
+        "party": "CPI",
+        "votes": 62469
+      },
+      "margin": 37774
+    },
+    {
+      "const_no": 148,
+      "const_name": "BHANGAR",
+      "winner": {
+        "name": "BADAL JAMADAR",
+        "party": "CPM",
+        "votes": 81965
+      },
+      "runner_up": {
+        "name": "ARABUL ISLAM",
+        "party": "AITC",
+        "votes": 76859
+      },
+      "margin": 5106
+    },
+    {
+      "const_no": 149,
+      "const_name": "KASBA",
+      "winner": {
+        "name": "AHMED JAVED KHAN",
+        "party": "AITC",
+        "votes": 92460
+      },
+      "runner_up": {
+        "name": "SHATARUP GHOSH",
+        "party": "CPM",
+        "votes": 72571
+      },
+      "margin": 19889
+    },
+    {
+      "const_no": 150,
+      "const_name": "JADAVPUR",
+      "winner": {
+        "name": "MANISH GUPTA",
+        "party": "AITC",
+        "votes": 103972
+      },
+      "runner_up": {
+        "name": "BUDDHADEB BHATTACHARJEE",
+        "party": "CPM",
+        "votes": 87288
+      },
+      "margin": 16684
+    },
+    {
+      "const_no": 151,
+      "const_name": "SONARPUR UTTAR",
+      "winner": {
+        "name": "FIRDOUSI BEGUM",
+        "party": "AITC",
+        "votes": 89841
+      },
+      "runner_up": {
+        "name": "SHYAMAL NASKAR",
+        "party": "CPM",
+        "votes": 63817
+      },
+      "margin": 26024
+    },
+    {
+      "const_no": 152,
+      "const_name": "TOLLYGUNGE",
+      "winner": {
+        "name": "AROOP BISWAS",
+        "party": "AITC",
+        "votes": 102743
+      },
+      "runner_up": {
+        "name": "PARTHA PRATIM BISWAS",
+        "party": "CPM",
+        "votes": 75063
+      },
+      "margin": 27680
+    },
+    {
+      "const_no": 153,
+      "const_name": "BEHALA PURBA",
+      "winner": {
+        "name": "SOVAN CHATTERJEE",
+        "party": "AITC",
+        "votes": 116709
+      },
+      "runner_up": {
+        "name": "KUMKUM CHAKRABORTI",
+        "party": "CPM",
+        "votes": 68536
+      },
+      "margin": 48173
+    },
+    {
+      "const_no": 154,
+      "const_name": "BEHALA PASCHIM",
+      "winner": {
+        "name": "PARTHA CHATTERJEE",
+        "party": "AITC",
+        "votes": 127870
+      },
+      "runner_up": {
+        "name": "ANUPAM DEBSARKAR",
+        "party": "CPM",
+        "votes": 68849
+      },
+      "margin": 59021
+    },
+    {
+      "const_no": 155,
+      "const_name": "MAHESHTALA",
+      "winner": {
+        "name": "KASTURI DAS",
+        "party": "AITC",
+        "votes": 92211
+      },
+      "runner_up": {
+        "name": "SK.MD.ISRAIL",
+        "party": "CPM",
+        "votes": 67928
+      },
+      "margin": 24283
+    },
+    {
+      "const_no": 156,
+      "const_name": "BUDGE BUDGE",
+      "winner": {
+        "name": "ASHOK KUMAR DEB",
+        "party": "AITC",
+        "votes": 99915
+      },
+      "runner_up": {
+        "name": "HRISHIKESH PODDER",
+        "party": "CPM",
+        "votes": 53426
+      },
+      "margin": 46489
+    },
+    {
+      "const_no": 157,
+      "const_name": "METIABURUZ",
+      "winner": {
+        "name": "MAMTAJ BEGAM",
+        "party": "AITC",
+        "votes": 55003
+      },
+      "runner_up": {
+        "name": "BADRUDDOZA MOLLA",
+        "party": "CPM",
+        "votes": 48409
+      },
+      "margin": 6594
+    },
+    {
+      "const_no": 158,
+      "const_name": "KOLKATA PORT",
+      "winner": {
+        "name": "FIRHAD HAKIM",
+        "party": "AITC",
+        "votes": 63866
+      },
+      "runner_up": {
+        "name": "MOINUDDIN SHAMS",
+        "party": "AIFB",
+        "votes": 38833
+      },
+      "margin": 25033
+    },
+    {
+      "const_no": 159,
+      "const_name": "BHABANIPUR",
+      "winner": {
+        "name": "SUBRATA BAKSHI",
+        "party": "AITC",
+        "votes": 87903
+      },
+      "runner_up": {
+        "name": "NARAYAN PRASAD JAIN",
+        "party": "CPM",
+        "votes": 37967
+      },
+      "margin": 49936
+    },
+    {
+      "const_no": 160,
+      "const_name": "RASHBEHARI",
+      "winner": {
+        "name": "SOBHANDEB CHATTOPADHYAY",
+        "party": "AITC",
+        "votes": 88892
+      },
+      "runner_up": {
+        "name": "SHANTANU BASU",
+        "party": "CPM",
+        "votes": 38998
+      },
+      "margin": 49894
+    },
+    {
+      "const_no": 161,
+      "const_name": "BALLYGUNGE",
+      "winner": {
+        "name": "SUBRATA MUKHERJEE",
+        "party": "AITC",
+        "votes": 88194
+      },
+      "runner_up": {
+        "name": "DR. FUAD HALIM",
+        "party": "CPM",
+        "votes": 47009
+      },
+      "margin": 41185
+    },
+    {
+      "const_no": 162,
+      "const_name": "CHOWRINGHEE",
+      "winner": {
+        "name": "SIKHA CHOWDHURY",
+        "party": "AITC",
+        "votes": 79450
+      },
+      "runner_up": {
+        "name": "BIMAL SINGH",
+        "party": "RJD",
+        "votes": 21711
+      },
+      "margin": 57739
+    },
+    {
+      "const_no": 163,
+      "const_name": "ENTALLY",
+      "winner": {
+        "name": "SWARNA KAMAL SAHA",
+        "party": "AITC",
+        "votes": 75891
+      },
+      "runner_up": {
+        "name": "DEBESH DAS",
+        "party": "CPM",
+        "votes": 50895
+      },
+      "margin": 24996
+    },
+    {
+      "const_no": 164,
+      "const_name": "BELIAGHATA",
+      "winner": {
+        "name": "PARESH PAUL",
+        "party": "AITC",
+        "votes": 93185
+      },
+      "runner_up": {
+        "name": "ANADI KUMAR SAHU",
+        "party": "CPM",
+        "votes": 61497
+      },
+      "margin": 31688
+    },
+    {
+      "const_no": 165,
+      "const_name": "JORASANKO",
+      "winner": {
+        "name": "TARUN KANTI NASKAR",
+        "party": "SUCI",
+        "votes": 71566
+      },
+      "runner_up": {
+        "name": "SHYAMALI HALDER",
+        "party": "CPM",
+        "votes": 44976
+      },
+      "margin": 26590
+    },
+    {
+      "const_no": 166,
+      "const_name": "SHYAMPUKUR",
+      "winner": {
+        "name": "DR. SHASHI PANJA",
+        "party": "AITC",
+        "votes": 72904
+      },
+      "runner_up": {
+        "name": "JIBAN PRAKASH SAHA",
+        "party": "AIFB",
+        "votes": 45868
+      },
+      "margin": 27036
+    },
+    {
+      "const_no": 167,
+      "const_name": "MANIKTALA",
+      "winner": {
+        "name": "SADHAN PANDE",
+        "party": "AITC",
+        "votes": 89039
+      },
+      "runner_up": {
+        "name": "RUPA BAGCHI",
+        "party": "CPM",
+        "votes": 52489
+      },
+      "margin": 36550
+    },
+    {
+      "const_no": 168,
+      "const_name": "KASHIPUR-BELGACHHIA",
+      "winner": {
+        "name": "MALA SAHA",
+        "party": "AITC",
+        "votes": 87408
+      },
+      "runner_up": {
+        "name": "KANINIKA GHOSH",
+        "party": "CPM",
+        "votes": 47124
+      },
+      "margin": 40284
+    },
+    {
+      "const_no": 169,
+      "const_name": "BALLY",
+      "winner": {
+        "name": "SULTAN SINGH",
+        "party": "AITC",
+        "votes": 52770
+      },
+      "runner_up": {
+        "name": "KANIKA GANGULY",
+        "party": "CPM",
+        "votes": 46170
+      },
+      "margin": 6600
+    },
+    {
+      "const_no": 170,
+      "const_name": "HOWRAH UTTAR",
+      "winner": {
+        "name": "ASOK GHOSH",
+        "party": "AITC",
+        "votes": 61466
+      },
+      "runner_up": {
+        "name": "NIMAI SAMANTA",
+        "party": "CPM",
+        "votes": 41858
+      },
+      "margin": 19608
+    },
+    {
+      "const_no": 171,
+      "const_name": "HOWRAH MADHYA",
+      "winner": {
+        "name": "ARUP ROY",
+        "party": "AITC",
+        "votes": 103184
+      },
+      "runner_up": {
+        "name": "ARUP RAY",
+        "party": "CPM",
+        "votes": 52514
+      },
+      "margin": 50670
+    },
+    {
+      "const_no": 172,
+      "const_name": "SHIBPUR",
+      "winner": {
+        "name": "JATU LAHIRI",
+        "party": "AITC",
+        "votes": 100739
+      },
+      "runner_up": {
+        "name": "JAGANNATH BHATTACHARYYA",
+        "party": "AIFB",
+        "votes": 54335
+      },
+      "margin": 46404
+    },
+    {
+      "const_no": 173,
+      "const_name": "HOWRAH DAKSHIN",
+      "winner": {
+        "name": "BRAJAMOHAN MAJUMDER",
+        "party": "AITC",
+        "votes": 101066
+      },
+      "runner_up": {
+        "name": "KRISHNA KISOR RAY",
+        "party": "CPM",
+        "votes": 69644
+      },
+      "margin": 31422
+    },
+    {
+      "const_no": 174,
+      "const_name": "SANKRAIL",
+      "winner": {
+        "name": "SITAL KUMAR SARDAR",
+        "party": "AITC",
+        "votes": 88029
+      },
+      "runner_up": {
+        "name": "DR. ANIRBAN HAZRA",
+        "party": "CPM",
+        "votes": 70172
+      },
+      "margin": 17857
+    },
+    {
+      "const_no": 175,
+      "const_name": "PANCHLA",
+      "winner": {
+        "name": "GULSAN MULLICK",
+        "party": "AITC",
+        "votes": 76628
+      },
+      "runner_up": {
+        "name": "DOLI ROY",
+        "party": "AIFB",
+        "votes": 64510
+      },
+      "margin": 12118
+    },
+    {
+      "const_no": 176,
+      "const_name": "ULUBERIA PURBA",
+      "winner": {
+        "name": "HAIDER AZIZ SAFWI",
+        "party": "AITC",
+        "votes": 68975
+      },
+      "runner_up": {
+        "name": "MOHAN MONDAL",
+        "party": "CPM",
+        "votes": 49391
+      },
+      "margin": 19584
+    },
+    {
+      "const_no": 177,
+      "const_name": "ULUBERIA UTTAR",
+      "winner": {
+        "name": "DR. NIRMAL MAJI",
+        "party": "AITC",
+        "votes": 76469
+      },
+      "runner_up": {
+        "name": "GHUKU BHIM",
+        "party": "CPM",
+        "votes": 58021
+      },
+      "margin": 18448
+    },
+    {
+      "const_no": 178,
+      "const_name": "ULUBERIA DAKSHIN",
+      "winner": {
+        "name": "PULAK ROY",
+        "party": "AITC",
+        "votes": 73734
+      },
+      "runner_up": {
+        "name": "AHMED KUTUBUDDIN SK.",
+        "party": "AIFB",
+        "votes": 61902
+      },
+      "margin": 11832
+    },
+    {
+      "const_no": 179,
+      "const_name": "SHYAMPUR",
+      "winner": {
+        "name": "KALIPADA MANDAL",
+        "party": "AITC",
+        "votes": 99501
+      },
+      "runner_up": {
+        "name": "MINATI PRAMANIK",
+        "party": "AIFB",
+        "votes": 64882
+      },
+      "margin": 34619
+    },
+    {
+      "const_no": 180,
+      "const_name": "BAGNAN",
+      "winner": {
+        "name": "ARUNAVA SEN",
+        "party": "AITC",
+        "votes": 82730
+      },
+      "runner_up": {
+        "name": "AKKEL ALI KHAN",
+        "party": "CPM",
+        "votes": 63460
+      },
+      "margin": 19270
+    },
+    {
+      "const_no": 181,
+      "const_name": "AMTA",
+      "winner": {
+        "name": "ASIT MITRA",
+        "party": "INC",
+        "votes": 88264
+      },
+      "runner_up": {
+        "name": "RABINDRANATH MITRA",
+        "party": "CPM",
+        "votes": 74545
+      },
+      "margin": 13719
+    },
+    {
+      "const_no": 182,
+      "const_name": "UDAYNARAYANPUR",
+      "winner": {
+        "name": "SAMIR KUMAR PANJA",
+        "party": "AITC",
+        "votes": 91879
+      },
+      "runner_up": {
+        "name": "CHANDRALEKHA BAG",
+        "party": "CPM",
+        "votes": 67988
+      },
+      "margin": 23891
+    },
+    {
+      "const_no": 183,
+      "const_name": "JAGATBALLAVPUR",
+      "winner": {
+        "name": "ABUL KASEM MOLLA",
+        "party": "AITC",
+        "votes": 102580
+      },
+      "runner_up": {
+        "name": "KAZI JAFAR AHMED",
+        "party": "CPM",
+        "votes": 74800
+      },
+      "margin": 27780
+    },
+    {
+      "const_no": 184,
+      "const_name": "DOMJUR",
+      "winner": {
+        "name": "RAJIB BANERJEE",
+        "party": "AITC",
+        "votes": 101042
+      },
+      "runner_up": {
+        "name": "MOHANTA CHATTERJEE",
+        "party": "CPM",
+        "votes": 76056
+      },
+      "margin": 24986
+    },
+    {
+      "const_no": 185,
+      "const_name": "UTTARPARA",
+      "winner": {
+        "name": "ANUP GHOSAL",
+        "party": "AITC",
+        "votes": 104753
+      },
+      "runner_up": {
+        "name": "PROF. DR. SRUTINATH PRAHARAJ",
+        "party": "CPM",
+        "votes": 61560
+      },
+      "margin": 43193
+    },
+    {
+      "const_no": 186,
+      "const_name": "SERAMPORE",
+      "winner": {
+        "name": "DR. SUDIPTO ROY",
+        "party": "AITC",
+        "votes": 97540
+      },
+      "runner_up": {
+        "name": "PARTHA SARATHI REJ",
+        "party": "CPI",
+        "votes": 45849
+      },
+      "margin": 51691
+    },
+    {
+      "const_no": 187,
+      "const_name": "CHAMPDANI",
+      "winner": {
+        "name": "MUZAFFAR KHAN",
+        "party": "AITC",
+        "votes": 92476
+      },
+      "runner_up": {
+        "name": "JIBESH CHAKRABORTY",
+        "party": "CPM",
+        "votes": 56163
+      },
+      "margin": 36313
+    },
+    {
+      "const_no": 188,
+      "const_name": "SINGUR",
+      "winner": {
+        "name": "RABINDRANATH BHATTACHARYA",
+        "party": "AITC",
+        "votes": 100869
+      },
+      "runner_up": {
+        "name": "DR. ASIT DAS",
+        "party": "CPM",
+        "votes": 66058
+      },
+      "margin": 34811
+    },
+    {
+      "const_no": 189,
+      "const_name": "CHANDANNAGAR",
+      "winner": {
+        "name": "ASHOK KUMAR SHAW",
+        "party": "AITC",
+        "votes": 96430
+      },
+      "runner_up": {
+        "name": "SIBA PROSAD BANDYOPADHYAY",
+        "party": "CPM",
+        "votes": 53391
+      },
+      "margin": 43039
+    },
+    {
+      "const_no": 190,
+      "const_name": "CHUNCHURA",
+      "winner": {
+        "name": "ASIT MAZUMDER",
+        "party": "AITC",
+        "votes": 127206
+      },
+      "runner_up": {
+        "name": "NAREN DEY",
+        "party": "AIFB",
+        "votes": 82614
+      },
+      "margin": 44592
+    },
+    {
+      "const_no": 191,
+      "const_name": "BALAGARH",
+      "winner": {
+        "name": "ASIM KUMAR MAJHI",
+        "party": "AITC",
+        "votes": 96254
+      },
+      "runner_up": {
+        "name": "BHUBAN PRAMANICK",
+        "party": "CPM",
+        "votes": 74671
+      },
+      "margin": 21583
+    },
+    {
+      "const_no": 192,
+      "const_name": "PANDUA",
+      "winner": {
+        "name": "AMJAD HOSSAIN SK.",
+        "party": "CPM",
+        "votes": 84830
+      },
+      "runner_up": {
+        "name": "NARGIS BEGUM",
+        "party": "AITC",
+        "votes": 84433
+      },
+      "margin": 397
+    },
+    {
+      "const_no": 193,
+      "const_name": "SAPTAGRAM",
+      "winner": {
+        "name": "TAPAN DASGUPTA",
+        "party": "AITC",
+        "votes": 90289
+      },
+      "runner_up": {
+        "name": "ASHUTOSH MUKHOPADHYAY",
+        "party": "CPM",
+        "votes": 59421
+      },
+      "margin": 30868
+    },
+    {
+      "const_no": 194,
+      "const_name": "CHANDITALA",
+      "winner": {
+        "name": "SWATI KHANDOKER",
+        "party": "AITC",
+        "votes": 86394
+      },
+      "runner_up": {
+        "name": "AZIM ALI MD SK",
+        "party": "CPM",
+        "votes": 69474
+      },
+      "margin": 16920
+    },
+    {
+      "const_no": 195,
+      "const_name": "JANGIPARA",
+      "winner": {
+        "name": "SNEHASIS CHAKRABORTY",
+        "party": "AITC",
+        "votes": 87133
+      },
+      "runner_up": {
+        "name": "SUDARSAN RAYCHAUDHURI",
+        "party": "CPM",
+        "votes": 74057
+      },
+      "margin": 13076
+    },
+    {
+      "const_no": 196,
+      "const_name": "HARIPAL",
+      "winner": {
+        "name": "BECHARAM MANNA",
+        "party": "AITC",
+        "votes": 98146
+      },
+      "runner_up": {
+        "name": "BHARATI MUKHERJEE",
+        "party": "CPM",
+        "votes": 76073
+      },
+      "margin": 22073
+    },
+    {
+      "const_no": 197,
+      "const_name": "DHANEKHALI",
+      "winner": {
+        "name": "ASIMA PATRA",
+        "party": "AITC",
+        "votes": 100529
+      },
+      "runner_up": {
+        "name": "SHRABANI SARKAR",
+        "party": "AIFB",
+        "votes": 84252
+      },
+      "margin": 16277
+    },
+    {
+      "const_no": 198,
+      "const_name": "TARAKESWAR",
+      "winner": {
+        "name": "RACHHPAL SINGH",
+        "party": "AITC",
+        "votes": 97022
+      },
+      "runner_up": {
+        "name": "PRATIM CHATTERJEE",
+        "party": "CPM",
+        "votes": 71550
+      },
+      "margin": 25472
+    },
+    {
+      "const_no": 199,
+      "const_name": "PURSURAH",
+      "winner": {
+        "name": "PARVEZ RAHMAN",
+        "party": "AITC",
+        "votes": 107794
+      },
+      "runner_up": {
+        "name": "SAUMENDRANATH BERA",
+        "party": "CPM",
+        "votes": 76104
+      },
+      "margin": 31690
+    },
+    {
+      "const_no": 200,
+      "const_name": "ARAMBAGH",
+      "winner": {
+        "name": "KRISHNA CHANDRA SANTRA",
+        "party": "AITC",
+        "votes": 98011
+      },
+      "runner_up": {
+        "name": "ASIT KUMAR MALIK",
+        "party": "CPM",
+        "votes": 78448
+      },
+      "margin": 19563
+    },
+    {
+      "const_no": 201,
+      "const_name": "GOGHAT",
+      "winner": {
+        "name": "KARAK BISWANATH",
+        "party": "AIFB",
+        "votes": 86514
+      },
+      "runner_up": {
+        "name": "DEBASISH MEDDA",
+        "party": "INC",
+        "votes": 82249
+      },
+      "margin": 4265
+    },
+    {
+      "const_no": 202,
+      "const_name": "KHANAKUL",
+      "winner": {
+        "name": "IQBAL AHMED",
+        "party": "AITC",
+        "votes": 102450
+      },
+      "runner_up": {
+        "name": "SUBHRA PARUI",
+        "party": "CPM",
+        "votes": 74571
+      },
+      "margin": 27879
+    },
+    {
+      "const_no": 203,
+      "const_name": "TAMLUK",
+      "winner": {
+        "name": "SAUMEN KUMAR MAHAPATRA",
+        "party": "AITC",
+        "votes": 99765
+      },
+      "runner_up": {
+        "name": "JAGANNATH MITRA",
+        "party": "CPI",
+        "votes": 79089
+      },
+      "margin": 20676
+    },
+    {
+      "const_no": 204,
+      "const_name": "PANSKURA PURBA",
+      "winner": {
+        "name": "BIPLAB ROY CHOWDHURY",
+        "party": "AITC",
+        "votes": 82957
+      },
+      "runner_up": {
+        "name": "AMIYA KUMAR SAHOO",
+        "party": "CPM",
+        "votes": 69790
+      },
+      "margin": 13167
+    },
+    {
+      "const_no": 205,
+      "const_name": "PANSKURA PASCHIM",
+      "winner": {
+        "name": "OMAR ALI",
+        "party": "AITC",
+        "votes": 93349
+      },
+      "runner_up": {
+        "name": "NIRMAL KUMAR BERA",
+        "party": "CPI",
+        "votes": 84209
+      },
+      "margin": 9140
+    },
+    {
+      "const_no": 206,
+      "const_name": "MOYNA",
+      "winner": {
+        "name": "BHUSHAN CHANDRA DOLAI",
+        "party": "AITC",
+        "votes": 91038
+      },
+      "runner_up": {
+        "name": "SK. MUJIBUR RAHAMAN",
+        "party": "CPM",
+        "votes": 81081
+      },
+      "margin": 9957
+    },
+    {
+      "const_no": 207,
+      "const_name": "NANDAKUMAR",
+      "winner": {
+        "name": "SUKUMAR DE",
+        "party": "AITC",
+        "votes": 89717
+      },
+      "runner_up": {
+        "name": "BRAHMAMAY NANDA",
+        "party": "SP",
+        "votes": 77850
+      },
+      "margin": 11867
+    },
+    {
+      "const_no": 208,
+      "const_name": "MAHISHADAL",
+      "winner": {
+        "name": "SUDARSAN GHOSH DASTIDAR",
+        "party": "AITC",
+        "votes": 95640
+      },
+      "runner_up": {
+        "name": "TAMALIKA PONDA SETH",
+        "party": "CPM",
+        "votes": 67478
+      },
+      "margin": 28162
+    },
+    {
+      "const_no": 209,
+      "const_name": "HALDIA",
+      "winner": {
+        "name": "SEULI SAHA",
+        "party": "AITC",
+        "votes": 89573
+      },
+      "runner_up": {
+        "name": "NITYANANDA BERA",
+        "party": "CPM",
+        "votes": 77649
+      },
+      "margin": 11924
+    },
+    {
+      "const_no": 210,
+      "const_name": "NANDIGRAM",
+      "winner": {
+        "name": "PHIROJA BIBI",
+        "party": "AITC",
+        "votes": 103300
+      },
+      "runner_up": {
+        "name": "PARAMANANDA BHARATI",
+        "party": "CPI",
+        "votes": 59660
+      },
+      "margin": 43640
+    },
+    {
+      "const_no": 211,
+      "const_name": "CHANDIPUR",
+      "winner": {
+        "name": "AMIYA KANTI BHATTACHARJEE",
+        "party": "AITC",
+        "votes": 88010
+      },
+      "runner_up": {
+        "name": "BIDYUT GUCHHAIT",
+        "party": "CPM",
+        "votes": 76301
+      },
+      "margin": 11709
+    },
+    {
+      "const_no": 212,
+      "const_name": "PATASHPUR",
+      "winner": {
+        "name": "JYOTIRMOY KAR",
+        "party": "AITC",
+        "votes": 84452
+      },
+      "runner_up": {
+        "name": "MAKHAN LAL NAYAK",
+        "party": "CPI",
+        "votes": 77802
+      },
+      "margin": 6650
+    },
+    {
+      "const_no": 213,
+      "const_name": "KANTHI UTTAR",
+      "winner": {
+        "name": "BANASRI MAITY",
+        "party": "AITC",
+        "votes": 91528
+      },
+      "runner_up": {
+        "name": "CHAKRADHAR MAIKAP",
+        "party": "CPM",
+        "votes": 83573
+      },
+      "margin": 7955
+    },
+    {
+      "const_no": 214,
+      "const_name": "BHAGABANPUR",
+      "winner": {
+        "name": "ARDHENDU MAITY",
+        "party": "AITC",
+        "votes": 93945
+      },
+      "runner_up": {
+        "name": "RANAJIT MANNA",
+        "party": "SP",
+        "votes": 84948
+      },
+      "margin": 8997
+    },
+    {
+      "const_no": 215,
+      "const_name": "KHEJURI",
+      "winner": {
+        "name": "RANAJIT MONDAL",
+        "party": "AITC",
+        "votes": 87833
+      },
+      "runner_up": {
+        "name": "ASIM KUMAR MANDAL",
+        "party": "SP",
+        "votes": 71673
+      },
+      "margin": 16160
+    },
+    {
+      "const_no": 216,
+      "const_name": "KANTHI DAKSHIN",
+      "winner": {
+        "name": "DIBYENDU ADHIKARI",
+        "party": "AITC",
+        "votes": 86933
+      },
+      "runner_up": {
+        "name": "UTTAM PRADHAN",
+        "party": "CPI",
+        "votes": 58296
+      },
+      "margin": 28637
+    },
+    {
+      "const_no": 217,
+      "const_name": "RAMNAGAR",
+      "winner": {
+        "name": "AKHIL GIRI",
+        "party": "AITC",
+        "votes": 93801
+      },
+      "runner_up": {
+        "name": "SWADESH RANJAN NAYAK",
+        "party": "CPM",
+        "votes": 77242
+      },
+      "margin": 16559
+    },
+    {
+      "const_no": 218,
+      "const_name": "EGRA",
+      "winner": {
+        "name": "DAS SAMARES",
+        "party": "AITC",
+        "votes": 99178
+      },
+      "runner_up": {
+        "name": "HRISHIKESH PARIA",
+        "party": "DSP(P)",
+        "votes": 83225
+      },
+      "margin": 15953
+    },
+    {
+      "const_no": 219,
+      "const_name": "DANTAN",
+      "winner": {
+        "name": "ARUN MOHAPATRA",
+        "party": "CPI",
+        "votes": 79118
+      },
+      "runner_up": {
+        "name": "SHAIBAL GIRI",
+        "party": "AITC",
+        "votes": 74468
+      },
+      "margin": 4650
+    },
+    {
+      "const_no": 220,
+      "const_name": "NAYAGRAM",
+      "winner": {
+        "name": "DULAL MURMU",
+        "party": "AITC",
+        "votes": 75656
+      },
+      "runner_up": {
+        "name": "BHUTNATH SAREN",
+        "party": "CPM",
+        "votes": 59382
+      },
+      "margin": 16274
+    },
+    {
+      "const_no": 221,
+      "const_name": "GOPIBALLAVPUR",
+      "winner": {
+        "name": "CHUDAMANI MAHATO",
+        "party": "AITC",
+        "votes": 90070
+      },
+      "runner_up": {
+        "name": "RABI LAL MAITRA",
+        "party": "CPM",
+        "votes": 58050
+      },
+      "margin": 32020
+    },
+    {
+      "const_no": 222,
+      "const_name": "JHARGRAM",
+      "winner": {
+        "name": "SMITA BAKSHI",
+        "party": "AITC",
+        "votes": 57970
+      },
+      "runner_up": {
+        "name": "JANKI SINGH",
+        "party": "CPM",
+        "votes": 26461
+      },
+      "margin": 31509
+    },
+    {
+      "const_no": 223,
+      "const_name": "KESHIARI",
+      "winner": {
+        "name": "BIRAM MANDI",
+        "party": "CPM",
+        "votes": 76976
+      },
+      "runner_up": {
+        "name": "SHYAM CHARAN MANDI",
+        "party": "AITC",
+        "votes": 75939
+      },
+      "margin": 1037
+    },
+    {
+      "const_no": 224,
+      "const_name": "KHARAGPUR SADAR",
+      "winner": {
+        "name": "GYAN SINGH SOHANPAL",
+        "party": "INC",
+        "votes": 75425
+      },
+      "runner_up": {
+        "name": "ANIL KUMAR DAS",
+        "party": "CPM",
+        "votes": 43056
+      },
+      "margin": 32369
+    },
+    {
+      "const_no": 225,
+      "const_name": "NARAYANGARH",
+      "winner": {
+        "name": "SURJYA KANTA MISHRA",
+        "party": "CPM",
+        "votes": 89804
+      },
+      "runner_up": {
+        "name": "ATTA SURJA KANTA",
+        "party": "AITC",
+        "votes": 82695
+      },
+      "margin": 7109
+    },
+    {
+      "const_no": 226,
+      "const_name": "SABANG",
+      "winner": {
+        "name": "MANAS RANJAN BHUNIA",
+        "party": "INC",
+        "votes": 98755
+      },
+      "runner_up": {
+        "name": "RAMPADA SAHOO",
+        "party": "CPM",
+        "votes": 85571
+      },
+      "margin": 13184
+    },
+    {
+      "const_no": 227,
+      "const_name": "PINGLA",
+      "winner": {
+        "name": "PRABODH CHANDRA SINHA",
+        "party": "DSP(P)",
+        "votes": 84738
+      },
+      "runner_up": {
+        "name": "AJIT MAITY",
+        "party": "AITC",
+        "votes": 83504
+      },
+      "margin": 1234
+    },
+    {
+      "const_no": 228,
+      "const_name": "KHARAGPUR",
+      "winner": {
+        "name": "HAQUE NAZMUL",
+        "party": "CPM",
+        "votes": 70178
+      },
+      "runner_up": {
+        "name": "BILKIS KHANAM",
+        "party": "AITC",
+        "votes": 67674
+      },
+      "margin": 2504
+    },
+    {
+      "const_no": 229,
+      "const_name": "DEBRA",
+      "winner": {
+        "name": "RADHAKANTA MAITI",
+        "party": "AITC",
+        "votes": 86215
+      },
+      "runner_up": {
+        "name": "SK. SORAB HOSSEIN",
+        "party": "CPM",
+        "votes": 77402
+      },
+      "margin": 8813
+    },
+    {
+      "const_no": 230,
+      "const_name": "DASPUR",
+      "winner": {
+        "name": "AJIT BHUNIA",
+        "party": "AITC",
+        "votes": 109048
+      },
+      "runner_up": {
+        "name": "SUNIL ADHIKARI",
+        "party": "CPM",
+        "votes": 84121
+      },
+      "margin": 24927
+    },
+    {
+      "const_no": 231,
+      "const_name": "GHATAL",
+      "winner": {
+        "name": "SHANKAR DOLAI",
+        "party": "AITC",
+        "votes": 101355
+      },
+      "runner_up": {
+        "name": "CHHABI PAKHIRA",
+        "party": "CPM",
+        "votes": 85078
+      },
+      "margin": 16277
+    },
+    {
+      "const_no": 232,
+      "const_name": "CHANDRAKONA",
+      "winner": {
+        "name": "CHHAYA DOLAI",
+        "party": "CPM",
+        "votes": 97280
+      },
+      "runner_up": {
+        "name": "SIBARAM DAS",
+        "party": "AITC",
+        "votes": 95984
+      },
+      "margin": 1296
+    },
+    {
+      "const_no": 233,
+      "const_name": "GARBETA",
+      "winner": {
+        "name": "GHOSH SUSANTA",
+        "party": "CPM",
+        "votes": 86047
+      },
+      "runner_up": {
+        "name": "HEMA CHOUBEY",
+        "party": "INC",
+        "votes": 70977
+      },
+      "margin": 15070
+    },
+    {
+      "const_no": 234,
+      "const_name": "SALBONI",
+      "winner": {
+        "name": "SRIKANTA MAHATA",
+        "party": "AITC",
+        "votes": 92082
+      },
+      "runner_up": {
+        "name": "ABHIRAM MAHATA",
+        "party": "CPM",
+        "votes": 87727
+      },
+      "margin": 4355
+    },
+    {
+      "const_no": 235,
+      "const_name": "KESHPUR",
+      "winner": {
+        "name": "RAMESWAR DOLOI",
+        "party": "CPM",
+        "votes": 103901
+      },
+      "runner_up": {
+        "name": "RAJANI KANTA DOLOI",
+        "party": "INC",
+        "votes": 70059
+      },
+      "margin": 33842
+    },
+    {
+      "const_no": 236,
+      "const_name": "MEDINIPUR",
+      "winner": {
+        "name": "MRIGENDRA NATH MAITI",
+        "party": "AITC",
+        "votes": 103060
+      },
+      "runner_up": {
+        "name": "SANTOSH RANA",
+        "party": "CPI",
+        "votes": 74840
+      },
+      "margin": 28220
+    },
+    {
+      "const_no": 237,
+      "const_name": "BINPUR",
+      "winner": {
+        "name": "DIBAKAR HANSDA",
+        "party": "CPM",
+        "votes": 60728
+      },
+      "runner_up": {
+        "name": "CHUNIBALA HANSDA",
+        "party": "JKP(N)",
+        "votes": 53118
+      },
+      "margin": 7610
+    },
+    {
+      "const_no": 238,
+      "const_name": "BANDWAN",
+      "winner": {
+        "name": "BESRA SUSANTA",
+        "party": "CPM",
+        "votes": 87183
+      },
+      "runner_up": {
+        "name": "SITAL CHANDRA HEMBRAM",
+        "party": "INC",
+        "votes": 65163
+      },
+      "margin": 22020
+    },
+    {
+      "const_no": 239,
+      "const_name": "BALARAMPUR",
+      "winner": {
+        "name": "SHANTIRAM MAHATO",
+        "party": "AITC",
+        "votes": 65244
+      },
+      "runner_up": {
+        "name": "GOPE MANINDRA",
+        "party": "CPM",
+        "votes": 54716
+      },
+      "margin": 10528
+    },
+    {
+      "const_no": 240,
+      "const_name": "BAGHMUNDI",
+      "winner": {
+        "name": "NEPAL MAHATA",
+        "party": "INC",
+        "votes": 77458
+      },
+      "runner_up": {
+        "name": "MANGAL MAHATO",
+        "party": "AIFB",
+        "votes": 59814
+      },
+      "margin": 17644
+    },
+    {
+      "const_no": 241,
+      "const_name": "JOYPUR",
+      "winner": {
+        "name": "DHIRENDRA NATH MAHATO",
+        "party": "AIFB",
+        "votes": 62060
+      },
+      "runner_up": {
+        "name": "SHAKTI PADA MAHATO",
+        "party": "IND",
+        "votes": 51449
+      },
+      "margin": 10611
+    },
+    {
+      "const_no": 242,
+      "const_name": "PURULIA",
+      "winner": {
+        "name": "K.P. SINGH DEO",
+        "party": "AITC",
+        "votes": 83396
+      },
+      "runner_up": {
+        "name": "KAUSHIK MAZUMDAR",
+        "party": "CPM",
+        "votes": 56909
+      },
+      "margin": 26487
+    },
+    {
+      "const_no": 243,
+      "const_name": "MANBAZAR",
+      "winner": {
+        "name": "SANDHYARANI TUDU",
+        "party": "AITC",
+        "votes": 78520
+      },
+      "runner_up": {
+        "name": "HIMANI HANSDA",
+        "party": "CPM",
+        "votes": 73354
+      },
+      "margin": 5166
+    },
+    {
+      "const_no": 244,
+      "const_name": "KASHIPUR",
+      "winner": {
+        "name": "SWAPAN KUMAR BELTHARIYA",
+        "party": "AITC",
+        "votes": 69492
+      },
+      "runner_up": {
+        "name": "SUBHAS CHANDRA MAHATA",
+        "party": "CPM",
+        "votes": 65771
+      },
+      "margin": 3721
+    },
+    {
+      "const_no": 245,
+      "const_name": "PARA",
+      "winner": {
+        "name": "UMAPADA BAURI",
+        "party": "INC",
+        "votes": 62208
+      },
+      "runner_up": {
+        "name": "DIPAK BAURI",
+        "party": "CPM",
+        "votes": 61622
+      },
+      "margin": 586
+    },
+    {
+      "const_no": 246,
+      "const_name": "RAGHUNATHPUR",
+      "winner": {
+        "name": "PURNA CHANDRA BAURI",
+        "party": "AITC",
+        "votes": 78096
+      },
+      "runner_up": {
+        "name": "DIPALI BAURI",
+        "party": "CPM",
+        "votes": 65353
+      },
+      "margin": 12743
+    },
+    {
+      "const_no": 247,
+      "const_name": "SALTORA",
+      "winner": {
+        "name": "SWAPAN BOURI",
+        "party": "AITC",
+        "votes": 82597
+      },
+      "runner_up": {
+        "name": "SASTHI CHARAN BAURI",
+        "party": "CPM",
+        "votes": 69900
+      },
+      "margin": 12697
+    },
+    {
+      "const_no": 248,
+      "const_name": "CHHATNA",
+      "winner": {
+        "name": "SUBHASIS BATABYAL",
+        "party": "AITC",
+        "votes": 70340
+      },
+      "runner_up": {
+        "name": "ANATH BANDHU MONDAL",
+        "party": "RSP",
+        "votes": 62576
+      },
+      "margin": 7764
+    },
+    {
+      "const_no": 249,
+      "const_name": "RANIBANDH",
+      "winner": {
+        "name": "DEBALINA HEMBRAM",
+        "party": "CPM",
+        "votes": 75388
+      },
+      "runner_up": {
+        "name": "FALGUNI HEMBRAM",
+        "party": "AITC",
+        "votes": 68529
+      },
+      "margin": 6859
+    },
+    {
+      "const_no": 250,
+      "const_name": "RAIPUR",
+      "winner": {
+        "name": "UPEN KISKU",
+        "party": "CPM",
+        "votes": 69008
+      },
+      "runner_up": {
+        "name": "PRAMILA MURMU",
+        "party": "AITC",
+        "votes": 68826
+      },
+      "margin": 182
+    },
+    {
+      "const_no": 251,
+      "const_name": "TALDANGRA",
+      "winner": {
+        "name": "MANORANJAN PATRA",
+        "party": "CPM",
+        "votes": 74779
+      },
+      "runner_up": {
+        "name": "ARUN KUMAR PATHAK",
+        "party": "INC",
+        "votes": 67614
+      },
+      "margin": 7165
+    },
+    {
+      "const_no": 252,
+      "const_name": "BANKURA",
+      "winner": {
+        "name": "KASHINATH MISHRA",
+        "party": "AITC",
+        "votes": 92835
+      },
+      "runner_up": {
+        "name": "PRATIP MUKHERJEE",
+        "party": "CPM",
+        "votes": 63745
+      },
+      "margin": 29090
+    },
+    {
+      "const_no": 253,
+      "const_name": "BARJORA",
+      "winner": {
+        "name": "ASUTOSH MUKHERJEE",
+        "party": "AITC",
+        "votes": 84457
+      },
+      "runner_up": {
+        "name": "SUSMITA BISWAS",
+        "party": "CPM",
+        "votes": 75966
+      },
+      "margin": 8491
+    },
+    {
+      "const_no": 254,
+      "const_name": "ONDA",
+      "winner": {
+        "name": "ARUP KUMAR KHAN",
+        "party": "AITC",
+        "votes": 75699
+      },
+      "runner_up": {
+        "name": "TARAPADA CHAKRABARTI",
+        "party": "AIFB",
+        "votes": 75103
+      },
+      "margin": 596
+    },
+    {
+      "const_no": 255,
+      "const_name": "BISHNUPUR",
+      "winner": {
+        "name": "DILIP MONDAL",
+        "party": "AITC",
+        "votes": 95912
+      },
+      "runner_up": {
+        "name": "SUDHIN SINHA",
+        "party": "CPM",
+        "votes": 70862
+      },
+      "margin": 25050
+    },
+    {
+      "const_no": 256,
+      "const_name": "KATULPUR",
+      "winner": {
+        "name": "KHAN SAUMITRA",
+        "party": "INC",
+        "votes": 83355
+      },
+      "runner_up": {
+        "name": "PURNIMA BAGDI",
+        "party": "CPM",
+        "votes": 81922
+      },
+      "margin": 1433
+    },
+    {
+      "const_no": 257,
+      "const_name": "INDAS",
+      "winner": {
+        "name": "GURUPADA METE",
+        "party": "AITC",
+        "votes": 85589
+      },
+      "runner_up": {
+        "name": "SANTANU KUMAR BORA",
+        "party": "CPM",
+        "votes": 81584
+      },
+      "margin": 4005
+    },
+    {
+      "const_no": 258,
+      "const_name": "SONAMUKHI",
+      "winner": {
+        "name": "DIPALI SAHA",
+        "party": "AITC",
+        "votes": 82199
+      },
+      "runner_up": {
+        "name": "CHONGRE MANORANJAN",
+        "party": "CPM",
+        "votes": 74910
+      },
+      "margin": 7289
+    },
+    {
+      "const_no": 259,
+      "const_name": "KHANDAGHOSH",
+      "winner": {
+        "name": "NABIN CHANDRA BAG",
+        "party": "CPM",
+        "votes": 94284
+      },
+      "runner_up": {
+        "name": "ALOK KUMAR MAJHI",
+        "party": "AITC",
+        "votes": 81137
+      },
+      "margin": 13147
+    },
+    {
+      "const_no": 260,
+      "const_name": "BURDWAN DAKSHIN",
+      "winner": {
+        "name": "RABIRANJAN CHATTOPADHYAY",
+        "party": "AITC",
+        "votes": 107520
+      },
+      "runner_up": {
+        "name": "NIRUPAM SEN",
+        "party": "CPM",
+        "votes": 70604
+      },
+      "margin": 36916
+    },
+    {
+      "const_no": 261,
+      "const_name": "RAINA",
+      "winner": {
+        "name": "KHAN BASUDEB",
+        "party": "CPM",
+        "votes": 98897
+      },
+      "runner_up": {
+        "name": "NEPAL GHORUI",
+        "party": "AITC",
+        "votes": 86676
+      },
+      "margin": 12221
+    },
+    {
+      "const_no": 262,
+      "const_name": "JAMALPUR",
+      "winner": {
+        "name": "UJJAL PRAMANICK",
+        "party": "AITC",
+        "votes": 84434
+      },
+      "runner_up": {
+        "name": "SAMAR HAZRA",
+        "party": "CPM",
+        "votes": 81891
+      },
+      "margin": 2543
+    },
+    {
+      "const_no": 263,
+      "const_name": "MONTESWAR",
+      "winner": {
+        "name": "CHOWDHURY MD HEDAYATULLAH",
+        "party": "CPM",
+        "votes": 81822
+      },
+      "runner_up": {
+        "name": "ABU AYESH MONDAL",
+        "party": "AITC",
+        "votes": 78524
+      },
+      "margin": 3298
+    },
+    {
+      "const_no": 264,
+      "const_name": "KALNA",
+      "winner": {
+        "name": "KUNDU BISWAJIT",
+        "party": "AITC",
+        "votes": 85096
+      },
+      "runner_up": {
+        "name": "SUKUL CHANDRA SIKDAR",
+        "party": "CPM",
+        "votes": 72459
+      },
+      "margin": 12637
+    },
+    {
+      "const_no": 265,
+      "const_name": "MEMARI",
+      "winner": {
+        "name": "ABUL HASEM MONDAL",
+        "party": "AITC",
+        "votes": 89083
+      },
+      "runner_up": {
+        "name": "DEBASHIS GHOSH",
+        "party": "CPM",
+        "votes": 85905
+      },
+      "margin": 3178
+    },
+    {
+      "const_no": 266,
+      "const_name": "BURDWAN UTTAR",
+      "winner": {
+        "name": "APARNA SAHA",
+        "party": "CPM",
+        "votes": 98182
+      },
+      "runner_up": {
+        "name": "NISITH KUMAR MALIK",
+        "party": "AITC",
+        "votes": 83949
+      },
+      "margin": 14233
+    },
+    {
+      "const_no": 267,
+      "const_name": "BHATAR",
+      "winner": {
+        "name": "BANAMALI HAZRA",
+        "party": "AITC",
+        "votes": 83883
+      },
+      "runner_up": {
+        "name": "KONAR SRIJIT",
+        "party": "CPM",
+        "votes": 83585
+      },
+      "margin": 298
+    },
+    {
+      "const_no": 268,
+      "const_name": "PURBASTHALI DAKSHIN",
+      "winner": {
+        "name": "SWAPAN DEBNATH",
+        "party": "AITC",
+        "votes": 86039
+      },
+      "runner_up": {
+        "name": "ALEYA BEGAM SEKH",
+        "party": "CPM",
+        "votes": 70181
+      },
+      "margin": 15858
+    },
+    {
+      "const_no": 269,
+      "const_name": "PURBASTHALI UTTAR",
+      "winner": {
+        "name": "TAPAN CHATTERJEE",
+        "party": "AITC",
+        "votes": 71107
+      },
+      "runner_up": {
+        "name": "PRADIP KUMAR SAHA",
+        "party": "CPM",
+        "votes": 68967
+      },
+      "margin": 2140
+    },
+    {
+      "const_no": 270,
+      "const_name": "KATWA",
+      "winner": {
+        "name": "RABINDRANATH CHATTERJEE",
+        "party": "INC",
+        "votes": 97951
+      },
+      "runner_up": {
+        "name": "SUDIPTA BAGCHI",
+        "party": "CPM",
+        "votes": 70426
+      },
+      "margin": 27525
+    },
+    {
+      "const_no": 271,
+      "const_name": "KETUGRAM",
+      "winner": {
+        "name": "SEKH SAHONAWEZ",
+        "party": "AITC",
+        "votes": 77323
+      },
+      "runner_up": {
+        "name": "ABUL KADAR SYED",
+        "party": "CPM",
+        "votes": 75724
+      },
+      "margin": 1599
+    },
+    {
+      "const_no": 272,
+      "const_name": "MANGALKOT",
+      "winner": {
+        "name": "SAHAJAHAN CHOUDHURY",
+        "party": "CPM",
+        "votes": 81316
+      },
+      "runner_up": {
+        "name": "APURBA CHAUDHURI",
+        "party": "AITC",
+        "votes": 81190
+      },
+      "margin": 126
+    },
+    {
+      "const_no": 273,
+      "const_name": "AUSGRAM",
+      "winner": {
+        "name": "BASUDEV METE",
+        "party": "CPM",
+        "votes": 90863
+      },
+      "runner_up": {
+        "name": "CHANCHAL KUMAR MONDAL",
+        "party": "INC",
+        "votes": 67767
+      },
+      "margin": 23096
+    },
+    {
+      "const_no": 274,
+      "const_name": "GALSI",
+      "winner": {
+        "name": "SUNIL KUMAR MONDAL",
+        "party": "AIFB",
+        "votes": 92126
+      },
+      "runner_up": {
+        "name": "JOYDEB SAHA",
+        "party": "AITC",
+        "votes": 81272
+      },
+      "margin": 10854
+    },
+    {
+      "const_no": 275,
+      "const_name": "PANDABESWAR",
+      "winner": {
+        "name": "GAURANGA CHATTERJEE",
+        "party": "CPM",
+        "votes": 67240
+      },
+      "runner_up": {
+        "name": "ZAHIR ALAM",
+        "party": "AITC",
+        "votes": 59429
+      },
+      "margin": 7811
+    },
+    {
+      "const_no": 276,
+      "const_name": "DURGAPUR PURBA",
+      "winner": {
+        "name": "DR. NIKHIL KUMAR BANERJEE",
+        "party": "AITC",
+        "votes": 87050
+      },
+      "runner_up": {
+        "name": "ALPANA CHOWDHURY",
+        "party": "CPM",
+        "votes": 78484
+      },
+      "margin": 8566
+    },
+    {
+      "const_no": 277,
+      "const_name": "DURGAPUR PASCHIM",
+      "winner": {
+        "name": "APURBA MUKHERJEE",
+        "party": "AITC",
+        "votes": 92454
+      },
+      "runner_up": {
+        "name": "BIPRENDU CHAKRABORTY",
+        "party": "CPM",
+        "votes": 75448
+      },
+      "margin": 17006
+    },
+    {
+      "const_no": 278,
+      "const_name": "RANIGANJ",
+      "winner": {
+        "name": "ALI SOHRAB",
+        "party": "AITC",
+        "votes": 73810
+      },
+      "runner_up": {
+        "name": "RUNU DUTTA",
+        "party": "CPM",
+        "votes": 72059
+      },
+      "margin": 1751
+    },
+    {
+      "const_no": 279,
+      "const_name": "JAMURIA",
+      "winner": {
+        "name": "JAHANARA KHAN",
+        "party": "CPM",
+        "votes": 72411
+      },
+      "runner_up": {
+        "name": "PRABHAT KUMAR CHATTERJEE",
+        "party": "AITC",
+        "votes": 58538
+      },
+      "margin": 13873
+    },
+    {
+      "const_no": 280,
+      "const_name": "ASANSOL DAKSHIN",
+      "winner": {
+        "name": "TAPAS BANERJEE",
+        "party": "AITC",
+        "votes": 89645
+      },
+      "runner_up": {
+        "name": "ASHOK KUMAR MUKHERJEE",
+        "party": "CPM",
+        "votes": 61104
+      },
+      "margin": 28541
+    },
+    {
+      "const_no": 281,
+      "const_name": "ASANSOL UTTAR",
+      "winner": {
+        "name": "GHATAK MOLOY",
+        "party": "AITC",
+        "votes": 96011
+      },
+      "runner_up": {
+        "name": "RANU ROYCHOWDHURY",
+        "party": "CPM",
+        "votes": 48218
+      },
+      "margin": 47793
+    },
+    {
+      "const_no": 282,
+      "const_name": "KULTI",
+      "winner": {
+        "name": "UJJAL CHATTERJEE",
+        "party": "AITC",
+        "votes": 77610
+      },
+      "runner_up": {
+        "name": "ACHARYA MANIKLAL",
+        "party": "AIFB",
+        "votes": 49044
+      },
+      "margin": 28566
+    },
+    {
+      "const_no": 283,
+      "const_name": "BARABANI",
+      "winner": {
+        "name": "BIDHAN UPADHYAY",
+        "party": "AITC",
+        "votes": 78628
+      },
+      "runner_up": {
+        "name": "ABHAS RAYCHAUDHURI",
+        "party": "CPM",
+        "votes": 58051
+      },
+      "margin": 20577
+    },
+    {
+      "const_no": 284,
+      "const_name": "DUBRAJPUR",
+      "winner": {
+        "name": "BIJOY BAGDI",
+        "party": "AIFB",
+        "votes": 75347
+      },
+      "runner_up": {
+        "name": "SANTOSHI SAHA",
+        "party": "AITC",
+        "votes": 72634
+      },
+      "margin": 2713
+    },
+    {
+      "const_no": 285,
+      "const_name": "SURI",
+      "winner": {
+        "name": "SWAPAN KANTI GHOSH",
+        "party": "AITC",
+        "votes": 88244
+      },
+      "runner_up": {
+        "name": "ABDUL GAFFAR",
+        "party": "CPM",
+        "votes": 69127
+      },
+      "margin": 19117
+    },
+    {
+      "const_no": 286,
+      "const_name": "BOLPUR",
+      "winner": {
+        "name": "CHANDRA NATH SINHA",
+        "party": "AITC",
+        "votes": 89394
+      },
+      "runner_up": {
+        "name": "TAPAN HORE",
+        "party": "RSP",
+        "votes": 72767
+      },
+      "margin": 16627
+    },
+    {
+      "const_no": 287,
+      "const_name": "NANOOR",
+      "winner": {
+        "name": "GADADHAR HAZRA",
+        "party": "AITC",
+        "votes": 91818
+      },
+      "runner_up": {
+        "name": "SHYAMALI PRADHAN",
+        "party": "CPM",
+        "votes": 85955
+      },
+      "margin": 5863
+    },
+    {
+      "const_no": 288,
+      "const_name": "LABHPUR",
+      "winner": {
+        "name": "ISLAM MONIRUL",
+        "party": "AITC",
+        "votes": 78697
+      },
+      "runner_up": {
+        "name": "NABANITA MUKHERJEE",
+        "party": "CPM",
+        "votes": 75691
+      },
+      "margin": 3006
+    },
+    {
+      "const_no": 289,
+      "const_name": "SAINTHIA",
+      "winner": {
+        "name": "DHIREN BAGDI",
+        "party": "CPM",
+        "votes": 77512
+      },
+      "runner_up": {
+        "name": "PARIKSHIT BALA",
+        "party": "AITC",
+        "votes": 73194
+      },
+      "margin": 4318
+    },
+    {
+      "const_no": 290,
+      "const_name": "MAYURESWAR",
+      "winner": {
+        "name": "ASOK RAY",
+        "party": "CPM",
+        "votes": 67478
+      },
+      "runner_up": {
+        "name": "JATIL MONDAL",
+        "party": "AITC",
+        "votes": 60958
+      },
+      "margin": 6520
+    },
+    {
+      "const_no": 291,
+      "const_name": "RAMPURHAT",
+      "winner": {
+        "name": "ASISH BANERJEE",
+        "party": "AITC",
+        "votes": 75066
+      },
+      "runner_up": {
+        "name": "REBATI BHATTACHARYA",
+        "party": "AIFB",
+        "votes": 64828
+      },
+      "margin": 10238
+    },
+    {
+      "const_no": 292,
+      "const_name": "HANSAN",
+      "winner": {
+        "name": "ASIT MAL",
+        "party": "INC",
+        "votes": 73370
+      },
+      "runner_up": {
+        "name": "KAMAL HASAN",
+        "party": "RCPI(R)",
+        "votes": 46918
+      },
+      "margin": 26452
+    },
+    {
+      "const_no": 293,
+      "const_name": "NALHATI",
+      "winner": {
+        "name": "ABHIJIT MUKHERJEE",
+        "party": "INC",
+        "votes": 76047
+      },
+      "runner_up": {
+        "name": "DIPAK CHATTERJEE",
+        "party": "AIFB",
+        "votes": 60887
+      },
+      "margin": 15160
+    },
+    {
+      "const_no": 294,
+      "const_name": "MURARAI",
+      "winner": {
+        "name": "NURE ALAM CHOWDHURY",
+        "party": "AITC",
+        "votes": 77817
+      },
+      "runner_up": {
+        "name": "ELAHI KAMRE DR",
+        "party": "CPM",
+        "votes": 73414
+      },
+      "margin": 4403
+    }
+  ],
+  "geo_mismatches": [
+    {
+      "const_no": 46,
+      "eci_name": "HARISHCHANDRAPUR",
+      "geo_name": "HARISCHANDRAPUR"
+    },
+    {
+      "const_no": 101,
+      "eci_name": "ASHOKENAGAR",
+      "geo_name": "ASHOKNAGAR"
+    },
+    {
+      "const_no": 152,
+      "eci_name": "TOLLYGUNGE",
+      "geo_name": "TOLLYGANJ"
+    },
+    {
+      "const_no": 162,
+      "eci_name": "CHOWRINGHEE",
+      "geo_name": "CHOWRANGEE"
+    },
+    {
+      "const_no": 164,
+      "eci_name": "BELIAGHATA",
+      "geo_name": "BELEGHATA"
+    },
+    {
+      "const_no": 186,
+      "eci_name": "SERAMPORE",
+      "geo_name": "SREERAMPUR"
+    },
+    {
+      "const_no": 200,
+      "eci_name": "ARAMBAGH",
+      "geo_name": "ARAMBAG"
+    },
+    {
+      "const_no": 208,
+      "eci_name": "MAHISHADAL",
+      "geo_name": "MAHISADAL"
+    },
+    {
+      "const_no": 223,
+      "eci_name": "KESHIARI",
+      "geo_name": "KESHIARY"
+    },
+    {
+      "const_no": 257,
+      "eci_name": "INDAS",
+      "geo_name": "INDUS"
+    },
+    {
+      "const_no": 260,
+      "eci_name": "BURDWAN DAKSHIN",
+      "geo_name": "BARDHAMAN DAKSHIN"
+    },
+    {
+      "const_no": 266,
+      "eci_name": "BURDWAN UTTAR",
+      "geo_name": "BARDHAMAN UTTAR"
+    },
+    {
+      "const_no": 288,
+      "eci_name": "LABHPUR",
+      "geo_name": "LABPUR"
+    }
+  ]
+}

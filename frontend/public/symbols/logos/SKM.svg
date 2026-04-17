@@ -1,0 +1,10 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 720" width="1080" height="720">
+	<style>
+		.s0 { fill: #00a650 } 
+		.s1 { fill: #ee1821 } 
+		.s2 { fill: #f7841a } 
+	</style>
+	<path id="green" class="s0" d="m0 0h1080v720h-1080z"/>
+	<path id="red" class="s1" d="m0 0h1080v480h-1080z"/>
+	<path id="orange" class="s2" d="m0 0h1080v240h-1080z"/>
+</svg>

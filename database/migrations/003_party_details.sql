@@ -1,0 +1,10 @@
+-- Add detail columns to parties table
+BEGIN;
+
+ALTER TABLE parties ADD COLUMN IF NOT EXISTS abbreviation VARCHAR(20);
+ALTER TABLE parties ADD COLUMN IF NOT EXISTS leader_name VARCHAR(255);
+ALTER TABLE parties ADD COLUMN IF NOT EXISTS founded_year INTEGER;
+ALTER TABLE parties ADD COLUMN IF NOT EXISTS headquarters VARCHAR(255);
+ALTER TABLE parties ADD COLUMN IF NOT EXISTS website TEXT;
+
+COMMIT;

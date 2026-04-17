@@ -1,0 +1,110 @@
+-- Puducherry Vidhan Sabha 2021 Election Data
+-- Generated: 2026-03-06T06:54:24.345Z
+-- Run: docker exec -i election_tracker_db psql -U admin -d election_tracker < database/seed_py_vs_2021.sql
+
+-- Election
+INSERT INTO elections (id, name, type, state_id, year, status, tentative_next_date) VALUES
+  ('b1c2d3e4-f5a6-7890-1234-567890ab2021', 'Puducherry Vidhan Sabha 2021', 'VS', 27, 2021, 'Finalized', NULL)
+ON CONFLICT (id) DO NOTHING;
+
+-- Constituencies (30)
+INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_no, type, voter_turnout, phase, total_electors) VALUES
+  ('PY_VS21_1_MANNADIPET', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Mannadipet', 1, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_2_THIRUBHUVANAI', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Thirubhuvanai', 2, 'SC', NULL, NULL, NULL),
+  ('PY_VS21_3_OUSSUDU', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Oussudu', 3, 'SC', NULL, NULL, NULL),
+  ('PY_VS21_4_MANGALAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Mangalam', 4, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_5_VILLIANUR', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Villianur', 5, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_6_OZHUKARAI', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Ozhukarai', 6, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_7_KADIRGAMAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Kadirgamam', 7, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_8_INDIRA_NAGAR', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Indira Nagar', 8, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_9_THATTANCHAVADY', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Thattanchavady', 9, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_10_KAMARAJ_NAGAR', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Kamaraj Nagar', 10, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_11_LAWSPET', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Lawspet', 11, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_12_KALAPET', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Kalapet', 12, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_13_MUTHIALPET', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Muthialpet', 13, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_14_RAJ_BHAVAN', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Raj Bhavan', 14, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_15_OUPALAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Oupalam', 15, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_16_ORLEAMPETH', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Orleampeth', 16, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_17_NELLITHOPE', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Nellithope', 17, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_18_MUDALIARPET', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Mudaliarpet', 18, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_19_ARIANKUPPAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Ariankuppam', 19, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_20_MANAVELY', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Manavely', 20, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_21_EMBALAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Embalam', 21, 'SC', NULL, NULL, NULL),
+  ('PY_VS21_22_NETTAPAKKAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Nettapakkam', 22, 'SC', NULL, NULL, NULL),
+  ('PY_VS21_23_BAHOUR', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Bahour', 23, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_24_NEDUNGADU', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Nedungadu', 24, 'SC', NULL, NULL, NULL),
+  ('PY_VS21_25_THIRUNALLAR', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Thirunallar', 25, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_26_KARAIKAL_NORTH', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Karaikal North', 26, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_27_KARAIKAL_SOUTH', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Karaikal South', 27, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_28_NERAVY_TR_PATTINAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Neravy T.r. Pattinam', 28, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_29_MAHE', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Mahe', 29, 'GEN', NULL, NULL, NULL),
+  ('PY_VS21_30_YANAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Yanam', 30, 'GEN', NULL, NULL, NULL);
+
+-- Candidates
+INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
+  ('3db44fd3-c2c8-402b-af36-2ae32d8c25ff', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_1_MANNADIPET', 'BJP', 'A. Namassivayam', FALSE, '{}'),
+  ('7deb938f-ca74-46e6-a1d6-1e928f3b5f20', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_2_THIRUBHUVANAI', 'IND', 'P. Angalane', FALSE, '{}'),
+  ('361373bf-48dc-4f12-a059-1621b493202a', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_3_OUSSUDU', 'BJP', 'Ak Sai J Saravanan Kumar', FALSE, '{}'),
+  ('d019f4d2-f53b-4595-a409-de2898555c40', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_4_MANGALAM', 'AINRC', 'Djeacoumar C', FALSE, '{}'),
+  ('c30ac5f6-96c8-4c03-b434-a9c8a45fa518', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_5_VILLIANUR', 'DMK', 'R. Siva', FALSE, '{}'),
+  ('89e85d4a-123c-4099-a440-5fb23a03dc30', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_6_OZHUKARAI', 'IND', 'M. Sivasankar', FALSE, '{}'),
+  ('b26bd59e-6ae4-4526-b682-a6b907331310', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_7_KADIRGAMAM', 'AINRC', 'K.S.P. @ S. Ramesh', FALSE, '{}'),
+  ('c0399f7d-e2e1-4015-b814-18a7c3871d41', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_8_INDIRA_NAGAR', 'AINRC', 'V. Aroumougame @ Akd', FALSE, '{}'),
+  ('87c747dd-ebc6-4540-baa2-89c5a06084b2', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_9_THATTANCHAVADY', 'AINRC', 'N. Rangasamy', FALSE, '{}'),
+  ('6194510b-5b88-469e-b5b7-a8381b47ad71', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_10_KAMARAJ_NAGAR', 'BJP', 'A. Johnkumar', FALSE, '{}'),
+  ('0d62afd4-7d8d-4ea5-a860-2adbe0c561f9', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_11_LAWSPET', 'INC', 'M. Vaithianathan', FALSE, '{}'),
+  ('bff6b41e-ad80-43ae-a891-ae7bb2971f8d', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_12_KALAPET', 'BJP', 'P.M.L. Kalyanasundaram', FALSE, '{}'),
+  ('9943bfed-368e-4596-9733-90fdbba9845e', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_13_MUTHIALPET', 'IND', 'J. Prakash Kumar', FALSE, '{}'),
+  ('360d0aa3-1e5d-49a2-b834-a0c95c03bade', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_14_RAJ_BHAVAN', 'AINRC', 'K. Lakshminarayanan', FALSE, '{}'),
+  ('552e5ffd-fb9c-4225-a3a3-85a94511bcd9', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_15_OUPALAM', 'DMK', 'Annibal Kennedy', FALSE, '{}'),
+  ('f3fe74d0-c354-40e9-b425-e4eb870eaded', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_16_ORLEAMPETH', 'IND', 'G. Nehru @ Kuppusamy', FALSE, '{}'),
+  ('8e7d2f8d-9f6e-47fb-b586-ce6c042c96c6', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_17_NELLITHOPE', 'BJP', 'Richards Johnkumar', FALSE, '{}'),
+  ('241e6c81-0df1-45e4-9165-7ae21fb5530c', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_18_MUDALIARPET', 'DMK', 'L. Sambath', FALSE, '{}'),
+  ('1f5c6a83-f6fa-41d9-a99d-7cebeaa0aa78', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_19_ARIANKUPPAM', 'AINRC', 'R. Baskar @ Datchanamourtty', FALSE, '{}'),
+  ('285986b7-a443-49d0-aa48-4ac2b256ec8c', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_20_MANAVELY', 'BJP', 'Embalam Selvam @ R. Selvam', FALSE, '{}'),
+  ('485bf19c-a7e3-4192-be89-d73b9d6717fc', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_21_EMBALAM', 'AINRC', 'U. Lakshmikandhan', FALSE, '{}'),
+  ('1dcc9fcf-2457-4dc9-a744-d762211ff75e', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_22_NETTAPAKKAM', 'AINRC', 'P. Rajavelu', FALSE, '{}'),
+  ('eff18c0a-2a9b-40f6-88bb-f5e9b81708f9', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_23_BAHOUR', 'DMK', 'R. Senthilkumar', FALSE, '{}'),
+  ('16fc777e-8ff3-4b52-85cc-9acc31e701d9', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_24_NEDUNGADU', 'AINRC', 'Chandira Priyanga', FALSE, '{}'),
+  ('934e23f5-ffd1-4aed-8748-eeb3e450c05e', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_25_THIRUNALLAR', 'IND', 'P.R. Siva', FALSE, '{}'),
+  ('917dc5be-b9db-45b0-8d6a-cf223dab1faa', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_26_KARAIKAL_NORTH', 'AINRC', 'P.R.N. Thirumurugan', FALSE, '{}'),
+  ('3023fceb-182c-4ee1-b6c9-0e86b9648f3c', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_27_KARAIKAL_SOUTH', 'DMK', 'A.M.H. Nazim', FALSE, '{}'),
+  ('52a287d0-3e0d-47f5-91a8-9e3975c216a7', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_28_NERAVY_TR_PATTINAM', 'DMK', 'M. Nagathiyagarajan', FALSE, '{}'),
+  ('0a04fffe-170f-4626-96c0-fbde9812d8ed', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_29_MAHE', 'INC', 'Ramesh Parambath', FALSE, '{}'),
+  ('ac12f49a-5e7f-485a-9fac-492656d1300c', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_30_YANAM', 'IND', 'Gollapalli Srinivas Ashok', FALSE, '{}');
+
+-- Results
+INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
+  ('2057ae46-744a-429b-af77-dc58d1756b05', '3db44fd3-c2c8-402b-af36-2ae32d8c25ff', 'PY_VS21_1_MANNADIPET', 52750, 'WON', 2750, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('f5f1447a-95a1-4b49-b8f2-037e51841e42', '7deb938f-ca74-46e6-a1d6-1e928f3b5f20', 'PY_VS21_2_THIRUBHUVANAI', 52359, 'WON', 2359, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('a04c0982-6fa3-4339-88d3-c5ce694ca454', '361373bf-48dc-4f12-a059-1621b493202a', 'PY_VS21_3_OUSSUDU', 51880, 'WON', 1880, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('48154aec-0664-465d-8f58-e4e137863184', 'd019f4d2-f53b-4595-a409-de2898555c40', 'PY_VS21_4_MANGALAM', 52751, 'WON', 2751, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('b9692a8e-69f7-4eab-8f9b-0443b3d45c29', 'c30ac5f6-96c8-4c03-b434-a9c8a45fa518', 'PY_VS21_5_VILLIANUR', 56950, 'WON', 6950, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('56684adf-3073-4876-afa1-3d17d948e17e', '89e85d4a-123c-4099-a440-5fb23a03dc30', 'PY_VS21_6_OZHUKARAI', 50819, 'WON', 819, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('ec903ccc-5b39-4222-8f4d-61876b46f496', 'b26bd59e-6ae4-4526-b682-a6b907331310', 'PY_VS21_7_KADIRGAMAM', 62246, 'WON', 12246, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('4ae93b5a-662a-4415-abbf-e7e52c7e06bb', 'c0399f7d-e2e1-4015-b814-18a7c3871d41', 'PY_VS21_8_INDIRA_NAGAR', 68531, 'WON', 18531, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('95495d35-cd7d-451a-83f2-b6c21d5fab53', '87c747dd-ebc6-4540-baa2-89c5a06084b2', 'PY_VS21_9_THATTANCHAVADY', 55456, 'WON', 5456, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('d88c34cf-7c31-4b20-bd12-6cea7a2c22af', '6194510b-5b88-469e-b5b7-a8381b47ad71', 'PY_VS21_10_KAMARAJ_NAGAR', 57229, 'WON', 7229, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('389d3c92-8ea8-4958-ad50-d209579644b2', '0d62afd4-7d8d-4ea5-a860-2adbe0c561f9', 'PY_VS21_11_LAWSPET', 55701, 'WON', 5701, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('034138dc-6a45-4fc3-887a-eb22a5be2294', 'bff6b41e-ad80-43ae-a891-ae7bb2971f8d', 'PY_VS21_12_KALAPET', 53508, 'WON', 3508, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('ff6cce8c-cb19-4687-9ace-072415242839', '9943bfed-368e-4596-9733-90fdbba9845e', 'PY_VS21_13_MUTHIALPET', 50934, 'WON', 934, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('451aa87d-b257-4d37-8075-ffb62c878594', '360d0aa3-1e5d-49a2-b834-a0c95c03bade', 'PY_VS21_14_RAJ_BHAVAN', 53732, 'WON', 3732, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('a893f691-b216-4ee0-9fe7-9d38b0276e43', '552e5ffd-fb9c-4225-a3a3-85a94511bcd9', 'PY_VS21_15_OUPALAM', 54780, 'WON', 4780, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('2e712861-8687-4622-957e-e34307fde3b8', 'f3fe74d0-c354-40e9-b425-e4eb870eaded', 'PY_VS21_16_ORLEAMPETH', 52093, 'WON', 2093, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('0c3eebb1-76b0-4530-844b-ab651721cf21', '8e7d2f8d-9f6e-47fb-b586-ce6c042c96c6', 'PY_VS21_17_NELLITHOPE', 50496, 'WON', 496, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('9cb7430c-c4ba-48ba-a6a4-8ce4e029752d', '241e6c81-0df1-45e4-9165-7ae21fb5530c', 'PY_VS21_18_MUDALIARPET', 54179, 'WON', 4179, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('1f4a28ff-e1ec-4a8c-a939-4c8789aee74a', '1f5c6a83-f6fa-41d9-a99d-7cebeaa0aa78', 'PY_VS21_19_ARIANKUPPAM', 56418, 'WON', 6418, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('5f703895-e4fc-4cab-a87e-922ae2a9ef36', '285986b7-a443-49d0-aa48-4ac2b256ec8c', 'PY_VS21_20_MANAVELY', 58132, 'WON', 8132, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('cae1d814-4114-4e0c-9628-025bb3d61c88', '485bf19c-a7e3-4192-be89-d73b9d6717fc', 'PY_VS21_21_EMBALAM', 52240, 'WON', 2240, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('966542e1-a4f3-4dc8-8179-faa4164911c3', '1dcc9fcf-2457-4dc9-a744-d762211ff75e', 'PY_VS21_22_NETTAPAKKAM', 56638, 'WON', 6638, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('a07c14cf-789e-4f62-a336-1e998a9ff0a5', 'eff18c0a-2a9b-40f6-88bb-f5e9b81708f9', 'PY_VS21_23_BAHOUR', 50211, 'WON', 211, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('3fff89e2-696e-4300-9f56-10b885d853c4', '16fc777e-8ff3-4b52-85cc-9acc31e701d9', 'PY_VS21_24_NEDUNGADU', 52214, 'WON', 2214, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('c01b1e47-8881-4b43-af33-c87b4f806e37', '934e23f5-ffd1-4aed-8748-eeb3e450c05e', 'PY_VS21_25_THIRUNALLAR', 51380, 'WON', 1380, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('e4d7dc15-c4ce-4f83-9505-a1848150f04e', '917dc5be-b9db-45b0-8d6a-cf223dab1faa', 'PY_VS21_26_KARAIKAL_NORTH', 50135, 'WON', 135, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('a538abc4-41b8-45ec-95f0-e21df1f06e81', '3023fceb-182c-4ee1-b6c9-0e86b9648f3c', 'PY_VS21_27_KARAIKAL_SOUTH', 62034, 'WON', 12034, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('daa042ec-f384-48f2-8c96-35cb34a667db', '52a287d0-3e0d-47f5-91a8-9e3975c216a7', 'PY_VS21_28_NERAVY_TR_PATTINAM', 55511, 'WON', 5511, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('801ff72d-30dc-4d3c-b0a3-843d71416951', '0a04fffe-170f-4626-96c0-fbde9812d8ed', 'PY_VS21_29_MAHE', 50300, 'WON', 300, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
+  ('c4974340-8c23-48a7-96f1-8d7cfdb219f1', 'ac12f49a-5e7f-485a-9fac-492656d1300c', 'PY_VS21_30_YANAM', 50655, 'WON', 655, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021');
+
+-- Manifest
+UPDATE elections SET manifest_url = '{"alliances":[{"id":"NDA","name":"NDA","color":"#FF6B00","parties":["AINRC","BJP","AIADMK"]},{"id":"SDA","name":"DMK+","color":"#CC0000","parties":["DMK","INC","CPI","CPIM"]}],"leaders":[{"name":"N. Rangasamy","party_id":"AINRC","const_id":"PY_VS21_19_YANAM"}],"cabinet":[],"tracked":["NDA","SDA"],"vip_seats":{},"milestones":[{"label":"Majority","value":16}],"compare_with":["b1c2d3e4-f5a6-7890-1234-567890ab2016"],"history":["b1c2d3e4-f5a6-7890-1234-567890ab2011","b1c2d3e4-f5a6-7890-1234-567890ab2016"],"history_years":[2011,2016],"geo":{"map_url":"/geo/py_ac.geojson","center":[79.8,11.9],"zoom":11},"delimitation_era":"2008"}' WHERE id = 'b1c2d3e4-f5a6-7890-1234-567890ab2021';

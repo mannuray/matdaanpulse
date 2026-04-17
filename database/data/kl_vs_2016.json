@@ -1,0 +1,2191 @@
+{
+  "state": "Kerala",
+  "state_code": "KL",
+  "year": 2016,
+  "type": "VS",
+  "total_seats": 140,
+  "results": [
+    {
+      "const_no": 1,
+      "const_name": "MANJESHWAR",
+      "winner": {
+        "name": "P B Abdul Razak",
+        "party": "IUML",
+        "votes": 56870
+      },
+      "runner_up": {
+        "name": "K Surendran",
+        "party": "BJP",
+        "votes": 56781
+      },
+      "margin": 89
+    },
+    {
+      "const_no": 2,
+      "const_name": "KASARAGOD",
+      "winner": {
+        "name": "N A Nellikkunnu",
+        "party": "IUML",
+        "votes": 64727
+      },
+      "runner_up": {
+        "name": "Ravisha Thantri Kuntar",
+        "party": "BJP",
+        "votes": 56120
+      },
+      "margin": 8607
+    },
+    {
+      "const_no": 3,
+      "const_name": "UDMA",
+      "winner": {
+        "name": "K Kunhiraman",
+        "party": "CPM",
+        "votes": 70679
+      },
+      "runner_up": {
+        "name": "K Sudhakaran",
+        "party": "INC",
+        "votes": 66847
+      },
+      "margin": 3832
+    },
+    {
+      "const_no": 4,
+      "const_name": "KANHANGAD",
+      "winner": {
+        "name": "E.Chandrashekaran",
+        "party": "CPI",
+        "votes": 80558
+      },
+      "runner_up": {
+        "name": "Dhanya Suresh",
+        "party": "INC",
+        "votes": 54547
+      },
+      "margin": 26011
+    },
+    {
+      "const_no": 5,
+      "const_name": "TRIKARIPUR",
+      "winner": {
+        "name": "M.Rajagopalan",
+        "party": "CPM",
+        "votes": 79286
+      },
+      "runner_up": {
+        "name": "K P Kunhikannan",
+        "party": "INC",
+        "votes": 62327
+      },
+      "margin": 16959
+    },
+    {
+      "const_no": 6,
+      "const_name": "PAYYANNUR",
+      "winner": {
+        "name": "C Krishnan",
+        "party": "CPM",
+        "votes": 83226
+      },
+      "runner_up": {
+        "name": "Sajid Mavval",
+        "party": "INC",
+        "votes": 42963
+      },
+      "margin": 40263
+    },
+    {
+      "const_no": 7,
+      "const_name": "KALLIASSERI",
+      "winner": {
+        "name": "T V Rajesh",
+        "party": "CPM",
+        "votes": 83006
+      },
+      "runner_up": {
+        "name": "Amritha Ramakrishnan",
+        "party": "INC",
+        "votes": 40115
+      },
+      "margin": 42891
+    },
+    {
+      "const_no": 8,
+      "const_name": "TALIPARAMBA",
+      "winner": {
+        "name": "James Mathew",
+        "party": "CPM",
+        "votes": 91106
+      },
+      "runner_up": {
+        "name": "Rajesh Nambiar",
+        "party": "KEC(M)",
+        "votes": 50489
+      },
+      "margin": 40617
+    },
+    {
+      "const_no": 9,
+      "const_name": "IRIKKUR",
+      "winner": {
+        "name": "K C Joseph",
+        "party": "INC",
+        "votes": 72548
+      },
+      "runner_up": {
+        "name": "K T Jose",
+        "party": "CPI",
+        "votes": 62901
+      },
+      "margin": 9647
+    },
+    {
+      "const_no": 10,
+      "const_name": "AZHIKODE",
+      "winner": {
+        "name": "K M Shaji",
+        "party": "IUML",
+        "votes": 63082
+      },
+      "runner_up": {
+        "name": "M V Nikesh Kumar",
+        "party": "CPM",
+        "votes": 60795
+      },
+      "margin": 2287
+    },
+    {
+      "const_no": 11,
+      "const_name": "KANNUR",
+      "winner": {
+        "name": "Ramachandran Kadannappalli",
+        "party": "INC(S)",
+        "votes": 54347
+      },
+      "runner_up": {
+        "name": "Satheesan Pacheni",
+        "party": "INC",
+        "votes": 53151
+      },
+      "margin": 1196
+    },
+    {
+      "const_no": 12,
+      "const_name": "DHARMADAM",
+      "winner": {
+        "name": "Pinarayi Vijayan",
+        "party": "CPM",
+        "votes": 87329
+      },
+      "runner_up": {
+        "name": "Mambaram Divakaran",
+        "party": "INC",
+        "votes": 50424
+      },
+      "margin": 36905
+    },
+    {
+      "const_no": 13,
+      "const_name": "THALASSERY",
+      "winner": {
+        "name": "Adv. A N Shamseer",
+        "party": "CPM",
+        "votes": 70741
+      },
+      "runner_up": {
+        "name": "A P Abdullakutty",
+        "party": "INC",
+        "votes": 36624
+      },
+      "margin": 34117
+    },
+    {
+      "const_no": 14,
+      "const_name": "KUTHUPARAMBA",
+      "winner": {
+        "name": "K K Shailaja Teacher",
+        "party": "CPM",
+        "votes": 67013
+      },
+      "runner_up": {
+        "name": "K P Mohanan",
+        "party": "JD(U)",
+        "votes": 54722
+      },
+      "margin": 12291
+    },
+    {
+      "const_no": 15,
+      "const_name": "MATTANNUR",
+      "winner": {
+        "name": "E. P. Jayarajan",
+        "party": "CPM",
+        "votes": 84030
+      },
+      "runner_up": {
+        "name": "K. P. Prasanth",
+        "party": "JD(U)",
+        "votes": 40649
+      },
+      "margin": 43381
+    },
+    {
+      "const_no": 16,
+      "const_name": "PERAVOOR",
+      "winner": {
+        "name": "Adv. Sunny Joseph",
+        "party": "INC",
+        "votes": 65659
+      },
+      "runner_up": {
+        "name": "Adv. Binoy Kurian",
+        "party": "CPM",
+        "votes": 57670
+      },
+      "margin": 7989
+    },
+    {
+      "const_no": 17,
+      "const_name": "MANANTHAVADY",
+      "winner": {
+        "name": "O R Kelu",
+        "party": "CPM",
+        "votes": 62436
+      },
+      "runner_up": {
+        "name": "P K Jayalakshmi",
+        "party": "INC",
+        "votes": 61129
+      },
+      "margin": 1307
+    },
+    {
+      "const_no": 18,
+      "const_name": "SULTHANBATHERY",
+      "winner": {
+        "name": "I C Balakrishnan",
+        "party": "INC",
+        "votes": 75747
+      },
+      "runner_up": {
+        "name": "Rugmini Subrahmanian",
+        "party": "CPM",
+        "votes": 64549
+      },
+      "margin": 11198
+    },
+    {
+      "const_no": 19,
+      "const_name": "KALPETTA",
+      "winner": {
+        "name": "C K Saseendran",
+        "party": "CPM",
+        "votes": 72959
+      },
+      "runner_up": {
+        "name": "M.V Shreyams Kumar",
+        "party": "JD(U)",
+        "votes": 59876
+      },
+      "margin": 13083
+    },
+    {
+      "const_no": 20,
+      "const_name": "VADAKARA",
+      "winner": {
+        "name": "C.K.Nanu",
+        "party": "JD(S)",
+        "votes": 49211
+      },
+      "runner_up": {
+        "name": "Manayath Chandran",
+        "party": "JD(U)",
+        "votes": 39700
+      },
+      "margin": 9511
+    },
+    {
+      "const_no": 21,
+      "const_name": "KUTTIADI",
+      "winner": {
+        "name": "Parakkal Abdulla",
+        "party": "IUML",
+        "votes": 71809
+      },
+      "runner_up": {
+        "name": "K.K. Lathika",
+        "party": "CPM",
+        "votes": 70652
+      },
+      "margin": 1157
+    },
+    {
+      "const_no": 22,
+      "const_name": "NADAPURAM",
+      "winner": {
+        "name": "E. K. Vijayan",
+        "party": "CPI",
+        "votes": 74742
+      },
+      "runner_up": {
+        "name": "Adv. Praveenkumar",
+        "party": "INC",
+        "votes": 69983
+      },
+      "margin": 4759
+    },
+    {
+      "const_no": 23,
+      "const_name": "QUILANDY",
+      "winner": {
+        "name": "K.Dasan",
+        "party": "CPM",
+        "votes": 70593
+      },
+      "runner_up": {
+        "name": "N.Subramanian",
+        "party": "INC",
+        "votes": 57224
+      },
+      "margin": 13369
+    },
+    {
+      "const_no": 24,
+      "const_name": "PERAMBRA",
+      "winner": {
+        "name": "T.P.Ramakrishnan",
+        "party": "CPM",
+        "votes": 72359
+      },
+      "runner_up": {
+        "name": "Adv.Mohammed Ikbal",
+        "party": "KEC(M)",
+        "votes": 68258
+      },
+      "margin": 4101
+    },
+    {
+      "const_no": 25,
+      "const_name": "BALUSSERI",
+      "winner": {
+        "name": "Purushuan Kadalundi",
+        "party": "CPM",
+        "votes": 82914
+      },
+      "runner_up": {
+        "name": "U.C Raman Padanilam",
+        "party": "IND",
+        "votes": 67450
+      },
+      "margin": 15464
+    },
+    {
+      "const_no": 26,
+      "const_name": "ELATHUR",
+      "winner": {
+        "name": "A K Saseendran",
+        "party": "NCP",
+        "votes": 76387
+      },
+      "runner_up": {
+        "name": "Kishen Chand",
+        "party": "JD(U)",
+        "votes": 47330
+      },
+      "margin": 29057
+    },
+    {
+      "const_no": 27,
+      "const_name": "KOZHIKODE NORTH",
+      "winner": {
+        "name": "A Pradeep Kumar",
+        "party": "CPM",
+        "votes": 64192
+      },
+      "runner_up": {
+        "name": "Adv. P M Suresh Babu",
+        "party": "INC",
+        "votes": 36319
+      },
+      "margin": 27873
+    },
+    {
+      "const_no": 28,
+      "const_name": "KOZHIKODE SOUTH",
+      "winner": {
+        "name": "Dr. M.K.Muneer",
+        "party": "IUML",
+        "votes": 49863
+      },
+      "runner_up": {
+        "name": "Prof.A. P. Abdul Vahab",
+        "party": "INL",
+        "votes": 43536
+      },
+      "margin": 6327
+    },
+    {
+      "const_no": 29,
+      "const_name": "BEYPORE",
+      "winner": {
+        "name": "Mammed Koya V K C",
+        "party": "CPM",
+        "votes": 69114
+      },
+      "runner_up": {
+        "name": "Adam Mulsi M P",
+        "party": "INC",
+        "votes": 54751
+      },
+      "margin": 14363
+    },
+    {
+      "const_no": 30,
+      "const_name": "KUNNAMANGALAM",
+      "winner": {
+        "name": "P.T.A. Rahim",
+        "party": "IND",
+        "votes": 77410
+      },
+      "runner_up": {
+        "name": "Siddiqu.T",
+        "party": "INC",
+        "votes": 66205
+      },
+      "margin": 11205
+    },
+    {
+      "const_no": 31,
+      "const_name": "KODUVALLY",
+      "winner": {
+        "name": "Karat Razack",
+        "party": "IND",
+        "votes": 61033
+      },
+      "runner_up": {
+        "name": "M A Razak Master",
+        "party": "IUML",
+        "votes": 60460
+      },
+      "margin": 573
+    },
+    {
+      "const_no": 32,
+      "const_name": "THIRUVAMBADY",
+      "winner": {
+        "name": "George M. Thomas",
+        "party": "CPM",
+        "votes": 62324
+      },
+      "runner_up": {
+        "name": "V M Ummer Master",
+        "party": "IUML",
+        "votes": 59316
+      },
+      "margin": 3008
+    },
+    {
+      "const_no": 33,
+      "const_name": "KONDOTTY",
+      "winner": {
+        "name": "T.V. Ibrahim",
+        "party": "IUML",
+        "votes": 69668
+      },
+      "runner_up": {
+        "name": "K.P. Beerankutty",
+        "party": "IND",
+        "votes": 59014
+      },
+      "margin": 10654
+    },
+    {
+      "const_no": 34,
+      "const_name": "ERANAD",
+      "winner": {
+        "name": "P.K Basheer",
+        "party": "IUML",
+        "votes": 69048
+      },
+      "runner_up": {
+        "name": "Abdurahiman",
+        "party": "IND",
+        "votes": 56155
+      },
+      "margin": 12893
+    },
+    {
+      "const_no": 35,
+      "const_name": "NILAMBUR",
+      "winner": {
+        "name": "P V Anvar",
+        "party": "IND",
+        "votes": 77858
+      },
+      "runner_up": {
+        "name": "Aryadan Shoukath",
+        "party": "INC",
+        "votes": 66354
+      },
+      "margin": 11504
+    },
+    {
+      "const_no": 36,
+      "const_name": "WANDOOR",
+      "winner": {
+        "name": "A.P. Anil Kumar",
+        "party": "INC",
+        "votes": 81964
+      },
+      "runner_up": {
+        "name": "K Nishanth",
+        "party": "CPM",
+        "votes": 58100
+      },
+      "margin": 23864
+    },
+    {
+      "const_no": 37,
+      "const_name": "MANJERI",
+      "winner": {
+        "name": "Adv. M Ummer",
+        "party": "IUML",
+        "votes": 69779
+      },
+      "runner_up": {
+        "name": "Adv. K.Mohandas",
+        "party": "CPI",
+        "votes": 50163
+      },
+      "margin": 19616
+    },
+    {
+      "const_no": 38,
+      "const_name": "PERINTHALMANNA",
+      "winner": {
+        "name": "Manjalamkuzhi Ali",
+        "party": "IUML",
+        "votes": 70990
+      },
+      "runner_up": {
+        "name": "V.Sasikumar",
+        "party": "CPM",
+        "votes": 70411
+      },
+      "margin": 579
+    },
+    {
+      "const_no": 39,
+      "const_name": "MANKADA",
+      "winner": {
+        "name": "T A Ahammed Kabeer",
+        "party": "IUML",
+        "votes": 69165
+      },
+      "runner_up": {
+        "name": "Adv. T K Rasheed Ali",
+        "party": "CPM",
+        "votes": 67657
+      },
+      "margin": 1508
+    },
+    {
+      "const_no": 40,
+      "const_name": "MALAPPURAM",
+      "winner": {
+        "name": "P Ubaidulla",
+        "party": "IUML",
+        "votes": 81072
+      },
+      "runner_up": {
+        "name": "Adv. K P Sumathi",
+        "party": "CPM",
+        "votes": 45400
+      },
+      "margin": 35672
+    },
+    {
+      "const_no": 41,
+      "const_name": "VENGARA",
+      "winner": {
+        "name": "P.K. Kunhalikkutty",
+        "party": "IUML",
+        "votes": 72181
+      },
+      "runner_up": {
+        "name": "Adv. P.P. Basheer",
+        "party": "CPM",
+        "votes": 34124
+      },
+      "margin": 38057
+    },
+    {
+      "const_no": 42,
+      "const_name": "VALLIKKUNNU",
+      "winner": {
+        "name": "Abdul Hameed Master",
+        "party": "IUML",
+        "votes": 59720
+      },
+      "runner_up": {
+        "name": "Adv. O.K. Thangal",
+        "party": "INL",
+        "votes": 47110
+      },
+      "margin": 12610
+    },
+    {
+      "const_no": 43,
+      "const_name": "TIRURANGADI",
+      "winner": {
+        "name": "P.K Abdu Rabb",
+        "party": "IUML",
+        "votes": 62927
+      },
+      "runner_up": {
+        "name": "Niyas Pulikkalakath",
+        "party": "IND",
+        "votes": 56884
+      },
+      "margin": 6043
+    },
+    {
+      "const_no": 44,
+      "const_name": "TANUR",
+      "winner": {
+        "name": "V Abdurahiman",
+        "party": "NSC",
+        "votes": 64472
+      },
+      "runner_up": {
+        "name": "Abdurahiman Randathani",
+        "party": "IUML",
+        "votes": 59554
+      },
+      "margin": 4918
+    },
+    {
+      "const_no": 45,
+      "const_name": "TIRUR",
+      "winner": {
+        "name": "C. Mammutty",
+        "party": "IUML",
+        "votes": 73432
+      },
+      "runner_up": {
+        "name": "Gafoor P Lillis",
+        "party": "NSC",
+        "votes": 66371
+      },
+      "margin": 7061
+    },
+    {
+      "const_no": 46,
+      "const_name": "KOTTAKKAL",
+      "winner": {
+        "name": "Abid Hussain Thangal",
+        "party": "IUML",
+        "votes": 71768
+      },
+      "runner_up": {
+        "name": "N.A. Muhammed Kutty",
+        "party": "NCP",
+        "votes": 56726
+      },
+      "margin": 15042
+    },
+    {
+      "const_no": 47,
+      "const_name": "THAVANUR",
+      "winner": {
+        "name": "Dr. K.T. Jaleel",
+        "party": "IND",
+        "votes": 68179
+      },
+      "runner_up": {
+        "name": "Ifthiquarudheen. Master",
+        "party": "INC",
+        "votes": 51115
+      },
+      "margin": 17064
+    },
+    {
+      "const_no": 48,
+      "const_name": "PONNANI",
+      "winner": {
+        "name": "P. Sreeramakrishnan",
+        "party": "CPM",
+        "votes": 69332
+      },
+      "runner_up": {
+        "name": "P.T.Ajai Mohan",
+        "party": "INC",
+        "votes": 53692
+      },
+      "margin": 15640
+    },
+    {
+      "const_no": 49,
+      "const_name": "THRITHALA",
+      "winner": {
+        "name": "V.T. Balram",
+        "party": "INC",
+        "votes": 66505
+      },
+      "runner_up": {
+        "name": "Subaida Ishac",
+        "party": "CPM",
+        "votes": 55958
+      },
+      "margin": 10547
+    },
+    {
+      "const_no": 50,
+      "const_name": "PATTAMBI",
+      "winner": {
+        "name": "Muhammed Muhassin",
+        "party": "CPI",
+        "votes": 64025
+      },
+      "runner_up": {
+        "name": "C P Mohammed",
+        "party": "INC",
+        "votes": 56621
+      },
+      "margin": 7404
+    },
+    {
+      "const_no": 51,
+      "const_name": "SHORNUR",
+      "winner": {
+        "name": "P.K.Sasi",
+        "party": "CPM",
+        "votes": 66165
+      },
+      "runner_up": {
+        "name": "C.Sangeetha",
+        "party": "INC",
+        "votes": 41618
+      },
+      "margin": 24547
+    },
+    {
+      "const_no": 52,
+      "const_name": "OTTAPALAM",
+      "winner": {
+        "name": "P Unni",
+        "party": "CPM",
+        "votes": 67161
+      },
+      "runner_up": {
+        "name": "Adv.Shanimol Osman",
+        "party": "INC",
+        "votes": 51073
+      },
+      "margin": 16088
+    },
+    {
+      "const_no": 53,
+      "const_name": "KONGAD",
+      "winner": {
+        "name": "K.V.Vijayadas",
+        "party": "CPM",
+        "votes": 60790
+      },
+      "runner_up": {
+        "name": "Pandalam Sudhakaran",
+        "party": "INC",
+        "votes": 47519
+      },
+      "margin": 13271
+    },
+    {
+      "const_no": 54,
+      "const_name": "MANNARKAD",
+      "winner": {
+        "name": "Adv.N.Samsudheen",
+        "party": "IUML",
+        "votes": 73163
+      },
+      "runner_up": {
+        "name": "K.P. Suresh Raj",
+        "party": "CPI",
+        "votes": 60838
+      },
+      "margin": 12325
+    },
+    {
+      "const_no": 55,
+      "const_name": "MALAMPUZHA",
+      "winner": {
+        "name": "V S Achuthanandan",
+        "party": "CPM",
+        "votes": 73299
+      },
+      "runner_up": {
+        "name": "C.Krishnakumar",
+        "party": "BJP",
+        "votes": 46157
+      },
+      "margin": 27142
+    },
+    {
+      "const_no": 56,
+      "const_name": "PALAKKAD",
+      "winner": {
+        "name": "Shafi Parambil",
+        "party": "INC",
+        "votes": 57559
+      },
+      "runner_up": {
+        "name": "Sobha Surendran",
+        "party": "BJP",
+        "votes": 40076
+      },
+      "margin": 17483
+    },
+    {
+      "const_no": 57,
+      "const_name": "TARUR",
+      "winner": {
+        "name": "A.K.Balan",
+        "party": "CPM",
+        "votes": 67047
+      },
+      "runner_up": {
+        "name": "C.Prakash",
+        "party": "INC",
+        "votes": 43979
+      },
+      "margin": 23068
+    },
+    {
+      "const_no": 58,
+      "const_name": "CHITTUR",
+      "winner": {
+        "name": "K Krishnankutty",
+        "party": "JD(S)",
+        "votes": 69270
+      },
+      "runner_up": {
+        "name": "K Achuthan",
+        "party": "INC",
+        "votes": 61985
+      },
+      "margin": 7285
+    },
+    {
+      "const_no": 59,
+      "const_name": "NENMARA",
+      "winner": {
+        "name": "K. Babu",
+        "party": "CPM",
+        "votes": 66316
+      },
+      "runner_up": {
+        "name": "A.V.Gopinathan",
+        "party": "INC",
+        "votes": 58908
+      },
+      "margin": 7408
+    },
+    {
+      "const_no": 60,
+      "const_name": "ALATHUR",
+      "winner": {
+        "name": "K.D.Prasenan",
+        "party": "CPM",
+        "votes": 71206
+      },
+      "runner_up": {
+        "name": "Adv.K Kusalakumar",
+        "party": "KEC(M)",
+        "votes": 35146
+      },
+      "margin": 36060
+    },
+    {
+      "const_no": 61,
+      "const_name": "CHELAKKARA",
+      "winner": {
+        "name": "U R Pradeep",
+        "party": "CPM",
+        "votes": 67771
+      },
+      "runner_up": {
+        "name": "Thulasi",
+        "party": "INC",
+        "votes": 57571
+      },
+      "margin": 10200
+    },
+    {
+      "const_no": 62,
+      "const_name": "KUNNAMKULAM",
+      "winner": {
+        "name": "A C Moideen",
+        "party": "CPM",
+        "votes": 63274
+      },
+      "runner_up": {
+        "name": "C P John",
+        "party": "CMPKSC",
+        "votes": 55492
+      },
+      "margin": 7782
+    },
+    {
+      "const_no": 63,
+      "const_name": "GURUVAYOOR",
+      "winner": {
+        "name": "K.V. Abdul Khader",
+        "party": "CPM",
+        "votes": 66088
+      },
+      "runner_up": {
+        "name": "Adv. P.M. Sadiqali",
+        "party": "IUML",
+        "votes": 50990
+      },
+      "margin": 15098
+    },
+    {
+      "const_no": 64,
+      "const_name": "MANALUR",
+      "winner": {
+        "name": "Murali Perunelly",
+        "party": "CPM",
+        "votes": 70422
+      },
+      "runner_up": {
+        "name": "O.Abdu Rahimankutty",
+        "party": "INC",
+        "votes": 51097
+      },
+      "margin": 19325
+    },
+    {
+      "const_no": 65,
+      "const_name": "WADAKKANCHERY",
+      "winner": {
+        "name": "Anil Akkara",
+        "party": "INC",
+        "votes": 65535
+      },
+      "runner_up": {
+        "name": "Mary Thomas",
+        "party": "CPM",
+        "votes": 65492
+      },
+      "margin": 43
+    },
+    {
+      "const_no": 66,
+      "const_name": "OLLUR",
+      "winner": {
+        "name": "Adv. K. Rajan",
+        "party": "CPI",
+        "votes": 71666
+      },
+      "runner_up": {
+        "name": "M P Vincent",
+        "party": "INC",
+        "votes": 58418
+      },
+      "margin": 13248
+    },
+    {
+      "const_no": 67,
+      "const_name": "THRISSUR",
+      "winner": {
+        "name": "V S Sunilkumar",
+        "party": "CPI",
+        "votes": 53664
+      },
+      "runner_up": {
+        "name": "Padmaja Venugopal",
+        "party": "INC",
+        "votes": 46677
+      },
+      "margin": 6987
+    },
+    {
+      "const_no": 68,
+      "const_name": "NATTIKA",
+      "winner": {
+        "name": "Geetha Gopi",
+        "party": "CPI",
+        "votes": 70218
+      },
+      "runner_up": {
+        "name": "K.V. Dasan",
+        "party": "INC",
+        "votes": 43441
+      },
+      "margin": 26777
+    },
+    {
+      "const_no": 69,
+      "const_name": "KAIPAMANGALAM",
+      "winner": {
+        "name": "E T Taison Master",
+        "party": "CPI",
+        "votes": 66824
+      },
+      "runner_up": {
+        "name": "M T Muhammed Nahas",
+        "party": "RSP",
+        "votes": 33384
+      },
+      "margin": 33440
+    },
+    {
+      "const_no": 70,
+      "const_name": "IRINJALAKKUDA",
+      "winner": {
+        "name": "Prof. K.U. Arunan",
+        "party": "CPM",
+        "votes": 59730
+      },
+      "runner_up": {
+        "name": "Adv. Thomas Unniyadan",
+        "party": "KEC(M)",
+        "votes": 57019
+      },
+      "margin": 2711
+    },
+    {
+      "const_no": 71,
+      "const_name": "PUTHUKKAD",
+      "winner": {
+        "name": "Prof.C.Raveendranath",
+        "party": "CPM",
+        "votes": 79464
+      },
+      "runner_up": {
+        "name": "Sundaran Kunnathully",
+        "party": "INC",
+        "votes": 40986
+      },
+      "margin": 38478
+    },
+    {
+      "const_no": 72,
+      "const_name": "CHALAKKUDY",
+      "winner": {
+        "name": "B. D. Devassy",
+        "party": "CPM",
+        "votes": 74251
+      },
+      "runner_up": {
+        "name": "T. U. Radhakrishnan",
+        "party": "INC",
+        "votes": 47603
+      },
+      "margin": 26648
+    },
+    {
+      "const_no": 73,
+      "const_name": "KODUNGALLUR",
+      "winner": {
+        "name": "V R Sunilkumar",
+        "party": "CPI",
+        "votes": 67909
+      },
+      "runner_up": {
+        "name": "K P Dhanapalan",
+        "party": "INC",
+        "votes": 45118
+      },
+      "margin": 22791
+    },
+    {
+      "const_no": 74,
+      "const_name": "PERUMBAVOOR",
+      "winner": {
+        "name": "Adv. Eldose P Kunnappilly",
+        "party": "INC",
+        "votes": 64285
+      },
+      "runner_up": {
+        "name": "Saju Paul",
+        "party": "CPM",
+        "votes": 57197
+      },
+      "margin": 7088
+    },
+    {
+      "const_no": 75,
+      "const_name": "ANGAMALY",
+      "winner": {
+        "name": "Roji M John",
+        "party": "INC",
+        "votes": 66666
+      },
+      "runner_up": {
+        "name": "Benny Moonjely",
+        "party": "JD(S)",
+        "votes": 57480
+      },
+      "margin": 9186
+    },
+    {
+      "const_no": 76,
+      "const_name": "ALUVA",
+      "winner": {
+        "name": "Anwar Sadath",
+        "party": "INC",
+        "votes": 69568
+      },
+      "runner_up": {
+        "name": "Adv V Saleem",
+        "party": "CPM",
+        "votes": 50733
+      },
+      "margin": 18835
+    },
+    {
+      "const_no": 77,
+      "const_name": "KALAMASSERY",
+      "winner": {
+        "name": "V K Ibrahim Kunju",
+        "party": "IUML",
+        "votes": 68726
+      },
+      "runner_up": {
+        "name": "A M Yousaf",
+        "party": "CPM",
+        "votes": 56608
+      },
+      "margin": 12118
+    },
+    {
+      "const_no": 78,
+      "const_name": "PARAVUR",
+      "winner": {
+        "name": "V D Satheesan",
+        "party": "INC",
+        "votes": 74985
+      },
+      "runner_up": {
+        "name": "Sarada Mohan",
+        "party": "CPI",
+        "votes": 54351
+      },
+      "margin": 20634
+    },
+    {
+      "const_no": 79,
+      "const_name": "VYPEN",
+      "winner": {
+        "name": "S Sarma",
+        "party": "CPM",
+        "votes": 68526
+      },
+      "runner_up": {
+        "name": "K R Subhash",
+        "party": "INC",
+        "votes": 49173
+      },
+      "margin": 19353
+    },
+    {
+      "const_no": 80,
+      "const_name": "KOCHI",
+      "winner": {
+        "name": "K J Maxy",
+        "party": "CPM",
+        "votes": 47967
+      },
+      "runner_up": {
+        "name": "Dominic Presentation",
+        "party": "INC",
+        "votes": 46881
+      },
+      "margin": 1086
+    },
+    {
+      "const_no": 81,
+      "const_name": "THRIPUNITHURA",
+      "winner": {
+        "name": "Adv. M Swaraj",
+        "party": "CPM",
+        "votes": 62697
+      },
+      "runner_up": {
+        "name": "K Babu",
+        "party": "INC",
+        "votes": 58230
+      },
+      "margin": 4467
+    },
+    {
+      "const_no": 82,
+      "const_name": "ERNAKULAM",
+      "winner": {
+        "name": "Hibi Eden",
+        "party": "INC",
+        "votes": 57819
+      },
+      "runner_up": {
+        "name": "M Anil Kumar",
+        "party": "CPM",
+        "votes": 35870
+      },
+      "margin": 21949
+    },
+    {
+      "const_no": 83,
+      "const_name": "THRIKKAKARA",
+      "winner": {
+        "name": "Adv.P T Thomas",
+        "party": "INC",
+        "votes": 61451
+      },
+      "runner_up": {
+        "name": "Dr.Sebastian Paul",
+        "party": "CPM",
+        "votes": 49455
+      },
+      "margin": 11996
+    },
+    {
+      "const_no": 84,
+      "const_name": "KUNNATHUNAD",
+      "winner": {
+        "name": "V P Sajeendran",
+        "party": "INC",
+        "votes": 65445
+      },
+      "runner_up": {
+        "name": "Adv. Shiji Sivaji",
+        "party": "CPM",
+        "votes": 62766
+      },
+      "margin": 2679
+    },
+    {
+      "const_no": 85,
+      "const_name": "PIRAVOM",
+      "winner": {
+        "name": "Anoop Jacob",
+        "party": "KEC(J)",
+        "votes": 73770
+      },
+      "runner_up": {
+        "name": "M.J.Jacob",
+        "party": "CPM",
+        "votes": 67575
+      },
+      "margin": 6195
+    },
+    {
+      "const_no": 86,
+      "const_name": "MUVATTUPUZHA",
+      "winner": {
+        "name": "Eldho Abraham",
+        "party": "CPI",
+        "votes": 70269
+      },
+      "runner_up": {
+        "name": "Joseph Vazhackan",
+        "party": "INC",
+        "votes": 60894
+      },
+      "margin": 9375
+    },
+    {
+      "const_no": 87,
+      "const_name": "KOTHAMANGALAM",
+      "winner": {
+        "name": "Antony John",
+        "party": "CPM",
+        "votes": 65467
+      },
+      "runner_up": {
+        "name": "Chev. T.U.Kuruvilla",
+        "party": "KEC(M)",
+        "votes": 46185
+      },
+      "margin": 19282
+    },
+    {
+      "const_no": 88,
+      "const_name": "DEVIKULAM",
+      "winner": {
+        "name": "S Rajendran",
+        "party": "CPM",
+        "votes": 49510
+      },
+      "runner_up": {
+        "name": "A K Mony",
+        "party": "INC",
+        "votes": 43728
+      },
+      "margin": 5782
+    },
+    {
+      "const_no": 89,
+      "const_name": "UDUMBANCHOLA",
+      "winner": {
+        "name": "M.M. Mani",
+        "party": "CPM",
+        "votes": 50813
+      },
+      "runner_up": {
+        "name": "Adv.Senapathy Venu",
+        "party": "INC",
+        "votes": 49704
+      },
+      "margin": 1109
+    },
+    {
+      "const_no": 90,
+      "const_name": "THODUPUZHA",
+      "winner": {
+        "name": "P.J. Joseph",
+        "party": "KEC(M)",
+        "votes": 76564
+      },
+      "runner_up": {
+        "name": "Adv. Roy Varicattu",
+        "party": "IND",
+        "votes": 30977
+      },
+      "margin": 45587
+    },
+    {
+      "const_no": 91,
+      "const_name": "IDUKKI",
+      "winner": {
+        "name": "Roshy Augustine",
+        "party": "KEC(M)",
+        "votes": 60556
+      },
+      "runner_up": {
+        "name": "Adv. K Francis George",
+        "party": "IND",
+        "votes": 51223
+      },
+      "margin": 9333
+    },
+    {
+      "const_no": 92,
+      "const_name": "PEERUMADE",
+      "winner": {
+        "name": "E S Bijimol",
+        "party": "CPI",
+        "votes": 56584
+      },
+      "runner_up": {
+        "name": "Adv. Syriac Thomas",
+        "party": "INC",
+        "votes": 56270
+      },
+      "margin": 314
+    },
+    {
+      "const_no": 93,
+      "const_name": "PALA",
+      "winner": {
+        "name": "K M Mani",
+        "party": "KEC(M)",
+        "votes": 58884
+      },
+      "runner_up": {
+        "name": "Mani C Kappen",
+        "party": "NCP",
+        "votes": 54181
+      },
+      "margin": 4703
+    },
+    {
+      "const_no": 94,
+      "const_name": "KADUTHURUTHY",
+      "winner": {
+        "name": "Adv. Mons Joseph",
+        "party": "KEC(M)",
+        "votes": 73793
+      },
+      "runner_up": {
+        "name": "Scaria Thomas",
+        "party": "KEC(ST)",
+        "votes": 31537
+      },
+      "margin": 42256
+    },
+    {
+      "const_no": 95,
+      "const_name": "VAIKOM",
+      "winner": {
+        "name": "C K Asha",
+        "party": "CPI",
+        "votes": 61997
+      },
+      "runner_up": {
+        "name": "Adv. A Saneeshkumar",
+        "party": "INC",
+        "votes": 37413
+      },
+      "margin": 24584
+    },
+    {
+      "const_no": 96,
+      "const_name": "ETTUMANOOR",
+      "winner": {
+        "name": "Suresh Kurup",
+        "party": "CPM",
+        "votes": 53805
+      },
+      "runner_up": {
+        "name": "Thomas Chazhikadan",
+        "party": "KEC(M)",
+        "votes": 44906
+      },
+      "margin": 8899
+    },
+    {
+      "const_no": 97,
+      "const_name": "KOTTAYAM",
+      "winner": {
+        "name": "Thiruvanchoor Radhakrishnan",
+        "party": "INC",
+        "votes": 73894
+      },
+      "runner_up": {
+        "name": "Adv. Reji Sakhariya",
+        "party": "CPM",
+        "votes": 40262
+      },
+      "margin": 33632
+    },
+    {
+      "const_no": 98,
+      "const_name": "PUTHUPPALLY",
+      "winner": {
+        "name": "Oommen Chandy",
+        "party": "INC",
+        "votes": 71597
+      },
+      "runner_up": {
+        "name": "Jaick C Thomas",
+        "party": "CPM",
+        "votes": 44505
+      },
+      "margin": 27092
+    },
+    {
+      "const_no": 99,
+      "const_name": "CHANGANASSERY",
+      "winner": {
+        "name": "C F Thomas",
+        "party": "KEC(M)",
+        "votes": 50371
+      },
+      "runner_up": {
+        "name": "Dr. K C Joseph",
+        "party": "IND",
+        "votes": 48522
+      },
+      "margin": 1849
+    },
+    {
+      "const_no": 100,
+      "const_name": "KANJIRAPPALLY",
+      "winner": {
+        "name": "Dr. N Jayaraj",
+        "party": "KEC(M)",
+        "votes": 53126
+      },
+      "runner_up": {
+        "name": "Adv. V B Binu",
+        "party": "CPI",
+        "votes": 49236
+      },
+      "margin": 3890
+    },
+    {
+      "const_no": 101,
+      "const_name": "POONJAR",
+      "winner": {
+        "name": "P C George Plathottam",
+        "party": "IND",
+        "votes": 63621
+      },
+      "runner_up": {
+        "name": "Georgekutty Augusty",
+        "party": "KEC(M)",
+        "votes": 35800
+      },
+      "margin": 27821
+    },
+    {
+      "const_no": 102,
+      "const_name": "AROOR",
+      "winner": {
+        "name": "Adv.A.M.Ariff",
+        "party": "CPM",
+        "votes": 84720
+      },
+      "runner_up": {
+        "name": "Adv.C.R.Jayaprakash",
+        "party": "INC",
+        "votes": 46201
+      },
+      "margin": 38519
+    },
+    {
+      "const_no": 103,
+      "const_name": "CHERTHALA",
+      "winner": {
+        "name": "P.Thilothaman",
+        "party": "CPI",
+        "votes": 81197
+      },
+      "runner_up": {
+        "name": "Adv.S.Sarath",
+        "party": "INC",
+        "votes": 74001
+      },
+      "margin": 7196
+    },
+    {
+      "const_no": 104,
+      "const_name": "ALAPPUZHA",
+      "winner": {
+        "name": "Dr.T.M.Thomas Isaac",
+        "party": "CPM",
+        "votes": 83211
+      },
+      "runner_up": {
+        "name": "Adv.Laly Vincent",
+        "party": "INC",
+        "votes": 52179
+      },
+      "margin": 31032
+    },
+    {
+      "const_no": 105,
+      "const_name": "AMBALAPUZHA",
+      "winner": {
+        "name": "G.Sudhakaran",
+        "party": "CPM",
+        "votes": 63069
+      },
+      "runner_up": {
+        "name": "Shaik.P.Harriz",
+        "party": "JD(U)",
+        "votes": 40448
+      },
+      "margin": 22621
+    },
+    {
+      "const_no": 106,
+      "const_name": "KUTTANAD",
+      "winner": {
+        "name": "Thomas Chandy",
+        "party": "NCP",
+        "votes": 50114
+      },
+      "runner_up": {
+        "name": "Adv.Jacob Ebraham",
+        "party": "KEC(M)",
+        "votes": 45223
+      },
+      "margin": 4891
+    },
+    {
+      "const_no": 107,
+      "const_name": "HARIPAD",
+      "winner": {
+        "name": "Ramesh Chennithala",
+        "party": "INC",
+        "votes": 75980
+      },
+      "runner_up": {
+        "name": "P.Prasad",
+        "party": "CPI",
+        "votes": 57359
+      },
+      "margin": 18621
+    },
+    {
+      "const_no": 108,
+      "const_name": "KAYAMKULAM",
+      "winner": {
+        "name": "Adv.U.Prathibha Hari",
+        "party": "CPM",
+        "votes": 72956
+      },
+      "runner_up": {
+        "name": "Adv.M.Liju",
+        "party": "INC",
+        "votes": 61099
+      },
+      "margin": 11857
+    },
+    {
+      "const_no": 109,
+      "const_name": "MAVELIKARA",
+      "winner": {
+        "name": "R.Rajesh",
+        "party": "CPM",
+        "votes": 74555
+      },
+      "runner_up": {
+        "name": "Baiju Kalasala",
+        "party": "INC",
+        "votes": 43013
+      },
+      "margin": 31542
+    },
+    {
+      "const_no": 110,
+      "const_name": "CHENGANNUR",
+      "winner": {
+        "name": "Adv.K.K.Ramachandran Nair",
+        "party": "CPM",
+        "votes": 52880
+      },
+      "runner_up": {
+        "name": "P.C.Vishnunath",
+        "party": "INC",
+        "votes": 44897
+      },
+      "margin": 7983
+    },
+    {
+      "const_no": 111,
+      "const_name": "THIRUVALLA",
+      "winner": {
+        "name": "Adv.Mathew T Thomas",
+        "party": "JD(S)",
+        "votes": 59660
+      },
+      "runner_up": {
+        "name": "Joseph M Puthussery",
+        "party": "KEC(M)",
+        "votes": 51398
+      },
+      "margin": 8262
+    },
+    {
+      "const_no": 112,
+      "const_name": "RANNI",
+      "winner": {
+        "name": "Raju Abraham",
+        "party": "CPM",
+        "votes": 58749
+      },
+      "runner_up": {
+        "name": "Mariamma Cherian",
+        "party": "INC",
+        "votes": 44153
+      },
+      "margin": 14596
+    },
+    {
+      "const_no": 113,
+      "const_name": "ARANMULA",
+      "winner": {
+        "name": "Veena George",
+        "party": "CPM",
+        "votes": 64523
+      },
+      "runner_up": {
+        "name": "Adv K Sivadasan Nair",
+        "party": "INC",
+        "votes": 56877
+      },
+      "margin": 7646
+    },
+    {
+      "const_no": 114,
+      "const_name": "KONNI",
+      "winner": {
+        "name": "Adoor Prakash",
+        "party": "INC",
+        "votes": 72800
+      },
+      "runner_up": {
+        "name": "Adv. R. Sanal Kumar",
+        "party": "CPM",
+        "votes": 52052
+      },
+      "margin": 20748
+    },
+    {
+      "const_no": 115,
+      "const_name": "ADOOR",
+      "winner": {
+        "name": "Chittayam Gopakumar",
+        "party": "CPI",
+        "votes": 76034
+      },
+      "runner_up": {
+        "name": "K K Shaju",
+        "party": "INC",
+        "votes": 50574
+      },
+      "margin": 25460
+    },
+    {
+      "const_no": 116,
+      "const_name": "KARUNAGAPPALLY",
+      "winner": {
+        "name": "R.Ramachandran",
+        "party": "CPI",
+        "votes": 69902
+      },
+      "runner_up": {
+        "name": "C.R.Mahesh",
+        "party": "INC",
+        "votes": 68143
+      },
+      "margin": 1759
+    },
+    {
+      "const_no": 117,
+      "const_name": "CHAVARA",
+      "winner": {
+        "name": "N.Vijayan Pillai",
+        "party": "CMPKSC",
+        "votes": 64666
+      },
+      "runner_up": {
+        "name": "Shibu Babyjohn",
+        "party": "RSP",
+        "votes": 58477
+      },
+      "margin": 6189
+    },
+    {
+      "const_no": 118,
+      "const_name": "KUNNATHUR",
+      "winner": {
+        "name": "Kovoor Kunjumon",
+        "party": "IND",
+        "votes": 75725
+      },
+      "runner_up": {
+        "name": "Ullas Kovur",
+        "party": "RSP",
+        "votes": 55196
+      },
+      "margin": 20529
+    },
+    {
+      "const_no": 119,
+      "const_name": "KOTTARAKKARA",
+      "winner": {
+        "name": "Adv. P.Aisha Potty",
+        "party": "CPM",
+        "votes": 83443
+      },
+      "runner_up": {
+        "name": "Adv.Savin Sathyan",
+        "party": "INC",
+        "votes": 40811
+      },
+      "margin": 42632
+    },
+    {
+      "const_no": 120,
+      "const_name": "PATHANAPURAM",
+      "winner": {
+        "name": "K.B. Ganesh Kumar",
+        "party": "KEC(B)",
+        "votes": 74429
+      },
+      "runner_up": {
+        "name": "P.V Jagadish Kumar",
+        "party": "INC",
+        "votes": 49867
+      },
+      "margin": 24562
+    },
+    {
+      "const_no": 121,
+      "const_name": "PUNALUR",
+      "winner": {
+        "name": "Adv.K.Raju",
+        "party": "CPI",
+        "votes": 82136
+      },
+      "runner_up": {
+        "name": "Dr.A.Younus Kunju",
+        "party": "IUML",
+        "votes": 48554
+      },
+      "margin": 33582
+    },
+    {
+      "const_no": 122,
+      "const_name": "CHADAYAMANGALAM",
+      "winner": {
+        "name": "Retnakaran",
+        "party": "CPI",
+        "votes": 71262
+      },
+      "runner_up": {
+        "name": "Hassan.M.M",
+        "party": "INC",
+        "votes": 49334
+      },
+      "margin": 21928
+    },
+    {
+      "const_no": 123,
+      "const_name": "KUNDARA",
+      "winner": {
+        "name": "J.Mercy Kutty Amma",
+        "party": "CPM",
+        "votes": 79047
+      },
+      "runner_up": {
+        "name": "Rajmohan Unnithan",
+        "party": "INC",
+        "votes": 48587
+      },
+      "margin": 30460
+    },
+    {
+      "const_no": 124,
+      "const_name": "KOLLAM",
+      "winner": {
+        "name": "M Mukesh",
+        "party": "CPM",
+        "votes": 63103
+      },
+      "runner_up": {
+        "name": "Sooraj Ravi",
+        "party": "INC",
+        "votes": 45492
+      },
+      "margin": 17611
+    },
+    {
+      "const_no": 125,
+      "const_name": "ERAVIPURAM",
+      "winner": {
+        "name": "M. Noushad",
+        "party": "CPM",
+        "votes": 65392
+      },
+      "runner_up": {
+        "name": "A.A.Azeez",
+        "party": "RSP",
+        "votes": 36589
+      },
+      "margin": 28803
+    },
+    {
+      "const_no": 126,
+      "const_name": "CHATHANNUR",
+      "winner": {
+        "name": "G.S.Jayalal",
+        "party": "CPI",
+        "votes": 67606
+      },
+      "runner_up": {
+        "name": "B B Gopakumar",
+        "party": "BJP",
+        "votes": 33199
+      },
+      "margin": 34407
+    },
+    {
+      "const_no": 127,
+      "const_name": "VARKALA",
+      "winner": {
+        "name": "Adv.V.Joy",
+        "party": "CPM",
+        "votes": 53102
+      },
+      "runner_up": {
+        "name": "Varkala Kahar",
+        "party": "INC",
+        "votes": 50716
+      },
+      "margin": 2386
+    },
+    {
+      "const_no": 128,
+      "const_name": "ATTINGAL",
+      "winner": {
+        "name": "Adv.B.Satyan",
+        "party": "CPM",
+        "votes": 72808
+      },
+      "runner_up": {
+        "name": "K.Chandrababu",
+        "party": "RSP",
+        "votes": 32425
+      },
+      "margin": 40383
+    },
+    {
+      "const_no": 129,
+      "const_name": "CHIRAYINKEEZHU",
+      "winner": {
+        "name": "V. Sasi",
+        "party": "CPI",
+        "votes": 64692
+      },
+      "runner_up": {
+        "name": "K.S.Ajith Kumar",
+        "party": "INC",
+        "votes": 50370
+      },
+      "margin": 14322
+    },
+    {
+      "const_no": 130,
+      "const_name": "NEDUMANGAD",
+      "winner": {
+        "name": "C.Divakaran",
+        "party": "CPI",
+        "votes": 57745
+      },
+      "runner_up": {
+        "name": "Palode Ravi",
+        "party": "INC",
+        "votes": 54124
+      },
+      "margin": 3621
+    },
+    {
+      "const_no": 131,
+      "const_name": "VAMANAPURAM",
+      "winner": {
+        "name": "Adv. D.K.Murali",
+        "party": "CPM",
+        "votes": 65848
+      },
+      "runner_up": {
+        "name": "Adv.T.Sarathchandra Prasad",
+        "party": "INC",
+        "votes": 56252
+      },
+      "margin": 9596
+    },
+    {
+      "const_no": 132,
+      "const_name": "KAZHAKKOOTTAM",
+      "winner": {
+        "name": "Kadakampally Surendran",
+        "party": "CPM",
+        "votes": 50079
+      },
+      "runner_up": {
+        "name": "V.Muraleedharan",
+        "party": "BJP",
+        "votes": 42732
+      },
+      "margin": 7347
+    },
+    {
+      "const_no": 133,
+      "const_name": "VATTIYOORKAVU",
+      "winner": {
+        "name": "K Muraleedharan",
+        "party": "INC",
+        "votes": 51322
+      },
+      "runner_up": {
+        "name": "Kummanam Rajasekharan",
+        "party": "BJP",
+        "votes": 43700
+      },
+      "margin": 7622
+    },
+    {
+      "const_no": 134,
+      "const_name": "THIRUVANANTHAPURAM",
+      "winner": {
+        "name": "V.S. Sivakumar",
+        "party": "INC",
+        "votes": 46474
+      },
+      "runner_up": {
+        "name": "Adv.Antony Raju",
+        "party": "IND",
+        "votes": 35569
+      },
+      "margin": 10905
+    },
+    {
+      "const_no": 135,
+      "const_name": "NEMOM",
+      "winner": {
+        "name": "O.Rajagopal",
+        "party": "BJP",
+        "votes": 67813
+      },
+      "runner_up": {
+        "name": "V.Sivankutty",
+        "party": "CPM",
+        "votes": 59142
+      },
+      "margin": 8671
+    },
+    {
+      "const_no": 136,
+      "const_name": "ARUVIKKARA",
+      "winner": {
+        "name": "K.S. Sabarinadhan",
+        "party": "INC",
+        "votes": 70910
+      },
+      "runner_up": {
+        "name": "Adv. A.A.Rasheed",
+        "party": "CPM",
+        "votes": 49596
+      },
+      "margin": 21314
+    },
+    {
+      "const_no": 137,
+      "const_name": "PARASSALA",
+      "winner": {
+        "name": "C.K.Hareendrakumar",
+        "party": "CPM",
+        "votes": 70156
+      },
+      "runner_up": {
+        "name": "A.T.George",
+        "party": "INC",
+        "votes": 51590
+      },
+      "margin": 18566
+    },
+    {
+      "const_no": 138,
+      "const_name": "KATTAKKADA",
+      "winner": {
+        "name": "Adv. I.B. Satheesh",
+        "party": "CPM",
+        "votes": 51614
+      },
+      "runner_up": {
+        "name": "N.Shakthan",
+        "party": "INC",
+        "votes": 50765
+      },
+      "margin": 849
+    },
+    {
+      "const_no": 139,
+      "const_name": "KOVALAM",
+      "winner": {
+        "name": "Adv.M.Vincent",
+        "party": "INC",
+        "votes": 60268
+      },
+      "runner_up": {
+        "name": "Jameela Prakasam",
+        "party": "JD(S)",
+        "votes": 57653
+      },
+      "margin": 2615
+    },
+    {
+      "const_no": 140,
+      "const_name": "NEYYATTINKARA",
+      "winner": {
+        "name": "K.Ansalan",
+        "party": "CPM",
+        "votes": 63559
+      },
+      "runner_up": {
+        "name": "R. Selvaraj",
+        "party": "INC",
+        "votes": 54016
+      },
+      "margin": 9543
+    }
+  ],
+  "geo_mismatches": [
+    {
+      "const_no": 1,
+      "eci_name": "MANJESHWAR",
+      "geo_name": "MA NJESHWAR"
+    },
+    {
+      "const_no": 18,
+      "eci_name": "SULTHANBATHERY",
+      "geo_name": "SULTHANBATHERY (S"
+    },
+    {
+      "const_no": 32,
+      "eci_name": "THIRUVAMBADY",
+      "geo_name": "THIRUVAMBADI"
+    },
+    {
+      "const_no": 34,
+      "eci_name": "ERANAD",
+      "geo_name": "ERNAD"
+    },
+    {
+      "const_no": 42,
+      "eci_name": "VALLIKKUNNU",
+      "geo_name": "VALLIKUNNU"
+    },
+    {
+      "const_no": 52,
+      "eci_name": "OTTAPALAM",
+      "geo_name": "OTTAPPALAM"
+    },
+    {
+      "const_no": 54,
+      "eci_name": "MANNARKAD",
+      "geo_name": "MANNARKKAD"
+    },
+    {
+      "const_no": 59,
+      "eci_name": "NENMARA",
+      "geo_name": "NEMMARA"
+    },
+    {
+      "const_no": 70,
+      "eci_name": "IRINJALAKKUDA",
+      "geo_name": "IRINJALAKUDA"
+    },
+    {
+      "const_no": 72,
+      "eci_name": "CHALAKKUDY",
+      "geo_name": "CHALAKUDY"
+    },
+    {
+      "const_no": 79,
+      "eci_name": "VYPEN",
+      "geo_name": "VYPEEN"
+    },
+    {
+      "const_no": 105,
+      "eci_name": "AMBALAPUZHA",
+      "geo_name": "AMBALAPPUZHA"
+    },
+    {
+      "const_no": 109,
+      "eci_name": "MAVELIKARA",
+      "geo_name": "MAVELIKKARA"
+    },
+    {
+      "const_no": 126,
+      "eci_name": "CHATHANNUR",
+      "geo_name": "CHATHANNOOR"
+    },
+    {
+      "const_no": 132,
+      "eci_name": "KAZHAKKOOTTAM",
+      "geo_name": "KAZHAKOOTTAM"
+    },
+    {
+      "const_no": 134,
+      "eci_name": "THIRUVANANTHAPURAM",
+      "geo_name": "THIRUVANANTHAPURA"
+    }
+  ]
+}

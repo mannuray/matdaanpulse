@@ -1,0 +1,252 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model audit_logs {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id     String?  @db.Uuid
+  action      String   @db.VarChar(100)
+  entity_type String   @db.VarChar(50)
+  entity_id   String   @db.VarChar(255)
+  old_value   Json?
+  new_value   Json?
+  timestamp   DateTime @default(now()) @db.Timestamp(6)
+  users       users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([entity_type, entity_id], map: "idx_audit_logs_entity")
+  @@index([timestamp], map: "idx_audit_logs_timestamp")
+}
+
+model candidates {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  person_id      String?        @db.Uuid
+  election_id    String         @db.Uuid
+  const_id       String         @db.VarChar(100)
+  party_id       String?        @db.VarChar(20)
+  name           String         @db.VarChar(255)
+  is_incumbent   Boolean        @default(false)
+  metadata       Json?          @default("{}")
+  constituencies constituencies @relation(fields: [const_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  elections      elections      @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parties        parties?       @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  persons        persons?       @relation(fields: [person_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  results        results[]
+
+  @@index([const_id], map: "idx_candidates_const_id")
+  @@index([election_id, const_id], map: "idx_candidates_election_const")
+  @@index([person_id], map: "idx_candidates_person_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model constituencies {
+  id                    String                  @id @db.VarChar(100)
+  election_id           String                  @db.Uuid
+  district_id           Int?
+  state_id              Int?
+  name                  String                  @db.VarChar(255)
+  const_no              Int
+  type                  constituency_type       @default(GEN)
+  voter_turnout         Decimal?                @db.Decimal(5, 2)
+  phase                 Int?                    @db.SmallInt
+  total_electors        Int?
+  metadata              Json?                   @default("{}")
+  region_id             Int?
+  current_round         Int?
+  total_rounds          Int?
+  candidates            candidates[]
+  districts             districts?              @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  elections             elections               @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  regions               regions?                @relation(fields: [region_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  states                states?                 @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  constituency_analysis constituency_analysis[]
+  results               results[]
+
+  @@index([election_id], map: "idx_constituencies_election_id")
+  @@index([region_id], map: "idx_constituencies_region_id")
+  @@index([state_id], map: "idx_constituencies_state_id")
+}
+
+model constituency_analysis {
+  id              String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  const_id        String         @db.VarChar(100)
+  election_id     String         @db.Uuid
+  dominance       String?        @db.VarChar(20)
+  dominance_party String?        @db.VarChar(20)
+  incumbency      Json?          @default("{}")
+  ai_briefing     String?
+  ai_demographics Json?
+  ai_key_issues   String[]
+  ai_generated_at DateTime?      @db.Timestamp(6)
+  ai_status       String?        @default("pending") @db.VarChar(20)
+  notes           String?
+  created_at      DateTime?      @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?      @default(now()) @db.Timestamp(6)
+  constituencies  constituencies @relation(fields: [const_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  elections       elections      @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([const_id, election_id])
+  @@index([const_id], map: "idx_const_analysis_const")
+  @@index([election_id], map: "idx_const_analysis_election")
+  @@index([ai_status], map: "idx_const_analysis_status")
+}
+
+model districts {
+  id             Int              @id @default(autoincrement())
+  state_id       Int
+  name           String           @db.VarChar(255)
+  code           String           @unique @db.VarChar(50)
+  constituencies constituencies[]
+  states         states           @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  persons        persons[]
+}
+
+model elections {
+  id                    String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                  String                  @db.VarChar(255)
+  type                  election_type
+  state_id              Int?
+  year                  Int
+  status                election_status         @default(Upcoming)
+  tentative_next_date   DateTime?               @db.Date
+  manifest_url          String?
+  candidates            candidates[]
+  constituencies        constituencies[]
+  constituency_analysis constituency_analysis[]
+  states                states?                 @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  results               results[]
+
+  @@unique([type, state_id, year], map: "uq_elections_type_state_year")
+  @@index([type, year], map: "idx_elections_type_year")
+}
+
+model parties {
+  id             String       @id @db.VarChar(20)
+  name           String       @db.VarChar(255)
+  color          String?      @db.VarChar(10)
+  symbol_url     String?
+  abbreviation   String?      @db.VarChar(20)
+  leader_name    String?      @db.VarChar(255)
+  founded_year   Int?
+  headquarters   String?      @db.VarChar(255)
+  website        String?
+  eci_symbol_url String?
+  wikipedia_url  String?
+  description    String?
+  candidates     candidates[]
+}
+
+model persons {
+  id            String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String       @db.VarChar(255)
+  metadata      Json?        @default("{}")
+  photo_url     String?
+  gender        String?      @db.VarChar(10)
+  education     String?      @db.VarChar(255)
+  date_of_birth DateTime?    @db.Date
+  state_id      Int?
+  region_id     Int?
+  district_id   Int?
+  candidates    candidates[]
+  districts     districts?   @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  regions       regions?     @relation(fields: [region_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  states        states?      @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([district_id], map: "idx_persons_district")
+  @@index([region_id], map: "idx_persons_region")
+  @@index([state_id], map: "idx_persons_state")
+}
+
+model regions {
+  id             Int              @id @default(autoincrement())
+  state_id       Int
+  name           String           @db.VarChar(255)
+  code           String           @db.VarChar(50)
+  constituencies constituencies[]
+  persons        persons[]
+  states         states           @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([state_id, code])
+  @@index([state_id], map: "idx_regions_state")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model results {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  candidate_id   String         @db.Uuid
+  const_id       String         @db.VarChar(100)
+  votes          Int            @default(0)
+  status         result_status  @default(TRAILING)
+  margin         Int?           @default(0)
+  round_no       Int?           @default(0)
+  last_updated   DateTime       @default(now()) @db.Timestamp(6)
+  election_id    String         @db.Uuid
+  elections      elections      @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_results_election")
+  candidates     candidates     @relation(fields: [candidate_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  constituencies constituencies @relation(fields: [const_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([candidate_id, const_id], map: "uq_results_candidate_const")
+  @@index([candidate_id], map: "idx_results_candidate_id")
+  @@index([const_id, status], map: "idx_results_const_status")
+  @@index([election_id], map: "idx_results_election_id")
+  @@index([election_id, status], map: "idx_results_election_status")
+  @@index([election_id, votes(sort: Desc)], map: "idx_results_election_votes")
+  @@index([const_id, votes(sort: Desc)], map: "idx_results_const_votes")
+}
+
+model states {
+  id                   Int              @id @default(autoincrement())
+  name                 String           @db.VarChar(255)
+  code                 String           @unique @db.VarChar(10)
+  total_assembly_seats Int              @default(0)
+  total_ls_seats       Int              @default(0)
+  constituencies       constituencies[]
+  districts            districts[]
+  elections            elections[]
+  persons              persons[]
+  regions              regions[]
+}
+
+model users {
+  id            String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email         String       @unique @db.VarChar(255)
+  password_hash String       @db.VarChar(255)
+  role          user_role    @default(VIEWER)
+  name          String       @db.VarChar(255)
+  created_at    DateTime     @default(now()) @db.Timestamp(6)
+  audit_logs    audit_logs[]
+}
+
+enum constituency_type {
+  GEN
+  SC
+  ST
+}
+
+enum election_status {
+  Upcoming
+  Live
+  Finalized
+}
+
+enum election_type {
+  LS
+  VS
+}
+
+enum result_status {
+  LEADING
+  WON
+  TRAILING
+  LOST
+}
+
+enum user_role {
+  SUPER_ADMIN
+  EDITOR
+  VIEWER
+}

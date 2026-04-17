@@ -1,0 +1,340 @@
+export interface State {
+  id: number;
+  name: string;
+  code: string;
+  total_assembly_seats: number;
+  total_ls_seats: number;
+  election_count?: number;
+}
+
+export interface District {
+  id: number;
+  state_id: number;
+  name: string;
+  code: string;
+}
+
+export interface Election {
+  id: string;
+  name: string;
+  type: 'LS' | 'VS';
+  state_id: number | null;
+  state: State | null;
+  year: number;
+  status: 'Upcoming' | 'Live' | 'Finalized';
+  tentative_next_date: string | null;
+  manifest_url: string | null;
+  summary?: PartySummary[];
+}
+
+export interface Party {
+  id: string;
+  name: string;
+  color: string | null;
+  symbol_url: string | null;
+  eci_symbol_url: string | null;
+}
+
+export interface PartySummary {
+  party_id: string;
+  party_name: string;
+  color: string;
+  won: number;
+  leading: number;
+}
+
+export interface Constituency {
+  id: string;
+  election_id: string;
+  district_id: number | null;
+  district: District | null;
+  state_id: number | null;
+  state: State | null;
+  name: string;
+  const_no: number;
+  type: 'GEN' | 'SC' | 'ST';
+  voter_turnout: number | null;
+  phase: number | null;
+  total_electors: number | null;
+  current_round?: number | null;
+  total_rounds?: number | null;
+  candidates?: CandidateResult[];
+  metadata?: Record<string, unknown>;
+  region?: { id: number; name: string } | null;
+}
+
+export interface Candidate {
+  id: string;
+  person_id: string | null;
+  election_id: string;
+  const_id: string;
+  party_id: string | null;
+  party: Party | null;
+  name: string;
+  is_incumbent: boolean;
+  metadata?: Record<string, unknown>;
+}
+
+export interface CandidateResult {
+  id: string;
+  name: string;
+  party: Party | null;
+  is_incumbent: boolean;
+  votes: number;
+  vote_share?: number;
+  status: string | null;
+  margin: number;
+  person_id?: string | null;
+  person?: { id: string; photo_url: string | null } | null;
+  isSplitter?: boolean;
+}
+
+export interface PersonSummary {
+  id: string;
+  name: string;
+  photo_url: string | null;
+  gender: string | null;
+  education: string | null;
+  date_of_birth: string | null;
+  state?: { id: number; name: string } | null;
+  district?: { id: number; name: string } | null;
+  bio?: string | null;
+  metadata?: Record<string, unknown>;
+}
+
+export interface PersonCandidate {
+  id: string;
+  name: string;
+  party_id: string | null;
+  party_name: string | null;
+  party_color: string | null;
+  election_name: string | null;
+  election_year: number | null;
+  election_id: string;
+  constituency_name: string | null;
+  const_id: string;
+  votes: number;
+  status: string | null;
+  margin: number;
+  is_incumbent: boolean;
+}
+
+export interface PersonDetail extends PersonSummary {
+  candidates: PersonCandidate[];
+}
+
+export interface ResultRow {
+  const_id: string;
+  party_id: string;
+  candidate_name: string;
+  votes: number;
+  status: string;
+  margin: number;
+  const_type?: 'GEN' | 'SC' | 'ST';
+}
+
+export interface SpoilerInfo {
+  spoilerParty: string;
+  spoilerVotes: number;
+  winnerMargin: number;
+  hurtsAlliance: string;
+}
+
+export interface VoteShare {
+  party_id: string;
+  party_name: string;
+  color: string;
+  total_votes: number;
+  percentage: number;
+}
+
+export interface Alliance {
+  party_id: string;
+  party_name: string;
+  color: string;
+  won: number;
+  leading: number;
+}
+
+export interface PartyStanding {
+  id: string;
+  name: string;
+  color: string;
+  won: number;
+  leading: number;
+  votePct?: number;
+  isManifest: boolean;
+}
+
+export interface AllianceGroup {
+  id: string;
+  name: string;
+  color: string;
+  won: number;
+  leading: number;
+  votePct: number;
+  parties: PartyStanding[];
+}
+
+export interface StandingsData {
+  groups: AllianceGroup[];
+  independents: PartyStanding[];
+}
+
+export interface Manifest {
+  election_id: string;
+  manifest_url: string | null;
+  draft: ManifestData | null;
+}
+
+export interface ManifestLeader {
+  name: string;
+  party_id: string;
+  const_id: string;
+}
+
+export interface ManifestCabinet {
+  name: string;
+  role: string;
+  party_id: string;
+  const_id: string;
+}
+
+export interface WatchlistEntry {
+  name: string;
+  party_id: string;
+  const_id: string;
+  role?: string;
+}
+
+export interface Watchlist {
+  id: string;
+  name: string;
+  entries: WatchlistEntry[];
+}
+
+export interface ManifestData {
+  alliances?: ManifestAlliance[];
+  leaders?: ManifestLeader[];
+  cabinet?: ManifestCabinet[];
+  watchlists?: Watchlist[];
+  tracked?: string[];
+  vip_seats?: Record<string, { label: string; candidate: string }>;
+  milestones?: { label: string; value: number }[];
+  compare_with?: string[];
+  vote_splits?: VoteSplitConfig[];
+  history?: string[];
+  history_years?: number[];
+  geo?: { map_url?: string; center?: [number, number]; zoom?: number };
+  revision?: {
+    label: string;
+    data: Record<string, [number, number]>; // const_no → [pre, post]
+  };
+}
+
+export interface ManifestAlliance {
+  id: string;
+  name: string;
+  color: string;
+  parties: string[];
+}
+
+export type MapTab = 'overview' | 'battle' | 'demographics' | 'states' | 'swing' | 'insights' | 'history';
+
+export interface VoteSplitConfig {
+  spoiler: string;   // Party ID (e.g., "AIMIM")
+  hurts: string;     // Alliance ID it damages (e.g., "MGB")
+  label: string;     // Display label ("AIMIM split")
+}
+
+export interface SwingEntry {
+  constId: string;
+  currentParty: string;
+  prevParty: string;
+  currentMargin: number;
+  prevMargin: number;
+  flipped: boolean;
+}
+
+export interface ToastMessage {
+  id: string;
+  constName: string;
+  party: string;
+  color: string;
+  margin: number;
+  timestamp: number;
+}
+
+export interface SSEResultData {
+  const_id: string;
+  p: string;
+  m: number;
+  s: string;
+  r?: number;
+  cr?: number;
+  tr?: number;
+}
+
+export type SSEEvent =
+  | { type: 'result-update'; data: SSEResultData }
+  | { type: 'batch-update'; data: SSEResultData[] }
+  | { type: 'tally-update'; data: Record<string, unknown> };
+
+export interface DominanceEntry {
+  constId: string;
+  winners: { party: string }[];   // per election, oldest→newest
+  classification: 'stronghold' | 'loyal' | 'swing' | 'new';
+  dominantParty?: string;
+  streak: number;
+}
+
+export interface IncumbencyEntry {
+  constId: string;
+  incumbentName: string;
+  incumbentParty: string;
+  won: boolean;
+  currentMargin: number;
+}
+
+export interface PartySwitchEntry {
+  constId: string;
+  candidateName: string;
+  fromParty: string;
+  toParty: string;
+  fromYear: number;
+  toYear: number;
+  wonInNewParty: boolean;
+  margin: number;
+}
+
+export interface MarginTrendPoint {
+  year: number;
+  avgMargin: number;
+  medianMargin: number;
+  seats: number;
+}
+
+export interface PartyTrendPoint {
+  party: string;
+  year: number;
+  seatsWon: number;
+  avgMargin: number;
+}
+
+export interface AnalysisEntry {
+  id: string;
+  const_id: string;
+  election_id: string;
+  dominance: string | null;
+  dominance_party: string | null;
+  incumbency: Record<string, unknown>;
+}
+
+export interface ConstituencyAnalysisDetail extends AnalysisEntry {
+  ai_briefing: string | null;
+  ai_demographics: Record<string, unknown> | null;
+  ai_key_issues: string[] | null;
+  ai_status: string;
+  ai_generated_at: string | null;
+  notes: string | null;
+}

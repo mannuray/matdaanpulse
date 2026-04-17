@@ -1,0 +1,233 @@
+{
+  "state": "Puducherry",
+  "state_code": "PY",
+  "year": 2011,
+  "type": "VS",
+  "total_seats": 30,
+  "results": [
+    {
+      "const_no": 1,
+      "const_name": "MANNADIPET",
+      "winner": { "name": "T.P.R. Selvam", "party": "AINRC", "votes": 12412 },
+      "runner_up": { "name": "K.P.K. Arul Murugan", "party": "PMK", "votes": 7696 },
+      "margin": 4716
+    },
+    {
+      "const_no": 2,
+      "const_name": "THIRUBHUVANAI",
+      "winner": { "name": "P. Angalane", "party": "AINRC", "votes": 13733 },
+      "runner_up": { "name": "K. Jayaraj", "party": "INC", "votes": 8965 },
+      "margin": 4768
+    },
+    {
+      "const_no": 3,
+      "const_name": "OUSSUDU",
+      "winner": { "name": "P. Karthikeyan", "party": "AINRC", "votes": 13327 },
+      "runner_up": { "name": "A. Elumalai", "party": "DMK", "votes": 8169 },
+      "margin": 5158
+    },
+    {
+      "const_no": 4,
+      "const_name": "MANGALAM",
+      "winner": { "name": "C. Djeacoumar", "party": "INC", "votes": 14052 },
+      "runner_up": { "name": "P. Anandabaskaran", "party": "AINRC", "votes": 11759 },
+      "margin": 2293
+    },
+    {
+      "const_no": 5,
+      "const_name": "VILLIANUR",
+      "winner": { "name": "A. Namassivayam", "party": "INC", "votes": 13105 },
+      "runner_up": { "name": "K. Nadarajan", "party": "AINRC", "votes": 11564 },
+      "margin": 1541
+    },
+    {
+      "const_no": 6,
+      "const_name": "OZHUKARAI",
+      "winner": { "name": "N.G. Pannir Selvam", "party": "AINRC", "votes": 9071 },
+      "runner_up": { "name": "A.N. Balane", "party": "IND", "votes": 7505 },
+      "margin": 1566
+    },
+    {
+      "const_no": 7,
+      "const_name": "KADIRGAMAM",
+      "winner": { "name": "N. Rangasamy", "party": "AINRC", "votes": 16323 },
+      "runner_up": { "name": "V. Pethaperumal", "party": "INC", "votes": 6566 },
+      "margin": 9757
+    },
+    {
+      "const_no": 8,
+      "const_name": "INDIRA NAGAR",
+      "winner": { "name": "N. Rangasamy", "party": "AINRC", "votes": 20685 },
+      "runner_up": { "name": "V. Aroumougam", "party": "INC", "votes": 4008 },
+      "margin": 16677
+    },
+    {
+      "const_no": 9,
+      "const_name": "THATTANCHAVADY",
+      "winner": { "name": "Ashokanand", "party": "AINRC", "votes": 14597 },
+      "runner_up": { "name": "N. Arjunan", "party": "IND", "votes": 4091 },
+      "margin": 10506
+    },
+    {
+      "const_no": 10,
+      "const_name": "KAMRAJ NAGAR",
+      "winner": { "name": "V. Vaithilingam", "party": "INC", "votes": 12570 },
+      "runner_up": { "name": "Nara. Kalainathan", "party": "CPI", "votes": 6541 },
+      "margin": 6029
+    },
+    {
+      "const_no": 11,
+      "const_name": "LAWSPET",
+      "winner": { "name": "M. Vaithianathan", "party": "AINRC", "votes": 10189 },
+      "runner_up": { "name": "V.P. Sivakolunthu", "party": "INC", "votes": 4757 },
+      "margin": 5432
+    },
+    {
+      "const_no": 12,
+      "const_name": "KALAPET",
+      "winner": { "name": "P.M.L. Kalyana Sundaram", "party": "AINRC", "votes": 14132 },
+      "runner_up": { "name": "M.O.H.F. Shahjahan", "party": "INC", "votes": 7766 },
+      "margin": 6366
+    },
+    {
+      "const_no": 13,
+      "const_name": "MUTHIALPET",
+      "winner": { "name": "Nandha.T. Saravanan", "party": "DMK", "votes": 10364 },
+      "runner_up": { "name": "A. Kasilingam", "party": "AIADMK", "votes": 7388 },
+      "margin": 2976
+    },
+    {
+      "const_no": 14,
+      "const_name": "RAJ BHAVAN",
+      "winner": { "name": "K. Lakshminarayanan", "party": "INC", "votes": 11398 },
+      "runner_up": { "name": "M. Saravanakumar", "party": "AIADMK", "votes": 4327 },
+      "margin": 7071
+    },
+    {
+      "const_no": 15,
+      "const_name": "OUPALAM",
+      "winner": { "name": "A. Anbalagan", "party": "AIADMK", "votes": 9536 },
+      "runner_up": { "name": "N. Anand", "party": "IND", "votes": 6332 },
+      "margin": 3204
+    },
+    {
+      "const_no": 16,
+      "const_name": "ORLEAMPETH",
+      "winner": { "name": "G. Nehru", "party": "AINRC", "votes": 10986 },
+      "runner_up": { "name": "R. Siva", "party": "DMK", "votes": 8368 },
+      "margin": 2618
+    },
+    {
+      "const_no": 17,
+      "const_name": "NELLITHOPE",
+      "winner": { "name": "Omsakthi Sekar", "party": "AIADMK", "votes": 13301 },
+      "runner_up": { "name": "R.V. Janakiraman", "party": "DMK", "votes": 8783 },
+      "margin": 4518
+    },
+    {
+      "const_no": 18,
+      "const_name": "MUDALIARPET",
+      "winner": { "name": "A. Baskar", "party": "AIADMK", "votes": 17016 },
+      "runner_up": { "name": "Dr. M.A.S. Subramanian", "party": "DMK", "votes": 7289 },
+      "margin": 9727
+    },
+    {
+      "const_no": 19,
+      "const_name": "ARIANKUPPAM",
+      "winner": { "name": "V. Sabapathy", "party": "AINRC", "votes": 13381 },
+      "runner_up": { "name": "T. Djeamourthy", "party": "INC", "votes": 10750 },
+      "margin": 2631
+    },
+    {
+      "const_no": 20,
+      "const_name": "MANAVELY",
+      "winner": { "name": "P. Purushothaman", "party": "AIADMK", "votes": 13979 },
+      "runner_up": { "name": "R.K.R. Anantharaman", "party": "PMK", "votes": 9646 },
+      "margin": 4333
+    },
+    {
+      "const_no": 21,
+      "const_name": "EMBALAM",
+      "winner": { "name": "P. Rajavelu", "party": "AINRC", "votes": 12933 },
+      "runner_up": { "name": "M. Candassamy", "party": "INC", "votes": 11465 },
+      "margin": 1468
+    },
+    {
+      "const_no": 22,
+      "const_name": "NETTAPAKKAM",
+      "winner": { "name": "L. Periyasamy", "party": "AIADMK", "votes": 14686 },
+      "runner_up": { "name": "S. Muthukumarasamy", "party": "INC", "votes": 9219 },
+      "margin": 5467
+    },
+    {
+      "const_no": 23,
+      "const_name": "BAHOUR",
+      "winner": { "name": "T. Thiagarajan", "party": "AINRC", "votes": 12284 },
+      "runner_up": { "name": "R. Radhakrishnan", "party": "INC", "votes": 10229 },
+      "margin": 2055
+    },
+    {
+      "const_no": 24,
+      "const_name": "NEDUNGADU",
+      "winner": { "name": "M. Chandhrakasu", "party": "AINRC", "votes": 12474 },
+      "runner_up": { "name": "A. Marimuthu", "party": "IND", "votes": 4984 },
+      "margin": 7490
+    },
+    {
+      "const_no": 25,
+      "const_name": "THIRUNALLAR",
+      "winner": { "name": "P.R. Siva", "party": "AINRC", "votes": 11702 },
+      "runner_up": { "name": "R. Kamalakannan", "party": "INC", "votes": 10862 },
+      "margin": 840
+    },
+    {
+      "const_no": 26,
+      "const_name": "KARAIKAL NORTH",
+      "winner": { "name": "P.R.N. Thirumurugan", "party": "INC", "votes": 12155 },
+      "runner_up": { "name": "V. Omalingam", "party": "AIADMK", "votes": 8795 },
+      "margin": 3360
+    },
+    {
+      "const_no": 27,
+      "const_name": "KARAIKAL SOUTH",
+      "winner": { "name": "A.M.H. Nazeem", "party": "DMK", "votes": 8377 },
+      "runner_up": { "name": "V.K. Ganapathy", "party": "IND", "votes": 6801 },
+      "margin": 1576
+    },
+    {
+      "const_no": 28,
+      "const_name": "NERAVY- T.R. PATTIN",
+      "winner": { "name": "V.M.C. Sivakkumar", "party": "IND", "votes": 8860 },
+      "runner_up": { "name": "A. Geetha", "party": "DMK", "votes": 8502 },
+      "margin": 358
+    },
+    {
+      "const_no": 29,
+      "const_name": "MAHE",
+      "winner": { "name": "E. Valsaraj", "party": "INC", "votes": 13297 },
+      "runner_up": { "name": "T.K. Gangadharan", "party": "CPM", "votes": 7193 },
+      "margin": 6104
+    },
+    {
+      "const_no": 30,
+      "const_name": "YANAM",
+      "winner": { "name": "Malladi Krishna Rao", "party": "INC", "votes": 23985 },
+      "runner_up": { "name": "Manchala Satya Sai Kumar", "party": "AIADMK", "votes": 4867 },
+      "margin": 19118
+    }
+  ],
+  "geo_mismatches": [
+    {
+      "const_no": 10,
+      "eci_name": "KAMARAJ NAGAR",
+      "geojson_name": "KAMRAJ NAGAR",
+      "note": "Missing 'A' in GeoJSON — KAMARAJ vs KAMRAJ"
+    },
+    {
+      "const_no": 28,
+      "eci_name": "NERAVY T.R. PATTINAM",
+      "geojson_name": "NERAVY- T.R. PATTIN",
+      "note": "Truncated in GeoJSON + dash added"
+    }
+  ]
+}

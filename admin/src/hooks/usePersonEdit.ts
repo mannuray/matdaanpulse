@@ -1,0 +1,138 @@
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { getPerson, updatePerson, mergePersons, getPersons } from '../services/person.api';
+import { PersonService } from '../services/person.service';
+import { enrichPersons } from '../services/ai.service';
+import { useToast } from '../context/ToastContext';
+import type { PersonWithCandidates, PersonWithStats } from '../types';
+
+/**
+ * CONTROLLER: Person Edit (MVC)
+ * Manages master record state, deduplication (merging), and AI profiling.
+ */
+export function usePersonEdit(id?: string) {
+  const { toast } = useToast();
+  
+  // Data State
+  const [person, setPerson] = useState<PersonWithCandidates | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
+  
+  // Form State
+  const [form, setForm] = useState({
+    name: '',
+    date_of_birth: '',
+    gender: '',
+    education: '',
+    photo_url: '',
+    bio: '',
+    wikipedia_url: ''
+  });
+
+  // Merge State
+  const [mergeSearch, setMergeSearch] = useState('');
+  const [mergeResults, setMergeResults] = useState<PersonWithStats[]>([]);
+  const [merging, setMerging] = useState(false);
+  const searchTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  // Enrichment State
+  const [enriching, setEnriching] = useState(false);
+
+  // 1. Initial Load
+  const loadPerson = useCallback(async () => {
+    if (!id) return;
+    setLoading(true);
+    try {
+      const data = await getPerson(id);
+      setPerson(data);
+      setForm(PersonService.prepareFormState(data));
+    } catch (err) {
+      toast('Failed to load person record', 'error');
+    } finally {
+      setLoading(false);
+    }
+  }, [id, toast]);
+
+  useEffect(() => {
+    loadPerson();
+  }, [loadPerson]);
+
+  // 2. Save Logic
+  const handleSave = async () => {
+    if (!id || !person) return false;
+    setSaving(true);
+    try {
+      await updatePerson(id, {
+        ...form,
+        metadata: {
+          ...person.metadata,
+          wikipedia_url: form.wikipedia_url
+        }
+      });
+      toast('Person record updated');
+      loadPerson();
+      return true;
+    } catch (err) {
+      toast('Failed to update record', 'error');
+      return false;
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // 3. Merge Logic
+  useEffect(() => {
+    if (searchTimer.current) clearTimeout(searchTimer.current);
+    if (!mergeSearch || mergeSearch.trim().length < 2) {
+      setMergeResults([]);
+      return;
+    }
+
+    searchTimer.current = setTimeout(async () => {
+      try {
+        const response = await getPersons(1, 20, mergeSearch.trim());
+        setMergeResults(response.data.filter(p => p.id !== id));
+      } catch {
+        setMergeResults([]);
+      }
+    }, 400);
+
+    return () => { if (searchTimer.current) clearTimeout(searchTimer.current); };
+  }, [mergeSearch, id]);
+
+  const handleMerge = async (sourceId: string, sourceName: string) => {
+    if (!id) return;
+    if (!window.confirm(`Merge "${sourceName}" into "${person?.name}"? This action is permanent.`)) return;
+    
+    setMerging(true);
+    try {
+      await mergePersons(id, sourceId);
+      toast('Records merged successfully');
+      setMergeSearch('');
+      loadPerson();
+    } catch (err) {
+      toast('Merge failed', 'error');
+    } finally {
+      setMerging(false);
+    }
+  };
+
+  // 4. AI Enrichment
+  const runEnrichment = async () => {
+    if (!id) return;
+    setEnriching(true);
+    try {
+      await enrichPersons([id]);
+      toast('AI profiling queued');
+    } catch {
+      toast('Enrichment failed', 'error');
+    } finally {
+      setEnriching(false);
+    }
+  };
+
+  return {
+    person, loading, saving, form, setForm,
+    mergeSearch, setMergeSearch, mergeResults, merging,
+    handleSave, handleMerge, enriching, runEnrichment
+  };
+}

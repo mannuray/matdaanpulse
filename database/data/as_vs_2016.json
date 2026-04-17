@@ -1,0 +1,917 @@
+{
+  "state": "Assam",
+  "state_code": "AS",
+  "year": 2016,
+  "type": "VS",
+  "total_seats": 126,
+  "results": [
+    {
+      "const_no": 1,
+      "const_name": "RATABARI",
+      "winner": { "name": "Kripanath Mallah", "party": "BJP", "votes": 53975 },
+      "runner_up": { "name": "Akhil Ranjan Talukdar", "party": "INC", "votes": 29449 },
+      "margin": 24526
+    },
+    {
+      "const_no": 2,
+      "const_name": "PATHARKANDI",
+      "winner": { "name": "Krishnendu Paul", "party": "BJP", "votes": 46544 },
+      "runner_up": { "name": "Debendra Kumar Sinha", "party": "AIUDF", "votes": 37276 },
+      "margin": 9268
+    },
+    {
+      "const_no": 3,
+      "const_name": "KARIMGANJ NORTH",
+      "winner": { "name": "Kamalakhya Dey Purkayastha", "party": "INC", "votes": 45289 },
+      "runner_up": { "name": "Mission Ranjan Das", "party": "BJP", "votes": 44821 },
+      "margin": 468
+    },
+    {
+      "const_no": 4,
+      "const_name": "KARIMGANJ SOUTH",
+      "winner": { "name": "Aziz Ahmed Khan", "party": "AIUDF", "votes": 58060 },
+      "runner_up": { "name": "Siddeque Ahmed", "party": "INC", "votes": 53644 },
+      "margin": 4416
+    },
+    {
+      "const_no": 5,
+      "const_name": "BADARPUR",
+      "winner": { "name": "Jamal Uddin Ahmed", "party": "INC", "votes": 38266 },
+      "runner_up": { "name": "Abdul Aziz", "party": "AIUDF", "votes": 36178 },
+      "margin": 2088
+    },
+    {
+      "const_no": 6,
+      "const_name": "HAILAKANDI",
+      "winner": { "name": "Anwar Hussain Laskar", "party": "AIUDF", "votes": 41647 },
+      "runner_up": { "name": "Soumyajit Dutta Choudhury", "party": "BJP", "votes": 39039 },
+      "margin": 2608
+    },
+    {
+      "const_no": 7,
+      "const_name": "KATLICHERRA",
+      "winner": { "name": "Suzam Uddin Laskar", "party": "AIUDF", "votes": 50676 },
+      "runner_up": { "name": "Gautam Roy", "party": "INC", "votes": 35592 },
+      "margin": 15084
+    },
+    {
+      "const_no": 8,
+      "const_name": "ALGAPUR",
+      "winner": { "name": "Nizam Uddin Choudhury", "party": "AIUDF", "votes": 50531 },
+      "runner_up": { "name": "Kaushik Rai", "party": "BJP", "votes": 32777 },
+      "margin": 17754
+    },
+    {
+      "const_no": 9,
+      "const_name": "SILCHAR",
+      "winner": { "name": "Sri Dilip Kumar Paul", "party": "BJP", "votes": 94787 },
+      "runner_up": { "name": "Bithika Dev", "party": "INC", "votes": 54867 },
+      "margin": 39920
+    },
+    {
+      "const_no": 10,
+      "const_name": "SONAI",
+      "winner": { "name": "Aminul Haque Laskar", "party": "BJP", "votes": 44236 },
+      "runner_up": { "name": "Anamul Haque", "party": "INC", "votes": 36683 },
+      "margin": 7553
+    },
+    {
+      "const_no": 11,
+      "const_name": "DHOLAI",
+      "winner": { "name": "Parimal Suklabaidya", "party": "BJP", "votes": 68694 },
+      "runner_up": { "name": "Girindra Mallik", "party": "INC", "votes": 41857 },
+      "margin": 26837
+    },
+    {
+      "const_no": 12,
+      "const_name": "UDHARBOND",
+      "winner": { "name": "Mihir Kanti Shome", "party": "BJP", "votes": 54204 },
+      "runner_up": { "name": "Ajit Singh", "party": "INC", "votes": 45598 },
+      "margin": 8606
+    },
+    {
+      "const_no": 13,
+      "const_name": "LAKHIPUR",
+      "winner": { "name": "Rajdeep Goala", "party": "INC", "votes": 60135 },
+      "runner_up": { "name": "Thoiba Singha", "party": "BJP", "votes": 35768 },
+      "margin": 24367
+    },
+    {
+      "const_no": 14,
+      "const_name": "BARKHOLA",
+      "winner": { "name": "Kishor Nath", "party": "BJP", "votes": 36482 },
+      "runner_up": { "name": "Misbahul Islam Laskar", "party": "IND", "votes": 36440 },
+      "margin": 42
+    },
+    {
+      "const_no": 15,
+      "const_name": "KATIGORA",
+      "winner": { "name": "Amar Chand Jain", "party": "BJP", "votes": 59764 },
+      "runner_up": { "name": "Khalil Uddin Mazumder", "party": "AIUDF", "votes": 50956 },
+      "margin": 8808
+    },
+    {
+      "const_no": 16,
+      "const_name": "HAFLONG",
+      "winner": { "name": "Bir Bhadra Hagjer", "party": "BJP", "votes": 52037 },
+      "runner_up": { "name": "Nirmal Langthasa", "party": "INC", "votes": 43731 },
+      "margin": 8306
+    },
+    {
+      "const_no": 17,
+      "const_name": "BOKAJAN",
+      "winner": { "name": "Numal Momin", "party": "BJP", "votes": 40170 },
+      "runner_up": { "name": "Klengdoon Engti", "party": "INC", "votes": 35426 },
+      "margin": 4744
+    },
+    {
+      "const_no": 18,
+      "const_name": "HOWRAGHAT",
+      "winner": { "name": "Joy Ram Engleng", "party": "BJP", "votes": 43378 },
+      "runner_up": { "name": "Khorsing Engti", "party": "INC", "votes": 36987 },
+      "margin": 6391
+    },
+    {
+      "const_no": 19,
+      "const_name": "DIPHU",
+      "winner": { "name": "Sum Ronghang", "party": "BJP", "votes": 64421 },
+      "runner_up": { "name": "Bidya Sing Engleng", "party": "INC", "votes": 36185 },
+      "margin": 28236
+    },
+    {
+      "const_no": 20,
+      "const_name": "BAITHALANGSO",
+      "winner": { "name": "Dr.Mansing Rongpi", "party": "INC", "votes": 62596 },
+      "runner_up": { "name": "Arun Terang", "party": "BJP", "votes": 53077 },
+      "margin": 9519
+    },
+    {
+      "const_no": 21,
+      "const_name": "MANKACHAR",
+      "winner": { "name": "Dr. Motiur Rohman Mondal", "party": "INC", "votes": 54181 },
+      "runner_up": { "name": "Md. Aminul Islam", "party": "AIUDF", "votes": 49868 },
+      "margin": 4313
+    },
+    {
+      "const_no": 22,
+      "const_name": "SALMARA SOUTH",
+      "winner": { "name": "Wazed Ali Choudhury", "party": "INC", "votes": 80066 },
+      "runner_up": { "name": "Badruddin Ajmal", "party": "AIUDF", "votes": 63343 },
+      "margin": 16723
+    },
+    {
+      "const_no": 23,
+      "const_name": "DHUBRI",
+      "winner": { "name": "Najrul Hoque", "party": "AIUDF", "votes": 60933 },
+      "runner_up": { "name": "Nazibul Umar", "party": "IND", "votes": 36847 },
+      "margin": 24086
+    },
+    {
+      "const_no": 24,
+      "const_name": "GAURIPUR",
+      "winner": { "name": "Nijanur Rahman", "party": "AIUDF", "votes": 73423 },
+      "runner_up": { "name": "Banendra Kumar Mushahary", "party": "BPF", "votes": 53512 },
+      "margin": 19911
+    },
+    {
+      "const_no": 25,
+      "const_name": "GOLAKGANJ",
+      "winner": { "name": "Ashwini Ray Sarkar", "party": "BJP", "votes": 74644 },
+      "runner_up": { "name": "Abdus Sobahan Ali Sarkar", "party": "INC", "votes": 68253 },
+      "margin": 6391
+    },
+    {
+      "const_no": 26,
+      "const_name": "BILASIPARA WEST",
+      "winner": { "name": "Hafiz Bashir Ahmed", "party": "AIUDF", "votes": 44407 },
+      "runner_up": { "name": "Ali Akbar Miah", "party": "IND", "votes": 33205 },
+      "margin": 11202
+    },
+    {
+      "const_no": 27,
+      "const_name": "BILASIPARA EAST",
+      "winner": { "name": "Ashok Kumar Singhi", "party": "BJP", "votes": 59206 },
+      "runner_up": { "name": "Amrit Badsha", "party": "INC", "votes": 54110 },
+      "margin": 5096
+    },
+    {
+      "const_no": 28,
+      "const_name": "GOSSAIGAON",
+      "winner": { "name": "Majendra Narzary", "party": "BPF", "votes": 45517 },
+      "runner_up": { "name": "Ravi Sankar Kasireddy", "party": "AIUDF", "votes": 39476 },
+      "margin": 6041
+    },
+    {
+      "const_no": 29,
+      "const_name": "KOKRAJHAR WEST",
+      "winner": { "name": "Rabiram Narzary", "party": "BPF", "votes": 64423 },
+      "runner_up": { "name": "Dahit Chandra Brahma", "party": "AIUDF", "votes": 47083 },
+      "margin": 17340
+    },
+    {
+      "const_no": 30,
+      "const_name": "KOKRAJHAR EAST",
+      "winner": { "name": "Pramila Rani Brahma", "party": "BPF", "votes": 76496 },
+      "runner_up": { "name": "Pratibha Brahma", "party": "IND", "votes": 36405 },
+      "margin": 40091
+    },
+    {
+      "const_no": 31,
+      "const_name": "SIDLI",
+      "winner": { "name": "Chandan Brahma", "party": "BPF", "votes": 66037 },
+      "runner_up": { "name": "Rwngwra Narzary", "party": "IND", "votes": 57049 },
+      "margin": 8988
+    },
+    {
+      "const_no": 32,
+      "const_name": "BONGAIGAON",
+      "winner": { "name": "Phani Bhusan Choudhury", "party": "AGP", "votes": 77292 },
+      "runner_up": { "name": "Shankar Prasad Ray", "party": "INC", "votes": 45972 },
+      "margin": 31320
+    },
+    {
+      "const_no": 33,
+      "const_name": "BIJNI",
+      "winner": { "name": "Kamalshing Narzary", "party": "BPF", "votes": 29240 },
+      "runner_up": { "name": "Ajay Kumar Ray", "party": "BGP", "votes": 27562 },
+      "margin": 1678
+    },
+    {
+      "const_no": 34,
+      "const_name": "ABHAYAPURI NORTH",
+      "winner": { "name": "Abdul Hai Nagori", "party": "INC", "votes": 48354 },
+      "runner_up": { "name": "Bhupen Roy", "party": "AGP", "votes": 46211 },
+      "margin": 2143
+    },
+    {
+      "const_no": 35,
+      "const_name": "ABHAYAPURI SOUTH",
+      "winner": { "name": "Ananta Kumar Malo", "party": "AIUDF", "votes": 51525 },
+      "runner_up": { "name": "Chandan Kumar Sarkar", "party": "INC", "votes": 51334 },
+      "margin": 191
+    },
+    {
+      "const_no": 36,
+      "const_name": "DUDHNAI",
+      "winner": { "name": "Dipak Kumar Rabha", "party": "BJP", "votes": 79983 },
+      "runner_up": { "name": "Sibcharan Basumatary", "party": "INC", "votes": 51316 },
+      "margin": 28667
+    },
+    {
+      "const_no": 37,
+      "const_name": "GOALPARA EAST",
+      "winner": { "name": "Abul Kalam Rasheed Alam", "party": "INC", "votes": 57374 },
+      "runner_up": { "name": "Gauranga Prasad Das", "party": "BJP", "votes": 54793 },
+      "margin": 2581
+    },
+    {
+      "const_no": 38,
+      "const_name": "GOALPARA WEST",
+      "winner": { "name": "Abdur Rashid Mandal", "party": "INC", "votes": 61007 },
+      "runner_up": { "name": "Sheikh Shah Alam", "party": "AIUDF", "votes": 36668 },
+      "margin": 24339
+    },
+    {
+      "const_no": 39,
+      "const_name": "JALESWAR",
+      "winner": { "name": "Sahab Uddin Ahmed", "party": "AIUDF", "votes": 56003 },
+      "runner_up": { "name": "Aftab Uddin Mollah", "party": "IND", "votes": 49341 },
+      "margin": 6662
+    },
+    {
+      "const_no": 40,
+      "const_name": "SORBHOG",
+      "winner": { "name": "Ranjeet Kumar Dass", "party": "BJP", "votes": 56454 },
+      "runner_up": { "name": "Anurupa Hannan", "party": "INC", "votes": 36928 },
+      "margin": 19526
+    },
+    {
+      "const_no": 41,
+      "const_name": "BHABANIPUR",
+      "winner": { "name": "Abul Kalam Azad", "party": "AIUDF", "votes": 28383 },
+      "runner_up": { "name": "Phanihdar Talukdar", "party": "IND", "votes": 25944 },
+      "margin": 2439
+    },
+    {
+      "const_no": 42,
+      "const_name": "PATACHARKUCHI",
+      "winner": { "name": "Pabindra Deka", "party": "AGP", "votes": 64558 },
+      "runner_up": { "name": "Sailen Kalita", "party": "INC", "votes": 12582 },
+      "margin": 51976
+    },
+    {
+      "const_no": 43,
+      "const_name": "BARPETA",
+      "winner": { "name": "Gunindra Nath Das", "party": "AGP", "votes": 63563 },
+      "runner_up": { "name": "A.Rahim Ahmed", "party": "INC", "votes": 57753 },
+      "margin": 5810
+    },
+    {
+      "const_no": 44,
+      "const_name": "JANIA",
+      "winner": { "name": "Abdul Khaleque", "party": "INC", "votes": 86930 },
+      "runner_up": { "name": "Rafiqul Islam", "party": "AIUDF", "votes": 57194 },
+      "margin": 29736
+    },
+    {
+      "const_no": 45,
+      "const_name": "BAGHBAR",
+      "winner": { "name": "Sherman Ali Ahmed", "party": "INC", "votes": 73340 },
+      "runner_up": { "name": "Sheikh Abdul Hamid", "party": "AIUDF", "votes": 29907 },
+      "margin": 43433
+    },
+    {
+      "const_no": 46,
+      "const_name": "SARUKHETRI",
+      "winner": { "name": "Jakir Hussain Sikdar", "party": "INC", "votes": 70062 },
+      "runner_up": { "name": "Chittaranjan Barman", "party": "AGP", "votes": 45815 },
+      "margin": 24247
+    },
+    {
+      "const_no": 47,
+      "const_name": "CHENGA",
+      "winner": { "name": "Sukur Ali Ahmed", "party": "INC", "votes": 51882 },
+      "runner_up": { "name": "Monowara Khatun", "party": "AIUDF", "votes": 28525 },
+      "margin": 23357
+    },
+    {
+      "const_no": 48,
+      "const_name": "BOKO",
+      "winner": { "name": "Nandita Das", "party": "INC", "votes": 69986 },
+      "runner_up": { "name": "Jyoti Prasad Das", "party": "AGP", "votes": 52392 },
+      "margin": 17594
+    },
+    {
+      "const_no": 49,
+      "const_name": "CHAYGAON",
+      "winner": { "name": "Rekibuddin Ahmed", "party": "INC", "votes": 72211 },
+      "runner_up": { "name": "Dr. Kamala Kanta Kalita", "party": "AGP", "votes": 64390 },
+      "margin": 7821
+    },
+    {
+      "const_no": 50,
+      "const_name": "PALASBARI",
+      "winner": { "name": "Sri Pranab Kalita", "party": "BJP", "votes": 75210 },
+      "runner_up": { "name": "Nabajyoti Talukdar", "party": "INC", "votes": 26468 },
+      "margin": 48742
+    },
+    {
+      "const_no": 51,
+      "const_name": "JALUKBARI",
+      "winner": { "name": "Himanta Biswa Sarma", "party": "BJP", "votes": 118390 },
+      "runner_up": { "name": "Niren Deka", "party": "INC", "votes": 32455 },
+      "margin": 85935
+    },
+    {
+      "const_no": 52,
+      "const_name": "DISPUR",
+      "winner": { "name": "Atul Bora", "party": "BJP", "votes": 198378 },
+      "runner_up": { "name": "Akon Bora", "party": "INC", "votes": 68181 },
+      "margin": 130197
+    },
+    {
+      "const_no": 53,
+      "const_name": "GAUHATI EAST",
+      "winner": { "name": "Siddhartha Bhattacharya", "party": "BJP", "votes": 127602 },
+      "runner_up": { "name": "Bobbeeta Sharma", "party": "INC", "votes": 30965 },
+      "margin": 96637
+    },
+    {
+      "const_no": 54,
+      "const_name": "GAUHATI WEST",
+      "winner": { "name": "Ramendra Narayan Kalita", "party": "AGP", "votes": 132184 },
+      "runner_up": { "name": "Dr. Jury Sharma Bordoloi", "party": "INC", "votes": 42274 },
+      "margin": 89910
+    },
+    {
+      "const_no": 55,
+      "const_name": "HAJO",
+      "winner": { "name": "Suman Haripriya", "party": "BJP", "votes": 55096 },
+      "runner_up": { "name": "Dulu Ahmed", "party": "INC", "votes": 46188 },
+      "margin": 8908
+    },
+    {
+      "const_no": 56,
+      "const_name": "KAMALPUR",
+      "winner": { "name": "Satyabrat Kalita", "party": "AGP", "votes": 78170 },
+      "runner_up": { "name": "Pranjit Choudhury", "party": "INC", "votes": 41261 },
+      "margin": 36909
+    },
+    {
+      "const_no": 57,
+      "const_name": "RANGIYA",
+      "winner": { "name": "Bhabesh Kalita", "party": "BJP", "votes": 58353 },
+      "runner_up": { "name": "Ghanashyam Kalita", "party": "INC", "votes": 26286 },
+      "margin": 32067
+    },
+    {
+      "const_no": 58,
+      "const_name": "TAMULPUR",
+      "winner": { "name": "Emmanuel Mosahary", "party": "BPF", "votes": 63031 },
+      "runner_up": { "name": "Rabindra Biswas", "party": "INC", "votes": 43084 },
+      "margin": 19947
+    },
+    {
+      "const_no": 59,
+      "const_name": "NALBARI",
+      "winner": { "name": "Ashok Sarma", "party": "BJP", "votes": 99131 },
+      "runner_up": { "name": "Pradyut Kumar Bhuyan", "party": "INC", "votes": 46087 },
+      "margin": 53044
+    },
+    {
+      "const_no": 60,
+      "const_name": "BARKHETRY",
+      "winner": { "name": "Narayan Deka", "party": "BJP", "votes": 69223 },
+      "runner_up": { "name": "Diganta Barman", "party": "INC", "votes": 60610 },
+      "margin": 8613
+    },
+    {
+      "const_no": 61,
+      "const_name": "DHARMAPUR",
+      "winner": { "name": "Chandra Mohan Patowary", "party": "BJP", "votes": 70503 },
+      "runner_up": { "name": "Nilamani Sen Deka", "party": "INC", "votes": 36560 },
+      "margin": 33943
+    },
+    {
+      "const_no": 62,
+      "const_name": "BARAMA",
+      "winner": { "name": "Maneswar Brahma", "party": "BPF", "votes": 45289 },
+      "runner_up": { "name": "Rekha Rani Das Boro", "party": "IND", "votes": 35493 },
+      "margin": 9796
+    },
+    {
+      "const_no": 63,
+      "const_name": "CHAPAGURI",
+      "winner": { "name": "Thaneswar Basumatary", "party": "BPF", "votes": 43250 },
+      "runner_up": { "name": "Sujan Das", "party": "IND", "votes": 41769 },
+      "margin": 1481
+    },
+    {
+      "const_no": 64,
+      "const_name": "PANERY",
+      "winner": { "name": "Kamali Basumatari", "party": "BPF", "votes": 38668 },
+      "runner_up": { "name": "Nanda Ram Baro", "party": "IND", "votes": 22866 },
+      "margin": 15802
+    },
+    {
+      "const_no": 65,
+      "const_name": "KALAIGAON",
+      "winner": { "name": "Maheswar Baro", "party": "BPF", "votes": 47206 },
+      "runner_up": { "name": "Nathu Ram Boro", "party": "AIUDF", "votes": 29585 },
+      "margin": 17621
+    },
+    {
+      "const_no": 66,
+      "const_name": "SIPAJHAR",
+      "winner": { "name": "Binanda Kumar Saikia", "party": "BJP", "votes": 65487 },
+      "runner_up": { "name": "Dr Zoii Nath Sarmah", "party": "INC", "votes": 53312 },
+      "margin": 12175
+    },
+    {
+      "const_no": 67,
+      "const_name": "MANGALDOI",
+      "winner": { "name": "Gurujyoti Das", "party": "BJP", "votes": 73423 },
+      "runner_up": { "name": "Basanta Das", "party": "INC", "votes": 51378 },
+      "margin": 22045
+    },
+    {
+      "const_no": 68,
+      "const_name": "DALGAON",
+      "winner": { "name": "Ilias Ali", "party": "INC", "votes": 76607 },
+      "runner_up": { "name": "Mazibur Rahman", "party": "AIUDF", "votes": 74287 },
+      "margin": 2320
+    },
+    {
+      "const_no": 69,
+      "const_name": "UDALGURI",
+      "winner": { "name": "Rihon Daimari", "party": "BPF", "votes": 45037 },
+      "runner_up": { "name": "Anjali Prabha Daimari", "party": "IND", "votes": 20663 },
+      "margin": 24374
+    },
+    {
+      "const_no": 70,
+      "const_name": "MAJBAT",
+      "winner": { "name": "Charan Boro", "party": "BPF", "votes": 48351 },
+      "runner_up": { "name": "Teharu Gour", "party": "AIUDF", "votes": 22133 },
+      "margin": 26218
+    },
+    {
+      "const_no": 71,
+      "const_name": "DHEKIAJULI",
+      "winner": { "name": "Ashok Singhal", "party": "BJP", "votes": 71425 },
+      "runner_up": { "name": "Habul Chakraborty", "party": "INC", "votes": 36430 },
+      "margin": 34995
+    },
+    {
+      "const_no": 72,
+      "const_name": "BARCHALLA",
+      "winner": { "name": "Ganesh Kumar Limbu", "party": "BJP", "votes": 53912 },
+      "runner_up": { "name": "Tanka Bahadur Rai", "party": "INC", "votes": 30230 },
+      "margin": 23682
+    },
+    {
+      "const_no": 73,
+      "const_name": "TEZPUR",
+      "winner": { "name": "Brindaban Goswami", "party": "AGP", "votes": 71170 },
+      "runner_up": { "name": "Hiranya Bhuyan", "party": "INC", "votes": 36507 },
+      "margin": 34663
+    },
+    {
+      "const_no": 74,
+      "const_name": "RANGAPARA",
+      "winner": { "name": "Pallab Lochan Das", "party": "BJP", "votes": 51597 },
+      "runner_up": { "name": "Bhimananda Tanti", "party": "INC", "votes": 28606 },
+      "margin": 22991
+    },
+    {
+      "const_no": 75,
+      "const_name": "SOOTEA",
+      "winner": { "name": "Padma Hazarika", "party": "BJP", "votes": 60440 },
+      "runner_up": { "name": "Praneswar Basumatary", "party": "INC", "votes": 58622 },
+      "margin": 1818
+    },
+    {
+      "const_no": 76,
+      "const_name": "BISWANATH",
+      "winner": { "name": "Promod Borthakur", "party": "BJP", "votes": 64225 },
+      "runner_up": { "name": "Nurjamal Sarkar", "party": "INC", "votes": 54105 },
+      "margin": 10120
+    },
+    {
+      "const_no": 77,
+      "const_name": "BEHALI",
+      "winner": { "name": "Ranjit Dutta", "party": "BJP", "votes": 52152 },
+      "runner_up": { "name": "Rupak Sarma", "party": "INC", "votes": 28551 },
+      "margin": 23601
+    },
+    {
+      "const_no": 78,
+      "const_name": "GOHPUR",
+      "winner": { "name": "Utpal Borah", "party": "BJP", "votes": 85424 },
+      "runner_up": { "name": "Monika Bora", "party": "INC", "votes": 56489 },
+      "margin": 28935
+    },
+    {
+      "const_no": 79,
+      "const_name": "JAGIROAD",
+      "winner": { "name": "Shri Pijush Hazarika", "party": "BJP", "votes": 94550 },
+      "runner_up": { "name": "Shri Bibekananda Dalai", "party": "INC", "votes": 66224 },
+      "margin": 28326
+    },
+    {
+      "const_no": 80,
+      "const_name": "MARIGAON",
+      "winner": { "name": "Rama Kanta Dewri", "party": "BJP", "votes": 80669 },
+      "runner_up": { "name": "Jonjonali Baruah", "party": "INC", "votes": 51046 },
+      "margin": 29623
+    },
+    {
+      "const_no": 81,
+      "const_name": "LAHARIGHAT",
+      "winner": { "name": "Dr. Nazrul Islam", "party": "INC", "votes": 57904 },
+      "runner_up": { "name": "Siddique Ahmed", "party": "AIUDF", "votes": 52098 },
+      "margin": 5806
+    },
+    {
+      "const_no": 82,
+      "const_name": "RAHA",
+      "winner": { "name": "Dimbeswar Das", "party": "BJP", "votes": 76941 },
+      "runner_up": { "name": "Sashi Kanta Das", "party": "INC", "votes": 43867 },
+      "margin": 33074
+    },
+    {
+      "const_no": 83,
+      "const_name": "DHING",
+      "winner": { "name": "Aminul Islam", "party": "AIUDF", "votes": 82786 },
+      "runner_up": { "name": "Anwar Hussain", "party": "INC", "votes": 58233 },
+      "margin": 24553
+    },
+    {
+      "const_no": 84,
+      "const_name": "BATADROBA",
+      "winner": { "name": "Angoorlata Deka", "party": "BJP", "votes": 46343 },
+      "runner_up": { "name": "Gautam Bora", "party": "INC", "votes": 40458 },
+      "margin": 5885
+    },
+    {
+      "const_no": 85,
+      "const_name": "RUPOHIHAT",
+      "winner": { "name": "Nurul Huda", "party": "INC", "votes": 72627 },
+      "runner_up": { "name": "Nurul Amin Chowdhury", "party": "AIUDF", "votes": 50783 },
+      "margin": 21844
+    },
+    {
+      "const_no": 86,
+      "const_name": "NOWGONG",
+      "winner": { "name": "Rupak Sarmah", "party": "BJP", "votes": 66706 },
+      "runner_up": { "name": "Dr. Durlav Chamua", "party": "INC", "votes": 53442 },
+      "margin": 13264
+    },
+    {
+      "const_no": 87,
+      "const_name": "BARHAMPUR",
+      "winner": { "name": "Sri Prafulla Kumar Mahanta", "party": "AGP", "votes": 65768 },
+      "runner_up": { "name": "Suresh Bora", "party": "INC", "votes": 60599 },
+      "margin": 5169
+    },
+    {
+      "const_no": 88,
+      "const_name": "SAMAGURI",
+      "winner": { "name": "Rakibul Hussain", "party": "INC", "votes": 66364 },
+      "runner_up": { "name": "Jitu Goswami", "party": "BJP", "votes": 51849 },
+      "margin": 14515
+    },
+    {
+      "const_no": 89,
+      "const_name": "KALIABOR",
+      "winner": { "name": "Keshab Mahanta", "party": "AGP", "votes": 64759 },
+      "runner_up": { "name": "Bindu Ganju", "party": "INC", "votes": 26769 },
+      "margin": 37990
+    },
+    {
+      "const_no": 90,
+      "const_name": "JAMUNAMUKH",
+      "winner": { "name": "Abdur Rahim Ajmal", "party": "AIUDF", "votes": 65599 },
+      "runner_up": { "name": "Rejaul Karim Chowdhury", "party": "IND", "votes": 52394 },
+      "margin": 13205
+    },
+    {
+      "const_no": 91,
+      "const_name": "HOJAI",
+      "winner": { "name": "Shiladitya Dev", "party": "BJP", "votes": 105615 },
+      "runner_up": { "name": "Dhaniram Thousen", "party": "AIUDF", "votes": 49756 },
+      "margin": 55859
+    },
+    {
+      "const_no": 92,
+      "const_name": "LUMDING",
+      "winner": { "name": "Sibu Misra", "party": "BJP", "votes": 72072 },
+      "runner_up": { "name": "Netra Ranjan Mahanta", "party": "INC", "votes": 41672 },
+      "margin": 30400
+    },
+    {
+      "const_no": 93,
+      "const_name": "BOKAKHAT",
+      "winner": { "name": "Atul Bora", "party": "AGP", "votes": 62962 },
+      "runner_up": { "name": "Arun Phukan", "party": "INC", "votes": 22769 },
+      "margin": 40193
+    },
+    {
+      "const_no": 94,
+      "const_name": "SARUPATHAR",
+      "winner": { "name": "Roselina Tirkey", "party": "INC", "votes": 67150 },
+      "runner_up": { "name": "Binod Gowalla", "party": "AGP", "votes": 64223 },
+      "margin": 2927
+    },
+    {
+      "const_no": 95,
+      "const_name": "GOLAGHAT",
+      "winner": { "name": "Ajanta Neog", "party": "INC", "votes": 73862 },
+      "runner_up": { "name": "Bitupan Saikia", "party": "BJP", "votes": 68649 },
+      "margin": 5213
+    },
+    {
+      "const_no": 96,
+      "const_name": "KHUMTAI",
+      "winner": { "name": "Mrinal Saikia", "party": "BJP", "votes": 57637 },
+      "runner_up": { "name": "Bismita Gogoi", "party": "INC", "votes": 40763 },
+      "margin": 16874
+    },
+    {
+      "const_no": 97,
+      "const_name": "DERGAON",
+      "winner": { "name": "Bhabendra Nath Bharali", "party": "AGP", "votes": 63079 },
+      "runner_up": { "name": "Aroti Hazarika Kachari", "party": "INC", "votes": 46807 },
+      "margin": 16272
+    },
+    {
+      "const_no": 98,
+      "const_name": "JORHAT",
+      "winner": { "name": "Hitendra Nath Goswami", "party": "BJP", "votes": 69209 },
+      "runner_up": { "name": "Rana Goswami", "party": "INC", "votes": 55571 },
+      "margin": 13638
+    },
+    {
+      "const_no": 99,
+      "const_name": "MAJULI",
+      "winner": { "name": "Sarbananda Sonowal", "party": "BJP", "votes": 49602 },
+      "runner_up": { "name": "Rajib Lochan Pegu", "party": "INC", "votes": 30679 },
+      "margin": 18923
+    },
+    {
+      "const_no": 100,
+      "const_name": "TITABAR",
+      "winner": { "name": "Tarun Gogoi", "party": "INC", "votes": 62025 },
+      "runner_up": { "name": "Kamakhya Prasad Tasa", "party": "BJP", "votes": 44530 },
+      "margin": 17495
+    },
+    {
+      "const_no": 101,
+      "const_name": "MARIANI",
+      "winner": { "name": "Rupjyoti Kurmi", "party": "INC", "votes": 36701 },
+      "runner_up": { "name": "Alok Kumar Ghosh", "party": "NCP", "votes": 34908 },
+      "margin": 1793
+    },
+    {
+      "const_no": 102,
+      "const_name": "TEOK",
+      "winner": { "name": "Renupoma Rajkhowa", "party": "AGP", "votes": 40928 },
+      "runner_up": { "name": "Pallabi Saikia Gogoi", "party": "INC", "votes": 35879 },
+      "margin": 5049
+    },
+    {
+      "const_no": 103,
+      "const_name": "AMGURI",
+      "winner": { "name": "Prodip Hazarika", "party": "AGP", "votes": 42010 },
+      "runner_up": { "name": "Angkita Dutta", "party": "INC", "votes": 40390 },
+      "margin": 1620
+    },
+    {
+      "const_no": 104,
+      "const_name": "NAZIRA",
+      "winner": { "name": "Debabrata Saikia", "party": "INC", "votes": 52869 },
+      "runner_up": { "name": "Prohlad Gowala", "party": "BJP", "votes": 38014 },
+      "margin": 14855
+    },
+    {
+      "const_no": 105,
+      "const_name": "MAHMARA",
+      "winner": { "name": "Jogen Mohan", "party": "BJP", "votes": 49036 },
+      "runner_up": { "name": "Suruj Dehingia", "party": "INC", "votes": 34711 },
+      "margin": 14325
+    },
+    {
+      "const_no": 106,
+      "const_name": "SONARI",
+      "winner": { "name": "Topon Kumar Gogoi", "party": "BJP", "votes": 73327 },
+      "runner_up": { "name": "Sarat Barkataky", "party": "INC", "votes": 49210 },
+      "margin": 24117
+    },
+    {
+      "const_no": 107,
+      "const_name": "THOWRA",
+      "winner": { "name": "Kushal Dowari", "party": "BJP", "votes": 41560 },
+      "runner_up": { "name": "Sushanta Borgohain", "party": "INC", "votes": 40334 },
+      "margin": 1226
+    },
+    {
+      "const_no": 108,
+      "const_name": "SIBSAGAR",
+      "winner": { "name": "Pranab Kumar Gogoi", "party": "INC", "votes": 48584 },
+      "runner_up": { "name": "Surabhi Rajkonwar", "party": "BJP", "votes": 48042 },
+      "margin": 542
+    },
+    {
+      "const_no": 109,
+      "const_name": "BIHPURIA",
+      "winner": { "name": "Debananda Hazarika", "party": "BJP", "votes": 66563 },
+      "runner_up": { "name": "Bhupen Kumar Borah", "party": "INC", "votes": 40376 },
+      "margin": 26187
+    },
+    {
+      "const_no": 110,
+      "const_name": "NAOBOICHA",
+      "winner": { "name": "Mamun Imdadul Haque Chawdhury", "party": "AIUDF", "votes": 56003 },
+      "runner_up": { "name": "Rao Gajendra Singh", "party": "BJP", "votes": 54770 },
+      "margin": 1233
+    },
+    {
+      "const_no": 111,
+      "const_name": "LAKHIMPUR",
+      "winner": { "name": "Utpal Dutta", "party": "AGP", "votes": 45917 },
+      "runner_up": { "name": "Joy Prakash Das", "party": "INC", "votes": 41762 },
+      "margin": 4155
+    },
+    {
+      "const_no": 112,
+      "const_name": "DHAKUAKHANA",
+      "winner": { "name": "Naba Kumar Doley", "party": "BJP", "votes": 81556 },
+      "runner_up": { "name": "Bharat Chandra Narah", "party": "INC", "votes": 57014 },
+      "margin": 24542
+    },
+    {
+      "const_no": 113,
+      "const_name": "DHEMAJI",
+      "winner": { "name": "Pradan Baruah", "party": "BJP", "votes": 69592 },
+      "runner_up": { "name": "Sumitra Doley Patir", "party": "INC", "votes": 50471 },
+      "margin": 19121
+    },
+    {
+      "const_no": 114,
+      "const_name": "JONAI",
+      "winner": { "name": "Bhubon Pegu", "party": "IND", "votes": 88441 },
+      "runner_up": { "name": "Aswini Pait", "party": "BJP", "votes": 39148 },
+      "margin": 49293
+    },
+    {
+      "const_no": 115,
+      "const_name": "MORAN",
+      "winner": { "name": "Chakradhar Gogoi", "party": "BJP", "votes": 54571 },
+      "runner_up": { "name": "Paban Singh Ghatowar", "party": "INC", "votes": 38340 },
+      "margin": 16231
+    },
+    {
+      "const_no": 116,
+      "const_name": "DIBRUGARH",
+      "winner": { "name": "Prasanta Phukan", "party": "BJP", "votes": 63985 },
+      "runner_up": { "name": "Chandra Kanta Barua", "party": "INC", "votes": 36611 },
+      "margin": 27374
+    },
+    {
+      "const_no": 117,
+      "const_name": "LAHOWAL",
+      "winner": { "name": "Rituparna Baruah", "party": "BJP", "votes": 59013 },
+      "runner_up": { "name": "Prithibi Majhi", "party": "INC", "votes": 39414 },
+      "margin": 19599
+    },
+    {
+      "const_no": 118,
+      "const_name": "DULIAJAN",
+      "winner": { "name": "Terash Gowalla", "party": "BJP", "votes": 58450 },
+      "runner_up": { "name": "Dhruba Jyoti Gogoi", "party": "INC", "votes": 41364 },
+      "margin": 17086
+    },
+    {
+      "const_no": 119,
+      "const_name": "TINGKHONG",
+      "winner": { "name": "Bimal Borah", "party": "BJP", "votes": 57072 },
+      "runner_up": { "name": "Atuwa Munda", "party": "INC", "votes": 38734 },
+      "margin": 18338
+    },
+    {
+      "const_no": 120,
+      "const_name": "NAHARKATIA",
+      "winner": { "name": "Naren Sonowal (Botali)", "party": "AGP", "votes": 46051 },
+      "runner_up": { "name": "Pranatee Phukan", "party": "INC", "votes": 42520 },
+      "margin": 3531
+    },
+    {
+      "const_no": 121,
+      "const_name": "CHABUA",
+      "winner": { "name": "Binod Hazarika", "party": "BJP", "votes": 69351 },
+      "runner_up": { "name": "Raju Sahu", "party": "INC", "votes": 38597 },
+      "margin": 30754
+    },
+    {
+      "const_no": 122,
+      "const_name": "TINSUKIA",
+      "winner": { "name": "Sanjoy Kishan", "party": "BJP", "votes": 70937 },
+      "runner_up": { "name": "Rajendra Prasad Singh", "party": "INC", "votes": 35868 },
+      "margin": 35069
+    },
+    {
+      "const_no": 123,
+      "const_name": "DIGBOI",
+      "winner": { "name": "Suren Phukan", "party": "BJP", "votes": 49167 },
+      "runner_up": { "name": "Gautam Dhanowar", "party": "INC", "votes": 34874 },
+      "margin": 14293
+    },
+    {
+      "const_no": 124,
+      "const_name": "MARGHERITA",
+      "winner": { "name": "Bhaskar Sharma", "party": "BJP", "votes": 76365 },
+      "runner_up": { "name": "Pradyut Bordoloi", "party": "INC", "votes": 53621 },
+      "margin": 22744
+    },
+    {
+      "const_no": 125,
+      "const_name": "DOOM DOOMA",
+      "winner": { "name": "Durga Bhumij", "party": "INC", "votes": 46938 },
+      "runner_up": { "name": "Dilip Moran", "party": "BJP", "votes": 46156 },
+      "margin": 782
+    },
+    {
+      "const_no": 126,
+      "const_name": "SADIYA",
+      "winner": { "name": "Bolin Chetia", "party": "BJP", "votes": 38845 },
+      "runner_up": { "name": "Birinchi Neog", "party": "INC", "votes": 32279 },
+      "margin": 6566
+    }
+  ],
+  "geo_mismatches": [
+    {
+      "const_no": 7,
+      "eci_name": "KATLICHERA",
+      "geojson_name": "KATLICHERRA",
+      "note": "Extra R in GeoJSON"
+    },
+    {
+      "const_no": 15,
+      "eci_name": "KATIGORAH",
+      "geojson_name": "KATIGORA",
+      "note": "Extra H in ECI"
+    },
+    {
+      "const_no": 48,
+      "eci_name": "BOKO SC",
+      "geojson_name": "BOKO",
+      "note": "ECI appends SC category"
+    },
+    {
+      "const_no": 57,
+      "eci_name": "RANGIA",
+      "geojson_name": "RANGIYA",
+      "note": "Missing Y in ECI"
+    }
+  ]
+}

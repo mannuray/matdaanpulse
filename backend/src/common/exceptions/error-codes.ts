@@ -1,0 +1,48 @@
+export const ErrorCodes = {
+  // General (0xxx)
+  INTERNAL_SERVER_ERROR: 'GEN_0001',
+  NOT_FOUND: 'GEN_0002',
+  BAD_REQUEST: 'GEN_0003',
+
+  // Auth (1xxx)
+  AUTH_INVALID_CREDENTIALS: 'AUTH_1001',
+  AUTH_TOKEN_EXPIRED: 'AUTH_1002',
+  AUTH_UNAUTHORIZED: 'AUTH_1003',
+  AUTH_FORBIDDEN: 'AUTH_1004',
+  AUTH_USER_EXISTS: 'AUTH_1005',
+
+  // Election (2xxx)
+  ELECTION_NOT_FOUND: 'ELECTION_2001',
+  ELECTION_ALREADY_FINALIZED: 'ELECTION_2002',
+
+  // Constituency (3xxx)
+  CONSTITUENCY_NOT_FOUND: 'CONST_3001',
+  ANALYSIS_NOT_FOUND: 'CONST_3002',
+
+  // User/Person (4xxx)
+  USER_NOT_FOUND: 'USER_4001',
+  PERSON_NOT_FOUND: 'USER_4002',
+
+  // Party (5xxx)
+  PARTY_NOT_FOUND: 'PARTY_5001',
+
+  // Result (6xxx)
+  RESULT_NOT_FOUND: 'RESULT_6001',
+
+  // Candidate (7xxx)
+  CANDIDATE_NOT_FOUND: 'CANDIDATE_7001',
+
+  // Manifest (8xxx)
+  MANIFEST_NOT_FOUND: 'MANIFEST_8001',
+  MANIFEST_NO_DRAFT: 'MANIFEST_8002',
+
+  // AI Enrichment (85xx)
+  AI_CONFIG_MISSING: 'AI_8501',
+  AI_API_ERROR: 'AI_8502',
+  AI_PARSE_ERROR: 'AI_8503',
+
+  // Validation (9xxx)
+  VALIDATION_FAILED: 'VALIDATION_9001',
+} as const;
+
+export type ErrorCode = (typeof ErrorCodes)[keyof typeof ErrorCodes];
