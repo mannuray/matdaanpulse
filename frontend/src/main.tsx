@@ -9,7 +9,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./i18n";
-import "./theme/index.css";
+import "./theme/legacy.css";
 
 // Catch unhandled promise rejections (async errors not caught by ErrorBoundary)
 window.addEventListener('unhandledrejection', (event) => {

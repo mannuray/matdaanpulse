@@ -1,15 +1,19 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import type { ReactNode } from 'react';
+import { useLayoutEffect, useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function FocusDialog({ open, title, onClose, children }: { open: boolean; title: string; onClose(): void; children: ReactNode }) {
   const { t } = useTranslation();
+  // Dialog has no Trigger here, so Radix would drop focus to <body> on close; restore it to the opener ourselves.
+  const opener = useRef<HTMLElement | null>(null);
+  useLayoutEffect(() => { if (open) opener.current = document.activeElement as HTMLElement | null; }, [open]);
   return (
     <Dialog.Root open={open} onOpenChange={o => { if (!o) onClose(); }}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-page/70 backdrop-blur-sm" />
         <Dialog.Content
           aria-describedby={undefined}
+          onCloseAutoFocus={e => { e.preventDefault(); opener.current?.focus(); }}
           className="studio-root studio-focus fixed left-1/2 top-1/2 z-50 flex h-[88vh] w-[90vw] max-w-[1400px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-tile border border-line bg-tile shadow-2xl outline-none max-lg:h-dvh max-lg:w-screen max-lg:rounded-none"
         >
           <div className="flex items-center justify-between border-b border-line px-5 py-3">
