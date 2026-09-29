@@ -12,7 +12,8 @@ export default tseslint.config(
     plugins: { 'react-hooks': reactHooks, import: importPlugin },
     settings: { 'import/resolver': { typescript: true, node: { extensions: ['.ts', '.tsx'] } } },
     rules: {
-      ...reactHooks.configs.recommended.rules,
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'import/no-restricted-paths': ['error', {
         zones: [
