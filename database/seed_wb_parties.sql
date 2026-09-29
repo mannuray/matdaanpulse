@@ -9,6 +9,6 @@ INSERT INTO parties (id, name, color, symbol_url) VALUES ('JKPN', 'Jharkhand Par
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('DSPP', 'Democratic Socialist Party (Prabodh Chandra)', '#CC0000', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('RSMP', 'Rashtriya Secular Majlis Party', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('RCPIR', 'Revolutionary Communist Party of India (Rasik Bhatt)', '#CC0000', NULL) ON CONFLICT (id) DO NOTHING;
-INSERT INTO parties (id, name, color, symbol_url) VALUES ('CPIML', 'CPI(ML) Liberation', '#CC0000', NULL) ON CONFLICT (id) DO NOTHING;
+INSERT INTO parties (id, name, color, symbol_url) VALUES ('CPIML', 'CPI(ML) Liberation', '#E5484D', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('AMB', 'Amra Bangalee', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('KPPU', 'Kamatapur Peoples Party (United)', '#808080', NULL) ON CONFLICT (id) DO NOTHING;

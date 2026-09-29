@@ -4,7 +4,7 @@
 -- Run: docker exec -i election_tracker_db psql -U admin -d election_tracker < database/seed_bihar_vs_2025.sql
 
 -- New parties (not in existing seed)
-INSERT INTO parties (id, name, color, symbol_url) VALUES ('CPIML', 'Communist Party of India (Marxist-Leninist) (Liberation)', '#CC0000', NULL) ON CONFLICT (id) DO NOTHING;
+INSERT INTO parties (id, name, color, symbol_url) VALUES ('CPIML', 'Communist Party of India (Marxist-Leninist) (Liberation)', '#E5484D', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('JSP', 'Jan Suraaj Party', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('JJD', 'Janshakti Janta Dal', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('VPI', 'Voters Party International', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
@@ -31,7 +31,7 @@ INSERT INTO parties (id, name, color, symbol_url) VALUES ('SUCOIC', 'Socialist U
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('SBSP', 'Suheldev Bharatiya Samaj Party', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('DJP', 'Desh Janhit Party', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('ASPKR', 'Aazad Samaj Party (Kanshi Ram)', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
-INSERT INTO parties (id, name, color, symbol_url) VALUES ('HAMS', 'Hindustani Awam Morcha (Secular)', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
+INSERT INTO parties (id, name, color, symbol_url) VALUES ('HAMS', 'Hindustani Awam Morcha (Secular)', '#E8C547', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('AHFBK', 'Akhil Hind Forward Bloc (Krantikari)', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('SP', 'Samata Party', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
 INSERT INTO parties (id, name, color, symbol_url) VALUES ('JVPD', 'Janshakti Vikas Party (Democratic)', '#808080', NULL) ON CONFLICT (id) DO NOTHING;
