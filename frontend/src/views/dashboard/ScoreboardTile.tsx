@@ -8,14 +8,14 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
   const total = Math.max(vm.totalSeats, 1);
   const body = (
     <div className="flex h-full flex-col justify-center gap-3">
-      <div className="flex items-end gap-4">
+      <div className="flex min-w-0 items-end gap-4 overflow-hidden">
         {vm.blocs.map((b, i) => (
           <button key={b.id} type="button" onClick={() => vm.onLockBloc(b.id)} onMouseEnter={() => vm.onHoverBloc(b.id)} onMouseLeave={() => vm.onHoverBloc(null)}
             aria-label={`${b.name} ${b.seats}`} aria-pressed={vm.lockedId === b.id}
             className={cn('flex min-w-0 items-end gap-3 rounded-xl px-1 text-left', i > 0 && 'border-l border-line pl-4', vm.lockedId === b.id && 'ring-2 ring-accent')}>
             <div className="min-w-0 pb-2">
               <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.color }}>
-                <span className="h-2 w-2 rounded-full" style={{ background: b.color }} />{b.name}
+                <span className="h-2 w-2 rounded-full" style={{ background: b.color }} /><span className="truncate">{b.name}</span>
               </div>
               {b.votePct != null && <div className="text-xs text-muted">{t('studio_votes_pct', { pct: b.votePct })}</div>}
             </div>
