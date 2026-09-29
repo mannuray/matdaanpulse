@@ -14,7 +14,7 @@ services:
       POSTGRES_DB: ${DB_NAME:-election_tracker}
       ET_DB_INIT_ARGS: ${ET_DB_INIT_ARGS:-}
     ports:
-      - "5432:5432"  # DEV ONLY — remove in production
+      - "${DB_PORT:-5432}:5432"  # DEV ONLY — remove in production
     volumes:
       # First boot of an empty volume runs database/setup.sh (schema → migrations → seeds).
       # Set ET_DB_INIT_ARGS=--schema-only to skip seed data. Existing volumes are untouched:
@@ -28,7 +28,7 @@ services:
     container_name: election_tracker_redis
     restart: always
     ports:
-      - "6379:6379"  # DEV ONLY — remove in production, add requirepass
+      - "${REDIS_PORT:-6379}:6379"  # DEV ONLY — remove in production, add requirepass
 
   otel-collector:
     # Pinned (latest release on Docker Hub as of 2026-09-25); verified to start with

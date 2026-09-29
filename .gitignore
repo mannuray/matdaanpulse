@@ -38,3 +38,6 @@ scraper/output/
 
 # Scraped MyNeta HTML cache (regenerable; do not commit third-party pages)
 scraper/src/cache/myneta/
+
+# Playwright MCP screenshots/snapshots (local scratch)
+.playwright-mcp/
