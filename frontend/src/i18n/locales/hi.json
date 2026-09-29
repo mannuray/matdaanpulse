@@ -299,5 +299,10 @@
   "studio_sum_notable_switchers": "प्रमुख दल-बदलू ({{count}})",
   "studio_col_result": "नतीजा",
   "studio_row_three_way_short": "तिकोना",
-  "studio_row_win_rate_short": "जीत दर"
+  "studio_row_win_rate_short": "जीत दर",
+  "studio_theme": "थीम",
+  "studio_theme_dark": "डार्क",
+  "studio_theme_light": "लाइट",
+  "studio_theme_to_light": "लाइट थीम पर जाएं",
+  "studio_theme_to_dark": "डार्क थीम पर जाएं"
 }

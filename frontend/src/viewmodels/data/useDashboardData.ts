@@ -3,6 +3,8 @@ import { useApi } from './useApi';
 import { getAlliances, getVoteShare, getResults, getManifest, ElectionService } from '../../model/api/election.service';
 import { DashboardService } from '../../model/api/dashboard.service';
 import { useLocalStorage } from './useLocalStorage';
+import { useTheme } from '../theme/useTheme';
+import { forTheme, type ThemeName } from '../../model/derive/themeColor';
 import { applyLiveRows, mergeWinnerOverlay } from '../../model/live/liveUpdates';
 import type { LeaderChange, LeaderPatch } from '../../model/live/liveUpdates';
 import { buildStateByConstId, displayNameFromConstId } from '../../model/geo/regionMatching';
@@ -67,6 +69,11 @@ const PENDING_FILL = 'var(--map-default-fill)';
 const LIVE_REFRESH_DEBOUNCE_MS = 4000;
 const LS_GEO_URL = '/geo/india_pc.geojson';
 
+function recolor<R extends { color: string }[] | null | undefined>(rows: R, theme: ThemeName): R {
+  if (!rows || theme === 'dark') return rows;
+  return rows.map(r => ({ ...r, color: forTheme(r.color, theme) })) as R;
+}
+
 /**
  * CONTROLLER: Dashboard Data (MVC)
  * Standardizes primary dashboard data flow and derived state processing.
@@ -79,13 +86,13 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
   const [liveOverlay, setLiveOverlay] = useState<Map<string, LeaderPatch>>(() => new Map());
 
   // 1. Data Fetching (SOLID: DIP - Cache keys managed by Service)
-  const { data: partySeats, loading: aLoading, error: aError, refetch: refetchAlliances } = useApi(
+  const { data: rawPartySeats, loading: aLoading, error: aError, refetch: refetchAlliances } = useApi(
     () => election ? getAlliances(election.id) : Promise.resolve([]),
     [election?.id],
     { key: election ? ElectionService.getCacheKey(election.id, 'alliances') : undefined }
   );
 
-  const { data: voteShare, loading: vLoading, refetch: refetchVoteShare } = useApi(
+  const { data: rawVoteShare, loading: vLoading, refetch: refetchVoteShare } = useApi(
     () => election ? getVoteShare(election.id) : Promise.resolve([]),
     [election?.id],
     { key: election ? ElectionService.getCacheKey(election.id, 'voteshare') : undefined }
@@ -97,11 +104,21 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     { key: election ? ElectionService.getCacheKey(election.id, 'results') : undefined }
   );
 
-  const { data: manifest } = useApi(
+  const { data: rawManifest } = useApi(
     () => election ? getManifest(election.id) : Promise.resolve(null),
     [election?.id],
     { key: election ? ElectionService.getCacheKey(election.id, 'manifest') : undefined }
   );
+
+  // The one place party colours are adapted to the theme: every colour the views, map and model see comes from these.
+  const { theme } = useTheme();
+  const partySeats = useMemo(() => recolor(rawPartySeats, theme), [rawPartySeats, theme]);
+  const voteShare = useMemo(() => recolor(rawVoteShare, theme), [rawVoteShare, theme]);
+  const manifest = useMemo(() => {
+    const draft = rawManifest?.draft;
+    if (!rawManifest || !draft?.alliances) return rawManifest;
+    return { ...rawManifest, draft: { ...draft, alliances: recolor(draft.alliances, theme) } };
+  }, [rawManifest, theme]);
 
   // LS results carry no state info; resolve it from the PC GeoJSON (shared, cached fetch with the map).
   const isLS = election?.type === 'LS';

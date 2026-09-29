@@ -299,5 +299,10 @@
   "studio_sum_notable_switchers": "Notable switchers ({{count}})",
   "studio_col_result": "Result",
   "studio_row_three_way_short": "Three-way",
-  "studio_row_win_rate_short": "Win rate"
+  "studio_row_win_rate_short": "Win rate",
+  "studio_theme": "Theme",
+  "studio_theme_dark": "Dark",
+  "studio_theme_light": "Light",
+  "studio_theme_to_light": "Switch to light theme",
+  "studio_theme_to_dark": "Switch to dark theme"
 }

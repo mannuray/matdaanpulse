@@ -299,5 +299,10 @@
   "studio_sum_notable_switchers": "उल्लेखनीय पक्षांतर करणारे ({{count}})",
   "studio_col_result": "निकाल",
   "studio_row_three_way_short": "तिरंगी",
-  "studio_row_win_rate_short": "विजय दर"
+  "studio_row_win_rate_short": "विजय दर",
+  "studio_theme": "थीम",
+  "studio_theme_dark": "डार्क",
+  "studio_theme_light": "लाइट",
+  "studio_theme_to_light": "लाइट थीमवर जा",
+  "studio_theme_to_dark": "डार्क थीमवर जा"
 }

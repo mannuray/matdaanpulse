@@ -299,5 +299,10 @@
   "studio_sum_notable_switchers": "குறிப்பிடத்தக்க கட்சி மாறியவர்கள் ({{count}})",
   "studio_col_result": "முடிவு",
   "studio_row_three_way_short": "மும்முனை",
-  "studio_row_win_rate_short": "வெற்றி விகிதம்"
+  "studio_row_win_rate_short": "வெற்றி விகிதம்",
+  "studio_theme": "தீம்",
+  "studio_theme_dark": "இருள்",
+  "studio_theme_light": "ஒளி",
+  "studio_theme_to_light": "ஒளி தீமுக்கு மாறு",
+  "studio_theme_to_dark": "இருள் தீமுக்கு மாறு"
 }

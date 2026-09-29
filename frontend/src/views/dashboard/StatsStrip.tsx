@@ -49,7 +49,7 @@ export function StatsStrip({ vm, variant }: { vm: StatsVM; variant: 'tile' | 'fo
       <Stat label={t('studio_biggest_win')} value={stats.biggest ? stats.biggest.margin.toLocaleString() : '—'} sub={stats.biggest ? `${stats.biggest.name} · ${stats.biggest.party}` : undefined} onClick={stats.biggest ? () => vm.onSelectSeat(stats.biggest!.id) : undefined} />
       <Stat label={t('studio_seats_flipped')} value={stats.flipped != null ? String(stats.flipped) : '—'} />
       <div className="flex min-w-0 flex-[1.6] items-center gap-2 rounded-xl border border-line bg-page/50 px-3" aria-live="polite">
-        <span className={vm.isLive ? 'h-2 w-2 shrink-0 animate-pulse rounded-full bg-live' : 'h-2 w-2 shrink-0 rounded-full bg-emerald-400'} />
+        <span className={vm.isLive ? 'h-2 w-2 shrink-0 animate-pulse rounded-full bg-live' : 'h-2 w-2 shrink-0 rounded-full bg-ok'} />
         <span className="shrink-0 text-[11px] font-bold uppercase tracking-wider text-muted">{vm.isLive ? t('studio_live') : t('studio_latest')}</span>
         <span className="truncate text-sm text-ink">{tickerText}</span>
       </div>

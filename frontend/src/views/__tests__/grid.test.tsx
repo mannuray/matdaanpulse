@@ -30,6 +30,7 @@ const vm: TopBarVM = {
   electionLabel: 'VS · Bihar 2025',
   statusLabel: { kind: 'final', declared: 1, total: 1 }, shareText: 'Share me', lang: 'en', langs: ['en', 'hi'],
   onType: vi.fn(), onState: vi.fn(), onElection: vi.fn(), onLang: vi.fn(), onSearchSeat: vi.fn(),
+  theme: 'dark', onTheme: vi.fn(), onToggleTheme: vi.fn(),
 };
 const search: SearchVM = { query: '', open: false, seats: [], candidates: [], onQuery: () => {}, onOpen: () => {}, onPick: () => {} };
 const future = { v7_startTransition: true, v7_relativeSplatPath: true } as const;
@@ -88,5 +89,45 @@ describe('TopBar compact (one row)', () => {
     const dialog = screen.getByRole('dialog');
     expect(dialog.querySelectorAll('a[href^="https://wa.me"], a[href^="https://twitter.com"]')).toHaveLength(2);
     expect(within(dialog).getByRole('combobox', { name: 'Language' })).toBeTruthy();
+  });
+});
+
+describe('theme controls', () => {
+  afterEach(cleanup);
+  const full = (over: Partial<TopBarVM> = {}) => render(<MemoryRouter future={future}><TopBar vm={{ ...vm, ...over }} search={search} /></MemoryRouter>);
+  it('desktop: a 36px icon button next to Share offers the other theme and toggles', () => {
+    const onToggleTheme = vi.fn();
+    full({ theme: 'dark', onToggleTheme });
+    const btn = screen.getByRole('button', { name: 'Switch to light theme' });
+    expect(btn.className).toContain('h-9');
+    expect(btn.hasAttribute('aria-pressed')).toBe(false);
+    fireEvent.click(btn);
+    expect(onToggleTheme).toHaveBeenCalledTimes(1);
+  });
+  it('desktop: in light the button offers dark', () => {
+    full({ theme: 'light' });
+    expect(screen.getByRole('button', { name: 'Switch to dark theme' })).toBeTruthy();
+  });
+  it('mobile: the more sheet has a Theme row with a Dark / Light toggle', () => {
+    const onTheme = vi.fn();
+    render(<MemoryRouter future={future}><TopBar vm={{ ...vm, theme: 'dark', onTheme }} search={search} compact /></MemoryRouter>);
+    fireEvent.click(screen.getByRole('button', { name: 'More' }));
+    const dialog = screen.getByRole('dialog');
+    const group = within(dialog).getByRole('radiogroup', { name: 'Theme' });
+    expect(within(group).getByRole('radio', { name: 'Dark' }).getAttribute('aria-checked')).toBe('true');
+    const light = within(group).getByRole('radio', { name: 'Light' });
+    expect(light.className).toContain('min-h-11');
+    fireEvent.click(light);
+    expect(onTheme).toHaveBeenCalledWith('light');
+  });
+  it('mobile: a 44px logo mark links home and is only shown when the title is hidden', () => {
+    const { container } = bar();
+    const mark = container.querySelector('a[data-logo-mark]')!;
+    expect(mark.getAttribute('href')).toBe('/');
+    expect(mark.getAttribute('aria-label')).toBe('Election Tracker');
+    expect(mark.className).toContain('h-11');
+    expect(mark.className).toContain('w-11');
+    expect(mark.className).toContain('hidden');
+    expect(mark.className).toContain('max-[369px]:grid');
   });
 });

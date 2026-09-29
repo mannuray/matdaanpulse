@@ -13,7 +13,7 @@ export function Tile({ title, onExpand, actions, stackActions, className, bodyCl
         <div className={cn('flex min-w-0 items-center gap-2', stackActions ? 'order-last basis-full' : 'ml-auto')}>{actions}</div>
         {onExpand && (
           <button type="button" onClick={onExpand} aria-label={t('studio_expand', { name: title })}
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-muted hover:bg-tile-raised hover:text-accent">
+            className="relative grid h-8 w-8 shrink-0 place-items-center rounded-full text-muted before:absolute before:-inset-1.5 before:content-[''] hover:bg-tile-raised hover:text-accent">
             <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden><path d="M12 3h5v5M8 17H3v-5M17 3l-6 6M3 17l6-6" /></svg>
           </button>
         )}

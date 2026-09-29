@@ -7,6 +7,7 @@ import { getElections } from '../../model/api/election.service';
 import { getStates } from '../../model/api/geo.service';
 import type { Election } from '../../model/types';
 import { useSources } from '../sources/DashboardSourcesProvider';
+import { useTheme, type Theme } from '../theme/useTheme';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { pickLatestElection } from '../../model/derive/electionPick';
 import { countDeclared } from '../../model/derive/marginStats';
@@ -40,12 +41,16 @@ export interface TopBarVM {
   onElection(id: string): void;
   onLang(l: string): void;
   onSearchSeat(id: string): void;
+  theme: Theme;
+  onTheme(t: Theme): void;
+  onToggleTheme(): void;
 }
 
 export function useTopBarVM(): TopBarVM {
   const { i18n, t } = useTranslation();
   const navigate = useNavigate();
   const src = useSources();
+  const { theme, setTheme, toggle } = useTheme();
   const { dispatch } = useDashboardStore();
   const { setElection, setElectionType, setSelectedStateId } = useElection();
   const { data: elections } = useApi(() => getElections(), []);
@@ -90,5 +95,8 @@ export function useTopBarVM(): TopBarVM {
     onElection: id => { const el = all.find(e => e.id === id) ?? null; go(el, el?.type ?? current.type); },
     onLang: l => { void i18n.changeLanguage(l); },
     onSearchSeat: id => dispatch({ type: 'selectSeat', seat: id }),
+    theme,
+    onTheme: setTheme,
+    onToggleTheme: toggle,
   };
 }

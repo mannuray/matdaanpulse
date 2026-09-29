@@ -594,6 +594,15 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] "Save AI Content" button persists changes via `PATCH /admin/constituency-analysis/:id`
 - [x] AI enrichment prompts inject existing admin-corrected content as reference seed (prevents overwriting manual fixes)
 
+### Studio Dashboard: Dark / Light Theme
+- [x] Two themes only, Dark (default, the studio look) and Light; choice persisted in `localStorage` key `studio_theme` (invalid/missing = dark)
+- [x] `viewmodels/theme/useTheme.ts`: shared store (no provider), sets `data-theme` and `color-scheme` on `<html>` so portaled dialogs, sheets and the map tooltip follow; inline script in `index.html` applies it before first paint
+- [x] Light tokens in `theme/studio.css` under `:root[data-theme="light"]` (ink/muted/accent/live meet WCAG AA on tile and page); new tokens `on-accent`, `ok`, `ok-text`, `scrim`
+- [x] Party colours adapted once in `useDashboardData` via pure `model/derive/themeColor.ts` `forTheme(hex, theme)` (light darkens colours under 3:1 against white, same hue)
+- [x] Desktop: sun/moon icon button next to Share; mobile: Theme row (Dark/Light toggle, 44px) in the More sheet
+- [x] Legacy pages share the same store (their old `theme` key and system-preference default are gone)
+- [x] Mobile: compact logo-mark link when the title is hidden (<370px); map layer tabs scroll with fade edges; tile expand buttons have a 44px hit area
+
 ### Other
 - [ ] Mobile-optimized map controls
 - [ ] Export/share map screenshots

@@ -24,14 +24,44 @@
   --color-map-pending: #2A3452;
   --color-map-swing: #E8C547;
   --color-map-threeway: #F59E0B;
+  --color-on-accent: #0A0F1E;
+  --color-ok: #34D399;
+  --color-ok-text: #6EE7B7;
+  --color-ok-tint: rgb(16 185 129 / .15);
+  --color-scrim: rgb(10 15 30 / .7);
   --radius-tile: 16px;
   --font-display: "Barlow Condensed", "Noto Sans Devanagari", "Noto Sans Tamil", sans-serif;
   --font-body: "Inter Variable", "Noto Sans Devanagari", "Noto Sans Tamil", system-ui, sans-serif;
 }
 
 /* Scoped base styles for the studio dashboard only (no global reset). */
-:root { --studio-muted: var(--text-secondary); }
+:root { --studio-muted: var(--text-secondary); --studio-pulse: 139 124 255; }
 .studio-root { --studio-muted: #8C96B0; }
+
+/* Light theme: same roles, overrides sit at higher specificity than :root / .studio-root above.
+   Contrast (WCAG, see docs): ink on page 16.6:1, muted on tile 5.9:1 / tile-raised 5.2:1, accent on tile 5.6:1 / tile-raised 4.9:1, live on tile 5.4:1. */
+:root[data-theme="light"] {
+  --color-page: #F4F6FB;
+  --color-tile: #FFFFFF;
+  --color-tile-raised: #EEF1F8;
+  --color-line: #C5CDDF;
+  --color-ink: #0E1530;
+  --color-accent: #6252DC;
+  --color-live: #D01F1F;
+  --color-map-bg: #EAEEF6;
+  --color-map-stroke: #FFFFFF;
+  --color-map-pending: #C9D0E0;
+  --color-map-swing: #B8930F;
+  --color-map-threeway: #D97706;
+  --color-on-accent: #FFFFFF;
+  --color-ok: #059669;
+  --color-ok-text: #047857;
+  --color-ok-tint: rgb(5 150 105 / .12);
+  --color-scrim: rgb(14 21 48 / .4);
+  --studio-muted: #5B6480;
+  --studio-pulse: 98 82 220;
+}
+:root[data-theme="light"] .studio-root { --studio-muted: #5B6480; }
 @layer base {
   .studio-root {
     background: var(--color-page);
@@ -44,7 +74,7 @@
   .studio-root :is(h1, h2, h3, h4, h5, h6) { margin: 0; }
   .studio-root .tabular { font-variant-numeric: tabular-nums; }
 }
-@keyframes studio-pulse { 0% { box-shadow: 0 0 0 0 rgb(139 124 255 / .6); } 100% { box-shadow: 0 0 0 10px rgb(139 124 255 / 0); } }
+@keyframes studio-pulse { 0% { box-shadow: 0 0 0 0 rgb(var(--studio-pulse) / .6); } 100% { box-shadow: 0 0 0 10px rgb(var(--studio-pulse) / 0); } }
 .studio-pulse { animation: studio-pulse 900ms ease-out 1; }
 @keyframes studio-zoom { from { opacity: 0; scale: .96; } to { opacity: 1; scale: 1; } }
 .studio-focus[data-state="open"] { animation: studio-zoom 200ms ease-out; }

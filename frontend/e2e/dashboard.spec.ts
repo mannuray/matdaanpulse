@@ -319,3 +319,128 @@ for (const size of MOBILE_SIZES) {
     });
   });
 }
+
+// ---- Task 25: dark / light theme ----
+const SHOTS = '../.playwright-mcp';
+const bgOf = (page: Page) => page.evaluate(() => getComputedStyle(document.querySelector('.studio-root')!).backgroundColor);
+const themeOf = (page: Page) => page.evaluate(() => document.documentElement.dataset.theme);
+
+test.describe('theme selector', () => {
+  test.beforeEach(async ({ page }) => { await page.addInitScript(() => { if (!sessionStorage.getItem('t25')) { localStorage.removeItem('studio_theme'); sessionStorage.setItem('t25', '1'); } }); });
+
+  test('desktop: defaults to dark, the top-bar button switches to light, and light survives a reload', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}`);
+    await expect(page.getByText('202').first()).toBeVisible();
+    expect(await themeOf(page)).toBe('dark');
+    const dark = await bgOf(page);
+    expect(dark).toBe('rgb(10, 15, 30)');
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: `${SHOTS}/t25-dark-1440.png` });
+    await page.getByRole('button', { name: 'Switch to light theme' }).click();
+    expect(await themeOf(page)).toBe('light');
+    expect(await bgOf(page)).toBe('rgb(244, 246, 251)');
+    expect(await page.evaluate(() => document.documentElement.style.colorScheme)).toBe('light');
+    await assertNoScroll(page);
+    await page.waitForTimeout(500);
+    await page.screenshot({ path: `${SHOTS}/t25-light-1440.png` });
+    await page.reload();
+    await expect(page.getByText('202').first()).toBeVisible();
+    expect(await themeOf(page)).toBe('light');
+    await expect(page.getByRole('button', { name: 'Switch to dark theme' })).toBeVisible();
+    await page.getByRole('button', { name: 'Switch to dark theme' }).click();
+    expect(await themeOf(page)).toBe('dark');
+  });
+
+  test('desktop light: summary focus with a chart, dialog and scrim are themed', async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.getItem('t25') && localStorage.setItem('studio_theme', 'light'));
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}?layer=history`);
+    await page.getByRole('button', { name: /more (rows|sections?|row)/ }).click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog.getByRole('img', { name: 'Margin trend' })).toBeVisible();
+    expect(await dialog.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(255, 255, 255)');
+    await dialog.getByRole("img", { name: "Margin trend" }).scrollIntoViewIfNeeded();
+    await page.waitForTimeout(500);
+    await page.screenshot({ path: `${SHOTS}/t25-light-focus-1440.png` });
+  });
+
+  test('mobile 390: the More sheet has a Theme toggle that switches the dashboard', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`/election/${BIHAR}`);
+    await expect(page.getByText('202').first()).toBeVisible();
+    await page.getByRole('button', { name: 'More' }).click();
+    const group = page.getByRole('dialog').getByRole('radiogroup', { name: 'Theme' });
+    await expect(group.getByRole('radio', { name: 'Dark' })).toBeChecked();
+    const box = await group.getByRole('radio', { name: 'Light' }).boundingBox();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: `${SHOTS}/t25-light-390-sheet.png` });
+    await group.getByRole('radio', { name: 'Light' }).click();
+    expect(await themeOf(page)).toBe('light');
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog')).toHaveCount(0);
+    await assertNoScroll(page);
+    await page.waitForTimeout(500);
+    await page.screenshot({ path: `${SHOTS}/t25-light-390.png` });
+    await page.getByRole('button', { name: /Choose election/ }).click();
+    await page.getByRole('dialog').getByRole('combobox', { name: 'Year' }).click();
+    await expect(page.getByRole('option', { name: '2020' })).toBeVisible();
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: `${SHOTS}/t25-light-390-year-select.png` });
+    await page.keyboard.press('Escape');
+    await page.keyboard.press('Escape');
+    await page.reload();
+    expect(await themeOf(page)).toBe('light');
+  });
+
+  test('desktop light: the map tooltip is themed', async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.getItem('t25') && localStorage.setItem('studio_theme', 'light'));
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}`);
+    await expect(page.getByText('202').first()).toBeVisible();
+    await page.waitForTimeout(800);
+    const bb = (await page.locator('path.pc').nth(80).boundingBox())!;
+    await page.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2);
+    const tip = page.locator('.studio-root.fixed.pointer-events-none');
+    await expect(tip).toBeVisible();
+    expect(await tip.evaluate(el => getComputedStyle(el).backgroundColor)).toMatch(/^oklab\(0\.97/);
+    await page.screenshot({ path: `${SHOTS}/t25-light-tooltip-1440.png` });
+  });
+
+  test('mobile 360: logo mark replaces the hidden title; every map layer tab is reachable and Reserved works; expand buttons are 44px', async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.getItem('t25') && localStorage.setItem('studio_theme', 'light'));
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto(`/election/${BIHAR}`);
+    await expect(page.getByText('202').first()).toBeVisible();
+    const mark = page.locator('a[data-logo-mark]');
+    await expect(mark).toBeVisible();
+    const mb = (await mark.boundingBox())!;
+    expect(mb.width).toBeGreaterThanOrEqual(44);
+    expect(mb.height).toBeGreaterThanOrEqual(44);
+    await expect(page.getByRole('link', { name: 'Election Tracker' })).toHaveCount(1);
+    const tabs = page.getByRole('radiogroup', { name: 'Map layers' });
+    const names = await tabs.getByRole('radio').allTextContents();
+    expect(names).toContain('Reserved');
+    for (const n of names) {
+      const r = tabs.getByRole('radio', { name: n, exact: true });
+      await r.scrollIntoViewIfNeeded();
+      const inside = await r.evaluate(el => { const a = el.getBoundingClientRect(); const c = el.parentElement!.getBoundingClientRect(); return a.left >= c.left - 1 && a.right <= c.right + 1; });
+      expect(inside, `${n} fully visible once scrolled`).toBe(true);
+    }
+    await page.screenshot({ path: `${SHOTS}/t25-light-360.png` });
+    await tabs.getByRole('radio', { name: 'Reserved', exact: true }).click();
+    await expect(tabs.getByRole('radio', { name: 'Reserved', exact: true })).toBeChecked();
+    await assertNoScroll(page);
+    let checked = 0;
+    for (const b of await page.getByRole('button', { name: /^Expand / }).all()) {
+      const bb = (await b.boundingBox())!;
+      if (bb.x < 8 || bb.x + bb.width > 352 || bb.y < 0 || bb.y + bb.height > 740) continue; // rail cards scrolled out of view
+      checked++;
+      // Probe a point 5px outside the 32px visual box: the pseudo-element hit area must still resolve to the button.
+      const hit = await b.evaluate((el, pt) => { const t = document.elementFromPoint(pt.x, pt.y); return !!t && (t === el || el.contains(t)); }, { x: bb.x - 5, y: bb.y + bb.height / 2 });
+      expect(hit, 'expand button hit area >= 42px').toBe(true);
+    }
+    expect(checked).toBeGreaterThan(0);
+  });
+});

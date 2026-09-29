@@ -61,7 +61,7 @@ function AddSeat({ vm }: { vm: LeadersVM }) {
   return (
     <div className="flex shrink-0 items-center gap-2 px-2">
       <PickerSelect value={pick} onChange={setPick} ariaLabel={t('studio_add_seat')} placeholder={t('studio_add_seat')} options={vm.seatOptions.map(s => ({ value: s.id, label: s.name }))} />
-      <button type="button" disabled={!pick} onClick={() => { vm.onAddCustom(pick); setPick(''); }} className="h-8 rounded-full bg-accent px-4 text-sm font-semibold text-page disabled:opacity-40">{t('studio_add')}</button>
+      <button type="button" disabled={!pick} onClick={() => { vm.onAddCustom(pick); setPick(''); }} className="h-8 rounded-full bg-accent px-4 text-sm font-semibold text-on-accent disabled:opacity-40">{t('studio_add')}</button>
     </div>
   );
 }

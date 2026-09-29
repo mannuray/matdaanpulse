@@ -91,7 +91,7 @@ describe('SummaryPreview is never interactive', () => {
 
 describe('mobile rail titles', () => {
   const props = (focus: FocusTile | null, onFocus = noop) => ({
-    topBar: { electionType: 'VS', electionId: 'e', states: [], stateId: null, years: [], lsElections: [], electionLabel: 'VS · X 2025', statusLabel: { kind: 'final', declared: 1, total: 1 }, shareText: '', lang: 'en', langs: ['en'], onType: noop, onState: noop, onElection: noop, onLang: noop, onSearchSeat: noop },
+    topBar: { electionType: 'VS', electionId: 'e', states: [], stateId: null, years: [], lsElections: [], electionLabel: 'VS · X 2025', statusLabel: { kind: 'final', declared: 1, total: 1 }, shareText: '', lang: 'en', langs: ['en'], onType: noop, onState: noop, onElection: noop, onLang: noop, onSearchSeat: noop, theme: 'dark', onTheme: noop, onToggleTheme: noop },
     search: { query: '', open: false, seats: [], candidates: [], onQuery: noop, onOpen: noop, onPick: noop },
     scoreboard: { blocs: [], others: { seats: 0, votePct: null }, totalSeats: 1, majority: 1, countedSeats: 0, winnerId: null, marginOverMajority: null, status: 'final', pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop },
     standings: { ...standings([row('BJP', 5)]), onFocus },

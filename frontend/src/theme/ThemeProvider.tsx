@@ -1,6 +1,5 @@
-import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
-
-type Theme = "light" | "dark";
+import { createContext, useContext, type ReactNode } from "react";
+import { useTheme as useSharedTheme, type Theme } from "../viewmodels/theme/useTheme";
 
 interface ThemeContextValue {
   theme: Theme;
@@ -9,28 +8,11 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-function getInitialTheme(): Theme {
-  try {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark' || saved === 'light') return saved;
-  } catch { /* ignore */ }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-
+/** Legacy pages share the studio's theme store (key `studio_theme`, default dark) so both UIs always agree. */
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    try { localStorage.setItem('theme', theme); } catch { /* ignore */ }
-  }, [theme]);
-
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => prev === "light" ? "dark" : "light");
-  }, []);
-
+  const { theme, toggle } = useSharedTheme();
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme: toggle }}>
       {children}
     </ThemeContext.Provider>
   );
