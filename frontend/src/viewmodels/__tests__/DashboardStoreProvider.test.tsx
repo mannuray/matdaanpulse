@@ -65,4 +65,14 @@ describe('DashboardStoreProvider', () => {
     expect(result.current.loc.pathname).toBe('/election/x');
     expect(result.current.loc.search).toBe('');
   });
+  it('closing focus after a layer change keeps the new layer (replace, no Back)', () => {
+    const { result } = setup(['/prev', '/election/x'], 1);
+    act(() => result.current.store.dispatch({ type: 'focus', tile: 'standings' }));
+    act(() => result.current.store.dispatch({ type: 'setLayer', layer: 'swing' }));
+    act(() => result.current.store.dispatch({ type: 'focus', tile: null }));
+    expect(result.current.store.state.layer).toBe('swing');
+    expect(result.current.loc.pathname).toBe('/election/x');
+    expect(result.current.loc.search).toBe('?layer=swing');
+    expect(result.current.store.state.focus).toBeNull();
+  });
 });

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { StandingsVM, StandingRow } from '../../viewmodels/tiles/useStandingsVM';
 import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
+import type { SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
+import { SummaryTab } from './SummaryTab';
 import { Tile } from './Tile';
 import { STATUS_STYLE } from './statusStyle';
 import { useFitRows } from '../hooks/useFitRows';
@@ -10,6 +12,7 @@ import { PickerSelect } from '../ui/PickerSelect';
 import { cn } from '../ui/cn';
 
 export type StandingsTab = 'parties' | 'watchlist';
+type TileTab = StandingsTab | 'summary';
 
 const ROW_H = 36;
 /** Height reserved under the watchlist rows for the "Add seat…" control (h-8 + gap). */
@@ -86,22 +89,29 @@ export function WatchlistPreview({ vm }: { vm: LeadersVM }) {
   return <div className="flex flex-col gap-1">{vm.watchlist.slice(0, 2).map(c => <WatchRow key={c.key} c={c} vm={vm} />)}</div>;
 }
 
-export function StandingsTile({ vm, variant, watchlist, initialTab = 'parties' }: {
-  vm: StandingsVM; variant: 'tile' | 'focus'; watchlist?: LeadersVM; initialTab?: StandingsTab;
+export function StandingsTile({ vm, variant, watchlist, summary, initialTab }: {
+  vm: StandingsVM; variant: 'tile' | 'focus'; watchlist?: LeadersVM; summary?: SummaryVM; initialTab?: StandingsTab;
 }) {
   const { t } = useTranslation();
-  const [tab, setTab] = useState<StandingsTab>(watchlist ? initialTab : 'parties');
+  // The summary tab exists only in the grid tile (the focus view keeps Parties / Watchlist) and is the default there.
+  const withSummary = variant === 'tile' && summary != null;
+  const [picked, setTab] = useState<TileTab | null>(null);
+  const tab: TileTab = picked ?? initialTab ?? (withSummary ? 'summary' : 'parties');
+  const shown: TileTab = tab === 'summary' && !withSummary ? 'parties' : tab === 'watchlist' && !watchlist ? 'parties' : tab;
   const fit = useFitRows(vm.rows, ROW_H);
-  const toggle = watchlist && (
-    <PillToggle<StandingsTab> size="sm" value={tab} onChange={setTab} ariaLabel={t('party_standings')}
-      options={[{ value: 'parties' as StandingsTab, label: t('studio_tab_parties') }, { value: 'watchlist' as StandingsTab, label: t('studio_tab_watchlist', { count: watchlist.watchlist.length }) }]} />
+  const options: { value: TileTab; label: string }[] = [];
+  if (withSummary) options.push({ value: 'summary', label: t('studio_tab_summary', { layer: t(`map_tab_${summary.layer}`) }) });
+  options.push({ value: 'parties', label: t('studio_tab_parties') });
+  if (watchlist) options.push({ value: 'watchlist', label: t('studio_tab_watchlist', { count: watchlist.watchlist.length }) });
+  const toggle = options.length > 1 && (
+    <PillToggle<TileTab> size="sm" value={shown} onChange={setTab} ariaLabel={t('party_standings')} options={options} />
   );
   if (variant === 'focus') {
     const max = Math.max(1, ...vm.allRows.map(r => r.seats));
     return (
       <div className="flex flex-col gap-3">
         {toggle && <div className="flex">{toggle}</div>}
-        {tab === 'watchlist' && watchlist ? (
+        {shown === 'watchlist' && watchlist ? (
           <div className="flex flex-col gap-1">
             {watchlist.watchlist.length === 0 && <p className="py-4 text-sm text-muted">{t('studio_watch_empty')}</p>}
             {watchlist.watchlist.map(c => <WatchRow key={c.key} c={c} vm={watchlist} />)}
@@ -116,7 +126,7 @@ export function StandingsTile({ vm, variant, watchlist, initialTab = 'parties' }
   const max = Math.max(1, ...vm.rows.map(r => r.seats));
   return (
     <Tile title={t('party_standings')} onExpand={vm.onFocus} pulse={vm.pulse} actions={toggle}>
-      {tab === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} onMore={vm.onFocus} /> : (
+      {shown === 'summary' && summary ? <SummaryTab vm={summary} /> : shown === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} onMore={vm.onFocus} /> : (
         <div ref={fit.ref} className="flex h-full flex-col gap-1">
           {vm.rows.length === 0 && <p className="py-6 text-center text-sm text-muted">{t('studio_no_results_yet')}</p>}
           {fit.visible.map(r => <Row key={r.id} r={r} max={max} vm={vm} />)}

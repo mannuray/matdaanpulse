@@ -11,6 +11,8 @@ export function DashboardStoreProvider({ allowedLayers, knownSeats, children }: 
   const navigate = useNavigate();
   /** True while the current history entry (focus/seat open) was pushed by this store, so closing can pop it. */
   const pushedRef = useRef(false);
+  /** The requested layer when that entry was pushed: Back only returns to a URL with the same layer (R29). */
+  const pushedLayerRef = useRef<LayerId | null>(null);
   const [raw, dispatch] = useReducer(dashboardReducer, undefined, () => ({ ...initialUiState, ...parseUiParams(params, knownSeats) }));
 
   // URL → state (back/forward, pasted links, late-loading seat list). Idempotent after our own writes.
@@ -19,7 +21,7 @@ export function DashboardStoreProvider({ allowedLayers, knownSeats, children }: 
   }, [params, knownSeats]);
 
   // state → URL (the REQUESTED layer is written, not the effective one).
-  // Opening focus/seat from closed pushes one history entry; closing that entry goes Back (so Back never re-opens it);
+  // Opening focus/seat from closed pushes one history entry; closing that entry goes Back (so Back never re-opens it) unless the layer changed meanwhile;
   // every other change (layer, switching tiles, closing a pasted link) replaces.
   useEffect(() => {
     const isOpen = (p: URLSearchParams) => Boolean(p.get('focus') || p.get('seat'));
@@ -32,11 +34,14 @@ export function DashboardStoreProvider({ allowedLayers, knownSeats, children }: 
     const willOpen = isOpen(next);
     if (!wasOpen && willOpen) {
       pushedRef.current = true;
+      pushedLayerRef.current = raw.layer;
       setParams(next);
-    } else if (wasOpen && !willOpen && pushedRef.current) {
+    } else if (wasOpen && !willOpen && pushedRef.current && pushedLayerRef.current === raw.layer) {
       pushedRef.current = false;
       navigate(-1);
     } else {
+      // Layer changed while open (Back would restore the old layer) or a pasted link: replace and forget the pushed entry.
+      if (wasOpen && !willOpen) pushedRef.current = false;
       setParams(next, { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

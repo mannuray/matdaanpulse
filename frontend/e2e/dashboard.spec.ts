@@ -113,3 +113,15 @@ test('track a seat in the map focus and see it in the Watchlist tab', async ({ p
   await assertNoScroll(page);
   await page.screenshot({ path: 'e2e/__shots__/watchlist-tab.png' });
 });
+
+test('side card shows the Summary tab by default and follows the map layer', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/election/${BIHAR}`);
+  const summary = page.getByRole('radio', { name: 'Summary · Overview' });
+  await expect(summary).toBeChecked();
+  await expect(page.getByRole('radio', { name: 'Parties' })).not.toBeChecked();
+  await page.getByRole('radio', { name: 'Swing', exact: true }).click();
+  await expect(page.getByRole('radio', { name: 'Summary · Swing' })).toBeChecked();
+  await expect(page.getByRole('heading', { name: 'Net swing' })).toBeVisible();
+  await assertNoScroll(page);
+});

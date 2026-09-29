@@ -3,6 +3,7 @@ import type { TopBarVM } from '../../viewmodels/tiles/useTopBarVM';
 import type { SearchVM } from '../../viewmodels/tiles/useSearchVM';
 import type { ScoreboardVM } from '../../viewmodels/tiles/useScoreboardVM';
 import type { StandingsVM } from '../../viewmodels/tiles/useStandingsVM';
+import type { SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
 import type { LayerInsightVM } from '../../viewmodels/tiles/useLayerInsightVM';
 import type { LeadersVM } from '../../viewmodels/tiles/useLeadersVM';
 import type { StatsVM } from '../../viewmodels/tiles/useStatsVM';
@@ -23,7 +24,7 @@ import { MapTile } from '../map/MapTile';
 import { SeatPanel } from '../map/SeatPanel';
 
 export interface DashboardViewProps {
-  topBar: TopBarVM; search: SearchVM; scoreboard: ScoreboardVM; standings: StandingsVM; insight: LayerInsightVM;
+  topBar: TopBarVM; search: SearchVM; scoreboard: ScoreboardVM; standings: StandingsVM; insight: LayerInsightVM; summary?: SummaryVM;
   leaders: LeadersVM; stats: StatsVM; map: MapVM; seatPanel: SeatPanelVM | null;
   focus: FocusTile | null; onCloseFocus(): void;
 }
@@ -73,7 +74,7 @@ export function DashboardGrid(p: DashboardViewProps) {
       <MapTile vm={p.map} variant="tile" footer={<LayerInsightStrip vm={p.insight} variant="footer" />} />
       <div className="grid min-h-0 grid-rows-[148px_minmax(0,1fr)] gap-3">
         <ScoreboardTile vm={p.scoreboard} variant="tile" />
-        <StandingsTile vm={p.standings} variant="tile" watchlist={p.leaders} />
+        <StandingsTile vm={p.standings} variant="tile" watchlist={p.leaders} summary={p.summary} />
       </div>
       <div className="col-span-2 grid min-h-0"><LeadersStrip vm={p.leaders} variant="tile" /></div>
       <div className="col-span-2 grid min-h-0"><StatsStrip vm={p.stats} variant="tile" /></div>

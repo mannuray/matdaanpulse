@@ -11,11 +11,13 @@ import type { LayerInsightVM } from '../../viewmodels/tiles/useLayerInsightVM';
 import type { LeadersVM } from '../../viewmodels/tiles/useLeadersVM';
 
 const noop = () => {};
-const original = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientHeight');
+const originals = (['clientHeight', 'clientWidth'] as const).map(k => [k, Object.getOwnPropertyDescriptor(HTMLElement.prototype, k)] as const);
 afterEach(() => {
   cleanup();
-  if (original) Object.defineProperty(HTMLElement.prototype, 'clientHeight', original);
-  else delete (HTMLElement.prototype as unknown as Record<string, unknown>).clientHeight;
+  for (const [k, d] of originals) {
+    if (d) Object.defineProperty(HTMLElement.prototype, k, d);
+    else delete (HTMLElement.prototype as unknown as Record<string, unknown>)[k];
+  }
 });
 
 describe('tile behaviour', () => {
@@ -74,7 +76,6 @@ describe('tile behaviour', () => {
     render(<LeadersStrip vm={vm} variant="tile" />);
     expect(screen.getAllByRole('button', { name: /Leader \d/ })).toHaveLength(2);
     expect(screen.getByText('+4 more')).toBeTruthy();
-    delete (HTMLElement.prototype as unknown as Record<string, unknown>).clientWidth;
   });
 
   describe('insight footer variant', () => {
