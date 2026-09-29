@@ -30,4 +30,28 @@ describe('planSummaryFit', () => {
   it('handles empty input', () => {
     expect(planSummaryFit([], 300, O)).toEqual({ visible: [], hiddenRows: 0, hiddenSections: 0 });
   });
+  it('untitled sections have no header, and stats sections are all-or-nothing blocks of statsH', () => {
+    const stats: SummarySection = { id: 'k', titleKey: '', layout: 'stats', rows: [row(1), row(2), row(3)] };
+    const o = { ...O, statsH: 52 };
+    // Untitled stats: 52. Then A(2) = 4 + 22 + 4 + 2*32 - 4 = 90 -> 142 total (all fits, no footer).
+    expect(planSummaryFit([stats, sec('a', 2)], 142, o)).toEqual({ visible: [{ sectionId: 'k', rows: 3 }, { sectionId: 'a', rows: 2 }], hiddenRows: 0, hiddenSections: 0 });
+    // 51px: the block does not fit -> hidden (3 rows), and nothing else does either.
+    expect(planSummaryFit([stats], 51, o)).toEqual({ visible: [], hiddenRows: 3, hiddenSections: 1 });
+    // Titled stats: header 22 + gap 4 + 52 = 78.
+    const titled: SummarySection = { ...stats, id: 't', titleKey: 't' };
+    expect(planSummaryFit([titled], 78, o).visible).toEqual([{ sectionId: 't', rows: 3 }]);
+    expect(planSummaryFit([titled], 77, o).visible).toEqual([]);
+  });
+
+  it('counts rows the model already cut (`more`) in the hidden rows and always reserves the footer', () => {
+    const cut: SummarySection = { ...sec('a', 2), more: 3 };
+    expect(planSummaryFit([cut], 500, O)).toEqual({ visible: [{ sectionId: 'a', rows: 2 }], hiddenRows: 3, hiddenSections: 0 });
+  });
+
+  it('fits rows exactly: header + n rows with gaps, no off-by-a-gap', () => {
+    // A(5) needs 22 + 5*32 = 182; with a footer reserved, 3 rows = 22 + 96 = 118 <= 130 but 4 rows = 150 > 130.
+    expect(planSummaryFit([sec('a', 5)], 150, O).visible).toEqual([{ sectionId: 'a', rows: 3 }]);
+    // 127px available -> 107 after the footer: 3 rows need 118, so only 2 rows fit.
+    expect(planSummaryFit([sec('a', 5)], 127, O).visible).toEqual([{ sectionId: 'a', rows: 2 }]);
+  });
 });

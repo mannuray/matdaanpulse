@@ -8,41 +8,62 @@ const byId = (id: string, ctx = makeCtx()) => sec(ctx).find(s => s.id === id)!;
 describe('overview summary', () => {
   it('lists sections in the binding order', () => {
     const ctx = makeCtx({ constCandidates: new Map([['c1', [cand('c1', 'BJP', 100), cand('c1', 'RJD', 90)]]]) });
-    expect(sec(ctx).map(s => s.id)).toEqual(['vote_vs_seats', 'closest', 'biggest', 'margin_dist', 'wasted', 'reserved']);
+    expect(sec(ctx).map(s => s.id)).toEqual(['key_stats', 'margin_dist', 'closest', 'biggest', 'reserved', 'vote_vs_seats_alliances', 'vote_vs_seats_parties', 'wasted']);
   });
 
-  it('vote_vs_seats: seat %, vote % and disparity per alliance, others, then parties', () => {
+  it('key_stats: declared (WON) seats, average and median margin over every seat with a leader', () => {
+    // ElectionSummary.tsx: margins A 800, B 12000, C 3000, D 60000, E 400, G 30000 -> avg round(106200 / 6) = 17700, median (3000 + 12000) / 2 = 7500.
+    const s = byId('key_stats');
+    expect(s).toMatchObject({ layout: 'stats', titleKey: '' });
+    expect(s.rows.map(r => [r.id, r.labelKey, r.value, r.valueFormat])).toEqual([
+      ['declared', 'seats_declared', 6, 'int'], ['avg_margin', 'avg_margin', 17700, 'compact'], ['median', 'median_margin', 7500, 'compact'],
+    ]);
+    // A LEADING seat counts towards the margins but not towards Declared.
+    const live = byId('key_stats', makeCtx({ seats: [seat('W', 'BJP', 100), seat('L', 'RJD', 300, 'GEN', undefined, 'LEADING'), seat('P', '', undefined)] }));
+    expect(live.rows.map(r => r.value)).toEqual([1, 200, 200]);
+  });
+
+  it('vote_vs_seats_alliances: difference, vote % and seat % per alliance, others last', () => {
     // Legacy OverviewSection.tsx:173-174: seatPct = seats / led seats * 100, disparity = seatPct - votePct.
     // 6 led seats: NDA (A,B,D) = 3 -> 50.0 vs vote 30+20 = 50 -> 0.0; MGB (C,E) = 2 -> 33.3 vs 25+5 = 30 -> +3.3;
-    // others (G) = 1 -> 16.7 vs AIMIM 3 + IND 4 = 7 -> +9.7 (OverviewSection.tsx:176-180).
-    const rows = byId('vote_vs_seats').rows;
-    const flat = rows.map(r => [r.id, r.value, r.extra!.map(e => e.value)]);
-    expect(flat.slice(0, 3)).toEqual([
-      ['alliance:NDA', 3, [50, 50, 0]],
-      ['alliance:MGB', 2, [33.3, 30, 3.3]],
-      ['others', 1, [16.7, 7, 9.7]],
+    // others (G) = 1 -> 16.7 vs AIMIM 3 + IND 4 = 7 -> +9.7 (OverviewSection.tsx:176-180). Sorted by seat % desc.
+    const s = byId('vote_vs_seats_alliances');
+    expect(s.columnsKeys).toEqual(['studio_col_disparity', 'studio_col_vote_pct', 'studio_col_seat_pct']);
+    expect(s.primaryCol).toBe(2);
+    expect(s.rows.map(r => [r.id, r.value, r.extra!.map(e => e.value)])).toEqual([
+      ['alliance:NDA', 0, [50, 50]], ['alliance:MGB', 3.3, [30, 33.3]], ['others', 9.7, [7, 16.7]],
     ]);
-    expect(rows[2].labelKey).toBe('others');
-    // Party rows (OverviewSection.tsx:192-196): seats > 0 or vote >= 1, sorted by vote share desc.
-    expect(rows.slice(3).map(r => [r.id, r.value, r.extra![1].value])).toEqual([
-      ['party:BJP', 2, 30], ['party:RJD', 2, 25], ['party:JDU', 1, 20], ['party:INC', 0, 5], ['party:IND', 0, 4], ['party:AIMIM', 1, 3],
-    ]);
-    expect(byId('vote_vs_seats').columnsKeys).toEqual(['studio_col_seats', 'studio_col_seat_pct', 'studio_col_vote_pct', 'studio_col_disparity']);
+    expect(s.rows[0].valueFormat).toBe('signed1');
+    expect(s.rows[2].labelKey).toBe('others');
   });
 
-  it('vote_vs_seats is omitted without alliances (legacy needed standings groups)', () => {
-    expect(sec(makeCtx({ alliances: [] })).map(s => s.id)).not.toContain('vote_vs_seats');
+  it('vote_vs_seats_parties: seats > 0 or vote >= 1, sorted by vote share desc', () => {
+    // Party rows (OverviewSection.tsx:192-196), top 10.
+    const s = byId('vote_vs_seats_parties');
+    expect(s.rows.map(r => [r.id, r.extra![0].value, r.extra![1].value])).toEqual([
+      ['party:BJP', 30, 33.3], ['party:RJD', 25, 33.3], ['party:JDU', 20, 16.7], ['party:INC', 5, 0], ['party:IND', 4, 0], ['party:AIMIM', 3, 16.7],
+    ]);
+  });
+
+  it('vote_vs_seats sections are omitted without alliances (legacy needed standings groups)', () => {
+    const ids = sec(makeCtx({ alliances: [] })).map(s => s.id);
+    expect(ids).not.toContain('vote_vs_seats_alliances');
+    expect(ids).not.toContain('vote_vs_seats_parties');
   });
 
   it('closest / biggest: led seats ordered by margin, party as sub text', () => {
     expect(byId('closest').rows.map(r => [r.label, r.value])).toEqual([['E', 400], ['A', 800], ['C', 3000], ['B', 12000], ['G', 30000], ['D', 60000]]);
+    expect(byId('closest').titleKey).toBe('studio_sum_closest_battles');
+    expect(byId('closest').rows[0].valueFormat).toBe('compact');
     expect(byId('closest').rows[0]).toMatchObject({ sub: 'RJD', color: '#7BD34A', seatIds: ['E'], partyIds: ['RJD'] });
-    expect(byId('biggest').rows.map(r => r.label)).toEqual(['D', 'G', 'B', 'C', 'A', 'E']);
+    // Legacy: the 5 biggest mandates.
+    expect(byId('biggest').rows.map(r => r.label)).toEqual(['D', 'G', 'B', 'C', 'A']);
   });
 
-  it('closest / biggest are capped at 10', () => {
+  it('closest is capped at 10 and biggest at 5', () => {
     const seats = Array.from({ length: 14 }, (_, i) => ({ id: `S${i}`, name: `S${i}`, party: 'BJP', margin: 100 * (i + 1), status: 'WON', type: 'GEN' as const }));
     expect(byId('closest', makeCtx({ seats })).rows).toHaveLength(10);
+    expect(byId('biggest', makeCtx({ seats })).rows).toHaveLength(5);
     expect(byId('biggest', makeCtx({ seats })).rows[0].label).toBe('S13');
   });
 
@@ -65,10 +86,14 @@ describe('overview summary', () => {
       ['c2', [cand('c2', 'RJD', 80), cand('c2', 'JDU', 70)]],
     ]) });
     const rows = byId('wasted', ctx).rows;
-    expect(rows.map(r => [r.id, r.value, r.extra?.map(e => e.value) ?? null])).toEqual([
-      ['alliance:MGB', 52.9, [170, 90]], ['alliance:NDA', 41.2, [170, 70]], ['efficiency_gap', 11.8, null],
+    // Legacy columns: Total, Wasted, % (the compact card shows the %); vote totals in lakh.
+    expect(byId('wasted', ctx).columnsKeys).toEqual(['studio_col_total', 'studio_col_wasted', 'studio_col_wasted_pct']);
+    expect(rows.map(r => [r.id, r.value, r.valueFormat, r.extra?.map(e => e.value) ?? null])).toEqual([
+      ['alliance:MGB', 170, 'lakh', [90, 52.9]], ['alliance:NDA', 170, 'lakh', [70, 41.2]], ['efficiency_gap', null, 'lakh', [null, 11.8]],
     ]);
     expect(rows[2]).toMatchObject({ sub: 'NDA', labelKey: 'studio_row_efficiency_gap' });
+    expect(rows[2].extra![1].format).toBe('pp');
+    expect(byId('wasted', ctx).primaryCol).toBe(2);
   });
 
   it('wasted is omitted without candidates or alliances', () => {
@@ -79,9 +104,15 @@ describe('overview summary', () => {
     // OverviewSection.tsx:55-66. B(SC,BJP) C(ST,RJD) E(SC,RJD); H (SC, pending, no leader) is not bucketed as 'IND'.
     const rows = byId('reserved').rows;
     expect(rows.map(r => [r.id, r.value, r.extra!.map(e => e.value)])).toEqual([
-      ['party:RJD', 2, [1, 1]], ['party:BJP', 1, [1, 0]],
+      ['party:RJD', 1, [1, 2]], ['party:BJP', 1, [0, 1]],
     ]);
-    expect(byId('reserved').columnsKeys).toEqual(['studio_col_total', 'studio_col_sc', 'studio_col_st']);
+    // Legacy columns: SC, ST, Total, with "–" for a zero SC / ST count.
+    // Legacy labelled rows with the party id.
+    expect(rows.map(r => [r.label, r.sub])).toEqual([['RJD', 'Rashtriya Janata Dal'], ['BJP', 'Bharatiya Janata Party']]);
+    expect(byId('reserved').columnsKeys).toEqual(['studio_col_sc', 'studio_col_st', 'studio_col_total']);
+    expect(byId('reserved').primaryCol).toBe(2);
+    expect(rows[1].valueFormat).toBe('intDash');
+    expect(rows[1].extra![0].format).toBe('intDash');
   });
 
   it('closest / biggest follow rankSeats: WON seats only once any seat is WON', () => {

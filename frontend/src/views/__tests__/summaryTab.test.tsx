@@ -2,7 +2,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import '../../i18n';
-import { SummaryTab, formatSummaryValue } from '../dashboard/SummaryTab';
+import { SummaryTab } from '../dashboard/SummaryTab';
 import { StandingsTile } from '../dashboard/StandingsTile';
 import type { SummaryVM, SummarySection } from '../../viewmodels/tiles/useSummaryVM';
 import type { StandingsVM } from '../../viewmodels/tiles/useStandingsVM';
@@ -18,9 +18,9 @@ const height = (h: number) => Object.defineProperty(HTMLElement.prototype, 'clie
 
 const sections: SummarySection[] = [
   { id: 'a', titleKey: 'studio_sum_closest', rows: [
-    { id: 'seat:1', label: 'Sandesh', sub: 'JDU', value: 27, valueFormat: 'signed', seatIds: ['S1'] },
+    { id: 'seat:1', label: 'Sandesh', sub: 'JDU', value: 27, valueFormat: 'compact', seatIds: ['S1'] },
     { id: 'party:BJP', label: 'BJP', value: 89, valueFormat: 'int', color: '#f70', partyIds: ['BJP'], bar: { value: 40, max: 100, color: '#f70' } },
-    { id: 'p3', label: 'Third', value: 12.34, valueFormat: 'pct' },
+    { id: 'p3', label: 'Third', value: 73572, valueFormat: 'compact' },
   ] },
   { id: 'b', titleKey: 'studio_sum_net_swing', rows: [{ id: 'q', label: 'Q', value: 1, valueFormat: 'int' }, { id: 'q2', label: 'Q2', value: 2, valueFormat: 'int' }] },
   { id: 'c', titleKey: 'studio_sum_margin_trend', rows: [], chart: { type: 'line', series: [] } },
@@ -30,27 +30,24 @@ const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
   onFocus: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, ...over,
 });
 
-describe('formatSummaryValue', () => {
-  it('formats per valueFormat', () => {
-    expect(formatSummaryValue(12345, 'int')).toBe((12345).toLocaleString());
-    expect(formatSummaryValue(12.34, 'pct')).toBe('12.3%');
-    expect(formatSummaryValue(5, 'signed')).toBe('+5');
-    expect(formatSummaryValue(-5, 'signed')).toBe('−5');
-    expect(formatSummaryValue(null, 'int')).toBe('—');
-  });
-});
-
 describe('SummaryTab', () => {
   it('shows titles, rows and a footer for what does not fit', () => {
-    // 22 + 3*32 = 118 for A; footer 24 reserved => 400 fits A then B(4+22+64=90)= 208... use 190: A=118, B needs 4+22+32=58 -> 176+24=200 > 190
+    // A = 22 + 3*32 = 118; B needs 4 + 22 + 32 = 58 -> 176 + footer 24 = 200 > 190.
     height(190);
     render(<SummaryTab vm={mk()} />);
     expect(screen.getByText('Closest contests')).toBeTruthy();
     expect(screen.getByText('Sandesh')).toBeTruthy();
-    expect(screen.getByText('+27')).toBeTruthy();
-    expect(screen.getByText('12.3%')).toBeTruthy();
-    expect(screen.queryByText('Net swing')).toBeNull();
+    expect(screen.getByText('27')).toBeTruthy();
+    expect(screen.getByText('73.6K')).toBeTruthy();
+    expect(screen.queryByText('Net swing by alliance')).toBeNull();
     expect(screen.getByText('+2 more rows · 2 more sections')).toBeTruthy();
+  });
+
+  it('uses singular forms in the footer', () => {
+    height(170);
+    const secs: SummarySection[] = [sections[0], { id: 'b', titleKey: 'studio_sum_net_swing', rows: [{ id: 'q', label: 'Q', value: 1, valueFormat: 'int' }] }];
+    render(<SummaryTab vm={mk({}, secs)} />);
+    expect(screen.getByText('+1 more row · 1 more section')).toBeTruthy();
   });
 
   it('footer opens the focus; a single-seat row selects the seat; other rows lock and hover', () => {
@@ -72,7 +69,7 @@ describe('SummaryTab', () => {
   it('shows everything without a footer when it fits (chart-only sections excluded)', () => {
     height(600);
     render(<SummaryTab vm={mk({}, sections.slice(0, 2))} />);
-    expect(screen.getByText('Net swing')).toBeTruthy();
+    expect(screen.getByText('Net swing by alliance')).toBeTruthy();
     expect(screen.queryByText(/more/)).toBeNull();
   });
 
@@ -80,6 +77,54 @@ describe('SummaryTab', () => {
     height(300);
     render(<SummaryTab vm={mk({}, [])} />);
     expect(screen.getByText('No data for this layer')).toBeTruthy();
+  });
+
+  it('a stats section shows its numbers side by side, untitled when titleKey is empty', () => {
+    height(300);
+    const stats: SummarySection = { id: 'key_stats', titleKey: '', layout: 'stats', rows: [
+      { id: 'declared', label: 'declared', labelKey: 'seats_declared', value: 243, valueFormat: 'int' },
+      { id: 'avg_margin', label: 'avg_margin', labelKey: 'avg_margin', value: 21100, valueFormat: 'compact' },
+      { id: 'median', label: 'median', labelKey: 'median_margin', value: 18800, valueFormat: 'compact' },
+    ] };
+    render(<SummaryTab vm={mk({}, [stats, sections[1]])} />);
+    expect(screen.getByText('243')).toBeTruthy();
+    expect(screen.getByText('21.1K')).toBeTruthy();
+    expect(screen.getByText('18.8K')).toBeTruthy();
+    expect(screen.getByText('Avg Margin')).toBeTruthy();
+    expect(screen.getByText('Median')).toBeTruthy();
+    expect(screen.getAllByRole('heading')).toHaveLength(1);
+  });
+
+  it('shows the section\'s primary column: "–" for zero reserved seats, lakh totals, signed decimals', () => {
+    height(400);
+    const secs: SummarySection[] = [
+      { id: 'reserved', titleKey: 'studio_sum_reserved', primaryCol: 2, rows: [{ id: 'party:JDU', label: 'JDU', value: 14, valueFormat: 'intDash', extra: [{ value: 0, format: 'intDash' }, { value: 14, format: 'int' }] }] },
+      { id: 'wasted', titleKey: 'studio_sum_wasted', primaryCol: 2, rows: [{ id: 'alliance:MGB', label: 'MGB', value: 18020000, valueFormat: 'lakh', extra: [{ value: 14770000, format: 'lakh' }, { value: 82, format: 'pct' }] }] },
+      { id: 'vs', titleKey: 'studio_sum_vote_vs_seats_alliances', primaryCol: 0, rows: [{ id: 'alliance:NDA', label: 'NDA', value: 35, valueFormat: 'signed1', extra: [{ value: 48.1, format: 'pct' }] }] },
+    ];
+    render(<SummaryTab vm={mk({}, secs)} />);
+    expect(screen.getByRole('button', { name: /JDU/ }).textContent).toContain('14');
+    expect(screen.getByRole('button', { name: /MGB/ }).textContent).toContain('82.0%');
+    expect(screen.getByRole('button', { name: /NDA/ }).textContent).toContain('+35.0');
+  });
+
+  it('when every section is chart-only, the titles link to the focus instead of an empty tab', () => {
+    height(300);
+    const onFocus = vi.fn();
+    const charts: SummarySection[] = [sections[2], { id: 'd', titleKey: 'studio_sum_party_trend', rows: [], chart: { type: 'line', series: [] } }];
+    render(<SummaryTab vm={mk({ onFocus }, charts)} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Margin trend' }));
+    expect(onFocus).toHaveBeenCalled();
+    expect(screen.getByRole('button', { name: 'Party seats over elections' })).toBeTruthy();
+  });
+
+  it('clears the hover highlight when it unmounts', () => {
+    height(300);
+    const onHoverRow = vi.fn();
+    const { unmount } = render(<SummaryTab vm={mk({ onHoverRow })} />);
+    onHoverRow.mockClear();
+    unmount();
+    expect(onHoverRow).toHaveBeenCalledWith(null);
   });
 });
 
@@ -93,5 +138,22 @@ describe('StandingsTile summary tab', () => {
     expect(screen.getByText('Closest contests')).toBeTruthy();
     fireEvent.click(screen.getByRole('radio', { name: 'Parties' }));
     expect(screen.getByRole('button', { name: /BJP/ })).toBeTruthy();
+  });
+
+  it('the card title follows the tab and the expand button opens that tab\'s focus', () => {
+    height(300);
+    const onFocus = vi.fn(); const onSummaryFocus = vi.fn();
+    const watchlist = { leaders: [], watchlist: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop };
+    render(<StandingsTile vm={{ ...st, onFocus }} variant="tile" summary={mk({ onFocus: onSummaryFocus })} watchlist={watchlist} />);
+    expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('Election summary');
+    fireEvent.click(screen.getByRole('button', { name: /expand election summary/i }));
+    expect(onSummaryFocus).toHaveBeenCalled();
+    expect(onFocus).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('radio', { name: 'Parties' }));
+    expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('Party Standings');
+    fireEvent.click(screen.getByRole('button', { name: /expand party standings/i }));
+    expect(onFocus).toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('radio', { name: /Watchlist/ }));
+    expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('Watchlist');
   });
 });

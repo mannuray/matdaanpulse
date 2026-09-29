@@ -1,8 +1,11 @@
-import { FALLBACK_COLOR, colorOf, int, partyName, seatLabel, shortName } from './shared';
+import { FALLBACK_COLOR, colorOf, compact, int, partyName, seatLabel, shortName } from './shared';
+import { formatCompact } from './format';
 import type { SummaryContext, SummaryRow, SummarySection } from './types';
 
 const TREND_PARTIES = 6;
 const DEFEATS_LIMIT = 10;
+const SWING_SEATS_LIMIT = 15;
+const SWITCHERS_LIMIT = 20;
 
 const firstTwoWords = (s: string) => s.split(' ').slice(0, 2).join(' ');
 
@@ -23,8 +26,9 @@ function dominance(ctx: SummaryContext, seatName: (id: string) => string): Summa
     }
   }
   const out: SummarySection[] = [{
-    id: 'dominance', titleKey: 'studio_sum_dominance',
-    rows: classes.map(c => ({ id: `class:${c}`, label: c, labelKey: `studio_chip_${c}`, value: ids[c].length, valueFormat: 'int' as const, seatIds: ids[c] })),
+    // Legacy showed Strongholds / Loyal / Swing as three numbers (new seats were only counted, not shown).
+    id: 'dominance', titleKey: 'studio_sum_dominance', layout: 'stats',
+    rows: classes.filter(c => c !== 'new').map(c => ({ id: `class:${c}`, label: c, labelKey: `studio_chip_${c}`, value: ids[c].length, valueFormat: 'int' as const, seatIds: ids[c] })),
   }];
   if (byParty.size > 0) {
     out.push({
@@ -40,12 +44,12 @@ function dominance(ctx: SummaryContext, seatName: (id: string) => string): Summa
   if (ids.swing.length > 0) {
     const seat = new Map(ctx.seats.map(s => [s.id, s]));
     out.push({
-      id: 'swing_seats', titleKey: 'studio_sum_swing_seats',
-      rows: ids.swing.map(id => {
+      id: 'swing_seats', titleKey: 'studio_sum_swing_seats', titleParams: { count: ids.swing.length }, more: Math.max(0, ids.swing.length - SWING_SEATS_LIMIT),
+      rows: ids.swing.slice(0, SWING_SEATS_LIMIT).map(id => {
         const s = seat.get(id);
         const winners = dom.get(id)!.winners.map(w => w.party);
         return {
-          id: `seat:${id}`, label: seatName(id), sub: winners.join(' → '), value: s?.margin ?? null, valueFormat: 'int' as const,
+          id: `seat:${id}`, label: seatName(id), sub: winners.join(' → '), value: s?.margin ?? null, valueFormat: 'compact' as const,
           color: s?.party ? colorOf(ctx, s.party) : FALLBACK_COLOR, seatIds: [id], partyIds: winners,
         };
       }),
@@ -60,7 +64,6 @@ function incumbency(ctx: SummaryContext, seatName: (id: string) => string): Summ
   if (inc.length === 0) return [];
   const total = inc.length;
   const won = inc.filter(e => e.won).length;
-  const lost = total - won;
   const byParty = new Map<string, { contested: number; won: number }>();
   for (const e of inc) {
     const x = byParty.get(e.incumbentParty) ?? { contested: 0, won: 0 };
@@ -68,24 +71,22 @@ function incumbency(ctx: SummaryContext, seatName: (id: string) => string): Summ
     if (e.won) x.won++;
     byParty.set(e.incumbentParty, x);
   }
-  const row = (id: string, labelKey: string, value: number, valueFormat: 'int' | 'pct'): SummaryRow => ({ id, label: id, labelKey, value, valueFormat });
+  const row = (id: string, labelKey: string, value: number, valueFormat: 'int' | 'pct0'): SummaryRow => ({ id, label: id, labelKey, value, valueFormat });
   const defeats = inc.filter(e => !e.won).sort((a, b) => a.currentMargin - b.currentMargin).slice(0, DEFEATS_LIMIT);
   const out: SummarySection[] = [
     {
-      id: 'anti_incumbency', titleKey: 'studio_sum_anti_incumbency',
+      id: 'anti_incumbency', titleKey: 'studio_sum_anti_incumbency', layout: 'stats',
       rows: [
         row('recontested', 'studio_row_recontested', total, 'int'),
-        row('lost', 'studio_row_incumbents_lost', lost, 'int'),
-        row('lost_rate', 'studio_row_lost_rate', Math.round((lost / total) * 100), 'pct'),
-        // Legacy "Win Rate" (HistorySection.tsx:149).
-        row('win_rate', 'studio_row_win_rate', Math.round((won / total) * 100), 'pct'),
+        row('won', 'studio_col_won', won, 'int'),
+        row('win_rate', 'studio_row_win_rate_short', Math.round((won / total) * 100), 'pct0'),
       ],
     },
     {
-      id: 'incumbent_win_rate', titleKey: 'studio_sum_incumbent_win_rate', columnsKeys: ['studio_col_win_rate', 'studio_col_contested', 'studio_col_won'],
+      id: 'incumbent_win_rate', titleKey: 'studio_sum_incumbent_win_rate', columnsKeys: ['studio_col_contested', 'studio_col_won', 'studio_col_win_rate'], primaryCol: 2,
       rows: [...byParty.entries()].sort((a, b) => b[1].contested - a[1].contested).map(([p, c]) => ({
-        id: `party:${p}`, label: partyName(ctx, p), value: Math.round((c.won / c.contested) * 100), valueFormat: 'pct' as const,
-        extra: [int(c.contested), int(c.won)], color: colorOf(ctx, p), partyIds: [p],
+        id: `party:${p}`, label: partyName(ctx, p), value: c.contested, valueFormat: 'int' as const,
+        extra: [int(c.won), { value: Math.round((c.won / c.contested) * 100), format: 'pct0' as const }], color: colorOf(ctx, p), partyIds: [p],
       })),
     },
   ];
@@ -93,7 +94,7 @@ function incumbency(ctx: SummaryContext, seatName: (id: string) => string): Summ
     out.push({
       id: 'incumbent_defeats', titleKey: 'studio_sum_incumbent_defeats',
       rows: defeats.map(d => ({
-        id: `seat:${d.constId}`, label: seatName(d.constId), sub: firstTwoWords(d.incumbentName), value: d.currentMargin, valueFormat: 'int' as const,
+        id: `seat:${d.constId}`, label: seatName(d.constId), sub: firstTwoWords(d.incumbentName), value: d.currentMargin, valueFormat: 'compact' as const,
         color: colorOf(ctx, d.incumbentParty), seatIds: [d.constId], partyIds: [d.incumbentParty],
       })),
     });
@@ -114,14 +115,14 @@ function switchers(ctx: SummaryContext): SummarySection[] {
     if (e.wonInNewParty) d.won++;
     dirs.set(k, d);
   }
-  const row = (id: string, labelKey: string, value: number, valueFormat: 'int' | 'pct'): SummaryRow => ({ id, label: id, labelKey, value, valueFormat });
+  const row = (id: string, labelKey: string, value: number, valueFormat: 'int' | 'pct0'): SummaryRow => ({ id, label: id, labelKey, value, valueFormat });
   return [
     {
-      id: 'party_switchers', titleKey: 'studio_sum_party_switchers',
+      id: 'party_switchers', titleKey: 'studio_sum_party_switchers', layout: 'stats',
       rows: [
         row('switchers', 'studio_row_switchers', sw.length, 'int'),
         row('switchers_won', 'studio_row_switchers_won', won, 'int'),
-        row('success_rate', 'studio_row_success_rate', Math.round((won / sw.length) * 100), 'pct'),
+        row('success_rate', 'studio_row_success_rate', Math.round((won / sw.length) * 100), 'pct0'),
       ],
     },
     {
@@ -129,6 +130,16 @@ function switchers(ctx: SummaryContext): SummarySection[] {
       rows: [...dirs.values()].sort((a, b) => b.count - a.count).map(d => ({
         id: `dir:${d.from}→${d.to}`, label: `${d.from} → ${d.to}`, value: d.count, valueFormat: 'int' as const,
         extra: [int(d.won)], color: colorOf(ctx, d.to), partyIds: [d.from, d.to],
+      })),
+    },
+    {
+      // HistorySection.tsx:"Notable Switchers": name, from → to, years, result, margin (first 20; the header counts all).
+      id: 'notable_switchers', titleKey: 'studio_sum_notable_switchers', titleParams: { count: sw.length }, more: Math.max(0, sw.length - SWITCHERS_LIMIT),
+      columnsKeys: ['studio_col_margin', 'studio_col_result'],
+      rows: sw.slice(0, SWITCHERS_LIMIT).map((e, i) => ({
+        id: `switcher:${e.constId}:${i}`, label: firstTwoWords(e.candidateName), sub: `${e.fromParty} → ${e.toParty} · ${e.fromYear}→${e.toYear}`,
+        value: e.margin, valueFormat: 'compact' as const, extra: [{ value: e.wonInNewParty ? 1 : 0, format: 'result' as const }],
+        color: colorOf(ctx, e.toParty), seatIds: [e.constId], partyIds: [e.fromParty, e.toParty],
       })),
     },
   ];
@@ -143,8 +154,8 @@ function trends(ctx: SummaryContext): SummarySection[] {
   const out: SummarySection[] = [{
     id: 'margin_trend', titleKey: 'studio_sum_margin_trend', columnsKeys: ['studio_col_avg_margin', 'studio_col_median_margin', 'studio_col_seats'],
     rows: mt.map(m => ({
-      id: `year:${m.year}`, label: String(m.year), value: m.avgMargin, valueFormat: 'int' as const,
-      extra: [int(m.medianMargin), int(m.seats)], bar: { value: m.avgMargin, max, color: 'var(--color-accent)' },
+      id: `year:${m.year}`, label: String(m.year), value: m.avgMargin, valueFormat: 'compact' as const,
+      extra: [compact(m.medianMargin), int(m.seats)], bar: { value: m.avgMargin, max, color: 'var(--color-accent)' },
     })),
     chart: {
       type: 'line', xKey: 'year', yKey: 'margin',
@@ -156,25 +167,33 @@ function trends(ctx: SummaryContext): SummarySection[] {
   }];
   if (ctx.partyTrend.length > 0) {
     const latest = mt[mt.length - 1].year;
-    const byParty = new Map<string, Map<number, number>>();
+    const byParty = new Map<string, Map<number, { seats: number; avg: number }>>();
     for (const p of ctx.partyTrend) {
       if (!byParty.has(p.party)) byParty.set(p.party, new Map());
-      byParty.get(p.party)!.set(p.year, p.seatsWon);
+      byParty.get(p.party)!.set(p.year, { seats: p.seatsWon, avg: p.avgMargin });
     }
+    // Legacy: every party seen in at least two elections, sorted by seats in the latest one; cells "seats/avg margin".
+    const years = mt.map(m => m.year);
     const parties = [...byParty.entries()]
-      .filter(([, years]) => years.size >= 2)
-      .map(([party, years]) => ({ party, years, latest: years.get(latest) ?? 0 }))
-      .sort((a, b) => b.latest - a.latest)
-      .slice(0, TREND_PARTIES);
+      .filter(([, y]) => y.size >= 2)
+      .map(([party, y]) => ({ party, years: y, latest: y.get(latest)?.seats ?? 0 }))
+      .sort((a, b) => b.latest - a.latest);
     if (parties.length > 0) {
+      const cell = (y: Map<number, { seats: number; avg: number }>, year: number) => {
+        const d = y.get(year);
+        return d ? { value: d.seats, format: 'text' as const, text: `${d.seats}/${formatCompact(d.avg)}` } : { value: null, format: 'text' as const, text: '–' };
+      };
       out.push({
-        id: 'party_trend', titleKey: 'studio_sum_party_trend', columnsKeys: ['studio_col_seats'],
-        rows: parties.map(p => ({ id: `party:${p.party}`, label: partyName(ctx, p.party), value: p.latest, valueFormat: 'int' as const, color: colorOf(ctx, p.party), partyIds: [p.party] })),
+        id: 'party_trend', titleKey: 'studio_sum_party_trend', columnsKeys: years.map(String), primaryCol: years.length - 1,
+        rows: parties.map(p => ({
+          id: `party:${p.party}`, label: partyName(ctx, p.party), value: cell(p.years, years[0]).value, valueFormat: 'text' as const, valueText: cell(p.years, years[0]).text,
+          extra: years.slice(1).map(y => cell(p.years, y)), color: colorOf(ctx, p.party), partyIds: [p.party],
+        })),
         chart: {
           type: 'line', xKey: 'year', yKey: 'seats',
-          series: parties.map(p => ({
+          series: parties.slice(0, TREND_PARTIES).map(p => ({
             id: p.party, label: partyName(ctx, p.party), color: colorOf(ctx, p.party),
-            points: [...p.years.entries()].sort((a, b) => a[0] - b[0]).map(([x, y]) => ({ x, y })),
+            points: [...p.years.entries()].sort((a, b) => a[0] - b[0]).map(([x, y]) => ({ x, y: y.seats })),
           })),
         },
       });

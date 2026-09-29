@@ -1,4 +1,6 @@
 import { allianceByParty, FALLBACK_COLOR, int, seatLabel, shortName } from './shared';
+
+const FLIPPED_LIMIT = 15;
 import type { SummaryContext, SummaryRow, SummarySection } from './types';
 
 /** SwingSection.tsx:13-65 — flips grouped by alliance (or the party itself when it has no alliance). */
@@ -35,19 +37,20 @@ export function swingSummary(ctx: SummaryContext): SummarySection[] {
   }).sort((a, b) => b.net - a.net);
   const max = Math.max(...net.map(n => Math.abs(n.net)), 1);
   const netRows: SummaryRow[] = net.map(n => ({
-    id: `bloc:${n.key}`, label: n.name, value: n.net, valueFormat: 'signed' as const,
-    extra: [int(n.gained), int(n.lost)], color: n.color, partyIds: n.partyIds,
+    id: `bloc:${n.key}`, label: n.name, value: n.gained, valueFormat: 'int' as const,
+    extra: [int(n.lost), { value: n.net, format: 'signed' as const }], color: n.color, partyIds: n.partyIds,
     bar: { value: n.net, max, color: n.color },
   }));
 
+  // Legacy order: flipped seats (closest 15, header shows the total), then net swing by alliance (Gained, Lost, Net).
   return [
-    { id: 'net_swing', titleKey: 'studio_sum_net_swing', columnsKeys: ['studio_col_net', 'studio_col_gained', 'studio_col_lost'], rows: netRows },
     {
-      id: 'flipped', titleKey: 'studio_sum_flipped', titleParams: { count: flips.length },
-      rows: flips.map(f => ({
+      id: 'flipped', titleKey: 'studio_sum_flipped', titleParams: { count: flips.length }, more: Math.max(0, flips.length - FLIPPED_LIMIT),
+      rows: flips.slice(0, FLIPPED_LIMIT).map(f => ({
         id: `seat:${f.id}`, label: seatName.get(f.id) ?? shortName(f.id), sub: `${f.from} → ${f.to}`,
-        value: f.margin, valueFormat: 'int' as const, color: f.toColor, seatIds: [f.id], partyIds: f.parties,
+        value: f.margin, valueFormat: 'compact' as const, color: f.toColor, seatIds: [f.id], partyIds: f.parties,
       })),
     },
+    { id: 'net_swing', titleKey: 'studio_sum_net_swing', columnsKeys: ['studio_col_gained', 'studio_col_lost', 'studio_col_net'], primaryCol: 2, rows: netRows },
   ];
 }

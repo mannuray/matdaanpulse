@@ -2,7 +2,7 @@ import type { ManifestAlliance } from '../../types';
 import type { SeatResult } from '../../types/dashboard';
 import { MARGIN_BUCKETS } from '../layerInsights';
 import type { SeatRef } from '../stats';
-import type { SummaryContext, SummaryRow } from './types';
+import type { SummaryCell, SummaryContext, SummaryRow } from './types';
 
 /** Legacy fallback dot colour (summary/*Section.tsx used '#6b7280'). */
 export const FALLBACK_COLOR = '#6b7280';
@@ -59,11 +59,15 @@ export function buckets(ctx: Pick<SummaryContext, 'electionType'>) {
 
 export const avg = (sum: number, n: number): number | null => (n > 0 ? Math.round(sum / n) : null);
 
-export const int = (value: number | null) => ({ value, format: 'int' as const });
-export const pct = (value: number | null) => ({ value, format: 'pct' as const });
-export const signed = (value: number | null) => ({ value, format: 'signed' as const });
+export const int = (value: number | null): SummaryCell => ({ value, format: 'int' });
+export const pct = (value: number | null): SummaryCell => ({ value, format: 'pct' });
+export const signed = (value: number | null): SummaryCell => ({ value, format: 'signed' });
+export const signed1 = (value: number | null): SummaryCell => ({ value, format: 'signed1' });
+export const compact = (value: number | null): SummaryCell => ({ value, format: 'compact' });
+export const lakh = (value: number | null): SummaryCell => ({ value, format: 'lakh' });
+export const intDash = (value: number | null): SummaryCell => ({ value, format: 'intDash' });
 
 
 export function refRow(ref: SeatRef, color: string, sub: string | undefined = ref.party): SummaryRow {
-  return { id: `seat:${ref.id}`, label: seatLabel(ref.name), sub, value: ref.margin, valueFormat: 'int', color, seatIds: [ref.id], partyIds: ref.party ? [ref.party] : [] };
+  return { id: `seat:${ref.id}`, label: seatLabel(ref.name), sub, value: ref.margin, valueFormat: 'compact', color, seatIds: [ref.id], partyIds: ref.party ? [ref.party] : [] };
 }

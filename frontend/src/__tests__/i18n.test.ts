@@ -32,15 +32,16 @@ function usedKeys(): Set<string> {
   for (const k of ['stronghold', 'loyal', 'swing', 'anti_incumbency', 'new']) keys.add(`studio_chip_${k}`);
   for (const k of ['won', 'leading', 'lost', 'trailing', 'pending']) keys.add(`studio_status_${k}`);
   for (const k of ['final', 'live', 'upcoming']) keys.add(`studio_status_label_${k}`);
-  for (const k of ['vote_vs_seats', 'closest', 'biggest', 'margin_dist', 'wasted', 'reserved', 'seat_summary', 'net_swing', 'flipped', 'dominance', 'dominance_by_party', 'swing_seats', 'anti_incumbency', 'incumbent_win_rate', 'incumbent_defeats', 'party_switchers', 'switch_directions', 'margin_trend', 'party_trend', 'category_breakdown', 'win_rate_by_category', 'margin_by_category', 'vote_split', 'classification', 'states_by_alliance']) keys.add(`studio_sum_${k}`);
-  for (const k of ['seats', 'seat_pct', 'vote_pct', 'disparity', 'avg_margin', 'median_margin', 'close', 'gained', 'lost', 'net', 'win_rate', 'total', 'gen', 'sc', 'st', 'wasted_pct', 'total_votes', 'wasted', 'contested', 'won', 'count', 'margin', 'spoiler_votes']) keys.add(`studio_col_${k}`);
-  for (const k of ['efficiency_gap', 'recontested', 'incumbents_lost', 'lost_rate', 'win_rate', 'switchers', 'switchers_won', 'success_rate', 'analyzed', 'two_way', 'three_way', 'multi_cornered', 'spoiler_affected']) keys.add(`studio_row_${k}`);
+  for (const k of ['vote_vs_seats', 'closest', 'biggest', 'margin_dist', 'wasted', 'reserved', 'seat_summary', 'net_swing', 'flipped', 'dominance', 'dominance_by_party', 'swing_seats', 'anti_incumbency', 'incumbent_win_rate', 'incumbent_defeats', 'party_switchers', 'switch_directions', 'margin_trend', 'party_trend', 'category_breakdown', 'win_rate_by_category', 'margin_by_category', 'vote_split', 'classification', 'states_by_alliance', 'vote_vs_seats_alliances', 'vote_vs_seats_parties', 'closest_battles', 'state_leaderboard', 'sweep_states', 'competitive_states', 'split_title', 'notable_switchers']) keys.add(`studio_sum_${k}`);
+  for (const k of ['seats', 'seat_pct', 'vote_pct', 'disparity', 'avg_margin', 'median_margin', 'close', 'gained', 'lost', 'net', 'win_rate', 'total', 'gen', 'sc', 'st', 'wasted_pct', 'total_votes', 'wasted', 'contested', 'won', 'count', 'margin', 'spoiler_votes', 'result']) keys.add(`studio_col_${k}`);
+  for (const k of ['efficiency_gap', 'recontested', 'incumbents_lost', 'lost_rate', 'win_rate', 'switchers', 'switchers_won', 'success_rate', 'analyzed', 'two_way', 'three_way', 'multi_cornered', 'spoiler_affected', 'three_way_short', 'win_rate_short']) keys.add(`studio_row_${k}`);
   return keys;
 }
 
 describe('i18n', () => {
   it('every key used in source exists in en.json', () => {
-    const missing = [...usedKeys()].filter(k => !(k in en));
+    // A plural key is stored as `<key>_one` / `<key>_other`.
+    const missing = [...usedKeys()].filter(k => !(k in en) && !(`${k}_other` in en));
     expect(missing).toEqual([]);
   });
 

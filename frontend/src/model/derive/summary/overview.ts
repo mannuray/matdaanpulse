@@ -1,10 +1,11 @@
 import { roundPct } from '../scoreboard';
 import { rankSeats } from '../stats';
 import type { SeatResult } from '../../types/dashboard';
-import { allianceByParty, bucketIndex, buckets, colorOf, int, ledSeats, refRow, partyName, pct, signed } from './shared';
+import { allianceByParty, bucketIndex, buckets, colorOf, int, intDash, lakh, ledSeats, refRow, partyName, pct } from './shared';
 import type { SummaryContext, SummaryRow, SummarySection } from './types';
 
 const LIST_LIMIT = 10;
+const BIGGEST_LIMIT = 5;
 
 /** OverviewSection.tsx:53-67 — reserved (SC/ST) seats per leading party; seats without a leader are excluded. */
 function reserved(ctx: SummaryContext): SummarySection | null {
@@ -20,16 +21,20 @@ function reserved(ctx: SummaryContext): SummarySection | null {
   const rows: SummaryRow[] = [...map.entries()]
     .sort((a, b) => (b[1].sc + b[1].st) - (a[1].sc + a[1].st))
     .map(([pid, e]) => ({
-      id: `party:${pid}`, label: partyName(ctx, pid), value: e.sc + e.st, valueFormat: 'int' as const,
-      extra: [int(e.sc), int(e.st)], color: e.color, partyIds: [pid],
+      // Legacy showed "–" for 0 in the SC and ST columns.
+      id: `party:${pid}`, label: pid, sub: partyName(ctx, pid), value: e.sc, valueFormat: 'intDash' as const,
+      extra: [intDash(e.st), int(e.sc + e.st)], color: e.color, partyIds: [pid],
     }));
-  return { id: 'reserved', titleKey: 'studio_sum_reserved', columnsKeys: ['studio_col_total', 'studio_col_sc', 'studio_col_st'], rows };
+  return { id: 'reserved', titleKey: 'studio_sum_reserved', columnsKeys: ['studio_col_sc', 'studio_col_st', 'studio_col_total'], primaryCol: 2, rows };
 }
 
-/** OverviewSection.tsx:153-199 — vote share vs seat share per alliance, plus the party view (top 10 by vote share). */
-function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection | null {
+/**
+ * OverviewSection.tsx:153-199 — vote share vs seat share, as an alliance section and a party section (the legacy toggled
+ * between them). Columns: difference (seat % − vote %), vote %, seat %; the compact card shows the seat %.
+ */
+function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection[] {
   // Legacy only rendered this when the manifest defines alliances (standings.groups.length > 0).
-  if (ctx.alliances.length === 0 || led.length === 0) return null;
+  if (ctx.alliances.length === 0 || led.length === 0) return [];
   const total = led.length;
   const seatsOf = new Map<string, number>();
   led.forEach(s => seatsOf.set(s.party, (seatsOf.get(s.party) ?? 0) + 1));
@@ -37,8 +42,8 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection | n
   const mk = (id: string, label: string, color: string, seats: number, votePct: number, partyIds: string[]): SummaryRow => {
     const seatPct = (seats / total) * 100;
     return {
-      id, label, value: seats, valueFormat: 'int', color, partyIds,
-      extra: [pct(roundPct(seatPct)), pct(roundPct(votePct)), signed(roundPct(seatPct - votePct))],
+      id, label, value: roundPct(seatPct - votePct), valueFormat: 'signed1', color, partyIds,
+      extra: [pct(roundPct(votePct)), pct(roundPct(seatPct))],
       bar: { value: roundPct(seatPct), max: 100, color },
     };
   };
@@ -54,7 +59,8 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection | n
     const r = mk('others', '', '#6b7280', othersSeats, othersVote, []);
     rows.push({ ...r, labelKey: 'others' });
   }
-  rows.sort((a, b) => (b.extra![0].value ?? 0) - (a.extra![0].value ?? 0));
+  const seatPctOf = (r: SummaryRow) => r.extra![1].value ?? 0;
+  rows.sort((a, b) => seatPctOf(b) - seatPctOf(a));
 
   const ids = new Set([...ctx.parties.map(p => p.id), ...ctx.votePct.keys()]);
   const partyRows = [...ids]
@@ -62,11 +68,11 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection | n
     .sort((a, b) => vote(b) - vote(a))
     .slice(0, LIST_LIMIT)
     .map(id => mk(`party:${id}`, partyName(ctx, id), colorOf(ctx, id), seatsOf.get(id) ?? 0, vote(id), [id]));
-  return {
-    id: 'vote_vs_seats', titleKey: 'studio_sum_vote_vs_seats',
-    columnsKeys: ['studio_col_seats', 'studio_col_seat_pct', 'studio_col_vote_pct', 'studio_col_disparity'],
-    rows: [...rows, ...partyRows],
-  };
+  const cols = { columnsKeys: ['studio_col_disparity', 'studio_col_vote_pct', 'studio_col_seat_pct'], primaryCol: 2 };
+  return [
+    { id: 'vote_vs_seats_alliances', titleKey: 'studio_sum_vote_vs_seats_alliances', ...cols, rows },
+    { id: 'vote_vs_seats_parties', titleKey: 'studio_sum_vote_vs_seats_parties', ...cols, rows: partyRows },
+  ];
 }
 
 /** OverviewSection.tsx:254-276 — votes cast for an alliance's parties in seats its alliance did not win. */
@@ -96,30 +102,30 @@ function wasted(ctx: SummaryContext): SummarySection | null {
   if (stats.length === 0) return null;
   stats.sort((a, b) => b.wastedPct - a.wastedPct);
   const rows: SummaryRow[] = stats.map(s => ({
-    id: `alliance:${s.id}`, label: s.name, value: roundPct(s.wastedPct), valueFormat: 'pct' as const,
-    extra: [int(s.total), int(s.wasted)], color: s.color,
+    id: `alliance:${s.id}`, label: s.name, value: s.total, valueFormat: 'lakh' as const,
+    extra: [lakh(s.wasted), pct(roundPct(s.wastedPct))], color: s.color,
     bar: { value: roundPct(s.wastedPct), max: 100, color: s.color },
   }));
   if (stats.length >= 2) {
     const byTotal = [...stats].sort((a, b) => b.total - a.total);
     const diff = byTotal[0].wastedPct - byTotal[1].wastedPct;
     const adv = diff < 0 ? byTotal[0] : byTotal[1];
-    rows.push({ id: 'efficiency_gap', label: '', labelKey: 'studio_row_efficiency_gap', sub: adv.name, value: roundPct(Math.abs(diff)), valueFormat: 'pct', color: adv.color });
+    // Legacy: "Efficiency Gap: <alliance> has +N pp advantage" (the number sits in the last column).
+    rows.push({ id: 'efficiency_gap', label: '', labelKey: 'studio_row_efficiency_gap', sub: adv.name, value: null, valueFormat: 'lakh', extra: [lakh(null), { value: roundPct(Math.abs(diff)), format: 'pp' }], color: adv.color });
   }
-  return { id: 'wasted', titleKey: 'studio_sum_wasted', columnsKeys: ['studio_col_wasted_pct', 'studio_col_total_votes', 'studio_col_wasted'], rows };
+  return { id: 'wasted', titleKey: 'studio_sum_wasted', columnsKeys: ['studio_col_total', 'studio_col_wasted', 'studio_col_wasted_pct'], primaryCol: 2, rows };
 }
 
 export function overviewSummary(ctx: SummaryContext): SummarySection[] {
   const led = ledSeats(ctx);
   const out: (SummarySection | null)[] = [];
-  out.push(voteVsSeats(ctx, led));
 
   // Same pool as the stat tiles: WON seats, or LEADING seats only while nothing is WON.
   const list = (id: string, key: string, order: 'closest' | 'biggest'): SummarySection | null => {
-    const refs = rankSeats(led, order, LIST_LIMIT);
+    const refs = rankSeats(led, order, order === 'closest' ? LIST_LIMIT : BIGGEST_LIMIT);
     return refs.length === 0 ? null : { id, titleKey: key, rows: refs.map(r => refRow(r, colorOf(ctx, r.party))) };
   };
-  out.push(list('closest', 'studio_sum_closest', 'closest'));
+  out.push(list('closest', 'studio_sum_closest_battles', 'closest'));
   out.push(list('biggest', 'studio_sum_biggest', 'biggest'));
 
   if (led.length > 0) {
@@ -134,9 +140,11 @@ export function overviewSummary(ctx: SummaryContext): SummarySection[] {
       chart: { type: 'bar', xKey: 'bucket', yKey: 'seats', series: [{ id: 'seats', label: 'Seats', labelKey: 'studio_col_seats', color: 'var(--color-accent)', points: b.map((x, i) => ({ x: x.label, y: ids[i].length })) }] },
     });
   }
-  out.push(wasted(ctx));
   out.push(reserved(ctx));
+  out.push(...voteVsSeats(ctx, led));
+  out.push(wasted(ctx));
 
-  const order = ['vote_vs_seats', 'closest', 'biggest', 'margin_dist', 'wasted', 'reserved'];
+  // Legacy order (after the key stats): margin distribution, closest, biggest, reserved, vote vs seats, wasted votes.
+  const order = ['margin_dist', 'closest', 'biggest', 'reserved', 'vote_vs_seats_alliances', 'vote_vs_seats_parties', 'wasted'];
   return (out.filter(Boolean) as SummarySection[]).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
 }

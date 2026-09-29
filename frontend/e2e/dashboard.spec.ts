@@ -31,6 +31,7 @@ for (const size of SIZES) {
 test('focus overlay opens from a tile, is linkable and closes with Escape', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/election/${BIHAR}`);
+  await page.getByRole('radio', { name: 'Parties' }).click();
   await page.getByRole('button', { name: /expand party standings/i }).click();
   await expect(page).toHaveURL(/focus=standings/);
   await expect(page.getByRole('dialog')).toBeVisible();
@@ -44,6 +45,7 @@ test('Back after closing the focus view does not reopen it', async ({ page }) =>
   await page.goto(`/election/${LS_ID}`);
   await expect(page.getByText('202').first().or(page.getByText('2024').first())).toBeVisible();
   await page.goto(`/election/${BIHAR}`);
+  await page.getByRole('radio', { name: 'Parties' }).click();
   await page.getByRole('button', { name: /expand party standings/i }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
@@ -117,11 +119,16 @@ test('track a seat in the map focus and see it in the Watchlist tab', async ({ p
 test('side card shows the Summary tab by default and follows the map layer', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/election/${BIHAR}`);
-  const summary = page.getByRole('radio', { name: 'Summary · Overview' });
-  await expect(summary).toBeChecked();
+  await expect(page.getByRole('radio', { name: 'Summary · Overview' })).toBeChecked();
   await expect(page.getByRole('radio', { name: 'Parties' })).not.toBeChecked();
+  await expect(page.getByRole('heading', { name: 'Election summary', level: 2 })).toBeVisible();
+  // Key stats first, then the old Overview order.
+  await expect(page.getByText('Avg Margin')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Margin distribution' })).toBeVisible();
   await page.getByRole('radio', { name: 'Swing', exact: true }).click();
   await expect(page.getByRole('radio', { name: 'Summary · Swing' })).toBeChecked();
-  await expect(page.getByRole('heading', { name: 'Net swing' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Flipped seats \(111\)/ })).toBeVisible();
   await assertNoScroll(page);
+  await page.getByRole('radio', { name: 'Parties' }).click();
+  await expect(page.getByRole('heading', { name: 'Party Standings', level: 2 })).toBeVisible();
 });

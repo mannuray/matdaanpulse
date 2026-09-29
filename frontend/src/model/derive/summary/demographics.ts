@@ -1,4 +1,4 @@
-import { avg, groupsFor, int, ledSeats } from './shared';
+import { avg, compact, groupsFor, int, ledSeats } from './shared';
 import type { SummaryContext, SummaryRow, SummarySection } from './types';
 
 const CATS = ['GEN', 'SC', 'ST'] as const;
@@ -6,8 +6,8 @@ type Cat = typeof CATS[number];
 
 /** DemographicsSection.tsx:13-22,34-76 — seat categories overall and per alliance (party when there are no alliances). */
 export function demographicsSummary(ctx: SummaryContext): SummarySection[] {
-  // Seats without a leader are excluded; anything that is not SC/ST is general.
-  const declared = ctx.seats.filter(s => s.party);
+  // Legacy counted every seat of the election (declared or not); anything that is not SC/ST is general.
+  const declared = ctx.seats;
   if (declared.length === 0) return [];
   const totals: Record<Cat, string[]> = { GEN: [], SC: [], ST: [] };
   declared.forEach(s => totals[s.type === 'SC' || s.type === 'ST' ? s.type : 'GEN'].push(s.id));
@@ -39,8 +39,8 @@ export function demographicsSummary(ctx: SummaryContext): SummarySection[] {
     id: 'margin_by_category', titleKey: 'studio_sum_margin_by_category', columnsKeys: ['studio_col_gen', 'studio_col_sc', 'studio_col_st'],
     // Legacy showed 0 for a category without seats; null renders "—" instead.
     rows: per.map((x): SummaryRow => ({
-      ...rowBase(x), value: avg(x.cat.GEN.sum, x.cat.GEN.n), valueFormat: 'int',
-      extra: [int(avg(x.cat.SC.sum, x.cat.SC.n)), int(avg(x.cat.ST.sum, x.cat.ST.n))],
+      ...rowBase(x), value: avg(x.cat.GEN.sum, x.cat.GEN.n), valueFormat: 'compact',
+      extra: [compact(avg(x.cat.SC.sum, x.cat.SC.n)), compact(avg(x.cat.ST.sum, x.cat.ST.n))],
     })),
   });
   return out;

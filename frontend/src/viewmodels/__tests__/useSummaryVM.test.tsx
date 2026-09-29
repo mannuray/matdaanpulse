@@ -32,7 +32,8 @@ describe('useSummaryVM', () => {
 
   it('locks a row with a readable label and a section-scoped chip id', () => {
     const { result } = renderHook(() => ({ vm: useSummaryVM(), store: useDashboardStore() }), { wrapper: wrap() });
-    const section = result.current.vm.summary.sections.find(s => s.rows.length > 0)!;
+    // The first section is the key stats (translated labels); take one with plain labels.
+    const section = result.current.vm.summary.sections.find(s => s.rows.length > 0 && !s.rows[0].labelKey)!;
     const row = section.rows[0];
     act(() => result.current.vm.onLockRow(row));
     const locked = result.current.store.state.locked!;

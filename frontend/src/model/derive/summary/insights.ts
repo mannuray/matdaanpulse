@@ -1,4 +1,4 @@
-import { allianceByParty, colorOf, int, seatLabel, shortName } from './shared';
+import { allianceByParty, colorOf, compact, seatLabel, shortName } from './shared';
 import type { SummaryContext, SummaryRow, SummarySection } from './types';
 
 const SEATS_PER_SPLIT = 10;
@@ -60,35 +60,32 @@ export function insightsSummary(ctx: SummaryContext): SummarySection[] {
   const affected = new Set<string>();
   results.forEach(r => r.seats.forEach(s => affected.add(s.constId)));
 
-  const out: SummarySection[] = [];
-  const splitRows: SummaryRow[] = [];
-  for (const sr of results) {
-    if (sr.seats.length === 0) continue;
-    const hurtsName = alliances.get(up(sr.config.hurts))?.name ?? sr.config.hurts;
-    splitRows.push({
-      id: `split:${sr.config.spoiler}`, label: sr.config.label, sub: hurtsName, value: sr.seats.length, valueFormat: 'int',
-      color: colorOf(ctx, sr.config.spoiler), seatIds: sr.seats.map(s => s.constId), partyIds: [sr.config.spoiler],
-    });
-    // The closest seats of each split, right below its summary row (id `split:<spoiler>:<constId>`).
-    sr.seats.slice(0, SEATS_PER_SPLIT).forEach(s => splitRows.push({
-      id: `split:${sr.config.spoiler}:${s.constId}`, label: nameOf(s.constId), sub: s.winnerAlliance, value: s.margin, valueFormat: 'int',
-      extra: [int(s.spoilerVotes)], color: colorOf(ctx, sr.config.spoiler), seatIds: [s.constId],
-    }));
-  }
-  if (splitRows.length > 0) {
-    out.push({ id: 'vote_split', titleKey: 'studio_sum_vote_split', columnsKeys: ['studio_col_margin', 'studio_col_spoiler_votes'], rows: splitRows });
-  }
   const row = (id: string, labelKey: string, ids: string[] | number): SummaryRow => ({
     id, label: id, labelKey, value: Array.isArray(ids) ? ids.length : ids, valueFormat: 'int', seatIds: Array.isArray(ids) ? ids : undefined,
   });
+  // Legacy order: "Vote split analysis" numbers, one table per configured split, then the seat classification.
+  const out: SummarySection[] = [{
+    id: 'vote_split', titleKey: 'studio_sum_vote_split', layout: 'stats',
+    rows: [row('analyzed', 'studio_row_analyzed', analyzed), row('three_way', 'studio_row_three_way_short', three), row('spoiler_affected', 'studio_row_spoiler_affected', [...affected])],
+  }];
+  for (const sr of results) {
+    if (sr.seats.length === 0) continue;
+    const hurtsName = alliances.get(up(sr.config.hurts))?.name ?? sr.config.hurts;
+    out.push({
+      id: `split:${sr.config.spoiler}`, titleKey: 'studio_sum_split_title', titleParams: { label: sr.config.label, count: sr.seats.length, hurts: hurtsName },
+      columnsKeys: ['studio_col_margin', 'studio_col_spoiler_votes'], more: Math.max(0, sr.seats.length - SEATS_PER_SPLIT),
+      rows: sr.seats.slice(0, SEATS_PER_SPLIT).map(s => ({
+        id: `split:${sr.config.spoiler}:${s.constId}`, label: nameOf(s.constId), sub: s.winnerAlliance, value: s.margin, valueFormat: 'compact' as const,
+        extra: [compact(s.spoilerVotes)], color: colorOf(ctx, sr.config.spoiler), seatIds: [s.constId], partyIds: [sr.config.spoiler],
+      })),
+    });
+  }
   out.push({
     id: 'classification', titleKey: 'studio_sum_classification',
     rows: [
-      row('analyzed', 'studio_row_analyzed', analyzed),
       row('two_way', 'studio_row_two_way', two),
       row('three_way', 'studio_row_three_way', three),
       row('multi_cornered', 'studio_row_multi_cornered', multi),
-      row('spoiler_affected', 'studio_row_spoiler_affected', [...affected]),
     ],
   });
   return out;

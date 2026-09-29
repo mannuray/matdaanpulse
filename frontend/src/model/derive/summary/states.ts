@@ -1,33 +1,64 @@
-import type { SeatResult } from '../../types/dashboard';
-import { allianceByParty, ledSeats } from './shared';
+import { displayStateName, stateFromConstId } from '../../geo/regionMatching';
+import { allianceByParty, colorOf, ledSeats } from './shared';
 import type { SummaryContext, SummarySection } from './types';
 
-/** layerInsights.states — the alliance leading the most seats in each state, then states led per alliance. */
+const LEADERBOARD_LIMIT = 10;
+const COMPETITIVE_LIMIT = 5;
+const SWEEP_PCT = 80;
+
+/** StatesSection.tsx (Lok Sabha only): state leaderboard, sweep states and the most competitive states. */
 export function statesSummary(ctx: SummaryContext): SummarySection[] {
-  if (ctx.electionType !== 'LS' || ctx.alliances.length === 0) return [];
+  if (ctx.electionType === 'VS') return [];
   const al = allianceByParty(ctx.alliances);
-  const byState = new Map<string, SeatResult[]>();
-  ledSeats(ctx).forEach(s => { if (s.state) byState.set(s.state, [...(byState.get(s.state) ?? []), s]); });
-  const leaders = new Map<string, { states: string[]; seatIds: string[] }>();
-  for (const [state, seats] of byState) {
-    const tally = new Map<string, number>();
-    seats.forEach(s => { const a = al.get(s.party); if (a) tally.set(a.id, (tally.get(a.id) ?? 0) + 1); });
-    const top = [...tally.entries()].sort((x, y) => y[1] - x[1])[0];
-    if (!top) continue;
-    const e = leaders.get(top[0]) ?? { states: [], seatIds: [] };
-    e.states.push(state);
-    e.seatIds.push(...seats.map(s => s.id));
-    leaders.set(top[0], e);
+  interface Tally { key: string; name: string; color: string; partyIds: string[]; count: number }
+  const states = new Map<string, { code: string; seats: string[]; marginSum: number; tally: Map<string, Tally> }>();
+  for (const s of ledSeats(ctx)) {
+    const code = s.state || stateFromConstId(s.id);
+    if (!code) continue;
+    const st = states.get(code) ?? { code, seats: [], marginSum: 0, tally: new Map<string, Tally>() };
+    st.seats.push(s.id);
+    st.marginSum += s.margin!;
+    const a = al.get(s.party);
+    const key = a ? a.name : s.party;
+    const t = st.tally.get(key) ?? { key, name: key, color: a ? a.color : colorOf(ctx, s.party), partyIds: a ? a.parties : [s.party], count: 0 };
+    t.count++;
+    st.tally.set(key, t);
+    states.set(code, st);
   }
-  if (leaders.size === 0) return [];
-  return [{
-    id: 'states_by_alliance', titleKey: 'studio_sum_states_by_alliance',
-    rows: [...leaders.entries()].sort((x, y) => y[1].states.length - x[1].states.length).map(([id, e]) => {
-      const a = ctx.alliances.find(x => x.id === id)!;
-      return {
-        id: `alliance:${id}`, label: a.name, sub: [...e.states].sort((p, q) => p.localeCompare(q)).join(', '),
-        value: e.states.length, valueFormat: 'int' as const, color: a.color, partyIds: a.parties, seatIds: e.seatIds,
-      };
-    }),
+  const stats = [...states.values()].map(st => {
+    let dominant: Tally | null = null;
+    for (const t of st.tally.values()) if (!dominant || t.count > dominant.count) dominant = t;
+    return {
+      code: st.code, name: displayStateName(st.code), seatIds: st.seats, seats: st.seats.length,
+      avgMargin: Math.round(st.marginSum / st.seats.length), dominant: dominant!,
+      dominantPct: Math.round((dominant!.count / st.seats.length) * 100),
+    };
+  }).sort((a, b) => b.seats - a.seats);
+  if (stats.length === 0) return [];
+
+  const max = stats[0].seats;
+  const out: SummarySection[] = [{
+    id: 'state_leaderboard', titleKey: 'studio_sum_state_leaderboard',
+    rows: stats.slice(0, LEADERBOARD_LIMIT).map(s => ({
+      id: `state:${s.code}`, label: s.name, sub: s.dominant.name, value: s.seats, valueFormat: 'int' as const,
+      color: s.dominant.color, seatIds: s.seatIds, partyIds: s.dominant.partyIds, bar: { value: s.seats, max, color: s.dominant.color },
+    })),
   }];
+  const sweep = stats.filter(s => s.dominantPct >= SWEEP_PCT);
+  if (sweep.length > 0) {
+    out.push({
+      id: 'sweep_states', titleKey: 'studio_sum_sweep_states', titleParams: { count: sweep.length },
+      rows: sweep.map(s => ({
+        id: `state:${s.code}`, label: s.name, sub: s.dominant.name, value: s.dominantPct, valueFormat: 'pct0' as const,
+        color: s.dominant.color, seatIds: s.seatIds, partyIds: s.dominant.partyIds,
+      })),
+    });
+  }
+  out.push({
+    id: 'competitive_states', titleKey: 'studio_sum_competitive_states',
+    rows: [...stats].sort((a, b) => a.avgMargin - b.avgMargin).slice(0, COMPETITIVE_LIMIT).map(s => ({
+      id: `state:${s.code}`, label: s.name, value: s.avgMargin, valueFormat: 'compact' as const, seatIds: s.seatIds,
+    })),
+  });
+  return out;
 }

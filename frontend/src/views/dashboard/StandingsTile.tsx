@@ -125,7 +125,8 @@ export function StandingsTile({ vm, variant, watchlist, summary, initialTab }: {
   }
   const max = Math.max(1, ...vm.rows.map(r => r.seats));
   return (
-    <Tile title={t('party_standings')} onExpand={vm.onFocus} pulse={vm.pulse} actions={toggle}>
+    <Tile title={t(shown === 'summary' ? 'studio_title_summary' : shown === 'watchlist' ? 'studio_title_watchlist' : 'party_standings')}
+      onExpand={shown === 'summary' && summary ? summary.onFocus : vm.onFocus} pulse={vm.pulse} actions={toggle}>
       {shown === 'summary' && summary ? <SummaryTab vm={summary} /> : shown === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} onMore={vm.onFocus} /> : (
         <div ref={fit.ref} className="flex h-full flex-col gap-1">
           {vm.rows.length === 0 && <p className="py-6 text-center text-sm text-muted">{t('studio_no_results_yet')}</p>}

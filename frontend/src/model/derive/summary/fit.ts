@@ -1,6 +1,7 @@
 import type { SummarySection } from './types';
 
-export interface SummaryFitOpts { headerH: number; rowH: number; gap: number; footerH: number }
+/** `statsH`: height of a stats-layout section's number block (defaults to rowH). */
+export interface SummaryFitOpts { headerH: number; rowH: number; gap: number; footerH: number; statsH?: number }
 export interface SummaryFitPlan { visible: { sectionId: string; rows: number }[]; hiddenRows: number; hiddenSections: number }
 
 function place(sections: SummarySection[], available: number, o: SummaryFitOpts): SummaryFitPlan {
@@ -11,12 +12,23 @@ function place(sections: SummarySection[], available: number, o: SummaryFitOpts)
   const step = o.rowH + o.gap;
   for (const s of sections) {
     if (s.rows.length === 0) { hiddenSections++; continue; }
+    hiddenRows += s.more ?? 0;
     const lead = visible.length > 0 ? o.gap : 0;
-    const room = available - used - lead - o.headerH;
+    // An untitled section (titleKey '') has no header line.
+    const head = s.titleKey ? o.headerH + o.gap : 0;
+    if (s.layout === 'stats') {
+      // All-or-nothing: the numbers sit side by side in one block.
+      const need = lead + head + (o.statsH ?? o.rowH);
+      if (used + need > available) { hiddenSections++; hiddenRows += s.rows.length; continue; }
+      used += need;
+      visible.push({ sectionId: s.id, rows: s.rows.length });
+      continue;
+    }
+    const room = available - used - lead - head;
     const fit = Math.min(s.rows.length, Math.floor((room + o.gap) / step));
     if (fit < 1) { hiddenSections++; hiddenRows += s.rows.length; continue; }
     // header + fit rows, each stacked with a gap between elements
-    used += lead + o.headerH + fit * o.rowH + fit * o.gap;
+    used += lead + head + fit * step - o.gap;
     visible.push({ sectionId: s.id, rows: fit });
     hiddenRows += s.rows.length - fit;
   }

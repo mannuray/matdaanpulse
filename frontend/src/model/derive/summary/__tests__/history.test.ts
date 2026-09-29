@@ -19,18 +19,19 @@ const partyTrend = [
   { party: 'JDU', year: 2015, seatsWon: 70, avgMargin: 1 },
 ];
 const full = { dominance, incumbency, partySwitches, marginTrend, partyTrend };
-const run = (over = {}) => deriveLayerSummary('history', makeCtx({ ...full, ...over })).sections;
+const run = (over = {}) => deriveLayerSummary('history', makeCtx({ ...full, ...over })).sections.filter(s => s.id !== 'key_stats');
 const get = (id: string, over = {}) => run(over).find(s => s.id === id)!;
 const nums = (id: string, over = {}) => get(id, over).rows.map(r => [r.id, r.value, r.extra?.map(x => x.value)]);
 
 describe('history summary', () => {
   it('sections in the binding order', () => {
-    expect(run().map(s => s.id)).toEqual(['dominance', 'dominance_by_party', 'swing_seats', 'anti_incumbency', 'incumbent_win_rate', 'incumbent_defeats', 'party_switchers', 'switch_directions', 'margin_trend', 'party_trend']);
+    expect(run().map(s => s.id)).toEqual(['dominance', 'dominance_by_party', 'swing_seats', 'anti_incumbency', 'incumbent_win_rate', 'incumbent_defeats', 'party_switchers', 'switch_directions', 'notable_switchers', 'margin_trend', 'party_trend']);
   });
 
-  it('dominance: stronghold / loyal / swing / new counts', () => {
-    // HistorySection.tsx:52-69 classification tally.
-    expect(nums('dominance')).toEqual([['class:stronghold', 2, undefined], ['class:loyal', 1, undefined], ['class:swing', 2, undefined], ['class:new', 1, undefined]]);
+  it('dominance: stronghold / loyal / swing numbers (new seats are not shown, as in the legacy)', () => {
+    // HistorySection.tsx:52-69 classification tally, shown as three numbers.
+    expect(nums('dominance')).toEqual([['class:stronghold', 2, undefined], ['class:loyal', 1, undefined], ['class:swing', 2, undefined]]);
+    expect(get('dominance').layout).toBe('stats');
     expect(get('dominance').rows[0]).toMatchObject({ labelKey: 'studio_chip_stronghold', seatIds: ['A', 'B'] });
   });
 
@@ -42,16 +43,23 @@ describe('history summary', () => {
 
   it('swing_seats: winners history and current margin', () => {
     expect(get('swing_seats').rows.map(r => [r.label, r.sub, r.value])).toEqual([['D', 'BJP → RJD → JDU', 60000], ['G', 'JDU → AIMIM', 30000]]);
+    expect(get('swing_seats').titleParams).toEqual({ count: 2 });
+    const many = new Map(Array.from({ length: 20 }, (_, i) => dom(`S${i}`, 'swing', undefined, ['BJP', 'RJD'])));
+    expect(get('swing_seats', { dominance: many }).rows).toHaveLength(15);
   });
 
-  it('anti_incumbency: re-contested, lost, lost rate and the legacy win rate', () => {
-    // HistorySection.tsx:146-149: total 5, won 3, lost 2, winRate = round(3/5*100) = 60; lost rate round(2/5*100) = 40.
-    expect(nums('anti_incumbency')).toEqual([['recontested', 5, undefined], ['lost', 2, undefined], ['lost_rate', 40, undefined], ['win_rate', 60, undefined]]);
+  it('anti_incumbency: re-contested, won and win rate as three numbers', () => {
+    // HistorySection.tsx:146-149: total 5, won 3, winRate = round(3/5*100) = 60.
+    expect(nums('anti_incumbency')).toEqual([['recontested', 5, undefined], ['won', 3, undefined], ['win_rate', 60, undefined]]);
+    expect(get('anti_incumbency').layout).toBe('stats');
   });
 
   it('incumbent_win_rate: per party contested / won / rate', () => {
     // HistorySection.tsx:151-163: BJP 1/2 = 50, RJD 1/2 = 50 (contested tie keeps insertion order), JDU 1/1 = 100.
-    expect(nums('incumbent_win_rate')).toEqual([['party:BJP', 50, [2, 1]], ['party:RJD', 50, [2, 1]], ['party:JDU', 100, [1, 1]]]);
+    expect(nums('incumbent_win_rate')).toEqual([['party:BJP', 2, [1, 50]], ['party:RJD', 2, [1, 50]], ['party:JDU', 1, [1, 100]]]);
+    // Legacy columns: Contested, Won, Rate (the compact card shows the rate).
+    expect(get('incumbent_win_rate').columnsKeys).toEqual(['studio_col_contested', 'studio_col_won', 'studio_col_win_rate']);
+    expect(get('incumbent_win_rate').primaryCol).toBe(2);
   });
 
   it('incumbent_defeats: closest defeats first with the incumbent\'s first two names', () => {
@@ -66,6 +74,16 @@ describe('history summary', () => {
     expect(get('switch_directions').rows.map(r => [r.label, r.value, r.extra![0].value])).toEqual([['RJD → JDU', 2, 1], ['INC → BJP', 1, 1]]);
   });
 
+  it('notable_switchers: first 20 with from -> to, years, margin and result; the header counts all', () => {
+    const s = get('notable_switchers');
+    expect(s.titleParams).toEqual({ count: 3 });
+    expect(s.rows[0]).toMatchObject({ label: 'X', sub: 'RJD → JDU · 2015→2020', value: 1, valueFormat: 'compact', extra: [{ value: 1, format: 'result' }] });
+    expect(s.rows[1].extra).toEqual([{ value: 0, format: 'result' }]);
+    const many = Array.from({ length: 25 }, () => sw('RJD', 'JDU', true));
+    expect(get('notable_switchers', { partySwitches: many }).rows).toHaveLength(20);
+    expect(get('notable_switchers', { partySwitches: many }).titleParams).toEqual({ count: 25 });
+  });
+
   it('margin_trend: rows and a line chart with average and median by year', () => {
     const s = get('margin_trend');
     expect(s.rows.map(r => [r.label, r.value, r.extra!.map(x => x.value)])).toEqual([['2015', 10000, [8000, 243]], ['2020', 20000, [15000, 243]]]);
@@ -76,16 +94,20 @@ describe('history summary', () => {
     ]);
   });
 
-  it('party_trend: parties present in 2+ elections, ordered by latest seats, one line each', () => {
+  it('party_trend: parties present in 2+ elections, ordered by latest seats, a seats/avg-margin cell per election', () => {
     // HistorySection.tsx:336-342: JDU has one year -> skipped; RJD (60) before BJP (30) by latest-year seats.
     const s = get('party_trend');
+    expect(s.columnsKeys).toEqual(['2015', '2020']);
+    expect(s.rows.map(r => [r.id, r.valueText, r.extra![0].text])).toEqual([['party:RJD', '80/1', '60/1'], ['party:BJP', '20/1', '30/1']]);
+    expect(s.primaryCol).toBe(1);
     expect(s.chart!.series.map(x => [x.id, x.points.map(p => p.y)])).toEqual([['RJD', [80, 60]], ['BJP', [20, 30]]]);
     expect(s.chart!.series[0].color).toBe('#7BD34A');
   });
 
-  it('party_trend keeps the top 6 parties', () => {
+  it('party_trend lists every party but charts the top 6', () => {
     const many = Array.from({ length: 8 }, (_, i) => [2015, 2020].map(year => ({ party: `P${i}`, year, seatsWon: i + (year === 2020 ? 10 : 0), avgMargin: 1 }))).flat();
     expect(get('party_trend', { partyTrend: many }).chart!.series.map(x => x.id)).toEqual(['P7', 'P6', 'P5', 'P4', 'P3', 'P2']);
+    expect(get('party_trend', { partyTrend: many }).rows).toHaveLength(8);
   });
 
   it('omits sections whose data is missing', () => {
