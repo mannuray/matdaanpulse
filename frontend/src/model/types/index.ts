@@ -225,7 +225,7 @@ export interface ManifestData {
   vote_splits?: VoteSplitConfig[];
   history?: string[];
   history_years?: number[];
-  geo?: { map_url?: string; center?: [number, number]; zoom?: number };
+  geo?: { map_url?: string; hex_url?: string; center?: [number, number]; zoom?: number };
   revision?: {
     label: string;
     data: Record<string, [number, number]>; // const_no → [pre, post]

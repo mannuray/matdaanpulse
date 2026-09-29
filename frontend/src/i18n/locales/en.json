@@ -187,6 +187,7 @@
   "studio_hex": "Hex",
   "studio_clear_highlight": "Clear highlight",
   "studio_pick_seat": "Click a constituency to see its result",
+  "map_load_failed": "Could not load the map",
   "studio_margin": "Margin {{count}}",
   "studio_election_type": "Election type",
   "studio_year": "Year",

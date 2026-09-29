@@ -187,6 +187,7 @@
   "studio_hex": "हेक्स",
   "studio_clear_highlight": "हाइलाइट हटाएं",
   "studio_pick_seat": "परिणाम देखने के लिए निर्वाचन क्षेत्र चुनें",
+  "map_load_failed": "मानचित्र लोड नहीं हो सका",
   "studio_margin": "अंतर {{count}}",
   "studio_election_type": "चुनाव प्रकार",
   "studio_year": "वर्ष",
