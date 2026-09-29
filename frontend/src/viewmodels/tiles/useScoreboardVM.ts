@@ -1,0 +1,45 @@
+import { useMemo } from 'react';
+import { useSources } from '../sources/DashboardSourcesProvider';
+import { useDashboardStore } from '../store/DashboardStoreProvider';
+import { deriveScoreboard, type Scoreboard, type ScoreBloc } from '../../model/derive/scoreboard';
+import { deriveStandingRows, type StandingRow } from '../../model/derive/standings';
+
+export type { Scoreboard, ScoreBloc };
+
+export interface ScoreboardVM extends Scoreboard {
+  status: 'final' | 'live' | 'upcoming';
+  /** Pulse the tile once when live results changed a seat. */
+  pulse: boolean;
+  /** Member parties per bloc, for the expanded view. */
+  breakdown: { id: string; name: string; color: string; rows: StandingRow[] }[];
+  lockedId: string | null;
+  onFocus(): void;
+  onHoverBloc(id: string | null): void;
+  onLockBloc(id: string): void;
+}
+
+export function useScoreboardVM(): ScoreboardVM {
+  const src = useSources();
+  const { state, dispatch } = useDashboardStore();
+  const alliances = useMemo(() => src.data.manifestData?.alliances ?? [], [src.data.manifestData]);
+  const board = useMemo(
+    () => deriveScoreboard(alliances, src.data.mapPartyList, src.votePct, src.totalSeats, src.majority),
+    [alliances, src.data.mapPartyList, src.votePct, src.totalSeats, src.majority],
+  );
+  const partiesOf = (id: string) => alliances.find(a => a.id === id)?.parties ?? [id];
+  const status = src.election.status === 'Live' ? 'live' : src.election.status === 'Finalized' ? 'final' : 'upcoming';
+  const breakdown = useMemo(() => {
+    const rows = deriveStandingRows(src.data.mapPartyList, src.votePct, alliances, { includeZero: true });
+    return board.blocs.map(b => ({ id: b.id, name: b.name, color: b.color, rows: b.kind === 'alliance' ? rows.filter(r => r.allianceId === b.id) : rows.filter(r => r.id === b.id) }));
+  }, [board.blocs, src.data.mapPartyList, src.votePct, alliances]);
+  return {
+    ...board,
+    status,
+    pulse: src.recentSeats.size > 0,
+    breakdown,
+    lockedId: state.locked?.chipId.startsWith('bloc:') ? state.locked.chipId.slice(5) : null,
+    onFocus: () => dispatch({ type: 'focus', tile: 'scoreboard' }),
+    onHoverBloc: id => dispatch({ type: 'hover', highlight: id ? { parties: partiesOf(id), seats: [] } : null }),
+    onLockBloc: id => dispatch({ type: 'toggleLock', chipId: `bloc:${id}`, highlight: { parties: partiesOf(id), seats: [] } }),
+  };
+}
