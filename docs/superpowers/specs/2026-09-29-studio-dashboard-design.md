@@ -149,18 +149,18 @@ The Map|Hex toggle needs a per-state hex layout (each seat → hex cell), which 
 
 Every item must work on :3080 as on :3086 before the old dashboard code is deleted:
 
-- [ ] LS/VS switch, state and year selection, last-election memory
-- [ ] Global search (seats, candidates) → opens the seat
-- [ ] Map layers: Overview, Battle, Swing, History, Reserved, Insights, States (LS)
-- [ ] Alliance / party filters and the party comparison ("+ Party") → click-to-highlight on standings/scoreboard, alliance breakdown in the scoreboard focus view
-- [ ] Hover tooltip, click → seat detail, zoom/pan/reset, labels by zoom
-- [ ] Alliance tally with majority mark; party standings with vote %
-- [ ] Leaders & watchlist; tracked seats (star, localStorage)
-- [ ] Election summary stats
-- [ ] Live: SSE updates, pulse on change, live status, reconnect
-- [ ] Share (WhatsApp / Twitter) → share control in the top bar
-- [ ] i18n: en / hi / ta / mr for every new string
-- [ ] Link to the full constituency page and person page
+- [x] LS/VS switch, state and year selection, last-election memory
+- [x] Global search (seats, candidates) → opens the seat
+- [x] Map layers: Overview, Battle, Swing, History, Reserved, Insights, States (LS)
+- [x] Alliance / party filters and the party comparison ("+ Party") → click-to-highlight on standings/scoreboard, alliance breakdown in the scoreboard focus view
+- [x] Hover tooltip, click → seat detail, zoom/pan/reset, labels by zoom
+- [x] Alliance tally with majority mark; party standings with vote %
+- [x] Leaders & watchlist; tracked seats (star, localStorage)
+- [x] Election summary stats
+- [x] Live: SSE updates, pulse on change, live status, reconnect
+- [x] Share (WhatsApp / Twitter) → share control in the top bar
+- [x] i18n: en / hi / ta / mr for every new string
+- [x] Link to the full constituency page and person page
 - [ ] **Intentionally dropped:** light theme and the theme toggle
 
 ## 10. Architecture — MVVM
