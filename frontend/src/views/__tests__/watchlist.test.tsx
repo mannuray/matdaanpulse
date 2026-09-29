@@ -1,0 +1,109 @@
+// @vitest-environment jsdom
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import '../../i18n';
+import { StandingsTile } from '../dashboard/StandingsTile';
+import { LeadersStrip } from '../dashboard/LeadersStrip';
+import { SeatPanel } from '../map/SeatPanel';
+import { fitCount } from '../../viewmodels/tiles/fit';
+import type { StandingsVM } from '../../viewmodels/tiles/useStandingsVM';
+import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
+import type { SeatPanelVM } from '../../viewmodels/tiles/useSeatPanelVM';
+
+const noop = () => {};
+const origW = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
+const origH = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientHeight');
+afterEach(() => {
+  cleanup();
+  for (const [k, d] of [['clientWidth', origW], ['clientHeight', origH]] as const) {
+    if (d) Object.defineProperty(HTMLElement.prototype, k, d); else delete (HTMLElement.prototype as unknown as Record<string, unknown>)[k];
+  }
+});
+
+const card = (i: number, over: Partial<LeaderCard> = {}): LeaderCard => ({
+  key: `k${i}`, name: `Leader ${i}`, constId: `C${i}`, constName: `Seat ${i}`, partyId: 'BJP', status: 'LEADING', margin: 100 + i, custom: false, ...over,
+});
+const leadersVM = (over: Partial<LeadersVM> = {}): LeadersVM => ({
+  leaders: [], watchlist: [], partyColor: new Map(), seatOptions: [{ id: 'C9', name: 'Nine' }],
+  onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, ...over,
+});
+const standingsVM: StandingsVM = { rows: [{ id: 'BJP', name: 'Party', color: '#fff', seats: 3, votePct: null, allianceId: null }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop };
+
+describe('LeadersStrip fits by width', () => {
+  it('renders only the cards that fit and a "+N more" chip that opens the focus view', () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, get: () => 1000 });
+    const onFocus = vi.fn();
+    const { count } = fitCount({ available: 1000, itemHeight: 240, gap: 8, footerHeight: 96, total: 6 });
+    expect(count).toBe(3);
+    render(<LeadersStrip vm={leadersVM({ leaders: [0, 1, 2, 3, 4, 5].map(i => card(i)), onFocus })} variant="tile" />);
+    expect(screen.getAllByRole('button', { name: /Leader \d/ })).toHaveLength(3);
+    fireEvent.click(screen.getByRole('button', { name: '+3 more' }));
+    expect(onFocus).toHaveBeenCalled();
+  });
+
+  it('shows every leader and no chip when they all fit', () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, get: () => 1600 });
+    render(<LeadersStrip vm={leadersVM({ leaders: [0, 1, 2].map(i => card(i)) })} variant="tile" />);
+    expect(screen.getAllByRole('button', { name: /Leader \d/ })).toHaveLength(3);
+    expect(screen.queryByText(/more/)).toBeNull();
+  });
+
+  it('focus variant lists all manifest leaders without add/remove UI', () => {
+    render(<LeadersStrip vm={leadersVM({ leaders: [0, 1, 2, 3, 4].map(i => card(i)) })} variant="focus" />);
+    expect(screen.getAllByRole('button', { name: /Leader \d/ })).toHaveLength(5);
+    expect(screen.queryByRole('button', { name: /Add/ })).toBeNull();
+  });
+});
+
+describe('StandingsTile watchlist tab', () => {
+  it('defaults to Parties, switches to Watchlist rows, and the x removes a seat', () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientHeight', { configurable: true, get: () => 300 });
+    const onRemoveCustom = vi.fn();
+    const onSelectSeat = vi.fn();
+    const lvm = leadersVM({ watchlist: [card(1, { custom: true })], onRemoveCustom, onSelectSeat });
+    render(<StandingsTile vm={standingsVM} variant="tile" watchlist={lvm} />);
+    expect(screen.getByRole('button', { name: /^BJP Party/ })).toBeTruthy();
+    fireEvent.click(screen.getByRole('radio', { name: 'Watchlist (1)' }));
+    expect(screen.queryByRole('button', { name: /^BJP Party/ })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: /^Seat 1/ }));
+    expect(onSelectSeat).toHaveBeenCalledWith('C1');
+    fireEvent.click(screen.getByRole('button', { name: 'Remove Seat 1' }));
+    expect(onRemoveCustom).toHaveBeenCalledWith('C1');
+    expect(screen.getByRole('combobox', { name: /Add a seat/ })).toBeTruthy();
+  });
+
+  it('shows the empty state on an empty watchlist', () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientHeight', { configurable: true, get: () => 300 });
+    render(<StandingsTile vm={standingsVM} variant="tile" watchlist={leadersVM()} />);
+    fireEvent.click(screen.getByRole('radio', { name: 'Watchlist (0)' }));
+    expect(screen.getByText('Track seats from the map to follow them here')).toBeTruthy();
+  });
+
+  it('focus variant honours initialTab', () => {
+    render(<StandingsTile vm={standingsVM} variant="focus" watchlist={leadersVM({ watchlist: [card(2, { custom: true })] })} initialTab="watchlist" />);
+    expect(screen.getByRole('button', { name: /^Seat 2/ })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Remove Seat 2' })).toBeTruthy();
+  });
+});
+
+describe('SeatPanel track toggle', () => {
+  const vm = (tracked: boolean, onToggleTrack = noop): SeatPanelVM => ({
+    seatId: 'C1', name: 'Seat One', candidates: [], margin: null, history: null, briefing: null, fullPageHref: '/x', tracked, onToggleTrack, onClose: noop,
+  });
+  const show = (v: SeatPanelVM) => render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><SeatPanel vm={v} /></MemoryRouter>);
+
+  it('reflects tracked state via aria-pressed and calls onToggleTrack', () => {
+    const onToggleTrack = vi.fn();
+    show(vm(false, onToggleTrack));
+    const btn = screen.getByRole('button', { name: '☆ Track' });
+    expect(btn.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(btn);
+    expect(onToggleTrack).toHaveBeenCalled();
+  });
+
+  it('shows Tracked when tracked', () => {
+    show(vm(true));
+    expect(screen.getByRole('button', { name: '★ Tracked' }).getAttribute('aria-pressed')).toBe('true');
+  });
+});

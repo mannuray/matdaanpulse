@@ -11,6 +11,8 @@ import { ElectionProvider } from '../data/useElection';
 import { useTopBarVM } from '../tiles/useTopBarVM';
 import { useLeadersVM } from '../tiles/useLeadersVM';
 import { useSeatPanelVM } from '../tiles/useSeatPanelVM';
+import { useLocalStorage } from '../data/useLocalStorage';
+import type { CustomWatch } from '../../model/derive/leaders';
 import '../../i18n';
 import { makeSources } from './fixtures';
 
@@ -82,18 +84,46 @@ describe('useTopBarVM', () => {
   });
 });
 
-describe('useLeadersVM custom watchlist', () => {
-  it('adds (deduped), shows as custom card, and removes', () => {
-    const { result } = renderHook(() => useLeadersVM(), { wrapper: wrap() });
-    act(() => result.current.onAddCustom('BR_VS_3_AGIAON'));
-    act(() => result.current.onAddCustom('BR_VS_3_AGIAON'));
-    const stored = JSON.parse(localStorage.getItem('watchlist_e1')!);
-    expect(stored).toHaveLength(1);
-    expect(stored[0].const_id).toBe('BR_VS_3_AGIAON');
-    expect(result.current.cards.filter(c => c.custom && c.constId === 'BR_VS_3_AGIAON')).toHaveLength(1);
-    act(() => result.current.onRemoveCustom('BR_VS_3_AGIAON'));
+// Sources with a live shared watchlist (same single useLocalStorage as useDashboardSources).
+function sharedWatchWrap() {
+  function Shared({ children }: { children: ReactNode }) {
+    const [list, setList] = useLocalStorage<CustomWatch[]>('watchlist_e1', []);
+    const sources = makeSources({
+      watchlist: list,
+      addWatch: (id, label) => setList(p => p.some(w => w.const_id === id) ? p : [...p, { const_id: id, label }]),
+      removeWatch: id => setList(p => p.filter(w => w.const_id !== id)),
+    });
+    return wrap(sources)({ children });
+  }
+  return Shared;
+}
+
+describe('shared watchlist (seat panel + leaders)', () => {
+  it('track from the seat panel shows in useLeadersVM().watchlist; leaders exclude custom; remove works', () => {
+    const { result } = renderHook(() => ({ leaders: useLeadersVM(), seat: useSeatPanelVM(), store: useDashboardStore() }), { wrapper: sharedWatchWrap() });
+    act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'BR_VS_3_AGIAON' }));
+    expect(result.current.seat!.tracked).toBe(false);
+    act(() => result.current.seat!.onToggleTrack());
+    expect(result.current.seat!.tracked).toBe(true);
+    expect(JSON.parse(localStorage.getItem('watchlist_e1')!)).toHaveLength(1);
+    expect(result.current.leaders.watchlist.map(c => c.constId)).toEqual(['BR_VS_3_AGIAON']);
+    expect(result.current.leaders.watchlist[0].custom).toBe(true);
+    expect(result.current.leaders.leaders.some(c => c.custom)).toBe(false);
+    act(() => result.current.leaders.onRemoveCustom('BR_VS_3_AGIAON'));
+    expect(result.current.seat!.tracked).toBe(false);
     expect(JSON.parse(localStorage.getItem('watchlist_e1')!)).toEqual([]);
-    expect(result.current.cards.some(c => c.custom)).toBe(false);
+    expect(result.current.leaders.watchlist).toEqual([]);
+  });
+
+  it('onAddCustom dedupes and toggling an already tracked seat untracks it', () => {
+    const { result } = renderHook(() => ({ leaders: useLeadersVM(), seat: useSeatPanelVM(), store: useDashboardStore() }), { wrapper: sharedWatchWrap() });
+    act(() => result.current.leaders.onAddCustom('BR_VS_3_AGIAON'));
+    act(() => result.current.leaders.onAddCustom('BR_VS_3_AGIAON'));
+    expect(JSON.parse(localStorage.getItem('watchlist_e1')!)).toHaveLength(1);
+    act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'BR_VS_3_AGIAON' }));
+    expect(result.current.seat!.tracked).toBe(true);
+    act(() => result.current.seat!.onToggleTrack());
+    expect(result.current.leaders.watchlist).toEqual([]);
   });
 });
 

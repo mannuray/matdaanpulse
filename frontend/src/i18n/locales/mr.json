@@ -203,5 +203,12 @@
   "studio_status_label_live": "थेट · {{declared}}/{{total}} जाहीर",
   "studio_status_label_upcoming": "आगामी",
   "studio_open": "{{name}} उघडा",
-  "studio_no_elections": "अद्याप निवडणुका उपलब्ध नाहीत"
+  "studio_no_elections": "अद्याप निवडणुका उपलब्ध नाहीत",
+  "studio_tab_parties": "पक्ष",
+  "studio_tab_watchlist": "वॉचलिस्ट ({{count}})",
+  "studio_watch_empty": "येथे पाहण्यासाठी नकाशावरून जागा ट्रॅक करा",
+  "studio_track": "☆ ट्रॅक करा",
+  "studio_tracked": "★ ट्रॅक होत आहे",
+  "studio_more_leaders": "+{{count}} आणखी",
+  "studio_remove_seat": "{{name}} काढा"
 }

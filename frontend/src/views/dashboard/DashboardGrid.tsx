@@ -9,10 +9,11 @@ import type { StatsVM } from '../../viewmodels/tiles/useStatsVM';
 import type { MapVM } from '../../viewmodels/tiles/useMapVM';
 import type { SeatPanelVM } from '../../viewmodels/tiles/useSeatPanelVM';
 import type { FocusTile } from '../../viewmodels/store/dashboardStore';
+import { useState } from 'react';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { TopBar } from './TopBar';
 import { ScoreboardTile } from './ScoreboardTile';
-import { StandingsTile } from './StandingsTile';
+import { StandingsTile, WatchlistPreview, type StandingsTab } from './StandingsTile';
 import { LayerInsightStrip } from './LayerInsightStrip';
 import { LeadersStrip } from './LeadersStrip';
 import { StatsStrip } from './StatsStrip';
@@ -29,6 +30,7 @@ export interface DashboardViewProps {
 
 export function DashboardGrid(p: DashboardViewProps) {
   const { t } = useTranslation();
+  const [standingsTab, setStandingsTab] = useState<StandingsTab>('parties');
   const desktop = useMediaQuery('(min-width: 1024px)');
   const titles: Record<FocusTile, string> = {
     map: t('constituency_map'), scoreboard: t('studio_results'), standings: t('party_standings'),
@@ -39,7 +41,7 @@ export function DashboardGrid(p: DashboardViewProps) {
       switch (tile) {
         case 'map': return <MapTile vm={p.map} variant="focus" seatPanel={<SeatPanel vm={p.seatPanel} />} />;
         case 'scoreboard': return <ScoreboardTile vm={p.scoreboard} variant="focus" />;
-        case 'standings': return <StandingsTile vm={p.standings} variant="focus" />;
+        case 'standings': return <StandingsTile vm={p.standings} variant="focus" watchlist={p.leaders} initialTab={standingsTab} />;
         case 'insight': return <LayerInsightStrip vm={p.insight} variant="focus" />;
         case 'leaders': return <LeadersStrip vm={p.leaders} variant="focus" />;
         case 'stats': return <StatsStrip vm={p.stats} variant="focus" />;
@@ -55,7 +57,8 @@ export function DashboardGrid(p: DashboardViewProps) {
         <div className="min-h-0 flex-1 px-3"><MapTile vm={p.map} variant="tile" /></div>
         <MobileCardRail cards={[
           { id: 'insight', title: titles.insight, node: <LayerInsightStrip vm={p.insight} variant="tile" />, onOpen: p.insight.onFocus },
-          { id: 'standings', title: titles.standings, node: <StandingsTile vm={p.standings} variant="focus" />, onOpen: p.standings.onFocus },
+          { id: 'standings', title: titles.standings, node: <StandingsTile vm={p.standings} variant="focus" />, onOpen: () => { setStandingsTab('parties'); p.standings.onFocus(); } },
+          { id: 'watchlist', title: t('studio_tab_watchlist', { count: p.leaders.watchlist.length }), node: <WatchlistPreview vm={p.leaders} />, onOpen: () => { setStandingsTab('watchlist'); p.standings.onFocus(); } },
           { id: 'leaders', title: titles.leaders, node: <LeadersStrip vm={p.leaders} variant="tile" />, onOpen: p.leaders.onFocus },
           { id: 'stats', title: titles.stats, node: <StatsStrip vm={p.stats} variant="tile" />, onOpen: p.stats.onFocus },
         ]} />
@@ -70,7 +73,7 @@ export function DashboardGrid(p: DashboardViewProps) {
       <MapTile vm={p.map} variant="tile" footer={<LayerInsightStrip vm={p.insight} variant="footer" />} />
       <div className="grid min-h-0 grid-rows-[148px_minmax(0,1fr)] gap-3">
         <ScoreboardTile vm={p.scoreboard} variant="tile" />
-        <StandingsTile vm={p.standings} variant="tile" />
+        <StandingsTile vm={p.standings} variant="tile" watchlist={p.leaders} />
       </div>
       <div className="col-span-2 grid min-h-0"><LeadersStrip vm={p.leaders} variant="tile" /></div>
       <div className="col-span-2 grid min-h-0"><StatsStrip vm={p.stats} variant="tile" /></div>

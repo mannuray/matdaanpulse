@@ -9,7 +9,13 @@ export function SeatPanel({ vm }: { vm: SeatPanelVM | null }) {
   return (
     <aside className="flex min-h-0 flex-col gap-3 overflow-auto rounded-tile border border-line bg-page/40 p-4">
       <div className="flex items-center justify-between">
-        <h3 className="font-display text-2xl font-bold uppercase text-ink">{vm.name}</h3>
+        <div className="flex min-w-0 items-center gap-3">
+          <h3 className="truncate font-display text-2xl font-bold uppercase text-ink">{vm.name}</h3>
+          <button type="button" onClick={vm.onToggleTrack} aria-pressed={vm.tracked}
+            className="shrink-0 rounded-full border border-line px-3 py-1 text-xs font-semibold text-muted hover:border-accent hover:text-ink aria-pressed:border-accent aria-pressed:text-accent">
+            {vm.tracked ? t('studio_tracked') : t('studio_track')}
+          </button>
+        </div>
         <button type="button" onClick={vm.onClose} className="text-muted hover:text-ink" aria-label={t('studio_close')}>✕</button>
       </div>
       {vm.margin != null && <p className="text-sm text-muted">{t('studio_margin', { count: vm.margin })}</p>}

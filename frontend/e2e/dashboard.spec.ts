@@ -78,3 +78,23 @@ test('baseline screenshot for side-by-side comparison', async ({ page }) => {
   await page.goto(`http://localhost:3086/election/${BIHAR}`);
   await page.screenshot({ path: 'e2e/__shots__/baseline-1440x900.png' });
 });
+
+test('track a seat in the map focus and see it in the Watchlist tab', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/election/${BIHAR}`);
+  await page.evaluate(id => localStorage.removeItem(`watchlist_${id}`), BIHAR);
+  await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  const track = dialog.getByRole('button', { name: '☆ Track' });
+  await expect(track).toBeVisible();
+  await track.click();
+  await expect(dialog.getByRole('button', { name: '★ Tracked' })).toHaveAttribute('aria-pressed', 'true');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.getByRole('radio', { name: /Watchlist \(1\)/ }).click();
+  await expect(page.getByRole('button', { name: /^Remove / })).toHaveCount(1);
+  await expect(page.getByText(/barauli/i).first()).toBeVisible();
+  await assertNoScroll(page);
+  await page.screenshot({ path: 'e2e/__shots__/watchlist-tab.png' });
+});

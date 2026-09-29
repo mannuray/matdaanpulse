@@ -5,6 +5,8 @@ import { useHistoricalResults } from '../data/useHistoricalResults';
 import { useAnalysis } from '../data/useAnalysis';
 import { useSSE } from '../data/useSSE';
 import { useElection } from '../data/useElection';
+import { useLocalStorage } from '../data/useLocalStorage';
+import type { CustomWatch } from '../../model/derive/leaders';
 import { appendTicker, type TickerEvent } from '../../model/live/ticker';
 import type { Election, SSEEvent, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint } from '../../model/types';
 import type { LayerId } from '../../model/types/dashboard';
@@ -12,6 +14,7 @@ import type { DashboardViewModel } from '../data/useDashboardData';
 
 const RECENT_CHANGE_MS = 3000;
 const EMPTY_YEARS: number[] = [];
+const EMPTY_WATCH: CustomWatch[] = [];
 
 export interface DashboardSources {
   election: Election;
@@ -29,6 +32,10 @@ export interface DashboardSources {
   recentSeats: Set<string>;
   sseConnected: boolean;
   availableLayers: LayerId[];
+  /** The user's own tracked seats (shared by the seat panel and the watchlist tab). */
+  watchlist: CustomWatch[];
+  addWatch(constId: string, label: string): void;
+  removeWatch(constId: string): void;
 }
 
 export function useDashboardSources(election: Election): DashboardSources {
@@ -95,8 +102,19 @@ export function useDashboardSources(election: Election): DashboardSources {
     return l;
   }, [swing.size, dominance.size, election.type]);
 
+  // Same storage key as the baseline WatchlistPanel, so users keep their watchlist.
+  const [stored, setStored] = useLocalStorage<CustomWatch[]>(`watchlist_${election.id}`, []);
+  const watchlist = stored || EMPTY_WATCH;
+  const addWatch = useCallback((constId: string, label: string) => {
+    setStored(prev => (prev || []).some(w => w.const_id === constId) ? prev || [] : [...(prev || []), { const_id: constId, label }]);
+  }, [setStored]);
+  const removeWatch = useCallback((constId: string) => {
+    setStored(prev => (prev || []).filter(w => w.const_id !== constId));
+  }, [setStored]);
+
   return {
     election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, prevYear,
     totalSeats, majority, votePct, ticker, recentSeats, sseConnected, availableLayers,
+    watchlist, addWatch, removeWatch,
   };
 }

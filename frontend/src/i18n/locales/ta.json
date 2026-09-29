@@ -203,5 +203,12 @@
   "studio_status_label_live": "நேரலை · {{declared}}/{{total}}",
   "studio_status_label_upcoming": "வரவிருக்கும்",
   "studio_open": "{{name}} திற",
-  "studio_no_elections": "இன்னும் தேர்தல்கள் இல்லை"
+  "studio_no_elections": "இன்னும் தேர்தல்கள் இல்லை",
+  "studio_tab_parties": "கட்சிகள்",
+  "studio_tab_watchlist": "கவனிப்புப் பட்டியல் ({{count}})",
+  "studio_watch_empty": "இங்கே பின்தொடர வரைபடத்திலிருந்து இடங்களைக் கண்காணிக்கவும்",
+  "studio_track": "☆ கண்காணி",
+  "studio_tracked": "★ கண்காணிக்கப்படுகிறது",
+  "studio_more_leaders": "+{{count}} மேலும்",
+  "studio_remove_seat": "{{name}} நீக்கு"
 }

@@ -53,7 +53,7 @@ describe('tile behaviour', () => {
     const onSelectSeat = vi.fn();
     const onHoverSeat = vi.fn();
     const vm: LeadersVM = {
-      cards: [{ key: 'k', name: 'Test Leader', constId: 'C7', constName: 'Seat', partyId: 'BJP', status: 'LEADING', margin: 100, custom: false }],
+      leaders: [{ key: 'k', name: 'Test Leader', constId: 'C7', constName: 'Seat', partyId: 'BJP', status: 'LEADING', margin: 100, custom: false }], watchlist: [],
       partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat, onHoverSeat, onAddCustom: noop, onRemoveCustom: noop,
     };
     render(<LeadersStrip vm={vm} variant="tile" />);

@@ -203,5 +203,12 @@
   "studio_status_label_live": "Live · {{declared}}/{{total}} declared",
   "studio_status_label_upcoming": "Upcoming",
   "studio_open": "Open {{name}}",
-  "studio_no_elections": "No elections available yet"
+  "studio_no_elections": "No elections available yet",
+  "studio_tab_parties": "Parties",
+  "studio_tab_watchlist": "Watchlist ({{count}})",
+  "studio_watch_empty": "Track seats from the map to follow them here",
+  "studio_track": "☆ Track",
+  "studio_tracked": "★ Tracked",
+  "studio_more_leaders": "+{{count}} more",
+  "studio_remove_seat": "Remove {{name}}"
 }

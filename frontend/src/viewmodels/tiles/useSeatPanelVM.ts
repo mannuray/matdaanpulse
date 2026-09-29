@@ -12,6 +12,8 @@ export interface SeatPanelVM {
   history: { classification: string; dominantParty: string | null } | null;
   briefing: string | null;
   fullPageHref: string;
+  tracked: boolean;
+  onToggleTrack(): void;
   onClose(): void;
 }
 
@@ -25,14 +27,18 @@ export function useSeatPanelVM(): SeatPanelVM | null {
   const dom = src.dominance.get(id);
   const rows = src.data.constCandidates.get(id) ?? [];
   const winner = src.data.currentWinnerMap.get(id);
+  const name = displayNameFromConstId(id);
+  const tracked = src.watchlist.some(w => w.const_id === id);
   return {
     seatId: id,
-    name: displayNameFromConstId(id),
+    name,
     candidates: rows.map(r => ({ name: r.candidate_name, partyId: r.party_id, color: src.data.partyColorMap.get(r.party_id) ?? '#8A93A6', votes: r.votes, status: r.status })),
     margin: winner ? Number(winner.margin) || 0 : null,
     history: dom ? { classification: dom.classification, dominantParty: dom.dominantParty ?? null } : null,
     briefing: (analysis as { ai_briefing?: string | null } | null)?.ai_briefing ?? null,
     fullPageHref: `/election/${src.election.id}/constituency/${id}`,
+    tracked,
+    onToggleTrack: () => (tracked ? src.removeWatch(id) : src.addWatch(id, name)),
     onClose: () => dispatch({ type: 'selectSeat', seat: null }),
   };
 }

@@ -203,5 +203,12 @@
   "studio_status_label_live": "लाइव · {{declared}}/{{total}} घोषित",
   "studio_status_label_upcoming": "आगामी",
   "studio_open": "{{name}} खोलें",
-  "studio_no_elections": "अभी कोई चुनाव उपलब्ध नहीं"
+  "studio_no_elections": "अभी कोई चुनाव उपलब्ध नहीं",
+  "studio_tab_parties": "दल",
+  "studio_tab_watchlist": "वॉचलिस्ट ({{count}})",
+  "studio_watch_empty": "यहां देखने के लिए मानचित्र से सीटें ट्रैक करें",
+  "studio_track": "☆ ट्रैक करें",
+  "studio_tracked": "★ ट्रैक हो रहा",
+  "studio_more_leaders": "+{{count}} और",
+  "studio_remove_seat": "{{name}} हटाएं"
 }

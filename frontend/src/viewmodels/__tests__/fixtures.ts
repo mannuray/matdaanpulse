@@ -33,6 +33,7 @@ export function makeSources(over: Partial<DashboardSources> = {}): DashboardSour
     swing: new Map(), dominance: new Map(), incumbency: [], partySwitches: [], marginTrend: [], prevYear: null,
     totalSeats: 243, majority: 122, votePct: new Map(), ticker: [], recentSeats: new Set(), sseConnected: false,
     availableLayers: ['overview', 'battle', 'demographics', 'insights'],
+    watchlist: [], addWatch: () => {}, removeWatch: () => {},
     ...over,
   };
 }

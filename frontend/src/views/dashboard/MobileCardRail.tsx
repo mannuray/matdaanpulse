@@ -3,7 +3,7 @@ import type { FocusTile } from '../../viewmodels/store/dashboardStore';
 import { useTranslation } from 'react-i18next';
 import { cn } from '../ui/cn';
 
-export function MobileCardRail({ cards }: { cards: { id: FocusTile; title: string; node: ReactNode; onOpen(): void }[] }) {
+export function MobileCardRail({ cards }: { cards: { id: FocusTile | 'watchlist'; title: string; node: ReactNode; onOpen(): void }[] }) {
   const { t } = useTranslation();
   const [active, setActive] = useState(0);
   return (

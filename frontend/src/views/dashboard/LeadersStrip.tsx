@@ -1,10 +1,14 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
-import { PickerSelect } from '../ui/PickerSelect';
+import { fitCount } from '../../viewmodels/tiles/fit';
+import { useElementWidth } from '../hooks/useElementWidth';
 import { cn } from '../ui/cn';
 
-const STATUS_STYLE: Record<LeaderCard['status'], string> = {
+const CARD_W = 240;
+const MORE_W = 96;
+const GAP = 8;
+
+export const STATUS_STYLE: Record<LeaderCard['status'], string> = {
   WON: 'bg-emerald-500/15 text-emerald-300', LEADING: 'bg-accent/15 text-accent', LOST: 'bg-live/15 text-live', TRAILING: 'bg-live/10 text-live', PENDING: 'bg-muted/15 text-muted',
 };
 
@@ -28,31 +32,27 @@ function Card({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
 
 export function LeadersStrip({ vm, variant }: { vm: LeadersVM; variant: 'tile' | 'focus' }) {
   const { t } = useTranslation();
-  const [pick, setPick] = useState('');
+  const [ref, width] = useElementWidth<HTMLDivElement>();
   if (variant === 'focus') {
     return (
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-2">
-          <PickerSelect value={pick} onChange={setPick} ariaLabel={t('studio_add_seat')} placeholder={t('studio_add_seat')} options={vm.seatOptions.map(s => ({ value: s.id, label: s.name }))} />
-          <button type="button" disabled={!pick} onClick={() => { vm.onAddCustom(pick); setPick(''); }} className="h-8 rounded-full bg-accent px-4 text-sm font-semibold text-page disabled:opacity-40">{t('studio_add')}</button>
-        </div>
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
-          {vm.cards.map(c => (
-            <div key={c.key} className="flex items-center gap-2">
-              <Card c={c} vm={vm} />
-              {c.custom && <button type="button" onClick={() => vm.onRemoveCustom(c.constId)} aria-label={t('studio_remove')} className="text-muted hover:text-live">✕</button>}
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
+        {vm.leaders.length === 0 && <span className="text-sm text-muted">{t('studio_no_leaders')}</span>}
+        {vm.leaders.map(c => <Card key={c.key} c={c} vm={vm} />)}
       </div>
     );
   }
+  const { count, overflow } = fitCount({ available: width, itemHeight: CARD_W, gap: GAP, footerHeight: MORE_W, total: vm.leaders.length });
   return (
     <section className="flex min-w-0 items-center gap-3 overflow-hidden rounded-tile border border-line bg-tile px-4">
       <h2 className="shrink-0 font-display text-base font-bold uppercase tracking-wider text-ink">{t('studio_key_leaders')}</h2>
-      <div className="flex min-w-0 flex-1 gap-2 overflow-hidden">
-        {vm.cards.length === 0 && <span className="text-sm text-muted">{t('studio_no_leaders')}</span>}
-        {vm.cards.map(c => <Card key={c.key} c={c} vm={vm} />)}
+      <div ref={ref} className="flex min-w-0 flex-1 gap-2 overflow-hidden">
+        {vm.leaders.length === 0 && <span className="text-sm text-muted">{t('studio_no_leaders')}</span>}
+        {vm.leaders.slice(0, count).map(c => <Card key={c.key} c={c} vm={vm} />)}
+        {overflow > 0 && (
+          <button type="button" onClick={vm.onFocus} className="h-12 w-24 shrink-0 rounded-xl border border-line text-sm font-semibold text-muted hover:border-accent hover:text-accent">
+            {t('studio_more_leaders', { count: overflow })}
+          </button>
+        )}
       </div>
       <button type="button" onClick={vm.onFocus} aria-label={t('studio_expand', { name: t('studio_key_leaders') })} className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-muted hover:text-accent">⤢</button>
     </section>
