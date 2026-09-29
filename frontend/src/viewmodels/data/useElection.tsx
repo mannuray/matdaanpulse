@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
-import type { Election } from '../types';
+import type { Election } from '../../model/types';
 
 interface ElectionContextValue {
   election: Election | null;
