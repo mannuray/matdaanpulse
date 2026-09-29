@@ -8,13 +8,14 @@ import StatesSection from './summary/StatesSection';
 import SwingSection from './summary/SwingSection';
 import InsightsSection from './summary/InsightsSection';
 import HistorySection from './summary/HistorySection';
+import { countDeclared, leaderMargins, median } from './summary/stats';
 import type { ElectionSummaryProps, Region, TFunc } from './summary/types';
 
 export type { ElectionSummaryProps };
 
-/** Compute declared count for badge display */
+/** Declared (WON) seat count for badge display */
 export function useDeclaredCount(regions: Region[]): number {
-  return regions.filter(r => r.margin != null).length;
+  return useMemo(() => countDeclared(regions), [regions]);
 }
 
 const ElectionSummary = memo(function ElectionSummary({
@@ -40,25 +41,19 @@ const ElectionSummary = memo(function ElectionSummary({
   const { t: _t } = useTranslation();
   const t = _t as TFunc;
 
-  const margins = useMemo(() =>
-    regions.filter(r => r.margin != null).map(r => r.margin!).sort((a, b) => a - b),
-    [regions]
-  );
-
-  const declared = margins.length;
+  // Margin stats cover every seat with a leader (WON or LEADING); "Declared" counts WON only.
+  const margins = useMemo(() => leaderMargins(regions), [regions]);
+  const declared = useMemo(() => countDeclared(regions), [regions]);
+  const reporting = margins.length;
 
   const avgMargin = useMemo(() =>
-    declared > 0 ? Math.round(margins.reduce((s, m) => s + m, 0) / declared) : 0,
-    [margins, declared]
+    reporting > 0 ? Math.round(margins.reduce((s, m) => s + m, 0) / reporting) : 0,
+    [margins, reporting]
   );
 
-  const medianMargin = useMemo(() => {
-    if (declared === 0) return 0;
-    const mid = Math.floor(declared / 2);
-    return declared % 2 === 0 ? Math.round((margins[mid - 1] + margins[mid]) / 2) : margins[mid];
-  }, [margins, declared]);
+  const medianMargin = useMemo(() => median(margins), [margins]);
 
-  if (declared === 0) return null;
+  if (reporting === 0) return null;
 
   const isOverview = !mapTab || mapTab === 'overview';
   const isBattle = mapTab === 'battle';
@@ -107,7 +102,6 @@ const ElectionSummary = memo(function ElectionSummary({
             selectedIds={selectedIds || new Set()}
             alliances={alliances}
             partyList={partyList}
-            onRegionClick={onRegionClick}
             t={t}
           />
         )}
@@ -117,7 +111,6 @@ const ElectionSummary = memo(function ElectionSummary({
             regions={regions}
             alliances={alliances}
             mapTab={mapTab}
-            onRegionClick={onRegionClick}
             t={t}
           />
         )}
@@ -136,7 +129,6 @@ const ElectionSummary = memo(function ElectionSummary({
             regions={regions}
             alliances={alliances}
             swingMap={swingMap}
-            onRegionClick={onRegionClick}
             t={t}
           />
         )}

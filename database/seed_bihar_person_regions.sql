@@ -3,6 +3,20 @@
 
 BEGIN;
 
+-- Legacy Bihar region codes referenced below (originally seeded by migration 008, which
+-- skips them on a fresh DB because states are not loaded yet). Idempotent.
+INSERT INTO regions (state_id, name, code) VALUES
+  (5, 'Mithila', 'mithila'),
+  (5, 'Magadh', 'magadh'),
+  (5, 'Bhojpur', 'bhojpur'),
+  (5, 'Seemanchal', 'seemanchal'),
+  (5, 'Tirhut', 'tirhut'),
+  (5, 'Kosi', 'kosi'),
+  (5, 'Saran', 'saran'),
+  (5, 'Shahabad', 'shahabad'),
+  (5, 'Ang', 'ang')
+ON CONFLICT (state_id, code) DO NOTHING;
+
 UPDATE persons SET state_id = 5, region_id = (SELECT id FROM regions WHERE state_id = 5 AND code = 'mithila') WHERE id = 'cee7fa22-f4b2-45cf-aee4-70d2ea46911c';
 UPDATE persons SET state_id = 5, region_id = (SELECT id FROM regions WHERE state_id = 5 AND code = 'kosi') WHERE id = 'c10d3adf-7779-4904-988d-e47ba8907f11';
 UPDATE persons SET state_id = 5, region_id = (SELECT id FROM regions WHERE state_id = 5 AND code = 'magadh') WHERE id = 'e63ec8a1-64f4-4f5e-a69b-72405c2511c9';

@@ -22,19 +22,6 @@ export function formatMargin(m: number): string {
   return String(m);
 }
 
-export const STATE_NAMES: Record<string, string> = {
-  AP: 'Andhra Pradesh', AR: 'Arunachal Pradesh', AS: 'Assam', BR: 'Bihar',
-  CG: 'Chhattisgarh', GA: 'Goa', GJ: 'Gujarat', HR: 'Haryana',
-  HP: 'Himachal Pradesh', JH: 'Jharkhand', JK: 'J&K', KA: 'Karnataka',
-  KL: 'Kerala', MP: 'Madhya Pradesh', MH: 'Maharashtra', MN: 'Manipur',
-  ML: 'Meghalaya', MZ: 'Mizoram', NL: 'Nagaland', OD: 'Odisha',
-  PB: 'Punjab', RJ: 'Rajasthan', SK: 'Sikkim', TN: 'Tamil Nadu',
-  TS: 'Telangana', TR: 'Tripura', UK: 'Uttarakhand', UP: 'Uttar Pradesh',
-  WB: 'West Bengal', DL: 'Delhi', CH: 'Chandigarh', DN: 'Dadra & Nagar Haveli',
-  DD: 'Daman & Diu', AN: 'Andaman & Nicobar', LD: 'Lakshadweep', PY: 'Puducherry',
-  LA: 'Ladakh',
-};
-
 export function Section({ label, count, defaultOpen = false, children }: { label: string; count?: number; defaultOpen?: boolean; children: React.ReactNode }) {
   const [open, setOpen] = useState(defaultOpen);
   return (

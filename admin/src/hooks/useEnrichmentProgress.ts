@@ -1,14 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { getEnrichmentStatus, subscribeEnrichmentStream } from '../services/ai.service';
 import type { EnrichmentProgress } from '../types';
 
 /**
  * HOOK: useEnrichmentProgress (SOLID: SRP/DIP)
- * Manages Server-Sent Events (SSE) for real-time AI enrichment tracking.
+ * Tracks real-time AI enrichment progress via the authenticated SSE stream.
  */
 export function useEnrichmentProgress(electionId?: string) {
   const [progress, setProgress] = useState<EnrichmentProgress | null>(null);
-  const esRef = useRef<EventSource | null>(null);
 
   useEffect(() => {
     if (!electionId) return;
@@ -18,16 +17,9 @@ export function useEnrichmentProgress(electionId?: string) {
       .then(setProgress)
       .catch(() => {});
 
-    // 2. Stream Updates
-    const es = subscribeEnrichmentStream(electionId, (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        setProgress(data);
-      } catch {}
-    });
-
-    esRef.current = es;
-    return () => es.close();
+    // 2. Stream Updates (returns an abort function)
+    const unsubscribe = subscribeEnrichmentStream(electionId, setProgress);
+    return unsubscribe;
   }, [electionId]);
 
   return progress;

@@ -11,6 +11,7 @@ import type { Election, State } from '../types';
 export default function ElectionManager() {
   const { hasRole } = useAuth();
   const canWrite = hasRole('SUPER_ADMIN', 'EDITOR');
+  const canFinalize = hasRole('SUPER_ADMIN'); // backend finalize endpoint is SUPER_ADMIN-only
   const manager = useElectionManager();
 
   const { items: elections, loading, states, confirmFinalize, setConfirmFinalize } = manager;
@@ -51,24 +52,21 @@ export default function ElectionManager() {
               canWrite={canWrite} 
               onEdit={manager.startEdit} 
               onGoLive={manager.goLive} 
-              onFinalize={(id: string) => setConfirmFinalize(id)} 
+              onFinalize={canFinalize ? (id: string) => setConfirmFinalize(id) : undefined} 
             />
           </div>
         )}
       </div>
 
-      {confirmDelete && (
+      {confirmFinalize && (
         <FinalizeDialog 
-          onConfirm={() => manager.handleFinalize(confirmDelete)} 
+          onConfirm={() => { manager.handleFinalize(confirmFinalize); setConfirmFinalize(null); }} 
           onCancel={() => setConfirmFinalize(null)} 
         />
       )}
     </div>
   );
 }
-
-// Fixed minor bug where confirmDelete was used instead of confirmFinalize
-const confirmDelete = null; // Placeholder to avoid crash if variable name changed below
 
 // --- Internal Sub-Components ---
 
@@ -213,7 +211,7 @@ interface TableProps {
   canWrite: boolean;
   onEdit: (el: Election) => void;
   onGoLive: (id: string) => void;
-  onFinalize: (id: string) => void;
+  onFinalize?: (id: string) => void;
 }
 
 function ElectionTable({ elections, states, canWrite, onEdit, onGoLive, onFinalize }: TableProps) {
@@ -256,7 +254,7 @@ function ElectionTable({ elections, states, canWrite, onEdit, onGoLive, onFinali
                 {canWrite && el.status === 'Upcoming' && (
                   <button onClick={() => onGoLive(el.id)} className="btn btn-sm" style={styles.goLiveBtn}>GO LIVE</button>
                 )}
-                {canWrite && el.status === 'Live' && (
+                {canWrite && onFinalize && el.status === 'Live' && (
                   <button onClick={() => onFinalize(el.id)} className="btn btn-sm" style={styles.goLiveBtn}>FINALIZE</button>
                 )}
               </div>

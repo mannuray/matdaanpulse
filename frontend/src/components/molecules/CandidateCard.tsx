@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import PartyIcon from '../atoms/PartyIcon';
 import StatusBadge from '../atoms/StatusBadge';
-import { useTranslation } from 'react-i18next';
 
 interface CandidateCardProps {
   name: string;
@@ -9,7 +8,7 @@ interface CandidateCardProps {
   partyColor?: string | null;
   status: string;
   votes: number;
-  voteShare: number | null;
+  voteShare?: number | null;
   margin: number;
   rank: number;
   isIncumbent?: boolean;
@@ -28,7 +27,6 @@ const CandidateCard = memo(function CandidateCard({
   name, partyId, partyColor, status, votes, voteShare, margin, 
   rank, isIncumbent, personId, photoUrl, isSplitter, onPersonClick, hideResults 
 }: CandidateCardProps) {
-  const { t } = useTranslation();
   const isWinner = status === 'WON' || status === 'LEADING';
 
   return (
@@ -57,7 +55,7 @@ const CandidateCard = memo(function CandidateCard({
             style={styles.photo}
           />
         ) : (
-          <PartyIcon color={partyColor} size={14} partyId={partyId} />
+          <PartyIcon color={partyColor ?? null} size={14} partyId={partyId} />
         )}
         {isWinner && <div style={styles.winnerIndicator} />}
       </div>
@@ -78,7 +76,7 @@ const CandidateCard = memo(function CandidateCard({
           <span style={{ opacity: 0.5 }}>•</span>
           {partyId || 'IND'}
           {isIncumbent && (
-            <span style={styles.incumbentBadge}>
+            <span style={styles.incumbencyBadge}>
               (INC)
             </span>
           )}

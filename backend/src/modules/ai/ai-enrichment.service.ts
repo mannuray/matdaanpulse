@@ -51,9 +51,10 @@ export class AiEnrichmentService {
     const timeout = setTimeout(() => controller.abort(), 30000);
     
     try {
-      const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+      // Key goes in a header, never the URL (URLs end up in logs/proxies/traces).
+      const response = await fetch(GEMINI_API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
         signal: controller.signal,
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
@@ -96,7 +97,12 @@ export class AiEnrichmentService {
       reportProgress: async (p: any) => {
         this.progress.set(reportId, { ...p, updatedAt: Date.now() });
         this.cleanupStaleProgress();
-        await this.redis.publish(`enrichment:${reportId}:events`, { type: 'enrichment-progress', data: p });
+        try {
+          await this.redis.publish(`enrichment:${reportId}:events`, { type: 'enrichment-progress', data: p });
+        } catch (err) {
+          // Progress is still available via the status endpoint.
+          this.logger.warn(`Failed to publish enrichment progress for ${reportId}: ${(err as Error).message}`);
+        }
       }
     };
   }
@@ -115,16 +121,27 @@ export class AiEnrichmentService {
 
   async enrichConstituencies(electionId: string, constIds?: string[], mode?: EnrichmentMode) {
     const strategy = this.strategies.get('constituency')!;
-    strategy.execute(electionId, this.getContext(electionId), { constIds, mode })
+    const context = this.getContext(electionId);
+    const total = constIds?.length ?? await this.prisma.constituencies.count({ where: { election_id: electionId } });
+    strategy.execute(electionId, context, { constIds, mode })
       .catch(err => this.logger.error(`Enrichment failed: ${err.message}`));
-    return { message: 'Enrichment started' };
+    return { message: 'Enrichment started', total };
   }
 
-  async enrichCandidates(electionId: string) {
+  async enrichCandidates(electionId: string, candidateIds?: string[]) {
     const strategy = this.strategies.get('candidate')!;
-    strategy.execute(electionId, this.getContext(`candidates_${electionId}`))
+    const context = this.getContext(`candidates_${electionId}`);
+    // Same filter as CandidateEnrichmentStrategy, so the admin can show the count.
+    const total = await this.prisma.candidates.count({
+      where: {
+        election_id: electionId,
+        NOT: { name: 'NOTA' },
+        ...(candidateIds?.length ? { id: { in: candidateIds } } : {}),
+      },
+    });
+    strategy.execute(electionId, context, { candidateIds })
       .catch(err => this.logger.error(`Candidate enrichment failed: ${err.message}`));
-    return { message: 'Candidate enrichment started' };
+    return { message: 'Candidate enrichment started', total };
   }
 
   async enrichParty(partyId: string) {

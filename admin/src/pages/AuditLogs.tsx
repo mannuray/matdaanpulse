@@ -15,7 +15,7 @@ export default function AuditLogs() {
   const list = useResourceList<{ action: string; entity_type: string; from: string; to: string }>({
     key: 'audit_logs',
     initialFilters: { action: '', entity_type: '', from: '', to: '' },
-    onLoad: async (page, search, filters) => {
+    onLoad: async (_page, _search, filters) => {
       const f: Record<string, string> = {};
       if (filters.action) f.action = filters.action;
       if (filters.entity_type) f.entity_type = filters.entity_type;

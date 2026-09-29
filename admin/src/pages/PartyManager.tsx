@@ -12,7 +12,7 @@ export default function PartyManager() {
   const manager = usePartyManager();
   const { 
     items: parties, loading, search, handleSearch, filters, updateFilters,
-    page, totalPages, loadPage, navigateWithScroll, states, elections,
+    page, totalPages, loadPage, navigateWithScroll, states,
     saving, handleCreate
   } = manager;
 

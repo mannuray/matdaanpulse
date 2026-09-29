@@ -1,6 +1,8 @@
 /**
  * Fake ECI HTTP server that serves HTML the real eci-vs-adapter can parse.
- * Pre-computes 18 round snapshots from Bihar 2025 final results.
+ * Pre-computes per-seat round snapshots (16-24 rounds per seat, staggered start in global
+ * rounds 1-4) from Bihar 2025 final results. Every seat reaches "Result Declared" by global
+ * round TOTAL_ROUNDS (24).
  *
  * Usage: npx ts-node src/simulation/mock-eci-server.ts
  */
@@ -292,22 +294,6 @@ async function main() {
   const constituencies = [...constMap.values()].sort((a, b) => a.constNo - b.constNo);
   console.log(`Loaded ${constituencies.length} constituencies`);
 
-  // Assign per-constituency total rounds (16-24), seeded by candidate count
-  const constTotalRounds = new Map<number, number>();
-  const roundRng = seededRandom(12345);
-  for (const c of constituencies) {
-    const tr = 16 + Math.floor(roundRng() * 9); // 16-24
-    constTotalRounds.set(c.constNo, tr);
-  }
-
-  // Pre-compute all round snapshots (using per-seat total rounds)
-  console.log('Computing round snapshots...');
-  const allSnapshots = new Map<number, RoundSnapshot[]>();
-  for (const c of constituencies) {
-    const seatRounds = constTotalRounds.get(c.constNo) || TOTAL_ROUNDS;
-    allSnapshots.set(c.constNo, computeRoundSnapshots(c, seatRounds));
-  }
-
   // Gradual trickle-in: assign each constituency a start round (1-4)
   // ~30% start round 1, ~30% round 2, ~25% round 3, ~15% round 4
   const constStartRound = new Map<number, number>();
@@ -320,6 +306,24 @@ async function main() {
   const startCounts = [0, 0, 0, 0, 0];
   constStartRound.forEach(v => startCounts[v]++);
   console.log(`Trickle-in: R1=${startCounts[1]}, R2=${startCounts[2]}, R3=${startCounts[3]}, R4=${startCounts[4]}`);
+
+  // Assign per-constituency total rounds (16-24), clamped so that a seat starting at global
+  // round `start` finishes (is declared) no later than global round TOTAL_ROUNDS.
+  const constTotalRounds = new Map<number, number>();
+  const roundRng = seededRandom(12345);
+  for (const c of constituencies) {
+    const start = constStartRound.get(c.constNo) || 1;
+    const tr = 16 + Math.floor(roundRng() * 9); // 16-24
+    constTotalRounds.set(c.constNo, Math.min(tr, TOTAL_ROUNDS - start + 1));
+  }
+
+  // Pre-compute all round snapshots (using per-seat total rounds)
+  console.log('Computing round snapshots...');
+  const allSnapshots = new Map<number, RoundSnapshot[]>();
+  for (const c of constituencies) {
+    const seatRounds = constTotalRounds.get(c.constNo) || TOTAL_ROUNDS;
+    allSnapshots.set(c.constNo, computeRoundSnapshots(c, seatRounds));
+  }
 
   let currentRound = 0;
   const PAGE_SIZE = 19; // ~19 per page matching real ECI

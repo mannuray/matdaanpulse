@@ -1,12 +1,18 @@
 {
   "name": "election-tracker-scraper",
   "version": "1.0.0",
-  "description": "Scraper service for election-tracker",
+  "description": "Seed generators and live-counting simulation for election-tracker (live ECI ingestion not implemented)",
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "sim:setup": "ts-node src/simulation/setup.ts",
+    "sim:mock-eci": "ts-node src/simulation/mock-eci-server.ts",
+    "sim:replay": "ts-node src/simulation/replay.ts",
+    "sim:reset": "ts-node src/simulation/reset.ts",
+    "sim:cleanup": "ts-node src/simulation/cleanup.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",

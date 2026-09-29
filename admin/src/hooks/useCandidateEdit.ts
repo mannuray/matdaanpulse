@@ -1,10 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { 
   getCandidate, updateCandidate, 
-  unlinkCandidatePerson, linkCandidatePerson, createCandidate 
+  unlinkCandidatePerson, linkCandidatePerson 
 } from '../services/candidate.service';
 import { getPersons, createPerson } from '../services/person.api';
-import { PersonService } from '../services/person.service';
 import { getParties } from '../services/geo.service';
 import { enrichCandidates } from '../services/ai.service';
 import { useToast } from '../context/ToastContext';
@@ -109,7 +108,7 @@ export function useCandidateEdit(id?: string) {
   useEffect(() => {
     if (searchTimer.current) clearTimeout(searchTimer.current);
     if (!personSearch || personSearch.trim().length < 2) {
-      setMergeResults([]);
+      setPersonResults([]);
       return;
     }
 
@@ -121,8 +120,6 @@ export function useCandidateEdit(id?: string) {
         setPersonResults([]);
       }
     }, 400);
-
-    const setMergeResults = (val: any) => setPersonResults(val);
 
     return () => { if (searchTimer.current) clearTimeout(searchTimer.current); };
   }, [personSearch]);

@@ -103,7 +103,7 @@ const ConstituencyModal = memo(function ConstituencyModal({
             {/* Quick Stats Grid */}
             <div style={styles.statsGrid}>
               <StatItem label="Turnout" value={constituency?.voter_turnout ? `${constituency.voter_turnout}%` : '—'} />
-              <StatItem label="Total Votes" value={stats?.totalVotesPolled.toLocaleString()} />
+              <StatItem label="Total Votes" value={stats?.totalVotesPolled?.toLocaleString()} />
               <StatItem 
                 label="Win Margin" 
                 value={stats?.winner?.margin ? `+${stats.winner.margin.toLocaleString()}` : '—'} 
@@ -138,7 +138,7 @@ const ConstituencyModal = memo(function ConstituencyModal({
   );
 });
 
-function StatItem({ label, value, color }: { label: string, value: any, color?: string }) {
+function StatItem({ label, value, color }: { label: string, value: string | number | null | undefined, color?: string }) {
   return (
     <div style={styles.statItem}>
       <div style={styles.statLabel}>{label}</div>

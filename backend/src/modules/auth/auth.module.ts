@@ -13,7 +13,8 @@ import { JwtStrategy } from './jwt.strategy';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret: config.get<string>('JWT_SECRET', 'dev-secret-key-change-in-production'),
+        // Required: throws at bootstrap if JWT_SECRET is not set (no insecure fallback).
+        secret: config.getOrThrow<string>('JWT_SECRET'),
         signOptions: { expiresIn: '24h' },
       }),
     }),

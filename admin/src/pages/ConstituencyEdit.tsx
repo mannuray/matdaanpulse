@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate, NavigateFunction } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useConstituencyEditor } from '../hooks/useConstituencyEditor';
@@ -6,7 +6,7 @@ import { bulkUpdateAiStatus } from '../services/ai.service';
 import { useToast } from '../context/ToastContext';
 import Spinner from '../components/atoms/Spinner';
 import ErrorBoundary from '../components/atoms/ErrorBoundary';
-import type { Constituency, Election } from '../types';
+import type { Constituency } from '../types';
 
 const TAG_PALETTE = [
   'yadav_dominated', 'bhumihar_dominated', 'rajput_dominated', 'kurmi_belt', 'ebc_majority', 'dalit_stronghold',

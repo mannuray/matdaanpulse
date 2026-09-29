@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useManifestEditor } from '../hooks/useManifestEditor';
 import { useToast } from '../context/ToastContext';
+import { useAuth } from '../context/AuthContext';
 import ElectionPicker from '../components/ElectionPicker';
 import AdminPageHeader from '../components/common/AdminPageHeader';
 import ErrorBoundary from '../components/atoms/ErrorBoundary';
@@ -26,6 +27,8 @@ type EditorTab = 'form' | 'json';
  */
 export default function ManifestEditor() {
   const { toast } = useToast();
+  const { hasRole } = useAuth();
+  const canPublish = hasRole('SUPER_ADMIN');
   const controller = useManifestEditor();
   const { 
     selectedId, setSelectedId, manifest, setFullManifest, 
@@ -72,6 +75,24 @@ export default function ManifestEditor() {
     await saveDraft(data);
   };
 
+  const handlePublish = async () => {
+    if (activeTab === 'json') {
+      let parsed: ManifestData;
+      try {
+        parsed = JSON.parse(jsonText);
+      } catch (e) {
+        toast('Fix JSON errors before publishing', 'error');
+        return;
+      }
+      // Unapplied JSON edits must be saved as the draft before publishing
+      if (jsonText !== JSON.stringify(manifest, null, 2)) {
+        await publish(parsed);
+        return;
+      }
+    }
+    await publish();
+  };
+
   if (!selectedId) {
     return (
       <div style={{ padding: 'var(--space-8) var(--space-6)' }}>
@@ -110,9 +131,11 @@ export default function ManifestEditor() {
             <button onClick={handleSave} disabled={saving || (activeTab === 'json' && !!jsonError)} className="btn btn-outline" style={styles.actionBtn}>
               {saving ? 'SAVING...' : 'SAVE DRAFT'}
             </button>
-            <button onClick={publish} disabled={saving} className="btn btn-primary" style={styles.actionBtn}>
-              PUBLISH LIVE
-            </button>
+            {canPublish && (
+              <button onClick={handlePublish} disabled={saving} className="btn btn-primary" style={styles.actionBtn}>
+                PUBLISH LIVE
+              </button>
+            )}
           </div>
         }
       />

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe, BadRequestException } from '@nestjs/common';
 import { ElectionsService } from './elections.service';
 import { ResultsService } from '../results/results.service';
 import { ConstituenciesService } from '../constituencies/constituencies.service';
@@ -50,34 +50,34 @@ export class ElectionsController {
   }
 
   @Get(':id/manifest')
-  getManifest(@Param('id') id: string) {
+  getManifest(@Param('id', ParseUUIDPipe) id: string) {
     return this.electionsService.getManifest(id);
   }
 
   @Get(':id/results')
-  getResults(@Param('id') id: string) {
+  getResults(@Param('id', ParseUUIDPipe) id: string) {
     return this.resultsService.getResults(id);
   }
 
   @Get(':id/alliances')
-  getAlliances(@Param('id') id: string) {
+  getAlliances(@Param('id', ParseUUIDPipe) id: string) {
     // Standardizing terminology: what was 'alliances' is a summary/tally of won/leading
     return this.resultsService.getElectionSummary(id);
   }
 
   @Get(':id/vote-share')
-  getVoteShare(@Param('id') id: string) {
+  getVoteShare(@Param('id', ParseUUIDPipe) id: string) {
     return this.resultsService.getVoteShare(id);
   }
 
   @Get(':id/analysis')
-  getAnalysis(@Param('id') id: string) {
+  getAnalysis(@Param('id', ParseUUIDPipe) id: string) {
     return this.constituenciesService.getPublicAnalysis(id);
   }
 
   @Get(':id/constituencies/:constId/analysis')
   getConstituencyAnalysisDetail(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Param('constId') constId: string,
   ) {
     return this.constituenciesService.getConstituencyAnalysisDetail(id, constId);
@@ -85,7 +85,7 @@ export class ElectionsController {
 
   @Get(':id/districts/:districtId/results')
   getDistrictResults(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Param('districtId', ParseIntPipe) districtId: number,
   ) {
     return this.resultsService.getDistrictResults(id, districtId);
@@ -93,14 +93,20 @@ export class ElectionsController {
 
   @Get(':id/constituencies/:constId')
   getConstituencyDetail(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Param('constId') constId: string,
   ) {
     return this.resultsService.getConstituencyDetail(id, constId);
   }
 
+  /** Compare two constituencies of this election: /elections/:id/compare?from=<constId>&to=<constId> */
   @Get(':id/compare')
-  compare(@Param('id') id: string, @Query('to') to: string) {
-    return this.resultsService.compareConstituencies(id, to);
+  compare(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Query('from') from: string,
+    @Query('to') to: string,
+  ) {
+    if (!from || !to) throw new BadRequestException('Both "from" and "to" constituency ids are required');
+    return this.resultsService.compareConstituencies(id, from, to);
   }
 }

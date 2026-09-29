@@ -5,11 +5,11 @@ import { useState, useEffect, useCallback, useRef } from 'react';
  * Ensures that multiple components calling the same API endpoint 
  * simultaneously only trigger a single network request.
  */
-const pendingRequests = new Map<string, Promise<any>>();
+const pendingRequests = new Map<string, Promise<unknown>>();
 
 function getDeduplicatedPromise<T>(key: string, fetcher: () => Promise<T>): Promise<T> {
   if (pendingRequests.has(key)) {
-    return pendingRequests.get(key)!;
+    return pendingRequests.get(key) as Promise<T>;
   }
 
   const promise = fetcher().finally(() => {

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { CandidatesService } from './candidates.service';
 import { PersonsService } from './persons.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
@@ -29,13 +29,13 @@ export class CandidatesController {
 
   @Get(':id')
   @UseInterceptors(new MapToDtoInterceptor(CandidateDetailDto))
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.candidatesService.findOne(id);
   }
 
   @Get('persons/:id')
   @UseInterceptors(new MapToDtoInterceptor(PersonProfileDto))
-  findPerson(@Param('id') id: string) {
+  findPerson(@Param('id', ParseUUIDPipe) id: string) {
     return this.personsService.findWithCandidates(id);
   }
 }

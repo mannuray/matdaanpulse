@@ -35,3 +35,6 @@ yarn-error.log*
 
 # Scraper output
 scraper/output/
+
+# Scraped MyNeta HTML cache (regenerable; do not commit third-party pages)
+scraper/src/cache/myneta/

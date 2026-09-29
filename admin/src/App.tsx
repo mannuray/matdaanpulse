@@ -49,7 +49,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                 <Route index element={<Dashboard />} />
-                <Route path="elections" element={<ElectionManager />} />
+                <Route path="elections" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ElectionManager /></ProtectedRoute>} />
                 
                 {/* Manifests */}
                 <Route path="manifests" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestDetail /></ProtectedRoute>} />
@@ -57,17 +57,17 @@ function App() {
                 <Route path="manifests/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestEditor /></ProtectedRoute>} />
                 
                 {/* Parties */}
-                <Route path="parties" element={<PartyManager />} />
+                <Route path="parties" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyManager /></ProtectedRoute>} />
                 <Route path="parties/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyDetail /></ProtectedRoute>} />
                 <Route path="parties/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyEdit /></ProtectedRoute>} />
                 
                 {/* Candidates */}
-                <Route path="candidates" element={<CandidateManager />} />
+                <Route path="candidates" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateManager /></ProtectedRoute>} />
                 <Route path="candidates/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateDetail /></ProtectedRoute>} />
                 <Route path="candidates/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateEdit /></ProtectedRoute>} />
                 
                 {/* Persons */}
-                <Route path="persons" element={<PersonManager />} />
+                <Route path="persons" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonManager /></ProtectedRoute>} />
                 <Route path="persons/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonDetail /></ProtectedRoute>} />
                 <Route path="persons/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonEdit /></ProtectedRoute>} />
                 
@@ -79,7 +79,7 @@ function App() {
                 {/* Overrides & Logs */}
                 <Route path="overrides" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><LiveConsole /></ProtectedRoute>} />
                 <Route path="users" element={<ProtectedRoute roles={['SUPER_ADMIN']}><UserManager /></ProtectedRoute>} />
-                <Route path="logs" element={<AuditLogs />} />
+                <Route path="logs" element={<ProtectedRoute roles={['SUPER_ADMIN']}><AuditLogs /></ProtectedRoute>} />
               </Route>
             </Routes>
           </BrowserRouter>

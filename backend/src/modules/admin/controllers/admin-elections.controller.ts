@@ -1,10 +1,11 @@
-import { Controller, Post, Patch, Get, Put, Body, Param, UseGuards } from '@nestjs/common';
+import { Controller, Post, Patch, Get, Put, Body, Param, UseGuards, ParseUUIDPipe } from '@nestjs/common';
 import { ElectionsService } from '../../elections/elections.service';
 import { ManifestsService } from '../../manifests/manifests.service';
 import { ResultsService } from '../../results/results.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
+import { CreateElectionDto, UpdateElectionDto } from '../dto/admin-input.dto';
 
 @Controller('admin')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -17,43 +18,43 @@ export class AdminElectionsController {
 
   @Post('elections')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  createElection(@Body() body: { name: string; type: 'LS' | 'VS'; state_id?: number; year: number }) {
+  createElection(@Body() body: CreateElectionDto) {
     return this.electionsService.create(body);
   }
 
   @Patch('elections/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  updateElection(@Param('id') id: string, @Body() body: any) {
+  updateElection(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateElectionDto) {
     return this.electionsService.update(id, body);
   }
 
   @Post('elections/:id/finalize')
   @Roles('SUPER_ADMIN')
-  finalizeElection(@Param('id') id: string) {
+  finalizeElection(@Param('id', ParseUUIDPipe) id: string) {
     return this.electionsService.finalize(id);
   }
 
   @Get('elections/:id/manifest')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  getManifest(@Param('id') id: string) {
+  getManifest(@Param('id', ParseUUIDPipe) id: string) {
     return this.manifestsService.getManifest(id);
   }
 
   @Put('elections/:id/manifest')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  saveManifestDraft(@Param('id') id: string, @Body() body: object) {
+  saveManifestDraft(@Param('id', ParseUUIDPipe) id: string, @Body() body: object) {
     return this.manifestsService.saveDraft(id, body);
   }
 
   @Get('elections/:id/live-results')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  getLiveResults(@Param('id') id: string) {
+  getLiveResults(@Param('id', ParseUUIDPipe) id: string) {
     return this.resultsService.getLiveResults(id);
   }
 
   @Post('elections/:id/manifest/publish')
   @Roles('SUPER_ADMIN')
-  publishManifest(@Param('id') id: string) {
+  publishManifest(@Param('id', ParseUUIDPipe) id: string) {
     return this.manifestsService.publish(id);
   }
 }

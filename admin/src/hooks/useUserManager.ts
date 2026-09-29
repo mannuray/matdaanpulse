@@ -16,7 +16,7 @@ export function useUserManager() {
   const list = useResourceList<{}>({
     key: 'users',
     initialFilters: {},
-    onLoad: async (page, search) => {
+    onLoad: async (_page, search) => {
       const all = await getUsers();
       const filtered = search
         ? all.filter(u => u.name.toLowerCase().includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase()))
@@ -26,7 +26,7 @@ export function useUserManager() {
   });
 
   // 2. Actions
-  const handleSave = async (data: Partial<User>, id?: string) => {
+  const handleSave = async (data: Partial<User> & { password?: string }, id?: string) => {
     setSaving(true);
     try {
       if (id) {

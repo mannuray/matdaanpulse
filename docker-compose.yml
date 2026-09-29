@@ -12,10 +12,15 @@ services:
       POSTGRES_USER: ${DB_USER:-admin}
       POSTGRES_PASSWORD: ${DB_PASS:-password123}
       POSTGRES_DB: ${DB_NAME:-election_tracker}
+      ET_DB_INIT_ARGS: ${ET_DB_INIT_ARGS:-}
     ports:
       - "5432:5432"  # DEV ONLY — remove in production
     volumes:
-      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      # First boot of an empty volume runs database/setup.sh (schema → migrations → seeds).
+      # Set ET_DB_INIT_ARGS=--schema-only to skip seed data. Existing volumes are untouched:
+      # re-run `database/setup.sh` against them instead (it is idempotent).
+      - ./database:/database:ro
+      - ./database/docker-init.sh:/docker-entrypoint-initdb.d/10-setup.sh:ro
       - postgres_data:/var/lib/postgresql/data
 
   redis:
@@ -26,7 +31,9 @@ services:
       - "6379:6379"  # DEV ONLY — remove in production, add requirepass
 
   otel-collector:
-    image: signoz/signoz-otel-collector:latest
+    # Pinned (latest release on Docker Hub as of 2026-09-25); verified to start with
+    # otel-collector-config.yaml. Bump deliberately rather than tracking :latest.
+    image: signoz/signoz-otel-collector:v0.144.12
     container_name: election_tracker_otel
     restart: always
     volumes:

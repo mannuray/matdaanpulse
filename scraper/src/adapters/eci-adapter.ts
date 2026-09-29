@@ -1,3 +1,7 @@
+/**
+ * NOT IMPLEMENTED — placeholder for live Lok Sabha ECI ingestion (see src/index.ts).
+ * For Vidhan Sabha result pages see ./eci-vs-adapter.ts (used by seed generators + simulation).
+ */
 export class ECIAdapter {
   /**
    * Fetch raw election data from the ECI source.

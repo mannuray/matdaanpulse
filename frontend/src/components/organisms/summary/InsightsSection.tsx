@@ -75,7 +75,7 @@ export default function InsightsSection({
         const runnerUpPartyId = runnerUp.party_id.toUpperCase();
         const runnerUpAllianceId = partyToAllianceId.get(runnerUpPartyId);
 
-        spoilerResults.forEach((sr, idx) => {
+        spoilerResults.forEach((sr) => {
           const vs = sr.config;
           const vsHurts = vs.hurts.toUpperCase();
           const vsSpoiler = vs.spoiler.toUpperCase();

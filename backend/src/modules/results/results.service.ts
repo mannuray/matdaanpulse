@@ -10,10 +10,6 @@ export class ResultsService {
     private readonly redis: RedisService,
   ) {}
 
-  async findAll() {
-    return this.prisma.results.findMany({ take: 100 });
-  }
-
   async getElectionSummary(id: string) {
     const cacheKey = `election:${id}:summary`;
     const cached = await this.redis.get(cacheKey);
@@ -243,15 +239,17 @@ export class ResultsService {
     }));
   }
 
-  async compareConstituencies(id1: string, id2: string) {
+  async compareConstituencies(electionId: string, id1: string, id2: string) {
     const [r1, r2] = await Promise.all([
       this.prisma.results.findMany({
-        where: { const_id: id1 },
-        include: { candidates: { include: { parties: true } } }
+        where: { election_id: electionId, const_id: id1 },
+        include: { candidates: { include: { parties: true } } },
+        orderBy: { votes: 'desc' },
       }),
       this.prisma.results.findMany({
-        where: { const_id: id2 },
-        include: { candidates: { include: { parties: true } } }
+        where: { election_id: electionId, const_id: id2 },
+        include: { candidates: { include: { parties: true } } },
+        orderBy: { votes: 'desc' },
       })
     ]);
 

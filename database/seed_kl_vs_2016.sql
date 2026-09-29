@@ -148,7 +148,8 @@ INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_
   ('KL_VS16_137_PARASSALA', 'a7b8c9d0-e1f2-3456-0123-678901232016', NULL, 16, 'Parassala', 137, 'GEN', NULL, NULL, NULL),
   ('KL_VS16_138_KATTAKKADA', 'a7b8c9d0-e1f2-3456-0123-678901232016', NULL, 16, 'Kattakkada', 138, 'GEN', NULL, NULL, NULL),
   ('KL_VS16_139_KOVALAM', 'a7b8c9d0-e1f2-3456-0123-678901232016', NULL, 16, 'Kovalam', 139, 'GEN', NULL, NULL, NULL),
-  ('KL_VS16_140_NEYYATTINKARA', 'a7b8c9d0-e1f2-3456-0123-678901232016', NULL, 16, 'Neyyattinkara', 140, 'GEN', NULL, NULL, NULL);
+  ('KL_VS16_140_NEYYATTINKARA', 'a7b8c9d0-e1f2-3456-0123-678901232016', NULL, 16, 'Neyyattinkara', 140, 'GEN', NULL, NULL, NULL)
+ON CONFLICT DO NOTHING;
 
 -- Candidates
 INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
@@ -431,7 +432,8 @@ INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is
   ('422b7fc4-76db-49c8-be1a-ea2ef25fc4af', NULL, 'a7b8c9d0-e1f2-3456-0123-678901232016', 'KL_VS16_139_KOVALAM', 'INC', 'Adv.M.Vincent', FALSE, '{}'),
   ('3fb6bc71-076d-428d-bfe3-3d4e77de0fe7', NULL, 'a7b8c9d0-e1f2-3456-0123-678901232016', 'KL_VS16_139_KOVALAM', 'JDS', 'Jameela Prakasam', FALSE, '{}'),
   ('fb13e2d0-812f-49eb-ba9e-7b4242e71624', NULL, 'a7b8c9d0-e1f2-3456-0123-678901232016', 'KL_VS16_140_NEYYATTINKARA', 'CPIM', 'K.Ansalan', FALSE, '{}'),
-  ('b0e90bc4-4dcd-45ac-8db8-2c51c73ed081', NULL, 'a7b8c9d0-e1f2-3456-0123-678901232016', 'KL_VS16_140_NEYYATTINKARA', 'INC', 'R. Selvaraj', FALSE, '{}');
+  ('b0e90bc4-4dcd-45ac-8db8-2c51c73ed081', NULL, 'a7b8c9d0-e1f2-3456-0123-678901232016', 'KL_VS16_140_NEYYATTINKARA', 'INC', 'R. Selvaraj', FALSE, '{}')
+ON CONFLICT DO NOTHING;
 
 -- Results
 INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
@@ -714,7 +716,8 @@ INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no
   ('d6997333-1ef2-4ad7-a1b3-9f7f5c43f8a3', '422b7fc4-76db-49c8-be1a-ea2ef25fc4af', 'KL_VS16_139_KOVALAM', 60268, 'WON', 2615, 0, 'a7b8c9d0-e1f2-3456-0123-678901232016'),
   ('a59a4873-fd8d-4a4a-b431-5d6f95b86f14', '3fb6bc71-076d-428d-bfe3-3d4e77de0fe7', 'KL_VS16_139_KOVALAM', 57653, 'LOST', 2615, 0, 'a7b8c9d0-e1f2-3456-0123-678901232016'),
   ('ccf94d64-6467-4baa-99eb-6f04776672a2', 'fb13e2d0-812f-49eb-ba9e-7b4242e71624', 'KL_VS16_140_NEYYATTINKARA', 63559, 'WON', 9543, 0, 'a7b8c9d0-e1f2-3456-0123-678901232016'),
-  ('7bb0cd1c-c077-4962-b49e-90699da50d88', 'b0e90bc4-4dcd-45ac-8db8-2c51c73ed081', 'KL_VS16_140_NEYYATTINKARA', 54016, 'LOST', 9543, 0, 'a7b8c9d0-e1f2-3456-0123-678901232016');
+  ('7bb0cd1c-c077-4962-b49e-90699da50d88', 'b0e90bc4-4dcd-45ac-8db8-2c51c73ed081', 'KL_VS16_140_NEYYATTINKARA', 54016, 'LOST', 9543, 0, 'a7b8c9d0-e1f2-3456-0123-678901232016')
+ON CONFLICT DO NOTHING;
 
 -- Manifest
 UPDATE elections SET manifest_url = '{"alliances":[{"id":"LDF","name":"LDF","color":"#CC0000","parties":["CPIM","CPI","INL","KECB","JDS","NCP","CMPKSC","NSC"]},{"id":"UDF","name":"UDF","color":"#19AAED","parties":["INC","IUML","KECM","KECJ","RSP","KECST","INCS"]},{"id":"NDA","name":"NDA","color":"#FF6B00","parties":["BJP"]}],"leaders":[{"name":"Pinarayi Vijayan","party_id":"CPIM","const_id":"KL_VS16_4_DHARMADOM"},{"name":"Oommen Chandy","party_id":"INC","const_id":"KL_VS16_112_PUTHUPPALLY"}],"cabinet":[],"tracked":["LDF","UDF","NDA"],"vip_seats":{},"milestones":[{"label":"Majority","value":71}],"compare_with":["a7b8c9d0-e1f2-3456-0123-678901232011"],"geo":{"map_url":"/geo/kl_ac.geojson","center":[76.3,10.5],"zoom":10},"delimitation_era":"2008"}' WHERE id = 'a7b8c9d0-e1f2-3456-0123-678901232016';

@@ -38,7 +38,8 @@ INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_
   ('PY_VS21_27_KARAIKAL_SOUTH', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Karaikal South', 27, 'GEN', NULL, NULL, NULL),
   ('PY_VS21_28_NERAVY_TR_PATTINAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Neravy T.r. Pattinam', 28, 'GEN', NULL, NULL, NULL),
   ('PY_VS21_29_MAHE', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Mahe', 29, 'GEN', NULL, NULL, NULL),
-  ('PY_VS21_30_YANAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Yanam', 30, 'GEN', NULL, NULL, NULL);
+  ('PY_VS21_30_YANAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2021', NULL, 27, 'Yanam', 30, 'GEN', NULL, NULL, NULL)
+ON CONFLICT DO NOTHING;
 
 -- Candidates
 INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
@@ -71,7 +72,8 @@ INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is
   ('3023fceb-182c-4ee1-b6c9-0e86b9648f3c', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_27_KARAIKAL_SOUTH', 'DMK', 'A.M.H. Nazim', FALSE, '{}'),
   ('52a287d0-3e0d-47f5-91a8-9e3975c216a7', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_28_NERAVY_TR_PATTINAM', 'DMK', 'M. Nagathiyagarajan', FALSE, '{}'),
   ('0a04fffe-170f-4626-96c0-fbde9812d8ed', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_29_MAHE', 'INC', 'Ramesh Parambath', FALSE, '{}'),
-  ('ac12f49a-5e7f-485a-9fac-492656d1300c', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_30_YANAM', 'IND', 'Gollapalli Srinivas Ashok', FALSE, '{}');
+  ('ac12f49a-5e7f-485a-9fac-492656d1300c', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_30_YANAM', 'IND', 'Gollapalli Srinivas Ashok', FALSE, '{}')
+ON CONFLICT DO NOTHING;
 
 -- Results
 INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
@@ -104,7 +106,8 @@ INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no
   ('a538abc4-41b8-45ec-95f0-e21df1f06e81', '3023fceb-182c-4ee1-b6c9-0e86b9648f3c', 'PY_VS21_27_KARAIKAL_SOUTH', 62034, 'WON', 12034, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
   ('daa042ec-f384-48f2-8c96-35cb34a667db', '52a287d0-3e0d-47f5-91a8-9e3975c216a7', 'PY_VS21_28_NERAVY_TR_PATTINAM', 55511, 'WON', 5511, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
   ('801ff72d-30dc-4d3c-b0a3-843d71416951', '0a04fffe-170f-4626-96c0-fbde9812d8ed', 'PY_VS21_29_MAHE', 50300, 'WON', 300, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021'),
-  ('c4974340-8c23-48a7-96f1-8d7cfdb219f1', 'ac12f49a-5e7f-485a-9fac-492656d1300c', 'PY_VS21_30_YANAM', 50655, 'WON', 655, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021');
+  ('c4974340-8c23-48a7-96f1-8d7cfdb219f1', 'ac12f49a-5e7f-485a-9fac-492656d1300c', 'PY_VS21_30_YANAM', 50655, 'WON', 655, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2021')
+ON CONFLICT DO NOTHING;
 
 -- Manifest
 UPDATE elections SET manifest_url = '{"alliances":[{"id":"NDA","name":"NDA","color":"#FF6B00","parties":["AINRC","BJP","AIADMK"]},{"id":"SDA","name":"DMK+","color":"#CC0000","parties":["DMK","INC","CPI","CPIM"]}],"leaders":[{"name":"N. Rangasamy","party_id":"AINRC","const_id":"PY_VS21_19_YANAM"}],"cabinet":[],"tracked":["NDA","SDA"],"vip_seats":{},"milestones":[{"label":"Majority","value":16}],"compare_with":["b1c2d3e4-f5a6-7890-1234-567890ab2016"],"history":["b1c2d3e4-f5a6-7890-1234-567890ab2011","b1c2d3e4-f5a6-7890-1234-567890ab2016"],"history_years":[2011,2016],"geo":{"map_url":"/geo/py_ac.geojson","center":[79.8,11.9],"zoom":11},"delimitation_era":"2008"}' WHERE id = 'b1c2d3e4-f5a6-7890-1234-567890ab2021';

@@ -6,6 +6,8 @@
 - [x] Express API with PostgreSQL backend
 - [x] React + Vite frontend with TypeScript
 - [x] Admin panel for election/candidate/result management
+  - Client-side session expiry (expired JWT logs the user out)
+  - Routes and sidebar nav gated by role
 - [x] Admin candidate drill-down: election → constituency → candidates (replaces flat list)
 - [x] Constituencies API: `GET /constituencies?election_id=UUID`
 - [x] Candidate search API: `GET /candidates/search?q=name` (cross-election name search)
@@ -21,8 +23,10 @@
 - [x] Person state/region tagging: `state_id` + `region_id` on `persons`, filterable via `GET /admin/persons?state_id=&region_id=`
 - [x] Bihar person-region seed: 382 persons tagged by constituency→region mapping
 - [x] SSE (Server-Sent Events) for live updates with Redis pub/sub backend
-- [x] i18n support via react-i18next
-- [x] Dark mode theming
+  - Named events: `result-update`, `batch-update`, `ping`, `enrichment-progress`
+  - Frontend reconnect: fast retries first, then a slow retry every 60s; also reconnects when the browser comes back online or the tab becomes visible
+- [x] i18n support via react-i18next — chosen language persisted in `localStorage` (`lang`)
+- [x] Dark mode theming (including the map)
 
 ### Interactive Map
 - [x] D3 choropleth with 543 Lok Sabha constituencies
@@ -33,10 +37,11 @@
 - [x] Party color fills from election results
 - [x] Filter layers: Live / Swing / Demographic
 - [x] Reset zoom button
-- [x] Pulse animation on recent lead changes
+- [x] Pulse animation on recent lead changes (fires only when the seat's leader changes)
+- [x] SSE events patch the map instantly; the full data refresh is debounced to 4s after the last event
 
 ### Constituency Labels (Zoom-Responsive)
-- [x] Text labels appear progressively as user zooms in (Overview tab only)
+- [x] Text labels appear progressively by zoom level as user zooms in (Overview tab only)
 - [x] Area-based threshold: hidden < 1500px², abbreviated 1500–4000px², full name > 4000px²
 - [x] Abbreviation: first word if short, else first 3 chars + "."
 - [x] Labels recalculate on zoom end for performance
@@ -133,7 +138,7 @@
 
 ### Election Summary Stats Card
 - [x] Sidebar card below Watchlist with election analytics computed from results
-- [x] Quick stats row: seats declared, average margin, median margin
+- [x] Quick stats row: seats declared (counts `WON` status only), average margin, median margin
 - [x] Margin distribution histogram (CSS bars) with LS/VS-specific buckets
 - [x] Closest Battles: 10 narrowest-margin seats (collapsible)
 - [x] Biggest Mandates: 5 largest-margin seats (collapsible)
@@ -201,7 +206,7 @@
 - [x] New component `LiveToast` (`frontend/src/components/atoms/LiveToast.tsx`)
 - [x] Fixed-position bottom-right toast stack (max 5 visible)
 - [x] Auto-dismiss after 5 seconds with fade-out animation
-- [x] Shows party dot + name + constituency + margin on SSE `result-update` events
+- [x] Shows party dot + name + constituency + margin on SSE `result-update` events — fires only on a leader change or a `WON` declaration
 - [x] CSS: `toast-in` / `toast-out` slide animations
 
 ### Head-to-Head Comparator
@@ -229,14 +234,14 @@
 - [x] Competitiveness gradient fallback when no spoiler data available
 
 ### Live Console (Admin — Tabbed Result Override)
-- [x] Replaces blind-form Result Override page with tabbed, at-a-glance console
+- [x] Replaces blind-form Result Override page with tabbed, at-a-glance console (the old `ResultOverride` page has been removed)
 - [x] Backend `getLiveResults(electionId)` — returns all results grouped by constituency with `result_id`
 - [x] New endpoint `GET /admin/elections/:id/live-results` (SUPER_ADMIN, EDITOR)
 - [x] Override role widened from SUPER_ADMIN-only to include EDITOR
-- [x] Tabbed view: constituencies split into tabs of ~50 rows (auto-chunked by `const_no` or manifest `live_tabs`)
+- [x] Tabbed view: constituencies split into tabs of ~50 rows (auto-chunked by `const_no` or manifest `live_tabs`, falling back to the published manifest when the draft has none)
 - [x] Compact table per tab: `# | Constituency | Leader | Party | Votes | Margin | Status`
 - [x] Row colors: green=WON, blue=LEADING, amber=thin margin (<1K), red=stale/no data
-- [x] Click row to expand: shows all candidates with inline editable votes/margin/status
+- [x] Click row to expand: shows all candidates with inline editable votes/margin/status (override inputs validated client-side before submit)
 - [x] Find input: searches by name/ID/number, jumps to correct tab + highlights row
 - [x] Stats bar: WON / Leading / Pending counts
 - [x] SSE integration: rows flash on live scraper updates, data auto-refreshes
@@ -250,6 +255,7 @@
 - [x] Alliance color picker (native `<input type="color">`)
 - [x] Election picker for compare_with and history arrays with reorder controls
 - [x] Tab sync: Form edits serialize to JSON on tab switch; JSON parses to form (blocks switch on invalid JSON)
+- [x] Publish saves pending edits first, so unsaved changes are never dropped
 - [x] Revision field shown as read-only count (too large for form editing)
 - [x] Types extended: `VoteSplitConfig`, `ManifestData.history`, `history_years`, `vote_splits`, `revision`
 
@@ -280,7 +286,7 @@
   - Expandable row: editable tags, region, incumbency info, AI briefing, demographics, key issues
   - Bulk actions: add/remove tags across selected constituencies
   - Compute button: triggers server-side dominance/incumbency analysis
-  - AI Enrich button: triggers Claude API enrichment for all/selected constituencies
+  - AI Enrich button (in Constituency Manager): triggers AI enrichment for all/selected constituencies; progress stream is authenticated with an `Authorization: Bearer` header (no token in the URL)
   - AI Candidates button: triggers candidate profile enrichment
   - Review/Approve/Publish workflow for AI-generated content
 - [x] Admin route `/constituencies` with sidebar nav link
@@ -297,7 +303,7 @@
 ### Live Election Simulation System
 - [x] Simulation config with shared constants (`scraper/src/simulation/config.ts`)
 - [x] Setup script: clones Bihar 2025 → fictional Bihar 2027 Live election (`scraper/src/simulation/setup.ts`)
-- [x] Mock ECI HTTP server with 18-round vote progression, lead flips, S-curve easing (`scraper/src/simulation/mock-eci-server.ts`)
+- [x] Mock ECI HTTP server with per-seat 16–24-round vote progression (staggered starts, every seat declared by global round 24), lead flips, S-curve easing (`scraper/src/simulation/mock-eci-server.ts`)
 - [x] Replay orchestrator: advances rounds, scrapes mock, pushes result overrides via admin API (`scraper/src/simulation/replay.ts`)
 - [x] Cleanup script: tears down simulation data in FK order (`scraper/src/simulation/cleanup.ts`)
 - [x] ECI VS adapter `BASE_URL` made configurable via `ECI_VS_BASE_URL` env var
@@ -312,6 +318,10 @@
 - [x] `normalizeConstId` uses const_no only for VS elections (fixes 18 name spelling mismatches across years)
 - [x] Incumbent badge shows "Contesting" before counting, "Retained/Lost" after results
 - [x] Candidate table hides vote/share/status columns when no votes yet
+
+## Known Limitations
+
+- **Live ECI ingestion is not implemented.** The scraper's live pipeline (`scraper/src/index.ts`, `scheduler/`, `adapters/eci-adapter.ts`, `normalizer/`) is placeholder code only. Counting-day flows are exercised end-to-end via the Live Election Simulation System (mock ECI server + replay through the admin bulk-override API); real results today come from the historical seed files.
 
 ## Planned
 
@@ -395,7 +405,7 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 #### 2.1 Historical Dominance — DONE
 - [x] Classify seats by multi-election hold: Stronghold (3+ wins), Loyal (2 wins), Swing (no repeat winner)
 - [x] Map "History" tab with dominance coloring (full color = stronghold, faded = loyal, amber = swing)
-- [x] `manifest.history` array to specify historical election IDs
+- [x] `manifest.history` array to specify historical election IDs (History data is sourced from `manifest.history`)
 - [x] Parallel fetch of all historical results, party-level tracking (not alliance)
 - [x] ElectionSummary: dominance quick stats, per-party breakdown, swing seats list
 

@@ -14,7 +14,8 @@ export class CandidateSummaryDto {
   @Expose() const_id: string;
   @Expose() is_incumbent: boolean;
 
-  @Expose()
+  /** Populated from the Prisma `parties` relation. */
+  @Expose({ name: 'parties' })
   @Type(() => PartyMiniDto)
   party?: PartyMiniDto;
 }
@@ -35,7 +36,11 @@ export class PersonProfileDto {
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
   date_of_birth: Date | null;
   
-  @Expose() bio: string | null;
+  /** No `bio` column: resolved from metadata (manual bio, else AI profile). */
+  @Expose()
+  @Transform(({ obj }) => obj.bio ?? obj.metadata?.bio ?? obj.metadata?.ai_profile ?? null)
+  bio: string | null;
+
   @Expose() metadata: any;
   
   @Expose() candidates?: any[];

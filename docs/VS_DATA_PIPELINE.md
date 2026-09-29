@@ -293,8 +293,9 @@ Or via API:
 ```bash
 TOKEN=$(curl -s http://localhost:3082/api/auth/login \
   -H 'Content-Type: application/json' \
-  -d '{"email":"admin@election-tracker.in","password":"admin123"}' \
-  | python3 -c 'import sys,json; print(json.load(sys.stdin)["access_token"])')
+  -d "{\"email\":\"$ADMIN_EMAIL\",\"password\":\"$ADMIN_PASSWORD\"}" \
+  | python3 -c 'import sys,json; print(json.load(sys.stdin)["data"]["access_token"])')
+# (admin account created via `cd backend && npm run create-admin`)
 
 # Enrich all pending
 curl -X POST http://localhost:3082/api/admin/ai/enrich-constituencies/{electionId} \

@@ -16,7 +16,7 @@ Current data coverage includes Lok Sabha 2024 and Vidhan Sabha elections across 
 [Admin SPA (React+Vite)]  ── REST ──┘          │
                                                └─→ [Redis (cache + pub/sub)]
                                                         ↑
-[Scraper Service (Node.js)] ─ writes to PG, publishes ──┘
+[Scraper: simulation replay] ── admin REST API ─────────┘
 ```
 
 Four independent services communicate through PostgreSQL (source of truth) and Redis (pub/sub for SSE fan-out + live cache). OpenTelemetry traces/metrics are shipped to a SigNoz collector.
@@ -25,10 +25,10 @@ Four independent services communicate through PostgreSQL (source of truth) and R
 
 | Layer       | Stack                                                                  |
 |-------------|------------------------------------------------------------------------|
-| Backend     | NestJS (TypeScript), TypeORM + Prisma, JWT auth, Helmet, Throttler     |
+| Backend     | NestJS (TypeScript), Prisma, JWT auth, Helmet, Throttler, Gemini (AI)  |
 | Public FE   | React + Vite (TypeScript SPA), D3.js (SVG choropleths), react-i18next  |
 | Admin FE    | React + Vite (TypeScript SPA), JWT-protected                           |
-| Scraper     | Standalone Node.js (cheerio, node-cron, ts-node)                       |
+| Scraper     | Node.js + ts-node: seed generators, live simulation (live ECI ingestion not implemented) |
 | Database    | PostgreSQL 15                                                          |
 | Cache / RT  | Redis 7 (pub/sub for SSE, live tally cache)                            |
 | Observability | OpenTelemetry → SigNoz                                               |
@@ -40,8 +40,8 @@ election-tracker/
 ├── backend/         # NestJS API server (port 3082)
 ├── frontend/        # Public React SPA (port 3080)
 ├── admin/           # Admin React SPA (port 3081)
-├── scraper/         # Standalone Node.js ingestion service
-├── database/        # schema.sql, migrations/, seed_*.sql
+├── scraper/         # Seed generators + live-counting simulation (no live ECI ingestion yet)
+├── database/        # setup.sh, schema.sql, migrations/, seed*.sql
 ├── docs/            # PRD, HLD, LLD, API spec, feature tracker
 └── docker-compose.yml
 ```
@@ -62,25 +62,37 @@ election-tracker/
 - Node.js 20+, npm
 - Docker + Docker Compose (for PostgreSQL, Redis, OTEL collector)
 
-### 1. Start infrastructure
+### 1. Configure
 ```bash
 cp .env.example .env
+# edit .env: set JWT_SECRET (required — the backend refuses to start without it),
+# ADMIN_EMAIL / ADMIN_PASSWORD, and optionally GEMINI_API_KEY, SIGNOZ_INGESTION_KEY
+```
+
+### 2. Start infrastructure + build the database
+```bash
 docker compose up -d db redis
 ```
-Schema is auto-applied from `database/schema.sql` on first boot.
+On **first boot of an empty volume**, the `db` container runs `database/setup.sh`, which applies
+everything in the one supported order — `schema.sql` → `migrations/001…011` → seeds (LS 2024,
+state parties, all VS results, districts/regions, Bihar persons, party symbols). Set
+`ET_DB_INIT_ARGS=--schema-only` in `.env` to skip seed data.
 
-### 2. Load seed data
+For an existing volume, or a Postgres you run yourself, run the same script directly (needs `psql`).
+It is idempotent — re-running it never wipes or duplicates data:
 ```bash
-psql -h localhost -U admin -d election_tracker -f database/seed.sql
-# apply any desired state seeds, e.g.
-psql -h localhost -U admin -d election_tracker -f database/seed_bihar_vs_2025.sql
-# and apply migrations in order
-for f in database/migrations/*.sql; do
-  psql -h localhost -U admin -d election_tracker -f "$f"
-done
+set -a; source .env; set +a      # exports DB_* / DATABASE_URL
+database/setup.sh                # or: database/setup.sh --schema-only
+```
+Do not apply individual seed files by hand: several depend on each other (see the order in `setup.sh`).
+
+### 3. Create an admin user
+No admin account is seeded. Create (or update) a `SUPER_ADMIN` from `ADMIN_EMAIL` / `ADMIN_PASSWORD`:
+```bash
+cd backend && npm install && npm run create-admin
 ```
 
-### 3. Install & run each service
+### 4. Install & run each service
 ```bash
 # Backend (NestJS API)
 cd backend && npm install && npm run start:dev
@@ -90,9 +102,19 @@ cd frontend && npm install && npm run dev
 
 # Admin panel
 cd admin && npm install && npm run dev
+```
 
-# Scraper (optional, for live ingestion)
-cd scraper && npm install && npx ts-node src/index.ts
+### 5. (Optional) Live-counting simulation
+Live ECI ingestion is **not implemented** — `scraper/src/index.ts` only prints a notice. To exercise
+the counting-day pipeline (admin bulk overrides → Redis pub/sub → SSE → frontend), use the simulation,
+which replays Bihar 2025 results round by round as a fictional "Bihar 2027" live election:
+```bash
+cd scraper && npm install
+set -a; source ../.env; set +a   # DB_*, API_BASE_URL, SIM_ADMIN_EMAIL / SIM_ADMIN_PASSWORD
+npm run sim:setup                # clone Bihar 2025 → Bihar 2027 (Live)
+npm run sim:mock-eci             # mock ECI server on :4444 (leave running)
+npm run sim:replay               # in another shell; pushes each round via the admin API
+npm run sim:reset                # zero results to replay again; sim:cleanup removes it
 ```
 
 Open `http://localhost:3080` for the public tracker, `http://localhost:3081` for admin.
@@ -142,20 +164,20 @@ Deeper docs live in [`docs/`](./docs):
 
 ## Environment Variables
 
-See `.env.example`. Core values:
+See `.env.example` — one set of names is shared by docker-compose, `database/setup.sh`, the backend and the scraper:
 
-```
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=admin
-DB_PASS=password123
-DB_NAME=election_tracker
-
-REDIS_HOST=localhost
-REDIS_PORT=6379
-
-JWT_SECRET=change-me-in-production
-```
+| Variable | Used by | Notes |
+|---|---|---|
+| `DB_HOST` `DB_PORT` `DB_USER` `DB_PASS` `DB_NAME` | compose, setup.sh, scraper | Postgres connection |
+| `DATABASE_URL` | backend (Prisma); also honoured by setup.sh / scraper | same DB as `DB_*` |
+| `REDIS_HOST` `REDIS_PORT` | backend | pub/sub + cache |
+| `JWT_SECRET` | backend | **required** — backend fails fast without it |
+| `PORT` `CORS_ORIGINS` | backend | defaults 3082 / localhost:3080,3081 |
+| `GEMINI_API_KEY` | backend | AI enrichment |
+| `ADMIN_EMAIL` `ADMIN_PASSWORD` | `npm run create-admin` | initial SUPER_ADMIN |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | backend | OTLP collector (default `http://localhost:4317`) |
+| `SIGNOZ_ENDPOINT` `SIGNOZ_INGESTION_KEY` | otel-collector | SigNoz Cloud export |
+| `API_BASE_URL` `SIM_ADMIN_EMAIL` `SIM_ADMIN_PASSWORD` | scraper simulation | replay login falls back to `ADMIN_*` |
 
 The `docker-compose.yml` has dev credentials hardcoded — **do not use in production**. Remove host port bindings, add `requirepass` to Redis, and put services behind a private network.
 

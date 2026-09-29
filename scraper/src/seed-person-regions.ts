@@ -32,6 +32,19 @@ interface Report {
 
 const BIHAR_STATE_ID = 5;
 
+/** Region codes used by bihar-region-map (same rows as migration 008). */
+const LEGACY_REGIONS: [string, string][] = [
+  ['Mithila', 'mithila'],
+  ['Magadh', 'magadh'],
+  ['Bhojpur', 'bhojpur'],
+  ['Seemanchal', 'seemanchal'],
+  ['Tirhut', 'tirhut'],
+  ['Kosi', 'kosi'],
+  ['Saran', 'saran'],
+  ['Shahabad', 'shahabad'],
+  ['Ang', 'ang'],
+];
+
 const INPUT = path.join(__dirname, '..', 'output', 'bihar-person-matches.json');
 const OUTPUT = path.join(__dirname, '..', '..', 'database', 'seed_bihar_person_regions.sql');
 
@@ -124,6 +137,14 @@ const sql = [
   `-- ${tagged} persons tagged with state_id=${BIHAR_STATE_ID} + region_id, ${skipped} skipped`,
   '',
   'BEGIN;',
+  '',
+  // The region codes above are not created by any other seed on a fresh DB (migration 008
+  // skips them before states exist), so emit them here, idempotently.
+  '-- Legacy Bihar region codes referenced below (originally seeded by migration 008, which',
+  '-- skips them on a fresh DB because states are not loaded yet). Idempotent.',
+  'INSERT INTO regions (state_id, name, code) VALUES',
+  LEGACY_REGIONS.map(([name, code]) => `  (${BIHAR_STATE_ID}, '${name}', '${code}')`).join(',\n'),
+  'ON CONFLICT (state_id, code) DO NOTHING;',
   '',
   ...updates,
   '',

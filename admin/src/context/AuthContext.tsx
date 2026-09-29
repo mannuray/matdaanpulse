@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { login } from '../services/user.service';
-import { setToken, clearToken } from '../services/auth.service';
+import { setToken, clearToken, getToken } from '../services/auth.service';
+import { isTokenExpired } from '../utils/jwt';
 import type { User } from '../types';
 
 interface AuthContextValue {
@@ -15,8 +16,18 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(() => {
-    const stored = localStorage.getItem('admin_user');
-    return stored ? JSON.parse(stored) : null;
+    // A stored user only counts as a session if a non-expired token is present too
+    if (isTokenExpired(getToken())) {
+      clearToken();
+      return null;
+    }
+    try {
+      const stored = localStorage.getItem('admin_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      clearToken();
+      return null;
+    }
   });
 
   const loginAction = async (email: string, password: string) => {
@@ -32,13 +43,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('admin_user');
   };
 
+  // Re-checked on every render so a token that expires mid-session logs the user out
+  const token = getToken();
+  const isAuthenticated = !!user && !!token && !isTokenExpired(token);
+
+  useEffect(() => {
+    if (user && !isAuthenticated) logout();
+  }, [user, isAuthenticated]);
+
   const hasRole = (...roles: string[]) => {
-    if (!user) return false;
+    if (!user || !isAuthenticated) return false;
     return roles.includes(user.role);
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login: loginAction, logout, hasRole }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login: loginAction, logout, hasRole }}>
       {children}
     </AuthContext.Provider>
   );

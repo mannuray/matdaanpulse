@@ -215,7 +215,7 @@ function generateSeed(config: YearConfig, geoMap: Record<number, GeoEntry>) {
     const displayName = geo.name.split(' ').map((w: string) => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
     constLines.push(`  ('${esc(constId)}', '${electionId}', NULL, ${STATE_ID}, '${esc(displayName)}', ${r.const_no}, '${geo.category}', NULL, NULL, NULL)`);
   }
-  lines.push(constLines.join(',\n') + ';');
+  lines.push(constLines.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 
   lines.push(`-- Candidates`);
@@ -260,11 +260,11 @@ function generateSeed(config: YearConfig, geoMap: Record<number, GeoEntry>) {
   }
 
   lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES');
-  lines.push(candidateInserts.join(',\n') + ';');
+  lines.push(candidateInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
   lines.push('-- Results');
   lines.push('INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES');
-  lines.push(resultInserts.join(',\n') + ';');
+  lines.push(resultInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
   lines.push('-- Manifest');
   lines.push(`UPDATE elections SET manifest_url = '${esc(JSON.stringify(config.manifest))}' WHERE id = '${electionId}';`);

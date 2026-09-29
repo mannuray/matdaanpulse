@@ -1,13 +1,24 @@
+import { STATE_CODE_TO_ST_NAME } from './regionMatching';
+
 /**
  * Normalize a constituency ID for cross-election matching.
- * VS IDs contain a const_no which is stable across elections even when names
- * have spelling variations (e.g. BACHWARA vs BACHHWARA). For VS, normalize to
- * just the const_no. For LS (no const_no), use the name portion.
+ *
+ * - VS ids (`WB_VS21_210_NANDIGRAM`, `BR_VS_195_AGIAON`) contain a const_no that
+ *   is stable across elections even when names are spelled differently
+ *   (BACHWARA vs BACHHWARA), so they normalize to `<STATE>:<const_no>`.
+ * - LS ids are bare names (`AGRA`, `AHMEDABAD_EAST`) and normalize to themselves.
+ *   Names that exist in more than one state carry a state prefix
+ *   (`BR_AURANGABAD` / `MH_AURANGABAD`); the prefix is kept (`BR:AURANGABAD`)
+ *   so same-named seats in different states never merge.
+ *
+ * Only known state codes count as a prefix, so bare names are never split.
  */
 export function normalizeConstId(id: string): string {
-  const stripped = id.replace(/^[A-Z]{2}_(?:VS\d*_)?/, '');
-  // If it starts with a number (VS const_no), use only the number for matching
-  const numMatch = stripped.match(/^(\d+)_/);
-  if (numMatch) return numMatch[1];
-  return stripped;
+  const m = id.match(/^([A-Z]{2})_(.+)$/);
+  if (!m || !STATE_CODE_TO_ST_NAME[m[1]]) return id;
+  const [, code, rawRest] = m;
+  const rest = rawRest.replace(/^VS\d*_/, '');
+  const numMatch = rest.match(/^(\d+)_/);
+  if (numMatch) return `${code}:${numMatch[1]}`;
+  return `${code}:${rest}`;
 }

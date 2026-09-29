@@ -220,6 +220,7 @@ export function useCandidateManager() {
   return {
     elections, states, constituencies, selectedElection, setSelectedElection,
     selectedConst, setSelectedConst, personFilter, setPersonFilter,
+    search, setSearch,
     candidates: filteredCandidates, loading, 
     globalSearch, setGlobalSearch, globalResults, globalLoading,
     linkingSuggestions, selectedMatches, toggleMatch, handleLink, handleUnlink,

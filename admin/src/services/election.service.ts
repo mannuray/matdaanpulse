@@ -48,8 +48,37 @@ export function overrideResult(data: { result_id: string; votes?: number; status
   return apiFetch<void>('/admin/results/override', { method: 'PATCH', body: JSON.stringify(data) });
 }
 
-export function subscribeLiveUpdates(electionId: string, callback: (event: MessageEvent) => void): EventSource {
-  const es = new EventSource(`${API_BASE_URL}/live/updates?election_id=${electionId}`);
-  es.onmessage = callback;
+/** Compact live result payload broadcast on the public SSE channel. */
+export interface LiveResultUpdate {
+  const_id: string;
+  p?: unknown;
+  m?: unknown;
+  s?: unknown;
+  r?: unknown;
+  cr?: number;
+  tr?: number;
+}
+
+export interface LiveUpdateHandlers {
+  onResultUpdate: (update: LiveResultUpdate) => void;
+  onBatchUpdate: (updates: LiveResultUpdate[]) => void;
+}
+
+// Backend emits NAMED events ('result-update', 'batch-update', 'ping'), which
+// es.onmessage never receives — listeners must be registered per event name.
+export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHandlers): EventSource {
+  const es = new EventSource(`${API_BASE_URL}/live/updates?election_id=${encodeURIComponent(electionId)}`);
+  es.addEventListener('result-update', (event) => {
+    try {
+      const data = JSON.parse((event as MessageEvent).data);
+      if (data?.const_id) handlers.onResultUpdate(data);
+    } catch { /* malformed frame */ }
+  });
+  es.addEventListener('batch-update', (event) => {
+    try {
+      const data = JSON.parse((event as MessageEvent).data);
+      if (Array.isArray(data)) handlers.onBatchUpdate(data.filter((u) => u?.const_id));
+    } catch { /* malformed frame */ }
+  });
   return es;
 }

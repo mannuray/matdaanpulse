@@ -34,7 +34,7 @@ export default function PartyEdit() {
           onBack={() => navigate(`/parties/${party.id}`)}
           actions={
             <div style={{ display: 'flex', gap: 12 }}>
-              <button onClick={editor.runEnrichment} disabled={editor.enriching} className="btn btn-outline" style={styles.actionBtn}>
+              <button onClick={editor.handleEnrich} disabled={editor.enriching} className="btn btn-outline" style={styles.actionBtn}>
                 {editor.enriching ? 'AI ENRICHING...' : 'AI ENRICH ASSETS'}
               </button>
               <button onClick={onSubmit} disabled={editor.saving} className="btn btn-primary" style={styles.saveBtn}>

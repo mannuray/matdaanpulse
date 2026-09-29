@@ -243,7 +243,8 @@ INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_
   ('TN_VS21_231_COLACHEL', 'e5f6a7b8-c9d0-1234-ef01-456789012021', NULL, 31, 'Colachel', 231, 'GEN', NULL, NULL, NULL),
   ('TN_VS21_232_PADMANABHAPURAM', 'e5f6a7b8-c9d0-1234-ef01-456789012021', NULL, 31, 'Padmanabhapuram', 232, 'GEN', NULL, NULL, NULL),
   ('TN_VS21_233_VILAVANCODE', 'e5f6a7b8-c9d0-1234-ef01-456789012021', NULL, 31, 'Vilavancode', 233, 'GEN', NULL, NULL, NULL),
-  ('TN_VS21_234_KILLIYOOR', 'e5f6a7b8-c9d0-1234-ef01-456789012021', NULL, 31, 'Killiyoor', 234, 'GEN', NULL, NULL, NULL);
+  ('TN_VS21_234_KILLIYOOR', 'e5f6a7b8-c9d0-1234-ef01-456789012021', NULL, 31, 'Killiyoor', 234, 'GEN', NULL, NULL, NULL)
+ON CONFLICT DO NOTHING;
 
 -- Candidates (winner + runner-up per constituency)
 INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
@@ -714,7 +715,8 @@ INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is
   ('893b2371-5324-4e5a-868f-ee758eaaf6c3', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012021', 'TN_VS21_233_VILAVANCODE', 'INC', 'Vijayadharani S', FALSE, '{}'),
   ('73a69c2e-0b89-4e6d-a648-776b452360a0', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012021', 'TN_VS21_233_VILAVANCODE', 'BJP', 'Jayaseelan R', FALSE, '{}'),
   ('e080d1d3-0ff7-4082-bd2d-36ee04e0e10f', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012021', 'TN_VS21_234_KILLIYOOR', 'INC', 'Rajesh Kumar S', FALSE, '{}'),
-  ('e087a868-acfe-478a-8778-abdbecfe7f6b', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012021', 'TN_VS21_234_KILLIYOOR', 'AIADMK', 'Jude Dev K.v', FALSE, '{}');
+  ('e087a868-acfe-478a-8778-abdbecfe7f6b', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012021', 'TN_VS21_234_KILLIYOOR', 'AIADMK', 'Jude Dev K.v', FALSE, '{}')
+ON CONFLICT DO NOTHING;
 
 -- Results
 INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
@@ -1185,7 +1187,8 @@ INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no
   ('7b2e2688-b851-410a-b27b-696e98f327c2', '893b2371-5324-4e5a-868f-ee758eaaf6c3', 'TN_VS21_233_VILAVANCODE', 78669, 'WON', 28669, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012021'),
   ('33fb34f8-75e3-4ec8-b330-4374f9a93a1a', '73a69c2e-0b89-4e6d-a648-776b452360a0', 'TN_VS21_233_VILAVANCODE', 50000, 'LOST', 28669, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012021'),
   ('f9f200fd-2a2d-4ab9-870d-19848b8ae56c', 'e080d1d3-0ff7-4082-bd2d-36ee04e0e10f', 'TN_VS21_234_KILLIYOOR', 105400, 'WON', 55400, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012021'),
-  ('bbf59137-8d72-4da4-bcd2-55e13d675120', 'e087a868-acfe-478a-8778-abdbecfe7f6b', 'TN_VS21_234_KILLIYOOR', 50000, 'LOST', 55400, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012021');
+  ('bbf59137-8d72-4da4-bcd2-55e13d675120', 'e087a868-acfe-478a-8778-abdbecfe7f6b', 'TN_VS21_234_KILLIYOOR', 50000, 'LOST', 55400, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012021')
+ON CONFLICT DO NOTHING;
 
 -- Manifest
 UPDATE elections SET manifest_url = '{"alliances":[{"id":"DMKALL","name":"DMK+","color":"#CC0000","parties":["DMK","INC","VCK","CPI","CPIM"]},{"id":"ADMK","name":"AIADMK+","color":"#00AA00","parties":["AIADMK","BJP","PMK"]},{"id":"MNM","name":"MNM","color":"#FF4081","parties":["MNM","AMMK"]}],"leaders":[{"name":"M.K. Stalin","party_id":"DMK","const_id":"TN_VS21_82_KOLATHUR"},{"name":"Edappadi K. Palaniswami","party_id":"AIADMK","const_id":"TN_VS21_94_EDAPPADI"}],"cabinet":[],"tracked":["DMKALL","ADMK","MNM"],"vip_seats":{},"milestones":[{"label":"Majority","value":118}],"compare_with":["e5f6a7b8-c9d0-1234-ef01-456789012016"],"history":["e5f6a7b8-c9d0-1234-ef01-456789012011","e5f6a7b8-c9d0-1234-ef01-456789012016"],"history_years":[2011,2016],"vote_splits":[{"spoiler":"MNM","hurts":"DMKALL","label":"MNM split"},{"spoiler":"AMMK","hurts":"ADMK","label":"AMMK split"}],"geo":{"map_url":"/geo/tn_ac.geojson","center":[78.6,11],"zoom":7},"delimitation_era":"2008"}' WHERE id = 'e5f6a7b8-c9d0-1234-ef01-456789012021';

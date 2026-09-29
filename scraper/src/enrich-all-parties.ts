@@ -31,8 +31,9 @@ async function login(): Promise<string> {
     body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
   });
   if (!res.ok) throw new Error(`Login failed: ${res.status}`);
-  const data = await res.json();
-  return data.access_token;
+  const body = await res.json();
+  // Backend wraps JSON responses as { success, data: {...} }
+  return (body?.data ?? body).access_token;
 }
 
 async function getParties(token: string): Promise<Party[]> {

@@ -38,7 +38,8 @@ INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_
   ('PY_VS16_27_KARAIKAL_SOUTH', 'b1c2d3e4-f5a6-7890-1234-567890ab2016', NULL, 27, 'Karaikal South', 27, 'GEN', NULL, NULL, NULL),
   ('PY_VS16_28_NERAVY_TR_PATTINAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2016', NULL, 27, 'Neravy T.r. Pattinam', 28, 'GEN', NULL, NULL, NULL),
   ('PY_VS16_29_MAHE', 'b1c2d3e4-f5a6-7890-1234-567890ab2016', NULL, 27, 'Mahe', 29, 'GEN', NULL, NULL, NULL),
-  ('PY_VS16_30_YANAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2016', NULL, 27, 'Yanam', 30, 'GEN', NULL, NULL, NULL);
+  ('PY_VS16_30_YANAM', 'b1c2d3e4-f5a6-7890-1234-567890ab2016', NULL, 27, 'Yanam', 30, 'GEN', NULL, NULL, NULL)
+ON CONFLICT DO NOTHING;
 
 -- Candidates
 INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
@@ -101,7 +102,8 @@ INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is
   ('e7264ab9-c1c2-4a25-a82b-9e75418fd741', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2016', 'PY_VS16_29_MAHE', 'IND', 'Dr. V. Ramachandran', FALSE, '{}'),
   ('59ec37f8-3493-4603-a351-92480d6bf92a', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2016', 'PY_VS16_29_MAHE', 'INC', 'E. Valsaraj', FALSE, '{}'),
   ('c43eea37-4c1f-42b8-8eb5-53f0007875e6', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2016', 'PY_VS16_30_YANAM', 'INC', 'Malladi Krishna Rao', FALSE, '{}'),
-  ('36254519-b73c-4689-9170-d05a32e56bd9', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2016', 'PY_VS16_30_YANAM', 'AINRC', 'Tirikoty Bairava Swamy', FALSE, '{}');
+  ('36254519-b73c-4689-9170-d05a32e56bd9', NULL, 'b1c2d3e4-f5a6-7890-1234-567890ab2016', 'PY_VS16_30_YANAM', 'AINRC', 'Tirikoty Bairava Swamy', FALSE, '{}')
+ON CONFLICT DO NOTHING;
 
 -- Results
 INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
@@ -164,7 +166,8 @@ INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no
   ('045863e9-76a6-46a2-bd32-c90548b4d42a', 'e7264ab9-c1c2-4a25-a82b-9e75418fd741', 'PY_VS16_29_MAHE', 10797, 'WON', 2139, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2016'),
   ('21308183-3a0a-4344-b600-a66a6a397f92', '59ec37f8-3493-4603-a351-92480d6bf92a', 'PY_VS16_29_MAHE', 8658, 'LOST', 2139, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2016'),
   ('bd69cbc1-1ccb-421f-8a00-49a0c4777458', 'c43eea37-4c1f-42b8-8eb5-53f0007875e6', 'PY_VS16_30_YANAM', 20801, 'WON', 8754, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2016'),
-  ('c41560af-5241-492a-8707-d81c3adea095', '36254519-b73c-4689-9170-d05a32e56bd9', 'PY_VS16_30_YANAM', 12047, 'LOST', 8754, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2016');
+  ('c41560af-5241-492a-8707-d81c3adea095', '36254519-b73c-4689-9170-d05a32e56bd9', 'PY_VS16_30_YANAM', 12047, 'LOST', 8754, 0, 'b1c2d3e4-f5a6-7890-1234-567890ab2016')
+ON CONFLICT DO NOTHING;
 
 -- Manifest
 UPDATE elections SET manifest_url = '{"alliances":[{"id":"UPA","name":"Congress+","color":"#19AAED","parties":["INC","DMK"]},{"id":"AINRC+","name":"AINRC+","color":"#FF9933","parties":["AINRC","AIADMK","BJP"]}],"leaders":[{"name":"V. Narayanasamy","party_id":"INC","const_id":"PY_VS16_14_NELLITHOPE"},{"name":"N. Rangasamy","party_id":"AINRC","const_id":"PY_VS16_19_YANAM"}],"cabinet":[],"tracked":["UPA","AINRC+"],"vip_seats":{},"milestones":[{"label":"Majority","value":16}],"compare_with":["b1c2d3e4-f5a6-7890-1234-567890ab2011"],"geo":{"map_url":"/geo/py_ac.geojson","center":[79.8,11.9],"zoom":11},"delimitation_era":"2008"}' WHERE id = 'b1c2d3e4-f5a6-7890-1234-567890ab2016';

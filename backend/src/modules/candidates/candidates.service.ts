@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { Prisma } from '@prisma/client';
 import { CandidateNotFoundException, PersonNotFoundException } from '../../common/exceptions';
+import type { CreateCandidateDto, UpdateCandidateDto } from '../admin/dto/admin-input.dto';
 
 @Injectable()
 export class CandidatesService {
@@ -79,18 +81,18 @@ export class CandidatesService {
     });
   }
 
-  async create(data: any) {
+  async create(data: CreateCandidateDto) {
     return this.prisma.candidates.create({
-      data,
+      data: data as Prisma.candidatesUncheckedCreateInput,
     });
   }
 
-  async update(id: string, data: any) {
+  async update(id: string, data: UpdateCandidateDto) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id } });
     if (!candidate) throw new CandidateNotFoundException(id);
     return this.prisma.candidates.update({
       where: { id },
-      data,
+      data: data as Prisma.candidatesUncheckedUpdateInput,
     });
   }
 

@@ -1,5 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { MapTab } from '../../types';
+
+interface MarginBucket {
+  label: string;
+  intensity: number;
+}
 
 interface LegendEntry {
   name: string;
@@ -9,7 +15,7 @@ interface LegendEntry {
 interface MapLegendProps {
   mapTab: MapTab;
   legendEntries: LegendEntry[];
-  marginBuckets: any[];
+  marginBuckets: MarginBucket[];
   blendWithWhite: (hex: string, intensity: number) => string;
   hasSwingData?: boolean;
   hasDominanceData?: boolean;
@@ -25,6 +31,7 @@ export const MapLegend: React.FC<MapLegendProps> = ({
   hasDominanceData,
   spoilerData,
 }) => {
+  const { t } = useTranslation();
   if (mapTab === 'states') return null;
 
   if (mapTab === 'insights') {
@@ -33,21 +40,21 @@ export const MapLegend: React.FC<MapLegendProps> = ({
         {spoilerData?.hasData ? (
           <>
             <span style={{ fontSize: 9, display: 'flex', alignItems: 'center', gap: 3 }}>
-              <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: 'var(--accent)', backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 1px, rgba(0,0,0,0.35) 1px, rgba(0,0,0,0.35) 2px)' }} />
-              Spoiler-affected
+              <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: 'var(--accent)', backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 1px, var(--map-hatch) 1px, var(--map-hatch) 2px)' }} />
+              {t('legend_spoiler')}
             </span>
             <span style={{ fontSize: 9, display: 'flex', alignItems: 'center', gap: 3 }}>
               <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: '#f59e0b' }} />
-              Three-way
+              {t('legend_three_way')}
             </span>
             <span style={{ fontSize: 9, display: 'flex', alignItems: 'center', gap: 3 }}>
-              <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: '#e5e7eb' }} />
-              Two-way
+              <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: 'var(--map-muted-fill)' }} />
+              {t('legend_two_way')}
             </span>
           </>
         ) : (
           <>
-            <span style={{ fontSize: 9, color: 'var(--text-secondary)' }}>Competitive</span>
+            <span style={{ fontSize: 9, color: 'var(--text-secondary)' }}>{t('legend_competitive')}</span>
             {[1.0, 0.75, 0.5, 0.25, 0].map((intensity, i) => {
               const blue = Math.round(100 + intensity * 155);
               const red = Math.round(230 - intensity * 180);
@@ -56,7 +63,7 @@ export const MapLegend: React.FC<MapLegendProps> = ({
                 <span key={i} className="swatch" style={{ display: 'inline-block', width: 20, height: 8, borderRadius: 1, background: `rgb(${red},${green},${blue})` }} />
               );
             })}
-            <span style={{ fontSize: 9, color: 'var(--text-secondary)' }}>Safe</span>
+            <span style={{ fontSize: 9, color: 'var(--text-secondary)' }}>{t('legend_safe')}</span>
           </>
         )}
       </div>
@@ -68,11 +75,11 @@ export const MapLegend: React.FC<MapLegendProps> = ({
       <div className="margin-legend" style={{ flexShrink: 0, gap: 8 }}>
         <span style={{ fontSize: 9, display: 'flex', alignItems: 'center', gap: 3 }}>
           <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: '#10b981' }} />
-          Flipped
+          {t('flip')}
         </span>
         <span style={{ fontSize: 9, display: 'flex', alignItems: 'center', gap: 3 }}>
-          <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: '#d4d4d4' }} />
-          Held
+          <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: 'var(--map-default-fill)' }} />
+          {t('legend_held')}
         </span>
       </div>
     );
@@ -83,15 +90,15 @@ export const MapLegend: React.FC<MapLegendProps> = ({
       <div className="margin-legend" style={{ flexShrink: 0, gap: 8 }}>
         <span style={{ fontSize: 9, display: 'flex', alignItems: 'center', gap: 3 }}>
           <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: '#6b7280' }} />
-          Stronghold
+          {t('legend_stronghold')}
         </span>
         <span style={{ fontSize: 9, display: 'flex', alignItems: 'center', gap: 3 }}>
           <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: '#6b7280', opacity: 0.6 }} />
-          Loyal
+          {t('legend_loyal')}
         </span>
         <span style={{ fontSize: 9, display: 'flex', alignItems: 'center', gap: 3 }}>
           <span className="swatch" style={{ display: 'inline-block', width: 12, height: 8, borderRadius: 1, background: '#f59e0b' }} />
-          Swing
+          {t('legend_swing')}
         </span>
       </div>
     );
@@ -104,7 +111,7 @@ export const MapLegend: React.FC<MapLegendProps> = ({
           <div key={entry.name} style={{ display: 'contents' }}>
             {i > 0 && <span style={{ fontSize: 8, color: 'var(--text-secondary)', margin: '0 2px' }}>|</span>}
             <span style={{ fontSize: 9, fontWeight: 700, color: entry.color, marginRight: 2 }}>{entry.name}</span>
-            {(mapTab === 'battle' || mapTab === 'demographics') && marginBuckets.map((b: any) => (
+            {(mapTab === 'battle' || mapTab === 'demographics') && marginBuckets.map((b) => (
               <div key={b.label} className="margin-legend-item">
                 <span className="swatch" style={{ background: blendWithWhite(entry.color, b.intensity) }} />
               </div>
@@ -117,7 +124,7 @@ export const MapLegend: React.FC<MapLegendProps> = ({
         {(mapTab === 'battle' || mapTab === 'demographics') && (
           <>
             <span style={{ fontSize: 8, color: 'var(--text-secondary)', margin: '0 2px' }}>|</span>
-            {marginBuckets.map((b: any) => (
+            {marginBuckets.map((b) => (
               <span key={b.label} style={{ fontSize: 8, color: 'var(--text-secondary)' }}>{b.label}</span>
             ))}
           </>

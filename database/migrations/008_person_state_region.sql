@@ -18,17 +18,24 @@ CREATE INDEX IF NOT EXISTS idx_persons_state ON persons(state_id);
 CREATE INDEX IF NOT EXISTS idx_persons_region ON persons(region_id);
 CREATE INDEX IF NOT EXISTS idx_regions_state ON regions(state_id);
 
--- Seed Bihar regions (state_id = 5)
-INSERT INTO regions (state_id, name, code) VALUES
-  (5, 'Mithila', 'mithila'),
-  (5, 'Magadh', 'magadh'),
-  (5, 'Bhojpur', 'bhojpur'),
-  (5, 'Seemanchal', 'seemanchal'),
-  (5, 'Tirhut', 'tirhut'),
-  (5, 'Kosi', 'kosi'),
-  (5, 'Saran', 'saran'),
-  (5, 'Shahabad', 'shahabad'),
-  (5, 'Ang', 'ang')
+-- Seed Bihar regions (state code 'BR'). Only inserts when the Bihar state row exists,
+-- so this migration also succeeds on a fresh, unseeded database. On a fresh build the
+-- same rows are (re)inserted by seed_bihar_person_regions.sql, which depends on them.
+INSERT INTO regions (state_id, name, code)
+SELECT s.id, v.name, v.code
+FROM states s
+CROSS JOIN (VALUES
+  ('Mithila', 'mithila'),
+  ('Magadh', 'magadh'),
+  ('Bhojpur', 'bhojpur'),
+  ('Seemanchal', 'seemanchal'),
+  ('Tirhut', 'tirhut'),
+  ('Kosi', 'kosi'),
+  ('Saran', 'saran'),
+  ('Shahabad', 'shahabad'),
+  ('Ang', 'ang')
+) AS v(name, code)
+WHERE s.code = 'BR'
 ON CONFLICT (state_id, code) DO NOTHING;
 
 COMMIT;

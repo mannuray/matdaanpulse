@@ -7,7 +7,7 @@ export abstract class BusinessException extends HttpException {
     message: string,
     status: HttpStatus = HttpStatus.BAD_REQUEST,
     public readonly details?: Record<string, unknown>,
-    public readonly cause?: Error,
+    cause?: Error,
   ) {
     super({ code, message, details }, status, { cause });
   }

@@ -193,7 +193,7 @@ async function main() {
     const constType = catMatch ? catMatch[1].toUpperCase() : 'GEN';
     constLines.push(`  ('${esc(constId)}', '${ELECTION_ID}', NULL, ${STATE_ID}, '${esc(c.name)}', ${c.constNo}, '${constType}', NULL, NULL, NULL)`);
   }
-  lines.push(constLines.join(',\n') + ';');
+  lines.push(constLines.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 
   // Candidates and Results
@@ -222,19 +222,19 @@ async function main() {
         `  ('${candId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(partyId)}', '${esc(cand.name)}', FALSE, '{}')`
       );
       resultInserts.push(
-        `  ('${randomUUID()}', '${candId}', '${esc(constId)}', ${cand.votes}, '${isNota ? 'LOST' : status}', ${margin}, 0)`
+        `  ('${randomUUID()}', '${candId}', '${esc(constId)}', ${cand.votes}, '${isNota ? 'LOST' : status}', ${margin}, 0, '${ELECTION_ID}')`
       );
       totalCandidates++;
     }
   }
 
   lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES');
-  lines.push(candidateInserts.join(',\n') + ';');
+  lines.push(candidateInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 
   lines.push('-- Results');
-  lines.push('INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no) VALUES');
-  lines.push(resultInserts.join(',\n') + ';');
+  lines.push('INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES');
+  lines.push(resultInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 
   // Manifest JSON

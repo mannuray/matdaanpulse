@@ -9,7 +9,7 @@ import {
 } from '../services/intelligence.service';
 import type {
   ResultRow, DominanceEntry, IncumbencyEntry,
-  PartySwitchEntry, MarginTrendPoint, PartyTrendPoint,
+  PartySwitchEntry, MarginTrendPoint, PartyTrendPoint, SwingEntry,
 } from '../types';
 
 interface UseHistoryAnalysisParams {
@@ -28,6 +28,36 @@ interface UseHistoryAnalysisResult {
   partySwitchData: PartySwitchEntry[];
   marginTrend: MarginTrendPoint[];
   partyTrend: PartyTrendPoint[];
+  swingMap: Map<string, SwingEntry>;
+}
+
+/** Seat-level swing vs the previous election (matched via normalized const id). */
+export function calculateSwing(
+  prevResults: ResultRow[] | null,
+  currentWinnerMap: Map<string, ResultRow>,
+): Map<string, SwingEntry> {
+  const out = new Map<string, SwingEntry>();
+  if (!prevResults || prevResults.length === 0) return out;
+  const prevWinners = new Map<string, ResultRow>();
+  for (const r of prevResults) {
+    if (r.status !== 'WON' && r.status !== 'LEADING') continue;
+    const key = normalizeConstId(r.const_id);
+    const existing = prevWinners.get(key);
+    if (!existing || r.votes > existing.votes) prevWinners.set(key, r);
+  }
+  for (const [constId, cur] of currentWinnerMap) {
+    const prev = prevWinners.get(normalizeConstId(constId));
+    if (!prev) continue;
+    out.set(constId, {
+      constId,
+      currentParty: cur.party_id,
+      prevParty: prev.party_id,
+      currentMargin: Number(cur.margin) || 0,
+      prevMargin: Number(prev.margin) || 0,
+      flipped: cur.party_id !== prev.party_id,
+    });
+  }
+  return out;
 }
 
 /**
@@ -91,5 +121,10 @@ export function useHistoryAnalysis({
     [allElections]
   );
 
-  return { dominanceMap, incumbencyData, partySwitchData, marginTrend, partyTrend };
+  const swingMap = useMemo(
+    () => calculateSwing(prevResults, currentWinnerMap),
+    [prevResults, currentWinnerMap]
+  );
+
+  return { dominanceMap, incumbencyData, partySwitchData, marginTrend, partyTrend, swingMap };
 }

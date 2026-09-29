@@ -90,8 +90,11 @@ export class AdminPersonDto {
   @Expose() photo_url: string | null;
   @Expose() gender: string | null;
   @Expose() education: string | null;
-  @Expose() bio: string | null;
-  
+  /** No `bio` column: resolved from metadata (manual bio, else AI profile). */
+  @Expose()
+  @Transform(({ obj }) => obj.bio ?? obj.metadata?.bio ?? obj.metadata?.ai_profile ?? null)
+  bio: string | null;
+
   @Expose() 
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
   date_of_birth: Date | null;

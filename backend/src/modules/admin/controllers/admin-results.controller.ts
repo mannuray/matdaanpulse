@@ -30,6 +30,6 @@ export class AdminResultsController {
     this.logger.log(
       `Bulk override by user=${req.user?.email ?? 'unknown'} election=${body.election_id} items=${body.overrides?.length ?? 0}`,
     );
-    return this.bulkOverrideService.bulkOverride(body);
+    return this.bulkOverrideService.bulkOverride(body, req.user?.id);
   }
 }

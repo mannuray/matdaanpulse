@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { ElectionsController } from './elections.controller';
 import { ElectionsService } from './elections.service';
 import { ConstituenciesModule } from '../constituencies/constituencies.module';

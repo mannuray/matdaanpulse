@@ -3,9 +3,14 @@ import type { MapTab, SwingEntry, ResultRow, VoteSplitConfig, StandingsData, Dom
 export interface Region {
   id: string;
   name: string;
+  /** Geo `st_name` of the constituency, when known (LS). */
+  state?: string;
   party?: string;
   partyColor?: string;
+  /** Leader's margin; undefined when the seat has no leader yet. */
   margin?: number;
+  /** WON | LEADING | PENDING */
+  status?: string;
   type?: 'GEN' | 'SC' | 'ST';
   candidate?: string;
 }

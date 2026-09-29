@@ -1,8 +1,12 @@
+import { useEffect, useMemo } from 'react';
+import type { CSSProperties } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import type { NavigateFunction } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useConstituencyDetail } from '../hooks/useConstituencyDetail';
-import { useDashboardData } from '../hooks/useDashboardData';
 import { useElection } from '../hooks/useElection';
+import { useApi } from '../hooks/useApi';
+import { getElection, getAlliances, getManifest, ElectionService } from '../services/election.service';
 import Spinner from '../components/atoms/Spinner';
 import ShareButtons from '../components/atoms/ShareButtons';
 import CandidateTable from '../components/organisms/CandidateTable';
@@ -11,6 +15,7 @@ import {
   ConstituencyModalStats, 
   ConstituencyModalInsights 
 } from '../components/organisms/ConstituencyModalSubComponents';
+import type { Constituency, IncumbencyEntry, StandingsData } from '../types';
 
 /**
  * PAGE: Constituency Detail (MVC: View)
@@ -20,8 +25,42 @@ export default function ConstituencyDetail() {
   const { electionId, constId } = useParams<{ electionId: string; constId: string }>();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { election } = useElection();
-  const { standings, manifestData } = useDashboardData(election);
+  const { election, setElection, setElectionType, setSelectedStateId } = useElection();
+
+  // On direct load the context has no election: fetch it from the route param.
+  const needsElection = !!electionId && election?.id !== electionId;
+  const { data: routeElection } = useApi(
+    () => (needsElection ? getElection(electionId!) : Promise.resolve(null)),
+    [electionId, needsElection],
+    { key: needsElection ? ElectionService.getCacheKey(electionId!) : undefined }
+  );
+  useEffect(() => {
+    if (routeElection && routeElection.id === electionId && election?.id !== electionId) {
+      setElection(routeElection);
+      setElectionType(routeElection.type);
+      if (routeElection.type === 'VS' && routeElection.state_id) setSelectedStateId(routeElection.state_id);
+    }
+  }, [routeElection, electionId, election?.id, setElection, setElectionType, setSelectedStateId]);
+
+  // Only what this page needs: party names/colours and the manifest (spoiler + VIP data).
+  const { data: partySeats } = useApi(
+    () => (electionId ? getAlliances(electionId) : Promise.resolve([])),
+    [electionId],
+    { key: electionId ? ElectionService.getCacheKey(electionId, 'alliances') : undefined }
+  );
+  const { data: manifest } = useApi(
+    () => (electionId ? getManifest(electionId) : Promise.resolve(null)),
+    [electionId],
+    { key: electionId ? ElectionService.getCacheKey(electionId, 'manifest') : undefined }
+  );
+  const manifestData = manifest?.draft || null;
+  const standings = useMemo((): StandingsData => ({
+    groups: [],
+    independents: (partySeats || []).map(p => ({
+      id: p.party_id, name: p.party_name, color: p.color,
+      won: Number(p.won) || 0, leading: Number(p.leading) || 0, isManifest: false,
+    })),
+  }), [partySeats]);
 
   const { 
     constituency, 
@@ -39,7 +78,7 @@ export default function ConstituencyDetail() {
     return (
       <div className="empty-state">
         <h3>{t('error_occurred')}</h3>
-        <p>{error || 'Constituency not found'}</p>
+        <p>{error || t('constituency_not_found')}</p>
         <button onClick={() => navigate(-1)} className="btn btn-primary">← {t('back')}</button>
       </div>
     );
@@ -55,9 +94,9 @@ export default function ConstituencyDetail() {
           <aside style={styles.leftCol}>
             <ErrorBoundary>
               <div className="card-elevated" style={styles.cardPadding}>
-                <h3 className="card-title-tiny" style={styles.briefingTitle}>AI STRATEGIC BRIEFING</h3>
+                <h3 className="card-title-tiny" style={styles.briefingTitle}>{t('ai_briefing')}</h3>
                 <p className="bio-text" style={styles.briefingText}>
-                  {analysis?.ai_briefing || "Analysis is being processed for this constituency."}
+                  {analysis?.ai_briefing || t('analysis_processing')}
                 </p>
               </div>
             </ErrorBoundary>
@@ -89,9 +128,9 @@ export default function ConstituencyDetail() {
                 />
                 <div style={styles.statsDivider}>
                   <ConstituencyModalInsights
-                    badges={badges}
-                    seatType={(analysis?.incumbency as any)?.seat_type}
-                    incumbencyEntry={analysis?.incumbency as any}
+                    badges={badges || {}}
+                    seatType={typeof analysis?.incumbency?.seat_type === 'string' ? analysis.incumbency.seat_type : undefined}
+                    incumbencyEntry={toIncumbencyEntry(analysis?.incumbency, constId!)}
                     totalVotesPolled={stats?.totalVotesPolled || 0}
                   />
                 </div>
@@ -101,7 +140,7 @@ export default function ConstituencyDetail() {
             <ErrorBoundary>
               <div className="card-elevated">
                 <div style={styles.tableHeader}>
-                  <h3 style={styles.tableTitle}>Candidate Standings</h3>
+                  <h3 style={styles.tableTitle}>{t('candidate_standings')}</h3>
                   <span style={styles.tableCount}>{stats?.candidatesWithShare?.length}</span>
                 </div>
                 <div style={{ padding: '0' }}>
@@ -123,15 +162,28 @@ export default function ConstituencyDetail() {
 
 // --- Internal Sub-Components ---
 
-function DetailHeader({ constituency, navigate }: { constituency: any, navigate: any }) {
+/** Map the analysis `incumbency` JSON blob to the typed entry the insights row expects. */
+function toIncumbencyEntry(inc: Record<string, unknown> | undefined, constId: string): IncumbencyEntry | undefined {
+  if (!inc || typeof inc.incumbent_name !== 'string') return undefined;
+  return {
+    constId,
+    incumbentName: inc.incumbent_name,
+    incumbentParty: typeof inc.incumbent_party === 'string' ? inc.incumbent_party : '',
+    won: !!inc.won,
+    currentMargin: typeof inc.margin === 'number' ? inc.margin : 0,
+  };
+}
+
+function DetailHeader({ constituency, navigate }: { constituency: Constituency; navigate: NavigateFunction }) {
+  const { t } = useTranslation();
   return (
     <div style={styles.headerRoot}>
       <div style={styles.headerContent}>
         <div style={styles.headerLeft}>
-          <button onClick={() => navigate(-1)} style={styles.backButton}>← BACK</button>
+          <button onClick={() => navigate(-1)} style={styles.backButton}>← {t('back')}</button>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={styles.breadcrumb}>
-              {constituency.state?.name} / {constituency.district?.name}
+              {[constituency.state?.name, constituency.district?.name].filter(Boolean).join(' / ')}
             </span>
             <h1 style={styles.pageTitle}>{constituency.name}</h1>
           </div>
@@ -139,16 +191,17 @@ function DetailHeader({ constituency, navigate }: { constituency: any, navigate:
             {constituency.type}
           </span>
         </div>
-        <ShareButtons text={`${constituency.name} Results`} />
+        <ShareButtons text={t('share_constituency_results', { name: constituency.name })} />
       </div>
     </div>
   );
 }
 
-function DemographicsCard({ data }: { data: any[] }) {
+function DemographicsCard({ data }: { data: { label: string; value: string }[] }) {
+  const { t } = useTranslation();
   return (
     <div className="card-elevated" style={styles.cardPadding}>
-      <h3 className="card-title-tiny" style={{ marginBottom: 'var(--space-4)' }}>COMMUNITY DATA</h3>
+      <h3 className="card-title-tiny" style={{ marginBottom: 'var(--space-4)' }}>{t('community_data')}</h3>
       <div style={{ display: 'grid', gap: '10px' }}>
         {data.map((item) => (
           <div key={item.label} style={styles.demographicRow}>
@@ -162,9 +215,10 @@ function DemographicsCard({ data }: { data: any[] }) {
 }
 
 function KeyIssuesCard({ issues }: { issues: string[] }) {
+  const { t } = useTranslation();
   return (
     <div className="card-elevated" style={styles.cardPadding}>
-      <h3 className="card-title-tiny" style={{ marginBottom: 'var(--space-4)' }}>LOCAL BATTLEGROUND ISSUES</h3>
+      <h3 className="card-title-tiny" style={{ marginBottom: 'var(--space-4)' }}>{t('key_issues')}</h3>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         {issues.map((issue: string) => (
           <span key={issue} className="badge badge-neutral" style={styles.issueBadge}>
@@ -178,7 +232,7 @@ function KeyIssuesCard({ issues }: { issues: string[] }) {
 
 // --- Styles ---
 
-const styles = {
+const styles: Record<string, CSSProperties> = {
   pageRoot: { background: 'var(--bg-secondary)', minHeight: '100%' },
   headerRoot: { 
     background: 'var(--bg-primary)', 

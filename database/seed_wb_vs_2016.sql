@@ -303,7 +303,8 @@ INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_
   ('WB_VS16_291_RAMPURHAT', 'd4e5f6a7-b8c9-0123-def0-345678901016', NULL, 36, 'Rampurhat', 291, 'GEN', NULL, NULL, NULL),
   ('WB_VS16_292_HANSAN', 'd4e5f6a7-b8c9-0123-def0-345678901016', NULL, 36, 'Hansan', 292, 'GEN', NULL, NULL, NULL),
   ('WB_VS16_293_NALHATI', 'd4e5f6a7-b8c9-0123-def0-345678901016', NULL, 36, 'Nalhati', 293, 'GEN', NULL, NULL, NULL),
-  ('WB_VS16_294_MURARAI', 'd4e5f6a7-b8c9-0123-def0-345678901016', NULL, 36, 'Murarai', 294, 'GEN', NULL, NULL, NULL);
+  ('WB_VS16_294_MURARAI', 'd4e5f6a7-b8c9-0123-def0-345678901016', NULL, 36, 'Murarai', 294, 'GEN', NULL, NULL, NULL)
+ON CONFLICT DO NOTHING;
 
 -- Candidates (winner + runner-up per constituency)
 INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
@@ -894,7 +895,8 @@ INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is
   ('ef09b404-4a8e-4d36-9798-1ec3efd1eee4', NULL, 'd4e5f6a7-b8c9-0123-def0-345678901016', 'WB_VS16_293_NALHATI', 'TMC', 'MOINUDDIN SHAMS', FALSE, '{}'),
   ('30f39b16-0207-4229-a40a-628a1fca1bb2', NULL, 'd4e5f6a7-b8c9-0123-def0-345678901016', 'WB_VS16_293_NALHATI', 'AIFB', 'DIPAK CHATTERJEE', FALSE, '{}'),
   ('24eb0089-4d7c-42e1-8192-840c9783b195', NULL, 'd4e5f6a7-b8c9-0123-def0-345678901016', 'WB_VS16_294_MURARAI', 'TMC', 'ABDUR RAHAMAN (LITON)', FALSE, '{}'),
-  ('f4f3d99a-14c6-483d-b92e-17ab18a40b0b', NULL, 'd4e5f6a7-b8c9-0123-def0-345678901016', 'WB_VS16_294_MURARAI', 'INC', 'ALI MORTUZA KHAN', FALSE, '{}');
+  ('f4f3d99a-14c6-483d-b92e-17ab18a40b0b', NULL, 'd4e5f6a7-b8c9-0123-def0-345678901016', 'WB_VS16_294_MURARAI', 'INC', 'ALI MORTUZA KHAN', FALSE, '{}')
+ON CONFLICT DO NOTHING;
 
 -- Results
 INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
@@ -1485,7 +1487,8 @@ INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no
   ('79587a4e-a926-4679-b250-6755ce96d236', 'ef09b404-4a8e-4d36-9798-1ec3efd1eee4', 'WB_VS16_293_NALHATI', 83412, 'WON', 10328, 0, 'd4e5f6a7-b8c9-0123-def0-345678901016'),
   ('02cca825-6cf8-4f19-8dfa-1c5d3aefedfd', '30f39b16-0207-4229-a40a-628a1fca1bb2', 'WB_VS16_293_NALHATI', 73084, 'LOST', 10328, 0, 'd4e5f6a7-b8c9-0123-def0-345678901016'),
   ('13a8024d-bc4d-4e73-be7a-ffdccb5da6c4', '24eb0089-4d7c-42e1-8192-840c9783b195', 'WB_VS16_294_MURARAI', 94661, 'WON', 280, 0, 'd4e5f6a7-b8c9-0123-def0-345678901016'),
-  ('a2209f69-a251-4d68-b25a-de5d6fbdc605', 'f4f3d99a-14c6-483d-b92e-17ab18a40b0b', 'WB_VS16_294_MURARAI', 94381, 'LOST', 280, 0, 'd4e5f6a7-b8c9-0123-def0-345678901016');
+  ('a2209f69-a251-4d68-b25a-de5d6fbdc605', 'f4f3d99a-14c6-483d-b92e-17ab18a40b0b', 'WB_VS16_294_MURARAI', 94381, 'LOST', 280, 0, 'd4e5f6a7-b8c9-0123-def0-345678901016')
+ON CONFLICT DO NOTHING;
 
 -- Manifest
 UPDATE elections SET manifest_url = '{"alliances":[{"id":"TMC","name":"Trinamool Congress","color":"#00CC44","parties":["TMC"]},{"id":"LFINC","name":"Left + Congress","color":"#CC0000","parties":["CPIM","INC","RSP","AIFB","CPI"]},{"id":"NDA","name":"NDA","color":"#FF6B00","parties":["BJP"]}],"leaders":[{"name":"Mamata Banerjee","party_id":"TMC","const_id":"WB_VS16_159_BHABANIPUR"},{"name":"Surjya Kanta Mishra","party_id":"CPIM","const_id":"WB_VS16_225_NARAYANGARH"}],"cabinet":[],"tracked":["TMC","LFINC","NDA","GJM"],"vip_seats":{},"milestones":[{"label":"Majority","value":148}],"compare_with":["d4e5f6a7-b8c9-0123-def0-345678901011"],"geo":{"map_url":"/geo/wb_ac.geojson","center":[87.5,23],"zoom":7},"delimitation_era":"2008"}' WHERE id = 'd4e5f6a7-b8c9-0123-def0-345678901016';

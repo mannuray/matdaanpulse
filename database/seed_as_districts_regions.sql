@@ -1,5 +1,6 @@
 -- Assam: Districts, Regions, and constituency assignments
--- Run: docker exec -i election_tracker_db psql -U admin -d election_tracker < database/seed_as_districts_regions.sql
+-- Applied by database/setup.sh after the VS result seeds. Constituency UPDATEs are scoped to
+-- VS elections: VS const_no ranges must never tag Lok Sabha seats (whose const_no overlaps).
 
 -- Districts (35)
 INSERT INTO districts (state_id, name, code) VALUES (4, 'Karimganj', 'AS_KARIMGANJ') ON CONFLICT (code) DO NOTHING;
@@ -53,87 +54,87 @@ INSERT INTO regions (state_id, name, code) VALUES (4, 'Upper Assam', 'AS_UPPERAS
 
 -- District assignments by const_no
 -- 1-5: Karimganj
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KARIMGANJ') WHERE state_id = 4 AND const_no BETWEEN 1 AND 5;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KARIMGANJ') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 1 AND 5;
 -- 6-7: Hailakandi
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_HAILAKANDI') WHERE state_id = 4 AND const_no BETWEEN 6 AND 7;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_HAILAKANDI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 6 AND 7;
 -- 8-15: Cachar
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_CACHAR') WHERE state_id = 4 AND const_no BETWEEN 8 AND 15;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_CACHAR') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 8 AND 15;
 -- 16: Dima Hasao
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DIMAHASAO') WHERE state_id = 4 AND const_no = 16;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DIMAHASAO') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no = 16;
 -- 17-20: Karbi Anglong (West + East)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KARBIANGLONG') WHERE state_id = 4 AND const_no BETWEEN 17 AND 20;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KARBIANGLONG') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 17 AND 20;
 -- 21-22: South Salmara-Mankachar
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_SOUTHSALMARA') WHERE state_id = 4 AND const_no BETWEEN 21 AND 22;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_SOUTHSALMARA') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 21 AND 22;
 -- 23-27: Dhubri
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DHUBRI') WHERE state_id = 4 AND const_no BETWEEN 23 AND 27;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DHUBRI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 23 AND 27;
 -- 28-31: Kokrajhar
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KOKRAJHAR') WHERE state_id = 4 AND const_no BETWEEN 28 AND 31;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KOKRAJHAR') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 28 AND 31;
 -- 32-33: Bongaigaon + Chirang (Bijni)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BONGAIGAON') WHERE state_id = 4 AND const_no = 32;
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_CHIRANG') WHERE state_id = 4 AND const_no = 33;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BONGAIGAON') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no = 32;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_CHIRANG') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no = 33;
 -- 34-38: Goalpara (Abhayapuri N/S, Dudhnai, Goalpara E/W)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_GOALPARA') WHERE state_id = 4 AND const_no BETWEEN 34 AND 38;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_GOALPARA') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 34 AND 38;
 -- 39-42: Barpeta/Bajali (Jaleswar, Sorbhog, Bhabanipur, Patacharkuchi)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BARPETA') WHERE state_id = 4 AND const_no BETWEEN 39 AND 42;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BARPETA') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 39 AND 42;
 -- 43-47: Barpeta (Barpeta, Jania, Baghbar, Sarukhetri, Chenga)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BARPETA') WHERE state_id = 4 AND const_no BETWEEN 43 AND 47;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BARPETA') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 43 AND 47;
 -- 48-50: Kamrup (Boko, Chaygaon, Palasbari)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KAMRUP') WHERE state_id = 4 AND const_no BETWEEN 48 AND 50;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KAMRUP') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 48 AND 50;
 -- 51-55: Kamrup Metropolitan (Jalukbari, Dispur, Gauhati E/W, Hajo)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KAMRUPMETRO') WHERE state_id = 4 AND const_no BETWEEN 51 AND 55;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KAMRUPMETRO') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 51 AND 55;
 -- 56-57: Kamrup (Kamalpur, Rangiya)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KAMRUP') WHERE state_id = 4 AND const_no BETWEEN 56 AND 57;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_KAMRUP') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 56 AND 57;
 -- 58: Tamulpur
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_TAMULPUR') WHERE state_id = 4 AND const_no = 58;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_TAMULPUR') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no = 58;
 -- 59-61: Nalbari
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_NALBARI') WHERE state_id = 4 AND const_no BETWEEN 59 AND 61;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_NALBARI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 59 AND 61;
 -- 62-63: Baksa (Barama, Chapaguri)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BAKSA') WHERE state_id = 4 AND const_no BETWEEN 62 AND 63;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BAKSA') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 62 AND 63;
 -- 64-65: Udalguri (Panery, Kalaigaon)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_UDALGURI') WHERE state_id = 4 AND const_no BETWEEN 64 AND 65;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_UDALGURI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 64 AND 65;
 -- 66-68: Darrang (Sipajhar, Mangaldoi, Dalgaon)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DARRANG') WHERE state_id = 4 AND const_no BETWEEN 66 AND 68;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DARRANG') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 66 AND 68;
 -- 69-70: Udalguri
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_UDALGURI') WHERE state_id = 4 AND const_no BETWEEN 69 AND 70;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_UDALGURI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 69 AND 70;
 -- 71-75: Sonitpur (Dhekiajuli, Barchalla, Tezpur, Rangapara, Sootea)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_SONITPUR') WHERE state_id = 4 AND const_no BETWEEN 71 AND 75;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_SONITPUR') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 71 AND 75;
 -- 76-78: Biswanath (Biswanath, Behali, Gohpur)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BISWANATH') WHERE state_id = 4 AND const_no BETWEEN 76 AND 78;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_BISWANATH') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 76 AND 78;
 -- 79-82: Morigaon (Jagiroad, Marigaon, Laharighat, Raha)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_MORIGAON') WHERE state_id = 4 AND const_no BETWEEN 79 AND 82;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_MORIGAON') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 79 AND 82;
 -- 83-90: Nagaon (Dhing, Batadroba, Rupohihat, Nowgong, Barhampur, Samaguri, Kaliabor, Jamunamukh)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_NAGAON') WHERE state_id = 4 AND const_no BETWEEN 83 AND 90;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_NAGAON') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 83 AND 90;
 -- 91-92: Hojai
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_HOJAI') WHERE state_id = 4 AND const_no BETWEEN 91 AND 92;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_HOJAI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 91 AND 92;
 -- 93-96: Golaghat (Bokakhat, Sarupathar, Golaghat, Khumtai)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_GOLAGHAT') WHERE state_id = 4 AND const_no BETWEEN 93 AND 96;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_GOLAGHAT') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 93 AND 96;
 -- 97-98: Jorhat (Dergaon, Jorhat)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_JORHAT') WHERE state_id = 4 AND const_no BETWEEN 97 AND 98;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_JORHAT') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 97 AND 98;
 -- 99: Majuli
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_MAJULI') WHERE state_id = 4 AND const_no = 99;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_MAJULI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no = 99;
 -- 100-102: Jorhat (Titabar, Mariani, Teok)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_JORHAT') WHERE state_id = 4 AND const_no BETWEEN 100 AND 102;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_JORHAT') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 100 AND 102;
 -- 103-108: Sivasagar + Charaideo (Amguri, Nazira, Mahmara, Sonari, Thowra, Sibsagar)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_SIVASAGAR') WHERE state_id = 4 AND const_no BETWEEN 103 AND 108;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_SIVASAGAR') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 103 AND 108;
 -- 109-112: Lakhimpur (Bihpuria, Naoboicha, Lakhimpur, Dhakuakhana)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_LAKHIMPUR') WHERE state_id = 4 AND const_no BETWEEN 109 AND 112;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_LAKHIMPUR') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 109 AND 112;
 -- 113-114: Dhemaji
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DHEMAJI') WHERE state_id = 4 AND const_no BETWEEN 113 AND 114;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DHEMAJI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 113 AND 114;
 -- 115-121: Dibrugarh (Moran, Dibrugarh, Lahowal, Duliajan, Tingkhong, Naharkatia, Chabua)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DIBRUGARH') WHERE state_id = 4 AND const_no BETWEEN 115 AND 121;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_DIBRUGARH') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 115 AND 121;
 -- 122-126: Tinsukia (Tinsukia, Digboi, Margherita, Doom Dooma, Sadiya)
-UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_TINSUKIA') WHERE state_id = 4 AND const_no BETWEEN 122 AND 126;
+UPDATE constituencies SET district_id = (SELECT id FROM districts WHERE code = 'AS_TINSUKIA') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 122 AND 126;
 
 -- Region assignments
 -- Barak Valley: ACs 1-15
-UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_BARAKVALLEY') WHERE state_id = 4 AND const_no BETWEEN 1 AND 15;
+UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_BARAKVALLEY') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 1 AND 15;
 -- Hills: ACs 16-20
-UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_HILLS') WHERE state_id = 4 AND const_no BETWEEN 16 AND 20;
+UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_HILLS') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 16 AND 20;
 -- Lower Assam: ACs 21-47
-UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_LOWERASSAM') WHERE state_id = 4 AND const_no BETWEEN 21 AND 47;
+UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_LOWERASSAM') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 21 AND 47;
 -- Central Assam: ACs 48-78
-UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_CENTRALASSAM') WHERE state_id = 4 AND const_no BETWEEN 48 AND 78;
+UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_CENTRALASSAM') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 48 AND 78;
 -- Nagaon-Hojai: ACs 79-96
-UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_NAGAONHOJAI') WHERE state_id = 4 AND const_no BETWEEN 79 AND 96;
+UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_NAGAONHOJAI') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 79 AND 96;
 -- Upper Assam: ACs 97-126
-UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_UPPERASSAM') WHERE state_id = 4 AND const_no BETWEEN 97 AND 126;
+UPDATE constituencies SET region_id = (SELECT id FROM regions WHERE code = 'AS_UPPERASSAM') WHERE election_id IN (SELECT id FROM elections WHERE type = 'VS') AND state_id = 4 AND const_no BETWEEN 97 AND 126;

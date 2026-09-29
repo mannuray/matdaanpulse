@@ -54,11 +54,13 @@ for (const group of groups) {
     reusedPersons++;
   } else {
     newPersons++;
-    const escapedName = group.normalized_name.replace(/'/g, "''");
-    personInserts.push(
-      `INSERT INTO persons (id, name) VALUES ('${personId}', '${escapedName}') ON CONFLICT (id) DO NOTHING;`
-    );
   }
+  // Always emit the person row (idempotent): a "reused" person exists only in the DB the
+  // report was generated from, so a fresh DB built from seeds would otherwise violate the FK.
+  const escapedName = group.normalized_name.replace(/'/g, "''");
+  personInserts.push(
+    `INSERT INTO persons (id, name) VALUES ('${personId}', '${escapedName}') ON CONFLICT (id) DO NOTHING;`
+  );
 
   const candidateIds = group.candidates.map(c => `'${c.id}'`).join(', ');
   candidateUpdates.push(
@@ -74,7 +76,7 @@ const sql = [
   '',
   'BEGIN;',
   '',
-  '-- Create new persons',
+  '-- Create persons',
   ...personInserts,
   '',
   '-- Link candidates to persons',

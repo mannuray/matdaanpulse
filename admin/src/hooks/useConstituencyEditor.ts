@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getAdminConstituencyDetail, updateConstituency } from '../services/constituency.service';
+import { updateConstituencyAnalysis } from '../services/ai.service';
 import { getDistricts, getRegions } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
-import type { Constituency, Election } from '../types';
+import type { Constituency } from '../types';
 
 /**
  * CONTROLLER: Constituency Editor (MVC)
@@ -46,14 +47,14 @@ export function useConstituencyEditor(id?: string) {
         literacy_pct: String(meta.literacy_pct || ''),
         urban_pct: String(meta.urban_pct || ''),
         sc_st_pct: String(meta.sc_st_pct || ''),
-        dominant_castes: meta.dominant_castes || '',
-        religions: meta.religions || ''
+        dominant_castes: String(meta.dominant_castes || ''),
+        religions: String(meta.religions || '')
       });
       setAdminInfo({
         district_id: data.district_id || '',
         region_id: data.region_id || '',
         const_no: data.const_no || '',
-        phase: meta.phase || ''
+        phase: String(meta.phase || '')
       });
 
       if (data.state_id) {
@@ -116,11 +117,14 @@ export function useConstituencyEditor(id?: string) {
           urban_pct: Number(editDemographics.urban_pct) || null,
           sc_st_pct: Number(editDemographics.sc_st_pct) || null,
         },
-        analysis: {
-          ai_briefing: editBriefing,
-          ai_key_issues: editIssues
-        }
       });
+      // The constituency PATCH ignores analysis fields; persist them via the analysis endpoint
+      if (constituency.analysis?.id) {
+        await updateConstituencyAnalysis(constituency.analysis.id, {
+          ai_briefing: editBriefing,
+          ai_key_issues: editIssues,
+        });
+      }
       toast('Constituency updated');
       loadData();
       return true;

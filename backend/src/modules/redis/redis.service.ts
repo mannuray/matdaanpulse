@@ -1,7 +1,7 @@
 import { Injectable, Logger, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
-import { Observable, Subject, finalize } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { MetricsService } from '../metrics/metrics.service';
 
 interface ChannelState {
@@ -99,30 +99,40 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
+  /**
+   * Cold observable over a Redis pub/sub channel. The underlying subject and
+   * Redis SUBSCRIBE are created lazily per subscription (not at call time), so a
+   * downstream `share()` that resets after the last subscriber leaves gets a
+   * fresh subject on re-subscription instead of an already-completed one.
+   */
   subscribe(channel: string): Observable<string> {
-    let state = this.channels.get(channel);
-    if (!state) {
-      state = { subject: new Subject<string>(), refCount: 0 };
-      this.channels.set(channel, state);
-      this.sub.subscribe(channel).catch((err) => {
-        this.logger.error(`Failed to subscribe to ${channel}: ${err.message}`);
-      });
-    }
-    state.refCount++;
+    return new Observable<string>((subscriber) => {
+      let state = this.channels.get(channel);
+      if (!state) {
+        state = { subject: new Subject<string>(), refCount: 0 };
+        this.channels.set(channel, state);
+        this.sub.subscribe(channel).catch((err) => {
+          this.logger.error(`Failed to subscribe to ${channel}: ${err.message}`);
+        });
+      }
+      const captured = state;
+      captured.refCount++;
+      const inner = captured.subject.subscribe(subscriber);
 
-    return state.subject.asObservable().pipe(
-      finalize(() => {
-        const s = this.channels.get(channel);
-        if (!s) return;
-        s.refCount--;
-        if (s.refCount <= 0) {
-          s.subject.complete();
+      return () => {
+        inner.unsubscribe();
+        // Only touch the state we incremented; a newer state for the same
+        // channel may exist if this teardown runs late.
+        if (this.channels.get(channel) !== captured) return;
+        captured.refCount--;
+        if (captured.refCount <= 0) {
           this.channels.delete(channel);
+          captured.subject.complete();
           this.sub.unsubscribe(channel).catch((err) => {
             this.logger.error(`Failed to unsubscribe from ${channel}: ${err.message}`);
           });
         }
-      }),
-    );
+      };
+    });
   }
 }

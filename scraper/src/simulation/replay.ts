@@ -2,9 +2,13 @@
  * Orchestrator: advance mock ECI rounds and push result overrides to the backend.
  *
  * Usage:
- *   npx ts-node src/simulation/replay.ts --email admin@tracker.local --password admin123 [--delay-ms 5000] [--rounds 18]
+ *   SIM_ADMIN_EMAIL=... SIM_ADMIN_PASSWORD=... npx ts-node src/simulation/replay.ts [--delay-ms 5000] [--rounds 24]
+ *
+ * Credentials: SIM_ADMIN_EMAIL / SIM_ADMIN_PASSWORD (falls back to ADMIN_EMAIL / ADMIN_PASSWORD,
+ * the account created by `cd backend && npm run create-admin`). --email / --password override.
  */
 import { Pool } from 'pg';
+import { EciVsAdapter, CandidateDetail } from '../adapters/eci-vs-adapter';
 import {
   SIM_ELECTION_ID,
   MOCK_ECI_PORT,
@@ -20,7 +24,9 @@ import {
 
 function parseArgs(): { email: string; password: string; delayMs: number; rounds: number } {
   const args = process.argv.slice(2);
-  let email = '', password = '', delayMs = DEFAULT_ROUND_DELAY_MS, rounds = TOTAL_ROUNDS;
+  let email = process.env.SIM_ADMIN_EMAIL || process.env.ADMIN_EMAIL || '';
+  let password = process.env.SIM_ADMIN_PASSWORD || process.env.ADMIN_PASSWORD || '';
+  let delayMs = DEFAULT_ROUND_DELAY_MS, rounds = TOTAL_ROUNDS;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--email' && args[i + 1]) email = args[++i];
@@ -30,7 +36,8 @@ function parseArgs(): { email: string; password: string; delayMs: number; rounds
   }
 
   if (!email || !password) {
-    console.error('Usage: npx ts-node src/simulation/replay.ts --email <email> --password <password> [--delay-ms 5000] [--rounds 18]');
+    console.error('Missing admin credentials. Set SIM_ADMIN_EMAIL and SIM_ADMIN_PASSWORD (or ADMIN_EMAIL / ADMIN_PASSWORD).');
+    console.error(`Usage: npx ts-node src/simulation/replay.ts [--delay-ms ${DEFAULT_ROUND_DELAY_MS}] [--rounds ${TOTAL_ROUNDS}]`);
     process.exit(1);
   }
   return { email, password, delayMs, rounds };
@@ -49,8 +56,10 @@ async function login(email: string, password: string): Promise<string> {
     body: JSON.stringify({ email, password }),
   });
   if (!res.ok) throw new Error(`Login failed: ${res.status} ${await res.text()}`);
-  const data = await res.json() as any;
-  const token = data.access_token || data.token;
+  const body = await res.json() as any;
+  // Backend wraps JSON responses as { success, data: {...} }; accept the unwrapped shape too.
+  const payload = body?.data ?? body;
+  const token = payload?.access_token || payload?.token;
   if (!token) throw new Error('Login response missing token field');
   return token;
 }
@@ -102,76 +111,28 @@ async function advanceRound(): Promise<{ round: number; total: number }> {
   return res.json() as any;
 }
 
-// --- Adapter interaction (inline, to set custom BASE_URL) ---
+// --- Adapter interaction (real ECI adapter pointed at the mock server) ---
 
-async function fetchMockConstituencyList(): Promise<any[]> {
-  const results: any[] = [];
-  const totalPages = 13;
+const mockAdapter = new EciVsAdapter({
+  baseUrl: `http://localhost:${MOCK_ECI_PORT}`,
+  pageDelayMs: 0,
+  verbose: false,
+});
 
-  for (let page = 1; page <= totalPages; page++) {
-    const url = `http://localhost:${MOCK_ECI_PORT}/statewiseS04${page}.htm`;
-    const res = await fetch(url);
-    if (!res.ok) {
-      console.warn(`  Mock server page ${page} returned ${res.status}, skipping`);
-      continue;
-    }
-    const html = await res.text();
-
-    // Use dynamic import for cheerio
-    const cheerio = await import('cheerio');
-    const $ = cheerio.load(html);
-
-    $('table.table-striped tbody tr').each((_i: number, row: any) => {
-      const cells = $(row).children('td');
-      if (cells.length < 7) return;
-
-      const name = $(cells[0]).text().trim();
-      const constNo = parseInt($(cells[1]).text().trim(), 10);
-      if (!name || isNaN(constNo)) return;
-
-      const winnerName = $(cells[2]).text().trim();
-      const winnerParty = $(cells[3]).find('td').first().text().trim();
-      const runnerUpName = $(cells[4]).text().trim();
-      const runnerUpParty = $(cells[5]).find('td').first().text().trim();
-      const margin = parseInt($(cells[6]).text().trim(), 10) || 0;
-      const status = $(cells[8]).text().trim();
-
-      results.push({ name, constNo, winnerName, winnerParty, runnerUpName, runnerUpParty, margin, status });
-    });
-  }
-
-  return results;
+function fetchMockConstituencyList() {
+  return mockAdapter.fetchConstituencyList();
 }
 
-async function fetchMockCandidateDetail(constNo: number): Promise<any[]> {
-  const url = `http://localhost:${MOCK_ECI_PORT}/candidateswise-S04${constNo}.htm`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Candidate detail fetch failed for constNo ${constNo}: ${res.status}`);
-  const html = await res.text();
+function fetchMockCandidateDetail(constNo: number): Promise<CandidateDetail[]> {
+  return mockAdapter.fetchConstituencyDetail(constNo);
+}
 
-  const cheerio = await import('cheerio');
-  const $ = cheerio.load(html);
-
-  const candidates: any[] = [];
-  $('.cand-box').each((_i: number, box: any) => {
-    const name = $(box).find('.nme-prty h5').text().trim();
-    const party = $(box).find('.nme-prty h6').text().trim();
-    const statusEl = $(box).find('.status');
-    const statusText = statusEl.find('div').first().text().trim().toLowerCase();
-
-    const voteText = statusEl.find('div').eq(1).text().trim();
-    const voteMatch = voteText.match(/^([\d,]+)/);
-    const votes = voteMatch ? parseInt(voteMatch[1].replace(/,/g, ''), 10) : 0;
-
-    const marginMatch = voteText.match(/\(\s*([+-])\s*([\d,]+)\s*\)/);
-    const margin = marginMatch
-      ? (marginMatch[1] === '+' ? 1 : -1) * parseInt(marginMatch[2].replace(/,/g, ''), 10)
-      : 0;
-
-    candidates.push({ name, party, votes, margin, status: statusText });
-  });
-
-  return candidates;
+/**
+ * Key identifying one candidate within a constituency. Party alone is not unique:
+ * several Independents (IND) can contest the same seat, so include the name.
+ */
+function candidateKey(name: string, partyId: string): string {
+  return `${name.trim().replace(/\s+/g, ' ').toUpperCase()}|${partyId}`;
 }
 
 function resolvePartyId(partyName: string): string | null {
@@ -201,7 +162,7 @@ async function main() {
   let mappingRows;
   try {
     mappingRows = await pool.query(`
-      SELECT r.id as result_id, c.const_no, c.id as const_id, cand.party_id
+      SELECT r.id as result_id, c.const_no, c.id as const_id, cand.party_id, cand.name as cand_name
       FROM results r
       JOIN candidates cand ON r.candidate_id = cand.id
       JOIN constituencies c ON r.const_id = c.id
@@ -214,11 +175,11 @@ async function main() {
     await pool.end();
   }
 
-  // Map<constNo, { constId, parties: Map<partyId, resultId> }>
-  const resultMap = new Map<number, { constId: string; parties: Map<string, string> }>();
+  // Map<constNo, { constId, results: Map<candidateKey(name, partyId), resultId> }>
+  const resultMap = new Map<number, { constId: string; results: Map<string, string> }>();
   for (const row of mappingRows.rows) {
-    if (!resultMap.has(row.const_no)) resultMap.set(row.const_no, { constId: row.const_id, parties: new Map() });
-    resultMap.get(row.const_no)!.parties.set(row.party_id, row.result_id);
+    if (!resultMap.has(row.const_no)) resultMap.set(row.const_no, { constId: row.const_id, results: new Map() });
+    resultMap.get(row.const_no)!.results.set(candidateKey(row.cand_name, row.party_id), row.result_id);
   }
   console.log(`Loaded ${mappingRows.rows.length} result mappings across ${resultMap.size} constituencies\n`);
 
@@ -246,7 +207,7 @@ async function main() {
     const bulkRounds: Record<string, ConstituencyRoundDto> = {};
 
     let skippedSeats = 0;
-    const unmatchedParties = new Set<string>();
+    const unmatchedCandidates = new Set<string>();
 
     for (const c of constList) {
       let candidates;
@@ -265,7 +226,7 @@ async function main() {
         continue;
       }
 
-      const { constId, parties: constResultMap } = mapping;
+      const { constId, results: constResultMap } = mapping;
 
       // Per-seat round info
       const seatRound = constRounds[c.constNo];
@@ -287,9 +248,9 @@ async function main() {
           return 'TRAILING';
         };
 
-        const resultId = constResultMap.get(partyId);
+        const resultId = constResultMap.get(candidateKey(cand.name, partyId));
         if (!resultId) {
-          unmatchedParties.add(partyId);
+          unmatchedCandidates.add(`${cand.name} (${partyId})`);
           continue;
         }
 
@@ -315,7 +276,7 @@ async function main() {
     }
 
     if (skippedSeats > 0) console.warn(`  ${skippedSeats} constituencies skipped this round`);
-    if (unmatchedParties.size > 0) console.warn(`  Unmatched parties (no DB result): ${[...unmatchedParties].join(', ')}`);
+    if (unmatchedCandidates.size > 0) console.warn(`  Unmatched candidates (no DB result): ${[...unmatchedCandidates].join(', ')}`);
 
     // Send single bulk request for the entire round
     if (bulkItems.length > 0) {

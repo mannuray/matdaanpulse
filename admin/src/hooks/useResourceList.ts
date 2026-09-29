@@ -26,7 +26,6 @@ export function useResourceList<F>({ key, pageSize = 25, initialFilters, onLoad 
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const searchTimer = useRef<ReturnType<typeof setTimeout>>();
   
   // Use a ref for onLoad to prevent infinite loops when inline functions are passed
   const onLoadRef = useRef(onLoad);

@@ -91,7 +91,7 @@ export const MapControls: React.FC<MapControlsProps> = ({
                 className={`map-tab ${mapTab === tab ? 'active' : ''}`}
                 onClick={() => setMapTab(tab)}
               >
-                {TAB_LABELS[tab] ?? tab}
+                {t(`map_tab_${tab}`, TAB_LABELS[tab] ?? tab)}
               </button>
             ))}
           </div>
@@ -101,9 +101,9 @@ export const MapControls: React.FC<MapControlsProps> = ({
               onClick={handleResetZoom}
               className="battle-chip"
               style={{ fontSize: '10px', height: '24px', padding: '0 8px' }}
-              title="Reset map view"
+              title={t('reset_map_view')}
             >
-              Reset
+              {t('reset')}
             </button>
           )}
         </div>
@@ -148,13 +148,13 @@ export const MapControls: React.FC<MapControlsProps> = ({
               onClick={() => { setDropdownOpen(!dropdownOpen); setPartySearch(''); }}
               style={{ borderStyle: 'dashed' }}
             >
-              + Party
+              + {t('party', 'Party')}
             </button>
             {dropdownOpen && (
               <div className="party-dropdown">
                 <input
                   type="text"
-                  placeholder="Search party..."
+                  placeholder={t('search_party')}
                   value={partySearch}
                   onChange={(e) => setPartySearch(e.target.value)}
                   autoFocus
@@ -176,7 +176,7 @@ export const MapControls: React.FC<MapControlsProps> = ({
         {/* Conditional Filters: Demographics or States */}
         {loaded && mapTab === 'demographics' && (
           <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center' }}>
-            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', fontWeight: 'var(--weight-medium)' }}>Reserved:</span>
+            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', fontWeight: 'var(--weight-medium)' }}>{t('reserved')}:</span>
             <div style={{ display: 'flex', gap: 'var(--space-1)' }}>
               {demoCategories.map((cat) => (
                 <button
@@ -219,7 +219,7 @@ export const MapControls: React.FC<MapControlsProps> = ({
                 <div className="party-dropdown">
                   <input
                     type="text"
-                    placeholder="Search state..."
+                    placeholder={t('search_state')}
                     value={stateSearch}
                     onChange={(e) => setStateSearch(e.target.value)}
                     autoFocus

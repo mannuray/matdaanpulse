@@ -3,6 +3,13 @@ import { useApi } from './useApi';
 import { getConstituency, getConstituencyAnalysis, ElectionService } from '../services/election.service';
 import type { StandingsData, ManifestData, CandidateResult } from '../types';
 
+interface ConstituencyMeta {
+  literacy_pct?: number;
+  urban_pct?: number;
+  sc_st_pct?: number;
+  tags?: string[];
+}
+
 /**
  * CONTROLLER: Constituency Detail (MVC)
  * Standardizes detail fetching and ViewModel preparation.
@@ -46,7 +53,7 @@ export function useConstituencyDetail(
       return {
         ...c,
         vote_share: c.vote_share || 0,
-        party: enriched ? { ...p, ...enriched } : p
+        party: p && enriched ? { ...p, name: enriched.name, color: enriched.color } : p
       };
     }).sort((a, b) => b.votes - a.votes);
 
@@ -97,7 +104,7 @@ export function useConstituencyDetail(
   // 5. Demographics Formatting
   const formattedDemographics = useMemo(() => {
     if (!constituency?.metadata) return [];
-    const meta = constituency.metadata as any;
+    const meta = constituency.metadata as ConstituencyMeta;
     return [
       { label: 'Literacy', value: `${meta.literacy_pct || 0}%` },
       { label: 'Urbanization', value: `${meta.urban_pct || 0}%` },
@@ -127,7 +134,7 @@ export function useConstituencyDetail(
       badges: {
         isVip: manifest?.watchlists?.some(w => w.entries.some(e => e.const_id === constituencyId)) || false,
         isThreeWay,
-        manualTags: (constituency?.metadata as any)?.tags || []
+        manualTags: (constituency?.metadata as ConstituencyMeta | undefined)?.tags || []
       },
       formattedDemographics
     };

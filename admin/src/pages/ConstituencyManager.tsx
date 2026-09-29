@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useConstituencyManager } from '../hooks/useConstituencyManager';
@@ -16,11 +15,12 @@ export default function ConstituencyManager() {
   const navigate = useNavigate();
   const { hasRole } = useAuth();
   const canWrite = hasRole('SUPER_ADMIN', 'EDITOR');
+  const canEnrich = hasRole('SUPER_ADMIN');
   const manager = useConstituencyManager();
 
   const { 
     selectedElection, setSelectedElection, loading, 
-    constituencies, enrichProgress, computeAnalysis 
+    constituencies, enrichProgress, computeAnalysis, runEnrichment
   } = manager;
 
   if (!selectedElection) {
@@ -42,14 +42,26 @@ export default function ConstituencyManager() {
         title="Constituency Management"
         subtitle="Administrative metadata and strategic profiling"
         actions={canWrite && (
-          <button 
-            className="btn btn-outline" 
-            onClick={computeAnalysis} 
-            disabled={enrichProgress?.inProgress}
-            style={styles.computeBtn}
-          >
-            {enrichProgress?.inProgress ? 'COMPUTING...' : 'COMPUTE ALL ANALYSIS'}
-          </button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {canEnrich && (
+              <button
+                className="btn btn-outline"
+                onClick={runEnrichment}
+                disabled={enrichProgress?.inProgress}
+                style={styles.computeBtn}
+              >
+                {enrichProgress?.inProgress ? 'ENRICHING...' : 'AI ENRICH'}
+              </button>
+            )}
+            <button 
+              className="btn btn-outline" 
+              onClick={computeAnalysis} 
+              disabled={enrichProgress?.inProgress}
+              style={styles.computeBtn}
+            >
+              {enrichProgress?.inProgress ? 'COMPUTING...' : 'COMPUTE ALL ANALYSIS'}
+            </button>
+          </div>
         )}
       />
 

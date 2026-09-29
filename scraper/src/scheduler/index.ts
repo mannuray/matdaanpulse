@@ -1,8 +1,8 @@
 import cron from 'node-cron';
 
 /**
- * Set up scheduled scraping tasks using node-cron.
- * Placeholder — configure cron expressions and task callbacks as needed.
+ * NOT IMPLEMENTED — placeholder for live ECI ingestion (see src/index.ts).
+ * Nothing calls this; the cron callback does not scrape anything.
  */
 export function setupScheduler(): void {
   // Example: run every 15 minutes

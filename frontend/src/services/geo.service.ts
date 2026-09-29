@@ -1,5 +1,5 @@
 import { apiFetch } from './api-client';
-import type { State, District, Party } from '../types';
+import type { State, Party } from '../types';
 
 /**
  * Geographic & Party Master Data (SOLID: SRP)
@@ -7,10 +7,6 @@ import type { State, District, Party } from '../types';
 
 export function getStates() {
   return apiFetch<State[]>('/states');
-}
-
-export function getDistricts(stateId: number) {
-  return apiFetch<District[]>(`/states/${stateId}/districts`);
 }
 
 export function getParties() {

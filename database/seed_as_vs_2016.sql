@@ -134,7 +134,8 @@ INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_
   ('AS_VS16_123_DIGBOI', 'f6a7b8c9-d0e1-2345-f012-567890122016', NULL, 4, 'Digboi', 123, 'GEN', NULL, NULL, NULL),
   ('AS_VS16_124_MARGHERITA', 'f6a7b8c9-d0e1-2345-f012-567890122016', NULL, 4, 'Margherita', 124, 'GEN', NULL, NULL, NULL),
   ('AS_VS16_125_DOOM_DOOMA', 'f6a7b8c9-d0e1-2345-f012-567890122016', NULL, 4, 'Doom Dooma', 125, 'GEN', NULL, NULL, NULL),
-  ('AS_VS16_126_SADIYA', 'f6a7b8c9-d0e1-2345-f012-567890122016', NULL, 4, 'Sadiya', 126, 'GEN', NULL, NULL, NULL);
+  ('AS_VS16_126_SADIYA', 'f6a7b8c9-d0e1-2345-f012-567890122016', NULL, 4, 'Sadiya', 126, 'GEN', NULL, NULL, NULL)
+ON CONFLICT DO NOTHING;
 
 -- Candidates
 INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
@@ -389,7 +390,8 @@ INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is
   ('8e935940-1e49-4a32-a95d-69c85a390a29', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122016', 'AS_VS16_125_DOOM_DOOMA', 'INC', 'Durga Bhumij', FALSE, '{}'),
   ('52c09cba-b0b7-412f-a380-c99d5cc7640e', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122016', 'AS_VS16_125_DOOM_DOOMA', 'BJP', 'Dilip Moran', FALSE, '{}'),
   ('37783d23-3aae-465f-902a-37c354e35c63', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122016', 'AS_VS16_126_SADIYA', 'BJP', 'Bolin Chetia', FALSE, '{}'),
-  ('7a7997dc-9a9d-4817-86c5-e00099561f18', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122016', 'AS_VS16_126_SADIYA', 'INC', 'Birinchi Neog', FALSE, '{}');
+  ('7a7997dc-9a9d-4817-86c5-e00099561f18', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122016', 'AS_VS16_126_SADIYA', 'INC', 'Birinchi Neog', FALSE, '{}')
+ON CONFLICT DO NOTHING;
 
 -- Results
 INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
@@ -644,7 +646,8 @@ INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no
   ('4c2e972d-bb9b-472f-978f-c5df1b946b50', '8e935940-1e49-4a32-a95d-69c85a390a29', 'AS_VS16_125_DOOM_DOOMA', 46938, 'WON', 782, 0, 'f6a7b8c9-d0e1-2345-f012-567890122016'),
   ('8e3502de-0541-423f-9fbb-156276760ff5', '52c09cba-b0b7-412f-a380-c99d5cc7640e', 'AS_VS16_125_DOOM_DOOMA', 46156, 'LOST', 782, 0, 'f6a7b8c9-d0e1-2345-f012-567890122016'),
   ('0ae95341-740d-4d25-864f-1b15e315f779', '37783d23-3aae-465f-902a-37c354e35c63', 'AS_VS16_126_SADIYA', 38845, 'WON', 6566, 0, 'f6a7b8c9-d0e1-2345-f012-567890122016'),
-  ('ba758157-a731-4fbe-8ba2-f89271b1fb6c', '7a7997dc-9a9d-4817-86c5-e00099561f18', 'AS_VS16_126_SADIYA', 32279, 'LOST', 6566, 0, 'f6a7b8c9-d0e1-2345-f012-567890122016');
+  ('ba758157-a731-4fbe-8ba2-f89271b1fb6c', '7a7997dc-9a9d-4817-86c5-e00099561f18', 'AS_VS16_126_SADIYA', 32279, 'LOST', 6566, 0, 'f6a7b8c9-d0e1-2345-f012-567890122016')
+ON CONFLICT DO NOTHING;
 
 -- Manifest
 UPDATE elections SET manifest_url = '{"alliances":[{"id":"NDA","name":"NDA","color":"#FF6B00","parties":["BJP","AGP","BPF"]},{"id":"CONGALL","name":"Congress+","color":"#19AAED","parties":["INC"]},{"id":"AIUDF","name":"AIUDF","color":"#4CAF50","parties":["AIUDF"]}],"leaders":[{"name":"Sarbananda Sonowal","party_id":"BJP","const_id":"AS_VS16_109_MAJULI"},{"name":"Tarun Gogoi","party_id":"INC","const_id":"AS_VS16_83_TITABAR"}],"cabinet":[],"tracked":["NDA","CONGALL","AIUDF"],"vip_seats":{},"milestones":[{"label":"Majority","value":64}],"compare_with":["f6a7b8c9-d0e1-2345-f012-567890122011"],"geo":{"map_url":"/geo/as_ac.geojson","center":[92.9,26.2],"zoom":8},"delimitation_era":"2008"}' WHERE id = 'f6a7b8c9-d0e1-2345-f012-567890122016';

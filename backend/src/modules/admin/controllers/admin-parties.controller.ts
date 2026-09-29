@@ -6,6 +6,7 @@ import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminPartyDto } from '../dto/admin-response.dto';
+import { CreatePartyDto, UpdatePartyDto } from '../dto/admin-input.dto';
 
 @Controller('admin')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -18,7 +19,7 @@ export class AdminPartiesController {
   @Post('parties')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPartyDto))
-  createParty(@Body() body: { id: string; name: string; color?: string; symbol_url?: string; abbreviation?: string; leader_name?: string; founded_year?: number; headquarters?: string; website?: string }) {
+  createParty(@Body() body: CreatePartyDto) {
     return this.partiesService.create(body);
   }
 
@@ -32,7 +33,7 @@ export class AdminPartiesController {
   @Put('parties/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPartyDto))
-  updateParty(@Param('id') id: string, @Body() body: any) {
+  updateParty(@Param('id') id: string, @Body() body: UpdatePartyDto) {
     return this.partiesService.update(id, body);
   }
 

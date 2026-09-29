@@ -241,7 +241,8 @@ INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_
   ('TN_VS16_231_COLACHEL', 'e5f6a7b8-c9d0-1234-ef01-456789012016', NULL, 31, 'Colachel', 231, 'GEN', NULL, NULL, NULL),
   ('TN_VS16_232_PADMANABHAPURAM', 'e5f6a7b8-c9d0-1234-ef01-456789012016', NULL, 31, 'Padmanabhapuram', 232, 'GEN', NULL, NULL, NULL),
   ('TN_VS16_233_VILAVANCODE', 'e5f6a7b8-c9d0-1234-ef01-456789012016', NULL, 31, 'Vilavancode', 233, 'GEN', NULL, NULL, NULL),
-  ('TN_VS16_234_KILLIYOOR', 'e5f6a7b8-c9d0-1234-ef01-456789012016', NULL, 31, 'Killiyoor', 234, 'GEN', NULL, NULL, NULL);
+  ('TN_VS16_234_KILLIYOOR', 'e5f6a7b8-c9d0-1234-ef01-456789012016', NULL, 31, 'Killiyoor', 234, 'GEN', NULL, NULL, NULL)
+ON CONFLICT DO NOTHING;
 
 -- Candidates (winner + runner-up per constituency)
 INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
@@ -708,7 +709,8 @@ INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is
   ('6bc158ef-6c11-4ad9-9181-55fb43621c35', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012016', 'TN_VS16_233_VILAVANCODE', 'INC', 'Vijayadharani S', FALSE, '{}'),
   ('eaebc9c3-8f05-407f-a79e-cc0f89bd7582', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012016', 'TN_VS16_233_VILAVANCODE', 'BJP', 'Dharmaraj C', FALSE, '{}'),
   ('9193a5e8-59a4-468f-af34-cf46684099ec', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012016', 'TN_VS16_234_KILLIYOOR', 'INC', 'Rajesh Kumar S', FALSE, '{}'),
-  ('5677678e-02f0-4b19-8fce-519b6e65af46', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012016', 'TN_VS16_234_KILLIYOOR', 'BJP', 'Pon. Vijayaragavan', FALSE, '{}');
+  ('5677678e-02f0-4b19-8fce-519b6e65af46', NULL, 'e5f6a7b8-c9d0-1234-ef01-456789012016', 'TN_VS16_234_KILLIYOOR', 'BJP', 'Pon. Vijayaragavan', FALSE, '{}')
+ON CONFLICT DO NOTHING;
 
 -- Results
 INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
@@ -1175,7 +1177,8 @@ INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no
   ('5d21a185-c206-4793-b981-615ae78e08b6', '6bc158ef-6c11-4ad9-9181-55fb43621c35', 'TN_VS16_233_VILAVANCODE', 68789, 'WON', 33143, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012016'),
   ('e3eca16b-42cb-42c5-a1ce-31f9eb83035a', 'eaebc9c3-8f05-407f-a79e-cc0f89bd7582', 'TN_VS16_233_VILAVANCODE', 35646, 'LOST', 33143, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012016'),
   ('51000a1a-b605-43bb-97df-800b002b0abd', '9193a5e8-59a4-468f-af34-cf46684099ec', 'TN_VS16_234_KILLIYOOR', 77356, 'WON', 46295, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012016'),
-  ('a4ad6170-715e-4c34-9fe4-46c35e4b0cda', '5677678e-02f0-4b19-8fce-519b6e65af46', 'TN_VS16_234_KILLIYOOR', 31061, 'LOST', 46295, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012016');
+  ('a4ad6170-715e-4c34-9fe4-46c35e4b0cda', '5677678e-02f0-4b19-8fce-519b6e65af46', 'TN_VS16_234_KILLIYOOR', 31061, 'LOST', 46295, 0, 'e5f6a7b8-c9d0-1234-ef01-456789012016')
+ON CONFLICT DO NOTHING;
 
 -- Manifest
 UPDATE elections SET manifest_url = '{"alliances":[{"id":"ADMK","name":"AIADMK+","color":"#00AA00","parties":["AIADMK"]},{"id":"DMKALL","name":"DMK+","color":"#CC0000","parties":["DMK","INC","IUML","PT","VCK","MAMAK","PMK"]},{"id":"NDA","name":"NDA","color":"#FF6B00","parties":["BJP"]}],"leaders":[{"name":"J. Jayalalithaa","party_id":"AIADMK","const_id":"TN_VS16_1_GUMMIDIPOONDI"},{"name":"M. Karunanidhi","party_id":"DMK","const_id":"TN_VS16_138_THIRUVARUR"}],"cabinet":[],"tracked":["ADMK","DMKALL","NDA"],"vip_seats":{},"milestones":[{"label":"Majority","value":118}],"compare_with":["e5f6a7b8-c9d0-1234-ef01-456789012011"],"geo":{"map_url":"/geo/tn_ac.geojson","center":[78.6,11],"zoom":7},"delimitation_era":"2008"}' WHERE id = 'e5f6a7b8-c9d0-1234-ef01-456789012016';

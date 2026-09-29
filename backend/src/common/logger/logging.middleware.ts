@@ -3,12 +3,20 @@ import { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { requestContext } from './request-context';
 
+const SENSITIVE_QUERY_PARAMS = /([?&](?:token|key|access_token|api_key)=)[^&#]*/gi;
+
+/** Mask credential-like query params so they never reach the logs. */
+export function redactUrl(url: string): string {
+  return url.replace(SENSITIVE_QUERY_PARAMS, '$1[REDACTED]');
+}
+
 @Injectable()
 export class LoggingMiddleware implements NestMiddleware {
   private readonly logger = new Logger('HTTP');
 
   use(req: Request, res: Response, next: NextFunction) {
-    const { method, originalUrl, ip } = req;
+    const { method, ip } = req;
+    const originalUrl = redactUrl(req.originalUrl);
     const userAgent = req.get('user-agent') || '';
     const startTime = Date.now();
 

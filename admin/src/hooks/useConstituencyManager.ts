@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { getAdminConstituencies, bulkTagConstituencies } from '../services/constituency.service';
 import { getElections } from '../services/election.service';
-import { getStates, getDistricts } from '../services/geo.service';
-import { computeConstituencyAnalysis } from '../services/ai.service';
+import { getStates } from '../services/geo.service';
+import { computeConstituencyAnalysis, enrichConstituencies } from '../services/ai.service';
 import { useEnrichmentProgress } from './useEnrichmentProgress';
 import { useToast } from '../context/ToastContext';
 import { useSelection } from './useSelection';
-import type { Constituency, Election, State, EnrichmentProgress } from '../types';
+import type { Constituency, Election, State } from '../types';
 
 /**
  * CONTROLLER: Constituency Manager (MVC)
@@ -117,12 +117,26 @@ export function useConstituencyManager() {
     }
   };
 
+  /** Starts AI enrichment for the selected constituencies, or all when none are selected. */
+  const runEnrichment = async () => {
+    if (!selectedElectionId) return;
+    const ids = Array.from(selection.selectedIds);
+    const scope = ids.length > 0 ? `${ids.length} selected constituencies` : 'ALL constituencies in this election';
+    if (!window.confirm(`Run AI enrichment for ${scope}?`)) return;
+    try {
+      await enrichConstituencies(selectedElectionId, ids.length > 0 ? ids : undefined);
+      toast('AI enrichment started');
+    } catch {
+      toast('Failed to start enrichment', 'error');
+    }
+  };
+
   return {
     elections, states, selectedElection: selectedElectionId, setSelectedElection: setSelectedElectionId,
     constituencies: filteredConstituencies, loading,
     search, setSearch, districtFilter, setDistrictFilter, tagFilter, setTagFilter,
     page, totalPages: Math.ceil(total / 100), total,
     allDistricts, allTags, selection, enrichProgress,
-    bulkAddTag, computeAnalysis, loadPage: setPage, refresh: loadData
+    bulkAddTag, computeAnalysis, runEnrichment, loadPage: setPage, refresh: loadData
   };
 }

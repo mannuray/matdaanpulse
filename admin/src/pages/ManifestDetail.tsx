@@ -5,7 +5,6 @@ import ElectionPicker from '../components/ElectionPicker';
 import AdminLandingCard from '../components/common/AdminLandingCard';
 import AdminPageHeader from '../components/common/AdminPageHeader';
 import Spinner from '../components/atoms/Spinner';
-import type { Election, ManifestData, Party, Alliance } from '../types';
 
 /**
  * PAGE: Manifest Detail (MVC: View)

@@ -4,7 +4,8 @@ import AdminPageHeader from '../components/common/AdminPageHeader';
 import ElectionPicker from '../components/ElectionPicker';
 import Spinner from '../components/atoms/Spinner';
 import ErrorBoundary from '../components/atoms/ErrorBoundary';
-import type { LiveConstituency, LiveCandidate, LiveTab } from '../types';
+import { validateOverride, type OverrideForm } from '../utils/override-validation';
+import type { LiveConstituency, LiveCandidate } from '../types';
 
 /**
  * PAGE: Live Results Console (MVC: View)
@@ -218,20 +219,23 @@ interface ExpandedRowProps {
 }
 
 const ExpandedRow = React.memo(function ExpandedRow({ c, editingResultId, setEditingResultId, handleOverride, saving }: ExpandedRowProps) {
-  const [editForm, setEditForm] = useState({ votes: 0, margin: 0, status: '' });
+  const [editForm, setEditForm] = useState<OverrideForm>({ votes: '', margin: '', status: '' });
+  const [formError, setFormError] = useState<string | null>(null);
 
   const startEdit = (cand: LiveCandidate) => {
     setEditingResultId(cand.result_id);
-    setEditForm({ votes: cand.votes, margin: cand.margin, status: cand.status });
+    setFormError(null);
+    setEditForm({ votes: String(cand.votes), margin: String(cand.margin), status: cand.status });
   };
 
   const onSave = async () => {
-    const success = await handleOverride({
-      result_id: editingResultId,
-      votes: Number(editForm.votes),
-      margin: Number(editForm.margin),
-      status: editForm.status
-    });
+    const result = validateOverride(editingResultId, editForm);
+    if (!result.ok) {
+      setFormError(result.error);
+      return;
+    }
+    setFormError(null);
+    const success = await handleOverride(result.payload);
     if (success) setEditingResultId(null);
   };
 
@@ -249,8 +253,8 @@ const ExpandedRow = React.memo(function ExpandedRow({ c, editingResultId, setEdi
               
               {editingResultId === cand.result_id ? (
                 <div style={styles.editFormRow}>
-                  <input type="number" className="form-input" value={editForm.votes} onChange={e => setEditForm({...editForm, votes: parseInt(e.target.value)})} style={styles.editInput} />
-                  <input type="number" className="form-input" value={editForm.margin} onChange={e => setEditForm({...editForm, margin: parseInt(e.target.value)})} style={styles.editInput} />
+                  <input type="number" className="form-input" value={editForm.votes} min={0} step={1} onChange={e => setEditForm({...editForm, votes: e.target.value})} style={styles.editInput} />
+                  <input type="number" className="form-input" value={editForm.margin} min={0} step={1} onChange={e => setEditForm({...editForm, margin: e.target.value})} style={styles.editInput} />
                   <select className="form-select" value={editForm.status} onChange={e => setEditForm({...editForm, status: e.target.value})} style={styles.editInput}>
                     <option value="LEADING">LEADING</option>
                     <option value="WON">WON</option>
@@ -261,6 +265,7 @@ const ExpandedRow = React.memo(function ExpandedRow({ c, editingResultId, setEdi
                     <button disabled={saving} onClick={onSave} className="btn btn-xs btn-primary">SAVE</button>
                     <button onClick={() => setEditingResultId(null)} className="btn btn-xs btn-outline">ESC</button>
                   </div>
+                  {formError && <div role="alert" style={{ color: 'var(--danger)', fontSize: 11 }}>{formError}</div>}
                 </div>
               ) : (
                 <>

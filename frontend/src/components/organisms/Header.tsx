@@ -30,15 +30,20 @@ export default function Header({ elections, states, sseConnected }: HeaderProps)
   const filteredElections = elections.filter((e) => e.type === electionType);
 
   const saveLastElection = useCallback((type: 'LS' | 'VS', electionId: string | null) => {
-    if (electionId) {
-      localStorage.setItem(`lastElection_${type}`, electionId);
-    } else {
-      localStorage.removeItem(`lastElection_${type}`);
+    try {
+      if (electionId) {
+        localStorage.setItem(`lastElection_${type}`, electionId);
+      } else {
+        localStorage.removeItem(`lastElection_${type}`);
+      }
+    } catch {
+      // Storage unavailable (private mode / blocked) — remembering the election is best-effort.
     }
   }, []);
 
   const restoreLastElection = useCallback((type: 'LS' | 'VS') => {
-    const id = localStorage.getItem(`lastElection_${type}`);
+    let id: string | null = null;
+    try { id = localStorage.getItem(`lastElection_${type}`); } catch { id = null; }
     if (!id) return null;
     return elections.find((e) => e.id === id && e.type === type) || null;
   }, [elections]);
@@ -162,10 +167,10 @@ export default function Header({ elections, states, sseConnected }: HeaderProps)
                     navigate('/');
                   }
                 }}
-                aria-label={t('select_state') || 'Select state'}
+                aria-label={t('select_state')}
                 style={{ minWidth: 140 }}
               >
-                <option value="">{t('select_state') || 'State'}</option>
+                <option value="">{t('select_state')}</option>
                 {states
                   .slice()
                   .sort((a, b) => a.name.localeCompare(b.name))
@@ -189,7 +194,7 @@ export default function Header({ elections, states, sseConnected }: HeaderProps)
                 >
                   <option value="">{t('select_election')}</option>
                   {stateElections.map((e) => (
-                    <option key={e.id} value={e.id}>{e.year} Election</option>
+                    <option key={e.id} value={e.id}>{t('year_election', { year: e.year })}</option>
                   ))}
                 </select>
               </div>
@@ -247,7 +252,7 @@ export default function Header({ elections, states, sseConnected }: HeaderProps)
           }}
           onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border)')}
-          aria-label="Toggle theme"
+          aria-label={t('toggle_theme')}
         >
           {theme === 'light' ? '🌙' : '☀️'}
         </button>

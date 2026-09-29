@@ -5,9 +5,13 @@ import {
 } from '../services/election.service';
 import { getStates } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
-import type { Election, State, LiveConstituency, LiveCandidate, LiveTab, ManifestData } from '../types';
+import { resolvePublishedManifest } from '../utils/manifest-helpers';
+import type { OverridePayload } from '../utils/override-validation';
+import type { Election, State, LiveConstituency, LiveTab, ManifestData } from '../types';
 
 const TAB_SIZE = 15;
+const FLASH_MS = 1500;
+const RELOAD_DEBOUNCE_MS = 500;
 
 function autoChunkTabs(constituencies: LiveConstituency[]): LiveTab[] {
   const tabs: LiveTab[] = [];
@@ -56,9 +60,9 @@ export function useLiveConsole() {
   }, []);
 
   // 2. Load Results & Config
-  const loadResults = useCallback(async (eid: string) => {
+  const loadResults = useCallback(async (eid: string, opts?: { silent?: boolean }) => {
     if (!eid) return;
-    setLoading(true);
+    if (!opts?.silent) setLoading(true);
     try {
       const [data, manifest] = await Promise.all([
         getLiveResults(eid),
@@ -66,16 +70,20 @@ export function useLiveConsole() {
       ]);
       setConstituencies(data);
 
-      const manifestData = manifest?.draft as ManifestData | null;
+      // Prefer the working draft; fall back to the published manifest.
+      let manifestData = manifest?.draft as ManifestData | null;
+      if (!manifestData?.live_tabs?.length) {
+        manifestData = await resolvePublishedManifest(manifest?.manifest_url);
+      }
       if (manifestData?.live_tabs?.length) {
         setTabs(manifestData.live_tabs);
       } else {
         setTabs(autoChunkTabs(data));
       }
     } catch (err) {
-      toast('Failed to load live results', 'error');
+      if (!opts?.silent) toast('Failed to load live results', 'error');
     } finally {
-      setLoading(false);
+      if (!opts?.silent) setLoading(false);
     }
   }, [toast]);
 
@@ -87,25 +95,54 @@ export function useLiveConsole() {
   useEffect(() => {
     if (!selectedElectionId) return;
     esRef.current?.close();
-    
-    const es = subscribeLiveUpdates(selectedElectionId, (event) => {
-      try {
-        const payload = JSON.parse(event.data);
-        if (payload.type === 'result-update' && payload.data?.const_id) {
-          const constId = payload.data.const_id;
-          setFlashIds((prev) => new Set(prev).add(constId));
-          setTimeout(() => setFlashIds((prev) => {
-            const next = new Set(prev);
-            next.delete(constId);
-            return next;
-          }), 1500);
-          loadResults(selectedElectionId);
-        }
-      } catch {}
+
+    let reloadTimer: ReturnType<typeof setTimeout> | null = null;
+    const flashTimers = new Set<ReturnType<typeof setTimeout>>();
+
+    const flash = (constIds: string[]) => {
+      if (constIds.length === 0) return;
+      setFlashIds((prev) => {
+        const next = new Set(prev);
+        constIds.forEach((id) => next.add(id));
+        return next;
+      });
+      const timer = setTimeout(() => {
+        flashTimers.delete(timer);
+        setFlashIds((prev) => {
+          const next = new Set(prev);
+          constIds.forEach((id) => next.delete(id));
+          return next;
+        });
+      }, FLASH_MS);
+      flashTimers.add(timer);
+    };
+
+    const scheduleReload = () => {
+      if (reloadTimer) clearTimeout(reloadTimer);
+      reloadTimer = setTimeout(() => {
+        reloadTimer = null;
+        loadResults(selectedElectionId, { silent: true });
+      }, RELOAD_DEBOUNCE_MS);
+    };
+
+    const es = subscribeLiveUpdates(selectedElectionId, {
+      onResultUpdate: (update) => {
+        flash([update.const_id]);
+        scheduleReload();
+      },
+      onBatchUpdate: (updates) => {
+        if (updates.length === 0) return;
+        flash(updates.map((u) => u.const_id));
+        scheduleReload();
+      },
     });
-    
+
     esRef.current = es;
-    return () => es.close();
+    return () => {
+      es.close();
+      if (reloadTimer) clearTimeout(reloadTimer);
+      flashTimers.forEach(clearTimeout);
+    };
   }, [selectedElectionId, loadResults]);
 
   // 4. Computed Stats & Views
@@ -128,7 +165,7 @@ export function useLiveConsole() {
   }, [constituencies, tabs, activeTab]);
 
   // 5. Actions
-  const handleOverride = async (payload: any) => {
+  const handleOverride = async (payload: OverridePayload) => {
     setSaving(true);
     try {
       await overrideResult(payload);

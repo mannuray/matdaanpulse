@@ -262,6 +262,7 @@ export interface ToastMessage {
   party: string;
   color: string;
   margin: number;
+  kind?: 'won' | 'lead';
   timestamp: number;
 }
 
@@ -277,8 +278,7 @@ export interface SSEResultData {
 
 export type SSEEvent =
   | { type: 'result-update'; data: SSEResultData }
-  | { type: 'batch-update'; data: SSEResultData[] }
-  | { type: 'tally-update'; data: Record<string, unknown> };
+  | { type: 'batch-update'; data: SSEResultData[] };
 
 export interface DominanceEntry {
   constId: string;

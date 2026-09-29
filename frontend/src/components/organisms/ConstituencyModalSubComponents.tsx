@@ -1,43 +1,35 @@
 import React from 'react';
 import type { IncumbencyEntry } from '../../types';
 
-interface ConstituencyModalHeaderProps {
-  name: string;
-  districtName?: string;
-  stateName?: string;
-  onClose: () => void;
-  onOpenFullPage: () => void;
+export interface RevisionInfo {
+  netChange: number;
+  pctChange: number;
+  tier: string;
+  tierColor: string;
 }
 
-export const ConstituencyModalHeader: React.FC<ConstituencyModalHeaderProps> = ({
-  name, districtName, stateName, onClose, onOpenFullPage
-}) => (
-  <header style={{ 
-    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-    padding: 'var(--space-4) var(--space-5)', borderBottom: '1px solid var(--border)',
-    background: 'var(--bg-card)', zIndex: 10
-  }}>
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <h2 style={{ fontSize: 'var(--text-xl)', fontWeight: 'var(--weight-bold)', margin: 0, color: 'var(--text-primary)' }}>{name}</h2>
-      <div style={{ color: 'var(--text-secondary)', fontSize: '11px', fontWeight: 'var(--weight-medium)' }}>
-        {districtName} &middot; {stateName}
-      </div>
-    </div>
-    <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-      <button onClick={onOpenFullPage} className="btn btn-sm btn-outline" style={{ height: 28, fontSize: '10px', padding: '0 10px' }}>
-        Full Page &rarr;
-      </button>
-      <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', color: 'var(--text-muted)', lineHeight: 1 }}>&times;</button>
-    </div>
-  </header>
-);
+export interface SwingBadge {
+  flipped: boolean;
+  fromColor?: string;
+  fromLabel?: string;
+  toColor?: string;
+  toLabel?: string;
+  holdColor?: string;
+  holdLabel?: string;
+}
+
+export interface DominanceBadge {
+  type: string;
+  label: string;
+  bgColor?: string;
+}
 
 interface ConstituencyModalStatsProps {
   totalElectors?: number;
   totalVotesPolled: number;
   voterTurnout: number | null;
   winMargin?: number;
-  revisionData?: any;
+  revisionData?: RevisionInfo | null;
   t: (key: string) => string;
 }
 
@@ -102,9 +94,8 @@ export const ConstituencyModalStats: React.FC<ConstituencyModalStatsProps> = ({
 
 interface ConstituencyModalInsightsProps {
   badges: {
-    swing: any;
-    spoiler: any;
-    dominance: any;
+    swing?: SwingBadge | null;
+    dominance?: DominanceBadge | null;
     isVip?: boolean;
     manualTags?: string[];
   };

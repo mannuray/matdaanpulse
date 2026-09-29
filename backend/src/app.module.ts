@@ -11,7 +11,6 @@ import { PartiesModule } from './modules/parties/parties.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { LiveModule } from './modules/live/live.module';
-import { CommonModule } from './modules/common/common.module';
 import { ConstituenciesModule } from './modules/constituencies/constituencies.module';
 import { SearchModule } from './modules/search/search.module';
 import { RedisModule } from './modules/redis/redis.module';
@@ -42,7 +41,6 @@ import { LoggingMiddleware } from './common/logger/logging.middleware';
     AuthModule,
     AdminModule,
     LiveModule,
-    CommonModule,
     SearchModule,
     HealthModule,
   ],

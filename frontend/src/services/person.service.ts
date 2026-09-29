@@ -15,8 +15,8 @@ export function getPerson(id: string) {
  */
 export const PersonService = {
   formatBiography(person: PersonDetail): string {
-    const aiProfile = (person.metadata as any)?.ai_profile;
-    if (aiProfile) return aiProfile;
+    const aiProfile = person.metadata?.ai_profile;
+    if (typeof aiProfile === 'string' && aiProfile) return aiProfile;
     if (person.bio) return person.bio;
     return "No detailed biography available for this person.";
   },

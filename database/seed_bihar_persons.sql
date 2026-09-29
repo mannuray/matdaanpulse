@@ -385,6 +385,12 @@ INSERT INTO persons (id, name) VALUES ('44652f11-aff9-4975-974c-b791bc905047', '
 INSERT INTO persons (id, name) VALUES ('99cba246-f19b-48dc-a4c2-f381e1d52e4f', 'VISHWANATH RAM') ON CONFLICT (id) DO NOTHING;
 INSERT INTO persons (id, name) VALUES ('3fb6585a-e0e4-4754-aef5-cb7ba4eadcd7', 'VYAS DEO PRASAD') ON CONFLICT (id) DO NOTHING;
 
+-- Persons the generator "reused" from the author's DB (candidates already linked there).
+-- Nothing else seeds them, so create them here or the UPDATEs below violate the FK.
+INSERT INTO persons (id, name) VALUES ('5c8a2702-45a0-4b01-92f7-555adf4b7d25', 'ANIRUDDH KUMAR') ON CONFLICT (id) DO NOTHING;
+INSERT INTO persons (id, name) VALUES ('685fd695-6c6e-4fcd-b4b7-aecf8541424c', 'BIJENDRA PRASAD YADAV') ON CONFLICT (id) DO NOTHING;
+INSERT INTO persons (id, name) VALUES ('20288776-94ab-4066-b023-6a78f8e358e0', 'MINNATULLAH RAHMANI') ON CONFLICT (id) DO NOTHING;
+
 -- Link candidates to persons
 UPDATE candidates SET person_id = 'cee7fa22-f4b2-45cf-aee4-70d2ea46911c' WHERE id IN ('b5da2bcd-3cf5-48d0-914a-efbffc2d0e2d', 'af2605d2-f724-4077-aa4b-a6dbfaf0c0a7', '2b13aa3b-5b29-4907-8d57-8e4dd20c215f', 'a0f32bb5-191d-4888-884e-0be442454bd1');
 UPDATE candidates SET person_id = 'c10d3adf-7779-4904-988d-e47ba8907f11' WHERE id IN ('ef257a2e-0869-4855-9a64-815808790258', '9ab67669-9334-43ea-8cfc-1296aa7dba47', '76fe04f2-5824-412c-8836-d12387d48d69', 'e1b21e3a-d9c5-4c90-8036-064a6fbb00af');

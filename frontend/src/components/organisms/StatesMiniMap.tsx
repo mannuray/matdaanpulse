@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
-import { select } from 'd3-selection';
-import { geoMercator, geoPath } from 'd3-geo';
-import { zoom as d3Zoom, zoomIdentity } from 'd3-zoom';
-import type { Selection } from 'd3-selection';
-import type { ZoomBehavior } from 'd3-zoom';
+import { useTranslation } from 'react-i18next';
+import { select, geoMercator, geoPath, zoom as d3Zoom, zoomIdentity } from 'd3';
+import type { Selection, ZoomBehavior } from 'd3';
 import MapTooltip from '../molecules/MapTooltip';
 import { featureName, normName } from '../../utils/geoHelpers';
+import { buildRegionLookup, findRegionForFeature, displayStateName } from '../../utils/regionMatching';
 import type { GeoFeature } from '../../utils/geoHelpers';
 
 interface MapRegion {
@@ -27,26 +26,10 @@ interface StatesMiniMapProps {
   onRegionClick: (id: string) => void;
 }
 
-const DEFAULT_FILL = '#d4d4d4';
-
-function buildLookup(regions: MapRegion[], stateName: string): Map<string, MapRegion> {
-  const lookup = new Map<string, MapRegion>();
-  regions.forEach((r) => {
-    lookup.set(normName(r.name), r);
-    lookup.set(r.id.toUpperCase(), r);
-    lookup.set(normName(r.id), r);
-    const underIdx = r.id.indexOf('_');
-    if (underIdx > 0 && underIdx <= 3) {
-      const pcNorm = normName(r.id.slice(underIdx + 1));
-      lookup.set(pcNorm, r);
-      const stNorm = normName(stateName);
-      lookup.set(`${stNorm}:${pcNorm}`, r);
-    }
-  });
-  return lookup;
-}
+const DEFAULT_FILL = 'var(--map-default-fill)';
 
 export default function StatesMiniMap({ stateName, features, regions, selectedPartyColors, onRegionClick }: StatesMiniMapProps) {
+  const { t } = useTranslation();
   const svgRef = useRef<SVGSVGElement>(null);
   const gRef = useRef<Selection<SVGGElement, unknown, null, undefined> | null>(null);
   const zoomRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
@@ -54,18 +37,15 @@ export default function StatesMiniMap({ stateName, features, regions, selectedPa
     visible: false, x: 0, y: 0, name: '', candidate: '', party: '', partyColor: '', margin: 0, status: '',
   });
 
-  const regionLookup = useMemo(() => buildLookup(regions, stateName), [regions, stateName]);
+  const regionLookup = useMemo(() => buildRegionLookup(regions), [regions]);
   const regionLookupRef = useRef(regionLookup);
   regionLookupRef.current = regionLookup;
 
   const onRegionClickRef = useRef(onRegionClick);
   onRegionClickRef.current = onRegionClick;
 
-  const findRegion = (f: GeoFeature, lookup: Map<string, MapRegion>): MapRegion | undefined => {
-    const pcNorm = normName(featureName(f.properties));
-    const stNorm = normName(f.properties.st_name);
-    return lookup.get(`${stNorm}:${pcNorm}`) || lookup.get(pcNorm);
-  };
+  const findRegion = (f: GeoFeature, lookup: Map<string, MapRegion>): MapRegion | undefined =>
+    findRegionForFeature(lookup, f.properties);
 
   // Initial render: geometry, events, zoom — only depends on features + stateName
   useEffect(() => {
@@ -90,8 +70,7 @@ export default function StatesMiniMap({ stateName, features, regions, selectedPa
       .join('path')
       .attr('class', 'pc')
       .attr('d', (d) => pathGen(d) || '')
-      .attr('fill', DEFAULT_FILL)
-      .attr('stroke', '#999')
+      .style('fill', DEFAULT_FILL)
       .attr('stroke-width', 0.15)
       .attr('cursor', 'pointer')
       .on('click', (_event, d) => {
@@ -122,8 +101,6 @@ export default function StatesMiniMap({ stateName, features, regions, selectedPa
       .attr('class', 'state-border')
       .datum(fc)
       .attr('d', (d) => pathGen(d) || '')
-      .attr('fill', 'none')
-      .attr('stroke', '#555')
       .attr('stroke-width', 0.6)
       .attr('pointer-events', 'none');
 
@@ -145,7 +122,7 @@ export default function StatesMiniMap({ stateName, features, regions, selectedPa
     if (!gRef.current) return;
 
     gRef.current.selectAll<SVGPathElement, GeoFeature>('path.pc')
-      .attr('fill', (d) => {
+      .style('fill', (d) => {
         const r = findRegion(d, regionLookup);
         if (!r || !r.party) return DEFAULT_FILL;
         if (selectedPartyColors.size === 0) return r.color || DEFAULT_FILL;
@@ -175,12 +152,7 @@ export default function StatesMiniMap({ stateName, features, regions, selectedPa
   }, [regions]);
 
   // Display-friendly state name
-  const displayName = stateName
-    .replace(/([A-Z])/g, ' $1')
-    .replace(/^./, (c) => c.toUpperCase())
-    .replace(/N C T/, 'NCT of Delhi')
-    .replace(/Andamannicobarislands/i, 'Andaman & Nicobar')
-    .trim();
+  const displayName = displayStateName(stateName);
 
   return (
     <div className="state-minimap">
@@ -190,10 +162,10 @@ export default function StatesMiniMap({ stateName, features, regions, selectedPa
           <button
             onClick={handleResetZoom}
             className="filter-chip"
-            title="Reset zoom"
+            title={t('reset_zoom')}
             style={{ fontSize: 9, padding: '1px 6px', marginRight: 6 }}
           >
-            Reset
+            {t('reset')}
           </button>
           {summary.map((s, i) => (
             <span key={s.name}>

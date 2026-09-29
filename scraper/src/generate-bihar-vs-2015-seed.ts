@@ -383,7 +383,7 @@ function main() {
     const constId = makeConstId(row.name, row.constNo);
     constLines.push(`  ('${esc(constId)}', '${ELECTION_ID}', NULL, ${STATE_ID}, '${esc(row.name)}', ${row.constNo}, 'GEN', NULL, NULL, NULL)`);
   }
-  lines.push(constLines.join(',\n') + ';');
+  lines.push(constLines.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 
   // Candidates and Results
@@ -405,7 +405,7 @@ function main() {
       `  ('${winCandId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(winnerPartyId)}', '${esc(row.winnerName)}', FALSE, '{}')`
     );
     resultInserts.push(
-      `  ('${randomUUID()}', '${winCandId}', '${esc(constId)}', ${winnerVotes}, 'WON', ${row.margin}, 0)`
+      `  ('${randomUUID()}', '${winCandId}', '${esc(constId)}', ${winnerVotes}, 'WON', ${row.margin}, 0, '${ELECTION_ID}')`
     );
     totalCandidates++;
 
@@ -414,18 +414,18 @@ function main() {
       `  ('${ruCandId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(runnerUpPartyId)}', '${esc(row.runnerUpName)}', FALSE, '{}')`
     );
     resultInserts.push(
-      `  ('${randomUUID()}', '${ruCandId}', '${esc(constId)}', ${runnerUpVotes}, 'LOST', ${row.margin}, 0)`
+      `  ('${randomUUID()}', '${ruCandId}', '${esc(constId)}', ${runnerUpVotes}, 'LOST', ${row.margin}, 0, '${ELECTION_ID}')`
     );
     totalCandidates++;
   }
 
   lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES');
-  lines.push(candidateInserts.join(',\n') + ';');
+  lines.push(candidateInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 
   lines.push('-- Results');
-  lines.push('INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no) VALUES');
-  lines.push(resultInserts.join(',\n') + ';');
+  lines.push('INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES');
+  lines.push(resultInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 
   // Manifest — In 2015, JDU+RJD+INC were in Mahagathbandhan; BJP+LJP+RLSP+HAM(S) were NDA

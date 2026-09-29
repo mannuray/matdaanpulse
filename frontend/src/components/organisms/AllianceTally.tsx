@@ -1,4 +1,5 @@
 import { useState, useMemo, memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import PartyIcon from '../atoms/PartyIcon';
 import type { StandingsData, AllianceGroup, PartyStanding } from '../../types';
 import { LS_BUCKETS, VS_BUCKETS } from './summary/utils';
@@ -146,6 +147,7 @@ const AllianceTally = memo(function AllianceTally({
   standings, totalSeats, majorityMark, addableItems, manifestIds, onAdd, onRemove,
   showAddDropdown, onToggleAdd, regions, electionType,
 }: AllianceTallyProps) {
+  const { t } = useTranslation();
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [showOthers, setShowOthers] = useState(false);
 
@@ -260,6 +262,9 @@ const AllianceTally = memo(function AllianceTally({
       {showAddDropdown && (
         <div style={{ padding: '4px 10px 6px', borderBottom: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+            {addableItems.length === 0 && (
+              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{t('nothing_to_add')}</span>
+            )}
             {addableItems.map(item => (
               <button key={item.id} onClick={() => { onAdd(item.id); onToggleAdd(); }} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 10, padding: '2px 8px', borderRadius: 10, border: '1px solid var(--border)', background: 'var(--bg-primary)' }}>
                 <PartyIcon color={item.color} size={8} partyId={item.id} />
@@ -307,11 +312,12 @@ const AllianceTally = memo(function AllianceTally({
 
 export default AllianceTally;
 
-export function AllianceTallyBadge({ majorityMark, totalSeats, declaredSeats, showAdd, onToggleAdd }: { majorityMark: number; totalSeats: number; declaredSeats?: number; showAdd: boolean; onToggleAdd: () => void; }) {
+export function AllianceTallyBadge({ majorityMark, showAdd, onToggleAdd }: { majorityMark: number; showAdd: boolean; onToggleAdd: () => void; }) {
+  const { t } = useTranslation();
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-      <span style={{ fontSize: 10, color: 'var(--text-secondary)' }}>Majority: {majorityMark}</span>
-      <button onClick={(e) => { e.stopPropagation(); onToggleAdd(); }} style={{ fontSize: 12, padding: '1px 6px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', background: showAdd ? 'var(--bg-secondary)' : 'transparent' }}>+</button>
+      <span style={{ fontSize: 10, color: 'var(--text-secondary)' }}>{t('majority')}: {majorityMark}</span>
+      <button aria-label={t('add_party_or_alliance')} title={t('add_party_or_alliance')} onClick={(e) => { e.stopPropagation(); onToggleAdd(); }} style={{ fontSize: 12, padding: '1px 6px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', background: showAdd ? 'var(--bg-secondary)' : 'transparent' }}>+</button>
     </div>
   );
 }

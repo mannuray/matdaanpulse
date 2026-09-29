@@ -1,4 +1,3 @@
-import React from 'react';
 import ElectionPicker from '../ElectionPicker';
 
 interface AdminLandingCardProps {

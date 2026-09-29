@@ -1,12 +1,12 @@
-import { Controller, Delete, Get, Post, Put, Body, Param, Query, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put, Body, Param, Query, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { PersonsService } from '../../candidates/persons.service';
 import { AiEnrichmentService } from '../../ai/ai-enrichment.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
-import { persons as Person } from '@prisma/client';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminPersonDto } from '../dto/admin-response.dto';
+import { CreatePersonDto, UpdatePersonDto, MergePersonsDto, EnrichPersonsDto } from '../dto/admin-input.dto';
 
 @Controller('admin/persons')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -46,27 +46,27 @@ export class AdminPersonsController {
   @Get(':id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPersonDto))
-  findPersonDetail(@Param('id') id: string) {
+  findPersonDetail(@Param('id', ParseUUIDPipe) id: string) {
     return this.personsService.findWithCandidates(id);
   }
 
   @Post()
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPersonDto))
-  createPerson(@Body() body: Partial<Person>) {
+  createPerson(@Body() body: CreatePersonDto) {
     return this.personsService.create(body);
   }
 
   @Put(':id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPersonDto))
-  updatePerson(@Param('id') id: string, @Body() body: Partial<Person>) {
+  updatePerson(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdatePersonDto) {
     return this.personsService.update(id, body);
   }
 
   @Post('merge')
   @Roles('SUPER_ADMIN')
-  mergePersons(@Body() body: { source_id: string; target_id: string }) {
+  mergePersons(@Body() body: MergePersonsDto) {
     return this.personsService.merge(body.source_id, body.target_id);
   }
 
@@ -78,7 +78,7 @@ export class AdminPersonsController {
 
   @Post('enrich')
   @Roles('SUPER_ADMIN')
-  enrichPersons(@Body() body?: { person_ids?: string[] }) {
+  enrichPersons(@Body() body?: EnrichPersonsDto) {
     return this.aiService.enrichPersons(body?.person_ids);
   }
 

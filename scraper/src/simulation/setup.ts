@@ -81,10 +81,11 @@ async function main() {
       let p = 1;
 
       for (const row of batch) {
-        const newCandId = randomUUID();
-        candIdMap.set(row.id, newCandId);
         const newConstId = constIdMap.get(row.const_id);
         if (!newConstId) continue;
+        // Only map candidates that are actually inserted, so counts and result rows match
+        const newCandId = randomUUID();
+        candIdMap.set(row.id, newCandId);
 
         vals.push(`($${p++}, $${p++}, $${p++}, $${p++}, $${p++}, $${p++}, $${p++}, $${p++})`);
         params.push(

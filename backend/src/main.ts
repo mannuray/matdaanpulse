@@ -14,6 +14,10 @@ async function bootstrap() {
     logger: winstonLogger,
   });
 
+  // Explicit body limit (Express default is 100kb). Sized for a full bulk
+  // override round: MAX_BULK_OVERRIDES (10k) items at ~150 bytes ≈ 1.5 MB.
+  app.useBodyParser('json', { limit: '5mb' });
+
   // Security Middlewares
   app.use(helmet());
   app.enableCors({

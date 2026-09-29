@@ -15,11 +15,11 @@ export type FeatureProperties = {
 
 export type GeoFeature = GeoJSON.Feature<GeoJSON.Geometry, FeatureProperties>;
 
-export function featureName(props: FeatureProperties | Record<string, any>): string {
+export function featureName(props: Partial<FeatureProperties>): string {
   return props.pc_name || props.ac_name || '';
 }
 
-export function featureCategory(props: FeatureProperties | Record<string, any>): string {
+export function featureCategory(props: Partial<FeatureProperties>): string {
   return props.pc_category || props.ac_category || 'GEN';
 }
 

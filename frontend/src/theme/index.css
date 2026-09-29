@@ -31,6 +31,19 @@
   
   --live-pulse: #f43f5e;
 
+  /* Map */
+  --map-bg: #f0f0f0;
+  --map-default-fill: #d4d4d4;
+  --map-muted-fill: #e5e7eb;
+  --map-pc-stroke: #000000;
+  --map-state-stroke: #000000;
+  --map-mini-stroke: #999999;
+  --map-mini-border: #555555;
+  --map-label-fill: #1a1a1a;
+  --map-label-halo: #ffffff;
+  --map-hatch: rgba(0, 0, 0, 0.35);
+  --map-tooltip-bg: rgba(255, 255, 255, 0.96);
+
   /* Shadows & Radius */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -109,6 +122,18 @@
   --danger-text: #fb7185;
   
   --live-pulse: #f43f5e;
+
+  --map-bg: #111113;
+  --map-default-fill: #3f3f46;
+  --map-muted-fill: #27272a;
+  --map-pc-stroke: #09090b;
+  --map-state-stroke: #a1a1aa;
+  --map-mini-stroke: #52525b;
+  --map-mini-border: #a1a1aa;
+  --map-label-fill: #fafafa;
+  --map-label-halo: #09090b;
+  --map-hatch: rgba(255, 255, 255, 0.4);
+  --map-tooltip-bg: rgba(24, 24, 27, 0.96);
   
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
@@ -1167,3 +1192,12 @@ select:focus, input:focus, textarea:focus {
   from { opacity: 1; transform: translateX(0); }
   to { opacity: 0; transform: translateX(40px); }
 }
+
+/* ── Map (theme-aware strokes/labels; fills are set inline via style) ── */
+.map-svg path.pc { stroke: var(--map-pc-stroke); }
+.map-svg path.state { stroke: var(--map-state-stroke); fill: none; }
+.map-svg rect.map-bg { fill: var(--map-bg); }
+.map-svg text.pc-label { fill: var(--map-label-fill); stroke: var(--map-label-halo); }
+.map-svg .spoiler-hatch-line { stroke: var(--map-hatch); }
+.state-minimap svg path.pc { stroke: var(--map-mini-stroke); }
+.state-minimap svg path.state-border { stroke: var(--map-mini-border); fill: none; }

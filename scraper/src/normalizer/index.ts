@@ -1,6 +1,6 @@
 /**
- * Normalize raw scraped data into a consistent internal format.
- * Placeholder — implement transformation logic as needed.
+ * NOT IMPLEMENTED — placeholder for live ECI ingestion (see src/index.ts).
+ * Always returns an empty array.
  */
 export function normalize(rawData: unknown): Record<string, unknown>[] {
   // TODO: implement data normalization pipeline

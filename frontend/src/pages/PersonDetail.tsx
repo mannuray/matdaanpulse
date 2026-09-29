@@ -1,9 +1,12 @@
+import type { CSSProperties } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import type { NavigateFunction } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { usePersonProfile } from '../hooks/usePersonProfile';
 import { PersonService } from '../services/person.service';
 import Spinner from '../components/atoms/Spinner';
 import StatusBadge from '../components/atoms/StatusBadge';
+import type { PersonDetail as PersonDetailData, PersonCandidate } from '../types';
 
 /**
  * PAGE: Person Detail (MVC: View)
@@ -43,7 +46,7 @@ export default function PersonDetail() {
 
 // --- Internal Sub-Components ---
 
-function ProfileHeader({ person, navigate }: any) {
+function ProfileHeader({ person, navigate }: { person: PersonDetailData; navigate: NavigateFunction }) {
   return (
     <div style={styles.headerRoot}>
       <div style={styles.headerContent}>
@@ -51,7 +54,7 @@ function ProfileHeader({ person, navigate }: any) {
           <button onClick={() => navigate(-1)} style={styles.backBtn}>← BACK</button>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={styles.breadcrumb}>
-              Person Profile / {PersonService.formatGender(person.gender)}
+              Person Profile / {PersonService.formatGender(person.gender ?? undefined)}
             </span>
             <h1 style={styles.pageTitle}>{person.name}</h1>
           </div>
@@ -66,9 +69,9 @@ function ProfileHeader({ person, navigate }: any) {
   );
 }
 
-function DossierColumn({ person }: any) {
+function DossierColumn({ person }: { person: PersonDetailData }) {
   const bio = PersonService.formatBiography(person);
-  const wikiUrl = (person.metadata as any)?.wikipedia_url;
+  const wikiUrl = typeof person.metadata?.wikipedia_url === 'string' ? person.metadata.wikipedia_url : undefined;
 
   return (
     <aside style={styles.leftCol}>
@@ -94,7 +97,7 @@ function DossierColumn({ person }: any) {
             <DetailItem label="Education Qualification" value={person.education} />
           )}
           {person.gender && (
-            <DetailItem label="Gender Identity" value={PersonService.formatGender(person.gender)} />
+            <DetailItem label="Gender Identity" value={PersonService.formatGender(person.gender ?? undefined)} />
           )}
         </div>
       </div>
@@ -111,7 +114,7 @@ function DetailItem({ label, value }: { label: string, value: string }) {
   );
 }
 
-function PerformanceColumn({ sortedCandidates }: any) {
+function PerformanceColumn({ sortedCandidates }: { sortedCandidates: PersonCandidate[] }) {
   return (
     <div style={styles.rightCol}>
       <div className="card-elevated">
@@ -132,7 +135,7 @@ function PerformanceColumn({ sortedCandidates }: any) {
               </tr>
             </thead>
             <tbody>
-              {sortedCandidates.map((c: any) => (
+              {sortedCandidates.map((c) => (
                 <PerformanceRow key={c.id} c={c} />
               ))}
             </tbody>
@@ -147,7 +150,7 @@ function PerformanceColumn({ sortedCandidates }: any) {
   );
 }
 
-function PerformanceRow({ c }: any) {
+function PerformanceRow({ c }: { c: PersonCandidate }) {
   const isWinner = c.status === 'WON' || c.status === 'LEADING';
   return (
     <tr className={isWinner ? 'winner-row' : ''} style={{ transition: 'background 0.2s' }}>
@@ -175,7 +178,7 @@ function PerformanceRow({ c }: any) {
 
 // --- Styles ---
 
-const styles = {
+const styles: Record<string, CSSProperties> = {
   pageRoot: { background: 'var(--bg-secondary)', minHeight: '100vh' },
   container: { padding: 'var(--space-6)', height: 'auto', overflow: 'visible', maxWidth: 'none' },
   headerRoot: { 

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import type { Region, AllianceDef , TFunc } from './types';
-import { Section, formatMargin, STATE_NAMES } from './utils';
+import { Section, formatMargin } from './utils';
+import { displayStateName, stateFromConstId } from '../../../utils/regionMatching';
 
 interface StatesSectionProps {
   regions: Region[];
@@ -21,7 +22,10 @@ export default function StatesSection({ regions, alliances, electionType, t }: S
     const stateMap = new Map<string, { code: string; seats: number; marginSum: number; partySeats: Map<string, { name: string; color: string; count: number }> }>();
     for (const r of regions) {
       if (r.margin == null || !r.party) continue;
-      const code = r.id.split('_')[0];
+      // LS ids are mostly bare names (AGRA, AHMEDABAD_EAST): use the region's resolved
+      // state, falling back to a known state-code prefix (BR_AURANGABAD).
+      const code = r.state || stateFromConstId(r.id);
+      if (!code) continue;
       if (!stateMap.has(code)) {
         stateMap.set(code, { code, seats: 0, marginSum: 0, partySeats: new Map() });
       }
@@ -44,7 +48,7 @@ export default function StatesSection({ regions, alliances, electionType, t }: S
         }
         return {
           code: st.code,
-          name: STATE_NAMES[st.code] || st.code,
+          name: displayStateName(st.code),
           seats: st.seats,
           avgMargin: Math.round(st.marginSum / st.seats),
           dominant,

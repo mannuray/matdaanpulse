@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { PartyNotFoundException } from '../../common/exceptions';
+import type { CreatePartyDto, UpdatePartyDto } from '../admin/dto/admin-input.dto';
 
 @Injectable()
 export class PartiesService {
@@ -76,13 +77,13 @@ export class PartiesService {
     return { data, total, page, limit };
   }
 
-  async create(data: any) {
+  async create(data: CreatePartyDto) {
     return this.prisma.parties.create({
       data,
     });
   }
 
-  async update(id: string, data: any) {
+  async update(id: string, data: UpdatePartyDto) {
     const party = await this.prisma.parties.findUnique({ where: { id } });
     if (!party) throw new PartyNotFoundException(id);
     return this.prisma.parties.update({

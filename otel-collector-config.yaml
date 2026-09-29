@@ -13,11 +13,11 @@ processors:
 
 exporters:
   otlp/signoz:
-    endpoint: ${SIGNOZ_ENDPOINT:-ingest.us.signoz.cloud:443}
+    endpoint: ${env:SIGNOZ_ENDPOINT:-ingest.us.signoz.cloud:443}
     tls:
       insecure: false
     headers:
-      signoz-ingestion-key: ${SIGNOZ_INGESTION_KEY}
+      signoz-ingestion-key: ${env:SIGNOZ_INGESTION_KEY}
 
 service:
   pipelines:

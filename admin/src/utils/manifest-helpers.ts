@@ -1,3 +1,4 @@
+import type { ManifestData } from '../types';
 /**
  * PURE UTILITIES (SOLID: SRP)
  * Stateless functions for manifest data manipulation.
@@ -17,4 +18,22 @@ export function moveItem<T>(arr: T[], from: number, to: number): T[] {
   const [item] = copy.splice(from, 1);
   copy.splice(to, 0, item);
   return copy;
+}
+
+/**
+ * Resolves the published manifest body. `manifest_url` holds either inline JSON
+ * or a URL to fetch. Returns null when nothing is published or it can't be read.
+ */
+export async function resolvePublishedManifest(
+  manifestUrl: string | null | undefined,
+): Promise<ManifestData | null> {
+  if (!manifestUrl) return null;
+  try {
+    if (manifestUrl.trimStart().startsWith('{')) return JSON.parse(manifestUrl);
+    const response = await fetch(manifestUrl);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch {
+    return null;
+  }
 }

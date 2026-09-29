@@ -53,7 +53,14 @@ export interface PersonWithStats extends Person {
 }
 
 export interface PersonWithCandidates extends Person {
-  candidates: Candidate[];
+  candidates: PersonCandidate[];
+}
+
+/** Candidacy row as returned in a person's election history. */
+export interface PersonCandidate extends Candidate {
+  constituency_name?: string;
+  election_name?: string;
+  election_year?: number;
 }
 
 export interface Candidate {
@@ -201,6 +208,7 @@ export interface Constituency {
   voter_turnout: number | null;
   metadata: ConstituencyMetadata;
   analysis?: ConstituencyAnalysis | null;
+  election?: Election;
 }
 
 export interface ConstituencyMetadata {
@@ -241,6 +249,7 @@ export interface EnrichmentProgress {
   completed: number;
   failed: number;
   inProgress: boolean;
+  last_const_name?: string;
 }
 
 export interface ResultOverride {

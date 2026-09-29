@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useCandidateEdit } from '../hooks/useCandidateEdit';
+import { useAuth } from '../context/AuthContext';
 import AdminPageHeader from '../components/common/AdminPageHeader';
 import Spinner from '../components/atoms/Spinner';
 import ErrorBoundary from '../components/atoms/ErrorBoundary';
@@ -14,6 +15,8 @@ export default function CandidateEdit() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const editor = useCandidateEdit(id);
+  const { hasRole } = useAuth();
+  const canEnrich = hasRole('SUPER_ADMIN'); // backend enrich endpoint is SUPER_ADMIN-only
   const { candidate, loading, saving, handleSave, form } = editor;
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -25,8 +28,6 @@ export default function CandidateEdit() {
   if (loading) return <Spinner label="Loading profile..." />;
   if (!candidate) return <div style={styles.notFound}>Not found.</div>;
 
-  const party = editor.parties.find(p => p.id === form.party_id);
-
   return (
     <form onSubmit={onSubmit} className="fade-in" style={styles.pageRoot}>
       <ErrorBoundary>
@@ -36,7 +37,7 @@ export default function CandidateEdit() {
           onBack={() => navigate(`/candidates/${id}`)}
           actions={
             <div style={{ display: 'flex', gap: 12 }}>
-              <button type="button" onClick={editor.runEnrichment} disabled={editor.enriching} className="btn" style={styles.enrichBtn}>AI ENRICH</button>
+              {canEnrich && <button type="button" onClick={editor.runEnrichment} disabled={editor.enriching} className="btn" style={styles.enrichBtn}>AI ENRICH</button>}
               <button type="submit" disabled={saving} className="btn btn-primary" style={styles.saveBtn}>SAVE CHANGES</button>
             </div>
           }
@@ -80,16 +81,6 @@ export default function CandidateEdit() {
 }
 
 // --- Internal Sub-Components ---
-
-interface HeroHeaderProps {
-  form: any;
-  saving: boolean;
-  enriching: boolean;
-  runEnrichment: () => void;
-  candidate: Candidate;
-  party?: Party;
-  navigate: (path: string) => void;
-}
 
 // HeroHeader removed as redundant with AdminPageHeader, but we keep the visual elements needed elsewhere if any
 
@@ -249,8 +240,8 @@ const styles = {
   enrichBtn: { background: 'var(--bg-secondary)', color: 'var(--text-primary)', border: '1px solid var(--border)', fontSize: '11px', fontWeight: 700, padding: '4px 12px' },
   saveBtn: { padding: '8px 24px', fontSize: '11px', fontWeight: 800 },
   mainGrid: { display: 'grid', gridTemplateColumns: '1fr 380px', gap: 'var(--space-6)', maxWidth: '1400px', margin: 'var(--space-6) auto 0', padding: '0 var(--space-6)' },
-  leftCol: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' },
-  rightCol: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' },
+  leftCol: { display: 'flex', flexDirection: 'column' as const, gap: 'var(--space-6)' },
+  rightCol: { display: 'flex', flexDirection: 'column' as const, gap: 'var(--space-6)' },
   cardPadding: { padding: 'var(--space-6)' },
   cardPaddingCompact: { padding: 'var(--space-5)' },
   inputHeight: { height: '36px', fontSize: '13px' },

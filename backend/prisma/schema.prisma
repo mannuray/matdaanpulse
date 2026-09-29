@@ -16,7 +16,7 @@ model audit_logs {
   old_value   Json?
   new_value   Json?
   timestamp   DateTime @default(now()) @db.Timestamp(6)
-  users       users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users       users?   @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: NoAction)
 
   @@index([entity_type, entity_id], map: "idx_audit_logs_entity")
   @@index([timestamp], map: "idx_audit_logs_timestamp")
@@ -114,6 +114,7 @@ model elections {
   status                election_status         @default(Upcoming)
   tentative_next_date   DateTime?               @db.Date
   manifest_url          String?
+  manifest_draft        Json?
   candidates            candidates[]
   constituencies        constituencies[]
   constituency_analysis constituency_analysis[]

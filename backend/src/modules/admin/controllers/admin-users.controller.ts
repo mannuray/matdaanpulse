@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param, UseGuards, UseInterceptors, HttpCode } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Body, Param, UseGuards, UseInterceptors, HttpCode, ParseUUIDPipe } from '@nestjs/common';
 import { UserService } from '../user.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
@@ -29,14 +29,14 @@ export class AdminUsersController {
   @Patch('users/:id')
   @Roles('SUPER_ADMIN')
   @UseInterceptors(new MapToDtoInterceptor(AdminUserDto))
-  updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
+  updateUser(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateUserDto) {
     return this.userService.update(id, body);
   }
 
   @Delete('users/:id')
   @Roles('SUPER_ADMIN')
   @HttpCode(204)
-  async deleteUser(@Param('id') id: string) {
+  async deleteUser(@Param('id', ParseUUIDPipe) id: string) {
     await this.userService.delete(id);
   }
 }

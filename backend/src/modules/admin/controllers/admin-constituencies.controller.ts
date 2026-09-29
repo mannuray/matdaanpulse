@@ -1,16 +1,18 @@
-import { Controller, Get, Patch, Post, Body, Param, Query, UseGuards, Sse, Logger, UnauthorizedException, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Patch, Post, Body, Param, Query, UseGuards, Sse, Logger, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { ConstituenciesService } from '../../constituencies/constituencies.service';
-import { AiEnrichmentService, EnrichmentMode } from '../../ai/ai-enrichment.service';
+import { AiEnrichmentService } from '../../ai/ai-enrichment.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
-import { JwtService } from '@nestjs/jwt';
 import { RedisService } from '../../redis/redis.service';
 import { Observable, merge, interval, map, share, finalize, filter, EMPTY, catchError } from 'rxjs';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminConstituencyDto, AdminAnalysisDto } from '../dto/admin-response.dto';
+import {
+  UpdateConstituencyDto, BulkTagDto, ComputeAnalysisDto, UpdateAnalysisDto,
+  BulkAiStatusDto, EnrichConstituenciesDto,
+} from '../dto/admin-input.dto';
 
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const HEARTBEAT_MS = 30_000;
 
 @Controller('admin/constituencies')
@@ -26,7 +28,6 @@ export class AdminConstituenciesController {
   constructor(
     private readonly constituenciesService: ConstituenciesService,
     private readonly aiService: AiEnrichmentService,
-    private readonly jwt: JwtService,
     private readonly redis: RedisService,
   ) {}
 
@@ -34,7 +35,7 @@ export class AdminConstituenciesController {
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
   getConstituencies(
-    @Param('electionId') electionId: string,
+    @Param('electionId', ParseUUIDPipe) electionId: string,
     @Query('page') page?: string,
     @Query('limit') limit?: string,
     @Query('q') q?: string,
@@ -57,7 +58,7 @@ export class AdminConstituenciesController {
   @Patch(':id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
-  updateConstituency(@Param('id') id: string, @Body() body: { district_id?: number | null; region_id?: number | null; const_no?: number; metadata?: Record<string, any> }) {
+  updateConstituency(@Param('id') id: string, @Body() body: UpdateConstituencyDto) {
     return this.constituenciesService.updateConstituency(id, body);
   }
 
@@ -71,14 +72,14 @@ export class AdminConstituenciesController {
   @Post('bulk-tag')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
-  bulkTag(@Body() body: { ids: string[]; add_tags?: string[]; remove_tags?: string[] }) {
+  bulkTag(@Body() body: BulkTagDto) {
     return this.constituenciesService.bulkTag(body.ids, body.add_tags, body.remove_tags);
   }
 
   @Get('analysis/:electionId')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminAnalysisDto))
-  getAnalysis(@Param('electionId') electionId: string) {
+  getAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string) {
     return this.constituenciesService.getAnalysis(electionId);
   }
 
@@ -86,8 +87,8 @@ export class AdminConstituenciesController {
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminAnalysisDto))
   computeAnalysis(
-    @Param('electionId') electionId: string,
-    @Body() body: { history_election_ids?: string[]; manifest?: Record<string, unknown> },
+    @Param('electionId', ParseUUIDPipe) electionId: string,
+    @Body() body: ComputeAnalysisDto,
   ) {
     return this.constituenciesService.computeAnalysis(electionId, body.history_election_ids || [], body.manifest);
   }
@@ -95,13 +96,13 @@ export class AdminConstituenciesController {
   @Patch('analysis/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminAnalysisDto))
-  updateAnalysis(@Param('id') id: string, @Body() body: Record<string, unknown>) {
+  updateAnalysis(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateAnalysisDto) {
     return this.constituenciesService.updateAnalysis(id, body);
   }
 
   @Post('analysis/bulk-status')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  bulkUpdateAiStatus(@Body() body: { ids: string[]; status: string }) {
+  bulkUpdateAiStatus(@Body() body: BulkAiStatusDto) {
     return this.constituenciesService.bulkUpdateAiStatus(body.ids, body.status);
   }
 
@@ -109,37 +110,27 @@ export class AdminConstituenciesController {
   @Post('enrich/:electionId')
   @Roles('SUPER_ADMIN')
   enrichConstituencies(
-    @Param('electionId') electionId: string,
-    @Body() body?: { const_ids?: string[]; mode?: EnrichmentMode },
+    @Param('electionId', ParseUUIDPipe) electionId: string,
+    @Body() body?: EnrichConstituenciesDto,
   ) {
     return this.aiService.enrichConstituencies(electionId, body?.const_ids, body?.mode);
   }
 
   @Get('enrich/status/:electionId')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  getEnrichmentStatus(@Param('electionId') electionId: string) {
+  getEnrichmentStatus(@Param('electionId', ParseUUIDPipe) electionId: string) {
     return this.aiService.getProgress(electionId);
   }
 
+  /**
+   * Enrichment progress stream. Authenticated like every other route in this
+   * controller (JwtAuthGuard + RolesGuard via `Authorization: Bearer`); the admin
+   * client reads it with fetch() and parses text/event-stream itself.
+   * Emits `event: enrichment-progress` (JSON EnrichmentProgress) and `event: ping`.
+   */
   @Sse('enrich/stream/:electionId')
-  stream(
-    @Param('electionId') electionId: string,
-    @Query('token') token: string,
-  ): Observable<MessageEvent> {
-    if (!token) throw new UnauthorizedException('Token required');
-    try {
-      const payload = this.jwt.verify(token);
-      if (!payload?.role || !['SUPER_ADMIN', 'EDITOR'].includes(payload.role)) {
-        throw new UnauthorizedException('Insufficient role');
-      }
-    } catch (err) {
-      throw new UnauthorizedException('Invalid token');
-    }
-
-    if (!electionId || !UUID_RE.test(electionId)) {
-      throw new UnauthorizedException('Valid electionId required');
-    }
-
+  @Roles('SUPER_ADMIN', 'EDITOR')
+  stream(@Param('electionId', ParseUUIDPipe) electionId: string): Observable<MessageEvent> {
     let stream$ = this.sharedStreams.get(electionId);
     if (!stream$) {
       const channel = `enrichment:${electionId}:events`;
@@ -147,20 +138,23 @@ export class AdminConstituenciesController {
         map((raw) => {
           try {
             const parsed = JSON.parse(raw);
+            // Pre-stringified so SseStream writes it verbatim (same as LiveService).
             return { data: JSON.stringify(parsed.data), type: parsed.type } as MessageEvent;
           } catch {
             return null as unknown as MessageEvent;
           }
         }),
         filter((evt): evt is MessageEvent => evt !== null),
-        catchError((err) => {
-          this.logger.error(`Enrichment stream error for ${electionId}: ${err.message}`);
-          this.sharedStreams.delete(electionId);
-          return EMPTY;
-        }),
       );
 
       stream$ = merge(events$, this.heartbeat$).pipe(
+        catchError((err) => {
+          this.logger.error(`Enrichment stream error for ${electionId}: ${err.message}`);
+          return EMPTY;
+        }),
+        // Runs when the last subscriber leaves (share resets) or on error, so the
+        // next client builds a fresh stream instead of reusing a dead one.
+        finalize(() => this.sharedStreams.delete(electionId)),
         share({ resetOnRefCountZero: true }),
       );
       this.sharedStreams.set(electionId, stream$);

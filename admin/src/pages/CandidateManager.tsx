@@ -15,7 +15,7 @@ import type { Candidate, Constituency, Election, State } from '../types';
 export default function CandidateManager() {
   const navigate = useNavigate();
   const { hasRole } = useAuth();
-  const canWrite = hasRole('SUPER_ADMIN', 'EDITOR');
+  const canEnrich = hasRole('SUPER_ADMIN'); // backend enrich endpoint is SUPER_ADMIN-only
   const manager = useCandidateManager();
 
   const { 
@@ -45,7 +45,7 @@ export default function CandidateManager() {
         subtitle={selectedConstObj && (
           <span>{selectedConstObj.name} (#{selectedConstObj.const_no}) — {selectedConstObj.type}</span>
         )}
-        actions={selectedElection && canWrite && (
+        actions={selectedElection && canEnrich && (
           <button
             className="btn btn-outline"
             onClick={manager.runEnrichment}
@@ -66,6 +66,7 @@ export default function CandidateManager() {
         setSelectedConst={manager.setSelectedConst}
         constituencies={constituencies}
         search={manager.search}
+        setSearch={manager.setSearch}
         globalSearch={manager.globalSearch}
         setGlobalSearch={manager.setGlobalSearch}
         globalResults={manager.globalResults}
@@ -116,6 +117,7 @@ interface FilterBarProps {
   setSelectedConst: (id: string) => void;
   constituencies: Constituency[];
   search: string;
+  setSearch: (q: string) => void;
   globalSearch: string;
   setGlobalSearch: (q: string) => void;
   globalResults: Candidate[];
@@ -127,7 +129,7 @@ interface FilterBarProps {
 function FilterBar({ 
   selectedElection, setSelectedElection, elections, states,
   selectedConst, setSelectedConst, constituencies,
-  search, globalSearch, setGlobalSearch, globalResults,
+  search, setSearch, globalSearch, setGlobalSearch, globalResults,
   personFilter, setPersonFilter, selectedConstObj
 }: FilterBarProps) {
   const [showConstDropdown, setShowConstDropdown] = useState(false);
@@ -155,10 +157,10 @@ function FilterBar({
               className="form-input"
               style={styles.constInput}
               placeholder="FIND CONSTITUENCY..."
-              value={showConstDropdown ? '' : (selectedConstObj ? `${selectedConstObj.const_no}. ${selectedConstObj.name}` : '')}
-              onFocus={() => setShowConstDropdown(true)}
+              value={showConstDropdown ? search : (selectedConstObj ? `${selectedConstObj.const_no}. ${selectedConstObj.name}` : '')}
+              onChange={(e) => setSearch(e.target.value)}
+              onFocus={() => { setSearch(''); setShowConstDropdown(true); }}
               onBlur={() => setTimeout(() => setShowConstDropdown(false), 200)}
-              readOnly
             />
             {showConstDropdown && (
               <div style={styles.dropdown}>

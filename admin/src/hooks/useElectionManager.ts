@@ -49,7 +49,7 @@ export function useElectionManager() {
   const list = useResourceList<ElectionFilters>({
     key: 'elections',
     initialFilters: { status: '', type: '', stateId: null },
-    onLoad: async (page, search, filters) => {
+    onLoad: async (_page, search, filters) => {
       const data = await getElections({
         type: filters.type || undefined,
         status: filters.status || undefined

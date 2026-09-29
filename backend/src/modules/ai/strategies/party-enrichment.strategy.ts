@@ -1,5 +1,28 @@
 import { EnrichmentStrategy, EnrichmentContext } from './enrichment-strategy.interface';
 import { PartyNotFoundException, AiParseErrorException } from '../../../common/exceptions';
+import { extractJsonObject, asString, asInt, JSON_ONLY_INSTRUCTION } from './ai-response.parser';
+
+export interface PartyEnrichmentResult {
+  leader_name?: string;
+  founded_year?: number;
+  headquarters?: string;
+  website?: string;
+  wikipedia_url?: string;
+  description?: string;
+}
+
+export function parsePartyEnrichment(text: string): PartyEnrichmentResult | null {
+  const parsed = extractJsonObject(text);
+  if (!parsed) return null;
+  return {
+    leader_name: asString(parsed.leader_name, 255),
+    founded_year: asInt(parsed.founded_year, 1800, 2100),
+    headquarters: asString(parsed.headquarters, 255),
+    website: asString(parsed.website),
+    wikipedia_url: asString(parsed.wikipedia_url),
+    description: asString(parsed.description),
+  };
+}
 
 export class PartyEnrichmentStrategy implements EnrichmentStrategy {
   name = 'party';
@@ -10,11 +33,15 @@ export class PartyEnrichmentStrategy implements EnrichmentStrategy {
     const party = await prisma.parties.findUnique({ where: { id: partyId } });
     if (!party) throw new PartyNotFoundException(partyId);
 
-    const prompt = `Research political party: ${party.name} (${party.id}). Return JSON with leader_name, founded_year, headquarters, website, wikipedia_url, and a brief description.`;
+    const prompt = [
+      `Research the Indian political party ${party.name} (${party.id}).`,
+      JSON_ONLY_INSTRUCTION,
+      'Keys: {"leader_name": string|null, "founded_year": number|null, "headquarters": string|null,',
+      ' "website": string|null, "wikipedia_url": string|null, "description": string|null (2-3 sentences)}',
+    ].join('\n');
     const text = await callAi(prompt, 1000);
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new AiParseErrorException(`party ${partyId}`);
-    const parsed = JSON.parse(jsonMatch[0]);
+    const parsed = parsePartyEnrichment(text);
+    if (!parsed) throw new AiParseErrorException(`party ${partyId}`);
 
     return prisma.parties.update({
       where: { id: partyId },
@@ -23,8 +50,8 @@ export class PartyEnrichmentStrategy implements EnrichmentStrategy {
         founded_year: party.founded_year || parsed.founded_year,
         headquarters: party.headquarters || parsed.headquarters,
         website: party.website || parsed.website,
-        wikipedia_url: parsed.wikipedia_url,
-        description: parsed.description
+        wikipedia_url: parsed.wikipedia_url ?? party.wikipedia_url,
+        description: parsed.description ?? party.description,
       }
     });
   }

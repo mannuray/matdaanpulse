@@ -2,7 +2,9 @@ import { Injectable, Inject, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 import { AnalysisContext, AnalysisStrategy } from './strategies/analysis-strategy.interface';
-import { ConstituencyNotFoundException, ElectionNotFoundException } from '../../common/exceptions';
+import { Prisma } from '@prisma/client';
+import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFoundException } from '../../common/exceptions';
+import type { UpdateAnalysisDto } from '../admin/dto/admin-input.dto';
 
 @Injectable()
 export class ConstituenciesService {
@@ -131,11 +133,23 @@ export class ConstituenciesService {
     });
   }
 
-  async updateAnalysis(id: string, data: any) {
-    return this.prisma.constituency_analysis.update({
+  async updateAnalysis(id: string, data: UpdateAnalysisDto) {
+    const existing = await this.prisma.constituency_analysis.findUnique({ where: { id } });
+    if (!existing) throw new AnalysisNotFoundException(id);
+    const { ai_demographics, incumbency, ...rest } = data;
+    const updated = await this.prisma.constituency_analysis.update({
       where: { id },
-      data: { ...data, updated_at: new Date() }
+      data: {
+        ...rest,
+        ...(incumbency !== undefined && { incumbency: incumbency as Prisma.InputJsonValue }),
+        ...(ai_demographics !== undefined && {
+          ai_demographics: ai_demographics === null ? Prisma.JsonNull : (ai_demographics as Prisma.InputJsonValue),
+        }),
+        updated_at: new Date(),
+      }
     });
+    await this.redis.del(`election:${existing.election_id}:public-analysis`);
+    return updated;
   }
 
   async bulkUpdateAiStatus(ids: string[], status: string) {
@@ -256,7 +270,7 @@ export class ConstituenciesService {
           swing: analysisData.swing,
           seat_type: analysisData.seat_type,
           dominance_wins: analysisData.dominance_wins,
-          dominance_total: allElectionIds.length,
+          dominance_total: analysisData.dominance_total,
           revision: analysisData.revision,
           seat_history: analysisData.seat_history,
           spoiler: analysisData.spoiler,

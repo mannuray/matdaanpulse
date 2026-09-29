@@ -22,7 +22,7 @@ export default function UserManager() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await handleCreate(form);
+    const res = await handleCreate({ ...form, role: form.role as User['role'] });
     if (res) {
       setShowForm(false);
       setForm({ email: '', password: '', name: '', role: 'VIEWER' });

@@ -4,6 +4,7 @@ import {
   ExecutionContext,
   CallHandler,
 } from '@nestjs/common';
+import { SSE_METADATA } from '@nestjs/common/constants';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { v4 as uuidv4 } from 'uuid';
@@ -19,6 +20,12 @@ export interface Response<T> {
 @Injectable()
 export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> {
   intercept(context: ExecutionContext, next: CallHandler): Observable<Response<T>> {
+    // SSE handlers emit MessageEvent objects that Nest serialises onto the wire
+    // itself (event: / data: lines). Wrapping them would break named events.
+    if (Reflect.getMetadata(SSE_METADATA, context.getHandler())) {
+      return next.handle();
+    }
+
     const request = context.switchToHttp().getRequest();
     const requestId = (request?.headers?.['x-request-id'] as string) || uuidv4();
     if (request?.res) request.res.setHeader('X-Request-ID', requestId);

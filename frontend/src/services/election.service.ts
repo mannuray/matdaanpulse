@@ -1,4 +1,4 @@
-import { apiFetch, API_BASE_URL } from './api-client';
+import { apiFetch } from './api-client';
 import type { 
   Election, ResultRow, Alliance, VoteShare, Manifest, 
   Constituency, AnalysisEntry, ConstituencyAnalysisDetail 
@@ -8,15 +8,12 @@ import type {
  * Election & Constituency Services (SOLID: SRP)
  */
 
-const geoCache = new Map<string, GeoJSON.FeatureCollection>();
+// Caches the in-flight promise so concurrent callers share a single fetch.
+const geoCache = new Map<string, Promise<GeoJSON.FeatureCollection>>();
 
 export const ElectionService = {
   getCacheKey(id: string, sub?: string) {
     return sub ? `election_${id}_${sub}` : `election_${id}`;
-  },
-
-  getElectionsCacheKey() {
-    return 'elections_list';
   },
 
   getConstituencyCacheKey(eid: string, cid: string) {
@@ -26,17 +23,20 @@ export const ElectionService = {
   /**
    * Optimized GeoJSON fetching with internal LRU-style cache (SOLID: Performance)
    */
-  async getGeoJSON(url: string): Promise<GeoJSON.FeatureCollection> {
-    if (geoCache.has(url)) return geoCache.get(url)!;
-    
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Failed to load map asset: ${url}`);
-    
-    const data = await response.json();
+  getGeoJSON(url: string): Promise<GeoJSON.FeatureCollection> {
+    const cached = geoCache.get(url);
+    if (cached) return cached;
+
+    const promise = fetch(url).then((response) => {
+      if (!response.ok) throw new Error(`Failed to load map asset: ${url}`);
+      return response.json() as Promise<GeoJSON.FeatureCollection>;
+    });
     // Basic cache management: clear if too large
     if (geoCache.size > 15) geoCache.clear();
-    geoCache.set(url, data);
-    return data;
+    geoCache.set(url, promise);
+    // Don't cache failures
+    promise.catch(() => { if (geoCache.get(url) === promise) geoCache.delete(url); });
+    return promise;
   }
 };
 
@@ -80,23 +80,4 @@ export function getConstituencyAnalysis(electionId: string, constId: string) {
 
 export function getAnalysis(electionId: string) {
   return apiFetch<AnalysisEntry[]>(`/elections/${electionId}/analysis`);
-}
-
-export function getDistrictResults(electionId: string, districtId: number) {
-  return apiFetch<ResultRow[]>(`/elections/${electionId}/districts/${districtId}/results`);
-}
-
-export function compareElections(id: string, toId: string) {
-  return apiFetch<{ constituency_1: { const_id: string; results: unknown[] }; constituency_2: { const_id: string; results: unknown[] } }>(
-    `/elections/${id}/compare?to=${toId}`
-  );
-}
-
-export function createSSEConnection(electionId: string): EventSource {
-  return new NewEventSource(`${API_BASE_URL}/live/updates?election_id=${electionId}`);
-}
-
-/** Internal helper */
-function NewEventSource(url: string) {
-  return new EventSource(url);
 }

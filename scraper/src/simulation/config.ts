@@ -1,26 +1,22 @@
 /**
  * Shared constants for the live election simulation system.
  */
+import { getDbConfig } from '../db/config';
 
 export const SIM_ELECTION_ID = 'e1e1e1e1-2027-4000-a000-000000000027';
 export const SOURCE_ELECTION_ID = 'c3d4e5f6-a7b8-9012-cdef-234567890abc';
 export const STATE_ID = 5; // Bihar
 
 export const MOCK_ECI_PORT = 4444;
-export const BACKEND_BASE = 'http://localhost:3082/api/v1';
+export const BACKEND_BASE = process.env.API_BASE_URL || 'http://localhost:3082/api/v1';
 
-export const TOTAL_ROUNDS = 24; // max per-seat rounds (individual seats get 16-24)
+export const TOTAL_ROUNDS = 24; // global rounds; per-seat rounds (16-24) are clamped so every seat is declared by this round
 export const DEFAULT_ROUND_DELAY_MS = 5000;
 export const CONSTITUENCY_DELAY_MIN_MS = 100;
 export const CONSTITUENCY_DELAY_MAX_MS = 500;
 
-export const DB_CONFIG = {
-  host: 'localhost',
-  port: 5432,
-  user: 'admin',
-  password: 'password123',
-  database: 'election_tracker',
-};
+/** DB connection from env (DATABASE_URL or DB_HOST/DB_PORT/DB_USER/DB_PASS/DB_NAME — see .env.example). */
+export const DB_CONFIG = getDbConfig();
 
 /** Party full-name → short ID mapping (from generate-bihar-vs-seed.ts) */
 export const PARTY_NAME_TO_ID: Record<string, string> = {

@@ -134,7 +134,8 @@ INSERT INTO constituencies (id, election_id, district_id, state_id, name, const_
   ('AS_VS11_123_DIGBOI', 'f6a7b8c9-d0e1-2345-f012-567890122011', NULL, 4, 'Digboi', 123, 'GEN', NULL, NULL, NULL),
   ('AS_VS11_124_MARGHERITA', 'f6a7b8c9-d0e1-2345-f012-567890122011', NULL, 4, 'Margherita', 124, 'GEN', NULL, NULL, NULL),
   ('AS_VS11_125_DOOM_DOOMA', 'f6a7b8c9-d0e1-2345-f012-567890122011', NULL, 4, 'Doom Dooma', 125, 'GEN', NULL, NULL, NULL),
-  ('AS_VS11_126_SADIYA', 'f6a7b8c9-d0e1-2345-f012-567890122011', NULL, 4, 'Sadiya', 126, 'GEN', NULL, NULL, NULL);
+  ('AS_VS11_126_SADIYA', 'f6a7b8c9-d0e1-2345-f012-567890122011', NULL, 4, 'Sadiya', 126, 'GEN', NULL, NULL, NULL)
+ON CONFLICT DO NOTHING;
 
 -- Candidates
 INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES
@@ -389,7 +390,8 @@ INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is
   ('2e773c54-aa30-46dd-aa6d-16129469cdfb', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122011', 'AS_VS11_125_DOOM_DOOMA', 'BJP', 'Dilip Moran', FALSE, '{}'),
   ('78ba25ce-ee99-48d6-9c60-1c0ec995df28', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122011', 'AS_VS11_125_DOOM_DOOMA', 'INC', 'Rupesh Gowala', FALSE, '{}'),
   ('68c72535-8934-4d84-a579-0cede6a84a3d', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122011', 'AS_VS11_126_SADIYA', 'INC', 'Bolin Chetia', FALSE, '{}'),
-  ('682eeae2-27b7-4814-9604-433708077e8d', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122011', 'AS_VS11_126_SADIYA', 'AGP', 'Jagadish Bhuyan', FALSE, '{}');
+  ('682eeae2-27b7-4814-9604-433708077e8d', NULL, 'f6a7b8c9-d0e1-2345-f012-567890122011', 'AS_VS11_126_SADIYA', 'AGP', 'Jagadish Bhuyan', FALSE, '{}')
+ON CONFLICT DO NOTHING;
 
 -- Results
 INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no, election_id) VALUES
@@ -644,7 +646,8 @@ INSERT INTO results (id, candidate_id, const_id, votes, status, margin, round_no
   ('071af304-4fd4-436d-9792-fa05a8b52a58', '2e773c54-aa30-46dd-aa6d-16129469cdfb', 'AS_VS11_125_DOOM_DOOMA', 31709, 'WON', 4656, 0, 'f6a7b8c9-d0e1-2345-f012-567890122011'),
   ('e232998f-f6d9-45d8-b2ff-bc5fb61e7e54', '78ba25ce-ee99-48d6-9c60-1c0ec995df28', 'AS_VS11_125_DOOM_DOOMA', 27053, 'LOST', 4656, 0, 'f6a7b8c9-d0e1-2345-f012-567890122011'),
   ('e6acaf92-66b7-455e-b674-7c1b241e8d1c', '68c72535-8934-4d84-a579-0cede6a84a3d', 'AS_VS11_126_SADIYA', 46318, 'WON', 6867, 0, 'f6a7b8c9-d0e1-2345-f012-567890122011'),
-  ('101494a8-fd47-46ec-9c4e-c3a2c7ab0d32', '682eeae2-27b7-4814-9604-433708077e8d', 'AS_VS11_126_SADIYA', 39451, 'LOST', 6867, 0, 'f6a7b8c9-d0e1-2345-f012-567890122011');
+  ('101494a8-fd47-46ec-9c4e-c3a2c7ab0d32', '682eeae2-27b7-4814-9604-433708077e8d', 'AS_VS11_126_SADIYA', 39451, 'LOST', 6867, 0, 'f6a7b8c9-d0e1-2345-f012-567890122011')
+ON CONFLICT DO NOTHING;
 
 -- Manifest
 UPDATE elections SET manifest_url = '{"alliances":[{"id":"INC","name":"Congress","color":"#19AAED","parties":["INC"]},{"id":"AGP","name":"AGP","color":"#FFA726","parties":["AGP"]},{"id":"AIUDF","name":"AIUDF","color":"#4CAF50","parties":["AIUDF"]},{"id":"BPF","name":"BPF/BOPF","color":"#2E7D32","parties":["BOPF"]}],"leaders":[{"name":"Tarun Gogoi","party_id":"INC","const_id":"AS_VS11_83_TITABAR"}],"cabinet":[],"tracked":["INC","AGP","AIUDF","BPF"],"vip_seats":{},"milestones":[{"label":"Majority","value":64}],"geo":{"map_url":"/geo/as_ac.geojson","center":[92.9,26.2],"zoom":8},"delimitation_era":"2008"}' WHERE id = 'f6a7b8c9-d0e1-2345-f012-567890122011';
