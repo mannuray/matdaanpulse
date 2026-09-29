@@ -1,3 +1,10 @@
+import '@fontsource/barlow-condensed/600.css';
+import '@fontsource/barlow-condensed/700.css';
+import '@fontsource/barlow-condensed/800.css';
+import '@fontsource-variable/inter';
+import '@fontsource/noto-sans-devanagari/400.css';
+import '@fontsource/noto-sans-tamil/400.css';
+import './theme/studio.css';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
