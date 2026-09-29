@@ -319,6 +319,14 @@
 - [x] Incumbent badge shows "Contesting" before counting, "Retained/Lost" after results
 - [x] Candidate table hides vote/share/status columns when no votes yet
 
+## In progress
+
+### Studio dashboard (redesign, branch `feat/fe-redesign`)
+- Non-scrolling dark tile wall (1440×900 / 1280×720) and map-first mobile layout with a swipeable card rail.
+- Tiles: top bar, map (layers, Map|Hex when `geo.hex_url` is set), scoreboard, party standings, layer insight strip, key leaders, stats + live ticker. Any tile expands to a focus overlay; `?layer=`, `?seat=`, `?focus=` make every view linkable.
+- MVVM: `src/model` (pure), `src/viewmodels` (hooks), `src/views` (Tailwind + Radix); boundaries enforced by `npm run lint`.
+- Spec: `docs/superpowers/specs/2026-09-29-studio-dashboard-design.md`.
+
 ## Known Limitations
 
 - **Live ECI ingestion is not implemented.** The scraper's live pipeline (`scraper/src/index.ts`, `scheduler/`, `adapters/eci-adapter.ts`, `normalizer/`) is placeholder code only. Counting-day flows are exercised end-to-end via the Live Election Simulation System (mock ECI server + replay through the admin bulk-override API); real results today come from the historical seed files.

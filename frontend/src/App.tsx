@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useMatch } from 'react-router-dom';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { ElectionProvider } from './hooks/useElection';
 import { useElection } from './hooks/useElection';
@@ -15,11 +15,14 @@ function AppLayout() {
   const { data: elections } = useApi(() => getElections(), []);
   const { data: states } = useApi(() => getStates(), []);
   const { sseConnected } = useElection();
+  const onElection = useMatch('/election/:id');
+  const onHome = useMatch('/');
+  const studio = Boolean(onElection || onHome);
 
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      <Header elections={elections || []} states={states || []} sseConnected={sseConnected} />
-      <main style={{ flex: 1, width: '100%', overflowY: 'auto', position: 'relative' }}>
+      {!studio && <Header elections={elections || []} states={states || []} sseConnected={sseConnected} />}
+      <main style={{ flex: 1, width: '100%', overflowY: studio ? 'hidden' : 'auto', position: 'relative' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/election/:id" element={<ElectionView />} />

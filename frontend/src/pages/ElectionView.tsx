@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useElection } from '../hooks/useElection';
 import { useApi } from '../hooks/useApi';
 import { getElection } from '../services/api';
-import Dashboard from './Dashboard';
-import Spinner from '../components/atoms/Spinner';
+import StudioDashboard from './StudioDashboard';
 import { useTranslation } from 'react-i18next';
 
 export default function ElectionView() {
@@ -23,7 +22,7 @@ export default function ElectionView() {
     }
   }, [data, election?.id, setElection, setElectionType, setSelectedStateId]);
 
-  if (loading) return <Spinner label={t('loading')} />;
+  if (loading) return <div className="studio-root h-screen" />;
   if (error) {
     return (
       <div className="empty-state">
@@ -32,5 +31,5 @@ export default function ElectionView() {
       </div>
     );
   }
-  return <Dashboard />;
+  return <StudioDashboard />;
 }

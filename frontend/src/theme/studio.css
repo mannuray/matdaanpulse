@@ -2,6 +2,8 @@
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
 @source "../views";
+@source "../pages/StudioDashboard.tsx";
+@source "../pages/ElectionView.tsx";
 
 @theme inline {
   --color-muted: var(--studio-muted);

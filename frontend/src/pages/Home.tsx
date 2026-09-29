@@ -1,6 +1,5 @@
-
-import Dashboard from './Dashboard';
+import StudioDashboard from './StudioDashboard';
 
 export default function Home() {
-  return <Dashboard />;
+  return <StudioDashboard />;
 }
