@@ -43,7 +43,7 @@ export interface TopBarVM {
 }
 
 export function useTopBarVM(): TopBarVM {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const navigate = useNavigate();
   const src = useSources();
   const { dispatch } = useDashboardStore();
@@ -76,7 +76,7 @@ export function useTopBarVM(): TopBarVM {
     stateId: current.state_id,
     years,
     lsElections,
-    electionLabel: [`${current.type} ·`, current.type === 'VS' ? vsStates.find(s => s.id === current.state_id)?.name : null, current.year].filter(Boolean).join(' '),
+    electionLabel: [`${t(current.type === 'VS' ? 'studio_type_vs_short' : 'studio_type_ls_short')} ·`, current.type === 'VS' ? (vsStates.find(s => s.id === current.state_id)?.name ?? current.state?.name) : null, current.year].filter(Boolean).join(' '),
     statusLabel: {
       kind: current.status === 'Live' ? 'live' : current.status === 'Finalized' ? 'final' : 'upcoming',
       declared: countDeclared(src.data.mapRegions),

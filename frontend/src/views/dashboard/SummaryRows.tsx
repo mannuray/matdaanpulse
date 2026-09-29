@@ -55,7 +55,7 @@ export function Row({ r, section, vm, full = false, plain = false }: { r: Summar
   const cellText = useCellText();
   const format = useCellFormat();
   const a = rowActions(vm, section.id)(r);
-  if (plain) a.interactive = false;
+  if (plain) { a.interactive = false; a.locked = false; }
   const label = r.labelKey ? t(r.labelKey) : r.label;
   const cls = cn('flex h-7 w-full shrink-0 items-center gap-2 rounded-[0.5rem] px-2 text-left text-xs', a.interactive && 'hover:bg-tile-raised', a.locked && 'bg-tile-raised ring-1 ring-accent');
   const body = (
@@ -87,15 +87,15 @@ export function Stats({ section, vm, className, plain = false }: { section: Summ
   const cellText = useCellText();
   const actions = rowActions(vm, section.id);
   return (
-    <div data-stats className={cn('grid shrink-0 gap-2 px-2', className ?? 'h-[52px]')} style={{ gridTemplateColumns: `repeat(${section.rows.length}, minmax(0, 1fr))` }}>
+    <div data-stats className={cn('grid shrink-0 gap-2 px-2', className ?? (plain ? 'min-h-[52px]' : 'h-[52px]'))} style={{ gridTemplateColumns: `repeat(${section.rows.length}, minmax(0, 1fr))` }}>
       {section.rows.map(r => {
         const a = actions(r);
         if (plain) { a.interactive = false; a.locked = false; }
-        const cls = cn('flex min-w-0 flex-col items-start justify-center rounded-[0.5rem] px-2 text-left', a.interactive && 'hover:bg-tile-raised', a.locked && 'bg-tile-raised ring-1 ring-accent');
+        const cls = cn('flex min-w-0 flex-col items-start justify-center rounded-[0.5rem] text-left', plain ? 'px-1' : 'px-2', a.interactive && 'hover:bg-tile-raised', a.locked && 'bg-tile-raised ring-1 ring-accent');
         const body = (
           <>
             <span className="tabular font-display text-2xl font-bold leading-none text-ink">{cellText(r, section)}</span>
-            <span className="mt-1 max-w-full truncate text-[10px] font-semibold uppercase tracking-wider text-muted">{r.labelKey ? t(r.labelKey) : r.label}</span>
+            <span data-stat-label className={cn('mt-1 max-w-full text-[10px] font-semibold uppercase text-muted', plain ? 'break-words leading-tight tracking-normal' : 'truncate tracking-wider')}>{r.labelKey ? t(r.labelKey) : r.label}</span>
           </>
         );
         return a.interactive ? (

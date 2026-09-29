@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
+const WB_2021 = 'd4e5f6a7-b8c9-0123-def0-345678901021';
 const BIHAR = 'c3d4e5f6-a7b8-9012-cdef-234567890abc';
 let LS_ID = '';
 
@@ -220,12 +221,33 @@ for (const size of MOBILE_SIZES) {
       for (let i = 0; i < names.length; i++) for (let j = i + 1; j < names.length; j++) {
         expect(overlaps(boxes[names[i]], boxes[names[j]]), `${names[i]} overlaps ${names[j]}`).toBe(false);
       }
-      expect(map.height).toBeGreaterThan(120);
+      expect(board.height, 'scoreboard tile height').toBeLessThanOrEqual(160);
+      expect(map.height, 'map tile height').toBeGreaterThanOrEqual(280);
       await assertNoScroll(page);
-      const clipped = await page.evaluate(() => [...document.querySelectorAll('[data-bloc-label]')].map(el => ({ t: el.textContent, ok: el.scrollWidth <= el.clientWidth })));
+      const clipped = await page.evaluate(() => [...document.querySelectorAll('[data-bloc-label]')].map(el => {
+        const btn = el.closest('button')!;
+        const row = btn.parentElement!;
+        const rr = row.getBoundingClientRect();
+        return { t: el.textContent, btnOk: btn.scrollWidth <= btn.clientWidth + 1, rowOk: row.scrollWidth <= row.clientWidth + 1, inRow: el.getBoundingClientRect().right <= rr.right + 0.5 };
+      }));
       expect(clipped.length).toBeGreaterThan(0);
-      expect(clipped.filter(c => !c.ok)).toEqual([]);
+      expect(clipped.filter(c => !c.btnOk || !c.rowOk || !c.inRow)).toEqual([]);
       expect(clipped.some(c => c.t === 'NDA')).toBe(true);
+      // Rail gutter: the first card lines up with the 12px gutter of the tiles above.
+      expect((await box(page.locator('[data-rail-card]').first())).x).toBeGreaterThanOrEqual(11.5);
+      // Summary preview: key-stat labels are whole, and every section header has a row under it.
+      const summary = await page.evaluate(() => {
+        const card = document.querySelector('[data-rail-card]')!;
+        return {
+          labels: [...card.querySelectorAll('[data-stat-label]')].map(el => ({ t: el.textContent, ok: el.scrollWidth <= el.clientWidth + 1 && el.scrollHeight <= el.clientHeight + 1 })),
+          orphanHeaders: [...card.querySelectorAll('h3')].filter(h => (h.parentElement?.children.length ?? 0) < 2).map(h => h.textContent),
+        };
+      });
+      expect(summary.labels.length).toBeGreaterThan(0);
+      expect(summary.labels.filter(l => !l.ok)).toEqual([]);
+      expect(summary.orphanHeaders).toEqual([]);
+      const link = page.locator('header a').first();
+      if (await link.isVisible()) expect((await box(link)).height).toBeGreaterThanOrEqual(43.5);
       for (const name of ['Choose election', 'Search', 'More']) {
         const b = await box(page.getByRole('button', { name: new RegExp(`^${name}`) }));
         expect(b.height).toBeGreaterThanOrEqual(43.5);
@@ -244,12 +266,10 @@ for (const size of MOBILE_SIZES) {
         const bar = await box(rows.nth(i).locator('[data-preview-bar]'));
         expect(overlaps(label, bar)).toBe(false);
       }
-      const cardBox = await box(card);
       const inner = await card.evaluate(el => el.scrollHeight <= el.clientHeight + 1);
       expect(inner).toBe(true);
-      expect((await box(card.locator('[data-preview-row]').last())).y + 18).toBeLessThanOrEqual(cardBox.y + cardBox.height);
       // The watchlist card opens the standings focus, yet the Party Standings card keeps its title.
-      await page.locator('[data-rail-card]').nth(2).getByRole('button', { name: /open/i }).click();
+      await page.getByRole('group', { name: /^Watchlist/ }).getByRole('button', { name: /open/i }).click();
       await expect(page.getByRole('dialog').getByRole('heading', { name: 'Watchlist' })).toBeVisible();
       await page.keyboard.press('Escape');
       await expect(page.getByRole('group', { name: 'Party Standings' })).toHaveCount(1);
@@ -269,6 +289,21 @@ for (const size of MOBILE_SIZES) {
       await expect(page).not.toHaveURL(before);
       await expect(sheet).toHaveCount(0);
       await expect(page.getByRole('button', { name: /^Choose election/ })).toContainText('2020');
+    });
+
+    test('a long election label never collides with the icons', async ({ page }) => {
+      await page.goto(`/election/${WB_2021}`);
+      const chip = page.getByRole('button', { name: /^Choose election/ });
+      await expect(chip).toContainText('West Bengal');
+      const c = await box(chip);
+      const search = await box(page.getByRole('button', { name: 'Search', exact: true }));
+      const more = await box(page.getByRole('button', { name: 'More' }));
+      expect(c.x + c.width).toBeLessThanOrEqual(search.x + 0.5);
+      expect(search.x + search.width).toBeLessThanOrEqual(more.x + 0.5);
+      const link = page.locator('header a').first();
+      if (await link.isVisible()) { const l = await box(link); expect(l.x + l.width).toBeLessThanOrEqual(c.x + 0.5); }
+      await assertNoScroll(page);
+      await page.screenshot({ path: `../.playwright-mcp/t24-${size.width}-wb.png` });
     });
 
     test('the more sheet has the share links and the language picker; search focuses its box', async ({ page }) => {

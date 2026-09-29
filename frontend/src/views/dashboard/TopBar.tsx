@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { TopBarVM } from '../../viewmodels/tiles/useTopBarVM';
@@ -15,10 +15,10 @@ function ElectionPickers({ vm, onDone }: { vm: TopBarVM; onDone(): void }) {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-3 pt-2">
-      <PillToggle value={vm.electionType} onChange={vm.onType} ariaLabel={t('studio_election_type')} size="lg" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />
+      <PillToggle value={vm.electionType} onChange={ty => { vm.onType(ty); onDone(); }} ariaLabel={t('studio_election_type')} size="lg" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />
       {vm.electionType === 'VS' ? (
         <div className="flex flex-wrap gap-2">
-          <PickerSelect size="lg" value={String(vm.stateId ?? '')} onChange={v => vm.onState(Number(v))} ariaLabel={t('select_state')} placeholder={t('select_state')} options={vm.states.map(x => ({ value: String(x.id), label: x.name }))} />
+          <PickerSelect size="lg" value={String(vm.stateId ?? '')} onChange={v => { vm.onState(Number(v)); onDone(); }} ariaLabel={t('select_state')} placeholder={t('select_state')} options={vm.states.map(x => ({ value: String(x.id), label: x.name }))} />
           <PickerSelect size="lg" value={vm.electionId} onChange={id => { vm.onElection(id); onDone(); }} ariaLabel={t('studio_year')} options={vm.years.map(y => ({ value: y.id, label: String(y.year) }))} />
         </div>
       ) : (
@@ -33,13 +33,13 @@ function CompactTopBar({ vm, search }: { vm: TopBarVM; search: SearchVM }) {
   const { t } = useTranslation();
   const [sheet, setSheet] = useState<'election' | 'search' | 'more' | null>(null);
   const onOpenChange = (name: 'election' | 'search' | 'more') => (o: boolean) => setSheet(o ? name : null);
-  const sheetSearch: SearchVM = { ...search, onPick: id => { search.onPick(id); setSheet(null); } };
+  const sheetSearch = useMemo<SearchVM>(() => ({ ...search, onPick: id => { search.onPick(id); setSheet(null); } }), [search]);
   return (
     <header className="flex h-[54px] min-w-0 items-center gap-1 rounded-tile border border-line bg-tile pl-3 pr-1">
-      <Link to="/" className="min-w-0 shrink truncate font-display text-base font-bold text-ink">{t('app_title')}</Link>
-      <button type="button" onClick={() => setSheet('election')} aria-label={`${t('studio_election_picker')}: ${vm.electionLabel}`} data-election-chip
-        className="ml-auto flex h-11 shrink-0 items-center gap-1 rounded-full border border-line bg-page/60 px-2.5 text-sm font-medium text-ink hover:border-accent focus-visible:ring-2 focus-visible:ring-accent">
-        <span className="truncate">{vm.electionLabel}</span><span aria-hidden className="text-muted">▾</span>
+      <Link to="/" className="flex h-11 min-w-0 shrink items-center font-display text-base font-bold text-ink max-[369px]:hidden"><span className="truncate">{t('app_title')}</span></Link>
+      <button type="button" onClick={() => setSheet('election')} aria-label={t('studio_election_picker_current', { label: vm.electionLabel })} data-election-chip
+        className="ml-auto flex h-11 min-w-0 max-w-[70%] shrink items-center gap-1 rounded-full border border-line bg-page/60 px-2.5 text-sm font-medium text-ink hover:border-accent focus-visible:ring-2 focus-visible:ring-accent">
+        <span className="min-w-0 truncate">{vm.electionLabel}</span><span aria-hidden className="shrink-0 text-muted">▾</span>
       </button>
       <button type="button" onClick={() => setSheet('search')} aria-label={t('studio_search_open')} className={ICON_BTN}>
         <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden><circle cx="9" cy="9" r="5.5" /><path d="M13.2 13.2L17 17" /></svg>

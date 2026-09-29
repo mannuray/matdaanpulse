@@ -49,6 +49,22 @@ describe('TopBar compact (one row)', () => {
     expect(container.querySelector('a[href^="https://wa.me"]')).toBeNull();
     expect(screen.queryByRole('group', { name: 'Election type' })).toBeNull();
   });
+  it('the chip and title keep 44px touch targets and the chip can shrink', () => {
+    const { container } = bar();
+    const link = container.querySelector('header a')!;
+    expect(link.className).toContain('h-11');
+    expect(link.className).toContain('max-[369px]:hidden');
+    const chip = screen.getByRole('button', { name: /Choose election/ });
+    expect(chip.className).toContain('h-11');
+    expect(chip.className).toContain('min-w-0');
+    expect(chip.getAttribute('aria-label')).toBe('Choose election: VS · Bihar 2025');
+  });
+  it('switching the election type closes the election sheet', () => {
+    bar();
+    fireEvent.click(screen.getByRole('button', { name: /Choose election/ }));
+    fireEvent.click(within(screen.getByRole('dialog')).getByRole('radio', { name: /Lok Sabha/i }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+  });
   it('the election chip opens a sheet with the LS/VS toggle and the state and year pickers', () => {
     bar();
     fireEvent.click(screen.getByRole('button', { name: /Choose election/ }));

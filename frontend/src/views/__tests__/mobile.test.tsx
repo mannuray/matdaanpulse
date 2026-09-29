@@ -58,6 +58,12 @@ describe('ScoreboardTile compact', () => {
     expect(screen.getByText('MGB')).toBeTruthy();
     expect(screen.queryByText('Mahagathbandhan')).toBeNull();
   });
+  it('is a compact tile: short header, no full-size seat numbers', () => {
+    const { container } = render(<ScoreboardTile vm={board} variant="compact" />);
+    expect(container.querySelector('header')!.className).toContain('min-h-9');
+    expect(container.querySelector('[data-bloc-row]')).toBeTruthy();
+    expect(container.innerHTML).not.toContain('text-5xl');
+  });
   it('the focus variant still spells the names out', () => {
     render(<ScoreboardTile vm={board} variant="focus" />);
     expect(screen.getAllByText('National Democratic Alliance').length).toBeGreaterThan(0);

@@ -56,7 +56,7 @@ export function DashboardGrid(p: DashboardViewProps) {
     return (
       <div className="studio-root flex h-dvh w-screen flex-col gap-2 overflow-hidden pt-2">
         <div className="shrink-0 px-3"><TopBar vm={p.topBar} search={p.search} compact /></div>
-        <div className="shrink-0 px-3"><div data-mobile-scoreboard className="rounded-tile border border-line bg-tile p-3"><ScoreboardTile vm={p.scoreboard} variant="compact" /></div></div>
+        <div data-mobile-scoreboard className="shrink-0 px-3"><ScoreboardTile vm={p.scoreboard} variant="compact" /></div>
         <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)] px-3"><MapTile vm={p.map} variant="tile" stackActions /></div>
         <MobileCardRail cards={[
           { id: 'insight', title: titles.insight, node: p.summary ? <SummaryPreview vm={p.summary} /> : <LayerInsightStrip vm={p.insight} variant="tile" />, onOpen: p.summary?.onFocus ?? p.insight.onFocus },

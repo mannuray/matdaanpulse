@@ -2,13 +2,13 @@ import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '../ui/cn';
 
-export function Tile({ title, onExpand, actions, stackActions, className, bodyClassName, pulse, children }: {
-  title: string; onExpand?(): void; actions?: ReactNode; /** Put the actions on their own row under the title (narrow tiles). */ stackActions?: boolean; className?: string; bodyClassName?: string; pulse?: boolean; children: ReactNode;
+export function Tile({ title, onExpand, actions, stackActions, className, bodyClassName, pulse, dense, children }: {
+  title: string; onExpand?(): void; actions?: ReactNode; /** Put the actions on their own row under the title (narrow tiles). */ stackActions?: boolean; className?: string; bodyClassName?: string; pulse?: boolean; /** Shorter header (mobile scoreboard). */ dense?: boolean; children: ReactNode;
 }) {
   const { t } = useTranslation();
   return (
     <section className={cn('flex min-h-0 min-w-0 flex-col overflow-hidden rounded-tile border border-line bg-tile', pulse && 'studio-pulse', className)}>
-      <header className={cn('flex min-h-11 shrink-0 items-center gap-x-3 px-4', stackActions && 'flex-wrap gap-y-1 pb-1 pt-1.5')}>
+      <header className={cn('flex shrink-0 items-center gap-x-3 px-4', dense ? 'min-h-9' : 'min-h-11', stackActions && 'flex-wrap gap-y-1 pb-1 pt-1.5')}>
         <h2 className={cn('truncate font-display text-base font-bold uppercase tracking-wider text-ink', stackActions && 'mr-auto')}>{title}</h2>
         <div className={cn('flex min-w-0 items-center gap-2', stackActions ? 'order-last basis-full' : 'ml-auto')}>{actions}</div>
         {onExpand && (

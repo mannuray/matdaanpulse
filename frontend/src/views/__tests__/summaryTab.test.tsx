@@ -199,11 +199,12 @@ describe('SummaryPreview (rail)', () => {
     { id: 'declared', label: 'declared', labelKey: 'seats_declared', value: 243, valueFormat: 'int' },
     { id: 'avg_margin', label: 'avg_margin', labelKey: 'avg_margin', value: 21100, valueFormat: 'compact' },
   ] };
-  it('shows the key stats and the first section title only, with no controls', () => {
+  it('shows the key stats and no orphan section header when no row fits under it, with no controls', () => {
     const { container } = render(<SummaryPreview vm={mk({}, [stats, sections[0], sections[1]])} />);
     expect(screen.getByText('243')).toBeTruthy();
     expect(screen.getByText('21.1K')).toBeTruthy();
-    expect(screen.getByText('Closest contests')).toBeTruthy();
+    expect(screen.queryByText('Closest contests')).toBeNull();
+    expect(container.querySelectorAll('h3')).toHaveLength(0);
     expect(screen.queryByText('Net swing by alliance')).toBeNull();
     expect(screen.queryByText('Sandesh')).toBeNull();
     expect(container.querySelectorAll('button')).toHaveLength(0);
@@ -213,6 +214,10 @@ describe('SummaryPreview (rail)', () => {
     expect(screen.getByText('Closest contests')).toBeTruthy();
     expect(screen.getByText('Sandesh')).toBeTruthy();
     expect(screen.queryByText('Third')).toBeNull();
+  });
+  it('never shows the locked highlight on a plain row', () => {
+    const { container } = render(<SummaryPreview vm={mk({ lockedRowId: 'a:seat:1' }, [sections[0]])} />);
+    expect(container.querySelector('.ring-accent')).toBeNull();
   });
   it('shows the empty state without sections', () => {
     render(<SummaryPreview vm={mk({}, [])} />);

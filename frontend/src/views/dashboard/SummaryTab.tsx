@@ -1,22 +1,36 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
+import type { SummarySection, SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
 import { planSummaryFit } from '../../viewmodels/tiles/fit';
 import { useElementHeight } from '../hooks/useElementHeight';
 import { Row, Stats, useClearHoverOnChange } from './SummaryRows';
 
-/** Mobile rail glance: the key stats plus the first section's title (its first rows when there are no key stats). Not interactive. */
+/** Content height of a rail card (150px card minus border, padding and the card title line). */
+const PREVIEW_H = 100;
+const PREVIEW_STATS_H = 56;
+
+/** Mobile rail glance: the key stats, then as many rows of the first other section as fit under their header. Not interactive. */
 export function SummaryPreview({ vm }: { vm: SummaryVM }) {
   const { t } = useTranslation();
   const sections = vm.summary.sections;
   const stats = sections.find(s => s.id === 'key_stats');
   const first = sections.find(s => s !== stats);
+  const plan = useMemo(
+    () => planSummaryFit([stats, first].filter((x): x is SummarySection => !!x), PREVIEW_H, { headerH: HEADER_H, rowH: ROW_H, gap: GAP, footerH: 0, statsH: PREVIEW_STATS_H }),
+    [stats, first],
+  );
   if (!stats && !first) return <p className="py-2 text-sm text-muted">{t('studio_no_layer_data')}</p>;
   return (
     <div className="flex flex-col gap-1">
-      {stats && <Stats section={stats} vm={vm} plain />}
-      {first && <h3 className="flex h-[22px] items-center px-2 text-[11px] font-semibold uppercase tracking-wider text-muted">{t(first.titleKey, first.titleParams)}</h3>}
-      {!stats && first && first.layout !== 'stats' && first.rows.slice(0, 2).map(r => <Row key={r.id} r={r} section={first} vm={vm} plain />)}
+      {plan.visible.map(v => {
+        const s = v.sectionId === stats?.id ? stats : first!;
+        return (
+          <div key={s.id} className="flex flex-col gap-1">
+            {s.titleKey && <h3 className="flex h-[22px] items-center px-2 text-[11px] font-semibold uppercase tracking-wider text-muted">{t(s.titleKey, s.titleParams)}</h3>}
+            {s.layout === 'stats' ? <Stats section={s} vm={vm} plain /> : s.rows.slice(0, v.rows).map(r => <Row key={r.id} r={r} section={s} vm={vm} plain />)}
+          </div>
+        );
+      })}
     </div>
   );
 }

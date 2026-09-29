@@ -7,6 +7,42 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
   const { t } = useTranslation();
   const total = Math.max(vm.totalSeats, 1);
   const tileSize = variant === 'tile';
+  if (variant === 'compact') {
+    return (
+      <Tile dense title={t('studio_results')} onExpand={vm.onFocus} pulse={vm.pulse} bodyClassName="pb-2"
+        actions={<span className="whitespace-nowrap text-xs text-muted">{t('others')} <span className="tabular font-display text-base font-bold">{vm.others.seats}</span></span>}>
+        <div className="flex flex-col gap-2 pt-0.5">
+          <div data-bloc-row className="flex min-w-0 items-center gap-3 overflow-hidden">
+            {vm.blocs.map((b, i) => (
+              <button key={b.id} type="button" onClick={() => vm.onLockBloc(b.id)} onMouseEnter={() => vm.onHoverBloc(b.id)} onMouseLeave={() => vm.onHoverBloc(null)}
+                aria-label={`${b.name} ${b.seats}`} title={b.name} aria-pressed={vm.lockedId === b.id}
+                className={cn('flex min-w-0 items-center gap-2 rounded-xl px-1 text-left', i > 0 && 'border-l border-line pl-3', vm.lockedId === b.id && 'ring-2 ring-accent')}>
+                <span className="tabular font-display text-[40px] font-extrabold leading-none" style={{ color: b.color }}>{b.seats}</span>
+                <span className="flex min-w-0 flex-col">
+                  <span className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.color }}>
+                    <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: b.color }} /><span data-bloc-label className="whitespace-nowrap">{b.label}</span>
+                  </span>
+                  {b.votePct != null && <span className="truncate text-xs text-muted">{t('studio_votes_pct', { pct: b.votePct })}</span>}
+                </span>
+              </button>
+            ))}
+          </div>
+          <div className="relative">
+            <div className="flex h-2.5 overflow-hidden rounded-full bg-page">
+              {vm.blocs.map(b => <div key={b.id} style={{ width: `${(b.seats / total) * 100}%`, background: b.color }} />)}
+              <div style={{ width: `${(vm.others.seats / total) * 100}%` }} className="bg-muted/60" />
+            </div>
+            <div className="absolute -top-1.5 h-5 w-0.5 bg-ink" style={{ left: `${(vm.majority / total) * 100}%` }} aria-hidden />
+            <div className="mt-1 flex justify-between text-xs leading-none text-muted">
+              <span>0</span>
+              <span className="font-semibold text-ink">{t('studio_to_win', { count: vm.majority })}</span>
+              <span>{vm.totalSeats}</span>
+            </div>
+          </div>
+        </div>
+      </Tile>
+    );
+  }
   const body = (
     <div className={cn('flex h-full flex-col justify-center', tileSize ? 'gap-1.5' : 'gap-3')}>
       <div className="flex min-w-0 items-end gap-4 overflow-hidden">
@@ -14,25 +50,13 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
           <button key={b.id} type="button" onClick={() => vm.onLockBloc(b.id)} onMouseEnter={() => vm.onHoverBloc(b.id)} onMouseLeave={() => vm.onHoverBloc(null)}
             aria-label={`${b.name} ${b.seats}`} title={b.name} aria-pressed={vm.lockedId === b.id}
             className={cn('flex min-w-0 items-end gap-3 rounded-xl px-1 text-left', i > 0 && 'border-l border-line pl-4', vm.lockedId === b.id && 'ring-2 ring-accent')}>
-            {variant === 'compact' ? (
-              <div className="flex min-w-0 flex-col items-start">
-                <div className="flex flex-wrap items-baseline gap-x-2 text-sm font-semibold" style={{ color: b.color }}>
-                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap"><span className="h-2 w-2 rounded-full" style={{ background: b.color }} /><span data-bloc-label>{b.label}</span></span>
-                  {b.votePct != null && <span className="whitespace-nowrap text-xs font-normal text-muted">{t('studio_votes_pct', { pct: b.votePct })}</span>}
-                </div>
-                <span className="tabular font-display text-5xl font-extrabold leading-none" style={{ color: b.color }}>{b.seats}</span>
+            <div className={cn('min-w-0', tileSize ? 'pb-1' : 'pb-2')}>
+              <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.color }}>
+                <span className="h-2 w-2 rounded-full" style={{ background: b.color }} /><span data-bloc-label className="truncate">{variant === 'focus' ? b.name : b.label}</span>
               </div>
-            ) : (
-              <>
-                <div className={cn('min-w-0', tileSize ? 'pb-1' : 'pb-2')}>
-                  <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.color }}>
-                    <span className="h-2 w-2 rounded-full" style={{ background: b.color }} /><span data-bloc-label className="truncate">{variant === 'focus' ? b.name : b.label}</span>
-                  </div>
-                  {b.votePct != null && <div className="text-xs text-muted">{t('studio_votes_pct', { pct: b.votePct })}</div>}
-                </div>
-                <span className={cn('tabular font-display font-extrabold leading-none', tileSize ? 'text-[60px]' : 'text-[88px]')} style={{ color: b.color }}>{b.seats}</span>
-              </>
-            )}
+              {b.votePct != null && <div className="text-xs text-muted">{t('studio_votes_pct', { pct: b.votePct })}</div>}
+            </div>
+            <span className={cn('tabular font-display font-extrabold leading-none', tileSize ? 'text-[60px]' : 'text-[88px]')} style={{ color: b.color }}>{b.seats}</span>
           </button>
         ))}
         <div className={cn('ml-auto text-right', tileSize ? 'flex items-baseline gap-2 pb-1' : 'pb-2')}>
