@@ -1,0 +1,115 @@
+// @vitest-environment jsdom
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { renderHook, act, waitFor } from '@testing-library/react';
+import { MemoryRouter, useLocation } from 'react-router-dom';
+import type { ReactNode } from 'react';
+import * as electionApi from '../../model/api/election.service';
+import * as geoApi from '../../model/api/geo.service';
+import { DashboardStoreProvider, useDashboardStore } from '../store/DashboardStoreProvider';
+import { DashboardSourcesProvider } from '../sources/DashboardSourcesProvider';
+import { ElectionProvider } from '../data/useElection';
+import { useTopBarVM } from '../tiles/useTopBarVM';
+import { useLeadersVM } from '../tiles/useLeadersVM';
+import { useSeatPanelVM } from '../tiles/useSeatPanelVM';
+import '../../i18n';
+import { makeSources } from './fixtures';
+
+const base = makeSources().election;
+const el = (id: string, type: 'LS' | 'VS', year: number, state_id: number | null) =>
+  ({ ...base, id, name: `${type} ${year} ${id}`, type, year, state_id, status: 'Finalized' }) as typeof base;
+
+// Deliberately unsorted, older VS first, so "first found" differs from "most recent".
+const ELECTIONS = [
+  el('br2020', 'VS', 2020, 4), el('wb2016', 'VS', 2016, 5), el('br2025', 'VS', 2025, 4),
+  el('wb2021', 'VS', 2021, 5), el('ls2019', 'LS', 2019, null), el('ls2024', 'LS', 2024, null),
+];
+const STATES = [{ id: 4, name: 'Bihar' }, { id: 5, name: 'West Bengal' }];
+
+function wrap(sources = makeSources()) {
+  return ({ children }: { children: ReactNode }) => (
+    <MemoryRouter initialEntries={['/election/e1']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <ElectionProvider>
+        <DashboardSourcesProvider value={sources}>
+          <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={null}>{children}</DashboardStoreProvider>
+        </DashboardSourcesProvider>
+      </ElectionProvider>
+    </MemoryRouter>
+  );
+}
+
+beforeEach(() => {
+  localStorage.clear();
+  vi.spyOn(electionApi, 'getElections').mockResolvedValue(ELECTIONS as never);
+  vi.spyOn(geoApi, 'getStates').mockResolvedValue(STATES as never);
+});
+afterEach(() => { vi.restoreAllMocks(); });
+
+async function topBar(type: 'LS' | 'VS') {
+  const sources = makeSources({ election: { ...base, type } });
+  const hook = renderHook(() => ({ vm: useTopBarVM(), loc: useLocation() }), { wrapper: wrap(sources) });
+  await waitFor(() => expect(hook.result.current.vm.lsElections.length).toBe(2));
+  return hook;
+}
+
+describe('useTopBarVM', () => {
+  it('LS -> VS restores the remembered VS election', async () => {
+    localStorage.setItem('lastElection_VS', 'wb2016');
+    const { result } = await topBar('LS');
+    act(() => result.current.vm.onType('VS'));
+    expect(result.current.loc.pathname).toBe('/election/wb2016');
+  });
+
+  it('LS -> VS with nothing remembered goes to the most recent VS election', async () => {
+    const { result } = await topBar('LS');
+    act(() => result.current.vm.onType('VS'));
+    expect(result.current.loc.pathname).toBe('/election/br2025');
+  });
+
+  it('onState goes to the latest election of that state', async () => {
+    const { result } = await topBar('VS');
+    act(() => result.current.vm.onState(5));
+    expect(result.current.loc.pathname).toBe('/election/wb2021');
+  });
+
+  it('onElection navigates and remembers per type', async () => {
+    const { result } = await topBar('VS');
+    act(() => result.current.vm.onElection('br2020'));
+    expect(result.current.loc.pathname).toBe('/election/br2020');
+    expect(localStorage.getItem('lastElection_VS')).toBe('br2020');
+    act(() => result.current.vm.onElection('ls2019'));
+    expect(result.current.loc.pathname).toBe('/election/ls2019');
+    expect(localStorage.getItem('lastElection_LS')).toBe('ls2019');
+  });
+});
+
+describe('useLeadersVM custom watchlist', () => {
+  it('adds (deduped), shows as custom card, and removes', () => {
+    const { result } = renderHook(() => useLeadersVM(), { wrapper: wrap() });
+    act(() => result.current.onAddCustom('BR_VS_3_AGIAON'));
+    act(() => result.current.onAddCustom('BR_VS_3_AGIAON'));
+    const stored = JSON.parse(localStorage.getItem('watchlist_e1')!);
+    expect(stored).toHaveLength(1);
+    expect(stored[0].const_id).toBe('BR_VS_3_AGIAON');
+    expect(result.current.cards.filter(c => c.custom && c.constId === 'BR_VS_3_AGIAON')).toHaveLength(1);
+    act(() => result.current.onRemoveCustom('BR_VS_3_AGIAON'));
+    expect(JSON.parse(localStorage.getItem('watchlist_e1')!)).toEqual([]);
+    expect(result.current.cards.some(c => c.custom)).toBe(false);
+  });
+});
+
+describe('useSeatPanelVM', () => {
+  it('is null without a selected seat and does not fetch; then returns seat data', async () => {
+    const analysis = vi.spyOn(electionApi, 'getConstituencyAnalysis').mockResolvedValue({ ai_briefing: 'Tight contest.' } as never);
+    const { result } = renderHook(() => ({ vm: useSeatPanelVM(), store: useDashboardStore() }), { wrapper: wrap() });
+    expect(result.current.vm).toBeNull();
+    expect(analysis).not.toHaveBeenCalled();
+    act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'BR_VS_1_SANDESH' }));
+    await waitFor(() => expect(result.current.vm?.briefing).toBe('Tight contest.'));
+    const vm = result.current.vm!;
+    expect(analysis).toHaveBeenCalledWith('e1', 'BR_VS_1_SANDESH');
+    expect(vm.margin).toBe(27);
+    expect(vm.candidates.map(c => c.partyId)).toEqual(['JDU', 'RJD']);
+    expect(vm.name.toLowerCase()).toContain('sandesh');
+    expect(vm.fullPageHref).toBe('/election/e1/constituency/BR_VS_1_SANDESH');
+  });
+});

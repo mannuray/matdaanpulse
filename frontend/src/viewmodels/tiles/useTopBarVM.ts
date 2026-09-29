@@ -81,7 +81,7 @@ export function useTopBarVM(): TopBarVM {
     shareText: `${current.name} - Election Tracker`,
     lang: i18n.language,
     langs: LANGS,
-    onType: t => { if (t !== current.type) go(recall(t, all) ?? all.find(e => e.type === t) ?? null, t); },
+    onType: t => { if (t !== current.type) go(recall(t, all) ?? [...all].filter(e => e.type === t).sort((a, b) => b.year - a.year)[0] ?? null, t); },
     onState: id => go(all.filter(e => e.type === 'VS' && e.state_id === id).sort((a, b) => b.year - a.year)[0] ?? null, 'VS'),
     onElection: id => { const el = all.find(e => e.id === id) ?? null; go(el, el?.type ?? current.type); },
     onLang: l => { void i18n.changeLanguage(l); },
