@@ -53,7 +53,7 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
   const info = tip ? vm.seatInfo(tip.id) : null;
   return (
     <div className="relative h-full w-full">
-      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" className="h-full w-full [&_.map-bg]:fill-[var(--color-map-bg)] [&_path.state]:stroke-line" role="img" />
+      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" className="h-full w-full [&_.map-bg]:fill-[var(--color-map-bg)] [&_path.state]:stroke-line" role="img" aria-label={t('constituency_map')} />
       <div className="absolute bottom-3 right-3 flex flex-col gap-1">
         <button type="button" onClick={handleResetZoom} className="grid h-8 w-8 place-items-center rounded-full border border-line bg-tile text-muted hover:text-ink" aria-label={t('studio_reset_zoom')}>⟳</button>
       </div>

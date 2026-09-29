@@ -210,5 +210,6 @@
   "studio_track": "☆ ट्रॅक करा",
   "studio_tracked": "★ ट्रॅक होत आहे",
   "studio_more_leaders": "+{{count}} आणखी",
-  "studio_remove_seat": "{{name}} काढा"
+  "studio_remove_seat": "{{name}} काढा",
+  "studio_chip_new": "नवीन जागा"
 }

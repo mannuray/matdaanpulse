@@ -210,5 +210,6 @@
   "studio_track": "☆ கண்காணி",
   "studio_tracked": "★ கண்காணிக்கப்படுகிறது",
   "studio_more_leaders": "+{{count}} மேலும்",
-  "studio_remove_seat": "{{name}} நீக்கு"
+  "studio_remove_seat": "{{name}} நீக்கு",
+  "studio_chip_new": "புதிய தொகுதி"
 }

@@ -47,6 +47,9 @@ export function useScoreboardVM(): ScoreboardVM {
     lockedId: state.locked?.chipId.startsWith('bloc:') ? state.locked.chipId.slice(5) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'scoreboard' }),
     onHoverBloc: id => dispatch({ type: 'hover', highlight: id ? { parties: partiesOf(id), seats: [] } : null }),
-    onLockBloc: id => dispatch({ type: 'toggleLock', chipId: `bloc:${id}`, highlight: { parties: partiesOf(id), seats: [] } }),
+    onLockBloc: id => {
+      const b = board.blocs.find(x => x.id === id);
+      dispatch({ type: 'toggleLock', chipId: `bloc:${id}`, highlight: { parties: partiesOf(id), seats: [] }, label: b ? shortLabel(b) : id });
+    },
   };
 }

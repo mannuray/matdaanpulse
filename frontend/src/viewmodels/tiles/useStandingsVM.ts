@@ -28,6 +28,6 @@ export function useStandingsVM(): StandingsVM {
     lockedId: state.locked?.chipId.startsWith('party:') ? state.locked.chipId.slice(6) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'standings' }),
     onHoverParty: id => dispatch({ type: 'hover', highlight: id ? { parties: [id], seats: [] } : null }),
-    onLockParty: id => dispatch({ type: 'toggleLock', chipId: `party:${id}`, highlight: { parties: [id], seats: [] } }),
+    onLockParty: id => dispatch({ type: 'toggleLock', chipId: `party:${id}`, highlight: { parties: [id], seats: [] }, label: id }),
   };
 }

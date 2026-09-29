@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { deriveLayerInsight, type InsightChip, type LayerInsight } from '../../model/derive/layerInsights';
@@ -22,6 +23,7 @@ export interface LayerInsightVM {
 }
 
 export function useLayerInsightVM(): LayerInsightVM {
+  const { t } = useTranslation();
   const src = useSources();
   const { state, dispatch } = useDashboardStore();
   const alliances = useMemo(() => src.data.manifestData?.alliances ?? [], [src.data.manifestData]);
@@ -63,6 +65,6 @@ export function useLayerInsightVM(): LayerInsightVM {
     partySwitches: src.partySwitches,
     onFocus: () => dispatch({ type: 'focus', tile: 'insight' }),
     onHoverChip: c => dispatch({ type: 'hover', highlight: c ? highlightOf(c) : null }),
-    onLockChip: c => dispatch({ type: 'toggleLock', chipId: `chip:${c.id}`, highlight: highlightOf(c) }),
+    onLockChip: c => dispatch({ type: 'toggleLock', chipId: `chip:${c.id}`, highlight: highlightOf(c), label: c.labelKey ? t(c.labelKey) : c.label }),
   };
 }

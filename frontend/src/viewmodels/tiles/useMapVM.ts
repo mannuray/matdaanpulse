@@ -79,13 +79,12 @@ export function useMapVM(): MapVM {
   const fills = useMemo(() => seatFills(seats, fillCtx), [seats, state.layer, src.election.type, src.data.partyColorMap, src.swing, src.dominance, src.data.spoilerData, hlKey]);
 
   const byId = useMemo(() => new Map(seats.map(s => [s.id, s])), [seats]);
-  const lockedId = state.locked?.chipId ?? null;
 
   return {
     status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills,
     recentSeats: src.recentSeats, selectedSeat: state.selectedSeat,
     layer: state.layer, layers: src.availableLayers, mapMode: state.mapMode, hexAvailable: Boolean(geo?.hex_url),
-    lockedLabel: lockedId ? lockedId.replace(/^(party|bloc|chip):/, '').replace('>', ' → ') : null,
+    lockedLabel: state.locked?.label ?? null,
     seatInfo: id => {
       const s = byId.get(id);
       if (!s) return null;

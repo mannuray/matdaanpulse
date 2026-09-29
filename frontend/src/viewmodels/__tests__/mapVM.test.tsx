@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import type { ReactNode } from 'react';
-import { DashboardStoreProvider } from '../store/DashboardStoreProvider';
+import { DashboardStoreProvider, useDashboardStore } from '../store/DashboardStoreProvider';
 import { DashboardSourcesProvider } from '../sources/DashboardSourcesProvider';
 import { useMapVM } from '../tiles/useMapVM';
 import { ElectionService } from '../../model/api/election.service';
@@ -22,7 +22,15 @@ describe('useMapVM', () => {
     await waitFor(() => expect(result.current.status).toBe('ready'));
     expect(result.current.fills.get('BR_VS_1_SANDESH')).toEqual({ color: '#1FA37A', opacity: 1 });
     expect(result.current.hexAvailable).toBe(false);
+    expect(result.current.lockedLabel).toBeNull();
     act(() => result.current.onLayer('battle'));
     expect(result.current.fills.get('BR_VS_1_SANDESH')?.opacity).toBe(0.25);
+  });
+
+  it('lockedLabel is the resolved label, not the internal chip id', async () => {
+    const { result } = renderHook(() => ({ vm: useMapVM(), store: useDashboardStore() }), { wrapper });
+    await waitFor(() => expect(result.current.vm.status).toBe('ready'));
+    act(() => result.current.store.dispatch({ type: 'toggleLock', chipId: 'chip:bucket-0', highlight: { parties: [], seats: ['A'] }, label: 'Under 5%' }));
+    expect(result.current.vm.lockedLabel).toBe('Under 5%');
   });
 });

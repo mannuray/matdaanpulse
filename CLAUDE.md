@@ -6,6 +6,9 @@ Real-time Indian election results tracker with interactive maps, alliance tallie
 
 - **Backend:** NestJS (TypeScript) + Prisma (PostgreSQL), JWT auth, Redis pub/sub → SSE for live updates, OpenTelemetry → SigNoz, Gemini for AI enrichment
 - **Frontend:** React + TypeScript, Vite, D3.js (choropleth maps), i18next, Tailwind CSS v4 (preflight off) + Radix UI. Dashboard is MVVM: `src/model` (pure, no React) → `src/viewmodels` (hooks) → `src/views` (presentational), composed in `src/pages/StudioDashboard.tsx`; `npm run lint` enforces the import direction.
+  - Tailwind only scans `src/views` plus the pages listed via `@source` in `frontend/src/theme/studio.css` — add an `@source` line when a new file outside `src/views` uses Tailwind classes.
+  - Legacy CSS is loaded through `src/theme/legacy.css` in a lower cascade layer.
+  - Frontend commands: `npm run lint` (MVVM import boundaries), `npm run e2e` (Playwright, needs the dev servers running).
 - **Admin:** React + TypeScript (Vite) panel for managing elections, candidates, results, manifests, AI enrichment, live overrides
 - **Scraper:** Node.js + ts-node — historical seed generators and the live-counting simulation (`src/simulation/`: mock ECI server + replay via admin bulk-override API). Live ECI ingestion is **not implemented** (stubs only)
 - **Database:** PostgreSQL 15 — base schema + numbered migrations + seed data (LS 2024, VS for BR/WB/AS/KL/TN/PY)

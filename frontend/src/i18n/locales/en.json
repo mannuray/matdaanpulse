@@ -210,5 +210,6 @@
   "studio_track": "☆ Track",
   "studio_tracked": "★ Tracked",
   "studio_more_leaders": "+{{count}} more",
-  "studio_remove_seat": "Remove {{name}}"
+  "studio_remove_seat": "Remove {{name}}",
+  "studio_chip_new": "New seat"
 }

@@ -8,7 +8,7 @@ export interface DashboardUiState {
   mapMode: MapMode;
   selectedSeat: string | null;
   hover: Highlight | null;
-  locked: { chipId: string; highlight: Highlight } | null;
+  locked: { chipId: string; highlight: Highlight; label: string } | null;
   focus: FocusTile | null;
 }
 
@@ -17,7 +17,7 @@ export type DashboardAction =
   | { type: 'setMapMode'; mode: MapMode }
   | { type: 'selectSeat'; seat: string | null }
   | { type: 'hover'; highlight: Highlight | null }
-  | { type: 'toggleLock'; chipId: string; highlight: Highlight }
+  | { type: 'toggleLock'; chipId: string; highlight: Highlight; label: string }
   | { type: 'clearLock' }
   | { type: 'focus'; tile: FocusTile | null }
   | { type: 'syncFromUrl'; params: Partial<DashboardUiState> };
@@ -32,7 +32,7 @@ export function dashboardReducer(s: DashboardUiState, a: DashboardAction): Dashb
     case 'setMapMode': return { ...s, mapMode: a.mode };
     case 'selectSeat': return a.seat ? { ...s, selectedSeat: a.seat, focus: 'map' } : { ...s, selectedSeat: null };
     case 'hover': return { ...s, hover: a.highlight };
-    case 'toggleLock': return { ...s, locked: s.locked?.chipId === a.chipId ? null : { chipId: a.chipId, highlight: a.highlight } };
+    case 'toggleLock': return { ...s, locked: s.locked?.chipId === a.chipId ? null : { chipId: a.chipId, highlight: a.highlight, label: a.label } };
     case 'clearLock': return { ...s, locked: null };
     case 'focus': return a.tile ? { ...s, focus: a.tile } : { ...s, focus: null, selectedSeat: null };
     case 'syncFromUrl': return { ...s, ...a.params };

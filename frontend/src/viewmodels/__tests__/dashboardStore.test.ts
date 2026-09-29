@@ -5,12 +5,12 @@ const hl = { parties: ['BJP'], seats: [] };
 
 describe('dashboardReducer', () => {
   it('changing layer clears a locked highlight', () => {
-    const locked = dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'BJP', highlight: hl });
+    const locked = dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'BJP', highlight: hl, label: 'BJP' });
     expect(dashboardReducer(locked, { type: 'setLayer', layer: 'swing' })).toMatchObject({ layer: 'swing', locked: null });
   });
   it('toggleLock on the same chip unlocks', () => {
-    const once = dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'BJP', highlight: hl });
-    expect(dashboardReducer(once, { type: 'toggleLock', chipId: 'BJP', highlight: hl }).locked).toBeNull();
+    const once = dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'BJP', highlight: hl, label: 'BJP' });
+    expect(dashboardReducer(once, { type: 'toggleLock', chipId: 'BJP', highlight: hl, label: 'BJP' }).locked).toBeNull();
   });
   it('selecting a seat opens the map focus view', () => {
     expect(dashboardReducer(initialUiState, { type: 'selectSeat', seat: 'X' })).toMatchObject({ selectedSeat: 'X', focus: 'map' });
@@ -23,7 +23,7 @@ describe('dashboardReducer', () => {
 
 describe('activeHighlight', () => {
   it('prefers the locked highlight over hover', () => {
-    let s = dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'c', highlight: { parties: [], seats: ['A'] } });
+    let s = dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'c', highlight: { parties: [], seats: ['A'] }, label: 'c' });
     s = dashboardReducer(s, { type: 'hover', highlight: hl });
     expect([...activeHighlight(s).seats]).toEqual(['A']);
   });

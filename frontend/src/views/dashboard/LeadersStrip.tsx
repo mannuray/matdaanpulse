@@ -3,14 +3,11 @@ import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM'
 import { fitCount } from '../../viewmodels/tiles/fit';
 import { useElementWidth } from '../hooks/useElementWidth';
 import { cn } from '../ui/cn';
+import { STATUS_STYLE } from './statusStyle';
 
 const CARD_W = 240;
 const MORE_W = 96;
 const GAP = 8;
-
-export const STATUS_STYLE: Record<LeaderCard['status'], string> = {
-  WON: 'bg-emerald-500/15 text-emerald-300', LEADING: 'bg-accent/15 text-accent', LOST: 'bg-live/15 text-live', TRAILING: 'bg-live/10 text-live', PENDING: 'bg-muted/15 text-muted',
-};
 
 function Card({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   const { t } = useTranslation();
@@ -41,7 +38,7 @@ export function LeadersStrip({ vm, variant }: { vm: LeadersVM; variant: 'tile' |
       </div>
     );
   }
-  const { count, overflow } = fitCount({ available: width, itemHeight: CARD_W, gap: GAP, footerHeight: MORE_W, total: vm.leaders.length });
+  const { count, overflow } = fitCount({ available: width, itemHeight: CARD_W, gap: GAP, footerHeight: MORE_W + GAP, total: vm.leaders.length });
   return (
     <section className="flex min-w-0 items-center gap-3 overflow-hidden rounded-tile border border-line bg-tile px-4">
       <h2 className="shrink-0 font-display text-base font-bold uppercase tracking-wider text-ink">{t('studio_key_leaders')}</h2>

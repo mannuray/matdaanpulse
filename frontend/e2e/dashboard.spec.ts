@@ -39,6 +39,21 @@ test('focus overlay opens from a tile, is linkable and closes with Escape', asyn
   await expect(page).not.toHaveURL(/focus=/);
 });
 
+test('Back after closing the focus view does not reopen it', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/election/${LS_ID}`);
+  await expect(page.getByText('202').first().or(page.getByText('2024').first())).toBeVisible();
+  await page.goto(`/election/${BIHAR}`);
+  await page.getByRole('button', { name: /expand party standings/i }).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.goBack();
+  await expect(page).toHaveURL(new RegExp(`/election/${LS_ID}`));
+  await expect(page).not.toHaveURL(/focus=/);
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
 test('bad URL params fall back to defaults', async ({ page }) => {
   await page.goto(`/election/${BIHAR}?layer=bogus&focus=nope&seat=NOT_A_SEAT`);
   await expect(page.getByText('202').first()).toBeVisible();

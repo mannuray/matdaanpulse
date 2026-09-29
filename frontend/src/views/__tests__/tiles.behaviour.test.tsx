@@ -66,6 +66,17 @@ describe('tile behaviour', () => {
     expect(onSelectSeat).toHaveBeenCalledWith('C7');
   });
 
+  it('leaders strip reserves the "+N more" chip and the gap before it', () => {
+    // 3 cards + 3 gaps (incl. the one before the chip) + 96px chip = 3*248 + 96; 92px wide is 4px short.
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, get: () => 3 * 248 + 92 });
+    const leaders = Array.from({ length: 6 }, (_, i) => ({ key: `k${i}`, name: `Leader ${i}`, constId: `C${i}`, constName: 'Seat', partyId: 'BJP', status: 'LEADING' as const, margin: 10, custom: false }));
+    const vm: LeadersVM = { leaders, watchlist: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop };
+    render(<LeadersStrip vm={vm} variant="tile" />);
+    expect(screen.getAllByRole('button', { name: /Leader \d/ })).toHaveLength(2);
+    expect(screen.getByText('+4 more')).toBeTruthy();
+    delete (HTMLElement.prototype as unknown as Record<string, unknown>).clientWidth;
+  });
+
   describe('insight footer variant', () => {
     const chips = [{ id: 'BJP', label: 'BJP', color: '#f70', count: 5, seatIds: ['1'] }];
     const mk = (layer: LayerInsightVM['layer'], key: string, params: Record<string, string | number>, onLockChip = noop): LayerInsightVM => ({

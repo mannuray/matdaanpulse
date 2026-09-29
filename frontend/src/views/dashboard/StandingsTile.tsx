@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { StandingsVM, StandingRow } from '../../viewmodels/tiles/useStandingsVM';
 import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
 import { Tile } from './Tile';
-import { STATUS_STYLE } from './LeadersStrip';
+import { STATUS_STYLE } from './statusStyle';
 import { useFitRows } from '../hooks/useFitRows';
 import { PillToggle } from '../ui/PillToggle';
 import { PickerSelect } from '../ui/PickerSelect';

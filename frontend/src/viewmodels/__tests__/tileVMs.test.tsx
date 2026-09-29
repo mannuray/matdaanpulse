@@ -10,6 +10,7 @@ import { useStandingsVM } from '../tiles/useStandingsVM';
 import { useStatsVM } from '../tiles/useStatsVM';
 import { useLayerInsightVM } from '../tiles/useLayerInsightVM';
 import { makeSources } from './fixtures';
+import '../../i18n';
 
 function wrap(sources = makeSources()) {
   return ({ children }: { children: ReactNode }) => (
@@ -40,12 +41,26 @@ describe('tile view-models', () => {
     expect(result.current.blocs.map(b => [b.id, b.label, b.name])).toEqual([['NDA', 'NDA', 'National Democratic Alliance'], ['MGB', 'Left Front', 'Left Front']]);
   });
 
+  it('scoreboard: locking a bloc stores its short label', () => {
+    const { result } = renderHook(() => ({ vm: useScoreboardVM(), store: useDashboardStore() }), { wrapper: wrap() });
+    act(() => result.current.vm.onLockBloc('NDA'));
+    expect(result.current.store.state.locked).toMatchObject({ chipId: 'bloc:NDA', label: 'NDA' });
+  });
+
+  it('insight: locking a chip stores its resolved label', () => {
+    const { result } = renderHook(() => ({ vm: useLayerInsightVM(), store: useDashboardStore() }), { wrapper: wrap() });
+    act(() => result.current.vm.onLockChip({ id: 'x', label: 'Plain label', color: '#fff', count: 1, seatIds: ['S'] }));
+    expect(result.current.store.state.locked).toMatchObject({ chipId: 'chip:x', label: 'Plain label' });
+    act(() => result.current.vm.onLockChip({ id: 'y', label: 'raw', labelKey: 'studio_chip_new', color: '#fff', count: 1, seatIds: ['S'] }));
+    expect(result.current.store.state.locked?.label).toBe('New seat');
+  });
+
   it('standings: locking a party highlights it', () => {
     const { result } = renderHook(() => ({ vm: useStandingsVM(), store: useDashboardStore() }), { wrapper: wrap() });
     expect(result.current.vm.rows.map(r => r.id)).toEqual(['JDU', 'BJP']);
     expect(result.current.vm.allRows).toHaveLength(3);
     act(() => result.current.vm.onLockParty('BJP'));
-    expect(result.current.store.state.locked).toEqual({ chipId: 'party:BJP', highlight: { parties: ['BJP'], seats: [] } });
+    expect(result.current.store.state.locked).toEqual({ chipId: 'party:BJP', highlight: { parties: ['BJP'], seats: [] }, label: 'BJP' });
     expect(result.current.vm.lockedId).toBe('BJP');
   });
 

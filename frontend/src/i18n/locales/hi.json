@@ -210,5 +210,6 @@
   "studio_track": "☆ ट्रैक करें",
   "studio_tracked": "★ ट्रैक हो रहा",
   "studio_more_leaders": "+{{count}} और",
-  "studio_remove_seat": "{{name}} हटाएं"
+  "studio_remove_seat": "{{name}} हटाएं",
+  "studio_chip_new": "नई सीट"
 }
