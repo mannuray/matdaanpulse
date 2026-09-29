@@ -4,6 +4,7 @@
 @source "../views";
 @source "../pages/StudioDashboard.tsx";
 @source "../pages/ElectionView.tsx";
+@source "../pages/Home.tsx";
 
 @theme inline {
   --color-muted: var(--studio-muted);

@@ -201,5 +201,6 @@
   "studio_status_label_final": "இறுதி முடிவு · {{declared}}/{{total}}",
   "studio_status_label_live": "நேரலை · {{declared}}/{{total}}",
   "studio_status_label_upcoming": "வரவிருக்கும்",
-  "studio_open": "{{name}} திற"
+  "studio_open": "{{name}} திற",
+  "studio_no_elections": "இன்னும் தேர்தல்கள் இல்லை"
 }

@@ -54,6 +54,6 @@ function Loaded({ election }: { election: Election }) {
 export default function StudioDashboard() {
   const { election } = useElection();
   const { t } = useTranslation();
-  if (!election) return <div className="studio-root grid h-screen place-items-center text-muted">{t('select_election_prompt')}</div>;
+  if (!election) return <div className="studio-root grid h-screen place-items-center text-muted">{t('studio_no_elections')}</div>;
   return <Loaded key={election.id} election={election} />;
 }
