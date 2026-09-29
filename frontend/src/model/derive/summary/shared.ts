@@ -1,6 +1,7 @@
 import type { ManifestAlliance } from '../../types';
 import type { SeatResult } from '../../types/dashboard';
 import { MARGIN_BUCKETS } from '../layerInsights';
+import type { SeatRef } from '../stats';
 import type { SummaryContext, SummaryRow } from './types';
 
 /** Legacy fallback dot colour (summary/*Section.tsx used '#6b7280'). */
@@ -62,9 +63,7 @@ export const int = (value: number | null) => ({ value, format: 'int' as const })
 export const pct = (value: number | null) => ({ value, format: 'pct' as const });
 export const signed = (value: number | null) => ({ value, format: 'signed' as const });
 
-export function marginRow(id: string, seat: SeatResult, color: string, sub?: string): SummaryRow {
-  return {
-    id, label: seatLabel(seat.name), sub, value: seat.margin ?? null, valueFormat: 'int',
-    color, seatIds: [seat.id], partyIds: seat.party ? [seat.party] : [],
-  };
+
+export function refRow(ref: SeatRef, color: string, sub: string | undefined = ref.party): SummaryRow {
+  return { id: `seat:${ref.id}`, label: seatLabel(ref.name), sub, value: ref.margin, valueFormat: 'int', color, seatIds: [ref.id], partyIds: ref.party ? [ref.party] : [] };
 }

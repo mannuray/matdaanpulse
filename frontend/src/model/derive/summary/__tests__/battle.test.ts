@@ -31,6 +31,11 @@ describe('battle summary', () => {
     expect(run()[2].rows.map(r => [r.label, r.value, r.sub])).toEqual([['E', 400, 'MGB'], ['A', 800, 'NDA'], ['C', 3000, 'MGB'], ['B', 12000, 'NDA'], ['D', 60000, 'NDA']]);
   });
 
+  it('closest uses the rankSeats pool: a tiny-margin LEADING seat is skipped once any seat is WON', () => {
+    const seats = [seat('A', 'BJP', 800), seat('B', 'RJD', 3000), seat('L', 'BJP', 5, 'GEN', undefined, 'LEADING')];
+    expect(run({ seats })[2].rows.map(r => r.label)).toEqual(['A', 'B']);
+  });
+
   it('uses the top two parties when there are no alliances', () => {
     const s = run({ alliances: [] })[0];
     expect(s.rows.map(r => [r.id, r.value])).toEqual([['bloc:BJP', 2], ['bloc:RJD', 2]]);

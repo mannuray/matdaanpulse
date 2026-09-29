@@ -6,10 +6,11 @@ type Cat = typeof CATS[number];
 
 /** DemographicsSection.tsx:13-22,34-76 — seat categories overall and per alliance (party when there are no alliances). */
 export function demographicsSummary(ctx: SummaryContext): SummarySection[] {
-  if (ctx.seats.length === 0) return [];
-  // Legacy counted every seat (declared or not); anything that is not SC/ST is general.
+  // Seats without a leader are excluded; anything that is not SC/ST is general.
+  const declared = ctx.seats.filter(s => s.party);
+  if (declared.length === 0) return [];
   const totals: Record<Cat, string[]> = { GEN: [], SC: [], ST: [] };
-  ctx.seats.forEach(s => totals[s.type === 'SC' || s.type === 'ST' ? s.type : 'GEN'].push(s.id));
+  declared.forEach(s => totals[s.type === 'SC' || s.type === 'ST' ? s.type : 'GEN'].push(s.id));
   const maxTotal = Math.max(...CATS.map(c => totals[c].length), 1);
   const out: SummarySection[] = [{
     id: 'category_breakdown', titleKey: 'studio_sum_category_breakdown',

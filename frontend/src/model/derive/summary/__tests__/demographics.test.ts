@@ -10,10 +10,10 @@ describe('demographics summary', () => {
     expect(run().map(s => s.id)).toEqual(['category_breakdown', 'win_rate_by_category', 'margin_by_category']);
   });
 
-  it('category_breakdown counts every seat: GEN 4 (A, D, F, G), SC 3 (B, E, H), ST 1 (C)', () => {
-    // DemographicsSection.tsx:16-20 — everything that is not SC/ST is GEN, pending seats included.
-    expect(rows('category_breakdown')).toEqual([['GEN', 4, undefined], ['SC', 3, undefined], ['ST', 1, undefined]]);
-    expect(run()[0].rows[1]).toMatchObject({ labelKey: 'studio_col_sc', bar: { value: 3, max: 4 } });
+  it('category_breakdown counts seats with a leader: GEN 3 (A, D, G), SC 2 (B, E), ST 1 (C); pending F and H excluded', () => {
+    // DemographicsSection.tsx:16-20 — everything that is not SC/ST is GEN; pending seats (no leader) are excluded.
+    expect(rows('category_breakdown')).toEqual([['GEN', 3, undefined], ['SC', 2, undefined], ['ST', 1, undefined]]);
+    expect(run()[0].rows[1]).toMatchObject({ labelKey: 'studio_col_sc', bar: { value: 2, max: 3 } });
   });
 
   it('win_rate_by_category: seats won per category per alliance', () => {
@@ -31,8 +31,8 @@ describe('demographics summary', () => {
     expect(rows('win_rate_by_category', { alliances: [] }).map(r => [r[0], r[1]])).toEqual([['Bharatiya Janata Party', 2], ['Rashtriya Janata Dal', 2], ['Janata Dal (United)', 1], ['AIMIM', 1]]);
   });
 
-  it('without leaders only the category breakdown is left; without seats nothing', () => {
-    expect(run({ seats: [{ id: 'X', name: 'X', party: '', status: 'PENDING', type: 'SC' as const }] }).map(s => s.id)).toEqual(['category_breakdown']);
+  it('seats without a leader are excluded, so a pending-only election has no sections', () => {
+    expect(run({ seats: [{ id: 'X', name: 'X', party: '', status: 'PENDING', type: 'SC' as const }] })).toEqual([]);
     expect(run({ seats: [] })).toEqual([]);
   });
 });

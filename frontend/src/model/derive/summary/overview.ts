@@ -1,17 +1,18 @@
 import { roundPct } from '../scoreboard';
+import { rankSeats } from '../stats';
 import type { SeatResult } from '../../types/dashboard';
-import { FALLBACK_COLOR, allianceByParty, bucketIndex, buckets, colorOf, int, ledSeats, marginRow, partyName, pct, signed } from './shared';
+import { allianceByParty, bucketIndex, buckets, colorOf, int, ledSeats, refRow, partyName, pct, signed } from './shared';
 import type { SummaryContext, SummaryRow, SummarySection } from './types';
 
 const LIST_LIMIT = 10;
 
-/** OverviewSection.tsx:53-67 — reserved (SC/ST) seats per leading party ('IND' when none, as legacy). */
+/** OverviewSection.tsx:53-67 — reserved (SC/ST) seats per leading party; seats without a leader are excluded. */
 function reserved(ctx: SummaryContext): SummarySection | null {
   const map = new Map<string, { color: string; sc: number; st: number }>();
   for (const s of ctx.seats) {
-    if (s.type !== 'SC' && s.type !== 'ST') continue;
-    const pid = s.party || 'IND';
-    const e = map.get(pid) ?? { color: s.party ? colorOf(ctx, s.party) : FALLBACK_COLOR, sc: 0, st: 0 };
+    if (!s.party || (s.type !== 'SC' && s.type !== 'ST')) continue;
+    const pid = s.party;
+    const e = map.get(pid) ?? { color: colorOf(ctx, pid), sc: 0, st: 0 };
     if (s.type === 'SC') e.sc++; else e.st++;
     map.set(pid, e);
   }
@@ -19,7 +20,7 @@ function reserved(ctx: SummaryContext): SummarySection | null {
   const rows: SummaryRow[] = [...map.entries()]
     .sort((a, b) => (b[1].sc + b[1].st) - (a[1].sc + a[1].st))
     .map(([pid, e]) => ({
-      id: `party:${pid}`, label: pid === 'IND' ? pid : partyName(ctx, pid), value: e.sc + e.st, valueFormat: 'int' as const,
+      id: `party:${pid}`, label: partyName(ctx, pid), value: e.sc + e.st, valueFormat: 'int' as const,
       extra: [int(e.sc), int(e.st)], color: e.color, partyIds: [pid],
     }));
   return { id: 'reserved', titleKey: 'studio_sum_reserved', columnsKeys: ['studio_col_total', 'studio_col_sc', 'studio_col_st'], rows };
@@ -113,12 +114,13 @@ export function overviewSummary(ctx: SummaryContext): SummarySection[] {
   const out: (SummarySection | null)[] = [];
   out.push(voteVsSeats(ctx, led));
 
-  const byMargin = [...led].sort((a, b) => a.margin! - b.margin!);
-  const list = (id: string, key: string, seats: SeatResult[]): SummarySection | null => seats.length === 0 ? null
-    : { id, titleKey: key, rows: seats.map(s => marginRow(`seat:${s.id}`, s, colorOf(ctx, s.party), s.party)) };
-  // OverviewSection.tsx:43-51 — closest 10 / biggest (legacy 5, the brief asks for 10).
-  out.push(list('closest', 'studio_sum_closest', byMargin.slice(0, LIST_LIMIT)));
-  out.push(list('biggest', 'studio_sum_biggest', [...byMargin].reverse().slice(0, LIST_LIMIT)));
+  // Same pool as the stat tiles: WON seats, or LEADING seats only while nothing is WON.
+  const list = (id: string, key: string, order: 'closest' | 'biggest'): SummarySection | null => {
+    const refs = rankSeats(led, order, LIST_LIMIT);
+    return refs.length === 0 ? null : { id, titleKey: key, rows: refs.map(r => refRow(r, colorOf(ctx, r.party))) };
+  };
+  out.push(list('closest', 'studio_sum_closest', 'closest'));
+  out.push(list('biggest', 'studio_sum_biggest', 'biggest'));
 
   if (led.length > 0) {
     // OverviewSection.tsx:28-41 — margin histogram.

@@ -1,6 +1,7 @@
 import { deriveScoreboard } from '../scoreboard';
+import { rankSeats } from '../stats';
 import { CLOSE_THRESHOLD } from '../layerInsights';
-import { avg, bucketIndex, buckets, int, ledSeats, marginRow } from './shared';
+import { avg, bucketIndex, buckets, int, ledSeats, refRow } from './shared';
 import type { SummaryContext, SummarySection } from './types';
 
 const CLOSEST_LIMIT = 5;
@@ -52,11 +53,10 @@ export function battleSummary(ctx: SummaryContext): SummarySection[] {
     },
   };
 
-  // BattleSection.tsx:96-117 — closest contests among the blocs' seats (legacy top 5).
+  // BattleSection.tsx:96-117 — closest contests among the blocs' seats (top 5, same WON-first pool as the stat tiles).
   const closest: SummarySection = {
     id: 'closest', titleKey: 'studio_sum_closest',
-    rows: [...seats].sort((a, c) => a.margin! - c.margin!).slice(0, CLOSEST_LIMIT)
-      .map(s => marginRow(`seat:${s.id}`, s, blocOf(s.party)!.color, blocOf(s.party)!.name)),
+    rows: rankSeats(seats, 'closest', CLOSEST_LIMIT).map(r => refRow(r, blocOf(r.party)!.color, blocOf(r.party)!.name)),
   };
   return [summary, dist, closest];
 }

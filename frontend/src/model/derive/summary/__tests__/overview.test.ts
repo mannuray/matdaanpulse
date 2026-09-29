@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { deriveLayerSummary } from '../index';
-import { cand, makeCtx } from './fixtures';
+import { cand, makeCtx, seat } from './fixtures';
 
 const sec = (ctx = makeCtx()) => deriveLayerSummary('overview', ctx).sections;
 const byId = (id: string, ctx = makeCtx()) => sec(ctx).find(s => s.id === id)!;
@@ -75,13 +75,26 @@ describe('overview summary', () => {
     expect(sec().map(s => s.id)).not.toContain('wasted');
   });
 
-  it('reserved: SC/ST seats per leading party; pending reserved seats count under IND as the legacy did', () => {
-    // OverviewSection.tsx:55-66. B(SC,BJP) C(ST,RJD) E(SC,RJD) H(SC,pending -> 'IND'); sorted by total, stable.
+  it('reserved: SC/ST seats per leading party; pending reserved seats are excluded', () => {
+    // OverviewSection.tsx:55-66. B(SC,BJP) C(ST,RJD) E(SC,RJD); H (SC, pending, no leader) is not bucketed as 'IND'.
     const rows = byId('reserved').rows;
     expect(rows.map(r => [r.id, r.value, r.extra!.map(e => e.value)])).toEqual([
-      ['party:RJD', 2, [1, 1]], ['party:BJP', 1, [1, 0]], ['party:IND', 1, [1, 0]],
+      ['party:RJD', 2, [1, 1]], ['party:BJP', 1, [1, 0]],
     ]);
     expect(byId('reserved').columnsKeys).toEqual(['studio_col_total', 'studio_col_sc', 'studio_col_st']);
+  });
+
+  it('closest / biggest follow rankSeats: WON seats only once any seat is WON', () => {
+    const seats = [
+      seat('W1', 'BJP', 5000), seat('W2', 'RJD', 9000), seat('W3', 'JDU', 1200),
+      seat('L1', 'BJP', 10, 'GEN', undefined, 'LEADING'), seat('L2', 'RJD', 999999, 'GEN', undefined, 'LEADING'),
+    ];
+    const ctx = makeCtx({ seats });
+    expect(byId('closest', ctx).rows.map(r => r.label)).toEqual(['W3', 'W1', 'W2']);
+    expect(byId('biggest', ctx).rows.map(r => r.label)).toEqual(['W2', 'W1', 'W3']);
+    // Nothing WON yet: the LEADING seats are the pool.
+    const live = makeCtx({ seats: seats.filter(s => s.status === 'LEADING') });
+    expect(byId('closest', live).rows.map(r => r.label)).toEqual(['L1', 'L2']);
   });
 
   it('a layer without leaders keeps only what has data', () => {
