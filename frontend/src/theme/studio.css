@@ -10,7 +10,8 @@
   --color-muted: var(--studio-muted);
 }
 
-@theme {
+/* static: emit every token, since charts / map fills reference them as var() without a utility class. */
+@theme static {
   --color-page: #0A0F1E;
   --color-tile: #111933;
   --color-tile-raised: #16203F;

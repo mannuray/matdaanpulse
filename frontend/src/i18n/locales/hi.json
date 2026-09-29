@@ -145,6 +145,7 @@
   "studio_no_results_yet": "अभी कोई परिणाम नहीं",
   "studio_more_parties": "+{{count}} और दल · {{seats}} सीटें",
   "studio_no_layer_data": "इस परत के लिए डेटा नहीं",
+  "studio_chart_category": "श्रेणी",
   "studio_insight_overview": "{{text}}",
   "studio_insight_overview_others": "{{text}} · अन्य {{others}}",
   "studio_insight_battle": "मध्य अंतर {{median}} · {{close}} सीटें {{threshold}} से कम अंतर से",

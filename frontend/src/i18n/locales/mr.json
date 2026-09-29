@@ -145,6 +145,7 @@
   "studio_no_results_yet": "अद्याप निकाल नाहीत",
   "studio_more_parties": "+{{count}} आणखी पक्ष · {{seats}} जागा",
   "studio_no_layer_data": "या स्तरासाठी माहिती नाही",
+  "studio_chart_category": "श्रेणी",
   "studio_insight_overview": "{{text}}",
   "studio_insight_overview_others": "{{text}} · इतर {{others}}",
   "studio_insight_battle": "मध्य फरक {{median}} · {{close}} जागा {{threshold}} पेक्षा कमी फरकाने",

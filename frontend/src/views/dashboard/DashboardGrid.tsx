@@ -16,6 +16,7 @@ import { TopBar } from './TopBar';
 import { ScoreboardTile } from './ScoreboardTile';
 import { StandingsTile, WatchlistPreview, type StandingsTab } from './StandingsTile';
 import { LayerInsightStrip } from './LayerInsightStrip';
+import { SummaryFocus } from './SummaryFocus';
 import { LeadersStrip } from './LeadersStrip';
 import { StatsStrip } from './StatsStrip';
 import { FocusOverlay } from './FocusOverlay';
@@ -35,7 +36,7 @@ export function DashboardGrid(p: DashboardViewProps) {
   const desktop = useMediaQuery('(min-width: 1024px)');
   const titles: Record<FocusTile, string> = {
     map: t('constituency_map'), scoreboard: t('studio_results'), standings: t('party_standings'),
-    insight: t(`map_tab_${p.insight.layer}`), leaders: t('studio_key_leaders'), stats: t('studio_stats'),
+    insight: t('studio_title_summary'), leaders: t('studio_key_leaders'), stats: t('studio_stats'),
   };
   const overlay = (
     <FocusOverlay tile={p.focus} titles={titles} onClose={p.onCloseFocus} render={tile => {
@@ -43,7 +44,7 @@ export function DashboardGrid(p: DashboardViewProps) {
         case 'map': return <MapTile vm={p.map} variant="focus" seatPanel={<SeatPanel vm={p.seatPanel} />} />;
         case 'scoreboard': return <ScoreboardTile vm={p.scoreboard} variant="focus" />;
         case 'standings': return <StandingsTile vm={p.standings} variant="focus" watchlist={p.leaders} initialTab={standingsTab} />;
-        case 'insight': return <LayerInsightStrip vm={p.insight} variant="focus" />;
+        case 'insight': return p.summary ? <SummaryFocus vm={p.summary} /> : null;
         case 'leaders': return <LeadersStrip vm={p.leaders} variant="focus" />;
         case 'stats': return <StatsStrip vm={p.stats} variant="focus" />;
       }

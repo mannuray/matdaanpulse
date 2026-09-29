@@ -36,8 +36,8 @@ function place(sections: SummarySection[], available: number, o: SummaryFitOpts)
 }
 
 /**
- * Which summary sections / how many rows fit in `available` px. Sections are placed in order; chart-only sections are
- * skipped (compact mode) and counted hidden; a section needs its header plus one row. When anything is hidden, space for the
+ * Which summary sections / how many rows fit in `available` px. Sections are placed in order; sections with a chart are
+ * ordinary row sections (R36: they carry plain rows too), a section without rows is counted hidden; a section needs its header plus one row. When anything is hidden, space for the
  * "+N more" footer is reserved and the plan is recomputed.
  */
 export function planSummaryFit(sections: SummarySection[], available: number, opts: SummaryFitOpts): SummaryFitPlan {

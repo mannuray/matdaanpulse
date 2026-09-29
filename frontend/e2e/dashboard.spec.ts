@@ -132,3 +132,24 @@ test('side card shows the Summary tab by default and follows the map layer', asy
   await page.getByRole('radio', { name: 'Parties' }).click();
   await expect(page.getByRole('heading', { name: 'Party Standings', level: 2 })).toBeVisible();
 });
+
+test('summary focus opens from the Summary tab footer with charts, switches layers and closes with Escape', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/election/${BIHAR}?layer=history`);
+  await expect(page.getByRole('radio', { name: 'Summary · History' })).toBeChecked();
+  await page.getByRole('button', { name: /more (rows|sections?|row)/ }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.getByRole('heading', { name: 'Summary · History', level: 2 })).toBeVisible();
+  await expect(dialog.getByRole('img', { name: 'Margin trend' })).toBeVisible();
+  await expect(dialog.getByRole('heading', { name: 'Party seats over elections' })).toBeVisible();
+  await page.screenshot({ path: 'e2e/__shots__/summary-focus-history.png' });
+  // The pills inside the focus switch the layer and the content follows.
+  await dialog.getByRole('radio', { name: 'Battle' }).click();
+  await expect(dialog.getByRole('heading', { name: 'Summary · Battle', level: 2 })).toBeVisible();
+  await expect(dialog.getByRole('img', { name: 'Margin distribution' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  // The chosen layer stays after closing.
+  await expect(page.getByRole('radio', { name: 'Summary · Battle' })).toBeChecked();
+  await assertNoScroll(page);
+});

@@ -145,6 +145,7 @@
   "studio_no_results_yet": "No results yet",
   "studio_more_parties": "+{{count}} more parties · {{seats}} seats",
   "studio_no_layer_data": "No data for this layer",
+  "studio_chart_category": "Category",
   "studio_insight_overview": "{{text}}",
   "studio_insight_overview_others": "{{text}} · Others {{others}}",
   "studio_insight_battle": "Median margin {{median}} · {{close}} seats won by < {{threshold}}",

@@ -26,8 +26,8 @@ const sections: SummarySection[] = [
   { id: 'c', titleKey: 'studio_sum_margin_trend', rows: [], chart: { type: 'line', series: [] } },
 ];
 const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
-  layer: 'swing', summary: { layer: 'swing', sections: secs }, lockedRowId: null,
-  onFocus: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, ...over,
+  layer: 'swing', layers: ['overview', 'swing'], summary: { layer: 'swing', sections: secs }, lockedRowId: null,
+  onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, ...over,
 });
 
 describe('SummaryTab', () => {
@@ -66,7 +66,7 @@ describe('SummaryTab', () => {
     expect(onLockRow).toHaveBeenCalledWith(sections[0].rows[1]);
   });
 
-  it('shows everything without a footer when it fits (chart-only sections excluded)', () => {
+  it('shows everything without a footer when it fits ', () => {
     height(600);
     render(<SummaryTab vm={mk({}, sections.slice(0, 2))} />);
     expect(screen.getByText('Net swing by alliance')).toBeTruthy();
@@ -108,14 +108,14 @@ describe('SummaryTab', () => {
     expect(screen.getByRole('button', { name: /NDA/ }).textContent).toContain('+35.0');
   });
 
-  it('when every section is chart-only, the titles link to the focus instead of an empty tab', () => {
-    height(300);
-    const onFocus = vi.fn();
-    const charts: SummarySection[] = [sections[2], { id: 'd', titleKey: 'studio_sum_party_trend', rows: [], chart: { type: 'line', series: [] } }];
-    render(<SummaryTab vm={mk({ onFocus }, charts)} />);
-    fireEvent.click(screen.getByRole('button', { name: 'Margin trend' }));
-    expect(onFocus).toHaveBeenCalled();
-    expect(screen.getByRole('button', { name: 'Party seats over elections' })).toBeTruthy();
+  it('a section with a chart shows its plain rows in the compact tab (R36)', () => {
+    height(400);
+    const withChart: SummarySection = { id: 'md', titleKey: 'studio_sum_margin_dist', columnsKeys: ['studio_col_total', 'NDA'], rows: [
+      { id: 'bucket:0', label: '< 1K', value: 2, valueFormat: 'int', extra: [{ value: 1, format: 'int' }] },
+    ], chart: { type: 'groupedBar', series: [] } };
+    render(<SummaryTab vm={mk({}, [withChart])} />);
+    expect(screen.getByText('Margin distribution')).toBeTruthy();
+    expect(screen.getByRole('button', { name: /< 1K/ }).textContent).toContain('2');
   });
 
   it('clears the hover highlight when it unmounts', () => {
@@ -125,6 +125,20 @@ describe('SummaryTab', () => {
     onHoverRow.mockClear();
     unmount();
     expect(onHoverRow).toHaveBeenCalledWith(null);
+  });
+
+  it('clears the hover highlight when its sections change, not only on unmount', () => {
+    height(300);
+    const onHoverRow = vi.fn();
+    const vm = mk({ onHoverRow });
+    const { rerender } = render(<SummaryTab vm={vm} />);
+    onHoverRow.mockClear();
+    const next = { ...vm, layer: 'battle' as const, summary: { layer: 'battle' as const, sections: [sections[1]] } };
+    rerender(<SummaryTab vm={next} />);
+    expect(onHoverRow).toHaveBeenCalledWith(null);
+    onHoverRow.mockClear();
+    rerender(<SummaryTab vm={{ ...next }} />);
+    expect(onHoverRow).not.toHaveBeenCalled();
   });
 });
 

@@ -46,7 +46,17 @@ export function battleSummary(ctx: SummaryContext): SummarySection[] {
     return c;
   });
   const dist: SummarySection = {
-    id: 'margin_dist', titleKey: 'studio_sum_margin_dist', rows: [],
+    id: 'margin_dist', titleKey: 'studio_sum_margin_dist',
+    // R36: the chart's data as plain rows too (bucket, total, then one column per bloc) so the compact tab can show it.
+    columnsKeys: ['studio_col_total', ...blocs.map(bloc => bloc.name)],
+    rows: b.map((x, bi) => {
+      const total = counts.reduce((n, c) => n + c[bi], 0);
+      return {
+        id: `bucket:${bi}`, label: x.label, value: total, valueFormat: 'int' as const,
+        extra: counts.map(c => int(c[bi])),
+        seatIds: seats.filter(s => bucketIndex(s.margin!, b) === bi).map(s => s.id),
+      };
+    }),
     chart: {
       type: 'groupedBar', xKey: 'bucket', yKey: 'seats',
       series: blocs.map((bloc, i) => ({ id: bloc.id, label: bloc.name, color: bloc.color, points: b.map((x, bi) => ({ x: x.label, y: counts[i][bi] })) })),

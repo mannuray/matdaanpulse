@@ -6,14 +6,18 @@ import { deriveLayerSummary, type LayerSummary, type SummaryRow } from '../../mo
 import type { LayerId } from '../../model/types/dashboard';
 
 export type { ChartSeries, ChartSpec, LayerSummary, SummaryCell, SummaryRow, SummarySection, ValueFormat } from '../../model/derive/summary';
+export type { LayerId };
 export { formatSummaryValue, primaryCell } from '../../model/derive/summary/format';
 
 export interface SummaryVM {
   layer: LayerId;
+  /** Layers the election offers (for the pills inside the focus view). */
+  layers: LayerId[];
   summary: LayerSummary;
   /** `<sectionId>:<rowId>` of the locked row (views compare against `${section.id}:${row.id}`), or null. */
   lockedRowId: string | null;
   onFocus(): void;
+  onLayer(l: LayerId): void;
   onHoverRow(r: SummaryRow | null): void;
   onLockRow(r: SummaryRow): void;
   onSelectSeat(id: string): void;
@@ -48,9 +52,11 @@ export function useSummaryVM(): SummaryVM {
   const highlightOf = (r: SummaryRow) => ({ parties: r.partyIds ?? [], seats: r.seatIds ?? [] });
   return {
     layer: state.layer,
+    layers: src.availableLayers,
     summary,
     lockedRowId: state.locked?.chipId.startsWith(PREFIX) ? state.locked.chipId.slice(PREFIX.length) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'insight' }),
+    onLayer: l => dispatch({ type: 'setLayer', layer: l }),
     onHoverRow: r => dispatch({ type: 'hover', highlight: r ? highlightOf(r) : null }),
     onLockRow: r => {
       const section = summary.sections.find(s => s.rows.includes(r));

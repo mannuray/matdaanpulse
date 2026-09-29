@@ -27,6 +27,15 @@ describe('battle summary', () => {
     expect(c.series[0].color).toBe('#FF7A1A');
   });
 
+  it('margin_dist (R36): plain rows per bucket - total plus one column per bloc', () => {
+    const s = run()[0];
+    expect(s.columnsKeys).toEqual(['studio_col_total', 'NDA', 'MGB']);
+    expect(s.rows.map(r => [r.label, r.value, r.extra!.map(e => e.value)])).toEqual([
+      ['< 1K', 2, [1, 1]], ['1–5K', 1, [0, 1]], ['5–15K', 1, [1, 0]], ['15–50K', 0, [0, 0]], ['50K+', 1, [1, 0]],
+    ]);
+    expect(s.rows[0].seatIds!.sort()).toEqual(['A', 'E']);
+  });
+
   it('closest: the blocs\' closest seats, legacy top 5', () => {
     // BattleSection.tsx:108-111 — sorted by margin, sliced to 5.
     expect(run()[2].rows.map(r => [r.label, r.value, r.sub])).toEqual([['E', 400, 'MGB'], ['A', 800, 'NDA'], ['C', 3000, 'MGB'], ['B', 12000, 'NDA'], ['D', 60000, 'NDA']]);

@@ -44,6 +44,14 @@ describe('useSummaryVM', () => {
     expect(result.current.store.state.locked?.label).toBe('New seat');
   });
 
+  it('exposes the available layers and switches layer (the focus pills)', () => {
+    const { result } = renderHook(() => ({ vm: useSummaryVM(), store: useDashboardStore() }), { wrapper: wrap() });
+    expect(result.current.vm.layers).toEqual(['overview', 'swing', 'battle']);
+    act(() => result.current.vm.onLayer('battle'));
+    expect(result.current.store.state.layer).toBe('battle');
+    expect(result.current.vm.summary.layer).toBe('battle');
+  });
+
   it('opens the insight focus, hovers, and selects a seat', () => {
     const { result } = renderHook(() => ({ vm: useSummaryVM(), store: useDashboardStore() }), { wrapper: wrap() });
     act(() => result.current.vm.onFocus());

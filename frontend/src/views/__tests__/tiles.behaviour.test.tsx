@@ -41,7 +41,7 @@ describe('tile behaviour', () => {
     const onLockChip = vi.fn();
     const vm: LayerInsightVM = {
       layer: 'swing', insight: { layer: 'swing', headlineKey: 'studio_insight_swing', headlineParams: { flipped: 8, total: 243, year: 2020 }, chips } as LayerInsightVM['insight'],
-      lockedChipId: 'b', netSwing: [], marginTrend: [], partySwitches: [], onFocus: noop, onHoverChip: noop, onLockChip,
+      lockedChipId: 'b', onFocus: noop, onHoverChip: noop, onLockChip,
     };
     render(<LayerInsightStrip vm={vm} variant="tile" />);
     expect(screen.getByText('8 of 243 seats changed hands vs 2020')).toBeTruthy();
@@ -82,7 +82,7 @@ describe('tile behaviour', () => {
     const chips = [{ id: 'BJP', label: 'BJP', color: '#f70', count: 5, seatIds: ['1'] }];
     const mk = (layer: LayerInsightVM['layer'], key: string, params: Record<string, string | number>, onLockChip = noop): LayerInsightVM => ({
       layer, insight: { layer, headlineKey: key, headlineParams: params, chips } as LayerInsightVM['insight'],
-      lockedChipId: null, netSwing: [], marginTrend: [], partySwitches: [], onFocus: noop, onHoverChip: noop, onLockChip,
+      lockedChipId: null, onFocus: noop, onHoverChip: noop, onLockChip,
     });
 
     it('shows no headline on overview, only chips and the expand button', () => {

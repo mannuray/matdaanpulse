@@ -16,6 +16,14 @@ describe('planSummaryFit', () => {
     // A(5) needs 182; with 150 avail: 150-20=130 => 22 + n*32 <= 130 => n=3
     expect(planSummaryFit([sec('a', 5)], 150, O)).toEqual({ visible: [{ sectionId: 'a', rows: 3 }], hiddenRows: 2, hiddenSections: 0 });
   });
+  it('reserves the footer exactly: 136px leaves room for two rows, not three', () => {
+    // 136 - footer 20 = 116; header 22 + gap 4 = 26; rows 28 + 4 each -> 2 rows = 60 (86 total), 3 rows = 92 (118 > 116).
+    expect(planSummaryFit([sec('a', 5)], 136, O)).toEqual({ visible: [{ sectionId: 'a', rows: 2 }], hiddenRows: 3, hiddenSections: 0 });
+  });
+  it('treats a section with a chart and plain rows as a normal row section', () => {
+    const both: SummarySection = { ...sec('c', 2), chart: { type: 'bar', series: [] } };
+    expect(planSummaryFit([both], 500, O)).toEqual({ visible: [{ sectionId: 'c', rows: 2 }], hiddenRows: 0, hiddenSections: 0 });
+  });
   it('hides later sections that cannot show header plus one row', () => {
     // avail 150-20=130: A(2)=86 fits; B needs 4+22+32=58 -> 144 > 130
     expect(planSummaryFit([sec('a', 2), sec('b', 3)], 150, O)).toEqual({ visible: [{ sectionId: 'a', rows: 2 }], hiddenRows: 3, hiddenSections: 1 });
