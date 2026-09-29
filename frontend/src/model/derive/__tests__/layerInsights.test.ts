@@ -21,8 +21,15 @@ describe('deriveLayerInsight', () => {
   it('overview: bloc text and top parties', () => {
     const r = deriveLayerInsight('overview', base)!;
     expect(r.headlineKey).toBe('studio_insight_overview');
-    expect(r.headlineParams.text).toBe('NDA 4 · MGB 1');
+    expect(r.headlineParams).toEqual({ text: 'NDA 4 · MGB 1', others: 0 });
     expect(r.chips.map(c => [c.id, c.count])).toEqual([['BJP', 2], ['JDU', 2], ['RJD', 1]]);
+  });
+
+  it('overview: others are a numeric param with the _others headline key', () => {
+    const withOthers = { ...base, seats: [...seats, s('F', 'AIMIM', 500)] };
+    const r = deriveLayerInsight('overview', withOthers)!;
+    expect(r.headlineKey).toBe('studio_insight_overview_others');
+    expect(r.headlineParams).toEqual({ text: 'NDA 4 · MGB 1', others: 1 });
   });
 
   it('battle: median, close seats and margin buckets', () => {

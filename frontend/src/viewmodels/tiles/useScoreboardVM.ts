@@ -6,7 +6,13 @@ import { deriveStandingRows, type StandingRow } from '../../model/derive/standin
 
 export type { Scoreboard, ScoreBloc };
 
-export interface ScoreboardVM extends Scoreboard {
+/** Short display label: alliance id when the name is long, else the name; party id for parties. */
+const shortLabel = (b: ScoreBloc) => b.kind === 'party' ? b.id : b.name.length > 12 ? b.id : b.name;
+
+export type ScoreBlocVM = ScoreBloc & { label: string };
+
+export interface ScoreboardVM extends Omit<Scoreboard, 'blocs'> {
+  blocs: ScoreBlocVM[];
   status: 'final' | 'live' | 'upcoming';
   /** Pulse the tile once when live results changed a seat. */
   pulse: boolean;
@@ -34,6 +40,7 @@ export function useScoreboardVM(): ScoreboardVM {
   }, [board.blocs, src.data.mapPartyList, src.votePct, alliances]);
   return {
     ...board,
+    blocs: board.blocs.map(b => ({ ...b, label: shortLabel(b) })),
     status,
     pulse: src.recentSeats.size > 0,
     breakdown,

@@ -146,6 +146,7 @@
   "studio_more_parties": "+{{count}} மேலும் கட்சிகள் · {{seats}} இடங்கள்",
   "studio_no_layer_data": "இந்த அடுக்குக்கு தரவு இல்லை",
   "studio_insight_overview": "{{text}}",
+  "studio_insight_overview_others": "{{text}} · மற்றவை {{others}}",
   "studio_insight_battle": "நடு வித்தியாசம் {{median}} · {{close}} இடங்கள் {{threshold}}க்குக் குறைவாக",
   "studio_insight_swing": "{{year}} உடன் ஒப்பிட {{total}}ல் {{flipped}} இடங்கள் மாறின",
   "studio_insight_history": "{{strongholds}} கோட்டைகள் · {{swing}} மாறும் இடங்கள்",

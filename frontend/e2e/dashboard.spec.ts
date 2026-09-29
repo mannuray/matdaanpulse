@@ -50,6 +50,22 @@ test('swing layer shows the real flip count', async ({ page }) => {
   await expect(page.getByText(/111 of 243 seats changed hands/)).toBeVisible();
 });
 
+test('map focus view fits the dialog without scrolling', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/election/${BIHAR}`);
+  await page.getByRole('button', { name: /expand constituency map/i }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  await page.waitForTimeout(500);
+  const r = await dialog.evaluate(el => {
+    const body = [...el.querySelectorAll('div')].find(d => getComputedStyle(d).overflowY === 'auto' && d.classList.contains('flex-1'))!;
+    const svgH = Math.max(0, ...[...el.querySelectorAll('svg')].map(s => s.getBoundingClientRect().height));
+    return { sh: body.scrollHeight, ch: body.clientHeight, svgH };
+  });
+  expect(r.svgH).toBeGreaterThan(200);
+  expect(r.sh).toBeLessThanOrEqual(r.ch + 1);
+});
+
 test('Lok Sabha 2024 renders without scroll and offers the States layer', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/election/${LS_ID}`);

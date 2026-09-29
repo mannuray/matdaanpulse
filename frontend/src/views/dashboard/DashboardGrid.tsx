@@ -65,14 +65,13 @@ export function DashboardGrid(p: DashboardViewProps) {
   }
 
   return (
-    <div className="studio-root grid h-screen w-screen grid-cols-[minmax(0,1.4fr)_minmax(340px,1fr)] grid-rows-[48px_minmax(0,1fr)_56px_64px_64px] gap-3 overflow-hidden p-3 xl:grid-cols-[minmax(0,1.4fr)_minmax(360px,1fr)]">
+    <div className="studio-root grid h-screen w-screen grid-cols-[minmax(0,1.4fr)_minmax(340px,1fr)] grid-rows-[48px_minmax(0,1fr)_64px_64px] gap-3 overflow-hidden p-3 xl:grid-cols-[minmax(0,1.4fr)_minmax(360px,1fr)]">
       <div className="col-span-2"><TopBar vm={p.topBar} search={p.search} /></div>
-      <MapTile vm={p.map} variant="tile" />
-      <div className="grid min-h-0 grid-rows-[220px_minmax(0,1fr)] gap-3">
+      <MapTile vm={p.map} variant="tile" footer={<LayerInsightStrip vm={p.insight} variant="footer" />} />
+      <div className="grid min-h-0 grid-rows-[148px_minmax(0,1fr)] gap-3">
         <ScoreboardTile vm={p.scoreboard} variant="tile" />
         <StandingsTile vm={p.standings} variant="tile" />
       </div>
-      <div className="col-span-2 grid min-h-0"><LayerInsightStrip vm={p.insight} variant="tile" /></div>
       <div className="col-span-2 grid min-h-0"><LeadersStrip vm={p.leaders} variant="tile" /></div>
       <div className="col-span-2 grid min-h-0"><StatsStrip vm={p.stats} variant="tile" /></div>
       {overlay}

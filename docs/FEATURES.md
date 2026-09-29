@@ -323,7 +323,8 @@
 
 ### Studio dashboard (redesign, branch `feat/fe-redesign`)
 - Non-scrolling dark tile wall (1440×900 / 1280×720) and map-first mobile layout with a swipeable card rail.
-- Tiles: top bar, map (layers, Map|Hex when `geo.hex_url` is set), scoreboard, party standings, layer insight strip, key leaders, stats + live ticker. Any tile expands to a focus overlay; `?layer=`, `?seat=`, `?focus=` make every view linkable.
+- Tiles: top bar, map (layers, Map|Hex when `geo.hex_url` is set), scoreboard (compact ~148px tile), party standings, key leaders, stats + live ticker. Any tile expands to a focus overlay; `?layer=`, `?seat=`, `?focus=` make every view linkable.
+- Layer insight lives in a footer bar inside the map tile (chips + expand; headline shown on non-Overview layers, chips double as the map legend on Overview). Map focus view is height-bound (no scroll; seat panel scrolls internally).
 - MVVM: `src/model` (pure), `src/viewmodels` (hooks), `src/views` (Tailwind + Radix); boundaries enforced by `npm run lint`.
 - Spec: `docs/superpowers/specs/2026-09-29-studio-dashboard-design.md`.
 

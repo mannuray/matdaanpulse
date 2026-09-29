@@ -28,7 +28,7 @@ function usedKeys(): Set<string> {
   keys.add('toast_leads');
   keys.add('toast_wins');
   for (const tab of ['overview', 'battle', 'swing', 'history', 'demographics', 'states', 'insights']) keys.add(`map_tab_${tab}`);
-  for (const k of ['overview', 'battle', 'swing', 'history', 'reserved', 'spoilers', 'threeway', 'states']) keys.add(`studio_insight_${k}`);
+  for (const k of ['overview', 'overview_others', 'battle', 'swing', 'history', 'reserved', 'spoilers', 'threeway', 'states']) keys.add(`studio_insight_${k}`);
   for (const k of ['stronghold', 'loyal', 'swing', 'anti_incumbency']) keys.add(`studio_chip_${k}`);
   for (const k of ['won', 'leading', 'lost', 'trailing', 'pending']) keys.add(`studio_status_${k}`);
   for (const k of ['final', 'live', 'upcoming']) keys.add(`studio_status_label_${k}`);

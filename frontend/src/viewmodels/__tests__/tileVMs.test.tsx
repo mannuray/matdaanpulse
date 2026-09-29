@@ -30,6 +30,16 @@ describe('tile view-models', () => {
     expect(result.current.store.state.focus).toBe('scoreboard');
   });
 
+  it('scoreboard: label is the alliance id for long names, the name when short', () => {
+    const base = makeSources();
+    const src = makeSources({ data: { ...base.data, manifestData: { alliances: [
+      { id: 'NDA', name: 'National Democratic Alliance', color: '#FF7A1A', parties: ['BJP', 'JDU'] },
+      { id: 'MGB', name: 'Left Front', color: '#7BD34A', parties: ['RJD'] },
+    ] } } as typeof base.data });
+    const { result } = renderHook(() => useScoreboardVM(), { wrapper: wrap(src) });
+    expect(result.current.blocs.map(b => [b.id, b.label, b.name])).toEqual([['NDA', 'NDA', 'National Democratic Alliance'], ['MGB', 'Left Front', 'Left Front']]);
+  });
+
   it('standings: locking a party highlights it', () => {
     const { result } = renderHook(() => ({ vm: useStandingsVM(), store: useDashboardStore() }), { wrapper: wrap() });
     expect(result.current.vm.rows.map(r => r.id)).toEqual(['JDU', 'BJP']);

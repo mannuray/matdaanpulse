@@ -146,6 +146,7 @@
   "studio_more_parties": "+{{count}} और दल · {{seats}} सीटें",
   "studio_no_layer_data": "इस परत के लिए डेटा नहीं",
   "studio_insight_overview": "{{text}}",
+  "studio_insight_overview_others": "{{text}} · अन्य {{others}}",
   "studio_insight_battle": "मध्य अंतर {{median}} · {{close}} सीटें {{threshold}} से कम अंतर से",
   "studio_insight_swing": "{{year}} की तुलना में {{total}} में से {{flipped}} सीटें बदलीं",
   "studio_insight_history": "{{strongholds}} गढ़ · {{swing}} स्विंग सीटें",

@@ -72,8 +72,13 @@ function overview(ctx: InsightContext): LayerInsight {
     else others++;
   });
   const parts = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([n, c]) => `${n} ${c}`);
-  if (others > 0 && ctx.alliances.length > 0) parts.push(`Others ${others}`);
-  return { layer: 'overview', headlineKey: 'studio_insight_overview', headlineParams: { text: parts.join(' · ') }, chips: partyChips(ctx, seats) };
+  const othersCount = ctx.alliances.length > 0 ? others : 0;
+  return {
+    layer: 'overview',
+    headlineKey: othersCount > 0 ? 'studio_insight_overview_others' : 'studio_insight_overview',
+    headlineParams: { text: parts.join(' · '), others: othersCount },
+    chips: partyChips(ctx, seats),
+  };
 }
 
 function battle(ctx: InsightContext): LayerInsight {

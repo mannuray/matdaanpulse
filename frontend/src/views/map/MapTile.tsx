@@ -6,12 +6,12 @@ import { Tile } from '../dashboard/Tile';
 import { PillToggle } from '../ui/PillToggle';
 import { MapCanvas } from './MapCanvas';
 
-export function MapTile({ vm, variant, seatPanel }: { vm: MapVM; variant: 'tile' | 'focus'; seatPanel?: ReactNode }) {
+export function MapTile({ vm, variant, seatPanel, footer }: { vm: MapVM; variant: 'tile' | 'focus'; seatPanel?: ReactNode; footer?: ReactNode }) {
   const { t } = useTranslation();
   const layers = <PillToggle<LayerId> value={vm.layer} onChange={vm.onLayer} ariaLabel={t('studio_map_layers')} size="sm" options={vm.layers.map(l => ({ value: l, label: t(`map_tab_${l}`) }))} />;
   const mode = vm.hexAvailable ? <PillToggle value={vm.mapMode} onChange={vm.onMapMode} ariaLabel={t('studio_map_mode')} size="sm" options={[{ value: 'map', label: t('studio_map') }, { value: 'hex', label: t('studio_hex') }]} /> : null;
   const canvas = (
-    <div className="relative h-full">
+    <div className={variant === 'focus' ? 'relative h-full min-h-0 overflow-hidden' : 'relative min-h-0 flex-1'}>
       {vm.status === 'loading' && <p className="absolute inset-0 grid place-items-center text-sm text-muted">{t('loading_map')}</p>}
       {vm.status === 'error' && <p className="absolute inset-0 grid place-items-center text-sm text-live">{t('map_load_failed')}</p>}
       <MapCanvas vm={vm} />
@@ -24,14 +24,14 @@ export function MapTile({ vm, variant, seatPanel }: { vm: MapVM; variant: 'tile'
   );
   if (variant === 'focus') {
     return (
-      <div className="flex h-full min-h-[70vh] flex-col gap-3">
-        <div className="flex items-center gap-2">{layers}{mode}</div>
-        <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_380px]">
+      <div className="flex h-full min-h-0 flex-col gap-3">
+        <div className="flex shrink-0 items-center gap-2">{layers}{mode}</div>
+        <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,1fr)] gap-4 lg:grid-cols-[minmax(0,1fr)_380px]">
           {canvas}
-          {seatPanel}
+          <div className="min-h-0 overflow-y-auto">{seatPanel}</div>
         </div>
       </div>
     );
   }
-  return <Tile title={t('constituency_map')} onExpand={vm.onFocus} actions={<>{layers}{mode}</>} bodyClassName="px-2 pb-2">{canvas}</Tile>;
+  return <Tile title={t('constituency_map')} onExpand={vm.onFocus} actions={<>{layers}{mode}</>} bodyClassName="flex flex-col px-2 pb-2">{canvas}{footer}</Tile>;
 }

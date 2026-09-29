@@ -146,6 +146,7 @@
   "studio_more_parties": "+{{count}} आणखी पक्ष · {{seats}} जागा",
   "studio_no_layer_data": "या स्तरासाठी माहिती नाही",
   "studio_insight_overview": "{{text}}",
+  "studio_insight_overview_others": "{{text}} · इतर {{others}}",
   "studio_insight_battle": "मध्य फरक {{median}} · {{close}} जागा {{threshold}} पेक्षा कमी फरकाने",
   "studio_insight_swing": "{{year}} च्या तुलनेत {{total}} पैकी {{flipped}} जागा बदलल्या",
   "studio_insight_history": "{{strongholds}} बालेकिल्ले · {{swing}} स्विंग जागा",

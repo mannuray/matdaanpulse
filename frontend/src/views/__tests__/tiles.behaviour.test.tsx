@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import '../../i18n';
 import { StandingsTile } from '../dashboard/StandingsTile';
 import { LayerInsightStrip } from '../dashboard/LayerInsightStrip';
@@ -13,6 +13,7 @@ import type { LeadersVM } from '../../viewmodels/tiles/useLeadersVM';
 const noop = () => {};
 const original = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientHeight');
 afterEach(() => {
+  cleanup();
   if (original) Object.defineProperty(HTMLElement.prototype, 'clientHeight', original);
   else delete (HTMLElement.prototype as unknown as Record<string, unknown>).clientHeight;
 });
@@ -63,5 +64,28 @@ describe('tile behaviour', () => {
     expect(onHoverSeat).toHaveBeenLastCalledWith(null);
     fireEvent.click(card);
     expect(onSelectSeat).toHaveBeenCalledWith('C7');
+  });
+
+  describe('insight footer variant', () => {
+    const chips = [{ id: 'BJP', label: 'BJP', color: '#f70', count: 5, seatIds: ['1'] }];
+    const mk = (layer: LayerInsightVM['layer'], key: string, params: Record<string, string | number>, onLockChip = noop): LayerInsightVM => ({
+      layer, insight: { layer, headlineKey: key, headlineParams: params, chips } as LayerInsightVM['insight'],
+      lockedChipId: null, netSwing: [], marginTrend: [], partySwitches: [], onFocus: noop, onHoverChip: noop, onLockChip,
+    });
+
+    it('shows no headline on overview, only chips and the expand button', () => {
+      render(<LayerInsightStrip vm={mk('overview', 'studio_insight_overview', { text: 'NDA 4 · MGB 1' })} variant="footer" />);
+      expect(screen.queryByText('NDA 4 · MGB 1')).toBeNull();
+      expect(screen.getByRole('button', { name: /BJP/ })).toBeTruthy();
+      expect(screen.getAllByRole('button')).toHaveLength(2);
+    });
+
+    it('shows the headline on other layers and chip click locks', () => {
+      const onLockChip = vi.fn();
+      render(<LayerInsightStrip vm={mk('swing', 'studio_insight_swing', { flipped: 8, total: 243, year: 2020 }, onLockChip)} variant="footer" />);
+      expect(screen.getByText('8 of 243 seats changed hands vs 2020')).toBeTruthy();
+      fireEvent.click(screen.getByRole('button', { name: /BJP/ }));
+      expect(onLockChip).toHaveBeenCalledWith(chips[0]);
+    });
   });
 });
