@@ -7,6 +7,7 @@ import { SummaryTab } from './SummaryTab';
 import { Tile } from './Tile';
 import { STATUS_STYLE } from './statusStyle';
 import { useFitRows } from '../hooks/useFitRows';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 import { PillToggle } from '../ui/PillToggle';
 import { PickerSelect } from '../ui/PickerSelect';
 import { cn } from '../ui/cn';
@@ -82,29 +83,50 @@ function WatchlistBody({ vm, onMore }: { vm: LeadersVM; onMore(): void }) {
   );
 }
 
+/** Plain (non-interactive) row for the mobile rail preview: no buttons, no remove control. */
+function WatchPreviewRow({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
+  const { t } = useTranslation();
+  const color = vm.partyColor.get(c.partyId) ?? '#8A93A6';
+  return (
+    <div className="flex h-9 w-full items-center gap-2 px-2">
+      <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: color }} />
+      <span className="max-w-[40%] shrink-0 truncate font-semibold text-ink">{c.constName}</span>
+      <span className="shrink-0 text-xs text-muted">{c.partyId}</span>
+      <span className="min-w-0 flex-1 truncate text-xs text-muted">{c.name}</span>
+      <span className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>
+    </div>
+  );
+}
+
 /** Non-interactive glance at the first watched seats (mobile rail). */
 export function WatchlistPreview({ vm }: { vm: LeadersVM }) {
   const { t } = useTranslation();
   if (vm.watchlist.length === 0) return <p className="py-2 text-sm text-muted">{t('studio_watch_empty')}</p>;
-  return <div className="flex flex-col gap-1">{vm.watchlist.slice(0, 2).map(c => <WatchRow key={c.key} c={c} vm={vm} />)}</div>;
+  return <div className="flex flex-col gap-1">{vm.watchlist.slice(0, 2).map(c => <WatchPreviewRow key={c.key} c={c} vm={vm} />)}</div>;
 }
 
-export function StandingsTile({ vm, variant, watchlist, summary, initialTab }: {
+export function StandingsTile({ vm, variant, watchlist, summary, initialTab, onTabChange }: {
   vm: StandingsVM; variant: 'tile' | 'focus'; watchlist?: LeadersVM; summary?: SummaryVM; initialTab?: StandingsTab;
+  /** Reports the active Parties / Watchlist tab when it is picked and again right before the tile opens its focus view. */
+  onTabChange?(tab: StandingsTab): void;
 }) {
   const { t } = useTranslation();
+  const wide = useMediaQuery('(min-width: 1280px)');
   // The summary tab exists only in the grid tile (the focus view keeps Parties / Watchlist) and is the default there.
   const withSummary = variant === 'tile' && summary != null;
   const [picked, setTab] = useState<TileTab | null>(null);
   const tab: TileTab = picked ?? initialTab ?? (withSummary ? 'summary' : 'parties');
   const shown: TileTab = tab === 'summary' && !withSummary ? 'parties' : tab === 'watchlist' && !watchlist ? 'parties' : tab;
   const fit = useFitRows(vm.rows, ROW_H);
+  const pick = (v: TileTab) => { setTab(v); if (v !== 'summary') onTabChange?.(v); };
+  // Opening the focus view from the Parties / Watchlist tab lands on that same tab.
+  const expandStandings = () => { if (shown !== 'summary') onTabChange?.(shown); vm.onFocus(); };
   const options: { value: TileTab; label: string }[] = [];
-  if (withSummary) options.push({ value: 'summary', label: t('studio_tab_summary', { layer: t(`map_tab_${summary.layer}`) }) });
+  if (withSummary) options.push({ value: 'summary', label: wide ? t('studio_tab_summary', { layer: t(`map_tab_${summary.layer}`) }) : t('studio_tab_summary_short') });
   options.push({ value: 'parties', label: t('studio_tab_parties') });
   if (watchlist) options.push({ value: 'watchlist', label: t('studio_tab_watchlist', { count: watchlist.watchlist.length }) });
   const toggle = options.length > 1 && (
-    <PillToggle<TileTab> size="sm" value={shown} onChange={setTab} ariaLabel={t('party_standings')} options={options} />
+    <PillToggle<TileTab> size="sm" value={shown} onChange={pick} ariaLabel={t('party_standings')} options={options} />
   );
   if (variant === 'focus') {
     const max = Math.max(1, ...vm.allRows.map(r => r.seats));
@@ -126,13 +148,13 @@ export function StandingsTile({ vm, variant, watchlist, summary, initialTab }: {
   const max = Math.max(1, ...vm.rows.map(r => r.seats));
   return (
     <Tile title={t(shown === 'summary' ? 'studio_title_summary' : shown === 'watchlist' ? 'studio_title_watchlist' : 'party_standings')}
-      onExpand={shown === 'summary' && summary ? summary.onFocus : vm.onFocus} pulse={vm.pulse} actions={toggle}>
-      {shown === 'summary' && summary ? <SummaryTab vm={summary} /> : shown === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} onMore={vm.onFocus} /> : (
+      onExpand={shown === 'summary' && summary ? summary.onFocus : expandStandings} pulse={vm.pulse} actions={toggle} stackActions={!wide && options.length > 1}>
+      {shown === 'summary' && summary ? <SummaryTab vm={summary} /> : shown === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} onMore={expandStandings} /> : (
         <div ref={fit.ref} className="flex h-full flex-col gap-1">
           {vm.rows.length === 0 && <p className="py-6 text-center text-sm text-muted">{t('studio_no_results_yet')}</p>}
           {fit.visible.map(r => <Row key={r.id} r={r} max={max} vm={vm} />)}
           {fit.moreCount > 0 && (
-            <button type="button" onClick={vm.onFocus} className="mt-auto px-2 text-left text-xs text-muted hover:text-accent">
+            <button type="button" onClick={expandStandings} className="mt-auto px-2 text-left text-xs text-muted hover:text-accent">
               {t('studio_more_parties', { count: fit.moreCount, seats: fit.moreSeats })}
             </button>
           )}

@@ -32,12 +32,12 @@ function dominance(ctx: SummaryContext, seatName: (id: string) => string): Summa
   }];
   if (byParty.size > 0) {
     out.push({
-      id: 'dominance_by_party', titleKey: 'studio_sum_dominance_by_party', columnsKeys: ['studio_chip_stronghold', 'studio_chip_loyal'],
+      id: 'dominance_by_party', titleKey: 'studio_sum_dominance_by_party', columnsKeys: ['studio_chip_stronghold', 'studio_chip_loyal', 'studio_col_total'], primaryCol: 2,
       rows: [...byParty.entries()]
         .sort((a, b) => (b[1].stronghold.length + b[1].loyal.length) - (a[1].stronghold.length + a[1].loyal.length))
         .map(([p, e]) => ({
           id: `party:${p}`, label: partyName(ctx, p), value: e.stronghold.length, valueFormat: 'int' as const,
-          extra: [int(e.loyal.length)], color: colorOf(ctx, p), partyIds: [p], seatIds: [...e.stronghold, ...e.loyal],
+          extra: [int(e.loyal.length), int(e.stronghold.length + e.loyal.length)], color: colorOf(ctx, p), partyIds: [p], seatIds: [...e.stronghold, ...e.loyal],
         })),
     });
   }

@@ -46,7 +46,7 @@ export function battleSummary(ctx: SummaryContext): SummarySection[] {
     return c;
   });
   const dist: SummarySection = {
-    id: 'margin_dist', titleKey: 'studio_sum_margin_dist',
+    id: 'margin_dist', titleKey: 'studio_sum_margin_dist_blocs', titleParams: { a: blocs[0].id, b: blocs[1]?.id ?? '' },
     // R36: the chart's data as plain rows too (bucket, total, then one column per bloc) so the compact tab can show it.
     columnsKeys: ['studio_col_total', ...blocs.map(bloc => bloc.name)],
     rows: b.map((x, bi) => {

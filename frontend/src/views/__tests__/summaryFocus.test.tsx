@@ -16,8 +16,8 @@ const sections: SummarySection[] = [
   ] },
   { id: 'margin_trend', titleKey: 'studio_sum_margin_trend', columnsKeys: ['studio_col_avg_margin', 'studio_col_median_margin', 'studio_col_seats'],
     rows: [
-      { id: 'year:2015', label: '2015', value: 21100, valueFormat: 'compact', extra: [{ value: 18800, format: 'compact' }, { value: 243, format: 'int' }] },
-      { id: 'year:2020', label: '2020', value: 15000, valueFormat: 'compact', extra: [{ value: null, format: 'compact' }, { value: 0, format: 'intDash' }] },
+      { id: 'year:2015', label: '2015', value: 21100, valueFormat: 'compact', seatIds: ['Y1'], extra: [{ value: 18800, format: 'compact' }, { value: 243, format: 'int' }] },
+      { id: 'year:2020', label: '2020', value: 15000, valueFormat: 'compact', seatIds: ['Y2'], extra: [{ value: null, format: 'compact' }, { value: 0, format: 'intDash' }] },
     ],
     chart: { type: 'line', series: [{ id: 'avg', label: 'Average', labelKey: 'studio_col_avg_margin', color: '#8B7CFF', points: [{ x: 2015, y: 21100 }, { x: 2020, y: 15000 }] }] } },
   { id: 'closest', titleKey: 'studio_sum_closest', rows: [
@@ -25,7 +25,7 @@ const sections: SummarySection[] = [
     { id: 'party:BJP', label: 'BJP', value: 89, valueFormat: 'int', partyIds: ['BJP'] },
   ] },
   { id: 'party_trend', titleKey: 'studio_sum_party_trend', columnsKeys: ['2015', '2020'], rows: [
-    { id: 'party:RJD', label: 'RJD', value: 80, valueFormat: 'text', valueText: '80/21.1K', extra: [{ value: null, format: 'text', text: '–' }] },
+    { id: 'party:RJD', label: 'RJD', partyIds: ['RJD'], value: 80, valueFormat: 'text', valueText: '80/21.1K', extra: [{ value: null, format: 'text', text: '–' }] },
   ] },
 ];
 const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
@@ -80,10 +80,14 @@ describe('SummaryFocus', () => {
     expect(onLayer).toHaveBeenCalledWith('swing');
   });
 
-  it('shows the empty state and clears the hover highlight when unmounted', () => {
+  it('shows the empty state; unmounting clears only a hover a row set', () => {
     const onHoverRow = vi.fn();
-    const { unmount } = render(<SummaryFocus vm={mk({ onHoverRow }, [])} />);
+    const empty = render(<SummaryFocus vm={mk({ onHoverRow }, [])} />);
     expect(screen.getByText('No data for this layer')).toBeTruthy();
+    empty.unmount();
+    expect(onHoverRow).not.toHaveBeenCalled();
+    const { unmount } = render(<SummaryFocus vm={mk({ onHoverRow })} />);
+    fireEvent.mouseEnter(screen.getByRole('button', { name: /BJP/ }));
     unmount();
     expect(onHoverRow).toHaveBeenLastCalledWith(null);
   });

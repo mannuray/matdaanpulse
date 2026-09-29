@@ -2,15 +2,15 @@ import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '../ui/cn';
 
-export function Tile({ title, onExpand, actions, className, bodyClassName, pulse, children }: {
-  title: string; onExpand?(): void; actions?: ReactNode; className?: string; bodyClassName?: string; pulse?: boolean; children: ReactNode;
+export function Tile({ title, onExpand, actions, stackActions, className, bodyClassName, pulse, children }: {
+  title: string; onExpand?(): void; actions?: ReactNode; /** Put the actions on their own row under the title (narrow tiles). */ stackActions?: boolean; className?: string; bodyClassName?: string; pulse?: boolean; children: ReactNode;
 }) {
   const { t } = useTranslation();
   return (
     <section className={cn('flex min-h-0 min-w-0 flex-col overflow-hidden rounded-tile border border-line bg-tile', pulse && 'studio-pulse', className)}>
-      <header className="flex h-11 shrink-0 items-center gap-3 px-4">
-        <h2 className="truncate font-display text-base font-bold uppercase tracking-wider text-ink">{title}</h2>
-        <div className="ml-auto flex min-w-0 items-center gap-2">{actions}</div>
+      <header className={cn('flex min-h-11 shrink-0 items-center gap-x-3 px-4', stackActions && 'flex-wrap gap-y-1 pb-1 pt-1.5')}>
+        <h2 className={cn('truncate font-display text-base font-bold uppercase tracking-wider text-ink', stackActions && 'mr-auto')}>{title}</h2>
+        <div className={cn('flex min-w-0 items-center gap-2', stackActions ? 'order-last basis-full' : 'ml-auto')}>{actions}</div>
         {onExpand && (
           <button type="button" onClick={onExpand} aria-label={t('studio_expand', { name: title })}
             className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-muted hover:bg-tile-raised hover:text-accent">

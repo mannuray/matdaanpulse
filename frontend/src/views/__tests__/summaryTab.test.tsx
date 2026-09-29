@@ -2,7 +2,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import '../../i18n';
-import { SummaryTab } from '../dashboard/SummaryTab';
+import { SummaryTab, SummaryPreview } from '../dashboard/SummaryTab';
 import { StandingsTile } from '../dashboard/StandingsTile';
 import type { SummaryVM, SummarySection } from '../../viewmodels/tiles/useSummaryVM';
 import type { StandingsVM } from '../../viewmodels/tiles/useStandingsVM';
@@ -11,6 +11,7 @@ const noop = () => {};
 const original = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientHeight');
 afterEach(() => {
   cleanup();
+  delete (window as unknown as Record<string, unknown>).matchMedia;
   if (original) Object.defineProperty(HTMLElement.prototype, 'clientHeight', original);
   else delete (HTMLElement.prototype as unknown as Record<string, unknown>).clientHeight;
 });
@@ -98,9 +99,9 @@ describe('SummaryTab', () => {
   it('shows the section\'s primary column: "–" for zero reserved seats, lakh totals, signed decimals', () => {
     height(400);
     const secs: SummarySection[] = [
-      { id: 'reserved', titleKey: 'studio_sum_reserved', primaryCol: 2, rows: [{ id: 'party:JDU', label: 'JDU', value: 14, valueFormat: 'intDash', extra: [{ value: 0, format: 'intDash' }, { value: 14, format: 'int' }] }] },
-      { id: 'wasted', titleKey: 'studio_sum_wasted', primaryCol: 2, rows: [{ id: 'alliance:MGB', label: 'MGB', value: 18020000, valueFormat: 'lakh', extra: [{ value: 14770000, format: 'lakh' }, { value: 82, format: 'pct' }] }] },
-      { id: 'vs', titleKey: 'studio_sum_vote_vs_seats_alliances', primaryCol: 0, rows: [{ id: 'alliance:NDA', label: 'NDA', value: 35, valueFormat: 'signed1', extra: [{ value: 48.1, format: 'pct' }] }] },
+      { id: 'reserved', titleKey: 'studio_sum_reserved', primaryCol: 2, rows: [{ id: 'party:JDU', label: 'JDU', partyIds: ['JDU'], value: 14, valueFormat: 'intDash', extra: [{ value: 0, format: 'intDash' }, { value: 14, format: 'int' }] }] },
+      { id: 'wasted', titleKey: 'studio_sum_wasted', primaryCol: 2, rows: [{ id: 'alliance:MGB', label: 'MGB', partyIds: ['RJD'], value: 18020000, valueFormat: 'lakh', extra: [{ value: 14770000, format: 'lakh' }, { value: 82, format: 'pct' }] }] },
+      { id: 'vs', titleKey: 'studio_sum_vote_vs_seats_alliances', primaryCol: 0, rows: [{ id: 'alliance:NDA', label: 'NDA', partyIds: ['BJP'], value: 35, valueFormat: 'signed1', extra: [{ value: 48.1, format: 'pct' }] }] },
     ];
     render(<SummaryTab vm={mk({}, secs)} />);
     expect(screen.getByRole('button', { name: /JDU/ }).textContent).toContain('14');
@@ -111,20 +112,66 @@ describe('SummaryTab', () => {
   it('a section with a chart shows its plain rows in the compact tab (R36)', () => {
     height(400);
     const withChart: SummarySection = { id: 'md', titleKey: 'studio_sum_margin_dist', columnsKeys: ['studio_col_total', 'NDA'], rows: [
-      { id: 'bucket:0', label: '< 1K', value: 2, valueFormat: 'int', extra: [{ value: 1, format: 'int' }] },
+      { id: 'bucket:0', label: '< 1K', seatIds: ['A', 'E'], value: 2, valueFormat: 'int', extra: [{ value: 1, format: 'int' }] },
     ], chart: { type: 'groupedBar', series: [] } };
     render(<SummaryTab vm={mk({}, [withChart])} />);
     expect(screen.getByText('Margin distribution')).toBeTruthy();
     expect(screen.getByRole('button', { name: /< 1K/ }).textContent).toContain('2');
   });
 
-  it('clears the hover highlight when it unmounts', () => {
+  it('clears a row-set hover highlight when it unmounts', () => {
     height(300);
     const onHoverRow = vi.fn();
     const { unmount } = render(<SummaryTab vm={mk({ onHoverRow })} />);
+    fireEvent.mouseEnter(screen.getByRole('button', { name: /BJP/ }));
     onHoverRow.mockClear();
     unmount();
     expect(onHoverRow).toHaveBeenCalledWith(null);
+  });
+
+  it('never wipes a hover it did not set (another tile\'s hover survives live updates and unmounts)', () => {
+    height(300);
+    const onHoverRow = vi.fn();
+    const vm = mk({ onHoverRow });
+    const { rerender, unmount } = render(<SummaryTab vm={vm} />);
+    rerender(<SummaryTab vm={{ ...vm, summary: { layer: 'swing', sections: [sections[1]] } }} />);
+    unmount();
+    expect(onHoverRow).not.toHaveBeenCalled();
+  });
+
+  it('after the mouse left a row there is nothing left to clear', () => {
+    height(300);
+    const onHoverRow = vi.fn();
+    const { unmount } = render(<SummaryTab vm={mk({ onHoverRow })} />);
+    const bjp = screen.getByRole('button', { name: /BJP/ });
+    fireEvent.mouseEnter(bjp); fireEvent.mouseLeave(bjp);
+    onHoverRow.mockClear();
+    unmount();
+    expect(onHoverRow).not.toHaveBeenCalled();
+  });
+
+  it('rows without a highlight target are plain text: no button, no aria-pressed', () => {
+    height(300);
+    const stats: SummarySection = { id: 'key_stats', titleKey: '', layout: 'stats', rows: [{ id: 'declared', label: 'declared', labelKey: 'seats_declared', value: 243, valueFormat: 'int' }] };
+    const plain: SummarySection = { id: 'wasted', titleKey: 'studio_sum_wasted', rows: [{ id: 'efficiency_gap', label: 'Others', value: 3, valueFormat: 'int' }, { id: 'party:BJP', label: 'BJP', value: 4, valueFormat: 'int', partyIds: ['BJP'] }] };
+    const { container } = render(<SummaryTab vm={mk({}, [stats, plain])} />);
+    expect(screen.queryByRole('button', { name: /Others/ })).toBeNull();
+    expect(screen.getByText('Others').closest('div[class*="h-7"]')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: /Declared/i })).toBeNull();
+    expect(container.querySelectorAll('button[aria-pressed]')).toHaveLength(1);
+  });
+
+  it('a negative bar is muted (not drawn like a positive one) and the number keeps its sign', () => {
+    height(300);
+    const neg: SummarySection = { id: 'n', titleKey: 'studio_sum_net_swing', rows: [
+      { id: 'a', label: 'AAA', partyIds: ['A'], value: -12, valueFormat: 'signed', bar: { value: -12, max: 24, color: '#ff0000' } },
+      { id: 'b', label: 'BBB', partyIds: ['B'], value: 12, valueFormat: 'signed', bar: { value: 12, max: 24, color: '#00ff00' } },
+    ] };
+    render(<SummaryTab vm={mk({}, [neg])} />);
+    const fill = (name: RegExp) => screen.getByRole('button', { name }).querySelector('span.h-1\\.5 > span') as HTMLElement;
+    expect(fill(/AAA/).style.background).toContain('var(--color-muted)');
+    expect(fill(/BBB/).style.background).not.toContain('var(--color-muted)');
+    expect(screen.getByRole('button', { name: /AAA/ }).textContent).toContain('−12');
   });
 
   it('clears the hover highlight when its sections change, not only on unmount', () => {
@@ -132,6 +179,7 @@ describe('SummaryTab', () => {
     const onHoverRow = vi.fn();
     const vm = mk({ onHoverRow });
     const { rerender } = render(<SummaryTab vm={vm} />);
+    fireEvent.mouseEnter(screen.getByRole('button', { name: /BJP/ }));
     onHoverRow.mockClear();
     const next = { ...vm, layer: 'battle' as const, summary: { layer: 'battle' as const, sections: [sections[1]] } };
     rerender(<SummaryTab vm={next} />);
@@ -142,16 +190,57 @@ describe('SummaryTab', () => {
   });
 });
 
+const mockWide = (matches: boolean) => {
+  window.matchMedia = ((q: string) => ({ matches, media: q, addEventListener: noop, removeEventListener: noop })) as unknown as typeof window.matchMedia;
+};
+
+describe('SummaryPreview (rail)', () => {
+  const stats: SummarySection = { id: 'key_stats', titleKey: '', layout: 'stats', rows: [
+    { id: 'declared', label: 'declared', labelKey: 'seats_declared', value: 243, valueFormat: 'int' },
+    { id: 'avg_margin', label: 'avg_margin', labelKey: 'avg_margin', value: 21100, valueFormat: 'compact' },
+  ] };
+  it('shows the key stats and the first section title only, with no controls', () => {
+    const { container } = render(<SummaryPreview vm={mk({}, [stats, sections[0], sections[1]])} />);
+    expect(screen.getByText('243')).toBeTruthy();
+    expect(screen.getByText('21.1K')).toBeTruthy();
+    expect(screen.getByText('Closest contests')).toBeTruthy();
+    expect(screen.queryByText('Net swing by alliance')).toBeNull();
+    expect(screen.queryByText('Sandesh')).toBeNull();
+    expect(container.querySelectorAll('button')).toHaveLength(0);
+  });
+  it('without key stats it previews the first rows of the first section', () => {
+    render(<SummaryPreview vm={mk({}, [sections[0]])} />);
+    expect(screen.getByText('Closest contests')).toBeTruthy();
+    expect(screen.getByText('Sandesh')).toBeTruthy();
+    expect(screen.queryByText('Third')).toBeNull();
+  });
+  it('shows the empty state without sections', () => {
+    render(<SummaryPreview vm={mk({}, [])} />);
+    expect(screen.getByText('No data for this layer')).toBeTruthy();
+  });
+});
+
 describe('StandingsTile summary tab', () => {
   const st: StandingsVM = { rows: [{ id: 'BJP', name: 'Bharatiya Janata Party', color: '#FF7A1A', seats: 89, votePct: null, allianceId: 'NDA' }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop };
   it('defaults to Summary with the layer in its label, and Parties is one click away', () => {
     height(300);
+    mockWide(true);
     render(<StandingsTile vm={st} variant="tile" summary={mk()} />);
     const tabs = screen.getAllByRole('radio').map(r => r.textContent);
     expect(tabs).toEqual(['Summary · Swing', 'Parties']);
     expect(screen.getByText('Closest contests')).toBeTruthy();
     fireEvent.click(screen.getByRole('radio', { name: 'Parties' }));
     expect(screen.getByRole('button', { name: /BJP/ })).toBeTruthy();
+  });
+
+  it('below xl the Summary tab drops the layer suffix and the tabs stack under the title', () => {
+    height(300);
+    mockWide(false);
+    const { container } = render(<StandingsTile vm={st} variant="tile" summary={mk()} />);
+    expect(screen.getAllByRole('radio').map(r => r.textContent)).toEqual(['Summary', 'Parties']);
+    const tabs = screen.getByRole('radiogroup').parentElement!;
+    expect(tabs.className).toContain('basis-full');
+    expect(container.querySelector('header')!.className).toContain('flex-wrap');
   });
 
   it('the card title follows the tab and the expand button opens that tab\'s focus', () => {

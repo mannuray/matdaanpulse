@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { deriveLayerSummary } from '../index';
+import { formatSummaryValue } from '../format';
 import { cand, makeCtx, seat } from './fixtures';
 
 const sec = (ctx = makeCtx()) => deriveLayerSummary('overview', ctx).sections;
@@ -35,6 +36,14 @@ describe('overview summary', () => {
     ]);
     expect(s.rows[0].valueFormat).toBe('signed1');
     expect(s.rows[2].labelKey).toBe('others');
+  });
+
+  it('vote_vs_seats_alliances: the difference is taken from the rounded seat % and vote % (matches the baseline)', () => {
+    // MGB: seat 2/6 = 33.333 -> 33.3, vote 31.96 -> 32.0; rounded difference +1.3 (the raw one would round to +1.4).
+    const ctx = makeCtx({ votePct: new Map([['BJP', 30], ['JDU', 20], ['RJD', 31.96], ['AIMIM', 3], ['IND', 4]]) });
+    const mgb = byId('vote_vs_seats_alliances', ctx).rows.find(r => r.id === 'alliance:MGB')!;
+    expect(mgb.extra!.map(e => e.value)).toEqual([32, 33.3]);
+    expect(mgb.value).toBe(1.3);
   });
 
   it('vote_vs_seats_parties: seats > 0 or vote >= 1, sorted by vote share desc', () => {
@@ -89,10 +98,13 @@ describe('overview summary', () => {
     // Legacy columns: Total, Wasted, % (the compact card shows the %); vote totals in lakh.
     expect(byId('wasted', ctx).columnsKeys).toEqual(['studio_col_total', 'studio_col_wasted', 'studio_col_wasted_pct']);
     expect(rows.map(r => [r.id, r.value, r.valueFormat, r.extra?.map(e => e.value) ?? null])).toEqual([
-      ['alliance:MGB', 170, 'lakh', [90, 52.9]], ['alliance:NDA', 170, 'lakh', [70, 41.2]], ['efficiency_gap', null, 'lakh', [null, 11.8]],
+      ['alliance:MGB', 170, 'lakh', [90, 52.9]], ['alliance:NDA', 170, 'lakh', [70, 41.2]], ['efficiency_gap', null, 'text', [null, 11.8]],
     ]);
     expect(rows[2]).toMatchObject({ sub: 'NDA', labelKey: 'studio_row_efficiency_gap' });
     expect(rows[2].extra![1].format).toBe('pp');
+    // Cells that do not apply (total, wasted) render blank, not "— —".
+    expect(formatSummaryValue(rows[2].value, rows[2].valueFormat, { text: rows[2].valueText })).toBe('');
+    expect(formatSummaryValue(rows[2].extra![0].value, rows[2].extra![0].format, { text: rows[2].extra![0].text })).toBe('');
     expect(byId('wasted', ctx).primaryCol).toBe(2);
   });
 

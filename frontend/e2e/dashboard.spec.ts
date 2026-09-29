@@ -146,10 +146,52 @@ test('summary focus opens from the Summary tab footer with charts, switches laye
   // The pills inside the focus switch the layer and the content follows.
   await dialog.getByRole('radio', { name: 'Battle' }).click();
   await expect(dialog.getByRole('heading', { name: 'Summary · Battle', level: 2 })).toBeVisible();
-  await expect(dialog.getByRole('img', { name: 'Margin distribution' })).toBeVisible();
+  await expect(dialog.getByRole('img', { name: /Margin distribution · / })).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   // The chosen layer stays after closing.
   await expect(page.getByRole('radio', { name: 'Summary · Battle' })).toBeChecked();
   await assertNoScroll(page);
+});
+
+test('at 1024x768 the standings tabs fit: short Summary label, all three tabs visible, nothing clipped', async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 768 });
+  await page.goto(`/election/${BIHAR}?layer=history`);
+  const group = page.getByRole('radiogroup', { name: 'Party Standings' });
+  await expect(group).toBeVisible();
+  for (const name of ['Summary', 'Parties', /Watchlist/]) await expect(group.getByRole('radio', { name })).toBeVisible();
+  const r = await group.evaluate(el => ({ sw: el.scrollWidth, cw: el.clientWidth, psw: el.parentElement!.scrollWidth, pcw: el.parentElement!.clientWidth, h2: (el.closest('section')!.querySelector('h2') as HTMLElement).scrollWidth <= (el.closest('section')!.querySelector('h2') as HTMLElement).clientWidth }));
+  expect(r.sw).toBeLessThanOrEqual(r.cw);
+  expect(r.psw).toBeLessThanOrEqual(r.pcw);
+  expect(r.h2).toBe(true);
+  await assertNoScroll(page);
+  await page.screenshot({ path: '../.playwright-mcp/fix2-1024.png' });
+});
+
+test('expanding the Watchlist tab opens the focus on the Watchlist, and Summary still opens the summary focus', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/election/${BIHAR}`);
+  await page.getByRole('radio', { name: /Watchlist/ }).click();
+  await page.getByRole('button', { name: /expand watchlist/i }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.getByRole('heading', { name: 'Watchlist', level: 2 }).first()).toBeVisible();
+  await expect(dialog.getByRole('radio', { name: /Watchlist/ })).toBeChecked();
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await page.getByRole('radio', { name: /^Summary/ }).click();
+  await page.getByRole('button', { name: /expand election summary/i }).click();
+  await expect(page.getByRole('dialog').getByRole('heading', { name: /^Summary · /, level: 2 })).toBeVisible();
+});
+
+test('mobile rail summary card previews the key stats (not the insight strip) and opens the summary focus', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`/election/${BIHAR}`);
+  const card = page.getByRole('group', { name: 'Election summary' });
+  await expect(card).toContainText('Avg Margin');
+  await expect(card.locator('[data-stats]')).toBeVisible();
+  await expect(card.getByText('⤢')).toHaveCount(0);
+  await assertNoScroll(page);
+  await page.screenshot({ path: '../.playwright-mcp/fix2-390.png' });
+  await card.getByRole('button', { name: /open election summary/i }).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
 });

@@ -37,7 +37,10 @@ describe('history summary', () => {
 
   it('dominance_by_party: strongholds and loyal seats of the dominant party, biggest first', () => {
     // HistorySection.tsx:54-66,76: per dominantParty { stronghold, loyal, total }, sorted by total desc.
-    expect(nums('dominance_by_party')).toEqual([['party:BJP', 2, [0]], ['party:RJD', 0, [1]]]);
+    expect(nums('dominance_by_party')).toEqual([['party:BJP', 2, [0, 2]], ['party:RJD', 0, [1, 1]]]);
+    // The compact card shows the primary column, which is the total the list is sorted by.
+    expect(get('dominance_by_party').primaryCol).toBe(2);
+    expect(get('dominance_by_party').columnsKeys![2]).toBe('studio_col_total');
     expect(get('dominance_by_party').rows[0].label).toBe('Bharatiya Janata Party');
   });
 

@@ -40,11 +40,13 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection[] {
   led.forEach(s => seatsOf.set(s.party, (seatsOf.get(s.party) ?? 0) + 1));
   const vote = (id: string) => ctx.votePct.get(id) ?? 0;
   const mk = (id: string, label: string, color: string, seats: number, votePct: number, partyIds: string[]): SummaryRow => {
-    const seatPct = (seats / total) * 100;
+    // The difference is taken between the two displayed (rounded) numbers, so the row always adds up on screen.
+    const seatPct = roundPct((seats / total) * 100);
+    const votePctR = roundPct(votePct);
     return {
-      id, label, value: roundPct(seatPct - votePct), valueFormat: 'signed1', color, partyIds,
-      extra: [pct(roundPct(votePct)), pct(roundPct(seatPct))],
-      bar: { value: roundPct(seatPct), max: 100, color },
+      id, label, value: roundPct(seatPct - votePctR), valueFormat: 'signed1', color, partyIds,
+      extra: [pct(votePctR), pct(seatPct)],
+      bar: { value: seatPct, max: 100, color },
     };
   };
   const alliances = ctx.alliances.map(a => mk(
@@ -111,7 +113,7 @@ function wasted(ctx: SummaryContext): SummarySection | null {
     const diff = byTotal[0].wastedPct - byTotal[1].wastedPct;
     const adv = diff < 0 ? byTotal[0] : byTotal[1];
     // Legacy: "Efficiency Gap: <alliance> has +N pp advantage" (the number sits in the last column).
-    rows.push({ id: 'efficiency_gap', label: '', labelKey: 'studio_row_efficiency_gap', sub: adv.name, value: null, valueFormat: 'lakh', extra: [lakh(null), { value: roundPct(Math.abs(diff)), format: 'pp' }], color: adv.color });
+    rows.push({ id: 'efficiency_gap', label: '', labelKey: 'studio_row_efficiency_gap', sub: adv.name, value: null, valueFormat: 'text', valueText: '', extra: [{ value: null, format: 'text', text: '' }, { value: roundPct(Math.abs(diff)), format: 'pp' }], color: adv.color });
   }
   return { id: 'wasted', titleKey: 'studio_sum_wasted', columnsKeys: ['studio_col_total', 'studio_col_wasted', 'studio_col_wasted_pct'], primaryCol: 2, rows };
 }

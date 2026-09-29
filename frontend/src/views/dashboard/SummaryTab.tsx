@@ -5,6 +5,22 @@ import { planSummaryFit } from '../../viewmodels/tiles/fit';
 import { useElementHeight } from '../hooks/useElementHeight';
 import { Row, Stats, useClearHoverOnChange } from './SummaryRows';
 
+/** Mobile rail glance: the key stats plus the first section's title (its first rows when there are no key stats). Not interactive. */
+export function SummaryPreview({ vm }: { vm: SummaryVM }) {
+  const { t } = useTranslation();
+  const sections = vm.summary.sections;
+  const stats = sections.find(s => s.id === 'key_stats');
+  const first = sections.find(s => s !== stats);
+  if (!stats && !first) return <p className="py-2 text-sm text-muted">{t('studio_no_layer_data')}</p>;
+  return (
+    <div className="flex flex-col gap-1">
+      {stats && <Stats section={stats} vm={vm} />}
+      {first && <h3 className="flex h-[22px] items-center px-2 text-[11px] font-semibold uppercase tracking-wider text-muted">{t(first.titleKey, first.titleParams)}</h3>}
+      {!stats && first && first.layout !== 'stats' && first.rows.slice(0, 2).map(r => <Row key={r.id} r={r} section={first} vm={vm} />)}
+    </div>
+  );
+}
+
 const HEADER_H = 22;
 const ROW_H = 28;
 const GAP = 4;

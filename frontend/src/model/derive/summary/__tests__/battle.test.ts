@@ -27,6 +27,10 @@ describe('battle summary', () => {
     expect(c.series[0].color).toBe('#FF7A1A');
   });
 
+  it('margin_dist is titled with the two blocs so it is not confused with the map footer\'s all-seat distribution', () => {
+    expect(run()[0]).toMatchObject({ titleKey: 'studio_sum_margin_dist_blocs', titleParams: { a: 'NDA', b: 'MGB' } });
+  });
+
   it('margin_dist (R36): plain rows per bucket - total plus one column per bloc', () => {
     const s = run()[0];
     expect(s.columnsKeys).toEqual(['studio_col_total', 'NDA', 'MGB']);
