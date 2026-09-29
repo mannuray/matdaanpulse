@@ -200,5 +200,6 @@
   "studio_share_x": "X",
   "studio_status_label_final": "Final result · {{declared}}/{{total}} declared",
   "studio_status_label_live": "Live · {{declared}}/{{total}} declared",
-  "studio_status_label_upcoming": "Upcoming"
+  "studio_status_label_upcoming": "Upcoming",
+  "studio_open": "Open {{name}}"
 }

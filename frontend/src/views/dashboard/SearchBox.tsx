@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { cn } from '../ui/cn';
 import type { SearchVM } from '../../viewmodels/tiles/useSearchVM';
 
-export function SearchBox({ vm }: { vm: SearchVM }) {
+export function SearchBox({ vm, className }: { vm: SearchVM; className?: string }) {
   const { t } = useTranslation();
   const box = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -11,7 +12,7 @@ export function SearchBox({ vm }: { vm: SearchVM }) {
     return () => document.removeEventListener('mousedown', h);
   }, [vm]);
   return (
-    <div ref={box} className="relative min-w-0 max-w-sm flex-1">
+    <div ref={box} className={cn('relative min-w-0 max-w-sm flex-1', className)}>
       <input type="search" value={vm.query} onChange={e => vm.onQuery(e.target.value)} onFocus={() => vm.onOpen(true)} onKeyDown={e => { if (e.key === 'Escape') vm.onOpen(false); }}
         placeholder={t('search_placeholder')} aria-label={t('search')}
         className="h-8 w-full rounded-full border border-line bg-page/60 px-4 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none" />

@@ -200,5 +200,6 @@
   "studio_share_x": "X",
   "studio_status_label_final": "अंतिम परिणाम · {{declared}}/{{total}} घोषित",
   "studio_status_label_live": "लाइव · {{declared}}/{{total}} घोषित",
-  "studio_status_label_upcoming": "आगामी"
+  "studio_status_label_upcoming": "आगामी",
+  "studio_open": "{{name}} खोलें"
 }

@@ -50,7 +50,7 @@ export function DashboardGrid(p: DashboardViewProps) {
   if (!desktop) {
     return (
       <div className="studio-root flex h-dvh w-screen flex-col gap-2 overflow-hidden pt-2">
-        <div className="px-3"><TopBar vm={p.topBar} search={p.search} /></div>
+        <div className="px-3"><TopBar vm={p.topBar} search={p.search} compact /></div>
         <div className="px-3"><div className="rounded-tile border border-line bg-tile p-3"><ScoreboardTile vm={p.scoreboard} variant="compact" /></div></div>
         <div className="min-h-0 flex-1 px-3"><MapTile vm={p.map} variant="tile" /></div>
         <MobileCardRail cards={[
