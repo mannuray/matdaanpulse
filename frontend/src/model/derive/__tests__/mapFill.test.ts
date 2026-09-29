@@ -52,6 +52,15 @@ describe('seatFill', () => {
     expect(seatFill(seat({ id: 'K' }), c).opacity).toBe(1);
     expect(seatFill(seat({ party: 'JDU' }), c).opacity).toBe(1);
   });
+  it('pending seats respect highlight filter', () => {
+    const pending = seat({ party: '', margin: undefined, status: 'PENDING' });
+    const c = ctx({ highlight: { parties: new Set(), seats: new Set(['A']) } });
+    expect(seatFill(pending, c)).toEqual({ color: MAP_FILL.pending, opacity: 1 });
+    const c2 = ctx({ highlight: { parties: new Set(), seats: new Set(['B']) } });
+    expect(seatFill(pending, c2)).toEqual({ color: MAP_FILL.pending, opacity: DIM_OPACITY });
+    const c3 = ctx({ highlight: { parties: new Set(), seats: new Set() } });
+    expect(seatFill(pending, c3)).toEqual({ color: MAP_FILL.pending, opacity: 1 });
+  });
 });
 
 describe('marginOpacity', () => {

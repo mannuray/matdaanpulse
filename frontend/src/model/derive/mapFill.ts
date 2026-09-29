@@ -60,8 +60,7 @@ function layerFill(seat: SeatResult, ctx: FillContext): SeatFill {
 }
 
 export function seatFill(seat: SeatResult, ctx: FillContext): SeatFill {
-  if (!seat.party) return { color: MAP_FILL.pending, opacity: 1 };
-  const fill = layerFill(seat, ctx);
+  const fill = !seat.party ? { color: MAP_FILL.pending, opacity: 1 } : layerFill(seat, ctx);
   const { parties, seats } = ctx.highlight;
   const active = parties.size > 0 || seats.size > 0;
   if (active && !seats.has(seat.id) && !parties.has(seat.party)) return { ...fill, opacity: DIM_OPACITY };
