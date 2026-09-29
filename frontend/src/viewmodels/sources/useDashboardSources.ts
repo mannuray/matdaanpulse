@@ -8,7 +8,7 @@ import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
 import type { CustomWatch } from '../../model/derive/leaders';
 import { appendTicker, type TickerEvent } from '../../model/live/ticker';
-import type { Election, SSEEvent, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint } from '../../model/types';
+import type { Election, SSEEvent, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint, PartyTrendPoint } from '../../model/types';
 import type { LayerId } from '../../model/types/dashboard';
 import type { DashboardViewModel } from '../data/useDashboardData';
 
@@ -24,6 +24,7 @@ export interface DashboardSources {
   incumbency: IncumbencyEntry[];
   partySwitches: PartySwitchEntry[];
   marginTrend: MarginTrendPoint[];
+  partyTrend: PartyTrendPoint[];
   prevYear: number | null;
   totalSeats: number;
   majority: number;
@@ -113,7 +114,7 @@ export function useDashboardSources(election: Election): DashboardSources {
   }, [setStored]);
 
   return {
-    election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, prevYear,
+    election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, prevYear,
     totalSeats, majority, votePct, ticker, recentSeats, sseConnected, availableLayers,
     watchlist, addWatch, removeWatch,
   };
