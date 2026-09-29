@@ -35,6 +35,12 @@ describe('useDefaultElectionId', () => {
   it('falls back to the latest election of any type when no LS exists', async () => {
     expect(await run([el('br2020', 'VS', 2020), el('br2025', 'VS', 2025)])).toBe('br2025');
   });
+  it('prefers a Finalized LS election over a later Upcoming one', async () => {
+    expect(await run([{ ...el('ls2029', 'LS', 2029), status: 'Upcoming' }, el('ls2024', 'LS', 2024)])).toBe('ls2024');
+  });
+  it('picks an Upcoming election when only Upcoming exist', async () => {
+    expect(await run([{ ...el('ls2029', 'LS', 2029), status: 'Upcoming' }])).toBe('ls2029');
+  });
   it('returns null for an empty list', async () => {
     expect(await run([])).toBeNull();
   });
