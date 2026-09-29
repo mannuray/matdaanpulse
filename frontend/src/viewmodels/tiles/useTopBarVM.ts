@@ -29,6 +29,8 @@ export interface TopBarVM {
   stateId: number | null;
   years: { id: string; year: number }[];
   lsElections: { id: string; name: string }[];
+  /** Type, state and year in one short string, e.g. "VS · Bihar 2025" (LS has no state). */
+  electionLabel: string;
   statusLabel: { kind: 'final' | 'live' | 'upcoming'; declared: number; total: number };
   shareText: string;
   lang: string;
@@ -74,6 +76,7 @@ export function useTopBarVM(): TopBarVM {
     stateId: current.state_id,
     years,
     lsElections,
+    electionLabel: [`${current.type} ·`, current.type === 'VS' ? vsStates.find(s => s.id === current.state_id)?.name : null, current.year].filter(Boolean).join(' '),
     statusLabel: {
       kind: current.status === 'Live' ? 'live' : current.status === 'Finalized' ? 'final' : 'upcoming',
       declared: countDeclared(src.data.mapRegions),

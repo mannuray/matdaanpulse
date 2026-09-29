@@ -14,9 +14,9 @@ export function SummaryPreview({ vm }: { vm: SummaryVM }) {
   if (!stats && !first) return <p className="py-2 text-sm text-muted">{t('studio_no_layer_data')}</p>;
   return (
     <div className="flex flex-col gap-1">
-      {stats && <Stats section={stats} vm={vm} />}
+      {stats && <Stats section={stats} vm={vm} plain />}
       {first && <h3 className="flex h-[22px] items-center px-2 text-[11px] font-semibold uppercase tracking-wider text-muted">{t(first.titleKey, first.titleParams)}</h3>}
-      {!stats && first && first.layout !== 'stats' && first.rows.slice(0, 2).map(r => <Row key={r.id} r={r} section={first} vm={vm} />)}
+      {!stats && first && first.layout !== 'stats' && first.rows.slice(0, 2).map(r => <Row key={r.id} r={r} section={first} vm={vm} plain />)}
     </div>
   );
 }

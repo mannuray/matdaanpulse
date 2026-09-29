@@ -54,6 +54,15 @@ async function topBar(type: 'LS' | 'VS') {
 }
 
 describe('useTopBarVM', () => {
+  it('electionLabel combines type, state and year (LS has no state)', async () => {
+    const vs = makeSources({ election: { ...base, type: 'VS', year: 2025, state_id: 4 } });
+    const h1 = renderHook(() => useTopBarVM(), { wrapper: wrap(vs) });
+    await waitFor(() => expect(h1.result.current.electionLabel).toBe('VS · Bihar 2025'));
+    const ls = makeSources({ election: { ...base, type: 'LS', year: 2024, state_id: null } });
+    const h2 = renderHook(() => useTopBarVM(), { wrapper: wrap(ls) });
+    await waitFor(() => expect(h2.result.current.electionLabel).toBe('LS · 2024'));
+  });
+
   it('LS -> VS restores the remembered VS election', async () => {
     localStorage.setItem('lastElection_VS', 'wb2016');
     const { result } = await topBar('LS');

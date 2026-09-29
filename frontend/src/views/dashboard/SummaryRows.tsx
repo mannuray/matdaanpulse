@@ -50,11 +50,12 @@ export function useClearHoverOnChange(vm: SummaryVM, sections: SummarySection[])
 }
 
 /** One row. `full` shows every column (focus view); otherwise only the section's primary number (compact tab). */
-export function Row({ r, section, vm, full = false }: { r: SummaryRow; section: SummarySection; vm: SummaryVM; full?: boolean }) {
+export function Row({ r, section, vm, full = false, plain = false }: { r: SummaryRow; section: SummarySection; vm: SummaryVM; full?: boolean; plain?: boolean }) {
   const { t } = useTranslation();
   const cellText = useCellText();
   const format = useCellFormat();
   const a = rowActions(vm, section.id)(r);
+  if (plain) a.interactive = false;
   const label = r.labelKey ? t(r.labelKey) : r.label;
   const cls = cn('flex h-7 w-full shrink-0 items-center gap-2 rounded-[0.5rem] px-2 text-left text-xs', a.interactive && 'hover:bg-tile-raised', a.locked && 'bg-tile-raised ring-1 ring-accent');
   const body = (
@@ -80,7 +81,8 @@ export function Row({ r, section, vm, full = false }: { r: SummaryRow; section: 
 }
 
 /** Rows shown as a row of big numbers (key stats, dominance, anti-incumbency ...). */
-export function Stats({ section, vm, className }: { section: SummarySection; vm: SummaryVM; className?: string }) {
+/** `plain` renders the numbers as non-interactive text (mobile rail preview). */
+export function Stats({ section, vm, className, plain = false }: { section: SummarySection; vm: SummaryVM; className?: string; plain?: boolean }) {
   const { t } = useTranslation();
   const cellText = useCellText();
   const actions = rowActions(vm, section.id);
@@ -88,6 +90,7 @@ export function Stats({ section, vm, className }: { section: SummarySection; vm:
     <div data-stats className={cn('grid shrink-0 gap-2 px-2', className ?? 'h-[52px]')} style={{ gridTemplateColumns: `repeat(${section.rows.length}, minmax(0, 1fr))` }}>
       {section.rows.map(r => {
         const a = actions(r);
+        if (plain) { a.interactive = false; a.locked = false; }
         const cls = cn('flex min-w-0 flex-col items-start justify-center rounded-[0.5rem] px-2 text-left', a.interactive && 'hover:bg-tile-raised', a.locked && 'bg-tile-raised ring-1 ring-accent');
         const body = (
           <>

@@ -7,7 +7,7 @@ export function MobileCardRail({ cards }: { cards: { id: FocusTile | 'watchlist'
   const { t } = useTranslation();
   const [active, setActive] = useState(0);
   return (
-    <div className="flex shrink-0 flex-col gap-1.5">
+    <div data-rail className="flex shrink-0 flex-col gap-1.5">
       <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto px-3 [scrollbar-width:none]"
         onScroll={e => { const el = e.currentTarget; setActive(Math.round(el.scrollLeft / (el.clientWidth * 0.86))); }}>
         {cards.map(c => (

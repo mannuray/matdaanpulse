@@ -6,7 +6,7 @@ import { Tile } from '../dashboard/Tile';
 import { PillToggle } from '../ui/PillToggle';
 import { MapCanvas } from './MapCanvas';
 
-export function MapTile({ vm, variant, seatPanel, footer }: { vm: MapVM; variant: 'tile' | 'focus'; seatPanel?: ReactNode; footer?: ReactNode }) {
+export function MapTile({ vm, variant, seatPanel, footer, stackActions }: { vm: MapVM; variant: 'tile' | 'focus'; seatPanel?: ReactNode; footer?: ReactNode; /** Layer toggle on its own row under the title (narrow mobile tile). */ stackActions?: boolean }) {
   const { t } = useTranslation();
   const layers = <PillToggle<LayerId> value={vm.layer} onChange={vm.onLayer} ariaLabel={t('studio_map_layers')} size="sm" options={vm.layers.map(l => ({ value: l, label: t(`map_tab_${l}`) }))} />;
   const mode = vm.hexAvailable ? <PillToggle value={vm.mapMode} onChange={vm.onMapMode} ariaLabel={t('studio_map_mode')} size="sm" options={[{ value: 'map', label: t('studio_map') }, { value: 'hex', label: t('studio_hex') }]} /> : null;
@@ -33,5 +33,5 @@ export function MapTile({ vm, variant, seatPanel, footer }: { vm: MapVM; variant
       </div>
     );
   }
-  return <Tile title={t('constituency_map')} onExpand={vm.onFocus} actions={<>{layers}{mode}</>} bodyClassName="flex flex-col px-2 pb-2">{canvas}{footer}</Tile>;
+  return <Tile title={t('constituency_map')} onExpand={vm.onFocus} actions={<>{layers}{mode}</>} stackActions={stackActions} bodyClassName="flex flex-col px-2 pb-2">{canvas}{footer}</Tile>;
 }

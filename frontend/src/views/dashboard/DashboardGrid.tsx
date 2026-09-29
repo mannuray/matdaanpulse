@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { TopBar } from './TopBar';
 import { ScoreboardTile } from './ScoreboardTile';
-import { StandingsTile, WatchlistPreview, type StandingsTab } from './StandingsTile';
+import { StandingsTile, StandingsPreview, WatchlistPreview, type StandingsTab } from './StandingsTile';
 import { LayerInsightStrip } from './LayerInsightStrip';
 import { SummaryFocus } from './SummaryFocus';
 import { SummaryPreview } from './SummaryTab';
@@ -55,12 +55,12 @@ export function DashboardGrid(p: DashboardViewProps) {
   if (!desktop) {
     return (
       <div className="studio-root flex h-dvh w-screen flex-col gap-2 overflow-hidden pt-2">
-        <div className="px-3"><TopBar vm={p.topBar} search={p.search} compact /></div>
-        <div className="px-3"><div className="rounded-tile border border-line bg-tile p-3"><ScoreboardTile vm={p.scoreboard} variant="compact" /></div></div>
-        <div className="min-h-0 flex-1 px-3"><MapTile vm={p.map} variant="tile" /></div>
+        <div className="shrink-0 px-3"><TopBar vm={p.topBar} search={p.search} compact /></div>
+        <div className="shrink-0 px-3"><div data-mobile-scoreboard className="rounded-tile border border-line bg-tile p-3"><ScoreboardTile vm={p.scoreboard} variant="compact" /></div></div>
+        <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)] px-3"><MapTile vm={p.map} variant="tile" stackActions /></div>
         <MobileCardRail cards={[
           { id: 'insight', title: titles.insight, node: p.summary ? <SummaryPreview vm={p.summary} /> : <LayerInsightStrip vm={p.insight} variant="tile" />, onOpen: p.summary?.onFocus ?? p.insight.onFocus },
-          { id: 'standings', title: titles.standings, node: <StandingsTile vm={p.standings} variant="focus" />, onOpen: () => { setStandingsTab('parties'); p.standings.onFocus(); } },
+          { id: 'standings', title: t('party_standings'), node: <StandingsPreview vm={p.standings} />, onOpen: () => { setStandingsTab('parties'); p.standings.onFocus(); } },
           { id: 'watchlist', title: t('studio_tab_watchlist', { count: p.leaders.watchlist.length }), node: <WatchlistPreview vm={p.leaders} />, onOpen: () => { setStandingsTab('watchlist'); p.standings.onFocus(); } },
           { id: 'leaders', title: titles.leaders, node: <LeadersStrip vm={p.leaders} variant="tile" />, onOpen: p.leaders.onFocus },
           { id: 'stats', title: titles.stats, node: <StatsStrip vm={p.stats} variant="tile" />, onOpen: p.stats.onFocus },

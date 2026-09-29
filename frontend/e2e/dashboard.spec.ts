@@ -195,3 +195,92 @@ test('mobile rail summary card previews the key stats (not the insight strip) an
   await card.getByRole('button', { name: /open election summary/i }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
 });
+
+const MOBILE_SIZES = [{ width: 390, height: 844 }, { width: 360, height: 740 }];
+const box = async (loc: import('@playwright/test').Locator) => (await loc.boundingBox())!;
+const overlaps = (a: { x: number; y: number; width: number; height: number }, b: typeof a) =>
+  a.x < b.x + b.width - 1 && b.x < a.x + a.width - 1 && a.y < b.y + b.height - 1 && b.y < a.y + a.height - 1;
+
+for (const size of MOBILE_SIZES) {
+  test.describe(`mobile clean-up at ${size.width}x${size.height}`, () => {
+    test.beforeEach(async ({ page }) => {
+      await page.setViewportSize(size);
+      await page.goto(`/election/${BIHAR}`);
+      await expect(page.locator('[data-rail-card]').first()).toBeVisible();
+    });
+
+    test('one-row top bar, tiles do not overlap, no page scroll, full bloc labels', async ({ page }) => {
+      const top = await box(page.locator('header').first());
+      const board = await box(page.locator('[data-mobile-scoreboard]'));
+      const map = await box(page.locator('section').filter({ has: page.getByRole('heading', { name: 'Constituency Map' }) }));
+      const rail = await box(page.locator('[data-rail]'));
+      expect(top.height).toBeLessThanOrEqual(56);
+      const boxes = { top, board, map, rail };
+      const names = Object.keys(boxes) as (keyof typeof boxes)[];
+      for (let i = 0; i < names.length; i++) for (let j = i + 1; j < names.length; j++) {
+        expect(overlaps(boxes[names[i]], boxes[names[j]]), `${names[i]} overlaps ${names[j]}`).toBe(false);
+      }
+      expect(map.height).toBeGreaterThan(120);
+      await assertNoScroll(page);
+      const clipped = await page.evaluate(() => [...document.querySelectorAll('[data-bloc-label]')].map(el => ({ t: el.textContent, ok: el.scrollWidth <= el.clientWidth })));
+      expect(clipped.length).toBeGreaterThan(0);
+      expect(clipped.filter(c => !c.ok)).toEqual([]);
+      expect(clipped.some(c => c.t === 'NDA')).toBe(true);
+      for (const name of ['Choose election', 'Search', 'More']) {
+        const b = await box(page.getByRole('button', { name: new RegExp(`^${name}`) }));
+        expect(b.height).toBeGreaterThanOrEqual(43.5);
+      }
+      await page.screenshot({ path: `../.playwright-mcp/t24-${size.width}.png` });
+    });
+
+    test('rail: standings preview rows never overlap their bars, and card titles stay put', async ({ page }) => {
+      const card = page.getByRole('group', { name: 'Party Standings' });
+      await card.scrollIntoViewIfNeeded();
+      const rows = card.locator('[data-preview-row]');
+      expect(await rows.count()).toBeGreaterThan(0);
+      expect(await rows.count()).toBeLessThanOrEqual(4);
+      for (let i = 0; i < await rows.count(); i++) {
+        const label = await box(rows.nth(i).locator('[data-preview-label]'));
+        const bar = await box(rows.nth(i).locator('[data-preview-bar]'));
+        expect(overlaps(label, bar)).toBe(false);
+      }
+      const cardBox = await box(card);
+      const inner = await card.evaluate(el => el.scrollHeight <= el.clientHeight + 1);
+      expect(inner).toBe(true);
+      expect((await box(card.locator('[data-preview-row]').last())).y + 18).toBeLessThanOrEqual(cardBox.y + cardBox.height);
+      // The watchlist card opens the standings focus, yet the Party Standings card keeps its title.
+      await page.locator('[data-rail-card]').nth(2).getByRole('button', { name: /open/i }).click();
+      await expect(page.getByRole('dialog').getByRole('heading', { name: 'Watchlist' })).toBeVisible();
+      await page.keyboard.press('Escape');
+      await expect(page.getByRole('group', { name: 'Party Standings' })).toHaveCount(1);
+    });
+
+    test('the election chip opens the pickers and choosing another election navigates', async ({ page }) => {
+      const before = page.url();
+      await expect(page.getByRole('button', { name: /^Choose election/ })).toContainText('Bihar');
+      await page.getByRole('button', { name: /^Choose election/ }).click();
+      const sheet = page.getByRole('dialog');
+      await expect(sheet.getByRole('radio', { name: /Lok Sabha/ })).toBeVisible();
+      await expect(sheet.getByRole('radio', { name: /Vidhan Sabha/ })).toBeVisible();
+      await expect(sheet.getByRole('combobox', { name: 'Select State' })).toBeVisible();
+      await page.screenshot({ path: `../.playwright-mcp/t24-${size.width}-election.png` });
+      await sheet.getByRole('combobox', { name: 'Year' }).click();
+      await page.getByRole('option', { name: '2020' }).click();
+      await expect(page).not.toHaveURL(before);
+      await expect(sheet).toHaveCount(0);
+      await expect(page.getByRole('button', { name: /^Choose election/ })).toContainText('2020');
+    });
+
+    test('the more sheet has the share links and the language picker; search focuses its box', async ({ page }) => {
+      await page.getByRole('button', { name: 'More' }).click();
+      const sheet = page.getByRole('dialog');
+      await expect(sheet.getByRole('link', { name: 'WhatsApp' })).toBeVisible();
+      await expect(sheet.getByRole('link', { name: 'X', exact: true })).toBeVisible();
+      await expect(sheet.getByRole('combobox', { name: 'Language' })).toBeVisible();
+      await page.keyboard.press('Escape');
+      await expect(sheet).toHaveCount(0);
+      await page.getByRole('button', { name: 'Search', exact: true }).click();
+      await expect(page.getByRole('dialog').getByRole('searchbox')).toBeFocused();
+    });
+  });
+}

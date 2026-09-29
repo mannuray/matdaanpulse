@@ -98,6 +98,31 @@ function WatchPreviewRow({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   );
 }
 
+const PREVIEW_ROWS = 4;
+
+/** Non-interactive mobile rail glance: the top parties as dot, short id, thin bar and seats, plus "+N more". */
+export function StandingsPreview({ vm }: { vm: StandingsVM }) {
+  const { t } = useTranslation();
+  if (vm.rows.length === 0) return <p className="py-2 text-sm text-muted">{t('studio_no_results_yet')}</p>;
+  const top = vm.rows.slice(0, PREVIEW_ROWS);
+  const rest = vm.rows.slice(PREVIEW_ROWS);
+  const max = Math.max(1, ...top.map(r => r.seats));
+  return (
+    <div className="flex flex-col gap-0.5">
+      {top.map(r => (
+        <div key={r.id} data-preview-row className="grid h-[18px] grid-cols-[4.5rem_minmax(0,1fr)_2.25rem] items-center gap-2">
+          <span data-preview-label className="flex min-w-0 items-center gap-1.5 text-xs font-semibold text-ink">
+            <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: r.color }} /><span className="truncate">{r.id}</span>
+          </span>
+          <span data-preview-bar className="h-1.5 overflow-hidden rounded-full bg-page"><span className="block h-full rounded-full" style={{ width: `${(r.seats / max) * 100}%`, background: r.color }} /></span>
+          <span className="tabular text-right font-display text-base font-bold leading-none text-ink">{r.seats}</span>
+        </div>
+      ))}
+      {rest.length > 0 && <p className="text-[11px] leading-[14px] text-muted">{t('studio_more_parties', { count: rest.length, seats: rest.reduce((n, r) => n + r.seats, 0) })}</p>}
+    </div>
+  );
+}
+
 /** Non-interactive glance at the first watched seats (mobile rail). */
 export function WatchlistPreview({ vm }: { vm: LeadersVM }) {
   const { t } = useTranslation();

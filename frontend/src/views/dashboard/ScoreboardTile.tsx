@@ -14,13 +14,25 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
           <button key={b.id} type="button" onClick={() => vm.onLockBloc(b.id)} onMouseEnter={() => vm.onHoverBloc(b.id)} onMouseLeave={() => vm.onHoverBloc(null)}
             aria-label={`${b.name} ${b.seats}`} title={b.name} aria-pressed={vm.lockedId === b.id}
             className={cn('flex min-w-0 items-end gap-3 rounded-xl px-1 text-left', i > 0 && 'border-l border-line pl-4', vm.lockedId === b.id && 'ring-2 ring-accent')}>
-            <div className={cn('min-w-0', tileSize ? 'pb-1' : 'pb-2')}>
-              <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.color }}>
-                <span className="h-2 w-2 rounded-full" style={{ background: b.color }} /><span className="truncate">{tileSize ? b.label : b.name}</span>
+            {variant === 'compact' ? (
+              <div className="flex min-w-0 flex-col items-start">
+                <div className="flex flex-wrap items-baseline gap-x-2 text-sm font-semibold" style={{ color: b.color }}>
+                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap"><span className="h-2 w-2 rounded-full" style={{ background: b.color }} /><span data-bloc-label>{b.label}</span></span>
+                  {b.votePct != null && <span className="whitespace-nowrap text-xs font-normal text-muted">{t('studio_votes_pct', { pct: b.votePct })}</span>}
+                </div>
+                <span className="tabular font-display text-5xl font-extrabold leading-none" style={{ color: b.color }}>{b.seats}</span>
               </div>
-              {b.votePct != null && <div className="text-xs text-muted">{t('studio_votes_pct', { pct: b.votePct })}</div>}
-            </div>
-            <span className={cn('tabular font-display font-extrabold leading-none', variant === 'compact' ? 'text-5xl' : tileSize ? 'text-[60px]' : 'text-[88px]')} style={{ color: b.color }}>{b.seats}</span>
+            ) : (
+              <>
+                <div className={cn('min-w-0', tileSize ? 'pb-1' : 'pb-2')}>
+                  <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.color }}>
+                    <span className="h-2 w-2 rounded-full" style={{ background: b.color }} /><span data-bloc-label className="truncate">{variant === 'focus' ? b.name : b.label}</span>
+                  </div>
+                  {b.votePct != null && <div className="text-xs text-muted">{t('studio_votes_pct', { pct: b.votePct })}</div>}
+                </div>
+                <span className={cn('tabular font-display font-extrabold leading-none', tileSize ? 'text-[60px]' : 'text-[88px]')} style={{ color: b.color }}>{b.seats}</span>
+              </>
+            )}
           </button>
         ))}
         <div className={cn('ml-auto text-right', tileSize ? 'flex items-baseline gap-2 pb-1' : 'pb-2')}>
