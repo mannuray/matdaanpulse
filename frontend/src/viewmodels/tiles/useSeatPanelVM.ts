@@ -32,7 +32,7 @@ export function useSeatPanelVM(): SeatPanelVM | null {
   return {
     seatId: id,
     name,
-    candidates: rows.map(r => ({ name: r.candidate_name, partyId: r.party_id, color: src.data.partyColorMap.get(r.party_id) ?? '#8A93A6', votes: r.votes, status: r.status })),
+    candidates: rows.map(r => ({ name: r.candidate_name, partyId: r.party_id, color: src.data.partyColorMap.get(r.party_id) ?? 'var(--color-fallback)', votes: r.votes, status: r.status })),
     margin: winner ? Number(winner.margin) || 0 : null,
     history: dom ? { classification: dom.classification, dominantParty: dom.dominantParty ?? null } : null,
     briefing: (analysis as { ai_briefing?: string | null } | null)?.ai_briefing ?? null,

@@ -99,7 +99,6 @@ describe('theme controls', () => {
     const onToggleTheme = vi.fn();
     full({ theme: 'dark', onToggleTheme });
     const btn = screen.getByRole('button', { name: 'Switch to light theme' });
-    expect(btn.className).toContain('h-9');
     expect(btn.hasAttribute('aria-pressed')).toBe(false);
     fireEvent.click(btn);
     expect(onToggleTheme).toHaveBeenCalledTimes(1);
@@ -116,18 +115,13 @@ describe('theme controls', () => {
     const group = within(dialog).getByRole('radiogroup', { name: 'Theme' });
     expect(within(group).getByRole('radio', { name: 'Dark' }).getAttribute('aria-checked')).toBe('true');
     const light = within(group).getByRole('radio', { name: 'Light' });
-    expect(light.className).toContain('min-h-11');
     fireEvent.click(light);
     expect(onTheme).toHaveBeenCalledWith('light');
   });
-  it('mobile: a 44px logo mark links home and is only shown when the title is hidden', () => {
+  it('mobile: a logo mark links home with the app title as its label (sizes and the <370px switch are checked in e2e)', () => {
     const { container } = bar();
     const mark = container.querySelector('a[data-logo-mark]')!;
     expect(mark.getAttribute('href')).toBe('/');
     expect(mark.getAttribute('aria-label')).toBe('Election Tracker');
-    expect(mark.className).toContain('h-11');
-    expect(mark.className).toContain('w-11');
-    expect(mark.className).toContain('hidden');
-    expect(mark.className).toContain('max-[369px]:grid');
   });
 });

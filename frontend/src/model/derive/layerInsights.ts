@@ -41,7 +41,7 @@ export const CLOSE_THRESHOLD: Record<'LS' | 'VS', number> = { LS: 5000, VS: 1000
 
 const MAX_CHIPS = 6;
 const ACCENT = 'var(--color-accent)';
-const GREY = '#8A93A6';
+const GREY = 'var(--color-fallback)';
 
 const led = (ctx: InsightContext) => ctx.seats.filter(s => s.party && s.margin != null);
 const colorOf = (ctx: InsightContext, party: string) => ctx.partyColor.get(party) ?? GREY;

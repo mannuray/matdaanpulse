@@ -29,6 +29,9 @@
   --color-ok-text: #6EE7B7;
   --color-ok-tint: rgb(16 185 129 / .15);
   --color-scrim: rgb(10 15 30 / .7);
+  --color-live-text: #FF3B3B;
+  --color-accent-text: #8B7CFF;
+  --color-fallback: #8A93A6;
   --radius-tile: 16px;
   --font-display: "Barlow Condensed", "Noto Sans Devanagari", "Noto Sans Tamil", sans-serif;
   --font-body: "Inter Variable", "Noto Sans Devanagari", "Noto Sans Tamil", system-ui, sans-serif;
@@ -58,6 +61,9 @@
   --color-ok-text: #047857;
   --color-ok-tint: rgb(5 150 105 / .12);
   --color-scrim: rgb(14 21 48 / .4);
+  --color-live-text: #B01919;
+  --color-accent-text: #5646C8;
+  --color-fallback: #6B7385;
   --studio-muted: #5B6480;
   --studio-pulse: 98 82 220;
 }

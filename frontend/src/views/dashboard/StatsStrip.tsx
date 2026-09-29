@@ -15,7 +15,7 @@ function SeatList({ title, seats, vm }: { title: string; seats: SeatRef[]; vm: S
     <div><h3 className="mb-2 font-display text-lg font-bold uppercase text-ink">{title}</h3>
       <ol className="flex flex-col gap-1">{seats.map(s => (
         <li key={s.id}><button type="button" onClick={() => vm.onSelectSeat(s.id)} className="flex w-full items-center gap-2 rounded-[0.5rem] px-2 py-1 text-sm hover:bg-tile-raised">
-          <span className="h-2 w-2 rounded-full" style={{ background: vm.partyColor.get(s.party) ?? '#8A93A6' }} />
+          <span className="h-2 w-2 rounded-full" style={{ background: vm.partyColor.get(s.party) ?? 'var(--color-fallback)' }} />
           <span className="flex-1 truncate text-left">{s.name}</span><span className="text-muted">{s.party}</span><span className="tabular font-semibold">{s.margin.toLocaleString()}</span>
         </button></li>
       ))}</ol>

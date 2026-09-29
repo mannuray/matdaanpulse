@@ -5,6 +5,8 @@ export type Theme = ThemeName;
 export const THEME_KEY = 'studio_theme';
 
 const listeners = new Set<() => void>();
+/** The legacy provider stored its (often OS-derived) choice here; it is no longer read, so drop it once. */
+try { localStorage.removeItem('theme'); } catch { /* storage unavailable */ }
 /** Only set while storage is unavailable, so the toggle still works (for this page only). */
 let current: Theme | null = null;
 

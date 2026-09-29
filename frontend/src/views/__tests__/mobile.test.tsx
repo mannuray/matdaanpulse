@@ -46,7 +46,7 @@ describe('StandingsPreview', () => {
 
 describe('ScoreboardTile compact', () => {
   const board: ScoreboardVM = {
-    blocs: [{ id: 'NDA', name: 'National Democratic Alliance', color: '#FF7A1A', seats: 202, votePct: 48.1, kind: 'alliance', label: 'NDA' }, { id: 'MGB', name: 'Mahagathbandhan', color: '#7BD34A', seats: 34, votePct: 37.1, kind: 'alliance', label: 'MGB' }],
+    blocs: [{ id: 'NDA', name: 'National Democratic Alliance', color: '#FF7A1A', seats: 202, votePct: 48.1, kind: 'alliance', label: 'NDA', textColor: '#FF7A1A' }, { id: 'MGB', name: 'Mahagathbandhan', color: '#7BD34A', seats: 34, votePct: 37.1, kind: 'alliance', label: 'MGB', textColor: '#7BD34A' }],
     others: { seats: 7, votePct: 14.8 }, totalSeats: 243, majority: 122, countedSeats: 243, winnerId: 'NDA', marginOverMajority: 80,
     status: 'final', pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop,
   };
@@ -60,7 +60,6 @@ describe('ScoreboardTile compact', () => {
   });
   it('is a compact tile: short header, no full-size seat numbers', () => {
     const { container } = render(<ScoreboardTile vm={board} variant="compact" />);
-    expect(container.querySelector('header')!.className).toContain('min-h-9');
     expect(container.querySelector('[data-bloc-row]')).toBeTruthy();
     expect(container.innerHTML).not.toContain('text-5xl');
   });

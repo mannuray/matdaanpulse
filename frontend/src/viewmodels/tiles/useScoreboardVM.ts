@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { deriveScoreboard, type Scoreboard, type ScoreBloc } from '../../model/derive/scoreboard';
+import { useTheme } from '../theme/useTheme';
+import { forTheme } from '../../model/derive/themeColor';
 import { deriveStandingRows, type StandingRow } from '../../model/derive/standings';
 
 export type { Scoreboard, ScoreBloc };
@@ -9,7 +11,8 @@ export type { Scoreboard, ScoreBloc };
 /** Short display label: alliance id when the name is long, else the name; party id for parties. */
 const shortLabel = (b: ScoreBloc) => b.kind === 'party' ? b.id : b.name.length > 12 ? b.id : b.name;
 
-export type ScoreBlocVM = ScoreBloc & { label: string };
+/** `textColor` is `color` adjusted to 4.5:1 for small text in light theme (`color` itself is the 3:1 fill colour). */
+export type ScoreBlocVM = ScoreBloc & { label: string; textColor: string };
 
 export interface ScoreboardVM extends Omit<Scoreboard, 'blocs'> {
   blocs: ScoreBlocVM[];
@@ -17,7 +20,7 @@ export interface ScoreboardVM extends Omit<Scoreboard, 'blocs'> {
   /** Pulse the tile once when live results changed a seat. */
   pulse: boolean;
   /** Member parties per bloc, for the expanded view. */
-  breakdown: { id: string; name: string; color: string; rows: StandingRow[] }[];
+  breakdown: { id: string; name: string; color: string; textColor: string; rows: StandingRow[] }[];
   lockedId: string | null;
   onFocus(): void;
   onHoverBloc(id: string | null): void;
@@ -27,6 +30,7 @@ export interface ScoreboardVM extends Omit<Scoreboard, 'blocs'> {
 export function useScoreboardVM(): ScoreboardVM {
   const src = useSources();
   const { state, dispatch } = useDashboardStore();
+  const { theme } = useTheme();
   const alliances = useMemo(() => src.data.manifestData?.alliances ?? [], [src.data.manifestData]);
   const board = useMemo(
     () => deriveScoreboard(alliances, src.data.mapPartyList, src.votePct, src.totalSeats, src.majority),
@@ -36,11 +40,11 @@ export function useScoreboardVM(): ScoreboardVM {
   const status = src.election.status === 'Live' ? 'live' : src.election.status === 'Finalized' ? 'final' : 'upcoming';
   const breakdown = useMemo(() => {
     const rows = deriveStandingRows(src.data.mapPartyList, src.votePct, alliances, { includeZero: true });
-    return board.blocs.map(b => ({ id: b.id, name: b.name, color: b.color, rows: b.kind === 'alliance' ? rows.filter(r => r.allianceId === b.id) : rows.filter(r => r.id === b.id) }));
-  }, [board.blocs, src.data.mapPartyList, src.votePct, alliances]);
+    return board.blocs.map(b => ({ id: b.id, name: b.name, color: b.color, textColor: forTheme(b.color, theme, 'text'), rows: b.kind === 'alliance' ? rows.filter(r => r.allianceId === b.id) : rows.filter(r => r.id === b.id) }));
+  }, [board.blocs, src.data.mapPartyList, src.votePct, alliances, theme]);
   return {
     ...board,
-    blocs: board.blocs.map(b => ({ ...b, label: shortLabel(b) })),
+    blocs: board.blocs.map(b => ({ ...b, label: shortLabel(b), textColor: forTheme(b.color, theme, 'text') })),
     status,
     pulse: src.recentSeats.size > 0,
     breakdown,

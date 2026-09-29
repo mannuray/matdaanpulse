@@ -38,7 +38,7 @@ function Row({ r, max, vm, wide }: { r: StandingRow; max: number; vm: StandingsV
 
 function WatchRow({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   const { t } = useTranslation();
-  const color = vm.partyColor.get(c.partyId) ?? '#8A93A6';
+  const color = vm.partyColor.get(c.partyId) ?? 'var(--color-fallback)';
   return (
     <div className="flex h-9 w-full items-center gap-1 rounded-[0.5rem] hover:bg-tile-raised" onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)}>
       <button type="button" onClick={() => vm.onSelectSeat(c.constId)} className="flex h-full min-w-0 flex-1 items-center gap-2 rounded-[0.5rem] px-2 text-left">
@@ -86,7 +86,7 @@ function WatchlistBody({ vm, onMore }: { vm: LeadersVM; onMore(): void }) {
 /** Plain (non-interactive) row for the mobile rail preview: no buttons, no remove control. */
 function WatchPreviewRow({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   const { t } = useTranslation();
-  const color = vm.partyColor.get(c.partyId) ?? '#8A93A6';
+  const color = vm.partyColor.get(c.partyId) ?? 'var(--color-fallback)';
   return (
     <div className="flex h-9 w-full items-center gap-2 px-2">
       <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: color }} />

@@ -325,6 +325,28 @@ const SHOTS = '../.playwright-mcp';
 const bgOf = (page: Page) => page.evaluate(() => getComputedStyle(document.querySelector('.studio-root')!).backgroundColor);
 const themeOf = (page: Page) => page.evaluate(() => document.documentElement.dataset.theme);
 
+/** Sets light once per page session (not on every navigation), so reload persistence is really exercised. */
+const forceLight = (page: Page) => page.addInitScript(() => { if (!sessionStorage.getItem('t25-light')) { localStorage.setItem('studio_theme', 'light'); sessionStorage.setItem('t25-light', '1'); } });
+
+/** Every visible tile expand button is a real 44x44 target: box size and hit tests 20px from the centre in all four directions. */
+async function expectExpandTargets(page: Page) {
+  const vp = page.viewportSize()!;
+  let checked = 0;
+  for (const b of await page.getByRole('button', { name: /^Expand / }).all()) {
+    const bb = (await b.boundingBox())!;
+    if (bb.x < 0 || bb.x + bb.width > vp.width || bb.y < 0 || bb.y + bb.height > vp.height) continue; // rail card scrolled out of view
+    checked++;
+    expect(bb.width, 'expand width').toBeGreaterThanOrEqual(44);
+    expect(bb.height, 'expand height').toBeGreaterThanOrEqual(44);
+    const cx = bb.x + bb.width / 2, cy = bb.y + bb.height / 2;
+    for (const [dx, dy] of [[0, -20], [0, 20], [-20, 0], [20, 0]]) {
+      const hit = await b.evaluate((el, p) => { const t = document.elementFromPoint(p.x, p.y); return !!t && (t === el || el.contains(t)); }, { x: cx + dx, y: cy + dy });
+      expect(hit, `expand hit at ${dx},${dy}`).toBe(true);
+    }
+  }
+  expect(checked).toBeGreaterThan(0);
+}
+
 test.describe('theme selector', () => {
   test.beforeEach(async ({ page }) => { await page.addInitScript(() => { if (!sessionStorage.getItem('t25')) { localStorage.removeItem('studio_theme'); sessionStorage.setItem('t25', '1'); } }); });
 
@@ -337,6 +359,9 @@ test.describe('theme selector', () => {
     expect(dark).toBe('rgb(10, 15, 30)');
     await page.waitForTimeout(800);
     await page.screenshot({ path: `${SHOTS}/t25-dark-1440.png` });
+    const tb = (await page.getByRole('button', { name: 'Switch to light theme' }).boundingBox())!;
+    expect(Math.round(tb.width)).toBe(36);
+    expect(Math.round(tb.height)).toBe(36);
     await page.getByRole('button', { name: 'Switch to light theme' }).click();
     expect(await themeOf(page)).toBe('light');
     expect(await bgOf(page)).toBe('rgb(244, 246, 251)');
@@ -353,7 +378,7 @@ test.describe('theme selector', () => {
   });
 
   test('desktop light: summary focus with a chart, dialog and scrim are themed', async ({ page }) => {
-    await page.addInitScript(() => sessionStorage.getItem('t25') && localStorage.setItem('studio_theme', 'light'));
+    await forceLight(page);
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}?layer=history`);
     await page.getByRole('button', { name: /more (rows|sections?|row)/ }).click();
@@ -381,6 +406,7 @@ test.describe('theme selector', () => {
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await assertNoScroll(page);
+    await expectExpandTargets(page);
     await page.waitForTimeout(500);
     await page.screenshot({ path: `${SHOTS}/t25-light-390.png` });
     await page.getByRole('button', { name: /Choose election/ }).click();
@@ -395,7 +421,7 @@ test.describe('theme selector', () => {
   });
 
   test('desktop light: the map tooltip is themed', async ({ page }) => {
-    await page.addInitScript(() => sessionStorage.getItem('t25') && localStorage.setItem('studio_theme', 'light'));
+    await forceLight(page);
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
     await expect(page.getByText('202').first()).toBeVisible();
@@ -404,12 +430,21 @@ test.describe('theme selector', () => {
     await page.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2);
     const tip = page.locator('.studio-root.fixed.pointer-events-none');
     await expect(tip).toBeVisible();
-    expect(await tip.evaluate(el => getComputedStyle(el).backgroundColor)).toMatch(/^oklab\(0\.97/);
+    const [actual, expected] = await tip.evaluate(el => {
+      const probe = document.createElement('div');
+      probe.style.background = 'color-mix(in oklab, var(--color-page) 95%, transparent)';
+      el.parentElement!.appendChild(probe);
+      const want = getComputedStyle(probe).backgroundColor;
+      probe.remove();
+      return [getComputedStyle(el).backgroundColor, want];
+    });
+    expect(actual).toBe(expected);
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--color-page').trim().toLowerCase())).toBe('#f4f6fb');
     await page.screenshot({ path: `${SHOTS}/t25-light-tooltip-1440.png` });
   });
 
   test('mobile 360: logo mark replaces the hidden title; every map layer tab is reachable and Reserved works; expand buttons are 44px', async ({ page }) => {
-    await page.addInitScript(() => sessionStorage.getItem('t25') && localStorage.setItem('studio_theme', 'light'));
+    await forceLight(page);
     await page.setViewportSize({ width: 360, height: 740 });
     await page.goto(`/election/${BIHAR}`);
     await expect(page.getByText('202').first()).toBeVisible();
@@ -432,15 +467,33 @@ test.describe('theme selector', () => {
     await tabs.getByRole('radio', { name: 'Reserved', exact: true }).click();
     await expect(tabs.getByRole('radio', { name: 'Reserved', exact: true })).toBeChecked();
     await assertNoScroll(page);
-    let checked = 0;
-    for (const b of await page.getByRole('button', { name: /^Expand / }).all()) {
-      const bb = (await b.boundingBox())!;
-      if (bb.x < 8 || bb.x + bb.width > 352 || bb.y < 0 || bb.y + bb.height > 740) continue; // rail cards scrolled out of view
-      checked++;
-      // Probe a point 5px outside the 32px visual box: the pseudo-element hit area must still resolve to the button.
-      const hit = await b.evaluate((el, pt) => { const t = document.elementFromPoint(pt.x, pt.y); return !!t && (t === el || el.contains(t)); }, { x: bb.x - 5, y: bb.y + bb.height / 2 });
-      expect(hit, 'expand button hit area >= 42px').toBe(true);
-    }
-    expect(checked).toBeGreaterThan(0);
+    await expectExpandTargets(page);
+  });
+
+  test('legacy ConstituencyDetail (reached from the seat panel) in dark and light', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
+    await page.getByRole('link', { name: /View full page/ }).click();
+    await expect(page).toHaveURL(/constituency\//);
+    await page.waitForTimeout(1500);
+    expect(await themeOf(page)).toBe('dark');
+    await page.screenshot({ path: `${SHOTS}/t25-legacy-dark.png` });
+    await page.evaluate(() => localStorage.setItem('studio_theme', 'light'));
+    await page.goto(page.url());
+    await page.waitForTimeout(1500);
+    expect(await themeOf(page)).toBe('light');
+    await page.screenshot({ path: `${SHOTS}/t25-legacy-light.png` });
+  });
+
+  test('map focus seat list: rank numbers stay inside the panel', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
+    const aside = page.getByRole('dialog').locator('aside');
+    await expect(aside.locator('ol > li').first()).toBeVisible();
+    const ab = (await aside.boundingBox())!;
+    const lb = (await aside.locator('ol > li').first().boundingBox())!;
+    expect(lb.x).toBeGreaterThan(ab.x + 16);
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: `${SHOTS}/t25-mapfocus-1440.png` });
   });
 });

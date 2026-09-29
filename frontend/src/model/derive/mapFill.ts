@@ -33,7 +33,7 @@ export function marginOpacity(margin: number | undefined, electionType: 'LS' | '
 }
 
 function layerFill(seat: SeatResult, ctx: FillContext): SeatFill {
-  const color = ctx.partyColor.get(seat.party) ?? '#8A93A6';
+  const color = ctx.partyColor.get(seat.party) ?? 'var(--color-fallback)';
   switch (ctx.layer) {
     case 'battle':
       return { color, opacity: marginOpacity(seat.margin, ctx.electionType) };

@@ -9,7 +9,7 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
   const tileSize = variant === 'tile';
   if (variant === 'compact') {
     return (
-      <Tile dense title={t('studio_results')} onExpand={vm.onFocus} pulse={vm.pulse} bodyClassName="pb-2"
+      <Tile title={t('studio_results')} onExpand={vm.onFocus} pulse={vm.pulse} bodyClassName="pb-2"
         actions={<span className="whitespace-nowrap text-xs text-muted">{t('others')} <span className="tabular font-display text-base font-bold">{vm.others.seats}</span></span>}>
         <div className="flex flex-col gap-2 pt-0.5">
           <div data-bloc-row className="flex min-w-0 items-center gap-3 overflow-hidden">
@@ -19,7 +19,7 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
                 className={cn('flex min-w-0 items-center gap-2 rounded-xl px-1 text-left', i > 0 && 'border-l border-line pl-3', vm.lockedId === b.id && 'ring-2 ring-accent')}>
                 <span className="tabular font-display text-[40px] font-extrabold leading-none" style={{ color: b.color }}>{b.seats}</span>
                 <span className="flex min-w-0 flex-col">
-                  <span className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.color }}>
+                  <span className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.textColor }}>
                     <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: b.color }} /><span data-bloc-label className="whitespace-nowrap">{b.label}</span>
                   </span>
                   {b.votePct != null && <span className="truncate text-xs text-muted">{t('studio_votes_pct', { pct: b.votePct })}</span>}
@@ -51,7 +51,7 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
             aria-label={`${b.name} ${b.seats}`} title={b.name} aria-pressed={vm.lockedId === b.id}
             className={cn('flex min-w-0 items-end gap-3 rounded-xl px-1 text-left', i > 0 && 'border-l border-line pl-4', vm.lockedId === b.id && 'ring-2 ring-accent')}>
             <div className={cn('min-w-0', tileSize ? 'pb-1' : 'pb-2')}>
-              <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.color }}>
+              <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: b.textColor }}>
                 <span className="h-2 w-2 rounded-full" style={{ background: b.color }} /><span data-bloc-label className="truncate">{variant === 'focus' ? b.name : b.label}</span>
               </div>
               {b.votePct != null && <div className="text-xs text-muted">{t('studio_votes_pct', { pct: b.votePct })}</div>}
@@ -88,7 +88,7 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {vm.breakdown.map(b => (
             <div key={b.id} className="rounded-xl border border-line p-3">
-              <div className="mb-2 font-display text-lg font-bold" style={{ color: b.color }}>{b.name}</div>
+              <div className="mb-2 font-display text-lg font-bold" style={{ color: b.textColor }}>{b.name}</div>
               <table className="w-full text-sm"><tbody>
                 {b.rows.map(r => (
                   <tr key={r.id} className="border-b border-line"><td className="py-1"><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: r.color }} />{r.id} <span className="text-muted">{r.name}</span></td>
