@@ -1,6 +1,6 @@
 @layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+@import "tailwindcss/utilities.css" layer(utilities) important;
 
 @theme {
   --color-page: #0A0F1E;
@@ -30,6 +30,8 @@
 }
 .studio-root *, .studio-root *::before, .studio-root *::after { box-sizing: border-box; }
 .studio-root button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+/* legacy index.css is unlayered: heading margin-bottom would leak into tiles (utilities are !important so they win on size/colour/padding). */
+.studio-root :is(h1, h2, h3, h4, h5, h6) { margin: 0; }
 .studio-root .tabular { font-variant-numeric: tabular-nums; }
 @keyframes studio-pulse { 0% { box-shadow: 0 0 0 0 rgb(139 124 255 / .6); } 100% { box-shadow: 0 0 0 10px rgb(139 124 255 / 0); } }
 .studio-pulse { animation: studio-pulse 900ms ease-out 1; }
