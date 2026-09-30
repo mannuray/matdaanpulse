@@ -425,11 +425,14 @@ test.describe('theme selector', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
     await expect(page.getByText('202').first()).toBeVisible();
-    await page.waitForTimeout(800);
-    const bb = (await page.locator('path.pc').nth(80).boundingBox())!;
-    await page.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2);
     const tip = page.locator('.studio-root.fixed.pointer-events-none');
-    await expect(tip).toBeVisible();
+    // The map may still be (re)building its paths after data loads, so re-hover until the tooltip appears.
+    await expect(async () => {
+      const bb = (await page.locator('path.pc').nth(80).boundingBox())!;
+      await page.mouse.move(0, 0);
+      await page.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2);
+      await expect(tip).toBeVisible({ timeout: 1000 });
+    }).toPass({ timeout: 15000 });
     const [actual, expected] = await tip.evaluate(el => {
       const probe = document.createElement('div');
       probe.style.background = 'color-mix(in oklab, var(--color-page) 95%, transparent)';
