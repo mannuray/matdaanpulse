@@ -44,7 +44,14 @@ describe('TransformInterceptor', () => {
     );
     expect(out.success).toBe(true);
     expect(out.data).toEqual({ id: 1 });
-    expect(out.requestId).toBeDefined();
+  });
+
+  it('success bodies carry no per-request values (requestId/timestamp live in headers)', async () => {
+    const next: CallHandler = { handle: () => of({ id: 1 }) };
+    const out: any = await lastValueFrom(interceptor.intercept(contextFor(DummyController.prototype.plain), next));
+    expect(out).toEqual({ success: true, data: { id: 1 } });
+    const again: any = await lastValueFrom(interceptor.intercept(contextFor(DummyController.prototype.plain), { handle: () => of({ id: 1 }) }));
+    expect(JSON.stringify(again)).toBe(JSON.stringify(out));
   });
 
   const run = (value: unknown): Promise<any> =>

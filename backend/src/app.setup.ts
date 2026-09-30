@@ -6,8 +6,10 @@ import * as compression from 'compression';
 import helmet from 'helmet';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { buildCorsOptions } from './common/config/cors';
+import { buildCorsDelegate } from './common/config/cors';
 import { resolveTrustProxyHops } from './common/config/trust-proxy';
+import { cfConnectingIp, trustCfConnectingIp } from './common/config/client-ip';
+import { CacheControlInterceptor } from './common/http/cache-control';
 
 type Env = Record<string, string | undefined>;
 
@@ -27,14 +29,15 @@ export const CACHE_BUSTER_QUERY_KEY = '_';
  * verified on the host. Platform health checks come from inside the host
  * network without X-Forwarded-For and would be misleading, so they are skipped.
  */
-export function clientIpProbe(logger: Logger, hops: number) {
+export function clientIpProbe(logger: Logger, hops: number, cf = false) {
   let logged = false;
   return (req: Request, _res: Response, next: NextFunction) => {
     if (!logged && !/\/health(\/|$|\?)/.test(req.originalUrl ?? req.url)) {
       logged = true;
       logger.debug(
         `Client IP check: req.ip=${req.ip} x-forwarded-for=${JSON.stringify(req.headers['x-forwarded-for'] ?? null)} ` +
-          `TRUST_PROXY_HOPS=${hops} (req.ip should be your own public IP)`,
+          `cf-connecting-ip=${JSON.stringify(req.headers['cf-connecting-ip'] ?? null)} ` +
+          `TRUST_PROXY_HOPS=${hops} TRUST_CF_CONNECTING_IP=${cf} (req.ip should be your own public IP)`,
       );
     }
     next();
@@ -68,7 +71,10 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
   // Behind Render's proxy: req.ip comes from X-Forwarded-For, `hops` entries deep (review S-C1).
   const hops = resolveTrustProxyHops(env);
   app.set('trust proxy', hops);
-  app.use(clientIpProbe(logger, hops));
+  // Behind Cloudflare (origin reachable only via Cloudflare): the real client IP is CF-Connecting-IP.
+  const cf = trustCfConnectingIp(env);
+  if (cf) app.use(cfConnectingIp);
+  app.use(clientIpProbe(logger, hops, cf));
   app.use(dropCacheBuster);
 
   // Body limits (review S-M3): 5 MB only for the bulk override route, registered
@@ -78,12 +84,12 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
   app.use(urlencoded({ extended: true, limit: DEFAULT_BODY_LIMIT }));
 
   app.use(helmet());
-  app.enableCors(buildCorsOptions(env));
+  app.enableCors(buildCorsDelegate(env));
 
   app.set('etag', 'strong');
   app.use(compression());
 
-  app.useGlobalInterceptors(new TransformInterceptor());
+  app.useGlobalInterceptors(new CacheControlInterceptor(), new TransformInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(
     new ValidationPipe({

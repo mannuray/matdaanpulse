@@ -2,6 +2,7 @@ import { Injectable, Logger, BadRequestException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { ResultsService } from '../results/results.service';
+import { LiveStateService } from '../results/live-state.service';
 import { LivePublisher } from './live.service';
 import { MetricsService } from '../metrics/metrics.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
@@ -30,6 +31,7 @@ export class BulkOverrideService {
     private readonly live: LivePublisher,
     private readonly metrics: MetricsService,
     private readonly audit: AuditLogService,
+    private readonly liveState: LiveStateService,
   ) {}
 
   async bulkOverride(data: BulkOverridePayload, userId?: string): Promise<{ updated: number }> {
@@ -138,6 +140,16 @@ export class BulkOverrideService {
       this.logger.warn(`Metrics recording failed: ${(err as Error).message}`);
     }
 
+    // Post-commit, in this order (pipeline review M5): the DB trigger already bumped the
+    // live version inside the transaction; drop this process's memo of it, purge the
+    // caches, and only then tell admin SSE clients (who refetch on the event).
+    this.liveState.invalidate(election_id);
+    try {
+      await this.results.purgeElectionCache(election_id);
+    } catch (err) {
+      this.logger.warn(`Cache invalidation failed for election ${election_id}: ${(err as Error).message}`);
+    }
+
     // One SSE row per constituency, preferring the LEADING/WON candidate.
     const constMap = new Map<string, { o: (typeof items)[number]; const_id: string; party_id: string }>();
     for (const o of items) {
@@ -175,12 +187,6 @@ export class BulkOverrideService {
       }
     }
 
-    // Invalidate caches
-    try {
-      await this.results.purgeElectionCache(election_id);
-    } catch (err) {
-      this.logger.warn(`Cache invalidation failed for election ${election_id}: ${(err as Error).message}`);
-    }
 
     return { updated: affectedRows };
   }

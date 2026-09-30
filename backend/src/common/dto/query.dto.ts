@@ -104,3 +104,9 @@ export class AuditLogsQueryDto {
   @IsOptional() @EmptyAsUndefined() @IsISO8601()
   to?: string;
 }
+
+/** GET /elections/:id/results?v=<version> — a live version from GET /elections/:id/live. */
+export class ResultsQueryDto {
+  @IsOptional() @OptionalNumber() @IsInt() @Min(0) @Max(Number.MAX_SAFE_INTEGER)
+  v?: number;
+}

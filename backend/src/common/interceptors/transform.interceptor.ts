@@ -13,9 +13,24 @@ import { v4 as uuidv4 } from 'uuid';
 export interface Response<T> {
   success: boolean;
   data: T;
-  requestId: string;
-  timestamp: string;
   pagination?: { page: number; limit: number; total: number; totalPages: number };
+}
+
+/**
+ * The success envelope. It holds no per-request values (request id, time) so
+ * identical data gives identical bytes — CDN- and ETag-friendly. The request id
+ * travels in the X-Request-ID header and the time in the standard Date header.
+ */
+export function successEnvelope<T>(data: T): Response<T> {
+  if (data instanceof Paginated) {
+    const { page, limit, total } = data.meta;
+    return {
+      success: true,
+      data: data.data as unknown as T,
+      pagination: { page, limit, total, totalPages: limit > 0 ? Math.ceil(total / limit) : 1 },
+    };
+  }
+  return { success: true, data };
 }
 
 @Injectable()
@@ -31,22 +46,6 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
     const requestId = (request?.headers?.['x-request-id'] as string) || uuidv4();
     if (request?.res) request.res.setHeader('X-Request-ID', requestId);
 
-    return next.handle().pipe(
-      map((data) => {
-        const meta = { requestId, timestamp: new Date().toISOString() };
-
-        if (data instanceof Paginated) {
-          const { page, limit, total } = data.meta;
-          return {
-            success: true,
-            data: data.data as unknown as T,
-            pagination: { page, limit, total, totalPages: limit > 0 ? Math.ceil(total / limit) : 1 },
-            ...meta,
-          };
-        }
-
-        return { success: true, data, ...meta };
-      }),
-    );
+    return next.handle().pipe(map((data) => successEnvelope<T>(data)));
   }
 }

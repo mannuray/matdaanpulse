@@ -1,7 +1,9 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { StatesService } from './states.service';
+import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
 
 @Controller('states')
+@CacheControl(CACHE_CONTROL.PUBLIC)
 export class StatesController {
   constructor(private readonly statesService: StatesService) {}
 

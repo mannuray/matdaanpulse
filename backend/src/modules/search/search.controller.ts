@@ -1,8 +1,10 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { SearchService } from './search.service';
 import { ConstituencySearchQueryDto, SearchQueryDto } from '../../common/dto/query.dto';
+import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
 
 @Controller('search')
+@CacheControl(CACHE_CONTROL.PUBLIC)
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 

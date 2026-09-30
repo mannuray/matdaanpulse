@@ -3,8 +3,10 @@ import { ConstituenciesService } from './constituencies.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
 import { ConstituencySummaryDto } from './dto/constituency-response.dto';
 import { ElectionIdQueryDto } from '../../common/dto/query.dto';
+import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
 
 @Controller('constituencies')
+@CacheControl(CACHE_CONTROL.PUBLIC)
 export class ConstituenciesController {
   constructor(private readonly service: ConstituenciesService) {}
 

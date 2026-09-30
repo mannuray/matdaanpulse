@@ -4,8 +4,10 @@ import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.intercept
 import { PartySummaryDto, PartyDetailDto } from './dto/party-response.dto';
 import { paginated } from '../../common/paginated';
 import { PartiesQueryDto } from '../../common/dto/query.dto';
+import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
 
 @Controller('parties')
+@CacheControl(CACHE_CONTROL.PUBLIC)
 export class PartiesController {
   constructor(private readonly partiesService: PartiesService) {}
 

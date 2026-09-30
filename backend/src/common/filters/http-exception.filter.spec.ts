@@ -32,6 +32,27 @@ describe('HttpExceptionFilter', () => {
   beforeEach(() => (errorSpy = jest.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined)));
   afterEach(() => jest.restoreAllMocks());
 
+  it('errors are sent with Cache-Control: no-store and keep requestId in the body', () => {
+    const res = run(new NotFoundException('nope'));
+    expect(res.headers['Cache-Control']).toBe('no-store');
+    expect(res.body.error.requestId).toBe('rid-1');
+  });
+
+  it('a 429 mirrors the throttler-specific Retry-After-<name> header as Retry-After', () => {
+    const res: any = { headers: { 'retry-after-public': '42' } as Record<string, string> };
+    res.setHeader = (k: string, v: string) => (res.headers[k] = v);
+    res.getHeaderNames = () => Object.keys(res.headers);
+    res.getHeader = (k: string) => res.headers[k];
+    res.status = (s: number) => ((res.statusCode = s), res);
+    res.json = (b: unknown) => ((res.body = b), res);
+    const req = { headers: {}, method: 'GET', url: '/api/v1/x' };
+    const host = { switchToHttp: () => ({ getResponse: () => res, getRequest: () => req }) } as unknown as ArgumentsHost;
+    const { ThrottlerException } = require('@nestjs/throttler');
+    new HttpExceptionFilter().catch(new ThrottlerException(), host);
+    expect(res.statusCode).toBe(429);
+    expect(res.headers['Retry-After']).toBe('42');
+  });
+
   it.each([
     ['P2002', 409, 'GEN_0004'],
     ['P2025', 404, 'GEN_0002'],

@@ -1,0 +1,172 @@
+import { Controller, Get, INestApplication, NotFoundException, Req } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { configureApp } from '../../app.setup';
+import { ElectionsController } from './elections.controller';
+import { ElectionsService } from './elections.service';
+import { ResultsService } from '../results/results.service';
+import { ConstituenciesService } from '../constituencies/constituencies.service';
+import { LiveStateService } from '../results/live-state.service';
+import { CACHE_CONTROL } from '../../common/http/cache-control';
+
+@Controller('admin/thing')
+class AdminLikeController {
+  @Get()
+  get(@Req() req: { ip: string }) {
+    return { ip: req.ip };
+  }
+}
+
+const EID = 'c3d4e5f6-a7b8-9012-cdef-234567890abc';
+
+async function makeApp(env: Record<string, string>) {
+  const live = { version: 100, updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 };
+  const liveState = { get: jest.fn(async () => ({ ...live })) };
+  const rows = [{ const_id: 'A', party_id: 'P', candidate_name: 'x', votes: 1, status: 'WON', margin: 1, const_type: 'GEN' }];
+  const resultsService = {
+    getResults: jest.fn(async () => rows),
+    getSnapshot: jest.fn(async (_id: string, version: number) => ({ version, results: rows, summary: [], voteShare: [] })),
+    getElectionSummary: jest.fn(async () => []),
+    getVoteShare: jest.fn(async () => []),
+  };
+  const moduleRef = await Test.createTestingModule({
+    controllers: [ElectionsController, AdminLikeController],
+    providers: [
+      { provide: ElectionsService, useValue: { findAll: jest.fn(async () => []), findOne: jest.fn() } },
+      { provide: ResultsService, useValue: resultsService },
+      { provide: ConstituenciesService, useValue: {} },
+      { provide: LiveStateService, useValue: liveState },
+    ],
+  }).compile();
+  const app = moduleRef.createNestApplication<NestExpressApplication>({ bodyParser: false, logger: false });
+  configureApp(app as NestExpressApplication, env);
+  await app.listen(0);
+  const base = `${await app.getUrl()}/api/v1`.replace('[::1]', 'localhost');
+  return { app, base, live, liveState, resultsService };
+}
+
+describe('CDN-ready live endpoints (HTTP)', () => {
+  let ctx: Awaited<ReturnType<typeof makeApp>>;
+  beforeAll(async () => (ctx = await makeApp({ TRUST_PROXY_HOPS: '1' })));
+  afterAll(() => ctx.app.close());
+  beforeEach(() => {
+    ctx.live.version = 100;
+    jest.clearAllMocks();
+  });
+
+  const get = (path: string, init: RequestInit = {}) => fetch(`${ctx.base}${path}`, { redirect: 'manual', ...init });
+
+  it('GET /elections/:id/live → { version, updatedAt, declared, total } with the poll cache policy', async () => {
+    const res = await get(`/elections/${EID}/live`);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.LIVE);
+    expect(res.headers.get('cache-control')).toBe('public, max-age=0, s-maxage=5, stale-while-revalidate=10');
+    expect(await res.json()).toEqual({ success: true, data: { version: 100, updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 } });
+  });
+
+  it('success bodies carry no requestId/timestamp; X-Request-ID and Date are headers; identical bodies twice', async () => {
+    const a = await get(`/elections/${EID}/live`);
+    const b = await get(`/elections/${EID}/live`);
+    const [ta, tb] = [await a.text(), await b.text()];
+    expect(ta).toBe(tb);
+    expect(ta).not.toMatch(/requestId|timestamp/);
+    expect(a.headers.get('x-request-id')).toBeTruthy();
+    expect(a.headers.get('x-request-id')).not.toBe(b.headers.get('x-request-id'));
+    expect(a.headers.get('date')).toBeTruthy();
+    expect(a.headers.get('etag')).toBe(b.headers.get('etag'));
+  });
+
+  it('results?v=<current> → snapshot, immutable', async () => {
+    const res = await get(`/elections/${EID}/results?v=100`);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('cache-control')).toBe('public, max-age=31536000, immutable');
+    const body = await res.json();
+    expect(body.data.version).toBe(100);
+    expect(body.data.results).toHaveLength(1);
+    expect(Object.keys(body.data).sort()).toEqual(['results', 'summary', 'version', 'voteShare']);
+    expect(ctx.resultsService.getSnapshot).toHaveBeenCalledWith(EID, 100);
+  });
+
+  it('results?v=<older> → short-cached 302 to the current version, never old data', async () => {
+    const res = await get(`/elections/${EID}/results?v=99`);
+    expect(res.status).toBe(302);
+    expect(res.headers.get('location')).toBe(`/api/v1/elections/${EID}/results?v=100`);
+    expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.REDIRECT);
+    expect(ctx.resultsService.getSnapshot).not.toHaveBeenCalled();
+  });
+
+  it('a browser fetch follows the redirect to the current snapshot', async () => {
+    const res = await fetch(`${ctx.base}/elections/${EID}/results?v=1`);
+    expect(res.status).toBe(200);
+    expect(new URL(res.url).searchParams.get('v')).toBe('100');
+    expect((await res.json()).data.version).toBe(100);
+  });
+
+  it('results?v=<newer than current> (race) → current data with no-store', async () => {
+    const res = await get(`/elections/${EID}/results?v=101`);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('cache-control')).toBe('no-store');
+    expect((await res.json()).data.version).toBe(100);
+  });
+
+  it('results without v → the unchanged rows array, short CDN cache', async () => {
+    const res = await get(`/elections/${EID}/results`);
+    expect(res.headers.get('cache-control')).toBe('public, max-age=0, s-maxage=10, stale-while-revalidate=30');
+    const body = await res.json();
+    expect(Array.isArray(body.data)).toBe(true);
+    expect(Object.keys(body).sort()).toEqual(['data', 'success']);
+  });
+
+  it('results?v=abc → 400 no-store', async () => {
+    const res = await get(`/elections/${EID}/results?v=abc`);
+    expect(res.status).toBe(400);
+    expect(res.headers.get('cache-control')).toBe('no-store');
+  });
+
+  it('other public GETs get the default public policy; errors are no-store', async () => {
+    const ok = await get('/elections');
+    expect(ok.headers.get('cache-control')).toBe('public, max-age=0, s-maxage=60, stale-while-revalidate=300');
+    ctx.liveState.get.mockRejectedValueOnce(new NotFoundException());
+    const missing = await get(`/elections/${EID}/live`);
+    expect(missing.status).toBe(404);
+    expect(missing.headers.get('cache-control')).toBe('no-store');
+    expect((await missing.json()).error.requestId).toBeTruthy();
+  });
+
+  it('routes without a policy (admin/auth/health) are no-store', async () => {
+    const res = await get('/admin/thing');
+    expect(res.headers.get('cache-control')).toBe('no-store');
+  });
+
+  it('public reads answer CORS with *, admin keeps the allowlist; Retry-After is exposed', async () => {
+    const pub = await get(`/elections/${EID}/live`, { headers: { Origin: 'http://localhost:3080' } });
+    expect(pub.headers.get('access-control-allow-origin')).toBe('*');
+    expect(pub.headers.get('access-control-expose-headers')).toBe('Retry-After,X-Request-ID');
+    const adm = await get('/admin/thing', { headers: { Origin: 'http://localhost:3081' } });
+    expect(adm.headers.get('access-control-allow-origin')).toBe('http://localhost:3081');
+  });
+});
+
+describe('client IP behind Cloudflare', () => {
+  it('TRUST_CF_CONNECTING_IP=true: req.ip is CF-Connecting-IP (when valid)', async () => {
+    const { app, base } = await makeApp({ TRUST_PROXY_HOPS: '1', TRUST_CF_CONNECTING_IP: 'true' });
+    try {
+      const ip = async (headers: Record<string, string>) => (await (await fetch(`${base}/admin/thing`, { headers })).json()).data.ip;
+      expect(await ip({ 'CF-Connecting-IP': '203.0.113.5', 'X-Forwarded-For': '203.0.113.5, 172.64.0.1' })).toBe('203.0.113.5');
+      expect(await ip({ 'CF-Connecting-IP': '2001:db8::1' })).toBe('2001:db8::1');
+      expect(await ip({ 'CF-Connecting-IP': 'not-an-ip', 'X-Forwarded-For': '198.51.100.7' })).toBe('198.51.100.7');
+    } finally {
+      await app.close();
+    }
+  });
+
+  it('without it, CF-Connecting-IP is ignored (X-Forwarded-For + TRUST_PROXY_HOPS)', async () => {
+    const { app, base } = await makeApp({ TRUST_PROXY_HOPS: '1' });
+    try {
+      const res = await fetch(`${base}/admin/thing`, { headers: { 'CF-Connecting-IP': '203.0.113.5', 'X-Forwarded-For': '198.51.100.7' } });
+      expect((await res.json()).data.ip).toBe('198.51.100.7');
+    } finally {
+      await app.close();
+    }
+  });
+});

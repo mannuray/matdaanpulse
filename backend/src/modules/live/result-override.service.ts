@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { ResultNotFoundException } from '../../common/exceptions';
 import { ResultsService } from '../results/results.service';
+import { LiveStateService } from '../results/live-state.service';
 import { LivePublisher } from './live.service';
 import { MetricsService } from '../metrics/metrics.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
@@ -17,6 +18,7 @@ export class ResultOverrideService {
     private readonly live: LivePublisher,
     private readonly metrics: MetricsService,
     private readonly audit: AuditLogService,
+    private readonly liveState: LiveStateService,
   ) {}
 
   async override(data: OverridePayload, userId?: string) {
@@ -84,6 +86,16 @@ export class ResultOverrideService {
       this.logger.warn(`Metrics recording failed: ${(err as Error).message}`);
     }
 
+    // Post-commit, in this order (pipeline review M5): the DB trigger already bumped the
+    // live version inside the transaction; drop this process's memo of it, purge the
+    // caches, and only then tell admin SSE clients (who refetch on the event).
+    this.liveState.invalidate(saved.election_id);
+    try {
+      await this.results.purgeElectionCache(saved.election_id);
+    } catch (err) {
+      this.logger.warn(`Cache invalidation failed for election ${saved.election_id}: ${(err as Error).message}`);
+    }
+
     const partyId = result.candidates?.party_id;
     if (!partyId) {
       this.logger.warn(`Missing candidate/party for result ${saved.id} — SSE event skipped`);
@@ -111,12 +123,6 @@ export class ResultOverrideService {
       `Result overridden: ${saved.const_id} → status=${saved.status}, margin=${saved.margin}, votes=${saved.votes}`,
     );
 
-    // Invalidate caches
-    try {
-      await this.results.purgeElectionCache(saved.election_id);
-    } catch (err) {
-      this.logger.warn(`Cache invalidation failed for election ${saved.election_id}: ${(err as Error).message}`);
-    }
 
     return saved;
   }

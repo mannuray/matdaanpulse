@@ -16,6 +16,20 @@ import { mapExposedHttpError, mapPrismaError } from './prisma-error.mapper';
 import { FieldError, ValidationFailedException } from '../validation/validation-failed.exception';
 import { redactUrl } from '../logger/logging.middleware';
 
+/**
+ * The throttler names its headers per throttler (`Retry-After-public`). Clients
+ * (and CDNs) only understand the standard `Retry-After`, so mirror the longest wait.
+ */
+function copyRetryAfter(response: Response) {
+  if (typeof response.getHeaderNames !== 'function') return;
+  const waits = response
+    .getHeaderNames()
+    .filter((n) => /^retry-after-/i.test(n))
+    .map((n) => Number(response.getHeader(n)))
+    .filter((n) => Number.isFinite(n) && n >= 0);
+  if (waits.length > 0) response.setHeader('Retry-After', String(Math.ceil(Math.max(...waits))));
+}
+
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
   private readonly logger = new Logger('ExceptionFilter');
@@ -38,6 +52,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
     // The logging middleware already sanitised the header; re-check for safety.
     const requestId = resolveRequestId(request.headers['x-request-id']);
     response.setHeader('X-Request-ID', requestId);
+    // Errors are never cacheable (a public route's policy is only set on success).
+    response.setHeader('Cache-Control', 'no-store');
+    if (status === HttpStatus.TOO_MANY_REQUESTS) copyRetryAfter(response);
 
     // A PrismaClientValidationError is answered with 400 but almost always means a
     // server-side query bug, so it is logged like a 5xx (review M9).

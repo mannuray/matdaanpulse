@@ -19,8 +19,12 @@ describe('ResultOverrideService audit write', () => {
     const live = { publish: jest.fn().mockResolvedValue(undefined) };
     const results = { purgeElectionCache: jest.fn().mockResolvedValue(true) };
     const metrics = { resultOverrides: { add: jest.fn() }, ssePublishSkipped: { add: jest.fn() } };
-    const svc = new ResultOverrideService(prisma as any, results as any, live as any, metrics as any, audit);
-    return { svc, txAuditCreate, globalAuditCreate };
+    const order: string[] = [];
+    live.publish.mockImplementation(async () => { order.push('publish'); });
+    results.purgeElectionCache.mockImplementation(async () => { order.push('purge'); return true; });
+    const liveState = { invalidate: jest.fn(() => { order.push('invalidate'); }) };
+    const svc = new ResultOverrideService(prisma as any, results as any, live as any, metrics as any, audit, liveState as any);
+    return { svc, txAuditCreate, globalAuditCreate, order, liveState };
   }
 
   it('writes the audit row with the transaction client, not the global one', async () => {
@@ -35,5 +39,12 @@ describe('ResultOverrideService audit write', () => {
     const { svc } = make();
     (svc as any).live.publish.mockRejectedValue(new Error('redis down'));
     await expect(svc.override({ result_id: 'r1', votes: 10, status: 'LEADING', margin: 5 } as any, 'user-1')).resolves.toMatchObject({ id: 'r1' });
+  });
+
+  it('after commit: forgets the live-version memo, purges caches, then publishes (review M5)', async () => {
+    const { svc, order, liveState } = make();
+    await svc.override({ result_id: 'r1', votes: 10, status: 'LEADING', margin: 5 } as any, 'user-1');
+    expect(order).toEqual(['invalidate', 'purge', 'publish']);
+    expect(liveState.invalidate).toHaveBeenCalledWith('e1');
   });
 });

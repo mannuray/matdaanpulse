@@ -118,9 +118,18 @@ model elections {
   constituency_analysis constituency_analysis[]
   states                states?                 @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   results               results[]
+  election_live_state   election_live_state?
 
   @@unique([type, state_id, year], map: "uq_elections_type_state_year")
   @@index([type, year], map: "idx_elections_type_year")
+}
+
+/// Monotonic per-election live version, bumped by DB triggers on results/candidates/parties writes (migration 015).
+model election_live_state {
+  election_id String    @id @db.Uuid
+  version     BigInt
+  updated_at  DateTime  @default(now()) @db.Timestamptz(6)
+  elections   elections @relation(fields: [election_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model parties {

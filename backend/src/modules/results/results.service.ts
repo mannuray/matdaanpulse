@@ -96,6 +96,30 @@ export class ResultsService {
     }));
   }
 
+  /**
+   * Snapshot for a live version: results rows plus the seat tally and vote share
+   * computed from the same rows, so every tile updates from one consistent read.
+   * Keyed by version (never by the unversioned caches, which a purge race could
+   * leave stale) and single-flighted by CacheService.
+   */
+  async getSnapshot(id: string, version: number): Promise<ResultsSnapshot> {
+    return this.cache.getOrSet(`election:${id}:snapshot:v${version}`, CACHE_TTL.RESULTS_SNAPSHOT, async () => {
+      const rows = await this.prisma.results.findMany({
+        where: { election_id: id },
+        select: {
+          const_id: true,
+          votes: true,
+          status: true,
+          margin: true,
+          candidates: { select: { party_id: true, name: true, parties: { select: { name: true, color: true } } } },
+          constituencies: { select: { type: true } },
+        },
+        orderBy: { const_id: 'asc' },
+      });
+      return buildSnapshot(version, rows);
+    });
+  }
+
   async getDistrictResults(electionId: string, districtId: number) {
     const data = await this.prisma.results.findMany({
       where: {
@@ -254,4 +278,78 @@ export class ResultsService {
   async purgeElectionCache(electionId: string): Promise<boolean> {
     return this.cache.delByPattern(`election:${electionId}:*`);
   }
+}
+
+export interface ResultsSnapshot {
+  version: number;
+  /** Same rows as GET /elections/:id/results. */
+  results: {
+    const_id: string;
+    party_id: string | null;
+    candidate_name: string;
+    votes: number;
+    status: string;
+    margin: number | null;
+    const_type: string;
+  }[];
+  /** Same shape as GET /elections/:id/alliances. */
+  summary: { party_id: string; party_name: string; color: string | null; won: number; leading: number }[];
+  /** Same shape as GET /elections/:id/vote-share. */
+  voteShare: { party_id: string; party_name: string; color: string | null; total_votes: number; percentage: number }[];
+}
+
+interface SnapshotSourceRow {
+  const_id: string;
+  votes: number;
+  status: string;
+  margin: number | null;
+  candidates: { party_id: string | null; name: string; parties: { name: string; color: string | null } | null };
+  constituencies: { type: string };
+}
+
+/** Pure: mirrors the SQL of getElectionSummary / loadVoteShare (rows without a party are left out of both). */
+export function buildSnapshot(version: number, rows: SnapshotSourceRow[]): ResultsSnapshot {
+  const results = rows.map((r) => ({
+    const_id: r.const_id,
+    party_id: r.candidates.party_id,
+    candidate_name: r.candidates.name,
+    votes: r.votes,
+    status: r.status,
+    margin: r.margin,
+    const_type: r.constituencies.type,
+  }));
+
+  const byParty = new Map<string, { party_id: string; party_name: string; color: string | null; won: number; leading: number; total_votes: number }>();
+  for (const r of rows) {
+    const pid = r.candidates.party_id;
+    const party = r.candidates.parties;
+    if (!pid || !party) continue;
+    let e = byParty.get(pid);
+    if (!e) {
+      e = { party_id: pid, party_name: party.name, color: party.color, won: 0, leading: 0, total_votes: 0 };
+      byParty.set(pid, e);
+    }
+    if (r.status === 'WON') e.won++;
+    else if (r.status === 'LEADING') e.leading++;
+    e.total_votes += Number(r.votes) || 0;
+  }
+  const parties = [...byParty.values()];
+
+  const summary = parties
+    .filter((p) => p.won + p.leading > 0)
+    .sort((a, b) => b.won + b.leading - (a.won + a.leading))
+    .map(({ party_id, party_name, color, won, leading }) => ({ party_id, party_name, color, won, leading }));
+
+  const grandTotal = parties.reduce((sum, p) => sum + p.total_votes, 0);
+  const voteShare = [...parties]
+    .sort((a, b) => b.total_votes - a.total_votes)
+    .map(({ party_id, party_name, color, total_votes }) => ({
+      party_id,
+      party_name,
+      color,
+      total_votes,
+      percentage: grandTotal > 0 ? parseFloat(((total_votes / grandTotal) * 100).toFixed(2)) : 0,
+    }));
+
+  return { version, results, summary, voteShare };
 }

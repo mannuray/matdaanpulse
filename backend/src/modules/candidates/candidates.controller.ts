@@ -4,8 +4,10 @@ import { PersonsService } from './persons.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
 import { CandidateSummaryDto, CandidateDetailDto, PersonProfileDto } from './dto/candidate-response.dto';
 import { CandidatesQueryDto, SearchQueryDto } from '../../common/dto/query.dto';
+import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
 
 @Controller('candidates')
+@CacheControl(CACHE_CONTROL.PUBLIC)
 export class CandidatesController {
   constructor(
     private readonly candidatesService: CandidatesService,

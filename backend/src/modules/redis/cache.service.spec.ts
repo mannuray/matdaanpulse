@@ -88,3 +88,52 @@ describe('CacheService invalidation', () => {
     await expect(svc.del('k')).resolves.toBe(true);
   });
 });
+
+describe('CacheService single-flight', () => {
+  it('collapses 50 concurrent misses for one key into one Redis read and one loader call', async () => {
+    const get = jest.fn().mockResolvedValue(null);
+    const set = jest.fn().mockResolvedValue(undefined);
+    const { svc } = make({ get, set });
+    let release!: (v: number[]) => void;
+    const loader = jest.fn(() => new Promise<number[]>((r) => { release = r; }));
+    const calls = Array.from({ length: 50 }, () => svc.getOrSet('k', 60, loader));
+    await new Promise((r) => setImmediate(r));
+    release([1, 2]);
+    const out = await Promise.all(calls);
+    expect(loader).toHaveBeenCalledTimes(1);
+    expect(get).toHaveBeenCalledTimes(1);
+    expect(set).toHaveBeenCalledTimes(1);
+    expect(out.every((v) => JSON.stringify(v) === '[1,2]')).toBe(true);
+  });
+
+  it('different keys load independently', async () => {
+    const { svc } = make({ get: jest.fn().mockResolvedValue(null), set: jest.fn().mockResolvedValue(undefined) });
+    const loader = jest.fn(async () => 1);
+    await Promise.all([svc.getOrSet('a', 60, loader), svc.getOrSet('b', 60, loader)]);
+    expect(loader).toHaveBeenCalledTimes(2);
+  });
+
+  it('a rejected load is shared by its waiters and not remembered', async () => {
+    const { svc } = make({ get: jest.fn().mockResolvedValue(null), set: jest.fn().mockResolvedValue(undefined) });
+    const failing = jest.fn(async () => { throw new Error('db down'); });
+    const both = await Promise.allSettled([svc.getOrSet('k', 60, failing), svc.getOrSet('k', 60, failing)]);
+    expect(both.map((r) => r.status)).toEqual(['rejected', 'rejected']);
+    expect(failing).toHaveBeenCalledTimes(1);
+    await expect(svc.getOrSet('k', 60, async () => 'ok')).resolves.toBe('ok');
+  });
+
+  it('an invalidation during a load: the stale value is not written, and later callers start a fresh load', async () => {
+    const set = jest.fn().mockResolvedValue(undefined);
+    const { svc } = make({ get: jest.fn().mockResolvedValue(null), set, delByPattern: jest.fn().mockResolvedValue(undefined) });
+    let release!: (v: string) => void;
+    const first = svc.getOrSet('election:1:x', 60, () => new Promise<string>((r) => { release = r; }));
+    await new Promise((r) => setImmediate(r));
+    await svc.delByPattern('election:1:*');
+    const fresh = svc.getOrSet('election:1:x', 60, async () => 'new');
+    release('old');
+    await expect(first).resolves.toBe('old');
+    await expect(fresh).resolves.toBe('new');
+    expect(set).toHaveBeenCalledTimes(1);
+    expect(set).toHaveBeenCalledWith('election:1:x', '"new"', 60);
+  });
+});
