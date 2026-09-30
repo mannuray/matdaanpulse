@@ -219,18 +219,20 @@ export class LivePoller<S extends { version: number }> {
 export const UPCOMING_POLL_WINDOW = { beforeDays: 3, afterDays: 60 } as const;
 
 /**
- * Whether a dashboard should run the poller: Live elections always; Upcoming ones
- * only near their tentative date (off-season pages must not keep the API awake);
- * Finalized never.
+ * Whether a dashboard should run the poller: Live elections always; Finalized never.
+ * Upcoming ones poll unless a known tentative date is far away (off-season pages must
+ * not keep the API awake) — a missing or unparsable date means "poll", so a page opened
+ * before counting always picks up the flip to Live.
  */
 export function shouldPoll(
   election: { status: LiveElectionStatus; tentative_next_date: string | null },
   now: number = Date.now(),
 ): boolean {
   if (election.status === 'Live') return true;
-  if (election.status !== 'Upcoming' || !election.tentative_next_date) return false;
+  if (election.status !== 'Upcoming') return false;
+  if (!election.tentative_next_date) return true;
   const at = Date.parse(election.tentative_next_date);
-  if (Number.isNaN(at)) return false;
+  if (Number.isNaN(at)) return true;
   const day = 86_400_000;
   return now >= at - UPCOMING_POLL_WINDOW.beforeDays * day && now <= at + UPCOMING_POLL_WINDOW.afterDays * day;
 }

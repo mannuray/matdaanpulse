@@ -293,10 +293,12 @@ describe('shouldPoll', () => {
   const day = 86_400_000;
   const at = Date.parse('2027-02-27T00:00:00Z');
   const el = (status: LiveElectionStatus, date: string | null) => ({ status, tentative_next_date: date });
-  it('Live always, Finalized never, Upcoming only near its tentative date', () => {
+  it('Live always, Finalized never, Upcoming unless a known date is far away', () => {
     expect(shouldPoll(el('Live', null), at)).toBe(true);
     expect(shouldPoll(el('Finalized', '2027-02-27'), at)).toBe(false);
-    expect(shouldPoll(el('Upcoming', null), at)).toBe(false);
+    // no or unparsable date: poll, so a page opened before counting still flips to Live
+    expect(shouldPoll(el('Upcoming', null), at)).toBe(true);
+    expect(shouldPoll(el('Upcoming', 'not-a-date'), at)).toBe(true);
     expect(shouldPoll(el('Upcoming', '2027-02-27'), at - 2 * day)).toBe(true);
     expect(shouldPoll(el('Upcoming', '2027-02-27'), at - 4 * day)).toBe(false);
     expect(shouldPoll(el('Upcoming', '2027-02-27'), at + 30 * day)).toBe(true);
