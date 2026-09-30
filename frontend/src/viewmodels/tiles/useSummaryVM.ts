@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
@@ -53,6 +53,21 @@ export function useSummaryVM(): SummaryVM {
   }), [state.layer, src, alliances]);
 
   // One rule: a row highlights exactly the seats it names (partyIds never widen the map highlight).
+  // A locked row follows live data: its seats are re-read from the current summary (the snapshot stays if the row disappears).
+  const locked = state.locked;
+  useEffect(() => {
+    if (!locked?.chipId.startsWith(PREFIX)) return;
+    const key = locked.chipId.slice(PREFIX.length);
+    for (const sec of summary.sections) {
+      const r = sec.rows.find(x => `${sec.id}:${x.id}` === key);
+      if (!r) continue;
+      const seats = r.seatIds ?? [];
+      const cur = locked.highlight.seats;
+      if (seats.length !== cur.length || seats.some((x, i) => x !== cur[i])) dispatch({ type: 'refreshLock', chipId: locked.chipId, highlight: { parties: [], seats } });
+      return;
+    }
+  }, [summary, locked, dispatch]);
+
   const highlightOf = (r: SummaryRow) => ({ parties: [], seats: r.seatIds ?? [] });
   return {
     electionId: src.election.id,

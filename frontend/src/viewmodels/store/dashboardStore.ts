@@ -19,6 +19,8 @@ export type DashboardAction =
   | { type: 'hover'; highlight: Highlight | null }
   | { type: 'toggleLock'; chipId: string; highlight: Highlight; label: string }
   | { type: 'clearLock' }
+  /** Live data changed a locked row's seats: swap in the fresh highlight (no-op when another row is locked). */
+  | { type: 'refreshLock'; chipId: string; highlight: Highlight }
   | { type: 'focus'; tile: FocusTile | null }
   | { type: 'syncFromUrl'; params: Partial<DashboardUiState> };
 
@@ -34,6 +36,7 @@ export function dashboardReducer(s: DashboardUiState, a: DashboardAction): Dashb
     case 'hover': return { ...s, hover: a.highlight };
     case 'toggleLock': return { ...s, locked: s.locked?.chipId === a.chipId ? null : { chipId: a.chipId, highlight: a.highlight, label: a.label } };
     case 'clearLock': return { ...s, locked: null };
+    case 'refreshLock': return s.locked?.chipId === a.chipId ? { ...s, locked: { ...s.locked, highlight: a.highlight } } : s;
     case 'focus': return a.tile ? { ...s, focus: a.tile } : { ...s, focus: null, selectedSeat: null };
     case 'syncFromUrl': return { ...s, ...a.params };
   }

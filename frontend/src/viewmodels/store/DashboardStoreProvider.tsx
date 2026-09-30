@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useReducer, useRef, type Dispatch, type ReactNode } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { LayerId } from '../../model/types/dashboard';
+import { intentFor } from './hoverIntent';
 import { dashboardReducer, effectiveLayer, initialUiState, parseUiParams, serializeUiParams, type DashboardAction, type DashboardUiState } from './dashboardStore';
 
 interface StoreValue { state: DashboardUiState; dispatch: Dispatch<DashboardAction> }
@@ -14,6 +15,9 @@ export function DashboardStoreProvider({ allowedLayers, knownSeats, children }: 
   /** The requested layer when that entry was pushed: Back only returns to a URL with the same layer (R29). */
   const pushedLayerRef = useRef<LayerId | null>(null);
   const [raw, dispatch] = useReducer(dashboardReducer, undefined, () => ({ ...initialUiState, ...parseUiParams(params, knownSeats) }));
+
+  // A pending hover clear must not outlive the store.
+  useEffect(() => () => intentFor(dispatch).cancel(), []);
 
   // URL → state (back/forward, pasted links, late-loading seat list). Idempotent after our own writes.
   useEffect(() => {

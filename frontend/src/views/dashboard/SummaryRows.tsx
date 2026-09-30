@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatSummaryValue, primaryCell, type SummaryCell, type SummaryRow, type SummarySection, type SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
 import { cn } from '../ui/cn';
+import { onKbdFocus } from '../ui/kbdFocus';
 
 /** The single number formatter shared by the compact tab and the focus view (compact K, lakh L, pct, signed, "–"). */
 export function useCellFormat() {
@@ -34,6 +35,8 @@ export function rowActions(vm: SummaryVM, sectionId: string) {
       onClick: () => (single ? vm.onSelectSeat(single) : vm.onLockRow(r)),
       onMouseEnter: () => { hoverFromRow = true; vm.onHoverRow(r); },
       onMouseLeave: () => { hoverFromRow = false; vm.onHoverRow(null); },
+      onFocus: onKbdFocus(() => { hoverFromRow = true; vm.onHoverRow(r); }),
+      onBlur: () => { hoverFromRow = false; vm.onHoverRow(null); },
     };
   };
 }
@@ -74,7 +77,7 @@ export function Row({ r, section, vm, full = false, plain = false }: { r: Summar
     </>
   );
   return a.interactive ? (
-    <button type="button" aria-pressed={a.single ? undefined : a.locked} onClick={a.onClick} onMouseEnter={a.onMouseEnter} onMouseLeave={a.onMouseLeave} className={cls}>{body}</button>
+    <button type="button" aria-pressed={a.single ? undefined : a.locked} onClick={a.onClick} onMouseEnter={a.onMouseEnter} onMouseLeave={a.onMouseLeave} onFocus={a.onFocus} onBlur={a.onBlur} className={cls}>{body}</button>
   ) : (
     <div className={cls}>{body}</div>
   );
@@ -99,7 +102,7 @@ export function Stats({ section, vm, className, plain = false }: { section: Summ
           </>
         );
         return a.interactive ? (
-          <button key={r.id} type="button" aria-pressed={a.single ? undefined : a.locked} onClick={a.onClick} onMouseEnter={a.onMouseEnter} onMouseLeave={a.onMouseLeave} className={cls}>{body}</button>
+          <button key={r.id} type="button" aria-pressed={a.single ? undefined : a.locked} onClick={a.onClick} onMouseEnter={a.onMouseEnter} onMouseLeave={a.onMouseLeave} onFocus={a.onFocus} onBlur={a.onBlur} className={cls}>{body}</button>
         ) : (
           <div key={r.id} className={cls}>{body}</div>
         );

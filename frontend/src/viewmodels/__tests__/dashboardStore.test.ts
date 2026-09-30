@@ -39,6 +39,14 @@ describe('activeHighlight', () => {
   });
 });
 
+describe('refreshLock', () => {
+  it('replaces the highlight of the locked chip only', () => {
+    const locked = dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'c', highlight: { parties: [], seats: ['A'] }, label: 'c' });
+    expect(dashboardReducer(locked, { type: 'refreshLock', chipId: 'c', highlight: { parties: [], seats: ['A', 'B'] } }).locked!.highlight.seats).toEqual(['A', 'B']);
+    expect(dashboardReducer(locked, { type: 'refreshLock', chipId: 'other', highlight: { parties: [], seats: ['Z'] } })).toBe(locked);
+  });
+});
+
 describe('createHoverIntent', () => {
   const setup = () => {
     const actions: unknown[] = [];
@@ -68,6 +76,13 @@ describe('createHoverIntent', () => {
     hover(next);
     vi.advanceTimersByTime(500);
     expect(actions).toEqual([{ type: 'hover', highlight: hl }, { type: 'hover', highlight: next }]);
+  });
+  it('cancel drops a pending clear', () => {
+    const { actions, hover } = setup();
+    hover(hl); hover(null);
+    hover.cancel();
+    vi.advanceTimersByTime(500);
+    expect(actions).toHaveLength(1);
   });
   it('one intent is shared per dispatch function, so another source cannot be wiped by a stale clear', () => {
     const d = () => {};

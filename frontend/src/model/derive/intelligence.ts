@@ -179,9 +179,8 @@ export function calculatePartySwitches(
       if (match && match.party_id !== prevWinner.party) {
         const won = match.status === 'WON' || match.status === 'LEADING';
         const constId = nextCands[0]?.const_id || norm;
-        const actualConstId = ei === allElections.length - 2
-          ? (normToConstId.get(norm) || constId)
-          : constId;
+        // Every pair maps to the current election's seat id (const_no is stable across post-2008 elections).
+        const actualConstId = normToConstId.get(norm) ?? constId;
         entries.push({
           constId: actualConstId,
           candidateName: match.candidate_name,
@@ -196,7 +195,8 @@ export function calculatePartySwitches(
     }
   }
 
-  return entries;
+  // Newest switches first (stable, so the order within a year is unchanged).
+  return entries.sort((a, b) => b.toYear - a.toYear);
 }
 
 export function calculateMarginTrend(

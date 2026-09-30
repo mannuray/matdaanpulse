@@ -665,8 +665,17 @@ test.describe('task 27: map highlight from the summary', () => {
     await page.goto(`/election/${BIHAR}`);
     const rows = section(page, 'Closest battles').getByRole('button');
     await expect(rows.nth(1)).toBeVisible();
+    const litPath = () => page.locator('path.pc[data-highlighted="true"]').first().getAttribute('d');
+    // the second row's seat, recorded on its own
+    await rows.nth(1).hover();
+    await expect.poll(() => hlCount(page)).toBe(1);
+    const second = await litPath();
+    await page.mouse.move(0, 0);
+    await expect.poll(() => hlCount(page)).toBe(0);
     await rows.first().hover();
     await expect.poll(() => hlCount(page)).toBe(1);
+    const first = await litPath();
+    expect(first).not.toBe(second);
     await page.evaluate(() => {
       const w = window as unknown as { __hl: number[]; __iv: number };
       w.__hl = [];
@@ -682,6 +691,7 @@ test.describe('task 27: map highlight from the summary', () => {
     expect(Math.min(...samples)).toBe(1);
     // and it ends on the second row's seat
     await expect.poll(() => hlCount(page)).toBe(1);
+    expect(await litPath()).toBe(second);
   });
 
   test('a locked row is previewed over by hovering another, and returns when the hover ends', async ({ page }) => {
@@ -710,5 +720,23 @@ test.describe('task 27: map highlight from the summary', () => {
     await rows.first().hover();
     await expect.poll(() => hlCount(page)).toBe(1);
     await expect(page.locator('path.pc[data-highlighted="true"]')).toHaveCSS('fill-opacity', '1');
+  });
+
+  test('large highlights (LS: NDA bloc) are lit without outlines; a single seat keeps its outline', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${LS_ID}`);
+    await expect(page.locator('path.pc').first()).toBeVisible();
+    await page.waitForTimeout(1500);
+    await page.getByRole('button', { name: /^(NDA|National Democratic Alliance) \d+$/ }).first().hover();
+    await expect.poll(() => hlCount(page)).toBeGreaterThan(40);
+    await expect(page.locator('g.pc-highlight path')).toHaveCount(0);
+    await expect(page.locator('path.pc[data-highlighted="true"]').first()).toHaveCSS('fill-opacity', '1');
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: `${SHOTS27}/t27-ls-nda-1440.png` });
+    await page.mouse.move(0, 0);
+    await expect.poll(() => hlCount(page)).toBe(0);
+    await section(page, 'Closest battles').getByRole('button').first().hover();
+    await expect.poll(() => hlCount(page)).toBe(1);
+    await expect(page.locator('g.pc-highlight path')).toHaveCount(1);
   });
 });

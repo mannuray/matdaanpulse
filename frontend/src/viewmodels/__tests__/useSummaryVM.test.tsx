@@ -44,6 +44,16 @@ describe('useSummaryVM', () => {
     expect(result.current.store.state.locked?.label).toBe('New seat');
   });
 
+  it('a locked row re-reads its seats from the current summary; a vanished row keeps its snapshot', () => {
+    const { result } = renderHook(() => ({ vm: useSummaryVM(), store: useDashboardStore() }), { wrapper: wrap() });
+    const section = result.current.vm.summary.sections.find(s => s.rows.some(r => (r.seatIds?.length ?? 0) > 0))!;
+    const row = section.rows.find(r => (r.seatIds?.length ?? 0) > 0)!;
+    act(() => result.current.store.dispatch({ type: 'toggleLock', chipId: `sum:${section.id}:${row.id}`, highlight: { parties: [], seats: ['STALE'] }, label: 'x' }));
+    expect(result.current.store.state.locked!.highlight.seats).toEqual(row.seatIds);
+    act(() => result.current.store.dispatch({ type: 'toggleLock', chipId: 'sum:gone:row', highlight: { parties: [], seats: ['KEEP'] }, label: 'y' }));
+    expect(result.current.store.state.locked!.highlight.seats).toEqual(['KEEP']);
+  });
+
   it('exposes the available layers and switches layer (the focus pills)', () => {
     const { result } = renderHook(() => ({ vm: useSummaryVM(), store: useDashboardStore() }), { wrapper: wrap() });
     expect(result.current.vm.layers).toEqual(['overview', 'swing', 'battle']);

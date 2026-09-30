@@ -4,6 +4,7 @@ import { fitCount } from '../../viewmodels/tiles/fit';
 import { useElementWidth } from '../hooks/useElementWidth';
 import { cn } from '../ui/cn';
 import { STATUS_STYLE } from './statusStyle';
+import { onKbdFocus } from '../ui/kbdFocus';
 
 const CARD_W = 240;
 const MORE_W = 96;
@@ -14,7 +15,7 @@ function Card({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   const initials = c.name.split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
   const color = vm.partyColor.get(c.partyId) ?? 'var(--color-fallback)';
   return (
-    <button type="button" onClick={() => vm.onSelectSeat(c.constId)} onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)}
+    <button type="button" onClick={() => vm.onSelectSeat(c.constId)} onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)} onFocus={onKbdFocus(() => vm.onHoverSeat(c.constId))} onBlur={() => vm.onHoverSeat(null)}
       className="flex h-12 min-w-[240px] flex-1 items-center gap-3 rounded-xl border border-line bg-page/50 px-3 text-left hover:border-accent">
       <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border text-xs font-bold" style={{ borderColor: color, color }}>{initials}</span>
       <span className="min-w-0 flex-1">

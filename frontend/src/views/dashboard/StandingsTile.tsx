@@ -11,13 +11,14 @@ import { PillToggle } from '../ui/PillToggle';
 import { PickerSelect } from '../ui/PickerSelect';
 import { ScrollArea } from '../ui/ScrollArea';
 import { cn } from '../ui/cn';
+import { onKbdFocus } from '../ui/kbdFocus';
 
 export type StandingsTab = 'parties' | 'watchlist';
 type TileTab = StandingsTab | 'summary';
 
 function Row({ r, max, vm, wide }: { r: StandingRow; max: number; vm: StandingsVM; wide?: boolean }) {
   return (
-    <button type="button" onClick={() => vm.onLockParty(r.id)} onMouseEnter={() => vm.onHoverParty(r.id)} onMouseLeave={() => vm.onHoverParty(null)}
+    <button type="button" onClick={() => vm.onLockParty(r.id)} onMouseEnter={() => vm.onHoverParty(r.id)} onMouseLeave={() => vm.onHoverParty(null)} onFocus={onKbdFocus(() => vm.onHoverParty(r.id))} onBlur={() => vm.onHoverParty(null)}
       aria-pressed={vm.lockedId === r.id} aria-label={`${r.id} ${r.name} ${r.seats}`}
       className={cn('grid h-9 w-full grid-cols-[minmax(0,1fr)_minmax(60px,40%)_48px] items-center gap-3 rounded-[0.5rem] px-2 text-left hover:bg-tile-raised', vm.lockedId === r.id && 'bg-tile-raised ring-1 ring-accent', wide && 'grid-cols-[minmax(0,1fr)_minmax(80px,40%)_64px_64px]')}>
       <span className="flex min-w-0 items-center gap-2">
@@ -36,7 +37,7 @@ function WatchRow({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   const { t } = useTranslation();
   const color = vm.partyColor.get(c.partyId) ?? 'var(--color-fallback)';
   return (
-    <div className="flex h-9 w-full items-center gap-1 rounded-[0.5rem] hover:bg-tile-raised" onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)}>
+    <div className="flex h-9 w-full items-center gap-1 rounded-[0.5rem] hover:bg-tile-raised" onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)} onFocus={onKbdFocus(() => vm.onHoverSeat(c.constId))} onBlur={() => vm.onHoverSeat(null)}>
       <button type="button" onClick={() => vm.onSelectSeat(c.constId)} className="flex h-full min-w-0 flex-1 items-center gap-2 rounded-[0.5rem] px-2 text-left">
         <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: color }} />
         <span className="max-w-[40%] shrink-0 truncate font-semibold text-ink">{c.constName}</span>

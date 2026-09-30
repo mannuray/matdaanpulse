@@ -38,13 +38,11 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
   useEffect(() => {
     if (!loaded || !gRef.current) return;
     const g = gRef.current;
-    const highlighted: SVGPathElement[] = [];
     g.selectAll<SVGPathElement, GeoFeature>('path.pc').each(function (d) {
       const id = vm.seatOf.get(d);
       const fill = id ? vm.fills.get(id) : undefined;
       const el = select(this);
       const outlined = !!id && (id === vm.selectedSeat || id === hoveredId);
-      if (fill?.highlighted) highlighted.push(this);
       el.style('fill', fill?.color ?? 'var(--color-map-pending)')
         .style('fill-opacity', String(fill?.opacity ?? 1))
         .style('stroke', outlined ? 'var(--color-ink)' : 'var(--color-map-stroke)')
@@ -52,19 +50,27 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
         .attr('data-highlighted', fill?.highlighted ? 'true' : null)
         .classed('studio-seat-pulse', !!id && vm.recentSeats.has(id));
     });
-    // The highlight outline is drawn on a top layer (copies of the seat outlines), so neighbours and state borders never cover it.
-    let layer = g.select<SVGGElement>('g.pc-highlight');
-    if (layer.empty()) layer = g.append('g').attr('class', 'pc-highlight').attr('pointer-events', 'none');
-    layer.raise();
-    layer.selectAll<SVGPathElement, SVGPathElement>('path')
-      .data(highlighted)
-      .join('path')
-      .attr('d', n => n.getAttribute('d'))
-      .style('fill', 'none')
-      .style('stroke', 'var(--color-ink)')
-      .style('stroke-width', '1.5px')
-      .style('vector-effect', 'non-scaling-stroke');
   }, [loaded, gRef, vm.fills, vm.seatOf, vm.selectedSeat, hoveredId, vm.recentSeats, vm.geoConfig, vm.stateFeatures]);
+
+  // The highlight outline: copies of the highlighted seats' shapes on a layer above the seats but below state borders and labels.
+  // Keyed by seat id, so a seat that stays highlighted keeps its outline untouched (no path re-parsing on tooltip hovers).
+  useEffect(() => {
+    if (!loaded || !gRef.current) return;
+    const g = gRef.current;
+    const nodes = new Map<string, SVGPathElement>();
+    if (vm.outline) {
+      g.selectAll<SVGPathElement, GeoFeature>('path.pc').each(function (d) {
+        const id = vm.seatOf.get(d);
+        if (id && vm.fills.get(id)?.highlighted) nodes.set(id, this);
+      });
+    }
+    let layer = g.select<SVGGElement>('g.pc-highlight');
+    if (layer.empty()) layer = g.insert('g', 'path.state, text.pc-label').attr('class', 'pc-highlight').attr('pointer-events', 'none');
+    layer.selectAll<SVGPathElement, [string, SVGPathElement]>('path')
+      .data([...nodes], d => d[0])
+      .join(enter => enter.append('path').attr('d', d => d[1].getAttribute('d'))
+        .style('fill', 'none').style('stroke', 'var(--color-ink)').style('stroke-width', '1.5px').style('vector-effect', 'non-scaling-stroke'));
+  }, [loaded, gRef, vm.fills, vm.seatOf, vm.outline, vm.geoConfig, vm.stateFeatures]);
 
   const info = tip ? vm.seatInfo(tip.id) : null;
   return (

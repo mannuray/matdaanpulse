@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { seatFill, marginOpacity, MAP_FILL, DIM_OPACITY, type FillContext } from '../mapFill';
+import { seatFill, seatFills, showOutline, OUTLINE_MAX, marginOpacity, MAP_FILL, DIM_OPACITY, type FillContext } from '../mapFill';
 import type { SeatResult } from '../../types/dashboard';
 
 const seat = (over: Partial<SeatResult> = {}): SeatResult => ({ id: 'A', name: 'A', party: 'BJP', margin: 30000, status: 'WON', type: 'GEN', ...over });
@@ -81,6 +81,18 @@ describe('seatFill highlighted flag', () => {
     const c = ctx({ highlight: { parties: new Set(['JDU']), seats: new Set() } });
     expect(seatFill(seat({ party: 'JDU' }), c).highlighted).toBe(true);
     expect(seatFill(seat({ party: 'BJP' }), c).highlighted).toBe(false);
+  });
+});
+
+describe('highlight limits', () => {
+  it('outlines only small highlights', () => {
+    expect(showOutline(OUTLINE_MAX)).toBe(true);
+    expect(showOutline(OUTLINE_MAX + 1)).toBe(false);
+    expect(OUTLINE_MAX).toBe(40);
+  });
+  it('a highlight that lights no seat does not dim the map', () => {
+    const fills = seatFills([seat(), seat({ id: 'B', party: 'JDU' })], ctx({ highlight: { parties: new Set(['OTH']), seats: new Set(['ZZ']) } }));
+    expect([...fills.values()].map(f => [f.opacity, f.highlighted])).toEqual([[1, false], [1, false]]);
   });
 });
 

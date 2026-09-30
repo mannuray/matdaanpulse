@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
@@ -35,6 +35,15 @@ export function useLayerInsightVM(): LayerInsightVM {
     constCandidates: src.data.constCandidates,
     threeWaySeats: src.data.spoilerData.threeWaySeats,
   }), [state.layer, src, alliances]);
+
+  const locked = state.locked;
+  useEffect(() => {
+    if (!locked?.chipId.startsWith('chip:') || !insight) return;
+    const c = insight.chips.find(x => `chip:${x.id}` === locked.chipId);
+    if (!c) return;
+    const cur = locked.highlight.seats;
+    if (c.seatIds.length !== cur.length || c.seatIds.some((x, i) => x !== cur[i])) dispatch({ type: 'refreshLock', chipId: locked.chipId, highlight: { parties: [], seats: c.seatIds } });
+  }, [insight, locked, dispatch]);
 
   const highlightOf = (c: InsightChip) => ({ parties: [], seats: c.seatIds });
   return {

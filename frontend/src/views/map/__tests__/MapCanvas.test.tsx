@@ -15,7 +15,7 @@ const feature = {
 function makeVM(): MapVM {
   return {
     status: 'ready', features: [feature], stateFeatures: null, isVS: true, geoConfig: undefined,
-    seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: false }]]),
+    seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: false }]]), outline: true,
     recentSeats: new Set(), selectedSeat: null, layer: 'overview', layers: ['overview'], mapMode: 'map',
     hexAvailable: false, lockedLabel: null,
     seatInfo: () => ({ name: 'Sandesh', candidate: 'A', party: 'JDU', status: 'Won', color: '#1FA37A' }),
@@ -51,7 +51,31 @@ describe('MapCanvas', () => {
     expect(outline).toHaveLength(1);
     expect((outline[0] as SVGPathElement).style.stroke).toBe('var(--color-ink)');
     expect(outline[0].getAttribute('d')).toBe(path.getAttribute('d'));
-    expect(container.querySelector('g.pc-highlight')!.parentElement!.lastElementChild).toBe(container.querySelector('g.pc-highlight'));
+  });
+  it('the outline layer sits above the seats and below state borders and labels', () => {
+    const vm = makeVM();
+    vm.fills = new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: true }]]);
+    const { container } = render(<MapCanvas vm={vm} />);
+    const kids = [...container.querySelector('g.pc-highlight')!.parentElement!.children];
+    const at = (sel: string) => kids.findIndex(k => k.matches(sel));
+    expect(at('g.pc-highlight')).toBeGreaterThan(at('path.pc'));
+    expect(at('g.pc-highlight')).toBeLessThan(at('text.pc-label'));
+  });
+  it('a large highlight keeps full opacity and the marker but draws no outline', () => {
+    const vm = makeVM();
+    vm.fills = new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: true }]]);
+    vm.outline = false;
+    const { container } = render(<MapCanvas vm={vm} />);
+    expect(container.querySelector('path.pc')!.getAttribute('data-highlighted')).toBe('true');
+    expect(container.querySelectorAll('g.pc-highlight path')).toHaveLength(0);
+  });
+  it('keeps the outline element across tooltip hovers', () => {
+    const vm = makeVM();
+    vm.fills = new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: true }]]);
+    const { container } = render(<MapCanvas vm={vm} />);
+    const before = container.querySelector('g.pc-highlight path');
+    fireEvent.mouseMove(container.querySelector('path.pc')!, { clientX: 5, clientY: 5 });
+    expect(container.querySelector('g.pc-highlight path')).toBe(before);
   });
   it('no highlight: no marker and no outline', () => {
     const { container } = render(<MapCanvas vm={makeVM()} />);

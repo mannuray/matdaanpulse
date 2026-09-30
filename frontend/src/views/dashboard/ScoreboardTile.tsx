@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import type { ScoreboardVM } from '../../viewmodels/tiles/useScoreboardVM';
 import { Tile } from './Tile';
 import { cn } from '../ui/cn';
+import { onKbdFocus } from '../ui/kbdFocus';
 
 export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'tile' | 'focus' | 'compact' }) {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
         <div className="flex flex-col gap-2 pt-0.5">
           <div data-bloc-row className="flex min-w-0 items-center gap-3 overflow-hidden">
             {vm.blocs.map((b, i) => (
-              <button key={b.id} type="button" onClick={() => vm.onLockBloc(b.id)} onMouseEnter={() => vm.onHoverBloc(b.id)} onMouseLeave={() => vm.onHoverBloc(null)}
+              <button key={b.id} type="button" onClick={() => vm.onLockBloc(b.id)} onMouseEnter={() => vm.onHoverBloc(b.id)} onMouseLeave={() => vm.onHoverBloc(null)} onFocus={onKbdFocus(() => vm.onHoverBloc(b.id))} onBlur={() => vm.onHoverBloc(null)}
                 aria-label={`${b.name} ${b.seats}`} title={b.name} aria-pressed={vm.lockedId === b.id}
                 className={cn('flex min-w-0 items-center gap-2 rounded-xl px-1 text-left', i > 0 && 'border-l border-line pl-3', vm.lockedId === b.id && 'ring-2 ring-accent')}>
                 <span className="tabular font-display text-[40px] font-extrabold leading-none" style={{ color: b.color }}>{b.seats}</span>
@@ -47,7 +48,7 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
     <div className={cn('flex h-full flex-col justify-center', tileSize ? 'gap-1.5' : 'gap-3')}>
       <div className="flex min-w-0 items-end gap-4 overflow-hidden">
         {vm.blocs.map((b, i) => (
-          <button key={b.id} type="button" onClick={() => vm.onLockBloc(b.id)} onMouseEnter={() => vm.onHoverBloc(b.id)} onMouseLeave={() => vm.onHoverBloc(null)}
+          <button key={b.id} type="button" onClick={() => vm.onLockBloc(b.id)} onMouseEnter={() => vm.onHoverBloc(b.id)} onMouseLeave={() => vm.onHoverBloc(null)} onFocus={onKbdFocus(() => vm.onHoverBloc(b.id))} onBlur={() => vm.onHoverBloc(null)}
             aria-label={`${b.name} ${b.seats}`} title={b.name} aria-pressed={vm.lockedId === b.id}
             className={cn('flex min-w-0 items-end gap-3 rounded-xl px-1 text-left', i > 0 && 'border-l border-line pl-4', vm.lockedId === b.id && 'ring-2 ring-accent')}>
             <div className={cn('min-w-0', tileSize ? 'pb-1' : 'pb-2')}>

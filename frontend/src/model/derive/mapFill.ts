@@ -22,6 +22,10 @@ export const MAP_FILL = {
   threeWay: 'var(--color-map-threeway)',
 };
 export const DIM_OPACITY = 0.12;
+/** The bright outline only helps find a few seats; above this many highlighted seats opacity alone carries the highlight. */
+export const OUTLINE_MAX = 40;
+
+export const showOutline = (highlightedCount: number) => highlightedCount <= OUTLINE_MAX;
 const HELD_OPACITY = 0.18;
 const LOYAL_OPACITY = 0.55;
 const BUCKET_OPACITY = [0.25, 0.45, 0.65, 0.85, 1];
@@ -74,5 +78,10 @@ export function seatFill(seat: SeatResult, ctx: FillContext): SeatFill {
 export function seatFills(seats: SeatResult[], ctx: FillContext): Map<string, SeatFill> {
   const out = new Map<string, SeatFill>();
   for (const s of seats) out.set(s.id, seatFill(s, ctx));
+  // A highlight that lights no seat at all (e.g. a party with 0 seats) must not dim the whole map.
+  if ((ctx.highlight.parties.size > 0 || ctx.highlight.seats.size > 0) && ![...out.values()].some(f => f.highlighted)) {
+    const plain = { ...ctx, highlight: { parties: new Set<string>(), seats: new Set<string>() } };
+    for (const s of seats) out.set(s.id, seatFill(s, plain));
+  }
   return out;
 }

@@ -117,6 +117,10 @@ describe('seats of earlier elections', () => {
     const mixed = row('history', 'switch_directions', 'dir:RJD→BJP', { partySwitches: [psw('A', 'RJD', 'BJP', true), psw('OLD_SEAT_2015', 'RJD', 'BJP', true)] });
     expect(mixed.seatIds).toEqual(['A']);
   });
+  it('a switcher mapped to a current seat id keeps its highlight', () => {
+    const r2 = row('history', 'notable_switchers', 'switcher:C:0', { partySwitches: [psw('C', 'INC', 'JDU', true)] });
+    expect(r2.seatIds).toEqual(['C']);
+  });
 });
 
 describe('invariant: every row seatIds is a subset of the known seats', () => {

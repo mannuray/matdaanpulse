@@ -4,7 +4,7 @@ import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { activeHighlight, type MapMode } from '../store/dashboardStore';
 import { ElectionService } from '../../model/api/election.service';
-import { seatFills, type SeatFill } from '../../model/derive/mapFill';
+import { seatFills, showOutline, type SeatFill } from '../../model/derive/mapFill';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import type { LayerId } from '../../model/types/dashboard';
@@ -20,6 +20,8 @@ export interface MapVM {
   geoConfig?: { map_url?: string; center?: [number, number]; zoom?: number };
   seatOf: Map<GeoFeature, string>;
   fills: Map<string, SeatFill>;
+  /** Draw the highlight outline (small highlights only). */
+  outline: boolean;
   recentSeats: Set<string>;
   selectedSeat: string | null;
   layer: LayerId;
@@ -78,10 +80,11 @@ export function useMapVM(): MapVM {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fills = useMemo(() => seatFills(seats, fillCtx), [seats, state.layer, src.election.type, src.data.partyColorMap, src.swing, src.dominance, src.data.spoilerData, hlKey]);
 
+  const outline = useMemo(() => showOutline([...fills.values()].filter(f => f.highlighted).length), [fills]);
   const byId = useMemo(() => new Map(seats.map(s => [s.id, s])), [seats]);
 
   return {
-    status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills,
+    status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills, outline,
     recentSeats: src.recentSeats, selectedSeat: state.selectedSeat,
     layer: state.layer, layers: src.availableLayers, mapMode: state.mapMode, hexAvailable: Boolean(geo?.hex_url),
     lockedLabel: state.locked?.label ?? null,
