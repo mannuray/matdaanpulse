@@ -41,3 +41,17 @@ describe('query DTOs', () => {
     await expect(validate(ElectionsQueryDto, { foo: '1' })).rejects.toBeInstanceOf(BadRequestException);
   });
 });
+
+describe('empty query params mean "not sent"', () => {
+  it.each([
+    [CandidatesQueryDto, { election_id: '', const_id: '' }],
+    [ElectionsQueryDto, { type: '', status: '', state_id: '', year: '' }],
+    [PartiesQueryDto, { page: '', limit: '', q: '', election_id: '', state_id: '' }],
+    [ConstituencySearchQueryDto, { q: '', election_id: '', district_id: '' }],
+    [AdminPersonsQueryDto, { q: '', page: '', limit: '', state_id: '', region_id: '' }],
+    [AuditLogsQueryDto, { user_id: '', action: '', entity_type: '', from: '', to: '' }],
+  ])('%p accepts empty values as undefined', async (metatype, value) => {
+    const out: Record<string, unknown> = await validate(metatype, value as Record<string, string>);
+    expect(Object.values(out).every((v) => v === undefined)).toBe(true);
+  });
+});
