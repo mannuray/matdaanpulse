@@ -27,7 +27,7 @@ const sections: SummarySection[] = [
   { id: 'c', titleKey: 'studio_sum_margin_trend', rows: [], chart: { type: 'line', series: [] } },
 ];
 const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
-  layer: 'swing', layers: ['overview', 'swing'], summary: { layer: 'swing', sections: secs }, lockedRowId: null,
+  electionId: 'E1', layer: 'swing', layers: ['overview', 'swing'], summary: { layer: 'swing', sections: secs }, lockedRowId: null,
   onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, ...over,
 });
 
@@ -45,7 +45,7 @@ describe('SummaryTab', () => {
     expect(screen.queryByText(/more/)).toBeNull();
     const headers = container.querySelectorAll('h3');
     expect(headers).toHaveLength(2);
-    headers.forEach(h => { expect(h.className).toContain('sticky'); expect(h.className).toContain('top-0'); expect(h.className).toContain('bg-tile'); });
+    headers.forEach(h => { expect(h.className).toContain('sticky'); expect(h.className).toContain('top-0'); expect(h.className).toContain('bg-tile'); expect(h.className).toContain('border-b'); });
   });
 
   it('a single-seat row selects the seat; other rows lock and hover', () => {

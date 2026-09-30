@@ -68,7 +68,8 @@ describe('charts', () => {
       ['+5.5', 'up', 'var(--color-ok-text)'], ['−5.0', 'down', 'var(--color-live-text)'],
     ]);
     expect(container.querySelector('thead')!.textContent).toContain('Note');
-    expect([...container.querySelectorAll('tbody tr')[1].querySelectorAll('td')].map(td => td.textContent)).toEqual(['30', '25', '−5.0']);
+    // table cells use the drawing's format with its unit
+    expect([...container.querySelectorAll('tbody tr')[1].querySelectorAll('td')].map(td => td.textContent)).toEqual(['30.0%', '25.0%', '−5.0']);
     expect(container.querySelector('[data-chart-legend]')!.textContent).toBe('Vote %Seat %');
     expect(container.querySelector('[data-bar] text')!.textContent).toBe('50.0');
   });
@@ -82,6 +83,35 @@ describe('charts', () => {
     cleanup();
     const few = render(<GroupedBarChart spec={grouped} title="Few" />);
     expect(few.container.querySelector('[data-chart-scroll]')).toBeNull();
+  });
+
+  it('a scrolling chart box is a focusable labelled region', () => {
+    const many: ChartSpec = { type: 'groupedBar', series: [{ id: 'a', label: 'A', color: '#f70', points: Array.from({ length: 12 }, (_, i) => ({ x: `P${i}`, y: 1 })) }] };
+    render(<GroupedBarChart spec={many} title="Many groups" />);
+    const box = screen.getByRole('region', { name: 'Many groups' });
+    expect(box.getAttribute('tabindex')).toBe('0');
+    expect(box.hasAttribute('data-chart-scroll')).toBe(true);
+  });
+
+  it('x labels: a short axis label with the full name in the tooltip and the table; long labels are clipped; only a labelKey is translated', () => {
+    const spec: ChartSpec = { type: 'groupedBar', series: [{ id: 'a', label: 'A', color: '#f70', points: [
+      { x: 'BJP', y: 3, label: 'Bharatiya Janata Party' },
+      { x: 'others', y: 2, labelKey: 'others' },
+      { x: 'National Democratic Alliance of Many Words', y: 1 },
+    ] }] };
+    const { container } = render(<GroupedBarChart spec={spec} title="T" />);
+    const axis = [...container.querySelectorAll('text')].filter(t => t.querySelector(':scope > title'));
+    const texts = axis.map(a => a.textContent);
+    expect(texts[0]).toContain('BJP');
+    expect(axis[0].querySelector('title')!.textContent).toBe('Bharatiya Janata Party');
+    expect(texts[1]).toContain('Others');
+    expect(texts[2]).toContain('…');
+    expect(axis[2].querySelector('title')!.textContent).toBe('National Democratic Alliance of Many Words');
+    expect([...container.querySelectorAll('tbody th')].map(t => t.textContent)).toEqual(['Bharatiya Janata Party', 'Others', 'National Democratic Alliance of Many Words']);
+    // a plain x that merely looks like an i18n key is left alone
+    cleanup();
+    const plain = render(<GroupedBarChart spec={{ type: 'groupedBar', series: [{ id: 'a', label: 'A', color: '#f70', points: [{ x: 'others', y: 1 }] }] }} title="P" />);
+    expect(plain.container.querySelector('tbody th')!.textContent).toBe('others');
   });
 
   it('BarChart: per-point colour and annotation', () => {

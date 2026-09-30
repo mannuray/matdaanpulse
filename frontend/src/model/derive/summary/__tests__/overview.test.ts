@@ -53,22 +53,45 @@ describe('overview summary', () => {
     const c = s.chart!;
     expect(c.type).toBe('groupedBar');
     expect(c.valueFormat).toBe('pct');
-    expect(c.series.map(x => [x.id, x.labelKey, x.opacity])).toEqual([['vote', 'studio_col_vote_pct', 0.4], ['seat', 'studio_col_seat_pct', undefined]]);
+    expect(c.series.map(x => [x.id, x.labelKey, x.opacity])) .toEqual([['vote', 'studio_col_vote_pct', 0.4], ['seat', 'studio_col_seat_pct', undefined]]);
     const colours = s.rows.map(r => r.color);
     expect(c.series[0].points.map(p => [p.x, p.y, p.color])).toEqual([['NDA', 50, colours[0]], ['MGB', 30, colours[1]], ['others', 7, colours[2]]]);
     expect(c.series[1].points.map(p => [p.x, p.y, p.color])).toEqual([['NDA', 50, colours[0]], ['MGB', 33.3, colours[1]], ['others', 16.7, colours[2]]]);
+    // No English fallback in the model: the series are named by key only; the Others group is translated through its labelKey.
+    expect(c.series.every(x => x.label === undefined)).toBe(true);
+    expect(c.series[0].points[2]).toMatchObject({ x: 'others', labelKey: 'others' });
     expect(c.annotations).toEqual([{ x: 'NDA', text: '0.0', tone: 'neutral' }, { x: 'MGB', text: '+3.3', tone: 'up' }, { x: 'others', text: '+9.7', tone: 'up' }]);
   });
 
-  it('vote_vs_seats_alliances chartAlt: parties by seats, negative difference is down', () => {
+  it('vote_vs_seats_alliances chartAlt: parties by seats, short ids as x, full names as labels, negative difference is down', () => {
     // Party rows (OverviewSection.tsx:192-196): BJP 33.3 vs 30, RJD 33.3 vs 25, JDU 16.7 vs 20, AIMIM 16.7 vs 3, INC 0 vs 5, IND 0 vs 4.
     const alt = byId('vote_vs_seats_alliances').chartAlt!;
     expect(alt.labelKey).toBe('studio_tab_parties');
-    expect(alt.spec.series[1].points.map(p => [p.x, p.y])).toEqual([
-      ['Bharatiya Janata Party', 33.3], ['Rashtriya Janata Dal', 33.3], ['Janata Dal (United)', 16.7], ['AIMIM', 16.7], ['Indian National Congress', 0], ['IND', 0],
+    expect(alt.titleKey).toBe('studio_sum_vote_vs_seats_parties');
+    expect(alt.spec.series[1].points.map(p => [p.x, p.label, p.y])).toEqual([
+      ['BJP', 'Bharatiya Janata Party', 33.3], ['RJD', 'Rashtriya Janata Dal', 33.3], ['JDU', 'Janata Dal (United)', 16.7], ['AIMIM', 'AIMIM', 16.7],
+      ['INC', 'Indian National Congress', 0], ['IND', 'IND', 0],
     ]);
-    expect(alt.spec.annotations!.find(a => a.x === 'Janata Dal (United)')).toEqual({ x: 'Janata Dal (United)', text: '−3.3', tone: 'down' });
+    expect(alt.spec.annotations!.find(a => a.x === 'JDU')).toEqual({ x: 'JDU', text: '−3.3', tone: 'down' });
     expect(alt.spec.valueFormat).toBe('pct');
+  });
+
+  it('chartAlt ranks by seats won, not vote share: small seat winners beat big vote-getters without seats (max 10)', () => {
+    // 12 qualifying parties. W1..W4 win one seat each with 0.5% of the vote (the party list's vote-ranked top 10 would drop them);
+    // N1..N8 win nothing with 2..9% of the vote. BJP/JDU/RJD/AIMIM keep their seats. Seats desc, vote desc on ties.
+    const small = ['W1', 'W2', 'W3', 'W4'];
+    const extra = small.map((id, i) => seat(`X${i}`, id, 100 + i));
+    const nothing = Array.from({ length: 8 }, (_, i) => `N${i + 1}`);
+    const votePct = new Map<string, number>([['BJP', 30], ['JDU', 20], ['RJD', 25], ['AIMIM', 3], ...small.map(id => [id, 0.5] as [string, number]), ...nothing.map((id, i) => [id, 2 + i] as [string, number])]);
+    const ctx = makeCtx({ seats: [...makeCtx().seats, ...extra], votePct, parties: [...makeCtx().parties, ...small.map(id => ({ id, name: id, color: '#999', seats: 1 }))] });
+    const alt = byId('vote_vs_seats_alliances', ctx).chartAlt!;
+    const xs = alt.spec.series[1].points.map(p => p.x);
+    expect(xs).toHaveLength(10);
+    // 10 seat winners exist (BJP, RJD, JDU, AIMIM, W1..W4 = 8 with seats; + 2 zero-seat parties by vote: N8, N7)
+    expect(xs.slice(0, 8).sort()).toEqual(['AIMIM', 'BJP', 'JDU', 'RJD', 'W1', 'W2', 'W3', 'W4'].sort());
+    expect(xs.slice(8)).toEqual(['N8', 'N7']);
+    // the party *table* keeps its vote ranking (top 10 by vote share), so W1..W4 are not in it
+    expect(byId('vote_vs_seats_parties', ctx).rows.some(r => r.id === 'party:W1')).toBe(false);
   });
 
   it('vote_vs_seats_parties: seats > 0 or vote >= 1, sorted by vote share desc', () => {

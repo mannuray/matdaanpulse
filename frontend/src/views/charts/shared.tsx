@@ -14,6 +14,12 @@ export function labelFormatter(spec: ChartSpec): (v: number) => string {
   return f === 'pct' ? v => v.toFixed(1) : v => formatSummaryValue(v, f);
 }
 
+/** Data-table cell text: the drawing's format with its unit (48.1%, 30.4K). */
+export function cellFormatter(spec: ChartSpec): (v: number) => string {
+  const f = spec.valueFormat ?? 'compact';
+  return v => formatSummaryValue(v, f);
+}
+
 /** y axis tick text. */
 export function axisFormatter(spec: ChartSpec): (v: number) => string {
   const f = spec.valueFormat ?? 'compact';
@@ -22,10 +28,25 @@ export function axisFormatter(spec: ChartSpec): (v: number) => string {
 
 export const TONE_COLOR = { up: 'var(--color-ok-text)', down: 'var(--color-live-text)', neutral: 'var(--color-muted)' } as const;
 
-/** An x category as shown: i18n keys (e.g. "others") are translated, anything else is shown as is. */
-export function useXLabel() {
-  const { t, i18n } = useTranslation();
-  return (x: string | number) => (typeof x === 'string' && i18n.exists(x) ? t(x) : String(x));
+type XPoint = ChartSeries['points'][number];
+
+/** The first point drawn at `x` (carries the optional labelKey / full name). */
+export function pointAt(spec: ChartSpec, x: string | number): XPoint | undefined {
+  for (const s of spec.series) { const p = s.points.find(q => q.x === x); if (p) return p; }
+  return undefined;
+}
+
+/** x category texts: `short` for the axis (a translated labelKey, else x), `full` for tooltips and the data table. */
+export function useXLabel(spec: ChartSpec) {
+  const { t } = useTranslation();
+  const short = (x: string | number) => { const p = pointAt(spec, x); return p?.labelKey ? t(p.labelKey) : String(x); };
+  return { short, full: (x: string | number) => pointAt(spec, x)?.label ?? short(x) };
+}
+
+/** Axis label clipped with an ellipsis to roughly `width` px at 10px text. */
+export function clip(text: string, width: number): string {
+  const max = Math.max(3, Math.floor(width / 5.6));
+  return text.length <= max ? text : `${text.slice(0, Math.max(1, max - 1)).trimEnd()}…`;
 }
 
 /** Extra headroom above the plot for the annotation line. */
@@ -34,7 +55,7 @@ export const ANNOTATION_H = 14;
 /** The series name: the translated key when the model provides one. */
 export function useSeriesLabel() {
   const { t } = useTranslation();
-  return (s: ChartSeries) => (s.labelKey ? t(s.labelKey) : s.label);
+  return (s: ChartSeries) => (s.labelKey ? t(s.labelKey) : s.label ?? s.id);
 }
 
 /** x categories in first-seen order across all series. */
@@ -65,7 +86,8 @@ export function useChartWidth() {
 export function DataTable({ title, spec }: { title: string; spec: ChartSpec }) {
   const { t } = useTranslation();
   const label = useSeriesLabel();
-  const xLabel = useXLabel();
+  const xLabel = useXLabel(spec);
+  const cell = cellFormatter(spec);
   const xs = categories(spec);
   const notes = spec.annotations ?? [];
   return (
@@ -74,7 +96,7 @@ export function DataTable({ title, spec }: { title: string; spec: ChartSpec }) {
       <thead><tr><th scope="col">{t('studio_chart_category')}</th>{spec.series.map(s => <th key={s.id} scope="col">{label(s)}</th>)}{notes.length > 0 && <th scope="col">{t('studio_chart_note')}</th>}</tr></thead>
       <tbody>
         {xs.map(x => (
-          <tr key={String(x)}><th scope="row">{xLabel(x)}</th>{spec.series.map(s => <td key={s.id}>{s.points.find(p => p.x === x)?.y ?? ''}</td>)}{notes.length > 0 && <td>{notes.find(a => a.x === x)?.text ?? ''}</td>}</tr>
+          <tr key={String(x)}><th scope="row">{xLabel.full(x)}</th>{spec.series.map(s => { const y = s.points.find(p => p.x === x)?.y; return <td key={s.id}>{y == null ? '' : cell(y)}</td>; })}{notes.length > 0 && <td>{notes.find(a => a.x === x)?.text ?? ''}</td>}</tr>
         ))}
       </tbody>
     </table>
@@ -105,7 +127,8 @@ export function ChartFrame({ spec, title, height, ticks, children, width, minWid
   const y = (v: number) => base - (v / ticks.top) * (base - top);
   return (
     <div ref={containerRef} className="w-full min-w-0">
-      <div className={cn(w > width && 'overflow-x-auto overscroll-x-contain')} data-chart-scroll={w > width ? '' : undefined}>
+      <div className={cn(w > width && 'studio-scroll overflow-x-auto overscroll-x-contain')} data-chart-scroll={w > width ? '' : undefined}
+        {...(w > width ? { role: 'region', tabIndex: 0, 'aria-label': title } : {})}>
         <svg role="img" aria-label={title} width={w} height={height} viewBox={`0 0 ${w} ${height}`} className={cn('block', w <= width && 'max-w-full')}>
           <g aria-hidden="true">
             {ticks.values.map(v => (

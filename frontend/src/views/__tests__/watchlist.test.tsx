@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import '../../i18n';
 import { StandingsTile, WatchlistPreview } from '../dashboard/StandingsTile';
@@ -109,7 +109,7 @@ describe('StandingsTile watchlist expand', () => {
     setup({ watchlist: [1, 2, 3, 4, 5, 6, 7, 8].map(i => card(i)) }, 120);
     fireEvent.click(screen.getByRole('radio', { name: /Watchlist/ }));
     const region = screen.getByRole('region', { name: /Watchlist/ });
-    expect(region.querySelectorAll('button[class*="flex-1"]')).toHaveLength(8);
+    expect(within(region).getAllByRole('button', { name: /^Seat \d/ })).toHaveLength(8);
     expect(screen.queryByRole('button', { name: /more/ })).toBeNull();
     expect(region.contains(screen.getByRole('combobox', { name: /Add a seat/ }))).toBe(false);
   });

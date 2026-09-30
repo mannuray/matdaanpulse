@@ -170,7 +170,7 @@ export function StandingsTile({ vm, variant, watchlist, summary, initialTab, onT
     <Tile title={t(shown === 'summary' ? 'studio_title_summary' : shown === 'watchlist' ? 'studio_title_watchlist' : 'party_standings')}
       onExpand={shown === 'summary' && summary ? summary.onFocus : expandStandings} pulse={vm.pulse} actions={toggle} stackActions={!wide && options.length > 1} bodyClassName="flex flex-col">
       {shown === 'summary' && summary ? (
-        <ScrollArea label={label} resetKey={`summary:${summary.layer}`}><SummaryTab vm={summary} /></ScrollArea>
+        <ScrollArea label={label} resetKey={`summary:${summary.electionId}:${summary.layer}`}><SummaryTab vm={summary} /></ScrollArea>
       ) : shown === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} label={label} /> : (
         <ScrollArea label={label} resetKey="parties">
           <div className="flex flex-col gap-1">

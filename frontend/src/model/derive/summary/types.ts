@@ -36,14 +36,21 @@ export interface SummaryRow {
 
 export interface ChartSeries {
   id: string;
-  label: string;
+  /** Plain series name (proper nouns); omit when `labelKey` names it. */
+  label?: string;
   /** Translatable series name; the view prefers t(labelKey) over label when set. */
   labelKey?: string;
   color: string;
   /** Bar fill opacity (0..1), e.g. 0.4 for the "vote %" bars next to the full "seat %" bars. */
   opacity?: number;
   /** `color` overrides the series colour for that bar (e.g. each alliance's colour inside a Vote % / Seat % series). */
-  points: { x: string | number; y: number; color?: string }[];
+  points: {
+    x: string | number; y: number; color?: string;
+    /** Full name for tooltips and the data table when `x` is an abbreviation (a party id). */
+    label?: string;
+    /** Translatable x category (the view shows t(labelKey) instead of `x`). */
+    labelKey?: string;
+  }[];
 }
 
 /** Number format of a chart's value labels and y axis (compact = 21.1K like the rows). */
@@ -85,7 +92,7 @@ export interface SummarySection {
   /** Label (i18n key) of the primary chart when `chartAlt` offers a second one (the focus view shows a toggle). */
   chartLabelKey?: string;
   /** A second chart over the same topic (e.g. parties instead of alliances), switched with a toggle in the focus view. */
-  chartAlt?: { labelKey: string; spec: ChartSpec };
+  chartAlt?: { labelKey: string; /** Section title while this chart is shown. */ titleKey: string; spec: ChartSpec };
 }
 
 export interface LayerSummary {

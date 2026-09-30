@@ -66,29 +66,38 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection[] {
   rows.sort((a, b) => seatPctOf(b) - seatPctOf(a));
 
   const ids = new Set([...ctx.parties.map(p => p.id), ...ctx.votePct.keys()]);
-  const partyRows = [...ids]
-    .filter(id => (seatsOf.get(id) ?? 0) > 0 || vote(id) >= 1)
-    .sort((a, b) => vote(b) - vote(a))
+  const qualifying = [...ids].filter(id => (seatsOf.get(id) ?? 0) > 0 || vote(id) >= 1);
+  const partyRow = (id: string) => mk(`party:${id}`, partyName(ctx, id), colorOf(ctx, id), seatsOf.get(id) ?? 0, vote(id), [id]);
+  const partyRows = [...qualifying].sort((a, b) => vote(b) - vote(a)).slice(0, LIST_LIMIT).map(partyRow);
+  // The chart ranks by seats won (vote share breaks ties), so small seat winners are never dropped for big vote-getters without seats.
+  const chartParties = [...qualifying]
+    .sort((a, b) => (seatsOf.get(b) ?? 0) - (seatsOf.get(a) ?? 0) || vote(b) - vote(a))
     .slice(0, LIST_LIMIT)
-    .map(id => mk(`party:${id}`, partyName(ctx, id), colorOf(ctx, id), seatsOf.get(id) ?? 0, vote(id), [id]));
+    .map(id => ({ id, row: partyRow(id) }));
+
   // Two bars per group: vote % (faded) and seat % (full), both in the group's colour; the note above is seat % − vote %.
-  const chartOf = (rs: SummaryRow[]): ChartSpec => {
-    const xOf = (r: SummaryRow) => r.labelKey ?? r.label;
+  const chartOf = (rs: { x: string; row: SummaryRow; name?: string }[]): ChartSpec => {
+    const xOf = (g: typeof rs[number]) => g.row.labelKey ?? g.x;
+    const pointOf = (g: typeof rs[number], col: number) => ({
+      x: xOf(g), y: g.row.extra![col].value ?? 0, color: g.row.color,
+      ...(g.row.labelKey ? { labelKey: g.row.labelKey } : {}), ...(g.name ? { label: g.name } : {}),
+    });
     const bar = (id: string, labelKey: string, col: number, opacity?: number) => ({
-      id, label: id === 'vote' ? 'Vote %' : 'Seat %', labelKey, color: 'var(--color-ink)', ...(opacity != null ? { opacity } : {}),
-      points: rs.map(r => ({ x: xOf(r), y: r.extra![col].value ?? 0, color: r.color })),
+      id, labelKey, color: 'var(--color-ink)', ...(opacity != null ? { opacity } : {}), points: rs.map(g => pointOf(g, col)),
     });
     return {
       type: 'groupedBar', xKey: 'group', valueFormat: 'pct',
       series: [bar('vote', 'studio_col_vote_pct', 0, 0.4), bar('seat', 'studio_col_seat_pct', 1)],
-      annotations: rs.map(r => ({ x: xOf(r), text: formatSummaryValue(r.value, 'signed1'), tone: (r.value ?? 0) > 0 ? 'up' as const : (r.value ?? 0) < 0 ? 'down' as const : 'neutral' as const })),
+      annotations: rs.map(g => ({ x: xOf(g), text: formatSummaryValue(g.row.value, 'signed1'), tone: (g.row.value ?? 0) > 0 ? 'up' as const : (g.row.value ?? 0) < 0 ? 'down' as const : 'neutral' as const })),
     };
   };
-  const bySeats = [...partyRows].sort((a, b) => seatPctOf(b) - seatPctOf(a));
+  const allianceChart = chartOf(rows.map(r => ({ x: r.label, row: r })));
+  // Parties are labelled by their short id (BJP); the full name rides along for tooltips and the data table.
+  const partyChart = chartOf(chartParties.map(({ id, row }) => ({ x: id, row, name: row.label })));
   const cols = { columnsKeys: ['studio_col_disparity', 'studio_col_vote_pct', 'studio_col_seat_pct'], primaryCol: 2 };
   return [
     { id: 'vote_vs_seats_alliances', titleKey: 'studio_sum_vote_vs_seats_alliances', ...cols, rows,
-      chart: chartOf(rows), chartLabelKey: 'studio_tab_alliances', chartAlt: { labelKey: 'studio_tab_parties', spec: chartOf(bySeats) } },
+      chart: allianceChart, chartLabelKey: 'studio_tab_alliances', chartAlt: { labelKey: 'studio_tab_parties', titleKey: 'studio_sum_vote_vs_seats_parties', spec: partyChart } },
     { id: 'vote_vs_seats_parties', titleKey: 'studio_sum_vote_vs_seats_parties', ...cols, rows: partyRows },
   ];
 }

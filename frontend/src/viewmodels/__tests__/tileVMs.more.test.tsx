@@ -63,6 +63,20 @@ describe('useTopBarVM', () => {
     await waitFor(() => expect(h2.result.current.electionLabel).toBe('LS · 2024'));
   });
 
+  it('a failed /elections still offers the current state and year, and is retried once', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const spy = vi.spyOn(electionApi, 'getElections').mockRejectedValueOnce(new Error('429')).mockResolvedValue(ELECTIONS as never);
+    const vs = makeSources({ election: { ...base, id: 'cur', type: 'VS', year: 2025, state_id: 4, state: { id: 4, name: 'Bihar' } as never } });
+    const { result } = renderHook(() => useTopBarVM(), { wrapper: wrap(vs) });
+    await waitFor(() => expect(spy).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(result.current.years).toEqual([{ id: 'cur', year: 2025 }]));
+    expect(result.current.states).toEqual([{ id: 4, name: 'Bihar' }]);
+    await act(async () => { await vi.advanceTimersByTimeAsync(1600); });
+    await waitFor(() => expect(spy).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(result.current.years.map(y => y.id)).toEqual(['br2025', 'br2020']));
+    vi.useRealTimers();
+  });
+
   it('LS -> VS restores the remembered VS election', async () => {
     localStorage.setItem('lastElection_VS', 'wb2016');
     const { result } = await topBar('LS');

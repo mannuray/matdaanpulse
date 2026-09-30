@@ -29,7 +29,7 @@ const sections: SummarySection[] = [
   ] },
 ];
 const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
-  layer: 'history', layers: ['overview', 'battle', 'swing', 'history'], summary: { layer: 'history', sections: secs }, lockedRowId: null,
+  electionId: 'E1', layer: 'history', layers: ['overview', 'battle', 'swing', 'history'], summary: { layer: 'history', sections: secs }, lockedRowId: null,
   onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, ...over,
 });
 
@@ -96,14 +96,18 @@ describe('SummaryFocus', () => {
     const spec = (x: string): NonNullable<SummarySection['chart']> => ({ type: 'groupedBar', valueFormat: 'pct', series: [{ id: 'seat', label: 'Seat %', color: '#fff', points: [{ x, y: 10 }] }] });
     const vs: SummarySection = {
       id: 'vote_vs_seats_alliances', titleKey: 'studio_sum_vote_vs_seats_alliances', rows: [{ id: 'alliance:NDA', label: 'NDA', value: 1, valueFormat: 'signed1' }],
-      chart: spec('NDA'), chartLabelKey: 'studio_tab_alliances', chartAlt: { labelKey: 'studio_tab_parties', spec: spec('BJP') },
+      chart: spec('NDA'), chartLabelKey: 'studio_tab_alliances', chartAlt: { labelKey: 'studio_tab_parties', titleKey: 'studio_sum_vote_vs_seats_parties', spec: spec('BJP') },
     };
     const { container } = render(<SummaryFocus vm={mk({}, [vs, sections[2]])} />);
-    const toggle = screen.getByRole('radiogroup', { name: 'Vote share vs seats · Alliances' });
+    const toggle = screen.getByRole('radiogroup', { name: 'Vote share vs seats' });
     expect(within(toggle).getByRole('radio', { name: 'Alliances' }).getAttribute('aria-checked')).toBe('true');
     expect(container.querySelector('tbody th')!.textContent).toBe('NDA');
     fireEvent.click(within(toggle).getByRole('radio', { name: 'Parties' }));
     expect(container.querySelector('tbody th')!.textContent).toBe('BJP');
+    // the section title and the chart's accessible name follow the active toggle
+    expect(screen.getByRole('img', { name: 'Vote share vs seats · Parties' })).toBeTruthy();
+    expect(screen.getByRole('region', { name: 'Vote share vs seats · Parties' })).toBeTruthy();
+    expect(screen.queryByRole('img', { name: 'Vote share vs seats · Alliances' })).toBeNull();
     // a section with a plain chart has no toggle
     cleanup();
     const plain = render(<SummaryFocus vm={mk()} />);

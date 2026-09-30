@@ -75,7 +75,7 @@ describe('SummaryPreview is never interactive', () => {
     { id: 'b', label: 'b', labelKey: 'avg_margin', value: 21100, valueFormat: 'compact', partyIds: ['BJP'] },
   ] };
   const list: SummarySection = { id: 'l', titleKey: 'studio_sum_closest', rows: [{ id: 'r', label: 'Sandesh', value: 27, valueFormat: 'compact', seatIds: ['S1'] }] };
-  const vm = (secs: SummarySection[]): SummaryVM => ({ layer: 'swing', layers: ['swing'], summary: { layer: 'swing', sections: secs }, lockedRowId: null, onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop });
+  const vm = (secs: SummarySection[]): SummaryVM => ({ electionId: 'E1', layer: 'swing', layers: ['swing'], summary: { layer: 'swing', sections: secs }, lockedRowId: null, onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop });
   it('renders key stats with seat/party ids as plain text', () => {
     const { container } = render(<SummaryPreview vm={vm([stats, list])} />);
     expect(screen.getByText('243')).toBeTruthy();

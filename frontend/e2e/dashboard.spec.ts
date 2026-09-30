@@ -520,12 +520,15 @@ test.describe('scrollable side card and restored charts', () => {
       expect(await pageScroll(page)).toBe(0);
       await assertNoScroll(page);
       if (size.width === 1440) await page.screenshot({ path: `${SHOTS26}/t26-card-scrolled-1440.png` });
-      // the last section's header can be scrolled into view
-      const headers = summary.locator('h3');
-      const last = headers.last();
-      await last.scrollIntoViewIfNeeded();
-      const inside = await last.evaluate(el => { const a = el.getBoundingClientRect(); const c = el.closest('[role="region"]')!.getBoundingClientRect(); return a.top >= c.top - 1 && a.bottom <= c.bottom + 1; });
-      expect(inside).toBe(true);
+      // scrolled to the very end, the last section's header is reachable and the last row is fully inside
+      await summary.evaluate(el => { el.scrollTop = el.scrollHeight; });
+      const end = await summary.evaluate(el => {
+        const h = [...el.querySelectorAll('h3')].pop()!.getBoundingClientRect();
+        const c = el.getBoundingClientRect();
+        const last = [...el.querySelectorAll('button, div')].filter(x => x.children.length && x.getBoundingClientRect().height > 0).pop()!.getBoundingClientRect();
+        return { maxed: Math.abs(el.scrollTop + el.clientHeight - el.scrollHeight) <= 1, header: h.top >= c.top - 1 && h.bottom <= c.bottom + 1, lastRow: last.bottom <= c.bottom + 1 };
+      });
+      expect(end).toEqual({ maxed: true, header: true, lastRow: true });
       // switching layer resets the scroll position
       expect(await summary.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
       await page.getByRole('radio', { name: 'Swing', exact: true }).click();
@@ -582,25 +585,37 @@ test.describe('scrollable side card and restored charts', () => {
     await page.evaluate(() => localStorage.removeItem('studio_theme'));
   });
 
-  test('overview focus shows vote share vs seats and the Alliances / Parties toggle switches it', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
+  for (const size of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }]) {
+  test(`overview focus shows vote share vs seats and the Alliances / Parties toggle switches it at ${size.width}`, async ({ page }) => {
+    await page.setViewportSize(size);
     await page.goto(`/election/${BIHAR}`);
     await page.getByRole('button', { name: /expand election summary/i }).click();
     const dialog = page.getByRole('dialog');
     const chart = dialog.getByRole('img', { name: /^Vote share vs seats/ });
     await chart.scrollIntoViewIfNeeded();
     await expect(chart).toBeVisible();
-    const toggle = dialog.getByRole('radiogroup', { name: /^Vote share vs seats/ });
+    const toggle = dialog.getByRole('radiogroup', { name: 'Vote share vs seats' });
     await expect(toggle.getByRole('radio', { name: 'Alliances' })).toBeChecked();
     const before = await dialog.locator('table.sr-only tbody tr').evaluateAll(rows => rows.map(r => r.querySelector('th')!.textContent).join('|'));
-    const groupsBefore = await chart.locator('[data-annotation]').count();
-    expect(groupsBefore).toBeGreaterThan(1);
+    expect(await chart.locator('[data-annotation]').count()).toBeGreaterThan(1);
     await page.waitForTimeout(300);
-    await page.screenshot({ path: `${SHOTS26}/t26-overview-focus-1440.png` });
+    if (size.width === 1440) await page.screenshot({ path: `${SHOTS26}/t26-overview-focus-1440.png` });
     await toggle.getByRole('radio', { name: 'Parties' }).click();
     await expect(toggle.getByRole('radio', { name: 'Parties' })).toBeChecked();
+    // the chart and section title follow the toggle
+    const parties = dialog.getByRole('img', { name: 'Vote share vs seats · Parties' });
+    await expect(parties).toBeVisible();
     const after = await dialog.locator('table.sr-only tbody tr').evaluateAll(rows => rows.map(r => r.querySelector('th')!.textContent).join('|'));
     expect(after).not.toBe(before);
-    await page.screenshot({ path: `${SHOTS26}/t26-overview-focus-parties-1440.png` });
+    // at most 10 parties, labelled by short id, and no two axis labels overlap
+    const labels = await parties.locator('text').evaluateAll(ts => ts.filter(t => t.querySelector(':scope > title')).map(t => { const r = t.getBoundingClientRect(); return { t: [...t.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join(''), l: r.left, r: r.right }; }));
+    expect(labels.length).toBeLessThanOrEqual(10);
+    expect(labels.length).toBeGreaterThan(3);
+    labels.forEach(l => expect(l.t!.length).toBeLessThanOrEqual(12));
+    const sorted = [...labels].sort((a, b) => a.l - b.l);
+    for (let i = 1; i < sorted.length; i++) expect(sorted[i].l, `${sorted[i - 1].t} / ${sorted[i].t}`).toBeGreaterThanOrEqual(sorted[i - 1].r - 0.5);
+    await page.waitForTimeout(300);
+    if (size.width === 1440) await page.screenshot({ path: `${SHOTS26}/t26-overview-focus-parties-1440.png` });
   });
+  }
 });

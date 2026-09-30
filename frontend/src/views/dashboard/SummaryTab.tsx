@@ -18,7 +18,7 @@ export function SummaryPreview({ vm }: { vm: SummaryVM }) {
   const stats = sections.find(s => s.id === 'key_stats');
   const first = sections.find(s => s !== stats);
   const plan = useMemo(
-    () => planSummaryFit([stats, first].filter((x): x is SummarySection => !!x), PREVIEW_H, { headerH: HEADER_H, rowH: ROW_H, gap: GAP, footerH: 0, statsH: PREVIEW_STATS_H }),
+    () => planSummaryFit([stats, first].filter((x): x is SummarySection => !!x), PREVIEW_H, { headerH: HEADER_H, rowH: ROW_H, gap: GAP, statsH: PREVIEW_STATS_H }),
     [stats, first],
   );
   if (!stats && !first) return <p className="py-2 text-sm text-muted">{t('studio_no_layer_data')}</p>;
@@ -50,7 +50,7 @@ export function SummaryTab({ vm }: { vm: SummaryVM }) {
     <div className="flex flex-col gap-1">
       {sections.map(s => (
         <div key={s.id} className="flex flex-col gap-1">
-          {s.titleKey && <h3 className="sticky top-0 z-10 flex h-[22px] shrink-0 items-center bg-tile px-2 text-[11px] font-semibold uppercase tracking-wider text-muted">{t(s.titleKey, s.titleParams)}</h3>}
+          {s.titleKey && <h3 className="sticky top-0 z-10 flex h-[22px] shrink-0 items-center border-b border-line bg-tile px-2 text-[11px] font-semibold uppercase tracking-wider text-muted">{t(s.titleKey, s.titleParams)}</h3>}
           {s.layout === 'stats' ? <Stats section={s} vm={vm} /> : s.rows.map(r => <Row key={r.id} r={r} section={s} vm={vm} />)}
         </div>
       ))}

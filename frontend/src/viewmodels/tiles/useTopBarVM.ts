@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useApi } from '../data/useApi';
@@ -53,8 +53,16 @@ export function useTopBarVM(): TopBarVM {
   const { theme, setTheme, toggle } = useTheme();
   const { dispatch } = useDashboardStore();
   const { setElection, setElectionType, setSelectedStateId } = useElection();
-  const { data: elections } = useApi(() => getElections(), []);
+  const { data: elections, error: electionsError, refetch: refetchElections } = useApi(() => getElections(), []);
   const { data: states } = useApi(() => getStates(), []);
+  // A throttled or failed /elections is retried once, so the pickers do not stay empty.
+  const retried = useRef(false);
+  useEffect(() => {
+    if (!electionsError || retried.current) return;
+    retried.current = true;
+    const id = setTimeout(refetchElections, 1500);
+    return () => clearTimeout(id);
+  }, [electionsError, refetchElections]);
   const all = useMemo(() => elections ?? [], [elections]);
   const current = src.election;
 
@@ -68,11 +76,22 @@ export function useTopBarVM(): TopBarVM {
 
   const vsStates = useMemo(() => {
     const ids = new Set(all.filter(e => e.type === 'VS' && e.state_id != null).map(e => e.state_id!));
-    return (states ?? []).filter(s => ids.has(s.id)).map(s => ({ id: s.id, name: s.name })).sort((a, b) => a.name.localeCompare(b.name));
-  }, [all, states]);
+    const list = (states ?? []).filter(s => ids.has(s.id)).map(s => ({ id: s.id, name: s.name }));
+    // The current state is always an option, so a failed fetch shows "Bihar" instead of a blank picker.
+    if (!elections && current.type === 'VS' && current.state_id != null && !list.some(s => s.id === current.state_id)) list.push({ id: current.state_id, name: current.state?.name ?? String(current.state_id) });
+    return list.sort((a, b) => a.name.localeCompare(b.name));
+  }, [all, elections, states, current.type, current.state_id, current.state?.name]);
 
-  const years = useMemo(() => all.filter(e => e.type === 'VS' && e.state_id === current.state_id).sort((a, b) => b.year - a.year).map(e => ({ id: e.id, year: e.year })), [all, current.state_id]);
-  const lsElections = useMemo(() => all.filter(e => e.type === 'LS').sort((a, b) => b.year - a.year).map(e => ({ id: e.id, name: e.name })), [all]);
+  const years = useMemo(() => {
+    const list = all.filter(e => e.type === 'VS' && e.state_id === current.state_id).sort((a, b) => b.year - a.year).map(e => ({ id: e.id, year: e.year }));
+    if (!elections && current.type === 'VS' && !list.some(y => y.id === current.id)) list.unshift({ id: current.id, year: current.year });
+    return list;
+  }, [all, elections, current.state_id, current.type, current.id, current.year]);
+  const lsElections = useMemo(() => {
+    const list = all.filter(e => e.type === 'LS').sort((a, b) => b.year - a.year).map(e => ({ id: e.id, name: e.name }));
+    if (!elections && current.type === 'LS' && !list.some(e => e.id === current.id)) list.unshift({ id: current.id, name: current.name });
+    return list;
+  }, [all, elections, current.type, current.id, current.name]);
 
   return {
     electionType: current.type,

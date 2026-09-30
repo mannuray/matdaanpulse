@@ -10,6 +10,8 @@ export type { LayerId };
 export { formatSummaryValue, primaryCell } from '../../model/derive/summary/format';
 
 export interface SummaryVM {
+  /** The election shown (views key scroll resets on it). */
+  electionId: string;
   layer: LayerId;
   /** Layers the election offers (for the pills inside the focus view). */
   layers: LayerId[];
@@ -51,6 +53,7 @@ export function useSummaryVM(): SummaryVM {
 
   const highlightOf = (r: SummaryRow) => ({ parties: r.partyIds ?? [], seats: r.seatIds ?? [] });
   return {
+    electionId: src.election.id,
     layer: state.layer,
     layers: src.availableLayers,
     summary,
