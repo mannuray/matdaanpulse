@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { CandidateNotFoundException, PersonNotFoundException } from '../../common/exceptions';
-import type { CreateCandidateDto, UpdateCandidateDto } from '../admin/dto/admin-input.dto';
+import type { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
 @Injectable()
 export class CandidatesService {

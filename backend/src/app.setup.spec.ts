@@ -72,7 +72,7 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
   const EID = 'b2c3d4e5-f6a7-8901-bcde-f12345678901';
   const sseTokens = new LiveSseTokenService(new JwtService({ secret: 'test-secret' }));
   const sseToken = sseTokens.issue('u1', EID).token;
-  const sseConnections = { open: 0, max: 200 };
+  const sseConnections = new SseConnections();
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({

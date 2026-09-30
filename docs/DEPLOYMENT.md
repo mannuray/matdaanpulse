@@ -253,5 +253,6 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
 ## 7. Later (not needed for launch)
 
 - Scaling beyond one instance: Redis-backed throttler storage (review P-L4).
-- Design clean-ups from the review: `ResultChangeNotifier` (D-M2; D-M1 `AiEnrichmentService` is gone with the built-in AI). (The shared SSE stream helper and `CacheService.getOrSet` are done.)
+- Design clean-ups from the review: D-M1 (`AiEnrichmentService`) is gone with the built-in AI; D-M2 (`ResultChangeNotifier`, shared SSE stream helper, `CacheService.getOrSet`) and D-L1 (domain-owned input DTOs, single `parseManifest()`) are done.
+- Rename the `elections.manifest_url` column (it holds JSON text, not a URL) with a migration and Prisma/DTO/frontend follow-through.
 - Dependency majors (Nest, Prisma), indexes (P-L1), set-based bulk writes (P-M2), JWT hardening (S-L1).

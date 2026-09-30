@@ -15,6 +15,10 @@ export function mapPrismaError(err: unknown): HttpException | null {
         return new NotFoundException('Record not found');
       case 'P2003':
         return new BadRequestException('A referenced record does not exist');
+      case 'P2034':
+      case 'P2028':
+        // Transaction write conflict / timeout or expired interactive transaction: safe to retry.
+        return new ConflictException('The request conflicted with another operation; please retry');
       case 'P2023':
         return new BadRequestException('Malformed identifier');
       default:

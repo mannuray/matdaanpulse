@@ -6,7 +6,7 @@ import { LiveStateService } from '../../results/live-state.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
-import { CreateElectionDto, UpdateElectionDto } from '../dto/admin-input.dto';
+import { CreateElectionDto, UpdateElectionDto } from '../../elections/dto/election-input.dto';
 
 @Controller('admin')
 @UseGuards(JwtAuthGuard, RolesGuard)

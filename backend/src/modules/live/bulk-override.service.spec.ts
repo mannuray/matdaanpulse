@@ -1,4 +1,5 @@
 import { BulkOverrideService } from './bulk-override.service';
+import { ResultChangeNotifier } from './result-change-notifier';
 
 describe('BulkOverrideService post-commit order', () => {
   function make() {
@@ -17,7 +18,8 @@ describe('BulkOverrideService post-commit order', () => {
     const live = { publish: jest.fn(async () => { order.push('publish'); }) };
     const metrics = { resultOverrides: { add: jest.fn() } };
     const liveState = { invalidate: jest.fn(() => { order.push('invalidate'); }) };
-    const svc = new BulkOverrideService(prisma as any, results as any, live as any, metrics as any, {} as any, liveState as any);
+    const notifier = new ResultChangeNotifier(results as any, live as any, metrics as any, liveState as any);
+    const svc = new BulkOverrideService(prisma as any, {} as any, notifier);
     return { svc, order, liveState, live };
   }
 

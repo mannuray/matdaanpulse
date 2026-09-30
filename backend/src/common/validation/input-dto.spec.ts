@@ -1,5 +1,6 @@
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
-import { UpdatePartyDto, UpdatePersonDto } from './admin-input.dto';
+import { UpdatePartyDto } from '../../modules/parties/dto/party-input.dto';
+import { UpdatePersonDto } from '../../modules/candidates/dto/person-input.dto';
 
 const pipe = new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true });
 const body = (metatype: any, value: Record<string, unknown>) => pipe.transform(value, { type: 'body', metatype });
@@ -26,7 +27,7 @@ describe('admin DTO URL fields (S-M2)', () => {
   });
 });
 
-import { BulkTagDto } from './admin-input.dto';
+import { BulkTagDto } from '../../modules/constituencies/dto/constituency-input.dto';
 
 describe('id-array caps fit the 100 kb body limit (review M8)', () => {
   it('rejects more than 2000 ids with 400, and 2000 UUIDs fit in 100 kb', async () => {

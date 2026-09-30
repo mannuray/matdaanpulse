@@ -34,7 +34,7 @@ export class UserService {
   private async assertNotLastSuperAdmin(tx: Prisma.TransactionClient, user: { role: user_role }, action: string) {
     if (user.role !== 'SUPER_ADMIN') return;
     const superAdmins = await tx.$queryRaw<{ id: string }[]>`
-      SELECT id FROM users WHERE role = 'SUPER_ADMIN' FOR UPDATE`;
+      SELECT id FROM users WHERE role = 'SUPER_ADMIN' ORDER BY id FOR UPDATE`;
     if (superAdmins.length <= 1) {
       throw new ForbiddenException(`Cannot ${action} the last SUPER_ADMIN`);
     }

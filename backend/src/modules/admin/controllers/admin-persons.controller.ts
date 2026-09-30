@@ -5,7 +5,7 @@ import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminPersonDto } from '../dto/admin-response.dto';
-import { CreatePersonDto, UpdatePersonDto, MergePersonsDto } from '../dto/admin-input.dto';
+import { CreatePersonDto, UpdatePersonDto, MergePersonsDto } from '../../candidates/dto/person-input.dto';
 import { AdminPersonsQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/persons')

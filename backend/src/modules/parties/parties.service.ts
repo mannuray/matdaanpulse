@@ -2,7 +2,7 @@ import { paginated } from '../../common/paginated';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { PartyNotFoundException } from '../../common/exceptions';
-import type { CreatePartyDto, UpdatePartyDto } from '../admin/dto/admin-input.dto';
+import type { CreatePartyDto, UpdatePartyDto } from './dto/party-input.dto';
 
 @Injectable()
 export class PartiesService {

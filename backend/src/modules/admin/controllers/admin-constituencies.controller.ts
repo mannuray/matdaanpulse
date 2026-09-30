@@ -7,7 +7,7 @@ import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interc
 import { AdminConstituencyDto, AdminAnalysisDto } from '../dto/admin-response.dto';
 import {
   UpdateConstituencyDto, BulkTagDto, ComputeAnalysisDto, UpdateAnalysisDto,
-} from '../dto/admin-input.dto';
+} from '../../constituencies/dto/constituency-input.dto';
 import { AdminConstituenciesQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/constituencies')

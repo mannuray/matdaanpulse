@@ -5,7 +5,7 @@ import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminPartyDto } from '../dto/admin-response.dto';
-import { CreatePartyDto, UpdatePartyDto } from '../dto/admin-input.dto';
+import { CreatePartyDto, UpdatePartyDto } from '../../parties/dto/party-input.dto';
 
 @Controller('admin')
 @UseGuards(JwtAuthGuard, RolesGuard)

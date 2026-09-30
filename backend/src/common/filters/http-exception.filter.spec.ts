@@ -55,6 +55,8 @@ describe('HttpExceptionFilter', () => {
 
   it.each([
     ['P2002', 409, 'GEN_0004'],
+    ['P2034', 409, 'GEN_0004'],
+    ['P2028', 409, 'GEN_0004'],
     ['P2025', 404, 'GEN_0002'],
     ['P2003', 400, 'VALIDATION_9001'],
     ['P2023', 400, 'VALIDATION_9001'],

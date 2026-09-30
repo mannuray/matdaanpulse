@@ -5,7 +5,7 @@ import { CacheService, CACHE_TTL } from '../redis/cache.service';
 import { AnalysisContext, AnalysisStrategy } from './strategies/analysis-strategy.interface';
 import { Prisma } from '@prisma/client';
 import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFoundException } from '../../common/exceptions';
-import type { UpdateAnalysisDto } from '../admin/dto/admin-input.dto';
+import type { UpdateAnalysisDto } from './dto/constituency-input.dto';
 
 @Injectable()
 export class ConstituenciesService {

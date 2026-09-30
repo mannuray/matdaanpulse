@@ -1,11 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma, election_status, election_type } from '@prisma/client';
 import { ElectionNotFoundException } from '../../common/exceptions';
-import type { CreateElectionDto, UpdateElectionDto } from '../admin/dto/admin-input.dto';
+import type { CreateElectionDto, UpdateElectionDto } from './dto/election-input.dto';
 
 @Injectable()
 export class ElectionsService {
+  private readonly logger = new Logger(ElectionsService.name);
+
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(filters: { type?: election_type; status?: election_status; state_id?: number; year?: number }) {
@@ -37,11 +39,27 @@ export class ElectionsService {
 
   async getManifest(id: string) {
     const election = await this.findOne(id);
-    let draft = null;
-    if (election.manifest_url) {
-      try { draft = JSON.parse(election.manifest_url); } catch { /* ignore */ }
-    }
+    const draft = this.parseManifest(election.manifest_url);
     return { election_id: id, manifest_url: election.manifest_url, draft };
+  }
+
+  /**
+   * The single place `elections.manifest_url` (JSON text in a column that is misnamed
+   * "url") is parsed. Returns the manifest object, or null when absent or not valid
+   * JSON (logged, never thrown, so one bad row cannot break a page).
+   */
+  parseManifest(raw: unknown): Record<string, unknown> | null {
+    if (raw === null || raw === undefined || raw === '') return null;
+    let value: unknown = raw;
+    if (typeof raw === 'string') {
+      try {
+        value = JSON.parse(raw);
+      } catch {
+        this.logger.warn('manifest_url is not valid JSON; treating the manifest as absent');
+        return null;
+      }
+    }
+    return value !== null && typeof value === 'object' ? (value as Record<string, unknown>) : null;
   }
 
   private toElectionData<T extends { tentative_next_date?: string | null }>(data: T) {

@@ -1,22 +1,9 @@
 import { Injectable, Logger, BadRequestException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import { ResultsService } from '../results/results.service';
-import { LiveStateService } from '../results/live-state.service';
-import { LivePublisher } from './live.service';
-import { MetricsService } from '../metrics/metrics.service';
+import { ResultChangeNotifier, type ChangedRow } from './result-change-notifier';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import type { BulkOverridePayload, ConstituencyRoundDto } from './dto/result-override.dto';
-
-interface BatchUpdateRow {
-  const_id: string;
-  p: string;
-  m: number;
-  s: string;
-  r?: number;
-  cr?: number;
-  tr?: number;
-}
 
 /** Interactive-transaction timeout; Prisma's 5s default is too short for large rounds. */
 const TX_TIMEOUT_MS = 60_000;
@@ -27,11 +14,8 @@ export class BulkOverrideService {
 
   constructor(
     private readonly prisma: PrismaService,
-    private readonly results: ResultsService,
-    private readonly live: LivePublisher,
-    private readonly metrics: MetricsService,
     private readonly audit: AuditLogService,
-    private readonly liveState: LiveStateService,
+    private readonly notifier: ResultChangeNotifier,
   ) {}
 
   async bulkOverride(data: BulkOverridePayload, userId?: string): Promise<{ updated: number }> {
@@ -131,25 +115,6 @@ export class BulkOverrideService {
       throw err;
     }
 
-    try {
-      this.metrics.resultOverrides.add(items.length, {
-        election_id,
-        status: 'bulk',
-      });
-    } catch (err) {
-      this.logger.warn(`Metrics recording failed: ${(err as Error).message}`);
-    }
-
-    // Post-commit, in this order (pipeline review M5): the DB trigger already bumped the
-    // live version inside the transaction; drop this process's memo of it, purge the
-    // caches, and only then tell admin SSE clients (who refetch on the event).
-    this.liveState.invalidate(election_id);
-    try {
-      await this.results.purgeElectionCache(election_id);
-    } catch (err) {
-      this.logger.warn(`Cache invalidation failed for election ${election_id}: ${(err as Error).message}`);
-    }
-
     // One SSE row per constituency, preferring the LEADING/WON candidate.
     const constMap = new Map<string, { o: (typeof items)[number]; const_id: string; party_id: string }>();
     for (const o of items) {
@@ -162,7 +127,7 @@ export class BulkOverrideService {
       }
     }
 
-    const batchRows: BatchUpdateRow[] = [];
+    const batchRows: ChangedRow[] = [];
     for (const { o, const_id, party_id } of constMap.values()) {
       const rd = rounds.get(const_id);
       batchRows.push({
@@ -176,17 +141,11 @@ export class BulkOverrideService {
       });
     }
 
-    if (batchRows.length > 0) {
-      try {
-        await this.live.publish(election_id, {
-          type: 'batch-update',
-          data: batchRows,
-        });
-      } catch (err) {
-        this.logger.error(`Failed to publish batch update: ${(err as Error).message}`);
-      }
-    }
-
+    await this.notifier.afterCommit(election_id, batchRows, {
+      kind: 'batch',
+      overrideCount: items.length,
+      status: 'bulk',
+    });
 
     return { updated: affectedRows };
   }

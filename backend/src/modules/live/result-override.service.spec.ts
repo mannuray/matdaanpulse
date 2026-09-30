@@ -1,4 +1,5 @@
 import { ResultOverrideService } from './result-override.service';
+import { ResultChangeNotifier } from './result-change-notifier';
 import { AuditLogService } from '../audit-log/audit-log.service';
 
 describe('ResultOverrideService audit write', () => {
@@ -23,7 +24,8 @@ describe('ResultOverrideService audit write', () => {
     live.publish.mockImplementation(async () => { order.push('publish'); });
     results.purgeElectionCache.mockImplementation(async () => { order.push('purge'); return true; });
     const liveState = { invalidate: jest.fn(() => { order.push('invalidate'); }) };
-    const svc = new ResultOverrideService(prisma as any, results as any, live as any, metrics as any, audit, liveState as any);
+    const notifier = new ResultChangeNotifier(results as any, live as any, metrics as any, liveState as any);
+    const svc = new ResultOverrideService(prisma as any, audit, notifier);
     return { svc, txAuditCreate, globalAuditCreate, order, liveState };
   }
 
@@ -37,7 +39,7 @@ describe('ResultOverrideService audit write', () => {
 
   it('still succeeds when the live publish fails after commit', async () => {
     const { svc } = make();
-    (svc as any).live.publish.mockRejectedValue(new Error('redis down'));
+    (svc as any).notifier.live.publish.mockRejectedValue(new Error('redis down'));
     await expect(svc.override({ result_id: 'r1', votes: 10, status: 'LEADING', margin: 5 } as any, 'user-1')).resolves.toMatchObject({ id: 'r1' });
   });
 

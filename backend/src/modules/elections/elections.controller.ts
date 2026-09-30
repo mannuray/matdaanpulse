@@ -48,16 +48,7 @@ export class ElectionsController {
     const election = await this.electionsService.findOne(id);
     const summary = await this.resultsService.getElectionSummary(id);
     
-    let manifest = null;
-    if (election.manifest_url) {
-      try {
-        manifest = typeof election.manifest_url === 'string' 
-          ? JSON.parse(election.manifest_url) 
-          : election.manifest_url;
-      } catch {
-        // Invalid manifest JSON — ignore, return null
-      }
-    }
+    const manifest = this.electionsService.parseManifest(election.manifest_url);
 
     return { ...election, manifest, summary };
   }

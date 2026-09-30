@@ -33,3 +33,15 @@ describe('LiveSseTokenService', () => {
     await expect(strategy.validate({ sub: 'u1', role: 'SUPER_ADMIN' })).resolves.toMatchObject({ id: 'u1' });
   });
 });
+
+describe('SseConnections cap', () => {
+  it('tryAcquire is check-and-increment and release frees a slot', () => {
+    const { SseConnections } = require('./live.controller');
+    const c = new SseConnections();
+    (c as any).max = 2;
+    expect([c.tryAcquire(), c.tryAcquire(), c.tryAcquire()]).toEqual([true, true, false]);
+    c.release();
+    expect(c.tryAcquire()).toBe(true);
+    expect(c.open).toBe(2);
+  });
+});

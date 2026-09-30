@@ -39,6 +39,15 @@ export function matchesOriginSecret(value: unknown, secrets: string[]): boolean 
   return ok;
 }
 
+/** Node keeps a second copy of every header in `rawHeaders` ([name, value, ...]); drop the secret there too. */
+function scrubRawHeaders(req: Request) {
+  const raw = req.rawHeaders;
+  if (!Array.isArray(raw)) return;
+  for (let i = raw.length - 2; i >= 0; i -= 2) {
+    if (String(raw[i]).toLowerCase() === ORIGIN_SECRET_HEADER) raw.splice(i, 2);
+  }
+}
+
 /**
  * Origin shield: every request must carry X-Origin-Secret (added by Cloudflare),
  * else 403 before any other work (body parsing, CORS, throttling, handlers).
@@ -51,6 +60,7 @@ export function originShield(secrets: string[]) {
     const exempt = (req.method === 'GET' || req.method === 'HEAD') && path === EXEMPT_PATH;
     const ok = matchesOriginSecret(req.headers[ORIGIN_SECRET_HEADER], secrets);
     delete req.headers[ORIGIN_SECRET_HEADER];
+    scrubRawHeaders(req);
     if (ok || exempt) return next();
     res.status(403).setHeader('Cache-Control', 'no-store');
     res.json({ success: false, error: { code: 'AUTH_1004', message: 'Forbidden' } });

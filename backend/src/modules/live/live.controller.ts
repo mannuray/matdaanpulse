@@ -26,6 +26,17 @@ export function resolveSseMaxConnections(env: Record<string, string | undefined>
 export class SseConnections {
   open = 0;
   readonly max = resolveSseMaxConnections();
+
+  /** Check-and-increment in one synchronous step, so concurrent requests cannot overshoot the cap. */
+  tryAcquire(): boolean {
+    if (this.open >= this.max) return false;
+    this.open++;
+    return true;
+  }
+
+  release() {
+    this.open = Math.max(0, this.open - 1);
+  }
 }
 
 /**
@@ -45,7 +56,8 @@ export class LiveSseAccessGuard implements CanActivate {
     const electionId = typeof query.election_id === 'string' ? query.election_id : '';
     if (!UUID_RE.test(electionId)) throw new BadRequestException('Valid election_id query parameter is required');
     this.tokens.verify(typeof query.token === 'string' ? query.token : undefined, electionId);
-    if (this.connections.open >= this.connections.max) throw new ServiceUnavailableException('Too many live stream connections');
+    // Claims the slot here; the handler's stream releases it (finalize) when the client goes away.
+    if (!this.connections.tryAcquire()) throw new ServiceUnavailableException('Too many live stream connections');
     return true;
   }
 }
@@ -83,12 +95,11 @@ export class LiveController {
   @SkipThrottle(SKIP_ALL_THROTTLERS)
   @UseGuards(LiveSseAccessGuard)
   updates(@Query('election_id') electionId: string): Observable<MessageEvent> {
-    this.connections.open++;
     this.logger.log(`SSE client connected for election ${electionId} (${this.connections.open} open)`);
     this.metrics.sseConnections.add(1, { election_id: electionId });
     return this.live.streamEvents(electionId).pipe(
       finalize(() => {
-        this.connections.open--;
+        this.connections.release();
         this.logger.log(`SSE client disconnected from election ${electionId}`);
         this.metrics.sseConnections.add(-1, { election_id: electionId });
       }),

@@ -2,7 +2,7 @@ import { Controller, Get, Headers, INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { configureApp } from '../../app.setup';
-import { assertOriginConfig, matchesOriginSecret, parseOriginSecrets } from './origin-shield';
+import { assertOriginConfig, matchesOriginSecret, originShield, parseOriginSecrets } from './origin-shield';
 
 @Controller()
 class ProbeController {
@@ -81,5 +81,19 @@ describe('origin shield config', () => {
     expect(matchesOriginSecret('c', ['a', 'b'])).toBe(false);
     expect(matchesOriginSecret('', ['a'])).toBe(false);
     expect(matchesOriginSecret(['a'], ['a'])).toBe(false);
+  });
+});
+
+describe('origin shield rawHeaders scrub', () => {
+  it('removes the secret from req.rawHeaders as well as req.headers', () => {
+    const req: any = {
+      method: 'GET', url: '/x', headers: { 'x-origin-secret': 's', accept: '*/*' },
+      rawHeaders: ['Accept', '*/*', 'X-Origin-Secret', 's', 'Host', 'h'],
+    };
+    const next = jest.fn();
+    originShield(['s'])(req, {} as any, next);
+    expect(next).toHaveBeenCalled();
+    expect(req.rawHeaders).toEqual(['Accept', '*/*', 'Host', 'h']);
+    expect(req.headers['x-origin-secret']).toBeUndefined();
   });
 });
