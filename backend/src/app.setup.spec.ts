@@ -115,6 +115,15 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
       expect((await get('/pub', '10.0.0.2')).status).toBe(200);
     });
 
+    it('a real 429 carries a standard Retry-After that browser JS can read (the poller backs off on it)', async () => {
+      let res: Response | undefined;
+      for (let i = 0; i < 5; i++) res = await fetch(`${base}/pub`, { headers: { 'X-Forwarded-For': '10.0.0.3', Origin: 'http://localhost:3080' } });
+      expect(res!.status).toBe(429);
+      expect(Number(res!.headers.get('retry-after'))).toBeGreaterThan(0);
+      expect(res!.headers.get('cache-control')).toBe('no-store');
+      expect(res!.headers.get('access-control-expose-headers')).toContain('Retry-After');
+    });
+
     it('the real /auth/login uses the strict auth limit', async () => {
       const statuses: number[] = [];
       for (let i = 0; i < 3; i++) statuses.push((await post('/auth/login', '10.0.1.1', login)).status);

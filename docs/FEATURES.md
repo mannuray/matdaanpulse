@@ -221,7 +221,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Per-IP rate limits behind a proxy: `trust proxy` = `TRUST_PROXY_HOPS` (default 1); named throttlers `public` (600/min, CGNAT-friendly) and `auth` (5/min, `/auth/*`), env-configurable; live SSE and health are never throttled
 - [x] Redis via `REDIS_URL` (`rediss://` TLS, Upstash) or `REDIS_HOST`/`REDIS_PORT`/`REDIS_PASSWORD`; boot never waits for Redis
 - [x] `CacheService.getOrSet` — a Redis outage falls back to the database instead of failing requests; publish failures after a committed write are logged, not returned
-- [x] Cache invalidation after a write never fails the request: on a Redis error it warns and retries once in the background; if that also fails, cached views stay stale until their TTL (5 min; 10 min for analysis) while live SSE events still carry the change
+- [x] Cache invalidation after a write never fails the request: on a Redis error it warns and retries once in the background; if that also fails, cached views stay stale until their TTL (5 min; 10 min for analysis); live viewers are unaffected because the trigger-bumped version selects a versioned snapshot key, and the admin Live Console still gets the SSE event
 - [x] Live SSE survives Redis blips: the subscriber queues SUBSCRIBE while disconnected and re-subscribes every served channel on reconnect; `/health/ready` is 503 while the subscriber is down
 - [x] Health probes: `GET /api/v1/health/live` (no I/O, always 200) and `GET /api/v1/health/ready` (DB + Redis, 2 s timeouts, 503 when degraded, no error text); `/health` = ready
 - [x] Graceful shutdown: SSE streams → HTTP server → Redis → Prisma → OTel
@@ -237,7 +237,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] New component `LiveToast` (`frontend/src/components/atoms/LiveToast.tsx`)
 - [x] Fixed-position bottom-right toast stack (max 5 visible)
 - [x] Auto-dismiss after 5 seconds with fade-out animation
-- [x] Shows party dot + name + constituency + margin on SSE `result-update` events — fires only on a leader change or a `WON` declaration
+- [x] Shows party dot + name + constituency + margin on a leader change or a `WON` declaration (legacy component; the studio dashboard shows live changes in its ticker, derived from snapshot diffs since CDN-ready live)
 - [x] CSS: `toast-in` / `toast-out` slide animations
 
 ### Head-to-Head Comparator

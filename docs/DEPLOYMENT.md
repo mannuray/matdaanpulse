@@ -192,6 +192,8 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 2. Open the dashboard → Bihar 2025 loads; map, scoreboard, summary render.
 3. Set an election to `Live`, open its dashboard, then in the admin Live Console apply one override → the Live Console updates at once (SSE) and the dashboard updates within ~20 s without reload (polling). Set the status back afterwards.
 4. Wait > 15 min idle → reload: cold start works; polling resumes on its own (no connection to re-establish).
+
+Counting-day runbook note: set the election's status to `Live` well before counting starts (e.g. the evening before). Viewers only start polling when the election is `Live` at page load, and `/elections` is CDN-cached for up to ~60 s (+ stale-while-revalidate), so pages opened just before the flip keep showing the old status until they reload.
 5. Admin → System status (SUPER_ADMIN): uptime, non-zero requests, DB latency and both Redis connections show as ok. Counters are in memory and reset on every restart/cold start.
 
 Uptime monitoring: see §5.7.
