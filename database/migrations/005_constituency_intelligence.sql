@@ -31,5 +31,12 @@ CREATE TABLE IF NOT EXISTS constituency_analysis (
 );
 
 CREATE INDEX IF NOT EXISTS idx_const_analysis_election ON constituency_analysis(election_id);
-CREATE INDEX IF NOT EXISTS idx_const_analysis_status ON constituency_analysis(ai_status);
+-- ai_status is dropped again by migration 014; only index it while it exists so re-runs stay idempotent.
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM information_schema.columns
+               WHERE table_name = 'constituency_analysis' AND column_name = 'ai_status') THEN
+        CREATE INDEX IF NOT EXISTS idx_const_analysis_status ON constituency_analysis(ai_status);
+    END IF;
+END $$;
 CREATE INDEX IF NOT EXISTS idx_const_analysis_const ON constituency_analysis(const_id);
