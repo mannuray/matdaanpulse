@@ -1,5 +1,5 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { ElectionsModule } from './modules/elections/elections.module';
@@ -19,14 +19,20 @@ import { PrismaModule } from './modules/prisma/prisma.module';
 import { AuditLogModule } from './modules/audit-log/audit-log.module';
 import { HealthModule } from './modules/health/health.module';
 import { LoggingMiddleware } from './common/logger/logging.middleware';
+import { buildThrottlerOptions } from './common/throttle/throttle.config';
+import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    ThrottlerModule.forRoot([{
-      ttl: 60000,
-      limit: 100,
-    }]),
+    ThrottlerModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) =>
+        buildThrottlerOptions({
+          THROTTLE_PUBLIC_PER_MIN: config.get<string>('THROTTLE_PUBLIC_PER_MIN'),
+          THROTTLE_AUTH_PER_MIN: config.get<string>('THROTTLE_AUTH_PER_MIN'),
+        }),
+    }),
     PrismaModule,
     RedisModule,
     MetricsModule,
@@ -45,6 +51,7 @@ import { LoggingMiddleware } from './common/logger/logging.middleware';
     HealthModule,
   ],
   providers: [
+    GracefulShutdownService,
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,

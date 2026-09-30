@@ -1,11 +1,15 @@
 import { Controller, Logger, Query, Sse, BadRequestException } from '@nestjs/common';
 import { Observable, finalize } from 'rxjs';
+import { SkipThrottle } from '@nestjs/throttler';
 import { LivePublisher } from './live.service';
+import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
 import { MetricsService } from '../metrics/metrics.service';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
+// EventSource does not reconnect after a 429, so live updates are never throttled.
 @Controller('live')
+@SkipThrottle(SKIP_ALL_THROTTLERS)
 export class LiveController {
   private readonly logger = new Logger(LiveController.name);
 

@@ -1,55 +1,29 @@
-import './tracing';
+import { tracingStatus } from './tracing'; // must stay the first import (instrumentation patching)
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import * as compression from 'compression';
-import helmet from 'helmet';
 import { AppModule } from './app.module';
-import { TransformInterceptor } from './common/interceptors/transform.interceptor';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { winstonLogger } from './common/logger/winston.config';
+import { configureApp } from './app.setup';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: winstonLogger,
+    bodyParser: false, // configureApp registers the parsers with explicit limits
   });
 
-  // Explicit body limit (Express default is 100kb). Sized for a full bulk
-  // override round: MAX_BULK_OVERRIDES (10k) items at ~150 bytes ≈ 1.5 MB.
-  app.useBodyParser('json', { limit: '5mb' });
-
-  // Security Middlewares
-  app.use(helmet());
-  app.enableCors({
-    origin: process.env.CORS_ORIGINS?.split(',') || [
-      'http://localhost:3080', 
-      'http://localhost:3081', 
-      'http://127.0.0.1:3080', 
-      'http://127.0.0.1:3081'
-    ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  });
-
-  app.set('etag', 'strong');
-  app.use(compression());
-  
-  app.useGlobalInterceptors(new TransformInterceptor());
-  app.useGlobalFilters(new HttpExceptionFilter());
-
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
-    }),
-  );
-
-  app.setGlobalPrefix('api/v1');
+  configureApp(app);
+  // SIGTERM/SIGINT → Nest lifecycle hooks (GracefulShutdownService orders the teardown).
+  app.enableShutdownHooks();
 
   const port = process.env.PORT || 3082;
   await app.listen(port);
-  console.log(`Backend running on http://localhost:${port}`);
+  const logger = new Logger('Bootstrap');
+  logger.log(`Backend running on http://localhost:${port}`);
+  logger.log(tracingStatus());
 }
 
-bootstrap();
+bootstrap().catch((err: Error) => {
+  new Logger('Bootstrap').error(`Startup failed: ${err.message}`, err.stack);
+  process.exit(1);
+});

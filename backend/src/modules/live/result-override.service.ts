@@ -54,12 +54,15 @@ export class ResultOverrideService {
 
         if (userId) {
           await this.audit.create(
-            userId,
-            'RESULT_OVERRIDE',
-            'result',
-            result.id,
-            { votes: result.votes, status: result.status, margin: result.margin },
-            { votes: data.votes, status: data.status, margin: data.margin }
+            {
+              userId,
+              action: 'RESULT_OVERRIDE',
+              entityType: 'result',
+              entityId: result.id,
+              oldValue: { votes: result.votes, status: result.status, margin: result.margin },
+              newValue: { votes: data.votes, status: data.status, margin: data.margin },
+            },
+            tx,
           );
         }
 

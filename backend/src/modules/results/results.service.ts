@@ -1,21 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { RedisService } from '../redis/redis.service';
+import { CacheService, CACHE_TTL } from '../redis/cache.service';
 import { ConstituencyNotFoundException } from '../../common/exceptions';
 
 @Injectable()
 export class ResultsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly redis: RedisService,
+    private readonly cache: CacheService,
   ) {}
 
   async getElectionSummary(id: string) {
-    const cacheKey = `election:${id}:summary`;
-    const cached = await this.redis.get(cacheKey);
-    if (cached) return JSON.parse(cached);
-
-    const partyResults = await this.prisma.$queryRaw`
+    return this.cache.getOrSet(`election:${id}:summary`, CACHE_TTL.ELECTION_SUMMARY, () =>
+      this.prisma.$queryRaw`
       SELECT 
         c.party_id, 
         p.name as party_name, 
@@ -29,17 +26,15 @@ export class ResultsService {
         AND r.status IN ('WON', 'LEADING')
       GROUP BY c.party_id, p.name, p.color
       ORDER BY (COUNT(*) FILTER (WHERE r.status = 'WON') + COUNT(*) FILTER (WHERE r.status = 'LEADING')) DESC
-    `;
-
-    await this.redis.set(cacheKey, JSON.stringify(partyResults), 300); // 5 min cache
-    return partyResults;
+    `,
+    );
   }
 
   async getVoteShare(id: string) {
-    const cacheKey = `election:${id}:vote-share`;
-    const cached = await this.redis.get(cacheKey);
-    if (cached) return JSON.parse(cached);
+    return this.cache.getOrSet(`election:${id}:vote-share`, CACHE_TTL.VOTE_SHARE, () => this.loadVoteShare(id));
+  }
 
+  private async loadVoteShare(id: string) {
     const partyVotes: any[] = await this.prisma.$queryRaw`
       SELECT 
         c.party_id, 
@@ -62,15 +57,14 @@ export class ResultsService {
       percentage: grandTotal > 0 ? parseFloat(((Number(p.total_votes) / grandTotal) * 100).toFixed(2)) : 0
     }));
 
-    await this.redis.set(cacheKey, JSON.stringify(results), 300);
     return results;
   }
 
   async getResults(id: string) {
-    const cacheKey = `election:${id}:full-results`;
-    const cached = await this.redis.get(cacheKey);
-    if (cached) return JSON.parse(cached);
+    return this.cache.getOrSet(`election:${id}:full-results`, CACHE_TTL.FULL_RESULTS, () => this.loadResults(id));
+  }
 
+  private async loadResults(id: string) {
     const data = await this.prisma.results.findMany({
       where: { election_id: id },
       select: {
@@ -91,7 +85,7 @@ export class ResultsService {
       orderBy: { const_id: 'asc' }
     });
 
-    const results = data.map(r => ({
+    return data.map(r => ({
       const_id: r.const_id,
       party_id: r.candidates.party_id,
       candidate_name: r.candidates.name,
@@ -100,9 +94,6 @@ export class ResultsService {
       margin: r.margin,
       const_type: r.constituencies.type,
     }));
-
-    await this.redis.set(cacheKey, JSON.stringify(results), 300);
-    return results;
   }
 
   async getDistrictResults(electionId: string, districtId: number) {
@@ -259,7 +250,8 @@ export class ResultsService {
     };
   }
 
-  async purgeElectionCache(electionId: string) {
-    await this.redis.delByPattern(`election:${electionId}:*`);
+  /** Drop every cached view of an election. Never throws (a Redis outage is logged). */
+  async purgeElectionCache(electionId: string): Promise<boolean> {
+    return this.cache.delByPattern(`election:${electionId}:*`);
   }
 }

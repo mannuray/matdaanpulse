@@ -2,6 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 
+export interface AuditEntry {
+  userId: string;
+  action: string;
+  entityType: string;
+  entityId: string;
+  oldValue?: object;
+  newValue?: object;
+}
+
 @Injectable()
 export class AuditLogService {
   constructor(private readonly prisma: PrismaService) {}
@@ -29,15 +38,20 @@ export class AuditLogService {
     });
   }
 
-  async create(userId: string, action: string, entityType: string, entityId: string, oldValue?: object, newValue?: object) {
-    return this.prisma.audit_logs.create({
+  /**
+   * Pass the interactive-transaction client as `tx` when auditing inside a
+   * transaction, so the audit row commits/rolls back with the change and does
+   * not wait for a second pool connection (review E-H4).
+   */
+  async create(data: AuditEntry, tx: Pick<Prisma.TransactionClient, 'audit_logs'> = this.prisma) {
+    return tx.audit_logs.create({
       data: {
-        user_id: userId,
-        action,
-        entity_type: entityType,
-        entity_id: entityId,
-        old_value: oldValue as Prisma.InputJsonValue,
-        new_value: newValue as Prisma.InputJsonValue,
+        user_id: data.userId,
+        action: data.action,
+        entity_type: data.entityType,
+        entity_id: data.entityId,
+        old_value: data.oldValue as Prisma.InputJsonValue,
+        new_value: data.newValue as Prisma.InputJsonValue,
       },
     });
   }

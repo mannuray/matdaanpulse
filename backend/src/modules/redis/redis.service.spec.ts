@@ -50,3 +50,62 @@ describe('RedisService.subscribe', () => {
     expect(sub.unsubscribe).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('RedisService resilience', () => {
+  const metrics = {
+    eventsPublished: { add: jest.fn() },
+    redisPublishErrors: { add: jest.fn() },
+    redisPublishDuration: { record: jest.fn() },
+  };
+  function make() {
+    const config = { get: () => undefined };
+    const svc = new RedisService(config as any, metrics as any);
+    const pub = { connect: jest.fn(), publish: jest.fn(), ping: jest.fn(), status: 'ready', quit: jest.fn().mockResolvedValue('OK'), disconnect: jest.fn() };
+    const sub = { connect: jest.fn(), on: jest.fn(), status: 'ready', quit: jest.fn().mockResolvedValue('OK'), disconnect: jest.fn() };
+    (svc as any).pub = pub;
+    (svc as any).sub = sub;
+    return { svc, pub, sub };
+  }
+
+  it('onModuleInit does not wait for (or fail on) the Redis connection', () => {
+    const { svc, pub, sub } = make();
+    pub.connect.mockRejectedValue(new Error('ECONNREFUSED'));
+    sub.connect.mockReturnValue(new Promise(() => undefined)); // never settles
+    expect(svc.onModuleInit()).toBeUndefined();
+    expect(pub.connect).toHaveBeenCalled();
+    expect(sub.connect).toHaveBeenCalled();
+  });
+
+  it('publish logs and resolves false instead of throwing', async () => {
+    const { svc, pub } = make();
+    pub.publish.mockRejectedValue(new Error('down'));
+    await expect(svc.publish('ch', { a: 1 })).resolves.toBe(false);
+    expect(metrics.redisPublishErrors.add).toHaveBeenCalled();
+  });
+
+  it('ping rejects after the timeout', async () => {
+    const { svc, pub } = make();
+    pub.ping.mockReturnValue(new Promise(() => undefined));
+    await expect(svc.ping(20)).rejects.toThrow(/timed out/);
+  });
+
+  it('completeStreams emits shutdown$ and completes channel subjects', () => {
+    const { svc } = make();
+    (svc as any).sub.subscribe = jest.fn().mockResolvedValue(1);
+    let shut = false;
+    let done = false;
+    svc.shutdown$.subscribe({ complete: () => (shut = true) });
+    svc.subscribe('ch').subscribe({ complete: () => (done = true) });
+    svc.completeStreams();
+    expect(shut).toBe(true);
+    expect(done).toBe(true);
+  });
+
+  it('close quits both connections once', async () => {
+    const { svc, pub, sub } = make();
+    await svc.close();
+    await svc.close();
+    expect(pub.quit).toHaveBeenCalledTimes(1);
+    expect(sub.quit).toHaveBeenCalledTimes(1);
+  });
+});

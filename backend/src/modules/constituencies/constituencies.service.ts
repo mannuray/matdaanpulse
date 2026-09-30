@@ -1,6 +1,6 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { RedisService } from '../redis/redis.service';
+import { CacheService, CACHE_TTL } from '../redis/cache.service';
 import { AnalysisContext, AnalysisStrategy } from './strategies/analysis-strategy.interface';
 import { Prisma } from '@prisma/client';
 import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFoundException } from '../../common/exceptions';
@@ -12,7 +12,7 @@ export class ConstituenciesService {
 
   constructor(
     private readonly prisma: PrismaService,
-    private readonly redis: RedisService,
+    private readonly cache: CacheService,
     @Inject('ANALYSIS_STRATEGIES')
     private readonly strategies: AnalysisStrategy[],
   ) {}
@@ -148,7 +148,7 @@ export class ConstituenciesService {
         updated_at: new Date(),
       }
     });
-    await this.redis.del(`election:${existing.election_id}:public-analysis`);
+    await this.cache.del(`election:${existing.election_id}:public-analysis`);
     return updated;
   }
 
@@ -161,17 +161,12 @@ export class ConstituenciesService {
   }
 
   async getPublicAnalysis(electionId: string) {
-    const cacheKey = `election:${electionId}:public-analysis`;
-    const cached = await this.redis.get(cacheKey);
-    if (cached) return JSON.parse(cached);
-
-    const results = await this.prisma.constituency_analysis.findMany({
-      where: { election_id: electionId },
-      select: { id: true, const_id: true, election_id: true, dominance: true, dominance_party: true, incumbency: true }
-    });
-
-    await this.redis.set(cacheKey, JSON.stringify(results), 600); // 10 min cache
-    return results;
+    return this.cache.getOrSet(`election:${electionId}:public-analysis`, CACHE_TTL.PUBLIC_ANALYSIS, () =>
+      this.prisma.constituency_analysis.findMany({
+        where: { election_id: electionId },
+        select: { id: true, const_id: true, election_id: true, dominance: true, dominance_party: true, incumbency: true }
+      }),
+    );
   }
 
   async getConstituencyAnalysisDetail(electionId: string, constId: string) {
@@ -289,7 +284,7 @@ export class ConstituenciesService {
     ]);
 
     // Invalidate public analysis cache
-    await this.redis.del(`election:${electionId}:public-analysis`);
+    await this.cache.del(`election:${electionId}:public-analysis`);
 
     return { computed: analysisToCreate.length };
   }

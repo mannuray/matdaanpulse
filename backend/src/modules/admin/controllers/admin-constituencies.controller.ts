@@ -5,7 +5,8 @@ import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { RedisService } from '../../redis/redis.service';
-import { Observable, merge, interval, map, share, finalize, filter, EMPTY, catchError } from 'rxjs';
+import { Observable, map, finalize, filter } from 'rxjs';
+import { sharedSseStream, withReconnectHint } from '../../../common/sse/shared-sse-stream';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminConstituencyDto, AdminAnalysisDto } from '../dto/admin-response.dto';
 import {
@@ -13,17 +14,11 @@ import {
   BulkAiStatusDto, EnrichConstituenciesDto,
 } from '../dto/admin-input.dto';
 
-const HEARTBEAT_MS = 30_000;
-
 @Controller('admin/constituencies')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class AdminConstituenciesController {
   private readonly logger = new Logger(AdminConstituenciesController.name);
   private readonly sharedStreams = new Map<string, Observable<MessageEvent>>();
-  private readonly heartbeat$ = interval(HEARTBEAT_MS).pipe(
-    map(() => ({ data: '', type: 'ping' } as MessageEvent)),
-    share(),
-  );
 
   constructor(
     private readonly constituenciesService: ConstituenciesService,
@@ -147,20 +142,17 @@ export class AdminConstituenciesController {
         filter((evt): evt is MessageEvent => evt !== null),
       );
 
-      stream$ = merge(events$, this.heartbeat$).pipe(
-        catchError((err) => {
-          this.logger.error(`Enrichment stream error for ${electionId}: ${err.message}`);
-          return EMPTY;
-        }),
-        // Runs when the last subscriber leaves (share resets) or on error, so the
-        // next client builds a fresh stream instead of reusing a dead one.
-        finalize(() => this.sharedStreams.delete(electionId)),
-        share({ resetOnRefCountZero: true }),
-      );
+      stream$ = sharedSseStream(events$, {
+        shutdown$: this.redis.shutdown$,
+        onError: (err) => this.logger.error(`Enrichment stream error for ${electionId}: ${err.message}`),
+        // Runs when the last subscriber leaves (share resets), on error or on
+        // shutdown, so the next client builds a fresh stream.
+        onTeardown: () => this.sharedStreams.delete(electionId),
+      });
       this.sharedStreams.set(electionId, stream$);
     }
 
-    return stream$.pipe(
+    return withReconnectHint(stream$).pipe(
       finalize(() => {
         this.logger.log(`Enrichment SSE client disconnected from ${electionId}`);
       }),

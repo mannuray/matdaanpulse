@@ -3,6 +3,7 @@ export const ErrorCodes = {
   INTERNAL_SERVER_ERROR: 'GEN_0001',
   NOT_FOUND: 'GEN_0002',
   BAD_REQUEST: 'GEN_0003',
+  CONFLICT: 'GEN_0004',
 
   // Auth (1xxx)
   AUTH_INVALID_CREDENTIALS: 'AUTH_1001',

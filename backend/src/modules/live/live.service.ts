@@ -1,7 +1,8 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { Observable, EMPTY, merge, interval, map, share, catchError, filter, finalize } from 'rxjs';
+import { Observable, map, filter } from 'rxjs';
 import { RedisService } from '../redis/redis.service';
 import { MetricsService } from '../metrics/metrics.service';
+import { sharedSseStream, withReconnectHint } from '../../common/sse/shared-sse-stream';
 
 export interface LiveEvent {
   type: string;
@@ -13,16 +14,10 @@ export abstract class LivePublisher {
   abstract streamEvents(electionId: string): Observable<MessageEvent>;
 }
 
-const HEARTBEAT_MS = 30_000;
-
 @Injectable()
 export class LiveService extends LivePublisher implements OnModuleInit {
   private readonly logger = new Logger(LiveService.name);
   private readonly sharedStreams = new Map<string, Observable<MessageEvent>>();
-  private readonly heartbeat$ = interval(HEARTBEAT_MS).pipe(
-    map(() => ({ data: '', type: 'ping' } as MessageEvent)),
-    share(),
-  );
 
   constructor(
     private readonly redis: RedisService,
@@ -39,11 +34,17 @@ export class LiveService extends LivePublisher implements OnModuleInit {
     return `election:${electionId}:events`;
   }
 
+  /** Never throws (RedisService.publish logs and swallows failures). */
   async publish(electionId: string, event: LiveEvent): Promise<void> {
     await this.redis.publish(this.channelFor(electionId), event);
   }
 
+  /** Per-connection view of the shared per-election stream (first frame carries `retry:`). */
   streamEvents(electionId: string): Observable<MessageEvent> {
+    return withReconnectHint(this.sharedStream(electionId));
+  }
+
+  private sharedStream(electionId: string): Observable<MessageEvent> {
     const existing = this.sharedStreams.get(electionId);
     if (existing) return existing;
 
@@ -62,18 +63,17 @@ export class LiveService extends LivePublisher implements OnModuleInit {
       filter((evt): evt is MessageEvent => evt !== null),
     );
 
-    const stream$ = merge(events$, this.heartbeat$).pipe(
-      catchError((err) => {
+    const stream$ = sharedSseStream(events$, {
+      shutdown$: this.redis.shutdown$,
+      onError: (err) => {
         this.logger.error(`Stream error for election ${electionId}: ${err.message}`);
         this.metrics.streamErrors.add(1, { election_id: electionId });
-        return EMPTY;
-      }),
-      finalize(() => {
+      },
+      onTeardown: () => {
         this.sharedStreams.delete(electionId);
         this.logger.debug(`Stream teardown for election ${electionId}`);
-      }),
-      share({ resetOnRefCountZero: true }),
-    );
+      },
+    });
     this.sharedStreams.set(electionId, stream$);
     this.logger.debug(`Stream created for election ${electionId}`);
 

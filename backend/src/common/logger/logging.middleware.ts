@@ -1,7 +1,6 @@
 import { Injectable, NestMiddleware, Logger } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { v4 as uuidv4 } from 'uuid';
-import { requestContext } from './request-context';
+import { requestContext, resolveRequestId } from './request-context';
 
 const SENSITIVE_QUERY_PARAMS = /([?&](?:token|key|access_token|api_key)=)[^&#]*/gi;
 
@@ -20,7 +19,8 @@ export class LoggingMiddleware implements NestMiddleware {
     const userAgent = req.get('user-agent') || '';
     const startTime = Date.now();
 
-    const requestId = (req.headers['x-request-id'] as string) || uuidv4();
+    // Client ids are accepted only if they match ^[\w-]{1,64}$ (review S-L2).
+    const requestId = resolveRequestId(req.headers['x-request-id']);
     req.headers['x-request-id'] = requestId;
     res.setHeader('X-Request-ID', requestId);
 
