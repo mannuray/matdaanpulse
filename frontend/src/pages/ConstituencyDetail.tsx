@@ -71,6 +71,7 @@ export default function ConstituencyDetail() {
     loading, 
     error 
   } = useConstituencyDetail(electionId!, constId!, standings, manifestData);
+  const hasCommunityData = (formattedDemographics?.length ?? 0) > 0;
 
   if (loading) return <Spinner label={t('loading')} />;
 
@@ -89,19 +90,19 @@ export default function ConstituencyDetail() {
       <DetailHeader constituency={constituency} navigate={navigate} />
 
       <div className="page-container" style={styles.container}>
-        <div className="constituency-grid" style={styles.grid}>
-          
-          <aside style={styles.leftCol}>
-            <div style={styles.twoColGrid}>
-              {formattedDemographics && formattedDemographics.length > 0 && (
+        {/* Left column only when there is community data; otherwise the stats column takes the full width. */}
+        <div className="constituency-grid" style={hasCommunityData ? styles.grid : styles.gridSingle}>
+          {hasCommunityData && (
+            <aside style={styles.leftCol}>
+              <div style={styles.twoColGrid}>
                 <ErrorBoundary>
-                  <DemographicsCard data={formattedDemographics} />
+                  <DemographicsCard data={formattedDemographics ?? []} />
                 </ErrorBoundary>
-              )}
-            </div>
-          </aside>
+              </div>
+            </aside>
+          )}
 
-          <div style={styles.rightCol}>
+          <div style={hasCommunityData ? styles.rightCol : styles.rightColFull}>
             <ErrorBoundary>
               <div className="card-elevated" style={styles.statsCard}>
                 <ConstituencyModalStats
@@ -231,8 +232,10 @@ const styles: Record<string, CSSProperties> = {
     gap: 'var(--space-6)', 
     alignItems: 'start' 
   },
+  gridSingle: { display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: 'var(--space-6)', alignItems: 'start' },
   leftCol: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', minWidth: 0 },
   rightCol: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', width: '500px', flexShrink: 0 },
+  rightColFull: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', minWidth: 0 },
   cardPadding: { padding: 'var(--space-6)' },
   twoColGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 'var(--space-6)' },
   demographicRow: { 

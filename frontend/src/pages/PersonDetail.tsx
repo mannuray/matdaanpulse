@@ -75,16 +75,11 @@ function DossierColumn({ person }: { person: PersonDetailData }) {
 
   return (
     <aside style={styles.leftCol}>
-      {/* Biography Card: hidden when there is no bio (kept for the Wikipedia link alone) */}
-      {(bio || wikiUrl) && (
+      {/* Biography Card: hidden when there is no bio */}
+      {bio && (
         <div className="card-elevated" style={styles.cardPadding}>
           <h3 className="card-title-tiny" style={styles.bioTitle}>BIOGRAPHY & PROFILE</h3>
-          {bio && <p className="bio-text" style={styles.bioText}>{bio}</p>}
-          {wikiUrl && (
-            <a href={wikiUrl} target="_blank" rel="noopener noreferrer" className="link-wiki" style={styles.wikiLink}>
-              Read full profile on Wikipedia ↗
-            </a>
-          )}
+          <p className="bio-text" style={styles.bioText}>{bio}</p>
         </div>
       )}
 
@@ -102,6 +97,11 @@ function DossierColumn({ person }: { person: PersonDetailData }) {
             <DetailItem label="Gender Identity" value={PersonService.formatGender(person.gender ?? undefined)} />
           )}
         </div>
+        {wikiUrl && (
+          <a href={wikiUrl} target="_blank" rel="noopener noreferrer" className="link-wiki" style={styles.wikiLink}>
+            Read full profile on Wikipedia ↗
+          </a>
+        )}
       </div>
     </aside>
   );
