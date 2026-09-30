@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { apiFetch, ApiError, fieldErrorMap, parseApiError } from './api-client';
+import { apiFetch, ApiError, fieldErrorMap, parseApiError, withCacheBuster } from './api-client';
 import { describeError } from '../utils/api-error';
 
 function mockFetch(status: number, body: unknown) {
@@ -78,5 +78,24 @@ describe('field error helpers', () => {
     expect(describeError(new TypeError('Failed to fetch'), 'Operation failed')).toBe('Network error \u2014 check your connection');
     expect(describeError(new Error('Unauthorized'), 'Operation failed')).toBe('Session expired \u2014 please sign in again');
     expect(describeError('weird', 'Operation failed')).toBe('Operation failed');
+  });
+});
+
+describe('admin GETs bypass shared caches', () => {
+  it('appends _=<timestamp> to GETs only', async () => {
+    vi.stubGlobal('localStorage', { getItem: () => null, setItem: () => {}, removeItem: () => {} });
+    const fetchMock = vi.fn(async (_url: string, _init?: RequestInit) => ({ ok: true, status: 200, statusText: '', json: async () => ({ success: true, data: 1 }) }));
+    vi.stubGlobal('fetch', fetchMock);
+    await apiFetch('/elections');
+    await apiFetch('/elections?type=VS');
+    await apiFetch('/admin/elections/x', { method: 'PATCH', body: '{}' });
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/elections\?_=\d+$/);
+    expect(fetchMock.mock.calls[1][0]).toMatch(/\/elections\?type=VS&_=\d+$/);
+    expect(fetchMock.mock.calls[2][0]).toMatch(/\/admin\/elections\/x$/);
+  });
+
+  it('withCacheBuster', () => {
+    expect(withCacheBuster('/a', 5)).toBe('/a?_=5');
+    expect(withCacheBuster('/a?b=1', 5)).toBe('/a?b=1&_=5');
   });
 });

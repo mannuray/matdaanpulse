@@ -9,6 +9,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { buildCorsDelegate } from './common/config/cors';
 import { resolveTrustProxyHops } from './common/config/trust-proxy';
 import { cfConnectingIp, trustCfConnectingIp } from './common/config/client-ip';
+import { assertOriginConfig, originShield, parseOriginSecrets } from './common/config/origin-shield';
 import { CacheControlInterceptor } from './common/http/cache-control';
 
 type Env = Record<string, string | undefined>;
@@ -67,6 +68,16 @@ export function requireBearerHeader(req: Request, _res: Response, next: NextFunc
  */
 export function configureApp(app: NestExpressApplication, env: Env = process.env) {
   const logger = new Logger('Bootstrap');
+
+  // Origin shield first: requests that did not come through Cloudflare cost nothing.
+  assertOriginConfig(env);
+  const originSecrets = parseOriginSecrets(env);
+  if (originSecrets.length > 0) app.use(originShield(originSecrets));
+  logger.log(
+    originSecrets.length > 0
+      ? `Origin shield on (${originSecrets.length} secret${originSecrets.length > 1 ? 's' : ''}); /health/live exempt`
+      : 'Origin shield off (ORIGIN_SHARED_SECRETS not set)',
+  );
 
   // Behind Render's proxy: req.ip comes from X-Forwarded-For, `hops` entries deep (review S-C1).
   const hops = resolveTrustProxyHops(env);

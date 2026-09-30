@@ -136,4 +136,46 @@ describe('CacheService single-flight', () => {
     expect(set).toHaveBeenCalledTimes(1);
     expect(set).toHaveBeenCalledWith('election:1:x', '"new"', 60);
   });
+
+  it('purging election A does not detach or skip the write-back of election B (I3)', async () => {
+    const set = jest.fn().mockResolvedValue(undefined);
+    const { svc } = make({ get: jest.fn().mockResolvedValue(null), set, delByPattern: jest.fn().mockResolvedValue(undefined) });
+    let release!: (v: string) => void;
+    const loaderB = jest.fn(() => new Promise<string>((r) => { release = r; }));
+    const first = svc.getOrSet('election:B:summary', 60, loaderB);
+    await new Promise((r) => setImmediate(r));
+    await svc.delByPattern('election:A:*');
+    const joined = svc.getOrSet('election:B:summary', 60, loaderB); // still single-flight
+    release('b');
+    await expect(Promise.all([first, joined])).resolves.toEqual(['b', 'b']);
+    expect(loaderB).toHaveBeenCalledTimes(1);
+    expect(set).toHaveBeenCalledWith('election:B:summary', '"b"', 60);
+  });
+
+  it('content-addressed keys (:v<version>) stay single-flight and are written back across a purge of their election', async () => {
+    const set = jest.fn().mockResolvedValue(undefined);
+    const { svc } = make({ get: jest.fn().mockResolvedValue(null), set, delByPattern: jest.fn().mockResolvedValue(undefined) });
+    let release!: (v: string) => void;
+    const loader = jest.fn(() => new Promise<string>((r) => { release = r; }));
+    const first = svc.getOrSet('election:A:snapshot:v7', 60, loader);
+    await new Promise((r) => setImmediate(r));
+    await svc.delByPattern('election:A:*');
+    const joined = svc.getOrSet('election:A:snapshot:v7', 60, loader);
+    release('snap');
+    await Promise.all([first, joined]);
+    expect(loader).toHaveBeenCalledTimes(1);
+    expect(set).toHaveBeenCalledWith('election:A:snapshot:v7', '"snap"', 60);
+  });
+
+  it('del(key) only affects that key', async () => {
+    const set = jest.fn().mockResolvedValue(undefined);
+    const { svc } = make({ get: jest.fn().mockResolvedValue(null), set, del: jest.fn().mockResolvedValue(undefined) });
+    let release!: (v: number) => void;
+    const p = svc.getOrSet('k2', 60, () => new Promise<number>((r) => { release = r; }));
+    await new Promise((r) => setImmediate(r));
+    await svc.del('k1');
+    release(2);
+    await p;
+    expect(set).toHaveBeenCalledWith('k2', '2', 60);
+  });
 });

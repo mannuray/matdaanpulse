@@ -48,7 +48,7 @@ export function overrideResult(data: { result_id: string; votes?: number; status
   return apiFetch<void>('/admin/results/override', { method: 'PATCH', body: JSON.stringify(data) });
 }
 
-/** Compact live result payload broadcast on the public SSE channel. */
+/** Compact live result payload broadcast on the admin live SSE channel. */
 export interface LiveResultUpdate {
   const_id: string;
   p?: unknown;
@@ -62,23 +62,84 @@ export interface LiveResultUpdate {
 export interface LiveUpdateHandlers {
   onResultUpdate: (update: LiveResultUpdate) => void;
   onBatchUpdate: (updates: LiveResultUpdate[]) => void;
+  /** A reconnect after a drop: events may have been missed, reload the data. */
+  onReconnect?: () => void;
 }
 
-// Backend emits NAMED events ('result-update', 'batch-update', 'ping'), which
-// es.onmessage never receives — listeners must be registered per event name.
-export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHandlers): EventSource {
-  const es = new EventSource(`${API_BASE_URL}/live/updates?election_id=${encodeURIComponent(electionId)}`);
-  es.addEventListener('result-update', (event) => {
-    try {
-      const data = JSON.parse((event as MessageEvent).data);
-      if (data?.const_id) handlers.onResultUpdate(data);
-    } catch { /* malformed frame */ }
+/** 5-minute, single-election token for the admin SSE stream (EventSource cannot send Authorization). */
+export function getLiveSseToken(electionId: string) {
+  return apiFetch<{ token: string; expiresInSeconds: number }>('/admin/live/sse-token', {
+    method: 'POST',
+    body: JSON.stringify({ election_id: electionId }),
   });
-  es.addEventListener('batch-update', (event) => {
+}
+
+/** Delay before reconnect attempt `n` (0-based): 1 s, 2 s, 4 s … capped at 30 s, plus up to 1 s jitter. */
+export function sseRetryDelay(attempt: number, random: () => number = Math.random): number {
+  return Math.min(30_000, 1000 * 2 ** attempt) + Math.round(random() * 1000);
+}
+
+/**
+ * Subscribe to the admin live stream of one election. Fetches a fresh SSE token
+ * for every (re)connect — the token expires after 5 minutes, and EventSource would
+ * otherwise retry forever with an expired one. Returns an unsubscribe function.
+ * Backend emits NAMED events ('result-update', 'batch-update', 'ping'), which
+ * es.onmessage never receives — listeners are registered per event name.
+ */
+export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHandlers): () => void {
+  let es: EventSource | null = null;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let attempt = 0;
+  let opened = false;
+  let closed = false;
+
+  const retry = () => {
+    if (closed) return;
+    timer = setTimeout(connect, sseRetryDelay(attempt++));
+  };
+
+  async function connect() {
+    if (closed) return;
+    let token: string;
     try {
-      const data = JSON.parse((event as MessageEvent).data);
-      if (Array.isArray(data)) handlers.onBatchUpdate(data.filter((u) => u?.const_id));
-    } catch { /* malformed frame */ }
-  });
-  return es;
+      token = (await getLiveSseToken(electionId)).token;
+    } catch {
+      return retry();
+    }
+    if (closed) return;
+    const source = new EventSource(
+      `${API_BASE_URL}/admin/live/updates?election_id=${encodeURIComponent(electionId)}&token=${encodeURIComponent(token)}`,
+    );
+    es = source;
+    source.onopen = () => {
+      if (opened) handlers.onReconnect?.();
+      opened = true;
+      attempt = 0;
+    };
+    source.onerror = () => {
+      source.close();
+      if (es === source) es = null;
+      retry();
+    };
+    source.addEventListener('result-update', (event) => {
+      try {
+        const data = JSON.parse((event as MessageEvent).data);
+        if (data?.const_id) handlers.onResultUpdate(data);
+      } catch { /* malformed frame */ }
+    });
+    source.addEventListener('batch-update', (event) => {
+      try {
+        const data = JSON.parse((event as MessageEvent).data);
+        if (Array.isArray(data)) handlers.onBatchUpdate(data.filter((u) => u?.const_id));
+      } catch { /* malformed frame */ }
+    });
+  }
+
+  void connect();
+  return () => {
+    closed = true;
+    clearTimeout(timer);
+    es?.close();
+    es = null;
+  };
 }

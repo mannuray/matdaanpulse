@@ -47,7 +47,7 @@ export function useLiveConsole() {
   const [searchQuery, setSearchQuery] = useState('');
   const [flashIds, setFlashIds] = useState<Set<string>>(new Set());
   
-  const esRef = useRef<EventSource | null>(null);
+  const unsubscribeRef = useRef<(() => void) | null>(null);
 
   // 1. Initial Load
   useEffect(() => {
@@ -94,7 +94,7 @@ export function useLiveConsole() {
   // 3. Real-time Subscription (SSE)
   useEffect(() => {
     if (!selectedElectionId) return;
-    esRef.current?.close();
+    unsubscribeRef.current?.();
 
     let reloadTimer: ReturnType<typeof setTimeout> | null = null;
     const flashTimers = new Set<ReturnType<typeof setTimeout>>();
@@ -125,7 +125,8 @@ export function useLiveConsole() {
       }, RELOAD_DEBOUNCE_MS);
     };
 
-    const es = subscribeLiveUpdates(selectedElectionId, {
+    const unsubscribe = subscribeLiveUpdates(selectedElectionId, {
+      onReconnect: () => scheduleReload(),
       onResultUpdate: (update) => {
         flash([update.const_id]);
         scheduleReload();
@@ -137,9 +138,9 @@ export function useLiveConsole() {
       },
     });
 
-    esRef.current = es;
+    unsubscribeRef.current = unsubscribe;
     return () => {
-      es.close();
+      unsubscribe();
       if (reloadTimer) clearTimeout(reloadTimer);
       flashTimers.forEach(clearTimeout);
     };

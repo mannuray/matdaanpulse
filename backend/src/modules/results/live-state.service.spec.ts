@@ -3,23 +3,24 @@ import { buildSnapshot } from './results.service';
 
 function makePrisma(version = 5n) {
   const state = { version };
-  const readRow = jest.fn(async (): Promise<unknown[]> => [{ version: state.version, updated_at: new Date('2026-09-30T00:00:00Z') }]);
+  const readRow = jest.fn(async (): Promise<unknown[]> => [{ status: 'Live', version: state.version, updated_at: new Date('2026-09-30T00:00:00Z') }]);
   const prisma = {
     elections: { findUnique: jest.fn() },
     $executeRaw: jest.fn(),
     // Tagged template: the first chunk tells the row read from the counts query.
     $queryRaw: jest.fn(async (strings: TemplateStringsArray) =>
-      strings[0].includes('FROM election_live_state') ? readRow() : [{ declared: 3, total: 10 }]),
+      strings.join('').includes('LEFT JOIN election_live_state') ? readRow() : [{ declared: 3, total: 10 }]),
   };
   return { prisma, state, readRow };
 }
 
 describe('LiveStateService', () => {
-  it('returns { version, updatedAt, declared, total } with the bigint version as a number', async () => {
+  it('returns { version, status, updatedAt, declared, total } with the bigint version as a number', async () => {
     const { prisma } = makePrisma(1790761782122n);
     const svc = new LiveStateService(prisma as any);
     await expect(svc.get('e1')).resolves.toEqual({
       version: 1790761782122,
+      status: 'Live',
       updatedAt: '2026-09-30T00:00:00.000Z',
       declared: 3,
       total: 10,
@@ -49,17 +50,17 @@ describe('LiveStateService', () => {
 
   it('creates the row on first read of an election that has none', async () => {
     const { prisma, readRow } = makePrisma();
-    readRow.mockResolvedValueOnce([]).mockResolvedValueOnce([{ version: 7n, updated_at: new Date() }]);
-    prisma.elections.findUnique.mockResolvedValue({ id: 'e1' });
+    readRow
+      .mockResolvedValueOnce([{ status: 'Upcoming', version: null, updated_at: null }])
+      .mockResolvedValueOnce([{ status: 'Upcoming', version: 7n, updated_at: new Date() }]);
     const svc = new LiveStateService(prisma as any);
-    expect((await svc.get('e1')).version).toBe(7);
+    await expect(svc.get('e1')).resolves.toMatchObject({ version: 7, status: 'Upcoming' });
     expect(prisma.$executeRaw).toHaveBeenCalledTimes(1);
   });
 
   it('404s for an unknown election', async () => {
     const { prisma, readRow } = makePrisma();
     readRow.mockResolvedValueOnce([]);
-    prisma.elections.findUnique.mockResolvedValue(null);
     const svc = new LiveStateService(prisma as any);
     await expect(svc.get('nope')).rejects.toMatchObject({ status: 404 });
   });
@@ -96,5 +97,54 @@ describe('buildSnapshot', () => {
       ['P1', 80, 42.11],
       ['P3', 0, 0],
     ]);
+  });
+});
+
+describe('ResultsService (version-keyed caches, consistent snapshot)', () => {
+  const { ResultsService } = require('./results.service');
+
+  function make(version = 42, dbVersion = 42) {
+    const keys: string[] = [];
+    const cache = { getOrSet: jest.fn(async (key: string, _ttl: number, loader: () => Promise<unknown>) => { keys.push(key); return loader(); }) };
+    const liveState = { get: jest.fn(async () => ({ version })) };
+    const tx = {
+      $queryRaw: jest.fn(async () => [{ version: BigInt(dbVersion) }]),
+      results: { findMany: jest.fn(async () => []) },
+    };
+    const prisma = {
+      $queryRaw: jest.fn(async () => []),
+      results: { findMany: jest.fn(async () => []) },
+      $transaction: jest.fn(async (fn: (t: typeof tx) => unknown, opts: unknown) => { (prisma as any).lastTxOpts = opts; return fn(tx); }),
+    };
+    return { svc: new ResultsService(prisma, cache, liveState), keys, prisma };
+  }
+
+  it('keys summary / vote share / full results by the live version, so any writer (trigger bump) moves readers to a fresh key', async () => {
+    const { svc, keys } = make(42);
+    await svc.getElectionSummary('e1');
+    await svc.getVoteShare('e1');
+    await svc.getResults('e1');
+    expect(keys).toEqual(['election:e1:summary:v42', 'election:e1:vote-share:v42', 'election:e1:full-results:v42']);
+  });
+
+  it('reads the snapshot version and rows in one REPEATABLE READ transaction', async () => {
+    const { svc, keys, prisma } = make(42, 42);
+    const snap = await svc.getSnapshot('e1', 42);
+    expect(snap.version).toBe(42);
+    expect(keys).toEqual(['election:e1:snapshot:v42']);
+    expect((prisma as any).lastTxOpts).toEqual({ isolationLevel: 'RepeatableRead' });
+  });
+
+  it('a snapshot whose version moved on is returned (labelled with its real version) but not cached under the requested key', async () => {
+    const cacheStore = new Map<string, unknown>();
+    const { svc } = make(42, 43);
+    (svc as any).cache.getOrSet = async (key: string, _t: number, loader: () => Promise<unknown>) => {
+      const v = await loader();
+      cacheStore.set(key, v);
+      return v;
+    };
+    const snap = await svc.getSnapshot('e1', 42);
+    expect(snap.version).toBe(43);
+    expect(cacheStore.size).toBe(0);
   });
 });

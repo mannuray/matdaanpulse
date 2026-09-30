@@ -3,10 +3,11 @@
  *
  * Simulates N dashboard viewers running the browser's polling algorithm against
  * a base URL (the CDN hostname in a real test, localhost for a smoke run):
- *   poll GET /elections/:id/live every 10 s + random 0–3 s; on a version change
- *   wait random 0–2 s, then GET /elections/:id/results?v=<version> (redirects are
- *   followed); on errors back off exponentially with jitter (max 60 s), never
- *   sooner than Retry-After.
+ *   poll GET /elections/:id/live every 10 s + random 0–3 s (60 s + 0–15 s while the
+ *   election is Upcoming, stop after the final snapshot once Finalized); on a NEWER
+ *   version wait random 0–2 s, then GET /elections/:id/results?v=<version>
+ *   (redirects are followed; an older snapshot is ignored); on errors back off
+ *   exponentially with jitter (max 60 s), never sooner than Retry-After.
  * Before and after, it reads the origin's own request counters from
  * GET /admin/status (SUPER_ADMIN) so the origin load can be compared with the
  * number of simulated requests. Run the live replay (npm run sim:replay) at the
@@ -20,12 +21,17 @@
  * SIM_ADMIN_EMAIL/SIM_ADMIN_PASSWORD or ADMIN_EMAIL/ADMIN_PASSWORD (env). Without
  * credentials the origin counters are skipped.
  *
+ * Origin shield: set LOADTEST_ORIGIN_SECRET to send X-Origin-Secret when targeting
+ * the origin directly (never needed through Cloudflare, which adds it).
+ *
  * Note: from one machine every viewer shares one IP, so against the origin
  * directly keep viewers × ~5 polls/min under THROTTLE_PUBLIC_PER_MIN (600).
  */
 
 const POLL_MS = 10_000;
 const POLL_JITTER_MS = 3_000;
+const UPCOMING_MS = 60_000;
+const UPCOMING_JITTER_MS = 15_000;
 const SNAPSHOT_JITTER_MS = 2_000;
 const BACKOFF_BASE_MS = 5_000;
 const BACKOFF_MAX_MS = 60_000;
@@ -57,6 +63,12 @@ function parseArgs(argv: string[]): Args {
 
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
+/** Extra headers for every request (origin shield when hitting the origin directly). */
+const EXTRA_HEADERS: Record<string, string> = process.env.LOADTEST_ORIGIN_SECRET
+  ? { 'X-Origin-Secret': process.env.LOADTEST_ORIGIN_SECRET }
+  : {};
+const get = (url: string, headers: Record<string, string> = {}) => fetch(url, { headers: { ...EXTRA_HEADERS, ...headers } });
+
 class Stats {
   live = 0;
   snapshots = 0;
@@ -65,6 +77,7 @@ class Stats {
   errors = 0;
   liveMs: number[] = [];
   versions = new Set<number>();
+  staleIgnored = 0;
 
   count(status: number) {
     this.byStatus.set(status, (this.byStatus.get(status) ?? 0) + 1);
@@ -99,23 +112,33 @@ async function viewer(args: Args, stats: Stats, deadline: number) {
     let wait = POLL_MS + Math.random() * POLL_JITTER_MS;
     try {
       const t0 = Date.now();
-      const res: Response = await fetch(`${args.base}/elections/${args.election}/live`);
+      const res: Response = await get(`${args.base}/elections/${args.election}/live`);
       stats.live++;
       stats.count(res.status);
       stats.liveMs.push(Date.now() - t0);
       if (!res.ok) throw Object.assign(new Error(`live ${res.status}`), { retryAfter: retryAfterMs(res) });
-      const live = ((await res.json()) as { data: { version: number } }).data;
-      if (live.version !== version) {
+      const live = ((await res.json()) as { data: { version: number; status: string } }).data;
+      if (live.status === 'Upcoming') {
+        wait = UPCOMING_MS + Math.random() * UPCOMING_JITTER_MS;
+      } else if (version === null || live.version > version) {
         if (version !== null) await sleep(Math.random() * SNAPSHOT_JITTER_MS);
-        const snap: Response = await fetch(`${args.base}/elections/${args.election}/results?v=${live.version}`);
+        const snap: Response = await get(`${args.base}/elections/${args.election}/results?v=${live.version}`);
         stats.snapshots++;
         if (snap.redirected) stats.redirects++;
         stats.count(snap.status);
         if (!snap.ok) throw Object.assign(new Error(`snapshot ${snap.status}`), { retryAfter: retryAfterMs(snap) });
-        version = ((await snap.json()) as { data: { version: number } }).data.version;
-        stats.versions.add(version);
+        const got = ((await snap.json()) as { data: { version: number } }).data.version;
+        if (version === null || got > version) {
+          version = got;
+          stats.versions.add(version);
+        } else {
+          stats.staleIgnored++;
+        }
+      } else if (live.version < version) {
+        stats.staleIgnored++;
       }
       failures = 0;
+      if (live.status === 'Finalized') break;
     } catch (err) {
       stats.errors++;
       failures++;
@@ -132,7 +155,7 @@ async function adminToken(statusBase: string): Promise<string | null> {
   if (!email || !password) return null;
   const res = await fetch(`${statusBase}/auth/login`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...EXTRA_HEADERS },
     body: JSON.stringify({ email, password }),
   });
   if (!res.ok) return null;
@@ -146,7 +169,7 @@ interface OriginStatus {
 
 async function originStatus(statusBase: string, token: string | null): Promise<OriginStatus | null> {
   if (!token) return null;
-  const res = await fetch(`${statusBase}/admin/status`, { headers: { Authorization: `Bearer ${token}` } });
+  const res = await get(`${statusBase}/admin/status`, { Authorization: `Bearer ${token}` });
   if (!res.ok) return null;
   return ((await res.json()) as { data: OriginStatus }).data;
 }
@@ -172,7 +195,7 @@ async function main() {
   console.log(`  requests      ${clientRequests} (${Math.round(clientRequests / elapsedMin)}/min): /live ${stats.live}, snapshots ${stats.snapshots} (${stats.redirects} via redirect)`);
   console.log(`  statuses      ${statuses || '-'}; failed attempts ${stats.errors}`);
   console.log(`  /live latency p50 ${pct(stats.liveMs, 0.5)} ms, p95 ${pct(stats.liveMs, 0.95)} ms`);
-  console.log(`  versions seen ${stats.versions.size}`);
+  console.log(`  versions seen ${stats.versions.size}; stale (older) responses ignored ${stats.staleIgnored}`);
   if (before && after) {
     // The status call itself and the login are included in the delta (a handful of requests).
     const originRequests = after.http.total - before.http.total;

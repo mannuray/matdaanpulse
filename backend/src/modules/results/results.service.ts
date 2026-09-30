@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
+import { LiveStateService } from './live-state.service';
 import { ConstituencyNotFoundException } from '../../common/exceptions';
 
 @Injectable()
@@ -8,10 +10,21 @@ export class ResultsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly cache: CacheService,
+    private readonly liveState: LiveStateService,
   ) {}
 
+  /**
+   * Results-derived cache keys carry the election's live version, so any results
+   * write — including direct SQL that never calls purgeElectionCache — moves
+   * readers to a fresh key (the DB trigger bumps the version).
+   */
+  private async versionedKey(id: string, name: string): Promise<string> {
+    const { version } = await this.liveState.get(id);
+    return `election:${id}:${name}:v${version}`;
+  }
+
   async getElectionSummary(id: string) {
-    return this.cache.getOrSet(`election:${id}:summary`, CACHE_TTL.ELECTION_SUMMARY, () =>
+    return this.cache.getOrSet(await this.versionedKey(id, 'summary'), CACHE_TTL.ELECTION_SUMMARY, () =>
       this.prisma.$queryRaw`
       SELECT 
         c.party_id, 
@@ -31,7 +44,7 @@ export class ResultsService {
   }
 
   async getVoteShare(id: string) {
-    return this.cache.getOrSet(`election:${id}:vote-share`, CACHE_TTL.VOTE_SHARE, () => this.loadVoteShare(id));
+    return this.cache.getOrSet(await this.versionedKey(id, 'vote-share'), CACHE_TTL.VOTE_SHARE, () => this.loadVoteShare(id));
   }
 
   private async loadVoteShare(id: string) {
@@ -61,7 +74,7 @@ export class ResultsService {
   }
 
   async getResults(id: string) {
-    return this.cache.getOrSet(`election:${id}:full-results`, CACHE_TTL.FULL_RESULTS, () => this.loadResults(id));
+    return this.cache.getOrSet(await this.versionedKey(id, 'full-results'), CACHE_TTL.FULL_RESULTS, () => this.loadResults(id));
   }
 
   private async loadResults(id: string) {
@@ -99,25 +112,48 @@ export class ResultsService {
   /**
    * Snapshot for a live version: results rows plus the seat tally and vote share
    * computed from the same rows, so every tile updates from one consistent read.
-   * Keyed by version (never by the unversioned caches, which a purge race could
-   * leave stale) and single-flighted by CacheService.
+   *
+   * The version and the rows are read in one REPEATABLE READ transaction, so a
+   * snapshot labelled V holds exactly version V's data. It is cached (single-
+   * flight) under `election:<id>:snapshot:v<expectedVersion>` only when the
+   * version read inside the transaction equals `expectedVersion`; if the version
+   * has moved on (another instance's write, a stale memo), the newer snapshot is
+   * returned uncached and the caller must not label it as `expectedVersion`.
    */
-  async getSnapshot(id: string, version: number): Promise<ResultsSnapshot> {
-    return this.cache.getOrSet(`election:${id}:snapshot:v${version}`, CACHE_TTL.RESULTS_SNAPSHOT, async () => {
-      const rows = await this.prisma.results.findMany({
-        where: { election_id: id },
-        select: {
-          const_id: true,
-          votes: true,
-          status: true,
-          margin: true,
-          candidates: { select: { party_id: true, name: true, parties: { select: { name: true, color: true } } } },
-          constituencies: { select: { type: true } },
-        },
-        orderBy: { const_id: 'asc' },
+  async getSnapshot(id: string, expectedVersion: number): Promise<ResultsSnapshot> {
+    try {
+      return await this.cache.getOrSet(`election:${id}:snapshot:v${expectedVersion}`, CACHE_TTL.RESULTS_SNAPSHOT, async () => {
+        const snapshot = await this.loadSnapshot(id);
+        if (snapshot.version !== expectedVersion) throw new VersionMoved(snapshot);
+        return snapshot;
       });
-      return buildSnapshot(version, rows);
-    });
+    } catch (err) {
+      if (err instanceof VersionMoved) return err.snapshot;
+      throw err;
+    }
+  }
+
+  private loadSnapshot(id: string): Promise<ResultsSnapshot> {
+    return this.prisma.$transaction(
+      async (tx) => {
+        const [state] = await tx.$queryRaw<{ version: bigint }[]>`
+          SELECT version FROM election_live_state WHERE election_id = ${id}::uuid`;
+        const rows = await tx.results.findMany({
+          where: { election_id: id },
+          select: {
+            const_id: true,
+            votes: true,
+            status: true,
+            margin: true,
+            candidates: { select: { party_id: true, name: true, parties: { select: { name: true, color: true } } } },
+            constituencies: { select: { type: true } },
+          },
+          orderBy: { const_id: 'asc' },
+        });
+        return buildSnapshot(Number(state?.version ?? 0), rows);
+      },
+      { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead },
+    );
   }
 
   async getDistrictResults(electionId: string, districtId: number) {
@@ -352,4 +388,11 @@ export function buildSnapshot(version: number, rows: SnapshotSourceRow[]): Resul
     }));
 
   return { version, results, summary, voteShare };
+}
+
+/** Thrown inside the snapshot loader so a snapshot of another version is never cached under the requested key. */
+class VersionMoved extends Error {
+  constructor(readonly snapshot: ResultsSnapshot) {
+    super('live version moved');
+  }
 }

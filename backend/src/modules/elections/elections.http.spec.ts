@@ -20,7 +20,7 @@ class AdminLikeController {
 const EID = 'c3d4e5f6-a7b8-9012-cdef-234567890abc';
 
 async function makeApp(env: Record<string, string>) {
-  const live = { version: 100, updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 };
+  const live = { version: 100, status: 'Live', updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 };
   const liveState = { get: jest.fn(async () => ({ ...live })) };
   const rows = [{ const_id: 'A', party_id: 'P', candidate_name: 'x', votes: 1, status: 'WON', margin: 1, const_type: 'GEN' }];
   const resultsService = {
@@ -51,6 +51,7 @@ describe('CDN-ready live endpoints (HTTP)', () => {
   afterAll(() => ctx.app.close());
   beforeEach(() => {
     ctx.live.version = 100;
+    ctx.live.status = 'Live';
     jest.clearAllMocks();
   });
 
@@ -61,7 +62,30 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect(res.status).toBe(200);
     expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.LIVE);
     expect(res.headers.get('cache-control')).toBe('public, max-age=0, s-maxage=5, stale-while-revalidate=10');
-    expect(await res.json()).toEqual({ success: true, data: { version: 100, updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 } });
+    expect(await res.json()).toEqual({ success: true, data: { version: 100, status: 'Live', updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 } });
+  });
+
+  it('/live is CDN-cached 30 s while not counting (Upcoming/Finalized)', async () => {
+    for (const status of ['Upcoming', 'Finalized']) {
+      ctx.live.status = status;
+      const res = await get(`/elections/${EID}/live`);
+      expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.LIVE_IDLE);
+      expect((await res.json()).data.status).toBe(status);
+    }
+  });
+
+  it('requests with an Authorization header (admin) are never stored by shared caches', async () => {
+    const auth = { headers: { Authorization: 'Bearer x' } };
+    for (const path of ['/elections', `/elections/${EID}/live`, `/elections/${EID}/results`, `/elections/${EID}/results?v=100`]) {
+      expect((await get(path, auth)).headers.get('cache-control')).toBe('no-store');
+    }
+  });
+
+  it('a snapshot whose version moved on (read consistently) is served no-store, never immutable under v', async () => {
+    ctx.resultsService.getSnapshot.mockImplementationOnce(async () => ({ version: 101, results: [], summary: [], voteShare: [] }));
+    const res = await get(`/elections/${EID}/results?v=100`);
+    expect(res.headers.get('cache-control')).toBe('no-store');
+    expect((await res.json()).data.version).toBe(101);
   });
 
   it('success bodies carry no requestId/timestamp; X-Request-ID and Date are headers; identical bodies twice', async () => {
@@ -149,9 +173,10 @@ describe('CDN-ready live endpoints (HTTP)', () => {
 
 describe('client IP behind Cloudflare', () => {
   it('TRUST_CF_CONNECTING_IP=true: req.ip is CF-Connecting-IP (when valid)', async () => {
-    const { app, base } = await makeApp({ TRUST_PROXY_HOPS: '1', TRUST_CF_CONNECTING_IP: 'true' });
+    const { app, base } = await makeApp({ TRUST_PROXY_HOPS: '1', TRUST_CF_CONNECTING_IP: 'true', ORIGIN_SHARED_SECRETS: 'sec' });
     try {
-      const ip = async (headers: Record<string, string>) => (await (await fetch(`${base}/admin/thing`, { headers })).json()).data.ip;
+      const ip = async (headers: Record<string, string>) =>
+        (await (await fetch(`${base}/admin/thing`, { headers: { ...headers, 'X-Origin-Secret': 'sec' } })).json()).data.ip;
       expect(await ip({ 'CF-Connecting-IP': '203.0.113.5', 'X-Forwarded-For': '203.0.113.5, 172.64.0.1' })).toBe('203.0.113.5');
       expect(await ip({ 'CF-Connecting-IP': '2001:db8::1' })).toBe('2001:db8::1');
       expect(await ip({ 'CF-Connecting-IP': 'not-an-ip', 'X-Forwarded-For': '198.51.100.7' })).toBe('198.51.100.7');
@@ -168,5 +193,33 @@ describe('client IP behind Cloudflare', () => {
     } finally {
       await app.close();
     }
+  });
+});
+
+describe('applyCacheControl', () => {
+  const { applyCacheControl } = require('../../common/http/cache-control');
+  function res(headers: Record<string, string>) {
+    const h = { ...headers } as Record<string, string>;
+    return {
+      h,
+      setHeader: (k: string, v: string) => (h[k.toLowerCase()] = v),
+      getHeaderNames: () => Object.keys(h),
+      removeHeader: (k: string) => delete h[k.toLowerCase()],
+    };
+  }
+
+  it('drops per-client X-RateLimit-* headers from publicly cacheable responses', () => {
+    const r = res({ 'x-ratelimit-limit-public': '600', 'x-ratelimit-remaining-public': '599', 'x-request-id': 'a' });
+    applyCacheControl({ headers: {} }, r, CACHE_CONTROL.PUBLIC);
+    expect(r.h['cache-control']).toBe(CACHE_CONTROL.PUBLIC);
+    expect(Object.keys(r.h).filter((k) => k.startsWith('x-ratelimit'))).toEqual([]);
+    expect(r.h['x-request-id']).toBe('a');
+  });
+
+  it('keeps them on no-store responses and forces no-store with Authorization', () => {
+    const r = res({ 'x-ratelimit-limit-public': '600' });
+    applyCacheControl({ headers: { authorization: 'Bearer t' } }, r, CACHE_CONTROL.PUBLIC);
+    expect(r.h['cache-control']).toBe('no-store');
+    expect(r.h['x-ratelimit-limit-public']).toBe('600');
   });
 });

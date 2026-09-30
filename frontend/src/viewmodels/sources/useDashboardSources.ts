@@ -40,10 +40,16 @@ export interface DashboardSources {
   removeWatch(constId: string): void;
 }
 
-export function useDashboardSources(election: Election): DashboardSources {
-  const data = useDashboardData(election);
+export function useDashboardSources(pageElection: Election): DashboardSources {
+  const data = useDashboardData(pageElection);
   const { setLiveConnected } = useElection();
-  const { manifestData, results, currentWinnerMap, constCandidates, mapRegions, voteShare, liveConnected } = data;
+  const { manifestData, results, currentWinnerMap, constCandidates, mapRegions, voteShare, liveConnected, liveStatus, liveVersion } = data;
+  // The election as the tiles should see it: its status follows /live (Upcoming → Live → Finalized
+  // without a reload).
+  const election = useMemo(
+    () => (liveStatus && liveStatus !== pageElection.status ? { ...pageElection, status: liveStatus } : pageElection),
+    [pageElection, liveStatus],
+  );
 
   const historyResults = useHistoricalResults(manifestData?.history);
   const prevResults = historyResults && historyResults.length > 0 ? historyResults[historyResults.length - 1] : null;
@@ -85,22 +91,25 @@ export function useDashboardSources(election: Election): DashboardSources {
       }, RECENT_CHANGE_MS));
     }
   }, []);
-  // Each new live snapshot is diffed against the previous one of the same election:
-  // seats whose leader changed feed the ticker and pulse on the map. The first
-  // snapshot (and the first after switching elections) is the baseline, not news.
-  const prevSnapshot = useRef<{ electionId: string; results: ResultRow[] } | null>(null);
+  // Each new live snapshot is diffed against the previous snapshot of the same election:
+  // seats whose leader changed feed the ticker and pulse on the map. The first snapshot
+  // (and the first after switching elections) is the baseline, not news. Snapshots only
+  // move forward (the poller drops older versions), so events are never replayed backwards.
+  const prevSnapshot = useRef<{ electionId: string; version: number; results: ResultRow[] } | null>(null);
   useEffect(() => {
-    if (election.status !== 'Live') { prevSnapshot.current = null; return; }
-    if (results.length === 0) return;
+    if (liveVersion === null) { prevSnapshot.current = null; return; }
     const prev = prevSnapshot.current;
-    prevSnapshot.current = { electionId: election.id, results };
-    if (!prev || prev.electionId !== election.id || prev.results === results) return;
+    if (prev && prev.electionId === election.id && prev.version === liveVersion) return;
+    prevSnapshot.current = { electionId: election.id, version: liveVersion, results };
+    if (!prev || prev.electionId !== election.id || liveVersion < prev.version) return;
     const changes = diffLeaders(prev.results, results);
     if (changes.length === 0) return;
     markRecent(changes.map(c => c.const_id));
     setTicker(p => appendTicker(p, changes));
-  }, [results, election.id, election.status, markRecent]);
+  }, [results, liveVersion, election.id, markRecent]);
   useEffect(() => { setLiveConnected(liveConnected); }, [liveConnected, setLiveConnected]);
+  // Leaving the dashboard: the legacy header must not keep showing a stale "connected".
+  useEffect(() => () => setLiveConnected(false), [setLiveConnected]);
 
   const availableLayers = useMemo((): LayerId[] => {
     const l: LayerId[] = ['overview', 'battle'];

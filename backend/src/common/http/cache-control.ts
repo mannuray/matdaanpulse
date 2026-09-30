@@ -13,6 +13,8 @@ export const CACHE_CONTROL = {
   PUBLIC: 'public, max-age=0, s-maxage=60, stale-while-revalidate=300',
   /** GET /elections/:id/live — polled by every viewer. */
   LIVE: 'public, max-age=0, s-maxage=5, stale-while-revalidate=10',
+  /** GET /elections/:id/live while the election is not counting (Upcoming/Finalized). */
+  LIVE_IDLE: 'public, max-age=0, s-maxage=30, stale-while-revalidate=60',
   /** GET /elections/:id/results without ?v= (latest, unversioned). */
   RESULTS_LATEST: 'public, max-age=0, s-maxage=10, stale-while-revalidate=30',
   /** GET /elections/:id/results?v=<current version>. */
@@ -25,13 +27,41 @@ export const CACHE_CONTROL = {
 
 export const CACHE_CONTROL_KEY = 'http:cache-control';
 
+interface HeaderReq {
+  headers?: Record<string, string | string[] | undefined>;
+}
+interface HeaderRes {
+  headersSent?: boolean;
+  getHeader?(n: string): unknown;
+  getHeaderNames?(): string[];
+  setHeader?(n: string, v: string): void;
+  removeHeader?(n: string): void;
+}
+
+/**
+ * Apply a Cache-Control policy to a response, with two guards:
+ * - a request with an Authorization header (admin) is never stored by a shared
+ *   cache: `no-store` (RFC 9111 would otherwise let the CDN reuse it);
+ * - a publicly cacheable response drops per-client headers (X-RateLimit-*), which a
+ *   CDN would otherwise replay to every viewer.
+ */
+export function applyCacheControl(req: HeaderReq | undefined, res: HeaderRes, value: string): void {
+  if (!res || res.headersSent || typeof res.setHeader !== 'function') return;
+  const effective = req?.headers?.authorization ? CACHE_CONTROL.NO_STORE : value;
+  res.setHeader('Cache-Control', effective);
+  if (effective.startsWith('public') && typeof res.getHeaderNames === 'function') {
+    for (const name of res.getHeaderNames()) if (/^x-ratelimit-/i.test(name)) res.removeHeader?.(name);
+  }
+}
+
 /** Opt a controller or handler into a public Cache-Control policy (GET/HEAD successes only). */
 export const CacheControl = (value: string) => SetMetadata(CACHE_CONTROL_KEY, value);
 
 /**
  * Sets Cache-Control on successful responses: the handler's/controller's
  * @CacheControl value for GET/HEAD, otherwise `no-store`. A header the handler
- * already set (e.g. @Header or res.setHeader) wins. Errors never reach this
+ * already set (e.g. @Header or res.setHeader) wins. See applyCacheControl for
+ * the Authorization and X-RateLimit guards. Errors never reach this
  * path — HttpExceptionFilter sends them with `no-store`, so the CDN never
  * caches a 4xx/5xx under a public policy.
  */
@@ -42,12 +72,8 @@ export class CacheControlInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     // SSE streams manage their own headers (Nest sends `no-cache` for text/event-stream).
     if (context.getType() !== 'http' || Reflect.getMetadata(SSE_METADATA, context.getHandler())) return next.handle();
-    const req = context.switchToHttp().getRequest<{ method?: string }>();
-    const res = context.switchToHttp().getResponse<{
-      headersSent?: boolean;
-      getHeader?(n: string): unknown;
-      setHeader?(n: string, v: string): void;
-    }>();
+    const req = context.switchToHttp().getRequest<HeaderReq & { method?: string }>();
+    const res = context.switchToHttp().getResponse<HeaderRes>();
     const policy = this.reflector.getAllAndOverride<string | undefined>(CACHE_CONTROL_KEY, [
       context.getHandler(),
       context.getClass(),
@@ -58,8 +84,8 @@ export class CacheControlInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap(() => {
         if (!res || res.headersSent || typeof res.setHeader !== 'function') return;
-        if (res.getHeader?.('Cache-Control') !== undefined) return;
-        res.setHeader('Cache-Control', value);
+        const preset = res.getHeader?.('Cache-Control');
+        applyCacheControl(req, res, preset !== undefined ? String(preset) : value);
       }),
     );
   }

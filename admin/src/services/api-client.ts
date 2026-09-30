@@ -60,7 +60,12 @@ export async function apiFetch<T>(path: string, options?: RequestInit): Promise<
     headers['Authorization'] = `Bearer ${token}`;
   }
   
-  const response = await fetch(`${API_BASE_URL}${path}`, { 
+  // Every admin GET bypasses shared caches (the CDN keys on the query string; the
+  // backend ignores `_`), so editors always see their own writes at once.
+  const method = (options?.method ?? 'GET').toUpperCase();
+  const url = method === 'GET' ? withCacheBuster(path) : path;
+
+  const response = await fetch(`${API_BASE_URL}${url}`, { 
     ...options,
     headers: { ...headers, ...options?.headers }
   });
@@ -82,6 +87,11 @@ export async function apiFetch<T>(path: string, options?: RequestInit): Promise<
   }
 
   return (result.success !== undefined ? result.data : result) as T;
+}
+
+/** Append `_=<timestamp>` (the backend's whitelisted cache-buster). */
+export function withCacheBuster(path: string, now: number = Date.now()): string {
+  return `${path}${path.includes('?') ? '&' : '?'}_=${now}`;
 }
 
 export { API_BASE_URL };

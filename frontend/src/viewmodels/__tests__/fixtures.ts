@@ -28,7 +28,7 @@ export function makeSources(over: Partial<DashboardSources> = {}): DashboardSour
       mapRegions, spoilerData: { spoilerSeats: new Set(), threeWaySeats: new Set(), hasData: true }, addableItems: [], voteShare: [],
       loading: false, error: null, modalConstId: null, setModalConstId: () => {}, mapTab: 'overview', setMapTab: () => {},
       userTracked: [], setUserTracked: () => {}, untrack: () => {}, spoilerFilter: null, setSpoilerFilter: () => {},
-      refreshAll: () => {}, liveConnected: false,
+      refreshAll: () => {}, liveConnected: false, liveStatus: 'Finalized', liveVersion: null,
     },
     swing: new Map(), dominance: new Map(), incumbency: [], partySwitches: [], marginTrend: [], partyTrend: [], prevYear: null,
     totalSeats: 243, majority: 122, votePct: new Map(), ticker: [], recentSeats: new Set(), liveConnected: false,

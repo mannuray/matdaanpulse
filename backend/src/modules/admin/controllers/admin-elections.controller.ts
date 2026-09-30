@@ -2,6 +2,7 @@ import { Controller, Post, Patch, Get, Put, Body, Param, UseGuards, ParseUUIDPip
 import { ElectionsService } from '../../elections/elections.service';
 import { ManifestsService } from '../../manifests/manifests.service';
 import { ResultsService } from '../../results/results.service';
+import { LiveStateService } from '../../results/live-state.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
@@ -14,7 +15,15 @@ export class AdminElectionsController {
     private readonly electionsService: ElectionsService,
     private readonly manifestsService: ManifestsService,
     private readonly resultsService: ResultsService,
+    private readonly liveState: LiveStateService,
   ) {}
+
+  /** Status is part of GET /elections/:id/live: show a change at once (the version does not move). */
+  private async afterElectionChange<T>(id: string, result: T): Promise<T> {
+    this.liveState.invalidate(id);
+    await this.resultsService.purgeElectionCache(id);
+    return result;
+  }
 
   @Post('elections')
   @Roles('SUPER_ADMIN', 'EDITOR')
@@ -24,14 +33,14 @@ export class AdminElectionsController {
 
   @Patch('elections/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  updateElection(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateElectionDto) {
-    return this.electionsService.update(id, body);
+  async updateElection(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateElectionDto) {
+    return this.afterElectionChange(id, await this.electionsService.update(id, body));
   }
 
   @Post('elections/:id/finalize')
   @Roles('SUPER_ADMIN')
-  finalizeElection(@Param('id', ParseUUIDPipe) id: string) {
-    return this.electionsService.finalize(id);
+  async finalizeElection(@Param('id', ParseUUIDPipe) id: string) {
+    return this.afterElectionChange(id, await this.electionsService.finalize(id));
   }
 
   @Get('elections/:id/manifest')

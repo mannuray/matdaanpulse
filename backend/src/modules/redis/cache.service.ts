@@ -23,17 +23,21 @@ export const INVALIDATION_RETRY_MS = 2_000;
  *
  * Single-flight: concurrent getOrSet calls for the same key share one Redis
  * read and one loader call (one DB query per key, not one per request).
- * An invalidation (del/delByPattern) detaches in-flight loads, so callers that
- * arrive after it start a fresh load, and a load that started before it does
- * not write its (possibly stale) value back to Redis.
+ * An invalidation (del/delByPattern) detaches the in-flight loads of the keys it
+ * matches — callers that arrive after it start a fresh load, and a load that
+ * started before it does not write its (possibly stale) value back. Other keys
+ * (e.g. another election's) are untouched. Content-addressed keys (ending in
+ * `:v<version>`) never change meaning, so they are never detached or skipped.
  */
 @Injectable()
 export class CacheService {
   private readonly logger = new Logger(CacheService.name);
   private readonly logGate = new RateLimitedLog(60_000);
   private readonly inFlight = new Map<string, Promise<unknown>>();
-  /** Bumped by every invalidation; a load only writes back if it is unchanged. */
-  private generation = 0;
+  /** Monotonic counter; loads remember it at start, invalidations stamp it on what they match. */
+  private seq = 0;
+  private readonly invalidatedKeys = new Map<string, number>();
+  private readonly invalidatedPrefixes = new Map<string, number>();
 
   constructor(
     private readonly redis: RedisService,
@@ -51,7 +55,7 @@ export class CacheService {
   }
 
   private async load<T>(key: string, ttlSeconds: number, loader: () => Promise<T>): Promise<T> {
-    const generation = this.generation;
+    const startedAt = this.seq;
     let cached: string | null = null;
     try {
       cached = await this.redis.get(key);
@@ -70,7 +74,7 @@ export class CacheService {
 
     this.status.recordCacheMiss();
     const value = await loader();
-    if (generation !== this.generation) return value; // invalidated while loading: don't cache it
+    if (this.invalidatedSince(key, startedAt)) return value; // invalidated while loading: don't cache it
     try {
       await this.redis.set(key, JSON.stringify(value), ttlSeconds);
     } catch (err) {
@@ -94,8 +98,7 @@ export class CacheService {
   }
 
   private async invalidate(target: string, op: () => Promise<void>): Promise<boolean> {
-    this.generation++;
-    this.inFlight.clear();
+    this.markInvalidated(target);
     try {
       await op();
       return true;
@@ -113,10 +116,37 @@ export class CacheService {
     }
   }
 
+  /** `election:1:*` → prefix `election:1:`; a plain key matches only itself. */
+  private markInvalidated(target: string) {
+    const stamp = ++this.seq;
+    const star = target.indexOf('*');
+    const matches =
+      star >= 0
+        ? (this.invalidatedPrefixes.set(target.slice(0, star), stamp), (k: string) => k.startsWith(target.slice(0, star)))
+        : (this.invalidatedKeys.set(target, stamp), (k: string) => k === target);
+    for (const key of [...this.inFlight.keys()]) {
+      if (matches(key) && !isContentAddressed(key)) this.inFlight.delete(key);
+    }
+  }
+
+  private invalidatedSince(key: string, startedAt: number): boolean {
+    if (isContentAddressed(key)) return false;
+    if ((this.invalidatedKeys.get(key) ?? 0) > startedAt) return true;
+    for (const [prefix, stamp] of this.invalidatedPrefixes) {
+      if (stamp > startedAt && key.startsWith(prefix)) return true;
+    }
+    return false;
+  }
+
   private warn(op: string, err: unknown) {
     this.status.recordCacheFallback();
     if (this.logGate.shouldLog('cache')) {
       this.logger.warn(`Redis cache ${op} failed, using the database (logged once a minute): ${(err as Error).message}`);
     }
   }
+}
+
+/** Keys ending in `:v<version>` hold data for one immutable version. */
+export function isContentAddressed(key: string): boolean {
+  return /:v\d+$/.test(key);
 }

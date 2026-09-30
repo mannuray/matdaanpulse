@@ -2,9 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { ElectionNotFoundException } from '../../common/exceptions';
 
+export type LiveElectionStatus = 'Upcoming' | 'Live' | 'Finalized';
+
 export interface LiveState {
   /** Monotonic per-election version; changes whenever snapshot data changes. */
   version: number;
+  /** Election status: pollers slow down while Upcoming and stop once Finalized. */
+  status: LiveElectionStatus;
   updatedAt: string;
   /** Constituencies with a declared (WON) result. */
   declared: number;
@@ -52,17 +56,16 @@ export class LiveStateService {
 
   private async load(electionId: string): Promise<LiveState> {
     let row = await this.readRow(electionId);
-    if (!row) {
+    if (!row) throw new ElectionNotFoundException(electionId);
+    if (row.version === null) {
       // No write since migration 015 (or a fresh DB): create the row. The first version is
       // "now" in epoch ms, so a rebuilt database never reuses a version a CDN may still hold.
-      const exists = await this.prisma.elections.findUnique({ where: { id: electionId }, select: { id: true } });
-      if (!exists) throw new ElectionNotFoundException(electionId);
       await this.prisma.$executeRaw`
         INSERT INTO election_live_state (election_id, version)
         VALUES (${electionId}::uuid, (extract(epoch FROM clock_timestamp()) * 1000)::bigint)
         ON CONFLICT (election_id) DO NOTHING`;
       row = await this.readRow(electionId);
-      if (!row) throw new ElectionNotFoundException(electionId);
+      if (!row || row.version === null || row.updated_at === null) throw new ElectionNotFoundException(electionId);
     }
     const [counts] = await this.prisma.$queryRaw<{ declared: number; total: number }[]>`
       SELECT
@@ -71,15 +74,21 @@ export class LiveStateService {
         (SELECT COUNT(*)::int FROM constituencies c WHERE c.election_id = ${electionId}::uuid) AS total`;
     return {
       version: Number(row.version),
-      updatedAt: row.updated_at.toISOString(),
+      status: row.status,
+      updatedAt: (row.updated_at as Date).toISOString(),
       declared: counts?.declared ?? 0,
       total: counts?.total ?? 0,
     };
   }
 
-  private async readRow(electionId: string): Promise<{ version: bigint; updated_at: Date } | null> {
-    const rows = await this.prisma.$queryRaw<{ version: bigint; updated_at: Date }[]>`
-      SELECT version, updated_at FROM election_live_state WHERE election_id = ${electionId}::uuid`;
+  /** One row per existing election; version/updated_at are null until its live-state row exists. */
+  private async readRow(
+    electionId: string,
+  ): Promise<{ status: LiveElectionStatus; version: bigint | null; updated_at: Date | null } | null> {
+    const rows = await this.prisma.$queryRaw<{ status: LiveElectionStatus; version: bigint | null; updated_at: Date | null }[]>`
+      SELECT e.status::text AS status, s.version, s.updated_at
+      FROM elections e LEFT JOIN election_live_state s ON s.election_id = e.id
+      WHERE e.id = ${electionId}::uuid`;
     return rows[0] ?? null;
   }
 }

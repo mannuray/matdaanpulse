@@ -3,8 +3,15 @@
  * `/elections/:id/live` document and, when its version changes, fetch the
  * versioned (immutable, CDN-cached) snapshot `results?v=<version>`.
  *
- * - poll every 10 s + random 0–3 s; paused while the tab is hidden, and polled
- *   immediately when it becomes visible again;
+ * - the cadence follows the election status reported by `/live`:
+ *   Upcoming → every 60 s + random 0–15 s, `/live` only (a page opened before
+ *   counting picks it up by itself); Live → every 10 s + random 0–3 s with
+ *   snapshots; Finalized → fetch the final snapshot (if newer) and stop;
+ * - paused while the tab is hidden, and polled immediately when it becomes
+ *   visible again (at most once per 2 s);
+ * - only moves forward: a snapshot is fetched only for a version newer than the
+ *   one shown, and an older snapshot (a stale CDN colo) is dropped — the map never
+ *   goes back and the ticker never replays reversed events;
  * - on a version change wait random 0–2 s (spreads the herd), then fetch the
  *   snapshot once; the first snapshot is fetched without waiting;
  * - on errors: exponential backoff with jitter (max 60 s), never shorter than
@@ -13,8 +20,11 @@
  * Pure: no React, no DOM access — timers, randomness and visibility are injected.
  */
 
+export type LiveElectionStatus = 'Upcoming' | 'Live' | 'Finalized';
+
 export interface LiveState {
   version: number;
+  status: LiveElectionStatus;
   updatedAt: string;
   declared: number;
   total: number;
@@ -23,6 +33,10 @@ export interface LiveState {
 export const POLL = {
   intervalMs: 10_000,
   intervalJitterMs: 3_000,
+  upcomingIntervalMs: 60_000,
+  upcomingJitterMs: 15_000,
+  /** Visibility changes poll at most this often (rapid tab switching). */
+  minVisiblePollGapMs: 2_000,
   snapshotJitterMs: 2_000,
   backoffBaseMs: 5_000,
   backoffMaxMs: 60_000,
@@ -41,9 +55,12 @@ export interface LivePollerDeps<S extends { version: number }> {
   fetchLive(): Promise<LiveState>;
   fetchSnapshot(version: number): Promise<S>;
   onSnapshot(snapshot: S, live: LiveState): void;
-  /** true after a successful poll, false after a failed one. */
-  onStatus?(ok: boolean): void;
+  /** Every successful `/live` response (the current election status). */
+  onLive?(live: LiveState): void;
+  /** true after a successful poll; false after a failed one, with the consecutive failure count and error. */
+  onStatus?(ok: boolean, failures: number, error?: unknown): void;
   random?: () => number;
+  now?: () => number;
   setTimer?: (fn: () => void, ms: number) => TimerHandle;
   clearTimer?: (handle: TimerHandle) => void;
   visibility?: Visibility;
@@ -64,6 +81,8 @@ export class LivePoller<S extends { version: number }> {
   private readonly setTimer: (fn: () => void, ms: number) => TimerHandle;
   private readonly clearTimer: (handle: TimerHandle) => void;
   private readonly visibility: Visibility;
+  private readonly now: () => number;
+  private lastPollAt = -Infinity;
 
   private version: number | null = null;
   private failures = 0;
@@ -80,12 +99,21 @@ export class LivePoller<S extends { version: number }> {
     this.setTimer = deps.setTimer ?? ((fn, ms) => setTimeout(fn, ms));
     this.clearTimer = deps.clearTimer ?? ((h) => clearTimeout(h));
     this.visibility = deps.visibility ?? NEVER_HIDDEN;
+    this.now = deps.now ?? (() => Date.now());
   }
 
   start(): void {
     if (this.running) return;
     this.running = true;
     this.unsubscribe = this.visibility.subscribe(() => this.onVisibilityChange());
+    void this.tick();
+  }
+
+  /** Poll now (e.g. a Retry button): resets the backoff; no-op while a request is in flight or after stop(). */
+  pollNow(): void {
+    if (!this.running || this.busy) return;
+    this.failures = 0;
+    this.cancelTimer();
     void this.tick();
   }
 
@@ -103,6 +131,7 @@ export class LivePoller<S extends { version: number }> {
     if (!this.running || this.visibility.isHidden()) return;
     // Back in view: poll now, unless a request is in flight or we are backing off after errors.
     if (this.busy || (this.failures > 0 && !this.paused)) return;
+    if (!this.paused && this.now() - this.lastPollAt < POLL.minVisiblePollGapMs) return;
     this.cancelTimer();
     void this.tick();
   }
@@ -115,32 +144,51 @@ export class LivePoller<S extends { version: number }> {
     }
     this.paused = false;
     this.busy = true;
+    this.lastPollAt = this.now();
     const run = this.run;
     try {
       const live = await this.deps.fetchLive();
       if (run !== this.run) return;
-      if (live.version !== this.version) {
+      this.deps.onLive?.(live);
+      if (live.status === 'Upcoming') {
+        this.succeeded();
+        this.schedule(POLL.upcomingIntervalMs + this.random() * POLL.upcomingJitterMs);
+        return;
+      }
+      if (this.version === null || live.version > this.version) {
         if (this.version !== null) {
           await this.sleep(this.random() * POLL.snapshotJitterMs);
           if (run !== this.run) return;
         }
         const snapshot = await this.deps.fetchSnapshot(live.version);
         if (run !== this.run) return;
-        this.version = snapshot.version;
-        this.deps.onSnapshot(snapshot, live);
+        // Forward only: a stale colo may still redirect/serve an older version.
+        if (this.version === null || snapshot.version > this.version) {
+          this.version = snapshot.version;
+          this.deps.onSnapshot(snapshot, live);
+        }
       }
-      this.failures = 0;
-      this.deps.onStatus?.(true);
+      this.succeeded();
+      if (live.status === 'Finalized') {
+        // Final results are in: nothing more to poll for.
+        this.stop();
+        return;
+      }
       this.schedule(POLL.intervalMs + this.random() * POLL.intervalJitterMs);
     } catch (err) {
       if (run !== this.run) return;
       this.failures++;
-      this.deps.onStatus?.(false);
+      this.deps.onStatus?.(false, this.failures, err);
       const retryAfterMs = (err as { retryAfterMs?: number } | null)?.retryAfterMs;
       this.schedule(backoffDelay(this.failures, this.random, retryAfterMs));
     } finally {
       if (run === this.run) this.busy = false;
     }
+  }
+
+  private succeeded(): void {
+    this.failures = 0;
+    this.deps.onStatus?.(true, 0);
   }
 
   private schedule(ms: number): void {
@@ -165,4 +213,24 @@ export class LivePoller<S extends { version: number }> {
     if (this.timer !== undefined) this.clearTimer(this.timer);
     this.timer = undefined;
   }
+}
+
+/** Days around `tentative_next_date` in which an Upcoming election's page polls for the flip to Live. */
+export const UPCOMING_POLL_WINDOW = { beforeDays: 3, afterDays: 60 } as const;
+
+/**
+ * Whether a dashboard should run the poller: Live elections always; Upcoming ones
+ * only near their tentative date (off-season pages must not keep the API awake);
+ * Finalized never.
+ */
+export function shouldPoll(
+  election: { status: LiveElectionStatus; tentative_next_date: string | null },
+  now: number = Date.now(),
+): boolean {
+  if (election.status === 'Live') return true;
+  if (election.status !== 'Upcoming' || !election.tentative_next_date) return false;
+  const at = Date.parse(election.tentative_next_date);
+  if (Number.isNaN(at)) return false;
+  const day = 86_400_000;
+  return now >= at - UPCOMING_POLL_WINDOW.beforeDays * day && now <= at + UPCOMING_POLL_WINDOW.afterDays * day;
 }

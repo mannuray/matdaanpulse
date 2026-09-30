@@ -1,22 +1,24 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { LivePoller, POLL, backoffDelay, type LiveState } from '../poller';
+import { LivePoller, POLL, backoffDelay, shouldPoll, type LiveState, type LiveElectionStatus } from '../poller';
 
 interface Snap { version: number }
 
-function live(version: number): LiveState {
-  return { version, updatedAt: '2026-09-30T00:00:00Z', declared: 0, total: 10 };
+function live(version: number, status: LiveElectionStatus = 'Live'): LiveState {
+  return { version, status, updatedAt: '2026-09-30T00:00:00Z', declared: 0, total: 10 };
 }
 
 function setup(opts: { random?: () => number; hidden?: boolean } = {}) {
   let hidden = opts.hidden ?? false;
   let onVis: (() => void) | null = null;
   let current = 1;
-  const fetchLive = vi.fn(async () => live(current));
+  let status: LiveElectionStatus = 'Live';
+  const fetchLive = vi.fn(async () => live(current, status));
   const fetchSnapshot = vi.fn(async (v: number): Promise<Snap> => ({ version: v }));
   const onSnapshot = vi.fn();
   const onStatus = vi.fn();
+  const onLive = vi.fn();
   const poller = new LivePoller<Snap>({
-    fetchLive, fetchSnapshot, onSnapshot, onStatus,
+    fetchLive, fetchSnapshot, onSnapshot, onStatus, onLive,
     random: opts.random ?? (() => 0),
     visibility: {
       isHidden: () => hidden,
@@ -24,8 +26,9 @@ function setup(opts: { random?: () => number; hidden?: boolean } = {}) {
     },
   });
   return {
-    poller, fetchLive, fetchSnapshot, onSnapshot, onStatus,
+    poller, fetchLive, fetchSnapshot, onSnapshot, onStatus, onLive,
     setVersion: (v: number) => { current = v; },
+    setStatus: (st: LiveElectionStatus) => { status = st; },
     setHidden: (h: boolean) => { hidden = h; onVis?.(); },
   };
 }
@@ -44,7 +47,7 @@ describe('LivePoller', () => {
     expect(t.fetchLive).toHaveBeenCalledTimes(1);
     expect(t.fetchSnapshot).toHaveBeenCalledWith(1);
     expect(t.onSnapshot).toHaveBeenCalledWith({ version: 1 }, live(1));
-    expect(t.onStatus).toHaveBeenLastCalledWith(true);
+    expect(t.onStatus).toHaveBeenLastCalledWith(true, 0);
     t.poller.stop();
   });
 
@@ -102,6 +105,7 @@ describe('LivePoller', () => {
     const t = setup();
     t.poller.start();
     await flush();
+    await vi.advanceTimersByTimeAsync(POLL.minVisiblePollGapMs);
     t.setHidden(true);
     await vi.advanceTimersByTimeAsync(POLL.intervalMs * 6);
     expect(t.fetchLive).toHaveBeenCalledTimes(1);
@@ -124,10 +128,11 @@ describe('LivePoller', () => {
 
   it('backs off exponentially with jitter on errors, capped at 60 s, and recovers', async () => {
     const t = setup({ random: () => 1 });
-    t.fetchLive.mockRejectedValue(new Error('network'));
+    const netErr = new Error('network');
+    t.fetchLive.mockRejectedValue(netErr);
     t.poller.start();
     await flush();
-    expect(t.onStatus).toHaveBeenLastCalledWith(false);
+    expect(t.onStatus).toHaveBeenLastCalledWith(false, 1, netErr);
     const times: number[] = [];
     let last = Date.now();
     for (let i = 0; i < 6; i++) {
@@ -178,6 +183,124 @@ describe('LivePoller', () => {
     await vi.advanceTimersByTimeAsync(POLL.intervalMs * 3);
     expect(t.fetchSnapshot).not.toHaveBeenCalled();
     expect(t.fetchLive).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('LivePoller: forward only (I1)', () => {
+  it('an older /live version after a newer snapshot fetches nothing and emits nothing', async () => {
+    const t = setup();
+    t.setVersion(5);
+    t.poller.start();
+    await flush();
+    expect(t.onSnapshot).toHaveBeenCalledTimes(1);
+    t.setVersion(4); // a stale CDN colo
+    await vi.advanceTimersByTimeAsync(POLL.intervalMs * 3);
+    expect(t.fetchSnapshot).toHaveBeenCalledTimes(1);
+    expect(t.onSnapshot).toHaveBeenCalledTimes(1);
+  });
+
+  it('an older snapshot (served by a stale colo for a newer /live) is dropped', async () => {
+    const t = setup();
+    t.setVersion(5);
+    t.poller.start();
+    await flush();
+    t.setVersion(6);
+    t.fetchSnapshot.mockImplementationOnce(async () => ({ version: 4 }));
+    await vi.advanceTimersByTimeAsync(POLL.intervalMs + POLL.snapshotJitterMs);
+    expect(t.fetchSnapshot).toHaveBeenCalledTimes(2);
+    expect(t.onSnapshot).toHaveBeenCalledTimes(1);
+    expect(t.onSnapshot).toHaveBeenLastCalledWith({ version: 5 }, live(5));
+    t.poller.stop();
+  });
+});
+
+describe('LivePoller: election status (upcoming → counting → finalized)', () => {
+  it('Upcoming: /live only, every 60 s + 0–15 s; picks up Live by itself and starts fetching snapshots', async () => {
+    const t = setup({ random: () => 0 });
+    t.setStatus('Upcoming');
+    t.poller.start();
+    await flush();
+    expect(t.fetchSnapshot).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(POLL.upcomingIntervalMs - 100);
+    expect(t.fetchLive).toHaveBeenCalledTimes(1);
+    t.setStatus('Live');
+    await vi.advanceTimersByTimeAsync(200);
+    expect(t.fetchLive).toHaveBeenCalledTimes(2);
+    expect(t.fetchSnapshot).toHaveBeenCalledTimes(1);
+    expect(t.onLive).toHaveBeenLastCalledWith(live(1, 'Live'));
+    await vi.advanceTimersByTimeAsync(POLL.intervalMs);
+    expect(t.fetchLive).toHaveBeenCalledTimes(3);
+    t.poller.stop();
+  });
+
+  it('Upcoming jitter is bounded by 75 s', async () => {
+    const t = setup({ random: () => 0.999 });
+    t.setStatus('Upcoming');
+    t.poller.start();
+    await flush();
+    await vi.advanceTimersByTimeAsync(POLL.upcomingIntervalMs + POLL.upcomingJitterMs);
+    expect(t.fetchLive).toHaveBeenCalledTimes(2);
+    t.poller.stop();
+  });
+
+  it('Finalized: fetches the final snapshot once, then stops polling', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.setVersion(2);
+    t.setStatus('Finalized');
+    await vi.advanceTimersByTimeAsync(POLL.intervalMs + POLL.intervalJitterMs + POLL.snapshotJitterMs);
+    expect(t.onSnapshot).toHaveBeenLastCalledWith({ version: 2 }, live(2, 'Finalized'));
+    const calls = t.fetchLive.mock.calls.length;
+    await vi.advanceTimersByTimeAsync(POLL.upcomingIntervalMs * 5);
+    expect(t.fetchLive.mock.calls.length).toBe(calls);
+  });
+});
+
+describe('LivePoller: retry and tab switching', () => {
+  it('pollNow() polls at once and resets the backoff (Retry button)', async () => {
+    const t = setup({ random: () => 1 });
+    t.fetchLive.mockRejectedValue(new Error('x'));
+    t.poller.start();
+    await flush();
+    await vi.advanceTimersByTimeAsync(10_000);
+    expect(t.onStatus).toHaveBeenLastCalledWith(false, 2, expect.any(Error));
+    t.fetchLive.mockImplementation(async () => live(1));
+    t.poller.pollNow();
+    await flush();
+    expect(t.onStatus).toHaveBeenLastCalledWith(true, 0);
+    expect(t.onSnapshot).toHaveBeenCalledTimes(1);
+    t.poller.stop();
+  });
+
+  it('rapid visibility changes poll at most once per 2 s', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.setHidden(false);
+    t.setHidden(false);
+    await flush();
+    expect(t.fetchLive).toHaveBeenCalledTimes(1);
+    await vi.advanceTimersByTimeAsync(POLL.minVisiblePollGapMs);
+    t.setHidden(false);
+    await flush();
+    expect(t.fetchLive).toHaveBeenCalledTimes(2);
+    t.poller.stop();
+  });
+});
+
+describe('shouldPoll', () => {
+  const day = 86_400_000;
+  const at = Date.parse('2027-02-27T00:00:00Z');
+  const el = (status: LiveElectionStatus, date: string | null) => ({ status, tentative_next_date: date });
+  it('Live always, Finalized never, Upcoming only near its tentative date', () => {
+    expect(shouldPoll(el('Live', null), at)).toBe(true);
+    expect(shouldPoll(el('Finalized', '2027-02-27'), at)).toBe(false);
+    expect(shouldPoll(el('Upcoming', null), at)).toBe(false);
+    expect(shouldPoll(el('Upcoming', '2027-02-27'), at - 2 * day)).toBe(true);
+    expect(shouldPoll(el('Upcoming', '2027-02-27'), at - 4 * day)).toBe(false);
+    expect(shouldPoll(el('Upcoming', '2027-02-27'), at + 30 * day)).toBe(true);
+    expect(shouldPoll(el('Upcoming', '2027-02-27'), at + 61 * day)).toBe(false);
   });
 });
 

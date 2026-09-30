@@ -22,7 +22,7 @@
 - [x] Regions table: `regions` (state_id, name, code) with Bihar's 9 regions seeded
 - [x] Person state/region tagging: `state_id` + `region_id` on `persons`, filterable via `GET /admin/persons?state_id=&region_id=`
 - [x] Bihar person-region seed: 382 persons tagged by constituency→region mapping
-- [x] SSE (Server-Sent Events) for the **admin** Live Console with Redis pub/sub backend (public viewers poll instead — see "CDN-ready live" below)
+- [x] SSE (Server-Sent Events) for the **admin** Live Console (`/admin/live/updates`, token-gated) with Redis pub/sub backend (public viewers poll instead — see "CDN-ready live" below)
   - Named events: `result-update`, `batch-update`, `ping` (`enrichment-progress` removed with the built-in AI)
 - [x] i18n support via react-i18next — chosen language persisted in `localStorage` (`lang`)
 - [x] Dark mode theming (including the map)
@@ -182,7 +182,7 @@
 ### Live Infrastructure (Redis Pub/Sub → SSE)
 - [x] `RedisModule` with `RedisService` — dual ioredis clients (pub + sub) for Redis pub/sub
 - [x] `LiveService` — publishes `result-update` and `tally-update` events to Redis channels
-- [x] SSE endpoint `/api/v1/live/updates?election_id=...` streams Redis events to browser
+- [x] SSE endpoint `/api/v1/admin/live/updates?election_id=...&token=...` (admin only, see CDN-ready live) streams Redis events to the Live Console
 - [x] 20s heartbeat ping to keep SSE connections alive; each connection's first frame carries `retry: 5000` (shared helper `backend/src/common/sse/shared-sse-stream.ts`; the live results stream is the only SSE endpoint)
 - [x] Streams end cleanly on shutdown (SIGTERM) before the HTTP server closes
 - [x] Admin `overrideResult()` auto-publishes `result-update` via `LiveService`
@@ -199,6 +199,9 @@
 - [x] CORS: public GET/HEAD answer `Access-Control-Allow-Origin: *` (CDN caches one copy for all sites); `Retry-After` and `X-Request-ID` exposed; preflights cached 2 h; 429s carry a standard `Retry-After`
 - [x] `TRUST_CF_CONNECTING_IP=true`: client IP from Cloudflare's `CF-Connecting-IP` (only when the origin accepts Cloudflare traffic only)
 - [x] Frontend poller (`frontend/src/model/live/poller.ts`, used by `useLiveSnapshot`): `/live` every 10 s + 0–3 s, paused while the tab is hidden and polled at once when visible; on a version change wait 0–2 s then fetch `results?v=`; exponential backoff with jitter (max 60 s) honouring `Retry-After`. Live elections only (status `Live` at page load). Ticker and map pulses come from diffing consecutive snapshots. GETs send no `Content-Type` (no CORS preflight)
+- [x] Fix round 1 (review task-5): triggers bump only on snapshot-column changes (+ `constituencies.type`), deadlock-safe ordering, one-transaction `CREATE OR REPLACE TRIGGER` migration; snapshot version + rows read in one REPEATABLE READ transaction; summary / vote share / full results Redis keys carry the live version (direct-SQL writes need no purge); per-election cache invalidation (other elections' single-flight/write-back unaffected); `/live` carries `status` (poller: Upcoming 60 s `/live` only → Live 10 s with snapshots → Finalized final snapshot then stop; Upcoming pages poll from 3 days before `tentative_next_date`); forward-only poller; live dashboard error + Retry after 3 failures; `Authorization` requests `no-store` and admin GETs add `_=`; `X-RateLimit-*` dropped from cacheable responses
+- [x] Admin live SSE moved to `GET /api/v1/admin/live/updates?election_id=&token=` — a 5-min single-election token from `POST /admin/live/sse-token` (SUPER_ADMIN/EDITOR; never accepted as a Bearer credential; redacted in logs), strict CORS allowlist, ≤ `SSE_MAX_CONNECTIONS` (200) per process else 503; the Live Console fetches a fresh token per (re)connect and reloads after a reconnect. The old public `/live/updates` is gone
+- [x] Origin shield: `ORIGIN_SHARED_SECRETS` (rotatable list) → every request except `GET/HEAD /api/v1/health/live` needs `X-Origin-Secret` (set by a Cloudflare Transform Rule; constant-time compare; stripped before logging) else 403 `no-store`; `TRUST_CF_CONNECTING_IP=true` refuses to start without it
 - [x] Load test: `cd scraper && npm run loadtest:viewers -- --viewers N --duration S [--base URL]` simulates viewers with the same algorithm and prints origin request counts from `/admin/status` before/after (DEPLOYMENT §5.6)
 
 ### OpenTelemetry Observability (SigNoz)

@@ -24,7 +24,7 @@ Not deployed: `scraper/` (seed generators and the live-count simulation; run loc
 ### What Redis is used for
 
 - **Cache:** results / constituency lists, 5–10 min TTL, and versioned live snapshots (`results.service.ts`, `constituencies.service.ts`). Identical concurrent misses share one load (single-flight in `CacheService.getOrSet`).
-- **Pub/sub:** admin result overrides are published and fanned out to the admin Live Console's SSE clients (`live.service.ts`). Public viewers poll (§2.2) and hold no connection.
+- **Pub/sub:** admin result overrides are published and fanned out to the admin Live Console's SSE clients (`live.service.ts`, `GET /admin/live/updates` with a 5-min SSE token, ≤ `SSE_MAX_CONNECTIONS` per process). Public viewers poll (§2.2) and hold no connection.
 - Nothing needs persistence: the cache refills itself and live messages only matter to connected viewers. On a single instance Redis is optional; it becomes required for pub/sub once there is more than one backend instance.
 
 ## 2. Architecture
@@ -68,11 +68,13 @@ Expected origin load on counting day: roughly (upper-tier PoPs × 1 request / 5 
 
 **Implementation (branch `fix/backend-hardening`):**
 - Version: table `election_live_state` (migration 015). Statement-level DB triggers on `results` (insert/update/delete), `candidates` and `parties` (update) bump it inside the writing transaction, so every writer — API overrides, the simulation's direct SQL, seeds, admin edits — moves it, and a committed change and its version become visible together. Value: `GREATEST(version + 1, now in epoch ms)` — never decreases, and a rebuilt database never reuses a version a CDN may still hold as immutable.
-- `/live` reads it through a 1 s in-process memo with single-flight; override services forget the memo after commit, purge the Redis caches, and only then publish the admin SSE event (pipeline review M5).
-- `results?v=<current>` returns `{ version, results, summary, voteShare }` — results rows, seat tally and vote share computed from **one** query, so map, scoreboard and standings update atomically. It is cached in Redis under `election:<id>:snapshot:v<version>` (never under the unversioned keys a purge race could leave stale). `v` older than current → `302` to the current URL (`s-maxage=5`); `v` newer (a poll raced ahead of this instance) → current data with `no-store`. Without `v` the endpoint is unchanged (rows array, `s-maxage=10, stale-while-revalidate=30`).
-- Headers: `@CacheControl()` opt-in per public controller; everything else (admin, auth, health) and **every error** is `no-store`, so the CDN never caches a 4xx/5xx. SSE keeps Nest's `no-cache`. Success bodies have no `requestId`/`timestamp` (`X-Request-ID` and `Date` headers instead).
+- UPDATE triggers bump only when a snapshot column changes (results votes/status/margin/ids, candidate name/party, constituency type, party name/colour); the migration runs in one transaction with `CREATE OR REPLACE TRIGGER`, so re-running it never leaves a moment without triggers. After a DB restore / PITR run `UPDATE election_live_state SET version = GREATEST(version + 1, (extract(epoch FROM clock_timestamp()) * 1000)::bigint);` so no version number is reused.
+- `/live` returns `{ version, status, updatedAt, declared, total }` through a 1 s in-process memo with single-flight (`s-maxage=5` while `Live`, `30` otherwise); override services forget the memo after commit, purge the Redis caches, and only then publish the admin SSE event (pipeline review M5). Admin election PATCH/finalize also forget the memo, so a status flip shows at once.
+- `results?v=<current>` returns `{ version, results, summary, voteShare }` — results rows, seat tally and vote share computed from **one** query, read together with the version in one `REPEATABLE READ` transaction, so a snapshot labelled V holds exactly version V's data and map, scoreboard and standings update atomically. It is cached in Redis under `election:<id>:snapshot:v<version>` only when the version read equals V (otherwise served `no-store`). `v` older than current → `302` to the current URL (`s-maxage=5`); `v` newer (a poll raced ahead of this instance) → current data with `no-store`. Without `v` the endpoint is unchanged (rows array, `s-maxage=10, stale-while-revalidate=30`).
+- The unversioned results-derived Redis caches (`summary`, `vote-share`, `full-results`) are keyed by the live version too (`…:v<version>`), so a direct-SQL write (simulation, manual fix) moves readers to fresh keys without a purge; the CDN's 60 s + swr remains. `CacheService` invalidations only detach in-flight loads of the keys they match (per election), and `:v<version>` keys are never detached.
+- Headers: `@CacheControl()` opt-in per public controller; everything else (admin, auth, health), **every error**, and every request carrying `Authorization` (the admin panel, which also appends `_=` to its GETs) is `no-store`, so the CDN never caches a 4xx/5xx or an admin read. Publicly cacheable responses drop the per-client `X-RateLimit-*` headers. SSE keeps Nest's `private, no-cache`. Success bodies have no `requestId`/`timestamp` (`X-Request-ID` and `Date` headers instead).
 - CORS: Cloudflare does not vary its cache on `Origin`, so public GET/HEAD responses send `Access-Control-Allow-Origin: *` (no cookies are used; the data is public). Admin/auth and writes keep the exact allowlist. `Retry-After` and `X-Request-ID` are exposed; 429s carry a standard `Retry-After`.
-- Browser: `frontend/src/model/live/poller.ts` (see the bullets above) runs for elections whose status is `Live` at page load; its GETs send no custom headers, so they are CORS "simple" requests with no preflight (OPTIONS is never CDN-cached). The live ticker and map pulses are diffs between consecutive snapshots.
+- Browser: `frontend/src/model/live/poller.ts` runs for elections that are `Live`, or `Upcoming` within 3 days before to 60 days after `tentative_next_date`. Cadence follows the `/live` status: Upcoming 60 s + 0–15 s (`/live` only), Live 10 s + 0–3 s with snapshots, Finalized → final snapshot then stop — so a page opened before counting picks up Live without a reload. It only moves forward (never fetches or shows an older version from a stale CDN colo). After 3 consecutive failures with no snapshot the dashboard shows an error with Retry (polls at once). Its GETs send no custom headers, so they are CORS "simple" requests with no preflight (OPTIONS is never CDN-cached). The live ticker and map pulses are diffs between consecutive snapshots.
 
 ## 3. Free-tier limits to plan around
 
@@ -144,7 +146,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 - Root directory: `backend`
 - Build: `npm ci --include=dev && npx prisma generate && npm run build`
 - Start: `node dist/main`
-- Health check path: `/api/v1/health/live` (no I/O). Readiness (DB + Redis, 503 when degraded): `/api/v1/health/ready`.
+- Health check path: `/api/v1/health/live` (no I/O; the only route exempt from the origin shield, §5.4). Readiness (DB + Redis, 503 when degraded): `/api/v1/health/ready` — monitor it through Cloudflare (`https://api.<domain>/…`), since the shield rejects direct calls.
 - Environment:
   ```
   NODE_ENV=production
@@ -156,7 +158,9 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
   # Defaults, set only to change them:
-  # TRUST_PROXY_HOPS=1  TRUST_CF_CONNECTING_IP=false  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5
+  ORIGIN_SHARED_SECRETS=<openssl rand -hex 32>   # same value as the Cloudflare Transform Rule (§5.4)
+  TRUST_CF_CONNECTING_IP=true                     # only with ORIGIN_SHARED_SECRETS (the backend refuses to start otherwise)
+  # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5  SSE_MAX_CONNECTIONS=200
   # LOG_LEVEL=info  ALLOW_REGISTRATION=false  CORS_ORIGIN_REGEX=
   ```
   (`PORT` is injected by Render.) Full list with comments: `.env.example`.
@@ -183,7 +187,14 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
    SPA fallback: add `public/_redirects` with `/* /index.html 200` to each app (Pages serves `index.html` for unknown paths when no 404.html exists, but make it explicit). The admin dev proxy for `/symbols` (`admin/vite.config.ts`) does not exist in production — serve party symbols from `https://app.<domain>/symbols/…` or copy them into the admin build.
 3. **API hostname:** DNS `CNAME api → <service>.onrender.com`, **proxied** (orange cloud); add `api.<domain>` as a custom domain in Render so TLS validates. SSL mode **Full (strict)**.
 4. **Caching:** Cloudflare caches only what the origin marks cacheable once a Cache Rule enables it: add a Cache Rule for `api.<domain>/api/v1/*` → "Eligible for cache", **respect origin Cache-Control**, keep the **query string in the cache key** (`?v=` selects the snapshot); enable **Smart Tiered Cache** (Caching → Tiered Cache). Admin/auth responses and all errors send `no-store` and are never cached. Check after the first deploy: `curl -sI https://api.<domain>/api/v1/elections/<id>/live` twice → `cf-cache-status: HIT` (or `REVALIDATED`) on the second call within 5 s.
-5. **Render env / client IP:** `CORS_ORIGINS=https://app.<domain>,https://admin.<domain>`. With Cloudflare in front there is one more proxy hop, so re-verify `TRUST_PROXY_HOPS` (§5.3; likely **2**: Cloudflare + Render). `TRUST_CF_CONNECTING_IP=true` (req.ip = Cloudflare's `CF-Connecting-IP`) is simpler and exact, but **only safe when the origin accepts traffic from Cloudflare alone** — otherwise anyone can call `<service>.onrender.com` directly with a forged header and pick their own rate-limit bucket. Render has no inbound IP allowlist, so by default keep `TRUST_PROXY_HOPS` (which has the same direct-origin caveat for `X-Forwarded-For`) and rely on the Cloudflare rate-limiting rule for `/auth/*` (step 6); switch to `TRUST_CF_CONNECTING_IP=true` only once direct origin access is blocked (e.g. a Cloudflare Transform Rule adding a secret header that the origin requires — not implemented).
+5. **Origin shield + client IP:** Render has no inbound IP allowlist, so anyone could call `<service>.onrender.com` directly — bypassing the CDN and forging `X-Forwarded-For` / `CF-Connecting-IP` to pick their own rate-limit bucket. Close it:
+   1. `openssl rand -hex 32` → Cloudflare → Rules → **Transform Rules → Modify Request Header** (free plan): expression `http.host eq "api.<domain>"`, action **Set static** `X-Origin-Secret` = `<secret>` ("Set" overwrites anything a client sends; the header only travels edge → origin).
+   2. Render env `ORIGIN_SHARED_SECRETS=<secret>` (comma list for rotation: add the new value at origin, switch the Transform Rule, then remove the old one). Every request without a matching header gets `403 no-store` before any other work; only `GET/HEAD /api/v1/health/live` is exempt (Render's health checker). The header is stripped before logging.
+   3. Then set `TRUST_CF_CONNECTING_IP=true` (req.ip = Cloudflare's `CF-Connecting-IP`, exact, no hop counting — a wrong `TRUST_PROXY_HOPS` would key buckets on Cloudflare egress IPs and 429 whole regions). The backend refuses to start with `TRUST_CF_CONNECTING_IP=true` and no `ORIGIN_SHARED_SECRETS`.
+   4. Check: `curl -si https://<service>.onrender.com/api/v1/elections` → 403; through `api.<domain>` → 200. The boot log says `Origin shield on (1 secret)`.
+   `CORS_ORIGINS=https://app.<domain>,https://admin.<domain>` as before.
+   Cache-busting: `?_=<anything>` (the admin panel's cache-buster) and random `?v=` values miss the CDN by design; per-IP throttling bounds them — optionally add a Cloudflare rate-limiting rule on requests with `_=` in the query.
+   Snapshot size: an LS snapshot is ~490 KB raw (~80 KB gzipped); check it fits the Upstash plan's max request/value size (a failed SET only means one DB load per version per instance, bounded by single-flight).
 6. **Security (free):** Cloudflare rate-limiting rule on `api.<domain>/api/v1/auth/*`; "Bot Fight Mode" optional.
 
 ### 5.5 Smoke test
@@ -193,8 +204,9 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 3. Set an election to `Live`, open its dashboard, then in the admin Live Console apply one override → the Live Console updates at once (SSE) and the dashboard updates within ~20 s without reload (polling). Set the status back afterwards.
 4. Wait > 15 min idle → reload: cold start works; polling resumes on its own (no connection to re-establish).
 
-Counting-day runbook note: set the election's status to `Live` well before counting starts (e.g. the evening before). Viewers only start polling when the election is `Live` at page load, and `/elections` is CDN-cached for up to ~60 s (+ stale-while-revalidate), so pages opened just before the flip keep showing the old status until they reload.
 5. Admin → System status (SUPER_ADMIN): uptime, non-zero requests, DB latency and both Redis connections show as ok. Counters are in memory and reset on every restart/cold start.
+
+Counting-day runbook note: set the election's `tentative_next_date` to the counting day so open Upcoming pages poll (`/live` every ~60 s from 3 days before) and switch to Live by themselves when the status flips; flipping to `Live` early is then nice-to-have. Without a date, pages only poll when the election is `Live` at page load (and `/elections` is CDN-cached ~60 s + swr).
 
 Uptime monitoring: see §5.7.
 
@@ -230,7 +242,7 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
 | D6 | Counting-day load / Upstash quota | **CDN-ready live** (§2.2): CDN caching + polling + versioned snapshots + single-flight; in-process cache optional after that |
 | D7 | ~~AI enrichment runs~~ | **Removed (2026-09-30):** no AI inside the app; AI-assisted data is produced offline (Claude Code playbooks) and loaded like scraped data |
 | D8 | Preview deployments | Cloudflare Pages preview URLs: allow via `CORS_ORIGIN_REGEX` anchored to the project's `*.pages.dev` previews, or keep exact origins only — decide when setting up Pages |
-| D9 | Deploy flow | Auto-deploy both Pages projects on push to `main`; manual backend deploy + migrations (`setup.sh` with `DIRECT_URL`) until CI exists; deploy migration 014 together with the backend that no longer uses the AI columns |
+| D9 | Deploy flow | Auto-deploy both Pages projects on push to `main`; manual backend deploy + migrations (`setup.sh` with `DIRECT_URL`) until CI exists; deploy migration 014 together with the backend that no longer uses the AI columns; apply migration 015 (`setup.sh`) **before** deploying the backend that reads `election_live_state` |
 | D10 | Backups | Scheduled `pg_dump` (GitHub Action) before counting days, plus Neon's point-in-time window |
 | D11 | Node version | 20.x (pinned in `engines`) |
 | D12 | Secrets ownership | Name an owner for the Cloudflare/Render/Neon/Upstash accounts and `JWT_SECRET` rotation |

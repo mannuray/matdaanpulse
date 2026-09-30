@@ -5,15 +5,20 @@ import { BulkOverrideService } from './bulk-override.service';
 import { RedisModule } from '../redis/redis.module';
 import { AuditLogModule } from '../audit-log/audit-log.module';
 import { ResultsModule } from '../results/results.module';
-import { LiveController } from './live.controller';
+import { LiveController, LiveSseAccessGuard, SseConnections } from './live.controller';
+import { LiveSseTokenService } from './live-sse-token.service';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [RedisModule, AuditLogModule, ResultsModule],
+  imports: [RedisModule, AuditLogModule, ResultsModule, AuthModule],
   controllers: [LiveController],
   providers: [
     { provide: LivePublisher, useClass: LiveService },
     ResultOverrideService,
-    BulkOverrideService
+    BulkOverrideService,
+    LiveSseTokenService,
+    SseConnections,
+    LiveSseAccessGuard,
   ],
   exports: [LivePublisher, ResultOverrideService, BulkOverrideService],
 })

@@ -1,0 +1,85 @@
+import { Controller, Get, Headers, INestApplication } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { configureApp } from '../../app.setup';
+import { assertOriginConfig, matchesOriginSecret, parseOriginSecrets } from './origin-shield';
+
+@Controller()
+class ProbeController {
+  @Get('health/live')
+  live() {
+    return { status: 'ok' };
+  }
+
+  @Get('health/ready')
+  ready() {
+    return { status: 'ok' };
+  }
+
+  @Get('echo')
+  echo(@Headers() headers: Record<string, string>) {
+    return { sawSecret: 'x-origin-secret' in headers };
+  }
+}
+
+describe('origin shield (ORIGIN_SHARED_SECRETS)', () => {
+  let app: INestApplication;
+  let base: string;
+
+  beforeAll(async () => {
+    const moduleRef = await Test.createTestingModule({ controllers: [ProbeController] }).compile();
+    app = moduleRef.createNestApplication<NestExpressApplication>({ bodyParser: false, logger: false });
+    configureApp(app as NestExpressApplication, { ORIGIN_SHARED_SECRETS: 'new-secret, old-secret' });
+    await app.listen(0);
+    base = `${await app.getUrl()}/api/v1`.replace('[::1]', 'localhost');
+  });
+  afterAll(() => app.close());
+
+  const get = (path: string, secret?: string, method = 'GET') =>
+    fetch(`${base}${path}`, { method, headers: secret ? { 'X-Origin-Secret': secret } : {} });
+
+  it('missing or wrong secret → 403 no-store', async () => {
+    for (const secret of [undefined, 'wrong', 'new-secret-but-longer']) {
+      const res = await get('/echo', secret);
+      expect(res.status).toBe(403);
+      expect(res.headers.get('cache-control')).toBe('no-store');
+    }
+  });
+
+  it('either rotated secret passes, and handlers never see the header', async () => {
+    for (const secret of ['new-secret', 'old-secret']) {
+      const res = await get('/echo', secret);
+      expect(res.status).toBe(200);
+      expect((await res.json()).data.sawSecret).toBe(false);
+    }
+  });
+
+  it('GET/HEAD /health/live is exempt; /health/ready is not; OPTIONS is checked too', async () => {
+    expect((await get('/health/live')).status).toBe(200);
+    expect((await get('/health/live', undefined, 'HEAD')).status).toBe(200);
+    expect((await get('/health/live?x=1')).status).toBe(200);
+    expect((await get('/health/ready')).status).toBe(403);
+    expect((await get('/health/live/extra')).status).toBe(403);
+    expect((await get('/echo', undefined, 'OPTIONS')).status).toBe(403);
+  });
+});
+
+describe('origin shield config', () => {
+  it('parses a comma list', () => {
+    expect(parseOriginSecrets({ ORIGIN_SHARED_SECRETS: ' a , b ,,' })).toEqual(['a', 'b']);
+    expect(parseOriginSecrets({})).toEqual([]);
+  });
+
+  it('refuses TRUST_CF_CONNECTING_IP=true without a secret', () => {
+    expect(() => assertOriginConfig({ TRUST_CF_CONNECTING_IP: 'true' })).toThrow(/ORIGIN_SHARED_SECRETS/);
+    expect(() => assertOriginConfig({ TRUST_CF_CONNECTING_IP: 'true', ORIGIN_SHARED_SECRETS: 'x' })).not.toThrow();
+    expect(() => assertOriginConfig({})).not.toThrow();
+  });
+
+  it('matches in constant time against every secret', () => {
+    expect(matchesOriginSecret('b', ['a', 'b'])).toBe(true);
+    expect(matchesOriginSecret('c', ['a', 'b'])).toBe(false);
+    expect(matchesOriginSecret('', ['a'])).toBe(false);
+    expect(matchesOriginSecret(['a'], ['a'])).toBe(false);
+  });
+});

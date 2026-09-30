@@ -7,6 +7,7 @@ import { useTheme } from '../theme/useTheme';
 import { forTheme, type ThemeName } from '../../model/derive/themeColor';
 import { leaderMap } from '../../model/live/liveUpdates';
 import { useLiveSnapshot } from './useLiveSnapshot';
+import { shouldPoll, type LiveElectionStatus } from '../../model/live/poller';
 import { buildStateByConstId, displayNameFromConstId } from '../../model/geo/regionMatching';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import type { Election, MapTab, ResultRow, ManifestData, StandingsData, VoteShare } from '../../model/types';
@@ -62,6 +63,10 @@ export interface DashboardViewModel {
   refreshAll: () => void;
   /** Live election: true while polling succeeds (false for elections that are not live). */
   liveConnected: boolean;
+  /** Latest status from /live (a page opened while Upcoming sees the flip to Live), else the page-load status. */
+  liveStatus: LiveElectionStatus | null;
+  /** Version of the snapshot on screen (null when the data did not come from a live snapshot). */
+  liveVersion: number | null;
 }
 
 const PENDING_FILL = 'var(--map-default-fill)';
@@ -83,11 +88,15 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
   const [spoilerFilter, setSpoilerFilter] = useState<string | null>(null);
 
   // 1. Data Fetching (SOLID: DIP - Cache keys managed by Service)
-  // A live election polls a versioned snapshot instead: results, seat tally and vote share
-  // then come from one snapshot, so the map, scoreboard and standings update together.
+  // A live (or soon-live) election polls a versioned snapshot: results, seat tally and vote
+  // share then come from one snapshot, so the map, scoreboard and standings update together.
+  // Live at page load → only the snapshot is fetched; Upcoming → the plain endpoints until
+  // the first snapshot arrives.
   const isLive = election?.status === 'Live';
+  const polling = useMemo(() => (election ? shouldPoll(election) : false), [election]);
   const fetched = election && !isLive ? election.id : null;
-  const live = useLiveSnapshot(election?.id, isLive);
+  const live = useLiveSnapshot(election?.id, polling);
+  const snap = live.snapshot;
 
   const { data: fetchedPartySeats, loading: aLoading, error: aError, refetch: refetchAlliances } = useApi(
     () => fetched ? getAlliances(fetched) : Promise.resolve([]),
@@ -107,9 +116,9 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     { key: fetched ? ElectionService.getCacheKey(fetched, 'results') : undefined }
   );
 
-  const rawPartySeats = isLive ? live.snapshot?.summary ?? null : fetchedPartySeats;
-  const rawVoteShare = isLive ? live.snapshot?.voteShare ?? null : fetchedVoteShare;
-  const results = isLive ? live.snapshot?.results ?? null : fetchedResults;
+  const rawPartySeats = snap ? snap.summary : isLive ? null : fetchedPartySeats;
+  const rawVoteShare = snap ? snap.voteShare : isLive ? null : fetchedVoteShare;
+  const results = snap ? snap.results : isLive ? null : fetchedResults;
 
   const { data: rawManifest } = useApi(
     () => election ? getManifest(election.id) : Promise.resolve(null),
@@ -289,11 +298,13 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     setUserTracked(base.filter(x => x !== id));
   }, [userTracked, displayedIds, setUserTracked]);
 
+  const { pollNow } = live;
   const refreshAll = useCallback(() => {
+    if (polling) pollNow();
     refetchAlliances();
     refetchVoteShare();
     refetchResults();
-  }, [refetchAlliances, refetchVoteShare, refetchResults]);
+  }, [polling, pollNow, refetchAlliances, refetchVoteShare, refetchResults]);
 
 
   return {
@@ -309,9 +320,9 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     voteShare: voteShare || [],
     spoilerData,
     addableItems,
-    // Live: loading until the first snapshot; the poller retries errors by itself.
-    loading: isLive ? !live.snapshot : aLoading || vLoading || rLoading,
-    error: isLive ? null : aError || rError,
+    // Live: loading until the first snapshot; after repeated poll failures an error (with Retry).
+    loading: snap ? false : isLive ? !live.error : aLoading || vLoading || rLoading,
+    error: snap ? null : isLive ? live.error : aError || rError,
     modalConstId,
     setModalConstId,
     mapTab,
@@ -323,5 +334,7 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     setSpoilerFilter,
     refreshAll,
     liveConnected: live.connected,
+    liveStatus: live.status ?? election?.status ?? null,
+    liveVersion: snap?.version ?? null,
   };
 }

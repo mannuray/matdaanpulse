@@ -1,15 +1,14 @@
-import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe, BadRequestException, Res } from '@nestjs/common';
-import type { Response } from 'express';
+import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe, BadRequestException, Req, Res } from '@nestjs/common';
+import type { Request, Response } from 'express';
 import { ElectionsService } from './elections.service';
 import { ResultsService } from '../results/results.service';
 import { ConstituenciesService } from '../constituencies/constituencies.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
 import { ElectionSummaryDto, ElectionDetailDto } from './dto/election-response.dto';
 import { ElectionsQueryDto, ResultsQueryDto } from '../../common/dto/query.dto';
-import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
+import { CACHE_CONTROL, CacheControl, applyCacheControl } from '../../common/http/cache-control';
 import { successEnvelope } from '../../common/interceptors/transform.interceptor';
 import { LiveStateService } from '../results/live-state.service';
-import { API_PREFIX } from '../../app.setup';
 
 @Controller('elections')
 @CacheControl(CACHE_CONTROL.PUBLIC)
@@ -21,11 +20,15 @@ export class ElectionsController {
     private readonly liveState: LiveStateService,
   ) {}
 
-  /** Polled by viewers (via the CDN): `{ version, updatedAt, declared, total }`. */
+  /**
+   * Polled by viewers (via the CDN): `{ version, status, updatedAt, declared, total }`.
+   * CDN-cached 5 s while counting (Live), 30 s otherwise.
+   */
   @Get(':id/live')
-  @CacheControl(CACHE_CONTROL.LIVE)
-  getLive(@Param('id', ParseUUIDPipe) id: string) {
-    return this.liveState.get(id);
+  async getLive(@Param('id', ParseUUIDPipe) id: string, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    const state = await this.liveState.get(id);
+    applyCacheControl(req, res, state.status === 'Live' ? CACHE_CONTROL.LIVE : CACHE_CONTROL.LIVE_IDLE);
+    return state;
   }
 
   @Get()
@@ -76,22 +79,27 @@ export class ElectionsController {
   async getResults(
     @Param('id', ParseUUIDPipe) id: string,
     @Query() query: ResultsQueryDto,
+    @Req() req: Request,
     @Res() res: Response,
   ) {
     if (query.v === undefined) {
       const rows = await this.resultsService.getResults(id);
-      res.setHeader('Cache-Control', CACHE_CONTROL.RESULTS_LATEST);
+      applyCacheControl(req, res, CACHE_CONTROL.RESULTS_LATEST);
       res.json(successEnvelope(rows));
       return;
     }
     const { version } = await this.liveState.get(id);
     if (query.v < version) {
-      res.setHeader('Cache-Control', CACHE_CONTROL.REDIRECT);
-      res.redirect(302, `/${API_PREFIX}/elections/${id}/results?v=${version}`);
+      applyCacheControl(req, res, CACHE_CONTROL.REDIRECT);
+      // Same path the request came in on (whatever prefix it is mounted under), current version.
+      const path = (req.originalUrl ?? req.url).split('?')[0];
+      res.redirect(302, `${path}?v=${version}`);
       return;
     }
+    // Read consistently (version + rows in one transaction). Immutable only when the
+    // snapshot really is version v; otherwise (v ahead of us, or the data moved on) no-store.
     const snapshot = await this.resultsService.getSnapshot(id, version);
-    res.setHeader('Cache-Control', query.v === version ? CACHE_CONTROL.IMMUTABLE : CACHE_CONTROL.NO_STORE);
+    applyCacheControl(req, res, snapshot.version === query.v ? CACHE_CONTROL.IMMUTABLE : CACHE_CONTROL.NO_STORE);
     res.json(successEnvelope(snapshot));
   }
 

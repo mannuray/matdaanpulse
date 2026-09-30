@@ -35,7 +35,7 @@ CREATE INDEX IF NOT EXISTS idx_const_analysis_election ON constituency_analysis(
 DO $$
 BEGIN
     IF EXISTS (SELECT 1 FROM information_schema.columns
-               WHERE table_name = 'constituency_analysis' AND column_name = 'ai_status') THEN
+               WHERE table_schema = current_schema() AND table_name = 'constituency_analysis' AND column_name = 'ai_status') THEN
         CREATE INDEX IF NOT EXISTS idx_const_analysis_status ON constituency_analysis(ai_status);
     END IF;
 END $$;

@@ -15,11 +15,13 @@ import { ElectionsQueryDto } from './common/dto/query.dto';
 import { HealthController } from './modules/health/health.controller';
 import { AuthController } from './modules/auth/auth.controller';
 import { AuthService } from './modules/auth/auth.service';
-import { LiveController } from './modules/live/live.controller';
+import { LiveController, LiveSseAccessGuard, SseConnections } from './modules/live/live.controller';
 import { LivePublisher } from './modules/live/live.service';
 import { MetricsService } from './modules/metrics/metrics.service';
 import { PrismaService } from './modules/prisma/prisma.service';
 import { RedisService } from './modules/redis/redis.service';
+import { JwtService } from '@nestjs/jwt';
+import { LiveSseTokenService } from './modules/live/live-sse-token.service';
 
 // Stand-ins only where the real controller can't run without a DB/guards:
 // a plain public route, and the bulk-override path (real one needs JWT guards).
@@ -68,6 +70,9 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
   const livePublisher = { streamEvents: jest.fn(() => EMPTY), publish: jest.fn() };
   const metrics = { sseConnections: { add: jest.fn() } };
   const EID = 'b2c3d4e5-f6a7-8901-bcde-f12345678901';
+  const sseTokens = new LiveSseTokenService(new JwtService({ secret: 'test-secret' }));
+  const sseToken = sseTokens.issue('u1', EID).token;
+  const sseConnections = { open: 0, max: 200 };
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -77,6 +82,9 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
         { provide: AuthService, useValue: authService },
         { provide: ConfigService, useValue: { get: () => undefined } },
         { provide: LivePublisher, useValue: livePublisher },
+        { provide: LiveSseTokenService, useValue: sseTokens },
+        { provide: SseConnections, useValue: sseConnections },
+        LiveSseAccessGuard,
         { provide: MetricsService, useValue: metrics },
         { provide: APP_GUARD, useClass: ThrottlerGuard },
         { provide: PrismaService, useValue: prisma },
@@ -146,12 +154,42 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
       prisma.$queryRaw.mockResolvedValue([1]);
       redis.ping.mockResolvedValue(undefined);
       for (let i = 0; i < 8; i++) {
-        const sse = await get(`/live/updates?election_id=${EID}`, '10.0.3.1');
+        const sse = await get(`/admin/live/updates?election_id=${EID}&token=${sseToken}`, '10.0.3.1');
         expect(sse.status).toBe(200);
         await sse.text();
         expect((await get('/health/live', '10.0.3.1')).status).toBe(200);
         expect((await get('/health/ready', '10.0.3.1')).status).toBe(200);
       }
+    });
+  });
+
+  describe('admin live SSE', () => {
+    it('needs a valid SSE token for that election; CORS keeps the allowlist', async () => {
+      const noToken = await get(`/admin/live/updates?election_id=${EID}`, '10.0.8.1');
+      expect(noToken.status).toBe(401);
+      const other = sseTokens.issue('u1', 'c3d4e5f6-a7b8-9012-cdef-234567890abc').token;
+      expect((await get(`/admin/live/updates?election_id=${EID}&token=${other}`, '10.0.8.1')).status).toBe(401);
+      const expired = new JwtService({ secret: 'test-secret' }).sign({ sub: 'u1', scope: 'live-sse', election_id: EID }, { expiresIn: -10 });
+      expect((await get(`/admin/live/updates?election_id=${EID}&token=${expired}`, '10.0.8.1')).status).toBe(401);
+      const ok = await fetch(`${base}/admin/live/updates?election_id=${EID}&token=${sseToken}`, { headers: { Origin: 'http://localhost:3081' } });
+      expect(ok.status).toBe(200);
+      expect(ok.headers.get('access-control-allow-origin')).toBe('http://localhost:3081');
+      await ok.text();
+    });
+
+    it('503 once the per-process connection cap is reached', async () => {
+      sseConnections.open = sseConnections.max;
+      try {
+        const res = await get(`/admin/live/updates?election_id=${EID}&token=${sseToken}`, '10.0.8.3');
+        expect(res.status).toBe(503);
+        expect(res.headers.get('cache-control')).toBe('no-store');
+      } finally {
+        sseConnections.open = 0;
+      }
+    });
+
+    it('the old public /live/updates path is gone', async () => {
+      expect((await get(`/live/updates?election_id=${EID}`, '10.0.8.2')).status).toBe(404);
     });
   });
 
@@ -268,8 +306,13 @@ describe('throttle metadata on the real controllers', () => {
     expect(isAuthRoute(ctx(LiveController))).toBe(false);
   });
 
-  it.each([LiveController, HealthController])('%p skips both throttlers', (cls) => {
-    expect(Reflect.getMetadata('THROTTLER:SKIPpublic', cls)).toBe(true);
-    expect(Reflect.getMetadata('THROTTLER:SKIPauth', cls)).toBe(true);
+  it.each([LiveController.prototype.updates, HealthController])('%p skips both throttlers', (target) => {
+    expect(Reflect.getMetadata('THROTTLER:SKIPpublic', target)).toBe(true);
+    expect(Reflect.getMetadata('THROTTLER:SKIPauth', target)).toBe(true);
+  });
+
+  it('the SSE token endpoint is throttled (only the stream skips)', () => {
+    expect(Reflect.getMetadata('THROTTLER:SKIPpublic', LiveController)).toBeUndefined();
+    expect(Reflect.getMetadata('THROTTLER:SKIPpublic', LiveController.prototype.sseToken)).toBeUndefined();
   });
 });
