@@ -83,6 +83,11 @@ export class RedisService implements OnModuleInit {
     return this.sub.status === 'ready';
   }
 
+  /** Connection states for the admin status page (no hostnames). */
+  connectionStates(): { pubReady: boolean; subReady: boolean } {
+    return { pubReady: this.pub.status === 'ready', subReady: this.sub.status === 'ready' };
+  }
+
   /** Step 1 of shutdown: end every SSE stream so the HTTP server can close. */
   completeStreams() {
     this.shutdownSubject.next();

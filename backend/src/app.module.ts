@@ -14,6 +14,8 @@ import { LiveModule } from './modules/live/live.module';
 import { ConstituenciesModule } from './modules/constituencies/constituencies.module';
 import { SearchModule } from './modules/search/search.module';
 import { RedisModule } from './modules/redis/redis.module';
+import { StatusModule } from './modules/status/status.module';
+import { StatusMiddleware } from './modules/status/status.middleware';
 import { MetricsModule } from './modules/metrics/metrics.module';
 import { PrismaModule } from './modules/prisma/prisma.module';
 import { AuditLogModule } from './modules/audit-log/audit-log.module';
@@ -35,6 +37,7 @@ import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.se
     }),
     PrismaModule,
     RedisModule,
+    StatusModule,
     MetricsModule,
     AuditLogModule,
     ElectionsModule,
@@ -60,6 +63,6 @@ import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.se
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggingMiddleware).forRoutes('*');
+    consumer.apply(LoggingMiddleware, StatusMiddleware).forRoutes('*');
   }
 }

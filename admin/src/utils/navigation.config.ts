@@ -20,4 +20,5 @@ export const NAV_SCHEMA: NavItem[] = [
   { path: '/overrides', label: 'Live Console', icon: '\u270E', roles: ['SUPER_ADMIN', 'EDITOR'] },
   { path: '/users', label: 'Users', icon: '\u263B', roles: ['SUPER_ADMIN'] },
   { path: '/logs', label: 'Audit Logs', icon: '\u2630', roles: ['SUPER_ADMIN'] },
+  { path: '/status', label: 'System status', icon: '\u2665', roles: ['SUPER_ADMIN'] },
 ];

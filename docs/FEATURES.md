@@ -330,6 +330,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` Â
 - [x] `normalizeConstId` uses const_no only for VS elections (fixes 18 name spelling mismatches across years)
 - [x] Incumbent badge shows "Contesting" before counting, "Retained/Lost" after results
 - [x] Candidate table hides vote/share/status columns when no votes yet
+- [x] System status (admin, SUPER_ADMIN only): `GET /api/v1/admin/status` + admin page "System status". In-memory counters (single instance, reset on restart, O(1) per request): uptime/version/git sha/memory; HTTP totals by status class, 429 count, 5-min and 60-min request and 5xx rates (per-minute ring buffer), 10 slowest routes by p95 over 60 min (route templates, bounded 200-sample reservoirs); cache hits/misses/Redis fallbacks; Redis pub/sub states and publish counts/errors; SSE connections, events published, result overrides (per min, last at); DB `SELECT 1` latency (2 s timeout) and pool `connection_limit`. No secrets or hostnames in the response, `Cache-Control: no-store`. Works with OTel off; MetricsService call sites feed both OTel and StatusService. Page auto-refreshes every 10 s while visible.
 
 ## In progress
 

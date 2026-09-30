@@ -1,8 +1,10 @@
 import { Logger } from '@nestjs/common';
 import { CacheService } from './cache.service';
 
+const status = { recordCacheHit: jest.fn(), recordCacheMiss: jest.fn(), recordCacheFallback: jest.fn() } as any;
+
 function make(redis: Partial<Record<'get' | 'set' | 'del' | 'delByPattern', jest.Mock>>) {
-  const svc = new CacheService(redis as any);
+  const svc = new CacheService(redis as any, status);
   const warn = jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   return { svc, warn };
 }

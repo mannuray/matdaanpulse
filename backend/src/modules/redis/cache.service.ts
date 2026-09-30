@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { RedisService } from './redis.service';
+import { StatusService } from '../status/status.service';
 import { RateLimitedLog } from '../../common/util/rate-limited-log';
 
 /** Cache TTLs (seconds). */
@@ -23,7 +24,10 @@ export class CacheService {
   private readonly logger = new Logger(CacheService.name);
   private readonly logGate = new RateLimitedLog(60_000);
 
-  constructor(private readonly redis: RedisService) {}
+  constructor(
+    private readonly redis: RedisService,
+    private readonly status: StatusService,
+  ) {}
 
   async getOrSet<T>(key: string, ttlSeconds: number, loader: () => Promise<T>): Promise<T> {
     let cached: string | null = null;
@@ -34,12 +38,15 @@ export class CacheService {
     }
     if (cached !== null && cached !== undefined) {
       try {
-        return JSON.parse(cached) as T;
+        const value = JSON.parse(cached) as T;
+        this.status.recordCacheHit();
+        return value;
       } catch (err) {
         this.warn('parse', err);
       }
     }
 
+    this.status.recordCacheMiss();
     const value = await loader();
     try {
       await this.redis.set(key, JSON.stringify(value), ttlSeconds);
@@ -82,6 +89,7 @@ export class CacheService {
   }
 
   private warn(op: string, err: unknown) {
+    this.status.recordCacheFallback();
     if (this.logGate.shouldLog('cache')) {
       this.logger.warn(`Redis cache ${op} failed, using the database (logged once a minute): ${(err as Error).message}`);
     }

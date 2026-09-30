@@ -11,6 +11,7 @@ import ManifestDetail from './pages/ManifestDetail';
 import ManifestEditor from './pages/ManifestEditor';
 import UserManager from './pages/UserManager';
 import AuditLogs from './pages/AuditLogs';
+import SystemStatus from './pages/SystemStatus';
 import PartyManager from './pages/PartyManager';
 import PartyDetail from './pages/PartyDetail';
 import PartyEdit from './pages/PartyEdit';
@@ -80,6 +81,7 @@ function App() {
                 <Route path="overrides" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><LiveConsole /></ProtectedRoute>} />
                 <Route path="users" element={<ProtectedRoute roles={['SUPER_ADMIN']}><UserManager /></ProtectedRoute>} />
                 <Route path="logs" element={<ProtectedRoute roles={['SUPER_ADMIN']}><AuditLogs /></ProtectedRoute>} />
+                <Route path="status" element={<ProtectedRoute roles={['SUPER_ADMIN']}><SystemStatus /></ProtectedRoute>} />
               </Route>
             </Routes>
           </BrowserRouter>
