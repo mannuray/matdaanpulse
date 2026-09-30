@@ -31,15 +31,3 @@ export function deriveStandingRows(
     }))
     .sort((a, b) => b.seats - a.seats || a.name.localeCompare(b.name));
 }
-
-export interface CompactList<T> {
-  visible: T[];
-  moreCount: number;
-  moreSeats: number;
-}
-
-export function compactList<T extends { seats: number }>(rows: T[], count: number): CompactList<T> {
-  const visible = rows.slice(0, Math.max(0, count));
-  const hidden = rows.slice(visible.length);
-  return { visible, moreCount: hidden.length, moreSeats: hidden.reduce((s, r) => s + r.seats, 0) };
-}

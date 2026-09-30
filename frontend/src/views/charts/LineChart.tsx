@@ -1,11 +1,12 @@
 import type { ChartSpec } from '../../viewmodels/tiles/useSummaryVM';
-import { categories, ChartFrame, fmt, niceScale, useChartWidth, useSeriesLabel } from './shared';
+import { categories, ChartFrame, labelFormatter, niceScale, useChartWidth, useSeriesLabel } from './shared';
 
 /** One polyline per series over categorical x (years); a dot per point, legend for several series. */
 export function LineChart({ spec, title, height = 200 }: { spec: ChartSpec; title: string; height?: number }) {
   const [ref, width] = useChartWidth();
   const label = useSeriesLabel();
   const xs = categories(spec);
+  const value = labelFormatter(spec);
   const { top, ticks } = niceScale(Math.max(0, ...spec.series.flatMap(s => s.points.map(p => p.y))));
   return (
     <ChartFrame spec={spec} title={title} height={height} width={width} ticks={{ top, values: ticks }} containerRef={ref}>
@@ -23,7 +24,7 @@ export function LineChart({ spec, title, height = 200 }: { spec: ChartSpec; titl
                 {s.points.map(p => (
                   <g key={String(p.x)} data-point>
                     <circle cx={px(p.x)} cy={y(p.y)} r={3.5} fill={s.color} stroke="var(--color-tile)" strokeWidth={1.5}><title>{`${String(p.x)} · ${label(s)}: ${p.y}`}</title></circle>
-                    {spec.series.length === 1 && <text x={px(p.x)} y={y(p.y) - 8} textAnchor="middle" fontSize={10} fontWeight={600} fill="var(--color-ink)" className="tabular">{fmt(p.y)}</text>}
+                    {spec.series.length === 1 && <text x={px(p.x)} y={y(p.y) - 8} textAnchor="middle" fontSize={10} fontWeight={600} fill="var(--color-ink)" className="tabular">{value(p.y)}</text>}
                   </g>
                 ))}
               </g>

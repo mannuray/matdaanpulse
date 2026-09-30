@@ -2,7 +2,8 @@ import { roundPct } from '../scoreboard';
 import { rankSeats } from '../stats';
 import type { SeatResult } from '../../types/dashboard';
 import { allianceByParty, bucketIndex, buckets, colorOf, int, intDash, lakh, ledSeats, refRow, partyName, pct } from './shared';
-import type { SummaryContext, SummaryRow, SummarySection } from './types';
+import { formatSummaryValue } from './format';
+import type { ChartSpec, SummaryContext, SummaryRow, SummarySection } from './types';
 
 const LIST_LIMIT = 10;
 const BIGGEST_LIMIT = 5;
@@ -70,9 +71,24 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection[] {
     .sort((a, b) => vote(b) - vote(a))
     .slice(0, LIST_LIMIT)
     .map(id => mk(`party:${id}`, partyName(ctx, id), colorOf(ctx, id), seatsOf.get(id) ?? 0, vote(id), [id]));
+  // Two bars per group: vote % (faded) and seat % (full), both in the group's colour; the note above is seat % − vote %.
+  const chartOf = (rs: SummaryRow[]): ChartSpec => {
+    const xOf = (r: SummaryRow) => r.labelKey ?? r.label;
+    const bar = (id: string, labelKey: string, col: number, opacity?: number) => ({
+      id, label: id === 'vote' ? 'Vote %' : 'Seat %', labelKey, color: 'var(--color-ink)', ...(opacity != null ? { opacity } : {}),
+      points: rs.map(r => ({ x: xOf(r), y: r.extra![col].value ?? 0, color: r.color })),
+    });
+    return {
+      type: 'groupedBar', xKey: 'group', valueFormat: 'pct',
+      series: [bar('vote', 'studio_col_vote_pct', 0, 0.4), bar('seat', 'studio_col_seat_pct', 1)],
+      annotations: rs.map(r => ({ x: xOf(r), text: formatSummaryValue(r.value, 'signed1'), tone: (r.value ?? 0) > 0 ? 'up' as const : (r.value ?? 0) < 0 ? 'down' as const : 'neutral' as const })),
+    };
+  };
+  const bySeats = [...partyRows].sort((a, b) => seatPctOf(b) - seatPctOf(a));
   const cols = { columnsKeys: ['studio_col_disparity', 'studio_col_vote_pct', 'studio_col_seat_pct'], primaryCol: 2 };
   return [
-    { id: 'vote_vs_seats_alliances', titleKey: 'studio_sum_vote_vs_seats_alliances', ...cols, rows },
+    { id: 'vote_vs_seats_alliances', titleKey: 'studio_sum_vote_vs_seats_alliances', ...cols, rows,
+      chart: chartOf(rows), chartLabelKey: 'studio_tab_alliances', chartAlt: { labelKey: 'studio_tab_parties', spec: chartOf(bySeats) } },
     { id: 'vote_vs_seats_parties', titleKey: 'studio_sum_vote_vs_seats_parties', ...cols, rows: partyRows },
   ];
 }

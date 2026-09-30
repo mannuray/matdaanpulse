@@ -28,6 +28,29 @@ describe('demographics summary', () => {
     expect(run().find(s => s.id === 'margin_by_category')!.rows[0].valueFormat).toBe('compact');
   });
 
+  it('win_rate_by_category chart: GEN / SC / ST groups, one bar per alliance in its colour, legend carries the total', () => {
+    // DemographicsSection.tsx es-vbar over allianceCategoryWins (entry[cat]++): NDA GEN 2 / SC 1 / ST 0, MGB GEN 0 / SC 1 / ST 1.
+    const c = run().find(s => s.id === 'win_rate_by_category')!.chart!;
+    expect(c.type).toBe('groupedBar');
+    expect(c.valueFormat).toBe('int');
+    expect(c.series.map(s => [s.id, s.label, s.points.map(p => [p.x, p.y])])).toEqual([
+      ['NDA', 'NDA (3)', [['GEN', 2], ['SC', 1], ['ST', 0]]],
+      ['MGB', 'MGB (2)', [['GEN', 0], ['SC', 1], ['ST', 1]]],
+    ]);
+    expect(c.series[0].color).toBe(run().find(s => s.id === 'win_rate_by_category')!.rows[0].color);
+  });
+
+  it('margin_by_category chart: average margin per category, compact labels, no bar where the bloc has no seat', () => {
+    // DemographicsSection.tsx:64,71-73 (Math.round(sum / n)): NDA GEN 30400, SC 12000, ST none; MGB GEN none, SC 400, ST 3000.
+    const c = run().find(s => s.id === 'margin_by_category')!.chart!;
+    expect(c.type).toBe('groupedBar');
+    expect(c.valueFormat).toBe('compact');
+    expect(c.series.map(s => [s.label, s.points.map(p => [p.x, p.y])])).toEqual([
+      ['NDA (3)', [['GEN', 30400], ['SC', 12000]]],
+      ['MGB (2)', [['SC', 400], ['ST', 3000]]],
+    ]);
+  });
+
   it('groups by party when the manifest has no alliances', () => {
     expect(rows('win_rate_by_category', { alliances: [] }).map(r => [r[0], r[1]])).toEqual([['Bharatiya Janata Party', 2], ['Rashtriya Janata Dal', 2], ['Janata Dal (United)', 1], ['AIMIM', 1]]);
   });

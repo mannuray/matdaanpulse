@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { deriveStandingRows, compactList } from '../standings';
+import { deriveStandingRows } from '../standings';
 
 const parties = [
   { id: 'RJD', name: 'Rashtriya Janata Dal', color: '#7BD34A', seats: 25 },
@@ -22,16 +22,5 @@ describe('deriveStandingRows', () => {
   });
   it('returns no rows when nothing has been counted', () => {
     expect(deriveStandingRows(parties.map(p => ({ ...p, seats: 0 })), new Map(), alliances)).toEqual([]);
-  });
-});
-
-describe('compactList', () => {
-  it('reports hidden rows and their seats for the "+N more · M seats" footer', () => {
-    const rows = deriveStandingRows(parties, new Map(), alliances);
-    expect(compactList(rows, 2)).toMatchObject({ moreCount: 2, moreSeats: 10 });
-    expect(compactList(rows, 2).visible.map(r => r.id)).toEqual(['BJP', 'RJD']);
-  });
-  it('has no footer when everything is visible', () => {
-    expect(compactList([{ seats: 1 }], 5)).toEqual({ visible: [{ seats: 1 }], moreCount: 0, moreSeats: 0 });
   });
 });

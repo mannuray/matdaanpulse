@@ -6,18 +6,14 @@ import type { SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
 import { SummaryTab } from './SummaryTab';
 import { Tile } from './Tile';
 import { STATUS_STYLE } from './statusStyle';
-import { useFitRows } from '../hooks/useFitRows';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { PillToggle } from '../ui/PillToggle';
 import { PickerSelect } from '../ui/PickerSelect';
+import { ScrollArea } from '../ui/ScrollArea';
 import { cn } from '../ui/cn';
 
 export type StandingsTab = 'parties' | 'watchlist';
 type TileTab = StandingsTab | 'summary';
-
-const ROW_H = 36;
-/** Height reserved under the watchlist rows for the "Add seat…" control (h-8 + gap). */
-const ADD_H = 36;
 
 function Row({ r, max, vm, wide }: { r: StandingRow; max: number; vm: StandingsVM; wide?: boolean }) {
   return (
@@ -66,19 +62,18 @@ function AddSeat({ vm }: { vm: LeadersVM }) {
   );
 }
 
-function WatchlistBody({ vm, onMore }: { vm: LeadersVM; onMore(): void }) {
+/** Watched seats scroll inside the card; the "Add seat…" picker stays pinned below them. */
+function WatchlistBody({ vm, label }: { vm: LeadersVM; label: string }) {
   const { t } = useTranslation();
-  const fit = useFitRows(vm.watchlist, ROW_H, 4, 22, ADD_H);
   return (
-    <div ref={fit.ref} className="flex h-full flex-col gap-1">
-      {vm.watchlist.length === 0 && <p className="py-4 text-center text-sm text-muted">{t('studio_watch_empty')}</p>}
-      {fit.visible.map(c => <WatchRow key={c.key} c={c} vm={vm} />)}
-      {fit.moreCount > 0 && (
-        <button type="button" onClick={onMore} className="px-2 text-left text-xs text-muted hover:text-accent">
-          {t('studio_more_leaders', { count: fit.moreCount })}
-        </button>
-      )}
-      <div className="mt-auto"><AddSeat vm={vm} /></div>
+    <div className="flex h-full min-h-0 flex-col gap-2">
+      <ScrollArea label={label}>
+        <div className="flex flex-col gap-1">
+          {vm.watchlist.length === 0 && <p className="py-4 text-center text-sm text-muted">{t('studio_watch_empty')}</p>}
+          {vm.watchlist.map(c => <WatchRow key={c.key} c={c} vm={vm} />)}
+        </div>
+      </ScrollArea>
+      <AddSeat vm={vm} />
     </div>
   );
 }
@@ -142,7 +137,6 @@ export function StandingsTile({ vm, variant, watchlist, summary, initialTab, onT
   const [picked, setTab] = useState<TileTab | null>(null);
   const tab: TileTab = picked ?? initialTab ?? (withSummary ? 'summary' : 'parties');
   const shown: TileTab = tab === 'summary' && !withSummary ? 'parties' : tab === 'watchlist' && !watchlist ? 'parties' : tab;
-  const fit = useFitRows(vm.rows, ROW_H);
   const pick = (v: TileTab) => { setTab(v); if (v !== 'summary') onTabChange?.(v); };
   // Opening the focus view from the Parties / Watchlist tab lands on that same tab.
   const expandStandings = () => { if (shown !== 'summary') onTabChange?.(shown); vm.onFocus(); };
@@ -171,19 +165,19 @@ export function StandingsTile({ vm, variant, watchlist, summary, initialTab, onT
     );
   }
   const max = Math.max(1, ...vm.rows.map(r => r.seats));
+  const label = options.find(o => o.value === shown)?.label ?? t('party_standings');
   return (
     <Tile title={t(shown === 'summary' ? 'studio_title_summary' : shown === 'watchlist' ? 'studio_title_watchlist' : 'party_standings')}
-      onExpand={shown === 'summary' && summary ? summary.onFocus : expandStandings} pulse={vm.pulse} actions={toggle} stackActions={!wide && options.length > 1}>
-      {shown === 'summary' && summary ? <SummaryTab vm={summary} /> : shown === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} onMore={expandStandings} /> : (
-        <div ref={fit.ref} className="flex h-full flex-col gap-1">
-          {vm.rows.length === 0 && <p className="py-6 text-center text-sm text-muted">{t('studio_no_results_yet')}</p>}
-          {fit.visible.map(r => <Row key={r.id} r={r} max={max} vm={vm} />)}
-          {fit.moreCount > 0 && (
-            <button type="button" onClick={expandStandings} className="mt-auto px-2 text-left text-xs text-muted hover:text-accent">
-              {t('studio_more_parties', { count: fit.moreCount, seats: fit.moreSeats })}
-            </button>
-          )}
-        </div>
+      onExpand={shown === 'summary' && summary ? summary.onFocus : expandStandings} pulse={vm.pulse} actions={toggle} stackActions={!wide && options.length > 1} bodyClassName="flex flex-col">
+      {shown === 'summary' && summary ? (
+        <ScrollArea label={label} resetKey={`summary:${summary.layer}`}><SummaryTab vm={summary} /></ScrollArea>
+      ) : shown === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} label={label} /> : (
+        <ScrollArea label={label} resetKey="parties">
+          <div className="flex flex-col gap-1">
+            {vm.rows.length === 0 && <p className="py-6 text-center text-sm text-muted">{t('studio_no_results_yet')}</p>}
+            {vm.rows.map(r => <Row key={r.id} r={r} max={max} vm={vm} />)}
+          </div>
+        </ScrollArea>
       )}
     </Tile>
   );

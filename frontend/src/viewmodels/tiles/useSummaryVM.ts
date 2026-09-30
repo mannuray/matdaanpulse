@@ -5,7 +5,7 @@ import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { deriveLayerSummary, type LayerSummary, type SummaryRow } from '../../model/derive/summary';
 import type { LayerId } from '../../model/types/dashboard';
 
-export type { ChartSeries, ChartSpec, LayerSummary, SummaryCell, SummaryRow, SummarySection, ValueFormat } from '../../model/derive/summary';
+export type { ChartAnnotation, ChartSeries, ChartSpec, ChartValueFormat, LayerSummary, SummaryCell, SummaryRow, SummarySection, ValueFormat } from '../../model/derive/summary';
 export type { LayerId };
 export { formatSummaryValue, primaryCell } from '../../model/derive/summary/format';
 

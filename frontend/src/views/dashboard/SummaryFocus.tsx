@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { ChartSpec, LayerId, SummarySection, SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
 import { PillToggle } from '../ui/PillToggle';
@@ -10,6 +11,23 @@ function Chart({ spec, title }: { spec: ChartSpec; title: string }) {
   if (spec.series.length === 0) return null;
   const C = spec.type === 'line' ? LineChart : spec.type === 'groupedBar' ? GroupedBarChart : BarChart;
   return <div className="mt-3 px-2"><C spec={spec} title={title} /></div>;
+}
+
+/** The section's chart; with an alternative chart (alliances vs parties) a pill toggle picks which one is drawn. */
+function SectionChart({ s, title }: { s: SummarySection & { chart: ChartSpec }; title: string }) {
+  const { t } = useTranslation();
+  const [alt, setAlt] = useState(false);
+  const other = s.chartAlt;
+  if (!other) return <Chart spec={s.chart} title={title} />;
+  return (
+    <>
+      <div data-chart-toggle className="mt-3 flex px-2">
+        <PillToggle<'main' | 'alt'> size="sm" value={alt ? 'alt' : 'main'} onChange={v => setAlt(v === 'alt')} ariaLabel={title}
+          options={[{ value: 'main', label: t(s.chartLabelKey ?? 'studio_tab_alliances') }, { value: 'alt', label: t(other.labelKey) }]} />
+      </div>
+      <Chart spec={alt ? other.spec : s.chart} title={title} />
+    </>
+  );
 }
 
 /** Column header text: an i18n key is translated, anything else (a year, a bloc name) is shown as is. */
@@ -44,7 +62,7 @@ function Section({ s, vm }: { s: SummarySection; vm: SummaryVM }) {
       )}
       <div className="flex flex-col gap-1">{s.rows.map(r => <Row key={r.id} r={r} section={s} vm={vm} full />)}</div>
       {s.more ? <p className="mt-1 px-2 text-xs text-muted">{t('studio_sum_more_rows', { count: s.more })}</p> : null}
-      {s.chart && <Chart spec={s.chart} title={title} />}
+      {s.chart && <SectionChart s={{ ...s, chart: s.chart }} title={title} />}
     </section>
   );
 }

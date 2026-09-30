@@ -32,31 +32,25 @@ const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
 });
 
 describe('SummaryTab', () => {
-  it('shows titles, rows and a footer for what does not fit', () => {
-    // A = 22 + 3*32 = 118; B needs 4 + 22 + 32 = 58 -> 176 + footer 24 = 200 > 190.
-    height(190);
-    render(<SummaryTab vm={mk()} />);
+  it('shows every section with every row, sticky headers, and no "+N more" footer', () => {
+    const { container } = render(<SummaryTab vm={mk()} />);
     expect(screen.getByText('Closest contests')).toBeTruthy();
     expect(screen.getByText('Sandesh')).toBeTruthy();
     expect(screen.getByText('27')).toBeTruthy();
     expect(screen.getByText('73.6K')).toBeTruthy();
-    expect(screen.queryByText('Net swing by alliance')).toBeNull();
-    expect(screen.getByText('+2 more rows · 2 more sections')).toBeTruthy();
+    expect(screen.getByText('Net swing by alliance')).toBeTruthy();
+    expect(screen.getByText('Q2')).toBeTruthy();
+    // the chart-only section (no rows) is skipped
+    expect(screen.queryByText('Margin trend')).toBeNull();
+    expect(screen.queryByText(/more/)).toBeNull();
+    const headers = container.querySelectorAll('h3');
+    expect(headers).toHaveLength(2);
+    headers.forEach(h => { expect(h.className).toContain('sticky'); expect(h.className).toContain('top-0'); expect(h.className).toContain('bg-tile'); });
   });
 
-  it('uses singular forms in the footer', () => {
-    height(170);
-    const secs: SummarySection[] = [sections[0], { id: 'b', titleKey: 'studio_sum_net_swing', rows: [{ id: 'q', label: 'Q', value: 1, valueFormat: 'int' }] }];
-    render(<SummaryTab vm={mk({}, secs)} />);
-    expect(screen.getByText('+1 more row · 1 more section')).toBeTruthy();
-  });
-
-  it('footer opens the focus; a single-seat row selects the seat; other rows lock and hover', () => {
-    height(190);
+  it('a single-seat row selects the seat; other rows lock and hover', () => {
     const onFocus = vi.fn(); const onSelectSeat = vi.fn(); const onLockRow = vi.fn(); const onHoverRow = vi.fn();
     render(<SummaryTab vm={mk({ onFocus, onSelectSeat, onLockRow, onHoverRow })} />);
-    fireEvent.click(screen.getByRole('button', { name: /more/ }));
-    expect(onFocus).toHaveBeenCalled();
     fireEvent.click(screen.getByRole('button', { name: /Sandesh/ }));
     expect(onSelectSeat).toHaveBeenCalledWith('S1');
     expect(onLockRow).not.toHaveBeenCalled();
@@ -65,13 +59,6 @@ describe('SummaryTab', () => {
     expect(onHoverRow).toHaveBeenLastCalledWith(sections[0].rows[1]);
     fireEvent.click(bjp);
     expect(onLockRow).toHaveBeenCalledWith(sections[0].rows[1]);
-  });
-
-  it('shows everything without a footer when it fits ', () => {
-    height(600);
-    render(<SummaryTab vm={mk({}, sections.slice(0, 2))} />);
-    expect(screen.getByText('Net swing by alliance')).toBeTruthy();
-    expect(screen.queryByText(/more/)).toBeNull();
   });
 
   it('renders the empty state', () => {

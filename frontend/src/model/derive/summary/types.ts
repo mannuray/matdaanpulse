@@ -40,7 +40,21 @@ export interface ChartSeries {
   /** Translatable series name; the view prefers t(labelKey) over label when set. */
   labelKey?: string;
   color: string;
-  points: { x: string | number; y: number }[];
+  /** Bar fill opacity (0..1), e.g. 0.4 for the "vote %" bars next to the full "seat %" bars. */
+  opacity?: number;
+  /** `color` overrides the series colour for that bar (e.g. each alliance's colour inside a Vote % / Seat % series). */
+  points: { x: string | number; y: number; color?: string }[];
+}
+
+/** Number format of a chart's value labels and y axis (compact = 21.1K like the rows). */
+export type ChartValueFormat = 'int' | 'pct' | 'compact' | 'signed';
+
+export interface ChartAnnotation {
+  /** The x group the note sits above. */
+  x: string | number;
+  text: string;
+  /** up = success green, down = live red, neutral = muted. */
+  tone: 'up' | 'down' | 'neutral';
 }
 
 export interface ChartSpec {
@@ -48,6 +62,10 @@ export interface ChartSpec {
   series: ChartSeries[];
   xKey?: string;
   yKey?: string;
+  /** Value labels and axis format (default compact). */
+  valueFormat?: ChartValueFormat;
+  /** Notes drawn above each x group (bar charts). */
+  annotations?: ChartAnnotation[];
 }
 
 export interface SummarySection {
@@ -64,6 +82,10 @@ export interface SummarySection {
   /** Rows the model dropped beyond its own cap (e.g. "+ 3 more seats"); added to the compact footer's row count. */
   more?: number;
   chart?: ChartSpec;
+  /** Label (i18n key) of the primary chart when `chartAlt` offers a second one (the focus view shows a toggle). */
+  chartLabelKey?: string;
+  /** A second chart over the same topic (e.g. parties instead of alliances), switched with a toggle in the focus view. */
+  chartAlt?: { labelKey: string; spec: ChartSpec };
 }
 
 export interface LayerSummary {

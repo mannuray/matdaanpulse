@@ -1,5 +1,5 @@
 import { avg, compact, groupsFor, int, ledSeats } from './shared';
-import type { SummaryContext, SummaryRow, SummarySection } from './types';
+import type { ChartSpec, ChartValueFormat, SummaryContext, SummaryRow, SummarySection } from './types';
 
 const CATS = ['GEN', 'SC', 'ST'] as const;
 type Cat = typeof CATS[number];
@@ -29,11 +29,20 @@ export function demographicsSummary(ctx: SummaryContext): SummarySection[] {
   }).filter(x => x.own.length > 0).sort((a, b) => b.own.length - a.own.length);
   if (per.length === 0) return out;
 
+  // One bar per bloc inside each GEN / SC / ST group; the legend reads "NDA (202)" (name + seats led).
+  const chart = (value: (x: typeof per[number], c: Cat) => number | null, valueFormat: ChartValueFormat): ChartSpec => ({
+    type: 'groupedBar', xKey: 'category', valueFormat,
+    series: per.map(x => ({
+      id: x.g.id, label: `${x.g.name} (${x.own.length})`, color: x.g.color,
+      points: CATS.flatMap(c => { const y = value(x, c); return y == null ? [] : [{ x: c as string, y }]; }),
+    })),
+  });
   const rowBase = (x: typeof per[number]) => ({ id: `bloc:${x.g.id}`, label: x.g.name, color: x.g.color, partyIds: x.g.partyIds, seatIds: x.own.map(s => s.id) });
   // "Win rate by category" is a count of seats won per category, as in the legacy chart.
   out.push({
     id: 'win_rate_by_category', titleKey: 'studio_sum_win_rate_by_category', columnsKeys: ['studio_col_total', 'studio_col_gen', 'studio_col_sc', 'studio_col_st'],
     rows: per.map((x): SummaryRow => ({ ...rowBase(x), value: x.own.length, valueFormat: 'int', extra: CATS.map(c => int(x.cat[c].n)) })),
+    chart: chart((x, c) => x.cat[c].n, 'int'),
   });
   out.push({
     id: 'margin_by_category', titleKey: 'studio_sum_margin_by_category', columnsKeys: ['studio_col_gen', 'studio_col_sc', 'studio_col_st'],
@@ -42,6 +51,7 @@ export function demographicsSummary(ctx: SummaryContext): SummarySection[] {
       ...rowBase(x), value: avg(x.cat.GEN.sum, x.cat.GEN.n), valueFormat: 'compact',
       extra: [compact(avg(x.cat.SC.sum, x.cat.SC.n)), compact(avg(x.cat.ST.sum, x.cat.ST.n))],
     })),
+    chart: chart((x, c) => avg(x.cat[c].sum, x.cat[c].n), 'compact'),
   });
   return out;
 }

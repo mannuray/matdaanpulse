@@ -46,6 +46,31 @@ describe('overview summary', () => {
     expect(mgb.value).toBe(1.3);
   });
 
+  it('vote_vs_seats_alliances chart: vote % (opacity .4) and seat % bars per alliance, difference annotated', () => {
+    // OverviewSection.tsx:173-174 disparity = seatPct - votePct, drawn above each alliance's vote / seat bar pair.
+    const s = byId('vote_vs_seats_alliances');
+    expect(s.chartLabelKey).toBe('studio_tab_alliances');
+    const c = s.chart!;
+    expect(c.type).toBe('groupedBar');
+    expect(c.valueFormat).toBe('pct');
+    expect(c.series.map(x => [x.id, x.labelKey, x.opacity])).toEqual([['vote', 'studio_col_vote_pct', 0.4], ['seat', 'studio_col_seat_pct', undefined]]);
+    const colours = s.rows.map(r => r.color);
+    expect(c.series[0].points.map(p => [p.x, p.y, p.color])).toEqual([['NDA', 50, colours[0]], ['MGB', 30, colours[1]], ['others', 7, colours[2]]]);
+    expect(c.series[1].points.map(p => [p.x, p.y, p.color])).toEqual([['NDA', 50, colours[0]], ['MGB', 33.3, colours[1]], ['others', 16.7, colours[2]]]);
+    expect(c.annotations).toEqual([{ x: 'NDA', text: '0.0', tone: 'neutral' }, { x: 'MGB', text: '+3.3', tone: 'up' }, { x: 'others', text: '+9.7', tone: 'up' }]);
+  });
+
+  it('vote_vs_seats_alliances chartAlt: parties by seats, negative difference is down', () => {
+    // Party rows (OverviewSection.tsx:192-196): BJP 33.3 vs 30, RJD 33.3 vs 25, JDU 16.7 vs 20, AIMIM 16.7 vs 3, INC 0 vs 5, IND 0 vs 4.
+    const alt = byId('vote_vs_seats_alliances').chartAlt!;
+    expect(alt.labelKey).toBe('studio_tab_parties');
+    expect(alt.spec.series[1].points.map(p => [p.x, p.y])).toEqual([
+      ['Bharatiya Janata Party', 33.3], ['Rashtriya Janata Dal', 33.3], ['Janata Dal (United)', 16.7], ['AIMIM', 16.7], ['Indian National Congress', 0], ['IND', 0],
+    ]);
+    expect(alt.spec.annotations!.find(a => a.x === 'Janata Dal (United)')).toEqual({ x: 'Janata Dal (United)', text: '−3.3', tone: 'down' });
+    expect(alt.spec.valueFormat).toBe('pct');
+  });
+
   it('vote_vs_seats_parties: seats > 0 or vote >= 1, sorted by vote share desc', () => {
     // Party rows (OverviewSection.tsx:192-196), top 10.
     const s = byId('vote_vs_seats_parties');

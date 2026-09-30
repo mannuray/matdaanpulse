@@ -50,6 +50,47 @@ describe('charts', () => {
     expect(container.querySelector('[data-chart-legend]')!.textContent).toBe('Avg marginMedian');
   });
 
+  it('GroupedBarChart: per-point colour, series opacity, annotations above each group and in the table', () => {
+    const spec: ChartSpec = {
+      type: 'groupedBar', valueFormat: 'pct',
+      series: [
+        { id: 'vote', label: 'Vote %', labelKey: 'studio_col_vote_pct', color: '#fff', opacity: 0.4, points: [{ x: 'NDA', y: 50, color: '#f70' }, { x: 'MGB', y: 30, color: '#0a0' }] },
+        { id: 'seat', label: 'Seat %', labelKey: 'studio_col_seat_pct', color: '#fff', points: [{ x: 'NDA', y: 55.5, color: '#f70' }, { x: 'MGB', y: 25, color: '#0a0' }] },
+      ],
+      annotations: [{ x: 'NDA', text: '+5.5', tone: 'up' }, { x: 'MGB', text: '−5.0', tone: 'down' }],
+    };
+    const { container } = render(<GroupedBarChart spec={spec} title="Vote vs seats" />);
+    const rects = [...container.querySelectorAll('[data-bar] rect')];
+    expect(rects.map(r => r.getAttribute('fill'))).toEqual(['#f70', '#f70', '#0a0', '#0a0']);
+    expect(rects.map(r => r.getAttribute('fill-opacity'))).toEqual(['0.4', null, '0.4', null]);
+    const notes = [...container.querySelectorAll('[data-annotation]')];
+    expect(notes.map(n => [n.textContent, n.getAttribute('data-annotation'), n.getAttribute('fill')])).toEqual([
+      ['+5.5', 'up', 'var(--color-ok-text)'], ['−5.0', 'down', 'var(--color-live-text)'],
+    ]);
+    expect(container.querySelector('thead')!.textContent).toContain('Note');
+    expect([...container.querySelectorAll('tbody tr')[1].querySelectorAll('td')].map(td => td.textContent)).toEqual(['30', '25', '−5.0']);
+    expect(container.querySelector('[data-chart-legend]')!.textContent).toBe('Vote %Seat %');
+    expect(container.querySelector('[data-bar] text')!.textContent).toBe('50.0');
+  });
+
+  it('GroupedBarChart: valueFormat int / compact labels; many groups scroll inside the box', () => {
+    const many: ChartSpec = { type: 'groupedBar', valueFormat: 'compact', series: [{ id: 'a', label: 'A', color: '#f70', points: Array.from({ length: 12 }, (_, i) => ({ x: `P${i}`, y: 21100 })) }] };
+    const { container } = render(<GroupedBarChart spec={many} title="Many" />);
+    expect(container.querySelector('[data-bar] text')!.textContent).toBe('21.1K');
+    expect(container.querySelector('[data-chart-scroll]')).toBeTruthy();
+    expect(Number(container.querySelector('svg')!.getAttribute('width'))).toBeGreaterThanOrEqual(12 * 52);
+    cleanup();
+    const few = render(<GroupedBarChart spec={grouped} title="Few" />);
+    expect(few.container.querySelector('[data-chart-scroll]')).toBeNull();
+  });
+
+  it('BarChart: per-point colour and annotation', () => {
+    const spec: ChartSpec = { type: 'bar', series: [{ id: 's', label: 'S', color: '#111', points: [{ x: 'a', y: 2, color: '#f70' }] }], annotations: [{ x: 'a', text: '0.0', tone: 'neutral' }] };
+    const { container } = render(<BarChart spec={spec} title="One" />);
+    expect(container.querySelector('rect')!.getAttribute('fill')).toBe('#f70');
+    expect(container.querySelector('[data-annotation="neutral"]')!.textContent).toBe('0.0');
+  });
+
   it('handles an empty spec without throwing', () => {
     const { container } = render(<LineChart spec={{ type: 'line', series: [] }} title="Empty" />);
     expect(container.querySelectorAll('[data-point]')).toHaveLength(0);

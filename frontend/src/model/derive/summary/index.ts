@@ -9,7 +9,7 @@ import { statesSummary } from './states';
 import { swingSummary } from './swing';
 import type { LayerSummary, SummaryContext, SummarySection } from './types';
 
-export type { ChartSeries, ChartSpec, LayerSummary, SummaryCell, SummaryContext, SummaryRow, SummarySection, ValueFormat } from './types';
+export type { ChartAnnotation, ChartSeries, ChartSpec, ChartValueFormat, LayerSummary, SummaryCell, SummaryContext, SummaryRow, SummarySection, ValueFormat } from './types';
 
 const SECTIONS: Record<LayerId, (ctx: SummaryContext) => SummarySection[]> = {
   overview: overviewSummary,

@@ -105,12 +105,13 @@ describe('StandingsTile watchlist expand', () => {
     expect(calls).toEqual(['tab:watchlist', 'focus']);
   });
 
-  it('"+N more" on the Watchlist tab opens the focus on the Watchlist', () => {
+  it('every watched seat is listed in the scroll area, with no "+N more" link; the add picker sits outside it', () => {
     setup({ watchlist: [1, 2, 3, 4, 5, 6, 7, 8].map(i => card(i)) }, 120);
     fireEvent.click(screen.getByRole('radio', { name: /Watchlist/ }));
-    calls.length = 0;
-    fireEvent.click(screen.getByRole('button', { name: /more/ }));
-    expect(calls).toEqual(['tab:watchlist', 'focus']);
+    const region = screen.getByRole('region', { name: /Watchlist/ });
+    expect(region.querySelectorAll('button[class*="flex-1"]')).toHaveLength(8);
+    expect(screen.queryByRole('button', { name: /more/ })).toBeNull();
+    expect(region.contains(screen.getByRole('combobox', { name: /Add a seat/ }))).toBe(false);
   });
 
   it('the Parties tab expands as "parties" (a stale watchlist choice does not stick)', () => {

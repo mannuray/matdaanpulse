@@ -5,7 +5,6 @@ import '../../i18n';
 import { StandingsTile } from '../dashboard/StandingsTile';
 import { LayerInsightStrip } from '../dashboard/LayerInsightStrip';
 import { LeadersStrip } from '../dashboard/LeadersStrip';
-import { fitCount } from '../../viewmodels/tiles/fit';
 import type { StandingsVM } from '../../viewmodels/tiles/useStandingsVM';
 import type { LayerInsightVM } from '../../viewmodels/tiles/useLayerInsightVM';
 import type { LeadersVM } from '../../viewmodels/tiles/useLeadersVM';
@@ -21,16 +20,13 @@ afterEach(() => {
 });
 
 describe('tile behaviour', () => {
-  it('standings tile shows only the rows that fit and a "+N more" footer', () => {
-    Object.defineProperty(HTMLElement.prototype, 'clientHeight', { configurable: true, get: () => 180 });
+  it('standings tile lists every party in a scroll region and has no "+N more" footer', () => {
     const rows = Array.from({ length: 12 }, (_, i) => ({ id: `P${i}`, name: `Party ${i}`, color: '#fff', seats: 12 - i, votePct: null, allianceId: null }));
     const vm: StandingsVM = { rows, allRows: rows, pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop };
     render(<StandingsTile vm={vm} variant="tile" />);
-    const { count } = fitCount({ available: 180, itemHeight: 36, gap: 4, footerHeight: 22, total: 12 });
-    expect(count).toBe(4);
-    expect(screen.getAllByRole('button', { name: /^P\d+ Party/ })).toHaveLength(count);
-    const hiddenSeats = rows.slice(count).reduce((s, r) => s + r.seats, 0);
-    expect(screen.getByText(`+8 more parties · ${hiddenSeats} seats`)).toBeTruthy();
+    expect(screen.getAllByRole('button', { name: /^P\d+ Party/ })).toHaveLength(12);
+    expect(screen.getByRole('region', { name: 'Parties' }).getAttribute('tabindex')).toBe('0');
+    expect(screen.queryByText(/more parties/)).toBeNull();
   });
 
   it('insight strip renders headline, locks chips and marks the locked one', () => {

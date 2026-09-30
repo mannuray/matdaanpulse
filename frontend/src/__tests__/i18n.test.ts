@@ -27,6 +27,7 @@ function usedKeys(): Set<string> {
   // Keys selected through a variable.
   keys.add('toast_leads');
   keys.add('toast_wins');
+  keys.add('studio_tab_alliances');
   for (const tab of ['overview', 'battle', 'swing', 'history', 'demographics', 'states', 'insights']) keys.add(`map_tab_${tab}`);
   for (const k of ['overview', 'overview_others', 'battle', 'swing', 'history', 'reserved', 'spoilers', 'threeway', 'states']) keys.add(`studio_insight_${k}`);
   for (const k of ['stronghold', 'loyal', 'swing', 'anti_incumbency', 'new']) keys.add(`studio_chip_${k}`);

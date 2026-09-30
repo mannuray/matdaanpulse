@@ -134,11 +134,11 @@ test('side card shows the Summary tab by default and follows the map layer', asy
   await expect(page.getByRole('heading', { name: 'Party Standings', level: 2 })).toBeVisible();
 });
 
-test('summary focus opens from the Summary tab footer with charts, switches layers and closes with Escape', async ({ page }) => {
+test('summary focus opens from the tile expand button with charts, switches layers and closes with Escape', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/election/${BIHAR}?layer=history`);
   await expect(page.getByRole('radio', { name: 'Summary · History' })).toBeChecked();
-  await page.getByRole('button', { name: /more (rows|sections?|row)/ }).click();
+  await page.getByRole('button', { name: /expand election summary/i }).click();
   const dialog = page.getByRole('dialog');
   await expect(dialog.getByRole('heading', { name: 'Summary · History', level: 2 })).toBeVisible();
   await expect(dialog.getByRole('img', { name: 'Margin trend' })).toBeVisible();
@@ -381,7 +381,7 @@ test.describe('theme selector', () => {
     await forceLight(page);
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}?layer=history`);
-    await page.getByRole('button', { name: /more (rows|sections?|row)/ }).click();
+    await page.getByRole('button', { name: /expand election summary/i }).click();
     const dialog = page.getByRole('dialog');
     await expect(dialog.getByRole('img', { name: 'Margin trend' })).toBeVisible();
     expect(await dialog.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(255, 255, 255)');
@@ -495,5 +495,112 @@ test.describe('theme selector', () => {
     expect(lb.x).toBeGreaterThan(ab.x + 16);
     await page.waitForTimeout(400);
     await page.screenshot({ path: `${SHOTS}/t25-mapfocus-1440.png` });
+  });
+});
+
+test.describe('scrollable side card and restored charts', () => {
+  const SHOTS26 = '../.playwright-mcp';
+  const region = (page: Page, name: string | RegExp) => page.getByRole('region', { name });
+  const pageScroll = (page: Page) => page.evaluate(() => document.scrollingElement!.scrollTop);
+
+  for (const size of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }]) {
+    test(`side card tabs scroll inside the card at ${size.width}x${size.height}`, async ({ page }) => {
+      await page.setViewportSize(size);
+      await page.goto(`/election/${BIHAR}`);
+      const summary = region(page, /^Summary/);
+      await expect(summary).toBeVisible();
+      await expect(page.getByText('Avg Margin')).toBeVisible();
+      const m = await summary.evaluate(el => ({ sh: el.scrollHeight, ch: el.clientHeight }));
+      expect(m.sh).toBeGreaterThan(m.ch);
+      await expect(page.getByText(/\+\d+ more/)).toHaveCount(0);
+      // scrolling the region moves it, not the page
+      await summary.hover();
+      await page.mouse.wheel(0, 420);
+      await expect.poll(() => summary.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+      expect(await pageScroll(page)).toBe(0);
+      await assertNoScroll(page);
+      if (size.width === 1440) await page.screenshot({ path: `${SHOTS26}/t26-card-scrolled-1440.png` });
+      // the last section's header can be scrolled into view
+      const headers = summary.locator('h3');
+      const last = headers.last();
+      await last.scrollIntoViewIfNeeded();
+      const inside = await last.evaluate(el => { const a = el.getBoundingClientRect(); const c = el.closest('[role="region"]')!.getBoundingClientRect(); return a.top >= c.top - 1 && a.bottom <= c.bottom + 1; });
+      expect(inside).toBe(true);
+      // switching layer resets the scroll position
+      expect(await summary.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+      await page.getByRole('radio', { name: 'Swing', exact: true }).click();
+      await expect(page.getByRole('radio', { name: /^Summary/ })).toBeChecked();
+      await expect(page.getByRole('heading', { name: /Flipped seats/ })).toBeVisible();
+      await expect.poll(() => region(page, /^Summary/).evaluate(el => el.scrollTop)).toBe(0);
+      await assertNoScroll(page);
+
+      // Parties: every party is a row
+      await page.getByRole('radio', { name: 'Parties' }).click();
+      const parties = region(page, 'Parties');
+      await expect(parties).toBeVisible();
+      await expect(page.getByText(/\+\d+ more part/)).toHaveCount(0);
+      const tileRows = await parties.getByRole('button', { name: /^\S+ .+ \d+$/ }).count();
+      await page.getByRole('button', { name: /expand party standings/i }).click();
+      const dialog = page.getByRole('dialog');
+      await expect(dialog).toBeVisible();
+      const withSeats = await dialog.getByRole('button', { name: /^\S+ .+ [1-9]\d*$/ }).count();
+      expect(tileRows).toBe(withSeats);
+      await page.keyboard.press('Escape');
+
+      // Watchlist: the add picker stays visible without scrolling
+      await page.getByRole('radio', { name: /Watchlist/ }).click();
+      const picker = page.getByRole('combobox', { name: /Add a seat/ });
+      await expect(picker).toBeVisible();
+      const pb = (await picker.boundingBox())!;
+      const tile = (await page.getByRole('region', { name: /Watchlist/ }).boundingBox())!;
+      expect(pb.y).toBeGreaterThanOrEqual(tile.y + tile.height - 1);
+      expect(pb.y + pb.height).toBeLessThanOrEqual(size.height);
+      await assertNoScroll(page);
+    });
+  }
+
+  test('reserved focus shows the two grouped charts (dark and light)', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}?layer=demographics`);
+    await page.getByRole('button', { name: /expand election summary/i }).click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog.getByRole('img', { name: 'Wins by category' })).toBeVisible();
+    await expect(dialog.getByRole('img', { name: 'Average margin by category' })).toBeVisible();
+    await expect(dialog.locator('svg[role="img"]')).toHaveCount(2);
+    await dialog.getByRole('img', { name: 'Wins by category' }).scrollIntoViewIfNeeded();
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: `${SHOTS26}/t26-reserved-focus-1440.png` });
+    await page.keyboard.press('Escape');
+    await page.evaluate(() => localStorage.setItem('studio_theme', 'light'));
+    await page.reload();
+    await page.getByRole('button', { name: /expand election summary/i }).click();
+    await expect(page.getByRole('dialog').getByRole('img', { name: 'Wins by category' })).toBeVisible();
+    expect(await themeOf(page)).toBe('light');
+    await page.getByRole('dialog').getByRole('img', { name: 'Wins by category' }).scrollIntoViewIfNeeded();
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: `${SHOTS26}/t26-reserved-focus-1440-light.png` });
+    await page.evaluate(() => localStorage.removeItem('studio_theme'));
+  });
+
+  test('overview focus shows vote share vs seats and the Alliances / Parties toggle switches it', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}`);
+    await page.getByRole('button', { name: /expand election summary/i }).click();
+    const dialog = page.getByRole('dialog');
+    const chart = dialog.getByRole('img', { name: /^Vote share vs seats/ });
+    await chart.scrollIntoViewIfNeeded();
+    await expect(chart).toBeVisible();
+    const toggle = dialog.getByRole('radiogroup', { name: /^Vote share vs seats/ });
+    await expect(toggle.getByRole('radio', { name: 'Alliances' })).toBeChecked();
+    const before = await dialog.locator('table.sr-only tbody tr').evaluateAll(rows => rows.map(r => r.querySelector('th')!.textContent).join('|'));
+    const groupsBefore = await chart.locator('[data-annotation]').count();
+    expect(groupsBefore).toBeGreaterThan(1);
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: `${SHOTS26}/t26-overview-focus-1440.png` });
+    await toggle.getByRole('radio', { name: 'Parties' }).click();
+    await expect(toggle.getByRole('radio', { name: 'Parties' })).toBeChecked();
+    const after = await dialog.locator('table.sr-only tbody tr').evaluateAll(rows => rows.map(r => r.querySelector('th')!.textContent).join('|'));
+    expect(after).not.toBe(before);
+    await page.screenshot({ path: `${SHOTS26}/t26-overview-focus-parties-1440.png` });
   });
 });
