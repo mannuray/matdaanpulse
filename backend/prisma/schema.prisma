@@ -3,8 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  // App traffic. On Neon: the pooled (PgBouncer) URL with pgbouncer=true&connection_limit=5.
+  url       = env("DATABASE_URL")
+  // Direct (non-pooler) URL, used by Prisma CLI commands that need a session
+  // (migrate diff, db pull). Locally it may equal DATABASE_URL.
+  directUrl = env("DIRECT_URL")
 }
 
 model audit_logs {

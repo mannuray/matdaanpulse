@@ -1,6 +1,6 @@
 # Deployment plan
 
-Status: **draft — not deployable yet.** The backend blockers in [§4](#4-blockers-before-first-deploy) must be fixed first, and the open decisions in [§6](#6-open-decisions) must be made. Source review: [`docs/reviews/2026-09-30-backend-review.md`](reviews/2026-09-30-backend-review.md).
+Status: **draft.** The backend blockers in [§4](#4-blockers-before-first-deploy) are fixed on branch `fix/backend-hardening` (2026-09-30); the open decisions in [§6](#6-open-decisions) still need to be made. Source review: [`docs/reviews/2026-09-30-backend-review.md`](reviews/2026-09-30-backend-review.md).
 
 Target cost: **$0/month** (all free tiers).
 
@@ -49,21 +49,21 @@ Verify current limits on each provider's pricing page before launch.
 
 From the backend review (IDs refer to it). All are code/config changes in `backend/` unless noted.
 
-| # | Blocker | Review ID | Fix |
-|---|---|---|---|
-| B1 | Rate limiter sees Render's proxy IP → one bucket for the whole site (5 bad logins lock out every admin; a 429 kills a viewer's live updates) | S-C1 | `app.set('trust proxy', 1)` (verify `req.ip`); `@SkipThrottle()` on live + health; separate public (generous) and auth (strict) limits |
-| B2 | Redis client only reads host/port — cannot reach Upstash (needs password + TLS) and boot waits for it | DEP-1 | `REDIS_URL` (`rediss://…`) with timeouts; keep host/port as local fallback |
-| B3 | Redis outage = API outage (no fallback to DB; ioredis retries ~20× then 500) | E-H1 | Cache wrapper with try/catch → load from DB; `maxRetriesPerRequest: 1`, no offline queue, command timeout; don't block boot on Redis |
-| B4 | No graceful shutdown (`process.exit` in tracing on SIGTERM; shutdown hooks off) | E-H3 | `enableShutdownHooks()`, remove `process.exit`, close SSE → Redis → Prisma, bootstrap `.catch` |
-| B5 | Single override writes its audit row outside the transaction — not atomic, and deadlocks with a small Neon pool | E-H4 | Pass `tx` to the audit write |
-| B6 | 500s never logged; Prisma errors all become 500 | E-H2, E-M1 | Log 500s with stack + request id; map P2002→409, P2025→404, P2003/P2023/validation→400 |
-| B7 | OTel always exports to `localhost:4317`; its gRPC chain carries a critical advisory | O-M4, S-H1 | Start OTel only when an endpoint is configured (`OTEL_SDK_DISABLED=true` in prod); `npm audit fix`; move to OTLP/HTTP if kept |
-| B8 | `/health` returns 200 when degraded, leaks error text, is throttled, hits the DB | O-M2 | `/health/live` (no I/O) for Render; `/health/ready` (DB + Redis, 503 when down) |
-| B9 | Build needs devDeps + `prisma generate`; Node version unpinned | DEP-3 | Build command below; `"engines": { "node": "20.x" }` |
-| B10 | Neon needs pooled vs direct URLs; `setup.sh` can't take the pooled Prisma URL | §6 | `directUrl` in `schema.prisma`; run `setup.sh` with the direct URL |
-| B11 | CORS origins not trimmed | S-L3 | Trim/filter the list; exact Vercel origins |
+| # | Blocker | Review ID | Fix | Status |
+|---|---|---|---|---|
+| B1 | Rate limiter sees Render's proxy IP → one bucket for the whole site (5 bad logins lock out every admin; a 429 kills a viewer's live updates) | S-C1 | `app.set('trust proxy', 1)` (verify `req.ip`); `@SkipThrottle()` on live + health; separate public (generous) and auth (strict) limits | Done — `TRUST_PROXY_HOPS` (default 1); throttlers `public` 300/min + `auth` 5/min per IP (`THROTTLE_*`); first request's `req.ip` logged at `LOG_LEVEL=debug` — verify once on Render |
+| B2 | Redis client only reads host/port — cannot reach Upstash (needs password + TLS) and boot waits for it | DEP-1 | `REDIS_URL` (`rediss://…`) with timeouts; keep host/port as local fallback | Done — `REDIS_URL` or `REDIS_HOST`/`REDIS_PORT`/`REDIS_PASSWORD` |
+| B3 | Redis outage = API outage (no fallback to DB; ioredis retries ~20× then 500) | E-H1 | Cache wrapper with try/catch → load from DB; `maxRetriesPerRequest: 1`, no offline queue, command timeout; don't block boot on Redis | Done — `CacheService.getOrSet`; boot and publish never fail on Redis |
+| B4 | No graceful shutdown (`process.exit` in tracing on SIGTERM; shutdown hooks off) | E-H3 | `enableShutdownHooks()`, remove `process.exit`, close SSE → Redis → Prisma, bootstrap `.catch` | Done — `GracefulShutdownService` |
+| B5 | Single override writes its audit row outside the transaction — not atomic, and deadlocks with a small Neon pool | E-H4 | Pass `tx` to the audit write | Done |
+| B6 | 500s never logged; Prisma errors all become 500 | E-H2, E-M1 | Log 500s with stack + request id; map P2002→409, P2025→404, P2003/P2023/validation→400 | Done |
+| B7 | OTel always exports to `localhost:4317`; its gRPC chain carries a critical advisory | O-M4, S-H1 | Start OTel only when an endpoint is configured (`OTEL_SDK_DISABLED=true` in prod); `npm audit fix`; move to OTLP/HTTP if kept | Done — OTLP/HTTP, starts only with an endpoint; `npm audit --omit=dev` 49 → 12 (0 critical; the rest need Nest/Prisma majors) |
+| B8 | `/health` returns 200 when degraded, leaks error text, is throttled, hits the DB | O-M2 | `/health/live` (no I/O) for Render; `/health/ready` (DB + Redis, 503 when down) | Done — `/health` is an alias of ready |
+| B9 | Build needs devDeps + `prisma generate`; Node version unpinned | DEP-3 | Build command below; `"engines": { "node": "20.x" }` | Done — build verified with `npm ci --include=dev && npx prisma generate && npm run build` |
+| B10 | Neon needs pooled vs direct URLs; `setup.sh` can't take the pooled Prisma URL | §6 | `directUrl` in `schema.prisma`; run `setup.sh` with the direct URL | Done — `DIRECT_URL` (only Prisma CLI commands need it; may equal `DATABASE_URL` locally) |
+| B11 | CORS origins not trimmed | S-L3 | Trim/filter the list; exact Vercel origins | Done — plus optional `CORS_ORIGIN_REGEX`; `credentials` dropped |
 
-Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-override route (S-M3), query DTOs on list endpoints (E-M2), SSE heartbeat 20 s + `retry:` (O-M3), stop public self-registration (S-M1), `Cache-Control` + drop per-response `requestId`/`timestamp` from bodies so ETags work (P-M1).
+Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-override route (S-M3) — **done**; query DTOs on list endpoints (E-M2) — **done**; SSE heartbeat 20 s + `retry:` (O-M3) — **done**; stop public self-registration (S-M1) — **done** (`ALLOW_REGISTRATION`, plus last-SUPER_ADMIN guard); URL validation + `GEMINI_MODEL` (S-M2), request-id validation (S-L2), log correlation + `LOG_LEVEL` (O-M1) — **done**. Still open: `Cache-Control` + drop per-response `requestId`/`timestamp` from bodies so ETags work (P-M1); in-process cache in front of Redis (D6).
 
 ## 5. Setup steps (once blockers are fixed)
 
@@ -93,7 +93,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 - Root directory: `backend`
 - Build: `npm ci --include=dev && npx prisma generate && npm run build`
 - Start: `node dist/main`
-- Health check path: `/api/v1/health/live` (after B8)
+- Health check path: `/api/v1/health/live` (no I/O). Readiness (DB + Redis, 503 when degraded): `/api/v1/health/ready`.
 - Environment:
   ```
   NODE_ENV=production
@@ -103,10 +103,15 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   REDIS_URL=<Upstash rediss:// URL>
   CORS_ORIGINS=https://<frontend>.vercel.app,https://<admin>.vercel.app
   GEMINI_API_KEY=<key restricted to the Generative Language API>
+  GEMINI_MODEL=gemini-2.0-flash        # check the id is still served
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
+  # Defaults, set only to change them:
+  # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=300  THROTTLE_AUTH_PER_MIN=5
+  # LOG_LEVEL=info  ALLOW_REGISTRATION=false  CORS_ORIGIN_REGEX=
   ```
-  (`PORT` is injected by Render.)
+  (`PORT` is injected by Render.) Full list with comments: `.env.example`.
+- First deploy: set `LOG_LEVEL=debug` once and check the `First request: req.ip=…` log line shows your own IP, not Render's proxy. If it shows a proxy address, raise `TRUST_PROXY_HOPS` by one (Render sits behind Cloudflare). Then set `LOG_LEVEL` back to `info`.
 
 ### 5.4 Vercel (two projects)
 
@@ -146,5 +151,5 @@ Both need an SPA rewrite (`vercel.json`): `{"rewrites":[{"source":"/(.*)","desti
 ## 7. Later (not needed for launch)
 
 - Scaling beyond one instance: Redis-backed throttler storage, enrichment progress and job locks in Redis (review P-L4, E-H5).
-- Design clean-ups from the review: split `AiEnrichmentService`, shared SSE stream helper, `CacheService.getOrSet`, `ResultChangeNotifier` (D-M1, D-M2).
+- Design clean-ups from the review: split `AiEnrichmentService`, `ResultChangeNotifier` (D-M1, D-M2). (The shared SSE stream helper and `CacheService.getOrSet` are done.)
 - Dependency majors (Nest, Prisma), indexes (P-L1), set-based bulk writes (P-M2), JWT hardening (S-L1).

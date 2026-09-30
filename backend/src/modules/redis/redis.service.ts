@@ -40,7 +40,7 @@ export class RedisService implements OnModuleInit {
     for (const [name, client] of [['pub', this.pub], ['sub', this.sub]] as const) {
       client.on('error', (err) => {
         if (this.logGate.shouldLog(`${name}:error`)) {
-          this.logger.error(`Redis ${name} error (logged once a minute): ${err.message}`);
+          this.logger.error(`Redis ${name} error (logged once a minute): ${err.message || (err as NodeJS.ErrnoException).code || err.name}`);
         }
       });
       client.on('ready', () => this.logger.log(`Redis ${name} ready`));

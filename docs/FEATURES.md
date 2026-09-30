@@ -184,13 +184,15 @@
 - [x] `RedisModule` with `RedisService` — dual ioredis clients (pub + sub) for Redis pub/sub
 - [x] `LiveService` — publishes `result-update` and `tally-update` events to Redis channels
 - [x] SSE endpoint `/api/v1/live/updates?election_id=...` streams Redis events to browser
-- [x] 30s heartbeat ping to keep SSE connections alive
+- [x] 20s heartbeat ping to keep SSE connections alive; each connection's first frame carries `retry: 5000` (shared helper `backend/src/common/sse/shared-sse-stream.ts`, also used by the admin enrichment stream)
+- [x] Streams end cleanly on shutdown (SIGTERM) before the HTTP server closes
 - [x] Admin `overrideResult()` auto-publishes `result-update` via `LiveService`
 - [x] Channel naming: `election:{electionId}:events`
 
 ### OpenTelemetry Observability (SigNoz)
-- [x] OTLP SDK bootstrap (`backend/src/tracing.ts`) — loaded before NestJS, gRPC export to port 4317
-- [x] Auto-instrumentation for HTTP, Express, PostgreSQL, ioredis spans (fs disabled)
+- [x] OTLP SDK bootstrap (`backend/src/tracing.ts`) — loaded before NestJS, OTLP/HTTP export (port 4318); starts only when `OTEL_EXPORTER_OTLP_ENDPOINT` is set and `OTEL_SDK_DISABLED` is not `true`
+- [x] Instrumentation limited to HTTP, Express, ioredis and Prisma spans; W3C trace context only (no Jaeger propagator)
+- [x] Log lines carry `requestId` and the OTel `trace_id`; `LOG_LEVEL` env (default `info`); 5xx errors logged with stack and recorded on the active span
 - [x] `MetricsModule` (global) with `MetricsService` exposing named OTEL instruments
 - [x] `sse.connections.active` — UpDownCounter tracking live SSE clients by election
 - [x] `redis.publish.duration` — Histogram for publish latency (ms) by channel
@@ -201,6 +203,21 @@
 - [x] `live.streams.active` — ObservableGauge for shared stream count
 - [x] OTel Collector config (`otel-collector-config.yaml`) exporting to SigNoz Cloud
 - [x] Docker Compose `otel-collector` service (ports 4317/4318)
+
+### Backend Hardening for Deployment (Render / Neon / Upstash)
+Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` §4.
+- [x] Per-IP rate limits behind a proxy: `trust proxy` = `TRUST_PROXY_HOPS` (default 1); named throttlers `public` (300/min) and `auth` (5/min, `/auth/*`), env-configurable; live SSE and health are never throttled
+- [x] Redis via `REDIS_URL` (`rediss://` TLS, Upstash) or `REDIS_HOST`/`REDIS_PORT`/`REDIS_PASSWORD`; boot never waits for Redis
+- [x] `CacheService.getOrSet` — a Redis outage falls back to the database instead of failing requests; publish failures after a committed write are logged, not returned
+- [x] Health probes: `GET /api/v1/health/live` (no I/O, always 200) and `GET /api/v1/health/ready` (DB + Redis, 2 s timeouts, 503 when degraded, no error text); `/health` = ready
+- [x] Graceful shutdown: SSE streams → HTTP server → Redis → Prisma → OTel
+- [x] Prisma errors mapped to 409 / 404 / 400 with safe messages; oversized bodies 413
+- [x] Body limit 100 kb, 5 MB only on `POST /admin/results/override-bulk`
+- [x] Query DTOs on list endpoints (bounded `page`/`limit` ≤ 200, enums, UUIDs, ISO dates) — bad input is 400, not 500
+- [x] URL fields (`photo_url`, `website`, `wikipedia_url`) must be http(s); AI output with other schemes is dropped; Gemini model from `GEMINI_MODEL`
+- [x] Public self-registration (`/auth/register`) off unless `ALLOW_REGISTRATION=true`; the last SUPER_ADMIN cannot be demoted or deleted
+- [x] CORS origins trimmed, no credentials (Bearer auth), optional `CORS_ORIGIN_REGEX` for preview URLs
+- [x] `X-Request-ID` accepted only if it matches `^[\w-]{1,64}$`; auth logs carry user ids, not emails
 
 ### Live Toast Notifications
 - [x] New component `LiveToast` (`frontend/src/components/atoms/LiveToast.tsx`)

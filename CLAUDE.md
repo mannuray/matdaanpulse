@@ -4,7 +4,7 @@ Real-time Indian election results tracker with interactive maps, alliance tallie
 
 ## Tech Stack
 
-- **Backend:** NestJS (TypeScript) + Prisma (PostgreSQL), JWT auth, Redis pub/sub → SSE for live updates, OpenTelemetry → SigNoz, Gemini for AI enrichment
+- **Backend:** NestJS (TypeScript) + Prisma (PostgreSQL), JWT auth, Redis cache + pub/sub → SSE for live updates (Redis is optional at runtime: cache falls back to the DB), OpenTelemetry → SigNoz (OTLP/HTTP, only when `OTEL_EXPORTER_OTLP_ENDPOINT` is set), Gemini for AI enrichment. Health: `/api/v1/health/live` (liveness), `/api/v1/health/ready` (DB + Redis). Deployment plan: `docs/DEPLOYMENT.md`
 - **Frontend:** React + TypeScript, Vite, D3.js (choropleth maps), i18next, Tailwind CSS v4 (preflight off) + Radix UI. Dashboard is MVVM: `src/model` (pure, no React) → `src/viewmodels` (hooks) → `src/views` (presentational), composed in `src/pages/StudioDashboard.tsx`; `npm run lint` enforces the import direction.
   - Tailwind only scans `src/views` plus the pages listed via `@source` in `frontend/src/theme/studio.css` — add an `@source` line when a new file outside `src/views` uses Tailwind classes.
   - Legacy CSS is loaded through `src/theme/legacy.css` in a lower cascade layer.
@@ -40,7 +40,7 @@ election-tracker/
 - **Only supported path:** `database/setup.sh` (psql, `ON_ERROR_STOP=1`, idempotent). Order: `schema.sql` → `migrations/001…NNN` → seeds. docker-compose runs it automatically on first boot of an empty volume.
 - Seed order matters (enforced in `setup.sh`): `seed.sql` → `seed_*_parties.sql` → VS results (Bihar newest-first) → `seed_*_districts_regions.sql` → `seed_bihar_persons.sql` → `seed_bihar_person_regions.sql` → `seed_party_symbols.sql`.
 - New migrations must be idempotent (`IF NOT EXISTS` / `DO` blocks) and must not depend on seed data. New seeds must use `ON CONFLICT DO NOTHING`, set `results.election_id`, and never `TRUNCATE`. Constituency UPDATEs keyed by `const_no` must be scoped to the election type/ID (LS and VS numbering overlap).
-- Keep `backend/prisma/schema.prisma` in sync with the SQL (check with `prisma migrate diff --from-url … --to-schema-datamodel …`).
+- Keep `backend/prisma/schema.prisma` in sync with the SQL (check with `prisma migrate diff --from-url … --to-schema-datamodel …`). Prisma CLI commands that read the schema config need `DIRECT_URL` set (it may equal `DATABASE_URL` locally); the app and `prisma generate` do not.
 - No admin user is seeded: `cd backend && npm run create-admin` (uses `ADMIN_EMAIL` / `ADMIN_PASSWORD`).
 
 ## Key Data Files
