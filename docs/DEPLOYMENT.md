@@ -1,18 +1,23 @@
 # Deployment plan
 
-Status: **draft.** The backend blockers in [§4](#4-blockers-before-first-deploy) are fixed on branch `fix/backend-hardening` (2026-09-30); the open decisions in [§6](#6-open-decisions) still need to be made. Source review: [`docs/reviews/2026-09-30-backend-review.md`](reviews/2026-09-30-backend-review.md).
+Status: **draft.** The backend blockers in [§4](#4-blockers-before-first-deploy) are fixed on branch `fix/backend-hardening` (2026-09-30). Hosting decisions are made (§6); the domain name is still to be chosen. One pre-deploy task remains: **CDN-ready live** (§2.2). Source reviews: [`docs/reviews/2026-09-30-backend-review.md`](reviews/2026-09-30-backend-review.md), [`docs/reviews/2026-09-30-election-day-pipeline-review.md`](reviews/2026-09-30-election-day-pipeline-review.md).
 
-Target cost: **$0/month** (all free tiers).
+Roadmap: fix code → **deploy** → data (2026 results backfill, curation) → live pipeline. Next live counting day: **27 Feb 2027**.
+
+Target cost: **$0/month off-season**; about **$7–10** in an election month (§3.1).
 
 ## 1. What gets deployed
 
 | Piece | Repo path | Host | Notes |
 |---|---|---|---|
-| Public dashboard | `frontend/` | Vercel (project 1) | Static Vite build, SPA rewrite |
-| Admin panel | `admin/` | Vercel (project 2) | Static Vite build, SPA rewrite |
-| API | `backend/` | Render free web service, **Singapore** | NestJS, single instance |
-| Postgres | `database/` | Neon free | Region: see decision D1 (recommended **ap-southeast-1 Singapore**) |
-| Redis | — | Upstash free, **ap-southeast-1** | Response cache + pub/sub for live updates (SSE) |
+| Public dashboard | `frontend/` | **Cloudflare Pages** (project 1) → `app.<domain>` | Static Vite build, SPA fallback |
+| Admin panel | `admin/` | **Cloudflare Pages** (project 2) → `admin.<domain>` | Static Vite build, SPA fallback |
+| API | `backend/` | Render web service, **Singapore**, behind **Cloudflare** (proxied DNS) → `api.<domain>` | NestJS, single instance. Free off-season, Starter in election windows |
+| Postgres | `database/` | Neon free, **ap-southeast-1 Singapore** | Same region as Render |
+| Redis | — | Upstash free, **ap-southeast-1** | Response cache + pub/sub (admin live console) |
+| Domain + DNS + CDN | — | Cloudflare (free plan) | Domain to be bought (name TBD); all three hostnames proxied through Cloudflare |
+
+Why Cloudflare Pages rather than Vercel: Vercel Hobby includes 100 GB/month of transfer, cannot buy more, and is for personal, non-commercial use only. One counting day (~100k visits × 1.5–2 MB per visit: JS ~200 KB gz, fonts ~200 KB, map GeoJSON 0.3–0.9 MB gz, results ~150 KB gz) is ~200 GB. Cloudflare Pages publishes no bandwidth/request cap for static assets on the free plan (limits: 500 builds/month, 20,000 files/site, 25 MiB/file — our largest file is 3.7 MB), allows commercial use, and the same account caches the API and holds the DNS.
 
 Not deployed: `scraper/` (seed generators and the live-count simulation; run locally or in CI against the API). The earlier plan's BullMQ queues, S3, and "Landing"/"Student" frontends belong to another app — none exist here.
 
@@ -25,25 +30,63 @@ Not deployed: `scraper/` (seed generators and the live-count simulation; run loc
 ## 2. Architecture
 
 ```
-Browser (India) ──► Vercel CDN (frontend / admin static files)
-      │
-      └── API + SSE ──► Render web service (Singapore)
-                          ├── Neon Postgres (pooled URL)       ← same region (D1)
-                          └── Upstash Redis (rediss://, TLS)   ← ap-southeast-1
+Browser (India)
+  ├── app.<domain> / admin.<domain> ──► Cloudflare Pages (static, unlimited bandwidth)
+  └── api.<domain> ──► Cloudflare CDN (Tiered Cache)
+                         ├── public GETs: cached (s-maxage) ──┐ only cache misses reach origin
+                         └── admin / auth / SSE: pass-through ┤
+                                                              ▼
+                                         Render web service (Singapore)
+                                           ├── Neon Postgres (pooled URL)     ← same region
+                                           └── Upstash Redis (rediss://, TLS) ← ap-southeast-1
 ```
 
 Keep the API, database and Redis in the **same region**: every uncached request makes several sequential DB round trips. Render Singapore ↔ Neon us-east-2 adds ~200–250 ms per round trip (a constituency page ≈ 1.3 s, a single override ≈ 1.5 s); with Neon in Singapore it is ~1–3 ms.
+
+### 2.1 Traffic shape
+
+Very few users off-season → a ramp as an election nears → a sharp peak on counting day → a cliff within a day or two. Design goal: **origin load must not grow with the number of viewers.** Everyone looks at the same results, so the CDN serves them and the origin answers the CDN a few times per second at most.
+
+### 2.2 Live results for viewers: polling a CDN-cached version (pre-deploy task "CDN-ready live")
+
+Per-viewer SSE does not scale behind a CDN (every open tab holds an origin connection; a Render restart makes all of them reconnect at once). Viewers poll instead; the admin live console keeps SSE (few editors).
+
+| Endpoint | Returns | Cache-Control |
+|---|---|---|
+| `GET /api/v1/elections/:id/live` | `{ version, updatedAt, declared, total }` (a few hundred bytes) | `public, max-age=0, s-maxage=5, stale-while-revalidate=10` |
+| `GET /api/v1/elections/:id/results?v=<version>` | full snapshot for that version | `public, max-age=31536000, immutable` (a version never changes) |
+| Other public GETs (elections, constituencies, …) | as today | `public, max-age=0, s-maxage=60, stale-while-revalidate=300` (longer for finished elections) |
+| Admin, auth, SSE, health | — | `no-store` / not cached |
+
+- The backend bumps `version` on every committed results batch (single or bulk override, later the scraper).
+- Browser: poll `/live` every 10 s + random 0–3 s; pause while the tab is hidden; on a version change wait random 0–2 s, then fetch `results?v=<new>`; exponential backoff with jitter on errors and honour `Retry-After`.
+- Herd protection: the CDN answers polls (each upper-tier PoP asks origin at most once per 5 s; **Smart Tiered Cache** is on the free plan); versioned snapshot URLs are identical for everyone; `stale-while-revalidate` serves the old copy during a refresh; the backend single-flights identical in-flight requests (one DB query per key). Polling holds no connections, so there is no reconnect storm after a deploy.
+- Trade-off: viewers see changes 10–20 s late (ECI itself updates every few minutes); snapshots are atomic per version.
+- Prerequisite: response bodies must not contain per-request values (`requestId`, `timestamp`) — they move to headers.
+
+Expected origin load on counting day: roughly (upper-tier PoPs × 1 request / 5 s) for `/live` + one fetch per new version per PoP — independent of viewer count.
 
 ## 3. Free-tier limits to plan around
 
 | Service | Limit | Effect on this app |
 |---|---|---|
-| Render free | Spins down after ~15 min without inbound requests; cold start 30–60 s; 512 MB RAM, 0.1 CPU; monthly instance-hour cap | Live (SSE) streams drop on spin-down and reconnect on wake; first visitor after idle waits ~1 min. |
+| Render free | Spins down after ~15 min without inbound requests; cold start 30–60 s; 512 MB RAM, 0.1 CPU; monthly instance-hour cap | First visitor after idle waits ~1 min (off-season only — Starter during election windows, §3.1). |
 | Neon free | 512 MB storage; compute auto-suspends after ~5 min idle; monthly compute-hour cap | First query after idle takes ~0.5–few s; a pooled connection may be dropped once (retry). Seed data ≈ 30–60 MB, fits. |
 | Upstash free | 256 MB; monthly command and bandwidth caps (500K commands/month at the time of writing) | Every cache read, publish and delivered message counts. A busy counting day can hit the cap — see decision D6. |
-| Vercel hobby | Non-commercial use; bandwidth caps | Fine for static SPAs. |
+| Cloudflare free | Pages: 500 builds/month, 20k files, 25 MiB/file; CDN caching of API GETs; Tiered Cache | No bandwidth cap published for static assets. |
 
 Verify current limits on each provider's pricing page before launch.
+
+### 3.1 Seasonal scaling
+
+| Period | Render | Neon | Upstash | Cost |
+|---|---|---|---|---|
+| Off-season | **Free** (sleeps after ~15 min idle) | Free | Free | $0 |
+| ~2 weeks before counting → ~3 days after | **Starter** (always on, no cold starts) | Free (pay-as-you-go only if compute hours run out) | Free (pay-as-you-go costs cents if the cap is hit) | ~$7–10 for the month |
+| Counting day | Starter; one instance is enough behind the CDN (Standard optional) | same | same | same |
+| After the cliff | back to **Free** | | | $0 |
+
+Window runbook: calendar reminders (or a scheduled job) to switch the Render instance type up two weeks before counting and down three days after; run the load test (§5.6) after switching up.
 
 ## 4. Blockers before first deploy
 
@@ -101,7 +144,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   DATABASE_URL=<Neon pooled URL>
   DIRECT_URL=<Neon direct URL>
   REDIS_URL=<Upstash rediss:// URL>
-  CORS_ORIGINS=https://<frontend>.vercel.app,https://<admin>.vercel.app
+  CORS_ORIGINS=https://app.<domain>,https://admin.<domain>
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
   # Defaults, set only to change them:
@@ -116,16 +159,24 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   4. Never set it higher than that: every extra hop trusts one more client-supplied entry, so anyone could send `X-Forwarded-For: <random>` and get a fresh bucket per request — bypassing the 5/min login limit and the public limit.
   5. Set `LOG_LEVEL` back to `info`.
 
-### 5.4 Vercel (two projects)
+### 5.4 Cloudflare: domain, Pages, API proxy
 
-| | Public dashboard | Admin |
-|---|---|---|
-| Root directory | `frontend` | `admin` |
-| Build | `npm run build` | `npm run build` |
-| Output | `dist` | `dist` |
-| Env (build time) | `VITE_API_BASE_URL=https://<service>.onrender.com/api/v1` | same |
+1. **Domain:** buy the domain (name TBD) and add it to Cloudflare (nameservers → Cloudflare).
+2. **Pages (two projects)** from the Git repo:
 
-Both need an SPA rewrite (`vercel.json`): `{"rewrites":[{"source":"/(.*)","destination":"/index.html"}]}`. The admin dev proxy for `/symbols` (`admin/vite.config.ts`) does not exist on Vercel — serve party symbols from the frontend's public URL or copy them into the admin build.
+   | | Public dashboard | Admin |
+   |---|---|---|
+   | Root directory | `frontend` | `admin` |
+   | Build | `npm run build` | `npm run build` |
+   | Output | `dist` | `dist` |
+   | Env (build time) | `VITE_API_BASE_URL=https://api.<domain>/api/v1` | same |
+   | Custom domain | `app.<domain>` | `admin.<domain>` |
+
+   SPA fallback: add `public/_redirects` with `/* /index.html 200` to each app (Pages serves `index.html` for unknown paths when no 404.html exists, but make it explicit). The admin dev proxy for `/symbols` (`admin/vite.config.ts`) does not exist in production — serve party symbols from `https://app.<domain>/symbols/…` or copy them into the admin build.
+3. **API hostname:** DNS `CNAME api → <service>.onrender.com`, **proxied** (orange cloud); add `api.<domain>` as a custom domain in Render so TLS validates. SSL mode **Full (strict)**.
+4. **Caching:** Cloudflare caches only what the origin marks cacheable once a Cache Rule enables it: add a Cache Rule for `api.<domain>/api/v1/*` → "Eligible for cache", **respect origin Cache-Control**; enable **Smart Tiered Cache** (Caching → Tiered Cache). Admin/auth responses send `no-store` and are never cached.
+5. **Render env:** `CORS_ORIGINS=https://app.<domain>,https://admin.<domain>`; re-verify `TRUST_PROXY_HOPS` (§5.3) — with Cloudflare in front there is one more proxy hop; alternatively trust `CF-Connecting-IP` (decide during the CDN-ready live task).
+6. **Security (free):** Cloudflare rate-limiting rule on `api.<domain>/api/v1/auth/*`; "Bot Fight Mode" optional.
 
 ### 5.5 Smoke test
 
@@ -134,22 +185,34 @@ Both need an SPA rewrite (`vercel.json`): `{"rewrites":[{"source":"/(.*)","desti
 3. Admin login → apply one override → the dashboard updates live (SSE) without reload.
 4. Wait > 15 min idle → reload: cold start works; live stream reconnects.
 
-## 6. Open decisions
+### 5.6 Load test (before each election window)
 
-| ID | Decision | Options | Recommendation |
-|---|---|---|---|
-| D1 | Neon region | Singapore `ap-southeast-1` / us-east-2 (as in the original plan) | **Singapore** — same region as Render and Upstash; removes ~200 ms per query |
-| D2 | Render spin-down on counting days | Free + accept cold starts / Free + external pinger on `/health/live` every 10 min / **Starter ($7/mo)** during counting | Free for demo; Starter (or pinger) for live counting days. Counting-day runbook: watch for 429s in the logs; raise `THROTTLE_PUBLIC_PER_MIN` (default 600/min per IP) if shared mobile CGNAT addresses hit it |
-| D3 | Custom domains | Vercel/Render default domains / own domain (e.g. `results.<domain>`, `admin.<domain>`, `api.<domain>`) | Decide before launch — CORS origins and the API base URL depend on it |
-| D4 | Observability | Off (Render logs only) / OTLP/HTTP to a hosted backend with a free tier / SigNoz Cloud (paid) | Off at launch; revisit |
-| D5 | Public self-registration (`/auth/register`) | Keep / disable / behind a flag | Disable (no product use; attack surface) |
-| D6 | Upstash quota on counting day | Rely on Upstash cache / add an in-process cache in front of Redis (single instance) | Add the in-process cache (removes most Redis reads) |
-| D7 | ~~AI enrichment runs~~ | — | **Removed (2026-09-30):** no AI inside the app; AI-assisted data is produced offline and loaded like scraped data |
-| D8 | Vercel preview deployments | Block (exact origins only) / allow via an origin regex | Decide with D3 |
-| D9 | Deploy flow | Auto-deploy on push to `main` / manual; who runs migrations (`setup.sh` with `DIRECT_URL`) and when | Auto-deploy frontends; manual backend deploy + migrations until CI exists |
-| D10 | Backups | Neon free point-in-time window only / scheduled `pg_dump` (GitHub Action) | Scheduled `pg_dump` before counting days |
-| D11 | Node version | 20.x / 22.x | 20.x (pin in `engines`) |
-| D12 | Secrets ownership | Who holds the Render/Neon/Upstash/Vercel accounts and rotates `JWT_SECRET` / API keys | Name an owner |
+Against `https://api.<domain>` (through the CDN), with the scraper replaying a past counting day: simulate ~5k viewers polling `/live` every 10–13 s and fetching `results?v=` on version change (k6 or autocannon script in `scraper/` — to be written with the CDN-ready live task). Pass criteria: origin request rate (Render logs / admin System status) stays roughly flat as simulated viewers increase; p95 `/live` < 300 ms from India; no 5xx; Upstash commands per minute well under quota.
+
+### 5.7 Monitoring
+
+- **Uptime:** UptimeRobot / Better Stack free monitor on `https://api.<domain>/api/v1/health/ready` every 5 min → email/phone alert. The keep-awake pinger (if used off-season) must hit `/health/live`, not `/ready`, so Neon can still suspend.
+- **Counting-day view:** admin → System status (in-memory counters since restart: traffic, 4xx/5xx/429, slowest routes, cache hit rate, Redis state, live connections, overrides/min, DB latency).
+
+## 6. Decisions
+
+| ID | Decision | Outcome |
+|---|---|---|
+| D1 | Neon region | **Singapore `ap-southeast-1`** (same region as Render and Upstash) |
+| D2 | Render spin-down on counting days | **Free off-season; Starter from ~2 weeks before to ~3 days after counting** (§3.1). Counting-day runbook: watch 429s; raise `THROTTLE_PUBLIC_PER_MIN` (default 600/min per IP) if shared mobile CGNAT addresses hit it |
+| D3 | Custom domain | **Own domain on Cloudflare** (name TBD): `app.`, `admin.`, `api.<domain>` |
+| D4 | Observability | **Uptime monitor + admin System status** at launch; hosted OTLP / log drain later if needed |
+| D5 | Public self-registration | **Disabled** (`ALLOW_REGISTRATION=false`) |
+| D6 | Counting-day load / Upstash quota | **CDN-ready live** (§2.2): CDN caching + polling + versioned snapshots + single-flight; in-process cache optional after that |
+| D7 | ~~AI enrichment runs~~ | **Removed (2026-09-30):** no AI inside the app; AI-assisted data is produced offline (Claude Code playbooks) and loaded like scraped data |
+| D8 | Preview deployments | Cloudflare Pages preview URLs: allow via `CORS_ORIGIN_REGEX` anchored to the project's `*.pages.dev` previews, or keep exact origins only — decide when setting up Pages |
+| D9 | Deploy flow | Auto-deploy both Pages projects on push to `main`; manual backend deploy + migrations (`setup.sh` with `DIRECT_URL`) until CI exists; deploy migration 014 together with the backend that no longer uses the AI columns |
+| D10 | Backups | Scheduled `pg_dump` (GitHub Action) before counting days, plus Neon's point-in-time window |
+| D11 | Node version | 20.x (pinned in `engines`) |
+| D12 | Secrets ownership | Name an owner for the Cloudflare/Render/Neon/Upstash accounts and `JWT_SECRET` rotation |
+| D13 | Static hosting | **Cloudflare Pages** (unlimited static bandwidth, commercial use, same account as DNS/CDN) instead of Vercel |
+| D14 | Viewer live updates | **Polling a CDN-cached version + versioned snapshots** (10–20 s delay); SSE kept for the admin live console |
+| D15 | Election-window spend | **Accepted:** ~$7–10 in an election month, $0 otherwise |
 
 ## 7. Later (not needed for launch)
 
