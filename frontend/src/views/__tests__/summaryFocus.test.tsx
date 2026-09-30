@@ -104,10 +104,11 @@ describe('SummaryFocus', () => {
     expect(container.querySelector('tbody th')!.textContent).toBe('NDA');
     fireEvent.click(within(toggle).getByRole('radio', { name: 'Parties' }));
     expect(container.querySelector('tbody th')!.textContent).toBe('BJP');
-    // the section title and the chart's accessible name follow the active toggle
+    // only the chart's accessible name follows the toggle; the section still describes its alliance rows
     expect(screen.getByRole('img', { name: 'Vote share vs seats · Parties' })).toBeTruthy();
-    expect(screen.getByRole('region', { name: 'Vote share vs seats · Parties' })).toBeTruthy();
     expect(screen.queryByRole('img', { name: 'Vote share vs seats · Alliances' })).toBeNull();
+    expect(screen.getByRole('region', { name: 'Vote share vs seats · Alliances' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Vote share vs seats · Alliances' })).toBeTruthy();
     // a section with a plain chart has no toggle
     cleanup();
     const plain = render(<SummaryFocus vm={mk()} />);

@@ -22,11 +22,13 @@ function useColumnLabel() {
 function Section({ s, vm }: { s: SummarySection; vm: SummaryVM }) {
   const { t } = useTranslation();
   const column = useColumnLabel();
-  // With an alternative chart (alliances vs parties) a pill toggle picks the drawn chart; the title follows it.
+  // With an alternative chart (alliances vs parties) a pill toggle picks the drawn chart; only the chart's title follows it,
+  // the section title keeps describing its rows.
   const [alt, setAlt] = useState(false);
   const other = s.chartAlt;
   const showAlt = alt && !!other;
-  const title = showAlt ? t(other.titleKey) : t(s.titleKey, s.titleParams);
+  const title = t(s.titleKey, s.titleParams);
+  const chartTitle = showAlt ? t(other.titleKey) : title;
   if (s.layout === 'stats') {
     return (
       <section aria-label={title || undefined} className="min-w-0 lg:col-span-2">
@@ -55,7 +57,7 @@ function Section({ s, vm }: { s: SummarySection; vm: SummaryVM }) {
             options={[{ value: 'main', label: t(s.chartLabelKey ?? 'studio_tab_alliances') }, { value: 'alt', label: t(other.labelKey) }]} />
         </div>
       )}
-      {s.chart && <Chart spec={showAlt && other ? other.spec : s.chart} title={title} />}
+      {s.chart && <Chart spec={showAlt && other ? other.spec : s.chart} title={chartTitle} />}
     </section>
   );
 }
