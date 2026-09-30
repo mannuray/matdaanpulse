@@ -19,7 +19,7 @@ export class AdminResultsController {
   @Patch('results/override')
   @Roles('SUPER_ADMIN', 'EDITOR')
   overrideResult(@Req() req: any, @Body() body: OverridePayload) {
-    this.logger.debug(`Override by user=${req.user?.email ?? 'unknown'} result_id=${body.result_id}`);
+    this.logger.debug(`Override by user=${req.user?.id ?? 'unknown'} result_id=${body.result_id}`);
     return this.resultOverrideService.override(body, req.user?.id);
   }
 
@@ -28,7 +28,7 @@ export class AdminResultsController {
   @Roles('SUPER_ADMIN', 'EDITOR')
   bulkOverride(@Req() req: any, @Body() body: BulkOverridePayload) {
     this.logger.log(
-      `Bulk override by user=${req.user?.email ?? 'unknown'} election=${body.election_id} items=${body.overrides?.length ?? 0}`,
+      `Bulk override by user=${req.user?.id ?? 'unknown'} election=${body.election_id} items=${body.overrides?.length ?? 0}`,
     );
     return this.bulkOverrideService.bulkOverride(body, req.user?.id);
   }

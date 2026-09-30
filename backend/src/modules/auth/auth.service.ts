@@ -27,15 +27,15 @@ export class AuthService {
     // missing) to keep response timing independent of user existence.
     const valid = await bcrypt.compare(password, user?.password_hash ?? DUMMY_PASSWORD_HASH);
     if (!user) {
-      this.logger.warn(`Failed login attempt: user not found [${email}]`);
+      this.logger.warn('Failed login attempt: unknown user');
       throw new InvalidCredentialsException();
     }
     if (!valid) {
-      this.logger.warn(`Failed login attempt: incorrect password [${email}]`);
+      this.logger.warn(`Failed login attempt: incorrect password [user=${user.id}]`);
       throw new InvalidCredentialsException();
     }
     
-    this.logger.log(`User logged in: ${email} [${user.role}]`);
+    this.logger.log(`User logged in [user=${user.id}] [${user.role}]`);
     const token = this.jwtService.sign({ sub: user.id, role: user.role });
     return { access_token: token, user: { id: user.id, email: user.email, role: user.role, name: user.name } };
   }
@@ -50,7 +50,7 @@ export class AuthService {
       data: { email, password_hash, name, role }
     });
     
-    this.logger.log(`New user registered: ${email} [${role}]`);
+    this.logger.log(`New user registered [user=${user.id}] [${role}]`);
     const token = this.jwtService.sign({ sub: user.id, role: user.role });
     return { access_token: token, user: { id: user.id, email: user.email, role: user.role, name: user.name } };
   }
