@@ -1,6 +1,6 @@
 # Deployment plan
 
-Status: **draft.** The backend blockers in [§4](#4-blockers-before-first-deploy) are fixed on branch `fix/backend-hardening` (2026-09-30). Hosting decisions are made (§6); the domain name is still to be chosen. One pre-deploy task remains: **CDN-ready live** (§2.2). Source reviews: [`docs/reviews/2026-09-30-backend-review.md`](reviews/2026-09-30-backend-review.md), [`docs/reviews/2026-09-30-election-day-pipeline-review.md`](reviews/2026-09-30-election-day-pipeline-review.md).
+Status: **draft.** The backend blockers in [§4](#4-blockers-before-first-deploy) are fixed on branch `fix/backend-hardening` (2026-09-30). Hosting decisions are made (§6); the domain name is still to be chosen. The pre-deploy task **CDN-ready live** (§2.2) is implemented on the same branch. Source reviews: [`docs/reviews/2026-09-30-backend-review.md`](reviews/2026-09-30-backend-review.md), [`docs/reviews/2026-09-30-election-day-pipeline-review.md`](reviews/2026-09-30-election-day-pipeline-review.md).
 
 Roadmap: fix code → **deploy** → data (2026 results backfill, curation) → live pipeline. Next live counting day: **27 Feb 2027**.
 
@@ -23,8 +23,8 @@ Not deployed: `scraper/` (seed generators and the live-count simulation; run loc
 
 ### What Redis is used for
 
-- **Cache:** results / constituency lists, 5–10 min TTL (`results.service.ts`, `constituencies.service.ts`).
-- **Pub/sub:** admin result overrides are published and fanned out to SSE clients (`live.service.ts`).
+- **Cache:** results / constituency lists, 5–10 min TTL, and versioned live snapshots (`results.service.ts`, `constituencies.service.ts`). Identical concurrent misses share one load (single-flight in `CacheService.getOrSet`).
+- **Pub/sub:** admin result overrides are published and fanned out to the admin Live Console's SSE clients (`live.service.ts`). Public viewers poll (§2.2) and hold no connection.
 - Nothing needs persistence: the cache refills itself and live messages only matter to connected viewers. On a single instance Redis is optional; it becomes required for pub/sub once there is more than one backend instance.
 
 ## 2. Architecture
@@ -66,6 +66,14 @@ Per-viewer SSE does not scale behind a CDN (every open tab holds an origin conne
 
 Expected origin load on counting day: roughly (upper-tier PoPs × 1 request / 5 s) for `/live` + one fetch per new version per PoP — independent of viewer count.
 
+**Implementation (branch `fix/backend-hardening`):**
+- Version: table `election_live_state` (migration 015). Statement-level DB triggers on `results` (insert/update/delete), `candidates` and `parties` (update) bump it inside the writing transaction, so every writer — API overrides, the simulation's direct SQL, seeds, admin edits — moves it, and a committed change and its version become visible together. Value: `GREATEST(version + 1, now in epoch ms)` — never decreases, and a rebuilt database never reuses a version a CDN may still hold as immutable.
+- `/live` reads it through a 1 s in-process memo with single-flight; override services forget the memo after commit, purge the Redis caches, and only then publish the admin SSE event (pipeline review M5).
+- `results?v=<current>` returns `{ version, results, summary, voteShare }` — results rows, seat tally and vote share computed from **one** query, so map, scoreboard and standings update atomically. It is cached in Redis under `election:<id>:snapshot:v<version>` (never under the unversioned keys a purge race could leave stale). `v` older than current → `302` to the current URL (`s-maxage=5`); `v` newer (a poll raced ahead of this instance) → current data with `no-store`. Without `v` the endpoint is unchanged (rows array, `s-maxage=10, stale-while-revalidate=30`).
+- Headers: `@CacheControl()` opt-in per public controller; everything else (admin, auth, health) and **every error** is `no-store`, so the CDN never caches a 4xx/5xx. SSE keeps Nest's `no-cache`. Success bodies have no `requestId`/`timestamp` (`X-Request-ID` and `Date` headers instead).
+- CORS: Cloudflare does not vary its cache on `Origin`, so public GET/HEAD responses send `Access-Control-Allow-Origin: *` (no cookies are used; the data is public). Admin/auth and writes keep the exact allowlist. `Retry-After` and `X-Request-ID` are exposed; 429s carry a standard `Retry-After`.
+- Browser: `frontend/src/model/live/poller.ts` (see the bullets above) runs for elections whose status is `Live` at page load; its GETs send no custom headers, so they are CORS "simple" requests with no preflight (OPTIONS is never CDN-cached). The live ticker and map pulses are diffs between consecutive snapshots.
+
 ## 3. Free-tier limits to plan around
 
 | Service | Limit | Effect on this app |
@@ -106,7 +114,7 @@ From the backend review (IDs refer to it). All are code/config changes in `backe
 | B10 | Neon needs pooled vs direct URLs; `setup.sh` can't take the pooled Prisma URL | §6 | `directUrl` in `schema.prisma`; run `setup.sh` with the direct URL | Done — `DIRECT_URL` (only Prisma CLI commands need it; may equal `DATABASE_URL` locally) |
 | B11 | CORS origins not trimmed | S-L3 | Trim/filter the list; exact Vercel origins | Done — plus optional `CORS_ORIGIN_REGEX`; `credentials` dropped |
 
-Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-override route (S-M3) — **done**; query DTOs on list endpoints (E-M2) — **done**; SSE heartbeat 20 s + `retry:` (O-M3) — **done**; stop public self-registration (S-M1) — **done** (`ALLOW_REGISTRATION`, plus last-SUPER_ADMIN guard); URL validation (S-M2; the `GEMINI_MODEL` part became moot when the built-in AI was removed), request-id validation (S-L2), log correlation + `LOG_LEVEL` (O-M1) — **done**. Still open: `Cache-Control` + drop per-response `requestId`/`timestamp` from bodies so ETags work (P-M1); in-process cache in front of Redis (D6).
+Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-override route (S-M3) — **done**; query DTOs on list endpoints (E-M2) — **done**; SSE heartbeat 20 s + `retry:` (O-M3) — **done**; stop public self-registration (S-M1) — **done** (`ALLOW_REGISTRATION`, plus last-SUPER_ADMIN guard); URL validation (S-M2; the `GEMINI_MODEL` part became moot when the built-in AI was removed), request-id validation (S-L2), log correlation + `LOG_LEVEL` (O-M1) — **done**. `Cache-Control` + drop per-response `requestId`/`timestamp` from bodies so ETags work (P-M1) — **done** (§2.2). Still open: in-process cache in front of Redis (D6; optional now that the CDN absorbs viewer traffic).
 
 ## 5. Setup steps (once blockers are fixed)
 
@@ -148,7 +156,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
   # Defaults, set only to change them:
-  # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5
+  # TRUST_PROXY_HOPS=1  TRUST_CF_CONNECTING_IP=false  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5
   # LOG_LEVEL=info  ALLOW_REGISTRATION=false  CORS_ORIGIN_REGEX=
   ```
   (`PORT` is injected by Render.) Full list with comments: `.env.example`.
@@ -174,23 +182,34 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 
    SPA fallback: add `public/_redirects` with `/* /index.html 200` to each app (Pages serves `index.html` for unknown paths when no 404.html exists, but make it explicit). The admin dev proxy for `/symbols` (`admin/vite.config.ts`) does not exist in production — serve party symbols from `https://app.<domain>/symbols/…` or copy them into the admin build.
 3. **API hostname:** DNS `CNAME api → <service>.onrender.com`, **proxied** (orange cloud); add `api.<domain>` as a custom domain in Render so TLS validates. SSL mode **Full (strict)**.
-4. **Caching:** Cloudflare caches only what the origin marks cacheable once a Cache Rule enables it: add a Cache Rule for `api.<domain>/api/v1/*` → "Eligible for cache", **respect origin Cache-Control**; enable **Smart Tiered Cache** (Caching → Tiered Cache). Admin/auth responses send `no-store` and are never cached.
-5. **Render env:** `CORS_ORIGINS=https://app.<domain>,https://admin.<domain>`; re-verify `TRUST_PROXY_HOPS` (§5.3) — with Cloudflare in front there is one more proxy hop; alternatively trust `CF-Connecting-IP` (decide during the CDN-ready live task).
+4. **Caching:** Cloudflare caches only what the origin marks cacheable once a Cache Rule enables it: add a Cache Rule for `api.<domain>/api/v1/*` → "Eligible for cache", **respect origin Cache-Control**, keep the **query string in the cache key** (`?v=` selects the snapshot); enable **Smart Tiered Cache** (Caching → Tiered Cache). Admin/auth responses and all errors send `no-store` and are never cached. Check after the first deploy: `curl -sI https://api.<domain>/api/v1/elections/<id>/live` twice → `cf-cache-status: HIT` (or `REVALIDATED`) on the second call within 5 s.
+5. **Render env / client IP:** `CORS_ORIGINS=https://app.<domain>,https://admin.<domain>`. With Cloudflare in front there is one more proxy hop, so re-verify `TRUST_PROXY_HOPS` (§5.3; likely **2**: Cloudflare + Render). `TRUST_CF_CONNECTING_IP=true` (req.ip = Cloudflare's `CF-Connecting-IP`) is simpler and exact, but **only safe when the origin accepts traffic from Cloudflare alone** — otherwise anyone can call `<service>.onrender.com` directly with a forged header and pick their own rate-limit bucket. Render has no inbound IP allowlist, so by default keep `TRUST_PROXY_HOPS` (which has the same direct-origin caveat for `X-Forwarded-For`) and rely on the Cloudflare rate-limiting rule for `/auth/*` (step 6); switch to `TRUST_CF_CONNECTING_IP=true` only once direct origin access is blocked (e.g. a Cloudflare Transform Rule adding a secret header that the origin requires — not implemented).
 6. **Security (free):** Cloudflare rate-limiting rule on `api.<domain>/api/v1/auth/*`; "Bot Fight Mode" optional.
 
 ### 5.5 Smoke test
 
 1. `GET /api/v1/health/ready` → 200 with DB + Redis ok.
 2. Open the dashboard → Bihar 2025 loads; map, scoreboard, summary render.
-3. Admin login → apply one override → the dashboard updates live (SSE) without reload.
-4. Wait > 15 min idle → reload: cold start works; live stream reconnects.
+3. Set an election to `Live`, open its dashboard, then in the admin Live Console apply one override → the Live Console updates at once (SSE) and the dashboard updates within ~20 s without reload (polling). Set the status back afterwards.
+4. Wait > 15 min idle → reload: cold start works; polling resumes on its own (no connection to re-establish).
 5. Admin → System status (SUPER_ADMIN): uptime, non-zero requests, DB latency and both Redis connections show as ok. Counters are in memory and reset on every restart/cold start.
 
-Uptime monitoring (external, configuration only): monitor `/api/v1/health/ready` every 5 min (alerts on DB/Redis failure) and, on the free tier, keep the service awake by pinging `/api/v1/health/live` (no I/O, always 200).
+Uptime monitoring: see §5.7.
 
 ### 5.6 Load test (before each election window)
 
-Against `https://api.<domain>` (through the CDN), with the scraper replaying a past counting day: simulate ~5k viewers polling `/live` every 10–13 s and fetching `results?v=` on version change (k6 or autocannon script in `scraper/` — to be written with the CDN-ready live task). Pass criteria: origin request rate (Render logs / admin System status) stays roughly flat as simulated viewers increase; p95 `/live` < 300 ms from India; no 5xx; Upstash commands per minute well under quota.
+Against `https://api.<domain>` (through the CDN), with the scraper replaying a past counting day (`npm run sim:replay`) so versions change:
+
+```bash
+cd scraper
+LOADTEST_ADMIN_TOKEN=<SUPER_ADMIN JWT> \
+  npm run loadtest:viewers -- --base https://api.<domain>/api/v1 --election <live election id> --viewers 500 --duration 180
+# repeat with --viewers 2000, 5000 (several machines if needed)
+```
+
+`scraper/src/loadtest/viewers.ts` runs N simulated viewers with the browser's algorithm (poll `/live` every 10–13 s, 0–2 s wait then `results?v=` on a version change, backoff with `Retry-After`) and prints client-side counts, statuses, `/live` p50/p95, and the origin's own request delta from `/admin/status` (credentials: `LOADTEST_ADMIN_TOKEN`, or `SIM_ADMIN_EMAIL`/`ADMIN_EMAIL` + password env). Pass criteria: the origin request rate stays roughly flat as simulated viewers increase (origin/client ratio falls well below 1); p95 `/live` < 300 ms from India; no 5xx; Upstash commands per minute well under quota.
+
+Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simulated request reaches the origin — the ratio is ≈1.00 by design; that run only checks correctness and single-flight (Redis misses ≈ one per version). All viewers of one machine share an IP: keep viewers × ~5 polls/min under `THROTTLE_PUBLIC_PER_MIN` when hitting the origin directly.
 
 ### 5.7 Monitoring
 

@@ -12,7 +12,8 @@
     "sim:replay": "ts-node src/simulation/replay.ts",
     "sim:reset": "ts-node src/simulation/reset.ts",
     "sim:cleanup": "ts-node src/simulation/cleanup.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "loadtest:viewers": "ts-node src/loadtest/viewers.ts"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",

@@ -4,7 +4,7 @@ Real-time Indian election results tracker with interactive maps, alliance tallie
 
 ## Tech Stack
 
-- **Backend:** NestJS (TypeScript) + Prisma (PostgreSQL), JWT auth, Redis cache + pub/sub → SSE for live updates (Redis is optional at runtime: cache falls back to the DB), OpenTelemetry → SigNoz (OTLP/HTTP, only when `OTEL_EXPORTER_OTLP_ENDPOINT` is set). No built-in AI (removed 2026-09-30). Health: `/api/v1/health/live` (liveness), `/api/v1/health/ready` (DB + Redis). Deployment plan: `docs/DEPLOYMENT.md`
+- **Backend:** NestJS (TypeScript) + Prisma (PostgreSQL), JWT auth, live results for viewers by polling a per-election version + immutable versioned snapshots behind a CDN (`/elections/:id/live`, `results?v=`; version bumped by DB triggers, migration 015), Redis cache + pub/sub → SSE for the admin Live Console only (Redis is optional at runtime: cache falls back to the DB), OpenTelemetry → SigNoz (OTLP/HTTP, only when `OTEL_EXPORTER_OTLP_ENDPOINT` is set). No built-in AI (removed 2026-09-30). Health: `/api/v1/health/live` (liveness), `/api/v1/health/ready` (DB + Redis). Deployment plan: `docs/DEPLOYMENT.md`
 - **Frontend:** React + TypeScript, Vite, D3.js (choropleth maps), i18next, Tailwind CSS v4 (preflight off) + Radix UI. Dashboard is MVVM: `src/model` (pure, no React) → `src/viewmodels` (hooks) → `src/views` (presentational), composed in `src/pages/StudioDashboard.tsx`; `npm run lint` enforces the import direction.
   - Tailwind only scans `src/views` plus the pages listed via `@source` in `frontend/src/theme/studio.css` — add an `@source` line when a new file outside `src/views` uses Tailwind classes.
   - Legacy CSS is loaded through `src/theme/legacy.css` in a lower cascade layer.

@@ -22,9 +22,8 @@
 - [x] Regions table: `regions` (state_id, name, code) with Bihar's 9 regions seeded
 - [x] Person state/region tagging: `state_id` + `region_id` on `persons`, filterable via `GET /admin/persons?state_id=&region_id=`
 - [x] Bihar person-region seed: 382 persons tagged by constituency→region mapping
-- [x] SSE (Server-Sent Events) for live updates with Redis pub/sub backend
+- [x] SSE (Server-Sent Events) for the **admin** Live Console with Redis pub/sub backend (public viewers poll instead — see "CDN-ready live" below)
   - Named events: `result-update`, `batch-update`, `ping` (`enrichment-progress` removed with the built-in AI)
-  - Frontend reconnect: fast retries first, then a slow retry every 60s; also reconnects when the browser comes back online or the tab becomes visible
 - [x] i18n support via react-i18next — chosen language persisted in `localStorage` (`lang`)
 - [x] Dark mode theming (including the map)
 
@@ -38,7 +37,7 @@
 - [x] Filter layers: Live / Swing / Demographic
 - [x] Reset zoom button
 - [x] Pulse animation on recent lead changes (fires only when the seat's leader changes)
-- [x] SSE events patch the map instantly; the full data refresh is debounced to 4s after the last event
+- [x] Live elections update the map, scoreboard and standings together from one polled snapshot (the SSE overlay and its 4 s debounced refresh were removed — pipeline review M5/M8/M9)
 
 ### Constituency Labels (Zoom-Responsive)
 - [x] Text labels appear progressively by zoom level as user zooms in (Overview tab only)
@@ -189,6 +188,19 @@
 - [x] Admin `overrideResult()` auto-publishes `result-update` via `LiveService`
 - [x] Channel naming: `election:{electionId}:events`
 
+### CDN-ready live (viewer polling + versioned snapshots) — docs/DEPLOYMENT.md §2.2
+- [x] Migration 015: `election_live_state(election_id, version, updated_at)`; statement-level triggers on `results` (insert/update/delete), `candidates` and `parties` (update) bump a monotonic per-election version inside the writing transaction — every writer (API overrides, simulation SQL, seeds, admin edits) moves it. Value = `GREATEST(version + 1, now in epoch ms)`, so a rebuilt DB never reuses a version a CDN may hold
+- [x] `GET /api/v1/elections/:id/live` → `{ version, updatedAt, declared, total }`, `Cache-Control: public, max-age=0, s-maxage=5, stale-while-revalidate=10` (in-process 1 s memo + single-flight)
+- [x] `GET /api/v1/elections/:id/results?v=<version>` → snapshot `{ version, results, summary, voteShare }` (the three lists from one query): current version `public, max-age=31536000, immutable`; older → `302` to the current version URL (`s-maxage=5`); newer (race) → current data, `no-store`. Without `v`: the unchanged rows array, `s-maxage=10, stale-while-revalidate=30`
+- [x] Cache headers: `@CacheControl()` opt-in per controller (public GETs `s-maxage=60, stale-while-revalidate=300`); everything else and every error `no-store`
+- [x] Success bodies no longer carry `requestId`/`timestamp` (headers `X-Request-ID` + `Date`; error bodies keep `requestId`) — identical data gives identical bytes/ETags
+- [x] `CacheService.getOrSet` single-flight (concurrent misses of a key share one Redis read + one DB load); an invalidation during a load skips its write-back
+- [x] Overrides: commit (trigger bumps version) → forget live memo → purge caches → publish admin SSE
+- [x] CORS: public GET/HEAD answer `Access-Control-Allow-Origin: *` (CDN caches one copy for all sites); `Retry-After` and `X-Request-ID` exposed; preflights cached 2 h; 429s carry a standard `Retry-After`
+- [x] `TRUST_CF_CONNECTING_IP=true`: client IP from Cloudflare's `CF-Connecting-IP` (only when the origin accepts Cloudflare traffic only)
+- [x] Frontend poller (`frontend/src/model/live/poller.ts`, used by `useLiveSnapshot`): `/live` every 10 s + 0–3 s, paused while the tab is hidden and polled at once when visible; on a version change wait 0–2 s then fetch `results?v=`; exponential backoff with jitter (max 60 s) honouring `Retry-After`. Live elections only (status `Live` at page load). Ticker and map pulses come from diffing consecutive snapshots. GETs send no `Content-Type` (no CORS preflight)
+- [x] Load test: `cd scraper && npm run loadtest:viewers -- --viewers N --duration S [--base URL]` simulates viewers with the same algorithm and prints origin request counts from `/admin/status` before/after (DEPLOYMENT §5.6)
+
 ### OpenTelemetry Observability (SigNoz)
 - [x] OTLP SDK bootstrap (`backend/src/tracing.ts`) — loaded before NestJS, OTLP/HTTP export (port 4318); starts only when `OTEL_EXPORTER_OTLP_ENDPOINT` is set and `OTEL_SDK_DISABLED` is not `true`
 - [x] Instrumentation limited to HTTP, Express, ioredis and Prisma spans; W3C trace context only (no Jaeger propagator)
@@ -323,14 +335,14 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Vote progression: `easeInOutCubic` S-curve with ±5% noise, monotonic enforcement, LEADING→WON transitions
 - [x] Close-race lead flips in rounds 6-12 for constituencies with < 5% margin
 - [x] Mock server generates HTML matching real ECI format (Cheerio-compatible)
-- [x] Replay pushes overrides through existing SSE pipeline (Redis pub/sub → frontend toasts)
+- [x] Replay pushes overrides through the admin bulk-override API (admin Live Console via SSE; viewers pick them up by polling the live version)
 - [x] Reset script: zeroes results without deleting election structure (`scraper/src/simulation/reset.ts`)
 - [x] Round tracking: `round_no` in override API + SSE event, round progress badge in Dashboard header
 - [x] Pre-poll constituency modal: candidate list, seat history, dominance, incumbency, revision — all shown before counting
 - [x] `normalizeConstId` uses const_no only for VS elections (fixes 18 name spelling mismatches across years)
 - [x] Incumbent badge shows "Contesting" before counting, "Retained/Lost" after results
 - [x] Candidate table hides vote/share/status columns when no votes yet
-- [x] System status (admin, SUPER_ADMIN only): `GET /api/v1/admin/status` + admin page "System status". In-memory counters (single instance, reset on restart, O(1) per request): uptime/version/git sha/memory; HTTP totals by status class, 429 count, 5-min and 60-min request and 5xx rates (per-minute ring buffer), 10 slowest routes by p95 over 60 min (route templates, bounded 200-sample reservoirs); cache hits/misses/Redis fallbacks; Redis pub/sub states and publish counts/errors; SSE connections, events published, result overrides (per min, last at); DB `SELECT 1` latency (2 s timeout) and pool `connection_limit`. No secrets or hostnames in the response, `Cache-Control: no-store`. Works with OTel off; MetricsService call sites feed both OTel and StatusService. Page auto-refreshes every 10 s while visible.
+- [x] System status (admin, SUPER_ADMIN only): `GET /api/v1/admin/status` + admin page "System status". In-memory counters (single instance, reset on restart, O(1) per request): uptime/version/git sha/memory; HTTP totals by status class, 429 count, 5-min and 60-min request and 5xx rates (per-minute ring buffer), 10 slowest routes by p95 of each route's last ≤200 requests within 60 min (route templates, at most 300 routes tracked); cache hits/misses/Redis fallbacks; Redis pub/sub states and publish counts/errors; SSE connections, events published, result overrides (per min, last at); DB `SELECT 1` latency (2 s timeout) and pool `connection_limit`. No secrets or hostnames in the response, `Cache-Control: no-store`. Works with OTel off; MetricsService call sites feed both OTel and StatusService. Page auto-refreshes every 10 s while visible.
 
 ## In progress
 
