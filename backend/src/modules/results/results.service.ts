@@ -311,8 +311,22 @@ export class ResultsService {
   }
 
   /** Drop every cached view of an election. Never throws (a Redis outage is logged). */
+  /**
+   * Drops the election's cached derived data. The content-addressed snapshot keys
+   * (`…:snapshot:v<n>`) are deliberately kept: they never change meaning, and a
+   * wildcard purge right after a commit could delete the snapshot a fast reader
+   * had just cached for the new version (one extra DB load per override). Old
+   * snapshots fall away with their TTL.
+   */
   async purgeElectionCache(electionId: string): Promise<boolean> {
-    return this.cache.delByPattern(`election:${electionId}:*`);
+    const base = `election:${electionId}`;
+    const outcomes = await Promise.all([
+      this.cache.delByPattern(`${base}:summary:*`),
+      this.cache.delByPattern(`${base}:vote-share:*`),
+      this.cache.delByPattern(`${base}:full-results:*`),
+      this.cache.del(`${base}:public-analysis`),
+    ]);
+    return outcomes.every(Boolean);
   }
 }
 

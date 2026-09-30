@@ -60,6 +60,23 @@ describe('routeTemplate', () => {
   });
 });
 
+describe('health probes and shield rejections', () => {
+  it('StatusMiddleware skips /health/* probes; shield 403s are counted separately', () => {
+    const { StatusMiddleware } = require('./status.middleware');
+    const s = new StatusService();
+    const mw = new StatusMiddleware(s);
+    const finish = jest.fn();
+    const next = jest.fn();
+    mw.use({ originalUrl: '/api/v1/health/live?x=1', method: 'GET' }, { on: finish }, next);
+    expect(next).toHaveBeenCalledTimes(1);
+    expect(finish).not.toHaveBeenCalled(); // no listener: never recorded
+    mw.use({ originalUrl: '/api/v1/elections', method: 'GET' }, { on: finish }, next);
+    expect(finish).toHaveBeenCalledWith('finish', expect.any(Function));
+    s.recordShieldRejection();
+    expect(s.snapshot().http).toMatchObject({ total: 0, shieldRejected403: 1 });
+  });
+});
+
 describe('StatusService', () => {
   it('counts status classes, 429 and rolling rates', () => {
     const s = new StatusService();

@@ -11,15 +11,15 @@ Current data coverage includes Lok Sabha 2024 and Vidhan Sabha elections across 
 ## Architecture
 
 ```
-[Public SPA (React+Vite)]  <── SSE ─┐
-                                    ├─→ [NestJS API] ──→ [PostgreSQL]
-[Admin SPA (React+Vite)]  ── REST ──┘          │
-                                               └─→ [Redis (cache + pub/sub)]
-                                                        ↑
-[Scraper: simulation replay] ── admin REST API ─────────┘
+[Public SPA (React+Vite)] ── poll /live + ?v= snapshot (via CDN) ─┐
+                                                                   ├─→ [NestJS API] ──→ [PostgreSQL]
+[Admin SPA (React+Vite)]  ── REST + SSE (Live Console only) ───────┘          │
+                                                                              └─→ [Redis (cache + pub/sub)]
+                                                                                       ↑
+[Scraper: simulation replay] ── admin REST API ────────────────────────────────────────┘
 ```
 
-Four independent services communicate through PostgreSQL (source of truth) and Redis (pub/sub for SSE fan-out + live cache). OpenTelemetry traces/metrics are shipped to a SigNoz collector.
+Four independent services communicate through PostgreSQL (source of truth) and Redis (live-result cache + pub/sub for the admin Live Console's SSE). Viewers poll a tiny `/live` version endpoint and fetch immutable `?v=<version>` snapshots, which a CDN can cache (see docs/DEPLOYMENT.md). OpenTelemetry traces/metrics are shipped to a SigNoz collector.
 
 ## Tech Stack
 
@@ -30,7 +30,7 @@ Four independent services communicate through PostgreSQL (source of truth) and R
 | Admin FE    | React + Vite (TypeScript SPA), JWT-protected                           |
 | Scraper     | Node.js + ts-node: seed generators, live simulation (live ECI ingestion not implemented) |
 | Database    | PostgreSQL 15                                                          |
-| Cache / RT  | Redis 7 (pub/sub for SSE, live tally cache)                            |
+| Cache / RT  | Redis 7 (live tally cache, pub/sub for admin SSE)                       |
 | Observability | OpenTelemetry → SigNoz                                               |
 
 ## Directory Layout
@@ -59,7 +59,7 @@ election-tracker/
 ## Getting Started
 
 ### Prerequisites
-- Node.js 20+, npm
+- Node.js 24 (LTS; `engines` pins `24.x`), npm
 - Docker + Docker Compose (for PostgreSQL, Redis, OTEL collector)
 
 ### 1. Configure
@@ -106,7 +106,7 @@ cd admin && npm install && npm run dev
 
 ### 5. (Optional) Live-counting simulation
 Live ECI ingestion is **not implemented** — `scraper/src/index.ts` only prints a notice. To exercise
-the counting-day pipeline (admin bulk overrides → Redis pub/sub → SSE → frontend), use the simulation,
+the counting-day pipeline (admin bulk overrides → DB version bump → `/live` poll → snapshot → frontend; Redis pub/sub → SSE feeds the admin Live Console), use the simulation,
 which replays Bihar 2025 results round by round as a fictional "Bihar 2027" live election:
 ```bash
 cd scraper && npm install
@@ -126,7 +126,7 @@ Open `http://localhost:3080` for the public tracker, `http://localhost:3081` for
 - **Interactive D3 choropleth** with margin-based intensity, zoom/pan, hover tooltips, drill-down
 - **Map tabs** — Overview, Battle (alliance/party filter + margin shading), SC/ST demographics, Swing (flips vs. prior), Insights (spoiler/vote-split), History (dominance + anti-incumbency + party switchers + margin trend)
 - **Alliance tallies** with majority mark, vulnerability shading, head-to-head comparator
-- **Live SSE updates** with toast notifications when leads change, pulse animation on the map
+- **Live updates by polling** (`/live` version + immutable snapshot, CDN-friendly) with toast notifications when leads change, pulse animation on the map
 - **Constituency modal + detail page** — candidates, voter turnout, vote share, historical context
 - **i18n** (English, Hindi, +2 regional) and dark mode
 
@@ -135,7 +135,7 @@ Open `http://localhost:3080` for the public tracker, `http://localhost:3081` for
 - Master-data management (parties, candidates, constituencies, persons) with CSV bulk import
 - Person linking across elections, photo/bio management, duplicate merge
 - Scraper control center, manual result overrides, audit logs
-- **Live simulation mode** — clone an election, mock the ECI endpoint, replay rounds to test SSE flows
+- **Live simulation mode** — clone an election, mock the ECI endpoint, replay rounds to test the live pipeline
 
 ### Data & Analysis
 - Historical dominance classification (stronghold / loyal / swing) over 3+ elections
@@ -173,7 +173,7 @@ See `.env.example` — one set of names is shared by docker-compose, `database/s
 | `JWT_SECRET` | backend | **required** — backend fails fast without it |
 | `PORT` `CORS_ORIGINS` | backend | defaults 3082 / localhost:3080,3081 |
 | `ADMIN_EMAIL` `ADMIN_PASSWORD` | `npm run create-admin` | initial SUPER_ADMIN |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | backend | OTLP collector (default `http://localhost:4317`) |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | backend | OTLP/HTTP collector, e.g. `http://localhost:4318`; empty (default) disables tracing |
 | `SIGNOZ_ENDPOINT` `SIGNOZ_INGESTION_KEY` | otel-collector | SigNoz Cloud export |
 | `API_BASE_URL` `SIM_ADMIN_EMAIL` `SIM_ADMIN_PASSWORD` | scraper simulation | replay login falls back to `ADMIN_*` |
 

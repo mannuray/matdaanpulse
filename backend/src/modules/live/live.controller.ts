@@ -94,15 +94,33 @@ export class LiveController {
   @Sse('updates')
   @SkipThrottle(SKIP_ALL_THROTTLERS)
   @UseGuards(LiveSseAccessGuard)
-  updates(@Query('election_id') electionId: string): Observable<MessageEvent> {
-    this.logger.log(`SSE client connected for election ${electionId} (${this.connections.open} open)`);
-    this.metrics.sseConnections.add(1, { election_id: electionId });
-    return this.live.streamEvents(electionId).pipe(
-      finalize(() => {
-        this.connections.release();
-        this.logger.log(`SSE client disconnected from election ${electionId}`);
+  updates(
+    @Query('election_id') electionId: string,
+    @Req() req: { on?: (event: string, cb: () => void) => unknown },
+  ): Observable<MessageEvent> {
+    // The guard already claimed a slot. Release it exactly once, whichever comes first:
+    // the stream ending, the client closing the request, or a failure below.
+    let released = false;
+    const release = () => {
+      if (released) return;
+      released = true;
+      this.connections.release();
+      this.logger.log(`SSE client disconnected from election ${electionId}`);
+      try {
         this.metrics.sseConnections.add(-1, { election_id: electionId });
-      }),
-    );
+      } catch {
+        /* metrics must never block the release */
+      }
+    };
+    try {
+      this.logger.log(`SSE client connected for election ${electionId} (${this.connections.open} open)`);
+      this.metrics.sseConnections.add(1, { election_id: electionId });
+      // Backstop for an abort between the guard and Nest attaching its own 'close' handler.
+      req.on?.('close', release);
+      return this.live.streamEvents(electionId).pipe(finalize(release));
+    } catch (err) {
+      release();
+      throw err;
+    }
   }
 }

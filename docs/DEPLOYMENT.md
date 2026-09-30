@@ -53,7 +53,7 @@ Per-viewer SSE does not scale behind a CDN (every open tab holds an origin conne
 
 | Endpoint | Returns | Cache-Control |
 |---|---|---|
-| `GET /api/v1/elections/:id/live` | `{ version, updatedAt, declared, total }` (a few hundred bytes) | `public, max-age=0, s-maxage=5, stale-while-revalidate=10` |
+| `GET /api/v1/elections/:id/live` | `{ version, status, updatedAt, declared, total }` (a few hundred bytes) | `public, max-age=0, s-maxage=5, stale-while-revalidate=10` while `Live`; `s-maxage=30` otherwise |
 | `GET /api/v1/elections/:id/results?v=<version>` | full snapshot for that version | `public, max-age=31536000, immutable` (a version never changes) |
 | Other public GETs (elections, constituencies, …) | as today | `public, max-age=0, s-maxage=60, stale-while-revalidate=300` (longer for finished elections) |
 | Admin, auth, SSE, health | — | `no-store` / not cached |
@@ -80,8 +80,8 @@ Expected origin load on counting day: roughly (upper-tier PoPs × 1 request / 5 
 
 | Service | Limit | Effect on this app |
 |---|---|---|
-| Render free | Spins down after ~15 min without inbound requests; cold start 30–60 s; 512 MB RAM, 0.1 CPU; monthly instance-hour cap | First visitor after idle waits ~1 min (off-season only — Starter during election windows, §3.1). |
-| Neon free | 512 MB storage; compute auto-suspends after ~5 min idle; monthly compute-hour cap | First query after idle takes ~0.5–few s; a pooled connection may be dropped once (retry). Seed data ≈ 30–60 MB, fits. |
+| Render free | Spins down after ~15 min without inbound requests; cold start 30–60 s; 512 MB RAM, 0.1 CPU; a monthly instance-hour allowance: one free service running (or pinged awake) all month fits, a second free service on the same account may not — check Render's current terms | First visitor after idle waits ~1 min (off-season only — Starter during election windows, §3.1). |
+| Neon free | 512 MB storage; compute auto-suspends after ~5 min idle; monthly compute-hour allowance (check the current number on Neon's pricing page; on the Free plan running out suspends compute until the next cycle, it does not bill overage) | First query after idle takes ~0.5–few s; a pooled connection may be dropped once (retry). Seed data ≈ 30–60 MB, fits. |
 | Upstash free | 256 MB; monthly command and bandwidth caps (500K commands/month at the time of writing) | Every cache read, publish and delivered message counts. A busy counting day can hit the cap — see decision D6. |
 | Cloudflare free | Pages: 500 builds/month, 20k files, 25 MiB/file; CDN caching of API GETs; Tiered Cache | No bandwidth cap published for static assets. |
 
@@ -92,11 +92,22 @@ Verify current limits on each provider's pricing page before launch.
 | Period | Render | Neon | Upstash | Cost |
 |---|---|---|---|---|
 | Off-season | **Free** (sleeps after ~15 min idle) | Free | Free | $0 |
-| ~2 weeks before counting → ~3 days after | **Starter** (always on, no cold starts) | Free (pay-as-you-go only if compute hours run out) | Free (pay-as-you-go costs cents if the cap is hit) | ~$7–10 for the month |
+| ~2 weeks before counting → ~3 days after | **Starter** (always on, no cold starts) | Free if the compute allowance covers an always-awake database for the window, else the paid plan for that month (see below) | Free (pay-as-you-go costs cents if the cap is hit) | ~$7–10 for the month |
 | Counting day | Starter; one instance is enough behind the CDN (Standard optional) | same | same | same |
 | After the cliff | back to **Free** | | | $0 |
 
-Window runbook: calendar reminders (or a scheduled job) to switch the Render instance type up two weeks before counting and down three days after; run the load test (§5.6) after switching up.
+Window runbook: calendar reminders (or a scheduled job) for both switches, two weeks before counting and three days after:
+
+| | Off-season | Election window |
+|---|---|---|
+| Render instance | Free | Starter |
+| Uptime monitor target (§5.7) | `/health/live` (no DB, so Neon can suspend) | `/health/ready` every 5 min (DB + Redis, real alerting) |
+
+Run the load test (§5.6) after switching up. During the window the database is effectively awake around the clock (origin traffic at least every 5 s while counting, plus the `/ready` monitor), so compute hours are consumed continuously: before the window compare the Neon allowance with ~24 h × days-in-window of compute at the minimum size, and upgrade the Neon plan for that month if it does not fit (an exhausted Free allowance suspends the database and every uncached request fails). Record the decision under D2.
+
+**Off-season expectations:** nothing should keep the stack awake. Upcoming elections with a far-off `tentative_next_date` make the dashboard stop polling (the public API now exposes the field), and the monitor hits only `/health/live`. The Render free service then spins down after ~15 min idle and Neon suspends after ~5 min; a monitor on `/live` does keep the Render free instance awake all month, which fits the free instance-hour allowance for one service but not for two.
+
+**Deploys and counting:** a bulk override runs in one transaction of up to 60 s (`bulk-override.service.ts`). A Render deploy or instance swap gives the old instance only a short shutdown grace; if it is cut mid-batch the connection drops, Postgres rolls the batch back and the feeder must retry (nothing is half-applied). Runbook: no backend deploys during counting; pause the feeder before an unavoidable one.
 
 ## 4. Blockers before first deploy
 
@@ -112,7 +123,7 @@ From the backend review (IDs refer to it). All are code/config changes in `backe
 | B6 | 500s never logged; Prisma errors all become 500 | E-H2, E-M1 | Log 500s with stack + request id; map P2002→409, P2025→404, P2003/P2023/validation→400 | Done |
 | B7 | OTel always exports to `localhost:4317`; its gRPC chain carries a critical advisory | O-M4, S-H1 | Start OTel only when an endpoint is configured (`OTEL_SDK_DISABLED=true` in prod); `npm audit fix`; move to OTLP/HTTP if kept | Done — OTLP/HTTP, starts only with an endpoint; `npm audit --omit=dev` 49 → 12 (0 critical; the rest need Nest/Prisma majors) |
 | B8 | `/health` returns 200 when degraded, leaks error text, is throttled, hits the DB | O-M2 | `/health/live` (no I/O) for Render; `/health/ready` (DB + Redis, 503 when down) | Done — `/health` is an alias of ready |
-| B9 | Build needs devDeps + `prisma generate`; Node version unpinned | DEP-3 | Build command below; `"engines": { "node": "20.x" }` | Done — build verified with `npm ci --include=dev && npx prisma generate && npm run build` |
+| B9 | Build needs devDeps + `prisma generate`; Node version unpinned | DEP-3 | Build command below; `"engines": { "node": "24.x" }` (Node 24 LTS; 20 is end-of-life) + `NODE_VERSION=24` on Render | Done — build verified on Node 24 with `npm ci --include=dev && npx prisma generate && npm run build` |
 | B10 | Neon needs pooled vs direct URLs; `setup.sh` can't take the pooled Prisma URL | §6 | `directUrl` in `schema.prisma`; run `setup.sh` with the direct URL | Done — `DIRECT_URL` (only Prisma CLI commands need it; may equal `DATABASE_URL` locally) |
 | B11 | CORS origins not trimmed | S-L3 | Trim/filter the list; exact Vercel origins | Done — plus optional `CORS_ORIGIN_REGEX`; `credentials` dropped |
 
@@ -146,10 +157,12 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 - Root directory: `backend`
 - Build: `npm ci --include=dev && npx prisma generate && npm run build`
 - Start: `node dist/main`
-- Health check path: `/api/v1/health/live` (no I/O; the only route exempt from the origin shield, §5.4). Readiness (DB + Redis, 503 when degraded): `/api/v1/health/ready` — monitor it through Cloudflare (`https://api.<domain>/…`), since the shield rejects direct calls.
-- Environment:
+- Health check path: `/api/v1/health/live` (no I/O; the only route exempt from the origin shield, §5.4). Readiness (DB + Redis, 503 when degraded): `/api/v1/health/ready` — monitored through Cloudflare (`https://api.<domain>/…`, since the shield rejects direct calls) during the election window only; off-season the monitor uses `/health/live` (§5.7).
+- **Order of operations (read before starting):** (1) deploy on Render **without** the origin shield (this section) and confirm it on `<service>.onrender.com`; (2) §5.4: DNS `api → onrender.com` proxied, Pages, Cache Rule, then the Cloudflare **Transform Rule** that adds `X-Origin-Secret`; (3) only then set `ORIGIN_SHARED_SECRETS`, and after that `TRUST_CF_CONNECTING_IP=true` on Render (§5.4 step 5). Setting the secret before the rule exists makes every call except `/health/live` answer 403.
+- Environment for the first deploy (shield **off**, so the service is reachable on `onrender.com`):
   ```
   NODE_ENV=production
+  NODE_VERSION=24
   JWT_SECRET=<openssl rand -hex 32>
   DATABASE_URL=<Neon pooled URL>
   DIRECT_URL=<Neon direct URL>
@@ -158,18 +171,21 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
   # Defaults, set only to change them:
-  ORIGIN_SHARED_SECRETS=<openssl rand -hex 32>   # same value as the Cloudflare Transform Rule (§5.4)
-  TRUST_CF_CONNECTING_IP=true                     # only with ORIGIN_SHARED_SECRETS (the backend refuses to start otherwise)
   # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5  SSE_MAX_CONNECTIONS=200
   # LOG_LEVEL=info  ALLOW_REGISTRATION=false  CORS_ORIGIN_REGEX=
+  # Added later, in this order, once Cloudflare is live (§5.4 step 5) — NOT on the first deploy:
+  #   ORIGIN_SHARED_SECRETS=<openssl rand -hex 32>   # same value as the Cloudflare Transform Rule
+  #   TRUST_CF_CONNECTING_IP=true                    # only with ORIGIN_SHARED_SECRETS (the backend refuses to start otherwise)
   ```
-  (`PORT` is injected by Render.) Full list with comments: `.env.example`.
-- First deploy — verify `TRUST_PROXY_HOPS` (it decides the IP every rate limit is keyed on):
-  1. Set `LOG_LEVEL=debug`, redeploy, and open the dashboard from a browser. Health-check requests are ignored; the first other request logs `Client IP check: req.ip=… x-forwarded-for="…" TRUST_PROXY_HOPS=N`.
-  2. Compare `req.ip` with your own public IP (e.g. from a "what is my IP" page). If they match, the setting is right.
-  3. With N hops, `req.ip` is the N-th entry from the right of `x-forwarded-for`. Raise `TRUST_PROXY_HOPS` by one **only** if `req.ip` is a Render/Cloudflare proxy address **and** your real IP appears as an earlier (more-left) entry in `x-forwarded-for`.
-  4. Never set it higher than that: every extra hop trusts one more client-supplied entry, so anyone could send `X-Forwarded-For: <random>` and get a fresh bucket per request — bypassing the 5/min login limit and the public limit.
+  (`PORT` is injected by Render.) Full list with comments: `.env.example`. The build log should say `Using Node.js 24.x`.
+- First-deploy check: `curl -s https://<service>.onrender.com/api/v1/health/ready` → `200` (DB + Redis ok). Do **not** open the dashboard against this URL yet — it is deployed in §5.4.
+- Rate-limit IP, **no-Cloudflare setups only** (this is how `req.ip` is derived while `TRUST_CF_CONNECTING_IP` is off, i.e. until §5.4 step 5 is done, or if you never use Cloudflare): verify `TRUST_PROXY_HOPS`, which decides the IP every rate limit is keyed on:
+  1. Set `LOG_LEVEL=debug`, redeploy, and call any non-health endpoint from your machine. The first such request logs `Client IP check: req.ip=… x-forwarded-for="…" cf-connecting-ip=… TRUST_PROXY_HOPS=N TRUST_CF_CONNECTING_IP=false`.
+  2. Compare `req.ip` with your own public IP. If they match, the setting is right.
+  3. With N hops, `req.ip` is the N-th entry from the right of `x-forwarded-for`. Raise `TRUST_PROXY_HOPS` by one **only** if `req.ip` is a Render/Cloudflare proxy address **and** your real IP appears as an earlier (more-left) entry.
+  4. Never set it higher than that: every extra hop trusts one more client-supplied entry, so anyone could send `X-Forwarded-For: <random>` and get a fresh bucket per request.
   5. Set `LOG_LEVEL` back to `info`.
+  With Cloudflare in front and `TRUST_CF_CONNECTING_IP=true` this setting no longer decides the rate-limit key (it is only the fallback when `CF-Connecting-IP` is missing/invalid); verify the Cloudflare path as in §5.4 step 5 instead.
 
 ### 5.4 Cloudflare: domain, Pages, API proxy
 
@@ -184,14 +200,20 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
    | Env (build time) | `VITE_API_BASE_URL=https://api.<domain>/api/v1` | same |
    | Custom domain | `app.<domain>` | `admin.<domain>` |
 
-   SPA fallback: add `public/_redirects` with `/* /index.html 200` to each app (Pages serves `index.html` for unknown paths when no 404.html exists, but make it explicit). The admin dev proxy for `/symbols` (`admin/vite.config.ts`) does not exist in production — serve party symbols from `https://app.<domain>/symbols/…` or copy them into the admin build.
+   SPA fallback: each app ships `public/_redirects` (`/*  /index.html  200`), already committed in `frontend/` and `admin/`. The admin dev proxy for `/symbols` (`admin/vite.config.ts`) does not exist in production — serve party symbols from `https://app.<domain>/symbols/…` or copy them into the admin build.
 3. **API hostname:** DNS `CNAME api → <service>.onrender.com`, **proxied** (orange cloud); add `api.<domain>` as a custom domain in Render so TLS validates. SSL mode **Full (strict)**.
-4. **Caching:** Cloudflare caches only what the origin marks cacheable once a Cache Rule enables it: add a Cache Rule for `api.<domain>/api/v1/*` → "Eligible for cache", **respect origin Cache-Control**, keep the **query string in the cache key** (`?v=` selects the snapshot); enable **Smart Tiered Cache** (Caching → Tiered Cache). Admin/auth responses and all errors send `no-store` and are never cached. Check after the first deploy: `curl -sI https://api.<domain>/api/v1/elections/<id>/live` twice → `cf-cache-status: HIT` (or `REVALIDATED`) on the second call within 5 s.
-5. **Origin shield + client IP:** Render has no inbound IP allowlist, so anyone could call `<service>.onrender.com` directly — bypassing the CDN and forging `X-Forwarded-For` / `CF-Connecting-IP` to pick their own rate-limit bucket. Close it:
-   1. `openssl rand -hex 32` → Cloudflare → Rules → **Transform Rules → Modify Request Header** (free plan): expression `http.host eq "api.<domain>"`, action **Set static** `X-Origin-Secret` = `<secret>` ("Set" overwrites anything a client sends; the header only travels edge → origin).
-   2. Render env `ORIGIN_SHARED_SECRETS=<secret>` (comma list for rotation: add the new value at origin, switch the Transform Rule, then remove the old one). Every request without a matching header gets `403 no-store` before any other work; only `GET/HEAD /api/v1/health/live` is exempt (Render's health checker). The header is stripped before logging.
-   3. Then set `TRUST_CF_CONNECTING_IP=true` (req.ip = Cloudflare's `CF-Connecting-IP`, exact, no hop counting — a wrong `TRUST_PROXY_HOPS` would key buckets on Cloudflare egress IPs and 429 whole regions). The backend refuses to start with `TRUST_CF_CONNECTING_IP=true` and no `ORIGIN_SHARED_SECRETS`.
-   4. Check: `curl -si https://<service>.onrender.com/api/v1/elections` → 403; through `api.<domain>` → 200. The boot log says `Origin shield on (1 secret)`.
+4. **Caching:** Cloudflare caches only what the origin marks cacheable once a Cache Rule enables it: add a Cache Rule for `api.<domain>/api/v1/*` → "Eligible for cache", **respect origin Cache-Control**, keep the **query string in the cache key** (`?v=` selects the snapshot); enable **Smart Tiered Cache** (Caching → Tiered Cache). Admin/auth responses and all errors send `no-store` and are never cached. Check after the first deploy (Cloudflare Free must honour the origin's short `s-maxage` and `stale-while-revalidate`; verify, do not assume):
+   - `curl -sI https://api.<domain>/api/v1/elections/<id>/live` twice → `cf-cache-status: HIT` (or `REVALIDATED`) on the second call within 5 s while the election is `Live` (30 s otherwise); `Age` counts up to ≤ the `s-maxage`, then the next call refreshes it.
+   - `curl -sI "https://api.<domain>/api/v1/elections/<id>/results?v=<current version from /live>"` twice → second is `HIT` and carries `Cache-Control: public, max-age=31536000, immutable`.
+   - `curl -sI "https://api.<domain>/api/v1/elections/<id>/results?v=1"` (an old version) → `302` to `?v=<current>`, and a repeat within 5 s is `HIT`.
+   - `/elections` → `HIT` on repeat, `Cache-Control: public, max-age=0, s-maxage=60, …`.
+   If any of these is `DYNAMIC`/`MISS` every time, the Cache Rule is not matching (check the expression and "respect origin") or the plan ignores the origin TTL — fix before counting day; it is the whole scaling plan.
+   `X-Request-ID` on a CDN-cached public response is the id of the request that filled the cache and is replayed to every viewer: use it to correlate origin logs, not to identify a viewer's request.
+5. **Origin shield + client IP** (do this after DNS, Pages and the Cache Rule work). Render has no inbound IP allowlist, so anyone could call `<service>.onrender.com` directly — bypassing the CDN and forging `X-Forwarded-For` / `CF-Connecting-IP` to pick their own rate-limit bucket. Close it, **in this order**:
+   1. Cloudflare first: `openssl rand -hex 32` → Rules → **Transform Rules → Modify Request Header** (free plan): expression `http.host eq "api.<domain>"`, action **Set static** `X-Origin-Secret` = `<secret>` ("Set" overwrites anything a client sends; the header only travels edge → origin). `api.<domain>` must already be proxied (orange cloud) and serving the API (step 3).
+   2. Render env `ORIGIN_SHARED_SECRETS=<secret>` (comma list for rotation: add the new value at origin, switch the Transform Rule, then remove the old one), redeploy. Every request without a matching header now gets `403 no-store` before any other work; only `GET/HEAD /api/v1/health/live` is exempt (Render's health checker). The header is stripped before logging. Check: `curl -si https://<service>.onrender.com/api/v1/elections` → 403; `curl -si https://api.<domain>/api/v1/elections` → 200; the boot log says `Origin shield on (1 secret)`. If the second call is 403 the Transform Rule is not matching (host expression, or the record is not proxied).
+   3. Then set `TRUST_CF_CONNECTING_IP=true` and redeploy (req.ip = Cloudflare's `CF-Connecting-IP`, exact, no hop counting — a wrong `TRUST_PROXY_HOPS` would key buckets on Cloudflare egress IPs and 429 whole regions). The backend refuses to start with it set and no `ORIGIN_SHARED_SECRETS`.
+   4. Verify the client IP on this path: set `LOG_LEVEL=debug`, redeploy, call any non-health endpoint through `https://api.<domain>` from your machine (use `?_=<random>` so the CDN does not answer). The one-time `Client IP check` line must show **`req.ip` = your public IP** and a populated **`cf-connecting-ip`** equal to it (`x-forwarded-for` will list Cloudflare/Render hops; ignore it). If `cf-connecting-ip=null`, the request did not come through Cloudflare (or the record is not proxied). `TRUST_PROXY_HOPS` only matters when `TRUST_CF_CONNECTING_IP` is off or the header is invalid. Set `LOG_LEVEL` back to `info`.
    `CORS_ORIGINS=https://app.<domain>,https://admin.<domain>` as before.
    Cache-busting: `?_=<anything>` (the admin panel's cache-buster) and random `?v=` values miss the CDN by design; per-IP throttling bounds them — optionally add a Cloudflare rate-limiting rule on requests with `_=` in the query.
    Snapshot size: an LS snapshot is ~490 KB raw (~80 KB gzipped); check it fits the Upstash plan's max request/value size (a failed SET only means one DB load per version per instance, bounded by single-flight).
@@ -199,7 +221,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 
 ### 5.5 Smoke test
 
-1. `GET /api/v1/health/ready` → 200 with DB + Redis ok.
+1. `GET https://api.<domain>/api/v1/health/ready` → 200 with DB + Redis ok (through Cloudflare once the shield is on).
 2. Open the dashboard → Bihar 2025 loads; map, scoreboard, summary render.
 3. Set an election to `Live`, open its dashboard, then in the admin Live Console apply one override → the Live Console updates at once (SSE) and the dashboard updates within ~20 s without reload (polling). Set the status back afterwards.
 4. Wait > 15 min idle → reload: cold start works; polling resumes on its own (no connection to re-establish).
@@ -227,15 +249,20 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
 
 ### 5.7 Monitoring
 
-- **Uptime:** UptimeRobot / Better Stack free monitor on `https://api.<domain>/api/v1/health/ready` every 5 min → email/phone alert. The keep-awake pinger (if used off-season) must hit `/health/live`, not `/ready`, so Neon can still suspend.
-- **Counting-day view:** admin → System status (in-memory counters since restart: traffic, 4xx/5xx/429, slowest routes, cache hit rate, Redis state, live connections, overrides/min, DB latency).
+- **Uptime (split by season, §3.1):** UptimeRobot / Better Stack free monitor through Cloudflare (`https://api.<domain>/…`; the shield rejects direct calls).
+  - **Off-season:** `https://api.<domain>/api/v1/health/live` (no DB, no Redis). `/ready` does `SELECT 1` and a Redis PING; probing it every 5 min would keep Neon from ever suspending (it suspends after ~5 min idle) and burn its monthly compute allowance.
+  - **Election window** (same calendar reminders as the Render Starter switch): `https://api.<domain>/api/v1/health/ready` every 5 min → email/phone alert. Switch back afterwards.
+  - Either monitor keeps the Render free instance awake; one always-pinged free service is what the monthly free instance-hour allowance is sized for (verify against Render's current terms, and do not put a second free service on the account).
+  - Health probes are excluded from the System status traffic counters and logged at `debug`.
+- **Counting-day view:** admin → System status (in-memory counters since restart: traffic, 4xx/5xx/429, origin-shield 403s, slowest routes, cache hit rate, Redis state, live connections, overrides/min, DB latency). Shield 403s are counted separately and are not part of the request total.
+- **Logs and the SSE token:** the Live Console's stream URL carries its short-lived (5 min, single-election) token as `?token=`. The app redacts it in its own logs, but Render's and Cloudflare's platform access logs record the URL, so treat those logs as able to see a token that is valid for at most 5 minutes and cannot be used as a session credential.
 
 ## 6. Decisions
 
 | ID | Decision | Outcome |
 |---|---|---|
 | D1 | Neon region | **Singapore `ap-southeast-1`** (same region as Render and Upstash) |
-| D2 | Render spin-down on counting days | **Free off-season; Starter from ~2 weeks before to ~3 days after counting** (§3.1). Counting-day runbook: watch 429s; raise `THROTTLE_PUBLIC_PER_MIN` (default 600/min per IP) if shared mobile CGNAT addresses hit it |
+| D2 | Render spin-down on counting days | **Free off-season; Starter from ~2 weeks before to ~3 days after counting** (§3.1). Counting-day runbook: watch 429s; raise `THROTTLE_PUBLIC_PER_MIN` (default 600/min per IP) if shared mobile CGNAT addresses hit it; no backend deploys during counting (§3.1, bulk transaction vs Render's shutdown grace); Neon plan for the window decided in advance (§3.1) |
 | D3 | Custom domain | **Own domain on Cloudflare** (name TBD): `app.`, `admin.`, `api.<domain>` |
 | D4 | Observability | **Uptime monitor + admin System status** at launch; hosted OTLP / log drain later if needed |
 | D5 | Public self-registration | **Disabled** (`ALLOW_REGISTRATION=false`) |
@@ -244,7 +271,7 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
 | D8 | Preview deployments | Cloudflare Pages preview URLs: allow via `CORS_ORIGIN_REGEX` anchored to the project's `*.pages.dev` previews, or keep exact origins only — decide when setting up Pages |
 | D9 | Deploy flow | Auto-deploy both Pages projects on push to `main`; manual backend deploy + migrations (`setup.sh` with `DIRECT_URL`) until CI exists; deploy migration 014 together with the backend that no longer uses the AI columns; apply migration 015 (`setup.sh`) **before** deploying the backend that reads `election_live_state` |
 | D10 | Backups | Scheduled `pg_dump` (GitHub Action) before counting days, plus Neon's point-in-time window |
-| D11 | Node version | 20.x (pinned in `engines`) |
+| D11 | Node version | **24.x** (LTS; pinned in `engines`, `NODE_VERSION=24` on Render; Node 20 reached end-of-life in April 2026) |
 | D12 | Secrets ownership | Name an owner for the Cloudflare/Render/Neon/Upstash accounts and `JWT_SECRET` rotation |
 | D13 | Static hosting | **Cloudflare Pages** (unlimited static bandwidth, commercial use, same account as DNS/CDN) instead of Vercel |
 | D14 | Viewer live updates | **Polling a CDN-cached version + versioned snapshots** (10–20 s delay); SSE kept for the admin live console |

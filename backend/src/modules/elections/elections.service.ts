@@ -45,7 +45,7 @@ export class ElectionsService {
 
   /**
    * The single place `elections.manifest_url` (JSON text in a column that is misnamed
-   * "url") is parsed. Returns the manifest object, or null when absent or not valid
+   * "url") is parsed. Returns the manifest object (arrays and scalars are not manifests), or null when absent or not valid
    * JSON (logged, never thrown, so one bad row cannot break a page).
    */
   parseManifest(raw: unknown): Record<string, unknown> | null {
@@ -59,7 +59,7 @@ export class ElectionsService {
         return null;
       }
     }
-    return value !== null && typeof value === 'object' ? (value as Record<string, unknown>) : null;
+    return value !== null && typeof value === 'object' && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
   }
 
   private toElectionData<T extends { tentative_next_date?: string | null }>(data: T) {

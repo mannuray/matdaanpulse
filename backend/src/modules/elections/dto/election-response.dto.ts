@@ -13,7 +13,9 @@ export class ElectionSummaryDto {
   @Expose() status: string;
   @Expose() year: number;
   @Expose() state_id: number | null;
-  
+  /** Date column; serialised as an ISO timestamp. The dashboard poller reads it (shouldPoll). */
+  @Expose() tentative_next_date: Date | null;
+
   /** Populated from the Prisma `states` relation. */
   @Expose({ name: 'states' })
   @Type(() => StateSummaryDto)

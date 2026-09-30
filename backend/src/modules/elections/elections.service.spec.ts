@@ -8,6 +8,6 @@ describe('ElectionsService.parseManifest', () => {
   });
 
   it('returns null for absent, empty, bad or non-object values without throwing', () => {
-    for (const v of [null, undefined, '', '{not json', '"str"', '5', 'null']) expect(svc.parseManifest(v)).toBeNull();
+    for (const v of [null, undefined, '', '{not json', '"str"', '5', 'null', '[]', '[1,2]']) expect(svc.parseManifest(v)).toBeNull();
   });
 });

@@ -54,7 +54,7 @@ function scrubRawHeaders(req: Request) {
  * GET/HEAD /api/v1/health/live is exempt. The header is removed after the check
  * so logs, traces and error reports never see it.
  */
-export function originShield(secrets: string[]) {
+export function originShield(secrets: string[], onReject?: () => void) {
   return (req: Request, res: Response, next: NextFunction) => {
     const path = (req.originalUrl ?? req.url ?? '').split('?')[0];
     const exempt = (req.method === 'GET' || req.method === 'HEAD') && path === EXEMPT_PATH;
@@ -62,6 +62,11 @@ export function originShield(secrets: string[]) {
     delete req.headers[ORIGIN_SECRET_HEADER];
     scrubRawHeaders(req);
     if (ok || exempt) return next();
+    try {
+      onReject?.();
+    } catch {
+      /* counters must never affect a response */
+    }
     res.status(403).setHeader('Cache-Control', 'no-store');
     res.json({ success: false, error: { code: 'AUTH_1004', message: 'Forbidden' } });
   };

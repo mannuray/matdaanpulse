@@ -97,3 +97,23 @@ describe('origin shield rawHeaders scrub', () => {
     expect(req.headers['x-origin-secret']).toBeUndefined();
   });
 });
+
+describe('originShield rejection hook', () => {
+  const run = (headers: Record<string, string>, onReject: () => void, url = '/api/v1/elections', method = 'GET') => {
+    const res: any = { status: jest.fn().mockReturnThis(), setHeader: jest.fn(), json: jest.fn() };
+    const next = jest.fn();
+    originShield(['s3cret'], onReject)({ headers, method, originalUrl: url, rawHeaders: [] } as any, res, next);
+    return { res, next };
+  };
+
+  it('counts a 403 but not an allowed or exempt request, and a throwing hook cannot break the response', () => {
+    const onReject = jest.fn();
+    expect(run({}, onReject).res.status).toHaveBeenCalledWith(403);
+    expect(onReject).toHaveBeenCalledTimes(1);
+    expect(run({ 'x-origin-secret': 's3cret' }, onReject).next).toHaveBeenCalled();
+    expect(run({}, onReject, '/api/v1/health/live').next).toHaveBeenCalled();
+    expect(onReject).toHaveBeenCalledTimes(1);
+    const throwing = jest.fn(() => { throw new Error('x'); });
+    expect(run({}, throwing).res.status).toHaveBeenCalledWith(403);
+  });
+});

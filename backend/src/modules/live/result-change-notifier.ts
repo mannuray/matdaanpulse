@@ -50,7 +50,11 @@ export class ResultChangeNotifier {
       this.logger.warn(`Metrics recording failed: ${(err as Error).message}`);
     }
 
-    this.liveState.invalidate(electionId);
+    try {
+      this.liveState.invalidate(electionId);
+    } catch (err) {
+      this.logger.warn(`Live-state memo invalidation failed for election ${electionId}: ${(err as Error).message}`);
+    }
     try {
       await this.results.purgeElectionCache(electionId);
     } catch (err) {
@@ -59,7 +63,11 @@ export class ResultChangeNotifier {
 
     if (opts.skippedMissingParty) {
       this.logger.warn(`Missing candidate/party for result ${opts.skippedMissingParty.resultId} — SSE event skipped`);
-      this.metrics.ssePublishSkipped.add(1, { reason: 'missing_party', election_id: electionId });
+      try {
+        this.metrics.ssePublishSkipped.add(1, { reason: 'missing_party', election_id: electionId });
+      } catch (err) {
+        this.logger.warn(`Metrics recording failed: ${(err as Error).message}`);
+      }
       return;
     }
     if (changedRows.length === 0) return;

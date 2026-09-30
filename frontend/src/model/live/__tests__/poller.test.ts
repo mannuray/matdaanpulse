@@ -306,6 +306,15 @@ describe('shouldPoll', () => {
   });
 });
 
+describe('shouldPoll with the API real date shape', () => {
+  it('handles the ISO timestamp the backend serialises a DATE column to', () => {
+    const iso = '2029-05-01T00:00:00.000Z';
+    const far = Date.parse('2028-09-01T00:00:00Z');
+    expect(shouldPoll({ status: 'Upcoming', tentative_next_date: iso }, far)).toBe(false);
+    expect(shouldPoll({ status: 'Upcoming', tentative_next_date: iso }, Date.parse('2029-04-30T00:00:00Z'))).toBe(true);
+  });
+});
+
 describe('backoffDelay', () => {
   it('grows exponentially within [cap/2, cap] and never exceeds 60 s', () => {
     expect(backoffDelay(1, () => 0)).toBe(5_000);

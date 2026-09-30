@@ -167,6 +167,16 @@ describe('CacheService single-flight', () => {
     expect(set).toHaveBeenCalledWith('election:A:snapshot:v7', '"snap"', 60);
   });
 
+  it('invalidation bookkeeping is bounded', async () => {
+    const { svc } = make({ del: jest.fn().mockResolvedValue(undefined), delByPattern: jest.fn().mockResolvedValue(undefined) });
+    for (let i = 0; i < 1500; i++) {
+      await svc.del(`election:${i}:public-analysis`);
+      await svc.delByPattern(`election:${i}:summary:*`);
+    }
+    expect((svc as any).invalidatedKeys.size).toBeLessThanOrEqual(1000);
+    expect((svc as any).invalidatedPrefixes.size).toBeLessThanOrEqual(1000);
+  });
+
   it('del(key) only affects that key', async () => {
     const set = jest.fn().mockResolvedValue(undefined);
     const { svc } = make({ get: jest.fn().mockResolvedValue(null), set, del: jest.fn().mockResolvedValue(undefined) });

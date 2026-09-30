@@ -54,4 +54,14 @@ describe('ResultChangeNotifier.afterCommit', () => {
     expect(live.publish).not.toHaveBeenCalled();
     expect(metrics.ssePublishSkipped.add).toHaveBeenCalledWith(1, { reason: 'missing_party', election_id: 'e1' });
   });
+
+  it('never throws when liveState.invalidate or the skipped-metric throw', async () => {
+    const { notifier, liveState, metrics, results } = make();
+    liveState.invalidate.mockImplementation(() => { throw new Error('memo'); });
+    metrics.ssePublishSkipped.add.mockImplementation(() => { throw new Error('otel'); });
+    await expect(
+      notifier.afterCommit('e1', [row], { kind: 'single', overrideCount: 1, status: 'x', skippedMissingParty: { resultId: 'r1' } }),
+    ).resolves.toBeUndefined();
+    expect(results.purgeElectionCache).toHaveBeenCalled(); // a failed memo invalidation does not skip the purge
+  });
 });

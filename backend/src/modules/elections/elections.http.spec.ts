@@ -18,6 +18,19 @@ class AdminLikeController {
 }
 
 const EID = 'c3d4e5f6-a7b8-9012-cdef-234567890abc';
+// Shaped like a Prisma `elections` row (Date column for tentative_next_date).
+const ELECTION_ROW = {
+  id: EID,
+  name: 'Lok Sabha General Election 2029',
+  type: 'LS',
+  status: 'Upcoming',
+  year: 2029,
+  state_id: null,
+  tentative_next_date: new Date('2029-05-01T00:00:00.000Z'),
+  manifest_url: null,
+  states: null,
+  secret_internal: 'x',
+};
 
 async function makeApp(env: Record<string, string>) {
   const live = { version: 100, status: 'Live', updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 };
@@ -32,7 +45,14 @@ async function makeApp(env: Record<string, string>) {
   const moduleRef = await Test.createTestingModule({
     controllers: [ElectionsController, AdminLikeController],
     providers: [
-      { provide: ElectionsService, useValue: { findAll: jest.fn(async () => []), findOne: jest.fn() } },
+      {
+        provide: ElectionsService,
+        useValue: {
+          findAll: jest.fn(async () => [ELECTION_ROW]),
+          findOne: jest.fn(async () => ELECTION_ROW),
+          parseManifest: jest.fn(() => null),
+        },
+      },
       { provide: ResultsService, useValue: resultsService },
       { provide: ConstituenciesService, useValue: {} },
       { provide: LiveStateService, useValue: liveState },
@@ -63,6 +83,14 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.LIVE);
     expect(res.headers.get('cache-control')).toBe('public, max-age=0, s-maxage=5, stale-while-revalidate=10');
     expect(await res.json()).toEqual({ success: true, data: { version: 100, status: 'Live', updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 } });
+  });
+
+  it('public election DTOs expose tentative_next_date (the poller relies on it) and nothing internal', async () => {
+    const list = (await (await get('/elections')).json()).data;
+    expect(list[0].tentative_next_date).toBe('2029-05-01T00:00:00.000Z');
+    expect(list[0]).not.toHaveProperty('secret_internal');
+    const one = (await (await get(`/elections/${EID}`)).json()).data;
+    expect(one.tentative_next_date).toBe('2029-05-01T00:00:00.000Z');
   });
 
   it('/live is CDN-cached 30 s while not counting (Upcoming/Finalized)', async () => {

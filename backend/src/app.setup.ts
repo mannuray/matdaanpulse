@@ -9,6 +9,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { buildCorsDelegate } from './common/config/cors';
 import { resolveTrustProxyHops } from './common/config/trust-proxy';
 import { cfConnectingIp, trustCfConnectingIp } from './common/config/client-ip';
+import { StatusService } from './modules/status/status.service';
 import { assertOriginConfig, originShield, parseOriginSecrets } from './common/config/origin-shield';
 import { CacheControlInterceptor } from './common/http/cache-control';
 
@@ -72,7 +73,16 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
   // Origin shield first: requests that did not come through Cloudflare cost nothing.
   assertOriginConfig(env);
   const originSecrets = parseOriginSecrets(env);
-  if (originSecrets.length > 0) app.use(originShield(originSecrets));
+  if (originSecrets.length > 0) {
+    // Shield 403s are answered before the Nest middleware, so count them explicitly (System status page).
+    let status: StatusService | undefined;
+    try {
+      status = app.get(StatusService, { strict: false });
+    } catch {
+      /* apps without the status module (some tests) simply do not count */
+    }
+    app.use(originShield(originSecrets, () => status?.recordShieldRejection()));
+  }
   logger.log(
     originSecrets.length > 0
       ? `Origin shield on (${originSecrets.length} secret${originSecrets.length > 1 ? 's' : ''}); /health/live exempt`

@@ -122,8 +122,8 @@ export class CacheService {
     const star = target.indexOf('*');
     const matches =
       star >= 0
-        ? (this.invalidatedPrefixes.set(target.slice(0, star), stamp), (k: string) => k.startsWith(target.slice(0, star)))
-        : (this.invalidatedKeys.set(target, stamp), (k: string) => k === target);
+        ? (setBounded(this.invalidatedPrefixes, target.slice(0, star), stamp), (k: string) => k.startsWith(target.slice(0, star)))
+        : (setBounded(this.invalidatedKeys, target, stamp), (k: string) => k === target);
     for (const key of [...this.inFlight.keys()]) {
       if (matches(key) && !isContentAddressed(key)) this.inFlight.delete(key);
     }
@@ -144,6 +144,15 @@ export class CacheService {
       this.logger.warn(`Redis cache ${op} failed, using the database (logged once a minute): ${(err as Error).message}`);
     }
   }
+}
+
+const MAX_INVALIDATION_MARKS = 1000;
+
+/** Records a stamp, most recent last, dropping the oldest marks beyond the cap (the maps must not grow forever). */
+function setBounded(map: Map<string, number>, key: string, stamp: number) {
+  map.delete(key);
+  map.set(key, stamp);
+  while (map.size > MAX_INVALIDATION_MARKS) map.delete(map.keys().next().value as string);
 }
 
 /** Keys ending in `:v<version>` hold data for one immutable version. */

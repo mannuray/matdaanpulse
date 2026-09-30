@@ -1,5 +1,6 @@
 import { Injectable, NestMiddleware, Logger } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import { isHealthProbe } from '../http/health-probe';
 import { requestContext, resolveRequestId } from './request-context';
 
 const SENSITIVE_QUERY_PARAMS = /([?&](?:token|key|access_token|api_key)=)[^&#]*/gi;
@@ -24,13 +25,15 @@ export class LoggingMiddleware implements NestMiddleware {
     req.headers['x-request-id'] = requestId;
     res.setHeader('X-Request-ID', requestId);
 
+    const probe = isHealthProbe(req);
     const authHeader = req.headers['authorization'];
 
     res.on('finish', () => {
       const { statusCode } = res;
       const duration = Date.now() - startTime;
 
-      this.logger.log(
+      (probe ? this.logger.debug : this.logger.log).call(
+        this.logger,
         `${method} ${originalUrl} ${statusCode} ${duration}ms - ${ip} ${userAgent} [Auth: ${authHeader ? 'Present' : 'None'}]`,
         { requestId, method, url: originalUrl, statusCode, duration, ip },
       );
