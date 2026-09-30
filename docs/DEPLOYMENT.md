@@ -91,7 +91,7 @@ Verify current limits on each provider's pricing page before launch.
 
 | Period | Render | Neon | Upstash | Cost |
 |---|---|---|---|---|
-| Off-season | **Free** (sleeps after ~15 min idle) | Free | Free | $0 |
+| Off-season | **Free** (kept awake by the `/health/live` monitor, §5.7) | Free | Free | $0 |
 | ~2 weeks before counting → ~3 days after | **Starter** (always on, no cold starts) | Free if the compute allowance covers an always-awake database for the window, else the paid plan for that month (see below) | Free (pay-as-you-go costs cents if the cap is hit) | ~$7–10 for the month |
 | Counting day | Starter; one instance is enough behind the CDN (Standard optional) | same | same | same |
 | After the cliff | back to **Free** | | | $0 |
@@ -105,7 +105,7 @@ Window runbook: calendar reminders (or a scheduled job) for both switches, two w
 
 Run the load test (§5.6) after switching up. During the window the database is effectively awake around the clock (origin traffic at least every 5 s while counting, plus the `/ready` monitor), so compute hours are consumed continuously: before the window compare the Neon allowance with ~24 h × days-in-window of compute at the minimum size, and upgrade the Neon plan for that month if it does not fit (an exhausted Free allowance suspends the database and every uncached request fails). Record the decision under D2.
 
-**Off-season expectations:** nothing should keep the stack awake. Upcoming elections with a far-off `tentative_next_date` make the dashboard stop polling (the public API now exposes the field), and the monitor hits only `/health/live`. The Render free service then spins down after ~15 min idle and Neon suspends after ~5 min; a monitor on `/live` does keep the Render free instance awake all month, which fits the free instance-hour allowance for one service but not for two.
+**Off-season expectations:** nothing should keep the **database** awake. Upcoming elections with a far-off `tentative_next_date` make the dashboard stop polling (the public API exposes the field), and the uptime monitor hits only `/health/live`, which does no I/O — so Neon suspends after ~5 min idle. The `/live` monitor does keep the Render free instance awake all month (no cold starts); that fits the free instance-hour allowance for one service but not for two. If you'd rather let Render sleep too, pause the monitor off-season and accept ~1 min cold starts.
 
 **Deploys and counting:** a bulk override runs in one transaction of up to 60 s (`bulk-override.service.ts`). A Render deploy or instance swap gives the old instance only a short shutdown grace; if it is cut mid-batch the connection drops, Postgres rolls the batch back and the feeder must retry (nothing is half-applied). Runbook: no backend deploys during counting; pause the feeder before an unavoidable one.
 
