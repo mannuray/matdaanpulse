@@ -1,3 +1,4 @@
+import { describeError } from '../utils/api-error';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface ListOptions<F> {
@@ -41,7 +42,7 @@ export function useResourceList<F>({ key, pageSize = 25, initialFilters, onLoad 
       setItems(result.data);
       setTotal(result.total);
     } catch (err) {
-      const msg = err instanceof Error ? err.message : `Failed to load ${key}`;
+      const msg = describeError(err, `Failed to load ${key}`);
       setError(msg);
     } finally {
       setLoading(false);

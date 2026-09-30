@@ -8,5 +8,12 @@ export function describeError(err: unknown, fallback: string): string {
     }
     return `${fallback}: ${err.message}`;
   }
+  if (err instanceof Error) {
+    if (err.message === 'Unauthorized') return 'Session expired \u2014 please sign in again';
+    if (err instanceof TypeError || /failed to fetch|networkerror|load failed/i.test(err.message)) {
+      return 'Network error \u2014 check your connection';
+    }
+    if (err.message) return `${fallback}: ${err.message}`;
+  }
   return fallback;
 }

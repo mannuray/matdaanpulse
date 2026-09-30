@@ -38,6 +38,14 @@ export function parseApiError(status: number, statusText: string, body: unknown)
   return new ApiError(message, status, e?.code, fields, e?.details, e?.requestId);
 }
 
+/** One line for UI state: the message, with backend field errors appended. */
+export function describeApiError(err: unknown, fallback = 'An error occurred'): string {
+  if (err instanceof ApiError && err.fields.length > 0) {
+    return `${err.message} (${err.fields.map((f) => `${f.field}: ${f.message}`).join('; ')})`;
+  }
+  return err instanceof Error ? err.message : fallback;
+}
+
 /**
  * CORE MODEL: apiFetch (SOLID: DIP)
  * Standardized network requester for the frontend.

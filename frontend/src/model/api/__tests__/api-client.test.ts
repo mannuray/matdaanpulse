@@ -41,3 +41,13 @@ describe('apiFetch', () => {
     expect(await apiFetch('/x')).toEqual({ id: 1 });
   });
 });
+
+describe('describeApiError', () => {
+  it('appends field errors and falls back for non-errors', async () => {
+    const { describeApiError } = await import('../api-client');
+    const err = parseApiError(400, '', { error: { message: 'Validation failed', fields: [{ field: 'limit', message: 'too big' }] } });
+    expect(describeApiError(err)).toBe('Validation failed (limit: too big)');
+    expect(describeApiError(new Error('boom'))).toBe('boom');
+    expect(describeApiError('x')).toBe('An error occurred');
+  });
+});

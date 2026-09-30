@@ -74,6 +74,9 @@ describe('field error helpers', () => {
     expect(describeError(err, 'Operation failed')).toBe(
       'Operation failed: Validation failed\n• email: email must be an email\n• items[1].name: name must be a string',
     );
-    expect(describeError(new Error('boom'), 'Operation failed')).toBe('Operation failed');
+    expect(describeError(new Error('boom'), 'Operation failed')).toBe('Operation failed: boom');
+    expect(describeError(new TypeError('Failed to fetch'), 'Operation failed')).toBe('Network error \u2014 check your connection');
+    expect(describeError(new Error('Unauthorized'), 'Operation failed')).toBe('Session expired \u2014 please sign in again');
+    expect(describeError('weird', 'Operation failed')).toBe('Operation failed');
   });
 });

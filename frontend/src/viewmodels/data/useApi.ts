@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { describeApiError } from '../../model/api/api-client';
 
 /**
  * Request Deduplicator (SOLID: SRP)
@@ -62,7 +63,7 @@ export function useApi<T>(
       })
       .catch((e) => {
         if (requestIdRef.current === id) {
-          setError(e instanceof Error ? e.message : 'An error occurred');
+          setError(describeApiError(e));
         }
       })
       .finally(() => {

@@ -68,6 +68,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
       message = Array.isArray(raw) ? raw.join('; ') : typeof raw === 'string' ? raw : httpException.message;
     }
 
+    // 5xx never exposes exception text (the real one is logged above).
+    if (status >= 500) message = 'Internal server error';
+
     const errorResponse = {
       success: false,
       error: {
@@ -75,7 +78,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         message,
         requestId,
         timestamp: new Date().toISOString(),
-        path: request.url,
+        path: (request.url ?? '').split('?')[0],
         ...(fields ? { fields } : {}),
         ...(details ? { details } : {}),
       },

@@ -5,6 +5,8 @@ import { EMPTY } from 'rxjs';
 import { Test } from '@nestjs/testing';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { IsArray, IsString, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 import { paginated } from './common/paginated';
 import { PaginationQueryDto } from './common/dto/query.dto';
 import { configureApp } from './app.setup';
@@ -29,8 +31,20 @@ class PublicController {
   }
 }
 
+class ItemDto {
+  @IsString() name!: string;
+}
+class ListBodyDto {
+  @IsArray() @ValidateNested({ each: true }) @Type(() => ItemDto) items!: ItemDto[];
+}
+
 @Controller('lists')
 class ListController {
+  @Post()
+  create(@Body() body: ListBodyDto) {
+    return body;
+  }
+
   @Get()
   list(@Query() q: PaginationQueryDto) {
     return paginated(['a', 'b'], { page: q.page ?? 1, limit: q.limit ?? 2, total: 5 });
@@ -174,6 +188,16 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
       expect(error.fields).toEqual([{ field: 'limit', message: 'limit must not be greater than 200' }]);
       expect(error.validationErrors).toBeUndefined();
       expect(error.details).toBeUndefined();
+    });
+  });
+
+  describe('API shape (body)', () => {
+    it('a nested body path is reported through real HTTP', async () => {
+      const res = await post('/lists', '10.0.7.3', { items: [{ name: 'a' }, { name: 5 }] });
+      expect(res.status).toBe(400);
+      const { error } = await res.json();
+      expect(error.fields).toEqual([{ field: 'items[1].name', message: 'name must be a string' }]);
+      expect(error.path).toBe('/api/v1/lists');
     });
   });
 

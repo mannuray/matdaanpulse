@@ -5,7 +5,7 @@ import { UserNotFoundException } from '../exceptions';
 import { ErrorCodes } from '../exceptions/error-codes';
 import { BusinessException } from '../exceptions/base.exception';
 import { validationExceptionFactory } from '../validation/validation-failed.exception';
-import { ValidationPipe } from '@nestjs/common';
+import { ServiceUnavailableException, ValidationPipe } from '@nestjs/common';
 import { IsInt, Max, IsString, ValidateNested, IsArray } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -139,5 +139,17 @@ describe('HttpExceptionFilter', () => {
     const err = run(new NotFoundException('nope')).body.error;
     expect(err.message).toBe('nope');
     expect(err.details).toBeUndefined();
+  });
+
+  it('5xx HttpException returns the generic message and logs the real one', () => {
+    const res = run(new ServiceUnavailableException('redis at 10.0.0.9 down'));
+    expect(res.statusCode).toBe(503);
+    expect(res.body.error.message).toBe('Internal server error');
+    expect(JSON.stringify(res.body)).not.toMatch(/10\.0\.0\.9/);
+    expect(errorSpy.mock.calls[0][0]).toMatch(/redis at 10\.0\.0\.9 down/);
+  });
+
+  it('error.path omits the query string', () => {
+    expect(run(new NotFoundException()).body.error.path).toBe('/api/v1/x');
   });
 });
