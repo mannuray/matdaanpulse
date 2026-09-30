@@ -13,6 +13,7 @@ import {
   UpdateConstituencyDto, BulkTagDto, ComputeAnalysisDto, UpdateAnalysisDto,
   BulkAiStatusDto, EnrichConstituenciesDto,
 } from '../dto/admin-input.dto';
+import { AdminConstituenciesQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/constituencies')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -31,16 +32,9 @@ export class AdminConstituenciesController {
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
   getConstituencies(
     @Param('electionId', ParseUUIDPipe) electionId: string,
-    @Query('page') page?: string,
-    @Query('limit') limit?: string,
-    @Query('q') q?: string,
+    @Query() { page, limit, q }: AdminConstituenciesQueryDto,
   ) {
-    return this.constituenciesService.findByElectionWithAnalysis(
-      electionId,
-      page ? Number(page) : 1,
-      limit ? Number(limit) : 100,
-      q
-    );
+    return this.constituenciesService.findByElectionWithAnalysis(electionId, page ?? 1, limit ?? 100, q);
   }
 
   @Get('detail/:id')

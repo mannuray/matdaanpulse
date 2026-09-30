@@ -1,7 +1,8 @@
 import {
   IsString, IsNotEmpty, IsOptional, IsInt, IsIn, IsEnum, IsUUID, IsBoolean, IsObject,
-  IsArray, IsDateString, MaxLength, Min, Max, ArrayMaxSize,
+  IsArray, IsDateString, MaxLength, Min, Max, ArrayMaxSize, IsUrl,
 } from 'class-validator';
+import { IsSafeUrl, MAX_URL_LENGTH } from '../../../common/validation/safe-url';
 import { Transform } from 'class-transformer';
 import { election_status } from '@prisma/client';
 
@@ -12,6 +13,9 @@ import { election_status } from '@prisma/client';
  */
 
 const emptyToNull = ({ value }: { value: unknown }) => (value === '' ? null : value);
+
+/** Absolute http(s) links only (review S-M2): no javascript:/data: URLs in stored hrefs. */
+const HTTP_URL = { protocols: ['http', 'https'], require_protocol: true };
 
 // --- Elections ---
 
@@ -61,10 +65,11 @@ class PartyFieldsDto {
   @IsOptional() @IsString() @MaxLength(10)
   color?: string | null;
 
-  @IsOptional() @IsString()
+  /** Seeded values are site-relative (/symbols/logos/X.svg), so paths are allowed here. */
+  @IsOptional() @Transform(emptyToNull) @IsString() @IsSafeUrl({ allowRelative: true })
   symbol_url?: string | null;
 
-  @IsOptional() @IsString()
+  @IsOptional() @Transform(emptyToNull) @IsString() @IsSafeUrl({ allowRelative: true })
   eci_symbol_url?: string | null;
 
   @IsOptional() @IsString() @MaxLength(20)
@@ -79,10 +84,10 @@ class PartyFieldsDto {
   @IsOptional() @IsString() @MaxLength(255)
   headquarters?: string | null;
 
-  @IsOptional() @IsString()
+  @IsOptional() @Transform(emptyToNull) @IsUrl(HTTP_URL) @MaxLength(MAX_URL_LENGTH)
   website?: string | null;
 
-  @IsOptional() @IsString()
+  @IsOptional() @Transform(emptyToNull) @IsUrl(HTTP_URL) @MaxLength(MAX_URL_LENGTH)
   wikipedia_url?: string | null;
 
   @IsOptional() @IsString()
@@ -147,7 +152,7 @@ export class LinkPersonDto {
 // --- Persons ---
 
 class PersonFieldsDto {
-  @IsOptional() @IsString()
+  @IsOptional() @Transform(emptyToNull) @IsUrl(HTTP_URL) @MaxLength(MAX_URL_LENGTH)
   photo_url?: string | null;
 
   @IsOptional() @IsString() @MaxLength(10)
@@ -176,7 +181,7 @@ class PersonFieldsDto {
   bio?: string | null;
 
   /** Stored in metadata.wikipedia_url (no dedicated column). */
-  @IsOptional() @IsString()
+  @IsOptional() @Transform(emptyToNull) @IsUrl(HTTP_URL) @MaxLength(MAX_URL_LENGTH)
   wikipedia_url?: string | null;
 }
 

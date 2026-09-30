@@ -1,3 +1,5 @@
+import { isSafeUrl } from '../../../common/validation/safe-url';
+
 /**
  * Helpers for turning free-form LLM output into typed values that fit the
  * Prisma column types. Gemini (with the google_search tool enabled) cannot be
@@ -33,6 +35,15 @@ export function asString(value: unknown, maxLength?: number): string | undefined
   const s = (typeof value === 'string' ? value : typeof value === 'number' ? String(value) : '').trim();
   if (!s) return undefined;
   return maxLength ? s.slice(0, maxLength) : s;
+}
+
+/**
+ * Model output is untrusted (search grounding can carry prompt injection):
+ * keep only absolute http(s) URLs up to 2048 chars, drop anything else.
+ */
+export function asHttpUrl(value: unknown): string | undefined {
+  const s = asString(value);
+  return s && isSafeUrl(s) ? s : undefined;
 }
 
 export function asInt(value: unknown, min?: number, max?: number): number | undefined {

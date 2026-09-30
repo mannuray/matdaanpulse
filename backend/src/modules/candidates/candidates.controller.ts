@@ -3,6 +3,7 @@ import { CandidatesService } from './candidates.service';
 import { PersonsService } from './persons.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
 import { CandidateSummaryDto, CandidateDetailDto, PersonProfileDto } from './dto/candidate-response.dto';
+import { CandidatesQueryDto, SearchQueryDto } from '../../common/dto/query.dto';
 
 @Controller('candidates')
 export class CandidatesController {
@@ -13,16 +14,13 @@ export class CandidatesController {
 
   @Get()
   @UseInterceptors(new MapToDtoInterceptor(CandidateSummaryDto))
-  findAll(
-    @Query('election_id') election_id?: string,
-    @Query('const_id') const_id?: string,
-  ) {
+  findAll(@Query() { election_id, const_id }: CandidatesQueryDto) {
     return this.candidatesService.findAll({ election_id, const_id });
   }
 
   @Get('search')
   @UseInterceptors(new MapToDtoInterceptor(CandidateSummaryDto))
-  search(@Query('q') q?: string, @Query('election_id') election_id?: string) {
+  search(@Query() { q, election_id }: SearchQueryDto) {
     if (!q || q.trim().length < 2) return [];
     return this.candidatesService.findByName(q.trim(), election_id);
   }

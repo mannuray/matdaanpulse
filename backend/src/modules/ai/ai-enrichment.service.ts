@@ -18,7 +18,14 @@ export interface EnrichmentProgress {
   inProgress: boolean;
 }
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+/** Model id when GEMINI_MODEL is unset. Google retires Flash generations: a retired id 404s. */
+export const DEFAULT_GEMINI_MODEL = 'gemini-2.0-flash';
+const MODEL_ID_RE = /^[\w.-]{1,64}$/;
+
+export function geminiApiUrl(model: string | undefined): string {
+  const id = model?.trim() && MODEL_ID_RE.test(model.trim()) ? model.trim() : DEFAULT_GEMINI_MODEL;
+  return `https://generativelanguage.googleapis.com/v1beta/models/${id}:generateContent`;
+}
 
 @Injectable()
 export class AiEnrichmentService {
@@ -52,7 +59,7 @@ export class AiEnrichmentService {
     
     try {
       // Key goes in a header, never the URL (URLs end up in logs/proxies/traces).
-      const response = await fetch(GEMINI_API_URL, {
+      const response = await fetch(geminiApiUrl(this.configService.get<string>('GEMINI_MODEL')), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
         signal: controller.signal,

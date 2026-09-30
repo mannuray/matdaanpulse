@@ -2,6 +2,7 @@ import { Controller, Get, Param, Query, UseInterceptors } from '@nestjs/common';
 import { PartiesService } from './parties.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
 import { PartySummaryDto, PartyDetailDto } from './dto/party-response.dto';
+import { PartiesQueryDto } from '../../common/dto/query.dto';
 
 @Controller('parties')
 export class PartiesController {
@@ -9,20 +10,14 @@ export class PartiesController {
 
   @Get()
   @UseInterceptors(new MapToDtoInterceptor(PartySummaryDto))
-  async findAll(
-    @Query('page') page?: string,
-    @Query('limit') limit?: string,
-    @Query('q') q?: string,
-    @Query('election_id') electionId?: string,
-    @Query('state_id') stateId?: string,
-  ) {
-    if (page || limit || electionId || stateId) {
+  async findAll(@Query() { page, limit, q, election_id, state_id }: PartiesQueryDto) {
+    if (page || limit || election_id || state_id) {
       const result = await this.partiesService.findPaginated(
-        page ? +page : 1,
-        limit ? +limit : 25,
+        page ?? 1,
+        limit ?? 25,
         q,
-        electionId,
-        stateId ? +stateId : undefined,
+        election_id,
+        state_id,
       );
       // For paginated results, the interceptor needs to handle the nested 'data' array
       // or we map it manually here. Let's map manually for paginated to be safe.

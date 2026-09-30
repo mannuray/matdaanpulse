@@ -4,6 +4,7 @@ import { ResultsService } from '../results/results.service';
 import { ConstituenciesService } from '../constituencies/constituencies.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
 import { ElectionSummaryDto, ElectionDetailDto } from './dto/election-response.dto';
+import { ElectionsQueryDto } from '../../common/dto/query.dto';
 
 @Controller('elections')
 export class ElectionsController {
@@ -15,17 +16,12 @@ export class ElectionsController {
 
   @Get()
   @UseInterceptors(new MapToDtoInterceptor(ElectionSummaryDto))
-  findAll(
-    @Query('type') type?: string,
-    @Query('status') status?: string,
-    @Query('state_id') state_id?: string,
-    @Query('year') year?: string,
-  ) {
+  findAll(@Query() query: ElectionsQueryDto) {
     return this.electionsService.findAll({
-      type,
-      status,
-      state_id: state_id ? parseInt(state_id) : undefined,
-      year: year ? parseInt(year) : undefined,
+      type: query.type,
+      status: query.status,
+      state_id: query.state_id,
+      year: query.year,
     });
   }
 

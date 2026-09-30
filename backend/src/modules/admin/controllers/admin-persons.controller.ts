@@ -7,6 +7,7 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminPersonDto } from '../dto/admin-response.dto';
 import { CreatePersonDto, UpdatePersonDto, MergePersonsDto, EnrichPersonsDto } from '../dto/admin-input.dto';
+import { AdminPersonsQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/persons')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -18,22 +19,8 @@ export class AdminPersonsController {
 
   @Get()
   @Roles('SUPER_ADMIN', 'EDITOR')
-  findAllPersons(
-    @Query('q') q?: string,
-    @Query('page') page?: string,
-    @Query('limit') limit?: string,
-    @Query('state_id') stateId?: string,
-    @Query('region_id') regionId?: string,
-  ) {
-    return this.personsService.findAll(
-      page ? Number(page) : 1,
-      limit ? Math.min(Number(limit), 2000) : 100,
-      q || '',
-      {
-        state_id: stateId ? Number(stateId) : undefined,
-        region_id: regionId ? Number(regionId) : undefined,
-      },
-    );
+  findAllPersons(@Query() { q, page, limit, state_id, region_id }: AdminPersonsQueryDto) {
+    return this.personsService.findAll(page ?? 1, limit ?? 100, q || '', { state_id, region_id });
   }
 
   @Get('search')

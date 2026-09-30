@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Prisma } from '@prisma/client';
+import { Prisma, election_status, election_type } from '@prisma/client';
 import { ElectionNotFoundException } from '../../common/exceptions';
 import type { CreateElectionDto, UpdateElectionDto } from '../admin/dto/admin-input.dto';
 
@@ -8,7 +8,7 @@ import type { CreateElectionDto, UpdateElectionDto } from '../admin/dto/admin-in
 export class ElectionsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll(filters: { type?: any; status?: any; state_id?: number; year?: number }) {
+  async findAll(filters: { type?: election_type; status?: election_status; state_id?: number; year?: number }) {
     return this.prisma.elections.findMany({
       where: {
         type: filters.type,

@@ -1,6 +1,6 @@
 import { EnrichmentStrategy, EnrichmentContext } from './enrichment-strategy.interface';
 import { PartyNotFoundException, AiParseErrorException } from '../../../common/exceptions';
-import { extractJsonObject, asString, asInt, JSON_ONLY_INSTRUCTION } from './ai-response.parser';
+import { extractJsonObject, asString, asHttpUrl, asInt, JSON_ONLY_INSTRUCTION } from './ai-response.parser';
 
 export interface PartyEnrichmentResult {
   leader_name?: string;
@@ -18,8 +18,8 @@ export function parsePartyEnrichment(text: string): PartyEnrichmentResult | null
     leader_name: asString(parsed.leader_name, 255),
     founded_year: asInt(parsed.founded_year, 1800, 2100),
     headquarters: asString(parsed.headquarters, 255),
-    website: asString(parsed.website),
-    wikipedia_url: asString(parsed.wikipedia_url),
+    website: asHttpUrl(parsed.website),
+    wikipedia_url: asHttpUrl(parsed.wikipedia_url),
     description: asString(parsed.description),
   };
 }

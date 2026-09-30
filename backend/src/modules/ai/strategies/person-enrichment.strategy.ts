@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { EnrichmentStrategy, EnrichmentContext } from './enrichment-strategy.interface';
-import { extractJsonObject, asString, asStringArray, JSON_ONLY_INSTRUCTION } from './ai-response.parser';
+import { extractJsonObject, asString, asHttpUrl, asStringArray, JSON_ONLY_INSTRUCTION } from './ai-response.parser';
 
 export interface PersonEnrichmentResult {
   bio?: string;
@@ -16,8 +16,8 @@ export function parsePersonEnrichment(text: string): PersonEnrichmentResult | nu
   if (!parsed) return null;
   return {
     bio: asString(parsed.bio),
-    wikipedia_url: asString(parsed.wikipedia_url),
-    photo_url: asString(parsed.photo_url),
+    wikipedia_url: asHttpUrl(parsed.wikipedia_url),
+    photo_url: asHttpUrl(parsed.photo_url),
     gender: asString(parsed.gender, 10),
     education: asString(parsed.education, 255),
     notable_positions: asStringArray(parsed.notable_positions, 15),
