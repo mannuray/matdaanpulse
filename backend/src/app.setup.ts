@@ -1,4 +1,4 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { Logger, UnauthorizedException, ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { json, urlencoded, Request, Response, NextFunction } from 'express';
 import * as compression from 'compression';
@@ -17,18 +17,44 @@ export const DEFAULT_BODY_LIMIT = '100kb';
 export const BULK_OVERRIDE_PATH = `/${API_PREFIX}/admin/results/override-bulk`;
 export const BULK_OVERRIDE_BODY_LIMIT = '5mb';
 
-/** Logs req.ip once (debug) so the proxy hop count can be verified on the host. */
-function firstRequestIpLogger(logger: Logger) {
+/** Query key tolerated on every route as a cache-buster (`?_=<timestamp>`); removed before validation. */
+export const CACHE_BUSTER_QUERY_KEY = '_';
+
+/**
+ * Logs (debug) the resolved client IP of the first non-health request, with the
+ * raw X-Forwarded-For and the configured hop count, so TRUST_PROXY_HOPS can be
+ * verified on the host. Platform health checks come from inside the host
+ * network without X-Forwarded-For and would be misleading, so they are skipped.
+ */
+export function clientIpProbe(logger: Logger, hops: number) {
   let logged = false;
   return (req: Request, _res: Response, next: NextFunction) => {
-    if (!logged) {
+    if (!logged && !/\/health(\/|$|\?)/.test(req.originalUrl ?? req.url)) {
       logged = true;
       logger.debug(
-        `First request: req.ip=${req.ip} req.ips=${JSON.stringify(req.ips)} x-forwarded-for=${req.headers['x-forwarded-for'] ?? '-'}`,
+        `Client IP check: req.ip=${req.ip} x-forwarded-for=${JSON.stringify(req.headers['x-forwarded-for'] ?? null)} ` +
+          `TRUST_PROXY_HOPS=${hops} (req.ip should be your own public IP)`,
       );
     }
     next();
   };
+}
+
+/** Strip the cache-buster key so `forbidNonWhitelisted` query DTOs don't 400 on it. */
+function dropCacheBuster(req: Request, _res: Response, next: NextFunction) {
+  if (req.query && CACHE_BUSTER_QUERY_KEY in req.query) delete (req.query as Record<string, unknown>)[CACHE_BUSTER_QUERY_KEY];
+  next();
+}
+
+/**
+ * Cheap gate before the 5 MB parser: anonymous clients can't make the server
+ * parse large bodies. The real JWT + roles check still runs in the guards.
+ */
+export function requireBearerHeader(req: Request, _res: Response, next: NextFunction) {
+  if (req.method === 'OPTIONS') return next(); // CORS preflight carries no Authorization
+  const auth = req.headers.authorization;
+  if (typeof auth === 'string' && /^Bearer \S+$/.test(auth)) return next();
+  next(new UnauthorizedException());
 }
 
 /**
@@ -39,12 +65,14 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
   const logger = new Logger('Bootstrap');
 
   // Behind Render's proxy: req.ip comes from X-Forwarded-For, `hops` entries deep (review S-C1).
-  app.set('trust proxy', resolveTrustProxyHops(env));
-  app.use(firstRequestIpLogger(logger));
+  const hops = resolveTrustProxyHops(env);
+  app.set('trust proxy', hops);
+  app.use(clientIpProbe(logger, hops));
+  app.use(dropCacheBuster);
 
   // Body limits (review S-M3): 5 MB only for the bulk override route, registered
   // first; the global parsers then skip the already-parsed body.
-  app.use(BULK_OVERRIDE_PATH, json({ limit: BULK_OVERRIDE_BODY_LIMIT }));
+  app.use(BULK_OVERRIDE_PATH, requireBearerHeader, json({ limit: BULK_OVERRIDE_BODY_LIMIT }));
   app.use(json({ limit: DEFAULT_BODY_LIMIT }));
   app.use(urlencoded({ extended: true, limit: DEFAULT_BODY_LIMIT }));
 

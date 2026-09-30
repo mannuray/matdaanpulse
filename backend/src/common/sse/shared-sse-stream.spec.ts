@@ -1,4 +1,4 @@
-import { Subject, Subscription } from 'rxjs';
+import { ReplaySubject, Subject, Subscription } from 'rxjs';
 import { SSE_HEARTBEAT_MS, SSE_RETRY_MS, sharedSseStream, withReconnectHint } from './shared-sse-stream';
 
 describe('SSE constants', () => {
@@ -38,6 +38,16 @@ describe('sharedSseStream', () => {
     shutdown.next();
     expect(done).toEqual([true, true]);
     expect(onTeardown).toHaveBeenCalledTimes(1);
+  });
+
+  it('a client that connects after shutdown began completes immediately (review M6)', () => {
+    const shutdown = new ReplaySubject<void>(1);
+    shutdown.next();
+    shutdown.complete();
+    const stream$ = sharedSseStream(new Subject<MessageEvent>(), { shutdown$: shutdown, onTeardown: jest.fn(), onError: jest.fn() });
+    let done = false;
+    withReconnectHint(stream$).subscribe({ complete: () => (done = true) });
+    expect(done).toBe(true);
   });
 
   it('is shared and tears down after the last subscriber leaves', () => {

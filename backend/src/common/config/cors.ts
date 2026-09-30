@@ -13,6 +13,8 @@ export const DEFAULT_CORS_ORIGINS = [
  * CORS_ORIGINS: comma-separated exact origins (whitespace tolerated).
  * CORS_ORIGIN_REGEX: optional extra pattern, e.g. Vercel previews
  *   ^https://election-tracker-[a-z0-9-]+\.vercel\.app$
+ *   It must be anchored (^…$): an unanchored pattern would also match
+ *   lookalikes such as https://election-tracker-x.vercel.app.evil.com.
  * No credentials: both SPAs authenticate with a Bearer header, not cookies.
  */
 export function buildCorsOptions(env: Env): CorsOptions {
@@ -24,6 +26,9 @@ export function buildCorsOptions(env: Env): CorsOptions {
 
   const pattern = env.CORS_ORIGIN_REGEX?.trim();
   if (pattern) {
+    if (!pattern.startsWith('^') || !pattern.endsWith('$')) {
+      throw new Error(`CORS_ORIGIN_REGEX must be anchored with ^ and $: ${pattern}`);
+    }
     try {
       origins.push(new RegExp(pattern));
     } catch {

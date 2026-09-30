@@ -52,10 +52,33 @@ describe('CacheService.getOrSet', () => {
 });
 
 describe('CacheService invalidation', () => {
+  it('logs a warning and retries a failed invalidation once in the background', async () => {
+    jest.useFakeTimers();
+    const del = jest.fn().mockRejectedValueOnce(new Error('down')).mockResolvedValueOnce(undefined);
+    const delByPattern = jest.fn().mockRejectedValue(new Error('down'));
+    const { svc, warn } = make({ del, delByPattern });
+    jest.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
+    await expect(svc.del('k')).resolves.toBe(false);
+    await expect(svc.delByPattern('election:1:*')).resolves.toBe(false);
+    expect(warn).toHaveBeenCalledTimes(2);
+    expect(del).toHaveBeenCalledTimes(1);
+    jest.advanceTimersByTime(2000);
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(del).toHaveBeenCalledTimes(2);
+    expect(delByPattern).toHaveBeenCalledTimes(2);
+    expect(warn).toHaveBeenCalledTimes(3); // pattern retry failed too; only one retry each
+    jest.advanceTimersByTime(10_000);
+    expect(delByPattern).toHaveBeenCalledTimes(2);
+    jest.useRealTimers();
+  });
+
   it('del / delByPattern swallow Redis errors', async () => {
+    jest.useFakeTimers();
     const { svc } = make({ del: jest.fn().mockRejectedValue(new Error('down')), delByPattern: jest.fn().mockRejectedValue(new Error('down')) });
     await expect(svc.del('k')).resolves.toBe(false);
     await expect(svc.delByPattern('election:1:*')).resolves.toBe(false);
+    jest.useRealTimers();
   });
 
   it('del returns true on success', async () => {

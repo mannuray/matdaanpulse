@@ -59,3 +59,17 @@ describe('BulkOverridePayload validation', () => {
     await expect(run(body)).rejects.toBeInstanceOf(BadRequestException);
   });
 });
+
+describe('BulkOverridePayload election ids', () => {
+  it('accepts seeded non-RFC election ids (Bihar 2025)', async () => {
+    const { ValidationPipe } = await import('@nestjs/common');
+    const { BulkOverridePayload } = await import('./result-override.dto');
+    const pipe = new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true });
+    await expect(
+      pipe.transform(
+        { election_id: 'c3d4e5f6-a7b8-9012-cdef-234567890abc', overrides: [{ result_id: 'b2c3d4e5-f6a7-4901-bcde-f12345678901', votes: 1, status: 'LEADING', margin: 0 }] },
+        { type: 'body', metatype: BulkOverridePayload },
+      ),
+    ).resolves.toBeDefined();
+  });
+});

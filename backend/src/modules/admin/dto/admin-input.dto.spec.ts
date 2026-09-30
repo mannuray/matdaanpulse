@@ -25,3 +25,14 @@ describe('admin DTO URL fields (S-M2)', () => {
     await expect(body(UpdatePartyDto, { symbol_url: 'javascript:alert(1)' })).rejects.toBeInstanceOf(BadRequestException);
   });
 });
+
+import { BulkTagDto } from './admin-input.dto';
+
+describe('id-array caps fit the 100 kb body limit (review M8)', () => {
+  it('rejects more than 2000 ids with 400, and 2000 UUIDs fit in 100 kb', async () => {
+    const uuid = 'b2c3d4e5-f6a7-8901-bcde-f12345678901';
+    await expect(body(BulkTagDto, { ids: Array(2001).fill('BR_VS_1_X') })).rejects.toBeInstanceOf(BadRequestException);
+    await expect(body(BulkTagDto, { ids: Array(2000).fill('BR_VS_1_X') })).resolves.toBeDefined();
+    expect(JSON.stringify({ ids: Array(2000).fill(uuid) }).length).toBeLessThan(100 * 1024);
+  });
+});

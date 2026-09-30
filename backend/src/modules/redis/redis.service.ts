@@ -1,7 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
-import { Observable, Subject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { MetricsService } from '../metrics/metrics.service';
 import { buildRedisConnection } from './redis-options';
 import { RateLimitedLog } from '../../common/util/rate-limited-log';
@@ -20,7 +20,8 @@ export class RedisService implements OnModuleInit {
   private pub: Redis;
   private sub: Redis;
   private readonly channels = new Map<string, ChannelState>();
-  private readonly shutdownSubject = new Subject<void>();
+  // Replays to late subscribers: an SSE request racing SIGTERM ends immediately.
+  private readonly shutdownSubject = new ReplaySubject<void>(1);
   private closed = false;
 
   /** Emits once when the app starts shutting down; SSE streams end on it. */
@@ -57,11 +58,29 @@ export class RedisService implements OnModuleInit {
       const state = this.channels.get(channel);
       if (state) state.subject.next(message);
     });
+    // ioredis only resubscribes channels whose SUBSCRIBE reply it saw. A SUBSCRIBE
+    // that failed during an outage would leave the channel deaf forever (viewers
+    // keep sharing the stream and receiving heartbeats), so on every (re)connect
+    // re-issue SUBSCRIBE for every channel we serve. Idempotent in Redis.
+    this.sub.on('ready', () => this.resubscribeAll());
     for (const [name, client] of [['pub', this.pub], ['sub', this.sub]] as const) {
       client.connect().catch((err: Error) => {
         this.logger.warn(`Redis ${name} not reachable at boot, retrying in the background: ${err.message}`);
       });
     }
+  }
+
+  private resubscribeAll() {
+    if (this.closed || this.channels.size === 0) return;
+    const channels = [...this.channels.keys()];
+    this.sub.subscribe(...channels).catch((err: Error) => {
+      this.logger.error(`Resubscribe of ${channels.length} channel(s) failed: ${err.message}`);
+    });
+  }
+
+  /** True when the subscriber connection is up (live SSE events can flow). */
+  isSubscriberReady(): boolean {
+    return this.sub.status === 'ready';
   }
 
   /** Step 1 of shutdown: end every SSE stream so the HTTP server can close. */

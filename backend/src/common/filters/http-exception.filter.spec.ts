@@ -39,10 +39,14 @@ describe('HttpExceptionFilter', () => {
     expect(errorSpy).not.toHaveBeenCalled();
   });
 
-  it('maps PrismaClientValidationError to 400', () => {
-    const res = run(new Prisma.PrismaClientValidationError('Argument `id`: invalid value in prisma.users.findMany()', { clientVersion: 'test' }));
+  it('maps PrismaClientValidationError to 400 but logs it at error level with the stack', () => {
+    const err = new Prisma.PrismaClientValidationError('Argument `id`: invalid value in prisma.users.findMany()', { clientVersion: 'test' });
+    const res = run(err);
     expect(res.statusCode).toBe(400);
     expect(JSON.stringify(res.body)).not.toMatch(/prisma\.users/);
+    expect(errorSpy).toHaveBeenCalledTimes(1);
+    expect(errorSpy.mock.calls[0][0]).toMatch(/→ 400/);
+    expect(errorSpy.mock.calls[0][1]).toBe(err.stack);
   });
 
   it('unknown errors → generic 500, logged with stack, request id, method and redacted path', () => {

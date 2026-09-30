@@ -1,7 +1,8 @@
 import {
-  IsUUID, IsOptional, IsInt, IsIn, IsString, IsArray, IsNotEmpty,
+  IsOptional, IsInt, IsIn, IsString, IsArray, IsNotEmpty,
   ValidateNested, ArrayMaxSize, Min, ValidateBy, ValidationOptions,
 } from 'class-validator';
+import { IsUuidLike } from '../../../common/validation/uuid-like';
 import { Type } from 'class-transformer';
 
 /** Ensures the value is a Map (i.e. the body sent a JSON object, not an array/primitive). */
@@ -35,7 +36,7 @@ export class ConstituencyRoundDto {
 
 /** Combined payload accepted by the single override endpoint. */
 export class OverridePayload extends ConstituencyRoundDto {
-  @IsUUID()
+  @IsUuidLike()
   result_id: string;
 
   @IsOptional()
@@ -65,7 +66,7 @@ export class OverridePayload extends ConstituencyRoundDto {
  * from the result row so a client cannot publish mismatched SSE payloads.
  */
 export class BulkOverrideItem {
-  @IsUUID()
+  @IsUuidLike()
   result_id: string;
 
   @IsOptional()
@@ -99,13 +100,13 @@ export class BulkOverrideItem {
  * Max overrides per bulk request. Updates are applied with a single
  * UPDATE … FROM UNNEST(...) statement that binds one array per column, so the
  * bind-parameter count is constant; the cap bounds request size / tx duration.
- * ~150 bytes per item → 10k items ≈ 1.5 MB (see JSON body limit in main.ts).
+ * ~150 bytes per item → 10k items ≈ 1.5 MB (see JSON body limit in app.setup.ts).
  */
 export const MAX_BULK_OVERRIDES = 10_000;
 
 /** Bulk override payload — one request per round batch. */
 export class BulkOverridePayload {
-  @IsUUID()
+  @IsUuidLike()
   election_id: string;
 
   @IsArray()

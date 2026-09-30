@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
-import { user_role } from '@prisma/client';
+import { Prisma, user_role } from '@prisma/client';
 import { UserNotFoundException } from '../../common/exceptions';
 
 @Injectable()
@@ -25,31 +25,38 @@ export class UserService {
     return user;
   }
 
-  /** Refuse to remove the last SUPER_ADMIN (demotion or deletion), which would leave no admin. */
-  private async assertNotLastSuperAdmin(user: { role: user_role }, action: string) {
+  /**
+   * Refuse to remove the last SUPER_ADMIN (demotion or deletion), which would
+   * leave no admin. Runs inside the write's transaction and row-locks every
+   * SUPER_ADMIN (SELECT … FOR UPDATE), so two admins demoting each other at the
+   * same moment serialise and the second one is refused.
+   */
+  private async assertNotLastSuperAdmin(tx: Prisma.TransactionClient, user: { role: user_role }, action: string) {
     if (user.role !== 'SUPER_ADMIN') return;
-    const superAdmins = await this.prisma.users.count({ where: { role: 'SUPER_ADMIN' } });
-    if (superAdmins <= 1) {
+    const superAdmins = await tx.$queryRaw<{ id: string }[]>`
+      SELECT id FROM users WHERE role = 'SUPER_ADMIN' FOR UPDATE`;
+    if (superAdmins.length <= 1) {
       throw new ForbiddenException(`Cannot ${action} the last SUPER_ADMIN`);
     }
   }
 
   async update(id: string, data: Partial<{ email: string; name: string; role: user_role; password: string }>) {
-    const user = await this.prisma.users.findUnique({ where: { id } });
-    if (!user) throw new UserNotFoundException(id);
-    if (data.role && data.role !== user.role) await this.assertNotLastSuperAdmin(user, 'demote');
-
-    // Map the DTO onto real columns; `password` is hashed into `password_hash`.
+    // Hash outside the transaction so the row locks are held only briefly.
     const { password, ...rest } = data;
-    const updated = await this.prisma.users.update({
-      where: { id },
-      data: {
-        ...rest,
-        ...(password ? { password_hash: await bcrypt.hash(password, 10) } : {}),
-      },
-      select: { id: true, email: true, name: true, role: true }
+    const password_hash = password ? await bcrypt.hash(password, 10) : undefined;
+
+    return this.prisma.$transaction(async (tx) => {
+      const user = await tx.users.findUnique({ where: { id } });
+      if (!user) throw new UserNotFoundException(id);
+      if (data.role && data.role !== user.role) await this.assertNotLastSuperAdmin(tx, user, 'demote');
+
+      // Map the DTO onto real columns; `password` is hashed into `password_hash`.
+      return tx.users.update({
+        where: { id },
+        data: { ...rest, ...(password_hash ? { password_hash } : {}) },
+        select: { id: true, email: true, name: true, role: true },
+      });
     });
-    return updated;
   }
 
   /**
@@ -57,10 +64,12 @@ export class UserService {
    * (migration 012), so the user's audit entries are kept and detached.
    */
   async delete(id: string) {
-    const user = await this.prisma.users.findUnique({ where: { id } });
-    if (!user) throw new UserNotFoundException(id);
-    await this.assertNotLastSuperAdmin(user, 'delete');
-    await this.prisma.users.delete({ where: { id } });
+    await this.prisma.$transaction(async (tx) => {
+      const user = await tx.users.findUnique({ where: { id } });
+      if (!user) throw new UserNotFoundException(id);
+      await this.assertNotLastSuperAdmin(tx, user, 'delete');
+      await tx.users.delete({ where: { id } });
+    });
     return { deleted: true };
   }
 }

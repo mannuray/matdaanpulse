@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { SpanStatusCode, trace } from '@opentelemetry/api';
+import { Prisma } from '@prisma/client';
 import { ErrorCodes } from '../exceptions/error-codes';
 import { BusinessException } from '../exceptions/base.exception';
 import { resolveRequestId } from '../logger/request-context';
@@ -37,7 +38,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const requestId = resolveRequestId(request.headers['x-request-id']);
     response.setHeader('X-Request-ID', requestId);
 
-    if (status >= 500) this.reportServerError(exception, status, requestId, request);
+    // A PrismaClientValidationError is answered with 400 but almost always means a
+    // server-side query bug, so it is logged like a 5xx (review M9).
+    if (status >= 500 || exception instanceof Prisma.PrismaClientValidationError) {
+      this.reportServerError(exception, status, requestId, request);
+    }
 
     let errorCode: string = ErrorCodes.INTERNAL_SERVER_ERROR;
     let details: any = {};

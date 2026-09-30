@@ -1,7 +1,8 @@
 import {
-  IsString, IsNotEmpty, IsOptional, IsInt, IsIn, IsEnum, IsUUID, IsBoolean, IsObject,
+  IsString, IsNotEmpty, IsOptional, IsInt, IsIn, IsEnum, IsBoolean, IsObject,
   IsArray, IsDateString, MaxLength, Min, Max, ArrayMaxSize, IsUrl,
 } from 'class-validator';
+import { IsUuidLike } from '../../../common/validation/uuid-like';
 import { IsSafeUrl, MAX_URL_LENGTH } from '../../../common/validation/safe-url';
 import { Transform } from 'class-transformer';
 import { election_status } from '@prisma/client';
@@ -13,6 +14,14 @@ import { election_status } from '@prisma/client';
  */
 
 const emptyToNull = ({ value }: { value: unknown }) => (value === '' ? null : value);
+
+/**
+ * Id-array cap for admin bulk bodies. Sized so a full array fits the global
+ * 100 kb JSON limit (a UUID is ~39 bytes in JSON → ~2.5k per 100 kb), so an
+ * oversize request gets a 400 validation error rather than a 413. The admin UI
+ * sends at most one page (≤ 100 ids).
+ */
+const MAX_IDS_PER_REQUEST = 2000;
 
 /** Absolute http(s) links only (review S-M2): no javascript:/data: URLs in stored hrefs. */
 const HTTP_URL = { protocols: ['http', 'https'], require_protocol: true };
@@ -113,7 +122,7 @@ class CandidateFieldsDto {
   @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
   party_id?: string | null;
 
-  @IsOptional() @IsUUID()
+  @IsOptional() @IsUuidLike()
   person_id?: string | null;
 
   @IsOptional() @IsBoolean()
@@ -129,7 +138,7 @@ export class UpdateCandidateDto extends CandidateFieldsDto {
 }
 
 export class CreateCandidateDto extends CandidateFieldsDto {
-  @IsUUID()
+  @IsUuidLike()
   election_id: string;
 
   @IsString() @IsNotEmpty() @MaxLength(100)
@@ -140,12 +149,12 @@ export class CreateCandidateDto extends CandidateFieldsDto {
 }
 
 export class EnrichCandidatesDto {
-  @IsOptional() @IsArray() @ArrayMaxSize(5000) @IsUUID('all', { each: true })
+  @IsOptional() @IsArray() @ArrayMaxSize(MAX_IDS_PER_REQUEST) @IsUuidLike({ each: true })
   candidate_ids?: string[];
 }
 
 export class LinkPersonDto {
-  @IsUUID()
+  @IsUuidLike()
   person_id: string;
 }
 
@@ -196,15 +205,15 @@ export class CreatePersonDto extends PersonFieldsDto {
 }
 
 export class MergePersonsDto {
-  @IsUUID()
+  @IsUuidLike()
   source_id: string;
 
-  @IsUUID()
+  @IsUuidLike()
   target_id: string;
 }
 
 export class EnrichPersonsDto {
-  @IsOptional() @IsArray() @ArrayMaxSize(1000) @IsUUID('all', { each: true })
+  @IsOptional() @IsArray() @ArrayMaxSize(1000) @IsUuidLike({ each: true })
   person_ids?: string[];
 }
 
@@ -225,7 +234,7 @@ export class UpdateConstituencyDto {
 }
 
 export class BulkTagDto {
-  @IsArray() @ArrayMaxSize(5000) @IsString({ each: true })
+  @IsArray() @ArrayMaxSize(MAX_IDS_PER_REQUEST) @IsString({ each: true })
   ids: string[];
 
   @IsOptional() @IsArray() @IsString({ each: true }) @MaxLength(100, { each: true })
@@ -236,7 +245,7 @@ export class BulkTagDto {
 }
 
 export class ComputeAnalysisDto {
-  @IsOptional() @IsArray() @ArrayMaxSize(50) @IsUUID('all', { each: true })
+  @IsOptional() @IsArray() @ArrayMaxSize(50) @IsUuidLike({ each: true })
   history_election_ids?: string[];
 
   @IsOptional() @IsObject()
@@ -270,7 +279,7 @@ export class UpdateAnalysisDto {
 }
 
 export class BulkAiStatusDto {
-  @IsArray() @ArrayMaxSize(5000) @IsUUID('all', { each: true })
+  @IsArray() @ArrayMaxSize(MAX_IDS_PER_REQUEST) @IsUuidLike({ each: true })
   ids: string[];
 
   @IsString() @IsNotEmpty() @MaxLength(20)
@@ -278,7 +287,7 @@ export class BulkAiStatusDto {
 }
 
 export class EnrichConstituenciesDto {
-  @IsOptional() @IsArray() @ArrayMaxSize(5000) @IsString({ each: true })
+  @IsOptional() @IsArray() @ArrayMaxSize(MAX_IDS_PER_REQUEST) @IsString({ each: true })
   const_ids?: string[];
 
   @IsOptional() @IsIn(['pre_poll', 'post_poll'])

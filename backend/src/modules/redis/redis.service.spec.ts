@@ -109,3 +109,53 @@ describe('RedisService resilience', () => {
     expect(sub.quit).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('RedisService subscriber recovery (review I1)', () => {
+  const { EventEmitter } = require('events');
+  function make() {
+    const svc = new RedisService({ get: () => undefined } as any, {} as any);
+    const sub = Object.assign(new EventEmitter(), {
+      connect: jest.fn().mockResolvedValue(undefined),
+      subscribe: jest.fn(),
+      unsubscribe: jest.fn().mockResolvedValue(1),
+      status: 'reconnecting',
+    });
+    const pub = { connect: jest.fn().mockResolvedValue(undefined) };
+    (svc as any).sub = sub;
+    (svc as any).pub = pub;
+    svc.onModuleInit();
+    return { svc, sub };
+  }
+
+  it('re-issues SUBSCRIBE for every served channel when the subscriber becomes ready', async () => {
+    const { svc, sub } = make();
+    sub.subscribe.mockRejectedValueOnce(new Error('MaxRetriesPerRequestError')).mockRejectedValueOnce(new Error('x'));
+    svc.subscribe('election:a:events').subscribe();
+    svc.subscribe('enrichment:b:events').subscribe();
+    await Promise.resolve();
+    sub.subscribe.mockResolvedValue(2);
+    sub.emit('ready');
+    expect(sub.subscribe).toHaveBeenLastCalledWith('election:a:events', 'enrichment:b:events');
+  });
+
+  it('does nothing on ready when no channel is served', () => {
+    const { sub } = make();
+    sub.emit('ready');
+    expect(sub.subscribe).not.toHaveBeenCalled();
+  });
+
+  it('isSubscriberReady follows the subscriber status', () => {
+    const { svc, sub } = make();
+    expect(svc.isSubscriberReady()).toBe(false);
+    sub.status = 'ready';
+    expect(svc.isSubscriberReady()).toBe(true);
+  });
+
+  it('a stream subscribed after shutdown began sees shutdown$ immediately (review M6)', () => {
+    const { svc } = make();
+    svc.completeStreams();
+    let fired = false;
+    svc.shutdown$.subscribe(() => (fired = true));
+    expect(fired).toBe(true);
+  });
+});

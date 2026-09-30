@@ -51,7 +51,7 @@ From the backend review (IDs refer to it). All are code/config changes in `backe
 
 | # | Blocker | Review ID | Fix | Status |
 |---|---|---|---|---|
-| B1 | Rate limiter sees Render's proxy IP → one bucket for the whole site (5 bad logins lock out every admin; a 429 kills a viewer's live updates) | S-C1 | `app.set('trust proxy', 1)` (verify `req.ip`); `@SkipThrottle()` on live + health; separate public (generous) and auth (strict) limits | Done — `TRUST_PROXY_HOPS` (default 1); throttlers `public` 300/min + `auth` 5/min per IP (`THROTTLE_*`); first request's `req.ip` logged at `LOG_LEVEL=debug` — verify once on Render |
+| B1 | Rate limiter sees Render's proxy IP → one bucket for the whole site (5 bad logins lock out every admin; a 429 kills a viewer's live updates) | S-C1 | `app.set('trust proxy', 1)` (verify `req.ip`); `@SkipThrottle()` on live + health; separate public (generous) and auth (strict) limits | Done — `TRUST_PROXY_HOPS` (default 1); throttlers `public` 600/min + `auth` 5/min per IP (`THROTTLE_*`); `Client IP check` log at `LOG_LEVEL=debug` — verify once on Render (§5.3) |
 | B2 | Redis client only reads host/port — cannot reach Upstash (needs password + TLS) and boot waits for it | DEP-1 | `REDIS_URL` (`rediss://…`) with timeouts; keep host/port as local fallback | Done — `REDIS_URL` or `REDIS_HOST`/`REDIS_PORT`/`REDIS_PASSWORD` |
 | B3 | Redis outage = API outage (no fallback to DB; ioredis retries ~20× then 500) | E-H1 | Cache wrapper with try/catch → load from DB; `maxRetriesPerRequest: 1`, no offline queue, command timeout; don't block boot on Redis | Done — `CacheService.getOrSet`; boot and publish never fail on Redis |
 | B4 | No graceful shutdown (`process.exit` in tracing on SIGTERM; shutdown hooks off) | E-H3 | `enableShutdownHooks()`, remove `process.exit`, close SSE → Redis → Prisma, bootstrap `.catch` | Done — `GracefulShutdownService` |
@@ -107,11 +107,16 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
   # Defaults, set only to change them:
-  # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=300  THROTTLE_AUTH_PER_MIN=5
+  # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5
   # LOG_LEVEL=info  ALLOW_REGISTRATION=false  CORS_ORIGIN_REGEX=
   ```
   (`PORT` is injected by Render.) Full list with comments: `.env.example`.
-- First deploy: set `LOG_LEVEL=debug` once and check the `First request: req.ip=…` log line shows your own IP, not Render's proxy. If it shows a proxy address, raise `TRUST_PROXY_HOPS` by one (Render sits behind Cloudflare). Then set `LOG_LEVEL` back to `info`.
+- First deploy — verify `TRUST_PROXY_HOPS` (it decides the IP every rate limit is keyed on):
+  1. Set `LOG_LEVEL=debug`, redeploy, and open the dashboard from a browser. Health-check requests are ignored; the first other request logs `Client IP check: req.ip=… x-forwarded-for="…" TRUST_PROXY_HOPS=N`.
+  2. Compare `req.ip` with your own public IP (e.g. from a "what is my IP" page). If they match, the setting is right.
+  3. With N hops, `req.ip` is the N-th entry from the right of `x-forwarded-for`. Raise `TRUST_PROXY_HOPS` by one **only** if `req.ip` is a Render/Cloudflare proxy address **and** your real IP appears as an earlier (more-left) entry in `x-forwarded-for`.
+  4. Never set it higher than that: every extra hop trusts one more client-supplied entry, so anyone could send `X-Forwarded-For: <random>` and get a fresh bucket per request — bypassing the 5/min login limit and the public limit.
+  5. Set `LOG_LEVEL` back to `info`.
 
 ### 5.4 Vercel (two projects)
 
@@ -136,7 +141,7 @@ Both need an SPA rewrite (`vercel.json`): `{"rewrites":[{"source":"/(.*)","desti
 | ID | Decision | Options | Recommendation |
 |---|---|---|---|
 | D1 | Neon region | Singapore `ap-southeast-1` / us-east-2 (as in the original plan) | **Singapore** — same region as Render and Upstash; removes ~200 ms per query |
-| D2 | Render spin-down on counting days | Free + accept cold starts / Free + external pinger on `/health/live` every 10 min / **Starter ($7/mo)** during counting | Free for demo; Starter (or pinger) for live counting days |
+| D2 | Render spin-down on counting days | Free + accept cold starts / Free + external pinger on `/health/live` every 10 min / **Starter ($7/mo)** during counting | Free for demo; Starter (or pinger) for live counting days. Counting-day runbook: watch for 429s in the logs; raise `THROTTLE_PUBLIC_PER_MIN` (default 600/min per IP) if shared mobile CGNAT addresses hit it |
 | D3 | Custom domains | Vercel/Render default domains / own domain (e.g. `results.<domain>`, `admin.<domain>`, `api.<domain>`) | Decide before launch — CORS origins and the API base URL depend on it |
 | D4 | Observability | Off (Render logs only) / OTLP/HTTP to a hosted backend with a free tier / SigNoz Cloud (paid) | Off at launch; revisit |
 | D5 | Public self-registration (`/auth/register`) | Keep / disable / behind a flag | Disable (no product use; attack surface) |

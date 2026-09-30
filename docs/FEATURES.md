@@ -206,14 +206,16 @@
 
 ### Backend Hardening for Deployment (Render / Neon / Upstash)
 Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` §4.
-- [x] Per-IP rate limits behind a proxy: `trust proxy` = `TRUST_PROXY_HOPS` (default 1); named throttlers `public` (300/min) and `auth` (5/min, `/auth/*`), env-configurable; live SSE and health are never throttled
+- [x] Per-IP rate limits behind a proxy: `trust proxy` = `TRUST_PROXY_HOPS` (default 1); named throttlers `public` (600/min, CGNAT-friendly) and `auth` (5/min, `/auth/*`), env-configurable; live SSE and health are never throttled
 - [x] Redis via `REDIS_URL` (`rediss://` TLS, Upstash) or `REDIS_HOST`/`REDIS_PORT`/`REDIS_PASSWORD`; boot never waits for Redis
 - [x] `CacheService.getOrSet` — a Redis outage falls back to the database instead of failing requests; publish failures after a committed write are logged, not returned
+- [x] Cache invalidation after a write never fails the request: on a Redis error it warns and retries once in the background; if that also fails, cached views stay stale until their TTL (5 min; 10 min for analysis) while live SSE events still carry the change
+- [x] Live SSE survives Redis blips: the subscriber queues SUBSCRIBE while disconnected and re-subscribes every served channel on reconnect; `/health/ready` is 503 while the subscriber is down
 - [x] Health probes: `GET /api/v1/health/live` (no I/O, always 200) and `GET /api/v1/health/ready` (DB + Redis, 2 s timeouts, 503 when degraded, no error text); `/health` = ready
 - [x] Graceful shutdown: SSE streams → HTTP server → Redis → Prisma → OTel
 - [x] Prisma errors mapped to 409 / 404 / 400 with safe messages; oversized bodies 413
-- [x] Body limit 100 kb, 5 MB only on `POST /admin/results/override-bulk`
-- [x] Query DTOs on list endpoints (bounded `page`/`limit` ≤ 200, enums, UUIDs, ISO dates) — bad input is 400, not 500
+- [x] Body limit 100 kb, 5 MB only on `POST /admin/results/override-bulk` (requests without a Bearer header get 401 before the body is parsed); admin id arrays capped at 2000 so they fit 100 kb
+- [x] Query DTOs on list endpoints (bounded `page`/`limit` ≤ 200, enums, UUIDs, ISO dates) — bad input is 400, not 500. Unknown query keys are rejected (400) except the cache-buster `_` (`?_=<timestamp>`), which is accepted and ignored on every route; empty values count as not sent
 - [x] URL fields (`photo_url`, `website`, `wikipedia_url`) must be http(s); AI output with other schemes is dropped; Gemini model from `GEMINI_MODEL`
 - [x] Public self-registration (`/auth/register`) off unless `ALLOW_REGISTRATION=true`; the last SUPER_ADMIN cannot be demoted or deleted
 - [x] CORS origins trimmed, no credentials (Bearer auth), optional `CORS_ORIGIN_REGEX` for preview URLs

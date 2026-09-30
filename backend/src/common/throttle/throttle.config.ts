@@ -4,7 +4,8 @@ import type { ThrottlerModuleOptions } from '@nestjs/throttler';
 type Env = Record<string, string | undefined>;
 
 export const THROTTLE_TTL_MS = 60_000;
-export const DEFAULT_PUBLIC_PER_MIN = 300;
+/** Generous: Indian mobile carriers put many users behind one CGNAT address. */
+export const DEFAULT_PUBLIC_PER_MIN = 600;
 export const DEFAULT_AUTH_PER_MIN = 5;
 
 /**

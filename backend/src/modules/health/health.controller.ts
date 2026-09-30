@@ -12,7 +12,8 @@ type Check = { status: 'healthy' | 'unhealthy'; latencyMs: number };
 
 /**
  * - GET /health/live  — liveness for the platform health check (Render): no I/O, always 200.
- * - GET /health/ready — readiness: DB `SELECT 1` + Redis PING (2 s timeouts); 503 if either fails.
+ * - GET /health/ready — readiness: DB `SELECT 1` + Redis PING (2 s timeouts) + subscriber
+ *   connection ready; 503 if any fails.
  * - GET /health       — alias of /health/ready (backward compatible).
  * Error details go to the logs only. Never throttled.
  */
@@ -45,7 +46,11 @@ export class HealthController {
   private async readiness(res: Response) {
     const [database, redis] = await Promise.all([
       this.probe('database', () => this.prisma.$queryRaw`SELECT 1`),
-      this.probe('redis', () => this.redis.ping(HEALTH_CHECK_TIMEOUT_MS)),
+      this.probe('redis', async () => {
+        await this.redis.ping(HEALTH_CHECK_TIMEOUT_MS);
+        // Live SSE events need the subscriber connection too, not just PING on pub.
+        if (!this.redis.isSubscriberReady()) throw new Error('Redis subscriber connection is not ready');
+      }),
     ]);
     const healthy = database.status === 'healthy' && redis.status === 'healthy';
     res.status(healthy ? HttpStatus.OK : HttpStatus.SERVICE_UNAVAILABLE);

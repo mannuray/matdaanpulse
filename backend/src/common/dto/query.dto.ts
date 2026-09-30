@@ -1,5 +1,6 @@
 import { Transform } from 'class-transformer';
-import { IsEnum, IsInt, IsISO8601, IsOptional, IsString, IsUUID, Max, MaxLength, Min } from 'class-validator';
+import { IsEnum, IsInt, IsISO8601, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
+import { IsUuidLike } from '../validation/uuid-like';
 import { election_status, election_type } from '@prisma/client';
 
 /**
@@ -41,7 +42,7 @@ export class ElectionsQueryDto {
 }
 
 export class ElectionIdQueryDto {
-  @IsOptional() @EmptyAsUndefined() @IsUUID()
+  @IsOptional() @EmptyAsUndefined() @IsUuidLike()
   election_id?: string;
 }
 
@@ -64,7 +65,7 @@ export class PartiesQueryDto extends PaginationQueryDto {
   @IsOptional() @EmptyAsUndefined() @IsString() @MaxLength(MAX_QUERY_LENGTH)
   q?: string;
 
-  @IsOptional() @EmptyAsUndefined() @IsUUID()
+  @IsOptional() @EmptyAsUndefined() @IsUuidLike()
   election_id?: string;
 
   @IsOptional() @OptionalNumber() @IsInt() @Min(1)
@@ -88,7 +89,7 @@ export class AdminPersonsQueryDto extends PaginationQueryDto {
 }
 
 export class AuditLogsQueryDto {
-  @IsOptional() @EmptyAsUndefined() @IsUUID()
+  @IsOptional() @EmptyAsUndefined() @IsUuidLike()
   user_id?: string;
 
   @IsOptional() @EmptyAsUndefined() @IsString() @MaxLength(100)

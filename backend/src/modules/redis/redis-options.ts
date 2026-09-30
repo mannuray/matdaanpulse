@@ -7,7 +7,11 @@ export interface RedisConnection {
   url?: string;
   /** Command / publish connection: fails fast so a Redis outage never stalls requests. */
   pub: RedisOptions;
-  /** Subscriber connection (SUBSCRIBE mode; no command timeout, autoResubscribe on). */
+  /**
+   * Subscriber connection (SUBSCRIBE mode): no command timeout, autoResubscribe
+   * on, and maxRetriesPerRequest null so a SUBSCRIBE issued during an outage
+   * waits in the offline queue instead of being dropped.
+   */
   sub: RedisOptions;
   /** Credential-free target for logs. */
   description: string;
@@ -53,7 +57,7 @@ export function buildRedisConnection(env: Env): RedisConnection {
   return {
     url: url || undefined,
     pub: { ...BASE, ...target, enableOfflineQueue: false, commandTimeout: 1_000 },
-    sub: { ...BASE, ...target, autoResubscribe: true },
+    sub: { ...BASE, ...target, autoResubscribe: true, maxRetriesPerRequest: null },
     description,
   };
 }

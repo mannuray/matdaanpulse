@@ -29,6 +29,9 @@ describe('query DTOs', () => {
     // Seed election ids are not RFC-versioned UUIDs; they must still pass.
     await expect(validate(CandidatesQueryDto, { election_id: 'b2c3d4e5-f6a7-8901-bcde-f12345678901', const_id: 'BR_VS_1_x' }))
       .resolves.toBeDefined();
+    // Bihar 2025 (version nibble 9): rejected by class-validator's @IsUUID, must pass here.
+    await expect(validate(CandidatesQueryDto, { election_id: 'c3d4e5f6-a7b8-9012-cdef-234567890abc' })).resolves.toBeDefined();
+    await expect(validate(CandidatesQueryDto, { election_id: 'c3d4e5f6-a7b8-9012-cdef-234567890abcX' })).rejects.toBeInstanceOf(BadRequestException);
     await expect(validate(ConstituencySearchQueryDto, { q: 'pat', district_id: 'x' })).rejects.toBeInstanceOf(BadRequestException);
   });
 

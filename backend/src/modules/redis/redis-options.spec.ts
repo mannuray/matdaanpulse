@@ -33,13 +33,13 @@ describe('buildRedisConnection', () => {
     expect(c.pub.password).toBeUndefined();
   });
 
-  it('command connection fails fast; subscriber keeps its offline queue', () => {
+  it('command connection fails fast; subscriber queues SUBSCRIBE until connected', () => {
     const { pub, sub } = buildRedisConnection({});
     expect(pub).toMatchObject({
       lazyConnect: true, keepAlive: 10000, connectTimeout: 5000,
       maxRetriesPerRequest: 1, enableOfflineQueue: false, commandTimeout: 1000,
     });
-    expect(sub).toMatchObject({ lazyConnect: true, keepAlive: 10000, connectTimeout: 5000, maxRetriesPerRequest: 1, autoResubscribe: true });
+    expect(sub).toMatchObject({ lazyConnect: true, keepAlive: 10000, connectTimeout: 5000, maxRetriesPerRequest: null, autoResubscribe: true });
     expect(sub.enableOfflineQueue).toBeUndefined();
     expect(sub.commandTimeout).toBeUndefined();
   });

@@ -10,6 +10,9 @@ export const CACHE_TTL = {
   PUBLIC_ANALYSIS: 600,
 } as const;
 
+/** Delay before the single background retry of a failed invalidation. */
+export const INVALIDATION_RETRY_MS = 2_000;
+
 /**
  * Cache-aside over Redis that never lets Redis take a request down: any
  * get/set/parse failure falls back to the loader (the database). Failures are
@@ -46,24 +49,34 @@ export class CacheService {
     return value;
   }
 
-  /** Delete one key; returns false (and logs) instead of throwing. */
-  async del(key: string): Promise<boolean> {
-    try {
-      await this.redis.del(key);
-      return true;
-    } catch (err) {
-      this.warn('delete', err);
-      return false;
-    }
+  /**
+   * Delete one key. Never throws: on failure it logs a warning and retries once
+   * in the background (the write it follows is already committed). Resolves
+   * whether the first attempt succeeded.
+   */
+  del(key: string): Promise<boolean> {
+    return this.invalidate(key, () => this.redis.del(key));
   }
 
-  /** Delete keys matching a pattern; returns false (and logs) instead of throwing. */
-  async delByPattern(pattern: string): Promise<boolean> {
+  /** Delete keys matching a pattern; same failure handling as del(). */
+  delByPattern(pattern: string): Promise<boolean> {
+    return this.invalidate(pattern, () => this.redis.delByPattern(pattern));
+  }
+
+  private async invalidate(target: string, op: () => Promise<void>): Promise<boolean> {
     try {
-      await this.redis.delByPattern(pattern);
+      await op();
       return true;
     } catch (err) {
-      this.warn('delete', err);
+      this.logger.warn(`Cache invalidation of ${target} failed, retrying once in ${INVALIDATION_RETRY_MS}ms: ${(err as Error).message}`);
+      const timer = setTimeout(() => {
+        op().then(
+          () => this.logger.log(`Cache invalidation of ${target} succeeded on retry`),
+          (e: Error) =>
+            this.logger.warn(`Cache invalidation retry of ${target} failed; entries expire with their TTL: ${e.message}`),
+        );
+      }, INVALIDATION_RETRY_MS);
+      timer.unref?.();
       return false;
     }
   }
