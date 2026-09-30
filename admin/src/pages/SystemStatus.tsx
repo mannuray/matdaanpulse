@@ -80,7 +80,7 @@ function Cards({ s }: { s: Status }) {
         <Row k="Pool connection limit" v={db.pool.connectionLimit === null ? 'default' : String(db.pool.connectionLimit)} />
       </Card>
       <div style={{ gridColumn: '1 / -1' }}>
-        <Card title="Slowest routes (p95, last 60 min)">
+        <Card title="Slowest routes (p95 of the last ≤200 requests within 60 min)">
           <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead><tr><th style={styles.th}>Route</th><th style={styles.thR}>p95</th><th style={styles.thR}>Samples</th></tr></thead>
             <tbody>

@@ -3,12 +3,12 @@ import { useDashboardData } from '../data/useDashboardData';
 import { useHistoryAnalysis } from '../data/useHistoryAnalysis';
 import { useHistoricalResults } from '../data/useHistoricalResults';
 import { useAnalysis } from '../data/useAnalysis';
-import { useSSE } from '../data/useSSE';
 import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
 import type { CustomWatch } from '../../model/derive/leaders';
 import { appendTicker, type TickerEvent } from '../../model/live/ticker';
-import type { Election, SSEEvent, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint, PartyTrendPoint } from '../../model/types';
+import { diffLeaders } from '../../model/live/liveUpdates';
+import type { Election, ResultRow, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint, PartyTrendPoint } from '../../model/types';
 import type { LayerId } from '../../model/types/dashboard';
 import type { DashboardViewModel } from '../data/useDashboardData';
 
@@ -31,7 +31,8 @@ export interface DashboardSources {
   votePct: Map<string, number>;
   ticker: TickerEvent[];
   recentSeats: Set<string>;
-  sseConnected: boolean;
+  /** Live election: the last poll succeeded. */
+  liveConnected: boolean;
   availableLayers: LayerId[];
   /** The user's own tracked seats (shared by the seat panel and the watchlist tab). */
   watchlist: CustomWatch[];
@@ -41,8 +42,8 @@ export interface DashboardSources {
 
 export function useDashboardSources(election: Election): DashboardSources {
   const data = useDashboardData(election);
-  const { setSseConnected } = useElection();
-  const { manifestData, results, currentWinnerMap, constCandidates, mapRegions, voteShare, applyLiveUpdate } = data;
+  const { setLiveConnected } = useElection();
+  const { manifestData, results, currentWinnerMap, constCandidates, mapRegions, voteShare, liveConnected } = data;
 
   const historyResults = useHistoricalResults(manifestData?.history);
   const prevResults = historyResults && historyResults.length > 0 ? historyResults[historyResults.length - 1] : null;
@@ -84,15 +85,22 @@ export function useDashboardSources(election: Election): DashboardSources {
       }, RECENT_CHANGE_MS));
     }
   }, []);
-  const handleSSE = useCallback((event: SSEEvent) => {
-    const rows = event.type === 'batch-update' ? event.data : [event.data];
-    if (rows.length === 0) return;
-    const changes = applyLiveUpdate(rows);
+  // Each new live snapshot is diffed against the previous one of the same election:
+  // seats whose leader changed feed the ticker and pulse on the map. The first
+  // snapshot (and the first after switching elections) is the baseline, not news.
+  const prevSnapshot = useRef<{ electionId: string; results: ResultRow[] } | null>(null);
+  useEffect(() => {
+    if (election.status !== 'Live') { prevSnapshot.current = null; return; }
+    if (results.length === 0) return;
+    const prev = prevSnapshot.current;
+    prevSnapshot.current = { electionId: election.id, results };
+    if (!prev || prev.electionId !== election.id || prev.results === results) return;
+    const changes = diffLeaders(prev.results, results);
+    if (changes.length === 0) return;
     markRecent(changes.map(c => c.const_id));
-    setTicker(prev => appendTicker(prev, changes));
-  }, [applyLiveUpdate, markRecent]);
-  const { connected: sseConnected } = useSSE(election.status === 'Live' ? election.id : undefined, handleSSE);
-  useEffect(() => { setSseConnected(sseConnected); }, [sseConnected, setSseConnected]);
+    setTicker(p => appendTicker(p, changes));
+  }, [results, election.id, election.status, markRecent]);
+  useEffect(() => { setLiveConnected(liveConnected); }, [liveConnected, setLiveConnected]);
 
   const availableLayers = useMemo((): LayerId[] => {
     const l: LayerId[] = ['overview', 'battle'];
@@ -115,7 +123,7 @@ export function useDashboardSources(election: Election): DashboardSources {
 
   return {
     election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, prevYear,
-    totalSeats, majority, votePct, ticker, recentSeats, sseConnected, availableLayers,
+    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers,
     watchlist, addWatch, removeWatch,
   };
 }

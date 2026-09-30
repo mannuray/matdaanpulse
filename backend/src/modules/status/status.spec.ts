@@ -1,7 +1,7 @@
 import { RollingCounter } from './rolling-counter';
 import { LatencyReservoir } from './latency-reservoir';
 import { routeTemplate } from './route-template';
-import { StatusService } from './status.service';
+import { StatusService, MAX_ROUTES } from './status.service';
 import { poolConfig, buildProcessInfo } from './process-info';
 import { ROLES_KEY } from '../auth/decorators/roles.decorator';
 import { RolesGuard } from '../auth/guards/roles.guard';
@@ -86,11 +86,16 @@ describe('StatusService', () => {
     expect(slowestRoutes[0]).toMatchObject({ route: 'GET /r11', p95Ms: 110 });
   });
 
-  it('bounds the number of tracked routes', () => {
+  it('bounds the number of tracked routes at MAX_ROUTES (300)', () => {
     const s = new StatusService();
     for (let i = 0; i < 1000; i++) s.recordRequest(`GET /x${i}`, 200, 1);
     expect(s.snapshot().http.total).toBe(1000);
     expect(s.snapshot().http.slowestRoutes.length).toBeLessThanOrEqual(10);
+    expect(MAX_ROUTES).toBe(300);
+    expect((s as unknown as { routes: Map<string, unknown> }).routes.size).toBe(MAX_ROUTES);
+    // Routes already tracked keep recording once the cap is reached.
+    s.recordRequest('GET /x0', 200, 999);
+    expect(s.snapshot().http.slowestRoutes[0]).toMatchObject({ route: 'GET /x0', p95Ms: 999 });
   });
 
   it('tracks live counters and overrides per minute', () => {
@@ -154,5 +159,80 @@ describe('StatusController access', () => {
   it('is behind the JWT guard (anonymous gets 401)', () => {
     const guards = Reflect.getMetadata('__guards__', StatusController) as any[];
     expect(guards.map((g) => g.name)).toEqual(['JwtAuthGuard', 'RolesGuard']);
+  });
+});
+
+describe('MetricsService → StatusService tee adapter', () => {
+  const { MetricsService } = require('../metrics/metrics.service');
+
+  it('forwards counter values to StatusService (OTel off: no-op meter)', () => {
+    const s = new StatusService();
+    const m = new MetricsService(s);
+    m.resultOverrides.add(3, { election_id: 'e' });
+    m.sseConnections.add(2);
+    m.sseConnections.add(-1);
+    m.eventsPublished.add(1);
+    m.redisPublishErrors.add(1);
+    m.redisPublishDuration.record(5);
+    const snap = s.snapshot();
+    expect(snap.live.overridesApplied).toBe(3);
+    expect(snap.live.sseConnections).toBe(1);
+    expect(snap.live.eventsPublished).toBe(1);
+    expect(snap.redis.publishErrors).toBe(1);
+  });
+
+  it('an OTel instrument that throws never reaches the caller, and StatusService still counts', () => {
+    const { metrics } = require('@opentelemetry/api');
+    const throwing = { add: () => { throw new Error('otel'); }, record: () => { throw new Error('otel'); } };
+    const meter = { createCounter: () => throwing, createUpDownCounter: () => throwing, createHistogram: () => throwing, createObservableGauge: () => ({ addCallback: () => undefined }) };
+    const spy = jest.spyOn(metrics, 'getMeter').mockReturnValue(meter);
+    try {
+      const s = new StatusService();
+      const m = new MetricsService(s);
+      expect(() => m.resultOverrides.add(2)).not.toThrow();
+      expect(() => m.redisPublishDuration.record(1)).not.toThrow();
+      expect(s.snapshot().live.overridesApplied).toBe(2);
+    } finally {
+      spy.mockRestore();
+    }
+  });
+
+  it('a StatusService failure never reaches the caller', () => {
+    const s = new StatusService();
+    jest.spyOn(s, 'recordOverrides').mockImplementation(() => { throw new Error('boom'); });
+    const m = new MetricsService(s);
+    expect(() => m.resultOverrides.add(1)).not.toThrow();
+  });
+});
+
+describe('StatusMiddleware', () => {
+  const { StatusMiddleware } = require('./status.middleware');
+  const { EventEmitter } = require('events');
+
+  function run(status: StatusService, req: object) {
+    const res = Object.assign(new EventEmitter(), { statusCode: 201 });
+    const next = jest.fn();
+    new StatusMiddleware(status).use(req, res, next);
+    return { res, next };
+  }
+
+  it('calls next() and records the route template and status on finish', () => {
+    const s = new StatusService();
+    const record = jest.spyOn(s, 'recordRequest');
+    const { res, next } = run(s, { method: 'GET', baseUrl: '/api/v1/elections', route: { path: '/:id' }, originalUrl: '/api/v1/elections/abc?x=1' });
+    expect(next).toHaveBeenCalledTimes(1);
+    expect(record).not.toHaveBeenCalled();
+    res.emit('finish');
+    expect(record).toHaveBeenCalledTimes(1);
+    expect(record.mock.calls[0][0]).toBe('GET /api/v1/elections/:id');
+    expect(record.mock.calls[0][1]).toBe(201);
+    expect(record.mock.calls[0][2]).toBeGreaterThanOrEqual(0);
+  });
+
+  it('swallows a recording failure (counters never affect a response)', () => {
+    const s = new StatusService();
+    jest.spyOn(s, 'recordRequest').mockImplementation(() => { throw new Error('boom'); });
+    const { res } = run(s, { method: 'GET' });
+    expect(() => res.emit('finish')).not.toThrow();
   });
 });

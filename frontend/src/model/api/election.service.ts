@@ -1,8 +1,9 @@
 import { apiFetch } from './api-client';
 import type { 
   Election, ResultRow, Alliance, VoteShare, Manifest, 
-  Constituency, AnalysisEntry, ConstituencyAnalysisDetail 
+  Constituency, AnalysisEntry, ConstituencyAnalysisDetail, ResultsSnapshot
 } from '../types';
+import type { LiveState } from '../live/poller';
 
 /**
  * Election & Constituency Services (SOLID: SRP)
@@ -56,6 +57,16 @@ export function getElection(id: string) {
 
 export function getResults(electionId: string) {
   return apiFetch<ResultRow[]>(`/elections/${electionId}/results`);
+}
+
+/** Polled (CDN-cached ~5 s): the current live version of an election. */
+export function getLiveState(electionId: string) {
+  return apiFetch<LiveState>(`/elections/${electionId}/live`);
+}
+
+/** Immutable per version; an older version redirects to the current one (fetch follows it). */
+export function getResultsSnapshot(electionId: string, version: number) {
+  return apiFetch<ResultsSnapshot>(`/elections/${electionId}/results?v=${version}`);
 }
 
 export function getAlliances(electionId: string) {

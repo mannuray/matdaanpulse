@@ -14,6 +14,7 @@ export interface SystemStatus {
     throttled429: number;
     last5m: Window;
     last60m: Window;
+    /** 10 slowest routes by p95 of their last <=200 requests within 60 min (not a full-hour p95). */
     slowestRoutes: { route: string; p95Ms: number; samples: number }[];
   };
   cache: { hits: number; misses: number; fallbacks: number; hitRate: number | null };

@@ -14,14 +14,14 @@ import PersonDetail from './pages/PersonDetail';
 function AppLayout() {
   const { data: elections } = useApi(() => getElections(), []);
   const { data: states } = useApi(() => getStates(), []);
-  const { sseConnected } = useElection();
+  const { liveConnected } = useElection();
   const onElection = useMatch('/election/:id');
   const onHome = useMatch('/');
   const studio = Boolean(onElection || onHome);
 
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      {!studio && <Header elections={elections || []} states={states || []} sseConnected={sseConnected} />}
+      {!studio && <Header elections={elections || []} states={states || []} liveConnected={liveConnected} />}
       <main style={{ flex: 1, width: '100%', overflowY: studio ? 'hidden' : 'auto', position: 'relative' }}>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -256,29 +256,14 @@ export interface SwingEntry {
   flipped: boolean;
 }
 
-export interface ToastMessage {
-  id: string;
-  constName: string;
-  party: string;
-  color: string;
-  margin: number;
-  kind?: 'won' | 'lead';
-  timestamp: number;
+/** GET /elections/:id/results?v=<version>: every dashboard tile updates from one snapshot. */
+export interface ResultsSnapshot {
+  version: number;
+  results: ResultRow[];
+  /** Same shape as /alliances (seat tally per party). */
+  summary: Alliance[];
+  voteShare: VoteShare[];
 }
-
-export interface SSEResultData {
-  const_id: string;
-  p: string;
-  m: number;
-  s: string;
-  r?: number;
-  cr?: number;
-  tr?: number;
-}
-
-export type SSEEvent =
-  | { type: 'result-update'; data: SSEResultData }
-  | { type: 'batch-update'; data: SSEResultData[] };
 
 export interface DominanceEntry {
   constId: string;

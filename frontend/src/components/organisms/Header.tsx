@@ -11,7 +11,7 @@ import type { Election, State, Constituency, Candidate } from '../../types';
 interface HeaderProps {
   elections: Election[];
   states: State[];
-  sseConnected: boolean;
+  liveConnected: boolean;
 }
 
 const LANGS = [
@@ -21,7 +21,7 @@ const LANGS = [
   { code: 'mr', label: 'MR' },
 ];
 
-export default function Header({ elections, states, sseConnected }: HeaderProps) {
+export default function Header({ elections, states, liveConnected }: HeaderProps) {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const { election, setElection, electionType, setElectionType, selectedStateId, setSelectedStateId } = useElection();
@@ -216,7 +216,7 @@ export default function Header({ elections, states, sseConnected }: HeaderProps)
         {/* Countdown & Live */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
           {election?.tentative_next_date && <Countdown targetDate={election.tentative_next_date} />}
-          {election?.status === 'Live' && <LiveIndicator connected={sseConnected} />}
+          {election?.status === 'Live' && <LiveIndicator connected={liveConnected} />}
         </div>
 
         {/* Language Picker - Modern Pill */}

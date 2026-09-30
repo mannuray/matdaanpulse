@@ -1,15 +1,15 @@
-import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useApi } from './useApi';
 import { getAlliances, getVoteShare, getResults, getManifest, ElectionService } from '../../model/api/election.service';
 import { DashboardService } from '../../model/api/dashboard.service';
 import { useLocalStorage } from './useLocalStorage';
 import { useTheme } from '../theme/useTheme';
 import { forTheme, type ThemeName } from '../../model/derive/themeColor';
-import { applyLiveRows, mergeWinnerOverlay } from '../../model/live/liveUpdates';
-import type { LeaderChange, LeaderPatch } from '../../model/live/liveUpdates';
+import { leaderMap } from '../../model/live/liveUpdates';
+import { useLiveSnapshot } from './useLiveSnapshot';
 import { buildStateByConstId, displayNameFromConstId } from '../../model/geo/regionMatching';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
-import type { Election, MapTab, ResultRow, ManifestData, StandingsData, SSEResultData, VoteShare } from '../../model/types';
+import type { Election, MapTab, ResultRow, ManifestData, StandingsData, VoteShare } from '../../model/types';
 import type { PartySeats, SeatResult } from '../../model/types/dashboard';
 
 export interface MapRegionViewModel extends SeatResult {
@@ -60,13 +60,11 @@ export interface DashboardViewModel {
   spoilerFilter: string | null;
   setSpoilerFilter: (id: string | null) => void;
   refreshAll: () => void;
-  /** Apply SSE rows to local state immediately; returns the leader changes. Schedules a debounced full refresh. */
-  applyLiveUpdate: (rows: SSEResultData[]) => LeaderChange[];
+  /** Live election: true while polling succeeds (false for elections that are not live). */
+  liveConnected: boolean;
 }
 
 const PENDING_FILL = 'var(--map-default-fill)';
-/** Trailing debounce for the authoritative refetch after live events. */
-const LIVE_REFRESH_DEBOUNCE_MS = 4000;
 const LS_GEO_URL = '/geo/india_pc.geojson';
 
 function recolor<R extends { color: string }[] | null | undefined>(rows: R, theme: ThemeName): R {
@@ -83,26 +81,35 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
   const [mapTab, setMapTab] = useState<MapTab>('overview');
   const [userTracked, setUserTracked] = useLocalStorage<string[]>(election ? `tracked_${election.id}` : null, []);
   const [spoilerFilter, setSpoilerFilter] = useState<string | null>(null);
-  const [liveOverlay, setLiveOverlay] = useState<Map<string, LeaderPatch>>(() => new Map());
 
   // 1. Data Fetching (SOLID: DIP - Cache keys managed by Service)
-  const { data: rawPartySeats, loading: aLoading, error: aError, refetch: refetchAlliances } = useApi(
-    () => election ? getAlliances(election.id) : Promise.resolve([]),
-    [election?.id],
-    { key: election ? ElectionService.getCacheKey(election.id, 'alliances') : undefined }
+  // A live election polls a versioned snapshot instead: results, seat tally and vote share
+  // then come from one snapshot, so the map, scoreboard and standings update together.
+  const isLive = election?.status === 'Live';
+  const fetched = election && !isLive ? election.id : null;
+  const live = useLiveSnapshot(election?.id, isLive);
+
+  const { data: fetchedPartySeats, loading: aLoading, error: aError, refetch: refetchAlliances } = useApi(
+    () => fetched ? getAlliances(fetched) : Promise.resolve([]),
+    [fetched],
+    { key: fetched ? ElectionService.getCacheKey(fetched, 'alliances') : undefined }
   );
 
-  const { data: rawVoteShare, loading: vLoading, refetch: refetchVoteShare } = useApi(
-    () => election ? getVoteShare(election.id) : Promise.resolve([]),
-    [election?.id],
-    { key: election ? ElectionService.getCacheKey(election.id, 'voteshare') : undefined }
+  const { data: fetchedVoteShare, loading: vLoading, refetch: refetchVoteShare } = useApi(
+    () => fetched ? getVoteShare(fetched) : Promise.resolve([]),
+    [fetched],
+    { key: fetched ? ElectionService.getCacheKey(fetched, 'voteshare') : undefined }
   );
 
-  const { data: results, loading: rLoading, error: rError, refetch: refetchResults } = useApi(
-    () => election ? getResults(election.id) : Promise.resolve([]),
-    [election?.id],
-    { key: election ? ElectionService.getCacheKey(election.id, 'results') : undefined }
+  const { data: fetchedResults, loading: rLoading, error: rError, refetch: refetchResults } = useApi(
+    () => fetched ? getResults(fetched) : Promise.resolve([]),
+    [fetched],
+    { key: fetched ? ElectionService.getCacheKey(fetched, 'results') : undefined }
   );
+
+  const rawPartySeats = isLive ? live.snapshot?.summary ?? null : fetchedPartySeats;
+  const rawVoteShare = isLive ? live.snapshot?.voteShare ?? null : fetchedVoteShare;
+  const results = isLive ? live.snapshot?.results ?? null : fetchedResults;
 
   const { data: rawManifest } = useApi(
     () => election ? getManifest(election.id) : Promise.resolve(null),
@@ -132,9 +139,6 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     return () => { active = false; };
   }, [isLS]);
 
-  // Fresh server data supersedes any live patches.
-  useEffect(() => { setLiveOverlay(new Map()); }, [results]);
-
   const manifestData = useMemo(() => manifest?.draft || null, [manifest]);
   const trackedIds = useMemo(() => new Set(userTracked || []), [userTracked]);
   const manifestIds = useMemo(() => {
@@ -156,21 +160,7 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     return map;
   }, [results]);
 
-  const fetchedWinnerMap = useMemo(() => {
-    const map = new Map<string, ResultRow>();
-    (results || []).filter(r => r.status === 'WON' || r.status === 'LEADING')
-      .forEach(r => {
-        if (!map.has(r.const_id) || r.votes > (map.get(r.const_id)?.votes || 0)) {
-          map.set(r.const_id, r);
-        }
-      });
-    return map;
-  }, [results]);
-
-  const currentWinnerMap = useMemo(
-    () => mergeWinnerOverlay(fetchedWinnerMap, liveOverlay, constCandidates),
-    [fetchedWinnerMap, liveOverlay, constCandidates]
-  );
+  const currentWinnerMap = useMemo(() => leaderMap(results || []), [results]);
 
   const standings = useMemo(() => {
     if (!partySeats || !voteShare) return { groups: [], independents: [] };
@@ -305,29 +295,6 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     refetchResults();
   }, [refetchAlliances, refetchVoteShare, refetchResults]);
 
-  // Debounced authoritative refresh after live events (the backend purges its
-  // cache after publishing, so an immediate refetch could also return stale data).
-  const refreshTimerRef = useRef<ReturnType<typeof setTimeout>>();
-  const refreshAllRef = useRef(refreshAll);
-  refreshAllRef.current = refreshAll;
-  useEffect(() => () => clearTimeout(refreshTimerRef.current), []);
-  useEffect(() => { clearTimeout(refreshTimerRef.current); }, [election?.id]);
-
-  const overlayRef = useRef(liveOverlay);
-  overlayRef.current = liveOverlay;
-  const fetchedWinnerRef = useRef(fetchedWinnerMap);
-  fetchedWinnerRef.current = fetchedWinnerMap;
-
-  const applyLiveUpdate = useCallback((rows: SSEResultData[]): LeaderChange[] => {
-    const { overlay, changes } = applyLiveRows(overlayRef.current, rows, fetchedWinnerRef.current);
-    if (overlay !== overlayRef.current) {
-      overlayRef.current = overlay;
-      setLiveOverlay(overlay);
-    }
-    clearTimeout(refreshTimerRef.current);
-    refreshTimerRef.current = setTimeout(() => refreshAllRef.current(), LIVE_REFRESH_DEBOUNCE_MS);
-    return changes;
-  }, []);
 
   return {
     results: results || [],
@@ -342,8 +309,9 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     voteShare: voteShare || [],
     spoilerData,
     addableItems,
-    loading: aLoading || vLoading || rLoading,
-    error: aError || rError,
+    // Live: loading until the first snapshot; the poller retries errors by itself.
+    loading: isLive ? !live.snapshot : aLoading || vLoading || rLoading,
+    error: isLive ? null : aError || rError,
     modalConstId,
     setModalConstId,
     mapTab,
@@ -354,6 +322,6 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     spoilerFilter,
     setSpoilerFilter,
     refreshAll,
-    applyLiveUpdate,
+    liveConnected: live.connected,
   };
 }

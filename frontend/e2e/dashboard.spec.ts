@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { test, expect, type Page } from '@playwright/test';
 
 const WB_2021 = 'd4e5f6a7-b8c9-0123-def0-345678901021';
@@ -742,4 +743,72 @@ test.describe('task 27: map highlight from the summary', () => {
     await expect.poll(() => hlCount(page)).toBe(1);
     await expect(page.locator('g.pc-highlight path')).toHaveCount(1);
   });
+});
+
+// ── CDN-ready live: polling a versioned snapshot (DEPLOYMENT §2.2) ─────────────
+// Uses Kerala 2021, which no other test asserts on. The election is set to Live and a
+// seat's result is overridden through the admin API; both are restored afterwards.
+const KERALA_2021 = 'a7b8c9d0-e1f2-3456-0123-678901232021';
+const API = 'http://localhost:3082/api/v1';
+
+/** E2E_ADMIN_TOKEN, else one login with ADMIN_EMAIL/ADMIN_PASSWORD (env or the repo's .env). */
+async function adminToken(request: import('@playwright/test').APIRequestContext): Promise<string | null> {
+  if (process.env.E2E_ADMIN_TOKEN) return process.env.E2E_ADMIN_TOKEN;
+  const env: Record<string, string> = {};
+  for (const file of ['../.env', '../backend/.env']) {
+    try {
+      for (const line of readFileSync(new URL(file, `file://${process.cwd()}/`), 'utf8').split('\n')) {
+        const m = /^\s*([A-Z_]+)\s*=\s*(.*)\s*$/.exec(line);
+        if (m && !(m[1] in env)) env[m[1]] = m[2].replace(/^["']|["']$/g, '');
+      }
+    } catch { /* file absent */ }
+  }
+  const email = process.env.ADMIN_EMAIL ?? env.ADMIN_EMAIL;
+  const password = process.env.ADMIN_PASSWORD ?? env.ADMIN_PASSWORD;
+  if (!email || !password) return null;
+  const res = await request.post(`${API}/auth/login`, { data: { email, password } });
+  if (!res.ok()) return null;
+  return ((await res.json()) as { data: { access_token: string } }).data.access_token;
+}
+
+test('live: an admin override reaches an open dashboard within 20 s without reload', async ({ page, request }) => {
+  test.setTimeout(90_000);
+  const token = await adminToken(request);
+  test.skip(!token, 'no admin credentials (E2E_ADMIN_TOKEN or ADMIN_EMAIL/ADMIN_PASSWORD)');
+  const auth = { Authorization: `Bearer ${token}` };
+
+  type Cand = { result_id: string; party_id: string; votes: number; status: string; margin: number };
+  const live = await request.get(`${API}/admin/elections/${KERALA_2021}/live-results`, { headers: auth });
+  const seats = ((await live.json()) as { data: { const_id: string; candidates: Cand[] }[] }).data;
+  const seat = seats.find(s => s.candidates.length >= 2 && s.candidates[0].status === 'WON' && s.candidates[1].party_id !== s.candidates[0].party_id)!;
+  const [winner, runner] = seat.candidates;
+  const override = (items: Cand[]) => request.post(`${API}/admin/results/override-bulk`, {
+    headers: auth,
+    data: { election_id: KERALA_2021, overrides: items.map(c => ({ result_id: c.result_id, votes: c.votes, status: c.status, margin: c.margin })) },
+  });
+
+  expect((await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Live' } })).ok()).toBe(true);
+  try {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const snapshots: string[] = [];
+    page.on('request', r => { if (/\/results\?v=\d+/.test(r.url())) snapshots.push(r.url()); });
+    await page.goto(`/election/${KERALA_2021}`);
+    await expect(page.getByText('Waiting for updates')).toBeVisible();
+    await expect.poll(() => snapshots.length).toBeGreaterThan(0);
+    await page.waitForTimeout(500);
+    const initial = snapshots.length; // 1 (2 under React StrictMode in dev)
+
+    const res = await override([
+      { ...runner, votes: winner.votes + 1000, status: 'WON', margin: 1000 },
+      { ...winner, status: 'LOST', margin: 0 },
+    ]);
+    expect(res.ok()).toBe(true);
+
+    // Ticker is derived from the snapshot diff: the runner-up's party now wins the seat.
+    await expect(page.getByText(`${runner.party_id} wins`).first()).toBeVisible({ timeout: 20_000 });
+    expect(snapshots.length).toBeGreaterThan(initial);
+  } finally {
+    await override([winner, runner]);
+    await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Finalized' } });
+  }
 });

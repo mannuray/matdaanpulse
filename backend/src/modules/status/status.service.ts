@@ -3,7 +3,7 @@ import { LatencyReservoir } from './latency-reservoir';
 import { RollingCounter } from './rolling-counter';
 import { UNMATCHED_ROUTE } from './route-template';
 
-const MAX_ROUTES = 300;
+export const MAX_ROUTES = 300;
 const HOUR_MS = 60 * 60_000;
 const TOP_SLOWEST = 10;
 
@@ -69,6 +69,8 @@ export class StatusService {
   }
 
   snapshot(now = Date.now()) {
+    // p95 of each route's last <=200 requests that fall within the last 60 min
+    // (a busy route's window can be seconds, a quiet one's up to an hour).
     const slowest = [...this.routes.entries()]
       .filter(([route]) => !route.endsWith(UNMATCHED_ROUTE))
       .map(([route, r]) => ({ route, r: r.p95(now, HOUR_MS) }))
@@ -91,6 +93,7 @@ export class StatusService {
         throttled429: this.throttled,
         last5m: window(5),
         last60m: window(60),
+        /** 10 slowest routes by p95 of their last <=200 requests within 60 min. */
         slowestRoutes: slowest,
       },
       cache: { ...this.cache, hitRate: lookups > 0 ? round(this.cache.hits / lookups) : null },
