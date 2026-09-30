@@ -22,10 +22,10 @@ const sections: SummarySection[] = [
     chart: { type: 'line', series: [{ id: 'avg', label: 'Average', labelKey: 'studio_col_avg_margin', color: '#8B7CFF', points: [{ x: 2015, y: 21100 }, { x: 2020, y: 15000 }] }] } },
   { id: 'closest', titleKey: 'studio_sum_closest', rows: [
     { id: 'seat:1', label: 'Sandesh', sub: 'JDU', value: 27, valueFormat: 'compact', seatIds: ['S1'] },
-    { id: 'party:BJP', label: 'BJP', value: 89, valueFormat: 'int', partyIds: ['BJP'] },
+    { id: 'party:BJP', label: 'BJP', value: 89, valueFormat: 'int', partyIds: ['BJP'], seatIds: ['S1', 'S2'] },
   ] },
   { id: 'party_trend', titleKey: 'studio_sum_party_trend', columnsKeys: ['2015', '2020'], rows: [
-    { id: 'party:RJD', label: 'RJD', partyIds: ['RJD'], value: 80, valueFormat: 'text', valueText: '80/21.1K', extra: [{ value: null, format: 'text', text: '–' }] },
+    { id: 'party:RJD', label: 'RJD', partyIds: ['RJD'], seatIds: ['S1', 'S2'], value: 80, valueFormat: 'text', valueText: '80/21.1K', extra: [{ value: null, format: 'text', text: '–' }] },
   ] },
 ];
 const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({

@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
+import { intentFor } from '../store/hoverIntent';
 import { deriveLayerSummary, type LayerSummary, type SummaryRow } from '../../model/derive/summary';
 import type { LayerId } from '../../model/types/dashboard';
 
@@ -51,7 +52,8 @@ export function useSummaryVM(): SummaryVM {
     partySwitches: src.partySwitches,
   }), [state.layer, src, alliances]);
 
-  const highlightOf = (r: SummaryRow) => ({ parties: r.partyIds ?? [], seats: r.seatIds ?? [] });
+  // One rule: a row highlights exactly the seats it names (partyIds never widen the map highlight).
+  const highlightOf = (r: SummaryRow) => ({ parties: [], seats: r.seatIds ?? [] });
   return {
     electionId: src.election.id,
     layer: state.layer,
@@ -60,7 +62,7 @@ export function useSummaryVM(): SummaryVM {
     lockedRowId: state.locked?.chipId.startsWith(PREFIX) ? state.locked.chipId.slice(PREFIX.length) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'insight' }),
     onLayer: l => dispatch({ type: 'setLayer', layer: l }),
-    onHoverRow: r => dispatch({ type: 'hover', highlight: r ? highlightOf(r) : null }),
+    onHoverRow: r => intentFor(dispatch)(r ? highlightOf(r) : null),
     onLockRow: r => {
       const section = summary.sections.find(s => s.rows.includes(r));
       dispatch({ type: 'toggleLock', chipId: `${PREFIX}${section?.id ?? ''}:${r.id}`, highlight: highlightOf(r), label: r.labelKey ? t(r.labelKey) : r.label });

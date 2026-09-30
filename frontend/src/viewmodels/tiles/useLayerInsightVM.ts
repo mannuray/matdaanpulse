@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
+import { intentFor } from '../store/hoverIntent';
 import { deriveLayerInsight, type InsightChip, type LayerInsight } from '../../model/derive/layerInsights';
 import type { LayerId } from '../../model/types/dashboard';
 
@@ -41,7 +42,7 @@ export function useLayerInsightVM(): LayerInsightVM {
     insight,
     lockedChipId: state.locked?.chipId.startsWith('chip:') ? state.locked.chipId.slice(5) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'insight' }),
-    onHoverChip: c => dispatch({ type: 'hover', highlight: c ? highlightOf(c) : null }),
+    onHoverChip: c => intentFor(dispatch)(c ? highlightOf(c) : null),
     onLockChip: c => dispatch({ type: 'toggleLock', chipId: `chip:${c.id}`, highlight: highlightOf(c), label: c.labelKey ? t(c.labelKey) : c.label }),
   };
 }

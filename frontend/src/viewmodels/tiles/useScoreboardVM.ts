@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { deriveScoreboard, type Scoreboard, type ScoreBloc } from '../../model/derive/scoreboard';
+import { intentFor } from '../store/hoverIntent';
 import { useTheme } from '../theme/useTheme';
 import { forTheme } from '../../model/derive/themeColor';
 import { deriveStandingRows, type StandingRow } from '../../model/derive/standings';
@@ -50,7 +51,7 @@ export function useScoreboardVM(): ScoreboardVM {
     breakdown,
     lockedId: state.locked?.chipId.startsWith('bloc:') ? state.locked.chipId.slice(5) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'scoreboard' }),
-    onHoverBloc: id => dispatch({ type: 'hover', highlight: id ? { parties: partiesOf(id), seats: [] } : null }),
+    onHoverBloc: id => intentFor(dispatch)(id ? { parties: partiesOf(id), seats: [] } : null),
     onLockBloc: id => {
       const b = board.blocs.find(x => x.id === id);
       dispatch({ type: 'toggleLock', chipId: `bloc:${id}`, highlight: { parties: partiesOf(id), seats: [] }, label: b ? shortLabel(b) : id });

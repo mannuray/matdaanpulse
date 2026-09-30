@@ -20,7 +20,7 @@ const height = (h: number) => Object.defineProperty(HTMLElement.prototype, 'clie
 const sections: SummarySection[] = [
   { id: 'a', titleKey: 'studio_sum_closest', rows: [
     { id: 'seat:1', label: 'Sandesh', sub: 'JDU', value: 27, valueFormat: 'compact', seatIds: ['S1'] },
-    { id: 'party:BJP', label: 'BJP', value: 89, valueFormat: 'int', color: '#f70', partyIds: ['BJP'], bar: { value: 40, max: 100, color: '#f70' } },
+    { id: 'party:BJP', label: 'BJP', value: 89, valueFormat: 'int', color: '#f70', partyIds: ['BJP'], seatIds: ['S1', 'S2'], bar: { value: 40, max: 100, color: '#f70' } },
     { id: 'p3', label: 'Third', value: 73572, valueFormat: 'compact' },
   ] },
   { id: 'b', titleKey: 'studio_sum_net_swing', rows: [{ id: 'q', label: 'Q', value: 1, valueFormat: 'int' }, { id: 'q2', label: 'Q2', value: 2, valueFormat: 'int' }] },
@@ -86,9 +86,9 @@ describe('SummaryTab', () => {
   it('shows the section\'s primary column: "–" for zero reserved seats, lakh totals, signed decimals', () => {
     height(400);
     const secs: SummarySection[] = [
-      { id: 'reserved', titleKey: 'studio_sum_reserved', primaryCol: 2, rows: [{ id: 'party:JDU', label: 'JDU', partyIds: ['JDU'], value: 14, valueFormat: 'intDash', extra: [{ value: 0, format: 'intDash' }, { value: 14, format: 'int' }] }] },
-      { id: 'wasted', titleKey: 'studio_sum_wasted', primaryCol: 2, rows: [{ id: 'alliance:MGB', label: 'MGB', partyIds: ['RJD'], value: 18020000, valueFormat: 'lakh', extra: [{ value: 14770000, format: 'lakh' }, { value: 82, format: 'pct' }] }] },
-      { id: 'vs', titleKey: 'studio_sum_vote_vs_seats_alliances', primaryCol: 0, rows: [{ id: 'alliance:NDA', label: 'NDA', partyIds: ['BJP'], value: 35, valueFormat: 'signed1', extra: [{ value: 48.1, format: 'pct' }] }] },
+      { id: 'reserved', titleKey: 'studio_sum_reserved', primaryCol: 2, rows: [{ id: 'party:JDU', label: 'JDU', partyIds: ['JDU'], seatIds: ['S1', 'S2'], value: 14, valueFormat: 'intDash', extra: [{ value: 0, format: 'intDash' }, { value: 14, format: 'int' }] }] },
+      { id: 'wasted', titleKey: 'studio_sum_wasted', primaryCol: 2, rows: [{ id: 'alliance:MGB', label: 'MGB', partyIds: ['RJD'], seatIds: ['S1', 'S2'], value: 18020000, valueFormat: 'lakh', extra: [{ value: 14770000, format: 'lakh' }, { value: 82, format: 'pct' }] }] },
+      { id: 'vs', titleKey: 'studio_sum_vote_vs_seats_alliances', primaryCol: 0, rows: [{ id: 'alliance:NDA', label: 'NDA', partyIds: ['BJP'], seatIds: ['S1', 'S2'], value: 35, valueFormat: 'signed1', extra: [{ value: 48.1, format: 'pct' }] }] },
     ];
     render(<SummaryTab vm={mk({}, secs)} />);
     expect(screen.getByRole('button', { name: /JDU/ }).textContent).toContain('14');
@@ -140,7 +140,7 @@ describe('SummaryTab', () => {
   it('rows without a highlight target are plain text: no button, no aria-pressed', () => {
     height(300);
     const stats: SummarySection = { id: 'key_stats', titleKey: '', layout: 'stats', rows: [{ id: 'declared', label: 'declared', labelKey: 'seats_declared', value: 243, valueFormat: 'int' }] };
-    const plain: SummarySection = { id: 'wasted', titleKey: 'studio_sum_wasted', rows: [{ id: 'efficiency_gap', label: 'Others', value: 3, valueFormat: 'int' }, { id: 'party:BJP', label: 'BJP', value: 4, valueFormat: 'int', partyIds: ['BJP'] }] };
+    const plain: SummarySection = { id: 'wasted', titleKey: 'studio_sum_wasted', rows: [{ id: 'efficiency_gap', label: 'Others', value: 3, valueFormat: 'int' }, { id: 'party:BJP', label: 'BJP', value: 4, valueFormat: 'int', partyIds: ['BJP'], seatIds: ['S1', 'S2'] }] };
     const { container } = render(<SummaryTab vm={mk({}, [stats, plain])} />);
     expect(screen.queryByRole('button', { name: /Others/ })).toBeNull();
     expect(screen.getByText('Others').closest('div[class*="h-7"]')).toBeTruthy();
@@ -151,8 +151,8 @@ describe('SummaryTab', () => {
   it('a negative bar is muted (not drawn like a positive one) and the number keeps its sign', () => {
     height(300);
     const neg: SummarySection = { id: 'n', titleKey: 'studio_sum_net_swing', rows: [
-      { id: 'a', label: 'AAA', partyIds: ['A'], value: -12, valueFormat: 'signed', bar: { value: -12, max: 24, color: '#ff0000' } },
-      { id: 'b', label: 'BBB', partyIds: ['B'], value: 12, valueFormat: 'signed', bar: { value: 12, max: 24, color: '#00ff00' } },
+      { id: 'a', label: 'AAA', partyIds: ['A'], seatIds: ['S1', 'S2'], value: -12, valueFormat: 'signed', bar: { value: -12, max: 24, color: '#ff0000' } },
+      { id: 'b', label: 'BBB', partyIds: ['B'], seatIds: ['S1', 'S2'], value: 12, valueFormat: 'signed', bar: { value: 12, max: 24, color: '#00ff00' } },
     ] };
     render(<SummaryTab vm={mk({}, [neg])} />);
     const fill = (name: RegExp) => screen.getByRole('button', { name }).querySelector('span.h-1\\.5 > span') as HTMLElement;

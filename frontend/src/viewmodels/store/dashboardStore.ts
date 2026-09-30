@@ -40,7 +40,9 @@ export function dashboardReducer(s: DashboardUiState, a: DashboardAction): Dashb
 }
 
 export function activeHighlight(s: DashboardUiState): { parties: Set<string>; seats: Set<string> } {
-  const h = s.locked?.highlight ?? s.hover;
+  // Hover previews over a locked highlight; an empty hover (a row that names no seats) leaves the lock showing.
+  const hover = s.hover && (s.hover.parties.length > 0 || s.hover.seats.length > 0) ? s.hover : null;
+  const h = hover ?? s.locked?.highlight;
   return { parties: new Set(h?.parties ?? []), seats: new Set(h?.seats ?? []) };
 }
 

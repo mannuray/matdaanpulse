@@ -1,4 +1,4 @@
-import { FALLBACK_COLOR, colorOf, compact, int, partyName, seatLabel, shortName } from './shared';
+import { FALLBACK_COLOR, colorOf, compact, int, partyName, seatIdsOf, seatLabel, shortName } from './shared';
 import { formatCompact } from './format';
 import type { SummaryContext, SummaryRow, SummarySection } from './types';
 
@@ -71,14 +71,14 @@ function incumbency(ctx: SummaryContext, seatName: (id: string) => string): Summ
     if (e.won) x.won++;
     byParty.set(e.incumbentParty, x);
   }
-  const row = (id: string, labelKey: string, value: number, valueFormat: 'int' | 'pct0'): SummaryRow => ({ id, label: id, labelKey, value, valueFormat });
+  const row = (id: string, labelKey: string, value: number, valueFormat: 'int' | 'pct0', seatIds?: string[]): SummaryRow => ({ id, label: id, labelKey, value, valueFormat, ...(seatIds ? { seatIds } : {}) });
   const defeats = inc.filter(e => !e.won).sort((a, b) => a.currentMargin - b.currentMargin).slice(0, DEFEATS_LIMIT);
   const out: SummarySection[] = [
     {
       id: 'anti_incumbency', titleKey: 'studio_sum_anti_incumbency', layout: 'stats',
       rows: [
-        row('recontested', 'studio_row_recontested', total, 'int'),
-        row('won', 'studio_col_won', won, 'int'),
+        row('recontested', 'studio_row_recontested', total, 'int', inc.map(e => e.constId)),
+        row('won', 'studio_col_won', won, 'int', inc.filter(e => e.won).map(e => e.constId)),
         row('win_rate', 'studio_row_win_rate_short', Math.round((won / total) * 100), 'pct0'),
       ],
     },
@@ -86,7 +86,7 @@ function incumbency(ctx: SummaryContext, seatName: (id: string) => string): Summ
       id: 'incumbent_win_rate', titleKey: 'studio_sum_incumbent_win_rate', columnsKeys: ['studio_col_contested', 'studio_col_won', 'studio_col_win_rate'], primaryCol: 2,
       rows: [...byParty.entries()].sort((a, b) => b[1].contested - a[1].contested).map(([p, c]) => ({
         id: `party:${p}`, label: partyName(ctx, p), value: c.contested, valueFormat: 'int' as const,
-        extra: [int(c.won), { value: Math.round((c.won / c.contested) * 100), format: 'pct0' as const }], color: colorOf(ctx, p), partyIds: [p],
+        extra: [int(c.won), { value: Math.round((c.won / c.contested) * 100), format: 'pct0' as const }], color: colorOf(ctx, p), partyIds: [p], seatIds: seatIdsOf(ctx.seats, [p]),
       })),
     },
   ];
@@ -107,21 +107,22 @@ function switchers(ctx: SummaryContext): SummarySection[] {
   const sw = ctx.partySwitches;
   if (sw.length === 0) return [];
   const won = sw.filter(e => e.wonInNewParty).length;
-  const dirs = new Map<string, { from: string; to: string; count: number; won: number }>();
+  const dirs = new Map<string, { from: string; to: string; count: number; won: number; ids: string[] }>();
   for (const e of sw) {
     const k = `${e.fromParty}→${e.toParty}`;
-    const d = dirs.get(k) ?? { from: e.fromParty, to: e.toParty, count: 0, won: 0 };
+    const d = dirs.get(k) ?? { from: e.fromParty, to: e.toParty, count: 0, won: 0, ids: [] };
     d.count++;
+    if (!d.ids.includes(e.constId)) d.ids.push(e.constId);
     if (e.wonInNewParty) d.won++;
     dirs.set(k, d);
   }
-  const row = (id: string, labelKey: string, value: number, valueFormat: 'int' | 'pct0'): SummaryRow => ({ id, label: id, labelKey, value, valueFormat });
+  const row = (id: string, labelKey: string, value: number, valueFormat: 'int' | 'pct0', seatIds?: string[]): SummaryRow => ({ id, label: id, labelKey, value, valueFormat, ...(seatIds ? { seatIds } : {}) });
   return [
     {
       id: 'party_switchers', titleKey: 'studio_sum_party_switchers', layout: 'stats',
       rows: [
-        row('switchers', 'studio_row_switchers', sw.length, 'int'),
-        row('switchers_won', 'studio_row_switchers_won', won, 'int'),
+        row('switchers', 'studio_row_switchers', sw.length, 'int', [...new Set(sw.map(e => e.constId))]),
+        row('switchers_won', 'studio_row_switchers_won', won, 'int', [...new Set(sw.filter(e => e.wonInNewParty).map(e => e.constId))]),
         row('success_rate', 'studio_row_success_rate', Math.round((won / sw.length) * 100), 'pct0'),
       ],
     },
@@ -129,7 +130,7 @@ function switchers(ctx: SummaryContext): SummarySection[] {
       id: 'switch_directions', titleKey: 'studio_sum_switch_directions', columnsKeys: ['studio_col_count', 'studio_col_won'],
       rows: [...dirs.values()].sort((a, b) => b.count - a.count).map(d => ({
         id: `dir:${d.from}→${d.to}`, label: `${d.from} → ${d.to}`, value: d.count, valueFormat: 'int' as const,
-        extra: [int(d.won)], color: colorOf(ctx, d.to), partyIds: [d.from, d.to],
+        extra: [int(d.won)], color: colorOf(ctx, d.to), partyIds: [d.from, d.to], seatIds: d.ids,
       })),
     },
     {
@@ -187,7 +188,7 @@ function trends(ctx: SummaryContext): SummarySection[] {
         id: 'party_trend', titleKey: 'studio_sum_party_trend', columnsKeys: years.map(String), primaryCol: years.length - 1,
         rows: parties.map(p => ({
           id: `party:${p.party}`, label: partyName(ctx, p.party), value: cell(p.years, years[0]).value, valueFormat: 'text' as const, valueText: cell(p.years, years[0]).text,
-          extra: years.slice(1).map(y => cell(p.years, y)), color: colorOf(ctx, p.party), partyIds: [p.party],
+          extra: years.slice(1).map(y => cell(p.years, y)), color: colorOf(ctx, p.party), partyIds: [p.party], seatIds: seatIdsOf(ctx.seats, [p.party]),
         })),
         chart: {
           type: 'line', xKey: 'year', yKey: 'seats',

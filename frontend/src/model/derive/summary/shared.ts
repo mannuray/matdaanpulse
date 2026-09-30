@@ -57,6 +57,11 @@ export function buckets(ctx: Pick<SummaryContext, 'electionType'>) {
   return MARGIN_BUCKETS[ctx.electionType];
 }
 
+/** Ids of the led seats (WON or LEADING) whose leading party is one of `partyIds`. */
+export function seatIdsOf(seats: SeatResult[], partyIds: string[]): string[] {
+  return seats.filter(s => s.party && partyIds.includes(s.party)).map(s => s.id);
+}
+
 export const avg = (sum: number, n: number): number | null => (n > 0 ? Math.round(sum / n) : null);
 
 export const int = (value: number | null): SummaryCell => ({ value, format: 'int' });

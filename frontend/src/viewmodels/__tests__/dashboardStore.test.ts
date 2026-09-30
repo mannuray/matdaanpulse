@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { dashboardReducer, initialUiState, activeHighlight, parseUiParams, serializeUiParams, effectiveLayer } from '../store/dashboardStore';
+import { createHoverIntent, intentFor } from '../store/hoverIntent';
 
 const hl = { parties: ['BJP'], seats: [] };
 
@@ -22,10 +23,56 @@ describe('dashboardReducer', () => {
 });
 
 describe('activeHighlight', () => {
-  it('prefers the locked highlight over hover', () => {
-    let s = dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'c', highlight: { parties: [], seats: ['A'] }, label: 'c' });
-    s = dashboardReducer(s, { type: 'hover', highlight: hl });
+  const locked = () => dashboardReducer(initialUiState, { type: 'toggleLock', chipId: 'c', highlight: { parties: [], seats: ['A'] }, label: 'c' });
+  it('hover previews over a locked highlight', () => {
+    const s = dashboardReducer(locked(), { type: 'hover', highlight: { parties: [], seats: ['B'] } });
+    expect([...activeHighlight(s).seats]).toEqual(['B']);
+  });
+  it('clearing the hover returns to the locked highlight', () => {
+    let s = dashboardReducer(locked(), { type: 'hover', highlight: { parties: [], seats: ['B'] } });
+    s = dashboardReducer(s, { type: 'hover', highlight: null });
     expect([...activeHighlight(s).seats]).toEqual(['A']);
+  });
+  it('an empty hover (a row with no seats) does not hide the locked highlight', () => {
+    const s = dashboardReducer(locked(), { type: 'hover', highlight: { parties: [], seats: [] } });
+    expect([...activeHighlight(s).seats]).toEqual(['A']);
+  });
+});
+
+describe('createHoverIntent', () => {
+  const setup = () => {
+    const actions: unknown[] = [];
+    return { actions, hover: createHoverIntent(a => actions.push(a), 100) };
+  };
+  beforeEach(() => { vi.useFakeTimers(); });
+  afterEach(() => { vi.useRealTimers(); });
+
+  it('dispatches a hover immediately', () => {
+    const { actions, hover } = setup();
+    hover(hl);
+    expect(actions).toEqual([{ type: 'hover', highlight: hl }]);
+  });
+  it('delays the clear by ~100ms', () => {
+    const { actions, hover } = setup();
+    hover(hl); hover(null);
+    vi.advanceTimersByTime(99);
+    expect(actions).toHaveLength(1);
+    vi.advanceTimersByTime(2);
+    expect(actions[1]).toEqual({ type: 'hover', highlight: null });
+  });
+  it('the next hover cancels the pending clear (no flash between rows)', () => {
+    const { actions, hover } = setup();
+    const next = { parties: [], seats: ['B'] };
+    hover(hl); hover(null);
+    vi.advanceTimersByTime(40);
+    hover(next);
+    vi.advanceTimersByTime(500);
+    expect(actions).toEqual([{ type: 'hover', highlight: hl }, { type: 'hover', highlight: next }]);
+  });
+  it('one intent is shared per dispatch function, so another source cannot be wiped by a stale clear', () => {
+    const d = () => {};
+    expect(intentFor(d)).toBe(intentFor(d));
+    expect(intentFor(d)).not.toBe(intentFor(() => {}));
   });
 });
 

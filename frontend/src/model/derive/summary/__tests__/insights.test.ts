@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { deriveLayerSummary } from '../index';
-import { cand, makeCtx } from './fixtures';
+import { cand, makeCtx, seat } from './fixtures';
 
 const splits = [{ spoiler: 'AIMIM', hurts: 'MGB', label: 'AIMIM split' }];
 const cc = new Map([
@@ -13,7 +13,7 @@ const cc = new Map([
   // Fewer than 3 candidates: not analysed.
   ['s4', [cand('s4', 'BJP', 500), cand('s4', 'RJD', 400)]],
 ]);
-const run = (over = {}) => deriveLayerSummary('insights', makeCtx({ constCandidates: cc, voteSplits: splits, ...over })).sections.filter(s => s.id !== 'key_stats');
+const run = (over = {}) => deriveLayerSummary('insights', makeCtx({ constCandidates: cc, voteSplits: splits, seats: [...makeCtx().seats, ...['s1', 's2', 's3', 's4'].map(id => seat(id, 'BJP', 100))], ...over })).sections.filter(s => s.id !== 'key_stats');
 const get = (id: string, over = {}) => run(over).find(s => s.id === id)!;
 
 describe('insights summary', () => {

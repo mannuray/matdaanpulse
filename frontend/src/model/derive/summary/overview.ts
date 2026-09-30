@@ -1,7 +1,7 @@
 import { roundPct } from '../scoreboard';
 import { rankSeats } from '../stats';
 import type { SeatResult } from '../../types/dashboard';
-import { allianceByParty, bucketIndex, buckets, colorOf, int, intDash, lakh, ledSeats, refRow, partyName, pct } from './shared';
+import { allianceByParty, bucketIndex, buckets, colorOf, int, intDash, lakh, ledSeats, refRow, partyName, pct, seatIdsOf } from './shared';
 import { formatSummaryValue } from './format';
 import type { ChartSpec, SummaryContext, SummaryRow, SummarySection } from './types';
 
@@ -10,11 +10,12 @@ const BIGGEST_LIMIT = 5;
 
 /** OverviewSection.tsx:53-67 — reserved (SC/ST) seats per leading party; seats without a leader are excluded. */
 function reserved(ctx: SummaryContext): SummarySection | null {
-  const map = new Map<string, { color: string; sc: number; st: number }>();
+  const map = new Map<string, { color: string; sc: number; st: number; ids: string[] }>();
   for (const s of ctx.seats) {
     if (!s.party || (s.type !== 'SC' && s.type !== 'ST')) continue;
     const pid = s.party;
-    const e = map.get(pid) ?? { color: colorOf(ctx, pid), sc: 0, st: 0 };
+    const e = map.get(pid) ?? { color: colorOf(ctx, pid), sc: 0, st: 0, ids: [] };
+    e.ids.push(s.id);
     if (s.type === 'SC') e.sc++; else e.st++;
     map.set(pid, e);
   }
@@ -24,7 +25,7 @@ function reserved(ctx: SummaryContext): SummarySection | null {
     .map(([pid, e]) => ({
       // Legacy showed "–" for 0 in the SC and ST columns.
       id: `party:${pid}`, label: pid, sub: partyName(ctx, pid), value: e.sc, valueFormat: 'intDash' as const,
-      extra: [intDash(e.st), int(e.sc + e.st)], color: e.color, partyIds: [pid],
+      extra: [intDash(e.st), int(e.sc + e.st)], color: e.color, partyIds: [pid], seatIds: e.ids,
     }));
   return { id: 'reserved', titleKey: 'studio_sum_reserved', columnsKeys: ['studio_col_sc', 'studio_col_st', 'studio_col_total'], primaryCol: 2, rows };
 }
@@ -40,26 +41,26 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection[] {
   const seatsOf = new Map<string, number>();
   led.forEach(s => seatsOf.set(s.party, (seatsOf.get(s.party) ?? 0) + 1));
   const vote = (id: string) => ctx.votePct.get(id) ?? 0;
-  const mk = (id: string, label: string, color: string, seats: number, votePct: number, partyIds: string[]): SummaryRow => {
+  const mk = (id: string, label: string, color: string, seats: number, votePct: number, partyIds: string[], seatIds: string[]): SummaryRow => {
     // The difference is taken between the two displayed (rounded) numbers, so the row always adds up on screen.
     const seatPct = roundPct((seats / total) * 100);
     const votePctR = roundPct(votePct);
     return {
-      id, label, value: roundPct(seatPct - votePctR), valueFormat: 'signed1', color, partyIds,
+      id, label, value: roundPct(seatPct - votePctR), valueFormat: 'signed1', color, partyIds, seatIds,
       extra: [pct(votePctR), pct(seatPct)],
       bar: { value: seatPct, max: 100, color },
     };
   };
   const alliances = ctx.alliances.map(a => mk(
     `alliance:${a.id}`, a.name, a.color, a.parties.reduce((n, p) => n + (seatsOf.get(p) ?? 0), 0),
-    a.parties.reduce((n, p) => n + vote(p), 0), a.parties,
+    a.parties.reduce((n, p) => n + vote(p), 0), a.parties, seatIdsOf(led, a.parties),
   ));
   const inAlliance = allianceByParty(ctx.alliances);
   const othersSeats = led.filter(s => !inAlliance.has(s.party)).length;
   const othersVote = [...ctx.votePct.entries()].filter(([id]) => !inAlliance.has(id)).reduce((n, [, v]) => n + v, 0);
   const rows = alliances;
   if (othersSeats > 0 || othersVote > 0) {
-    const r = mk('others', '', '#6b7280', othersSeats, othersVote, []);
+    const r = mk('others', '', '#6b7280', othersSeats, othersVote, [], led.filter(s => !inAlliance.has(s.party)).map(s => s.id));
     rows.push({ ...r, labelKey: 'others' });
   }
   const seatPctOf = (r: SummaryRow) => r.extra![1].value ?? 0;
@@ -67,7 +68,7 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection[] {
 
   const ids = new Set([...ctx.parties.map(p => p.id), ...ctx.votePct.keys()]);
   const qualifying = [...ids].filter(id => (seatsOf.get(id) ?? 0) > 0 || vote(id) >= 1);
-  const partyRow = (id: string) => mk(`party:${id}`, partyName(ctx, id), colorOf(ctx, id), seatsOf.get(id) ?? 0, vote(id), [id]);
+  const partyRow = (id: string) => mk(`party:${id}`, partyName(ctx, id), colorOf(ctx, id), seatsOf.get(id) ?? 0, vote(id), [id], seatIdsOf(led, [id]));
   const partyRows = [...qualifying].sort((a, b) => vote(b) - vote(a)).slice(0, LIST_LIMIT).map(partyRow);
   // The chart ranks by seats won (vote share breaks ties), so small seat winners are never dropped for big vote-getters without seats.
   const chartParties = [...qualifying]
@@ -103,7 +104,7 @@ function voteVsSeats(ctx: SummaryContext, led: SeatResult[]): SummarySection[] {
 }
 
 /** OverviewSection.tsx:254-276 — votes cast for an alliance's parties in seats its alliance did not win. */
-function wasted(ctx: SummaryContext): SummarySection | null {
+function wasted(ctx: SummaryContext, led: SeatResult[]): SummarySection | null {
   const cc = ctx.constCandidates;
   if (!cc || cc.size === 0 || ctx.alliances.length === 0) return null;
   const al = allianceByParty(ctx.alliances);
@@ -130,7 +131,7 @@ function wasted(ctx: SummaryContext): SummarySection | null {
   stats.sort((a, b) => b.wastedPct - a.wastedPct);
   const rows: SummaryRow[] = stats.map(s => ({
     id: `alliance:${s.id}`, label: s.name, value: s.total, valueFormat: 'lakh' as const,
-    extra: [lakh(s.wasted), pct(roundPct(s.wastedPct))], color: s.color,
+    extra: [lakh(s.wasted), pct(roundPct(s.wastedPct))], color: s.color, seatIds: seatIdsOf(led, ctx.alliances.find(a => a.id === s.id)?.parties ?? []),
     bar: { value: roundPct(s.wastedPct), max: 100, color: s.color },
   }));
   if (stats.length >= 2) {
@@ -169,7 +170,7 @@ export function overviewSummary(ctx: SummaryContext): SummarySection[] {
   }
   out.push(reserved(ctx));
   out.push(...voteVsSeats(ctx, led));
-  out.push(wasted(ctx));
+  out.push(wasted(ctx, led));
 
   // Legacy order (after the key stats): margin distribution, closest, biggest, reserved, vote vs seats, wasted votes.
   const order = ['margin_dist', 'closest', 'biggest', 'reserved', 'vote_vs_seats_alliances', 'vote_vs_seats_parties', 'wasted'];

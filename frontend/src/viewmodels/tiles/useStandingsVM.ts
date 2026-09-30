@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
+import { intentFor } from '../store/hoverIntent';
 import { deriveStandingRows, type StandingRow } from '../../model/derive/standings';
 
 export type { StandingRow };
@@ -27,7 +28,7 @@ export function useStandingsVM(): StandingsVM {
     pulse: src.recentSeats.size > 0,
     lockedId: state.locked?.chipId.startsWith('party:') ? state.locked.chipId.slice(6) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'standings' }),
-    onHoverParty: id => dispatch({ type: 'hover', highlight: id ? { parties: [id], seats: [] } : null }),
+    onHoverParty: id => intentFor(dispatch)(id ? { parties: [id], seats: [] } : null),
     onLockParty: id => dispatch({ type: 'toggleLock', chipId: `party:${id}`, highlight: { parties: [id], seats: [] }, label: id }),
   };
 }

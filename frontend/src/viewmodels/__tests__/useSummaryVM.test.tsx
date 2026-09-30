@@ -57,7 +57,7 @@ describe('useSummaryVM', () => {
     act(() => result.current.vm.onFocus());
     expect(result.current.store.state.focus).toBe('insight');
     act(() => result.current.vm.onHoverRow({ id: 'r', label: 'R', value: 1, valueFormat: 'int', seatIds: ['S1'], partyIds: ['BJP'] }));
-    expect(result.current.store.state.hover).toEqual({ parties: ['BJP'], seats: ['S1'] });
+    expect(result.current.store.state.hover).toEqual({ parties: [], seats: ['S1'] });
     act(() => result.current.vm.onSelectSeat('S1'));
     expect(result.current.store.state.selectedSeat).toBe('S1');
   });

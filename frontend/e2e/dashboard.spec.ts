@@ -619,3 +619,96 @@ test.describe('scrollable side card and restored charts', () => {
   });
   }
 });
+
+// ---- Task 27: precise, stable map highlighting ----
+test.describe('task 27: map highlight from the summary', () => {
+  const SHOTS27 = '../.playwright-mcp';
+  const hlCount = (page: Page) => page.locator('path.pc[data-highlighted="true"]').count();
+  const section = (page: Page, title: string) => page.locator('h3', { hasText: title }).locator('xpath=..');
+  const dimmed = (page: Page) => page.evaluate(() => [...document.querySelectorAll('path.pc')].filter(p => !p.hasAttribute('data-highlighted') && (p as SVGPathElement).style.fillOpacity === '0.12').length);
+
+  test('hovering a closest-battles row highlights exactly that seat; the rest is dimmed; the outline survives in both themes', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}`);
+    const rows = section(page, 'Closest battles').getByRole('button');
+    await expect(rows.first()).toBeVisible();
+    await rows.first().hover();
+    await expect.poll(() => hlCount(page)).toBe(1);
+    const total = await page.locator('path.pc').count();
+    expect(await dimmed(page)).toBe(total - 1);
+    await expect(page.locator('path.pc[data-highlighted="true"]')).toHaveCSS('fill-opacity', '1');
+    await expect(page.locator('g.pc-highlight path')).toHaveCount(1);
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: `${SHOTS27}/t27-closest-hover-1440.png` });
+    await page.getByRole('button', { name: 'Switch to light theme' }).click();
+    await rows.first().hover();
+    await expect.poll(() => hlCount(page)).toBe(1);
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: `${SHOTS27}/t27-closest-hover-1440-light.png` });
+  });
+
+  test('hovering the first margin bucket highlights as many seats as its value', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}`);
+    const first = section(page, 'Margin distribution').getByRole('button').first();
+    await expect(first).toBeVisible();
+    const value = Number((await first.innerText()).match(/(\d+)\s*$/)![1]);
+    expect(value).toBeGreaterThan(0);
+    await first.hover();
+    await expect.poll(() => hlCount(page)).toBe(value);
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: `${SHOTS27}/t27-bucket-hover-1440.png` });
+  });
+
+  test('moving straight from one row to the next never drops the highlight in between', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}`);
+    const rows = section(page, 'Closest battles').getByRole('button');
+    await expect(rows.nth(1)).toBeVisible();
+    await rows.first().hover();
+    await expect.poll(() => hlCount(page)).toBe(1);
+    await page.evaluate(() => {
+      const w = window as unknown as { __hl: number[]; __iv: number };
+      w.__hl = [];
+      w.__iv = window.setInterval(() => w.__hl.push(document.querySelectorAll('path.pc[data-highlighted="true"]').length), 4);
+    });
+    const a = (await rows.first().boundingBox())!;
+    const b = (await rows.nth(1).boundingBox())!;
+    await page.mouse.move(a.x + 20, a.y + a.height / 2);
+    await page.mouse.move(b.x + 20, b.y + b.height / 2, { steps: 40 });
+    await page.waitForTimeout(150);
+    const samples = await page.evaluate(() => { const w = window as unknown as { __hl: number[]; __iv: number }; clearInterval(w.__iv); return w.__hl; });
+    expect(samples.length).toBeGreaterThan(10);
+    expect(Math.min(...samples)).toBe(1);
+    // and it ends on the second row's seat
+    await expect.poll(() => hlCount(page)).toBe(1);
+  });
+
+  test('a locked row is previewed over by hovering another, and returns when the hover ends', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}`);
+    const buckets = section(page, 'Margin distribution').getByRole('button');
+    await expect(buckets.nth(1)).toBeVisible();
+    const v0 = Number((await buckets.nth(0).innerText()).match(/(\d+)\s*$/)![1]);
+    const v1 = Number((await buckets.nth(1).innerText()).match(/(\d+)\s*$/)![1]);
+    expect(v0).not.toBe(v1);
+    await buckets.nth(0).click();
+    await page.mouse.move(0, 0);
+    await expect.poll(() => hlCount(page)).toBe(v0);
+    await buckets.nth(1).hover();
+    await expect.poll(() => hlCount(page)).toBe(v1);
+    await page.mouse.move(0, 0);
+    await expect.poll(() => hlCount(page)).toBe(v0);
+  });
+
+  test('battle layer: the hovered close seat is drawn at full opacity', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/election/${BIHAR}?layer=battle`);
+    const rows = section(page, 'Closest contests').getByRole('button');
+    await expect(rows.first()).toBeVisible();
+    await expect.poll(() => page.locator('path.pc').evaluateAll(ps => ps.some(p => (p as SVGPathElement).style.fillOpacity === '0.25'))).toBe(true);
+    await rows.first().hover();
+    await expect.poll(() => hlCount(page)).toBe(1);
+    await expect(page.locator('path.pc[data-highlighted="true"]')).toHaveCSS('fill-opacity', '1');
+  });
+});

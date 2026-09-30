@@ -2,7 +2,8 @@ import type { SwingEntry, DominanceEntry } from '../types';
 import type { LayerId, SeatResult } from '../types/dashboard';
 import { MARGIN_BUCKETS } from './layerInsights';
 
-export interface SeatFill { color: string; opacity: number }
+/** `highlighted`: part of the active hover/lock highlight (drawn at full strength with an outline). */
+export interface SeatFill { color: string; opacity: number; highlighted: boolean }
 
 export interface FillContext {
   layer: LayerId;
@@ -32,7 +33,9 @@ export function marginOpacity(margin: number | undefined, electionType: 'LS' | '
   return BUCKET_OPACITY[i < 0 ? BUCKET_OPACITY.length - 1 : i];
 }
 
-function layerFill(seat: SeatResult, ctx: FillContext): SeatFill {
+type LayerFill = Omit<SeatFill, 'highlighted'>;
+
+function layerFill(seat: SeatResult, ctx: FillContext): LayerFill {
   const color = ctx.partyColor.get(seat.party) ?? 'var(--color-fallback)';
   switch (ctx.layer) {
     case 'battle':
@@ -62,9 +65,10 @@ function layerFill(seat: SeatResult, ctx: FillContext): SeatFill {
 export function seatFill(seat: SeatResult, ctx: FillContext): SeatFill {
   const fill = !seat.party ? { color: MAP_FILL.pending, opacity: 1 } : layerFill(seat, ctx);
   const { parties, seats } = ctx.highlight;
-  const active = parties.size > 0 || seats.size > 0;
-  if (active && !seats.has(seat.id) && !parties.has(seat.party)) return { ...fill, opacity: DIM_OPACITY };
-  return fill;
+  if (parties.size === 0 && seats.size === 0) return { ...fill, highlighted: false };
+  // Highlighted seats keep the layer colour but ignore its opacity (Battle's faint close seats included).
+  if (seats.has(seat.id) || parties.has(seat.party)) return { color: fill.color, opacity: 1, highlighted: true };
+  return { ...fill, opacity: DIM_OPACITY, highlighted: false };
 }
 
 export function seatFills(seats: SeatResult[], ctx: FillContext): Map<string, SeatFill> {

@@ -37,17 +37,33 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
   // Fills from the view-model.
   useEffect(() => {
     if (!loaded || !gRef.current) return;
-    gRef.current.selectAll<SVGPathElement, GeoFeature>('path.pc').each(function (d) {
+    const g = gRef.current;
+    const highlighted: SVGPathElement[] = [];
+    g.selectAll<SVGPathElement, GeoFeature>('path.pc').each(function (d) {
       const id = vm.seatOf.get(d);
       const fill = id ? vm.fills.get(id) : undefined;
       const el = select(this);
       const outlined = !!id && (id === vm.selectedSeat || id === hoveredId);
+      if (fill?.highlighted) highlighted.push(this);
       el.style('fill', fill?.color ?? 'var(--color-map-pending)')
         .style('fill-opacity', String(fill?.opacity ?? 1))
         .style('stroke', outlined ? 'var(--color-ink)' : 'var(--color-map-stroke)')
         .style('stroke-width', outlined ? '1.5px' : '0.4px')
+        .attr('data-highlighted', fill?.highlighted ? 'true' : null)
         .classed('studio-seat-pulse', !!id && vm.recentSeats.has(id));
     });
+    // The highlight outline is drawn on a top layer (copies of the seat outlines), so neighbours and state borders never cover it.
+    let layer = g.select<SVGGElement>('g.pc-highlight');
+    if (layer.empty()) layer = g.append('g').attr('class', 'pc-highlight').attr('pointer-events', 'none');
+    layer.raise();
+    layer.selectAll<SVGPathElement, SVGPathElement>('path')
+      .data(highlighted)
+      .join('path')
+      .attr('d', n => n.getAttribute('d'))
+      .style('fill', 'none')
+      .style('stroke', 'var(--color-ink)')
+      .style('stroke-width', '1.5px')
+      .style('vector-effect', 'non-scaling-stroke');
   }, [loaded, gRef, vm.fills, vm.seatOf, vm.selectedSeat, hoveredId, vm.recentSeats, vm.geoConfig, vm.stateFeatures]);
 
   const info = tip ? vm.seatInfo(tip.id) : null;

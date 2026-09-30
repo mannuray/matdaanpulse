@@ -20,7 +20,7 @@ describe('useMapVM', () => {
   it('loads geometry, exposes fills per seat and hides hex without a layout', async () => {
     const { result } = renderHook(() => useMapVM(), { wrapper });
     await waitFor(() => expect(result.current.status).toBe('ready'));
-    expect(result.current.fills.get('BR_VS_1_SANDESH')).toEqual({ color: '#1FA37A', opacity: 1 });
+    expect(result.current.fills.get('BR_VS_1_SANDESH')).toEqual({ color: '#1FA37A', opacity: 1, highlighted: false });
     expect(result.current.hexAvailable).toBe(false);
     expect(result.current.lockedLabel).toBeNull();
     act(() => result.current.onLayer('battle'));

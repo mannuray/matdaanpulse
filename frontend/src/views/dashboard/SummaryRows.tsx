@@ -28,8 +28,8 @@ export function rowActions(vm: SummaryVM, sectionId: string) {
     const single = r.seatIds?.length === 1 ? r.seatIds[0] : null;
     return {
       single,
-      /** A row with nothing to highlight or select (key stats, efficiency gap, "Others") is plain text. */
-      interactive: (r.seatIds?.length ?? 0) > 0 || (r.partyIds?.length ?? 0) > 0,
+      /** A row that names no seats (key stats, efficiency gap) is plain text: nothing to highlight or select. */
+      interactive: (r.seatIds?.length ?? 0) > 0,
       locked: vm.lockedRowId === `${sectionId}:${r.id}`,
       onClick: () => (single ? vm.onSelectSeat(single) : vm.onLockRow(r)),
       onMouseEnter: () => { hoverFromRow = true; vm.onHoverRow(r); },

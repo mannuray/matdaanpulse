@@ -10,6 +10,7 @@ export function swingSummary(ctx: SummaryContext): SummarySection[] {
   const al = allianceByParty(ctx.alliances);
   const seatName = new Map(ctx.seats.map(s => [s.id, seatLabel(s.name)]));
   const gains = new Map<string, number>();
+  const gainedIds = new Map<string, string[]>();
   const losses = new Map<string, number>();
   const info = new Map<string, { name: string; color: string; partyIds: string[] }>();
   const describe = (party: string) => {
@@ -25,6 +26,7 @@ export function swingSummary(ctx: SummaryContext): SummarySection[] {
     const to = describe(e.currentParty);
     losses.set(from.key, (losses.get(from.key) ?? 0) + 1);
     gains.set(to.key, (gains.get(to.key) ?? 0) + 1);
+    gainedIds.set(to.key, [...(gainedIds.get(to.key) ?? []), e.constId]);
     flips.push({ id: e.constId, from: from.name, to: to.name, fromColor: from.color, toColor: to.color, margin: e.currentMargin, parties: [e.prevParty, e.currentParty] });
   }
   if (flips.length === 0) return [];
@@ -38,7 +40,7 @@ export function swingSummary(ctx: SummaryContext): SummarySection[] {
   const max = Math.max(...net.map(n => Math.abs(n.net)), 1);
   const netRows: SummaryRow[] = net.map(n => ({
     id: `bloc:${n.key}`, label: n.name, value: n.gained, valueFormat: 'int' as const,
-    extra: [int(n.lost), { value: n.net, format: 'signed' as const }], color: n.color, partyIds: n.partyIds,
+    extra: [int(n.lost), { value: n.net, format: 'signed' as const }], color: n.color, partyIds: n.partyIds, seatIds: gainedIds.get(n.key) ?? [],
     bar: { value: n.net, max, color: n.color },
   }));
 

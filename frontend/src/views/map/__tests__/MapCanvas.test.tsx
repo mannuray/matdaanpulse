@@ -15,7 +15,7 @@ const feature = {
 function makeVM(): MapVM {
   return {
     status: 'ready', features: [feature], stateFeatures: null, isVS: true, geoConfig: undefined,
-    seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1 }]]),
+    seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: false }]]),
     recentSeats: new Set(), selectedSeat: null, layer: 'overview', layers: ['overview'], mapMode: 'map',
     hexAvailable: false, lockedLabel: null,
     seatInfo: () => ({ name: 'Sandesh', candidate: 'A', party: 'JDU', status: 'Won', color: '#1FA37A' }),
@@ -39,5 +39,23 @@ describe('MapCanvas', () => {
     fireEvent.mouseLeave(path);
     expect(document.body.querySelector('.studio-root.fixed')).toBeNull();
     expect(path.style.stroke).toBe('var(--color-map-stroke)');
+  });
+
+  it('marks highlighted seats and draws a top-layer outline for them only', () => {
+    const vm = makeVM();
+    vm.fills = new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: true }]]);
+    const { container } = render(<MapCanvas vm={vm} />);
+    const path = container.querySelector('path.pc') as SVGPathElement;
+    expect(path.getAttribute('data-highlighted')).toBe('true');
+    const outline = container.querySelectorAll('g.pc-highlight path');
+    expect(outline).toHaveLength(1);
+    expect((outline[0] as SVGPathElement).style.stroke).toBe('var(--color-ink)');
+    expect(outline[0].getAttribute('d')).toBe(path.getAttribute('d'));
+    expect(container.querySelector('g.pc-highlight')!.parentElement!.lastElementChild).toBe(container.querySelector('g.pc-highlight'));
+  });
+  it('no highlight: no marker and no outline', () => {
+    const { container } = render(<MapCanvas vm={makeVM()} />);
+    expect((container.querySelector('path.pc') as SVGPathElement).hasAttribute('data-highlighted')).toBe(false);
+    expect(container.querySelectorAll('g.pc-highlight path')).toHaveLength(0);
   });
 });

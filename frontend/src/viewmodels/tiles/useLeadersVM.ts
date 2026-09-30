@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
+import { intentFor } from '../store/hoverIntent';
 import { collectLeaderEntries, deriveLeaderCards, type LeaderCard } from '../../model/derive/leaders';
 
 export type { LeaderCard };
@@ -39,7 +40,7 @@ export function useLeadersVM(): LeadersVM {
     seatOptions,
     onFocus: () => dispatch({ type: 'focus', tile: 'leaders' }),
     onSelectSeat: id => dispatch({ type: 'selectSeat', seat: id }),
-    onHoverSeat: id => dispatch({ type: 'hover', highlight: id ? { parties: [], seats: [id] } : null }),
+    onHoverSeat: id => intentFor(dispatch)(id ? { parties: [], seats: [id] } : null),
     onAddCustom: constId => src.addWatch(constId, seatOptions.find(s => s.id === constId)?.name ?? constId),
     onRemoveCustom: src.removeWatch,
   };
