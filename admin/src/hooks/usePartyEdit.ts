@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getParty, updateParty } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
+import { fieldErrorMap } from '../services/api-client';
 import type { Party } from '../types';
 
 /**
@@ -8,11 +9,12 @@ import type { Party } from '../types';
  * Manages party master identity, and branding (colors/logos).
  */
 export function usePartyEdit(id?: string) {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   
   const [party, setParty] = useState<Party | null>(null);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   // Form State
   const [form, setForm] = useState({
@@ -48,8 +50,8 @@ export function usePartyEdit(id?: string) {
         wikipedia_url: data.wikipedia_url || '',
         description: data.description || ''
       });
-    } catch {
-      toast('Failed to load party data', 'error');
+    } catch (err) {
+      toastError(err, 'Failed to load party data');
     } finally {
       setLoading(false);
     }
@@ -62,6 +64,7 @@ export function usePartyEdit(id?: string) {
   const handleSave = async () => {
     if (!id) return false;
     setSaving(true);
+    setFieldErrors({});
     try {
       await updateParty(id, {
         ...form,
@@ -70,8 +73,9 @@ export function usePartyEdit(id?: string) {
       toast('Party profile updated');
       loadData();
       return true;
-    } catch {
-      toast('Update failed', 'error');
+    } catch (err) {
+      setFieldErrors(fieldErrorMap(err));
+      toastError(err, 'Update failed');
       return false;
     } finally {
       setSaving(false);
@@ -79,6 +83,7 @@ export function usePartyEdit(id?: string) {
   };
 
   return {
+    fieldErrors,
     party, loading, saving, form, setForm,
     handleSave, refresh: loadData
   };

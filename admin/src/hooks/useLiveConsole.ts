@@ -29,7 +29,7 @@ function autoChunkTabs(constituencies: LiveConstituency[]): LiveTab[] {
  * Handles real-time result streaming, manual overrides, and multi-tab navigation.
  */
 export function useLiveConsole() {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   
   // Master Data
   const [elections, setElections] = useState<Election[]>([]);
@@ -174,7 +174,7 @@ export function useLiveConsole() {
       loadResults(selectedElectionId);
       return true;
     } catch (err) {
-      toast('Failed to apply override', 'error');
+      toastError(err, 'Failed to apply override');
       return false;
     } finally {
       setSaving(false);

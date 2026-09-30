@@ -1,3 +1,4 @@
+import { paginated } from '../../common/paginated';
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
@@ -76,7 +77,7 @@ export class ConstituenciesService {
       analysis: analysisMap.get(c.id) || null,
     }));
 
-    return { data, total, page, limit };
+    return paginated(data, { page, limit, total });
   }
 
   async updateConstituency(id: string, patch: any) {

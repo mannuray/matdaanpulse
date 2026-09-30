@@ -1,3 +1,4 @@
+import { validationExceptionFactory } from './common/validation/validation-failed.exception';
 import { Logger, UnauthorizedException, ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { json, urlencoded, Request, Response, NextFunction } from 'express';
@@ -89,6 +90,7 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
+      exceptionFactory: validationExceptionFactory,
     }),
   );
 

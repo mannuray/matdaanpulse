@@ -13,7 +13,7 @@ import type { Candidate, Party, PersonWithStats } from '../types';
  * Manages candidate form state, and master record linking.
  */
 export function useCandidateEdit(id?: string) {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   
   // Data State
   const [candidate, setCandidate] = useState<Candidate | null>(null);
@@ -63,7 +63,7 @@ export function useCandidateEdit(id?: string) {
         photo_url: c.person ? c.person.photo_url || '' : ''
       });
     } catch (err) {
-      toast('Failed to load candidate data', 'error');
+      toastError(err, 'Failed to load candidate data');
     } finally {
       setLoading(false);
     }
@@ -93,7 +93,7 @@ export function useCandidateEdit(id?: string) {
       loadData();
       return true;
     } catch (err) {
-      toast('Failed to update profile', 'error');
+      toastError(err, 'Failed to update profile');
       return false;
     } finally {
       setSaving(false);
@@ -127,8 +127,8 @@ export function useCandidateEdit(id?: string) {
       await linkCandidatePerson(id, personId);
       toast('Linked to master record');
       loadData();
-    } catch {
-      toast('Linking failed', 'error');
+    } catch (err) {
+      toastError(err, 'Linking failed');
     } finally {
       setIsLinking(false);
     }
@@ -142,8 +142,8 @@ export function useCandidateEdit(id?: string) {
       await linkCandidatePerson(id, person.id);
       toast('Master record created and linked');
       loadData();
-    } catch {
-      toast('Operation failed', 'error');
+    } catch (err) {
+      toastError(err, 'Operation failed');
     } finally {
       setIsLinking(false);
     }
@@ -156,8 +156,8 @@ export function useCandidateEdit(id?: string) {
       await unlinkCandidatePerson(id);
       toast('Unlinked successfully');
       loadData();
-    } catch {
-      toast('Unlink failed', 'error');
+    } catch (err) {
+      toastError(err, 'Unlink failed');
     }
   };
 

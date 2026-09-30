@@ -1,5 +1,43 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3082/api/v1';
 
+export interface FieldError {
+  field: string;
+  message: string;
+}
+
+interface RawError {
+  code?: string;
+  message?: string;
+  requestId?: string;
+  fields?: Partial<FieldError>[];
+  details?: Record<string, unknown>;
+}
+
+/** Error body from the backend: { success: false, error: { code, message, fields?, details?, ... } }. */
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public readonly status: number,
+    public readonly code?: string,
+    public readonly fields: FieldError[] = [],
+    public readonly details?: Record<string, unknown>,
+    public readonly requestId?: string,
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
+export function parseApiError(status: number, statusText: string, body: unknown): ApiError {
+  const e = (body as { error?: RawError } | null | undefined)?.error;
+  const fields: FieldError[] = Array.isArray(e?.fields)
+    ? e.fields.filter((f): f is FieldError => !!f && typeof f.field === 'string' && typeof f.message === 'string')
+    : [];
+  const message =
+    (typeof e?.message === 'string' && e.message) || `API error: ${status}${statusText ? ` ${statusText}` : ''}`;
+  return new ApiError(message, status, e?.code, fields, e?.details, e?.requestId);
+}
+
 /**
  * CORE MODEL: apiFetch (SOLID: DIP)
  * Standardized network requester for the frontend.
@@ -16,8 +54,7 @@ export async function apiFetch<T>(path: string, options?: RequestInit): Promise<
   const result = await response.json().catch(() => ({ _jsonParseFailed: true }));
 
   if (!response.ok) {
-    const errorMsg = result.error?.message || result.message || `API error: ${response.status} ${response.statusText}`;
-    throw new Error(errorMsg);
+    throw parseApiError(response.status, response.statusText, result);
   }
 
   // Handle standard backend wrapping (consistent with admin api-client)

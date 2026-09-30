@@ -13,6 +13,42 @@ export interface PaginatedResponse<T> {
   };
 }
 
+export interface FieldError {
+  field: string;
+  message: string;
+}
+
+/** Error body from the backend: { success: false, error: { code, message, fields?, details?, ... } }. */
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public readonly status: number,
+    public readonly code?: string,
+    public readonly fields: FieldError[] = [],
+    public readonly details?: Record<string, unknown>,
+    public readonly requestId?: string,
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
+export function parseApiError(status: number, statusText: string, body: any): ApiError {
+  const e = body?.error;
+  const fields: FieldError[] = Array.isArray(e?.fields)
+    ? e.fields.filter((f: any) => f && typeof f.field === 'string' && typeof f.message === 'string')
+    : [];
+  const message = (typeof e?.message === 'string' && e.message) || `API error: ${status}${statusText ? ` ${statusText}` : ''}`;
+  return new ApiError(message, status, e?.code, fields, e?.details, e?.requestId);
+}
+
+/** Map of field name -> first message, for showing errors next to inputs. */
+export function fieldErrorMap(err: unknown): Record<string, string> {
+  const out: Record<string, string> = {};
+  if (err instanceof ApiError) for (const f of err.fields) if (!(f.field in out)) out[f.field] = f.message;
+  return out;
+}
+
 /**
  * CORE MODEL: apiFetch (SOLID: DIP)
  * Standardized network requester that handles auth headers and error parsing.
@@ -37,8 +73,7 @@ export async function apiFetch<T>(path: string, options?: RequestInit): Promise<
   const result = await response.json().catch(() => ({ _jsonParseFailed: true }));
 
   if (!response.ok) {
-    const errorMsg = result.error?.message || result.message || `API error: ${response.status}`;
-    throw new Error(errorMsg);
+    throw parseApiError(response.status, response.statusText, result);
   }
 
   // Handle standard backend wrapping

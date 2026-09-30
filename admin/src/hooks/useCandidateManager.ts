@@ -16,7 +16,7 @@ export type PersonFilter = 'all' | 'linked' | 'unlinked';
  * Manages complex candidate data flows, search, and linking logic.
  */
 export function useCandidateManager() {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
 
   // 1. Data State
   const [elections, setElections] = useState<Election[]>([]);
@@ -180,7 +180,7 @@ export function useCandidateManager() {
       toast(`Successfully linked ${toLink.length + 1} records`);
       loadCandidates();
     } catch (err) {
-      toast(err instanceof Error ? err.message : 'Linking failed', 'error');
+      toastError(err, 'Linking failed');
     }
   };
 
@@ -190,7 +190,7 @@ export function useCandidateManager() {
       await unlinkCandidatePerson(candidateId);
       toast('Candidate unlinked');
       loadCandidates();
-    } catch { toast('Unlink failed', 'error'); }
+    } catch (err) { toastError(err, 'Unlink failed'); }
   };
 
   // ── VIEW MODEL ──

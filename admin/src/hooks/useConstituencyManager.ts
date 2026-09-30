@@ -11,7 +11,7 @@ import type { Constituency, Election, State } from '../types';
  * Handles data fetching, filtering, and bulk operations.
  */
 export function useConstituencyManager() {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   
   // Master Data
   const [elections, setElections] = useState<Election[]>([]);
@@ -47,8 +47,8 @@ export function useConstituencyManager() {
       const response = await getAdminConstituencies(selectedElectionId, page, 100, search || undefined);
       setConstituencies(response.data);
       setTotal(response.pagination.total);
-    } catch {
-      toast('Failed to load constituencies', 'error');
+    } catch (err) {
+      toastError(err, 'Failed to load constituencies');
     } finally {
       setLoading(false);
     }
@@ -99,8 +99,8 @@ export function useConstituencyManager() {
       toast('Bulk tag applied');
       loadData();
       selection.clear();
-    } catch {
-      toast('Bulk tag failed', 'error');
+    } catch (err) {
+      toastError(err, 'Bulk tag failed');
     }
   };
 
@@ -111,8 +111,8 @@ export function useConstituencyManager() {
       // For simplicity, passing empty history for now or derive from manifest if available
       await computeConstituencyAnalysis(selectedElectionId, []);
       toast('Analysis computation queued');
-    } catch {
-      toast('Failed to start computation', 'error');
+    } catch (err) {
+      toastError(err, 'Failed to start computation');
     } finally {
       setComputing(false);
     }

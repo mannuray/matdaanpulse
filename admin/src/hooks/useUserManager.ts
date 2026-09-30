@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { getUsers, createUser, updateUser, deleteUser } from '../services/user.service';
 import { useResourceList } from './useResourceList';
 import { useToast } from '../context/ToastContext';
+import { fieldErrorMap } from '../services/api-client';
 import type { User } from '../types';
 
 /**
@@ -9,8 +10,9 @@ import type { User } from '../types';
  * Handles user lifecycle, roles, and administrative access.
  */
 export function useUserManager() {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   const [saving, setSaving] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   // 1. List Logic
   const list = useResourceList<{}>({
@@ -28,6 +30,7 @@ export function useUserManager() {
   // 2. Actions
   const handleSave = async (data: Partial<User> & { password?: string }, id?: string) => {
     setSaving(true);
+    setFieldErrors({});
     try {
       if (id) {
         await updateUser(id, data);
@@ -39,7 +42,8 @@ export function useUserManager() {
       list.refresh();
       return true;
     } catch (err) {
-      toast('Operation failed', 'error');
+      setFieldErrors(fieldErrorMap(err));
+      toastError(err, 'Operation failed');
       return false;
     } finally {
       setSaving(false);
@@ -52,8 +56,8 @@ export function useUserManager() {
       await deleteUser(id);
       toast('User deleted');
       list.refresh();
-    } catch {
-      toast('Deletion failed', 'error');
+    } catch (err) {
+      toastError(err, 'Deletion failed');
     }
   };
 
@@ -62,6 +66,7 @@ export function useUserManager() {
   };
 
   return {
+    fieldErrors,
     ...list,
     saving,
     handleSave,

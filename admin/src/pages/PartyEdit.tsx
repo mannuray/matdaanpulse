@@ -1,3 +1,4 @@
+import { FieldError, FormErrorsContext } from '../components/common/FieldError';
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePartyEdit } from '../hooks/usePartyEdit';
@@ -51,7 +52,9 @@ export default function PartyEdit() {
           {/* Main Form */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
             <ErrorBoundary>
-              <ProfileForm form={form} setForm={editor.setForm} />
+              <FormErrorsContext.Provider value={editor.fieldErrors}>
+                <ProfileForm form={form} setForm={editor.setForm} />
+              </FormErrorsContext.Provider>
             </ErrorBoundary>
             
             <ErrorBoundary>
@@ -148,37 +151,45 @@ function ProfileForm({ form, setForm }: FormProps) {
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>OFFICIAL NAME *</label>
           <input className="form-input" value={form.name} onChange={e => updateForm({ name: e.target.value })} required style={styles.inputHeight} />
+          <FieldError name="name" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>ABBREVIATION</label>
           <input className="form-input" value={form.abbreviation} onChange={e => updateForm({ abbreviation: e.target.value.toUpperCase() })} style={styles.inputHeight} />
+          <FieldError name="abbreviation" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>BRAND COLOR</label>
           <div style={{ display: 'flex', gap: 8 }}>
             <input type="color" className="form-input" value={form.color} onChange={e => updateForm({ color: e.target.value })} style={styles.colorInput} />
             <input className="form-input" value={form.color} onChange={e => updateForm({ color: e.target.value })} style={{ flex: 1, fontFamily: 'var(--font-mono)' }} />
+            <FieldError name="color" />
           </div>
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>CURRENT LEADER</label>
           <input className="form-input" value={form.leader_name} onChange={e => updateForm({ leader_name: e.target.value })} style={styles.inputHeight} />
+          <FieldError name="leader_name" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>FOUNDED YEAR</label>
           <input className="form-input" type="number" value={form.founded_year} onChange={e => updateForm({ founded_year: e.target.value })} style={styles.inputHeight} />
+          <FieldError name="founded_year" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>HEADQUARTERS</label>
           <input className="form-input" value={form.headquarters} onChange={e => updateForm({ headquarters: e.target.value })} style={styles.inputHeight} />
+          <FieldError name="headquarters" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>WEBSITE URL</label>
           <input className="form-input" value={form.website} onChange={e => updateForm({ website: e.target.value })} placeholder="https://..." style={styles.inputHeight} />
+          <FieldError name="website" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>WIKIPEDIA URL</label>
           <input className="form-input" value={form.wikipedia_url} onChange={e => updateForm({ wikipedia_url: e.target.value })} placeholder="https://en.wikipedia.org/wiki/..." style={styles.inputHeight} />
+          <FieldError name="wikipedia_url" />
         </div>
       </div>
     </div>

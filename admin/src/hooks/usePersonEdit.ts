@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { getPerson, updatePerson, mergePersons, getPersons } from '../services/person.api';
 import { PersonService } from '../services/person.service';
 import { useToast } from '../context/ToastContext';
+import { fieldErrorMap } from '../services/api-client';
 import type { PersonWithCandidates, PersonWithStats } from '../types';
 
 /**
@@ -9,12 +10,13 @@ import type { PersonWithCandidates, PersonWithStats } from '../types';
  * Manages master record state and deduplication (merging).
  */
 export function usePersonEdit(id?: string) {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   
   // Data State
   const [person, setPerson] = useState<PersonWithCandidates | null>(null);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   
   // Form State
   const [form, setForm] = useState({
@@ -42,7 +44,7 @@ export function usePersonEdit(id?: string) {
       setPerson(data);
       setForm(PersonService.prepareFormState(data));
     } catch (err) {
-      toast('Failed to load person record', 'error');
+      toastError(err, 'Failed to load person record');
     } finally {
       setLoading(false);
     }
@@ -56,6 +58,7 @@ export function usePersonEdit(id?: string) {
   const handleSave = async () => {
     if (!id || !person) return false;
     setSaving(true);
+    setFieldErrors({});
     try {
       await updatePerson(id, {
         ...form,
@@ -68,7 +71,8 @@ export function usePersonEdit(id?: string) {
       loadPerson();
       return true;
     } catch (err) {
-      toast('Failed to update record', 'error');
+      setFieldErrors(fieldErrorMap(err));
+      toastError(err, 'Failed to update record');
       return false;
     } finally {
       setSaving(false);
@@ -106,13 +110,14 @@ export function usePersonEdit(id?: string) {
       setMergeSearch('');
       loadPerson();
     } catch (err) {
-      toast('Merge failed', 'error');
+      toastError(err, 'Merge failed');
     } finally {
       setMerging(false);
     }
   };
 
   return {
+    fieldErrors,
     person, loading, saving, form, setForm,
     mergeSearch, setMergeSearch, mergeResults, merging,
     handleSave, handleMerge

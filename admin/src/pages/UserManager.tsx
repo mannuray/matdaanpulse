@@ -1,3 +1,4 @@
+import { FieldError, FormErrorsContext } from '../components/common/FieldError';
 import React, { useState } from 'react';
 import { useUserManager } from '../hooks/useUserManager';
 import AdminPageHeader from '../components/common/AdminPageHeader';
@@ -58,6 +59,7 @@ export default function UserManager() {
       <div style={{ padding: 'var(--space-6)' }}>
         {showForm && (
           <ErrorBoundary>
+            <FormErrorsContext.Provider value={manager.fieldErrors}>
             <UserForm 
               form={form} 
               setForm={setForm} 
@@ -65,6 +67,7 @@ export default function UserManager() {
               onCancel={() => setShowForm(false)} 
               onSubmit={onSubmit} 
             />
+            </FormErrorsContext.Provider>
           </ErrorBoundary>
         )}
 
@@ -106,14 +109,17 @@ function UserForm({ form, setForm, saving, onCancel, onSubmit }: any) {
           <div className="form-group">
             <label className="form-label" style={styles.labelSmall}>FULL NAME *</label>
             <input className="form-input" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required style={styles.inputHeight} />
+            <FieldError name="name" />
           </div>
           <div className="form-group">
             <label className="form-label" style={styles.labelSmall}>EMAIL ADDRESS *</label>
             <input type="email" className="form-input" value={form.email} onChange={e => setForm({...form, email: e.target.value})} required style={styles.inputHeight} />
+            <FieldError name="email" />
           </div>
           <div className="form-group">
             <label className="form-label" style={styles.labelSmall}>TEMPORARY PASSWORD *</label>
             <input type="password" className="form-input" value={form.password} onChange={e => setForm({...form, password: e.target.value})} required minLength={8} style={styles.inputHeight} />
+            <FieldError name="password" />
           </div>
           <div className="form-group">
             <label className="form-label" style={styles.labelSmall}>PERMISSION ROLE</label>

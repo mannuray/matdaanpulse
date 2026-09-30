@@ -1,3 +1,4 @@
+import { FieldError, FormErrorsContext } from '../components/common/FieldError';
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useElectionManager } from '../hooks/useElectionManager';
@@ -31,6 +32,7 @@ export default function ElectionManager() {
 
       <div style={{ padding: 'var(--space-6)' }}>
         {manager.showForm && (
+          <FormErrorsContext.Provider value={manager.fieldErrors}>
           <ElectionForm 
             form={manager.form} 
             setForm={manager.setForm} 
@@ -40,6 +42,7 @@ export default function ElectionManager() {
             onCancel={manager.resetForm} 
             onSubmit={manager.handleSave} 
           />
+          </FormErrorsContext.Provider>
         )}
 
         {loading && elections.length === 0 ? (
@@ -166,6 +169,7 @@ function ElectionForm({ form, setForm, states, saving, editId, onCancel, onSubmi
           <div className="form-group">
             <label className="form-label" style={styles.labelSmall}>OFFICIAL NAME *</label>
             <input className="form-input" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required style={{ height: 34 }} />
+            <FieldError name="name" />
           </div>
           <div className="form-group">
             <label className="form-label" style={styles.labelSmall}>TYPE</label>
@@ -177,6 +181,7 @@ function ElectionForm({ form, setForm, states, saving, editId, onCancel, onSubmi
           <div className="form-group">
             <label className="form-label" style={styles.labelSmall}>YEAR</label>
             <input type="number" className="form-input" value={form.year} onChange={e => setForm({ ...form, year: parseInt(e.target.value) || 0 })} style={{ height: 34 }} />
+            <FieldError name="year" />
           </div>
         </div>
         <div className="form-grid form-grid-2" style={{ marginTop: 'var(--space-4)' }}>
@@ -192,6 +197,7 @@ function ElectionForm({ form, setForm, states, saving, editId, onCancel, onSubmi
           <div className="form-group">
             <label className="form-label" style={styles.labelSmall}>TENTATIVE NEXT DATE</label>
             <input type="date" className="form-input" value={form.tentative_next_date} onChange={e => setForm({ ...form, tentative_next_date: e.target.value })} style={{ height: 34 }} />
+            <FieldError name="tentative_next_date" />
           </div>
         </div>
         <div className="form-actions" style={styles.formActions}>

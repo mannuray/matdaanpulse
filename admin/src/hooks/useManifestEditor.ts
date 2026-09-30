@@ -27,7 +27,7 @@ const DEFAULT_MANIFEST: ManifestData = {
  */
 export function useManifestEditor() {
   const { id: urlId } = useParams<{ id: string }>();
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   
   const [elections, setElections] = useState<Election[]>([]);
   const [selectedId, setSelectedId] = useState(urlId || '');
@@ -105,7 +105,7 @@ export function useManifestEditor() {
       loadedIdRef.current = eid;
     } catch (err) {
       console.error('Manifest load error:', err);
-      toast('Failed to load manifest data', 'error');
+      toastError(err, 'Failed to load manifest data');
       // Only reset when switching elections; a failed reload keeps the local state.
       if (loadedIdRef.current !== eid) {
         setManifest(DEFAULT_MANIFEST);
@@ -160,8 +160,8 @@ export function useManifestEditor() {
       setIsDirty(false);
       setManifest(prev => ({ ...prev, ...data }));
       return true;
-    } catch {
-      toast('Failed to save draft', 'error');
+    } catch (err) {
+      toastError(err, 'Failed to save draft');
       return false;
     } finally {
       setSaving(false);
@@ -192,8 +192,8 @@ export function useManifestEditor() {
       toast('Manifest published LIVE');
       setIsDraft(false);
       loadManifest(selectedId);
-    } catch {
-      toast('Publish failed', 'error');
+    } catch (err) {
+      toastError(err, 'Publish failed');
     } finally {
       setSaving(false);
     }

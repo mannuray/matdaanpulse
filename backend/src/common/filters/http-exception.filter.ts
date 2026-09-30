@@ -13,6 +13,7 @@ import { ErrorCodes } from '../exceptions/error-codes';
 import { BusinessException } from '../exceptions/base.exception';
 import { resolveRequestId } from '../logger/request-context';
 import { mapExposedHttpError, mapPrismaError } from './prisma-error.mapper';
+import { FieldError, ValidationFailedException } from '../validation/validation-failed.exception';
 import { redactUrl } from '../logger/logging.middleware';
 
 @Catch()
@@ -45,34 +46,38 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
 
     let errorCode: string = ErrorCodes.INTERNAL_SERVER_ERROR;
-    let details: any = {};
+    let message: string = 'Internal server error';
+    let details: Record<string, unknown> | undefined;
+    let fields: FieldError[] | undefined;
 
-    if (httpException instanceof BusinessException) {
+    if (httpException instanceof ValidationFailedException) {
+      errorCode = ErrorCodes.VALIDATION_FAILED;
+      message = 'Validation failed';
+      fields = httpException.fields;
+    } else if (httpException instanceof BusinessException) {
       errorCode = httpException.code;
-      details = httpException.details || {};
+      message = (exceptionResponse as { message?: string }).message ?? httpException.message;
+      if (httpException.details && Object.keys(httpException.details).length > 0) details = httpException.details;
     } else if (httpException) {
-      // Map standard NestJS exceptions to our codes
       if (status === HttpStatus.UNAUTHORIZED) errorCode = ErrorCodes.AUTH_UNAUTHORIZED;
       if (status === HttpStatus.FORBIDDEN) errorCode = ErrorCodes.AUTH_FORBIDDEN;
       if (status === HttpStatus.NOT_FOUND) errorCode = ErrorCodes.NOT_FOUND;
       if (status === HttpStatus.BAD_REQUEST) errorCode = ErrorCodes.VALIDATION_FAILED;
       if (status === HttpStatus.CONFLICT) errorCode = ErrorCodes.CONFLICT;
-
-      details = typeof exceptionResponse === 'object' ? exceptionResponse : { message: exceptionResponse };
-    } else {
-      details = exceptionResponse;
+      const raw = typeof exceptionResponse === 'string' ? exceptionResponse : exceptionResponse?.message;
+      message = Array.isArray(raw) ? raw.join('; ') : typeof raw === 'string' ? raw : httpException.message;
     }
 
     const errorResponse = {
       success: false,
       error: {
         code: errorCode,
-        message: typeof exceptionResponse === 'string' ? exceptionResponse : exceptionResponse.message,
+        message,
         requestId,
         timestamp: new Date().toISOString(),
         path: request.url,
-        details: details,
-        validationErrors: exceptionResponse.message instanceof Array ? exceptionResponse.message : [],
+        ...(fields ? { fields } : {}),
+        ...(details ? { details } : {}),
       },
     };
 

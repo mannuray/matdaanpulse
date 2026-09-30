@@ -49,13 +49,25 @@ function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+/** Render a backend error body ({ success:false, error:{ message, fields? } }) as one readable string. */
+function describeApiError(raw: string): string {
+  try {
+    const e = JSON.parse(raw)?.error;
+    if (typeof e?.message !== 'string') return raw;
+    const fields = Array.isArray(e.fields) ? e.fields.map((f: { field: string; message: string }) => `${f.field}: ${f.message}`) : [];
+    return `${e.code ? `[${e.code}] ` : ''}${e.message}${fields.length ? ` (${fields.join('; ')})` : ''}`;
+  } catch {
+    return raw;
+  }
+}
+
 async function login(email: string, password: string): Promise<string> {
   const res = await fetch(`${BACKEND_BASE}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   });
-  if (!res.ok) throw new Error(`Login failed: ${res.status} ${await res.text()}`);
+  if (!res.ok) throw new Error(`Login failed: ${res.status} ${describeApiError(await res.text())}`);
   const body = await res.json() as any;
   // Backend wraps JSON responses as { success, data: {...} }; accept the unwrapped shape too.
   const payload = body?.data ?? body;
@@ -94,7 +106,7 @@ async function bulkOverride(
     body: JSON.stringify({ election_id: electionId, overrides, rounds }),
   });
   if (!res.ok) {
-    const body = await res.text();
+    const body = describeApiError(await res.text());
     throw new Error(`Bulk override failed: ${res.status} ${body}`);
   }
 }

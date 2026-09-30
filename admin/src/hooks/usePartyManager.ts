@@ -17,7 +17,7 @@ interface PartyFilters {
  * Composes generic list logic with party-specific actions and master data.
  */
 export function usePartyManager() {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   const [elections, setElections] = useState<Election[]>([]);
   const [states, setStates] = useState<State[]>([]);
   const [saving, setSaving] = useState(false);
@@ -55,8 +55,8 @@ export function usePartyManager() {
       toast('Party registered successfully');
       list.refresh();
       return true;
-    } catch {
-      toast('Registration failed', 'error');
+    } catch (err) {
+      toastError(err, 'Registration failed');
       return false;
     } finally {
       setSaving(false);

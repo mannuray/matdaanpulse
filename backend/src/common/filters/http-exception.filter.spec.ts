@@ -2,6 +2,12 @@ import { ArgumentsHost, Logger, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { HttpExceptionFilter } from './http-exception.filter';
 import { UserNotFoundException } from '../exceptions';
+import { ErrorCodes } from '../exceptions/error-codes';
+import { BusinessException } from '../exceptions/base.exception';
+import { validationExceptionFactory } from '../validation/validation-failed.exception';
+import { ValidationPipe } from '@nestjs/common';
+import { IsInt, Max, IsString, ValidateNested, IsArray } from 'class-validator';
+import { Type } from 'class-transformer';
 
 function known(code: string) {
   return new Prisma.PrismaClientKnownRequestError(`internal detail about table "users" (${code})`, {
@@ -77,5 +83,61 @@ describe('HttpExceptionFilter', () => {
   it('echoes a valid incoming request id', () => {
     const res = run(new Error('x'));
     expect(res.headers['X-Request-ID']).toBe('rid-1');
+  });
+
+  class Item { @IsString() name!: string; }
+  class Body {
+    @IsInt() @Max(200) limit!: number;
+    @IsArray() @ValidateNested({ each: true }) @Type(() => Item) items!: Item[];
+  }
+  const pipe = new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true, exceptionFactory: validationExceptionFactory });
+
+  it('validation failures → fields with nested paths, one message string, no details/validationErrors', async () => {
+    let caught: unknown;
+    try {
+      await pipe.transform({ limit: 500, items: [{ name: 'a' }, { name: 5 }] }, { type: 'body', metatype: Body });
+    } catch (e) {
+      caught = e;
+    }
+    const res = run(caught);
+    expect(res.statusCode).toBe(400);
+    const err = res.body.error;
+    expect(err.code).toBe('VALIDATION_9001');
+    expect(err.message).toBe('Validation failed');
+    expect(err.fields).toEqual([
+      { field: 'limit', message: 'limit must not be greater than 200' },
+      { field: 'items[1].name', message: 'name must be a string' },
+    ]);
+    expect(err.details).toBeUndefined();
+    expect(err.validationErrors).toBeUndefined();
+  });
+
+  it('emits every constraint message for a field as separate entries', async () => {
+    let caught: unknown;
+    try {
+      await pipe.transform({ limit: 'x', items: [] }, { type: 'query', metatype: Body });
+    } catch (e) {
+      caught = e;
+    }
+    const fields = run(caught).body.error.fields.filter((f: any) => f.field === 'limit');
+    expect(fields.length).toBeGreaterThan(1);
+  });
+
+  it('business exception: code, message, details only when non-empty', () => {
+    class Boom extends BusinessException {
+      constructor(d?: Record<string, unknown>) { super(ErrorCodes.CONFLICT, 'Already finalized', 409, d); }
+    }
+    const withDetails = run(new Boom({ electionId: 'e1' })).body.error;
+    expect(withDetails.message).toBe('Already finalized');
+    expect(withDetails.details).toEqual({ electionId: 'e1' });
+    expect(withDetails.fields).toBeUndefined();
+    expect(run(new Boom()).body.error.details).toBeUndefined();
+    expect(run(new Boom({})).body.error.details).toBeUndefined();
+  });
+
+  it('plain HttpException does not leak its response object as details', () => {
+    const err = run(new NotFoundException('nope')).body.error;
+    expect(err.message).toBe('nope');
+    expect(err.details).toBeUndefined();
   });
 });

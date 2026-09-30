@@ -1,3 +1,4 @@
+import { paginated } from '../../common/paginated';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { PartyNotFoundException } from '../../common/exceptions';
@@ -74,7 +75,7 @@ export class PartiesService {
       candidate_count: p._count?.candidates || 0,
     }));
 
-    return { data, total, page, limit };
+    return paginated(data, { page, limit, total });
   }
 
   async create(data: CreatePartyDto) {

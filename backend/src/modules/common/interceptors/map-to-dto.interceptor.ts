@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Paginated, paginated } from '../../../common/paginated';
 import { plainToInstance } from 'class-transformer';
 
 @Injectable()
@@ -17,12 +18,8 @@ export class MapToDtoInterceptor implements NestInterceptor {
       map((data) => {
         if (!data) return data;
 
-        // If it's a paginated response { data: [], total, ... }
-        if (data.data && Array.isArray(data.data)) {
-          return {
-            ...data,
-            data: plainToInstance(this.dto, data.data, { excludeExtraneousValues: true }),
-          };
+        if (data instanceof Paginated) {
+          return paginated(plainToInstance(this.dto, data.data, { excludeExtraneousValues: true }) as any[], data.meta);
         }
 
         return plainToInstance(this.dto, data, { excludeExtraneousValues: true });

@@ -8,7 +8,7 @@ import type { Constituency } from '../types';
  * CONTROLLER: Constituency Editor (MVC)
  */
 export function useConstituencyEditor(id?: string) {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   
   const [constituency, setConstituency] = useState<Constituency | null>(null);
   const [districts, setDistricts] = useState<any[]>([]);
@@ -61,8 +61,8 @@ export function useConstituencyEditor(id?: string) {
         setRegions(r);
       }
       setIsDirty(false);
-    } catch {
-      toast('Failed to load constituency details', 'error');
+    } catch (err) {
+      toastError(err, 'Failed to load constituency details');
     } finally {
       setLoading(false);
     }
@@ -116,8 +116,8 @@ export function useConstituencyEditor(id?: string) {
       toast('Constituency updated');
       loadData();
       return true;
-    } catch {
-      toast('Update failed', 'error');
+    } catch (err) {
+      toastError(err, 'Update failed');
       return false;
     } finally {
       setSaving(false);

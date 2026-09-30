@@ -1,3 +1,4 @@
+import { describeError } from '../utils/api-error';
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 
 interface Toast {
@@ -8,6 +9,8 @@ interface Toast {
 
 interface ToastContextValue {
   toast: (message: string, type?: Toast['type']) => void;
+  /** Error toast built from a caught error; lists backend field errors. */
+  toastError: (err: unknown, fallback: string) => void;
 }
 
 const ToastContext = createContext<ToastContextValue | undefined>(undefined);
@@ -22,15 +25,17 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 4000);
+    }, message.includes('\n') ? 8000 : 4000);
   }, []);
 
+  const toastError = useCallback((err: unknown, fallback: string) => toast(describeError(err, fallback), 'error'), [toast]);
+
   return (
-    <ToastContext.Provider value={{ toast }}>
+    <ToastContext.Provider value={{ toast, toastError }}>
       {children}
       <div className="toast-container">
         {toasts.map((t) => (
-          <div key={t.id} className={`toast toast-${t.type}`}>
+          <div key={t.id} className={`toast toast-${t.type}`} style={{ whiteSpace: 'pre-line' }}>
             <span>{t.type === 'success' ? '\u2713' : t.type === 'error' ? '\u2717' : '\u24D8'}</span>
             {t.message}
           </div>

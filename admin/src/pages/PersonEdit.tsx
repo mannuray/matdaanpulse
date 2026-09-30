@@ -1,3 +1,4 @@
+import { FieldError, FormErrorsContext } from '../components/common/FieldError';
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -44,7 +45,9 @@ export default function PersonEdit() {
       <div style={styles.mainGrid}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
           <ErrorBoundary>
-            <ProfileForm form={form} setForm={setForm} />
+            <FormErrorsContext.Provider value={editor.fieldErrors}>
+              <ProfileForm form={form} setForm={setForm} />
+            </FormErrorsContext.Provider>
           </ErrorBoundary>
         </div>
 
@@ -116,14 +119,17 @@ function ProfileForm({ form, setForm }: FormProps) {
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>FULL LEGAL NAME *</label>
           <input className="form-input" value={form.name} onChange={e => update({ name: e.target.value })} required style={styles.inputHeight} />
+          <FieldError name="name" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>DATE OF BIRTH</label>
           <input type="date" className="form-input" value={form.date_of_birth} onChange={e => update({ date_of_birth: e.target.value })} style={styles.inputHeight} />
+          <FieldError name="date_of_birth" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>EDUCATION QUALIFICATION</label>
           <input className="form-input" value={form.education} onChange={e => update({ education: e.target.value })} style={styles.inputHeight} />
+          <FieldError name="education" />
         </div>
         <div className="form-group">
           <label className="form-label" style={styles.labelSmall}>GENDER IDENTITY</label>
@@ -138,14 +144,17 @@ function ProfileForm({ form, setForm }: FormProps) {
       <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
         <label className="form-label" style={styles.labelSmall}>WIKIPEDIA URL</label>
         <input className="form-input" value={form.wikipedia_url} onChange={e => update({ wikipedia_url: e.target.value })} placeholder="https://en.wikipedia.org/wiki/..." style={styles.inputHeight} />
+        <FieldError name="wikipedia_url" />
       </div>
       <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
         <label className="form-label" style={styles.labelSmall}>MASTER PHOTO URL</label>
         <input className="form-input" value={form.photo_url} onChange={e => update({ photo_url: e.target.value })} placeholder="https://..." style={styles.inputHeight} />
+        <FieldError name="photo_url" />
       </div>
       <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
         <label className="form-label" style={styles.labelSmall}>BIOGRAPHY</label>
         <textarea className="form-textarea" value={form.bio} onChange={e => update({ bio: e.target.value })} rows={6} style={{ ...styles.bioText, width: '100%' }} />
+        <FieldError name="bio" />
       </div>
     </div>
   );

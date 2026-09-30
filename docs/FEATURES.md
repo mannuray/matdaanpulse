@@ -639,3 +639,8 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Person `bio` comes from `metadata.bio` only (no `ai_profile` fallback)
 - [x] Admin: enrich buttons, enrichment progress stream, AI status picker/column, briefing and key-issues editors, AI candidate filters removed; person bio is now an editable field in the person editor
 - [x] Public frontend: briefing removed from the studio seat panel (no analysis fetch on seat select) and the legacy constituency page; community data shows only recorded values (card hidden when none); person biography card hidden when there is no bio (kept when only a Wikipedia link exists)
+
+### API shape: explicit pagination and a clean error body (2026-09-30)
+- [x] Backend: `Paginated<T>` / `paginated()` (`common/paginated.ts`); the response interceptor builds `pagination` only for `Paginated` results and wraps everything else verbatim (no more merging of handler objects that contain `success`/`total`); `totalPages` is 1 when `limit` is 0/missing instead of NaN. Persons, parties and constituencies list services return `paginated(...)`; `MapToDtoInterceptor` preserves it.
+- [x] Error body: `{ success:false, error:{ code, message, requestId, timestamp, path, fields?, details? } }`; `fields` from class-validator via the global ValidationPipe `exceptionFactory`; `details` only for business exception data; `validationErrors` removed. See `docs/API_SPEC.md`.
+- [x] Admin: `ApiError` (code, fields, details, requestId); error toasts list field errors; field messages show under inputs on the user, election, party and person forms. Frontend: `ApiError` parsing. Scraper replay prints the new error message.

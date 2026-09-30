@@ -3,6 +3,7 @@ import { getElections, createElection, updateElection, finalizeElection } from '
 import { getStates } from '../services/geo.service';
 import { useResourceList } from './useResourceList';
 import { useToast } from '../context/ToastContext';
+import { fieldErrorMap } from '../services/api-client';
 import type { Election, State } from '../types';
 
 interface ElectionFilters {
@@ -32,9 +33,10 @@ const INITIAL_FORM: ElectionFormState = {
  * Manages election lifecycle, registry data, and form state.
  */
 export function useElectionManager() {
-  const { toast } = useToast();
+  const { toast, toastError } = useToast();
   const [states, setStates] = useState<State[]>([]);
   const [saving, setSaving] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [confirmFinalize, setConfirmFinalize] = useState<string | null>(null);
 
   // Form State moved to Controller
@@ -87,6 +89,7 @@ export function useElectionManager() {
   const handleSave = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setSaving(true);
+    setFieldErrors({});
     
     const payload = {
       name: form.name,
@@ -108,7 +111,8 @@ export function useElectionManager() {
       resetForm();
       return true;
     } catch (err) {
-      toast('Operation failed', 'error');
+      setFieldErrors(fieldErrorMap(err));
+      toastError(err, 'Operation failed');
       return false;
     } finally {
       setSaving(false);
@@ -120,8 +124,8 @@ export function useElectionManager() {
       await finalizeElection(id);
       toast('Election finalized and archived');
       list.refresh();
-    } catch {
-      toast('Finalization failed', 'error');
+    } catch (err) {
+      toastError(err, 'Finalization failed');
     }
   };
 
@@ -130,12 +134,13 @@ export function useElectionManager() {
       await updateElection(id, { status: 'Live' });
       toast('Election is now LIVE');
       list.refresh();
-    } catch {
-      toast('Failed to go live', 'error');
+    } catch (err) {
+      toastError(err, 'Failed to go live');
     }
   };
 
   return {
+    fieldErrors,
     ...list,
     states,
     saving,

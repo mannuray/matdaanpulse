@@ -1,3 +1,4 @@
+import { paginated } from '../../common/paginated';
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -166,7 +167,7 @@ export class PersonsService {
       elections: p.candidates.map((c: any) => c.elections?.name).filter(Boolean),
     }));
 
-    return { data: formatted, total, page, limit };
+    return paginated(formatted, { page, limit, total });
   }
 
   async search(q: string) {

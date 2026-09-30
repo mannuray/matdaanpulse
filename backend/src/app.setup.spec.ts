@@ -5,6 +5,8 @@ import { EMPTY } from 'rxjs';
 import { Test } from '@nestjs/testing';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { paginated } from './common/paginated';
+import { PaginationQueryDto } from './common/dto/query.dto';
 import { configureApp } from './app.setup';
 import { buildThrottlerOptions } from './common/throttle/throttle.config';
 import { ElectionsQueryDto } from './common/dto/query.dto';
@@ -24,6 +26,14 @@ class PublicController {
   @Get()
   get(@Req() req: { ip: string }, @Query() _q: ElectionsQueryDto) {
     return { ip: req.ip };
+  }
+}
+
+@Controller('lists')
+class ListController {
+  @Get()
+  list(@Query() q: PaginationQueryDto) {
+    return paginated(['a', 'b'], { page: q.page ?? 1, limit: q.limit ?? 2, total: 5 });
   }
 }
 
@@ -48,7 +58,7 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [ThrottlerModule.forRoot(buildThrottlerOptions({ THROTTLE_PUBLIC_PER_MIN: '4', THROTTLE_AUTH_PER_MIN: '2' }))],
-      controllers: [AuthController, LiveController, HealthController, PublicController, BulkController],
+      controllers: [AuthController, LiveController, HealthController, PublicController, BulkController, ListController],
       providers: [
         { provide: AuthService, useValue: authService },
         { provide: ConfigService, useValue: { get: () => undefined } },
@@ -145,6 +155,25 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
       const res = await post('/admin/results/override-bulk', '10.0.4.4', { blob: 'x'.repeat(1024 * 1024) });
       expect(res.status).toBe(401);
       expect((await res.json()).error.code).toBe('AUTH_1003');
+    });
+  });
+
+  describe('API shape', () => {
+    it('a Paginated list keeps { success, data, pagination }', async () => {
+      const body = await (await get('/lists?page=2&limit=2', '10.0.7.1')).json();
+      expect(body).toMatchObject({ success: true, data: ['a', 'b'], pagination: { page: 2, limit: 2, total: 5, totalPages: 3 } });
+    });
+
+    it('a validation error carries fields and no validationErrors/details', async () => {
+      const res = await get('/lists?limit=500', '10.0.7.2');
+      expect(res.status).toBe(400);
+      const { success, error } = await res.json();
+      expect(success).toBe(false);
+      expect(error.code).toBe('VALIDATION_9001');
+      expect(error.message).toBe('Validation failed');
+      expect(error.fields).toEqual([{ field: 'limit', message: 'limit must not be greater than 200' }]);
+      expect(error.validationErrors).toBeUndefined();
+      expect(error.details).toBeUndefined();
     });
   });
 

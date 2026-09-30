@@ -7,6 +7,7 @@ import {
 import { SSE_METADATA } from '@nestjs/common/constants';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Paginated } from '../paginated';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface Response<T> {
@@ -14,7 +15,7 @@ export interface Response<T> {
   data: T;
   requestId: string;
   timestamp: string;
-  pagination?: any;
+  pagination?: { page: number; limit: number; total: number; totalPages: number };
 }
 
 @Injectable()
@@ -34,32 +35,17 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
       map((data) => {
         const meta = { requestId, timestamp: new Date().toISOString() };
 
-        // If data is already wrapped or null, handle accordingly
-        if (data && data.success !== undefined) {
-          return { ...data, ...meta };
-        }
-
-        // Handle paginated responses from our services
-        if (data && data.data !== undefined && data.total !== undefined) {
-          const { data: list, total, page, limit } = data;
+        if (data instanceof Paginated) {
+          const { page, limit, total } = data.meta;
           return {
             success: true,
-            data: list,
-            pagination: {
-              page,
-              limit,
-              total,
-              totalPages: Math.ceil(total / limit),
-            },
+            data: data.data as unknown as T,
+            pagination: { page, limit, total, totalPages: limit > 0 ? Math.ceil(total / limit) : 1 },
             ...meta,
           };
         }
 
-        return {
-          success: true,
-          data: data,
-          ...meta,
-        };
+        return { success: true, data, ...meta };
       }),
     );
   }
