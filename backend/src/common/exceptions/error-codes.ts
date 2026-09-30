@@ -37,11 +37,6 @@ export const ErrorCodes = {
   MANIFEST_NOT_FOUND: 'MANIFEST_8001',
   MANIFEST_NO_DRAFT: 'MANIFEST_8002',
 
-  // AI Enrichment (85xx)
-  AI_CONFIG_MISSING: 'AI_8501',
-  AI_API_ERROR: 'AI_8502',
-  AI_PARSE_ERROR: 'AI_8503',
-
   // Validation (9xxx)
   VALIDATION_FAILED: 'VALIDATION_9001',
 } as const;

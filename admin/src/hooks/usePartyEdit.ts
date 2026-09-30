@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getParty, updateParty, enrichParty } from '../services/geo.service';
+import { getParty, updateParty } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
 import type { Party } from '../types';
 
 /**
  * CONTROLLER: Party Edit (MVC)
- * Manages party master identity, branding (colors/logos), and AI enrichment.
+ * Manages party master identity, and branding (colors/logos).
  */
 export function usePartyEdit(id?: string) {
   const { toast } = useToast();
@@ -13,7 +13,6 @@ export function usePartyEdit(id?: string) {
   const [party, setParty] = useState<Party | null>(null);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [enriching, setEnriching] = useState(false);
 
   // Form State
   const [form, setForm] = useState({
@@ -79,22 +78,8 @@ export function usePartyEdit(id?: string) {
     }
   };
 
-  const handleEnrich = async () => {
-    if (!id) return;
-    setEnriching(true);
-    try {
-      await enrichParty(id);
-      toast('AI enrichment successful');
-      loadData();
-    } catch {
-      toast('Enrichment failed', 'error');
-    } finally {
-      setEnriching(false);
-    }
-  };
-
   return {
-    party, loading, saving, enriching, form, setForm,
-    handleSave, handleEnrich, refresh: loadData
+    party, loading, saving, form, setForm,
+    handleSave, refresh: loadData
   };
 }

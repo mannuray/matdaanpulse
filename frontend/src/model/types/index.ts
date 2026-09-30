@@ -331,10 +331,5 @@ export interface AnalysisEntry {
 }
 
 export interface ConstituencyAnalysisDetail extends AnalysisEntry {
-  ai_briefing: string | null;
-  ai_demographics: Record<string, unknown> | null;
-  ai_key_issues: string[] | null;
-  ai_status: string;
-  ai_generated_at: string | null;
   notes: string | null;
 }

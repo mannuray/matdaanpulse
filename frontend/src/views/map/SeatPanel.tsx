@@ -20,7 +20,6 @@ export function SeatPanel({ vm }: { vm: SeatPanelVM | null }) {
       </div>
       {vm.margin != null && <p className="text-sm text-muted">{t('studio_margin', { count: vm.margin })}</p>}
       {vm.history && <p className="text-sm text-muted">{t(`studio_chip_${vm.history.classification}`, vm.history.classification)}{vm.history.dominantParty ? ` · ${vm.history.dominantParty}` : ''}</p>}
-      {vm.briefing && <p className="rounded-[0.5rem] border border-line bg-tile p-3 text-sm leading-relaxed text-ink">{vm.briefing}</p>}
       <ol className="flex list-decimal flex-col gap-2 pl-6 text-xs text-muted marker:font-semibold">
         {vm.candidates.map(c => (
           <li key={`${c.name}-${c.partyId}`} className="rounded-[0.5rem] border border-line p-2">

@@ -4,9 +4,9 @@ import { getConstituency, getConstituencyAnalysis, ElectionService } from '../..
 import type { StandingsData, ManifestData, CandidateResult } from '../../model/types';
 
 interface ConstituencyMeta {
-  literacy_pct?: number;
-  urban_pct?: number;
-  sc_st_pct?: number;
+  literacy_pct?: number | string | null;
+  urban_pct?: number | string | null;
+  sc_st_pct?: number | string | null;
   tags?: string[];
 }
 
@@ -48,12 +48,12 @@ export function useConstituencyDetail(
 
     const candidatesWithShare = (constituency.candidates || []).map((c): CandidateResult => {
       const p = c.party;
-      const enriched = p?.id ? partyMap.get(p.id) : null;
+      const partyInfo = p?.id ? partyMap.get(p.id) : null;
       
       return {
         ...c,
         vote_share: c.vote_share || 0,
-        party: p && enriched ? { ...p, name: enriched.name, color: enriched.color } : p
+        party: p && partyInfo ? { ...p, name: partyInfo.name, color: partyInfo.color } : p
       };
     }).sort((a, b) => b.votes - a.votes);
 
@@ -101,15 +101,18 @@ export function useConstituencyDetail(
     };
   }, [constituency, stats, manifest]);
 
-  // 5. Demographics Formatting
+  // 5. Demographics Formatting: only rows with a recorded value (no 0% placeholders)
   const formattedDemographics = useMemo(() => {
     if (!constituency?.metadata) return [];
     const meta = constituency.metadata as ConstituencyMeta;
-    return [
-      { label: 'Literacy', value: `${meta.literacy_pct || 0}%` },
-      { label: 'Urbanization', value: `${meta.urban_pct || 0}%` },
-      { label: 'SC/ST Pop', value: `${meta.sc_st_pct || 0}%` },
+    const rows: [string, ConstituencyMeta['literacy_pct']][] = [
+      ['Literacy', meta.literacy_pct],
+      ['Urbanization', meta.urban_pct],
+      ['SC/ST Pop', meta.sc_st_pct],
     ];
+    return rows
+      .filter(([, v]) => v != null && v !== '' && Number.isFinite(Number(v)))
+      .map(([label, v]) => ({ label, value: `${Number(v)}%` }));
   }, [constituency]);
 
   // 6. Final ViewModel Construction

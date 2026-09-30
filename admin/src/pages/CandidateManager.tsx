@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { useCandidateManager, PersonFilter } from '../hooks/useCandidateManager';
 import AdminLandingCard from '../components/common/AdminLandingCard';
 import AdminPageHeader from '../components/common/AdminPageHeader';
@@ -14,8 +13,6 @@ import type { Candidate, Constituency, Election, State } from '../types';
  */
 export default function CandidateManager() {
   const navigate = useNavigate();
-  const { hasRole } = useAuth();
-  const canEnrich = hasRole('SUPER_ADMIN'); // backend enrich endpoint is SUPER_ADMIN-only
   const manager = useCandidateManager();
 
   const { 
@@ -44,16 +41,6 @@ export default function CandidateManager() {
         title="Candidate Management"
         subtitle={selectedConstObj && (
           <span>{selectedConstObj.name} (#{selectedConstObj.const_no}) — {selectedConstObj.type}</span>
-        )}
-        actions={selectedElection && canEnrich && (
-          <button
-            className="btn btn-outline"
-            onClick={manager.runEnrichment}
-            disabled={manager.enriching}
-            style={styles.enrichBtn}
-          >
-            {manager.enriching ? 'AI ENRICHING...' : 'AI ENRICH CANDIDATES'}
-          </button>
         )}
       />
 
@@ -218,7 +205,7 @@ function FilterBar({
 
       {selectedElection && selectedConst && (
         <div style={styles.tabRow}>
-          {(['all', 'linked', 'unlinked', 'ai_enriched', 'not_enriched'] as PersonFilter[]).map((f) => (
+          {(['all', 'linked', 'unlinked'] as PersonFilter[]).map((f) => (
             <button
               key={f}
               onClick={() => setPersonFilter(f)}
@@ -396,7 +383,6 @@ const styles = {
   headerTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-4)' },
   title: { fontSize: 'var(--text-xl)', fontWeight: 800, margin: 0, letterSpacing: '-0.02em' },
   subtitle: { fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.05em' },
-  enrichBtn: { height: 32, fontSize: '10px', fontWeight: 800, borderRadius: 'var(--radius-sm)' },
   filterBarRoot: { background: 'var(--bg-primary)', borderBottom: '1px solid var(--border)', padding: '0 var(--space-6) var(--space-4) var(--space-6)' },
   filterRow: { display: 'flex', gap: '12px', alignItems: 'center' },
   constPickerWrapper: { position: 'relative' as const, width: 240 },

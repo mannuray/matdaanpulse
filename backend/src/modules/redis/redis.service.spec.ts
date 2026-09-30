@@ -131,11 +131,11 @@ describe('RedisService subscriber recovery (review I1)', () => {
     const { svc, sub } = make();
     sub.subscribe.mockRejectedValueOnce(new Error('MaxRetriesPerRequestError')).mockRejectedValueOnce(new Error('x'));
     svc.subscribe('election:a:events').subscribe();
-    svc.subscribe('enrichment:b:events').subscribe();
+    svc.subscribe('election:b:events').subscribe();
     await Promise.resolve();
     sub.subscribe.mockResolvedValue(2);
     sub.emit('ready');
-    expect(sub.subscribe).toHaveBeenLastCalledWith('election:a:events', 'enrichment:b:events');
+    expect(sub.subscribe).toHaveBeenLastCalledWith('election:a:events', 'election:b:events');
   });
 
   it('does nothing on ready when no channel is served', () => {

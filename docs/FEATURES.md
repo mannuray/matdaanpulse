@@ -17,13 +17,13 @@
 - [x] Auto-link endpoint: `POST /admin/candidates/auto-link` (batch name+constituency matching)
 - [x] Persons list page: `/persons` — browse all persons with candidate count, photo filter, name search
 - [x] Person detail page: `/persons/:id` — edit bio, view election history, merge duplicates (SUPER_ADMIN)
-- [x] Candidate filters: filter by linked/unlinked/AI enriched/not enriched in candidate table
+- [x] Candidate filters: filter by linked/unlinked in candidate table (AI enriched/not enriched filters removed 2026-09-30)
 - [x] Clickable person ID in candidate table → navigates to person detail page
 - [x] Regions table: `regions` (state_id, name, code) with Bihar's 9 regions seeded
 - [x] Person state/region tagging: `state_id` + `region_id` on `persons`, filterable via `GET /admin/persons?state_id=&region_id=`
 - [x] Bihar person-region seed: 382 persons tagged by constituency→region mapping
 - [x] SSE (Server-Sent Events) for live updates with Redis pub/sub backend
-  - Named events: `result-update`, `batch-update`, `ping`, `enrichment-progress`
+  - Named events: `result-update`, `batch-update`, `ping` (`enrichment-progress` removed with the built-in AI)
   - Frontend reconnect: fast retries first, then a slow retry every 60s; also reconnects when the browser comes back online or the tab becomes visible
 - [x] i18n support via react-i18next — chosen language persisted in `localStorage` (`lang`)
 - [x] Dark mode theming (including the map)
@@ -184,7 +184,7 @@
 - [x] `RedisModule` with `RedisService` — dual ioredis clients (pub + sub) for Redis pub/sub
 - [x] `LiveService` — publishes `result-update` and `tally-update` events to Redis channels
 - [x] SSE endpoint `/api/v1/live/updates?election_id=...` streams Redis events to browser
-- [x] 20s heartbeat ping to keep SSE connections alive; each connection's first frame carries `retry: 5000` (shared helper `backend/src/common/sse/shared-sse-stream.ts`, also used by the admin enrichment stream)
+- [x] 20s heartbeat ping to keep SSE connections alive; each connection's first frame carries `retry: 5000` (shared helper `backend/src/common/sse/shared-sse-stream.ts`; the live results stream is the only SSE endpoint)
 - [x] Streams end cleanly on shutdown (SIGTERM) before the HTTP server closes
 - [x] Admin `overrideResult()` auto-publishes `result-update` via `LiveService`
 - [x] Channel naming: `election:{electionId}:events`
@@ -216,7 +216,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Prisma errors mapped to 409 / 404 / 400 with safe messages; oversized bodies 413
 - [x] Body limit 100 kb, 5 MB only on `POST /admin/results/override-bulk` (requests without a Bearer header get 401 before the body is parsed); admin id arrays capped at 2000 so they fit 100 kb
 - [x] Query DTOs on list endpoints (bounded `page`/`limit` ≤ 200, enums, UUIDs, ISO dates) — bad input is 400, not 500. Unknown query keys are rejected (400) except the cache-buster `_` (`?_=<timestamp>`), which is accepted and ignored on every route; empty values count as not sent
-- [x] URL fields (`photo_url`, `website`, `wikipedia_url`) must be http(s); AI output with other schemes is dropped; Gemini model from `GEMINI_MODEL`
+- [x] URL fields (`photo_url`, `website`, `wikipedia_url`) must be http(s) (validated in the request DTOs)
 - [x] Public self-registration (`/auth/register`) off unless `ALLOW_REGISTRATION=true`; the last SUPER_ADMIN cannot be demoted or deleted
 - [x] CORS origins trimmed, no credentials (Bearer auth), optional `CORS_ORIGIN_REGEX` for preview URLs
 - [x] `X-Request-ID` accepted only if it matches `^[\w-]{1,64}$`; auth logs carry user ids, not emails
@@ -295,21 +295,15 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Auto-computed analysis: dominance (stronghold/loyal/swing) + incumbency from historical results
   - Reuses same logic as frontend History tab, persisted server-side in `constituency_analysis` table
   - Triggered via "Compute" button, uses `manifest.history` election IDs
-- [x] AI enrichment pipeline: Claude API generates constituency briefings, demographics, key issues
-  - Sequential processing to respect rate limits
-  - Review workflow: pending -> generated -> reviewed -> published
-  - Separate endpoint for candidate caste/religion/profile enrichment
+- [~] ~~AI enrichment pipeline (constituency briefings, demographics, key issues; candidate/person/party enrichment)~~ — **removed 2026-09-30**, see "Built-in AI and constituency briefing removed" below
 - [x] Constituency Manager admin page (`/constituencies`)
   - ElectionPicker + search + tag filter
-  - Table with checkbox multi-select, tags as colored chips, AI status indicator
-  - Expandable row: editable tags, region, incumbency info, AI briefing, demographics, key issues
+  - Table with checkbox multi-select, tags as colored chips
+  - Expandable row: editable tags, region, incumbency info, demographics
   - Bulk actions: add/remove tags across selected constituencies
   - Compute button: triggers server-side dominance/incumbency analysis
-  - AI Enrich button (in Constituency Manager): triggers AI enrichment for all/selected constituencies; progress stream is authenticated with an `Authorization: Bearer` header (no token in the URL)
-  - AI Candidates button: triggers candidate profile enrichment
-  - Review/Approve/Publish workflow for AI-generated content
 - [x] Admin route `/constituencies` with sidebar nav link
-- [x] Backend: `ConstituencyAnalysis` entity, extended `ConstituenciesService`, `AdminConstituenciesController`, `AiEnrichmentService`, `AiModule`
+- [x] Backend: `ConstituencyAnalysis` entity, extended `ConstituenciesService`, `AdminConstituenciesController`
 
 ### Party Symbols
 - [x] DB: `eci_symbol_url` column on `parties` table (migration 006)
@@ -333,7 +327,6 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Reset script: zeroes results without deleting election structure (`scraper/src/simulation/reset.ts`)
 - [x] Round tracking: `round_no` in override API + SSE event, round progress badge in Dashboard header
 - [x] Pre-poll constituency modal: candidate list, seat history, dominance, incumbency, revision — all shown before counting
-- [x] AI analysis enabled for Live elections (pre-poll briefings visible in constituency modal)
 - [x] `normalizeConstId` uses const_no only for VS elections (fixes 18 name spelling mismatches across years)
 - [x] Incumbent badge shows "Contesting" before counting, "Retained/Lost" after results
 - [x] Candidate table hides vote/share/status columns when no votes yet
@@ -536,7 +529,7 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 
 ---
 
-### Priority 4 — AI Integration
+### Priority 4 — AI Integration (not planned: no AI inside the app; AI-assisted data is produced offline)
 
 | # | Feature | Status | Depends on |
 |---|---------|--------|------------|
@@ -572,7 +565,7 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Backend `findByElectionWithAnalysis` eager-loads `district` and `region` relations
 - [x] Documented in `docs/VS_DATA_PIPELINE.md` Step 6 as reusable process for new states
 
-### AI Enrichment Improvements
+### AI Enrichment Improvements (removed 2026-09-30 — historical)
 - [x] `skipEnriched` flag: full-election runs skip already-enriched constituencies (safe re-runs)
 - [x] Targeted retry: passing `const_ids` forces re-enrichment regardless of current status
 - [x] WB 2021: all 294 constituencies enriched successfully
@@ -590,10 +583,9 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Extended `computeAnalysis()` with party switcher detection (cross-election name matching)
 - [x] Extended `computeAnalysis()` with spoiler/vote-split detection (from manifest `vote_splits`)
 - [x] Public API: `GET /elections/:id/analysis` — lightweight list (dominance, swing, incumbency JSONB)
-- [x] Public API: `GET /elections/:id/constituencies/:constId/analysis` — full detail with AI fields
+- [x] Public API: `GET /elections/:id/constituencies/:constId/analysis` — full detail (dominance, incumbency, notes)
 - [x] `useAnalysis` hook: transforms backend analysis → frontend data structures (dominance, incumbency, swing, spoiler, seatType, partySwitcher maps)
 - [x] Dashboard: prefers backend analysis for finalized elections, falls back to client-side for live
-- [x] ConstituencyModal: on-demand fetch of AI briefing, key issues, demographics for finalized elections
 - [x] Seat history timeline in modal (colored party dots per election from backend data)
 
 ### Person Profiles (Public Frontend)
@@ -605,13 +597,11 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Person detail page (`/person/:id`): full profile (photo, gender, education, DOB, state, district) + election history table with outcomes
 - [x] Election history table: year, constituency (linked), party (color dot), votes, status badge, margin — winner rows highlighted
 
-### Admin: Editable District/Region & AI Content
+### Admin: Editable District/Region
 - [x] `GET /states/:id/regions` endpoint (mirrors existing `/states/:id/districts`)
 - [x] `PATCH /admin/constituencies/:id` — update `district_id` and `region_id` on constituencies
 - [x] Admin expanded row: district/region shown as editable `<select>` dropdowns (editors/super admins)
-- [x] Admin expanded row: AI briefing editable as textarea, demographics as inline inputs, key issues as editable list with add/remove
-- [x] "Save AI Content" button persists changes via `PATCH /admin/constituency-analysis/:id`
-- [x] AI enrichment prompts inject existing admin-corrected content as reference seed (prevents overwriting manual fixes)
+- [x] Admin expanded row: demographics as inline inputs (AI briefing / key issues editing removed 2026-09-30)
 
 ### Studio Dashboard: Dark / Light Theme
 - [x] Two themes only, Dark (default, the studio look) and Light; choice persisted in `localStorage` key `studio_theme` (invalid/missing = dark)
@@ -641,3 +631,11 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [ ] Mobile-optimized map controls
 - [ ] Export/share map screenshots
 - [ ] Real per-seat turnout data from ECI detail pages (if available)
+
+### Built-in AI and constituency briefing removed (2026-09-30)
+- [x] No AI inside the app: AI-assisted data is produced offline (Claude Code runs) and loaded like scraped data
+- [x] Backend: `modules/ai` (Gemini service, strategies, parsers) deleted with its routes — `POST /admin/constituencies/enrich/:electionId`, `GET /admin/constituencies/enrich/status/:electionId`, `GET /admin/constituencies/enrich/stream/:electionId` (SSE), `POST /admin/constituencies/analysis/bulk-status`, `POST /admin/candidates/enrich/:electionId`, `GET /admin/candidates/enrich/status/:electionId`, `POST /admin/persons/enrich`, `GET /admin/persons/enrich/status`, `POST /admin/parties/:id/enrich`; `GEMINI_API_KEY` / `GEMINI_MODEL` dropped
+- [x] Migration `014_drop_ai_columns.sql` drops `constituency_analysis.ai_briefing`, `ai_demographics`, `ai_key_issues`, `ai_generated_at`, `ai_status` (and the `ai_status` index); `dominance`, `dominance_party`, `incumbency`, `notes` stay
+- [x] Person `bio` comes from `metadata.bio` only (no `ai_profile` fallback)
+- [x] Admin: enrich buttons, enrichment progress stream, AI status picker/column, briefing and key-issues editors, AI candidate filters removed; person bio is now an editable field in the person editor
+- [x] Public frontend: briefing removed from the studio seat panel (no analysis fetch on seat select) and the legacy constituency page; community data shows only recorded values (card hidden when none); person biography card hidden when there is no bio (kept when only a Wikipedia link exists)

@@ -34,9 +34,6 @@ export default function PartyEdit() {
           onBack={() => navigate(`/parties/${party.id}`)}
           actions={
             <div style={{ display: 'flex', gap: 12 }}>
-              <button onClick={editor.handleEnrich} disabled={editor.enriching} className="btn btn-outline" style={styles.actionBtn}>
-                {editor.enriching ? 'AI ENRICHING...' : 'AI ENRICH ASSETS'}
-              </button>
               <button onClick={onSubmit} disabled={editor.saving} className="btn btn-primary" style={styles.saveBtn}>
                 {editor.saving ? 'SAVING...' : 'SAVE PARTY DATA'}
               </button>
@@ -236,7 +233,6 @@ function SymbolCard({ label, url, onChangeUrl, onRemove }: SymbolProps) {
 
 const styles = {
   pageRoot: { background: 'var(--bg-secondary)', minHeight: '100vh', paddingBottom: '80px' },
-  actionBtn: { height: 34, fontSize: '11px', fontWeight: 700 },
   saveBtn: { height: 34, padding: '0 24px', fontSize: '11px', fontWeight: 800 },
   mainContainer: { maxWidth: '1400px', margin: 'var(--space-6) auto 0', padding: '0 var(--space-6)' },
   heroCard: { marginBottom: 32, padding: 0, border: 'none', background: 'var(--bg-sidebar)', overflow: 'hidden' as const, boxShadow: 'var(--shadow-lg)', position: 'relative' as const },

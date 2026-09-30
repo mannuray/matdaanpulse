@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getPerson, updatePerson, mergePersons, getPersons } from '../services/person.api';
 import { PersonService } from '../services/person.service';
-import { enrichPersons } from '../services/ai.service';
 import { useToast } from '../context/ToastContext';
 import type { PersonWithCandidates, PersonWithStats } from '../types';
 
 /**
  * CONTROLLER: Person Edit (MVC)
- * Manages master record state, deduplication (merging), and AI profiling.
+ * Manages master record state and deduplication (merging).
  */
 export function usePersonEdit(id?: string) {
   const { toast } = useToast();
@@ -33,9 +32,6 @@ export function usePersonEdit(id?: string) {
   const [mergeResults, setMergeResults] = useState<PersonWithStats[]>([]);
   const [merging, setMerging] = useState(false);
   const searchTimer = useRef<ReturnType<typeof setTimeout>>();
-
-  // Enrichment State
-  const [enriching, setEnriching] = useState(false);
 
   // 1. Initial Load
   const loadPerson = useCallback(async () => {
@@ -116,23 +112,9 @@ export function usePersonEdit(id?: string) {
     }
   };
 
-  // 4. AI Enrichment
-  const runEnrichment = async () => {
-    if (!id) return;
-    setEnriching(true);
-    try {
-      await enrichPersons([id]);
-      toast('AI profiling queued');
-    } catch {
-      toast('Enrichment failed', 'error');
-    } finally {
-      setEnriching(false);
-    }
-  };
-
   return {
     person, loading, saving, form, setForm,
     mergeSearch, setMergeSearch, mergeResults, merging,
-    handleSave, handleMerge, enriching, runEnrichment
+    handleSave, handleMerge
   };
 }

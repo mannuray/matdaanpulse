@@ -49,34 +49,6 @@ export default function ConstituencyDetail() {
         {/* Main Content */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
           
-          {/* Briefing */}
-          <ErrorBoundary>
-            <div className="card-elevated" style={styles.cardPadding}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-4)' }}>
-                <h3 className="card-title-tiny" style={{ color: 'var(--accent)', margin: 0 }}>AI Strategic Briefing</h3>
-                {a?.ai_status && (
-                  <span className="badge badge-neutral" style={{ fontSize: '9px', fontWeight: 800 }}>
-                    STATUS: {a.ai_status.toUpperCase()}
-                  </span>
-                )}
-              </div>
-              <div style={styles.briefingBox}>
-                {a?.ai_briefing || "No narrative analysis recorded for this constituency."}
-              </div>
-
-              {a?.ai_key_issues && a.ai_key_issues.length > 0 && (
-                <div style={{ marginTop: 'var(--space-6)' }}>
-                  <h3 className="card-title-tiny">Key Battleground Issues</h3>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                    {a.ai_key_issues.map((issue, i) => (
-                      <span key={i} className="badge badge-neutral" style={styles.issueBadge}>{issue}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </ErrorBoundary>
-
           {/* Demographics */}
           <ErrorBoundary>
             <div className="card-elevated" style={styles.cardPadding}>
@@ -185,8 +157,6 @@ const styles = {
   mainContainer: { maxWidth: '1400px', margin: 'var(--space-6) auto 0', padding: '0 var(--space-6)', display: 'grid', gridTemplateColumns: '1fr 380px', gap: 'var(--space-6)' },
   cardPadding: { padding: 'var(--space-6)' },
   sideCardPadding: { padding: 'var(--space-5)' },
-  briefingBox: { fontSize: '15px', lineHeight: 1.8, color: 'var(--text-primary)', whiteSpace: 'pre-wrap' as const, background: 'var(--bg-secondary)', padding: '24px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' },
-  issueBadge: { fontSize: '11px', fontWeight: 700, padding: '6px 12px' },
   demoGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-4)', borderBottom: '1px solid var(--border)', paddingBottom: 'var(--space-4)' },
   statItem: { display: 'flex', flexDirection: 'column' as const, gap: 4 },
   statLabel: { fontSize: '9px', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase' as const },

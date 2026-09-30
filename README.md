@@ -1,6 +1,6 @@
 # Election Tracker
 
-A reusable, metadata-driven platform for tracking Indian Lok Sabha (Parliamentary) and Vidhan Sabha (State Assembly) elections — with real-time counting-day updates, interactive D3 choropleth maps, historical analysis, and AI-enriched constituency insights.
+A reusable, metadata-driven platform for tracking Indian Lok Sabha (Parliamentary) and Vidhan Sabha (State Assembly) elections — with real-time counting-day updates, interactive D3 choropleth maps, and historical analysis.
 
 ## Overview
 
@@ -25,7 +25,7 @@ Four independent services communicate through PostgreSQL (source of truth) and R
 
 | Layer       | Stack                                                                  |
 |-------------|------------------------------------------------------------------------|
-| Backend     | NestJS (TypeScript), Prisma, JWT auth, Helmet, Throttler, Gemini (AI)  |
+| Backend     | NestJS (TypeScript), Prisma, JWT auth, Helmet, Throttler               |
 | Public FE   | React + Vite (TypeScript SPA), D3.js (SVG choropleths), react-i18next  |
 | Admin FE    | React + Vite (TypeScript SPA), JWT-protected                           |
 | Scraper     | Node.js + ts-node: seed generators, live simulation (live ECI ingestion not implemented) |
@@ -66,7 +66,7 @@ election-tracker/
 ```bash
 cp .env.example .env
 # edit .env: set JWT_SECRET (required — the backend refuses to start without it),
-# ADMIN_EMAIL / ADMIN_PASSWORD, and optionally GEMINI_API_KEY, SIGNOZ_INGESTION_KEY
+# ADMIN_EMAIL / ADMIN_PASSWORD, and optionally SIGNOZ_INGESTION_KEY
 ```
 
 ### 2. Start infrastructure + build the database
@@ -127,13 +127,12 @@ Open `http://localhost:3080` for the public tracker, `http://localhost:3081` for
 - **Map tabs** — Overview, Battle (alliance/party filter + margin shading), SC/ST demographics, Swing (flips vs. prior), Insights (spoiler/vote-split), History (dominance + anti-incumbency + party switchers + margin trend)
 - **Alliance tallies** with majority mark, vulnerability shading, head-to-head comparator
 - **Live SSE updates** with toast notifications when leads change, pulse animation on the map
-- **Constituency modal + detail page** — candidates, voter turnout, vote share, historical context, AI-enriched narrative
+- **Constituency modal + detail page** — candidates, voter turnout, vote share, historical context
 - **i18n** (English, Hindi, +2 regional) and dark mode
 
 ### Admin Panel
 - Election lifecycle (`Upcoming → Live → Finalized`) with draft/published manifest versioning
 - Master-data management (parties, candidates, constituencies, persons) with CSV bulk import
-- **AI enrichment pipeline** — pre-poll (historical context + web search) and post-poll (with results) via a streaming SSE job runner
 - Person linking across elections, photo/bio management, duplicate merge
 - Scraper control center, manual result overrides, audit logs
 - **Live simulation mode** — clone an election, mock the ECI endpoint, replay rounds to test SSE flows
@@ -173,7 +172,6 @@ See `.env.example` — one set of names is shared by docker-compose, `database/s
 | `REDIS_HOST` `REDIS_PORT` | backend | pub/sub + cache |
 | `JWT_SECRET` | backend | **required** — backend fails fast without it |
 | `PORT` `CORS_ORIGINS` | backend | defaults 3082 / localhost:3080,3081 |
-| `GEMINI_API_KEY` | backend | AI enrichment |
 | `ADMIN_EMAIL` `ADMIN_PASSWORD` | `npm run create-admin` | initial SUPER_ADMIN |
 | `OTEL_EXPORTER_OTLP_ENDPOINT` | backend | OTLP collector (default `http://localhost:4317`) |
 | `SIGNOZ_ENDPOINT` `SIGNOZ_INGESTION_KEY` | otel-collector | SigNoz Cloud export |

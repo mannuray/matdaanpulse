@@ -35,3 +35,10 @@ export async function bulkTagConstituencies(ids: string[], addTags?: string[], r
     body: JSON.stringify({ ids, add_tags: addTags, remove_tags: removeTags }),
   })) || [];
 }
+
+export function computeConstituencyAnalysis(electionId: string, historyElectionIds: string[], manifest?: Record<string, unknown>) {
+  return apiFetch<{ computed: number }>(`/admin/constituencies/analysis/compute/${electionId}`, {
+    method: 'POST',
+    body: JSON.stringify({ history_election_ids: historyElectionIds, manifest }),
+  });
+}

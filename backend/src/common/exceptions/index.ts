@@ -8,4 +8,3 @@ export * from './party.exception';
 export * from './candidate.exception';
 export * from './result.exception';
 export * from './manifest.exception';
-export * from './ai.exception';

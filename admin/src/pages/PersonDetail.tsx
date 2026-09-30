@@ -68,11 +68,10 @@ export default function PersonDetail() {
           <div className="card-elevated" style={styles.cardPadding}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-4)' }}>
               <h3 className="card-title-tiny" style={{ color: 'var(--accent)', margin: 0 }}>Administrative Dossier</h3>
-              {meta.ai_generated_at && <span style={styles.verifiedDate}>VERIFIED: {new Date(meta.ai_generated_at as string).toLocaleDateString()}</span>}
             </div>
             
             <div style={styles.bioBox}>
-              {form.bio || "No biography or strategic profiling recorded for this individual."}
+              {form.bio || "No biography recorded for this individual."}
             </div>
 
             {form.wikipedia_url && (
@@ -157,7 +156,6 @@ const styles = {
   identityLabel: { fontSize: '11px', fontWeight: 800, color: 'var(--accent)', textTransform: 'uppercase' as const, marginBottom: 4 },
   displayName: { fontSize: '24px', fontWeight: 900, margin: 0, letterSpacing: '-0.02em' },
   quickInfo: { display: 'flex', gap: 12, marginTop: 8, fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)' },
-  verifiedDate: { fontSize: '10px', color: 'var(--text-muted)', fontWeight: 700 },
   bioBox: { fontSize: '14px', lineHeight: 1.8, color: 'var(--text-primary)', whiteSpace: 'pre-wrap' as const, background: 'var(--bg-secondary)', padding: '20px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' },
   detailsGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)' },
   detailItem: { display: 'flex', flexDirection: 'column' as const, gap: 4 },

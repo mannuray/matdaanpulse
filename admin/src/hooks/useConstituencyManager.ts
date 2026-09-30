@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { getAdminConstituencies, bulkTagConstituencies } from '../services/constituency.service';
+import { getAdminConstituencies, bulkTagConstituencies, computeConstituencyAnalysis } from '../services/constituency.service';
 import { getElections } from '../services/election.service';
 import { getStates } from '../services/geo.service';
-import { computeConstituencyAnalysis, enrichConstituencies } from '../services/ai.service';
-import { useEnrichmentProgress } from './useEnrichmentProgress';
 import { useToast } from '../context/ToastContext';
 import { useSelection } from './useSelection';
 import type { Constituency, Election, State } from '../types';
@@ -30,7 +28,7 @@ export function useConstituencyManager() {
   const [total, setTotal] = useState(0);
 
   const selection = useSelection<Constituency>(constituencies);
-  const enrichProgress = useEnrichmentProgress(selectedElectionId);
+  const [computing, setComputing] = useState(false);
 
   // 1. Initial Load
   useEffect(() => {
@@ -107,27 +105,16 @@ export function useConstituencyManager() {
   };
 
   const computeAnalysis = async () => {
-    if (!selectedElectionId) return;
+    if (!selectedElectionId || computing) return;
+    setComputing(true);
     try {
       // For simplicity, passing empty history for now or derive from manifest if available
       await computeConstituencyAnalysis(selectedElectionId, []);
       toast('Analysis computation queued');
     } catch {
       toast('Failed to start computation', 'error');
-    }
-  };
-
-  /** Starts AI enrichment for the selected constituencies, or all when none are selected. */
-  const runEnrichment = async () => {
-    if (!selectedElectionId) return;
-    const ids = Array.from(selection.selectedIds);
-    const scope = ids.length > 0 ? `${ids.length} selected constituencies` : 'ALL constituencies in this election';
-    if (!window.confirm(`Run AI enrichment for ${scope}?`)) return;
-    try {
-      await enrichConstituencies(selectedElectionId, ids.length > 0 ? ids : undefined);
-      toast('AI enrichment started');
-    } catch {
-      toast('Failed to start enrichment', 'error');
+    } finally {
+      setComputing(false);
     }
   };
 
@@ -136,7 +123,7 @@ export function useConstituencyManager() {
     constituencies: filteredConstituencies, loading,
     search, setSearch, districtFilter, setDistrictFilter, tagFilter, setTagFilter,
     page, totalPages: Math.ceil(total / 100), total,
-    allDistricts, allTags, selection, enrichProgress,
-    bulkAddTag, computeAnalysis, runEnrichment, loadPage: setPage, refresh: loadData
+    allDistricts, allTags, selection, computing,
+    bulkAddTag, computeAnalysis, loadPage: setPage, refresh: loadData
   };
 }

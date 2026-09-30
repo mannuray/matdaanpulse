@@ -5,13 +5,12 @@ import {
 } from '../services/candidate.service';
 import { getPersons, createPerson } from '../services/person.api';
 import { getParties } from '../services/geo.service';
-import { enrichCandidates } from '../services/ai.service';
 import { useToast } from '../context/ToastContext';
 import type { Candidate, Party, PersonWithStats } from '../types';
 
 /**
  * CONTROLLER: Candidate Edit (MVC)
- * Manages candidate form state, master record linking, and AI enrichment.
+ * Manages candidate form state, and master record linking.
  */
 export function useCandidateEdit(id?: string) {
   const { toast } = useToast();
@@ -39,9 +38,6 @@ export function useCandidateEdit(id?: string) {
   const [personResults, setPersonResults] = useState<PersonWithStats[]>([]);
   const [isLinking, setIsLinking] = useState(false);
   const searchTimer = useRef<ReturnType<typeof setTimeout>>();
-
-  // Enrichment State
-  const [enriching, setEnriching] = useState(false);
 
   // 1. Initial Load
   const loadData = useCallback(async () => {
@@ -165,24 +161,9 @@ export function useCandidateEdit(id?: string) {
     }
   };
 
-  // 4. AI Enrichment
-  const runEnrichment = async () => {
-    if (!id || !candidate?.election_id) return;
-    setEnriching(true);
-    try {
-      await enrichCandidates(candidate.election_id, [id]);
-      toast('AI enrichment queued');
-    } catch {
-      toast('Enrichment failed', 'error');
-    } finally {
-      setEnriching(false);
-    }
-  };
-
   return {
     candidate, parties, loading, saving, form, setForm,
     personSearch, setPersonSearch, personResults, isLinking,
-    handleSave, linkToPerson, createMasterRecord, unlink,
-    enriching, runEnrichment
+    handleSave, linkToPerson, createMasterRecord, unlink
   };
 }

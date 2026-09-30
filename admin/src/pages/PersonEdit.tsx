@@ -35,8 +35,6 @@ export default function PersonEdit() {
           name={person.name} 
           isDirty={false} // Hook doesn't expose dirty yet, but placeholder for pattern
           saving={saving} 
-          enriching={editor.enriching}
-          runEnrichment={editor.runEnrichment}
           onSubmit={onSubmit}
           navigate={navigate}
           id={person.id}
@@ -48,15 +46,6 @@ export default function PersonEdit() {
           <ErrorBoundary>
             <ProfileForm form={form} setForm={setForm} />
           </ErrorBoundary>
-
-          {form.bio && (
-            <ErrorBoundary>
-              <div className="card-elevated" style={{ padding: 'var(--space-6)' }}>
-                <h3 className="card-title-tiny" style={{ color: 'var(--accent)' }}>AI GENERATED DOSSIER</h3>
-                <div style={styles.bioText}>{form.bio}</div>
-              </div>
-            </ErrorBoundary>
-          )}
         </div>
 
         <aside style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
@@ -86,14 +75,12 @@ interface HeaderProps {
   name: string;
   isDirty: boolean;
   saving: boolean;
-  enriching: boolean;
-  runEnrichment: () => void;
   onSubmit: (e: React.FormEvent) => void;
   navigate: (path: string) => void;
   id: string;
 }
 
-function Header({ name, saving, enriching, runEnrichment, onSubmit, navigate, id }: HeaderProps) {
+function Header({ name, saving, onSubmit, navigate, id }: HeaderProps) {
   return (
     <div style={styles.headerRoot}>
       <div style={styles.headerContent}>
@@ -105,9 +92,6 @@ function Header({ name, saving, enriching, runEnrichment, onSubmit, navigate, id
           </div>
         </div>
         <div style={{ display: 'flex', gap: 12 }}>
-          <button onClick={runEnrichment} disabled={enriching} className="btn btn-outline" style={styles.actionBtn}>
-            {enriching ? 'ENRICHING...' : 'AI ENRICH PROFILE'}
-          </button>
           <button onClick={onSubmit} disabled={saving} className="btn btn-primary" style={styles.saveBtn}>
             {saving ? 'SAVING...' : 'SAVE MASTER RECORD'}
           </button>
@@ -158,6 +142,10 @@ function ProfileForm({ form, setForm }: FormProps) {
       <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
         <label className="form-label" style={styles.labelSmall}>MASTER PHOTO URL</label>
         <input className="form-input" value={form.photo_url} onChange={e => update({ photo_url: e.target.value })} placeholder="https://..." style={styles.inputHeight} />
+      </div>
+      <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
+        <label className="form-label" style={styles.labelSmall}>BIOGRAPHY</label>
+        <textarea className="form-textarea" value={form.bio} onChange={e => update({ bio: e.target.value })} rows={6} style={{ ...styles.bioText, width: '100%' }} />
       </div>
     </div>
   );
@@ -237,7 +225,6 @@ const styles = {
   headerLabel: { fontSize: '9px', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase' as const },
   headerTitle: { fontSize: 'var(--text-xl)', fontWeight: 900, margin: 0, lineHeight: 1 },
   backBtn: { height: 32, fontSize: '10px', fontWeight: 800 },
-  actionBtn: { height: 34, fontSize: '11px', fontWeight: 700 },
   saveBtn: { height: 34, padding: '0 24px', fontSize: '11px', fontWeight: 800 },
   mainGrid: { maxWidth: '1400px', margin: 'var(--space-6) auto 0', padding: '0 var(--space-6)', display: 'grid', gridTemplateColumns: '1fr 400px', gap: 'var(--space-6)' },
   cardPadding: { padding: 'var(--space-6)' },

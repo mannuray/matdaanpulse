@@ -1,21 +1,17 @@
 import { Controller, Delete, Get, Post, Put, Body, Param, Query, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { PersonsService } from '../../candidates/persons.service';
-import { AiEnrichmentService } from '../../ai/ai-enrichment.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminPersonDto } from '../dto/admin-response.dto';
-import { CreatePersonDto, UpdatePersonDto, MergePersonsDto, EnrichPersonsDto } from '../dto/admin-input.dto';
+import { CreatePersonDto, UpdatePersonDto, MergePersonsDto } from '../dto/admin-input.dto';
 import { AdminPersonsQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/persons')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class AdminPersonsController {
-  constructor(
-    private readonly personsService: PersonsService,
-    private readonly aiService: AiEnrichmentService,
-  ) {}
+  constructor(private readonly personsService: PersonsService) {}
 
   @Get()
   @Roles('SUPER_ADMIN', 'EDITOR')
@@ -61,17 +57,5 @@ export class AdminPersonsController {
   @Roles('SUPER_ADMIN')
   autoLink() {
     return this.personsService.autoLink();
-  }
-
-  @Post('enrich')
-  @Roles('SUPER_ADMIN')
-  enrichPersons(@Body() body?: EnrichPersonsDto) {
-    return this.aiService.enrichPersons(body?.person_ids);
-  }
-
-  @Get('enrich/status')
-  @Roles('SUPER_ADMIN', 'EDITOR')
-  getEnrichmentStatus() {
-    return this.aiService.getProgress('persons');
   }
 }

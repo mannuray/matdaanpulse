@@ -36,7 +36,3 @@ export function createParty(data: { id: string; name: string; color?: string; sy
 export function updateParty(id: string, data: Partial<Party>) {
   return apiFetch<Party>(`/admin/parties/${id}`, { method: 'PUT', body: JSON.stringify(data) });
 }
-
-export function enrichParty(id: string) {
-  return apiFetch<Party>(`/admin/parties/${id}/enrich`, { method: 'POST' });
-}

@@ -36,9 +36,9 @@ export class PersonProfileDto {
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
   date_of_birth: Date | null;
   
-  /** No `bio` column: resolved from metadata (manual bio, else AI profile). */
+  /** No `bio` column: resolved from metadata.bio. */
   @Expose()
-  @Transform(({ obj }) => obj.bio ?? obj.metadata?.bio ?? obj.metadata?.ai_profile ?? null)
+  @Transform(({ obj }) => obj.bio ?? obj.metadata?.bio ?? null)
   bio: string | null;
 
   @Expose() metadata: any;

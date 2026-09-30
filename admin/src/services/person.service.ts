@@ -10,8 +10,7 @@ export const PersonService = {
    */
   resolveBiography(person: Person | PersonWithCandidates | null): string {
     if (!person) return '';
-    const meta = (person.metadata || {}) as any;
-    return person.bio || meta.ai_profile || '';
+    return person.bio || '';
   },
 
   /**

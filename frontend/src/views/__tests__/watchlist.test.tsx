@@ -137,7 +137,7 @@ describe('WatchlistPreview (rail)', () => {
 
 describe('SeatPanel track toggle', () => {
   const vm = (tracked: boolean, onToggleTrack = noop): SeatPanelVM => ({
-    seatId: 'C1', name: 'Seat One', candidates: [], margin: null, history: null, briefing: null, fullPageHref: '/x', tracked, onToggleTrack, onClose: noop,
+    seatId: 'C1', name: 'Seat One', candidates: [], margin: null, history: null, fullPageHref: '/x', tracked, onToggleTrack, onClose: noop,
   });
   const show = (v: SeatPanelVM) => render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><SeatPanel vm={v} /></MemoryRouter>);
 

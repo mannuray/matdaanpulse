@@ -19,7 +19,7 @@ Not deployed: `scraper/` (seed generators and the live-count simulation; run loc
 ### What Redis is used for
 
 - **Cache:** results / constituency lists, 5–10 min TTL (`results.service.ts`, `constituencies.service.ts`).
-- **Pub/sub:** admin overrides and AI-enrichment progress are published and fanned out to SSE clients (`live.service.ts`, `ai-enrichment.service.ts`).
+- **Pub/sub:** admin result overrides are published and fanned out to SSE clients (`live.service.ts`).
 - Nothing needs persistence: the cache refills itself and live messages only matter to connected viewers. On a single instance Redis is optional; it becomes required for pub/sub once there is more than one backend instance.
 
 ## 2. Architecture
@@ -38,7 +38,7 @@ Keep the API, database and Redis in the **same region**: every uncached request 
 
 | Service | Limit | Effect on this app |
 |---|---|---|
-| Render free | Spins down after ~15 min without inbound requests; cold start 30–60 s; 512 MB RAM, 0.1 CPU; monthly instance-hour cap | Live (SSE) streams drop on spin-down and reconnect on wake; first visitor after idle waits ~1 min. Long AI-enrichment jobs can be killed mid-run. |
+| Render free | Spins down after ~15 min without inbound requests; cold start 30–60 s; 512 MB RAM, 0.1 CPU; monthly instance-hour cap | Live (SSE) streams drop on spin-down and reconnect on wake; first visitor after idle waits ~1 min. |
 | Neon free | 512 MB storage; compute auto-suspends after ~5 min idle; monthly compute-hour cap | First query after idle takes ~0.5–few s; a pooled connection may be dropped once (retry). Seed data ≈ 30–60 MB, fits. |
 | Upstash free | 256 MB; monthly command and bandwidth caps (500K commands/month at the time of writing) | Every cache read, publish and delivered message counts. A busy counting day can hit the cap — see decision D6. |
 | Vercel hobby | Non-commercial use; bandwidth caps | Fine for static SPAs. |
@@ -63,7 +63,7 @@ From the backend review (IDs refer to it). All are code/config changes in `backe
 | B10 | Neon needs pooled vs direct URLs; `setup.sh` can't take the pooled Prisma URL | §6 | `directUrl` in `schema.prisma`; run `setup.sh` with the direct URL | Done — `DIRECT_URL` (only Prisma CLI commands need it; may equal `DATABASE_URL` locally) |
 | B11 | CORS origins not trimmed | S-L3 | Trim/filter the list; exact Vercel origins | Done — plus optional `CORS_ORIGIN_REGEX`; `credentials` dropped |
 
-Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-override route (S-M3) — **done**; query DTOs on list endpoints (E-M2) — **done**; SSE heartbeat 20 s + `retry:` (O-M3) — **done**; stop public self-registration (S-M1) — **done** (`ALLOW_REGISTRATION`, plus last-SUPER_ADMIN guard); URL validation + `GEMINI_MODEL` (S-M2), request-id validation (S-L2), log correlation + `LOG_LEVEL` (O-M1) — **done**. Still open: `Cache-Control` + drop per-response `requestId`/`timestamp` from bodies so ETags work (P-M1); in-process cache in front of Redis (D6).
+Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-override route (S-M3) — **done**; query DTOs on list endpoints (E-M2) — **done**; SSE heartbeat 20 s + `retry:` (O-M3) — **done**; stop public self-registration (S-M1) — **done** (`ALLOW_REGISTRATION`, plus last-SUPER_ADMIN guard); URL validation (S-M2; the `GEMINI_MODEL` part became moot when the built-in AI was removed), request-id validation (S-L2), log correlation + `LOG_LEVEL` (O-M1) — **done**. Still open: `Cache-Control` + drop per-response `requestId`/`timestamp` from bodies so ETags work (P-M1); in-process cache in front of Redis (D6).
 
 ## 5. Setup steps (once blockers are fixed)
 
@@ -102,8 +102,6 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   DIRECT_URL=<Neon direct URL>
   REDIS_URL=<Upstash rediss:// URL>
   CORS_ORIGINS=https://<frontend>.vercel.app,https://<admin>.vercel.app
-  GEMINI_API_KEY=<key restricted to the Generative Language API>
-  GEMINI_MODEL=gemini-2.0-flash        # check the id is still served
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
   # Defaults, set only to change them:
@@ -146,15 +144,15 @@ Both need an SPA rewrite (`vercel.json`): `{"rewrites":[{"source":"/(.*)","desti
 | D4 | Observability | Off (Render logs only) / OTLP/HTTP to a hosted backend with a free tier / SigNoz Cloud (paid) | Off at launch; revisit |
 | D5 | Public self-registration (`/auth/register`) | Keep / disable / behind a flag | Disable (no product use; attack surface) |
 | D6 | Upstash quota on counting day | Rely on Upstash cache / add an in-process cache in front of Redis (single instance) | Add the in-process cache (removes most Redis reads) |
-| D7 | AI enrichment runs | From the admin panel on Render / from a laptop or CI via the API | Laptop/CI — Render free can kill long jobs |
+| D7 | ~~AI enrichment runs~~ | — | **Removed (2026-09-30):** no AI inside the app; AI-assisted data is produced offline and loaded like scraped data |
 | D8 | Vercel preview deployments | Block (exact origins only) / allow via an origin regex | Decide with D3 |
 | D9 | Deploy flow | Auto-deploy on push to `main` / manual; who runs migrations (`setup.sh` with `DIRECT_URL`) and when | Auto-deploy frontends; manual backend deploy + migrations until CI exists |
 | D10 | Backups | Neon free point-in-time window only / scheduled `pg_dump` (GitHub Action) | Scheduled `pg_dump` before counting days |
 | D11 | Node version | 20.x / 22.x | 20.x (pin in `engines`) |
-| D12 | Secrets ownership | Who holds the Render/Neon/Upstash/Vercel/Gemini accounts and rotates `JWT_SECRET` / API keys | Name an owner |
+| D12 | Secrets ownership | Who holds the Render/Neon/Upstash/Vercel accounts and rotates `JWT_SECRET` / API keys | Name an owner |
 
 ## 7. Later (not needed for launch)
 
-- Scaling beyond one instance: Redis-backed throttler storage, enrichment progress and job locks in Redis (review P-L4, E-H5).
-- Design clean-ups from the review: split `AiEnrichmentService`, `ResultChangeNotifier` (D-M1, D-M2). (The shared SSE stream helper and `CacheService.getOrSet` are done.)
+- Scaling beyond one instance: Redis-backed throttler storage (review P-L4).
+- Design clean-ups from the review: `ResultChangeNotifier` (D-M2; D-M1 `AiEnrichmentService` is gone with the built-in AI). (The shared SSE stream helper and `CacheService.getOrSet` are done.)
 - Dependency majors (Nest, Prisma), indexes (P-L1), set-based bulk writes (P-M2), JWT hardening (S-L1).

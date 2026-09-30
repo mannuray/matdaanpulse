@@ -148,11 +148,6 @@ export class CreateCandidateDto extends CandidateFieldsDto {
   name: string;
 }
 
-export class EnrichCandidatesDto {
-  @IsOptional() @IsArray() @ArrayMaxSize(MAX_IDS_PER_REQUEST) @IsUuidLike({ each: true })
-  candidate_ids?: string[];
-}
-
 export class LinkPersonDto {
   @IsUuidLike()
   person_id: string;
@@ -212,11 +207,6 @@ export class MergePersonsDto {
   target_id: string;
 }
 
-export class EnrichPersonsDto {
-  @IsOptional() @IsArray() @ArrayMaxSize(1000) @IsUuidLike({ each: true })
-  person_ids?: string[];
-}
-
 // --- Constituencies / analysis ---
 
 export class UpdateConstituencyDto {
@@ -263,33 +253,5 @@ export class UpdateAnalysisDto {
   incumbency?: Record<string, unknown>;
 
   @IsOptional() @IsString()
-  ai_briefing?: string | null;
-
-  @IsOptional() @IsObject()
-  ai_demographics?: Record<string, unknown> | null;
-
-  @IsOptional() @IsArray() @IsString({ each: true })
-  ai_key_issues?: string[];
-
-  @IsOptional() @IsString() @MaxLength(20)
-  ai_status?: string | null;
-
-  @IsOptional() @IsString()
   notes?: string | null;
-}
-
-export class BulkAiStatusDto {
-  @IsArray() @ArrayMaxSize(MAX_IDS_PER_REQUEST) @IsUuidLike({ each: true })
-  ids: string[];
-
-  @IsString() @IsNotEmpty() @MaxLength(20)
-  status: string;
-}
-
-export class EnrichConstituenciesDto {
-  @IsOptional() @IsArray() @ArrayMaxSize(MAX_IDS_PER_REQUEST) @IsString({ each: true })
-  const_ids?: string[];
-
-  @IsOptional() @IsIn(['pre_poll', 'post_poll'])
-  mode?: 'pre_poll' | 'post_poll';
 }

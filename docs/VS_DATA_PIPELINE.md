@@ -279,74 +279,9 @@ GROUP BY d.name ORDER BY d.name;
 - `districts.code` is `varchar(50)` — codes like `WB_PASCHIMBARDHAMAN` (19 chars) fit after migration 009
 - State IDs: Bihar = 5, West Bengal = 36 (check `SELECT id, name FROM states`)
 
-## Step 7: AI Enrichment
+## Step 7: AI Enrichment (removed)
 
-Generate AI-powered constituency briefings, demographics, and key issues using Claude API.
-
-### 7a. Trigger enrichment from admin panel
-
-1. Go to **Admin** (`localhost:3081`) → **Constituencies**
-2. Select the election from the picker
-3. Click **AI Enrich** button (processes all pending constituencies)
-
-Or via API:
-```bash
-TOKEN=$(curl -s http://localhost:3082/api/auth/login \
-  -H 'Content-Type: application/json' \
-  -d "{\"email\":\"$ADMIN_EMAIL\",\"password\":\"$ADMIN_PASSWORD\"}" \
-  | python3 -c 'import sys,json; print(json.load(sys.stdin)["data"]["access_token"])')
-# (admin account created via `cd backend && npm run create-admin`)
-
-# Enrich all pending
-curl -X POST http://localhost:3082/api/admin/ai/enrich-constituencies/{electionId} \
-  -H "Authorization: Bearer $TOKEN"
-
-# Enrich specific constituencies (for retries)
-curl -X POST http://localhost:3082/api/admin/ai/enrich-constituencies/{electionId} \
-  -H "Authorization: Bearer $TOKEN" \
-  -H 'Content-Type: application/json' \
-  -d '{"const_ids": ["WB_VS21_239_BALARAMPUR", "WB_VS21_250_RAIPUR"]}'
-```
-
-### 7b. Monitor progress
-
-```bash
-curl -s http://localhost:3082/api/admin/ai/enrichment-status/{electionId} \
-  -H "Authorization: Bearer $TOKEN" | python3 -m json.tool
-```
-
-Or check directly in DB:
-```sql
-SELECT ai_status, COUNT(*) FROM constituency_analysis
-WHERE election_id = '{uuid}' GROUP BY ai_status;
-```
-
-### 7c. Retry failed constituencies
-
-The enrichment service has a `skipEnriched` behavior:
-- **Full election run** (no `const_ids`): skips constituencies where `ai_status != 'pending'` — safe to re-run
-- **Targeted retry** (with `const_ids`): force re-enriches regardless of current status
-
-Find failed/pending:
-```sql
-SELECT c.const_no, c.name, ca.ai_status FROM constituency_analysis ca
-JOIN constituencies c ON c.id = ca.const_id
-WHERE ca.election_id = '{uuid}' AND ca.ai_status NOT IN ('generated', 'reviewed', 'published')
-ORDER BY c.const_no;
-```
-
-### 7d. Review workflow
-
-AI status progression: `pending` → `generated` → `reviewed` → `published`
-
-After enrichment completes, review AI-generated content in admin panel and promote status as appropriate.
-
-### 7e. Important notes
-
-- Backend runs compiled JS from `dist/` — after code changes, run `npm run build` in `backend/` and restart the process
-- Sequential processing respects Claude API rate limits
-- ~294 constituencies takes ~30-45 minutes
-- The enrichment runs in-memory; restarting the backend process loses progress tracking (but DB writes are durable)
+The built-in AI enrichment (admin **AI Enrich** button, `/admin/.../enrich` endpoints, `ai_*` columns) was removed on 2026-09-30. AI-assisted data is produced offline and loaded like scraped data (seed SQL or admin edits). Skip to Step 8.
 
 ## Step 8: Compute Constituency Analysis
 
@@ -376,7 +311,6 @@ The compute endpoint: `POST /api/v1/admin/constituency-analysis/compute/:electio
 5. **Swing tab**: Shows flipped seats (needs `compare_with` pointing to previous election)
 6. **History tab**: Shows dominance + anti-incumbency (needs `history` + `history_years` arrays)
 7. **Admin constituencies**: District and Region columns populated, filter dropdown works
-8. **AI briefings**: Check a few constituency analyses have non-null `ai_briefing`, `ai_demographics`, `ai_key_issues`
 
 ## Common Issues
 
@@ -393,7 +327,6 @@ The compute endpoint: `POST /api/v1/admin/constituency-analysis/compute/:electio
 | Region `ON CONFLICT` fails | Unique constraint is `(state_id, code)` not just `code` | Use `ON CONFLICT (state_id, code) DO NOTHING` |
 | District code too long | `districts.code` was `varchar(10)` | Migration 009 widens to `varchar(50)` |
 | District UPDATE returns 0 rows | Wrong `state_id` in seed SQL | Verify with `SELECT id, name FROM states WHERE name ILIKE '%{state}%'` |
-| AI enrichment re-processes all | Full run without `const_ids` used to skip nothing | Fixed: `skipEnriched` skips non-pending on full runs |
 | Backend changes not taking effect | Runs compiled JS from `dist/` | Run `npm run build` in `backend/` + restart process |
 
 ## State-Specific Notes
@@ -408,7 +341,6 @@ The compute endpoint: `POST /api/v1/admin/constituency-analysis/compute/:electio
 - Districts: 23 (`database/seed_wb_districts_regions.sql`)
 - Regions: 8 (Hills, North Plains, Malda-Dinajpur, Murshidabad-Nadia, South Bengal, Kolkata-Howrah, Junglemahal, Rarh-Burdwan)
 - Non-contiguous: Jhargram (220-222, 237), Paschim Medinipur (219, 223-236) — 2017 carve-out
-- AI enrichment: all 294 constituencies enriched for 2021
 
 ### Bihar (BR)
 - State ID: 5

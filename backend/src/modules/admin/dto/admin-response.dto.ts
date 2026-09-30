@@ -7,10 +7,6 @@ export class AdminAnalysisDto {
   @Expose() dominance: string;
   @Expose() dominance_party: string | null;
   @Expose() incumbency: any;
-  @Expose() ai_briefing: string | null;
-  @Expose() ai_status: string;
-  @Expose() ai_demographics: any;
-  @Expose() ai_key_issues: string[];
 }
 
 export class AdminPartyDto {
@@ -90,9 +86,9 @@ export class AdminPersonDto {
   @Expose() photo_url: string | null;
   @Expose() gender: string | null;
   @Expose() education: string | null;
-  /** No `bio` column: resolved from metadata (manual bio, else AI profile). */
+  /** No `bio` column: resolved from metadata.bio. */
   @Expose()
-  @Transform(({ obj }) => obj.bio ?? obj.metadata?.bio ?? obj.metadata?.ai_profile ?? null)
+  @Transform(({ obj }) => obj.bio ?? obj.metadata?.bio ?? null)
   bio: string | null;
 
   @Expose() 

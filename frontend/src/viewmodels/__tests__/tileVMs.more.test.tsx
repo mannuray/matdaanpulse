@@ -151,15 +151,14 @@ describe('shared watchlist (seat panel + leaders)', () => {
 });
 
 describe('useSeatPanelVM', () => {
-  it('is null without a selected seat and does not fetch; then returns seat data', async () => {
-    const analysis = vi.spyOn(electionApi, 'getConstituencyAnalysis').mockResolvedValue({ ai_briefing: 'Tight contest.' } as never);
+  it('is null without a selected seat; then returns seat data without fetching an analysis', async () => {
+    const analysis = vi.spyOn(electionApi, 'getConstituencyAnalysis');
     const { result } = renderHook(() => ({ vm: useSeatPanelVM(), store: useDashboardStore() }), { wrapper: wrap() });
     expect(result.current.vm).toBeNull();
-    expect(analysis).not.toHaveBeenCalled();
     act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'BR_VS_1_SANDESH' }));
-    await waitFor(() => expect(result.current.vm?.briefing).toBe('Tight contest.'));
+    await waitFor(() => expect(result.current.vm).not.toBeNull());
     const vm = result.current.vm!;
-    expect(analysis).toHaveBeenCalledWith('e1', 'BR_VS_1_SANDESH');
+    expect(analysis).not.toHaveBeenCalled();
     expect(vm.margin).toBe(27);
     expect(vm.candidates.map(c => c.partyId)).toEqual(['JDU', 'RJD']);
     expect(vm.name.toLowerCase()).toContain('sandesh');

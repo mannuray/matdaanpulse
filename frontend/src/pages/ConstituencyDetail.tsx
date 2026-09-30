@@ -92,25 +92,10 @@ export default function ConstituencyDetail() {
         <div className="constituency-grid" style={styles.grid}>
           
           <aside style={styles.leftCol}>
-            <ErrorBoundary>
-              <div className="card-elevated" style={styles.cardPadding}>
-                <h3 className="card-title-tiny" style={styles.briefingTitle}>{t('ai_briefing')}</h3>
-                <p className="bio-text" style={styles.briefingText}>
-                  {analysis?.ai_briefing || t('analysis_processing')}
-                </p>
-              </div>
-            </ErrorBoundary>
-
             <div style={styles.twoColGrid}>
               {formattedDemographics && formattedDemographics.length > 0 && (
                 <ErrorBoundary>
                   <DemographicsCard data={formattedDemographics} />
-                </ErrorBoundary>
-              )}
-
-              {analysis?.ai_key_issues && analysis.ai_key_issues.length > 0 && (
-                <ErrorBoundary>
-                  <KeyIssuesCard issues={analysis.ai_key_issues} />
                 </ErrorBoundary>
               )}
             </div>
@@ -214,22 +199,6 @@ function DemographicsCard({ data }: { data: { label: string; value: string }[] }
   );
 }
 
-function KeyIssuesCard({ issues }: { issues: string[] }) {
-  const { t } = useTranslation();
-  return (
-    <div className="card-elevated" style={styles.cardPadding}>
-      <h3 className="card-title-tiny" style={{ marginBottom: 'var(--space-4)' }}>{t('key_issues')}</h3>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        {issues.map((issue: string) => (
-          <span key={issue} className="badge badge-neutral" style={styles.issueBadge}>
-            {issue}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // --- Styles ---
 
 const styles: Record<string, CSSProperties> = {
@@ -265,8 +234,6 @@ const styles: Record<string, CSSProperties> = {
   leftCol: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', minWidth: 0 },
   rightCol: { display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', width: '500px', flexShrink: 0 },
   cardPadding: { padding: 'var(--space-6)' },
-  briefingTitle: { color: 'var(--accent)', marginBottom: 'var(--space-4)' },
-  briefingText: { fontSize: '15px', lineHeight: 1.8, color: 'var(--text-primary)', margin: 0, maxWidth: '1100px' },
   twoColGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 'var(--space-6)' },
   demographicRow: { 
     display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', 
@@ -277,7 +244,6 @@ const styles: Record<string, CSSProperties> = {
     whiteSpace: 'nowrap' as const, fontSize: '10px', letterSpacing: '0.04em' 
   },
   demographicValue: { fontWeight: 700, color: 'var(--text-primary)', textAlign: 'right' as const },
-  issueBadge: { fontSize: '11px', padding: '6px 12px', fontWeight: 700 },
   statsCard: { padding: 'var(--space-5)' },
   statsDivider: { marginTop: 'var(--space-4)', borderTop: '1px solid var(--border)', paddingTop: 'var(--space-4)' },
   tableHeader: { 

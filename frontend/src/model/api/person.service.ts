@@ -14,11 +14,9 @@ export function getPerson(id: string) {
  * Pure logic for persona-specific data presentation.
  */
 export const PersonService = {
-  formatBiography(person: PersonDetail): string {
-    const aiProfile = person.metadata?.ai_profile;
-    if (typeof aiProfile === 'string' && aiProfile) return aiProfile;
-    if (person.bio) return person.bio;
-    return "No detailed biography available for this person.";
+  /** The recorded biography, or null when none (the page hides the card). */
+  formatBiography(person: PersonDetail): string | null {
+    return person.bio?.trim() ? person.bio : null;
   },
 
   formatGender(gender?: string): string {

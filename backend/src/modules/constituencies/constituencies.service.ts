@@ -136,28 +136,17 @@ export class ConstituenciesService {
   async updateAnalysis(id: string, data: UpdateAnalysisDto) {
     const existing = await this.prisma.constituency_analysis.findUnique({ where: { id } });
     if (!existing) throw new AnalysisNotFoundException(id);
-    const { ai_demographics, incumbency, ...rest } = data;
+    const { incumbency, ...rest } = data;
     const updated = await this.prisma.constituency_analysis.update({
       where: { id },
       data: {
         ...rest,
         ...(incumbency !== undefined && { incumbency: incumbency as Prisma.InputJsonValue }),
-        ...(ai_demographics !== undefined && {
-          ai_demographics: ai_demographics === null ? Prisma.JsonNull : (ai_demographics as Prisma.InputJsonValue),
-        }),
         updated_at: new Date(),
       }
     });
     await this.cache.del(`election:${existing.election_id}:public-analysis`);
     return updated;
-  }
-
-  async bulkUpdateAiStatus(ids: string[], status: string) {
-    await this.prisma.constituency_analysis.updateMany({
-      where: { id: { in: ids } },
-      data: { ai_status: status, updated_at: new Date() }
-    });
-    return { updated: ids.length };
   }
 
   async getPublicAnalysis(electionId: string) {

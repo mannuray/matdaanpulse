@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useParams, useNavigate, NavigateFunction } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useConstituencyEditor } from '../hooks/useConstituencyEditor';
-import { bulkUpdateAiStatus } from '../services/ai.service';
-import { useToast } from '../context/ToastContext';
 import Spinner from '../components/atoms/Spinner';
 import ErrorBoundary from '../components/atoms/ErrorBoundary';
 import type { Constituency } from '../types';
@@ -14,23 +12,14 @@ const TAG_PALETTE = [
   'urban', 'semi_urban', 'rural', 'border', 'flood_prone', 'naxal_affected',
 ];
 
-const AI_STATUS_CONFIG: Record<string, { label: string; bg: string; color: string }> = {
-  pending: { label: 'Pending', bg: 'var(--bg-secondary)', color: 'var(--text-muted)' },
-  pre_poll: { label: 'Pre-Poll', bg: '#ede9fe', color: '#5b21b6' },
-  generated: { label: 'Generated', bg: 'var(--warning-soft)', color: 'var(--warning-text)' },
-  reviewed: { label: 'Reviewed', bg: 'var(--accent-soft)', color: 'var(--accent)' },
-  published: { label: 'Published', bg: 'var(--success-soft)', color: 'var(--success-text)' },
-};
-
 /**
  * PAGE: Constituency Editor (MVC: View)
- * Integrated workspace for AI profiling and demographic management.
+ * Workspace for demographic, administrative and tag management.
  */
 export default function ConstituencyEdit() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { hasRole } = useAuth();
-  const { toast } = useToast();
   const canWrite = hasRole('SUPER_ADMIN', 'EDITOR');
 
   const editor = useConstituencyEditor(id);
@@ -42,21 +31,12 @@ export default function ConstituencyEdit() {
   return (
     <div className="fade-in" style={styles.pageRoot}>
       <ErrorBoundary>
-        <EditorHeader editor={editor} navigate={navigate} toast={toast} />
+        <EditorHeader editor={editor} navigate={navigate} />
       </ErrorBoundary>
 
       <div style={styles.mainGrid}>
         {/* Main Content: Logic Workspace */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-          <ErrorBoundary>
-            <BriefingWorkspace 
-              editBriefing={editor.editBriefing}
-              setEditBriefing={editor.setEditBriefing}
-              editIssues={editor.editIssues}
-              setEditIssues={editor.setEditIssues}
-              markDirty={editor.markDirty}
-            />
-          </ErrorBoundary>
           <ErrorBoundary>
             <DemographicsForm 
               editDemographics={editor.editDemographics}
@@ -99,23 +79,12 @@ export default function ConstituencyEdit() {
 interface EditorHeaderProps {
   editor: ReturnType<typeof useConstituencyEditor>;
   navigate: NavigateFunction;
-  toast: (msg: string, type?: 'success' | 'error') => void;
 }
 
-function EditorHeader({ editor, navigate, toast }: EditorHeaderProps) {
+function EditorHeader({ editor, navigate }: EditorHeaderProps) {
   const { constituency, election, isDirty, saving, handleSave } = editor;
   if (!constituency) return null;
   
-  const aiStatus = constituency.analysis?.ai_status || 'pending';
-
-  const onStatusChange = async (status: string) => {
-    try {
-      await bulkUpdateAiStatus([constituency.analysis!.id], status);
-      toast(`Status changed to ${status}`);
-      editor.refresh();
-    } catch { toast('Status update failed', 'error'); }
-  };
-
   return (
     <div style={styles.headerRoot}>
       <div style={styles.headerContent}>
@@ -128,19 +97,6 @@ function EditorHeader({ editor, navigate, toast }: EditorHeaderProps) {
           <span className={`badge badge-${constituency.type.toLowerCase()}`} style={{ fontSize: '10px' }}>{constituency.type}</span>
         </div>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-          <div style={styles.statusPickerBox}>
-            <span style={styles.statusPickerLabel}>AI STATUS</span>
-            <select 
-              className="form-select" 
-              value={aiStatus} 
-              onChange={(e) => onStatusChange(e.target.value)}
-              style={styles.statusSelect}
-            >
-              {Object.keys(AI_STATUS_CONFIG).map(s => (
-                <option key={s} value={s}>{AI_STATUS_CONFIG[s].label.toUpperCase()}</option>
-              ))}
-            </select>
-          </div>
           <button 
             onClick={handleSave} 
             disabled={!isDirty || saving} 
@@ -149,72 +105,6 @@ function EditorHeader({ editor, navigate, toast }: EditorHeaderProps) {
           >
             {saving ? 'SAVING...' : 'SAVE CHANGES'}
           </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-interface BriefingProps {
-  editBriefing: string;
-  setEditBriefing: (v: string) => void;
-  editIssues: string[];
-  setEditIssues: (v: string[]) => void;
-  markDirty: () => void;
-}
-
-function BriefingWorkspace({ editBriefing, setEditBriefing, editIssues, setEditIssues, markDirty }: BriefingProps) {
-  const [newIssue, setNewIssue] = useState('');
-
-  return (
-    <div className="card-elevated" style={styles.cardPadding}>
-      <h3 className="card-title-tiny" style={{ color: 'var(--accent)' }}>AI Strategic Briefing</h3>
-      <textarea
-        className="form-textarea"
-        value={editBriefing}
-        onChange={(e) => { setEditBriefing(e.target.value); markDirty(); }}
-        rows={10}
-        style={styles.briefingTextarea}
-        placeholder="Strategic outlook and constituency narrative..."
-      />
-
-      <div style={{ marginTop: 'var(--space-6)' }}>
-        <h3 className="card-title-tiny">Key Battleground Issues</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {editIssues.map((issue, i) => (
-            <div key={i} style={{ display: 'flex', gap: 8 }}>
-              <input 
-                className="form-input" 
-                value={issue} 
-                onChange={(e) => {
-                  const next = [...editIssues]; next[i] = e.target.value; 
-                  setEditIssues(next); markDirty();
-                }} 
-                style={styles.issueInput} 
-              />
-              <button 
-                className="btn btn-sm btn-danger" 
-                onClick={() => { setEditIssues(editIssues.filter((_, j) => j !== i)); markDirty(); }}
-              >
-                &times;
-              </button>
-            </div>
-          ))}
-          <div style={{ display: 'flex', gap: 8 }}>
-            <input 
-              className="form-input" 
-              placeholder="New battleground issue..." 
-              value={newIssue} 
-              onChange={e => setNewIssue(e.target.value)} 
-              style={styles.issueInput} 
-            />
-            <button 
-              className="btn btn-sm btn-outline" 
-              onClick={() => { if (newIssue.trim()) { setEditIssues([...editIssues, newIssue.trim()]); setNewIssue(''); markDirty(); } }}
-            >
-              ADD
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -387,15 +277,10 @@ const styles = {
   headerLabel: { fontSize: '9px', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase' as const },
   headerTitle: { fontSize: 'var(--text-xl)', fontWeight: 900, margin: 0, lineHeight: 1 },
   backBtn: { height: 32, fontSize: '10px', fontWeight: 800 },
-  statusPickerBox: { display: 'flex', alignItems: 'center', gap: 8, padding: '4px 12px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' },
-  statusPickerLabel: { fontSize: '9px', fontWeight: 800, color: 'var(--text-muted)' },
-  statusSelect: { height: 24, fontSize: 10, padding: '0 4px', fontWeight: 700 },
   saveBtn: { height: 34, padding: '0 24px', fontSize: '11px', fontWeight: 800 },
   mainGrid: { maxWidth: '1400px', margin: 'var(--space-6) auto 0', padding: '0 var(--space-6)', display: 'grid', gridTemplateColumns: '1fr 380px', gap: 'var(--space-6)' },
   cardPadding: { padding: 'var(--space-6)' },
   sideCardPadding: { padding: 'var(--space-5)' },
-  briefingTextarea: { width: '100%', fontSize: '14px', lineHeight: 1.7, background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '16px' },
-  issueInput: { flex: 1, height: 34, fontSize: '13px' },
   demoGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-4)' },
   labelSmall: { fontSize: '9px' },
   tagCloud: { display: 'flex', gap: 6, flexWrap: 'wrap' as const, marginBottom: 16 },

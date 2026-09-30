@@ -101,7 +101,7 @@ export class PersonsService {
 
     if (!person) throw new PersonNotFoundException(id);
 
-    const enriched = person.candidates.map((c) => {
+    const candidates = person.candidates.map((c) => {
       const r = c.results[0]; // Assuming 1:1 candidate to result mapping
       return {
         id: c.id,
@@ -125,7 +125,7 @@ export class PersonsService {
       ...person,
       state: person.states,
       district: person.districts,
-      candidates: enriched
+      candidates
     };
   }
 

@@ -5,7 +5,7 @@ import AdminLandingCard from '../components/common/AdminLandingCard';
 import AdminPageHeader from '../components/common/AdminPageHeader';
 import ElectionPicker from '../components/ElectionPicker';
 import Spinner from '../components/atoms/Spinner';
-import type { Constituency, Election, State, EnrichmentProgress } from '../types';
+import type { Constituency, Election, State } from '../types';
 
 /**
  * PAGE: Constituency Manager (MVC: View)
@@ -15,12 +15,11 @@ export default function ConstituencyManager() {
   const navigate = useNavigate();
   const { hasRole } = useAuth();
   const canWrite = hasRole('SUPER_ADMIN', 'EDITOR');
-  const canEnrich = hasRole('SUPER_ADMIN');
   const manager = useConstituencyManager();
 
   const { 
     selectedElection, setSelectedElection, loading, 
-    constituencies, enrichProgress, computeAnalysis, runEnrichment
+    constituencies, computing, computeAnalysis
   } = manager;
 
   if (!selectedElection) {
@@ -43,23 +42,13 @@ export default function ConstituencyManager() {
         subtitle="Administrative metadata and strategic profiling"
         actions={canWrite && (
           <div style={{ display: 'flex', gap: 8 }}>
-            {canEnrich && (
-              <button
-                className="btn btn-outline"
-                onClick={runEnrichment}
-                disabled={enrichProgress?.inProgress}
-                style={styles.computeBtn}
-              >
-                {enrichProgress?.inProgress ? 'ENRICHING...' : 'AI ENRICH'}
-              </button>
-            )}
             <button 
               className="btn btn-outline" 
               onClick={computeAnalysis} 
-              disabled={enrichProgress?.inProgress}
+              disabled={computing}
               style={styles.computeBtn}
             >
-              {enrichProgress?.inProgress ? 'COMPUTING...' : 'COMPUTE ALL ANALYSIS'}
+              {computing ? 'COMPUTING...' : 'COMPUTE ALL ANALYSIS'}
             </button>
           </div>
         )}
@@ -96,7 +85,6 @@ export default function ConstituencyManager() {
         </div>
       </div>
 
-      <Footer enrichProgress={enrichProgress} />
     </div>
   );
 }
@@ -207,7 +195,6 @@ function ConstituencyTable({ constituencies, selection, navigate }: TableProps) 
           <th style={styles.thLeft}>#</th>
           <th style={styles.thLeft}>Constituency</th>
           <th style={styles.thLeft}>District / Region</th>
-          <th style={styles.thLeft}>Status</th>
           <th style={styles.thLeft}>Tags</th>
           <th style={styles.thRight}>Actions</th>
         </tr>
@@ -234,11 +221,6 @@ function ConstituencyTable({ constituencies, selection, navigate }: TableProps) 
                 <div style={{ fontSize: '10px', color: 'var(--text-muted)', fontWeight: 700 }}>{c.region?.name || '-'}</div>
               </td>
               <td style={styles.td}>
-                <span className="badge badge-neutral" style={{ fontSize: '9px', fontWeight: 800 }}>
-                  {c.analysis?.ai_status?.toUpperCase() || 'PENDING'}
-                </span>
-              </td>
-              <td style={styles.td}>
                 <div style={styles.tagList}>
                   {cTags.slice(0, 3).map(tag => (
                     <span key={tag} className="badge badge-neutral" style={styles.tagBadge}>{tag.replace(/_/g, ' ')}</span>
@@ -254,23 +236,6 @@ function ConstituencyTable({ constituencies, selection, navigate }: TableProps) 
         })}
       </tbody>
     </table>
-  );
-}
-
-function Footer({ enrichProgress }: { enrichProgress: EnrichmentProgress | null }) {
-  if (!enrichProgress?.inProgress) return null;
-  const pct = Math.round((enrichProgress.completed / enrichProgress.total) * 100);
-  return (
-    <div style={styles.footerRoot}>
-      <div style={styles.progressLabel}>
-        <span>SYSTEM BACKGROUND COMPUTATION</span>
-        <span>{pct}%</span>
-      </div>
-      <div style={styles.progressBar}>
-        <div style={{ ...styles.progressFill, width: `${pct}%` }} />
-      </div>
-      <div style={styles.progressMeta}>PROCESSING: {enrichProgress.last_const_name || '...'}</div>
-    </div>
   );
 }
 
@@ -300,9 +265,4 @@ const styles = {
   tagBadge: { fontSize: '8px', padding: '2px 6px' },
   tagMore: { fontSize: '8px', color: 'var(--text-muted)', fontWeight: 700 },
   actionBtn: { fontSize: '10px', padding: '2px 8px' },
-  footerRoot: { position: 'fixed' as const, bottom: 0, left: 240, right: 0, background: 'var(--bg-primary)', borderTop: '1px solid var(--border)', padding: '16px 24px', zIndex: 110, boxShadow: '0 -4px 12px rgba(0,0,0,0.05)' },
-  progressLabel: { display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontWeight: 900, marginBottom: 8, color: 'var(--text-primary)' },
-  progressBar: { height: 6, background: 'var(--bg-secondary)', borderRadius: 3, overflow: 'hidden' as const, marginBottom: 8 },
-  progressFill: { height: '100%', background: 'var(--accent)', transition: 'width 0.3s' },
-  progressMeta: { fontSize: '10px', color: 'var(--text-muted)', fontWeight: 600 },
 };

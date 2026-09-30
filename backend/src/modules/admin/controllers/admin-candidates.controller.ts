@@ -1,20 +1,16 @@
 import { Controller, Delete, Get, Post, Put, Body, Param, Query, UseGuards, UseInterceptors, HttpCode, ParseUUIDPipe } from '@nestjs/common';
 import { CandidatesService } from '../../candidates/candidates.service';
-import { AiEnrichmentService } from '../../ai/ai-enrichment.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminCandidateDto } from '../dto/admin-response.dto';
-import { CreateCandidateDto, UpdateCandidateDto, LinkPersonDto, EnrichCandidatesDto } from '../dto/admin-input.dto';
+import { CreateCandidateDto, UpdateCandidateDto, LinkPersonDto } from '../dto/admin-input.dto';
 
 @Controller('admin/candidates')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class AdminCandidatesController {
-  constructor(
-    private readonly candidatesService: CandidatesService,
-    private readonly aiService: AiEnrichmentService,
-  ) {}
+  constructor(private readonly candidatesService: CandidatesService) {}
 
   @Get()
   @Roles('SUPER_ADMIN', 'EDITOR')
@@ -58,20 +54,5 @@ export class AdminCandidatesController {
   @HttpCode(204)
   async unlinkPerson(@Param('id', ParseUUIDPipe) id: string) {
     await this.candidatesService.unlinkPerson(id);
-  }
-
-  @Post('enrich/:electionId')
-  @Roles('SUPER_ADMIN')
-  enrichCandidates(
-    @Param('electionId', ParseUUIDPipe) electionId: string,
-    @Body() body?: EnrichCandidatesDto,
-  ) {
-    return this.aiService.enrichCandidates(electionId, body?.candidate_ids);
-  }
-
-  @Get('enrich/status/:electionId')
-  @Roles('SUPER_ADMIN', 'EDITOR')
-  getEnrichmentStatus(@Param('electionId', ParseUUIDPipe) electionId: string) {
-    return this.aiService.getProgress(`candidates_${electionId}`);
   }
 }

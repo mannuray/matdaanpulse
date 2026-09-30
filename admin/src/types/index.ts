@@ -229,27 +229,7 @@ export interface ConstituencyAnalysis {
     re_contesting?: boolean;
     switched_to?: string;
   };
-  ai_briefing: string | null;
-  ai_demographics: {
-    population?: number;
-    literacy_pct?: number;
-    urban_pct?: number;
-    dominant_castes?: Record<string, number> | string[];
-    religions?: Record<string, number>;
-    sc_st_pct?: number;
-  } | null;
-  ai_key_issues: string[] | null;
-  ai_generated_at: string | null;
-  ai_status: 'pending' | 'generated' | 'reviewed' | 'published';
   notes: string | null;
-}
-
-export interface EnrichmentProgress {
-  total: number;
-  completed: number;
-  failed: number;
-  inProgress: boolean;
-  last_const_name?: string;
 }
 
 export interface ResultOverride {

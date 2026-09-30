@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getAdminConstituencyDetail, updateConstituency } from '../services/constituency.service';
-import { updateConstituencyAnalysis } from '../services/ai.service';
 import { getDistricts, getRegions } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
 import type { Constituency } from '../types';
@@ -19,8 +18,6 @@ export function useConstituencyEditor(id?: string) {
   const [isDirty, setIsDirty] = useState(false);
 
   // Modular State
-  const [editBriefing, setEditBriefing] = useState('');
-  const [editIssues, setEditIssues] = useState<string[]>([]);
   const [editDemographics, setEditDemographics] = useState({
     population: '', literacy_pct: '', urban_pct: '', sc_st_pct: '',
     dominant_castes: '', religions: ''
@@ -40,8 +37,6 @@ export function useConstituencyEditor(id?: string) {
       setConstituency(data);
       
       const meta = data.metadata || {};
-      setEditBriefing(data.analysis?.ai_briefing || '');
-      setEditIssues(data.analysis?.ai_key_issues || []);
       setEditDemographics({
         population: String(meta.population || ''),
         literacy_pct: String(meta.literacy_pct || ''),
@@ -118,13 +113,6 @@ export function useConstituencyEditor(id?: string) {
           sc_st_pct: Number(editDemographics.sc_st_pct) || null,
         },
       });
-      // The constituency PATCH ignores analysis fields; persist them via the analysis endpoint
-      if (constituency.analysis?.id) {
-        await updateConstituencyAnalysis(constituency.analysis.id, {
-          ai_briefing: editBriefing,
-          ai_key_issues: editIssues,
-        });
-      }
       toast('Constituency updated');
       loadData();
       return true;
@@ -139,8 +127,7 @@ export function useConstituencyEditor(id?: string) {
   return {
     constituency, election: constituency?.election, districts, regions, 
     loading, saving, isDirty,
-    editBriefing, setEditBriefing, editDemographics, setEditDemographics,
-    editIssues, setEditIssues, adminInfo, setAdminInfo,
+    editDemographics, setEditDemographics, adminInfo, setAdminInfo,
     handleSave, addTag, removeTag, markDirty, refresh: loadData
   };
 }

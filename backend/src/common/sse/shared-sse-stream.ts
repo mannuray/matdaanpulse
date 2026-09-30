@@ -17,7 +17,7 @@ export interface SharedSseOptions {
 /**
  * One shared stream per channel: events merged with a heartbeat `ping`,
  * completed on shutdown, reset when the last subscriber leaves (so the next
- * client builds a fresh one). Used by the live-results and enrichment SSE endpoints.
+ * client builds a fresh one). Used by the live-results SSE endpoint.
  */
 export function sharedSseStream(events$: Observable<MessageEvent>, opts: SharedSseOptions): Observable<MessageEvent> {
   const heartbeat$ = interval(opts.heartbeatMs ?? SSE_HEARTBEAT_MS).pipe(

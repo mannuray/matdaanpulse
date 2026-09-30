@@ -1,6 +1,5 @@
 import { Controller, Post, Put, Get, Body, Param, UseGuards, UseInterceptors } from '@nestjs/common';
 import { PartiesService } from '../../parties/parties.service';
-import { AiEnrichmentService } from '../../ai/ai-enrichment.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
@@ -11,10 +10,7 @@ import { CreatePartyDto, UpdatePartyDto } from '../dto/admin-input.dto';
 @Controller('admin')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class AdminPartiesController {
-  constructor(
-    private readonly partiesService: PartiesService,
-    private readonly aiEnrichmentService: AiEnrichmentService,
-  ) {}
+  constructor(private readonly partiesService: PartiesService) {}
 
   @Post('parties')
   @Roles('SUPER_ADMIN', 'EDITOR')
@@ -35,11 +31,5 @@ export class AdminPartiesController {
   @UseInterceptors(new MapToDtoInterceptor(AdminPartyDto))
   updateParty(@Param('id') id: string, @Body() body: UpdatePartyDto) {
     return this.partiesService.update(id, body);
-  }
-
-  @Post('parties/:id/enrich')
-  @Roles('SUPER_ADMIN', 'EDITOR')
-  enrichParty(@Param('id') id: string) {
-    return this.aiEnrichmentService.enrichParty(id);
   }
 }

@@ -6,11 +6,10 @@ import { createPerson } from '../services/person.api';
 import { getElections } from '../services/election.service';
 import { getConstituencies } from '../services/constituency.service';
 import { getStates } from '../services/geo.service';
-import { enrichCandidates } from '../services/ai.service';
 import { useToast } from '../context/ToastContext';
 import type { Candidate, Constituency, Election, State } from '../types';
 
-export type PersonFilter = 'all' | 'linked' | 'unlinked' | 'ai_enriched' | 'not_enriched';
+export type PersonFilter = 'all' | 'linked' | 'unlinked';
 
 /**
  * CONTROLLER: Candidate Manager (MVC)
@@ -42,7 +41,6 @@ export function useCandidateManager() {
     Map<string, { candidate: Candidate; matches: Candidate[] }>
   >(new Map());
   const [selectedMatches, setSelectedMatches] = useState<Map<string, Set<string>>>(new Map());
-  const [enriching, setEnriching] = useState(false);
 
   // Fetch initial master data
   useEffect(() => {
@@ -195,24 +193,12 @@ export function useCandidateManager() {
     } catch { toast('Unlink failed', 'error'); }
   };
 
-  const runEnrichment = async () => {
-    if (!selectedElection) return;
-    setEnriching(true);
-    try {
-      const res = await enrichCandidates(selectedElection);
-      toast(`AI enrichment queued for ${res.total} candidates`);
-    } catch { toast('Enrichment failed', 'error'); }
-    finally { setEnriching(false); }
-  };
-
   // ── VIEW MODEL ──
 
   const filteredCandidates = useMemo(() => {
     return candidates.filter(c => {
       if (personFilter === 'linked') return !!c.person_id;
       if (personFilter === 'unlinked') return !c.person_id;
-      if (personFilter === 'ai_enriched') return !!(c.metadata as any)?.ai_profile;
-      if (personFilter === 'not_enriched') return !(c.metadata as any)?.ai_profile;
       return true;
     });
   }, [candidates, personFilter]);
@@ -224,6 +210,6 @@ export function useCandidateManager() {
     candidates: filteredCandidates, loading, 
     globalSearch, setGlobalSearch, globalResults, globalLoading,
     linkingSuggestions, selectedMatches, toggleMatch, handleLink, handleUnlink,
-    enriching, runEnrichment, refresh: loadCandidates
+    refresh: loadCandidates
   };
 }

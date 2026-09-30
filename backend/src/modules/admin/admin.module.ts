@@ -16,7 +16,6 @@ import { CandidatesModule } from '../candidates/candidates.module';
 import { ConstituenciesModule } from '../constituencies/constituencies.module';
 import { AuthModule } from '../auth/auth.module';
 import { LiveModule } from '../live/live.module';
-import { AiModule } from '../ai/ai.module';
 import { AuditLogModule } from '../audit-log/audit-log.module';
 
 @Module({
@@ -27,7 +26,6 @@ import { AuditLogModule } from '../audit-log/audit-log.module';
     PartiesModule,
     CandidatesModule,
     ConstituenciesModule,
-    AiModule,
     AuthModule,
     LiveModule,
     AuditLogModule,
