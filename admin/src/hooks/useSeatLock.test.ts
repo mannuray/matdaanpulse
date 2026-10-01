@@ -85,4 +85,43 @@ describe('useSeatLock', () => {
     window.dispatchEvent(new Event('pagehide'));
     expect(release).toHaveBeenCalledWith('e1', 'c1', { keepalive: true });
   });
+
+  it('unmounting while an acquire is pending releases the lock when it resolves', async () => {
+    let resolveAcq: (v: unknown) => void = () => {};
+    acquire.mockImplementationOnce(() => new Promise((r) => { resolveAcq = r; }));
+    const { unmount } = renderHook(() => useSeatLock('e1', 'c1', 'me', undefined));
+    await act(async () => { vi.advanceTimersByTime(LOCK_ACQUIRE_DEBOUNCE_MS + 10); });
+    expect(acquire).toHaveBeenCalledTimes(1);
+    unmount();
+    await act(async () => { resolveAcq(lock('me', 'c1')); });
+    expect(release).toHaveBeenCalledWith('e1', 'c1', undefined);
+  });
+
+  it('a stale remote lock (previous holder) does not undo a successful take-over', async () => {
+    const t = (s: string) => `2026-10-01T10:00:${s}Z`;
+    const priya = (s: string) => ({ ...lock('priya'), acquired_at: t(s) });
+    acquire.mockRejectedValueOnce(new ApiError('locked', 409, 'RESULT_6002', [], { lock: priya('00') }));
+    const { result, rerender } = renderHook(({ r }) => useSeatLock('e1', 'c1', 'me', r), { initialProps: { r: priya('00') as ReturnType<typeof lock> | undefined } });
+    await waitFor(() => expect(result.current.state).toBe('locked'));
+    acquire.mockResolvedValueOnce({ ...lock('me'), acquired_at: t('01') });
+    await act(() => result.current.takeOver());
+    expect(result.current.state).toBe('held');
+    rerender({ r: priya('00') });
+    expect(result.current.state).toBe('held');
+    rerender({ r: priya('02') });
+    expect(result.current.state).toBe('locked');
+  });
+
+  it('a failed heartbeat (503) keeps ownership, so a later switch still releases', async () => {
+    acquire.mockResolvedValueOnce(lock('me'));
+    const { result, rerender } = renderHook(({ c }) => useSeatLock('e1', c, 'me', undefined), { initialProps: { c: 'c1' as string | null } });
+    await waitFor(() => expect(result.current.state).toBe('held'));
+    acquire.mockRejectedValueOnce(new ApiError('down', 503, 'RESULT_6003'));
+    await act(async () => { vi.advanceTimersByTime(LOCK_HEARTBEAT_MS); });
+    expect(acquire).toHaveBeenCalledTimes(2);
+    expect(result.current.state).toBe('held');
+    acquire.mockResolvedValue(lock('me', 'c2'));
+    rerender({ c: 'c2' });
+    await waitFor(() => expect(release).toHaveBeenCalledWith('e1', 'c1', undefined));
+  });
 });

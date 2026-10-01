@@ -16,18 +16,26 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
   const currentRef = useRef({ e: electionId, c: constId });
   currentRef.current = { e: electionId, c: constId };
 
-  const attempt = useCallback(async (e: string, c: string, takeOver: boolean) => {
-    const stale = () => currentRef.current.e !== e || currentRef.current.c !== c;
+  const genRef = useRef(0);
+  const mineRef = useRef<SeatLock | null>(null);
+
+  const attempt = useCallback(async (e: string, c: string, takeOver: boolean, isHeartbeat = false) => {
+    const gen = genRef.current;
+    const stale = () => genRef.current !== gen || currentRef.current.e !== e || currentRef.current.c !== c;
     try {
       const l = await acquireSeatLock(e, c, takeOver);
       if (stale()) { void releaseSeatLock(e, c, undefined).catch(() => {}); return; }
       heldRef.current = { e, c };
+      mineRef.current = l;
       setHolder(l);
       setState('held');
     } catch (err) {
       if (stale()) return;
+      const conflict = err instanceof ApiError && err.status === 409;
+      if (isHeartbeat && !conflict) return; // transient: keep ownership, next interval retries
       heldRef.current = null;
-      if (err instanceof ApiError && err.status === 409) {
+      mineRef.current = null;
+      if (conflict) {
         setHolder((err.details?.lock as SeatLock | undefined) ?? null);
         setState('locked');
       } else {
@@ -45,8 +53,10 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
     const t = setTimeout(() => { void attempt(electionId, constId, false); }, LOCK_ACQUIRE_DEBOUNCE_MS);
     return () => {
       clearTimeout(t);
+      genRef.current += 1;
       const h = heldRef.current;
       heldRef.current = null;
+      mineRef.current = null;
       if (h) void releaseSeatLock(h.e, h.c, undefined).catch(() => {});
     };
   }, [electionId, constId, attempt]);
@@ -54,7 +64,7 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
   // Heartbeat while held.
   useEffect(() => {
     if (state !== 'held' || !constId) return;
-    const t = setInterval(() => { void attempt(electionId, constId, false); }, LOCK_HEARTBEAT_MS);
+    const t = setInterval(() => { void attempt(electionId, constId, false, true); }, LOCK_HEARTBEAT_MS);
     return () => clearInterval(t);
   }, [state, electionId, constId, attempt]);
 
@@ -70,8 +80,11 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
 
   // Someone took the seat over (SSE) → we are now read-only.
   useEffect(() => {
-    if (state === 'held' && remoteLock && remoteLock.user_id !== myUserId) {
+    // Ignore a stale remote lock (older than ours, e.g. the previous holder before our take-over).
+    const mine = mineRef.current;
+    if (state === 'held' && remoteLock && remoteLock.user_id !== myUserId && (!mine || remoteLock.acquired_at >= mine.acquired_at)) {
       heldRef.current = null;
+      mineRef.current = null;
       setHolder(remoteLock);
       setState('locked');
     }
