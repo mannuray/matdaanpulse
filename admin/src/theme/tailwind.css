@@ -18,6 +18,7 @@
 @source "../pages/Manifests.tsx";
 @source "../pages/Login.tsx";
 @source "../pages/Dashboard.tsx";
+@source "../pages/Feedback.tsx";
 @source "../components/routing";
 @source "../components/feedback";
 

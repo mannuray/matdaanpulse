@@ -7,6 +7,7 @@ import { ElectionPicker } from './ElectionPicker';
 import { HealthDot } from './HealthDot';
 import { ShortcutsDialog } from './ShortcutsDialog';
 import { CommandPalette } from './CommandPalette';
+import { FeedbackBell } from './FeedbackBell';
 import { Kbd } from '../ui/Kbd';
 import { cn } from '../ui/cn';
 
@@ -25,6 +26,7 @@ export function TopBar() {
   const { live, editorDirty } = useShellStatus();
   const [paletteOpen, setPaletteOpen] = useState(false);
   const initials = (user?.name ?? '?').split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase();
+  const canSeeFeedback = hasRole('SUPER_ADMIN') || hasRole('EDITOR');
   const pill = live === 'idle' ? null : LIVE_PILL[live];
 
   // ⌘K (macOS) / Ctrl+K anywhere opens the palette.
@@ -64,6 +66,7 @@ export function TopBar() {
             <span className={cn('h-2 w-2 rounded-full', pill.dot)} aria-hidden />{pill.text}
           </span>
         )}
+        {canSeeFeedback && <FeedbackBell />}
         <HealthDot canOpenStatus={hasRole('SUPER_ADMIN')} />
         <ShortcutsDialog />
         <Menu.Root>

@@ -5,7 +5,7 @@ import { Sidebar } from './shell/Sidebar';
 import { TopBar } from './shell/TopBar';
 
 /** Rebuilt pages manage their own padding and scrolling; legacy pages keep `.admin-content` until they migrate. Each page task appends its path. */
-export const BARE_PATHS: string[] = ['/overrides', '/parties', '/elections', '/persons', '/candidates', '/constituencies', '/manifests', '/'];
+export const BARE_PATHS: string[] = ['/overrides', '/parties', '/elections', '/persons', '/candidates', '/constituencies', '/manifests', '/', '/feedback'];
 /** Exact path or a sub-path. '/' is exact only: its sub-path prefix would be '//'. */
 export const isBare = (pathname: string) => BARE_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
 

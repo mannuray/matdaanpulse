@@ -1,14 +1,15 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { Sidebar } from './Sidebar';
 import { ElectionPicker, shortElectionName } from './ElectionPicker';
 import { TopBar } from './TopBar';
 import { HealthDot } from './HealthDot';
+import { notifyFeedbackChanged } from '../../utils/feedback';
 
-const auth = { user: { id: 'u', name: 'Mannu K', role: 'EDITOR', email: 'x' }, logout: vi.fn(), hasRole: (r: string) => r === 'EDITOR' };
+const auth = { user: { id: 'u', name: 'Mannu K', role: 'EDITOR', email: 'x' }, logout: vi.fn(), hasRole: (r: string) => r === auth.user.role };
 vi.mock('../../context/AuthContext', () => ({ useAuth: () => auth }));
 const shell = vi.hoisted(() => ({ editorDirty: false, live: 'idle' as 'idle' | 'connecting' | 'open' | 'reconnecting' | 'offline' }));
 vi.mock('../../context/ShellStatusContext', async (importOriginal) => ({
@@ -54,6 +55,7 @@ afterEach(() => {
   shell.editorDirty = false;
   shell.live = 'idle';
   election.setElectionId.mockClear();
+  auth.user.role = 'EDITOR';
   auth.logout.mockClear();
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
@@ -160,6 +162,78 @@ describe('TopBar', () => {
     const pill = screen.getByText('Live updates offline');
     expect(pill.className).toContain('bg-bad-soft');
     expect(pill.className).toContain('text-bad-text');
+  });
+});
+
+describe('Feedback bell', () => {
+  const stubTotal = (total: number) => {
+    const fetchMock = vi.fn(async (url: string) => (String(url).includes('/admin/feedback')
+      ? { ok: true, status: 200, json: async () => ({ success: true, data: [], pagination: { page: 1, limit: 1, total, totalPages: total } }) }
+      : { ok: true }));
+    vi.stubGlobal('fetch', fetchMock);
+    return fetchMock;
+  };
+
+  it('shows the count of new reports, capped at 99+, and asks for status=new&limit=1', async () => {
+    const f = stubTotal(7);
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    expect(await screen.findByRole('link', { name: 'Feedback, 7 new' })).toBeTruthy();
+    expect(screen.getByText('7')).toBeTruthy();
+    expect(f.mock.calls.some(([u]) => String(u).includes('/admin/feedback?') && String(u).includes('status=new') && String(u).includes('limit=1'))).toBe(true);
+    cleanup();
+    stubTotal(250);
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    expect(await screen.findByText('99+')).toBeTruthy();
+  });
+
+  it('hides the badge at zero', async () => {
+    const f = stubTotal(0);
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    await waitFor(() => expect(f.mock.calls.some(([u]) => String(u).includes('/admin/feedback'))).toBe(true));
+    expect(await screen.findByRole('link', { name: 'Feedback, 0 new' })).toBeTruthy();
+    expect(screen.queryByText('0')).toBeNull();
+  });
+
+  it('is absent for viewers and makes no feedback request', async () => {
+    auth.user.role = 'VIEWER';
+    const f = stubTotal(3);
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    await Promise.resolve();
+    expect(screen.queryByRole('link', { name: /Feedback/ })).toBeNull();
+    expect(f.mock.calls.some(([u]) => String(u).includes('/admin/feedback'))).toBe(false);
+  });
+
+  it('hides the badge when the request fails', async () => {
+    const f = vi.fn(async (url: string) => { if (String(url).includes('/admin/feedback')) throw new Error('down'); return { ok: true }; });
+    vi.stubGlobal('fetch', f);
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    await waitFor(() => expect(f.mock.calls.some(([u]) => String(u).includes('/admin/feedback'))).toBe(true));
+    expect(screen.getByRole('link', { name: 'Feedback, 0 new' })).toBeTruthy();
+    expect(screen.queryByText('0')).toBeNull();
+  });
+
+  it('with unsaved edits, the bell asks first and cancel stays put', async () => {
+    stubTotal(2);
+    shell.editorDirty = true;
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+    render(<MemoryRouter initialEntries={['/parties/BJP']}><TopBar /><Routes><Route path="*" element={<Where />} /></Routes></MemoryRouter>);
+    fireEvent.click(await screen.findByRole('link', { name: 'Feedback, 2 new' }));
+    expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
+    expect(screen.getByTestId('where').textContent).toBe('/parties/BJP');
+    confirm.mockReturnValue(true);
+    fireEvent.click(screen.getByRole('link', { name: 'Feedback, 2 new' }));
+    expect(screen.getByTestId('where').textContent).toBe('/feedback');
+  });
+
+  it('recounts when the Feedback page reports a status change', async () => {
+    const f = stubTotal(4);
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    await screen.findByRole('link', { name: 'Feedback, 4 new' });
+    const before = f.mock.calls.length;
+    stubTotal(3);
+    notifyFeedbackChanged();
+    expect(await screen.findByRole('link', { name: 'Feedback, 3 new' })).toBeTruthy();
+    expect(before).toBeGreaterThan(0);
   });
 });
 

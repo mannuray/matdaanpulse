@@ -21,3 +21,7 @@ export function firstLine(message: string, max = 120): string {
   const line = message.split(/\r?\n/).map((s) => s.trim()).find(Boolean) ?? '';
   return line.length > max ? `${line.slice(0, max - 1).trimEnd()}…` : line;
 }
+
+/** Fired on window when a report's status changes, so the top-bar bell recounts straight away. */
+export const FEEDBACK_CHANGED_EVENT = 'matdaanpulse:feedback-changed';
+export const notifyFeedbackChanged = () => { if (typeof window !== 'undefined') window.dispatchEvent(new Event(FEEDBACK_CHANGED_EVENT)); };
