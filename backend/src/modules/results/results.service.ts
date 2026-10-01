@@ -241,6 +241,8 @@ export class ResultsService {
         name: true,
         const_no: true,
         type: true,
+        current_round: true,
+        total_rounds: true,
         results: {
           select: {
             id: true,
@@ -274,6 +276,8 @@ export class ResultsService {
       const_name: co.name,
       const_no: co.const_no,
       const_type: co.type,
+      current_round: co.current_round ?? null,
+      total_rounds: co.total_rounds ?? null,
       candidates: co.results.map(r => ({
         result_id: r.id,
         candidate_id: r.candidate_id,
