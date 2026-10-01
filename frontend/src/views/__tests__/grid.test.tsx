@@ -122,6 +122,6 @@ describe('theme controls', () => {
     const { container } = bar();
     const mark = container.querySelector('a[data-logo-mark]')!;
     expect(mark.getAttribute('href')).toBe('/');
-    expect(mark.getAttribute('aria-label')).toBe('Election Tracker');
+    expect(mark.getAttribute('aria-label')).toBe('MatdaanPulse');
   });
 });

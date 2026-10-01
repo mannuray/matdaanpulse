@@ -457,7 +457,7 @@ test.describe('theme selector', () => {
     const mb = (await mark.boundingBox())!;
     expect(mb.width).toBeGreaterThanOrEqual(44);
     expect(mb.height).toBeGreaterThanOrEqual(44);
-    await expect(page.getByRole('link', { name: 'Election Tracker' })).toHaveCount(1);
+    await expect(page.getByRole('link', { name: 'MatdaanPulse' })).toHaveCount(1);
     const tabs = page.getByRole('radiogroup', { name: 'Map layers' });
     const names = await tabs.getByRole('radio').allTextContents();
     expect(names).toContain('Reserved');

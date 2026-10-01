@@ -28,7 +28,7 @@ export default function Login() {
   return (
     <div className="login-page">
       <form onSubmit={handleSubmit} className="login-card">
-        <h1>Election Tracker Admin</h1>
+        <h1>MatdaanPulse Admin</h1>
         {error && <div className="alert alert-error">{error}</div>}
         <div className="form-group">
           <label className="form-label" htmlFor="email">Email</label>

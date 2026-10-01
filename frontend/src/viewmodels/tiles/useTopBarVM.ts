@@ -106,7 +106,7 @@ export function useTopBarVM(): TopBarVM {
       declared: countDeclared(src.data.mapRegions),
       total: src.totalSeats,
     },
-    shareText: `${current.name} - Election Tracker`,
+    shareText: `${current.name} - MatdaanPulse`,
     lang: i18n.language,
     langs: LANGS,
     onType: t => { if (t !== current.type) go(recall(t, all) ?? pickLatestElection(all, t), t); },
