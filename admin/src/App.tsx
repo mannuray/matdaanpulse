@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import ErrorBoundary from './components/atoms/ErrorBoundary';
 import Layout from './components/Layout';
+import { ProtectedRoute } from './components/routing/ProtectedRoute';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Elections from './pages/Elections';
@@ -19,20 +19,6 @@ import LiveConsole from './pages/LiveConsole';
 import Constituencies from './pages/Constituencies';
 import Persons from './pages/Persons';
 
-function ProtectedRoute({ children, roles }: { children: React.ReactNode; roles?: string[] }) {
-  const { isAuthenticated, hasRole } = useAuth();
-  if (!isAuthenticated) return <Navigate to="/login" />;
-  if (roles && roles.length > 0 && !roles.some((r) => hasRole(r))) {
-    return (
-      <div style={{ padding: 40, textAlign: 'center' }}>
-        <h2>Access Denied</h2>
-        <p style={{ color: 'var(--text-secondary)' }}>You do not have permission to view this page.</p>
-      </div>
-    );
-  }
-  return <>{children}</>;
-}
-
 function App() {
   return (
     <AuthProvider>
@@ -45,27 +31,27 @@ function App() {
                 <Route index element={<Dashboard />} />
                 <Route path="elections/:id/edit" element={<EditRedirect base="/elections" />} />
                 <Route path="elections/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Elections /></ProtectedRoute>} />
-                
+
                 {/* Manifests: one per election; full-width panel at /manifests/:electionId */}
                 <Route path="manifests/:id/edit" element={<EditRedirect base="/manifests" />} />
                 <Route path="manifests/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Manifests /></ProtectedRoute>} />
-                
+
                 {/* Parties: list + panel at /parties/:id; old /:id/edit links redirect */}
                 <Route path="parties/:id/edit" element={<EditRedirect base="/parties" />} />
                 <Route path="parties/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Parties /></ProtectedRoute>} />
-                
+
                 {/* Candidates */}
                 <Route path="candidates/:id/edit" element={<EditRedirect base="/candidates" />} />
                 <Route path="candidates/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Candidates /></ProtectedRoute>} />
-                
+
                 {/* Persons */}
                 <Route path="persons/:id/edit" element={<EditRedirect base="/persons" />} />
                 <Route path="persons/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Persons /></ProtectedRoute>} />
-                
+
                 {/* Constituencies */}
                 <Route path="constituencies/:id/edit" element={<EditRedirect base="/constituencies" />} />
                 <Route path="constituencies/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Constituencies /></ProtectedRoute>} />
-                
+
                 {/* Overrides & Logs */}
                 <Route path="overrides" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><LiveConsole /></ProtectedRoute>} />
                 <Route path="feedback" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Feedback /></ProtectedRoute>} />
