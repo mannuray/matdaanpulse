@@ -34,4 +34,19 @@ describe('usePersonEdit', () => {
     await act(() => result.current.handleSave());
     expect(updatePerson).toHaveBeenCalledWith('p1', expect.objectContaining({ gender: 'Male', education: 'BA' }));
   });
+
+  it('is clean after load, dirty after an edit, clean after reset; merge reports success', async () => {
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+    const { result } = renderHook(() => usePersonEdit('p1'), { wrapper });
+    expect(result.current.loading).toBe(true);
+    await waitFor(() => expect(result.current.person).not.toBeNull());
+    expect(result.current.dirty).toBe(false);
+    act(() => result.current.setForm({ ...result.current.form, bio: 'New bio' }));
+    expect(result.current.dirty).toBe(true);
+    act(() => result.current.reset());
+    expect(result.current.dirty).toBe(false);
+    let merged = false;
+    await act(async () => { merged = await result.current.handleMerge('dup', 'Nitish Kr'); });
+    expect(merged).toBe(true);
+  });
 });

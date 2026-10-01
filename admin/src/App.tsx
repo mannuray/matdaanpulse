@@ -22,9 +22,7 @@ import LiveConsole from './pages/LiveConsole';
 import ConstituencyManager from './pages/ConstituencyManager';
 import ConstituencyDetail from './pages/ConstituencyDetail';
 import ConstituencyEdit from './pages/ConstituencyEdit';
-import PersonManager from './pages/PersonManager';
-import PersonDetail from './pages/PersonDetail';
-import PersonEdit from './pages/PersonEdit';
+import Persons from './pages/Persons';
 
 function ProtectedRoute({ children, roles }: { children: React.ReactNode; roles?: string[] }) {
   const { isAuthenticated, hasRole } = useAuth();
@@ -68,9 +66,8 @@ function App() {
                 <Route path="candidates/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateEdit /></ProtectedRoute>} />
                 
                 {/* Persons */}
-                <Route path="persons" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonManager /></ProtectedRoute>} />
-                <Route path="persons/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonDetail /></ProtectedRoute>} />
-                <Route path="persons/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonEdit /></ProtectedRoute>} />
+                <Route path="persons/:id/edit" element={<EditRedirect base="/persons" />} />
+                <Route path="persons/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Persons /></ProtectedRoute>} />
                 
                 {/* Constituencies */}
                 <Route path="constituencies" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ConstituencyManager /></ProtectedRoute>} />
