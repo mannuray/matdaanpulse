@@ -29,6 +29,8 @@ export const ErrorCodes = {
 
   // Result (6xxx)
   RESULT_NOT_FOUND: 'RESULT_6001',
+  SEAT_LOCKED: 'RESULT_6002',
+  LOCKS_UNAVAILABLE: 'RESULT_6003',
 
   // Candidate (7xxx)
   CANDIDATE_NOT_FOUND: 'CANDIDATE_7001',
