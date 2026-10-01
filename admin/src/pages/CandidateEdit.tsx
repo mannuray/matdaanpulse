@@ -49,9 +49,6 @@ export default function CandidateEdit() {
               parties={editor.parties} 
             />
           </ErrorBoundary>
-          <ErrorBoundary>
-            <MediaForm form={form} setForm={editor.setForm} />
-          </ErrorBoundary>
         </div>
 
         <div style={styles.rightCol}>
@@ -127,23 +124,6 @@ function AffidavitForm({ form, setForm, parties }: AffidavitFormProps) {
       <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
         <label className="form-label">Declared Assets</label>
         <input className="form-input" value={form.assets} onChange={e => setForm({...form, assets: e.target.value})} style={styles.inputHeight} />
-      </div>
-    </div>
-  );
-}
-
-interface MediaFormProps {
-  form: any;
-  setForm: (f: any) => void;
-}
-
-function MediaForm({ form, setForm }: MediaFormProps) {
-  return (
-    <div className="card-elevated" style={styles.cardPadding}>
-      <h3 className="card-title-tiny">Visual & Media</h3>
-      <div className="form-group">
-        <label className="form-label">Profile Image URL</label>
-        <input className="form-input" value={form.photo_url} onChange={e => setForm({...form, photo_url: e.target.value})} placeholder="https://..." style={styles.inputHeight} />
       </div>
     </div>
   );

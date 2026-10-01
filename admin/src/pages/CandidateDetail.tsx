@@ -45,8 +45,8 @@ export default function CandidateDetail() {
               <div style={{ ...styles.heroGlow, background: party?.color || 'var(--accent)' }} />
               <div style={styles.heroContent}>
                 <div style={{ position: 'relative' }}>
-                  {form.photo_url ? (
-                    <img src={form.photo_url} alt="" style={styles.heroImg} />
+                  {candidate.person?.photo_url ? (
+                    <img src={candidate.person?.photo_url} alt="" style={styles.heroImg} />
                   ) : (
                     <div style={styles.heroPlaceholder}>{candidate.name.charAt(0)}</div>
                   )}
