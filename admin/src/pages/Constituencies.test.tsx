@@ -127,4 +127,39 @@ describe('Constituencies page', () => {
     expect(await screen.findByText('Could not load constituency')).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Try again' })).toBeTruthy();
   });
+
+  it('a district filter picked on page 1 is gone on page 2, and the selection clears', async () => {
+    renderAt();
+    await within(table()).findByText('Patna Sahib');
+    fireEvent.change(screen.getByLabelText('District (this page)'), { target: { value: 'Patna' } });
+    fireEvent.click(screen.getByLabelText('Select Bankipur'));
+    expect(screen.getByText('1 selected')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }));
+    expect(await within(table()).findByText('Page Two Seat')).toBeTruthy();
+    expect((screen.getByLabelText('District (this page)') as HTMLSelectElement).value).toBe('');
+    expect(screen.queryByText('1 selected')).toBeNull();
+  });
+
+  it('searches by name only', async () => {
+    renderAt();
+    expect(await screen.findByPlaceholderText('Search by name…')).toBeTruthy();
+  });
+
+  it('bulk tagging the open (clean) record reloads its panel; an unrelated save does not send tags', async () => {
+    renderAt('/constituencies/a');
+    const panel = await screen.findByRole('dialog', { name: 'Patna Sahib' });
+    await within(panel).findByLabelText('Add a tag');
+    svc.getAdminConstituencyDetail.mockImplementation(async (id: string) => ({
+      ...data.page1.find((c) => c.id === id)!, metadata: { population: 1000, tags: ['urban', 'rural'] }, analysis: null,
+    }));
+    fireEvent.click(screen.getByLabelText('Select Patna Sahib'));
+    fireEvent.change(screen.getByLabelText('Add tag to selected'), { target: { value: 'rural' } });
+    expect(await within(panel).findByText('Rural')).toBeTruthy();
+    fireEvent.change(within(panel).getByLabelText('Phase'), { target: { value: '3' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
+    await waitFor(() => expect(svc.updateConstituency).toHaveBeenCalled());
+    const call = svc.updateConstituency.mock.calls[0] as unknown as [string, { metadata: Record<string, unknown> }];
+    expect(call[1].metadata).not.toHaveProperty('tags');
+    expect(call[1].metadata).toMatchObject({ phase: '3', population: 1000 });
+  });
 });

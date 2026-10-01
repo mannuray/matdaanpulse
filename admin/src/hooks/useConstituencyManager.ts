@@ -84,16 +84,29 @@ export function useConstituencyManager(electionId: string) {
   const selection = useSelection<Constituency>(filteredConstituencies);
   const { clear } = selection;
   useEffect(() => { clear(); }, [electionId, page, search, districtFilter, tagFilter, clear]);
+  // The district/tag filters only describe the page they were picked on: a new page, search or election starts unfiltered.
+  useEffect(() => { setDistrictFilter(''); setTagFilter(''); }, [electionId, page, search]);
+  // A refresh can drop rows (or a filter hide them): never keep a selection that is not on screen.
+  const { setSelectedIds } = selection;
+  useEffect(() => {
+    const visible = new Set(filteredConstituencies.map((c) => c.id));
+    setSelectedIds((prev) => (Array.from(prev).every((id) => visible.has(id)) ? prev : new Set(Array.from(prev).filter((id) => visible.has(id)))));
+  }, [filteredConstituencies, setSelectedIds]);
 
-  const bulkAddTag = async (tag: string) => {
-    if (selection.selectedIds.size === 0 || !tag) return;
+  /** Tags the selected rows that are on screen; resolves with the ids it tagged (empty on failure). */
+  const bulkAddTag = async (tag: string): Promise<string[]> => {
+    const visible = new Set(filteredConstituencies.map((c) => c.id));
+    const ids = Array.from(selection.selectedIds).filter((id) => visible.has(id));
+    if (ids.length === 0 || !tag) return [];
     try {
-      await bulkTagConstituencies(Array.from(selection.selectedIds), [tag], []);
+      await bulkTagConstituencies(ids, [tag], []);
       toast('Bulk tag applied');
       loadData();
       selection.clear();
+      return ids;
     } catch (err) {
       toastError(err, 'Bulk tag failed');
+      return [];
     }
   };
 

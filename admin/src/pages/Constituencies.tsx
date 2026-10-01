@@ -27,6 +27,12 @@ export default function Constituencies() {
   const m = useConstituencyManager(electionId);
   const sel = m.selection;
   const [confirmCompute, setConfirmCompute] = useState(false);
+  // Bumped when a bulk tag touched the record open in the panel, so the panel reloads it (if it has no unsaved edits).
+  const [panelRefresh, setPanelRefresh] = useState(0);
+  const bulkTag = async (tag: string) => {
+    const tagged = await m.bulkAddTag(tag);
+    if (route.id && tagged.includes(route.id)) setPanelRefresh((n) => n + 1);
+  };
 
   if (!electionId) {
     return (
@@ -81,7 +87,7 @@ export default function Constituencies() {
       }
       toolbar={
         <Toolbar>
-          <SearchInput label="Search seats" placeholder="Search by name or number…" value={m.search} onChange={m.setSearch} />
+          <SearchInput label="Search seats" placeholder="Search by name…" value={m.search} onChange={m.setSearch} />
           <Select aria-label="District (this page)" className="w-52" value={m.districtFilter} onChange={(e) => m.setDistrictFilter(e.target.value)}>
             <option value="">All districts (this page)</option>
             {m.allDistricts.map((d) => <option key={d} value={d}>{d}</option>)}
@@ -93,7 +99,7 @@ export default function Constituencies() {
           {sel.count > 0 && (
             <div className="ml-auto flex items-center gap-2 rounded-control bg-accent-soft px-2.5 py-1">
               <span className="text-xs font-medium text-accent">{sel.count} selected</span>
-              <Select aria-label="Add tag to selected" className="h-8 w-44" value="" onChange={(e) => { if (e.target.value) void m.bulkAddTag(e.target.value); }}>
+              <Select aria-label="Add tag to selected" className="h-8 w-44" value="" onChange={(e) => { if (e.target.value) void bulkTag(e.target.value); }}>
                 <option value="">Add tag…</option>
                 {BULK_TAGS.map((t) => <option key={t} value={t}>{tagLabel(t)}</option>)}
               </Select>
@@ -111,7 +117,7 @@ export default function Constituencies() {
           selectedKey={route.id}
           onRowClick={(c) => route.open(c.id)}
           loading={m.loading}
-          empty={<EmptyState title="No seats match" description={filtered ? 'The district and tag filters only look at this page.' : 'Try a different name or number.'} />}
+          empty={<EmptyState title="No seats match" description={filtered ? 'The district and tag filters only look at this page.' : 'Try a different name.'} />}
           footer={
             <Pager
               page={m.page} totalPages={m.totalPages} total={m.total} pageSize={CONSTITUENCY_PAGE_SIZE} noun="seats" onPage={m.loadPage}
@@ -122,7 +128,7 @@ export default function Constituencies() {
       }
       panel={
         <>
-          {route.id ? <ConstituencyPanel key={route.id} id={route.id} onClose={() => route.close()} onSaved={m.refresh} /> : null}
+          {route.id ? <ConstituencyPanel key={route.id} id={route.id} onClose={() => route.close()} onSaved={m.refresh} refreshSignal={panelRefresh} /> : null}
           <ConfirmDialog
             open={confirmCompute}
             title="Compute all analysis?"

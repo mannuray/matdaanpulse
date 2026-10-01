@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { useConstituencyEditor } from '../../../hooks/useConstituencyEditor';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
@@ -15,11 +15,20 @@ import { TAG_PALETTE, tagLabel } from './tags';
 type SeatHistory = Array<{ year: number; party: string; candidate: string }>;
 
 /** Constituency record: demographics, administrative fields, tags, and read-only seat history. */
-export function ConstituencyPanel({ id, onClose, onSaved }: { id: string; onClose: () => void; onSaved: () => void }) {
+export function ConstituencyPanel({ id, onClose, onSaved, refreshSignal = 0 }: { id: string; onClose: () => void; onSaved: () => void; refreshSignal?: number }) {
   const ed = useConstituencyEditor(id);
   const c = ed.constituency;
   useUnsavedGuard(ed.isDirty);
   const listId = useId();
+  // The list changed this record (bulk tag): reload it, but never over unsaved edits.
+  const dirtyRef = useRef(ed.isDirty);
+  dirtyRef.current = ed.isDirty;
+  const firstSignal = useRef(refreshSignal);
+  useEffect(() => {
+    if (refreshSignal === firstSignal.current) return;
+    firstSignal.current = refreshSignal;
+    if (!dirtyRef.current) void ed.refresh();
+  }, [refreshSignal]); // eslint-disable-line react-hooks/exhaustive-deps
   const [tagInput, setTagInput] = useState('');
 
   const demo = (patch: Partial<typeof ed.editDemographics>) => ed.setEditDemographics({ ...ed.editDemographics, ...patch });

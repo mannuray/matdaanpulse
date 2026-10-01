@@ -7,8 +7,8 @@ import { ToastProvider } from '../context/ToastContext';
 vi.mock('../services/constituency.service', () => ({
   getAdminConstituencyDetail: vi.fn(async () => ({
     id: 'BR_VS2025_PATNA', election_id: 'e1', name: 'Patna Sahib', const_no: 142, type: 'GEN', state_id: 1,
-    district_id: null, region_id: null, voter_turnout: null,
-    metadata: { population: 0, literacy_pct: 61.2, tags: ['urban'], phase: 2, source: 'census' },
+    district_id: 7, region_id: 3, voter_turnout: null,
+    metadata: { population: 0, literacy_pct: 61.2, urban_pct: 40, dominant_castes: 'Yadav', tags: ['urban'], phase: 2, source: 'census' },
   })),
   updateConstituency: vi.fn(async () => ({})),
 }));
@@ -33,9 +33,11 @@ describe('useConstituencyEditor numbers', () => {
     act(() => result.current.setEditDemographics({ ...result.current.editDemographics, literacy_pct: '0', urban_pct: '' }));
     await act(() => result.current.handleSave());
     expect(updateConstituency).toHaveBeenCalledWith('BR_VS2025_PATNA', expect.objectContaining({
-      const_no: 142,
-      metadata: expect.objectContaining({ population: 0, literacy_pct: 0, urban_pct: null, source: 'census', tags: ['urban'] }),
+      const_no: 142, district_id: 7, region_id: 3,
+      metadata: expect.objectContaining({ population: 0, literacy_pct: 0, urban_pct: null, source: 'census' }),
     }));
+    // Tags were not edited, so they are not sent (a bulk tag added meanwhile must survive).
+    expect((updateConstituency as any).mock.calls[0][1].metadata).not.toHaveProperty('tags');
   });
 
   it('an invalid seat number is reported on the field and nothing is sent', async () => {
@@ -47,5 +49,29 @@ describe('useConstituencyEditor numbers', () => {
     expect(ok).toBe(false);
     expect(result.current.fieldErrors.const_no).toBe('Enter a whole number, 1 or more');
     expect(updateConstituency).not.toHaveBeenCalled();
+  });
+
+  it('sends tags only when edited, and keeps an unedited legacy value as stored', async () => {
+    const svc = await import('../services/constituency.service');
+    (svc.getAdminConstituencyDetail as any).mockResolvedValueOnce({
+      id: 'x', election_id: 'e1', name: 'X', const_no: 1, type: 'GEN', state_id: 1, district_id: null, region_id: null,
+      metadata: { literacy_pct: '62.3%', tags: ['urban'] },
+    });
+    const { result } = renderHook(() => useConstituencyEditor('x'), { wrapper });
+    await waitFor(() => expect(result.current.constituency).not.toBeNull());
+    act(() => result.current.setEditDemographics({ ...result.current.editDemographics, religions: 'Hindu' }));
+    await act(() => result.current.handleSave());
+    const meta = (updateConstituency as any).mock.calls[0][1].metadata;
+    expect(meta).toMatchObject({ literacy_pct: '62.3%', religions: 'Hindu' });
+    expect(meta).not.toHaveProperty('tags');
+  });
+
+  it('choosing the original district again is not an edit', async () => {
+    const { result } = renderHook(() => useConstituencyEditor('BR_VS2025_PATNA'), { wrapper });
+    await waitFor(() => expect(result.current.constituency).not.toBeNull());
+    act(() => result.current.setAdminInfo({ ...result.current.adminInfo, district_id: '8' }));
+    expect(result.current.isDirty).toBe(true);
+    act(() => result.current.setAdminInfo({ ...result.current.adminInfo, district_id: '7' }));
+    expect(result.current.isDirty).toBe(false);
   });
 });

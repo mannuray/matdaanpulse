@@ -32,6 +32,26 @@ const isPercent = (v: string) => {
 };
 const textOrNull = (v: string | number) => (String(v).trim() === '' ? null : String(v));
 
+/**
+ * Metadata to send: the loaded keys, with a field replaced only when the user changed it (an untouched legacy
+ * value such as "62.3%" goes back as it was). Tags are sent only when edited, so a tag added meanwhile
+ * (bulk tagging) is not overwritten by the older copy this form loaded.
+ */
+function metadataPatch(loaded: Record<string, unknown> | undefined, now: Snapshot, saved: Snapshot): Record<string, unknown> {
+  const { tags: _loadedTags, ...rest } = (loaded ?? {}) as Record<string, unknown>;
+  const out: Record<string, unknown> = { ...rest };
+  const edited = (a: string | number, b: string | number) => String(a) !== String(b);
+  (['population', 'literacy_pct', 'urban_pct', 'sc_st_pct'] as const).forEach((k) => {
+    if (edited(now.demo[k], saved.demo[k])) out[k] = toOptionalNumber(now.demo[k]);
+  });
+  (['dominant_castes', 'religions'] as const).forEach((k) => {
+    if (edited(now.demo[k], saved.demo[k])) out[k] = textOrNull(now.demo[k]);
+  });
+  if (edited(now.admin.phase, saved.admin.phase)) out.phase = textOrNull(now.admin.phase);
+  if (JSON.stringify(now.tags) !== JSON.stringify(saved.tags)) out.tags = now.tags;
+  return out;
+}
+
 /** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
 export type LoadError = 'not_found' | 'failed';
 
@@ -44,7 +64,8 @@ const toSnapshot = (data: Constituency): Snapshot => {
       population: text(meta.population), literacy_pct: text(meta.literacy_pct), urban_pct: text(meta.urban_pct),
       sc_st_pct: text(meta.sc_st_pct), dominant_castes: text(meta.dominant_castes), religions: text(meta.religions),
     },
-    admin: { district_id: data.district_id ?? '', region_id: data.region_id ?? '', const_no: data.const_no ?? '', phase: text(meta.phase) },
+    // Strings throughout, so choosing the original option again is not an edit.
+    admin: { district_id: text(data.district_id), region_id: text(data.region_id), const_no: text(data.const_no), phase: text(meta.phase) },
     tags: Array.isArray(meta.tags) ? (meta.tags as string[]) : [],
   };
 };
@@ -139,25 +160,18 @@ export function useConstituencyEditor(id?: string) {
     setServerErrors({});
     setSaving(true);
     try {
+      const metadata = metadataPatch(constituency.metadata, submitted, saved);
       await updateConstituency(id, {
         district_id: submitted.admin.district_id ? Number(submitted.admin.district_id) : null,
         region_id: submitted.admin.region_id ? Number(submitted.admin.region_id) : null,
         const_no: constNo,
-        metadata: {
-          ...constituency.metadata,
-          population: toOptionalNumber(submitted.demo.population),
-          literacy_pct: toOptionalNumber(submitted.demo.literacy_pct),
-          urban_pct: toOptionalNumber(submitted.demo.urban_pct),
-          sc_st_pct: toOptionalNumber(submitted.demo.sc_st_pct),
-          dominant_castes: textOrNull(submitted.demo.dominant_castes),
-          religions: textOrNull(submitted.demo.religions),
-          phase: textOrNull(submitted.admin.phase),
-          tags: submitted.tags,
-        },
+        metadata,
       });
       toast('Constituency updated');
       // The submitted values are now the saved baseline; edits typed while saving stay dirty.
       setSaved(submitted);
+      // If the re-read below fails, the next save still diffs against what was just written.
+      setConstituency({ ...constituency, metadata: { ...(constituency.metadata ?? {}), ...metadata } });
       try {
         const data = await getAdminConstituencyDetail(id);
         setConstituency(data);

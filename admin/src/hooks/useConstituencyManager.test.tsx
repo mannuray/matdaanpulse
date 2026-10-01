@@ -60,4 +60,14 @@ describe('useConstituencyManager', () => {
     await waitFor(() => expect(getAdminConstituencies).toHaveBeenLastCalledWith('e2', 1, 100, undefined));
     expect(getAdminConstituencies).not.toHaveBeenCalledWith('e2', 3, 100, undefined);
   });
+
+  it('a district filter is dropped when the page changes', async () => {
+    const { result } = renderHook(() => useConstituencyManager('e1'), { wrapper });
+    await waitFor(() => expect(result.current.constituencies).toHaveLength(3));
+    act(() => result.current.setDistrictFilter('Patna'));
+    expect(result.current.constituencies).toHaveLength(2);
+    act(() => result.current.loadPage(2));
+    await waitFor(() => expect(result.current.districtFilter).toBe(''));
+    await waitFor(() => expect(result.current.constituencies.map((c) => c.id)).toEqual(['z']));
+  });
 });
