@@ -35,7 +35,7 @@ describe('toastError', () => {
       fire = (e) => toastError(e, 'Operation failed');
       return null;
     }
-    const { container } = render(
+    render(
       <ToastProvider>
         <Probe />
       </ToastProvider>,
@@ -44,10 +44,10 @@ describe('toastError', () => {
       error: { message: 'Validation failed', fields: [{ field: 'email', message: 'email must be an email' }] },
     });
     act(() => fire(err));
-    const toast = container.querySelector('.toast-error')!;
+    const toast = document.body.querySelector('[role="alert"]')!; // toasts render in a portal on body
     expect(toast.textContent).toContain('Operation failed: Validation failed');
     expect(toast.textContent).toContain('email: email must be an email');
     act(() => fire(new TypeError('Failed to fetch')));
-    expect(container.textContent).toContain('Network error');
+    expect(document.body.textContent).toContain('Network error');
   });
 });
