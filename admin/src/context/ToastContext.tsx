@@ -60,7 +60,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     <ToastContext.Provider value={value}>
       {children}
       {createPortal(
-        <div className="tw-ui pointer-events-none fixed bottom-4 right-4 z-[60] flex w-80 flex-col gap-2 font-sans">
+        <div className="pointer-events-none fixed bottom-4 right-4 z-[60] flex w-80 flex-col gap-2 font-sans">
           {toasts.map((t) => {
             const { box, Icon } = LOOK[t.type];
             const isError = t.type === 'error';

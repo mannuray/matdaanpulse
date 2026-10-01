@@ -55,11 +55,11 @@ export default function LiveConsole() {
     lc.select(id);
   };
 
-  if (lc.electionsError) return <p className="tw-ui p-10 text-center text-sm text-bad-text">Could not load elections. Check the connection and reload.</p>;
-  if (!lc.electionId) return <p className="tw-ui p-10 text-center text-sm text-ink-2">Pick an election in the top bar to start.</p>;
+  if (lc.electionsError) return <p className="p-10 text-center text-sm text-bad-text">Could not load elections. Check the connection and reload.</p>;
+  if (!lc.electionId) return <p className="p-10 text-center text-sm text-ink-2">Pick an election in the top bar to start.</p>;
 
   return (
-    <div className="tw-ui flex h-full flex-col">
+    <div className="flex h-full flex-col">
       <LiveHeader electionName={lc.electionName} reportingPct={lc.reportingPct} />
       {lc.loading && lc.seats.length === 0 ? (
         <Spinner label="Loading seats…" />

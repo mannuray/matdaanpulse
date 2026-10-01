@@ -17,8 +17,8 @@ export function ConfirmDialog({ open, title, description, confirmLabel, tone = '
   return (
     <Dialog.Root open={open} onOpenChange={(o) => { if (!o && !busy) onCancel(); }}>
       <Dialog.Portal>
-        <Dialog.Overlay className="tw-ui fixed inset-0 z-40 bg-ink/30" />
-        <Dialog.Content className="tw-ui fixed left-1/2 top-1/2 z-50 w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-panel border border-line bg-card p-6 shadow-lg">
+        <Dialog.Overlay className="fixed inset-0 z-40 bg-ink/30" />
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-panel border border-line bg-card p-6 shadow-lg">
           <Dialog.Title className="text-base font-semibold text-ink">{title}</Dialog.Title>
           <Dialog.Description className="mt-2 text-sm text-ink-2">{description}</Dialog.Description>
           <div className="mt-6 flex justify-end gap-2">

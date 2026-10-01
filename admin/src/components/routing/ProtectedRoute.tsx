@@ -26,7 +26,7 @@ export function ProtectedRoute({ children, roles }: { children: ReactNode; roles
   if (!isAuthenticated) return <Navigate to="/login" replace state={{ from: location }} />;
   if (roles && roles.length > 0 && !roles.some((r) => hasRole(r))) {
     return (
-      <div className="tw-ui flex h-full items-center justify-center bg-page p-10 font-sans">
+      <div className="flex h-full items-center justify-center bg-page p-10 font-sans">
         <EmptyState icon={ShieldAlert} title="Access denied" description="You do not have permission to view this page." />
       </div>
     );

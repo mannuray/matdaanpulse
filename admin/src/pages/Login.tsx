@@ -56,7 +56,7 @@ export default function Login() {
   };
 
   return (
-    <div className="tw-ui flex min-h-screen flex-col items-center justify-center bg-page px-4 font-sans text-ink">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-page px-4 font-sans text-ink">
       <form
         noValidate
         aria-labelledby="signin-title"

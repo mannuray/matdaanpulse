@@ -23,7 +23,6 @@ describe('Sheet', () => {
     render(<Page onRequestClose={vi.fn()} />);
     const dialog = screen.getByRole('dialog', { name: 'Bharatiya Janata Party' });
     expect(dialog.className).toContain('w-[400px]');
-    expect(dialog.className).toContain('tw-ui');
     const row = screen.getByRole('button', { name: 'Row in the table' });
     expect(row.closest('[aria-hidden="true"]')).toBeNull();
   });

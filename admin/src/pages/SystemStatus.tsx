@@ -30,7 +30,7 @@ export function SystemStatusView({ status, error, loading, onRefresh }: {
   status: Status | null; error: string | null; loading: boolean; onRefresh: () => void;
 }) {
   return (
-    <div className="tw-ui h-full overflow-y-auto bg-page font-sans text-ink">
+    <div className="h-full overflow-y-auto bg-page font-sans text-ink">
       <div className="space-y-4 p-6">
         <PageHeader
           title="System status"

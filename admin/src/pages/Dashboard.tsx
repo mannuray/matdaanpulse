@@ -28,7 +28,7 @@ export default function Dashboard() {
     ? `${shortElectionName(d.election.name, d.election.type, d.election.year)} · ${ELECTION_PHASE[d.election.status]}`
     : 'Elections at a glance';
   return (
-    <div className="tw-ui h-full overflow-y-auto bg-page font-sans text-ink">
+    <div className="h-full overflow-y-auto bg-page font-sans text-ink">
       <div className="space-y-4 p-6">
         <header>
           <h1 className="text-2xl font-semibold tracking-tight text-ink">Dashboard</h1>

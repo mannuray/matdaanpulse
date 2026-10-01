@@ -11,7 +11,7 @@ export function Sidebar() {
   const isActive = (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path));
 
   return (
-    <aside className="tw-ui flex h-screen w-60 shrink-0 flex-col bg-sidebar text-sidebar-ink">
+    <aside className="flex h-screen w-60 shrink-0 flex-col bg-sidebar text-sidebar-ink">
       <div className="flex items-center gap-2.5 border-b border-white/10 px-4 py-4">
         <img src="/logo-mark.png" alt="" aria-hidden className="h-8 w-8 rounded-control" />
         <div className="leading-tight">

@@ -58,8 +58,8 @@ export function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenCh
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="tw-ui fixed inset-0 z-40 bg-ink/30" />
-        <Dialog.Content aria-describedby={undefined} className="tw-ui fixed left-1/2 top-24 z-50 w-[560px] -translate-x-1/2 overflow-hidden rounded-panel border border-line bg-card shadow-lg">
+        <Dialog.Overlay className="fixed inset-0 z-40 bg-ink/30" />
+        <Dialog.Content aria-describedby={undefined} className="fixed left-1/2 top-24 z-50 w-[560px] -translate-x-1/2 overflow-hidden rounded-panel border border-line bg-card shadow-lg">
           <Dialog.Title className="sr-only">Search</Dialog.Title>
           <div className="flex items-center gap-2 border-b border-line px-4">
             <Search size={16} aria-hidden className="text-muted" />

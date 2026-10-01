@@ -25,7 +25,7 @@ export function ElectionPicker() {
         <Select.Icon><ChevronDown size={14} className="text-muted" /></Select.Icon>
       </Select.Trigger>
       <Select.Portal>
-        <Select.Content position="popper" sideOffset={6} className="tw-ui z-50 max-h-80 overflow-hidden rounded-card border border-line bg-card shadow-lg">
+        <Select.Content position="popper" sideOffset={6} className="z-50 max-h-80 overflow-hidden rounded-card border border-line bg-card shadow-lg">
           <Select.Viewport className="p-1">
             {elections.map((e) => (
               <Select.Item key={e.id} value={e.id} className="flex cursor-pointer items-center justify-between gap-6 rounded-control px-2.5 py-1.5 text-xs text-ink outline-none data-[highlighted]:bg-accent-soft">

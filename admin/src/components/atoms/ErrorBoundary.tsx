@@ -25,7 +25,7 @@ export default class ErrorBoundary extends Component<Props, State> {
   render() {
     if (!this.state.hasError) return this.props.children;
     return (
-      <div className="tw-ui flex h-full items-center justify-center bg-page p-10 font-sans">
+      <div className="flex h-full items-center justify-center bg-page p-10 font-sans">
         <div role="alert" className="max-w-sm rounded-panel border border-line bg-card p-8 text-center shadow-sm">
           <span className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-bad-soft text-bad-text">
             <AlertTriangle size={18} aria-hidden />

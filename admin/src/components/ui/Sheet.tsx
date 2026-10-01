@@ -38,7 +38,7 @@ export function Sheet({ open, onRequestClose, title, description, width = 'md', 
         onEscapeKeyDown={onEscape}
         onInteractOutside={(e) => e.preventDefault()}
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className={cn('tw-ui flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-sm', WIDTH[width])}
+        className={cn('flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-sm', WIDTH[width])}
       >
         <div className="flex items-start justify-between gap-3 border-b border-line px-4 py-3">
           <div className="min-w-0">

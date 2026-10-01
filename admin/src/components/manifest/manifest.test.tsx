@@ -17,7 +17,7 @@ const party = (id: string, color: string | null = '#f97316'): Party => ({
 const PARTIES = [party('BJP'), party('JDU', '#22c55e'), party('INC', '#0ea5e9')];
 const partyMap = new Map(PARTIES.map((p) => [p.id, p]));
 const NDA: Alliance = { id: 'NDA', name: 'NDA', color: '#f97316', parties: ['BJP', 'JDU'] };
-/** Any legacy admin.css class left in the markup. */
+/** Any class from the deleted legacy stylesheet left in the markup. */
 const LEGACY = '[class*="mf-"],[class*="form-input"],[class*="form-select"],.btn,.spinner,.admin-table,.striped';
 
 afterEach(cleanup);

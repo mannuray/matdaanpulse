@@ -46,7 +46,7 @@ export function TopBar() {
   };
 
   return (
-    <header className="tw-ui sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b border-line bg-card px-6">
+    <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b border-line bg-card px-6">
       <div className="flex items-center gap-3">
         <ElectionPicker />
         <button
@@ -75,7 +75,7 @@ export function TopBar() {
             <span className="text-xs font-medium text-ink">{user?.name}</span>
           </Menu.Trigger>
           <Menu.Portal>
-            <Menu.Content align="end" sideOffset={6} className="tw-ui z-50 min-w-44 rounded-card border border-line bg-card p-1 shadow-lg">
+            <Menu.Content align="end" sideOffset={6} className="z-50 min-w-44 rounded-card border border-line bg-card p-1 shadow-lg">
               <div className="px-2.5 py-1.5 text-[11px] text-muted">{user?.role.replace('_', ' ').toLowerCase()}</div>
               <Menu.Item onSelect={signOut} className="cursor-pointer rounded-control px-2.5 py-1.5 text-sm text-ink outline-none data-[highlighted]:bg-subtle">
                 Log out

@@ -14,12 +14,12 @@ vi.mock('../../context/ElectionContext', () => ({
 afterEach(cleanup);
 
 describe('entity scaffold', () => {
-  it('EntityPage puts tw-ui on the header and list column, not on the root', () => {
-    const { container } = render(<EntityPage header={<h1>Parties</h1>} toolbar={<div>tools</div>} table={<div>table</div>} panel={<aside>panel</aside>} />);
-    expect((container.firstElementChild as HTMLElement).className).not.toContain('tw-ui');
-    expect(screen.getByRole('heading', { name: 'Parties' }).closest('.tw-ui')).not.toBeNull();
-    expect(screen.getByText('table').closest('.tw-ui')).not.toBeNull();
-    expect(screen.getByText('panel').closest('.tw-ui')).toBeNull();
+  it('EntityPage lays out the header, then the list column (toolbar + table) beside the panel', () => {
+    render(<EntityPage header={<h1>Parties</h1>} toolbar={<div>tools</div>} table={<div>table</div>} panel={<aside>panel</aside>} />);
+    expect(screen.getByRole('heading', { name: 'Parties' })).toBeTruthy();
+    const listColumn = screen.getByText('table').parentElement!;
+    expect(listColumn.contains(screen.getByText('tools'))).toBe(true);
+    expect(listColumn.nextElementSibling).toBe(screen.getByText('panel'));
   });
 
   it('PanelFooter shows unsaved state and only enables actions when dirty', () => {

@@ -1,43 +1,29 @@
-@layer legacy, theme, base, components, utilities;
+@layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
-/* Tailwind only scans these paths — add an @source line for every new file/dir that uses classes. */
-@source "../components/ui";
-@source "../components/shell";
-@source "../components/live";
-@source "../components/Layout.tsx";
-@source "../components/entity";
-@source "../components/atoms";
-@source "../context/ToastContext.tsx";
-@source "../pages/LiveConsole.tsx";
-@source "../pages/Parties.tsx";
-@source "../pages/Elections.tsx";
-@source "../pages/Persons.tsx";
-@source "../pages/Candidates.tsx";
-@source "../pages/Constituencies.tsx";
-@source "../pages/Manifests.tsx";
-@source "../pages/Login.tsx";
-@source "../pages/Dashboard.tsx";
-@source "../pages/Feedback.tsx";
-@source "../pages/Users.tsx";
-@source "../pages/AuditLogs.tsx";
-@source "../pages/SystemStatus.tsx";
-@source "../components/routing";
-@source "../components/feedback";
-@source "../components/manifest";
+/* Tailwind only scans these paths. Every file that uses classes must sit under one (src/theme/legacy-free.test.ts checks). */
+@source "../components";
+@source "../pages";
+@source "../context";
+@source "../App.tsx";
 
-/* Preflight is off (legacy pages rely on browser defaults), so new-shell controls get a scoped reset.
-   `tw-ui` sits only on the new components' containers (Sidebar, TopBar, Live Console page root, Radix portal
-   content) — never on the Layout root — so legacy `.btn` pages are untouched. Utilities still win (higher layer). */
 @layer base {
-  .tw-ui, .tw-ui button, .tw-ui input, .tw-ui select, .tw-ui textarea { font-family: var(--font-sans); }
-  .tw-ui a { color: inherit; text-decoration: none; }
-  .tw-ui button { background: transparent; border: 0; color: inherit; font: inherit; padding: 0; cursor: pointer; }
-  .tw-ui input, .tw-ui select, .tw-ui textarea { font: inherit; color: inherit; }
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    line-height: var(--leading-normal);
+  }
+  /* v4 preflight leaves buttons on the default cursor; every admin button has always shown a pointer. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @theme {
-  /* Mirror admin.css :root so theme layer cannot change legacy pages. */
+  /* Scale values kept from the original admin theme so sizes do not shift. */
   --radius-sm: 6px;
   --radius-lg: 16px;
   --radius-full: 9999px;
@@ -53,7 +39,7 @@
   --leading-normal: 1.5;
   --leading-tight: 1.25;
 
-  /* Custom admin panel design tokens. */
+  /* Custom admin panel design tokens (spec §5). */
   --color-sidebar: #1e293b;
   --color-sidebar-ink: #cbd5e1;
   --color-page: #f8fafc;
