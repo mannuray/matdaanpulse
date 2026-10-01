@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { useEffect, useMemo, useState, type KeyboardEvent } from 'react';
+import { useCallback, useEffect, useId, useMemo, useState, type KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -17,11 +17,14 @@ export function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenCh
   const { editorDirty } = useShellStatus();
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
-  const canSee = (roles: string[]) => roles.length === 0 || roles.some((r) => hasRole(r));
+  const listId = useId();
+  const canSee = useCallback((roles: string[]) => roles.length === 0 || roles.some((r) => hasRole(r)), [hasRole]);
   const { items, loading } = useCommandSearch(query, electionId, elections, canSee);
 
   useEffect(() => { if (!open) setQuery(''); }, [open]);
   useEffect(() => { setActive(0); }, [query]);
+  const optionId = (i: number) => `${listId}-opt-${i}`;
+  useEffect(() => { document.getElementById(optionId(active))?.scrollIntoView?.({ block: 'nearest' }); }, [active, items]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const go = (item: CommandItem) => {
     // Leaving an editor (record panel or seat) with unsaved edits asks first.
@@ -62,6 +65,11 @@ export function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenCh
             <Search size={16} aria-hidden className="text-muted" />
             <input
               autoFocus
+              role="combobox"
+              aria-expanded={items.length > 0}
+              aria-controls={listId}
+              aria-autocomplete="list"
+              aria-activedescendant={items[active] ? optionId(active) : undefined}
               aria-label="Search seats, candidates, parties, persons and pages"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -71,13 +79,14 @@ export function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenCh
             />
             <Kbd>Esc</Kbd>
           </div>
-          <div role="listbox" aria-label="Results" className="max-h-96 overflow-y-auto p-2">
+          <div id={listId} role="listbox" aria-label="Results" className="max-h-96 overflow-y-auto p-2">
             {groups.map(({ group, rows }) => (
               <div key={group} role="group" aria-label={group} className="mb-1">
                 <div className="px-2 pb-1 pt-1.5 text-[11px] font-medium text-muted">{group}</div>
                 {rows.map(({ item, index }) => (
                   <div
                     key={item.key}
+                    id={optionId(index)}
                     role="option"
                     aria-selected={index === active}
                     onMouseEnter={() => setActive(index)}

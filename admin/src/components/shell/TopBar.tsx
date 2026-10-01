@@ -16,6 +16,9 @@ const LIVE_PILL = {
   reconnecting: { text: 'Reconnecting…', cls: 'bg-warn-soft text-warn-text border-warn/30', dot: 'bg-warn' },
 } as const;
 
+const isMac = () => typeof navigator !== 'undefined'
+  && /mac/i.test((navigator as Navigator & { userAgentData?: { platform?: string } }).userAgentData?.platform ?? navigator.platform ?? '');
+
 export function TopBar() {
   const { user, logout, hasRole } = useAuth();
   const { live } = useShellStatus();
@@ -26,7 +29,8 @@ export function TopBar() {
   // ⌘K (macOS) / Ctrl+K anywhere opens the palette.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setPaletteOpen(true); }
+      if (e.shiftKey || e.altKey || e.repeat || e.isComposing) return;
+      if ((isMac() ? e.metaKey && !e.ctrlKey : e.ctrlKey && !e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setPaletteOpen(true); }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);

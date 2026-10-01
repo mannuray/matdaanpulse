@@ -11,7 +11,9 @@ export async function searchSeats(q: string, electionId: string): Promise<SeatHi
   return (await apiFetch<SeatHit[]>(`/search/constituencies?${params.toString()}`)) || [];
 }
 
-/** Candidates by name across every election (max 50, server-side). */
-export async function searchCandidatesAll(q: string): Promise<CandidateHit[]> {
-  return (await apiFetch<CandidateHit[]>(`/search/candidates?${new URLSearchParams({ q }).toString()}`)) || [];
+/** Candidates by name across every election, or within one when `electionId` is given (max 50, server-side). */
+export async function searchCandidatesAll(q: string, electionId?: string): Promise<CandidateHit[]> {
+  const params = new URLSearchParams({ q });
+  if (electionId) params.set('election_id', electionId);
+  return (await apiFetch<CandidateHit[]>(`/search/candidates?${params.toString()}`)) || [];
 }

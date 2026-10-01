@@ -45,21 +45,25 @@ export function useCommandSearch(query: string, electionId: string, elections: E
         const e = elections.find((x) => x.id === eid);
         return e ? shortElectionName(e.name, e.type, e.year) : 'Other election';
       };
-      const [seats, cands, parties, persons] = await Promise.all([
+      const [seats, cands, candsHere, parties, persons] = await Promise.all([
         electionId ? searchSeats(q, electionId).catch((): SeatHit[] => []) : Promise.resolve<SeatHit[]>([]),
         searchCandidatesAll(q).catch((): CandidateHit[] => []),
+        // The all-elections query caps at 50 rows, so ask for the selected election on its own too.
+        electionId ? searchCandidatesAll(q, electionId).catch((): CandidateHit[] => []) : Promise.resolve<CandidateHit[]>([]),
         getPartiesPaginated(1, LIMIT, q).then((r): Party[] => r.data).catch((): Party[] => []),
         getPersons(1, LIMIT, q).then((r): PersonWithStats[] => r.data).catch((): PersonWithStats[] => []),
       ]);
       if (cancelled) return;
-      // The selected election's candidates first, then the rest.
+      // The selected election's candidates first (de-duplicated by id), then the rest.
+      const seen = new Set<string>();
+      const merged = [...candsHere, ...cands].filter((c) => !seen.has(c.id) && seen.add(c.id));
       const rank = (c: CandidateHit) => (c.election_id === electionId ? 0 : 1);
       setRemote([
         ...seats.slice(0, LIMIT).map((s): CommandItem => ({
           key: `seat:${s.id}`, group: 'Seats', label: `${s.const_no} ${s.name}`, hint: s.type,
           to: `/constituencies/${encodeURIComponent(s.id)}`, electionId: s.election_id,
         })),
-        ...cands.filter((c) => c.party_id !== 'NOTA' && c.name !== 'NOTA').sort((a, b) => rank(a) - rank(b)).slice(0, LIMIT)
+        ...merged.filter((c) => c.party_id !== 'NOTA' && c.name !== 'NOTA').sort((a, b) => rank(a) - rank(b)).slice(0, LIMIT)
           .map((c): CommandItem => ({
             key: `cand:${c.id}`, group: 'Candidates', label: c.name, hint: `${c.party_id ?? 'IND'} · ${electionName(c.election_id)}`,
             to: `/candidates/${encodeURIComponent(c.id)}`, electionId: c.election_id,
@@ -72,5 +76,15 @@ export function useCommandSearch(query: string, electionId: string, elections: E
     return () => { cancelled = true; clearTimeout(timer); };
   }, [q, electionId, elections]);
 
-  return { items: [...pages, ...remote], loading };
+  // A record is only offered when its target page is one the role can open.
+  const items = useMemo(() => {
+    const allowed = (to: string) => {
+      const base = '/' + to.split('/')[1];
+      const nav = NAV_GROUPS.flatMap((g) => g.items).find((i) => i.path === base);
+      return !nav || canSee(nav.roles);
+    };
+    return [...pages, ...remote.filter((r) => allowed(r.to))];
+  }, [pages, remote, canSee]);
+
+  return { items, loading };
 }
