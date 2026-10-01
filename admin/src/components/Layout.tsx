@@ -4,10 +4,13 @@ import { ShellStatusProvider } from '../context/ShellStatusContext';
 import { Sidebar } from './shell/Sidebar';
 import { TopBar } from './shell/TopBar';
 
+/** Rebuilt pages manage their own padding and scrolling; legacy pages keep `.admin-content` until they migrate. Each page task appends its path. */
+export const BARE_PATHS: string[] = ['/overrides'];
+const isBare = (pathname: string) => BARE_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+
 /** VIEW: admin shell — grouped sidebar, top bar with global election picker, page outlet. */
 export default function Layout() {
-  // Rebuilt pages manage their own padding; legacy pages keep `.admin-content` padding until they migrate.
-  const bare = useLocation().pathname.startsWith('/overrides');
+  const bare = isBare(useLocation().pathname);
   return (
     <ElectionProvider>
       <ShellStatusProvider>

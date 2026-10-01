@@ -6,6 +6,7 @@
 @source "../components/shell";
 @source "../components/live";
 @source "../components/Layout.tsx";
+@source "../components/entity";
 @source "../pages/LiveConsole.tsx";
 
 /* Preflight is off (legacy pages rely on browser defaults), so new-shell controls get a scoped reset.
