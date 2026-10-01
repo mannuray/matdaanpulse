@@ -9,10 +9,23 @@
 @source "../pages/LiveConsole.tsx";
 
 @theme {
-  --radius-sm: initial;
-  --radius-lg: initial;
-  --radius-full: initial;
-  --font-mono: initial;
+  /* Mirror admin.css :root so theme layer cannot change legacy pages. */
+  --radius-sm: 6px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --leading-normal: 1.5;
+  --leading-tight: 1.25;
+
+  /* Custom admin panel design tokens. */
   --color-sidebar: #1e293b;
   --color-sidebar-ink: #cbd5e1;
   --color-page: #f8fafc;
