@@ -1,5 +1,5 @@
 import { apiFetch, type PaginatedResponse } from './api-client';
-import type { Constituency } from '../types';
+import type { Constituency, ConstituencyHistory } from '../types';
 
 export async function getConstituencies(electionId: string) {
   return (await apiFetch<Constituency[]>(`/constituencies?election_id=${electionId}`)) || [];
@@ -13,6 +13,10 @@ export function getAdminConstituencies(electionId: string, page = 1, limit = 100
 
 export function getAdminConstituencyDetail(id: string) {
   return apiFetch<Constituency>(`/admin/constituencies/detail/${id}`);
+}
+
+export function getConstituencyHistory(id: string) {
+  return apiFetch<ConstituencyHistory>(`/admin/constituencies/${id}/history`);
 }
 
 export function updateConstituency(id: string, patch: { district_id?: number | null; region_id?: number | null; const_no?: number; metadata?: Record<string, any> }) {

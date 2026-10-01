@@ -1,5 +1,5 @@
 import { apiFetch } from './api-client';
-import type { Candidate } from '../types';
+import type { Candidate, CandidateResult } from '../types';
 
 /**
  * MODEL: Candidate API (MVC: Model)
@@ -43,4 +43,8 @@ export function createCandidate(data: Partial<Candidate>) {
 
 export function updateCandidate(id: string, data: Partial<Candidate>) {
   return apiFetch<Candidate>(`/admin/candidates/${id}`, { method: 'PUT', body: JSON.stringify(data) });
+}
+
+export function getCandidateResult(id: string) {
+  return apiFetch<CandidateResult>(`/admin/candidates/${id}/result`);
 }

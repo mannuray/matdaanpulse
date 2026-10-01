@@ -1,5 +1,5 @@
 import { apiFetch, type PaginatedResponse } from './api-client';
-import type { State, Party } from '../types';
+import type { State, Party, PartyUsage } from '../types';
 
 export async function getStates() {
   return (await apiFetch<State[]>('/states')) || [];
@@ -27,6 +27,10 @@ export function getPartiesPaginated(page = 1, limit = 25, q?: string, electionId
   if (electionId) params.set('election_id', electionId);
   if (stateId) params.set('state_id', String(stateId));
   return apiFetch<PaginatedResponse<Party & { candidate_count?: number }>>(`/parties?${params.toString()}`);
+}
+
+export function getPartyUsage(id: string) {
+  return apiFetch<PartyUsage>(`/admin/parties/${id}/usage`);
 }
 
 export function createParty(data: { id: string; name: string; color?: string; symbol_url?: string; abbreviation?: string; leader_name?: string; founded_year?: number; headquarters?: string; website?: string }) {
