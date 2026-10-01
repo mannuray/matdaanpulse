@@ -321,6 +321,12 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Admin route `/constituencies` with sidebar nav link
 - [x] Backend: `ConstituencyAnalysis` entity, extended `ConstituenciesService`, `AdminConstituenciesController`
 
+### Admin redesign: shell + Live Console (2026-10)
+- New shell: grouped sidebar (Counting / Data / Admin), top bar with a global election picker (remembered in `?election=` + localStorage), live-updates pill, health dot (`/health/ready`), keyboard-shortcuts dialog.
+- Live Console split view: seat list with Pending / Leading / Won filters, search, and lock indicators. The seat editor has every candidate editable, an auto-calculated margin (leader − runner-up; others = gap to leader), statuses that follow the votes, editable rounds, **Save seat** (one bulk call) and **Declare won**. Keyboard: ↑/↓, Enter, Esc, /. Unsaved seat edits are kept while searching/filtering (the selection is held while the editor is dirty).
+- Seat locks: soft, advisory, held in Redis `lock:seat:{election}:{const}` (TTL 120 s, heartbeat 45 s). Endpoints `GET/POST /admin/live/locks` and `POST /admin/live/locks/release`, SSE `seat-lock`. Take-over is audited (`SEAT_LOCK_TAKEOVER`). With Redis down, locking is disabled and saving still works.
+- Styling: Tailwind v4 (utilities only, preflight off) + Radix. The legacy `admin.css` sits in a lower `legacy` cascade layer until Phase 3.
+
 ### Party Symbols
 - [x] DB: `eci_symbol_url` column on `parties` table (migration 006)
 - [x] Admin: party table shows logo + ECI symbol thumbnails, symbol filter dropdown, stats

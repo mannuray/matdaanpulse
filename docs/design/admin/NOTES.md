@@ -11,7 +11,7 @@ Every number shown in these screens is a placeholder. Real values come from the 
 ## Fix in code (not in the Stitch screens)
 
 ### Live console (`live-console.*`)
-- The filter chips must wrap or fit: "Won 43" is clipped.
+- Filter chips wrap (`flex-wrap`) — done in Phase 1.
 
 ### Candidates (`candidates.*`)
 - None outstanding.
