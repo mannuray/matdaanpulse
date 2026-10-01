@@ -3,18 +3,14 @@ import { bulkOverride, getLiveResults, getSeatLocks, subscribeLiveUpdates } from
 import { useElection } from '../context/ElectionContext';
 import { useShellStatus } from '../context/ShellStatusContext';
 import { useToast } from '../context/ToastContext';
-import { seatStatus, type BulkOverrideItem } from '../utils/seat-math';
+import { countSeats, isLockLapsed, reportingPercent, seatStatus, SEAT_LOCK_TTL_MS, type BulkOverrideItem } from '../utils/seat-math';
 import type { LiveConstituency, SeatLock } from '../types';
 
 const FLASH_MS = 1500;
 const RELOAD_DEBOUNCE_MS = 500;
-/** Mirrors the backend SEAT_LOCK_TTL_SECONDS: an older lock has lapsed (heartbeats re-publish a fresh acquired_at). */
-export const SEAT_LOCK_TTL_MS = 120_000;
+/** Kept for existing imports; the constant now lives in utils/seat-math. */
+export { SEAT_LOCK_TTL_MS };
 const LOCK_SWEEP_MS = 15_000;
-const isLapsed = (l: SeatLock, now: number) => {
-  const t = Date.parse(l.acquired_at);
-  return Number.isFinite(t) && now - t > SEAT_LOCK_TTL_MS;
-};
 
 export type SeatFilter = 'all' | 'PENDING' | 'LEADING' | 'WON';
 export interface SeatSave {
@@ -76,7 +72,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     return () => clearInterval(t);
   }, []);
   const locks = useMemo(() => {
-    const entries = Object.entries(rawLocks).filter(([, l]) => !isLapsed(l, now));
+    const entries = Object.entries(rawLocks).filter(([, l]) => !isLockLapsed(l, now));
     return entries.length === Object.keys(rawLocks).length ? rawLocks : Object.fromEntries(entries);
   }, [rawLocks, now]);
 
@@ -118,11 +114,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     };
   }, [electionId, load, loadLocks, setLive]);
 
-  const counts = useMemo(() => {
-    const out = { all: all.length, PENDING: 0, LEADING: 0, WON: 0 };
-    all.forEach((c) => { out[seatStatus(c)]++; });
-    return out;
-  }, [all]);
+  const counts = useMemo(() => countSeats(all), [all]);
 
   const seats = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -163,7 +155,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     }
   }, [electionId, load]);
 
-  const reportingPct = all.length === 0 ? 0 : Math.round(((counts.LEADING + counts.WON) / all.length) * 100);
+  const reportingPct = reportingPercent(counts);
 
   return {
     electionId, electionName: election?.name ?? '', electionsError, loading, saving,

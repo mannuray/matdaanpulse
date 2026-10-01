@@ -1,6 +1,10 @@
-import type { ReactNode } from 'react';
-import AdminPageHeader from '../components/common/AdminPageHeader';
+import { useState, type ReactNode } from 'react';
+import { RefreshCw } from 'lucide-react';
 import { useSystemStatus } from '../hooks/useSystemStatus';
+import { PageHeader } from '../components/ui/PageHeader';
+import { Button } from '../components/ui/Button';
+import { cn } from '../components/ui/cn';
+import { clockIst } from '../utils/time';
 import type { SystemStatus as Status } from '../services/status.service';
 
 function formatUptime(s: number) {
@@ -10,28 +14,47 @@ function formatUptime(s: number) {
 const pct = (r: number | null) => (r === null ? 'n/a' : `${Math.round(r * 100)}%`);
 const num = (n: number) => n.toLocaleString('en-IN');
 
-/** PAGE: System status — in-memory counters since the last backend restart. */
+/** PAGE: System status — in-memory counters since the last backend restart. Polls every 10 s (useSystemStatus). */
 export default function SystemStatus() {
-  const { status, error, loading, refresh } = useSystemStatus();
-  return <SystemStatusView status={status} error={error} loading={loading} onRefresh={refresh} />;
+  const { status, error, refresh } = useSystemStatus();
+  // Only a click shows "Refreshing…": the 10 s background polls must not make the button flicker.
+  const [manual, setManual] = useState(false);
+  const onRefresh = async () => {
+    setManual(true);
+    try { await refresh(); } finally { setManual(false); }
+  };
+  return <SystemStatusView status={status} error={error} loading={manual} onRefresh={() => { void onRefresh(); }} />;
 }
 
 export function SystemStatusView({ status, error, loading, onRefresh }: {
   status: Status | null; error: string | null; loading: boolean; onRefresh: () => void;
 }) {
   return (
-    <div className="fade-in" style={styles.page}>
-      <AdminPageHeader
-        title="System status"
-        subtitle="Counters are kept in memory and reset when the backend restarts"
-        actions={<button onClick={onRefresh} disabled={loading} className="btn btn-primary" style={styles.btn}>{loading ? 'REFRESHING' : 'REFRESH'}</button>}
-      />
-      <div style={{ padding: 'var(--space-6)' }}>
-        {error && <div role="alert" style={styles.error}>Could not load status: {error}</div>}
-        {!status && !error && <div style={styles.muted}>Loading...</div>}
+    <div className="h-full overflow-y-auto bg-page font-sans text-ink">
+      <div className="space-y-4 p-6">
+        <PageHeader
+          title="System status"
+          subtitle="Counters are kept in memory and reset when the backend restarts"
+          actions={
+            <Button variant="primary" disabled={loading} onClick={onRefresh}>
+              <RefreshCw size={14} aria-hidden className={cn(loading && 'animate-spin')} />
+              {loading ? 'Refreshing…' : 'Refresh'}
+            </Button>
+          }
+        />
+        {error && (status ? (
+          <div role="alert" className="rounded-card border border-warn/40 bg-warn-soft px-4 py-2.5 text-sm text-warn-text">
+            Could not refresh: {error}. Showing data from {clockIst(status.generatedAt)} (IST).
+          </div>
+        ) : (
+          <div role="alert" className="rounded-card border border-bad/30 bg-bad-soft px-4 py-2.5 text-sm text-bad-text">
+            Could not load status: {error}
+          </div>
+        ))}
+        {!status && !error && <p className="text-sm text-muted">Loading…</p>}
         {status && <Cards s={status} />}
-        <p style={{ ...styles.muted, marginTop: 16 }}>
-          Since restart{status ? ` (${new Date(status.process.startedAt).toLocaleString('en-IN')})` : ''}. Auto-refreshes every 10 s while this tab is visible.
+        <p className="text-xs text-muted">
+          Since restart{status ? ` (${new Date(status.process.startedAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })})` : ''}. Auto-refreshes every 10 s while this tab is visible.
         </p>
       </div>
     </div>
@@ -41,8 +64,8 @@ export function SystemStatusView({ status, error, loading, onRefresh }: {
 function Cards({ s }: { s: Status }) {
   const { http, cache, redis, live, db, process: p } = s;
   return (
-    <div style={styles.grid}>
-      <Card title="Uptime & version">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4">
+      <Card title="Uptime and version">
         <Row k="Uptime" v={formatUptime(p.uptimeSeconds)} />
         <Row k="Version" v={`${p.appVersion}${p.gitSha ? ` (${p.gitSha})` : ''}`} />
         <Row k="Node" v={p.nodeVersion} />
@@ -74,62 +97,54 @@ function Cards({ s }: { s: Status }) {
         <Row k="Events published" v={num(live.eventsPublished)} />
         <Row k="Overrides applied" v={num(live.overridesApplied)} />
         <Row k="Overrides / min (5 min)" v={String(live.overridesPerMin)} />
-        <Row k="Last override" v={live.lastOverrideAt ? new Date(live.lastOverrideAt).toLocaleString('en-IN') : 'none yet'} />
+        <Row k="Last override" v={live.lastOverrideAt ? new Date(live.lastOverrideAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) : 'none yet'} />
       </Card>
       <Card title="Database">
         <Row k="SELECT 1" v={db.ok ? `${db.latencyMs} ms` : 'failed'} bad={!db.ok} />
         <Row k="Pool connection limit" v={db.pool.connectionLimit === null ? 'default' : String(db.pool.connectionLimit)} />
       </Card>
-      <div style={{ gridColumn: '1 / -1' }}>
-        <Card title="Slowest routes (p95 of the last ≤200 requests within 60 min)">
-          <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead><tr><th style={styles.th}>Route</th><th style={styles.thR}>p95</th><th style={styles.thR}>Samples</th></tr></thead>
-            <tbody>
-              {http.slowestRoutes.map((r) => (
-                <tr key={r.route} style={styles.tr}>
-                  <td style={styles.mono}>{r.route}</td>
-                  <td style={styles.tdR}>{r.p95Ms} ms</td>
-                  <td style={styles.tdR}>{r.samples}</td>
-                </tr>
-              ))}
-              {http.slowestRoutes.length === 0 && <tr><td colSpan={3} style={styles.muted}>No traffic recorded yet.</td></tr>}
-            </tbody>
-          </table>
-        </Card>
-      </div>
+      <Card title="Slowest routes" note="p95 of the last ≤200 requests within 60 min" className="col-span-full">
+        <table aria-label="Slowest routes" className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="text-left text-xs text-ink-2">
+              <th scope="col" className="py-2 pr-3 font-medium">Route</th>
+              <th scope="col" className="px-3 py-2 text-right font-medium">p95</th>
+              <th scope="col" className="py-2 pl-3 text-right font-medium">Samples</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-line border-t border-line">
+            {http.slowestRoutes.map((r) => (
+              <tr key={r.route}>
+                <td className="py-2 pr-3 font-mono text-xs text-ink">{r.route}</td>
+                <td className="px-3 py-2 text-right tabular-nums text-ink">{r.p95Ms} ms</td>
+                <td className="py-2 pl-3 text-right tabular-nums text-ink-2">{r.samples}</td>
+              </tr>
+            ))}
+            {http.slowestRoutes.length === 0 && (
+              <tr><td colSpan={3} className="py-4 text-center text-xs text-muted">No traffic recorded yet.</td></tr>
+            )}
+          </tbody>
+        </table>
+      </Card>
     </div>
   );
 }
 
-function Card({ title, children }: { title: string; children: ReactNode }) {
+function Card({ title, note, className, children }: { title: string; note?: string; className?: string; children: ReactNode }) {
   return (
-    <section className="card-elevated" style={{ padding: 16 }} aria-label={title}>
-      <h3 style={styles.cardTitle}>{title}</h3>
-      {children}
+    <section aria-label={title} className={cn('rounded-card border border-line bg-card p-4 shadow-sm', className)}>
+      <h2 className="text-sm font-semibold text-ink">{title}</h2>
+      {note && <p className="mt-0.5 text-xs text-muted">{note}</p>}
+      <div className="mt-3 space-y-1">{children}</div>
     </section>
   );
 }
 
 function Row({ k, v, bad }: { k: string; v: string; bad?: boolean }) {
   return (
-    <div style={styles.row}>
-      <span style={styles.muted}>{k}</span>
-      <span style={{ fontWeight: 700, color: bad ? 'var(--danger-text)' : 'var(--text-primary)' }}>{v}</span>
+    <div className="flex justify-between gap-3 py-0.5 text-sm">
+      <span className="text-ink-2">{k}</span>
+      <span className={cn('font-semibold tabular-nums', bad ? 'text-bad-text' : 'text-ink')}>{v}</span>
     </div>
   );
 }
-
-const styles = {
-  page: { background: 'var(--bg-secondary)', minHeight: '100vh', paddingBottom: 40 },
-  btn: { padding: '6px 16px', fontSize: 11, fontWeight: 700, borderRadius: 'var(--radius-sm)' },
-  grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 },
-  cardTitle: { margin: '0 0 10px', fontSize: 11, fontWeight: 800, textTransform: 'uppercase' as const, letterSpacing: '0.05em', color: 'var(--text-muted)' },
-  row: { display: 'flex', justifyContent: 'space-between', gap: 12, padding: '4px 0', fontSize: 13 },
-  muted: { color: 'var(--text-muted)', fontSize: 12 },
-  error: { background: 'var(--danger-soft)', color: 'var(--danger-text)', padding: 12, borderRadius: 'var(--radius)', marginBottom: 16, fontSize: 13 },
-  th: { padding: '8px 12px', textAlign: 'left' as const, fontSize: 10, fontWeight: 800, textTransform: 'uppercase' as const, color: 'var(--text-muted)' },
-  thR: { padding: '8px 12px', textAlign: 'right' as const, fontSize: 10, fontWeight: 800, textTransform: 'uppercase' as const, color: 'var(--text-muted)' },
-  tr: { borderTop: '1px solid var(--border)' },
-  mono: { padding: '8px 12px', fontFamily: 'var(--font-mono)', fontSize: 12 },
-  tdR: { padding: '8px 12px', textAlign: 'right' as const, fontSize: 12 },
-};

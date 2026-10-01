@@ -98,8 +98,8 @@ export interface LiveUpdateHandlers {
   onReconnect?: () => void;
   /** Another editor took, refreshed or released a seat lock. */
   onSeatLock?: (event: { const_id: string; lock: SeatLock | null }) => void;
-  /** Stream state for the top-bar pill. */
-  onStatus?: (status: 'connecting' | 'open' | 'reconnecting') => void;
+  /** Stream state for the top-bar pill: 'offline' after SSE_OFFLINE_AFTER failed attempts in a row. */
+  onStatus?: (status: 'connecting' | 'open' | 'reconnecting' | 'offline') => void;
 }
 
 /** 5-minute, single-election token for the admin SSE stream (EventSource cannot send Authorization). */
@@ -109,6 +109,9 @@ export function getLiveSseToken(electionId: string) {
     body: JSON.stringify({ election_id: electionId }),
   });
 }
+
+/** After this many failed (re)connects in a row the pill says "offline" (the stream keeps retrying). */
+export const SSE_OFFLINE_AFTER = 3;
 
 /** Delay before reconnect attempt `n` (0-based): 1 s, 2 s, 4 s … capped at 30 s, plus up to 1 s jitter. */
 export function sseRetryDelay(attempt: number, random: () => number = Math.random): number {
@@ -126,6 +129,8 @@ export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHan
   let es: EventSource | null = null;
   let timer: ReturnType<typeof setTimeout> | undefined;
   let attempt = 0;
+  /** Failed attempts since the last successful open (token request or stream error). */
+  let failures = 0;
   let opened = false;
   let closed = false;
 
@@ -134,14 +139,22 @@ export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHan
     timer = setTimeout(connect, sseRetryDelay(attempt++));
   };
 
+  const fail = () => {
+    if (closed) return;
+    failures += 1;
+    handlers.onStatus?.(failures >= SSE_OFFLINE_AFTER ? 'offline' : 'reconnecting');
+    retry();
+  };
+
   async function connect() {
     if (closed) return;
-    handlers.onStatus?.('connecting');
+    // Only the very first attempt says "connecting"; retries keep "reconnecting" / "offline" on the pill.
+    if (!opened && failures === 0) handlers.onStatus?.('connecting');
     let token: string;
     try {
       token = (await getLiveSseToken(electionId)).token;
     } catch {
-      return retry();
+      return fail();
     }
     if (closed) return;
     const source = new EventSource(
@@ -152,13 +165,13 @@ export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHan
       if (opened) handlers.onReconnect?.();
       opened = true;
       attempt = 0;
+      failures = 0;
       handlers.onStatus?.('open');
     };
     source.onerror = () => {
       source.close();
       if (es === source) es = null;
-      handlers.onStatus?.('reconnecting');
-      retry();
+      fail();
     };
     source.addEventListener('result-update', (event) => {
       try {

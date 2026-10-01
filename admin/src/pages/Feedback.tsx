@@ -1,60 +1,64 @@
 import { useState } from 'react';
+import { RefreshCw } from 'lucide-react';
 import { getFeedback, updateFeedbackStatus } from '../services/feedback.service';
 import { useResourceList } from '../hooks/useResourceList';
+import { useEntityRoute } from '../hooks/useEntityRoute';
 import { useToast } from '../context/ToastContext';
-import AdminPageHeader from '../components/common/AdminPageHeader';
-import ErrorBoundary from '../components/atoms/ErrorBoundary';
-import type { Feedback as FeedbackItem, FeedbackKind, FeedbackStatus } from '../types';
+import { EntityPage } from '../components/entity/EntityPage';
+import { FeedbackPanel, STATUS_ACTIONS } from '../components/entity/feedback/FeedbackPanel';
+import { FeedbackKindBadge } from '../components/feedback/FeedbackKindBadge';
+import { PageHeader } from '../components/ui/PageHeader';
+import { ChipGroup, Toolbar } from '../components/ui/Toolbar';
+import { DataTable, type Column } from '../components/ui/DataTable';
+import { Pager } from '../components/ui/Pager';
+import { EmptyState } from '../components/ui/EmptyState';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import { FEEDBACK_STATUS_LABEL, FEEDBACK_STATUS_TONE, isFeedbackStatus, notifyFeedbackChanged } from '../utils/feedback';
+import { formatIst } from '../utils/time';
+import type { Feedback as FeedbackItem, FeedbackStatus } from '../types';
 
 const PAGE_SIZE = 50;
+type StatusFilter = '' | FeedbackStatus;
 
-const STATUS_FILTERS: { value: '' | FeedbackStatus; label: string }[] = [
+const CHIPS: { value: StatusFilter; label: string }[] = [
   { value: '', label: 'All' },
   { value: 'new', label: 'New' },
   { value: 'read', label: 'Read' },
   { value: 'resolved', label: 'Resolved' },
 ];
 
-const KIND_LABELS: Record<FeedbackKind, string> = {
-  bug: 'Bug',
-  data_error: 'Data error',
-  suggestion: 'Suggestion',
-  other: 'Other',
-};
-
-/** Row actions: every status except the current one. */
-const ACTIONS: { status: FeedbackStatus; label: string }[] = [
-  { status: 'read', label: 'MARK READ' },
-  { status: 'resolved', label: 'RESOLVE' },
-  { status: 'new', label: 'MARK NEW' },
-];
-
 /**
- * PAGE: Feedback (MVC: View)
- * Inbox for the public feedback form: triage reports as new → read → resolved.
+ * PAGE: Feedback — inbox for the public feedback form: triage reports as new → read → resolved.
+ * Table + panel at /feedback/:id (no GET-by-id endpoint: the panel reads the loaded page).
  */
 export default function Feedback() {
+  const route = useEntityRoute('/feedback');
   const { toast, toastError } = useToast();
   const [busyId, setBusyId] = useState<string | null>(null);
+  /** The record last changed here: the panel keeps showing it after it leaves the filtered list. */
+  const [changed, setChanged] = useState<FeedbackItem | null>(null);
 
-  const list = useResourceList<{ status: '' | FeedbackStatus }>({
+  const list = useResourceList<{ status: StatusFilter }>({
     key: 'feedback',
     pageSize: PAGE_SIZE,
     initialFilters: { status: '' },
+    sanitizeFilters: (f) => ({ status: isFeedbackStatus(f.status) ? f.status : '' }),
     onLoad: async (page, _search, filters) => {
       const res = await getFeedback(page, PAGE_SIZE, filters.status || undefined);
       return { data: res.data || [], total: res.pagination?.total || 0 };
     },
   });
-
-  const { items, loading, error, refresh, filters, updateFilters, page, setPage, totalPages, total } = list;
+  const rows = list.items as FeedbackItem[];
 
   const setStatus = async (item: FeedbackItem, status: FeedbackStatus) => {
     setBusyId(item.id);
     try {
-      await updateFeedbackStatus(item.id, status);
-      toast(`Marked ${status}`);
-      refresh();
+      const updated = await updateFeedbackStatus(item.id, status);
+      setChanged(updated?.id ? updated : { ...item, status });
+      notifyFeedbackChanged();
+      toast(`Marked ${FEEDBACK_STATUS_LABEL[status].toLowerCase()}`);
+      void list.refresh();
     } catch (err) {
       toastError(err, 'Status update failed');
     } finally {
@@ -62,138 +66,89 @@ export default function Feedback() {
     }
   };
 
-  return (
-    <div className="fade-in" style={styles.pageRoot}>
-      <AdminPageHeader
-        title="Feedback"
-        subtitle="Reports from the public site"
-        actions={<button onClick={refresh} className="btn btn-primary" style={styles.headerBtn}>REFRESH</button>}
-      />
+  const selected = !route.id ? null : changed?.id === route.id ? changed : rows.find((f) => f.id === route.id) ?? null;
 
-      <div style={styles.filterBarRoot}>
-        <div style={styles.filterContainer}>
-          {STATUS_FILTERS.map((f) => (
-            <button
-              key={f.value || 'all'}
-              onClick={() => updateFilters({ status: f.value })}
-              className={`btn btn-sm ${filters.status === f.value ? 'btn-primary' : 'btn-outline'}`}
-              aria-pressed={filters.status === f.value}
-            >
-              {f.label.toUpperCase()}
-            </button>
+  const columns: Column<FeedbackItem>[] = [
+    { key: 'received', header: 'Received', className: 'whitespace-nowrap text-xs text-ink-2', cell: (f) => formatIst(f.createdAt) },
+    { key: 'kind', header: 'Kind', cell: (f) => <FeedbackKindBadge kind={f.kind} /> },
+    {
+      key: 'message', header: 'Message', className: 'max-w-md',
+      cell: (f) => <span className="line-clamp-3 whitespace-pre-wrap [overflow-wrap:anywhere]">{f.message}</span>,
+    },
+    {
+      key: 'email', header: 'Email', className: 'text-xs',
+      cell: (f) => (f.email ? <a href={`mailto:${f.email}`} className="break-all text-accent hover:underline">{f.email}</a> : <span className="text-muted">—</span>),
+    },
+    {
+      // Plain text on purpose: the path is user input and must never become a link.
+      key: 'page', header: 'Page', className: 'max-w-[220px] font-mono text-[11px] text-ink-2 [overflow-wrap:anywhere]',
+      cell: (f) => f.page || <span className="font-sans text-muted">—</span>,
+    },
+    { key: 'status', header: 'Status', cell: (f) => <Badge tone={FEEDBACK_STATUS_TONE[f.status]}>{FEEDBACK_STATUS_LABEL[f.status]}</Badge> },
+    {
+      key: 'actions', header: <span className="sr-only">Actions</span>, className: 'whitespace-nowrap',
+      cell: (f) => (
+        <div className="flex justify-end gap-1.5">
+          {STATUS_ACTIONS.filter((a) => a.status !== f.status).map((a) => (
+            <Button key={a.status} size="sm" variant="outline" disabled={busyId === f.id} onClick={() => { void setStatus(f, a.status); }}>{a.label}</Button>
           ))}
-          <div style={styles.recordCount}>{total} RECORDS FOUND</div>
         </div>
-      </div>
+      ),
+    },
+  ];
 
-      <div style={{ padding: 'var(--space-6)' }}>
-        {error && <div style={styles.error}>{error}</div>}
-        {loading && items.length === 0 ? (
-          <div style={styles.spinnerWrapper}><div className="spinner" style={styles.spinner}></div></div>
-        ) : (
-          <ErrorBoundary>
-            <div className="card-elevated" style={{ padding: 0 }}>
-              <div style={{ overflowX: 'auto' }}>
-              <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={styles.tableHeadRow}>
-                    <th style={styles.th}>Date</th>
-                    <th style={styles.th}>Type</th>
-                    <th style={styles.th}>Message</th>
-                    <th style={styles.th}>Email</th>
-                    <th style={styles.th}>Page</th>
-                    <th style={styles.th}>Status</th>
-                    <th style={styles.th}>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(items as FeedbackItem[]).map((f) => (
-                    <FeedbackRow key={f.id} item={f} busy={busyId === f.id} onSetStatus={setStatus} />
-                  ))}
-                  {items.length === 0 && (
-                    <tr><td colSpan={7} style={styles.emptyCell}>No feedback found.</td></tr>
-                  )}
-                </tbody>
-              </table>
-              </div>
-              <div style={styles.pager}>
-                <div style={styles.pagerLabel}>PAGE {page} OF {totalPages}</div>
-                <div style={{ display: 'flex', gap: 4 }}>
-                  <button disabled={page <= 1} onClick={() => setPage(page - 1)} className="btn btn-sm btn-outline">PREV</button>
-                  <button disabled={page >= totalPages} onClick={() => setPage(page + 1)} className="btn btn-sm btn-outline">NEXT</button>
-                </div>
-              </div>
+  const filterLabel = CHIPS.find((c) => c.value === list.filters.status)?.label.toLowerCase();
+
+  return (
+    <EntityPage
+      header={
+        <PageHeader
+          title="Feedback"
+          count={list.total}
+          subtitle="Reports from the public site"
+          actions={<Button variant="outline" disabled={list.loading} onClick={() => { void list.refresh(); }}><RefreshCw size={14} aria-hidden />Refresh</Button>}
+        />
+      }
+      toolbar={
+        <Toolbar>
+          <ChipGroup<StatusFilter> label="Status" value={list.filters.status} onChange={(status) => list.updateFilters({ status })} options={CHIPS} />
+        </Toolbar>
+      }
+      table={
+        <>
+          {list.error && rows.length > 0 && (
+            <div role="alert" className="flex items-center justify-between gap-3 rounded-card border border-bad/30 bg-bad-soft px-4 py-2.5 text-sm text-bad-text">
+              {list.error}
+              <Button size="sm" variant="outline" onClick={() => { void list.refresh(); }}>Try again</Button>
             </div>
-          </ErrorBoundary>
-        )}
-      </div>
-    </div>
+          )}
+          <DataTable
+            label="Feedback"
+            columns={columns}
+            rows={rows}
+            rowKey={(f) => f.id}
+            selectedKey={route.id}
+            onRowClick={(f) => route.open(f.id)}
+            loading={list.loading}
+            empty={list.error
+              ? <EmptyState title="Could not load feedback" description={list.error} action={<Button variant="outline" size="sm" onClick={() => { void list.refresh(); }}>Try again</Button>} />
+              : <EmptyState title="No feedback found" description={list.filters.status ? `There is no ${filterLabel} feedback.` : 'Reports from the public feedback form appear here.'} />}
+            footer={<Pager page={list.page} totalPages={list.totalPages} total={list.total} pageSize={PAGE_SIZE} noun="reports" onPage={list.loadPage} />}
+          />
+        </>
+      }
+      panel={route.id ? (
+        <FeedbackPanel
+          key={route.id}
+          item={selected}
+          listLoading={list.loading}
+          listError={list.error}
+          busy={busyId === route.id}
+          onSetStatus={(f, status) => { void setStatus(f, status); }}
+          onRetry={() => { void list.refresh(); }}
+          onClose={() => route.close()}
+        />
+      ) : null}
+    />
   );
 }
-
-function FeedbackRow({ item, busy, onSetStatus }: {
-  item: FeedbackItem;
-  busy: boolean;
-  onSetStatus: (item: FeedbackItem, status: FeedbackStatus) => void;
-}) {
-  return (
-    <tr className="row-hover" style={styles.dataRow}>
-      <td style={styles.tdTime}>
-        {new Date(item.createdAt).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' })}
-      </td>
-      <td style={styles.td}><span style={styles.kindTag}>{KIND_LABELS[item.kind] ?? item.kind}</span></td>
-      <td style={styles.tdMessage}>{item.message}</td>
-      <td style={styles.tdSmall}>
-        {item.email ? <a href={`mailto:${item.email}`}>{item.email}</a> : <span style={styles.muted}>-</span>}
-      </td>
-      {/* Plain text on purpose: the path is user input and must never become an href. */}
-      <td style={styles.tdPage}>{item.page || <span style={styles.muted}>-</span>}</td>
-      <td style={styles.td}><span style={{ ...styles.statusTag, ...statusStyle(item.status) }}>{item.status.toUpperCase()}</span></td>
-      <td style={styles.td}>
-        <div style={styles.actions}>
-          {ACTIONS.filter((a) => a.status !== item.status).map((a) => (
-            <button key={a.status} disabled={busy} onClick={() => onSetStatus(item, a.status)} className="btn btn-sm btn-outline">
-              {a.label}
-            </button>
-          ))}
-        </div>
-      </td>
-    </tr>
-  );
-}
-
-// --- Helpers & Styles ---
-
-const statusStyle = (status: FeedbackStatus) => {
-  switch (status) {
-    case 'new': return { background: 'var(--accent-soft)', color: 'var(--accent)', border: '1px solid var(--accent-soft)' };
-    case 'resolved': return { background: 'var(--success-soft)', color: 'var(--success-text)', border: '1px solid #bbf7d0' };
-    default: return { background: 'var(--bg-secondary)', color: 'var(--text-secondary)', border: '1px solid var(--border)' };
-  }
-};
-
-const styles = {
-  pageRoot: { background: 'var(--bg-secondary)', minHeight: '100vh', paddingBottom: '40px' },
-  headerBtn: { padding: '6px 16px', fontSize: '11px', fontWeight: 700, borderRadius: 'var(--radius-sm)' },
-  filterBarRoot: { background: 'var(--bg-primary)', borderBottom: '1px solid var(--border)', padding: '0 var(--space-6) var(--space-4) var(--space-6)' },
-  filterContainer: { display: 'flex', gap: '8px', alignItems: 'center', background: 'var(--bg-secondary)', padding: '8px 12px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' },
-  recordCount: { marginLeft: 'auto', fontSize: '10px', fontWeight: 800, color: 'var(--text-muted)' },
-  error: { marginBottom: 'var(--space-4)', padding: '10px 14px', borderRadius: 'var(--radius)', background: 'var(--danger-soft)', color: 'var(--danger-text)', fontSize: '12px', fontWeight: 600 },
-  spinnerWrapper: { display: 'flex', justifyContent: 'center', padding: '100px' },
-  spinner: { width: '24px', height: '24px' },
-  tableHeadRow: { background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border)' },
-  th: { padding: '12px 16px', textAlign: 'left' as const, fontSize: '10px', fontWeight: 800, textTransform: 'uppercase' as const, letterSpacing: '0.05em', color: 'var(--text-muted)' },
-  dataRow: { borderBottom: '1px solid var(--border)', background: 'var(--bg-card)', verticalAlign: 'top' as const },
-  td: { padding: '10px 16px' },
-  tdTime: { padding: '10px 16px', fontSize: '12px', whiteSpace: 'nowrap' as const, color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' },
-  tdMessage: { padding: '10px 16px', fontSize: '13px', color: 'var(--text-primary)', whiteSpace: 'pre-wrap' as const, wordBreak: 'break-word' as const, overflowWrap: 'anywhere' as const, minWidth: 200 },
-  tdSmall: { padding: '10px 16px', fontSize: '12px', wordBreak: 'break-all' as const },
-  tdPage: { padding: '10px 16px', fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', overflowWrap: 'anywhere' as const, minWidth: 140, maxWidth: 220 },
-  muted: { color: 'var(--text-muted)' },
-  kindTag: { padding: '3px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, whiteSpace: 'nowrap' as const, background: 'var(--bg-secondary)', color: 'var(--text-secondary)', border: '1px solid var(--border)' },
-  statusTag: { padding: '3px 8px', borderRadius: '4px', fontSize: '9px', fontWeight: 800, display: 'inline-block' as const },
-  actions: { display: 'flex', flexDirection: 'column' as const, gap: 4, whiteSpace: 'nowrap' as const },
-  emptyCell: { padding: '60px', textAlign: 'center' as const, color: 'var(--text-muted)', fontSize: '13px', fontWeight: 600 },
-  pager: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', borderTop: '1px solid var(--border)' },
-  pagerLabel: { fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' },
-};

@@ -10,9 +10,18 @@ export function createUser(data: { email: string; password: string; name: string
   return apiFetch<User>('/admin/users', { method: 'POST', body: JSON.stringify(data) });
 }
 
-export function updateUser(id: string, data: Partial<User>) {
+/** PATCH /admin/users/:id — send only what changes; `password` only when a new one was typed. */
+export interface UpdateUserData {
+  name?: string;
+  email?: string;
+  role?: User['role'];
+  password?: string;
+}
+
+export function updateUser(id: string, data: UpdateUserData) {
   return apiFetch<User>(`/admin/users/${id}`, { method: 'PATCH', body: JSON.stringify(data) });
 }
+
 
 export function deleteUser(id: string) {
   return apiFetch<void>(`/admin/users/${id}`, { method: 'DELETE' });

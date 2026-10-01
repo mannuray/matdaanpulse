@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseVotes, rankSeat, seatMargin, deriveStatuses, buildSeatOverrides, seatStatus, type SeatRow } from './seat-math';
+import { parseVotes, rankSeat, seatMargin, deriveStatuses, buildSeatOverrides, seatStatus, countSeats, reportingPercent, isLockLapsed, SEAT_LOCK_TTL_MS, type SeatRow } from './seat-math';
 
 const row = (id: string, votes: number, party = id.toUpperCase(), status: SeatRow['status'] = 'TRAILING'): SeatRow => ({
   result_id: id, candidate_id: `c-${id}`, candidate_name: id, party_id: party, party_abbr: party, party_color: null, votes, status,
@@ -74,4 +74,29 @@ describe('seatStatus', () => {
   it('PENDING when no votes', () => expect(seatStatus({ ...base, candidates: [cand('TRAILING', 0)] })).toBe('PENDING'));
   it('WON when any candidate WON', () => expect(seatStatus({ ...base, candidates: [cand('WON', 5)] })).toBe('WON'));
   it('LEADING otherwise', () => expect(seatStatus({ ...base, candidates: [cand('LEADING', 5)] })).toBe('LEADING'));
+});
+
+describe('seat counts, reporting and lock lapse', () => {
+  const seat = (id: string, votes: number[], won = false) => ({
+    const_id: id, const_name: id, const_no: 1, const_type: 'GEN', current_round: null, total_rounds: null,
+    candidates: votes.map((v, i) => ({
+      result_id: `${id}-${i}`, candidate_id: `c${i}`, candidate_name: `C${i}`, party_id: `P${i}`, party_name: `P${i}`,
+      party_color: null, party_abbr: `P${i}`, votes: v, status: won && i === 0 ? 'WON' : 'TRAILING', margin: 0, last_updated: '',
+    })),
+  });
+
+  it('countSeats and reportingPercent', () => {
+    const counts = countSeats([seat('a', [0, 0]), seat('b', [5, 3]), seat('c', [9, 1], true)]);
+    expect(counts).toEqual({ all: 3, PENDING: 1, LEADING: 1, WON: 1 });
+    expect(reportingPercent(counts)).toBe(67);
+    expect(reportingPercent({ all: 0, PENDING: 0, LEADING: 0, WON: 0 })).toBe(0);
+  });
+
+  it('isLockLapsed: older than the TTL; an unparseable time never lapses', () => {
+    const now = Date.parse('2026-10-01T10:00:00Z');
+    expect(SEAT_LOCK_TTL_MS).toBe(120_000);
+    expect(isLockLapsed({ acquired_at: '2026-10-01T09:57:59Z' }, now)).toBe(true);
+    expect(isLockLapsed({ acquired_at: '2026-10-01T09:59:00Z' }, now)).toBe(false);
+    expect(isLockLapsed({ acquired_at: 't' }, now)).toBe(false);
+  });
 });

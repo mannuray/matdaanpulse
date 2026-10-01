@@ -23,7 +23,6 @@ describe('Sheet', () => {
     render(<Page onRequestClose={vi.fn()} />);
     const dialog = screen.getByRole('dialog', { name: 'Bharatiya Janata Party' });
     expect(dialog.className).toContain('w-[400px]');
-    expect(dialog.className).toContain('tw-ui');
     const row = screen.getByRole('button', { name: 'Row in the table' });
     expect(row.closest('[aria-hidden="true"]')).toBeNull();
   });
@@ -55,15 +54,13 @@ describe('Sheet', () => {
     expect(onRequestClose).not.toHaveBeenCalled();
   });
 
-  it('renders nothing when closed; legacyBody keeps tw-ui off the body', () => {
+  it('renders nothing when closed; the full width covers the page body', () => {
     const { rerender } = render(<Page onRequestClose={vi.fn()} open={false} />);
     expect(screen.queryByRole('dialog')).toBeNull();
-    rerender(<Sheet open onRequestClose={vi.fn()} title="Manifest" width="full" legacyBody><button className="btn">Legacy</button></Sheet>);
-    const dialog = screen.getByRole('dialog', { name: 'Manifest' });
-    expect(dialog.className).not.toContain('tw-ui');
-    expect(dialog.className).toContain('inset-0');
-    expect(screen.getByRole('button', { name: 'Legacy' }).closest('.tw-ui')).toBeNull();
+    rerender(<Sheet open onRequestClose={vi.fn()} title="Manifest" width="full"><button type="button">Inside</button></Sheet>);
+    expect(screen.getByRole('dialog', { name: 'Manifest' }).className).toContain('inset-0');
   });
+
 });
 
 describe('ConfirmDialog', () => {

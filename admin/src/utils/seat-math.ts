@@ -78,3 +78,26 @@ export function seatStatus(c: LiveConstituency): 'PENDING' | 'LEADING' | 'WON' {
   if (c.candidates.every((x) => x.votes === 0)) return 'PENDING';
   return 'LEADING';
 }
+
+/** Mirrors the backend SEAT_LOCK_TTL_SECONDS: an older lock has lapsed (heartbeats re-publish a fresh acquired_at). */
+export const SEAT_LOCK_TTL_MS = 120_000;
+
+/** The lock is older than the TTL. An unparseable acquired_at never lapses (the server decides). */
+export function isLockLapsed(lock: { acquired_at: string }, now: number): boolean {
+  const t = Date.parse(lock.acquired_at);
+  return Number.isFinite(t) && now - t > SEAT_LOCK_TTL_MS;
+}
+
+export interface SeatCounts { all: number; PENDING: number; LEADING: number; WON: number }
+
+/** Seats per status, for the filter chips and the Dashboard KPIs. */
+export function countSeats(seats: LiveConstituency[]): SeatCounts {
+  const out: SeatCounts = { all: seats.length, PENDING: 0, LEADING: 0, WON: 0 };
+  seats.forEach((s) => { out[seatStatus(s)]++; });
+  return out;
+}
+
+/** % of seats with any votes (leading or declared), rounded. */
+export function reportingPercent(counts: SeatCounts): number {
+  return counts.all === 0 ? 0 : Math.round(((counts.LEADING + counts.WON) / counts.all) * 100);
+}

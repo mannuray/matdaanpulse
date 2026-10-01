@@ -1,5 +1,6 @@
 import { ManifestSection } from './ManifestSection';
-import { EmptyState, AddButton, PartySearch, updateAt, removeAt } from './SharedControls';
+import { EmptyState, AddButton, Chip, PartySearch, RemoveButton, updateAt, removeAt } from './SharedControls';
+import { Input } from '../ui/Input';
 import type { Alliance, Party } from '../../types';
 
 export function AllianceEditor({
@@ -20,56 +21,57 @@ export function AllianceEditor({
       {items.length === 0 && <EmptyState text="No alliances configured" />}
       {items.map((a, i) => {
         if (!a) return null;
+        const n = i + 1;
         return (
-          <div 
-            key={i} 
-            className="mf-alliance-card" 
-            style={{ 
-              borderLeft: `3px solid ${a.color || 'var(--border)'}`, 
-              padding: 'var(--space-2) var(--space-4)', 
-              marginBottom: 'var(--space-2)',
-              background: 'var(--bg-card)',
-              borderRadius: 'var(--radius-sm)'
-            }}
+          <div
+            key={i}
+            className="space-y-2 rounded-control border border-l-4 border-line bg-card p-3"
+            style={a.color ? { borderLeftColor: a.color } : undefined}
           >
-            <div className="mf-alliance-top" style={{ gap: 'var(--space-2)' }}>
-              <input type="color" className="mf-color-pick" style={{ width: 24, height: 24 }} value={a.color || '#666666'}
-                onChange={e => onUpdate(updateAt(items, i, { color: e.target.value }))} />
-              <input className="form-input mf-input-sm" style={{ width: 80 }} placeholder="ID (e.g. NDA)" value={a.id || ''}
+            <div className="flex items-center gap-2">
+              <input
+                type="color"
+                aria-label={`Alliance ${n} colour`}
+                value={a.color || '#666666'}
+                onChange={e => onUpdate(updateAt(items, i, { color: e.target.value }))}
+                className="h-8 w-9 shrink-0 cursor-pointer rounded-control border border-line bg-card p-0.5"
+              />
+              <Input aria-label={`Alliance ${n} ID`} className="h-8 w-24 text-xs" placeholder="ID (e.g. NDA)" value={a.id || ''}
                 onChange={e => onUpdate(updateAt(items, i, { id: e.target.value }))} />
-              <input className="form-input mf-input-sm" style={{ flex: 1 }} placeholder="Alliance Name" value={a.name || ''}
+              <Input aria-label={`Alliance ${n} name`} className="h-8 flex-1 text-xs" placeholder="Alliance name" value={a.name || ''}
                 onChange={e => onUpdate(updateAt(items, i, { name: e.target.value }))} />
-              <button className="mf-remove-btn" 
-                onClick={() => onUpdate(removeAt(items, i))} title="Remove alliance">&times;</button>
+              <RemoveButton label={`Remove alliance ${a.name || n}`} onClick={() => onUpdate(removeAt(items, i))} />
             </div>
-            <div className="mf-alliance-parties" style={{ marginTop: 'var(--space-2)', alignItems: 'center', gap: 'var(--space-3)' }}>
-              <div className="mf-chips" style={{ flex: 1, gap: '4px' }}>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-1 flex-wrap gap-1">
                 {(a.parties || []).map((pid: string) => {
                   const p = partyMap.get(pid);
+                  const label = p?.abbreviation || p?.name || pid;
                   return (
-                    <span key={pid} className="mf-chip" style={{ borderColor: p?.color || 'var(--border)' }}>
-                      {p?.color && <span className="mf-chip-dot" style={{ background: p.color }} />}
-                      {p?.abbreviation || p?.name || pid}
-                      <span className="mf-chip-x" onClick={() => {
-                        onUpdate(updateAt(items, i, { parties: (a.parties || []).filter((x: string) => x !== pid) }));
-                      }}>&times;</span>
-                    </span>
+                    <Chip
+                      key={pid}
+                      label={label}
+                      color={p?.color}
+                      removeLabel={`Remove ${label} from ${a.name || 'alliance'}`}
+                      onRemove={() => onUpdate(updateAt(items, i, { parties: (a.parties || []).filter((x: string) => x !== pid) }))}
+                    />
                   );
                 })}
               </div>
-              <PartySearch 
-                parties={contestingParties || []} 
+              <PartySearch
+                label={`Add party to ${a.name || `alliance ${n}`}`}
+                parties={contestingParties || []}
                 onSelect={(p) => {
                   if (p && !(a.parties || []).includes(p.id)) {
                     onUpdate(updateAt(items, i, { parties: [...(a.parties || []), p.id] }));
                   }
-                }} 
+                }}
               />
             </div>
           </div>
         );
       })}
-      <AddButton label="Add Alliance" onClick={() =>
+      <AddButton label="Add alliance" onClick={() =>
         onUpdate([...items, { id: '', name: '', color: '#666666', parties: [] }])} />
     </ManifestSection>
   );

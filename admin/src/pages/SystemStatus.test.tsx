@@ -3,6 +3,7 @@ import { describe, it, expect, afterEach, vi, beforeEach } from 'vitest';
 import { act, cleanup, fireEvent, render, screen, renderHook } from '@testing-library/react';
 import { SystemStatusView } from './SystemStatus';
 import { useSystemStatus } from '../hooks/useSystemStatus';
+import SystemStatusPage from './SystemStatus';
 import type { SystemStatus } from '../services/status.service';
 
 const fixture: SystemStatus = {
@@ -19,6 +20,9 @@ const fixture: SystemStatus = {
   live: { sseConnections: 3, eventsPublished: 8, overridesApplied: 12, overridesLast5m: 10, overridesPerMin: 2, lastOverrideAt: null },
   db: { ok: true, latencyMs: 4, pool: { connectionLimit: 5, poolTimeoutSeconds: null } },
 };
+
+const statusSvc = vi.hoisted(() => ({ getSystemStatus: vi.fn() }));
+vi.mock('../services/status.service', () => statusSvc);
 
 afterEach(() => { cleanup(); vi.useRealTimers(); });
 
@@ -37,12 +41,33 @@ describe('SystemStatusView', () => {
     expect(screen.getByText('Origin shield 403')).toBeTruthy();
   });
 
-  it('manual refresh calls onRefresh and errors show an alert', () => {
+  it('manual refresh calls onRefresh; the button is sentence case; a first-load error is an alert', () => {
     const onRefresh = vi.fn();
     render(<SystemStatusView status={null} error="boom" loading={false} onRefresh={onRefresh} />);
-    expect(screen.getByRole('alert').textContent).toContain('boom');
-    fireEvent.click(screen.getByText('REFRESH'));
+    expect(screen.getByRole('alert').textContent).toContain('Could not load status: boom');
+    fireEvent.click(screen.getByRole('button', { name: 'Refresh' }));
     expect(onRefresh).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText('REFRESH')).toBeNull();
+  });
+
+  it('while a manual refresh runs the button reads "Refreshing…" and is disabled', () => {
+    render(<SystemStatusView status={fixture} error={null} loading onRefresh={() => {}} />);
+    const button = screen.getByRole('button', { name: 'Refreshing…' }) as HTMLButtonElement;
+    expect(button.disabled).toBe(true);
+  });
+
+  it('a failed poll keeps the last data and says how old it is', () => {
+    render(<SystemStatusView status={fixture} error="Network error — check your connection" loading={false} onRefresh={() => {}} />);
+    expect(screen.getByRole('alert').textContent).toBe('Could not refresh: Network error — check your connection. Showing data from 15:30:00 (IST).');
+    expect(screen.getByText('2h 1m')).toBeTruthy();
+  });
+
+  it('renders the cards as labelled sections with sentence-case titles', () => {
+    render(<SystemStatusView status={fixture} error={null} loading={false} onRefresh={() => {}} />);
+    for (const name of ['Uptime and version', 'Traffic', 'Cache', 'Redis', 'Live', 'Database', 'Slowest routes']) {
+      expect(screen.getByRole('region', { name })).toBeTruthy();
+    }
+    expect(screen.getByRole('table', { name: 'Slowest routes' })).toBeTruthy();
   });
 });
 
@@ -77,10 +102,42 @@ describe('useSystemStatus', () => {
     expect(fetcher).toHaveBeenCalledTimes(5);
   });
 
+  it('an older response cannot overwrite a newer one', async () => {
+    const older = { ...fixture, db: { ...fixture.db, latencyMs: 111 } };
+    const newer = { ...fixture, db: { ...fixture.db, latencyMs: 222 } };
+    let releaseOlder!: (s: SystemStatus) => void;
+    const fetcher = vi.fn()
+      .mockImplementationOnce(() => new Promise<SystemStatus>((r) => { releaseOlder = r; }))
+      .mockResolvedValueOnce(newer);
+    const { result } = renderHook(() => useSystemStatus(fetcher, 10_000));
+    await act(async () => { await result.current.refresh(); });
+    expect(result.current.status).toEqual(newer);
+    expect(result.current.loading).toBe(false);
+    await act(async () => { releaseOlder(older); });
+    expect(result.current.status).toEqual(newer);
+  });
+
   it('surfaces a failed load as an error', async () => {
     const fetcher = vi.fn().mockRejectedValue(new Error('nope'));
     const { result } = renderHook(() => useSystemStatus(fetcher, 10_000));
     await act(async () => {});
     expect(result.current.error).toBe('nope');
+  });
+});
+
+describe('SystemStatus page', () => {
+  it('a background load does not flip the button; a manual refresh does', async () => {
+    let release!: (s: SystemStatus) => void;
+    statusSvc.getSystemStatus.mockImplementationOnce(() => new Promise<SystemStatus>((r) => { release = r; }));
+    render(<SystemStatusPage />);
+    expect((screen.getByRole('button', { name: 'Refresh' }) as HTMLButtonElement).disabled).toBe(false);
+    await act(async () => { release(fixture); });
+    expect(screen.getByText('2h 1m')).toBeTruthy();
+    let releaseManual!: (s: SystemStatus) => void;
+    statusSvc.getSystemStatus.mockImplementationOnce(() => new Promise<SystemStatus>((r) => { releaseManual = r; }));
+    fireEvent.click(screen.getByRole('button', { name: 'Refresh' }));
+    expect(screen.getByRole('button', { name: 'Refreshing…' })).toBeTruthy();
+    await act(async () => { releaseManual(fixture); });
+    expect(screen.getByRole('button', { name: 'Refresh' })).toBeTruthy();
   });
 });

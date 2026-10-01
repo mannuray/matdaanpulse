@@ -48,6 +48,8 @@ export function useManifestEditor(electionId: string | null) {
   const [loaded, setLoaded] = useState(false);
   const [loadError, setLoadError] = useState<ManifestLoadError | null>(null);
   const loadedIdRef = useRef<string | null>(null);
+  // Bumped on every local edit, so a save/publish that was in flight can tell whether the user typed meanwhile.
+  const editVersionRef = useRef(0);
 
   useEffect(() => {
     getElections().then(setElections).catch(() => {});
@@ -103,6 +105,7 @@ export function useManifestEditor(electionId: string | null) {
         geo: data.geo || {}
       };
 
+      editVersionRef.current++;
       setManifest(merged);
       setIsDirty(false);
       loadedIdRef.current = eid;
@@ -144,12 +147,14 @@ export function useManifestEditor(electionId: string | null) {
   }, [constituencies]);
 
   const updateManifest = (key: keyof ManifestData, value: any) => {
+    editVersionRef.current++;
     setManifest(prev => ({ ...prev, [key]: value }));
     setIsDraft(true);
     setIsDirty(true);
   };
 
   const setFullManifest = (data: ManifestData) => {
+    editVersionRef.current++;
     setManifest({ ...DEFAULT_MANIFEST, ...data });
     setIsDraft(true);
     setIsDirty(true);
@@ -158,12 +163,17 @@ export function useManifestEditor(electionId: string | null) {
   const saveDraft = async (data: ManifestData): Promise<boolean> => {
     if (!selectedId) return false;
     setSaving(true);
+    const versionAtSubmit = editVersionRef.current;
     try {
       await saveManifestDraft(selectedId, data);
       toast('Draft saved successfully');
       setIsDraft(true);
-      setIsDirty(false);
-      setManifest({ ...DEFAULT_MANIFEST, ...data });
+      // The saved snapshot is what was submitted: only when nothing changed since does it replace the editor
+      // state; otherwise the newer edits stay on screen and stay dirty.
+      if (editVersionRef.current === versionAtSubmit) {
+        setIsDirty(false);
+        setManifest({ ...DEFAULT_MANIFEST, ...data });
+      }
       return true;
     } catch (err) {
       toastError(err, 'Failed to save draft');
@@ -180,6 +190,8 @@ export function useManifestEditor(electionId: string | null) {
    */
   const publish = async (pending?: ManifestData): Promise<boolean> => {
     if (!selectedId) return false;
+    // Taken before the pre-publish save, so edits typed during that save also block the reload.
+    const versionAtPublish = editVersionRef.current;
     if (isDirty || pending !== undefined) {
       const saved = await saveDraft(pending ?? manifest);
       if (!saved) {
@@ -191,8 +203,10 @@ export function useManifestEditor(electionId: string | null) {
     try {
       await publishManifest(selectedId);
       toast('Manifest published to the live site');
-      setIsDraft(false);
-      loadManifest(selectedId);
+      if (editVersionRef.current === versionAtPublish) {
+        setIsDraft(false);
+        loadManifest(selectedId);
+      }
       return true;
     } catch (err) {
       toastError(err, 'Publish failed');

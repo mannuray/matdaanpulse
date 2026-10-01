@@ -1,8 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
+import { Plus } from 'lucide-react';
 import { ManifestSection } from './ManifestSection';
-import { EmptyState, AddButton, SearchableSelect, updateAt, removeAt } from './SharedControls';
+import { EmptyState, AddButton, ColorDot, RemoveButton, SearchableSelect, updateAt, removeAt } from './SharedControls';
+import Spinner from '../atoms/Spinner';
+import { Input } from '../ui/Input';
+import { Button } from '../ui/Button';
 import type { Watchlist, WatchlistEntry, Party, Constituency, Candidate } from '../../types';
 
+/** Preset watchlists. The names are data: they become the watchlist's public name, so they are not re-cased. */
 export const WATCHLIST_PRESETS = [
   { id: 'leaders', name: 'Leaders' },
   { id: 'cabinet', name: 'Cabinet' },
@@ -12,12 +17,12 @@ export const WATCHLIST_PRESETS = [
   { id: 'first_timers', name: 'First-Timers' },
 ];
 
-export function WatchlistRow({ 
-  entry, 
-  eIdx, 
-  onUpdate, 
-  onRemove, 
-  parties, 
+export function WatchlistRow({
+  entry,
+  eIdx,
+  onUpdate,
+  onRemove,
+  parties,
   constituencies,
   partyMap,
   onSearchCandidates
@@ -31,10 +36,14 @@ export function WatchlistRow({
   partyMap: Map<string, Party>;
   onSearchCandidates: (query: string) => Promise<Candidate[]>;
 }) {
+  const listId = useId();
   const [searchTerm, setSearchTerm] = useState(entry.name);
   const [results, setResults] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const latest = useRef(0);
+  const n = eIdx + 1;
 
   // Keep state in sync with external data changes
   useEffect(() => {
@@ -44,20 +53,25 @@ export function WatchlistRow({
   const handleSearch = async (query: string) => {
     setSearchTerm(query);
     onUpdate({ name: query });
+    const request = ++latest.current;
+    setFailed(false);
     if (query.length < 2) {
       setResults([]);
       setShowDropdown(false);
+      setLoading(false);
       return;
     }
     setLoading(true);
     try {
       const res = await onSearchCandidates(query);
+      if (request !== latest.current) return; // a newer query is on its way
       setResults(res || []);
       setShowDropdown(true);
-    } catch (err) {
-      console.error(err);
+    } catch {
+      // The typed name is kept; tell the user the suggestions did not load.
+      if (request === latest.current) { setResults([]); setShowDropdown(false); setFailed(true); }
     } finally {
-      setLoading(false);
+      if (request === latest.current) setLoading(false);
     }
   };
 
@@ -72,92 +86,95 @@ export function WatchlistRow({
   };
 
   const p = partyMap.get(entry.party_id);
+  const open = showDropdown && results.length > 0;
 
   return (
-    <tr className={eIdx % 2 === 1 ? 'striped' : ''}>
-      <td style={{ padding: '4px 6px', position: 'relative' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <input 
-            className="form-input mf-input-sm" 
-            placeholder="Search candidate..." 
+    <tr>
+      <td className="relative px-1.5 py-1 align-top">
+        <div className="flex items-center gap-1.5">
+          <Input
+            role="combobox"
+            aria-label={`Entry ${n} candidate`}
+            aria-expanded={open}
+            aria-controls={listId}
+            aria-autocomplete="list"
+            className="h-8 text-xs"
+            placeholder="Search candidate…"
             value={searchTerm || ''}
-            onChange={e => handleSearch(e.target.value)}
-            onFocus={() => { if ((results || []).length > 0) setShowDropdown(true); }}
-            onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+            onChange={e => { void handleSearch(e.target.value); }}
+            onFocus={() => { if (results.length > 0) setShowDropdown(true); }}
+            onBlur={() => setShowDropdown(false)}
+            onKeyDown={(e) => { if (e.key === 'Escape' && open) { e.preventDefault(); setShowDropdown(false); } }}
           />
-          {loading && <span className="spinner spinner-xs" style={{ width: 10, height: 10, borderWidth: 1 }} />}
+          {loading && <Spinner size={12} />}
         </div>
-        {showDropdown && (results || []).length > 0 && (
-          <div className="mf-dropdown" style={{ left: 6, right: 6, top: '100%', minWidth: '280px', zIndex: 1000 }}>
-            {(results || []).map(r => (
-              <div key={r.id} className="mf-dropdown-item" onMouseDown={() => handleSelect(r)}>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <span style={{ fontWeight: 'bold' }}>{r.name}</span>
-                  <div style={{ display: 'flex', gap: '8px', fontSize: '10px', color: 'var(--text-muted)' }}>
-                    <span>{r.party_id}</span>
-                    <span>&middot;</span>
-                    <span>{r.const_id}</span>
-                  </div>
-                </div>
-              </div>
+        {failed && <p role="status" className="mt-1 text-[11px] text-bad-text">Search failed — try again</p>}
+        {open && (
+          <ul id={listId} role="listbox" aria-label={`Entry ${n} candidates`} className="absolute left-1.5 right-1.5 top-full z-30 mt-1 min-w-[280px] list-none rounded-card border border-line bg-card p-1 shadow-lg">
+            {results.map(r => (
+              <li
+                key={r.id}
+                role="option"
+                aria-selected={false}
+                onMouseDown={(e) => { e.preventDefault(); handleSelect(r); }}
+                className="cursor-pointer rounded-control px-2.5 py-1.5 text-xs hover:bg-accent-soft"
+              >
+                <div className="font-semibold text-ink">{r.name}</div>
+                <div className="text-[10px] text-muted">{r.party_id} · {r.const_id}</div>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </td>
-      <td style={{ padding: '4px 6px' }}>
-        <input className="form-input mf-input-sm" placeholder="Role (e.g. CM, rebel)" value={entry.role || ''}
+      <td className="px-1.5 py-1 align-top">
+        <Input aria-label={`Entry ${n} role`} className="h-8 text-xs" placeholder="Role (e.g. CM, rebel)" value={entry.role || ''}
           onChange={e => onUpdate({ role: e.target.value || undefined })} />
       </td>
-      <td style={{ padding: '4px 6px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+      <td className="px-1.5 py-1 align-top">
+        <div className="flex items-center gap-1.5">
           <SearchableSelect
+            label={`Entry ${n} party`}
             value={entry.party_id}
             options={parties}
             onSelect={val => onUpdate({ party_id: val })}
-            placeholder="Party..."
-            getLabel={p => p.abbreviation || p.name}
-            getValue={p => p.id}
-            filter={(p, q) => 
-              p.name.toLowerCase().includes(q) || 
-              (p.abbreviation || '').toLowerCase().includes(q) || 
-              p.id.toLowerCase().includes(q)
+            placeholder="Party…"
+            getLabel={pp => pp.abbreviation || pp.name}
+            getValue={pp => pp.id}
+            filter={(pp, q) =>
+              pp.name.toLowerCase().includes(q) ||
+              (pp.abbreviation || '').toLowerCase().includes(q) ||
+              pp.id.toLowerCase().includes(q)
             }
-            renderItem={p => (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                {p.color && <span className="mf-chip-dot" style={{ background: p.color }} />}
-                <span style={{ fontWeight: 600 }}>{p.abbreviation || p.id}</span>
-                <span className="mf-item-sub">{p.name}</span>
-              </div>
+            renderItem={pp => (
+              <span className="flex items-center gap-1.5">
+                {pp.color && <ColorDot color={pp.color} />}
+                <span className="font-medium">{pp.abbreviation || pp.id}</span>
+                <span className="truncate text-muted">{pp.name}</span>
+              </span>
             )}
           />
-          {p?.color && <span className="mf-chip-dot" style={{ background: p.color }} />}
+          {p?.color && <ColorDot color={p.color} />}
         </div>
       </td>
-      <td style={{ padding: '4px 6px' }}>
+      <td className="px-1.5 py-1 align-top">
         <SearchableSelect
+          label={`Entry ${n} constituency`}
           value={entry.const_id}
           options={constituencies}
           onSelect={val => onUpdate({ const_id: val })}
-          placeholder="Constituency..."
+          placeholder="Constituency…"
           getLabel={c => `${c.name} (#${c.const_no})`}
           getValue={c => c.id}
-          filter={(c, q) => 
-            c.name.toLowerCase().includes(q) || 
-            c.id.toLowerCase().includes(q) || 
+          filter={(c, q) =>
+            c.name.toLowerCase().includes(q) ||
+            c.id.toLowerCase().includes(q) ||
             String(c.const_no).includes(q)
           }
-          renderItem={c => (
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <span style={{ fontWeight: 600 }}>#{c.const_no}</span>
-                <span>{c.name}</span>
-              </div>
-            </div>
-          )}
+          renderItem={c => <span><span className="font-semibold">#{c.const_no}</span> {c.name}</span>}
         />
       </td>
-      <td style={{ padding: '4px 6px' }}>
-        <button className="mf-remove-btn" onClick={onRemove} title="Remove">&times;</button>
+      <td className="px-1.5 py-1 align-top">
+        <RemoveButton label={`Remove entry ${n}`} onClick={onRemove} />
       </td>
     </tr>
   );
@@ -210,95 +227,70 @@ export function WatchlistEditor({
 
       {items.map((w, wIdx) => {
         if (!w) return null;
+        const entries = w.entries || [];
         return (
-          <div 
-            key={w.id || wIdx} 
-            className="mf-watchlist-card" 
-            style={{ 
-              marginBottom: 'var(--space-3)',
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-sm)',
-              overflow: 'visible'
-            }}
-          >
-            <div className="mf-watchlist-header" style={{ 
-              padding: 'var(--space-1) var(--space-4)', 
-              background: 'var(--bg-secondary)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <input className="form-input mf-watchlist-name" 
-                style={{ 
-                  fontSize: '13px', 
-                  fontWeight: 'bold', 
-                  background: 'transparent', 
-                  border: 'none',
-                  padding: '2px 4px'
-                }} 
-                value={w.name || ''} placeholder="Watchlist Name (e.g. VIP Seats)"
-                onChange={e => updateWatchlist(wIdx, { name: e.target.value })} />
-              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                <span className="mf-inline-hint">{(w.entries || []).length} entries</span>
-                <button className="mf-remove-btn" 
-                  onClick={() => removeWatchlist(wIdx)} title="Remove watchlist">&times;</button>
+          <div key={w.id || wIdx} className="rounded-control border border-line bg-card">
+            <div className="flex items-center justify-between gap-3 border-b border-line bg-subtle px-3 py-1.5">
+              <Input
+                aria-label={`Watchlist ${wIdx + 1} name`}
+                className="h-8 border-transparent bg-transparent text-sm font-semibold"
+                value={w.name || ''}
+                placeholder="Watchlist name (e.g. VIP seats)"
+                onChange={e => updateWatchlist(wIdx, { name: e.target.value })}
+              />
+              <div className="flex items-center gap-2">
+                <span className="whitespace-nowrap text-xs text-muted">{entries.length} entries</span>
+                <RemoveButton label={`Remove watchlist ${w.name || wIdx + 1}`} onClick={() => removeWatchlist(wIdx)} />
               </div>
             </div>
 
-            <div className="mf-watchlist-entries" style={{ padding: 0 }}>
-              <div className="mf-data-grid">
-                <table className="admin-table" style={{ border: 'none', marginBottom: 0, tableLayout: 'fixed' }}>
-                  <thead>
-                    <tr style={{ background: 'var(--bg-primary)' }}>
-                      <th style={{ width: '35%', padding: '4px 6px' }}>Candidate</th>
-                      <th style={{ width: '20%', padding: '4px 6px' }}>Role</th>
-                      <th style={{ width: '20%', padding: '4px 6px' }}>Party</th>
-                      <th style={{ width: '20%', padding: '4px 6px' }}>Constituency</th>
-                      <th style={{ width: '5%', padding: '4px 6px' }}></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {(w.entries || []).map((entry, eIdx) => (
-                      <WatchlistRow 
-                        key={eIdx}
-                        entry={entry}
-                        eIdx={eIdx}
-                        onUpdate={(patch) => updateWatchlistEntry(wIdx, eIdx, patch)}
-                        onRemove={() => removeWatchlistEntry(wIdx, eIdx)}
-                        parties={contestingParties || []}
-                        constituencies={constituencies || []}
-                        partyMap={partyMap}
-                        onSearchCandidates={onSearchCandidates}
-                      />
-                    ))}
-                  </tbody>
-                </table>
-                {(w.entries || []).length === 0 && (
-                  <div style={{ padding: '20px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '12px' }}>
-                    No entries added to this watchlist.
-                  </div>
-                )}
-              </div>
+            <table aria-label={`${w.name || 'Watchlist'} entries`} className="w-full table-fixed border-collapse text-xs">
+              <thead>
+                <tr className="text-left text-[11px] text-ink-2">
+                  <th scope="col" className="w-[35%] px-1.5 py-1.5 font-medium">Candidate</th>
+                  <th scope="col" className="w-[20%] px-1.5 py-1.5 font-medium">Role</th>
+                  <th scope="col" className="w-[20%] px-1.5 py-1.5 font-medium">Party</th>
+                  <th scope="col" className="w-[20%] px-1.5 py-1.5 font-medium">Constituency</th>
+                  <th scope="col" className="w-[5%] px-1.5 py-1.5"><span className="sr-only">Remove</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                {entries.map((entry, eIdx) => (
+                  <WatchlistRow
+                    key={eIdx}
+                    entry={entry}
+                    eIdx={eIdx}
+                    onUpdate={(patch) => updateWatchlistEntry(wIdx, eIdx, patch)}
+                    onRemove={() => removeWatchlistEntry(wIdx, eIdx)}
+                    parties={contestingParties || []}
+                    constituencies={constituencies || []}
+                    partyMap={partyMap}
+                    onSearchCandidates={onSearchCandidates}
+                  />
+                ))}
+              </tbody>
+            </table>
+            {entries.length === 0 && <p className="px-3 py-5 text-center text-xs text-muted">No entries added to this watchlist.</p>}
 
-              <div style={{ padding: '8px 12px', background: 'var(--bg-primary)', borderTop: '1px solid var(--border)' }}>
-                <AddButton label="Add Entry" onClick={() =>
-                  updateWatchlist(wIdx, { entries: [...(w.entries || []), { name: '', party_id: '', const_id: '' }] })} />
-              </div>
+            <div className="border-t border-line px-2 py-1.5">
+              <AddButton label="Add entry" onClick={() =>
+                updateWatchlist(wIdx, { entries: [...entries, { name: '', party_id: '', const_id: '' }] })} />
             </div>
           </div>
         );
       })}
 
-      <div className="mf-watchlist-actions">
+      <div className="space-y-2">
         {unusedPresets.length > 0 && (
-          <div className="mf-preset-row" style={{ display: 'flex', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
+          <div className="flex flex-wrap gap-2">
             {unusedPresets.map(p => (
-              <button key={p.id} className="mf-preset-btn" onClick={() => addWatchlist(p.id, p.name)} style={{ fontSize: '11px', padding: '2px 8px' }}>+ {p.name}</button>
+              <Button key={p.id} size="sm" variant="outline" onClick={() => addWatchlist(p.id, p.name)}>
+                <Plus size={12} aria-hidden />{p.name}
+              </Button>
             ))}
           </div>
         )}
-        <AddButton label="Custom Watchlist" onClick={() => {
+        <AddButton label="Custom watchlist" onClick={() => {
           const id = `custom_${Date.now()}`;
           addWatchlist(id, '');
         }} />

@@ -54,15 +54,14 @@ describe('Manifests page', () => {
     expect(within(panel).getByRole('button', { name: 'Summary' }).getAttribute('aria-pressed')).toBe('true');
   });
 
-  it('Edit shows the existing editors with their legacy styles; an EDITOR has no Publish button', async () => {
+  it('Edit shows the editors; an EDITOR has no Publish button', async () => {
     renderAt('/manifests/e1');
     const panel = await screen.findByRole('dialog', { name: 'Bihar Vidhan Sabha 2025' });
     await within(panel).findByText('NDA');
     expect(within(panel).queryByRole('button', { name: 'Publish' })).toBeNull();
     fireEvent.click(within(panel).getByRole('button', { name: 'Edit' }));
-    const milestones = within(panel).getByText('Milestones');
-    expect(milestones.closest('.mf-section')).not.toBeNull();
-    expect(milestones.closest('.tw-ui')).toBeNull();
+    expect(within(panel).getByRole('region', { name: 'Milestones' })).toBeTruthy();
+    expect(within(panel).getByRole('region', { name: 'Alliances' })).toBeTruthy();
   });
 
   it('a SUPER_ADMIN publishes after confirming, and the election list is reloaded', async () => {
@@ -98,14 +97,17 @@ describe('Manifests page', () => {
     await waitFor(() => expect(svc.saveManifestDraft).toHaveBeenCalledWith('e1', next));
   });
 
-  it('Edit renders every editor section expanded', async () => {
+  it('Edit renders every editor section open, with no expand toggle', async () => {
     renderAt('/manifests/e1');
     const panel = await screen.findByRole('dialog', { name: 'Bihar Vidhan Sabha 2025' });
     await within(panel).findByText('NDA');
     fireEvent.click(within(panel).getByRole('button', { name: 'Edit' }));
-    const sections = panel.querySelectorAll('.mf-section');
-    expect(sections.length).toBeGreaterThanOrEqual(8);
-    sections.forEach((sec) => expect(sec.querySelector('.mf-section-body')).not.toBeNull());
+    expect(within(panel).getAllByRole('region').length).toBeGreaterThanOrEqual(8);
+    expect(panel.querySelector('button[aria-expanded]')).toBeNull();
+    for (const name of ['Alliances', 'Tracked', 'Watchlists', 'Milestones', 'Compare and history', 'Vote splits', 'Geo config', 'Live tabs']) {
+      expect(within(panel).getByRole('region', { name })).toBeTruthy();
+    }
+    expect(panel.querySelector('[class*="mf-"],.btn,.form-input,.form-select,.admin-table')).toBeNull();
   });
 
   it('a failed load offers Try again; a 404 says the election is not found', async () => {

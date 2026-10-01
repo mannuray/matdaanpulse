@@ -80,8 +80,10 @@ export interface Candidate {
 
 export interface AuditLog {
   id: string;
-  user_id: string;
-  user?: User;
+  /** null once the acting user is deleted (FK ON DELETE SET NULL); the entry is kept. */
+  user_id: string | null;
+  /** The acting user, as GET /admin/audit-logs includes it (`include: { users: … }`). */
+  users?: Pick<User, 'id' | 'email' | 'name' | 'role'> | null;
   action: string;
   entity_type: string;
   entity_id: string;

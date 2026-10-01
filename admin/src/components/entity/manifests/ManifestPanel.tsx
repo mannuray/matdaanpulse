@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { useToast } from '../../../context/ToastContext';
 import { useManifestEditor } from '../../../hooks/useManifestEditor';
@@ -37,8 +37,7 @@ interface ManifestPanelProps {
 }
 
 /**
- * Full-width manifest sheet. Summary is rebuilt in Tailwind; Edit hosts the existing legacy-CSS editors
- * (so the body is `legacyBody`: no `tw-ui` around them); JSON is the raw manifest.
+ * Full-width manifest sheet: Summary (overview), Edit (the always-open editor sections) and JSON (the raw manifest).
  */
 export function ManifestPanel({ electionId, election, onClose, onPublished }: ManifestPanelProps) {
   const { hasRole } = useAuth();
@@ -56,10 +55,19 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
   const dirty = c.isDirty || jsonEdited;
   useUnsavedGuard(dirty);
 
-  // Entering the JSON tab, or a save/reload while on it, shows the current manifest.
+  // The text last synced from (or submitted to) the manifest. A save/reload refreshes the JSON tab only while the
+  // text still equals it, so keystrokes typed during a save are kept.
+  const jsonBaseRef = useRef('');
+  const syncJson = () => {
+    const text = JSON.stringify(c.manifest, null, 2);
+    jsonBaseRef.current = text;
+    setJsonText(text);
+    setJsonError('');
+  };
   useEffect(() => {
-    if (tab === 'json') { setJsonText(JSON.stringify(c.manifest, null, 2)); setJsonError(''); }
-  }, [c.manifest, tab]);
+    if (tab === 'json' && jsonText === jsonBaseRef.current) syncJson();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [c.manifest]);
 
   const parseJson = (): ManifestData | null => {
     try { return objectError(jsonText) ? null : JSON.parse(jsonText) as ManifestData; } catch { return null; }
@@ -71,6 +79,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
       if (!parsed) { toast('Fix JSON errors before switching tabs', 'error'); return; }
       if (jsonEdited) c.setFullManifest(parsed);
     }
+    if (next === 'json') syncJson();
     setTab(next);
   };
 
@@ -81,7 +90,9 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
       if (!parsed) { toast('Invalid JSON format', 'error'); return; }
       data = parsed;
     }
-    await c.saveDraft(data);
+    const previousBase = jsonBaseRef.current;
+    if (tab === 'json') jsonBaseRef.current = jsonText;
+    if (!await c.saveDraft(data)) jsonBaseRef.current = previousBase;
   };
 
   // Publish asks first (ConfirmDialog); unsaved edits, including a pending JSON edit, are saved before publishing.
@@ -98,8 +109,11 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
       if (jsonEdited) pending = parsed;
     }
     setPublishing(true);
+    const previousBase = jsonBaseRef.current;
+    if (pending) jsonBaseRef.current = jsonText;
     try {
       if (await c.publish(pending)) onPublished();
+      else jsonBaseRef.current = previousBase;
     } finally {
       setPublishing(false);
       setConfirmPublish(false);
@@ -117,7 +131,6 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
     <Sheet
       open
       width="full"
-      legacyBody
       onRequestClose={onClose}
       title={election?.name ?? 'Manifest'}
       description="What the public results page shows for this election: alliances, watchlists, milestones and map settings"
@@ -134,7 +147,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
         </>
       }
     >
-      <div className="tw-ui mb-4">
+      <div className="mb-4">
         <ChipGroup<Tab>
           label="Manifest view"
           value={tab}
@@ -144,15 +157,15 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
       </div>
 
       {c.loading ? (
-        <p className="tw-ui py-16 text-center text-sm text-muted">Loading manifest…</p>
+        <p className="py-16 text-center text-sm text-muted">Loading manifest…</p>
       ) : blocked ? (
-        <div className="tw-ui">
+        <div>
           {blocked === 'failed'
             ? <EmptyState title="Could not load manifest" description="Check the connection and try again." action={<Button variant="outline" size="sm" onClick={() => { void c.reload(electionId); }}>Try again</Button>} />
             : <EmptyState title="Election not found" description="It may have been removed. Close this panel to go back to the list." />}
         </div>
       ) : tab === 'summary' ? (
-        <div className="tw-ui">
+        <div>
           <ManifestSummary manifest={c.manifest} partyMap={c.partyMap} electionMap={c.electionMap} />
         </div>
       ) : tab === 'edit' ? (
@@ -199,7 +212,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
           </ErrorBoundary>
         </div>
       ) : (
-        <div className="tw-ui flex min-h-[480px] flex-col overflow-hidden rounded-card border border-line">
+        <div className="flex min-h-[480px] flex-col overflow-hidden rounded-card border border-line">
           {jsonError && <p role="alert" className="border-b border-line bg-bad-soft px-4 py-2 text-xs text-bad-text">{jsonError}</p>}
           <textarea
             aria-label="Manifest JSON"

@@ -1,36 +1,33 @@
-import { useState, type ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
+import { Badge } from '../ui/Badge';
 
 /**
- * VIEW: Collapsible Section (SOLID: SRP)
+ * One manifest editor section. Always open (no collapse toggle — core content is never hidden behind a click):
+ * title, count, optional badge and a one-line description, then the body.
  */
-export function ManifestSection({ 
-  title, 
-  description, 
-  count, 
-  badge, 
-  defaultOpen, 
-  children 
+export function ManifestSection({
+  title,
+  description,
+  count,
+  badge,
+  children,
 }: {
-  title: string; 
-  description?: string; 
-  count?: number; 
-  badge?: ReactNode; 
-  defaultOpen?: boolean; 
+  title: string;
+  description?: string;
+  count?: number;
+  badge?: ReactNode;
   children: ReactNode;
 }) {
-  const [open, setOpen] = useState(defaultOpen ?? true);
+  const headingId = useId();
   return (
-    <div className="mf-section">
-      <div className="mf-section-header" onClick={() => setOpen(!open)}>
-        <div className="mf-section-title-row">
-          <span className={`mf-toggle ${open ? 'open' : ''}`}>&#9654;</span>
-          <span className="mf-section-title">{title}</span>
-          {count !== undefined && count > 0 && <span className="mf-count">{count}</span>}
-          {badge}
-        </div>
-        {description && !open && <div className="mf-section-desc">{description}</div>}
-      </div>
-      {open && <div className="mf-section-body">{children}</div>}
-    </div>
+    <section aria-labelledby={headingId} className="rounded-card border border-line bg-card shadow-sm">
+      <header className="flex flex-wrap items-center gap-x-2 gap-y-1 border-b border-line px-4 py-3">
+        <h3 id={headingId} className="text-sm font-semibold text-ink">{title}</h3>
+        {count !== undefined && count > 0 && <Badge tone="accent" className="tabular-nums">{count.toLocaleString('en-IN')}</Badge>}
+        {badge}
+        {description && <p className="w-full text-xs text-ink-2">{description}</p>}
+      </header>
+      <div className="space-y-2 p-4">{children}</div>
+    </section>
   );
 }
