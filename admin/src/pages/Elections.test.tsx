@@ -11,9 +11,9 @@ const svc = vi.hoisted(() => ({
 }));
 vi.mock('../services/election.service', () => svc);
 vi.mock('../services/geo.service', () => ({ getStates: vi.fn(async () => [{ id: 1, name: 'Bihar', code: 'BR' }]) }));
-const ctx = vi.hoisted(() => ({ reload: vi.fn(async () => {}), elections: [] as Election[], error: null as string | null }));
+const ctx = vi.hoisted(() => ({ reload: vi.fn(async () => {}), setElectionId: vi.fn(), elections: [] as Election[], error: null as string | null }));
 vi.mock('../context/ElectionContext', () => ({
-  useElection: () => ({ elections: ctx.elections, electionId: 'e1', election: null, setElectionId: vi.fn(), loading: false, error: ctx.error, reload: ctx.reload }),
+  useElection: () => ({ elections: ctx.elections, electionId: 'e1', election: null, setElectionId: ctx.setElectionId, loading: false, error: ctx.error, reload: ctx.reload }),
 }));
 const auth = vi.hoisted(() => ({ role: 'EDITOR' }));
 vi.mock('../context/AuthContext', () => ({
@@ -82,8 +82,10 @@ describe('Elections page', () => {
   it('a deep link opens the election even when the table filter hides it', async () => {
     localStorage.setItem('elections_filters', JSON.stringify({ status: '', type: 'LS', stateId: null }));
     renderAt('/elections/e1');
-    await within(table()).findByText('Lok Sabha 2024');
-    expect(within(table()).queryByText('Bihar Vidhan Sabha 2025')).toBeNull();
+    // The edit dialog is modal, so the table behind it is aria-hidden.
+    const hiddenTable = () => screen.getByRole('table', { name: 'Elections', hidden: true });
+    await within(hiddenTable()).findByText('Lok Sabha 2024');
+    expect(within(hiddenTable()).queryByText('Bihar Vidhan Sabha 2025')).toBeNull();
     const panel = screen.getByRole('dialog', { name: 'Bihar Vidhan Sabha 2025' });
     expect((within(panel).getByLabelText('Name') as HTMLInputElement).value).toBe('Bihar Vidhan Sabha 2025');
   });
@@ -127,5 +129,49 @@ describe('Elections page', () => {
     expect(await screen.findByText('Could not load election')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
     expect(ctx.reload).toHaveBeenCalled();
+  });
+
+  it('shows year, next date, manifest and the current election in the table', async () => {
+    ctx.elections = ELECTIONS.map((e) => (e.id === 'e2' ? { ...e, manifest_url: 'https://cdn/x.json', tentative_next_date: '2029-04-15' } : e));
+    svc.getElections.mockImplementation(async () => ctx.elections);
+    renderAt();
+    const row = (await within(table()).findByText('Lok Sabha 2024')).closest('tr')!;
+    expect(within(row).getByText('Published')).toBeTruthy();
+    expect(within(row).getByText('15 Apr 2029')).toBeTruthy();
+    const current = within(table()).getByText('Bihar Vidhan Sabha 2025').closest('tr')!;
+    expect(within(current).getByText('Current')).toBeTruthy();
+    expect(within(current).getByText('Not published')).toBeTruthy();
+  });
+
+  it('Go live from the row asks first and does not open the edit dialog', async () => {
+    renderAt();
+    const row = (await within(table()).findByText('Kerala Vidhan Sabha 2026')).closest('tr')!;
+    fireEvent.click(within(row).getByRole('button', { name: 'Go live' }));
+    expect(where()).toBe('/elections');
+    fireEvent.click(within(screen.getByRole('dialog', { name: 'Go live?' })).getByRole('button', { name: 'Go live' }));
+    await waitFor(() => expect(svc.updateElection).toHaveBeenCalledWith('e3', { status: 'Live' }));
+  });
+
+  it('Finalize in the row is for a SUPER_ADMIN only', async () => {
+    renderAt();
+    const row = (await within(table()).findByText('Lok Sabha 2024')).closest('tr')!;
+    expect(within(row).queryByRole('button', { name: 'Finalize' })).toBeNull();
+    cleanup();
+    auth.role = 'SUPER_ADMIN';
+    renderAt();
+    const row2 = (await within(table()).findByText('Lok Sabha 2024')).closest('tr')!;
+    fireEvent.click(within(row2).getByRole('button', { name: 'Finalize' }));
+    fireEvent.click(within(screen.getByRole('dialog', { name: 'Finalize election?' })).getByRole('button', { name: 'Yes, finalize' }));
+    await waitFor(() => expect(svc.finalizeElection).toHaveBeenCalledWith('e2'));
+  });
+
+  it('the ⋯ menu makes an election current without opening the edit dialog', async () => {
+    renderAt();
+    await within(table()).findByText('Lok Sabha 2024');
+    const trigger = screen.getByRole('button', { name: 'More actions for Lok Sabha 2024' });
+    fireEvent.keyDown(trigger, { key: 'Enter' });
+    fireEvent.click(await screen.findByRole('menuitem', { name: 'Make current' }));
+    expect(ctx.setElectionId).toHaveBeenCalledWith('e2');
+    expect(where()).toBe('/elections');
   });
 });
