@@ -16,6 +16,7 @@ export function useConstituencyManager(electionId: string) {
 
   const [constituencies, setConstituencies] = useState<Constituency[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [search, setSearchState] = useState('');
   const [districtFilter, setDistrictFilter] = useState('');
   const [tagFilter, setTagFilter] = useState('');
@@ -32,6 +33,7 @@ export function useConstituencyManager(electionId: string) {
   const requestRef = useRef(0);
   const loadData = useCallback(async () => {
     const req = ++requestRef.current;
+    setError(false);
     if (!electionId) {
       setConstituencies([]);
       setTotal(0);
@@ -43,12 +45,13 @@ export function useConstituencyManager(electionId: string) {
       if (req !== requestRef.current) return;
       setConstituencies(response.data);
       setTotal(response.pagination.total);
-    } catch (err) {
-      if (req === requestRef.current) toastError(err, 'Failed to load constituencies');
+    } catch {
+      // The page shows "Could not load seats" with Try again (not an empty list).
+      if (req === requestRef.current) { setConstituencies([]); setError(true); }
     } finally {
       if (req === requestRef.current) setLoading(false);
     }
-  }, [electionId, page, search, toastError]);
+  }, [electionId, page, search]);
 
   useEffect(() => {
     loadData();
@@ -124,7 +127,7 @@ export function useConstituencyManager(electionId: string) {
   };
 
   return {
-    constituencies: filteredConstituencies, loading,
+    constituencies: filteredConstituencies, loading, error,
     search, setSearch, districtFilter, setDistrictFilter, tagFilter, setTagFilter,
     page, totalPages: Math.max(1, Math.ceil(total / CONSTITUENCY_PAGE_SIZE)), total,
     allDistricts, allTags, selection, computing,

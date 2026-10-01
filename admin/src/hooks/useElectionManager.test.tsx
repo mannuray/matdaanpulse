@@ -74,4 +74,14 @@ describe('useElectionManager', () => {
     act(() => result.current.revert());
     expect(result.current.form.name).toBe('Renamed');
   });
+
+  it('edit sends null to clear the state (VS to LS) and the tentative date', async () => {
+    const { result } = renderHook(() => useElectionManager(), { wrapper });
+    act(() => result.current.startEdit(bihar));
+    act(() => result.current.setForm({ ...result.current.form, type: 'LS', state_id: '', tentative_next_date: '' }));
+    await act(async () => { await result.current.handleSave(); });
+    expect(updateElection).toHaveBeenCalledWith('e1', {
+      name: 'Bihar Vidhan Sabha 2025', type: 'LS', year: 2025, state_id: null, tentative_next_date: null,
+    });
+  });
 });

@@ -15,6 +15,8 @@ export const ErrorCodes = {
   // Election (2xxx)
   ELECTION_NOT_FOUND: 'ELECTION_2001',
   ELECTION_ALREADY_FINALIZED: 'ELECTION_2002',
+  /** The election is Finalized (archived): no new candidates. */
+  ELECTION_FINALIZED: 'ELECTION_2003',
 
   // Constituency (3xxx)
   CONSTITUENCY_NOT_FOUND: 'CONST_3001',

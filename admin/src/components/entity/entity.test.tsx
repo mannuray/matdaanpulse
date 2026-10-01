@@ -6,6 +6,11 @@ import { EntityPage } from './EntityPage';
 import { PanelFooter } from './PanelFooter';
 import { NoElection } from './NoElection';
 
+const election = vi.hoisted(() => ({ reload: vi.fn(async () => {}) }));
+vi.mock('../../context/ElectionContext', () => ({
+  useElection: () => ({ elections: [], electionId: '', election: null, setElectionId: vi.fn(), loading: false, error: 'boom', reload: election.reload }),
+}));
+
 afterEach(cleanup);
 
 describe('entity scaffold', () => {
@@ -33,5 +38,12 @@ describe('entity scaffold', () => {
   it('NoElection links to creating an election', () => {
     render(<MemoryRouter><NoElection /></MemoryRouter>);
     expect(screen.getByRole('link', { name: 'Create an election' }).getAttribute('href')).toBe('/elections/new');
+  });
+
+  it('NoElection after a failed elections load offers Try again, which reloads the elections', () => {
+    render(<MemoryRouter><NoElection error="boom" /></MemoryRouter>);
+    expect(screen.getByText('Could not load elections')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+    expect(election.reload).toHaveBeenCalledTimes(1);
   });
 });

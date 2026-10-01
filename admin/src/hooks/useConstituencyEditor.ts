@@ -32,14 +32,17 @@ const isPercent = (v: string) => {
 };
 const textOrNull = (v: string | number) => (String(v).trim() === '' ? null : String(v));
 
+const tagsOf = (meta: Record<string, unknown> | null | undefined): string[] =>
+  Array.isArray(meta?.tags) ? (meta!.tags as string[]) : [];
+const tagsEdited = (now: Snapshot, saved: Snapshot) => JSON.stringify(now.tags) !== JSON.stringify(saved.tags);
+
 /**
- * Metadata to send: the loaded keys, with a field replaced only when the user changed it (an untouched legacy
- * value such as "62.3%" goes back as it was). Tags are sent only when edited, so a tag added meanwhile
- * (bulk tagging) is not overwritten by the older copy this form loaded.
+ * Metadata to send: only the keys the user changed (the backend shallow-merges metadata, so untouched keys,
+ * such as a legacy "62.3%", stay as stored). Edited tags are `serverTags ∪ added − removed`, with added/removed
+ * taken against the tags loaded when the panel opened, so a tag added meanwhile (bulk tagging) survives.
  */
-function metadataPatch(loaded: Record<string, unknown> | undefined, now: Snapshot, saved: Snapshot): Record<string, unknown> {
-  const { tags: _loadedTags, ...rest } = (loaded ?? {}) as Record<string, unknown>;
-  const out: Record<string, unknown> = { ...rest };
+function metadataPatch(now: Snapshot, saved: Snapshot, serverTags: string[]): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
   const edited = (a: string | number, b: string | number) => String(a) !== String(b);
   (['population', 'literacy_pct', 'urban_pct', 'sc_st_pct'] as const).forEach((k) => {
     if (edited(now.demo[k], saved.demo[k])) out[k] = toOptionalNumber(now.demo[k]);
@@ -48,7 +51,11 @@ function metadataPatch(loaded: Record<string, unknown> | undefined, now: Snapsho
     if (edited(now.demo[k], saved.demo[k])) out[k] = textOrNull(now.demo[k]);
   });
   if (edited(now.admin.phase, saved.admin.phase)) out.phase = textOrNull(now.admin.phase);
-  if (JSON.stringify(now.tags) !== JSON.stringify(saved.tags)) out.tags = now.tags;
+  if (tagsEdited(now, saved)) {
+    const removed = new Set(saved.tags.filter((t) => !now.tags.includes(t)));
+    const added = now.tags.filter((t) => !saved.tags.includes(t));
+    out.tags = [...new Set([...serverTags, ...added])].filter((t) => !removed.has(t));
+  }
   return out;
 }
 
@@ -66,7 +73,7 @@ const toSnapshot = (data: Constituency): Snapshot => {
     },
     // Strings throughout, so choosing the original option again is not an edit.
     admin: { district_id: text(data.district_id), region_id: text(data.region_id), const_no: text(data.const_no), phase: text(meta.phase) },
-    tags: Array.isArray(meta.tags) ? (meta.tags as string[]) : [],
+    tags: tagsOf(meta),
   };
 };
 
@@ -160,7 +167,11 @@ export function useConstituencyEditor(id?: string) {
     setServerErrors({});
     setSaving(true);
     try {
-      const metadata = metadataPatch(constituency.metadata, submitted, saved);
+      // Edited tags merge with the server's current tags (a re-read; the loaded copy if that fails).
+      const serverTags = tagsEdited(submitted, saved)
+        ? tagsOf((await getAdminConstituencyDetail(id).catch(() => null))?.metadata ?? constituency.metadata)
+        : [];
+      const metadata = metadataPatch(submitted, saved, serverTags);
       await updateConstituency(id, {
         district_id: submitted.admin.district_id ? Number(submitted.admin.district_id) : null,
         region_id: submitted.admin.region_id ? Number(submitted.admin.region_id) : null,

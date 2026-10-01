@@ -78,7 +78,7 @@ describe('Constituencies page', () => {
     fireEvent.change(await within(panel).findByLabelText('Urban %'), { target: { value: '0' } });
     fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
     await waitFor(() => expect(svc.updateConstituency).toHaveBeenCalledWith('a', expect.objectContaining({
-      const_no: 1, metadata: expect.objectContaining({ urban_pct: 0, population: 1000 }),
+      const_no: 1, metadata: { urban_pct: 0 },
     })));
     await waitFor(() => expect(within(panel).getByText('No changes')).toBeTruthy());
     fireEvent.change(within(panel).getByLabelText('Seat number'), { target: { value: 'abc' } });
@@ -159,7 +159,17 @@ describe('Constituencies page', () => {
     fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
     await waitFor(() => expect(svc.updateConstituency).toHaveBeenCalled());
     const call = svc.updateConstituency.mock.calls[0] as unknown as [string, { metadata: Record<string, unknown> }];
-    expect(call[1].metadata).not.toHaveProperty('tags');
-    expect(call[1].metadata).toMatchObject({ phase: '3', population: 1000 });
+    expect(call[1].metadata).toEqual({ phase: '3' });
+  });
+
+  it('a failed seats load says "Could not load seats" and Try again reloads them', async () => {
+    svc.getAdminConstituencies.mockRejectedValueOnce(new Error('boom'));
+    renderAt();
+    expect(await screen.findByText('Could not load seats')).toBeTruthy();
+    expect(screen.queryByText('No seats match')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+    expect(await within(table()).findByText('Patna Sahib')).toBeTruthy();
+    expect(svc.getAdminConstituencies).toHaveBeenCalledTimes(2);
+    expect(screen.queryByText('Could not load seats')).toBeNull();
   });
 });

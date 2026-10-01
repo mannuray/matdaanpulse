@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { getCandidates, searchCandidates, linkCandidatePerson, unlinkCandidatePerson, createCandidate } from '../services/candidate.service';
+import { getCandidates, searchCandidates, linkCandidatePerson, createCandidate } from '../services/candidate.service';
 import { createPerson } from '../services/person.api';
 import { getConstituencies } from '../services/constituency.service';
 import { useToast } from '../context/ToastContext';
 import type { Candidate, Constituency } from '../types';
 
 export type PersonFilter = 'all' | 'linked' | 'unlinked';
+/** Which load failed: the election's seats, or the selected seat's candidates. */
+export type CandidateLoadError = 'seats' | 'candidates' | null;
 export interface LinkSuggestion { candidate: Candidate; matches: Candidate[] }
 /** Body of POST /admin/candidates (backend CreateCandidateDto). */
 export interface NewCandidate { election_id: string; const_id: string; name: string; party_id: string; metadata: Record<string, unknown> }
@@ -25,7 +27,11 @@ export function useCandidateManager(electionId: string) {
   const [seats, setSeats] = useState<{ electionId: string; list: Constituency[] }>({ electionId: '', list: [] });
   const constituencies = useMemo(() => (seats.electionId === electionId ? seats.list : []), [seats, electionId]);
   const [seatsLoading, setSeatsLoading] = useState(false);
+  // The election whose seats failed to load (so a switch to another election never shows a stale error).
+  const [seatsFailedFor, setSeatsFailedFor] = useState<string | null>(null);
+  const [seatsReload, setSeatsReload] = useState(0);
   const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [candidatesFailed, setCandidatesFailed] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [selectedConst, setSelectedConst] = useState('');
@@ -40,12 +46,13 @@ export function useCandidateManager(electionId: string) {
     let cancelled = false;
     if (!electionId) return;
     setSeatsLoading(true);
+    setSeatsFailedFor(null);
     getConstituencies(electionId)
       .then((list) => { if (!cancelled) setSeats({ electionId, list: [...list].sort((a, b) => a.const_no - b.const_no) }); })
-      .catch(() => {})
+      .catch(() => { if (!cancelled) setSeatsFailedFor(electionId); })
       .finally(() => { if (!cancelled) setSeatsLoading(false); });
     return () => { cancelled = true; };
-  }, [electionId]);
+  }, [electionId, seatsReload]);
 
   // Default seat: the first by number whenever the current one is not in this election.
   useEffect(() => {
@@ -57,6 +64,7 @@ export function useCandidateManager(electionId: string) {
   const requestRef = useRef(0);
   const loadCandidates = useCallback(async () => {
     const req = ++requestRef.current;
+    setCandidatesFailed(false);
     if (!electionId || !seatReady) {
       setCandidates([]);
       return;
@@ -66,13 +74,21 @@ export function useCandidateManager(electionId: string) {
       const data = await getCandidates(electionId, selectedConst);
       if (req === requestRef.current) setCandidates(data.filter((c) => !isNota(c)));
     } catch {
-      if (req === requestRef.current) setCandidates([]);
+      if (req === requestRef.current) { setCandidates([]); setCandidatesFailed(true); }
     } finally {
       if (req === requestRef.current) setLoading(false);
     }
   }, [electionId, selectedConst, seatReady]);
 
   useEffect(() => { loadCandidates(); }, [loadCandidates]);
+
+  const seatsFailed = !!electionId && seatsFailedFor === electionId;
+  const error: CandidateLoadError = seatsFailed ? 'seats' : candidatesFailed ? 'candidates' : null;
+  /** Reloads the seats when they failed, otherwise the selected seat's candidates. */
+  const refresh = useCallback(async () => {
+    if (seatsFailed) setSeatsReload((n) => n + 1);
+    else await loadCandidates();
+  }, [seatsFailed, loadCandidates]);
 
   const constBaseName = useCallback((constId: string) => {
     const vsMatch = constId.match(/^[A-Z]+_VS\d*_(.+)$/);
@@ -169,15 +185,6 @@ export function useCandidateManager(electionId: string) {
     }
   };
 
-  const handleUnlink = async (candidateId: string) => {
-    if (!confirm('Unlink this candidate from the master record?')) return;
-    try {
-      await unlinkCandidatePerson(candidateId);
-      toast('Candidate unlinked');
-      loadCandidates();
-    } catch (err) { toastError(err, 'Unlink failed'); }
-  };
-
   /** New candidate (the backend also adds its zero-vote results row). The caller shows its seat and opens it. */
   const [creating, setCreating] = useState(false);
   const handleCreate = async (data: NewCandidate): Promise<Candidate | null> => {
@@ -211,9 +218,9 @@ export function useCandidateManager(electionId: string) {
   return {
     constituencies, seatsLoading, selectedConst, setSelectedConst,
     personFilter, setPersonFilter, search, setSearch,
-    candidates: filteredCandidates, counts, loading,
-    linkingSuggestions, selectedMatches, toggleMatch, handleLink, handleUnlink,
+    candidates: filteredCandidates, counts, loading, error,
+    linkingSuggestions, selectedMatches, toggleMatch, handleLink,
     creating, handleCreate,
-    refresh: loadCandidates
+    refresh
   };
 }

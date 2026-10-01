@@ -18,10 +18,10 @@ export interface ChangedRow {
 export interface AfterCommitOptions {
   /** `single` publishes one `result-update` event; `batch` one `batch-update` with all rows. */
   kind: 'single' | 'batch';
-  /** Value for the override counter. */
-  overrideCount: number;
+  /** Value for the override counter; omit for a change that is not an override (e.g. a new candidate's zero-vote row). */
+  overrideCount?: number;
   /** Status label for the override counter. */
-  status: string;
+  status?: string;
   /** Single override whose candidate has no party: no event can be built (counted as skipped). */
   skippedMissingParty?: { resultId: string };
 }
@@ -44,10 +44,12 @@ export class ResultChangeNotifier {
   ) {}
 
   async afterCommit(electionId: string, changedRows: ChangedRow[], opts: AfterCommitOptions): Promise<void> {
-    try {
-      this.metrics.resultOverrides.add(opts.overrideCount, { election_id: electionId, status: opts.status });
-    } catch (err) {
-      this.logger.warn(`Metrics recording failed: ${(err as Error).message}`);
+    if (opts.overrideCount !== undefined) {
+      try {
+        this.metrics.resultOverrides.add(opts.overrideCount, { election_id: electionId, status: opts.status ?? 'unknown' });
+      } catch (err) {
+        this.logger.warn(`Metrics recording failed: ${(err as Error).message}`);
+      }
     }
 
     try {

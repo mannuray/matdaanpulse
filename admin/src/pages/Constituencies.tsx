@@ -117,7 +117,13 @@ export default function Constituencies() {
           selectedKey={route.id}
           onRowClick={(c) => route.open(c.id)}
           loading={m.loading}
-          empty={<EmptyState title="No seats match" description={filtered ? 'The district and tag filters only look at this page.' : 'Try a different name.'} />}
+          empty={m.error
+            ? <EmptyState
+                title="Could not load seats"
+                description="Check the connection and try again."
+                action={<Button variant="outline" size="sm" onClick={() => { void m.refresh(); }}>Try again</Button>}
+              />
+            : <EmptyState title="No seats match" description={filtered ? 'The district and tag filters only look at this page.' : 'Try a different name.'} />}
           footer={
             <Pager
               page={m.page} totalPages={m.totalPages} total={m.total} pageSize={CONSTITUENCY_PAGE_SIZE} noun="seats" onPage={m.loadPage}

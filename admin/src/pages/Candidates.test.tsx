@@ -55,6 +55,7 @@ vi.mock('../context/ElectionContext', async () => {
 import Candidates from './Candidates';
 import { renderEntityPage } from '../test-utils/entity-harness';
 import { ApiError } from '../services/api-client';
+import { getConstituencies } from '../services/constituency.service';
 
 const cand = (id: string, name: string, const_id: string, over: Partial<Candidate> = {}): Candidate => ({
   id, person_id: null, person: null, election_id: 'e1', const_id, party_id: 'BJP',
@@ -308,6 +309,57 @@ describe('Candidates page', () => {
     expect(within(panel).queryByText(/This record is in/)).toBeNull();
     expect(svc.getCandidates).toHaveBeenCalledWith('e2', 'k5');
     expect(svc.getCandidates).not.toHaveBeenCalledWith('e2', 's1');
+  });
+
+  it('a failed seats load says "Could not load seats" and Try again reloads them', async () => {
+    vi.mocked(getConstituencies).mockRejectedValueOnce(new ApiError('boom', 500));
+    renderAt();
+    expect(await screen.findByText('Could not load seats')).toBeTruthy();
+    expect(screen.queryByText('No seats in this election')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+    expect(await within(table()).findByText('Ravi Prasad')).toBeTruthy();
+    expect(getConstituencies).toHaveBeenCalledTimes(2);
+    expect(screen.queryByText('Could not load seats')).toBeNull();
+  });
+
+  it('a failed candidates load says "Could not load candidates" and Try again reloads them', async () => {
+    svc.getCandidates.mockRejectedValueOnce(new ApiError('boom', 500));
+    renderAt();
+    expect(await screen.findByText('Could not load candidates')).toBeTruthy();
+    expect(screen.queryByText('No candidates match')).toBeNull();
+    const calls = svc.getCandidates.mock.calls.length;
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+    expect(await within(table()).findByText('Ravi Prasad')).toBeTruthy();
+    expect(svc.getCandidates.mock.calls.length).toBe(calls + 1);
+    expect(screen.queryByText('Could not load candidates')).toBeNull();
+  });
+
+  it('a Finalized election disables "New candidate", and /candidates/new says why instead of showing the form', async () => {
+    ctx.electionId = 'e2';
+    renderAt();
+    await waitFor(() => expect(seatInput().value).toBe('5 Kochi'));
+    const btn = screen.getByRole('button', { name: 'New candidate' }) as HTMLButtonElement;
+    expect(btn.disabled).toBe(true);
+    expect(screen.getByTitle("Archived elections can't get new candidates")).toBeTruthy();
+    cleanup();
+    renderAt('/candidates/new');
+    const panel = await screen.findByRole('dialog', { name: 'New candidate' });
+    expect(within(panel).getByText("Archived elections can't get new candidates")).toBeTruthy();
+    expect(within(panel).queryByLabelText('Name')).toBeNull();
+    expect(within(panel).queryByRole('button', { name: 'Create candidate' })).toBeNull();
+  });
+
+  it('"Switch election" asks before dropping unsaved edits, like the top-bar picker', async () => {
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+    renderAt('/candidates/k1');
+    const panel = await screen.findByRole('dialog', { name: 'Thomas Isaac' });
+    fireEvent.change(await within(panel).findByLabelText('Age'), { target: { value: '61' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Switch election' }));
+    expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
+    expect(ctx.setElectionId).not.toHaveBeenCalled();
+    confirm.mockReturnValue(true);
+    fireEvent.click(within(panel).getByRole('button', { name: 'Switch election' }));
+    expect(ctx.setElectionId).toHaveBeenCalledWith('e2');
   });
 
   describe('New candidate', () => {

@@ -114,24 +114,31 @@ export function useElectionManager({ onChanged }: Options = {}) {
     setSaving(true);
     setFieldErrors({});
 
-    const payload = {
+    const base = {
       name: submitted.name,
       type: submitted.type,
       year: Number(submitted.year.trim()),
-      ...(submitted.state_id ? { state_id: Number(submitted.state_id) } : {}),
-      ...(submitted.tentative_next_date ? { tentative_next_date: submitted.tentative_next_date } : {}),
     };
 
     try {
       let savedId: string;
       if (editId) {
-        await updateElection(editId, payload);
+        // Edit always sends both fields so clearing them (VS to LS, no date) reaches the server as null.
+        await updateElection(editId, {
+          ...base,
+          state_id: submitted.state_id ? Number(submitted.state_id) : null,
+          tentative_next_date: submitted.tentative_next_date || null,
+        });
         savedId = editId;
         // The submitted values are the saved baseline; edits typed while saving stay dirty.
         setSavedForm(submitted);
         toast('Election updated successfully');
       } else {
-        const created = await createElection(payload);
+        const created = await createElection({
+          ...base,
+          ...(submitted.state_id ? { state_id: Number(submitted.state_id) } : {}),
+          ...(submitted.tentative_next_date ? { tentative_next_date: submitted.tentative_next_date } : {}),
+        });
         savedId = created.id;
         setForm(INITIAL_ELECTION_FORM);
         setSavedForm(INITIAL_ELECTION_FORM);

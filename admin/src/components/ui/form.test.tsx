@@ -86,4 +86,35 @@ describe('form primitives', () => {
     expect(input.getAttribute('aria-invalid')).toBe('true');
     expect(document.getElementById(input.getAttribute('aria-describedby')!)!.textContent).toBe('Pick a seat');
   });
+
+  it('Combobox caps the list at 100 with a "type to narrow" footer, and still shows a selected option past the cap', () => {
+    const many = Array.from({ length: 250 }, (_, i) => ({ value: `s${i + 1}`, label: `Seat ${i + 1}` }));
+    render(<Combobox label="Seat" value="s200" onChange={() => {}} options={many} />);
+    const input = screen.getByRole('combobox', { name: 'Seat' });
+    fireEvent.focus(input);
+    const shown = screen.getAllByRole('option');
+    expect(shown.length).toBe(101);
+    expect(shown[100].textContent).toBe('Seat 200');
+    expect(shown[100].getAttribute('aria-selected')).toBe('true');
+    // Opening starts on the selected option.
+    expect(input.getAttribute('aria-activedescendant')).toBe(shown[100].id);
+    expect(screen.getByText('Type to narrow — showing 101 of 250')).toBeTruthy();
+    fireEvent.change(input, { target: { value: 'Seat 24' } });
+    expect(screen.getAllByRole('option').length).toBe(11);
+    expect(screen.queryByText(/Type to narrow/)).toBeNull();
+  });
+
+  it('Combobox clamps the active option when the options shrink while open', () => {
+    const opts = (n: number) => Array.from({ length: n }, (_, i) => ({ value: `o${i}`, label: `Option ${i}` }));
+    const onChange = vi.fn();
+    const { rerender } = render(<Combobox label="Seat" value="o4" onChange={onChange} options={opts(5)} />);
+    const input = screen.getByRole('combobox', { name: 'Seat' });
+    fireEvent.focus(input);
+    expect(input.getAttribute('aria-activedescendant')).toBe(screen.getAllByRole('option')[4].id);
+    rerender(<Combobox label="Seat" value="o4" onChange={onChange} options={opts(2)} />);
+    const shown = screen.getAllByRole('option');
+    expect(input.getAttribute('aria-activedescendant')).toBe(shown[1].id);
+    fireEvent.keyDown(input, { key: 'Enter' });
+    expect(onChange).toHaveBeenCalledWith('o1');
+  });
 });

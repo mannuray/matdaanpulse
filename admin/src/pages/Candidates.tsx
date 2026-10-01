@@ -16,7 +16,10 @@ import { DataTable, type Column } from '../components/ui/DataTable';
 import { EmptyState } from '../components/ui/EmptyState';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
+import { Sheet } from '../components/ui/Sheet';
 import type { Candidate } from '../types';
+
+const ARCHIVED_HINT = "Archived elections can't get new candidates";
 
 type Meta = { age?: number | string | null; criminal_cases?: number | string | null };
 const meta = (c: Candidate) => (c.metadata ?? {}) as Meta;
@@ -42,6 +45,8 @@ export default function Candidates() {
     [m.constituencies],
   );
   const seat = m.constituencies.find((c) => c.id === m.selectedConst);
+  // The backend refuses new candidates in a Finalized election (409), so the page does not offer it.
+  const archived = election?.status === 'Finalized';
 
   // New candidate: show its seat (switching the Seat select reloads that seat; same seat → refresh), then open it.
   const create = async (data: NewCandidate) => {
@@ -102,7 +107,11 @@ export default function Candidates() {
           title="Candidates"
           count={m.counts.all}
           subtitle={subtitle}
-          actions={<Button variant="primary" onClick={() => route.open(NEW_ID)}><Plus size={16} aria-hidden />New candidate</Button>}
+          actions={
+            <span title={archived ? ARCHIVED_HINT : undefined}>
+              <Button variant="primary" disabled={archived} onClick={() => route.open(NEW_ID)}><Plus size={16} aria-hidden />New candidate</Button>
+            </span>
+          }
         />
       }
       toolbar={
@@ -130,12 +139,22 @@ export default function Candidates() {
           selectedKey={route.id}
           onRowClick={(c) => route.open(c.id)}
           loading={m.loading || m.seatsLoading}
-          empty={m.constituencies.length === 0
-            ? <EmptyState title="No seats in this election" description="Add constituencies to this election first." />
-            : <EmptyState title="No candidates match" description="Try another seat, filter or name." />}
+          empty={m.error
+            ? <EmptyState
+                title={m.error === 'seats' ? 'Could not load seats' : 'Could not load candidates'}
+                description="Check the connection and try again."
+                action={<Button variant="outline" size="sm" onClick={() => { void m.refresh(); }}>Try again</Button>}
+              />
+            : m.constituencies.length === 0
+              ? <EmptyState title="No seats in this election" description="Add constituencies to this election first." />
+              : <EmptyState title="No candidates match" description="Try another seat, filter or name." />}
         />
       }
-      panel={!route.id ? null : route.isNew ? (
+      panel={!route.id ? null : route.isNew ? archived ? (
+        <Sheet open onRequestClose={() => route.close()} title="New candidate">
+          <EmptyState title={ARCHIVED_HINT} description="This election is finalized. Switch to another election to add a candidate." />
+        </Sheet>
+      ) : (
         <CandidateCreatePanel
           electionId={electionId}
           seats={m.constituencies}

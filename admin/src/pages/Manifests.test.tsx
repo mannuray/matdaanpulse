@@ -164,4 +164,21 @@ describe('Manifests page', () => {
     await waitFor(() => expect(screen.queryByRole('button', { name: 'Publish now' })).toBeNull());
     expect(svc.publishManifest).not.toHaveBeenCalled();
   });
+
+  it('with unsaved edits, switching to another row asks first; cancel keeps the record, confirm opens the other', async () => {
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+    renderAt('/manifests/e1');
+    const panel = await screen.findByRole('dialog', { name: 'Bihar Vidhan Sabha 2025' });
+    await within(panel).findByText('NDA');
+    fireEvent.click(within(panel).getByRole('button', { name: 'JSON' }));
+    fireEvent.change(within(panel).getByLabelText('Manifest JSON'), { target: { value: JSON.stringify({ alliances: [], milestones: [] }) } });
+    fireEvent.click(within(table()).getByText('Lok Sabha 2024'));
+    expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
+    expect(screen.getByTestId('where').textContent).toBe('/manifests/e1');
+    expect(screen.getByRole('dialog', { name: 'Bihar Vidhan Sabha 2025' })).toBeTruthy();
+    confirm.mockReturnValue(true);
+    fireEvent.click(within(table()).getByText('Lok Sabha 2024'));
+    expect(screen.getByTestId('where').textContent).toBe('/manifests/e2');
+    expect(await screen.findByRole('dialog', { name: 'Lok Sabha 2024' })).toBeTruthy();
+  });
 });

@@ -27,14 +27,14 @@ describe('useConstituencyEditor numbers', () => {
     expect(result.current.adminInfo.phase).toBe('2');
   });
 
-  it('saves 0 as 0, empty as null, and keeps other metadata', async () => {
+  it('saves 0 as 0, empty as null, and sends only the changed keys (the server merges metadata)', async () => {
     const { result } = renderHook(() => useConstituencyEditor('BR_VS2025_PATNA'), { wrapper });
     await waitFor(() => expect(result.current.constituency).not.toBeNull());
     act(() => result.current.setEditDemographics({ ...result.current.editDemographics, literacy_pct: '0', urban_pct: '' }));
     await act(() => result.current.handleSave());
     expect(updateConstituency).toHaveBeenCalledWith('BR_VS2025_PATNA', expect.objectContaining({
       const_no: 142, district_id: 7, region_id: 3,
-      metadata: expect.objectContaining({ population: 0, literacy_pct: 0, urban_pct: null, source: 'census' }),
+      metadata: { literacy_pct: 0, urban_pct: null },
     }));
     // Tags were not edited, so they are not sent (a bulk tag added meanwhile must survive).
     expect((updateConstituency as any).mock.calls[0][1].metadata).not.toHaveProperty('tags');
@@ -51,7 +51,7 @@ describe('useConstituencyEditor numbers', () => {
     expect(updateConstituency).not.toHaveBeenCalled();
   });
 
-  it('sends tags only when edited, and keeps an unedited legacy value as stored', async () => {
+  it('sends tags only when edited, and never resends an unedited legacy value', async () => {
     const svc = await import('../services/constituency.service');
     (svc.getAdminConstituencyDetail as any).mockResolvedValueOnce({
       id: 'x', election_id: 'e1', name: 'X', const_no: 1, type: 'GEN', state_id: 1, district_id: null, region_id: null,
@@ -62,8 +62,7 @@ describe('useConstituencyEditor numbers', () => {
     act(() => result.current.setEditDemographics({ ...result.current.editDemographics, religions: 'Hindu' }));
     await act(() => result.current.handleSave());
     const meta = (updateConstituency as any).mock.calls[0][1].metadata;
-    expect(meta).toMatchObject({ literacy_pct: '62.3%', religions: 'Hindu' });
-    expect(meta).not.toHaveProperty('tags');
+    expect(meta).toEqual({ religions: 'Hindu' });
   });
 
   it('choosing the original district again is not an edit', async () => {
@@ -73,5 +72,22 @@ describe('useConstituencyEditor numbers', () => {
     expect(result.current.isDirty).toBe(true);
     act(() => result.current.setAdminInfo({ ...result.current.adminInfo, district_id: '7' }));
     expect(result.current.isDirty).toBe(false);
+  });
+
+  it('edited tags are the server tags plus added minus removed, so a bulk tag added meanwhile survives', async () => {
+    const svc = await import('../services/constituency.service');
+    const detail = (tags: string[]) => ({
+      id: 'x', election_id: 'e1', name: 'X', const_no: 1, type: 'GEN', state_id: 1, district_id: null, region_id: null,
+      metadata: { tags, source: 'census' },
+    });
+    (svc.getAdminConstituencyDetail as any).mockResolvedValueOnce(detail(['urban', 'sc']));
+    const { result } = renderHook(() => useConstituencyEditor('x'), { wrapper });
+    await waitFor(() => expect(result.current.constituency).not.toBeNull());
+    act(() => result.current.removeTag('urban'));
+    act(() => result.current.addTag('reserved'));
+    // Meanwhile a bulk tag added "border" on the server.
+    (svc.getAdminConstituencyDetail as any).mockResolvedValueOnce(detail(['urban', 'sc', 'border']));
+    await act(() => result.current.handleSave());
+    expect((updateConstituency as any).mock.calls[0][1].metadata).toEqual({ tags: ['sc', 'border', 'reserved'] });
   });
 });
