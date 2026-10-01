@@ -4,12 +4,12 @@ export type LiveStreamState = 'idle' | 'connecting' | 'open' | 'reconnecting';
 interface ShellStatus {
   live: LiveStreamState;
   setLive: (s: LiveStreamState) => void;
-  /** The Live Console seat editor has unsaved edits: the shell asks before leaving or switching election. */
+  /** A record panel or the Live Console seat editor has unsaved edits: the shell asks before leaving or switching election. */
   editorDirty: boolean;
   setEditorDirty: (dirty: boolean) => void;
 }
 
-export const DISCARD_EDITS_PROMPT = 'Discard unsaved edits for this seat?';
+export const DISCARD_EDITS_PROMPT = 'Discard unsaved changes?';
 /** True when it is fine to leave: nothing unsaved, or the user agreed to discard it. */
 export const confirmDiscardEdits = (dirty: boolean) => !dirty || window.confirm(DISCARD_EDITS_PROMPT);
 

@@ -31,8 +31,9 @@ export function Sidebar() {
                   key={path}
                   to={path}
                   aria-current={isActive(path) ? 'page' : undefined}
-                  // BrowserRouter has no useBlocker: ask here before the Live Console unmounts with unsaved edits.
-                  onClick={(e) => { if (!isActive(path) && !confirmDiscardEdits(editorDirty)) e.preventDefault(); }}
+                  // BrowserRouter has no useBlocker: ask here before an editor unmounts with unsaved edits.
+                  // Compare the exact path: "Parties" while on /parties/BJP closes that record, so it asks too.
+                  onClick={(e) => { if (pathname !== path && !confirmDiscardEdits(editorDirty)) e.preventDefault(); }}
                   className={cn(
                     'flex items-center gap-2.5 rounded-control px-3 py-2 text-sm transition-colors',
                     isActive(path) ? 'bg-accent text-white' : 'hover:bg-white/5 hover:text-white',
