@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
-import { CandidateNotFoundException, PersonNotFoundException } from '../../common/exceptions';
+import { CandidateNotFoundException, ConstituencyNotFoundException, PersonNotFoundException } from '../../common/exceptions';
 import type { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
 @Injectable()
@@ -81,9 +81,31 @@ export class CandidatesService {
     });
   }
 
+  /**
+   * New candidate in a seat of its election, plus its zero-vote results row (status TRAILING) so it shows
+   * up in the Live Console. One transaction: a seat of another election writes nothing (404).
+   */
   async create(data: CreateCandidateDto) {
-    return this.prisma.candidates.create({
-      data: data as Prisma.candidatesUncheckedCreateInput,
+    return this.prisma.$transaction(async (tx) => {
+      const seat = await tx.constituencies.findFirst({
+        where: { id: data.const_id, election_id: data.election_id },
+        select: { id: true },
+      });
+      if (!seat) throw new ConstituencyNotFoundException(data.const_id);
+      const candidate = await tx.candidates.create({
+        data: data as Prisma.candidatesUncheckedCreateInput,
+      });
+      await tx.results.create({
+        data: {
+          candidate_id: candidate.id,
+          const_id: candidate.const_id,
+          election_id: candidate.election_id,
+          votes: 0,
+          status: 'TRAILING',
+          margin: 0,
+        },
+      });
+      return candidate;
     });
   }
 
