@@ -22,6 +22,8 @@ import { PrismaService } from './modules/prisma/prisma.service';
 import { RedisService } from './modules/redis/redis.service';
 import { JwtService } from '@nestjs/jwt';
 import { LiveSseTokenService } from './modules/live/live-sse-token.service';
+import { FeedbackController } from './modules/feedback/feedback.controller';
+import { FeedbackService } from './modules/feedback/feedback.service';
 
 // Stand-ins only where the real controller can't run without a DB/guards:
 // a plain public route, and the bulk-override path (real one needs JWT guards).
@@ -64,7 +66,7 @@ class BulkController {
 describe('HTTP wiring (configureApp + throttlers)', () => {
   let app: INestApplication;
   let base: string;
-  const prisma = { $queryRaw: jest.fn() };
+  const prisma = { $queryRaw: jest.fn(), feedback: { create: jest.fn(async () => ({ id: 'f1' })) } };
   const redis = { ping: jest.fn(), isSubscriberReady: jest.fn().mockReturnValue(true) };
   const authService = { login: jest.fn(async (email: string) => ({ access_token: 't', user: { email } })) };
   const livePublisher = { streamEvents: jest.fn(() => EMPTY), publish: jest.fn() };
@@ -76,8 +78,8 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [ThrottlerModule.forRoot(buildThrottlerOptions({ THROTTLE_PUBLIC_PER_MIN: '4', THROTTLE_AUTH_PER_MIN: '2' }))],
-      controllers: [AuthController, LiveController, HealthController, PublicController, BulkController, ListController],
+      imports: [ThrottlerModule.forRoot(buildThrottlerOptions({ THROTTLE_PUBLIC_PER_MIN: '4', THROTTLE_AUTH_PER_MIN: '2', THROTTLE_FEEDBACK_PER_MIN: '2' }))],
+      controllers: [AuthController, LiveController, HealthController, PublicController, BulkController, ListController, FeedbackController],
       providers: [
         { provide: AuthService, useValue: authService },
         { provide: ConfigService, useValue: { get: () => undefined } },
@@ -89,6 +91,7 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
         { provide: APP_GUARD, useClass: ThrottlerGuard },
         { provide: PrismaService, useValue: prisma },
         { provide: RedisService, useValue: redis },
+        FeedbackService,
       ],
     }).compile();
     app = moduleRef.createNestApplication<NestExpressApplication>({ bodyParser: false, logger: false });
@@ -219,6 +222,62 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
     });
   });
 
+  describe('public feedback', () => {
+    const fb = { kind: 'bug', message: 'The map is blank', email: '', page: '/elections/x', website: '' };
+    beforeEach(() => prisma.feedback.create.mockClear());
+
+    it('201 { ok: true }, no-store, stored with a hashed IP (not the raw one)', async () => {
+      const res = await post('/feedback', '10.0.9.1', fb, { Origin: 'http://localhost:3080' });
+      expect(res.status).toBe(201);
+      expect(await res.json()).toEqual({ success: true, data: { ok: true } });
+      expect(res.headers.get('cache-control')).toBe('no-store');
+      expect(res.headers.get('access-control-allow-origin')).toBe('http://localhost:3080');
+      const { data } = (prisma.feedback.create.mock.calls[0] as any[])[0];
+      expect(data).toMatchObject({ kind: 'bug', message: 'The map is blank', email: null, page: '/elections/x' });
+      expect(data.ip_hash).toMatch(/^[0-9a-f]{64}$/);
+      expect(JSON.stringify(data)).not.toContain('10.0.9.1');
+    });
+
+    it('a filled honeypot gets the same 201 but nothing is stored', async () => {
+      const res = await post('/feedback', '10.0.9.2', { ...fb, website: 'http://spam.example' });
+      expect(res.status).toBe(201);
+      expect(await res.json()).toEqual({ success: true, data: { ok: true } });
+      expect(prisma.feedback.create).not.toHaveBeenCalled();
+    });
+
+    it('unknown fields are a 400 in the error envelope', async () => {
+      const res = await post('/feedback', '10.0.9.3', { ...fb, admin: true });
+      expect(res.status).toBe(400);
+      const { success, error } = await res.json();
+      expect(success).toBe(false);
+      expect(error.code).toBe('VALIDATION_9001');
+      expect(error.fields.map((f: { field: string }) => f.field)).toContain('admin');
+    });
+
+    it('the CORS preflight from the public SPA allows the POST', async () => {
+      const res = await fetch(`${base}/feedback`, {
+        method: 'OPTIONS',
+        headers: { Origin: 'http://localhost:3080', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'content-type' },
+      });
+      expect(res.status).toBe(204);
+      expect(res.headers.get('access-control-allow-origin')).toBe('http://localhost:3080');
+      expect(res.headers.get('access-control-allow-methods')).toContain('POST');
+    });
+
+    it('uses the strict feedback limit (THROTTLE_FEEDBACK_PER_MIN), per IP', async () => {
+      const statuses: number[] = [];
+      for (let i = 0; i < 3; i++) statuses.push((await post('/feedback', '10.0.9.4', fb)).status);
+      expect(statuses).toEqual([201, 201, 429]);
+      expect((await post('/feedback', '10.0.9.5', fb)).status).toBe(201);
+    });
+
+    it('the feedback limit does not apply to other public routes', async () => {
+      const statuses: number[] = [];
+      for (let i = 0; i < 3; i++) statuses.push((await get('/pub', '10.0.9.6')).status);
+      expect(statuses).toEqual([200, 200, 200]);
+    });
+  });
+
   describe('API shape', () => {
     it('a Paginated list keeps { success, data, pagination }', async () => {
       const body = await (await get('/lists?page=2&limit=2', '10.0.7.1')).json();
@@ -309,6 +368,16 @@ describe('throttle metadata on the real controllers', () => {
   it.each([LiveController.prototype.updates, HealthController])('%p skips both throttlers', (target) => {
     expect(Reflect.getMetadata('THROTTLER:SKIPpublic', target)).toBe(true);
     expect(Reflect.getMetadata('THROTTLER:SKIPauth', target)).toBe(true);
+  });
+
+  it.each([LiveController.prototype.updates, HealthController])('%p skips the feedback throttler too', (target) => {
+    expect(Reflect.getMetadata('THROTTLER:SKIPfeedback', target)).toBe(true);
+  });
+
+  it('only FeedbackController counts against the feedback throttler', () => {
+    const { isFeedbackRoute } = require('./common/throttle/throttle.config');
+    expect(isFeedbackRoute(ctx(FeedbackController))).toBe(true);
+    expect(isFeedbackRoute(ctx(AuthController))).toBe(false);
   });
 
   it('the SSE token endpoint is throttled (only the stream skips)', () => {

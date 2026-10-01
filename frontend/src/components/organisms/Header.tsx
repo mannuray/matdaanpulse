@@ -87,7 +87,7 @@ export default function Header({ elections, states, liveConnected }: HeaderProps
   return (
     <header className="app-header">
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }} onClick={() => navigate('/')}>
-        <div style={{ width: 24, height: 24, background: 'var(--accent)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '14px', fontWeight: 800 }}>✓</div>
+        <img src="/logo-mark.png" alt="" aria-hidden style={{ width: 28, height: 28, objectFit: 'contain' }} />
         <h1 style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--weight-bold)', whiteSpace: 'nowrap', margin: 0, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
           {t('app_title')}
         </h1>

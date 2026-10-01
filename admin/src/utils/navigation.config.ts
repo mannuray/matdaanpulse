@@ -18,6 +18,7 @@ export const NAV_SCHEMA: NavItem[] = [
   { path: '/persons', label: 'Persons', icon: '\u265F', roles: ['SUPER_ADMIN', 'EDITOR'] },
   { path: '/constituencies', label: 'Constituencies', icon: '\u25A3', roles: ['SUPER_ADMIN', 'EDITOR'] },
   { path: '/overrides', label: 'Live Console', icon: '\u270E', roles: ['SUPER_ADMIN', 'EDITOR'] },
+  { path: '/feedback', label: 'Feedback', icon: '\u2709', roles: ['SUPER_ADMIN', 'EDITOR'] },
   { path: '/users', label: 'Users', icon: '\u263B', roles: ['SUPER_ADMIN'] },
   { path: '/logs', label: 'Audit Logs', icon: '\u2630', roles: ['SUPER_ADMIN'] },
   { path: '/status', label: 'System status', icon: '\u2665', roles: ['SUPER_ADMIN'] },

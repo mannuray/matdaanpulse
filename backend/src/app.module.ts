@@ -20,6 +20,7 @@ import { MetricsModule } from './modules/metrics/metrics.module';
 import { PrismaModule } from './modules/prisma/prisma.module';
 import { AuditLogModule } from './modules/audit-log/audit-log.module';
 import { HealthModule } from './modules/health/health.module';
+import { FeedbackModule } from './modules/feedback/feedback.module';
 import { LoggingMiddleware } from './common/logger/logging.middleware';
 import { buildThrottlerOptions } from './common/throttle/throttle.config';
 import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.service';
@@ -33,6 +34,7 @@ import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.se
         buildThrottlerOptions({
           THROTTLE_PUBLIC_PER_MIN: config.get<string>('THROTTLE_PUBLIC_PER_MIN'),
           THROTTLE_AUTH_PER_MIN: config.get<string>('THROTTLE_AUTH_PER_MIN'),
+          THROTTLE_FEEDBACK_PER_MIN: config.get<string>('THROTTLE_FEEDBACK_PER_MIN'),
         }),
     }),
     PrismaModule,
@@ -52,6 +54,7 @@ import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.se
     LiveModule,
     SearchModule,
     HealthModule,
+    FeedbackModule,
   ],
   providers: [
     GracefulShutdownService,

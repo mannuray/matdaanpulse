@@ -170,10 +170,11 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   DIRECT_URL=<Neon direct URL>
   REDIS_URL=<Upstash rediss:// URL>
   CORS_ORIGINS=https://app.<domain>,https://admin.<domain>
+  FEEDBACK_IP_SALT=<openssl rand -hex 32>
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
   # Defaults, set only to change them:
-  # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5  SSE_MAX_CONNECTIONS=200
+  # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5  THROTTLE_FEEDBACK_PER_MIN=5  SSE_MAX_CONNECTIONS=200
   # LOG_LEVEL=info  ALLOW_REGISTRATION=false  CORS_ORIGIN_REGEX=
   # Added later, in this order, once Cloudflare is live (§5.4 step 5) — NOT on the first deploy:
   #   ORIGIN_SHARED_SECRETS=<openssl rand -hex 32>   # same value as the Cloudflare Transform Rule

@@ -23,7 +23,7 @@ export default function Layout() {
     <div className="admin-layout">
       <aside className="admin-sidebar">
         <div className="admin-sidebar-header">
-          <h2>Election Admin</h2>
+          <h2><img src="/logo-mark.png" alt="" aria-hidden className="admin-logo-mark" />MatdaanPulse Admin</h2>
           {user && (
             <div className="user-info">
               {user.name} &middot; <span className={`badge badge-${user.role.toLowerCase().replace('_', '-')}`}>{user.role.replace('_', ' ')}</span>

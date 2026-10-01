@@ -7,12 +7,14 @@ export const THROTTLE_TTL_MS = 60_000;
 /** Generous: Indian mobile carriers put many users behind one CGNAT address. */
 export const DEFAULT_PUBLIC_PER_MIN = 600;
 export const DEFAULT_AUTH_PER_MIN = 5;
+/** POST /feedback: a person sends a handful at most; anything more is a script. */
+export const DEFAULT_FEEDBACK_PER_MIN = 5;
 
 /**
  * Use instead of a bare @SkipThrottle(): with named throttlers the bare form
  * only skips a throttler called "default", which does not exist here.
  */
-export const SKIP_ALL_THROTTLERS = { public: true, auth: true } as const;
+export const SKIP_ALL_THROTTLERS = { public: true, auth: true, feedback: true } as const;
 
 const AUTH_ROUTE_KEY = 'throttle:auth-route';
 /** Marks a controller whose routes count against the strict `auth` throttler. */
@@ -23,16 +25,26 @@ export function isAuthRoute(context: ExecutionContext): boolean {
     || Reflect.getMetadata(AUTH_ROUTE_KEY, context.getHandler()) === true;
 }
 
+const FEEDBACK_ROUTE_KEY = 'throttle:feedback-route';
+/** Marks a controller/handler whose routes also count against the strict `feedback` throttler. */
+export const FeedbackRateLimited = () => SetMetadata(FEEDBACK_ROUTE_KEY, true);
+
+export function isFeedbackRoute(context: ExecutionContext): boolean {
+  return Reflect.getMetadata(FEEDBACK_ROUTE_KEY, context.getClass()) === true
+    || Reflect.getMetadata(FEEDBACK_ROUTE_KEY, context.getHandler()) === true;
+}
+
 function perMinute(raw: string | undefined, fallback: number): number {
   const n = Number(raw);
   return Number.isInteger(n) && n > 0 ? n : fallback;
 }
 
 /**
- * Two named throttlers, both keyed on req.ip (correct only with `trust proxy`
+ * Three named throttlers, all keyed on req.ip (correct only with `trust proxy`
  * set, see main.ts):
- * - public: generous per-IP limit for every route (mobile CGNAT shares IPs);
- * - auth:   strict limit, applied only to @AuthRateLimited() controllers.
+ * - public:   generous per-IP limit for every route (mobile CGNAT shares IPs);
+ * - auth:     strict limit, applied only to @AuthRateLimited() controllers;
+ * - feedback: strict limit, applied only to @FeedbackRateLimited() routes.
  */
 export function buildThrottlerOptions(env: Env): ThrottlerModuleOptions {
   return [
@@ -46,6 +58,12 @@ export function buildThrottlerOptions(env: Env): ThrottlerModuleOptions {
       ttl: THROTTLE_TTL_MS,
       limit: perMinute(env.THROTTLE_AUTH_PER_MIN, DEFAULT_AUTH_PER_MIN),
       skipIf: (context) => !isAuthRoute(context),
+    },
+    {
+      name: 'feedback',
+      ttl: THROTTLE_TTL_MS,
+      limit: perMinute(env.THROTTLE_FEEDBACK_PER_MIN, DEFAULT_FEEDBACK_PER_MIN),
+      skipIf: (context) => !isFeedbackRoute(context),
     },
   ];
 }

@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsEnum, IsInt, IsISO8601, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
+import { IsEnum, IsIn, IsInt, IsISO8601, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
 import { IsUuidLike } from '../validation/uuid-like';
 import { election_status, election_type } from '@prisma/client';
 
@@ -103,6 +103,14 @@ export class AuditLogsQueryDto {
 
   @IsOptional() @EmptyAsUndefined() @IsISO8601()
   to?: string;
+}
+
+export const FEEDBACK_STATUSES = ['new', 'read', 'resolved'] as const;
+export type FeedbackStatus = (typeof FEEDBACK_STATUSES)[number];
+
+export class AdminFeedbackQueryDto extends PaginationQueryDto {
+  @IsOptional() @EmptyAsUndefined() @IsIn(FEEDBACK_STATUSES)
+  status?: FeedbackStatus;
 }
 
 /** GET /elections/:id/results?v=<version> — a live version from GET /elections/:id/live. */

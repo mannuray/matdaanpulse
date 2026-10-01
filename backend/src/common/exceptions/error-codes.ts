@@ -37,6 +37,9 @@ export const ErrorCodes = {
   MANIFEST_NOT_FOUND: 'MANIFEST_8001',
   MANIFEST_NO_DRAFT: 'MANIFEST_8002',
 
+  // Feedback
+  FEEDBACK_NOT_FOUND: 'FEEDBACK_0001',
+
   // Validation (9xxx)
   VALIDATION_FAILED: 'VALIDATION_9001',
 } as const;

@@ -162,7 +162,7 @@
   - Election ID: `d4e5f6a7-b8c9-0123-def0-345678901016`
   - Alliances: TMC (solo) vs Left+Congress (CPIM, INC, RSP, AIFB, CPI) vs NDA (BJP)
   - `compare_with` → 2011
-- [x] **WB VS 2021** (`database/seed_wb_vs_2021.sql`) — 294 seats, synthetic votes (margin-only source)
+- [x] **WB VS 2021** (`database/seed_wb_vs_2021.sql`) — 294 seats, full candidate list with real votes (no NOTA; losers' `margin` is 0)
   - Election ID: `d4e5f6a7-b8c9-0123-def0-345678901021`
   - Alliances: TMC (solo) vs NDA (BJP) vs Sanjukta Morcha (CPIM, INC, RSMP)
   - `compare_with` → 2016, `history` → [2011, 2016]
@@ -364,6 +364,13 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 ## Known Limitations
 
 - **Live ECI ingestion is not implemented.** The scraper's live pipeline (`scraper/src/index.ts`, `scheduler/`, `adapters/eci-adapter.ts`, `normalizer/`) is placeholder code only. Counting-day flows are exercised end-to-end via the Live Election Simulation System (mock ECI server + replay through the admin bulk-override API); real results today come from the historical seed files.
+
+- **Estimated / incomplete seed data** (audit 2026-10-01; listed publicly on `/about`, source of truth `frontend/src/model/about/about.ts`, update it whenever a seed is corrected):
+  - Synthetic votes (runner-up 50,000, winner 50,000 + margin; only margin and names/parties real): Bihar VS 2010/2015/2020, AS/KL/TN VS 2021, PY VS 2021 (winners only, no runner-up).
+  - Assam VS 2021: placeholder winner names (`"<PARTY> Candidate"`) and an invented IND "Runner-up".
+  - LS 2024: `voter_turnout` / `total_electors` implausible (e.g. Lakshadweep 1,474,599 electors; in 294 seats the votes exceed electors × turnout).
+  - SC/ST type is `GEN` for every seat in Bihar VS 2010–2020 and all Assam years.
+  - Candidate coverage: all candidates only in WB 2021; top 5 + NOTA in LS 2024 and Bihar 2025; winner + runner-up elsewhere. TN 2016 has 232/234 seats (2 postponed polls). No source recorded for AS/KL/PY.
 
 ## Planned
 
@@ -661,3 +668,11 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Backend: `Paginated<T>` / `paginated()` (`common/paginated.ts`); the response interceptor builds `pagination` only for `Paginated` results and wraps everything else verbatim (no more merging of handler objects that contain `success`/`total`); `totalPages` is 1 when `limit` is 0/missing instead of NaN. Persons, parties and constituencies list services return `paginated(...)`; `MapToDtoInterceptor` preserves it.
 - [x] Error body: `{ success:false, error:{ code, message, requestId, timestamp, path, fields?, details? } }`; `fields` from class-validator via the global ValidationPipe `exceptionFactory`; `details` only for business exception data; `validationErrors` removed. See `docs/API_SPEC.md`.
 - [x] Admin: `ApiError` (code, fields, details, requestId); error toasts list field errors; field messages show under inputs on the user, election, party and person forms. Frontend: `ApiError` parsing. Scraper replay prints the new error message.
+
+### About page and feedback (2026-10-01)
+- [x] Public `/about` (`src/pages/About.tsx` → `views/about/AboutView.tsx`, form VM `viewmodels/about/useFeedbackForm.ts`): what MatdaanPulse is, "not an official source" disclaimer with a link to results.eci.gov.in, per-dataset data quality (Real votes / Partly incomplete / Votes estimated, with notes) from `model/about/about.ts`, how live counting works, feedback form, contact email (`CONTACT_EMAIL` in the same file). en/hi/mr/ta.
+- [x] Linked from the desktop top bar ("About") and the mobile More sheet; the link passes the current path so feedback records which screen it came from.
+- [x] Feedback form: type (bug / wrong data / suggestion / other), message 5–2000 chars, optional email, hidden honeypot field; 429 shows a "try again in a minute" message.
+- [x] Backend `POST /api/v1/feedback` (stricter per-IP rate limit, honeypot posts dropped, salted IP hash instead of raw IP), table `feedback` (migration `016_feedback.sql`); admin `GET /admin/feedback`, `PATCH /admin/feedback/:id`, and an admin "Feedback" page with status filter (new / read / resolved).
+- [ ] Support page (UPI QR / donations): planned, not started.
+- [x] Logo: `logo-mark.png`, favicons and `apple-touch-icon.png` in `frontend/public` and `admin/public`; mark shown in the top bars and admin sidebar.

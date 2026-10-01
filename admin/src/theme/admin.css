@@ -154,7 +154,12 @@ body {
   color: #fff;
   margin-bottom: 4px;
   letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
+
+.admin-logo-mark { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
 
 .admin-sidebar-header .user-info {
   font-size: 12px;

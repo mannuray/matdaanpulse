@@ -9,6 +9,7 @@ export * from './election.service';
 export * from './geo.service';
 export * from './search.service';
 export * from './person.service';
+export * from './feedback.service';
 
 import { apiFetch } from './api-client';
 export default apiFetch;

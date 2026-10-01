@@ -90,6 +90,20 @@ export interface AuditLog {
   timestamp: string;
 }
 
+export type FeedbackKind = 'bug' | 'data_error' | 'suggestion' | 'other';
+export type FeedbackStatus = 'new' | 'read' | 'resolved';
+
+/** Public feedback, as returned by GET/PATCH /admin/feedback. */
+export interface Feedback {
+  id: string;
+  kind: FeedbackKind;
+  message: string;
+  email: string | null;
+  page: string | null;
+  status: FeedbackStatus;
+  createdAt: string;
+}
+
 export interface ManifestLeader {
   name: string;
   party_id: string;

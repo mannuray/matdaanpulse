@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import ElectionView from './pages/ElectionView';
 import ConstituencyDetail from './pages/ConstituencyDetail';
 import PersonDetail from './pages/PersonDetail';
+import About from './pages/About';
 
 function AppLayout() {
   const { data: elections } = useApi(() => getElections(), []);
@@ -17,7 +18,8 @@ function AppLayout() {
   const { liveConnected } = useElection();
   const onElection = useMatch('/election/:id');
   const onHome = useMatch('/');
-  const studio = Boolean(onElection || onHome);
+  const onAbout = useMatch('/about');
+  const studio = Boolean(onElection || onHome || onAbout);
 
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -28,6 +30,7 @@ function AppLayout() {
           <Route path="/election/:id" element={<ElectionView />} />
           <Route path="/election/:electionId/constituency/:constId" element={<ConstituencyDetail />} />
           <Route path="/person/:id" element={<PersonDetail />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
     </div>
