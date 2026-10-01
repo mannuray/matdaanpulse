@@ -1,3 +1,4 @@
+import { normalizeGender } from '../utils/person-format';
 import type { Person, PersonWithCandidates } from '../types';
 
 /**
@@ -29,7 +30,7 @@ export const PersonService = {
     return {
       name: person.name || '',
       date_of_birth: person.date_of_birth ? person.date_of_birth.split('T')[0] : '',
-      gender: person.gender || '',
+      gender: normalizeGender(person.gender),
       education: person.education || '',
       photo_url: person.photo_url || '',
       bio: this.resolveBiography(person),
