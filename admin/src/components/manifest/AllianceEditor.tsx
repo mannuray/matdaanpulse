@@ -16,7 +16,7 @@ export function AllianceEditor({
   const items = alliances || [];
 
   return (
-    <ManifestSection title="Alliances" description="Coalition groupings shown on the map and tally" count={items.length} defaultOpen>
+    <ManifestSection title="Alliances" description="Coalition groupings shown on the map and tally" count={items.length}>
       {items.length === 0 && <EmptyState text="No alliances configured" />}
       {items.map((a, i) => {
         if (!a) return null;

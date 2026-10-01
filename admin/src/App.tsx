@@ -7,8 +7,7 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Elections from './pages/Elections';
-import ManifestDetail from './pages/ManifestDetail';
-import ManifestEditor from './pages/ManifestEditor';
+import Manifests from './pages/Manifests';
 import UserManager from './pages/UserManager';
 import AuditLogs from './pages/AuditLogs';
 import Feedback from './pages/Feedback';
@@ -47,10 +46,9 @@ function App() {
                 <Route path="elections/:id/edit" element={<EditRedirect base="/elections" />} />
                 <Route path="elections/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Elections /></ProtectedRoute>} />
                 
-                {/* Manifests */}
-                <Route path="manifests" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestDetail /></ProtectedRoute>} />
-                <Route path="manifests/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestDetail /></ProtectedRoute>} />
-                <Route path="manifests/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestEditor /></ProtectedRoute>} />
+                {/* Manifests: one per election; full-width panel at /manifests/:electionId */}
+                <Route path="manifests/:id/edit" element={<EditRedirect base="/manifests" />} />
+                <Route path="manifests/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Manifests /></ProtectedRoute>} />
                 
                 {/* Parties: list + panel at /parties/:id; old /:id/edit links redirect */}
                 <Route path="parties/:id/edit" element={<EditRedirect base="/parties" />} />
