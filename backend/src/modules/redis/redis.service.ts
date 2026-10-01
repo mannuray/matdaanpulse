@@ -148,6 +148,60 @@ export class RedisService implements OnModuleInit {
     } while (cursor !== '0');
   }
 
+  /** True when the command connection is up. `pub` has no offline queue, so callers check this to fail fast. */
+  isPubReady(): boolean {
+    return this.pub.status === 'ready';
+  }
+
+  /**
+   * Take or refresh an owned key atomically. The value is JSON with a `user_id`.
+   * Returns null on success, otherwise the current holder's value.
+   */
+  async acquireOwned(key: string, owner: string, value: string, ttlSeconds: number): Promise<string | null> {
+    const script = `
+      local cur = redis.call('GET', KEYS[1])
+      if cur then
+        local ok, parsed = pcall(cjson.decode, cur)
+        if not ok or parsed.user_id ~= ARGV[1] then return cur end
+      end
+      redis.call('SET', KEYS[1], ARGV[2], 'EX', tonumber(ARGV[3]))
+      return false`;
+    const res = await this.pub.eval(script, 1, key, owner, value, String(ttlSeconds));
+    return typeof res === 'string' ? res : null;
+  }
+
+  /** Delete an owned key only if `owner` still holds it. */
+  async releaseOwned(key: string, owner: string): Promise<boolean> {
+    const script = `
+      local cur = redis.call('GET', KEYS[1])
+      if not cur then return 0 end
+      local ok, parsed = pcall(cjson.decode, cur)
+      if ok and parsed.user_id == ARGV[1] then return redis.call('DEL', KEYS[1]) end
+      return 0`;
+    return (await this.pub.eval(script, 1, key, owner)) === 1;
+  }
+
+  /** Overwrite a key (take-over) and return what was there. */
+  async forceSet(key: string, value: string, ttlSeconds: number): Promise<string | null> {
+    const prev = await this.pub.get(key);
+    await this.pub.set(key, value, 'EX', ttlSeconds);
+    return prev;
+  }
+
+  /** Values of every key matching `pattern` (SCAN, never KEYS). */
+  async getMany(pattern: string): Promise<string[]> {
+    const keys: string[] = [];
+    let cursor = '0';
+    do {
+      const [next, batch] = await this.pub.scan(cursor, 'MATCH', pattern, 'COUNT', 100);
+      cursor = next;
+      keys.push(...batch);
+    } while (cursor !== '0');
+    if (keys.length === 0) return [];
+    const values = await this.pub.mget(...keys);
+    return values.filter((v): v is string => typeof v === 'string');
+  }
+
   /**
    * Publish to a channel. Never throws: callers publish after a committed DB
    * write, so a Redis failure is logged and counted, not returned to the client.
