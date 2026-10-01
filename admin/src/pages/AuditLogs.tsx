@@ -31,7 +31,7 @@ export default function AuditLogs() {
   const exportCsv = () => {
     const header = 'Timestamp,User,Action,Entity Type,Entity ID\n';
     const rows = logs.map((l: AuditLog) =>
-      `${l.timestamp},${l.user?.name || l.user_id},${l.action},${l.entity_type},${l.entity_id}`
+      `${l.timestamp},${l.users?.name || l.user_id || ''},${l.action},${l.entity_type},${l.entity_id}`
     ).join('\n');
     const blob = new Blob([header + rows], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
@@ -153,7 +153,7 @@ function LogRow({ log }: { log: AuditLog }) {
         {new Date(log.timestamp).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' })}
       </td>
       <td style={styles.tdUser}>
-        {log.user?.name || log.user_id?.split('-')[0] || '-'}
+        {log.users?.name || log.user_id?.split('-')[0] || '-'}
       </td>
       <td style={styles.td}>
         <span style={{ ...actionStyle, ...styles.actionTag }}>{log.action}</span>

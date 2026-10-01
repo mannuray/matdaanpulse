@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from 'react';
 import { cn } from './cn';
 
-type Tone = 'accent' | 'ok' | 'warn' | 'bad' | 'muted';
+export type Tone = 'accent' | 'ok' | 'warn' | 'bad' | 'muted';
 const TONES: Record<Tone, string> = {
   accent: 'bg-accent-soft text-accent',
   ok: 'bg-ok-soft text-ok-text',
