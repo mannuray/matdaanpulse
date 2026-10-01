@@ -9,6 +9,7 @@
 @source "../components/entity";
 @source "../pages/LiveConsole.tsx";
 @source "../pages/Parties.tsx";
+@source "../pages/Elections.tsx";
 
 /* Preflight is off (legacy pages rely on browser defaults), so new-shell controls get a scoped reset.
    `tw-ui` sits only on the new components' containers (Sidebar, TopBar, Live Console page root, Radix portal

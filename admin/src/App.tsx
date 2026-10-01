@@ -6,7 +6,7 @@ import ErrorBoundary from './components/atoms/ErrorBoundary';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import ElectionManager from './pages/ElectionManager';
+import Elections from './pages/Elections';
 import ManifestDetail from './pages/ManifestDetail';
 import ManifestEditor from './pages/ManifestEditor';
 import UserManager from './pages/UserManager';
@@ -50,7 +50,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                 <Route index element={<Dashboard />} />
-                <Route path="elections" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ElectionManager /></ProtectedRoute>} />
+                <Route path="elections/:id/edit" element={<EditRedirect base="/elections" />} />
+                <Route path="elections/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Elections /></ProtectedRoute>} />
                 
                 {/* Manifests */}
                 <Route path="manifests" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestDetail /></ProtectedRoute>} />
