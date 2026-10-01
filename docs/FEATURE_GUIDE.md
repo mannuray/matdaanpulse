@@ -1,6 +1,6 @@
-# Feature Guide — Election Tracker
+# Feature Guide — MatdaanPulse
 
-A detailed walkthrough of every feature in the election tracker, how it works under the hood, and how data flows through the system.
+A detailed walkthrough of every feature in MatdaanPulse, how it works under the hood, and how data flows through the system.
 
 ---
 

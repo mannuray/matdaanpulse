@@ -45,7 +45,7 @@ export function startTracing(env: Env = process.env): boolean {
   if (tracerProvider || !isTracingEnabled(env)) return false;
 
   const resource = resourceFromAttributes({
-    [ATTR_SERVICE_NAME]: env.OTEL_SERVICE_NAME || 'election-tracker-backend',
+    [ATTR_SERVICE_NAME]: env.OTEL_SERVICE_NAME || 'matdaanpulse-backend',
     'deployment.environment': env.NODE_ENV || 'development',
   });
 

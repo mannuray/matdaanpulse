@@ -1,4 +1,4 @@
-# Election Tracker
+# MatdaanPulse
 
 A reusable, metadata-driven platform for tracking Indian Lok Sabha (Parliamentary) and Vidhan Sabha (State Assembly) elections — with real-time counting-day updates, interactive D3 choropleth maps, and historical analysis.
 
@@ -36,7 +36,7 @@ Four independent services communicate through PostgreSQL (source of truth) and R
 ## Directory Layout
 
 ```
-election-tracker/
+matdaanpulse/
 ├── backend/         # NestJS API server (port 3082)
 ├── frontend/        # Public React SPA (port 3080)
 ├── admin/           # Admin React SPA (port 3081)

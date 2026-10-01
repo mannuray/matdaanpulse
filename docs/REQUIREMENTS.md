@@ -1,4 +1,4 @@
-# Election Tracker - Project Requirements Document (PRD)
+# MatdaanPulse - Project Requirements Document (PRD)
 
 ## 1. Project Overview
 A reusable, metadata-driven election tracking platform designed specifically for Indian State Assembly (Vidhan Sabha) and Parliamentary (Lok Sabha) elections. The system must handle historical data analysis and real-time counting day updates with high scalability.

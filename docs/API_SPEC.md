@@ -1,4 +1,4 @@
-# API Specification - Election Tracker (v1)
+# API Specification - MatdaanPulse (v1)
 
 ## 1. General Standards
 *   **Base URL:** `/api/v1`

@@ -22,7 +22,7 @@ function tee(otel: CounterLike, onAdd: (v: number) => void): CounterLike {
 
 @Injectable()
 export class MetricsService {
-  private readonly meter = metrics.getMeter('election-tracker');
+  private readonly meter = metrics.getMeter('matdaanpulse');
 
   readonly sseConnections: CounterLike;
   readonly redisPublishDuration: HistogramLike;

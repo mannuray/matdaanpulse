@@ -1,4 +1,4 @@
-# Low-Level Design (LLD) - Election Tracker
+# Low-Level Design (LLD) - MatdaanPulse
 
 ## 1. Data Schema (PostgreSQL)
 

@@ -51,7 +51,7 @@ Since this is a high-traffic, transaction-heavy system, we must monitor:
 The project is organized as a multi-package repository with four services:
 
 ```
-election-tracker/
+matdaanpulse/
 ├── backend/                      # NestJS API Server
 │   ├── src/
 │   │   ├── app.module.ts         # Root module

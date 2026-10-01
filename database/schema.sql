@@ -1,4 +1,4 @@
--- Election Tracker — Base Schema
+-- MatdaanPulse — Base Schema
 --
 -- This is the BASE schema. It is idempotent (safe to re-run) and is followed by
 -- migrations/001..NNN, which bring it to the current schema. Do not apply this file

@@ -1,4 +1,4 @@
-# Election Tracker
+# MatdaanPulse
 
 Real-time Indian election results tracker with interactive maps, alliance tallies, and constituency-level drill-down.
 
@@ -16,7 +16,7 @@ Real-time Indian election results tracker with interactive maps, alliance tallie
 ## Directory Structure
 
 ```
-election-tracker/
+matdaanpulse/
 ├── backend/         # NestJS API server (Prisma schema in backend/prisma/)
 ├── frontend/        # React SPA (Vite)
 ├── admin/           # Admin panel (React)

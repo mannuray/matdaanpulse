@@ -347,7 +347,7 @@ def main():
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
         context = browser.new_context(
-            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) ElectionTracker/1.0"
+            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) MatdaanPulse/1.0"
         )
         page = context.new_page()
 

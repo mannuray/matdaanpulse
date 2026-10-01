@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Election Tracker — build (or upgrade) a database from scratch, in the one supported order:
+# MatdaanPulse — build (or upgrade) a database from scratch, in the one supported order:
 #
 #   1. schema.sql              base schema (idempotent)
 #   2. migrations/NNN_*.sql    in numeric order (all idempotent)

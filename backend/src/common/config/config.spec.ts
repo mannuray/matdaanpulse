@@ -28,11 +28,11 @@ describe('buildCorsOptions', () => {
   });
 
   it('requires an anchored regex, so lookalike origins cannot match', () => {
-    expect(() => buildCorsOptions({ CORS_ORIGIN_REGEX: 'election-tracker-.*\\.vercel\\.app' })).toThrow(/anchored/);
-    const o = buildCorsOptions({ CORS_ORIGIN_REGEX: '^https://election-tracker-[a-z0-9-]+\\.vercel\\.app$' });
+    expect(() => buildCorsOptions({ CORS_ORIGIN_REGEX: 'matdaanpulse-.*\\.vercel\\.app' })).toThrow(/anchored/);
+    const o = buildCorsOptions({ CORS_ORIGIN_REGEX: '^https://matdaanpulse-[a-z0-9-]+\\.vercel\\.app$' });
     const re = (o.origin as (string | RegExp)[]).find((x) => x instanceof RegExp) as RegExp;
-    expect(re.test('https://election-tracker-git-main.vercel.app')).toBe(true);
-    expect(re.test('https://election-tracker-x.vercel.app.evil.com')).toBe(false);
+    expect(re.test('https://matdaanpulse-git-main.vercel.app')).toBe(true);
+    expect(re.test('https://matdaanpulse-x.vercel.app.evil.com')).toBe(false);
   });
 });
 

@@ -1,4 +1,4 @@
-# High-Level Design (HLD) - Election Tracker
+# High-Level Design (HLD) - MatdaanPulse
 
 ## 1. System Architecture Overview
 The platform follows a **Metadata-Driven Architecture** designed for high reusability and horizontal scalability. It uses a **Split-Data Model**, separating static configuration (Manifest) from high-frequency results (Database).

@@ -1,7 +1,7 @@
 {
-  "name": "election-tracker-scraper",
+  "name": "matdaanpulse-scraper",
   "version": "1.0.0",
-  "description": "Seed generators and live-counting simulation for election-tracker (live ECI ingestion not implemented)",
+  "description": "Seed generators and live-counting simulation for MatdaanPulse (live ECI ingestion not implemented)",
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
