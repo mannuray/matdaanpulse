@@ -56,7 +56,7 @@ function App() {
                 <Route path="overrides" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><LiveConsole /></ProtectedRoute>} />
                 <Route path="feedback/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Feedback /></ProtectedRoute>} />
                 <Route path="users/*" element={<ProtectedRoute roles={['SUPER_ADMIN']}><Users /></ProtectedRoute>} />
-                <Route path="logs" element={<ProtectedRoute roles={['SUPER_ADMIN']}><AuditLogs /></ProtectedRoute>} />
+                <Route path="logs/*" element={<ProtectedRoute roles={['SUPER_ADMIN']}><AuditLogs /></ProtectedRoute>} />
                 <Route path="status" element={<ProtectedRoute roles={['SUPER_ADMIN']}><SystemStatus /></ProtectedRoute>} />
               </Route>
             </Routes>

@@ -1,219 +1,151 @@
-import { getAuditLogs } from '../services/audit.service';
+import { Download, RefreshCw } from 'lucide-react';
+import { AUDIT_LIMIT, getAuditLogs } from '../services/audit.service';
 import { useResourceList } from '../hooks/useResourceList';
-import AdminPageHeader from '../components/common/AdminPageHeader';
-import ErrorBoundary from '../components/atoms/ErrorBoundary';
+import { useEntityRoute } from '../hooks/useEntityRoute';
+import { EntityPage } from '../components/entity/EntityPage';
+import { AuditPanel } from '../components/entity/audit/AuditPanel';
+import { PageHeader } from '../components/ui/PageHeader';
+import { Toolbar } from '../components/ui/Toolbar';
+import { Input, Select } from '../components/ui/Input';
+import { DataTable, type Column } from '../components/ui/DataTable';
+import { EmptyState } from '../components/ui/EmptyState';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import { AUDIT_ACTIONS, AUDIT_ENTITIES, actionLabel, actionTone, auditActor, entityLabel, isAuditAction, isAuditEntity } from '../utils/audit';
+import { auditCsv, downloadCsv } from '../utils/csv';
+import { formatIst, isIsoDay } from '../utils/time';
 import type { AuditLog } from '../types';
 
-const ACTIONS = ['RESULT_OVERRIDE', 'MANIFEST_PUBLISH', 'MANIFEST_DRAFT', 'ELECTION_FINALIZE', 'ELECTION_CREATE', 'ELECTION_UPDATE', 'USER_CREATED', 'USER_UPDATED', 'CANDIDATE_IMPORT'];
-const ENTITIES = ['result', 'manifest', 'election', 'candidate', 'alliance', 'user', 'party'];
+type Filters = { action: string; entity_type: string; from: string; to: string };
+const NO_FILTERS: Filters = { action: '', entity_type: '', from: '', to: '' };
 
-/**
- * PAGE: Audit Logs (MVC: View)
- * High-fidelity security trail for all administrative operations.
- */
+export const RANGE_ERROR = 'The From date is after the To date. Pick a From date on or before the To date.';
+const rangeError = (f: Filters) => (f.from && f.to && f.from > f.to ? RANGE_ERROR : null);
+
+const COLUMNS: Column<AuditLog>[] = [
+  { key: 'time', header: 'Time (IST)', className: 'whitespace-nowrap text-xs text-ink-2', cell: (l) => formatIst(l.timestamp) },
+  {
+    key: 'admin', header: 'Admin',
+    cell: (l) => (
+      <div className="min-w-0">
+        <div className="truncate font-medium text-ink">{auditActor(l)}</div>
+        {l.users?.email && <div className="truncate text-xs text-muted">{l.users.email}</div>}
+      </div>
+    ),
+  },
+  { key: 'action', header: 'Action', cell: (l) => <Badge tone={actionTone(l.action)}>{actionLabel(l.action)}</Badge> },
+  { key: 'entity', header: 'Entity', className: 'text-ink-2', cell: (l) => entityLabel(l.entity_type) },
+  { key: 'id', header: 'Entity ID', className: 'max-w-[180px] truncate font-mono text-[11px] text-muted', cell: (l) => <span title={l.entity_id}>{l.entity_id}</span> },
+  {
+    key: 'change', header: 'Change', className: 'whitespace-nowrap text-xs text-ink-2',
+    cell: (l) => {
+      const parts = [l.old_value != null ? 'Before' : null, l.new_value != null ? (l.old_value != null ? 'after' : 'After') : null].filter(Boolean);
+      return parts.length ? parts.join(' → ') : <span className="text-muted">—</span>;
+    },
+  },
+];
+
+/** PAGE: Audit logs (SUPER_ADMIN) — the latest 200 entries, filterable; panel at /logs/:id. */
 export default function AuditLogs() {
-  const list = useResourceList<{ action: string; entity_type: string; from: string; to: string }>({
+  const route = useEntityRoute('/logs');
+  const list = useResourceList<Filters>({
     key: 'audit_logs',
-    initialFilters: { action: '', entity_type: '', from: '', to: '' },
-    onLoad: async (_page, _search, filters) => {
-      const f: Record<string, string> = {};
-      if (filters.action) f.action = filters.action;
-      if (filters.entity_type) f.entity_type = filters.entity_type;
-      if (filters.from) f.from = filters.from;
-      if (filters.to) f.to = filters.to;
+    initialFilters: NO_FILTERS,
+    // Older builds stored actions the backend never writes; an unknown value would silently return nothing.
+    sanitizeFilters: (f) => ({
+      action: isAuditAction(f.action) ? f.action : '',
+      entity_type: isAuditEntity(f.entity_type) ? f.entity_type : '',
+      from: isIsoDay(f.from) ? f.from : '',
+      to: isIsoDay(f.to) ? f.to : '',
+    }),
+    onLoad: async (_page, _search, f) => {
+      if (rangeError(f)) return { data: [], total: 0 };
       const data = await getAuditLogs(f);
       return { data, total: data.length };
-    }
+    },
   });
-
-  const { items: logs, loading, refresh } = list;
-
-  const exportCsv = () => {
-    const header = 'Timestamp,User,Action,Entity Type,Entity ID\n';
-    const rows = logs.map((l: AuditLog) =>
-      `${l.timestamp},${l.users?.name || l.user_id || ''},${l.action},${l.entity_type},${l.entity_id}`
-    ).join('\n');
-    const blob = new Blob([header + rows], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `audit-logs-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+  const logs = list.items as AuditLog[];
+  const f = list.filters;
+  const invalidRange = rangeError(f);
+  const hasFilters = !!(f.action || f.entity_type || f.from || f.to);
+  const selected = route.id ? logs.find((l) => l.id === route.id) ?? null : null;
+  const exportCsv = () => downloadCsv(`audit-logs-${new Date().toISOString().slice(0, 10)}.csv`, auditCsv(logs));
 
   return (
-    <div className="fade-in" style={styles.pageRoot}>
-      <AdminPageHeader 
-        title="Security & Audit Logs"
-        subtitle="Real-time administrative trail"
-        actions={
-          <div style={{ display: 'flex', gap: 12 }}>
-            <button onClick={exportCsv} disabled={logs.length === 0} className="btn btn-outline" style={styles.headerBtn}>DOWNLOAD CSV</button>
-            <button onClick={refresh} className="btn btn-primary" style={styles.headerBtn}>REFRESH</button>
-          </div>
-        }
-      />
-
-      <ErrorBoundary>
-        <AuditFilterBar list={list} />
-      </ErrorBoundary>
-
-      <div style={{ padding: 'var(--space-6)' }}>
-        {loading ? (
-          <div style={styles.spinnerWrapper}><div className="spinner" style={styles.spinner}></div></div>
-        ) : (
-          <ErrorBoundary>
-            <div className="card-elevated" style={{ padding: 0 }}>
-              <LogsTable logs={logs} />
+    <EntityPage
+      header={
+        <PageHeader
+          title="Audit logs"
+          subtitle="Result overrides, seat saves and lock take-overs · times in IST"
+          actions={
+            <>
+              <Button variant="outline" disabled={logs.length === 0} onClick={exportCsv}><Download size={14} aria-hidden />Download CSV</Button>
+              <Button variant="outline" disabled={list.loading} onClick={() => { void list.refresh(); }}><RefreshCw size={14} aria-hidden />Refresh</Button>
+            </>
+          }
+        />
+      }
+      toolbar={
+        <Toolbar>
+          <Select aria-label="Action" className="w-52" value={f.action} onChange={(e) => list.updateFilters({ action: e.target.value })}>
+            <option value="">Any action</option>
+            {AUDIT_ACTIONS.map((a) => <option key={a.value} value={a.value}>{a.label}</option>)}
+          </Select>
+          <Select aria-label="Entity" className="w-40" value={f.entity_type} onChange={(e) => list.updateFilters({ entity_type: e.target.value })}>
+            <option value="">Any entity</option>
+            {AUDIT_ENTITIES.map((x) => <option key={x.value} value={x.value}>{x.label}</option>)}
+          </Select>
+          <label className="flex items-center gap-2 text-xs text-ink-2">
+            From (IST)
+            <Input type="date" className="w-40" value={f.from} max={f.to || undefined} onChange={(e) => list.updateFilters({ from: e.target.value })} />
+          </label>
+          <label className="flex items-center gap-2 text-xs text-ink-2">
+            To (IST)
+            <Input type="date" className="w-40" value={f.to} min={f.from || undefined} onChange={(e) => list.updateFilters({ to: e.target.value })} />
+          </label>
+          {hasFilters && <Button size="sm" variant="ghost" onClick={() => list.updateFilters(NO_FILTERS)}>Clear filters</Button>}
+          <span className="ml-auto text-xs text-muted">
+            {logs.length >= AUDIT_LIMIT ? `Showing latest ${AUDIT_LIMIT}` : `${logs.length.toLocaleString('en-IN')} ${logs.length === 1 ? 'entry' : 'entries'}`}
+          </span>
+        </Toolbar>
+      }
+      table={
+        <>
+          {invalidRange && <div role="alert" className="rounded-card border border-warn/40 bg-warn-soft px-4 py-2.5 text-sm text-warn-text">{invalidRange}</div>}
+          {list.error && logs.length > 0 && (
+            <div role="alert" className="flex items-center justify-between gap-3 rounded-card border border-bad/30 bg-bad-soft px-4 py-2.5 text-sm text-bad-text">
+              {list.error}
+              <Button size="sm" variant="outline" onClick={() => { void list.refresh(); }}>Try again</Button>
             </div>
-          </ErrorBoundary>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// --- Internal Sub-Components ---
-
-function AuditFilterBar({ list }: { list: any }) {
-  const { filters, updateFilters } = list;
-  const clearFilters = () => updateFilters({ action: '', entity_type: '', from: '', to: '' });
-
-  return (
-    <div style={styles.filterBarRoot}>
-      <div style={styles.filterContainer}>
-        <select 
-          className="form-select" 
-          value={filters.action} 
-          onChange={(e) => updateFilters({ action: e.target.value })} 
-          style={styles.selectAction}
-        >
-          <option value="">ALL ACTIONS</option>
-          {ACTIONS.map((a) => <option key={a} value={a}>{a.replace(/_/g, ' ')}</option>)}
-        </select>
-        <select 
-          className="form-select" 
-          value={filters.entity_type} 
-          onChange={(e) => updateFilters({ entity_type: e.target.value })} 
-          style={styles.selectEntity}
-        >
-          <option value="">ALL ENTITIES</option>
-          {ENTITIES.map((e) => <option key={e} value={e}>{e.toUpperCase()}</option>)}
-        </select>
-        
-        <div style={styles.dateGroup}>
-          <span style={styles.dateLabel}>FROM</span>
-          <input type="date" className="form-input" value={filters.from} onChange={(e) => updateFilters({ from: e.target.value })} style={styles.dateInput} />
-        </div>
-        
-        <div style={styles.dateGroup}>
-          <span style={styles.dateLabel}>TO</span>
-          <input type="date" className="form-input" value={filters.to} onChange={(e) => updateFilters({ to: e.target.value })} style={styles.dateInput} />
-        </div>
-
-        {(filters.action || filters.entity_type || filters.from || filters.to) && (
-          <button onClick={clearFilters} style={styles.clearBtn}>Clear All</button>
-        )}
-        
-        <div style={styles.recordCount}>{list.items.length} RECORDS FOUND</div>
-      </div>
-    </div>
-  );
-}
-
-function LogsTable({ logs }: { logs: AuditLog[] }) {
-  return (
-    <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-      <thead>
-        <tr style={styles.tableHeadRow}>
-          <th style={styles.thLeft}>Timestamp</th>
-          <th style={styles.thLeft}>Administrator</th>
-          <th style={styles.thLeft}>Operation</th>
-          <th style={styles.thLeft}>Resource</th>
-          <th style={styles.thLeft}>System ID</th>
-          <th style={styles.thCenter}>Delta</th>
-        </tr>
-      </thead>
-      <tbody>
-        {logs.map((log) => <LogRow key={log.id} log={log} />)}
-        {logs.length === 0 && (
-          <tr><td colSpan={6} style={styles.emptyCell}>No administrative logs found.</td></tr>
-        )}
-      </tbody>
-    </table>
-  );
-}
-
-function LogRow({ log }: { log: AuditLog }) {
-  const actionStyle = getActionStyle(log.action);
-  return (
-    <tr className="row-hover" style={styles.dataRow}>
-      <td style={styles.tdTime}>
-        {new Date(log.timestamp).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' })}
-      </td>
-      <td style={styles.tdUser}>
-        {log.users?.name || log.user_id?.split('-')[0] || '-'}
-      </td>
-      <td style={styles.td}>
-        <span style={{ ...actionStyle, ...styles.actionTag }}>{log.action}</span>
-      </td>
-      <td style={styles.tdResource}>{log.entity_type}</td>
-      <td style={styles.tdId}>{log.entity_id}</td>
-      <td style={styles.td}>
-        <div style={styles.deltaBox}>
-          {log.old_value != null && (
-            <span title={JSON.stringify(log.old_value, null, 2)} style={styles.deltaPre}>PRE</span>
           )}
-          {(log.old_value != null || log.new_value != null) && <span style={styles.deltaArrow}>→</span>}
-          {log.new_value != null && (
-            <span title={JSON.stringify(log.new_value, null, 2)} style={styles.deltaPost}>POST</span>
-          )}
-          {log.old_value == null && log.new_value == null && <span style={styles.deltaArrow}>-</span>}
-        </div>
-      </td>
-    </tr>
+          <DataTable
+            label="Audit log"
+            columns={COLUMNS}
+            rows={logs}
+            rowKey={(l) => l.id}
+            selectedKey={route.id}
+            onRowClick={(l) => route.open(l.id)}
+            loading={list.loading}
+            empty={list.error
+              ? <EmptyState title="Could not load audit logs" description={list.error} action={<Button variant="outline" size="sm" onClick={() => { void list.refresh(); }}>Try again</Button>} />
+              : invalidRange
+                ? <EmptyState title="Fix the dates" description="No entries can match this range." />
+                : hasFilters
+                  ? <EmptyState title="No entries match" description="Try other filters, or clear them." />
+                  : <EmptyState title="No audit entries yet" description="Result overrides, seat saves and lock take-overs appear here." />}
+          />
+        </>
+      }
+      panel={route.id ? (
+        <AuditPanel
+          key={route.id}
+          log={selected}
+          listLoading={list.loading}
+          listError={list.error}
+          onRetry={() => { void list.refresh(); }}
+          onClose={() => route.close()}
+        />
+      ) : null}
+    />
   );
 }
-
-// --- Helpers & Styles ---
-
-const getActionStyle = (action: string) => {
-  switch (action) {
-    case 'RESULT_OVERRIDE': return { background: 'var(--danger-soft)', color: 'var(--danger-text)', border: '1px solid #fecaca' };
-    case 'MANIFEST_PUBLISH': return { background: 'var(--success-soft)', color: 'var(--success-text)', border: '1px solid #bbf7d0' };
-    case 'ELECTION_FINALIZE': return { background: 'var(--accent-soft)', color: 'var(--accent)', border: '1px solid var(--accent-soft)' };
-    default: return { background: 'var(--bg-secondary)', color: 'var(--text-secondary)', border: '1px solid var(--border)' };
-  }
-};
-
-const styles = {
-  pageRoot: { background: 'var(--bg-secondary)', minHeight: '100vh', paddingBottom: '40px' },
-  headerBtn: { padding: '6px 16px', fontSize: '11px', fontWeight: 700, borderRadius: 'var(--radius-sm)' },
-  filterBarRoot: { background: 'var(--bg-primary)', borderBottom: '1px solid var(--border)', padding: '0 var(--space-6) var(--space-4) var(--space-6)' },
-  filterContainer: { display: 'flex', gap: '10px', alignItems: 'center', background: 'var(--bg-secondary)', padding: '8px 12px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' },
-  selectAction: { height: '30px', minWidth: 160, fontSize: '11px', fontWeight: 600, background: 'var(--bg-primary)' },
-  selectEntity: { height: '30px', minWidth: 140, fontSize: '11px', fontWeight: 600, background: 'var(--bg-primary)' },
-  dateGroup: { display: 'flex', alignItems: 'center', gap: '6px' },
-  dateLabel: { fontSize: '10px', fontWeight: 800, color: 'var(--text-muted)' },
-  dateInput: { height: '30px', fontSize: '11px', padding: '0 8px', width: '130px' },
-  clearBtn: { background: 'none', border: 'none', color: 'var(--accent)', fontSize: '10px', fontWeight: 800, cursor: 'pointer', textTransform: 'uppercase' as const },
-  recordCount: { marginLeft: 'auto', fontSize: '10px', fontWeight: 800, color: 'var(--text-muted)' },
-  spinnerWrapper: { display: 'flex', justifyContent: 'center', padding: '100px' },
-  spinner: { width: '24px', height: '24px' },
-  tableHeadRow: { background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border)' },
-  thLeft: { padding: '12px 16px', textAlign: 'left' as const, fontSize: '10px', fontWeight: 800, textTransform: 'uppercase' as const, letterSpacing: '0.05em', color: 'var(--text-muted)' },
-  thCenter: { padding: '12px 16px', textAlign: 'center' as const, fontSize: '10px', fontWeight: 800, textTransform: 'uppercase' as const, letterSpacing: '0.05em', color: 'var(--text-muted)' },
-  dataRow: { borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' },
-  td: { padding: '10px 16px' },
-  tdTime: { padding: '10px 16px', fontSize: '12px', whiteSpace: 'nowrap' as const, color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' },
-  tdUser: { padding: '10px 16px', fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)' },
-  tdResource: { padding: '10px 16px', fontSize: '11px', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase' as const },
-  tdId: { padding: '10px 16px', fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' },
-  actionTag: { padding: '3px 8px', borderRadius: '4px', fontSize: '9px', fontWeight: 800, display: 'inline-block' as const },
-  deltaBox: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  deltaPre: { padding: '2px 6px', borderRadius: '4px', background: 'var(--danger-soft)', color: 'var(--danger-text)', fontSize: '9px', fontWeight: 800, cursor: 'help', border: '1px solid #fecaca' },
-  deltaPost: { padding: '2px 6px', borderRadius: '4px', background: 'var(--success-soft)', color: 'var(--success-text)', fontSize: '9px', fontWeight: 800, cursor: 'help', border: '1px solid #bbf7d0' },
-  deltaArrow: { color: 'var(--text-muted)', fontSize: '10px' },
-  emptyCell: { padding: '60px', textAlign: 'center' as const, color: 'var(--text-muted)', fontSize: '13px', fontWeight: 600 },
-};
