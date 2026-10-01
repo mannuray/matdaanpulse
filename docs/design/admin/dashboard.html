@@ -1,0 +1,511 @@
+<!DOCTYPE html><!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MatdaanPulse Admin — Dashboard</title>
+<!-- Inter Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {},
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Inter", "sans-serif"],
+            display: ["Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Inter", "sans-serif"]
+          },
+          boxShadow: {
+            'xs': '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[type='text'],input:where(:not([type])),[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{-webkit-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0px;padding-top:0.5rem;padding-right:0.75rem;padding-bottom:0.5rem;padding-left:0.75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000;}[type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);border-color:#2563eb}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 0.5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:initial;background-position:initial;background-repeat:unset;background-size:initial;padding-right:0.75rem;print-color-adjust:unset}[type='checkbox'],[type='radio']{-webkit-appearance:none;appearance:none;padding:0;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type='checkbox']{border-radius:0px}[type='radio']{border-radius:100%}[type='checkbox']:focus,[type='radio']:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}[type='checkbox']:checked,[type='radio']:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat}[type='checkbox']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='checkbox']:checked{-webkit-appearance:auto;appearance:auto}}[type='radio']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='radio']:checked{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus{border-color:transparent;background-color:currentColor}[type='checkbox']:indeterminate{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat;}@media (forced-colors: active) {[type='checkbox']:indeterminate{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus{border-color:transparent;background-color:currentColor}[type='file']{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type='file']:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.pointer-events-none{pointer-events:none}.absolute{position:absolute}.relative{position:relative}.inset-y-0{top:0px;bottom:0px}.left-0{left:0px}.right-0{right:0px}.right-1{right:0.25rem}.top-1{top:0.25rem}.z-20{z-index:20}.z-30{z-index:30}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.ml-2{margin-left:0.5rem}.mr-1{margin-right:0.25rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.box-border{box-sizing:border-box}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2{height:0.5rem}.h-2\.5{height:0.625rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-\[98px\]{height:98px}.h-\[calc\(100vh-56px\)\]{height:calc(100vh - 56px)}.h-full{height:100%}.h-screen{height:100vh}.min-h-0{min-height:0px}.w-14{width:3.5rem}.w-2{width:0.5rem}.w-2\.5{width:0.625rem}.w-3\.5{width:0.875rem}.w-4{width:1rem}.w-48{width:12rem}.w-5{width:1.25rem}.w-60{width:15rem}.w-64{width:16rem}.w-7{width:1.75rem}.w-full{width:100%}.w-px{width:1px}.w-screen{width:100vw}.min-w-0{min-width:0px}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-3\.5{gap:0.875rem}.gap-4{gap:1rem}.space-y-0\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.125rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-\[10px\]{border-radius:10px}.rounded-\[6px\]{border-radius:6px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-amber-200{--tw-border-opacity:1;border-color:rgb(253 230 138 / var(--tw-border-opacity, 1))}.border-emerald-200{--tw-border-opacity:1;border-color:rgb(167 243 208 / var(--tw-border-opacity, 1))}.border-emerald-200\/60{border-color:rgb(167 243 208 / 0.6)}.border-indigo-100{--tw-border-opacity:1;border-color:rgb(224 231 255 / var(--tw-border-opacity, 1))}.border-indigo-200{--tw-border-opacity:1;border-color:rgb(199 210 254 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-200\/60{border-color:rgb(226 232 240 / 0.6)}.border-slate-200\/70{border-color:rgb(226 232 240 / 0.7)}.border-slate-200\/80{border-color:rgb(226 232 240 / 0.8)}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.bg-\[\#1e293b\]{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235 / var(--tw-bg-opacity, 1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-indigo-100{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity, 1))}.bg-indigo-200{--tw-bg-opacity:1;background-color:rgb(199 210 254 / var(--tw-bg-opacity, 1))}.bg-indigo-50{--tw-bg-opacity:1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.bg-indigo-600{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-300{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.fill-none{fill:none}.stroke-emerald-500{stroke:#10b981}.stroke-indigo-600{stroke:#4f46e5}.stroke-slate-400{stroke:#94a3b8}.p-1\.5{padding:0.375rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.pb-1{padding-bottom:0.25rem}.pl-1{padding-left:0.25rem}.pl-2\.5{padding-left:0.625rem}.pl-8{padding-left:2rem}.pr-12{padding-right:3rem}.pr-2{padding-right:0.5rem}.pt-0\.5{padding-top:0.125rem}.pt-2{padding-top:0.5rem}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-\[15px\]{font-size:15px}.text-\[16px\]{font-size:16px}.text-\[17px\]{font-size:17px}.text-\[18px\]{font-size:18px}.text-\[19px\]{font-size:19px}.text-\[9px\]{font-size:9px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-indigo-600{--tw-text-opacity:1;color:rgb(79 70 229 / var(--tw-text-opacity, 1))}.text-indigo-700{--tw-text-opacity:1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.text-indigo-800{--tw-text-opacity:1;color:rgb(55 48 163 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-slate-400::placeholder{--tw-placeholder-opacity:1;color:rgb(148 163 184 / var(--tw-placeholder-opacity, 1))}.opacity-75{opacity:0.75}.shadow-xs{--tw-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-150{transition-duration:150ms}.hover\:border-slate-300:hover{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.hover\:bg-indigo-700:hover{--tw-bg-opacity:1;background-color:rgb(67 56 202 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-800\/60:hover{background-color:rgb(30 41 59 / 0.6)}.hover\:text-slate-800:hover{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.focus\:border-indigo-600:focus{--tw-border-opacity:1;border-color:rgb(79 70 229 / var(--tw-border-opacity, 1))}.focus\:bg-white:focus{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}</style></head>
+<body class="bg-slate-50 text-slate-900 h-screen w-screen overflow-hidden flex antialiased select-none">
+<!-- ==================== SIDEBAR ==================== -->
+<aside class="w-60 h-screen bg-[#1e293b] border-r border-slate-800 flex flex-col justify-between shrink-0 z-30">
+<!-- Top brand & Navigation -->
+<div class="flex flex-col">
+<!-- Brand Header -->
+<div class="h-14 px-4 flex items-center gap-3 border-b border-slate-800/80">
+<div class="w-7 h-7 rounded-md bg-indigo-600 flex items-center justify-center text-white shadow-xs">
+<span class="material-symbols-outlined text-[18px]">how_to_vote</span>
+</div>
+<div class="flex flex-col justify-center">
+<span class="text-sm font-semibold text-white tracking-tight leading-tight">MatdaanPulse Admin</span>
+<span class="text-[11px] text-slate-400 font-normal leading-tight">Election Results Hub</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="px-2 pt-2 space-y-4">
+<!-- Counting Group -->
+<div>
+<div class="px-2 pb-1 text-[11px] font-medium text-slate-400">Counting</div>
+<nav class="space-y-0.5">
+<!-- Active item -->
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg bg-indigo-600 text-white font-medium text-xs shadow-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">podium</span>
+<span>Live Console</span>
+</a>
+</nav>
+</div>
+<!-- Data Group -->
+<div>
+<div class="px-2 pb-1 text-[11px] font-medium text-slate-400">Data</div>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">how_to_vote</span>
+<span>Elections</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">description</span>
+<span>Manifests</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">flag</span>
+<span>Parties</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">groups</span>
+<span>Candidates</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">person</span>
+<span>Persons</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">map</span>
+<span>Constituencies</span>
+</a>
+</nav>
+</div>
+<!-- Admin Group -->
+<div>
+<div class="px-2 pb-1 text-[11px] font-medium text-slate-400">Admin</div>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">chat_bubble</span>
+<span>Feedback</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">group</span>
+<span>Users</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">history</span>
+<span>Audit logs</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-normal text-xs transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[17px]">dns</span>
+<span>System status</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</aside>
+<!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+<div class="flex-1 flex flex-col h-screen min-w-0 overflow-hidden bg-slate-50">
+<!-- Top Bar -->
+<header class="h-14 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0 whitespace-nowrap z-20">
+<!-- Left side: Dropdown & Search -->
+<div class="flex items-center gap-4">
+<!-- Election Selector Pill -->
+<button class="h-8 px-3 rounded-[6px] border border-slate-200 bg-white hover:bg-slate-50 flex items-center gap-2 text-xs font-medium text-slate-800 shadow-xs transition-colors">
+<span class="w-2 h-2 rounded-full bg-indigo-600 inline-block"></span>
+<span>Bihar VS 2025</span>
+<span class="material-symbols-outlined text-[16px] text-slate-400">expand_more</span>
+</button>
+<!-- Search Bar -->
+<div class="relative w-64">
+<span class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[16px]">search</span>
+</span>
+<input class="w-full h-8 pl-8 pr-12 text-xs bg-slate-50 border border-slate-200 rounded-[6px] focus:outline-none focus:bg-white focus:border-indigo-600 text-slate-900 placeholder-slate-400 transition-colors" placeholder="Search seats, candidates…" type="text">
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+<kbd class="text-[10px] bg-white border border-slate-200 text-slate-500 rounded px-1 py-0.5 font-mono shadow-xs">⌘K</kbd>
+</div>
+</div>
+</div>
+<!-- Right side: Live pill, health dot, notifications, help, profile -->
+<div class="flex items-center gap-3.5 whitespace-nowrap">
+<!-- Live updates pill -->
+<div class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs px-2.5 py-1 rounded-full font-medium flex items-center gap-1.5 shadow-xs">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span>Live updates on</span>
+</div>
+<!-- Health indicator -->
+<div class="flex items-center group relative cursor-pointer" title="All systems OK">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+</div>
+<div class="h-4 w-px bg-slate-200"></div>
+<!-- Bell icon with badge -->
+<button class="relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[19px]">notifications</span>
+<span class="absolute top-1 right-1 w-3.5 h-3.5 bg-indigo-600 text-white text-[9px] font-semibold rounded-full flex items-center justify-center">3</span>
+</button>
+<!-- Help icon button -->
+<button class="w-7 h-7 rounded-full text-slate-500 hover:text-slate-800 hover:bg-slate-100 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">help</span>
+</button>
+<div class="h-4 w-px bg-slate-200"></div>
+<!-- User avatar & Name -->
+<div class="flex items-center gap-2.5 pl-1">
+<div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-semibold text-xs flex items-center justify-center border border-indigo-200">
+            MK
+          </div>
+<span class="text-xs font-medium text-slate-800">Mannu K</span>
+</div>
+</div>
+</header>
+<!-- Canvas (Height 100vh - 56px, Zero Page Scroll) -->
+<main class="flex-1 p-6 flex flex-col justify-between h-[calc(100vh-56px)] overflow-hidden box-border gap-4">
+<!-- Top Title Area -->
+<div class="shrink-0 flex items-baseline justify-between">
+<div>
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight leading-tight">Dashboard</h1>
+<p class="text-xs text-slate-500 font-normal mt-0.5">Bihar VS 2025 · counting in progress</p>
+</div>
+</div>
+<!-- ROW 1: 4 KPI Tiles -->
+<div class="grid grid-cols-4 gap-4 shrink-0">
+<!-- Tile 1: Seats declared -->
+<div class="bg-white border border-slate-200/80 rounded-[10px] p-3.5 shadow-xs flex flex-col justify-between h-[98px]">
+<div class="flex items-start justify-between">
+<span class="text-xs text-slate-500 font-medium">Seats declared</span>
+<!-- Sparkline emerald -->
+<svg class="w-14 h-5 stroke-emerald-500 fill-none" viewBox="0 0 60 20">
+<path d="M 0 15 Q 15 14, 25 10 T 45 6 T 60 2" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-900 tracking-tight tabular-nums leading-none mb-2">43 <span class="text-sm font-medium text-slate-400">/ 243</span></div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full rounded-full" style="width: 17.7%"></div>
+</div>
+</div>
+</div>
+<!-- Tile 2: Leading -->
+<div class="bg-white border border-slate-200/80 rounded-[10px] p-3.5 shadow-xs flex flex-col justify-between h-[98px]">
+<div class="flex items-start justify-between">
+<span class="text-xs text-slate-500 font-medium">Leading</span>
+<!-- Sparkline indigo -->
+<svg class="w-14 h-5 stroke-indigo-600 fill-none" viewBox="0 0 60 20">
+<path d="M 0 16 Q 12 12, 28 8 T 46 11 T 60 4" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+</div>
+<div>
+<div class="text-2xl font-bold text-indigo-600 tracking-tight tabular-nums leading-none">80</div>
+<p class="text-[11px] text-slate-400 mt-1">Trends stable in 62 constituencies</p>
+</div>
+</div>
+<!-- Tile 3: Pending -->
+<div class="bg-white border border-slate-200/80 rounded-[10px] p-3.5 shadow-xs flex flex-col justify-between h-[98px]">
+<div class="flex items-start justify-between">
+<span class="text-xs text-slate-500 font-medium">Pending</span>
+<!-- Sparkline slate -->
+<svg class="w-14 h-5 stroke-slate-400 fill-none" viewBox="0 0 60 20">
+<path d="M 0 4 Q 15 6, 30 11 T 50 14 T 60 16" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-700 tracking-tight tabular-nums leading-none">120</div>
+<p class="text-[11px] text-slate-400 mt-1">Awaiting postal verification</p>
+</div>
+</div>
+<!-- Tile 4: Last update -->
+<div class="bg-white border border-slate-200/80 rounded-[10px] p-3.5 shadow-xs flex flex-col justify-between h-[98px]">
+<div class="flex items-start justify-between">
+<span class="text-xs text-slate-500 font-medium">Last update</span>
+<!-- Heartbeat line -->
+<svg class="w-14 h-5 stroke-slate-400 fill-none" viewBox="0 0 60 20">
+<path d="M 0 10 L 20 10 L 25 3 L 30 17 L 35 10 L 60 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-900 tracking-tight tabular-nums leading-none">14:32:08</div>
+<p class="text-[11px] text-slate-400 mt-1">2 min ago · Round 4 updates syncing</p>
+</div>
+</div>
+</div>
+<!-- ROW 2: Live Console CTA Card -->
+<div class="bg-white border border-slate-200/80 rounded-[10px] p-4 shadow-xs flex items-center justify-between shrink-0">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-3">
+<h2 class="text-base font-semibold text-slate-900 tracking-tight">Live console</h2>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span>Counting progress · 32% of seats reporting</span>
+<div class="w-48 h-1.5 bg-slate-100 rounded-full overflow-hidden inline-flex">
+<div class="bg-indigo-600 h-full rounded-full" style="width: 32%"></div>
+</div>
+</div>
+</div>
+<!-- Seats being edited chips -->
+<div class="flex items-center gap-2 pt-0.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">lock</span>
+<span class="text-xs text-slate-500 mr-1">Seats being edited now: 3</span>
+<!-- Avatar chip 1 -->
+<div class="bg-slate-100 text-slate-700 text-xs px-2 py-0.5 rounded-[6px] flex items-center gap-1.5 border border-slate-200/60 font-medium">
+<span class="w-4 h-4 rounded-full bg-indigo-200 text-indigo-800 text-[9px] flex items-center justify-center font-bold">PS</span>
+<span>Priya S · 145 Bikram</span>
+</div>
+<!-- Avatar chip 2 -->
+<div class="bg-slate-100 text-slate-700 text-xs px-2 py-0.5 rounded-[6px] flex items-center gap-1.5 border border-slate-200/60 font-medium">
+<span class="w-4 h-4 rounded-full bg-slate-300 text-slate-800 text-[9px] flex items-center justify-center font-bold">RM</span>
+<span>Rahul M · 88 Jhanjharpur</span>
+</div>
+<!-- Avatar chip 3 -->
+<div class="bg-slate-100 text-slate-700 text-xs px-2 py-0.5 rounded-[6px] flex items-center gap-1.5 border border-slate-200/60 font-medium">
+<span class="w-4 h-4 rounded-full bg-indigo-200 text-indigo-800 text-[9px] flex items-center justify-center font-bold">MK</span>
+<span>Mannu K · 142 Patna Sahib</span>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-[6px] shadow-xs text-xs flex items-center gap-1.5 transition-colors">
+<span>Open live console</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- ROW 3: Three Equal Cards (Flexible Fill, Zero Scroll) -->
+<div class="grid grid-cols-3 gap-4 flex-1 min-h-0">
+<!-- (a) Recent Activity Card -->
+<div class="bg-white border border-slate-200/80 rounded-[10px] p-4 shadow-xs flex flex-col justify-between overflow-hidden">
+<div class="flex items-center justify-between pb-1">
+<h3 class="text-sm font-semibold text-slate-900 tracking-tight">Recent activity</h3>
+<span class="text-[11px] text-slate-400">Real-time audit</span>
+</div>
+<!-- Activity List (8 entries) -->
+<div class="flex flex-col justify-between flex-1 py-1 overflow-hidden">
+<!-- Item 1 -->
+<div class="flex items-center justify-between text-xs py-1 border-b border-slate-100">
+<div class="flex items-center gap-2 truncate">
+<span class="w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-semibold flex items-center justify-center shrink-0">MK</span>
+<span class="text-slate-700 truncate">Mannu K updated 142 Patna Sahib</span>
+</div>
+<span class="text-slate-400 text-[11px] tabular-nums shrink-0 ml-2">2m</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between text-xs py-1 border-b border-slate-100">
+<div class="flex items-center gap-2 truncate">
+<span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-semibold flex items-center justify-center shrink-0">PS</span>
+<span class="text-slate-700 truncate">Priya S locked 145 Bikram</span>
+</div>
+<span class="text-slate-400 text-[11px] tabular-nums shrink-0 ml-2">4m</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between text-xs py-1 border-b border-slate-100">
+<div class="flex items-center gap-2 truncate">
+<span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-semibold flex items-center justify-center shrink-0">RM</span>
+<span class="text-slate-700 truncate">Rahul M entered round 6 in 88 Jhanjharpur</span>
+</div>
+<span class="text-slate-400 text-[11px] tabular-nums shrink-0 ml-2">7m</span>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between text-xs py-1 border-b border-slate-100">
+<div class="flex items-center gap-2 truncate">
+<span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold flex items-center justify-center shrink-0">AK</span>
+<span class="text-slate-700 truncate">Alok K declared 179 Nalanda</span>
+</div>
+<span class="text-slate-400 text-[11px] tabular-nums shrink-0 ml-2">12m</span>
+</div>
+<!-- Item 5 -->
+<div class="flex items-center justify-between text-xs py-1 border-b border-slate-100">
+<div class="flex items-center gap-2 truncate">
+<span class="w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-semibold flex items-center justify-center shrink-0">MK</span>
+<span class="text-slate-700 truncate">Mannu K saved 144 Raghopur</span>
+</div>
+<span class="text-slate-400 text-[11px] tabular-nums shrink-0 ml-2">15m</span>
+</div>
+<!-- Item 6 -->
+<div class="flex items-center justify-between text-xs py-1 border-b border-slate-100">
+<div class="flex items-center gap-2 truncate">
+<span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-semibold flex items-center justify-center shrink-0">SY</span>
+<span class="text-slate-700 truncate">Sunita Y updated round 3 in 143 Danapur</span>
+</div>
+<span class="text-slate-400 text-[11px] tabular-nums shrink-0 ml-2">18m</span>
+</div>
+<!-- Item 7 -->
+<div class="flex items-center justify-between text-xs py-1 border-b border-slate-100">
+<div class="flex items-center gap-2 truncate">
+<span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-semibold flex items-center justify-center shrink-0">TJ</span>
+<span class="text-slate-700 truncate">Tejas J linked candidate to person</span>
+</div>
+<span class="text-slate-400 text-[11px] tabular-nums shrink-0 ml-2">24m</span>
+</div>
+<!-- Item 8 -->
+<div class="flex items-center justify-between text-xs py-1">
+<div class="flex items-center gap-2 truncate">
+<span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-semibold flex items-center justify-center shrink-0">RM</span>
+<span class="text-slate-700 truncate">Rahul M verified 140 Phulwari</span>
+</div>
+<span class="text-slate-400 text-[11px] tabular-nums shrink-0 ml-2">31m</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-2 border-t border-slate-100">
+<a class="text-xs text-indigo-600 font-medium hover:underline inline-flex items-center gap-1" href="#">
+<span>View audit log</span>
+<span class="text-[13px] leading-none">→</span>
+</a>
+</div>
+</div>
+<!-- (b) System Health Card -->
+<div class="bg-white border border-slate-200/80 rounded-[10px] p-4 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-semibold text-slate-900 tracking-tight">System health</h3>
+<span class="text-[11px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">Nominal 99.98%</span>
+</div>
+<!-- Metrics rows -->
+<div class="space-y-3 py-2">
+<!-- Database -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-xs font-medium text-slate-700">Database</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 font-normal">PostgreSQL Prim</span>
+<span class="text-xs font-medium text-slate-800 tabular-nums">OK 12 ms</span>
+</div>
+</div>
+<!-- Redis -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-xs font-medium text-slate-700">Redis</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 font-normal">Cache cluster</span>
+<span class="text-xs font-medium text-slate-800 tabular-nums">OK 3 ms</span>
+</div>
+</div>
+<!-- Live updates (SSE) -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-xs font-medium text-slate-700">Live updates (SSE)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 font-normal">Active streams</span>
+<span class="text-xs font-medium text-slate-800 tabular-nums">214 connections</span>
+</div>
+</div>
+<!-- Overrides -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="text-xs font-medium text-slate-700">Overrides</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 font-normal">Manual sync rate</span>
+<span class="text-xs font-medium text-slate-800 tabular-nums">18 / min</span>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-2 border-t border-slate-100">
+<a class="text-xs text-indigo-600 font-medium hover:underline inline-flex items-center gap-1" href="#">
+<span>Open system status</span>
+<span class="text-[13px] leading-none">→</span>
+</a>
+</div>
+</div>
+<!-- (c) Feedback Card -->
+<div class="bg-white border border-slate-200/80 rounded-[10px] p-4 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<h3 class="text-sm font-semibold text-slate-900 tracking-tight">Feedback</h3>
+<span class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full font-medium border border-indigo-100">3 new</span>
+</div>
+<span class="text-[11px] text-slate-400">Desk queries</span>
+</div>
+<!-- 2 Message Previews -->
+<div class="space-y-2.5 py-1">
+<!-- Message 1 -->
+<div class="p-3 rounded-lg bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="text-xs font-semibold text-slate-800">Amitabh Sen</span>
+<span class="text-[11px] text-slate-500">(RO Danapur)</span>
+</div>
+<span class="text-[11px] text-slate-400 tabular-nums">10m ago</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed">Discrepancy in round 2 Postal ballots entry for candidate 3.</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="text-[10px] bg-amber-50 text-amber-700 border border-amber-200 px-1.5 py-0.5 rounded font-medium">Round discrepancy</span>
+<span class="text-[10px] text-slate-400">Seat 143</span>
+</div>
+</div>
+<!-- Message 2 -->
+<div class="p-3 rounded-lg bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="text-xs font-semibold text-slate-800">Deepika Roy</span>
+<span class="text-[11px] text-slate-500">(Observer)</span>
+</div>
+<span class="text-[11px] text-slate-400 tabular-nums">28m ago</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed">Please verify lead margin recalculation for 144 Raghopur.</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="text-[10px] bg-indigo-50 text-indigo-700 border border-indigo-200 px-1.5 py-0.5 rounded font-medium">Margin check</span>
+<span class="text-[10px] text-slate-400">Seat 144</span>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-2 border-t border-slate-100">
+<a class="text-xs text-indigo-600 font-medium hover:underline inline-flex items-center gap-1" href="#">
+<span>View all feedback</span>
+<span class="text-[13px] leading-none">→</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
