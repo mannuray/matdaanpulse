@@ -3,6 +3,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ElectionProvider, useElection, pickInitialElection, ELECTION_STORAGE_KEY } from './ElectionContext';
+import { getElections } from '../services/election.service';
 import type { Election } from '../types';
 
 const e = (id: string, status: Election['status'] = 'Finalized'): Election => ({
@@ -23,8 +24,8 @@ describe('pickInitialElection', () => {
 });
 
 function Probe() {
-  const { electionId, setElectionId } = useElection();
-  return <><span data-testid="id">{electionId}</span><button onClick={() => setElectionId('a')}>pick a</button></>;
+  const { electionId, setElectionId, error } = useElection();
+  return <><span data-testid="id">{electionId}</span><span data-testid="error">{error}</span><button onClick={() => setElectionId('a')}>pick a</button></>;
 }
 
 describe('ElectionProvider', () => {
@@ -34,5 +35,12 @@ describe('ElectionProvider', () => {
     act(() => screen.getByText('pick a').click());
     expect(screen.getByTestId('id').textContent).toBe('a');
     expect(localStorage.getItem(ELECTION_STORAGE_KEY)).toBe('a');
+  });
+
+  it('sets error when getElections fails', async () => {
+    vi.mocked(getElections).mockRejectedValueOnce(new Error('Network error'));
+    render(<MemoryRouter><ElectionProvider><Probe /></ElectionProvider></MemoryRouter>);
+    await waitFor(() => expect(screen.getByTestId('error').textContent).toBe('Could not load elections'));
+    expect(screen.getByTestId('id').textContent).toBe('');
   });
 });

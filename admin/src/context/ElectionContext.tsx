@@ -11,6 +11,7 @@ interface ElectionContextValue {
   election: Election | null;
   setElectionId: (id: string) => void;
   loading: boolean;
+  error: string | null;
 }
 
 const Ctx = createContext<ElectionContextValue | null>(null);
@@ -35,6 +36,7 @@ export function ElectionProvider({ children }: { children: ReactNode }) {
   const [elections, setElections] = useState<Election[]>([]);
   const [electionId, setId] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -43,8 +45,11 @@ export function ElectionProvider({ children }: { children: ReactNode }) {
         if (cancelled) return;
         setElections(all);
         setId(pickInitialElection(all, params.get('election'), readStorage()));
+        setError(null);
       })
-      .catch(() => {})
+      .catch(() => {
+        if (!cancelled) setError('Could not load elections');
+      })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
     // load once; URL changes go through setElectionId
@@ -57,9 +62,9 @@ export function ElectionProvider({ children }: { children: ReactNode }) {
   }, [setParams]);
 
   const value = useMemo<ElectionContextValue>(() => ({
-    elections, electionId, setElectionId, loading,
+    elections, electionId, setElectionId, loading, error,
     election: elections.find((e) => e.id === electionId) ?? null,
-  }), [elections, electionId, setElectionId, loading]);
+  }), [elections, electionId, setElectionId, loading, error]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
