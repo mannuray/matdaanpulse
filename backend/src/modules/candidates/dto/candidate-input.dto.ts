@@ -9,7 +9,7 @@ class CandidateFieldsDto {
   @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
   party_id?: string | null;
 
-  @IsOptional() @IsUuidLike()
+  @IsOptional() @Transform(emptyToNull) @IsUuidLike()
   person_id?: string | null;
 
   @IsOptional() @IsBoolean()

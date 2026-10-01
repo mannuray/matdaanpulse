@@ -2,6 +2,8 @@ import { Logger } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { ConstituenciesService } from './constituencies.service';
+import { Prisma } from '@prisma/client';
+import { ConstituencySummaryDto } from './dto/constituency-response.dto';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { UpdateConstituencyDto } from './dto/constituency-input.dto';
 
@@ -134,5 +136,13 @@ describe('ConstituenciesService.history', () => {
     const { svc } = make(null, []);
     const err = await svc.history('NOPE').catch((e) => e);
     expect(err.getStatus()).toBe(404);
+  });
+});
+
+describe('ConstituencySummaryDto', () => {
+  it('maps a Prisma Decimal turnout to a number (it used to throw DecimalError, a 500 on GET /constituencies)', () => {
+    const map = (v: unknown) => plainToInstance(ConstituencySummaryDto, { id: 'ADILABAD', voter_turnout: v }, { excludeExtraneousValues: true });
+    expect(map(new Prisma.Decimal('65.28')).voter_turnout).toBe(65.28);
+    expect(map(null).voter_turnout).toBeNull();
   });
 });

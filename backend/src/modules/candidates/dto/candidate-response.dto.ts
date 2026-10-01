@@ -10,6 +10,8 @@ export class PartyMiniDto {
 export class CandidateSummaryDto {
   @Expose() id: string;
   @Expose() name: string;
+  /** Whether the candidate is already linked to a person record (the admin's same-name link suggestions reuse it). */
+  @Expose() person_id: string | null;
   @Expose() party_id: string | null;
   @Expose() const_id: string;
   @Expose() is_incumbent: boolean;

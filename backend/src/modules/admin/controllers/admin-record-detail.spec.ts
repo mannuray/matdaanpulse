@@ -1,4 +1,5 @@
 import { plainToInstance } from 'class-transformer';
+import { Prisma } from '@prisma/client';
 import { AdminPartiesController } from './admin-parties.controller';
 import { AdminPersonsController } from './admin-persons.controller';
 import { AdminCandidatesController } from './admin-candidates.controller';
@@ -8,6 +9,8 @@ import {
 } from '../dto/admin-response.dto';
 import { AuditLogService } from '../../audit-log/audit-log.service';
 import { PersonsService } from '../../candidates/persons.service';
+import { CandidatesService } from '../../candidates/candidates.service';
+import { CandidateSummaryDto } from '../../candidates/dto/candidate-response.dto';
 
 const map = (dto: any, data: unknown) => plainToInstance(dto, data, { excludeExtraneousValues: true }) as any;
 const updated_at = new Date('2026-10-01T09:30:00Z');
@@ -112,5 +115,52 @@ describe('PersonsService.findWithCandidates (election history)', () => {
       const_id: 's-a', constituency_name: 'Harnaut', const_no: 179, votes: 10, status: 'WON', margin: 3, is_incumbent: false,
     });
     expect(out.candidates[0]).toMatchObject({ election_status: 'Live', status: null, is_incumbent: true });
+  });
+});
+
+describe('admin candidate detail: relations reach the admin under the names it reads', () => {
+  // A `CandidatesService.findOne` row: Prisma relation names, and a Decimal turnout on the seat.
+  const row = {
+    id: 'c1', person_id: 'p1', election_id: 'e1', const_id: 'ADILABAD', party_id: 'BJP', name: 'GODAM NAGESH', is_incumbent: true,
+    metadata: { age: 58 }, updated_at,
+    parties: { id: 'BJP', name: 'Bharatiya Janata Party', color: '#FF7A1A' },
+    constituencies: { id: 'ADILABAD', election_id: 'e1', name: 'Adilabad', const_no: 1, type: 'ST', voter_turnout: new Prisma.Decimal('65.28') },
+    persons: { id: 'p1', name: 'Godam Nagesh', photo_url: null, metadata: {} },
+    elections: { id: 'e1', status: 'Finalized' },
+  };
+
+  it('exposes party, constituency and person (not the Prisma relation names), and a Decimal turnout as a number', async () => {
+    const { audit } = auditWith(null);
+    const svc = { findOne: jest.fn().mockResolvedValue(row) };
+    const out = map(AdminCandidateDto, await new AdminCandidatesController(svc as any, audit).findOne('c1'));
+    expect(out).toMatchObject({
+      is_incumbent: true,
+      party: { id: 'BJP', color: '#FF7A1A' },
+      constituency: { const_no: 1, name: 'Adilabad', voter_turnout: 65.28 },
+      person: { id: 'p1', name: 'Godam Nagesh' },
+    });
+    expect(out).not.toHaveProperty('parties');
+    expect(out).not.toHaveProperty('constituencies');
+    expect(out).not.toHaveProperty('persons');
+  });
+
+  it('a seat with a Decimal turnout maps on its own too (constituency detail)', () => {
+    expect(map(AdminConstituencyDto, row.constituencies).voter_turnout).toBe(65.28);
+    expect(map(AdminConstituencyDto, { ...row.constituencies, voter_turnout: null }).voter_turnout).toBeNull();
+  });
+});
+
+describe('admin candidates list and same-name search: the person link and affidavit reach the admin', () => {
+  it('findAll selects person_id and metadata, and the admin list keeps them with the party', async () => {
+    const listRow = { id: 'c2', name: 'Anil Kumar', party_id: 'BJP', const_id: 's1', is_incumbent: false, person_id: 'p1', metadata: { age: 44, criminal_cases: 2 }, parties: { id: 'BJP', color: '#f59e0b' } };
+    const prisma = { candidates: { findMany: jest.fn().mockResolvedValue([listRow]) } };
+    const svc = new CandidatesService(prisma as any, {} as any, {} as any);
+    const rows = await new AdminCandidatesController(svc, {} as any).findAll('e1', 's1');
+    expect(prisma.candidates.findMany.mock.calls[0][0].select).toMatchObject({ person_id: true, metadata: true });
+    expect(map(AdminCandidateDto, rows)[0]).toMatchObject({ person_id: 'p1', metadata: { age: 44, criminal_cases: 2 }, party: { id: 'BJP' } });
+  });
+
+  it('the public summary (used by the same-name suggestions) says whether a candidate already has a person record', () => {
+    expect(map(CandidateSummaryDto, { id: 'c1', name: 'R', person_id: 'p1', metadata: { x: 1 } })).toEqual({ id: 'c1', name: 'R', person_id: 'p1' });
   });
 });

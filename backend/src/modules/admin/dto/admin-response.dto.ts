@@ -48,7 +48,8 @@ export class AdminConstituencyDto {
   @Expose() current_round: number | null;
   @Expose() total_rounds: number | null;
   @Expose() total_electors: number | null;
-  @Expose() voter_turnout: number | null;
+  /** NUMERIC(5,2): Prisma hands over a Decimal, which class-transformer cannot copy as an object (DecimalError); typed as Number it goes out as one. */
+  @Expose() @Type(() => Number) voter_turnout: number | null;
   @Expose() phase: number | null;
   @Expose() metadata: any;
   @Expose() @Transform(toIso) updated_at?: string;
@@ -83,17 +84,18 @@ export class AdminCandidateDto {
   @Expose() @Transform(toIso) updated_at?: string;
   @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
 
-  @Expose()
+  /** The admin reads the relations as party / constituency / person (its `Candidate` type), not the Prisma names. */
+  @Expose({ name: 'parties' })
   @Type(() => AdminPartyDto)
-  parties?: AdminPartyDto;
+  party?: AdminPartyDto;
 
-  @Expose()
+  @Expose({ name: 'constituencies' })
   @Type(() => AdminConstituencyDto)
-  constituencies?: AdminConstituencyDto;
-  
-  @Expose()
+  constituency?: AdminConstituencyDto;
+
+  @Expose({ name: 'persons' })
   @Type(() => AdminPersonDto)
-  persons?: any;
+  person?: any;
 }
 
 /** One contest in a person's election history (GET /admin/persons/:id), as PersonsService.findWithCandidates maps it. */

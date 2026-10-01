@@ -3,7 +3,8 @@ import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { INDEPENDENT, candidateMetadata, candidateNumbersValid, type CandidateForm } from '../../../hooks/useCandidateEdit';
 import type { NewCandidate } from '../../../hooks/useCandidateManager';
 import { getParties } from '../../../services/geo.service';
-import { Sheet } from '../../ui/Sheet';
+import { FormDialog } from '../../ui/FormDialog';
+import { EmptyState } from '../../ui/EmptyState';
 import { Field } from '../../ui/Field';
 import { Combobox } from '../../ui/Combobox';
 import { PanelFooter } from '../PanelFooter';
@@ -13,7 +14,7 @@ import type { Constituency, Party } from '../../../types';
 type CreateForm = CandidateForm & { const_id: string };
 const EMPTY: CreateForm = { name: '', party_id: INDEPENDENT, const_id: '', age: '', gender: '', education: '', criminal_cases: '', assets: '' };
 
-interface CandidateCreatePanelProps {
+interface CandidateCreateDialogProps {
   electionId: string;
   /** Seats of the global election (the new candidate must stand in one of them). */
   seats: Constituency[];
@@ -24,8 +25,19 @@ interface CandidateCreatePanelProps {
   onClose: () => void;
 }
 
-/** /candidates/new: a candidate in a seat of the global election, with its affidavit fields. */
-export function CandidateCreatePanel({ electionId, seats, defaultSeat, saving, onCreate, onClose }: CandidateCreatePanelProps) {
+export const ARCHIVED_HINT = "Archived elections can't get new candidates";
+
+/** /candidates/new in a Finalized election: the backend refuses new candidates (409), so the dialog says why instead. */
+export function CandidateCreateArchived({ onClose }: { onClose: () => void }) {
+  return (
+    <FormDialog open onRequestClose={onClose} title="New candidate">
+      <EmptyState title={ARCHIVED_HINT} description="This election is finalized. Switch to another election to add a candidate." />
+    </FormDialog>
+  );
+}
+
+/** /candidates/new: a dialog over the list with a candidate in a seat of the global election and its affidavit fields. */
+export function CandidateCreateDialog({ electionId, seats, defaultSeat, saving, onCreate, onClose }: CandidateCreateDialogProps) {
   const [initial, setInitial] = useState<CreateForm>(() => ({ ...EMPTY, const_id: defaultSeat }));
   const [form, setForm] = useState<CreateForm>(initial);
   const [parties, setParties] = useState<Party[]>([]);
@@ -63,7 +75,7 @@ export function CandidateCreatePanel({ electionId, seats, defaultSeat, saving, o
   };
 
   return (
-    <Sheet
+    <FormDialog
       open
       onRequestClose={onClose}
       title="New candidate"
@@ -84,6 +96,6 @@ export function CandidateCreatePanel({ electionId, seats, defaultSeat, saving, o
         />
         <button type="submit" hidden aria-hidden tabIndex={-1} />
       </form>
-    </Sheet>
+    </FormDialog>
   );
 }

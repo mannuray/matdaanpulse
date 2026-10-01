@@ -2,6 +2,9 @@ import { Logger } from '@nestjs/common';
 import { CandidatesService } from './candidates.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { ConstituencyNotFoundException, ElectionFinalizedException, ElectionNotFoundException, ErrorCodes } from '../../common/exceptions';
+import { plainToInstance } from 'class-transformer';
+import { validate } from 'class-validator';
+import { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
 describe('CandidatesService.create', () => {
   function make(seat: unknown = { id: 'BR_VS_1', election_id: 'e1' }, election: unknown = { status: 'Live' }) {
@@ -173,6 +176,13 @@ describe('CandidatesService update / link audit rows', () => {
     })]);
   });
 
+  it('unlinkPerson on a candidate that is already unlinked writes no audit row', async () => {
+    const { svc, prisma } = make();
+    prisma.candidates.findUnique.mockResolvedValue({ ...row, person_id: null });
+    await expect(svc.unlinkPerson('c1', 'u1')).resolves.toMatchObject({ person_id: null });
+    expect(prisma.audit_logs.create).not.toHaveBeenCalled();
+  });
+
   it('an audit failure still returns the updated candidate', async () => {
     const warn = jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
     const { svc, prisma } = make();
@@ -247,5 +257,23 @@ describe('CandidatesService.seatResult', () => {
     const { svc } = make([], null);
     const err = await svc.seatResult('nope').catch((e) => e);
     expect(err.getStatus()).toBe(404);
+  });
+});
+
+describe('Candidate input DTOs', () => {
+  it.each([['update', UpdateCandidateDto], ['create', CreateCandidateDto]] as const)('%s maps a blank party_id and person_id to null', async (_, cls) => {
+    const body = { election_id: '11111111-1111-1111-1111-111111111111', const_id: 's1', name: 'N', party_id: '', person_id: '' };
+    const dto = plainToInstance(cls, body) as unknown as Record<string, unknown>;
+    expect(await validate(dto)).toEqual([]);
+    expect(dto.party_id).toBeNull();
+    expect(dto.person_id).toBeNull();
+    expect(dto.name).toBe('N');
+  });
+
+  it('update accepts is_incumbent as a boolean and rejects anything else', async () => {
+    expect(await validate(plainToInstance(UpdateCandidateDto, { is_incumbent: true }))).toEqual([]);
+    expect(await validate(plainToInstance(UpdateCandidateDto, { is_incumbent: false }))).toEqual([]);
+    const errors = await validate(plainToInstance(UpdateCandidateDto, { is_incumbent: 'yes' }));
+    expect(errors.map((e) => e.property)).toEqual(['is_incumbent']);
   });
 });

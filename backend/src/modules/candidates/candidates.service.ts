@@ -33,6 +33,9 @@ export class CandidatesService {
         party_id: true,
         const_id: true,
         is_incumbent: true,
+        // The admin list filters on the person link and shows age / criminal cases (the public DTO drops metadata).
+        person_id: true,
+        metadata: true,
         parties: {
           select: {
             id: true,
@@ -203,6 +206,8 @@ export class CandidatesService {
   async unlinkPerson(candidateId: string, userId?: string) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id: candidateId } });
     if (!candidate) throw new CandidateNotFoundException(candidateId);
+    // Already unlinked: nothing changes, so no write and no audit row (it would read null → null).
+    if (candidate.person_id === null) return candidate;
     const updated = await this.prisma.candidates.update({
       where: { id: candidateId },
       data: { person_id: null },

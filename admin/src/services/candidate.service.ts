@@ -6,12 +6,13 @@ import type { Candidate, CandidateResult } from '../types';
  * Standardized interface for backend CandidatesService.
  */
 
+/** The admin list: unlike the public `/candidates`, it carries `person_id` (Linked / Unlinked) and the affidavit metadata. */
 export async function getCandidates(electionId?: string, constId?: string) {
   const params = new URLSearchParams();
   if (electionId) params.set('election_id', electionId);
   if (constId) params.set('const_id', constId);
   const qs = params.toString();
-  return (await apiFetch<Candidate[]>(`/candidates${qs ? `?${qs}` : ''}`)) || [];
+  return (await apiFetch<Candidate[]>(`/admin/candidates${qs ? `?${qs}` : ''}`)) || [];
 }
 
 export function getCandidate(id: string) {
