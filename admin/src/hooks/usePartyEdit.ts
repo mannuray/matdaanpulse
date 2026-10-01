@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { getParty, updateParty } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
 import { ApiError, fieldErrorMap } from '../services/api-client';
-import type { Party } from '../types';
+import type { EciRecognition, Party } from '../types';
 
 export interface PartyForm {
   name: string;
@@ -16,11 +16,13 @@ export interface PartyForm {
   website: string;
   wikipedia_url: string;
   description: string;
+  /** '' = not set (saved as null). */
+  eci_recognition: EciRecognition | '';
 }
 
 const EMPTY_FORM: PartyForm = {
   name: '', color: '', symbol_url: '', eci_symbol_url: '', abbreviation: '', leader_name: '',
-  founded_year: '', headquarters: '', website: '', wikipedia_url: '', description: '',
+  founded_year: '', headquarters: '', website: '', wikipedia_url: '', description: '', eci_recognition: '',
 };
 
 const toForm = (data: Party): PartyForm => ({
@@ -35,6 +37,7 @@ const toForm = (data: Party): PartyForm => ({
   website: data.website || '',
   wikipedia_url: data.wikipedia_url || '',
   description: data.description || '',
+  eci_recognition: data.eci_recognition || '',
 });
 
 /** Empty, or a 4-digit year. */
@@ -89,7 +92,7 @@ export function usePartyEdit(id?: string) {
     setFieldErrors({});
     try {
       const year = submitted.founded_year.trim();
-      await updateParty(id, { ...submitted, founded_year: year ? Number(year) : null });
+      await updateParty(id, { ...submitted, founded_year: year ? Number(year) : null, eci_recognition: submitted.eci_recognition || null });
       toast('Party profile updated');
       // The submitted values are now the saved baseline; edits typed while saving stay dirty.
       setSaved(submitted);
@@ -113,7 +116,7 @@ export function usePartyEdit(id?: string) {
   };
 
   const dirty = JSON.stringify(form) !== JSON.stringify(saved);
-  /** Drop unsaved edits (panel Cancel). */
+  /** Drop unsaved edits (Cancel). */
   const reset = () => { setForm(saved); setFieldErrors({}); };
 
   return {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
-import { Sheet } from '../../ui/Sheet';
+import { FormDialog } from '../../ui/FormDialog';
 import { Field, FormSection } from '../../ui/Field';
 import { Input } from '../../ui/Input';
 import { PanelFooter } from '../PanelFooter';
@@ -10,8 +10,8 @@ export interface NewParty { id: string; name: string; color: string; abbreviatio
 
 const EMPTY = { id: '', name: '', abbreviation: '', color: '#3b82f6' };
 
-/** /parties/new: the four fields the old inline form had; everything else is edited after creation. */
-export function PartyCreatePanel({ saving, onCreate, onClose }: { saving: boolean; onCreate: (data: NewParty) => Promise<void>; onClose: () => void }) {
+/** /parties/new: a dialog over the list with the four create fields; everything else is edited on the record page. */
+export function PartyCreateDialog({ saving, onCreate, onClose }: { saving: boolean; onCreate: (data: NewParty) => Promise<void>; onClose: () => void }) {
   const [form, setForm] = useState(EMPTY);
   const dirty = JSON.stringify(form) !== JSON.stringify(EMPTY);
   useUnsavedGuard(dirty);
@@ -25,7 +25,7 @@ export function PartyCreatePanel({ saving, onCreate, onClose }: { saving: boolea
   }); };
 
   return (
-    <Sheet
+    <FormDialog
       open
       onRequestClose={onClose}
       title="New party"
@@ -47,6 +47,6 @@ export function PartyCreatePanel({ saving, onCreate, onClose }: { saving: boolea
       </FormSection>
       <button type="submit" hidden aria-hidden tabIndex={-1} />
       </form>
-    </Sheet>
+    </FormDialog>
   );
 }
