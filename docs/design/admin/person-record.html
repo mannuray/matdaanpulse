@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nitish Kumar - Persons - MatdaanPulse Admin</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          },
+          borderRadius: {
+            'custom': '10px',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+      vertical-align: middle;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+
+  <!-- Left Sidebar (Dark Slate #1e293b, 240px width) -->
+  <aside class="fixed inset-y-0 left-0 w-60 z-30 flex flex-col bg-[#1e293b] border-r border-slate-700/50 shadow-sm select-none">
+    <!-- Brand / Header -->
+    <div class="px-5 py-4 border-b border-slate-700/60 flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-inner flex-shrink-0">
+        <span class="material-symbols-outlined text-white" style="font-size: 20px;">how_to_vote</span>
+      </div>
+      <div class="overflow-hidden">
+        <h1 class="text-sm font-semibold text-white tracking-tight leading-snug truncate">MatdaanPulse Admin</h1>
+        <p class="text-xs text-slate-400 font-normal truncate">Election results hub</p>
+      </div>
+    </div>
+
+    <!-- Navigation Scroll Area -->
+    <div class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+      <!-- Group: Counting -->
+      <div>
+        <p class="px-3 text-xs font-medium text-slate-400 mb-2">Counting</p>
+        <nav class="space-y-0.5">
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">dashboard</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">podium</span>
+            <span>Live console</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Group: Data -->
+      <div>
+        <p class="px-3 text-xs font-medium text-slate-400 mb-2">Data</p>
+        <nav class="space-y-0.5">
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">how_to_vote</span>
+            <span>Elections</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">description</span>
+            <span>Manifests</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">flag</span>
+            <span>Parties</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">groups</span>
+            <span>Candidates</span>
+          </a>
+          <!-- Active Item: Persons (Solid Indigo #4f46e5 pill) -->
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md bg-[#4f46e5] text-white font-medium shadow-sm text-xs">
+            <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">person</span>
+            <span>Persons</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">map</span>
+            <span>Constituencies</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Group: Admin -->
+      <div>
+        <p class="px-3 text-xs font-medium text-slate-400 mb-2">Admin</p>
+        <nav class="space-y-0.5">
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">chat_bubble</span>
+            <span>Feedback</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">group</span>
+            <span>Users</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">history</span>
+            <span>Audit logs</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors duration-150 text-xs font-medium">
+            <span class="material-symbols-outlined text-slate-400">dns</span>
+            <span>System status</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Top App Bar (56px height, docked top-0, pl-60 for 240px sidebar) -->
+  <header class="fixed top-0 left-60 right-0 h-14 bg-white border-b border-slate-200 z-20 flex items-center justify-between px-6">
+    <div class="flex items-center gap-4">
+      <!-- Election Context Pill -->
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-medium text-slate-700 whitespace-nowrap cursor-pointer hover:bg-slate-200/70 transition">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+        <span>Bihar · Vidhan Sabha 2025 · Finalized</span>
+        <span class="material-symbols-outlined text-slate-400 text-sm">arrow_drop_down</span>
+      </div>
+
+      <!-- Quick Global Search Field -->
+      <div class="relative w-72">
+        <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+        <input type="text" class="w-full bg-slate-50 border border-slate-200 text-xs rounded-md pl-8 pr-3 py-1.5 focus:bg-white focus:outline-none focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 text-slate-800 placeholder-slate-400 transition" placeholder="Search seats, candidates… ⌘K"/>
+      </div>
+    </div>
+
+    <!-- Trailing Action Items: bell, green health dot, help, avatar "Administrator" -->
+    <div class="flex items-center gap-4">
+      <!-- Health check indicator (compact green dot with tooltip) -->
+      <div class="flex items-center gap-1.5 cursor-pointer" title="All systems OK">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+      </div>
+
+      <!-- Notifications Bell -->
+      <button class="relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition" title="Notifications">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full"></span>
+      </button>
+
+      <!-- Keyboard shortcuts / help icon -->
+      <button class="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition" title="Keyboard shortcuts">
+        <span class="material-symbols-outlined">help</span>
+      </button>
+
+      <!-- Profile Indicator: "Administrator" -->
+      <div class="flex items-center gap-2 pl-2 border-l border-slate-200">
+        <div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-semibold text-xs border border-indigo-200">
+          MK
+        </div>
+        <span class="text-xs font-semibold text-slate-900 leading-none">Administrator</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Canvas (pl-60, pt-14, 24px padding) -->
+  <main class="ml-60 pt-14 flex-1 bg-[#f8fafc] p-6 min-h-screen">
+    <div class="max-w-[1200px] mx-auto space-y-6">
+
+      <!-- Breadcrumbs & Header Section -->
+      <div class="space-y-2">
+        <div>
+          <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-indigo-600 transition">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Persons</span>
+          </a>
+        </div>
+
+        <!-- Title Row with Photo, Metadata, and Action Buttons -->
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <!-- 48px Round Photo -->
+            <img 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHQXsONwMnFFZ4zI4ueDJb_BviPmlDSyZ3-qpjkyoyjvtlKpI76o4spGcn-d1IwF-G2CPBqxbvEyFTtY4Jy1j7AhvjtSt_bJakqButcUa9NQ_WdB4v_8cPXtPv_TRCcof56ZpfoYBc58kgZonLkI9NE_6co6qUsO9g528W9Yx1N_KdDNblyXpXeO5bOTNIUd9S1teTzFSjr8iq7ttaRR6b6pmRcJod3Yw5jTANdKv9m_AKhlos8j27_uQGZiXQ0T-jZUhMZYmchVw" 
+              alt="Nitish Kumar portrait" 
+              class="w-12 h-12 rounded-full object-cover border border-slate-200 shadow-sm flex-shrink-0"
+            />
+            <div>
+              <div class="flex items-center gap-2.5">
+                <h2 class="text-2xl font-semibold tracking-tight text-[#0f172a]">Nitish Kumar</h2>
+              </div>
+              <p class="text-xs text-[#475569] font-normal mt-0.5 flex items-center gap-1.5">
+                <span>5 contests</span>
+                <span>·</span>
+                <span>first 2010</span>
+                <span>·</span>
+                <span class="font-mono text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded text-[11px] border border-slate-200/80">id 6a14c00a</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Header Actions: "No changes" muted text, outline "Cancel" (disabled), indigo "Save changes" (disabled look) -->
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-[#475569] font-normal">No changes</span>
+            <button 
+              type="button" 
+              disabled 
+              class="px-3.5 py-1.5 text-xs font-medium text-slate-400 bg-white border border-slate-200 rounded-md cursor-not-allowed shadow-none"
+            >
+              Cancel
+            </button>
+            <button 
+              type="button" 
+              disabled 
+              class="px-4 py-1.5 text-xs font-medium text-white bg-indigo-400/80 rounded-md cursor-not-allowed shadow-none flex items-center gap-1.5"
+            >
+              <span class="material-symbols-outlined text-sm">check</span>
+              <span>Save changes</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two-Column Layout (2/3 Left + 1/3 Right, 24px gap) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Left Column: 2 Spans (Profile, Links, Biography) -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <!-- Card 1: Profile -->
+          <section class="bg-white rounded-[10px] border border-[#e2e8f0] p-5 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+              <h3 class="text-sm font-semibold text-[#0f172a]">Profile</h3>
+              <span class="text-xs text-[#475569]">Master identity record</span>
+            </div>
+            
+            <div class="space-y-4">
+              <!-- Name (full width) -->
+              <div>
+                <label for="person-name" class="block text-xs font-medium text-[#475569] mb-1.5">Name</label>
+                <input 
+                  type="text" 
+                  id="person-name" 
+                  value="Nitish Kumar" 
+                  class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition"
+                />
+              </div>
+
+              <!-- Date of birth + Gender side by side -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="dob" class="block text-xs font-medium text-[#475569] mb-1.5">Date of birth</label>
+                  <input 
+                    type="date" 
+                    id="dob" 
+                    value="1951-03-01" 
+                    class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition"
+                  />
+                </div>
+                <div>
+                  <label for="gender" class="block text-xs font-medium text-[#475569] mb-1.5">Gender</label>
+                  <select 
+                    id="gender" 
+                    class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition"
+                  >
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Education -->
+              <div>
+                <label for="education" class="block text-xs font-medium text-[#475569] mb-1.5">Education</label>
+                <input 
+                  type="text" 
+                  id="education" 
+                  value="B.Sc. (Electrical Engineering) - Bihar College of Engineering, Patna" 
+                  class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition"
+                />
+              </div>
+
+              <!-- Photo URL -->
+              <div>
+                <label for="photo-url" class="block text-xs font-medium text-[#475569] mb-1.5">Photo URL</label>
+                <div class="relative">
+                  <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">image</span>
+                  <input 
+                    type="url" 
+                    id="photo-url" 
+                    value="https://assets.matdaanpulse.in/persons/nitish-kumar-2025.jpg" 
+                    class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md pl-8 pr-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition"
+                  />
+                </div>
+                <p class="mt-1 text-[11px] text-slate-400">Stores standardized master portrait displayed across ballot summaries and constituency profiles.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Card 2: Links -->
+          <section class="bg-white rounded-[10px] border border-[#e2e8f0] p-5 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+              <h3 class="text-sm font-semibold text-[#0f172a]">Links</h3>
+              <span class="text-xs text-[#475569]">External references</span>
+            </div>
+            
+            <div>
+              <label for="wiki-url" class="block text-xs font-medium text-[#475569] mb-1.5">Wikipedia URL</label>
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-2.5 text-slate-400 text-sm pointer-events-none">public</span>
+                <input 
+                  type="url" 
+                  id="wiki-url" 
+                  value="https://en.wikipedia.org/wiki/Nitish_Kumar" 
+                  class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md pl-8 pr-20 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition"
+                />
+                <a 
+                  href="https://en.wikipedia.org/wiki/Nitish_Kumar" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  class="absolute right-2 px-2 py-1 text-[11px] font-medium text-indigo-600 hover:text-indigo-800 bg-indigo-50 rounded hover:bg-indigo-100 transition inline-flex items-center gap-1"
+                >
+                  <span>Open</span>
+                  <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Card 3: Biography -->
+          <section class="bg-white rounded-[10px] border border-[#e2e8f0] p-5 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+              <h3 class="text-sm font-semibold text-[#0f172a]">Biography</h3>
+              <span class="text-xs text-[#475569]">Contextual bio notes</span>
+            </div>
+            
+            <div>
+              <label for="bio-text" class="block text-xs font-medium text-[#475569] mb-1.5">Biographical summary</label>
+              <textarea 
+                id="bio-text" 
+                rows="5" 
+                class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md p-3 leading-relaxed focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 resize-none transition"
+              >Nitish Kumar is an Indian politician who has served multiple tenures as the Chief Minister of Bihar since 2005. A prominent socialist leader affiliated with the Janata Dal (United), he has historically represented Harnaut and Nalanda constituencies in the Bihar Legislative Assembly, and served key Union Cabinet portfolios including Railways and Agriculture in the Government of India.</textarea>
+              <p class="mt-1.5 text-[11px] text-slate-400">Rendered on the public candidate profile card and key leaders leaderboard during live vote counting.</p>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right Column: 1 Span (Election history, Merge duplicate) -->
+        <div class="space-y-6">
+
+          <!-- Card 1: Election history (vertical timeline list, newest first, 5 rows) -->
+          <section class="bg-white rounded-[10px] border border-[#e2e8f0] p-5 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+              <h3 class="text-sm font-semibold text-[#0f172a]">Election history</h3>
+              <span class="text-xs font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">5 recorded</span>
+            </div>
+
+            <!-- Vertical Timeline Container -->
+            <div class="relative pl-5 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[1.5px] before:bg-slate-200">
+              
+              <!-- Row 1: Bihar VS 2025 (Won, Incumbent) -->
+              <div class="relative">
+                <div class="absolute -left-5 top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-white"></div>
+                <div class="p-3 bg-slate-50/70 border border-slate-200/80 rounded-lg hover:border-slate-300 transition">
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-xs font-semibold text-slate-900">Bihar VS 2025</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200/60">Incumbent</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">Won</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-xs text-slate-600">
+                    <span class="font-medium text-slate-700">179 Harnaut</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                      <span class="font-medium text-slate-800">JD(U)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 2: Bihar VS 2020 (Won, Incumbent) -->
+              <div class="relative">
+                <div class="absolute -left-5 top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-white"></div>
+                <div class="p-3 bg-slate-50/70 border border-slate-200/80 rounded-lg hover:border-slate-300 transition">
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-xs font-semibold text-slate-900">Bihar VS 2020</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200/60">Incumbent</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">Won</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-xs text-slate-600">
+                    <span class="font-medium text-slate-700">179 Harnaut</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                      <span class="font-medium text-slate-800">JD(U)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 3: Bihar VS 2015 (Won, Incumbent) -->
+              <div class="relative">
+                <div class="absolute -left-5 top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-white"></div>
+                <div class="p-3 bg-slate-50/70 border border-slate-200/80 rounded-lg hover:border-slate-300 transition">
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-xs font-semibold text-slate-900">Bihar VS 2015</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200/60">Incumbent</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">Won</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-xs text-slate-600">
+                    <span class="font-medium text-slate-700">179 Harnaut</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                      <span class="font-medium text-slate-800">JD(U)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 4: Bihar VS 2010 (Won) -->
+              <div class="relative">
+                <div class="absolute -left-5 top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-white"></div>
+                <div class="p-3 bg-slate-50/70 border border-slate-200/80 rounded-lg hover:border-slate-300 transition">
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-xs font-semibold text-slate-900">Bihar VS 2010</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">Won</span>
+                  </div>
+                  <div class="flex items-center justify-between text-xs text-slate-600">
+                    <span class="font-medium text-slate-700">179 Harnaut</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                      <span class="font-medium text-slate-800">JD(U)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 5: Lok Sabha 2004 (Lost - Nalanda / Barh) -->
+              <div class="relative">
+                <div class="absolute -left-5 top-1.5 w-2.5 h-2.5 rounded-full bg-slate-400 ring-4 ring-white"></div>
+                <div class="p-3 bg-slate-50/70 border border-slate-200/80 rounded-lg hover:border-slate-300 transition">
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-xs font-semibold text-slate-900">Lok Sabha 2004</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200">Lost</span>
+                  </div>
+                  <div class="flex items-center justify-between text-xs text-slate-600">
+                    <span class="font-medium text-slate-700">Barh (PC-28)</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                      <span class="font-medium text-slate-800">JD(U)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Card 2: Merge duplicate (super admin only) -->
+          <section class="bg-white rounded-[10px] border border-[#e2e8f0] p-5 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+              <h3 class="text-sm font-semibold text-[#0f172a] flex items-center gap-2">
+                <span>Merge duplicate</span>
+                <span class="text-[10px] font-medium bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">Super admin</span>
+              </h3>
+              <span class="material-symbols-outlined text-slate-400 text-sm">call_merge</span>
+            </div>
+
+            <!-- Help text -->
+            <p class="text-xs text-[#475569] leading-relaxed mb-4">
+              Move every contest from a duplicate record into this person, then delete the duplicate.
+            </p>
+
+            <!-- Search input -->
+            <div class="space-y-3">
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                <input 
+                  type="text" 
+                  value="Nitish Kumar" 
+                  placeholder="Search person to merge…" 
+                  class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md pl-8 pr-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition"
+                />
+              </div>
+
+              <!-- Duplicate Result Row -->
+              <div class="border border-amber-200 bg-amber-50/50 rounded-lg p-3">
+                <div class="flex items-center justify-between gap-3">
+                  <div class="min-w-0">
+                    <p class="text-xs font-semibold text-slate-900 truncate">NITISH KUMAR</p>
+                    <p class="text-[11px] text-slate-500 font-medium">2 contests · id 4b91f032</p>
+                  </div>
+                  <button 
+                    type="button" 
+                    class="px-2.5 py-1 text-xs font-medium text-rose-600 hover:text-rose-700 bg-white border border-rose-300 rounded hover:bg-rose-50 hover:border-rose-400 transition shadow-sm whitespace-nowrap flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-[13px]">call_merge</span>
+                    <span>Merge into this</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

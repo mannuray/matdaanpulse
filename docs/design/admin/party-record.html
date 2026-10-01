@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bharatiya Janata Party - Parties - MatdaanPulse Admin</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {},
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            headline: ["Inter", "sans-serif"],
+            display: ["Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Inter", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+<!-- Fixed Left Sidebar (240px) -->
+<aside class="fixed inset-y-0 left-0 w-60 z-30 flex flex-col bg-slate-800 border-r border-slate-700/50 shadow-sm">
+<!-- Brand / Hub Header -->
+<div class="px-5 py-4 border-b border-slate-700/60 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-inner">
+<span class="material-symbols-outlined text-white" style="font-size: 20px;">how_to_vote</span>
+</div>
+<div>
+<h1 class="text-sm font-semibold text-white tracking-tight leading-snug">MatdaanPulse Admin</h1>
+<p class="text-xs text-slate-400 font-normal">Election results hub</p>
+</div>
+</div>
+<!-- Navigation Scroll Area -->
+<div class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+<!-- Group: Counting -->
+<div>
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Counting</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">podium</span>
+<span>Live Console</span>
+</a>
+</nav>
+</div>
+<!-- Group: Data -->
+<div>
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Data</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">how_to_vote</span>
+<span>Elections</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">description</span>
+<span>Manifests</span>
+</a>
+<!-- Active Tab: Parties -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-md bg-indigo-600 text-white font-medium shadow-sm text-xs" href="#">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">flag</span>
+<span>Parties</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">groups</span>
+<span>Candidates</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">person</span>
+<span>Persons</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">map</span>
+<span>Constituencies</span>
+</a>
+</nav>
+</div>
+<!-- Group: Admin -->
+<div>
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Admin</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">chat_bubble</span>
+<span>Feedback</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">group</span>
+<span>Users</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">history</span>
+<span>Audit logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">dns</span>
+<span>System status</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Sidebar Footer -->
+<div class="px-3 py-3 border-t border-slate-700/60 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-slate-400">help</span>
+<span>Documentation</span>
+</a>
+</div>
+</aside>
+<!-- Top App Bar (docked full-width top-0, height 56px, pl-60 for sidebar alignment) -->
+<header class="fixed top-0 left-60 right-0 h-14 bg-white border-b border-slate-200 z-20 flex items-center justify-between px-6">
+<div class="flex items-center gap-4">
+<!-- Election Context Pill -->
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-medium text-slate-700">
+<span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+<span>Lok Sabha · 2024 · Finalized</span>
+<span class="material-symbols-outlined text-slate-400 text-sm cursor-pointer hover:text-slate-600">arrow_drop_down</span>
+</div>
+<!-- Quick Global Search Field -->
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
+<input class="w-full bg-slate-50 border border-slate-200 text-xs rounded-md pl-8 pr-3 py-1.5 focus:bg-white focus:outline-none focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 text-slate-800 placeholder-slate-400 transition" placeholder="Search seats, candidates… ⌘K" type="text"/>
+</div>
+</div>
+<!-- Trailing Action Items -->
+<div class="flex items-center gap-4">
+<!-- Health check indicator -->
+<div class="hidden lg:flex items-center gap-1.5 text-xs text-slate-600 font-medium bg-slate-50 px-2.5 py-1 rounded border border-slate-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span>All systems OK</span>
+</div>
+<!-- Live Switch & Actions -->
+<div class="flex items-center gap-2 border-r border-slate-200 pr-4">
+<button class="relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition" title="Notifications">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full"></span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition" title="Help &amp; Guides">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<!-- Profile Indicator -->
+<div class="flex items-center gap-2.5 cursor-pointer">
+<div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-semibold text-xs border border-indigo-200">
+          MK
+        </div>
+<div class="text-left">
+<p class="text-xs font-semibold text-slate-900 leading-none">Mannu K</p>
+<span class="inline-block mt-0.5 text-[10px] text-indigo-600 font-medium">Administrator</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (pl-60, pt-14, 24px padding) -->
+<main class="ml-60 pt-14 flex-1 bg-slate-50 p-6 min-h-screen">
+<div class="max-w-[1200px] mx-auto space-y-6">
+<!-- Breadcrumbs & Header Section -->
+<div class="space-y-2">
+<div>
+<a class="inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-indigo-600 transition" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+<span>Parties</span>
+</a>
+</div>
+<!-- Title Row with Status and Action Buttons -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<!-- 28px party color swatch -->
+<div class="w-7 h-7 rounded-md shadow-sm border border-slate-200/80 flex-shrink-0" style="background-color: #FF9933;" title="Saffron (#FF9933)"></div>
+<div class="flex items-center gap-2.5 flex-wrap">
+<h2 class="text-2xl font-semibold tracking-tight text-slate-900">Bharatiya Janata Party</h2>
+<span class="bg-slate-100 text-slate-700 font-medium px-2 py-0.5 rounded text-xs border border-slate-200">BJP</span>
+<span class="text-xs text-slate-500 font-normal">· 1,204 candidates · 9 elections</span>
+</div>
+</div>
+<!-- Header Actions: Dirty state warning, Cancel, Save -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1.5 text-xs text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+<span class="font-medium">Unsaved changes</span>
+</div>
+<button class="px-3.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-md hover:bg-slate-50 hover:border-slate-400 transition shadow-sm" type="button">
+              Cancel
+            </button>
+<button class="px-4 py-1.5 text-xs font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition shadow-sm flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-sm">check</span>
+<span>Save changes</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Two-Column Form Layout (2/3 Left + 1/3 Right) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column (2 spans) -->
+<div class="lg:col-span-2 space-y-6">
+<!-- 1. Card: Identity -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<h3 class="text-sm font-semibold text-slate-800 mb-4 flex items-center justify-between">
+<span>Identity</span>
+<span class="text-xs font-normal text-slate-400">Core registration details</span>
+</h3>
+<div class="space-y-4">
+<!-- Full name -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="party-name">Party name</label>
+<input class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600" id="party-name" type="text" value="Bharatiya Janata Party"/>
+</div>
+<!-- Two columns: Abbreviation & Color -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="party-abbr">Abbreviation</label>
+<input class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 uppercase tracking-wide focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600" id="party-abbr" type="text" value="BJP"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="party-color">Official party colour</label>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded border border-slate-300 flex-shrink-0 shadow-inner" style="background-color: #FF9933;"></div>
+<input class="w-full text-xs font-mono text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 uppercase focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600" id="party-color" type="text" value="#FF9933"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Card: Organisation -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<h3 class="text-sm font-semibold text-slate-800 mb-4">Organisation</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Leader -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="leader-name">National President / Leader</label>
+<input class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600" id="leader-name" type="text" value="J. P. Nadda"/>
+</div>
+<!-- Founded Year -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="founded-year">Founded year</label>
+<input class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600" id="founded-year" type="number" value="1980"/>
+</div>
+<!-- Headquarters (Full width) -->
+<div class="sm:col-span-2">
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="party-hq">Central headquarters</label>
+<input class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md px-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600" id="party-hq" type="text" value="6-A, Deen Dayal Upadhyaya Marg, New Delhi 110002"/>
+</div>
+</div>
+</section>
+<!-- 3. Card: Links -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<h3 class="text-sm font-semibold text-slate-800 mb-4">Official Links</h3>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="website-url">Official website</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">link</span>
+<input class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md pl-8 pr-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600" id="website-url" type="url" value="https://www.bjp.org"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="wiki-url">Wikipedia URL</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">public</span>
+<input class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md pl-8 pr-3 py-2 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600" id="wiki-url" type="url" value="https://en.wikipedia.org/wiki/Bharatiya_Janata_Party"/>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Card: About -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<h3 class="text-sm font-semibold text-slate-800 mb-4">About</h3>
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="about-desc">Descriptive summary</label>
+<textarea class="w-full text-xs font-normal text-slate-900 bg-white border border-slate-300 rounded-md p-3 leading-relaxed focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 resize-none" id="about-desc" rows="4">The Bharatiya Janata Party is one of the two major political parties in India alongside the Indian National Congress. Founded in 1980, its political ideology is rooted in integral humanism, social conservatism, and national integration.</textarea>
+<p class="mt-1.5 text-[11px] text-slate-400">Used for contextual summary cards across public tracker pages.</p>
+</div>
+</section>
+</div>
+<!-- Right Column (1 span) -->
+<div class="space-y-6">
+<!-- 1. Card: Symbols -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<h3 class="text-sm font-semibold text-slate-800 mb-4">Symbols</h3>
+<div class="grid grid-cols-2 gap-3.5">
+<!-- Party logo -->
+<div class="border border-slate-200 rounded-lg p-2.5 flex flex-col items-center bg-slate-50/50">
+<span class="text-[11px] font-medium text-slate-600 mb-2">Party logo</span>
+<div class="w-16 h-16 rounded-md bg-white border border-slate-200 shadow-sm flex items-center justify-center overflow-hidden mb-2 relative group">
+<img class="w-full h-full object-contain p-1" data-alt="A clean graphic vector emblem of the Bharatiya Janata Party saffron flag and lotus flower badge, set against a crisp white backdrop with sharp modern digital detailing, studio lighting, in minimal graphic flat design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzeLoHvnNCziOFFGu6Sa6WUgE35x6nCTalf_ayxvP43XK6uY-LKyKoFdrxyxKt8jG9lvtr_4HIl6Ykk5sLEoChOW9qjzPm7unazw0tEUchYUlu2nBzs8vjQwgViXpV-17Eamoi_Zf21PM-ubz0I543KfJEN761xSFekionM_CMktIyTtwtelTLvUXfziLXPn3RY2Gy0ANf8w_TCuGbGTph-nGNJzZXfVFPr0OOszN15flG3OQFUbOxqGuWMav3_Jl4wnSG08w6L34"/>
+</div>
+<button class="w-full py-1 text-[11px] font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition mb-2" type="button">
+                  Replace
+                </button>
+<input class="w-full text-[10px] font-mono text-slate-500 bg-slate-100 border border-slate-200 rounded px-1.5 py-1 truncate focus:bg-white focus:outline-none" readonly="" type="text" value="bjp-logo-vector.svg"/>
+</div>
+<!-- ECI Symbol -->
+<div class="border border-slate-200 rounded-lg p-2.5 flex flex-col items-center bg-slate-50/50">
+<span class="text-[11px] font-medium text-slate-600 mb-2">ECI symbol</span>
+<div class="w-16 h-16 rounded-md bg-white border border-slate-200 shadow-sm flex items-center justify-center overflow-hidden mb-2 relative group">
+<img class="w-full h-full object-contain p-1" data-alt="Official Election Commission of India line symbol depicting an Indian sacred lotus bloom outline in sharp black and saffron hues on an ultra-clean white canvas, highly detailed election ballot graphics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAprVGicUFXmNFDzrOFvkk2Q7OODw8bKq5GUcqiCFCUe4EQIX-nOwH8Q6G-WvnlkHJqtsgaExMY0UzCmbOK8imlzqjj0VoLNrlBIQBDOXRwCH9_t1AGvf89zqlEtlZzWR0Sy70vn4aIbYBwVGiwA5KYF1Lk2D8wqs3GiLrrV-BDAU6e-5xLnOimIH87XGJ4FUmk2UfLsxVJV1QXvcyZzoaaVNE79zZjU3DxHv6WLqMM-SCmWcpaJtNF5QYnIdnPd2sbcHxgr4Ik9RA"/>
+</div>
+<button class="w-full py-1 text-[11px] font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition mb-2" type="button">
+                  Replace
+                </button>
+<input class="w-full text-[10px] font-mono text-slate-500 bg-slate-100 border border-slate-200 rounded px-1.5 py-1 truncate focus:bg-white focus:outline-none" readonly="" type="text" value="lotus-eci-approved.svg"/>
+</div>
+</div>
+</section>
+<!-- 2. Card: Usage -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<h3 class="text-sm font-semibold text-slate-800 mb-3">Usage</h3>
+<p class="text-xs text-slate-500 mb-4">Election candidate allocations across recent polls:</p>
+<ul class="divide-y divide-slate-100 text-xs">
+<li class="py-2.5 flex items-center justify-between">
+<span class="font-medium text-slate-700">Lok Sabha 2024</span>
+<span class="text-slate-500 font-mono text-xs">441 candidates</span>
+</li>
+<li class="py-2.5 flex items-center justify-between">
+<span class="font-medium text-slate-700">Bihar VS 2025</span>
+<span class="text-slate-500 font-mono text-xs">101 candidates</span>
+</li>
+<li class="py-2.5 flex items-center justify-between">
+<span class="font-medium text-slate-700">West Bengal VS 2021</span>
+<span class="text-slate-500 font-mono text-xs">293 candidates</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-slate-100">
+<a class="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-800 transition" href="#">
+<span>View candidates</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- 3. Card: Record Metadata -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<h3 class="text-sm font-semibold text-slate-800 mb-4">Record</h3>
+<div class="space-y-3 text-xs">
+<div class="flex items-center justify-between">
+<span class="text-slate-500">Party ID</span>
+<span class="font-mono bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-medium">BJP</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-slate-500">ECI registration</span>
+<span class="text-slate-700 font-medium">National Party</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-slate-500">Last updated</span>
+<span class="text-slate-700 font-normal">1 Oct 2026, 14:32 IST</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-slate-500">Created by</span>
+<span class="text-slate-700 font-medium">Super admin (Mannu K)</span>
+</div>
+</div>
+<!-- Danger Zone Action -->
+<div class="mt-5 pt-4 border-t border-slate-100 flex justify-between items-center">
+<span class="text-[11px] text-slate-400">Archiving restricts seat binding</span>
+<button class="text-xs text-rose-600 hover:text-rose-700 font-medium hover:underline" type="button">
+                Archive party
+              </button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>
