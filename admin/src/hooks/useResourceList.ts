@@ -5,19 +5,21 @@ interface ListOptions<F> {
   key: string;
   pageSize?: number;
   initialFilters: F;
+  /** Search to start with (e.g. from `?q=`); wins over the remembered search when non-empty. */
+  initialSearch?: string | null;
   onLoad: (page: number, search: string, filters: F) => Promise<{ data: any[], total: number }>;
 }
 
 /**
  * HOOK: useResourceList (SOLID: SRP/OCP)
- * Standardizes paging, debounced searching, and filter persistence for Admin lists.
+ * Standardizes paging, searching, and filter persistence for Admin lists.
  */
-export function useResourceList<F>({ key, pageSize = 25, initialFilters, onLoad }: ListOptions<F>) {
+export function useResourceList<F>({ key, pageSize = 25, initialFilters, initialSearch, onLoad }: ListOptions<F>) {
   const filterKey = `${key}_filters`;
   const searchKey = `${key}_search`;
 
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState(() => localStorage.getItem(searchKey) || '');
+  const [search, setSearch] = useState(() => initialSearch || localStorage.getItem(searchKey) || '');
   const [filters, setFilters] = useState<F>(() => {
     const saved = localStorage.getItem(filterKey);
     return saved ? JSON.parse(saved) : initialFilters;
@@ -77,7 +79,9 @@ export function useResourceList<F>({ key, pageSize = 25, initialFilters, onLoad 
     items, total, page, setPage, error,
     totalPages: Math.max(1, Math.ceil(total / pageSize)),
     loading, search, filters,
-    handleSearch, updateFilters, loadPage: (p: number) => load(p, search, filters),
+    handleSearch, updateFilters,
+    /** Go to page `p`; the effect above loads it (calling load directly left `page` behind). */
+    loadPage: (p: number) => setPage(Math.max(1, p)),
     navigateWithScroll,
     refresh: () => load(page, search, filters)
   };
