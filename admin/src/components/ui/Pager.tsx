@@ -12,7 +12,8 @@ interface PagerProps {
   note?: string;
 }
 
-export function Pager({ page, totalPages, total, pageSize, noun, onPage, note }: PagerProps) {
+export function Pager({ page, totalPages: rawTotalPages, total, pageSize, noun, onPage, note }: PagerProps) {
+  const totalPages = Math.max(1, rawTotalPages);
   const from = total === 0 ? 0 : (page - 1) * pageSize + 1;
   const to = Math.min(total, page * pageSize);
   const fmt = (n: number) => n.toLocaleString('en-IN');

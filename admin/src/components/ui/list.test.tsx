@@ -26,6 +26,35 @@ describe('DataTable', () => {
     expect(onRowClick).toHaveBeenLastCalledWith({ id: 'b', name: 'Beta' });
   });
 
+  it('rows are focusable only when clickable, and unselected rows say so', () => {
+    const rows = [{ id: 'a', name: 'Alpha' }];
+    const { unmount } = render(<DataTable label="P" columns={COLS} rows={rows} rowKey={(r) => r.id} onRowClick={() => {}} />);
+    const tr = screen.getByText('Alpha').closest('tr')!;
+    expect(tr.getAttribute('tabindex')).toBe('0');
+    expect(tr.getAttribute('aria-selected')).toBe('false');
+    unmount();
+    render(<DataTable label="P" columns={COLS} rows={rows} rowKey={(r) => r.id} />);
+    expect(screen.getByText('Alpha').closest('tr')!.hasAttribute('tabindex')).toBe(false);
+  });
+
+  it('Space opens a focused row; nested controls do not trigger the row', () => {
+    const onRowClick = vi.fn();
+    const cols: Column<Row>[] = [
+      { key: 'pick', header: 'Pick', cell: () => <input type="checkbox" aria-label="pick" /> },
+      { key: 'act', header: 'Act', cell: () => <button type="button">Go</button> },
+      ...COLS,
+    ];
+    render(<DataTable label="P" columns={cols} rows={[{ id: 'a', name: 'Alpha' }]} rowKey={(r) => r.id} onRowClick={onRowClick} />);
+    const tr = screen.getByText('Alpha').closest('tr')!;
+    fireEvent.keyDown(tr, { key: ' ' });
+    expect(onRowClick).toHaveBeenCalledTimes(1);
+    fireEvent.keyDown(screen.getByRole('button', { name: 'Go' }), { key: 'Enter' });
+    fireEvent.keyDown(screen.getByRole('button', { name: 'Go' }), { key: ' ' });
+    fireEvent.click(screen.getByRole('button', { name: 'Go' }));
+    fireEvent.click(screen.getByRole('checkbox', { name: 'pick' }));
+    expect(onRowClick).toHaveBeenCalledTimes(1);
+  });
+
   it('shows the empty state when there are no rows', () => {
     render(<DataTable label="Parties" columns={COLS} rows={[]} rowKey={(r) => r.id} empty={<EmptyState title="No parties match" />} />);
     expect(screen.getByText('No parties match')).toBeTruthy();
