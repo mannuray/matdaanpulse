@@ -28,3 +28,14 @@ Every number shown in these screens is a placeholder. Real values come from the 
 ### Login (`login.*`)
 - Use the real logo `/logo-mark.png` instead of the generic ballot icon.
 - Show the error banner only after a failed sign-in.
+
+## Phase 1 follow-ups (carry into Phase 2)
+- Move-away prompt is discard-only (`window.confirm`); spec wants Save / Discard / Cancel dialog.
+- Live pill has no "offline" state after repeated failures; "Last saved" shows only this tab's saves (use candidates' `last_updated`).
+- "Declare won" has no confirmation / undo; "Save seat" stays enabled on a clean seat (does nothing).
+- Unsaved-edit guard not on the HealthDot link or Log out; logout leaves the seat lock until TTL (≤120 s); two tabs of one user share a lock.
+- Seat list hides locks older than 120 s using the browser clock (skew > ~75 s could hide live locks).
+- Moving off a locked seat fires one extra lock acquire; Redis down while viewing a locked seat stays read-only until Take over.
+- Small test gaps: NOTA margin clamp, SSE seat-lock/status handlers, self-take-over audit, controller-level HTTP tests.
+- Backend hardening: Lua `type(parsed)=='table'` guard; `forceSet` via `SET … GET`; 503 message rewritten to "Internal server error" by the filter (clients key on `RESULT_6003`).
+- Sidebar not responsive (desktop-only by spec); admin bundle > 500 kB (chunk warning).
