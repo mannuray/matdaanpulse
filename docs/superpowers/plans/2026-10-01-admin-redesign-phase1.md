@@ -43,6 +43,7 @@
 4. **Typed or pasted "61,204" or " 61204 "** parses to 61204, and "61.2" or "-5" are rejected inline. Pinned in Task 6.
 5. **Lock lifecycle:**
    - Switching seats releases the old lock.
+   - Holding ↓ does not lock every seat passed (debounce; a late response is released).
    - Closing the tab sends a keepalive release.
    - Redis down means locking is "unavailable" but saving still works.
    - A take-over makes the previous holder read-only.
@@ -1731,7 +1732,7 @@ export function TopBar() {
 - [ ] **Step 10: Replace `admin/src/components/Layout.tsx`**
 
 ```tsx
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { ElectionProvider } from '../context/ElectionContext';
 import { ShellStatusProvider } from '../context/ShellStatusContext';
 import { Sidebar } from './shell/Sidebar';
@@ -1739,6 +1740,8 @@ import { TopBar } from './shell/TopBar';
 
 /** VIEW: admin shell — grouped sidebar, top bar with global election picker, page outlet. */
 export default function Layout() {
+  // Rebuilt pages manage their own padding; legacy pages keep `.admin-content` padding until they migrate.
+  const bare = useLocation().pathname.startsWith('/overrides');
   return (
     <ElectionProvider>
       <ShellStatusProvider>
@@ -1746,7 +1749,7 @@ export default function Layout() {
           <Sidebar />
           <div className="flex min-w-0 flex-1 flex-col">
             <TopBar />
-            <main className="admin-content min-h-0 flex-1 overflow-y-auto">
+            <main className={bare ? 'min-h-0 flex-1 overflow-hidden' : 'admin-content min-h-0 max-h-none flex-1 overflow-y-auto'}>
               <Outlet />
             </main>
           </div>
@@ -1757,7 +1760,9 @@ export default function Layout() {
 }
 ```
 
-`admin-content` is kept so the legacy page CSS that targets it still applies. Check `admin.css` for `.admin-layout` / `.admin-sidebar` rules; they become dead code, and Phase 3 deletes them.
+`.admin-content` in `admin.css` adds `padding: 32px 40px` and `max-height: 100vh`. The padding stays for legacy pages. `max-h-none` beats `max-height` because utilities sit in a higher layer than `legacy`, and without it the page would overflow under the top bar. The Live Console (`/overrides`) gets no `.admin-content`. `.admin-layout` / `.admin-sidebar` rules become dead code, and Phase 3 deletes them.
+
+Until Phase 2, legacy pages show their own election picker as well as the top-bar picker. This is expected.
 
 - [ ] **Step 11: Run the tests and the build**
 
@@ -1802,6 +1807,7 @@ git commit -m "admin: new shell — grouped sidebar, top bar, global election pi
   setStatus(resultId: string, status: OverrideStatus): void;
   setRound(field: 'current' | 'total', raw: string): void;
   discard(): void;               // back to server values, clears changedElsewhere
+  markSaved(): void;             // after our own successful save: not dirty, keep rows; next server data is adopted silently
   build(declare: boolean): { ok: true; overrides: BulkOverrideItem[]; rounds?: { current_round?: number; total_rounds?: number } } | { ok: false; error: string };
 }
 ```
@@ -1870,6 +1876,16 @@ describe('useSeatEditor', () => {
     const out = result.current.build(true);
     expect(out.ok && out.overrides.map((o) => o.status)).toEqual(['WON', 'LOST']);
     expect(out.ok && out.rounds).toEqual({ current_round: 24, total_rounds: 24 });
+  });
+
+  it('after markSaved, the reload caused by our own save is adopted silently', () => {
+    const { result, rerender } = renderHook(({ s }) => useSeatEditor(s), { initialProps: { s: seat() } });
+    act(() => result.current.setVotes('a', '150'));
+    act(() => result.current.markSaved());
+    rerender({ s: seat({ candidates: [cand('a', 150, 'LEADING'), cand('b', 80)] }) });
+    expect(result.current.changedElsewhere).toBe(false);
+    expect(result.current.dirty).toBe(false);
+    expect(result.current.rows[0].draftVotes).toBe('150');
   });
 
   it('a manual status pick is kept when votes change', () => {
@@ -1966,6 +1982,13 @@ export function useSeatEditor(seat: LiveConstituency | null) {
 
   const discard = useCallback(() => reset(latest.current), [reset]);
 
+  /** Our own save succeeded: keep what is on screen, and let the follow-up reload replace it silently. */
+  const markSaved = useCallback(() => {
+    setDirty(false);
+    setStatusTouched(false);
+    setChangedElsewhere(false);
+  }, []);
+
   const view = useMemo(() => {
     const withErrors = rows.map((r) => ({ ...r, error: parseVotes(r.draftVotes) === null ? VOTE_ERROR : null }));
     const { leader, tie } = rankSeat(rows);
@@ -1990,14 +2013,14 @@ export function useSeatEditor(seat: LiveConstituency | null) {
     return { ok: true, overrides: buildSeatOverrides(finalRows), ...(rounds ? { rounds } : {}) };
   }, [view.rows, rows, round]);
 
-  return { ...view, round, dirty, changedElsewhere, declared, setVotes, setStatus, setRound, discard, build };
+  return { ...view, round, dirty, changedElsewhere, declared, setVotes, setStatus, setRound, discard, markSaved, build };
 }
 ```
 
 - [ ] **Step 4: Run the test to confirm it passes**
 
 Run: `cd admin && npx vitest run src/hooks/useSeatEditor.test.ts`
-Expected: PASS (6 tests).
+Expected: PASS (7 tests).
 
 - [ ] **Step 5: Commit**
 
@@ -2019,8 +2042,10 @@ git commit -m "admin: useSeatEditor — draft seat state, auto statuses, survive
 - Produces: `useSeatLock(electionId: string, constId: string | null, myUserId: string, remoteLock: SeatLock | null | undefined)` → `{ state: 'idle' | 'acquiring' | 'held' | 'locked' | 'unavailable'; holder: SeatLock | null; takeOver(): Promise<void> }`.
   - `remoteLock` is the current entry for this seat from the console's lock map (fed by SSE). If it becomes someone else's lock while `held`, the state moves to `locked` (we were taken over).
 - Constants: `LOCK_HEARTBEAT_MS = 45_000`.
+- Constant: `LOCK_ACQUIRE_DEBOUNCE_MS = 300`.
 - Behaviour:
-  - Acquire when `constId` changes, and release the previous seat.
+  - Acquire 300 ms after `constId` settles, and release the previous seat.
+  - A late response for a seat already left is released immediately and ignored.
   - Refresh every 45 s while `held`.
   - Release on unmount and on `pagehide` (keepalive).
   - 409 → `locked` with the holder. 503 or a network failure → `unavailable`, with no retries until the seat changes.
@@ -2039,23 +2064,47 @@ vi.mock('../services/election.service', () => ({
   acquireSeatLock: (...a: unknown[]) => acquire(...a),
   releaseSeatLock: (...a: unknown[]) => release(...a),
 }));
-import { useSeatLock, LOCK_HEARTBEAT_MS } from './useSeatLock';
+import { useSeatLock, LOCK_HEARTBEAT_MS, LOCK_ACQUIRE_DEBOUNCE_MS } from './useSeatLock';
 
 const lock = (user_id: string, const_id = 'c1') => ({ const_id, user_id, user_name: user_id, acquired_at: 't' });
 
-beforeEach(() => { acquire.mockReset(); release.mockClear(); });
+// shouldAdvanceTime: fake clock follows real time, so waitFor() also lets the acquire debounce elapse.
+beforeEach(() => { vi.useFakeTimers({ shouldAdvanceTime: true }); acquire.mockReset(); release.mockClear(); });
 afterEach(() => vi.useRealTimers());
 
 describe('useSeatLock', () => {
-  it('acquires, heartbeats, and releases the old seat on switch', async () => {
-    vi.useFakeTimers({ shouldAdvanceTime: true });
+  it('debounces acquire, heartbeats, and releases the old seat on switch', async () => {
     acquire.mockImplementation(async (_e, c) => lock('me', c));
     const { result, rerender } = renderHook(({ c }) => useSeatLock('e1', c, 'me', undefined), { initialProps: { c: 'c1' as string | null } });
+    expect(acquire).not.toHaveBeenCalled();
     await waitFor(() => expect(result.current.state).toBe('held'));
     await act(async () => { vi.advanceTimersByTime(LOCK_HEARTBEAT_MS); });
     expect(acquire).toHaveBeenCalledTimes(2);
     rerender({ c: 'c2' });
     await waitFor(() => expect(release).toHaveBeenCalledWith('e1', 'c1', undefined));
+  });
+
+  it('skipping quickly past seats only locks the one you stop on', async () => {
+    acquire.mockImplementation(async (_e, c) => lock('me', c));
+    const { rerender } = renderHook(({ c }) => useSeatLock('e1', c, 'me', undefined), { initialProps: { c: 'c1' as string | null } });
+    rerender({ c: 'c2' });
+    rerender({ c: 'c3' });
+    await act(async () => { vi.advanceTimersByTime(LOCK_ACQUIRE_DEBOUNCE_MS + 10); });
+    await waitFor(() => expect(acquire).toHaveBeenCalledTimes(1));
+    expect(acquire).toHaveBeenCalledWith('e1', 'c3', false);
+  });
+
+  it('a late acquire for a seat you already left is released, not kept', async () => {
+    let resolveC1: (v: unknown) => void = () => {};
+    acquire.mockImplementationOnce(() => new Promise((r) => { resolveC1 = r; }));
+    acquire.mockImplementation(async (_e, c) => lock('me', c));
+    const { result, rerender } = renderHook(({ c }) => useSeatLock('e1', c, 'me', undefined), { initialProps: { c: 'c1' as string | null } });
+    await act(async () => { vi.advanceTimersByTime(LOCK_ACQUIRE_DEBOUNCE_MS + 10); });
+    expect(acquire).toHaveBeenCalledWith('e1', 'c1', false);
+    rerender({ c: 'c2' });
+    await act(async () => { resolveC1(lock('me', 'c1')); });
+    expect(release).toHaveBeenCalledWith('e1', 'c1', undefined);
+    await waitFor(() => expect(result.current.holder?.const_id).toBe('c2'));
   });
 
   it('409 → locked with the holder; takeOver acquires with take_over', async () => {
@@ -2108,6 +2157,8 @@ import { ApiError } from '../services/api-client';
 import type { SeatLock } from '../types';
 
 export const LOCK_HEARTBEAT_MS = 45_000;
+/** Wait for the selection to settle, so holding ↓ does not lock (and broadcast) every seat passed. */
+export const LOCK_ACQUIRE_DEBOUNCE_MS = 300;
 export type SeatLockState = 'idle' | 'acquiring' | 'held' | 'locked' | 'unavailable';
 
 /** Soft lock for the seat open in the Live Console editor. Advisory: saving never depends on it. */
@@ -2115,15 +2166,19 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
   const [state, setState] = useState<SeatLockState>('idle');
   const [holder, setHolder] = useState<SeatLock | null>(null);
   const heldRef = useRef<{ e: string; c: string } | null>(null);
+  const currentRef = useRef({ e: electionId, c: constId });
+  currentRef.current = { e: electionId, c: constId };
 
-  const attempt = useCallback(async (takeOver: boolean) => {
-    if (!electionId || !constId) return;
+  const attempt = useCallback(async (e: string, c: string, takeOver: boolean) => {
+    const stale = () => currentRef.current.e !== e || currentRef.current.c !== c;
     try {
-      const l = await acquireSeatLock(electionId, constId, takeOver);
-      heldRef.current = { e: electionId, c: constId };
+      const l = await acquireSeatLock(e, c, takeOver);
+      if (stale()) { void releaseSeatLock(e, c, undefined).catch(() => {}); return; }
+      heldRef.current = { e, c };
       setHolder(l);
       setState('held');
     } catch (err) {
+      if (stale()) return;
       heldRef.current = null;
       if (err instanceof ApiError && err.status === 409) {
         setHolder((err.details?.lock as SeatLock | undefined) ?? null);
@@ -2133,14 +2188,16 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
         setState('unavailable');
       }
     }
-  }, [electionId, constId]);
+  }, []);
 
-  // Acquire on seat change; release the previous seat on change/unmount.
+  // Acquire once the seat change settles; release the previous seat on change/unmount.
   useEffect(() => {
     if (!electionId || !constId) { setState('idle'); setHolder(null); return; }
     setState('acquiring');
-    void attempt(false);
+    setHolder(null);
+    const t = setTimeout(() => { void attempt(electionId, constId, false); }, LOCK_ACQUIRE_DEBOUNCE_MS);
     return () => {
+      clearTimeout(t);
       const h = heldRef.current;
       heldRef.current = null;
       if (h) void releaseSeatLock(h.e, h.c, undefined).catch(() => {});
@@ -2149,10 +2206,10 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
 
   // Heartbeat while held.
   useEffect(() => {
-    if (state !== 'held') return;
-    const t = setInterval(() => { void attempt(false); }, LOCK_HEARTBEAT_MS);
+    if (state !== 'held' || !constId) return;
+    const t = setInterval(() => { void attempt(electionId, constId, false); }, LOCK_HEARTBEAT_MS);
     return () => clearInterval(t);
-  }, [state, attempt]);
+  }, [state, electionId, constId, attempt]);
 
   // Tab closing: best-effort keepalive release (the TTL covers the rest).
   useEffect(() => {
@@ -2173,7 +2230,9 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
     }
   }, [remoteLock, myUserId, state]);
 
-  const takeOver = useCallback(() => attempt(true), [attempt]);
+  const takeOver = useCallback(async () => {
+    if (electionId && constId) await attempt(electionId, constId, true);
+  }, [electionId, constId, attempt]);
   return { state, holder, takeOver };
 }
 ```
@@ -2181,7 +2240,7 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
 - [ ] **Step 4: Run the test to confirm it passes**
 
 Run: `cd admin && npx vitest run src/hooks/useSeatLock.test.ts`
-Expected: PASS (5 tests).
+Expected: PASS (7 tests).
 
 - [ ] **Step 5: Commit**
 
@@ -2498,7 +2557,7 @@ git commit -m "admin: useLiveConsole — global election, filters/search, locks,
 - Keyboard handler (page level, on `window`):
   - **↑/↓** call `move(∓1)` only when `document.activeElement` is not an `input`, `select` or `textarea`
   - **Enter** saves when focus is inside the editor and the target is not a button
-  - **Esc** discards
+  - **Esc** discards, but only when focus is inside the editor and the event was not already handled (by a dialog, menu or picker)
   - **/** focuses the seat search
   - if moving with unsaved edits, `window.confirm('Discard unsaved edits for this seat?')` must return true first
 
@@ -2741,7 +2800,7 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
     const out = ed.build(declare);
     if (!out.ok) { setError(out.error); return; }
     setError(null);
-    await onSave(seat.const_id, { overrides: out.overrides, rounds: out.rounds });
+    if (await onSave(seat.const_id, { overrides: out.overrides, rounds: out.rounds })) ed.markSaved();
   };
 
   useImperativeHandle(ref, () => ({ save: () => void submit(false), discard: ed.discard, dirty: ed.dirty }));
@@ -2906,7 +2965,8 @@ export default function LiveConsole() {
       } else if (e.key === 'Enter' && editorBoxRef.current?.contains(active) && active?.tagName !== 'BUTTON') {
         e.preventDefault();
         editorRef.current?.save();
-      } else if (e.key === 'Escape') {
+      } else if (e.key === 'Escape' && !e.defaultPrevented && editorBoxRef.current?.contains(active)) {
+        // Only inside the editor: Esc on a dialog/menu/picker must never wipe the seat's edits.
         editorRef.current?.discard();
       } else if (e.key === '/' && !isTypingTarget(active)) {
         e.preventDefault();
