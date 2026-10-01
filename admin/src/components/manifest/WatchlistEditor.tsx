@@ -41,6 +41,7 @@ export function WatchlistRow({
   const [results, setResults] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [failed, setFailed] = useState(false);
   const latest = useRef(0);
   const n = eIdx + 1;
 
@@ -53,6 +54,7 @@ export function WatchlistRow({
     setSearchTerm(query);
     onUpdate({ name: query });
     const request = ++latest.current;
+    setFailed(false);
     if (query.length < 2) {
       setResults([]);
       setShowDropdown(false);
@@ -66,7 +68,8 @@ export function WatchlistRow({
       setResults(res || []);
       setShowDropdown(true);
     } catch {
-      // Suggestions are optional: the typed name is kept.
+      // The typed name is kept; tell the user the suggestions did not load.
+      if (request === latest.current) { setResults([]); setShowDropdown(false); setFailed(true); }
     } finally {
       if (request === latest.current) setLoading(false);
     }
@@ -105,6 +108,7 @@ export function WatchlistRow({
           />
           {loading && <Spinner size={12} />}
         </div>
+        {failed && <p role="status" className="mt-1 text-[11px] text-bad-text">Search failed — try again</p>}
         {open && (
           <ul id={listId} role="listbox" aria-label={`Entry ${n} candidates`} className="absolute left-1.5 right-1.5 top-full z-30 mt-1 min-w-[280px] list-none rounded-card border border-line bg-card p-1 shadow-lg">
             {results.map(r => (
@@ -240,7 +244,7 @@ export function WatchlistEditor({
               </div>
             </div>
 
-            <table className="w-full table-fixed border-collapse text-xs">
+            <table aria-label={`${w.name || 'Watchlist'} entries`} className="w-full table-fixed border-collapse text-xs">
               <thead>
                 <tr className="text-left text-[11px] text-ink-2">
                   <th scope="col" className="w-[35%] px-1.5 py-1.5 font-medium">Candidate</th>

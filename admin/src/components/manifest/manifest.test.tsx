@@ -231,6 +231,16 @@ describe('WatchlistEditor', () => {
     expect(onUpdate).toHaveBeenLastCalledWith([{ ...WL[0], entries: [{ name: 'Ravi Prasad', party_id: 'BJP', const_id: 'k142' }] }]);
   });
 
+  it('a failed candidate search shows a note and keeps the typed name', async () => {
+    const onUpdate = vi.fn();
+    const WL = [{ id: 'leaders', name: 'Leaders', entries: [{ name: '', party_id: '', const_id: '' }] }];
+    render(<WatchlistEditor watchlists={WL} contestingParties={PARTIES} constituencies={SEATS} partyMap={partyMap} onSearchCandidates={() => Promise.reject(new Error('x'))} onUpdate={onUpdate} />);
+    fireEvent.change(screen.getByRole('combobox', { name: 'Entry 1 candidate' }), { target: { value: 'rav' } });
+    expect(await screen.findByText('Search failed — try again')).toBeTruthy();
+    expect(onUpdate).toHaveBeenLastCalledWith([{ ...WL[0], entries: [{ name: 'rav', party_id: '', const_id: '' }] }]);
+    expect(screen.getByRole('table', { name: 'Leaders entries' })).toBeTruthy();
+  });
+
   it('the role field and remove button act on their own entry', () => {
     const onUpdate = vi.fn();
     const WL = [{ id: 'leaders', name: 'Leaders', entries: [{ name: 'A', party_id: 'BJP', const_id: 'k1' }, { name: 'B', party_id: 'INC', const_id: 'k2' }] }];
@@ -307,6 +317,19 @@ describe('MiscEditors', () => {
     fireEvent.change(seats, { target: { value: '1, 2' } });
     expect(screen.getByRole('status').textContent).toBe('[{"label":"Patna","const_nos":[1,2]}]');
     expect(screen.getByText('2 seats')).toBeTruthy();
+  });
+
+  it('a live-tab seat list with no valid number is not saved and shows a hint', () => {
+    const onUpdate = vi.fn();
+    render(<LiveTabsEditor liveTabs={[{ label: 'Patna', const_nos: [1, 2] }]} onUpdate={onUpdate} />);
+    const seats = screen.getByLabelText('Tab 1 seats') as HTMLInputElement;
+    fireEvent.change(seats, { target: { value: 'abc' } });
+    expect(onUpdate).not.toHaveBeenCalled();
+    expect(seats.value).toBe('abc');
+    expect(screen.getByText('Enter seat numbers separated by commas')).toBeTruthy();
+    fireEvent.change(seats, { target: { value: '' } });
+    expect(onUpdate).toHaveBeenLastCalledWith([{ label: 'Patna', const_nos: [] }]);
+    expect(screen.queryByText('Enter seat numbers separated by commas')).toBeNull();
   });
 
   it('the electoral roll revision totals and per-seat changes', () => {

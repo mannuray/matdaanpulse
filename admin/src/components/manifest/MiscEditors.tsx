@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ManifestSection } from './ManifestSection';
 import { EmptyState, AddButton, ColorDot, DraftInput, ItemRow, updateAt, removeAt, moveItem } from './SharedControls';
 import { Input, Select } from '../ui/Input';
@@ -214,6 +215,29 @@ export function GeoConfigEditor({
 
 // ── Live Tabs Editor ──
 
+/** Seat-number list for one tab. Text that holds no valid number is not saved (it would wipe the list). */
+function TabSeats({ n, value, onChange }: { n: number; value: string; onChange: (nums: number[]) => void }) {
+  const [invalid, setInvalid] = useState(false);
+  return (
+    <div className="min-w-[160px] flex-1">
+      <DraftInput
+        aria-label={`Tab ${n} seats`}
+        className="h-8 text-xs"
+        placeholder="Constituency numbers (1, 2, 3…)"
+        value={value}
+        onCommit={text => {
+          const nums = text.split(',').map(s => parseInt(s.trim(), 10)).filter(x => !Number.isNaN(x));
+          if (nums.length === 0 && text.trim()) { setInvalid(true); return null; }
+          setInvalid(false);
+          onChange(nums);
+          return nums.join(', ');
+        }}
+      />
+      {invalid && <p className="mt-1 text-[11px] text-bad-text">Enter seat numbers separated by commas</p>}
+    </div>
+  );
+}
+
 export function LiveTabsEditor({
   liveTabs,
   onUpdate
@@ -229,17 +253,7 @@ export function LiveTabsEditor({
         <ItemRow key={i} index={i} onRemove={() => onUpdate(removeAt(items, i))}>
           <Input aria-label={`Tab ${i + 1} label`} className="h-8 w-40 text-xs" placeholder="Tab label" value={tab.label || ''}
             onChange={e => onUpdate(updateAt(items, i, { label: e.target.value }))} />
-          <DraftInput
-            aria-label={`Tab ${i + 1} seats`}
-            className="h-8 flex-1 text-xs"
-            placeholder="Constituency numbers (1, 2, 3…)"
-            value={(tab.const_nos || []).join(', ')}
-            onCommit={text => {
-              const nums = text.split(',').map(s => parseInt(s.trim(), 10)).filter(n => !Number.isNaN(n));
-              onUpdate(updateAt(items, i, { const_nos: nums }));
-              return nums.join(', ');
-            }}
-          />
+          <TabSeats n={i + 1} value={(tab.const_nos || []).join(', ')} onChange={nums => onUpdate(updateAt(items, i, { const_nos: nums }))} />
           <span className="whitespace-nowrap text-[11px] text-muted">{(tab.const_nos || []).length} seats</span>
         </ItemRow>
       ))}
