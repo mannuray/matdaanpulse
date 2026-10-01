@@ -26,26 +26,32 @@ Every number shown in these screens is a placeholder. Real values come from the 
 - Activity feed: there are no "verified" events (that feature was dropped). Lock take-over events do exist ("Priya S took over 145 Bikram").
 - Feedback card: there are no names or roles. Each preview shows a kind badge (`bug` rose, `data_error` amber, `suggestion` indigo,
   `other` slate), the first line of the message, the `page` path in monospace, and the relative time.
+- Built in Phase 3. "Leading" shows the number of undeclared seats with a leader, with "<party> ahead in N seats" (the party leading the most of them). "Round R" is the highest current round of any seat. The header phase reads "counting in progress", "upcoming" or "final results". EDITOR has no Recent activity card (its API is SUPER_ADMIN-only); VIEWER sees an elections overview instead of the counting cards.
 
 ### Login (`login.*`)
 - Use the real logo `/logo-mark.png` instead of the generic ballot icon.
 - Show the error banner only after a failed sign-in.
+- Built in Phase 3, with status-specific errors (401/400, 429, network) and a return to the requested page after sign-in.
 
-## Phase 1 follow-ups (carry into Phase 2)
-- Move-away prompt is discard-only (`window.confirm`); spec wants Save / Discard / Cancel dialog (still open, see Phase 2 follow-ups).
-- Live pill has no "offline" state after repeated failures; "Last saved" shows only this tab's saves (use candidates' `last_updated`).
-- "Declare won" has no confirmation / undo; "Save seat" stays enabled on a clean seat (does nothing).
-- Logout leaves the seat lock until TTL (≤120 s); two tabs of one user share a lock.
-- Seat list hides locks older than 120 s using the browser clock (skew > ~75 s could hide live locks).
-- Moving off a locked seat fires one extra lock acquire; Redis down while viewing a locked seat stays read-only until Take over.
-- Small test gaps: NOTA margin clamp, SSE seat-lock/status handlers, self-take-over audit, controller-level HTTP tests.
-- Backend hardening: Lua `type(parsed)=='table'` guard; `forceSet` via `SET … GET`; 503 message rewritten to "Internal server error" by the filter (clients key on `RESULT_6003`).
+## Closed in Phase 3
+- Live pill "offline" state; Declare won confirmation; Save seat disabled on a clean seat; HealthDot and Log out use the unsaved guard.
+- Manifest editor rebuilt in Tailwind with always-open sections; `useResourceList` search debounce (300 ms) and stale-response guard.
+- `admin.css` deleted, Tailwind preflight on.
+- Hotfix 0fa6711 (outside the plan): seat-lock `const_id` accepts real constituency ids (letters, digits, `_`, `&`, `-`, max 100); locks previously failed validation with real data.
+
+## Open follow-ups (after Phase 3)
+- Move-away prompt is discard-only (`window.confirm`); the spec's Save / Discard / Cancel dialog needs an async guard.
+- The browser Back button does not ask about unsaved edits (BrowserRouter has no `useBlocker`); a data router would fix it.
+- "Last saved" in the Live Console shows only this tab's saves (could use the candidates' `last_updated`).
+- Seat locks: logout leaves the lock until its TTL (≤120 s); two tabs of one user share a lock; the seat list hides locks older than 120 s by the browser clock (skew); moving off a locked seat fires one extra acquire; Redis down while viewing a locked seat stays read-only until Take over.
+- Candidates: per seat only; a cross-seat candidate table needs backend paging. ⌘K candidates are capped at 50 server-side.
+- Top-bar feedback bell (spec §3) is not built; the Dashboard Feedback card shows the new count.
+- A session that expires mid-page goes to /login without a return path (`handleUnauthorized` does a hard redirect); only `ProtectedRoute` redirects remember the page.
+- Small test gaps: NOTA margin clamp, self-take-over audit, controller-level HTTP tests.
+- Backend hardening: Lua `type(parsed)=='table'` guard; `forceSet` via `SET … GET`; 503 message rewritten by the filter (clients key on `RESULT_6003`).
 - Sidebar not responsive (desktop-only by spec); admin bundle > 500 kB (chunk warning).
 
-## Phase 2 follow-ups (carry into Phase 3)
-- The browser Back button does not ask about unsaved panel edits (BrowserRouter has no `useBlocker`). Moving to a data router would fix it.
-- The manifest editor (`components/manifest/*`) still uses legacy CSS and collapsible sections. Rebuild it with the Phase 3 `admin.css` removal.
-- `useResourceList` searches on every keystroke (no debounce).
-- The Candidates seat list comes from the public `/constituencies?election_id=` endpoint, and candidates per seat from `/candidates` (`take=1000`). There is no cross-seat candidate table without a backend paging change.
-- ⌘K candidates come from `/search/candidates` (max 50 server-side, name-sorted). The palette shows 6, with the selected election first.
-- Phase 1 follow-ups still open: HealthDot and Log out do not use the unsaved guard; Save / Discard / Cancel dialog instead of `window.confirm`.
+### Phase 3 open follow-ups
+- The dashboard activity row "saved N results" lacks the seat name.
+- The audit log loader fetches 200 rows with no paging.
+- The legacy-free regex scan has gaps.

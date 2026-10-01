@@ -324,8 +324,8 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 ### Admin redesign: shell + Live Console (2026-10)
 - New shell: grouped sidebar (Counting / Data / Admin), top bar with a global election picker (remembered in `?election=` + localStorage), live-updates pill, health dot (`/health/ready`), keyboard-shortcuts dialog.
 - Live Console split view: seat list with Pending / Leading / Won filters, search, and lock indicators. The seat editor has every candidate editable, an auto-calculated margin (leader − runner-up; others = gap to leader), statuses that follow the votes, editable rounds, **Save seat** (one bulk call) and **Declare won**. Keyboard: ↑/↓, Enter, Esc, /. Unsaved seat edits are kept while searching/filtering (the selection is held while the editor is dirty); switching election, a sidebar link, or closing/reloading the tab asks first. Declared seats keep their statuses when votes are corrected, with a warning if the winner is no longer ahead; saving a clean seat sends nothing.
-- Seat locks: soft, advisory, held in Redis `lock:seat:{election}:{const}` (TTL 120 s, heartbeat 45 s). Endpoints `GET/POST /admin/live/locks` and `POST /admin/live/locks/release`, SSE `seat-lock`. Take-over is audited (`SEAT_LOCK_TAKEOVER`). With Redis down, locking is disabled and saving still works. A read-only viewer takes the lock as soon as the holder leaves (release event, or a retry every heartbeat after a TTL lapse); the seat list hides locks older than the TTL.
-- Styling: Tailwind v4 (utilities only, preflight off) + Radix. The legacy `admin.css` sits in a lower `legacy` cascade layer until Phase 3.
+- Seat locks (ids fixed in Phase 3: real constituency ids are accepted, not just UUIDs): soft, advisory, held in Redis `lock:seat:{election}:{const}` (TTL 120 s, heartbeat 45 s). Endpoints `GET/POST /admin/live/locks` and `POST /admin/live/locks/release`, SSE `seat-lock`. Take-over is audited (`SEAT_LOCK_TAKEOVER`). With Redis down, locking is disabled and saving still works. A read-only viewer takes the lock as soon as the holder leaves (release event, or a retry every heartbeat after a TTL lapse); the seat list hides locks older than the TTL.
+- Styling: Tailwind v4 (utilities only, preflight off) + Radix. The legacy `admin.css` layer was removed in Phase 3 (preflight is now on).
 
 ### Admin redesign: entity pages + ⌘K (2026-10)
 - Elections, Parties, Persons, Candidates, Constituencies and Manifests share one pattern (`components/entity/EntityPage`, `components/ui/{DataTable,Sheet}`): a page header with a count, a toolbar, one table style (sticky header, selected row, empty state), and a record panel on the right. The panel is a non-modal Radix Dialog rendered in place in the page's flex row, 400px wide (Manifests: full width). The old per-entity pages and the legacy landing cards / election pickers are gone.
@@ -339,9 +339,58 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - Candidates (`/candidates`, panel at `/candidates/:id`): one seat of the global election at a time (searchable Seat select, default lowest seat number), All / Linked / Unlinked chips with counts, name search in the seat. The panel holds the affidavit form (age and criminal cases must be whole numbers), the read-only person photo, person linking (search pre-filled with the candidate's name) and same-name suggestions from other elections with "Link selected". A record of another election offers "Switch election".
 - New candidate (`/candidates/new`): name, party (Independent = the `IND` party row), seat of the global election, affidavit fields. `POST /admin/candidates` checks the seat belongs to the election (404 otherwise) and, in the same transaction, adds the candidate's results row (0 votes, `TRAILING`) so it shows up in the Live Console. A Finalized election is refused with 409 (`ELECTION_FINALIZED`); the page disables "New candidate" for it. After the commit the same post-commit steps as a result override run (live-version memo, cache purge, admin SSE `result-update`); a failure there is only logged.
 - Constituencies (`/constituencies`, panel at `/constituencies/:id`): seats of the global election, 100 per page with a pager; a new search returns to page 1. District and tag filters are labelled "(this page)" because the API only searches by name. Select-all and bulk "Add tag" act on the visible rows only; the selection clears when the page, search, filter or election changes. "Compute all analysis" asks for confirmation. The panel edits demographics (population whole number; literacy, urban and SC/ST % from 0 to 100 with one decimal; 0 is kept as 0, emptied fields are cleared), district, region, seat number (whole number, 1 or more), phase and tags (15 suggested tags plus free text), and shows seat history read-only.
-- Manifests (`/manifests`, full-width panel at `/manifests/:electionId`): one row per election, "Published" or "Not published" from the election's manifest URL. The panel has Summary (read-only counts, alliances, vote splits, comparison history, watchlists, map, milestones), Edit (all ten editors, every section expanded by default, collapsible by hand) and JSON tabs, a Draft badge, Save draft, and Publish (SUPER_ADMIN only, behind a confirm; unsaved edits are saved first). Invalid JSON blocks tab switches, Save draft and Publish. A failed load offers Try again; a 404 says the election was not found. Load order: draft, then published, then default.
+- Manifests (`/manifests`, full-width panel at `/manifests/:electionId`): one row per election, "Published" or "Not published" from the election's manifest URL. The panel has Summary (read-only counts, alliances, vote splits, comparison history, watchlists, map, milestones), Edit (all ten editors, every section always open) and JSON tabs, a Draft badge, Save draft, and Publish (SUPER_ADMIN only, behind a confirm; unsaved edits are saved first). Invalid JSON blocks tab switches, Save draft and Publish. A failed load offers Try again; a 404 says the election was not found. Load order: draft, then published, then default.
 - ⌘K / Ctrl+K palette: searches pages, seats (selected election), candidates (selected election first), parties and persons. Opening a record from another election switches the election first.
 - Fixes: Party/Person paging; person merge direction (it used to delete the viewed person; also hot-fixed to production `main`, commit eb901a7); legacy `M`/`F` gender display and save; dead candidate photo field; `?q=` ignored on Persons; Constituencies capped at 100 rows; numeric 0 saved as null; NaN seat number.
+
+### Admin redesign: dashboard, login, admin pages, legacy CSS removed (2026-10)
+- Dashboard (`/`), cards gated by role, refreshed every 30 s while the tab is visible:
+  - SUPER_ADMIN and EDITOR, for the top-bar election:
+    - KPIs: seats declared N / M, leading (with the party ahead in most seats), pending, last update (IST, "N min ago · Round R"), all from the admin live results
+    - a Live console card: % of seats reporting, and who is editing which seat from the seat locks
+    - System health: `/admin/status` for SUPER_ADMIN, the public `/health/ready` for EDITOR
+    - Feedback: "N new", with three previews (kind badge, first line, page path as plain text, relative time)
+  - SUPER_ADMIN only: Recent activity, the last 10 audit entries in readable sentences
+  - VIEWER: only an elections overview (Live / Upcoming / Finalized). It never calls an admin endpoint.
+  - Each card has its own loading, error ("Try again") and empty state.
+- Login:
+  - centred card with the real logo and show/hide password
+  - errors by status: 401 and 400 → "Invalid email or password"; 429 → "Too many attempts — wait a minute and try again"; network → "Network error — check your connection"
+  - a signed-in visit to `/login` redirects; after sign-in you return to the page you asked for (`ProtectedRoute` keeps it in the route state)
+- Feedback (`/feedback`, panel at `/feedback/:id`):
+  - status chips and paging (50) on the server
+  - Mark read / Resolve / Mark new per row and in the panel, busy per row
+  - the panel shows the full message, a mailto email and the page path as plain text
+  - the page steps back when an action empties the last page
+- Users (`/users`, panel at `/users/:id`, create at `/users/new`):
+  - search over the list (max 200, "Showing first 200")
+  - edit name, email, role and an optional new password, saved together (an empty password is not sent)
+  - one confirm dialog to delete
+  - your own role and delete are disabled
+  - shown inline in the panel, not as toasts: the last-super-admin refusal (403), a duplicate email (409) and field errors
+- Audit logs (`/logs`, panel at `/logs/:id`):
+  - action and entity filters list what the backend actually writes (result override, bulk seat save, seat-lock take-over)
+  - From / To are IST days and both are included
+  - From after To is refused
+  - stale saved filters are reset
+  - the admin name comes from the `users` relation ("Deleted user" when the account is gone)
+  - rows stay on screen while refreshing
+  - "Showing latest 200"
+  - CSV fields are all quoted, include the before/after JSON and are guarded against spreadsheet formulas
+  - the panel shows the full before/after JSON
+- System status: Tailwind cards; "Refreshing…" only for a manual refresh; after a failed poll the last data stays with "Showing data from hh:mm:ss (IST)".
+- Live Console and shell:
+  - Declare won asks first
+  - Save seat is disabled on a clean seat
+  - the live pill turns rose "Live updates offline" after 3 failed reconnects in a row
+  - Log out and the health dot link ask before discarding unsaved edits
+  - list searches wait 300 ms and ignore stale answers
+- Manifest editor: every section is always open (no collapse); all editors use the shared Tailwind controls; the map centre and the live-tab seat list can be typed normally.
+- Legacy CSS removed:
+  - `admin.css` and the `legacy` cascade layer are deleted; Tailwind preflight is on
+  - `tw-ui`, `AdminPageHeader`, `FieldError` and the padded legacy `<main>` are gone
+  - `src/theme/legacy-free.test.ts` fails if a legacy class or variable comes back, or a file with classes sits outside the `@source` paths
+- Hotfix: seat-lock `const_id` now accepts real constituency ids (letters, digits, `_`, `&`, `-`, max 100) instead of UUIDs only; before this, seat locks never worked with real data.
 
 ### Party Symbols
 - [x] DB: `eci_symbol_url` column on `parties` table (migration 006)
