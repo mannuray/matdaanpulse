@@ -42,6 +42,17 @@ describe('ConstituenciesService audit rows', () => {
     });
   });
 
+  it('metadata.phase is ignored (the phase column is canonical): a phase-only patch saves with no row', async () => {
+    const { svc, prisma } = make();
+    await expect(svc.updateMetadata('BR_VS_1', { phase: '3' }, 'u1')).resolves.toMatchObject({ id: 'BR_VS_1', phase: null });
+    expect(prisma.constituencies.update.mock.calls[0][0].data.metadata).toEqual({ tags: ['border'] });
+    await svc.updateConstituency('BR_VS_1', { metadata: { phase: '3', literacy: 61.8 } }, 'u1');
+    expect(prisma.constituencies.update.mock.calls[1][0].data).toMatchObject({ phase: undefined, metadata: { tags: ['border'], literacy: 61.8 } });
+    expect(prisma.constituencies.update.mock.calls[1][0].data.metadata).not.toHaveProperty('phase');
+    expect(prisma.audit_logs.create).toHaveBeenCalledTimes(1);
+    expect(prisma.audit_logs.create.mock.calls[0][0].data.new_value).toEqual({ metadata: { literacy: 61.8 } });
+  });
+
   it('bulkTag writes one row per seat whose tags changed, in one insert', async () => {
     const { svc, prisma } = make();
     await svc.bulkTag(['BR_VS_1', 'BR_VS_2'], ['border'], [], 'u1');
@@ -67,9 +78,11 @@ describe('UpdateConstituencyDto', () => {
   it('accepts phase (or null) and GEN / SC / ST', async () => {
     expect(await errorsFor({ phase: 4, type: 'ST' })).toEqual([]);
     expect(await errorsFor({ phase: null })).toEqual([]);
+    expect(await errorsFor({ phase: 20 })).toEqual([]);
   });
   it('rejects a bad phase or reservation, and a null reservation', async () => {
     expect(await errorsFor({ phase: 0 })).toContain('phase');
+    expect(await errorsFor({ phase: 21 })).toContain('phase');
     expect(await errorsFor({ type: 'OBC' })).toContain('type');
     expect(await errorsFor({ type: null })).toContain('type');
   });

@@ -159,6 +159,12 @@ describe('CandidatesService update / link audit rows', () => {
     })]);
   });
 
+  it('linkPerson to the person already linked writes no audit row', async () => {
+    const { svc, prisma } = make();
+    await expect(svc.linkPerson('c1', 'p-old', 'u1')).resolves.toMatchObject({ person_id: 'p-old' });
+    expect(prisma.audit_logs.create).not.toHaveBeenCalled();
+  });
+
   it('unlinkPerson writes one CANDIDATE_UNLINK_PERSON row', async () => {
     const { svc, prisma } = make();
     await svc.unlinkPerson('c1', 'u1');

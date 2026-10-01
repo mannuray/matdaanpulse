@@ -14,8 +14,8 @@ export class UpdateConstituencyDto {
   @IsOptional() @IsInt() @Min(1)
   const_no?: number;
 
-  /** Polling phase (the column, not metadata.phase); null clears it. */
-  @IsOptional() @IsInt() @Min(1) @Max(99)
+  /** Polling phase (the column, not metadata.phase), 1–20 as in migration 017's copy; null clears it. */
+  @IsOptional() @IsInt() @Min(1) @Max(20)
   phase?: number | null;
 
   /** Reservation. The column is NOT NULL, so null is rejected (only "not sent" is optional). */

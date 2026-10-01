@@ -54,9 +54,10 @@ BEGIN
     END IF;
 END $$;
 
--- phase is SMALLINT: copy only whole numbers that fit (1–4 digits, trimmed).
+-- Copy only whole phases 1–20 (trimmed), the same limit as the admin DTO. The regex alone decides
+-- (no numeric comparison next to it, since AND order is not guaranteed and the cast could see junk).
 UPDATE constituencies
 SET phase = btrim(metadata->>'phase')::smallint
 WHERE phase IS NULL
   AND metadata ? 'phase'
-  AND btrim(metadata->>'phase') ~ '^[0-9]{1,4}$';
+  AND btrim(metadata->>'phase') ~ '^([1-9]|1[0-9]|20)$';

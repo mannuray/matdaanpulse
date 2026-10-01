@@ -177,7 +177,8 @@ export class CandidatesService {
       where: { id: candidateId },
       data: { person_id: personId },
     });
-    await this.audit.record({
+    // Re-linking the same person changes nothing, so it leaves no audit row.
+    if (candidate.person_id !== personId) await this.audit.record({
       userId, action: 'CANDIDATE_LINK_PERSON', entityType: 'candidate', entityId: candidateId,
       oldValue: { person_id: candidate.person_id }, newValue: { person_id: personId },
     });
