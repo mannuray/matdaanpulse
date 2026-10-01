@@ -1,25 +1,41 @@
+import {
+  LayoutDashboard, Radio, Vote, FileCog, Flag, Users, UserRound, Map, MessageSquare, UserCog, History, Activity,
+  type LucideIcon,
+} from 'lucide-react';
+
 export interface NavItem {
   path: string;
   label: string;
-  icon: string;
+  icon: LucideIcon;
   roles: string[];
 }
 
-/**
- * MODEL: Navigation Schema (MVC: Model)
- * Defines the application structure and access control rules.
- */
-export const NAV_SCHEMA: NavItem[] = [
-  { path: '/', label: 'Dashboard', icon: '\u2302', roles: [] },
-  { path: '/elections', label: 'Elections', icon: '\u2611', roles: ['SUPER_ADMIN', 'EDITOR'] },
-  { path: '/manifests', label: 'Manifests', icon: '\u2699', roles: ['SUPER_ADMIN', 'EDITOR'] },
-  { path: '/parties', label: 'Parties', icon: '\u25CF', roles: ['SUPER_ADMIN', 'EDITOR'] },
-  { path: '/candidates', label: 'Candidates', icon: '\u263A', roles: ['SUPER_ADMIN', 'EDITOR'] },
-  { path: '/persons', label: 'Persons', icon: '\u265F', roles: ['SUPER_ADMIN', 'EDITOR'] },
-  { path: '/constituencies', label: 'Constituencies', icon: '\u25A3', roles: ['SUPER_ADMIN', 'EDITOR'] },
-  { path: '/overrides', label: 'Live Console', icon: '\u270E', roles: ['SUPER_ADMIN', 'EDITOR'] },
-  { path: '/feedback', label: 'Feedback', icon: '\u2709', roles: ['SUPER_ADMIN', 'EDITOR'] },
-  { path: '/users', label: 'Users', icon: '\u263B', roles: ['SUPER_ADMIN'] },
-  { path: '/logs', label: 'Audit Logs', icon: '\u2630', roles: ['SUPER_ADMIN'] },
-  { path: '/status', label: 'System status', icon: '\u2665', roles: ['SUPER_ADMIN'] },
+export interface NavGroup {
+  label: 'Counting' | 'Data' | 'Admin';
+  items: NavItem[];
+}
+
+const EDIT = ['SUPER_ADMIN', 'EDITOR'];
+const SUPER = ['SUPER_ADMIN'];
+
+/** MODEL: navigation structure + access rules (sidebar groups). */
+export const NAV_GROUPS: NavGroup[] = [
+  { label: 'Counting', items: [
+    { path: '/', label: 'Dashboard', icon: LayoutDashboard, roles: [] },
+    { path: '/overrides', label: 'Live console', icon: Radio, roles: EDIT },
+  ] },
+  { label: 'Data', items: [
+    { path: '/elections', label: 'Elections', icon: Vote, roles: EDIT },
+    { path: '/manifests', label: 'Manifests', icon: FileCog, roles: EDIT },
+    { path: '/parties', label: 'Parties', icon: Flag, roles: EDIT },
+    { path: '/candidates', label: 'Candidates', icon: Users, roles: EDIT },
+    { path: '/persons', label: 'Persons', icon: UserRound, roles: EDIT },
+    { path: '/constituencies', label: 'Constituencies', icon: Map, roles: EDIT },
+  ] },
+  { label: 'Admin', items: [
+    { path: '/feedback', label: 'Feedback', icon: MessageSquare, roles: EDIT },
+    { path: '/users', label: 'Users', icon: UserCog, roles: SUPER },
+    { path: '/logs', label: 'Audit logs', icon: History, roles: SUPER },
+    { path: '/status', label: 'System status', icon: Activity, roles: SUPER },
+  ] },
 ];

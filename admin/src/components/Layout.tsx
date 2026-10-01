@@ -1,56 +1,26 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { NAV_SCHEMA } from '../utils/navigation.config';
+import { Outlet, useLocation } from 'react-router-dom';
+import { ElectionProvider } from '../context/ElectionContext';
+import { ShellStatusProvider } from '../context/ShellStatusContext';
+import { Sidebar } from './shell/Sidebar';
+import { TopBar } from './shell/TopBar';
 
-/**
- * VIEW: Admin Layout (MVC: View)
- * Orchestrates the primary shell, sidebar, and content area.
- */
+/** VIEW: admin shell — grouped sidebar, top bar with global election picker, page outlet. */
 export default function Layout() {
-  const { user, logout, hasRole } = useAuth();
-  const location = useLocation();
-
-  const visibleItems = NAV_SCHEMA.filter(
-    (item) => item.roles.length === 0 || item.roles.some((r) => hasRole(r))
-  );
-
-  const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
-  };
-
+  // Rebuilt pages manage their own padding; legacy pages keep `.admin-content` padding until they migrate.
+  const bare = useLocation().pathname.startsWith('/overrides');
   return (
-    <div className="admin-layout">
-      <aside className="admin-sidebar">
-        <div className="admin-sidebar-header">
-          <h2><img src="/logo-mark.png" alt="" aria-hidden className="admin-logo-mark" />MatdaanPulse Admin</h2>
-          {user && (
-            <div className="user-info">
-              {user.name} &middot; <span className={`badge badge-${user.role.toLowerCase().replace('_', '-')}`}>{user.role.replace('_', ' ')}</span>
-            </div>
-          )}
+    <ElectionProvider>
+      <ShellStatusProvider>
+        <div className="flex h-screen bg-page font-sans text-ink">
+          <Sidebar />
+          <div className="flex min-w-0 flex-1 flex-col">
+            <TopBar />
+            <main className={bare ? 'min-h-0 flex-1 overflow-hidden' : 'admin-content min-h-0 max-h-none flex-1 overflow-y-auto'}>
+              <Outlet />
+            </main>
+          </div>
         </div>
-        <nav>
-          {visibleItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`admin-nav-link ${isActive(item.path) ? 'active' : ''}`}
-            >
-              <span className="nav-icon">{item.icon}</span>
-              <span className="nav-label">{item.label}</span>
-            </Link>
-          ))}
-        </nav>
-        <div className="admin-sidebar-footer">
-          <button onClick={logout} className="btn btn-outline" style={{ flex: 1, fontSize: 13 }}>
-            Logout
-          </button>
-        </div>
-      </aside>
-      <main className="admin-content">
-        <Outlet />
-      </main>
-    </div>
+      </ShellStatusProvider>
+    </ElectionProvider>
   );
 }
