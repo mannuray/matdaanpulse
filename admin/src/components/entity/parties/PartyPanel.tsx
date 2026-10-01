@@ -1,9 +1,10 @@
 import { ExternalLink } from 'lucide-react';
-import { usePartyEdit, type PartyForm } from '../../../hooks/usePartyEdit';
+import { usePartyEdit, isValidYear, type PartyForm } from '../../../hooks/usePartyEdit';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { Sheet } from '../../ui/Sheet';
 import { Field, FormSection } from '../../ui/Field';
 import { Input, Textarea } from '../../ui/Input';
+import { Button } from '../../ui/Button';
 import { EmptyState } from '../../ui/EmptyState';
 import { PanelFooter } from '../PanelFooter';
 import { ColourField } from './ColourField';
@@ -25,6 +26,7 @@ export function PartyPanel({ id, candidateCount, onClose, onSaved }: PartyPanelP
 
   const set = (patch: Partial<PartyForm>) => setForm({ ...form, ...patch });
   const nameError = form.name.trim() ? fieldErrors.name : 'Name is required';
+  const yearError = isValidYear(form.founded_year) ? fieldErrors.founded_year : 'Enter a 4-digit year';
   const save = async () => { if (await ed.handleSave()) onSaved(); };
   const subtitle = party
     ? [party.id, candidateCount !== undefined ? `${candidateCount.toLocaleString('en-IN')} candidates` : null].filter(Boolean).join(' · ')
@@ -37,12 +39,14 @@ export function PartyPanel({ id, candidateCount, onClose, onSaved }: PartyPanelP
       onRequestClose={onClose}
       title={party?.name ?? 'Party'}
       description={subtitle}
-      footer={party ? <PanelFooter dirty={ed.dirty} saving={ed.saving} canSave={!!form.name.trim()} onCancel={ed.reset} onSave={save} /> : undefined}
+      footer={party ? <PanelFooter dirty={ed.dirty} saving={ed.saving} canSave={!!form.name.trim() && isValidYear(form.founded_year)} onCancel={ed.reset} onSave={save} /> : undefined}
     >
       {!party ? (
         ed.loading
           ? <p className="py-10 text-center text-sm text-muted">Loading party…</p>
-          : <EmptyState title="Party not found" description="It may have been removed. Close this panel to go back to the list." />
+          : ed.loadError === 'failed'
+            ? <EmptyState title="Could not load party" description="Check the connection and try again." action={<Button variant="outline" size="sm" onClick={() => { void ed.refresh(); }}>Try again</Button>} />
+            : <EmptyState title="Party not found" description="It may have been removed. Close this panel to go back to the list." />
       ) : (
         <div className="space-y-5">
           <div className="flex items-center gap-3">
@@ -77,8 +81,8 @@ export function PartyPanel({ id, candidateCount, onClose, onSaved }: PartyPanelP
             <Field label="Leader" error={fieldErrors.leader_name}>
               <Input value={form.leader_name} onChange={(e) => set({ leader_name: e.target.value })} />
             </Field>
-            <Field label="Founded year" error={fieldErrors.founded_year}>
-              <Input inputMode="numeric" value={form.founded_year} onChange={(e) => set({ founded_year: e.target.value })} />
+            <Field label="Founded year" error={yearError}>
+              <Input inputMode="numeric" invalid={!!yearError} value={form.founded_year} onChange={(e) => set({ founded_year: e.target.value })} />
             </Field>
             <Field label="Headquarters" error={fieldErrors.headquarters}>
               <Input value={form.headquarters} onChange={(e) => set({ headquarters: e.target.value })} />

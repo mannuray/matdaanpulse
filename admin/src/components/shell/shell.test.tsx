@@ -4,7 +4,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { Sidebar } from './Sidebar';
-import { ElectionPicker } from './ElectionPicker';
+import { ElectionPicker, shortElectionName } from './ElectionPicker';
 
 const auth = { user: { id: 'u', name: 'Mannu K', role: 'EDITOR', email: 'x' }, logout: vi.fn(), hasRole: (r: string) => r === 'EDITOR' };
 vi.mock('../../context/AuthContext', () => ({ useAuth: () => auth }));
@@ -97,5 +97,14 @@ describe('ElectionPicker', () => {
     fireEvent.change(screen.getByLabelText('Election'), { target: { value: 'e2' } });
     expect(confirm).not.toHaveBeenCalled();
     expect(election.setElectionId).toHaveBeenCalledWith('e2');
+  });
+});
+
+describe('shortElectionName', () => {
+  it('national Lok Sabha becomes "Lok Sabha <year>"', () => {
+    expect(shortElectionName('Lok Sabha General Election 2029', 'LS', 2029)).toBe('Lok Sabha 2029');
+  });
+  it('state assemblies keep the state and the type', () => {
+    expect(shortElectionName('Bihar Vidhan Sabha 2025', 'VS', 2025)).toBe('Bihar VS 2025');
   });
 });

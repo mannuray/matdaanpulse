@@ -2,6 +2,7 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { cleanup, fireEvent, screen, waitFor, within } from '@testing-library/react';
 import type { Party } from '../types';
+import { ApiError } from '../services/api-client';
 
 const api = vi.hoisted(() => ({
   getPartiesPaginated: vi.fn(),
@@ -90,7 +91,7 @@ describe('Parties page', () => {
   });
 
   it('a deep link to an unknown party shows "not found" in the panel', async () => {
-    api.getParty.mockRejectedValueOnce(new Error('Party not found'));
+    api.getParty.mockRejectedValueOnce(new ApiError('Party not found', 404));
     renderAt('/parties/NOPE');
     expect(await within(await screen.findByRole('dialog')).findByText('Party not found')).toBeTruthy();
   });
@@ -119,5 +120,62 @@ describe('Parties page', () => {
     renderAt('/parties/BJP/edit?election=e1');
     expect(where()).toBe('/parties/BJP?election=e1');
     expect(await screen.findByRole('dialog')).toBeTruthy();
+  });
+
+  it('a non-404 load failure says "Could not load party" and Try again reloads', async () => {
+    api.getParty.mockRejectedValueOnce(new ApiError('boom', 500));
+    renderAt('/parties/BJP');
+    const panel = await screen.findByRole('dialog');
+    expect(await within(panel).findByText('Could not load party')).toBeTruthy();
+    expect(within(panel).queryByText('Party not found')).toBeNull();
+    fireEvent.click(within(panel).getByRole('button', { name: 'Try again' }));
+    expect(await within(panel).findByDisplayValue('Bharatiya Janata Party')).toBeTruthy();
+  });
+
+  it('a non-numeric founded year shows an error and disables Save; retyping the original year stays clean', async () => {
+    renderAt('/parties/BJP');
+    const panel = await screen.findByRole('dialog');
+    const year = await within(panel).findByLabelText('Founded year');
+    fireEvent.change(year, { target: { value: 'abc' } });
+    expect(within(panel).getByText('Enter a 4-digit year')).toBeTruthy();
+    expect((within(panel).getByRole('button', { name: 'Save changes' }) as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.change(year, { target: { value: '1980' } });
+    expect(within(panel).getByText('No changes')).toBeTruthy();
+  });
+
+  it('shows server field errors under the field', async () => {
+    api.updateParty.mockRejectedValueOnce(new ApiError('Validation failed', 400, 'VALIDATION', [{ field: 'name', message: 'Name already taken' }]));
+    renderAt('/parties/BJP');
+    const panel = await screen.findByRole('dialog');
+    fireEvent.change(await within(panel).findByDisplayValue('Bharatiya Janata Party'), { target: { value: 'Dup' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
+    expect(await within(panel).findByText('Name already taken')).toBeTruthy();
+  });
+
+  it('the State filter reaches the server and the Symbol filter narrows the rows', async () => {
+    api.getPartiesPaginated.mockImplementation(async () => ({
+      success: true,
+      data: [party('BJP', 'Bharatiya Janata Party', { symbol_url: 'https://x/lotus.png' }), party('INC', 'Indian National Congress')],
+      pagination: { page: 1, limit: 25, total: 2, totalPages: 1 },
+    }));
+    renderAt();
+    await within(table()).findByText('Bharatiya Janata Party');
+    await screen.findByRole('option', { name: 'Bihar' });
+    fireEvent.change(screen.getByLabelText('State'), { target: { value: '1' } });
+    await waitFor(() => expect(api.getPartiesPaginated).toHaveBeenLastCalledWith(1, 25, undefined, undefined, 1));
+    fireEvent.change(screen.getByLabelText('Symbol (this page)'), { target: { value: 'missing' } });
+    await waitFor(() => expect(within(table()).queryByText('Bharatiya Janata Party')).toBeNull());
+    expect(within(table()).getByText('Indian National Congress')).toBeTruthy();
+  });
+
+  it('Enter in the create form submits when required fields are filled', async () => {
+    renderAt('/parties/new');
+    const panel = await screen.findByRole('dialog', { name: 'New party' });
+    fireEvent.change(within(panel).getByLabelText('ID'), { target: { value: 'x' } });
+    fireEvent.submit(within(panel).getByLabelText('ID').closest('form')!);
+    expect(api.createParty).not.toHaveBeenCalled();
+    fireEvent.change(within(panel).getByLabelText('Name'), { target: { value: 'X Party' } });
+    fireEvent.submit(within(panel).getByLabelText('ID').closest('form')!);
+    await waitFor(() => expect(api.createParty).toHaveBeenCalledTimes(1));
   });
 });

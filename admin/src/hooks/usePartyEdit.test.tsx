@@ -12,7 +12,7 @@ vi.mock('../services/geo.service', () => ({
   updateParty: vi.fn(async () => ({})),
 }));
 import { usePartyEdit } from './usePartyEdit';
-import { updateParty } from '../services/geo.service';
+import { updateParty, getParty } from '../services/geo.service';
 
 const wrapper = ({ children }: { children: ReactNode }) => <ToastProvider>{children}</ToastProvider>;
 afterEach(() => vi.clearAllMocks());
@@ -36,5 +36,20 @@ describe('usePartyEdit', () => {
     act(() => result.current.setForm({ ...result.current.form, founded_year: '1981' }));
     await act(() => result.current.handleSave());
     expect(updateParty).toHaveBeenCalledWith('BJP', expect.objectContaining({ founded_year: 1981, name: 'Bharatiya Janata Party' }));
+  });
+
+  it('edits typed while a save is in flight are kept and stay dirty', async () => {
+    let release!: () => void;
+    vi.mocked(updateParty).mockImplementationOnce(() => new Promise((r) => { release = () => r({} as never); }));
+    const { result } = renderHook(() => usePartyEdit('BJP'), { wrapper });
+    await waitFor(() => expect(result.current.party).not.toBeNull());
+    act(() => result.current.setForm({ ...result.current.form, leader_name: 'A' }));
+    let saving!: Promise<boolean>;
+    act(() => { saving = result.current.handleSave(); });
+    act(() => result.current.setForm({ ...result.current.form, leader_name: 'AB' }));
+    await act(async () => { release(); await saving; });
+    expect(vi.mocked(getParty)).toHaveBeenCalledTimes(2);
+    expect(result.current.form.leader_name).toBe('AB');
+    expect(result.current.dirty).toBe(true);
   });
 });

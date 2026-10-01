@@ -1,6 +1,9 @@
 import { Input } from '../../ui/Input';
 
 const HEX = /^#[0-9a-f]{6}$/i;
+const SHORT = /^#([0-9a-f])([0-9a-f])([0-9a-f])$/i;
+/** #rgb -> #rrggbb; anything else unchanged. */
+const expand = (v: string) => v.replace(SHORT, '#$1$1$2$2$3$3');
 
 /** Colour picker + hex text, kept in sync. The picker needs a valid #rrggbb, so it falls back to slate. */
 export function ColourField({ value, error, onChange }: { value: string; error?: string; onChange: (v: string) => void }) {
@@ -11,7 +14,7 @@ export function ColourField({ value, error, onChange }: { value: string; error?:
         <input
           type="color"
           aria-label="Colour picker"
-          value={HEX.test(value) ? value : '#94a3b8'}
+          value={HEX.test(expand(value)) ? expand(value) : '#94a3b8'}
           onChange={(e) => onChange(e.target.value)}
           className="h-9 w-10 shrink-0 cursor-pointer rounded-control border border-line bg-card p-1"
         />

@@ -17,12 +17,12 @@ export function PartyCreatePanel({ saving, onCreate, onClose }: { saving: boolea
   useUnsavedGuard(dirty);
   const set = (patch: Partial<typeof EMPTY>) => setForm({ ...form, ...patch });
   const canSave = !!form.id.trim() && !!form.name.trim();
-  const submit = () => onCreate({
+  const submit = () => { if (canSave && !saving) void onCreate({
     id: form.id.trim(),
     name: form.name.trim(),
     color: form.color,
     abbreviation: form.abbreviation.trim() || undefined,
-  });
+  }); };
 
   return (
     <Sheet
@@ -32,6 +32,7 @@ export function PartyCreatePanel({ saving, onCreate, onClose }: { saving: boolea
       description="Add the profile and symbols after it is created."
       footer={<PanelFooter dirty={dirty} saving={saving} canSave={canSave} onCancel={() => setForm(EMPTY)} onSave={submit} saveLabel="Create party" />}
     >
+      <form onSubmit={(e) => { e.preventDefault(); submit(); }}>
       <FormSection title="Details">
         <Field label="ID" hint="Short code, e.g. BJP. It cannot be changed later.">
           <Input value={form.id} onChange={(e) => set({ id: e.target.value.toUpperCase() })} />
@@ -44,6 +45,8 @@ export function PartyCreatePanel({ saving, onCreate, onClose }: { saving: boolea
         </Field>
         <ColourField value={form.color} onChange={(color) => set({ color })} />
       </FormSection>
+      <button type="submit" hidden aria-hidden tabIndex={-1} />
+      </form>
     </Sheet>
   );
 }
