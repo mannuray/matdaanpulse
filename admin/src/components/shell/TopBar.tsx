@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as Menu from '@radix-ui/react-dropdown-menu';
 import { Search } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import { useShellStatus } from '../../context/ShellStatusContext';
+import { confirmDiscardEdits, useShellStatus, type LiveStreamState } from '../../context/ShellStatusContext';
 import { ElectionPicker } from './ElectionPicker';
 import { HealthDot } from './HealthDot';
 import { ShortcutsDialog } from './ShortcutsDialog';
@@ -10,18 +10,19 @@ import { CommandPalette } from './CommandPalette';
 import { Kbd } from '../ui/Kbd';
 import { cn } from '../ui/cn';
 
-const LIVE_PILL = {
+const LIVE_PILL: Record<Exclude<LiveStreamState, 'idle'>, { text: string; cls: string; dot: string }> = {
   open: { text: 'Live updates on', cls: 'bg-ok-soft text-ok-text border-ok/30', dot: 'bg-ok' },
   connecting: { text: 'Connecting…', cls: 'bg-warn-soft text-warn-text border-warn/30', dot: 'bg-warn' },
   reconnecting: { text: 'Reconnecting…', cls: 'bg-warn-soft text-warn-text border-warn/30', dot: 'bg-warn' },
-} as const;
+  offline: { text: 'Live updates offline', cls: 'bg-bad-soft text-bad-text border-bad/30', dot: 'bg-bad' },
+};
 
 const isMac = () => typeof navigator !== 'undefined'
   && /mac/i.test((navigator as Navigator & { userAgentData?: { platform?: string } }).userAgentData?.platform ?? navigator.platform ?? '');
 
 export function TopBar() {
   const { user, logout, hasRole } = useAuth();
-  const { live } = useShellStatus();
+  const { live, editorDirty } = useShellStatus();
   const [paletteOpen, setPaletteOpen] = useState(false);
   const initials = (user?.name ?? '?').split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase();
   const pill = live === 'idle' ? null : LIVE_PILL[live];
@@ -35,6 +36,12 @@ export function TopBar() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+
+  // Logging out unmounts any open editor: unsaved edits ask first (declining keeps the menu open).
+  const signOut = (e: Event) => {
+    if (!confirmDiscardEdits(editorDirty)) { e.preventDefault(); return; }
+    logout();
+  };
 
   return (
     <header className="tw-ui sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b border-line bg-card px-6">
@@ -67,7 +74,7 @@ export function TopBar() {
           <Menu.Portal>
             <Menu.Content align="end" sideOffset={6} className="tw-ui z-50 min-w-44 rounded-card border border-line bg-card p-1 shadow-lg">
               <div className="px-2.5 py-1.5 text-[11px] text-muted">{user?.role.replace('_', ' ').toLowerCase()}</div>
-              <Menu.Item onSelect={logout} className="cursor-pointer rounded-control px-2.5 py-1.5 text-sm text-ink outline-none data-[highlighted]:bg-subtle">
+              <Menu.Item onSelect={signOut} className="cursor-pointer rounded-control px-2.5 py-1.5 text-sm text-ink outline-none data-[highlighted]:bg-subtle">
                 Log out
               </Menu.Item>
             </Menu.Content>

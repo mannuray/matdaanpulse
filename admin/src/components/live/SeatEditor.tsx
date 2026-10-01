@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { Lock, RefreshCw } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Kbd } from '../ui/Kbd';
+import { ConfirmDialog } from '../ui/ConfirmDialog';
 import { StatusPill } from '../ui/Badge';
 import { cn } from '../ui/cn';
 import { useSeatEditor } from '../../hooks/useSeatEditor';
@@ -30,6 +31,7 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
   const ed = useSeatEditor(seat);
   const [error, setError] = useState<string | null>(null);
   const readOnly = lock.state === 'locked';
+  const [confirmDeclare, setConfirmDeclare] = useState(false);
 
   const submit = async (declare: boolean) => {
     if (readOnly || saving) return;
@@ -44,6 +46,7 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
   useEffect(() => () => onDirtyChange?.(false), [onDirtyChange]);
 
   useImperativeHandle(ref, () => ({ save: () => void submit(false), discard: ed.discard, dirty: ed.dirty }));
+  const leaderName = ed.rows.find((r) => r.result_id === ed.leaderId)?.candidate_name;
 
   const cur = Number(ed.round.current) || 0;
   const tot = Number(ed.round.total) || 0;
@@ -163,14 +166,24 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
           </span>
           <div className="flex items-center gap-2.5">
             <Button variant="outline" onClick={ed.discard} disabled={!ed.dirty || saving}>Discard</Button>
-            <Button variant="primary" onClick={() => void submit(false)} disabled={saving || readOnly}>Save seat</Button>
-            <Button variant="success" onClick={() => void submit(true)} disabled={saving || readOnly || !ed.leaderId}>Declare won</Button>
+            <Button variant="primary" onClick={() => void submit(false)} disabled={saving || readOnly || !ed.dirty}>Save seat</Button>
+            <Button variant="success" onClick={() => setConfirmDeclare(true)} disabled={saving || readOnly || !ed.leaderId}>Declare won</Button>
           </div>
         </div>
         <div className="flex items-center justify-end gap-2 text-[11px] text-muted">
           <span>Navigate:</span><Kbd>↑</Kbd><Kbd>↓</Kbd><span aria-hidden>|</span><Kbd>Enter</Kbd><span>save</span><span aria-hidden>|</span><Kbd>Esc</Kbd><span>discard</span>
         </div>
       </footer>
+      <ConfirmDialog
+        open={confirmDeclare}
+        title={`Declare ${leaderName ?? 'the leader'} the winner?`}
+        description={`${leaderName ?? 'The leader'} is set to Won and every other candidate to Lost, then the seat is saved. The public results page shows it straight away.`}
+        confirmLabel="Yes, declare won"
+        tone="primary"
+        busy={saving}
+        onConfirm={() => { void submit(true).finally(() => setConfirmDeclare(false)); }}
+        onCancel={() => setConfirmDeclare(false)}
+      />
     </section>
   );
 });

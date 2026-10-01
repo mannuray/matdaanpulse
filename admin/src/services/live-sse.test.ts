@@ -61,4 +61,35 @@ describe('admin live SSE subscription', () => {
     expect(sseRetryDelay(3, () => 0)).toBe(8000);
     expect(sseRetryDelay(20, () => 1)).toBe(31_000);
   });
+
+  it('reports offline after three failed attempts in a row; a retry does not flip it back; open again once connected', async () => {
+    const onStatus = vi.fn();
+    const stop = subscribeLiveUpdates(EID, { onResultUpdate: vi.fn(), onBatchUpdate: vi.fn(), onStatus });
+    await vi.advanceTimersByTimeAsync(0);
+    expect(onStatus.mock.calls.map(([s]) => s)).toEqual(['connecting']);
+    FakeEventSource.instances[0].onerror!();
+    await vi.advanceTimersByTimeAsync(2_100);
+    FakeEventSource.instances[1].onerror!();
+    await vi.advanceTimersByTimeAsync(3_100);
+    FakeEventSource.instances[2].onerror!();
+    expect(onStatus.mock.calls.map(([s]) => s)).toEqual(['connecting', 'reconnecting', 'reconnecting', 'offline']);
+    await vi.advanceTimersByTimeAsync(5_100);
+    expect(FakeEventSource.instances).toHaveLength(4);
+    expect(onStatus).toHaveBeenLastCalledWith('offline');
+    FakeEventSource.instances[3].onopen!();
+    expect(onStatus).toHaveBeenLastCalledWith('open');
+    stop();
+  });
+
+  it('a failing token request counts as a failed attempt', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => { throw new TypeError('Failed to fetch'); }));
+    const onStatus = vi.fn();
+    const stop = subscribeLiveUpdates(EID, { onResultUpdate: vi.fn(), onBatchUpdate: vi.fn(), onStatus });
+    await vi.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(2_100);
+    await vi.advanceTimersByTimeAsync(3_100);
+    expect(onStatus.mock.calls.map(([s]) => s)).toEqual(['connecting', 'reconnecting', 'reconnecting', 'offline']);
+    expect(FakeEventSource.instances).toHaveLength(0);
+    stop();
+  });
 });

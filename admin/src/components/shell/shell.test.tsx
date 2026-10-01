@@ -5,23 +5,26 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { Sidebar } from './Sidebar';
 import { ElectionPicker, shortElectionName } from './ElectionPicker';
+import { TopBar } from './TopBar';
+import { HealthDot } from './HealthDot';
 
 const auth = { user: { id: 'u', name: 'Mannu K', role: 'EDITOR', email: 'x' }, logout: vi.fn(), hasRole: (r: string) => r === 'EDITOR' };
 vi.mock('../../context/AuthContext', () => ({ useAuth: () => auth }));
-const shell = vi.hoisted(() => ({ editorDirty: false }));
+const shell = vi.hoisted(() => ({ editorDirty: false, live: 'idle' as 'idle' | 'connecting' | 'open' | 'reconnecting' | 'offline' }));
 vi.mock('../../context/ShellStatusContext', async (importOriginal) => ({
   ...(await importOriginal<typeof import('../../context/ShellStatusContext')>()),
-  useShellStatus: () => ({ live: 'idle', setLive: () => {}, editorDirty: shell.editorDirty, markDirty: () => {} }),
+  useShellStatus: () => ({ live: shell.live, setLive: () => {}, editorDirty: shell.editorDirty, markDirty: () => {} }),
 }));
-const election = vi.hoisted(() => ({ setElectionId: vi.fn() }));
+const election = vi.hoisted(() => ({
+  setElectionId: vi.fn(),
+  // Stable identity: CommandPalette's search effect depends on `elections`, so a fresh array per render would loop.
+  elections: [
+    { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, status: 'Live' },
+    { id: 'e2', name: 'Kerala Vidhan Sabha 2021', type: 'VS', year: 2021, status: 'Completed' },
+  ],
+}));
 vi.mock('../../context/ElectionContext', () => ({
-  useElection: () => ({
-    elections: [
-      { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, status: 'Live' },
-      { id: 'e2', name: 'Kerala Vidhan Sabha 2021', type: 'VS', year: 2021, status: 'Completed' },
-    ],
-    electionId: 'e1', setElectionId: election.setElectionId,
-  }),
+  useElection: () => ({ elections: election.elections, electionId: 'e1', setElectionId: election.setElectionId }),
 }));
 // Radix Select needs pointer capture / scrollIntoView in jsdom; a native <select> exercises the same onValueChange.
 vi.mock('@radix-ui/react-select', () => {
@@ -35,8 +38,26 @@ vi.mock('@radix-ui/react-select', () => {
     ItemText: Pass,
   };
 });
+vi.mock('@radix-ui/react-dropdown-menu', () => {
+  const Pass = ({ children }: { children?: ReactNode }) => <>{children}</>;
+  return {
+    Root: Pass, Portal: Pass, Content: Pass,
+    Trigger: ({ children }: { children?: ReactNode }) => <div>{children}</div>,
+    Item: ({ children, onSelect }: { children?: ReactNode; onSelect?: (e: Event) => void }) => (
+      <button type="button" onClick={() => onSelect?.(new Event('select', { cancelable: true }))}>{children}</button>
+    ),
+  };
+});
 function Where() { return <output data-testid="where">{useLocation().pathname}</output>; }
-afterEach(() => { cleanup(); shell.editorDirty = false; election.setElectionId.mockClear(); vi.restoreAllMocks(); });
+afterEach(() => {
+  cleanup();
+  shell.editorDirty = false;
+  shell.live = 'idle';
+  election.setElectionId.mockClear();
+  auth.logout.mockClear();
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
 
 describe('Sidebar', () => {
   it('groups items under sentence-case headings and hides SUPER_ADMIN items for editors', () => {
@@ -106,5 +127,61 @@ describe('shortElectionName', () => {
   });
   it('state assemblies keep the state and the type', () => {
     expect(shortElectionName('Bihar Vidhan Sabha 2025', 'VS', 2025)).toBe('Bihar VS 2025');
+  });
+});
+
+describe('TopBar', () => {
+  it('with unsaved edits, Log out asks first; cancel keeps the session, confirm logs out', () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true })));
+    shell.editorDirty = true;
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    fireEvent.click(screen.getByRole('button', { name: 'Log out' }));
+    expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
+    expect(auth.logout).not.toHaveBeenCalled();
+    confirm.mockReturnValue(true);
+    fireEvent.click(screen.getByRole('button', { name: 'Log out' }));
+    expect(auth.logout).toHaveBeenCalledTimes(1);
+  });
+
+  it('Log out does not ask when nothing is unsaved', () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true })));
+    const confirm = vi.spyOn(window, 'confirm');
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    fireEvent.click(screen.getByRole('button', { name: 'Log out' }));
+    expect(confirm).not.toHaveBeenCalled();
+    expect(auth.logout).toHaveBeenCalledTimes(1);
+  });
+
+  it('the live pill reads "Live updates offline" in rose when the stream is offline', () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true })));
+    shell.live = 'offline';
+    render(<MemoryRouter><TopBar /></MemoryRouter>);
+    const pill = screen.getByText('Live updates offline');
+    expect(pill.className).toContain('bg-bad-soft');
+    expect(pill.className).toContain('text-bad-text');
+  });
+});
+
+describe('HealthDot', () => {
+  // The health request never settles here, so the label stays "Checking systems…" for the whole test.
+  it('with unsaved edits, the link to System status asks first and cancel stays put', () => {
+    vi.stubGlobal('fetch', vi.fn(() => new Promise(() => {})));
+    shell.editorDirty = true;
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+    render(<MemoryRouter initialEntries={['/parties/BJP']}><HealthDot canOpenStatus /><Routes><Route path="*" element={<Where />} /></Routes></MemoryRouter>);
+    fireEvent.click(screen.getByRole('link', { name: 'Checking systems…' }));
+    expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
+    expect(screen.getByTestId('where').textContent).toBe('/parties/BJP');
+    confirm.mockReturnValue(true);
+    fireEvent.click(screen.getByRole('link', { name: 'Checking systems…' }));
+    expect(screen.getByTestId('where').textContent).toBe('/status');
+  });
+
+  it('without the status role it is a labelled dot, not a link', () => {
+    vi.stubGlobal('fetch', vi.fn(() => new Promise(() => {})));
+    render(<MemoryRouter><HealthDot canOpenStatus={false} /></MemoryRouter>);
+    expect(screen.queryByRole('link')).toBeNull();
+    expect(screen.getByRole('img', { name: 'Checking systems…' })).toBeTruthy();
   });
 });

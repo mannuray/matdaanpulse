@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { useState } from 'react';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 
 const { move, saveSeat, lockState, page } = vi.hoisted(() => ({
   page: { electionId: 'e1', electionsError: null as string | null },
@@ -139,14 +139,31 @@ describe('LiveConsole page', () => {
     expect(saveSeat).not.toHaveBeenCalled();
   });
 
-  it('Save seat on a clean seat sends nothing; Declare won still works', async () => {
+  it('Save seat is disabled while the seat is clean, enabled after an edit', () => {
     renderPage();
-    fireEvent.click(screen.getByRole('button', { name: 'Save seat' }));
-    await Promise.resolve();
-    expect(saveSeat).not.toHaveBeenCalled();
+    const save = () => screen.getByRole('button', { name: 'Save seat' }) as HTMLButtonElement;
+    expect(save().disabled).toBe(true);
+    fireEvent.change(screen.getByLabelText('Votes for Anil Kumar'), { target: { value: '50,000' } });
+    expect(save().disabled).toBe(false);
+  });
+
+  it('Declare won asks first; cancel saves nothing, confirming declares the leader and saves', async () => {
+    renderPage();
     fireEvent.click(screen.getByRole('button', { name: 'Declare won' }));
-    await Promise.resolve();
-    expect(saveSeat).toHaveBeenCalledTimes(1);
+    const dialog = screen.getByRole('dialog', { name: 'Declare Ravi Prasad the winner?' });
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Cancel' }));
+    expect(saveSeat).not.toHaveBeenCalled();
+    expect(screen.queryByRole('dialog')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Declare won' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Yes, declare won' }));
+    await waitFor(() => expect(saveSeat).toHaveBeenCalledTimes(1));
+    expect(saveSeat).toHaveBeenCalledWith('s2', expect.objectContaining({
+      overrides: [
+        { result_id: 'a', votes: 61204, status: 'WON', margin: 12214 },
+        { result_id: 'b', votes: 48990, status: 'LOST', margin: 12214 },
+      ],
+    }));
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
   });
 
   it('arrow keys already handled by a widget, or pressed inside a listbox/menu/dialog, do not move seats', () => {

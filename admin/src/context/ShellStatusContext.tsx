@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
 
-export type LiveStreamState = 'idle' | 'connecting' | 'open' | 'reconnecting';
+/** `offline`: SSE_OFFLINE_AFTER failed (re)connects in a row; the stream keeps retrying. */
+export type LiveStreamState = 'idle' | 'connecting' | 'open' | 'reconnecting' | 'offline';
 interface ShellStatus {
   live: LiveStreamState;
   setLive: (s: LiveStreamState) => void;
