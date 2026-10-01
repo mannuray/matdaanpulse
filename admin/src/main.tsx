@@ -1,7 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import './theme/admin.css';
+import './theme/tailwind.css';
+import './theme/legacy.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

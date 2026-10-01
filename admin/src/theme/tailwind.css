@@ -1,0 +1,42 @@
+@layer legacy, theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+/* Tailwind only scans these paths — add an @source line for every new file/dir that uses classes. */
+@source "../components/ui";
+@source "../components/shell";
+@source "../components/live";
+@source "../components/Layout.tsx";
+@source "../pages/LiveConsole.tsx";
+
+@theme {
+  --radius-sm: initial;
+  --radius-lg: initial;
+  --radius-full: initial;
+  --font-mono: initial;
+  --color-sidebar: #1e293b;
+  --color-sidebar-ink: #cbd5e1;
+  --color-page: #f8fafc;
+  --color-subtle: #f1f5f9;
+  --color-card: #ffffff;
+  --color-ink: #0f172a;
+  --color-ink-2: #475569;
+  --color-muted: #94a3b8;
+  --color-accent: #4f46e5;
+  --color-accent-hover: #4338ca;
+  --color-accent-soft: #eef2ff;
+  --color-line: #e2e8f0;
+  --color-line-strong: #cbd5e1;
+  --color-ok: #10b981;
+  --color-ok-soft: #ecfdf5;
+  --color-ok-text: #065f46;
+  --color-warn: #f59e0b;
+  --color-warn-soft: #fffbeb;
+  --color-warn-text: #92400e;
+  --color-bad: #f43f5e;
+  --color-bad-soft: #fff1f2;
+  --color-bad-text: #9f1239;
+  --radius-control: 6px;
+  --radius-card: 10px;
+  --radius-panel: 16px;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+}

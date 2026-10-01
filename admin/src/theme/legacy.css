@@ -1,0 +1,2 @@
+@layer legacy, theme, base, components, utilities;
+@import "./admin.css" layer(legacy);
