@@ -25,15 +25,27 @@ const wrapper = ({ children }: { children: ReactNode }) => <ToastProvider>{child
 afterEach(() => vi.clearAllMocks());
 
 describe('useCandidateEdit save payload', () => {
-  it('has no photo_url, keeps 0 cases, sends empty age as null, and keeps other metadata', async () => {
+  it('has no photo_url, keeps 0 cases, sends emptied optional fields as null, and keeps other metadata', async () => {
     const { result } = renderHook(() => useCandidateEdit('c1'), { wrapper });
     await waitFor(() => expect(result.current.candidate).not.toBeNull());
     expect('photo_url' in result.current.form).toBe(false);
-    expect(result.current.form.criminal_cases).toBe(0);
+    expect(result.current.form.criminal_cases).toBe('0');
     act(() => result.current.setForm({ ...result.current.form, age: '' }));
     await act(() => result.current.handleSave());
     const [, payload] = vi.mocked(updateCandidate).mock.calls[0];
     expect(payload).not.toHaveProperty('photo_url');
-    expect(payload.metadata).toEqual({ affidavit_url: 'https://x/a.pdf', age: null, gender: '', education: '', criminal_cases: 0, assets: '' });
+    expect(payload.metadata).toEqual({ affidavit_url: 'https://x/a.pdf', age: null, gender: null, education: null, criminal_cases: 0, assets: null });
+  });
+
+  it('is clean after load, pre-fills the person search with the name while unlinked, and reset drops edits', async () => {
+    const { result } = renderHook(() => useCandidateEdit('c1'), { wrapper });
+    expect(result.current.loading).toBe(true);
+    await waitFor(() => expect(result.current.candidate).not.toBeNull());
+    expect(result.current.dirty).toBe(false);
+    expect(result.current.personSearch).toBe('Ravi Prasad');
+    act(() => result.current.setForm({ ...result.current.form, education: 'BA' }));
+    expect(result.current.dirty).toBe(true);
+    act(() => result.current.reset());
+    expect(result.current.dirty).toBe(false);
   });
 });

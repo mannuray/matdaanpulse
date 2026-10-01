@@ -15,9 +15,7 @@ import Feedback from './pages/Feedback';
 import SystemStatus from './pages/SystemStatus';
 import Parties from './pages/Parties';
 import { EditRedirect } from './components/routing/EditRedirect';
-import CandidateManager from './pages/CandidateManager';
-import CandidateDetail from './pages/CandidateDetail';
-import CandidateEdit from './pages/CandidateEdit';
+import Candidates from './pages/Candidates';
 import LiveConsole from './pages/LiveConsole';
 import ConstituencyManager from './pages/ConstituencyManager';
 import ConstituencyDetail from './pages/ConstituencyDetail';
@@ -61,9 +59,8 @@ function App() {
                 <Route path="parties/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Parties /></ProtectedRoute>} />
                 
                 {/* Candidates */}
-                <Route path="candidates" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateManager /></ProtectedRoute>} />
-                <Route path="candidates/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateDetail /></ProtectedRoute>} />
-                <Route path="candidates/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateEdit /></ProtectedRoute>} />
+                <Route path="candidates/:id/edit" element={<EditRedirect base="/candidates" />} />
+                <Route path="candidates/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Candidates /></ProtectedRoute>} />
                 
                 {/* Persons */}
                 <Route path="persons/:id/edit" element={<EditRedirect base="/persons" />} />
