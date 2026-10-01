@@ -25,6 +25,6 @@ import { AuthModule } from '../auth/auth.module';
     SeatLockService,
     LiveSseAccessGuard,
   ],
-  exports: [LivePublisher, ResultOverrideService, BulkOverrideService],
+  exports: [LivePublisher, ResultChangeNotifier, ResultOverrideService, BulkOverrideService],
 })
 export class LiveModule {}

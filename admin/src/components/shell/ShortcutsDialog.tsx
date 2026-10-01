@@ -3,9 +3,10 @@ import { CircleHelp, X } from 'lucide-react';
 import { Kbd } from '../ui/Kbd';
 
 const SHORTCUTS: [string[], string][] = [
+  [['⌘', 'K'], 'Search seats, candidates, parties, persons'],
   [['↑', '↓'], 'Move between seats (Live console)'],
-  [['Enter'], 'Save seat'],
-  [['Esc'], 'Discard edits'],
+  [['Enter'], 'Save seat / open the focused row'],
+  [['Esc'], 'Discard seat edits / close the record panel'],
   [['/'], 'Jump to seat search'],
 ];
 

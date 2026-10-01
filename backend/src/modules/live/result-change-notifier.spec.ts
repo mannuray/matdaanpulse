@@ -64,4 +64,11 @@ describe('ResultChangeNotifier.afterCommit', () => {
     ).resolves.toBeUndefined();
     expect(results.purgeElectionCache).toHaveBeenCalled(); // a failed memo invalidation does not skip the purge
   });
+
+  it('a change that is not an override (no overrideCount) skips the override counter but still invalidates, purges and publishes', async () => {
+    const { notifier, order, metrics } = make();
+    await notifier.afterCommit('e1', [row], { kind: 'single' });
+    expect(metrics.resultOverrides.add).not.toHaveBeenCalled();
+    expect(order).toEqual(['invalidate', 'purge', 'publish']);
+  });
 });

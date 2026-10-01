@@ -205,7 +205,7 @@ export function WatchlistEditor({
   };
 
   return (
-    <ManifestSection title="Watchlists" description="Track key candidates on the live results dashboard" count={items.length} defaultOpen={items.length > 0}>
+    <ManifestSection title="Watchlists" description="Track key candidates on the live results dashboard" count={items.length}>
       {items.length === 0 && <EmptyState text="No watchlists configured." />}
 
       {items.map((w, wIdx) => {

@@ -301,7 +301,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Auto-sync: when `value` changes externally, derives type/state from election object
 - [x] States sorted alphabetically with election count badge; 0-election states disabled
 - [x] Elections sorted by year descending within each dropdown
-- [x] Retrofitted into CandidateManager, LiveConsole, and ManifestEditor (replaced inline/flat dropdowns)
+- [x] Retrofitted into the Live Console and manifest editor (replaced inline/flat dropdowns). Superseded 2026-10: the top-bar picker is now the single election selector; entity pages no longer have their own pickers (see "Admin redesign: entity pages + ⌘K")
 
 ### Constituency Intelligence System (Admin)
 - [x] Database migration: `constituency_analysis` table + `constituencies.metadata` JSONB column
@@ -313,7 +313,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
   - Triggered via "Compute" button, uses `manifest.history` election IDs
 - [~] ~~AI enrichment pipeline (constituency briefings, demographics, key issues; candidate/person/party enrichment)~~ — **removed 2026-09-30**, see "Built-in AI and constituency briefing removed" below
 - [x] Constituency Manager admin page (`/constituencies`)
-  - ElectionPicker + search + tag filter
+  - Top-bar election + search + tag filter
   - Table with checkbox multi-select, tags as colored chips
   - Expandable row: editable tags, region, incumbency info, demographics
   - Bulk actions: add/remove tags across selected constituencies
@@ -326,6 +326,22 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - Live Console split view: seat list with Pending / Leading / Won filters, search, and lock indicators. The seat editor has every candidate editable, an auto-calculated margin (leader − runner-up; others = gap to leader), statuses that follow the votes, editable rounds, **Save seat** (one bulk call) and **Declare won**. Keyboard: ↑/↓, Enter, Esc, /. Unsaved seat edits are kept while searching/filtering (the selection is held while the editor is dirty); switching election, a sidebar link, or closing/reloading the tab asks first. Declared seats keep their statuses when votes are corrected, with a warning if the winner is no longer ahead; saving a clean seat sends nothing.
 - Seat locks: soft, advisory, held in Redis `lock:seat:{election}:{const}` (TTL 120 s, heartbeat 45 s). Endpoints `GET/POST /admin/live/locks` and `POST /admin/live/locks/release`, SSE `seat-lock`. Take-over is audited (`SEAT_LOCK_TAKEOVER`). With Redis down, locking is disabled and saving still works. A read-only viewer takes the lock as soon as the holder leaves (release event, or a retry every heartbeat after a TTL lapse); the seat list hides locks older than the TTL.
 - Styling: Tailwind v4 (utilities only, preflight off) + Radix. The legacy `admin.css` sits in a lower `legacy` cascade layer until Phase 3.
+
+### Admin redesign: entity pages + ⌘K (2026-10)
+- Elections, Parties, Persons, Candidates, Constituencies and Manifests share one pattern (`components/entity/EntityPage`, `components/ui/{DataTable,Sheet}`): a page header with a count, a toolbar, one table style (sticky header, selected row, empty state), and a record panel on the right. The panel is a non-modal Radix Dialog rendered in place in the page's flex row, 400px wide (Manifests: full width). The old per-entity pages and the legacy landing cards / election pickers are gone.
+- URLs: `/x/:id` opens a record and `/x/new` creates one (`useEntityRoute`); old `/x/:id/edit` links redirect; the query string (`?election=`) is kept.
+- Unsaved changes: every editor calls `useUnsavedGuard(dirty)` with per-owner dirty tracking. "Discard unsaved changes?" is asked on row switch, close, Esc, any sidebar link (including the current section), the election picker, ⌘K and tab close. The browser Back button is not guarded (BrowserRouter).
+- Candidates and Constituencies use the global top-bar election.
+- Role gating: Finalize (Elections), Merge duplicates (Persons) and Publish (Manifests) are SUPER_ADMIN only.
+- Elections: Go live and Finalize ask first; new elections appear in the top-bar picker at once (`ElectionContext.reload`).
+- Parties: server-side search and paging.
+- Persons: `?q=` search. Merge duplicates merges the found record **into** the open one, so the viewed person is kept.
+- Candidates (`/candidates`, panel at `/candidates/:id`): one seat of the global election at a time (searchable Seat select, default lowest seat number), All / Linked / Unlinked chips with counts, name search in the seat. The panel holds the affidavit form (age and criminal cases must be whole numbers), the read-only person photo, person linking (search pre-filled with the candidate's name) and same-name suggestions from other elections with "Link selected". A record of another election offers "Switch election".
+- New candidate (`/candidates/new`): name, party (Independent = the `IND` party row), seat of the global election, affidavit fields. `POST /admin/candidates` checks the seat belongs to the election (404 otherwise) and, in the same transaction, adds the candidate's results row (0 votes, `TRAILING`) so it shows up in the Live Console. A Finalized election is refused with 409 (`ELECTION_FINALIZED`); the page disables "New candidate" for it. After the commit the same post-commit steps as a result override run (live-version memo, cache purge, admin SSE `result-update`); a failure there is only logged.
+- Constituencies (`/constituencies`, panel at `/constituencies/:id`): seats of the global election, 100 per page with a pager; a new search returns to page 1. District and tag filters are labelled "(this page)" because the API only searches by name. Select-all and bulk "Add tag" act on the visible rows only; the selection clears when the page, search, filter or election changes. "Compute all analysis" asks for confirmation. The panel edits demographics (population whole number; literacy, urban and SC/ST % from 0 to 100 with one decimal; 0 is kept as 0, emptied fields are cleared), district, region, seat number (whole number, 1 or more), phase and tags (15 suggested tags plus free text), and shows seat history read-only.
+- Manifests (`/manifests`, full-width panel at `/manifests/:electionId`): one row per election, "Published" or "Not published" from the election's manifest URL. The panel has Summary (read-only counts, alliances, vote splits, comparison history, watchlists, map, milestones), Edit (all ten editors, every section expanded by default, collapsible by hand) and JSON tabs, a Draft badge, Save draft, and Publish (SUPER_ADMIN only, behind a confirm; unsaved edits are saved first). Invalid JSON blocks tab switches, Save draft and Publish. A failed load offers Try again; a 404 says the election was not found. Load order: draft, then published, then default.
+- ⌘K / Ctrl+K palette: searches pages, seats (selected election), candidates (selected election first), parties and persons. Opening a record from another election switches the election first.
+- Fixes: Party/Person paging; person merge direction (it used to delete the viewed person; also hot-fixed to production `main`, commit eb901a7); legacy `M`/`F` gender display and save; dead candidate photo field; `?q=` ignored on Persons; Constituencies capped at 100 rows; numeric 0 saved as null; NaN seat number.
 
 ### Party Symbols
 - [x] DB: `eci_symbol_url` column on `parties` table (migration 006)
@@ -584,7 +600,7 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] `GET /parties?page=1&limit=25&q=bharat` — paginated + searchable endpoint
 - [x] Backward compatible: `GET /parties` (no params) returns full array for frontend symbol cache
 - [x] QueryBuilder ILIKE search on name, id, abbreviation
-- [x] Admin `PartyManager` uses server-side search (debounced 300ms) + Prev/Next pagination (25/page)
+- [x] Admin Parties page uses server-side search (debounced 300ms) + Prev/Next pagination (25/page)
 - [x] Symbol filter (has logo / has ECI / missing) stays client-side on the current page
 
 ### District & Region Backfill

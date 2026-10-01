@@ -1,12 +1,20 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
-import { CandidateNotFoundException, PersonNotFoundException } from '../../common/exceptions';
+import {
+  CandidateNotFoundException, ConstituencyNotFoundException, ElectionFinalizedException, ElectionNotFoundException, PersonNotFoundException,
+} from '../../common/exceptions';
+import { ResultChangeNotifier } from '../live/result-change-notifier';
 import type { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
 @Injectable()
 export class CandidatesService {
-  constructor(private readonly prisma: PrismaService) {}
+  private readonly logger = new Logger(CandidatesService.name);
+
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly notifier: ResultChangeNotifier,
+  ) {}
 
   findAll(filters?: { election_id?: string; const_id?: string }, take = 1000) {
     return this.prisma.candidates.findMany({
@@ -81,10 +89,51 @@ export class CandidatesService {
     });
   }
 
+  /**
+   * New candidate in a seat of its election, plus its zero-vote results row (status TRAILING) so it shows
+   * up in the Live Console. One transaction: a seat of another election writes nothing (404).
+   */
+  /**
+   * New candidate plus its zero-vote results row, in one transaction (a Finalized election is refused with 409).
+   * After the commit the same steps as a result override run (live-version memo, cache purge, admin SSE event),
+   * so the new row shows up; a failure there is logged and never fails the request.
+   */
   async create(data: CreateCandidateDto) {
-    return this.prisma.candidates.create({
-      data: data as Prisma.candidatesUncheckedCreateInput,
+    const { candidate, result } = await this.prisma.$transaction(async (tx) => {
+      const election = await tx.elections.findUnique({ where: { id: data.election_id }, select: { status: true } });
+      if (!election) throw new ElectionNotFoundException(data.election_id);
+      if (election.status === 'Finalized') throw new ElectionFinalizedException(data.election_id);
+      const seat = await tx.constituencies.findFirst({
+        where: { id: data.const_id, election_id: data.election_id },
+        select: { id: true },
+      });
+      if (!seat) throw new ConstituencyNotFoundException(data.const_id);
+      const candidate = await tx.candidates.create({
+        data: data as Prisma.candidatesUncheckedCreateInput,
+      });
+      const result = await tx.results.create({
+        data: {
+          candidate_id: candidate.id,
+          const_id: candidate.const_id,
+          election_id: candidate.election_id,
+          votes: 0,
+          status: 'TRAILING',
+          margin: 0,
+        },
+      });
+      return { candidate, result };
     });
+
+    try {
+      await this.notifier.afterCommit(
+        result.election_id,
+        candidate.party_id ? [{ const_id: result.const_id, p: candidate.party_id, m: result.margin ?? 0, s: result.status, r: result.round_no ?? undefined }] : [],
+        { kind: 'single', ...(!candidate.party_id && { skippedMissingParty: { resultId: result.id } }) },
+      );
+    } catch (err) {
+      this.logger.warn(`Post-commit steps failed for new candidate ${candidate.id}: ${(err as Error).message}`);
+    }
+    return candidate;
   }
 
   async update(id: string, data: UpdateCandidateDto) {

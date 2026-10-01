@@ -1,0 +1,98 @@
+import { CandidatesService } from './candidates.service';
+import { ConstituencyNotFoundException, ElectionFinalizedException, ElectionNotFoundException, ErrorCodes } from '../../common/exceptions';
+
+describe('CandidatesService.create', () => {
+  function make(seat: unknown = { id: 'BR_VS_1', election_id: 'e1' }, election: unknown = { status: 'Live' }) {
+    const order: string[] = [];
+    const tx = {
+      elections: { findUnique: jest.fn().mockResolvedValue(election) },
+      constituencies: { findFirst: jest.fn().mockResolvedValue(seat) },
+      candidates: { create: jest.fn().mockResolvedValue({ id: 'c-new', election_id: 'e1', const_id: 'BR_VS_1', name: 'Ravi', party_id: 'BJP' }) },
+      results: {
+        create: jest.fn().mockResolvedValue({ id: 'r-new', const_id: 'BR_VS_1', election_id: 'e1', votes: 0, status: 'TRAILING', margin: 0, round_no: 0 }),
+      },
+    };
+    const prisma = {
+      candidates: { create: jest.fn() },
+      results: { create: jest.fn() },
+      $transaction: jest.fn(async (fn: (t: typeof tx) => unknown) => {
+        const out = await fn(tx);
+        order.push('commit');
+        return out;
+      }),
+    };
+    const notifier = { afterCommit: jest.fn(async () => { order.push('afterCommit'); }) };
+    const svc = new CandidatesService(prisma as any, notifier as any);
+    return { svc, tx, prisma, notifier, order };
+  }
+
+  const body = { election_id: 'e1', const_id: 'BR_VS_1', name: 'Ravi', party_id: 'BJP', metadata: { age: 40 } };
+
+  it('checks the seat belongs to the election, then creates the candidate and its results row in one transaction', async () => {
+    const { svc, tx, prisma } = make();
+    await expect(svc.create(body as any)).resolves.toMatchObject({ id: 'c-new' });
+    expect(prisma.$transaction).toHaveBeenCalledTimes(1);
+    expect(tx.constituencies.findFirst).toHaveBeenCalledWith({ where: { id: 'BR_VS_1', election_id: 'e1' }, select: { id: true } });
+    expect(tx.candidates.create).toHaveBeenCalledWith({ data: body });
+    expect(tx.results.create).toHaveBeenCalledWith({
+      data: { candidate_id: 'c-new', const_id: 'BR_VS_1', election_id: 'e1', votes: 0, status: 'TRAILING', margin: 0 },
+    });
+    // Nothing is written outside the transaction.
+    expect(prisma.candidates.create).not.toHaveBeenCalled();
+    expect(prisma.results.create).not.toHaveBeenCalled();
+  });
+
+  it('rejects a seat of another election with ConstituencyNotFound (404) and writes nothing', async () => {
+    const { svc, tx, notifier } = make(null);
+    const err = await svc.create(body as any).catch((e) => e);
+    expect(err).toBeInstanceOf(ConstituencyNotFoundException);
+    expect(err.getStatus()).toBe(404);
+    expect(tx.candidates.create).not.toHaveBeenCalled();
+    expect(tx.results.create).not.toHaveBeenCalled();
+    expect(notifier.afterCommit).not.toHaveBeenCalled();
+  });
+
+  it('rejects an unknown election with ElectionNotFound (404) and writes nothing', async () => {
+    const { svc, tx } = make(undefined, null);
+    const err = await svc.create(body as any).catch((e) => e);
+    expect(err).toBeInstanceOf(ElectionNotFoundException);
+    expect(tx.candidates.create).not.toHaveBeenCalled();
+  });
+
+  it('rejects a Finalized election with 409 ELECTION_FINALIZED, checked in the transaction before any write', async () => {
+    const { svc, tx, notifier } = make(undefined, { status: 'Finalized' });
+    const err = await svc.create(body as any).catch((e) => e);
+    expect(err).toBeInstanceOf(ElectionFinalizedException);
+    expect(err.getStatus()).toBe(409);
+    expect(err.getResponse()).toMatchObject({ code: ErrorCodes.ELECTION_FINALIZED });
+    expect(tx.elections.findUnique).toHaveBeenCalledWith({ where: { id: 'e1' }, select: { status: true } });
+    expect(tx.candidates.create).not.toHaveBeenCalled();
+    expect(tx.results.create).not.toHaveBeenCalled();
+    expect(notifier.afterCommit).not.toHaveBeenCalled();
+  });
+
+  it('runs the result post-commit steps once, after the commit, with the new results row', async () => {
+    const { svc, notifier, order } = make();
+    await svc.create(body as any);
+    expect(order).toEqual(['commit', 'afterCommit']);
+    expect(notifier.afterCommit).toHaveBeenCalledTimes(1);
+    expect(notifier.afterCommit).toHaveBeenCalledWith(
+      'e1',
+      [{ const_id: 'BR_VS_1', p: 'BJP', m: 0, s: 'TRAILING', r: 0 }],
+      { kind: 'single' },
+    );
+  });
+
+  it('a candidate without a party still purges (the SSE event is skipped as missing-party)', async () => {
+    const { svc, tx, notifier } = make();
+    tx.candidates.create.mockResolvedValue({ id: 'c-new', election_id: 'e1', const_id: 'BR_VS_1', name: 'Ravi', party_id: null });
+    await svc.create({ ...body, party_id: null } as any);
+    expect(notifier.afterCommit).toHaveBeenCalledWith('e1', [], { kind: 'single', skippedMissingParty: { resultId: 'r-new' } });
+  });
+
+  it('a failing post-commit step never fails the request', async () => {
+    const { svc, notifier } = make();
+    notifier.afterCommit.mockRejectedValue(new Error('redis down'));
+    await expect(svc.create(body as any)).resolves.toMatchObject({ id: 'c-new' });
+  });
+});

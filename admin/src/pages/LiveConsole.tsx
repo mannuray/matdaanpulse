@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLiveConsole } from '../hooks/useLiveConsole';
 import { useSeatLock } from '../hooks/useSeatLock';
+import { useUnsavedGuard } from '../hooks/useUnsavedGuard';
 import { useAuth } from '../context/AuthContext';
-import { confirmDiscardEdits, useShellStatus } from '../context/ShellStatusContext';
+import { confirmDiscardEdits } from '../context/ShellStatusContext';
 import { LiveHeader } from '../components/live/LiveHeader';
 import { SeatList } from '../components/live/SeatList';
 import { SeatEditor, type SeatEditorHandle } from '../components/live/SeatEditor';
@@ -14,8 +15,9 @@ const inArrowWidget = (el: Element | null) => !!el?.closest('[role=listbox],[rol
 
 /** PAGE: Live Console — split view (seat list | seat editor), keyboard-first. */
 export default function LiveConsole() {
-  // Shared with the shell so the sidebar and election picker can ask before discarding edits.
-  const { editorDirty, setEditorDirty } = useShellStatus();
+  // The seat editor reports unsaved edits here; the guard shares them with the shell and arms tab-close.
+  const [editorDirty, setEditorDirty] = useState(false);
+  useUnsavedGuard(editorDirty);
   const lc = useLiveConsole({ holdSelection: editorDirty });
   const { user } = useAuth();
   const myId = user?.id ?? '';
@@ -23,16 +25,6 @@ export default function LiveConsole() {
   const editorRef = useRef<SeatEditorHandle>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const editorBoxRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => () => setEditorDirty(false), [setEditorDirty]);
-
-  // Closing or reloading the tab with unsaved edits: let the browser ask.
-  useEffect(() => {
-    if (!editorDirty) return;
-    const onBeforeUnload = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ''; };
-    window.addEventListener('beforeunload', onBeforeUnload);
-    return () => window.removeEventListener('beforeunload', onBeforeUnload);
-  }, [editorDirty]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

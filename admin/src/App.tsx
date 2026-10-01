@@ -6,26 +6,18 @@ import ErrorBoundary from './components/atoms/ErrorBoundary';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import ElectionManager from './pages/ElectionManager';
-import ManifestDetail from './pages/ManifestDetail';
-import ManifestEditor from './pages/ManifestEditor';
+import Elections from './pages/Elections';
+import Manifests from './pages/Manifests';
 import UserManager from './pages/UserManager';
 import AuditLogs from './pages/AuditLogs';
 import Feedback from './pages/Feedback';
 import SystemStatus from './pages/SystemStatus';
-import PartyManager from './pages/PartyManager';
-import PartyDetail from './pages/PartyDetail';
-import PartyEdit from './pages/PartyEdit';
-import CandidateManager from './pages/CandidateManager';
-import CandidateDetail from './pages/CandidateDetail';
-import CandidateEdit from './pages/CandidateEdit';
+import Parties from './pages/Parties';
+import { EditRedirect } from './components/routing/EditRedirect';
+import Candidates from './pages/Candidates';
 import LiveConsole from './pages/LiveConsole';
-import ConstituencyManager from './pages/ConstituencyManager';
-import ConstituencyDetail from './pages/ConstituencyDetail';
-import ConstituencyEdit from './pages/ConstituencyEdit';
-import PersonManager from './pages/PersonManager';
-import PersonDetail from './pages/PersonDetail';
-import PersonEdit from './pages/PersonEdit';
+import Constituencies from './pages/Constituencies';
+import Persons from './pages/Persons';
 
 function ProtectedRoute({ children, roles }: { children: React.ReactNode; roles?: string[] }) {
   const { isAuthenticated, hasRole } = useAuth();
@@ -51,32 +43,28 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                 <Route index element={<Dashboard />} />
-                <Route path="elections" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ElectionManager /></ProtectedRoute>} />
+                <Route path="elections/:id/edit" element={<EditRedirect base="/elections" />} />
+                <Route path="elections/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Elections /></ProtectedRoute>} />
                 
-                {/* Manifests */}
-                <Route path="manifests" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestDetail /></ProtectedRoute>} />
-                <Route path="manifests/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestDetail /></ProtectedRoute>} />
-                <Route path="manifests/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestEditor /></ProtectedRoute>} />
+                {/* Manifests: one per election; full-width panel at /manifests/:electionId */}
+                <Route path="manifests/:id/edit" element={<EditRedirect base="/manifests" />} />
+                <Route path="manifests/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Manifests /></ProtectedRoute>} />
                 
-                {/* Parties */}
-                <Route path="parties" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyManager /></ProtectedRoute>} />
-                <Route path="parties/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyDetail /></ProtectedRoute>} />
-                <Route path="parties/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyEdit /></ProtectedRoute>} />
+                {/* Parties: list + panel at /parties/:id; old /:id/edit links redirect */}
+                <Route path="parties/:id/edit" element={<EditRedirect base="/parties" />} />
+                <Route path="parties/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Parties /></ProtectedRoute>} />
                 
                 {/* Candidates */}
-                <Route path="candidates" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateManager /></ProtectedRoute>} />
-                <Route path="candidates/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateDetail /></ProtectedRoute>} />
-                <Route path="candidates/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateEdit /></ProtectedRoute>} />
+                <Route path="candidates/:id/edit" element={<EditRedirect base="/candidates" />} />
+                <Route path="candidates/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Candidates /></ProtectedRoute>} />
                 
                 {/* Persons */}
-                <Route path="persons" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonManager /></ProtectedRoute>} />
-                <Route path="persons/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonDetail /></ProtectedRoute>} />
-                <Route path="persons/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PersonEdit /></ProtectedRoute>} />
+                <Route path="persons/:id/edit" element={<EditRedirect base="/persons" />} />
+                <Route path="persons/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Persons /></ProtectedRoute>} />
                 
                 {/* Constituencies */}
-                <Route path="constituencies" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ConstituencyManager /></ProtectedRoute>} />
-                <Route path="constituencies/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ConstituencyDetail /></ProtectedRoute>} />
-                <Route path="constituencies/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ConstituencyEdit /></ProtectedRoute>} />
+                <Route path="constituencies/:id/edit" element={<EditRedirect base="/constituencies" />} />
+                <Route path="constituencies/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Constituencies /></ProtectedRoute>} />
                 
                 {/* Overrides & Logs */}
                 <Route path="overrides" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><LiveConsole /></ProtectedRoute>} />

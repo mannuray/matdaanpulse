@@ -43,4 +43,30 @@ describe('ElectionProvider', () => {
     await waitFor(() => expect(screen.getByTestId('error').textContent).toBe('Could not load elections'));
     expect(screen.getByTestId('id').textContent).toBe('');
   });
+
+  it('reload picks up a new election and keeps the current selection', async () => {
+    function ReloadProbe() {
+      const { elections, electionId, reload } = useElection();
+      return <><span data-testid="n">{elections.length}</span><span data-testid="sel">{electionId}</span><button onClick={() => { void reload(); }}>reload</button></>;
+    }
+    render(<MemoryRouter><ElectionProvider><ReloadProbe /></ElectionProvider></MemoryRouter>);
+    await waitFor(() => expect(screen.getByTestId('sel').textContent).toBe('b'));
+    vi.mocked(getElections).mockResolvedValueOnce([e('a'), e('b', 'Live'), e('c')]);
+    await act(async () => { screen.getByText('reload').click(); });
+    await waitFor(() => expect(screen.getByTestId('n').textContent).toBe('3'));
+    expect(screen.getByTestId('sel').textContent).toBe('b');
+  });
+
+  it('reload selects an election once the first one exists', async () => {
+    vi.mocked(getElections).mockResolvedValueOnce([]);
+    function ReloadProbe() {
+      const { electionId, reload } = useElection();
+      return <><span data-testid="sel">{electionId}</span><button onClick={() => { void reload(); }}>reload</button></>;
+    }
+    render(<MemoryRouter><ElectionProvider><ReloadProbe /></ElectionProvider></MemoryRouter>);
+    await waitFor(() => expect(getElections).toHaveBeenCalled());
+    vi.mocked(getElections).mockResolvedValueOnce([e('first')]);
+    await act(async () => { screen.getByText('reload').click(); });
+    await waitFor(() => expect(screen.getByTestId('sel').textContent).toBe('first'));
+  });
 });

@@ -18,7 +18,7 @@ export function ManifestSection({
   defaultOpen?: boolean; 
   children: ReactNode;
 }) {
-  const [open, setOpen] = useState(defaultOpen ?? false);
+  const [open, setOpen] = useState(defaultOpen ?? true);
   return (
     <div className="mf-section">
       <div className="mf-section-header" onClick={() => setOpen(!open)}>

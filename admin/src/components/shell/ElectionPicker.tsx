@@ -6,7 +6,9 @@ import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusCo
 /** Short label for the top bar: "Bihar VS 2025". */
 export function shortElectionName(name: string, type: string, year: number): string {
   const base = name.replace(/\b(Vidhan Sabha|Lok Sabha|Assembly|General)\b.*$/i, '').trim();
-  return `${base || name} ${type} ${year}`.trim();
+  // National Lok Sabha names reduce to nothing: "Lok Sabha 2029", not "…Election 2029 LS 2029".
+  if (!base) return `Lok Sabha ${year}`;
+  return `${base} ${type} ${year}`.trim();
 }
 
 export function ElectionPicker() {

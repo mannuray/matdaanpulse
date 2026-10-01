@@ -116,7 +116,7 @@ describe('LiveConsole page', () => {
     fireEvent.change(screen.getByLabelText('Votes for Anil Kumar'), { target: { value: '50,000' } });
     (document.activeElement as HTMLElement | null)?.blur();
     fireEvent.keyDown(window, { key: 'ArrowDown' });
-    expect(confirm).toHaveBeenCalledWith('Discard unsaved edits for this seat?');
+    expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
     expect(move).not.toHaveBeenCalled();
     confirm.mockReturnValue(true);
     fireEvent.keyDown(window, { key: 'ArrowDown' });

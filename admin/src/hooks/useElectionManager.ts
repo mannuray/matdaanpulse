@@ -12,37 +12,55 @@ interface ElectionFilters {
   stateId: number | null;
 }
 
-interface ElectionFormState {
+export interface ElectionFormState {
   name: string;
   type: 'LS' | 'VS';
-  year: number;
+  /** Kept as typed text so a half-typed year is never coerced to NaN. */
+  year: string;
   state_id: string;
   tentative_next_date: string;
 }
 
-const INITIAL_FORM: ElectionFormState = {
+export const INITIAL_ELECTION_FORM: ElectionFormState = {
   name: '',
   type: 'LS',
-  year: new Date().getFullYear(),
+  year: String(new Date().getFullYear()),
   state_id: '',
   tentative_next_date: ''
 };
 
+/** A year is required: exactly 4 digits. */
+export const isValidElectionYear = (v: string) => /^\d{4}$/.test(v.trim());
+
+/** `<input type="date">` needs YYYY-MM-DD; the API may return a full ISO timestamp. */
+const toForm = (el: Election): ElectionFormState => ({
+  name: el.name,
+  type: el.type,
+  year: String(el.year),
+  state_id: el.state_id?.toString() || '',
+  tentative_next_date: el.tentative_next_date ? el.tentative_next_date.slice(0, 10) : ''
+});
+
+interface Options {
+  /** Awaited after a create, update, go-live or finalize (the page reloads the top-bar election list). */
+  onChanged?: () => void | Promise<void>;
+}
+
 /**
  * CONTROLLER: Election Manager (MVC)
- * Manages election lifecycle, registry data, and form state.
+ * Election lifecycle, list and the panel form. `dirty` compares the form with the opened/saved snapshot.
  */
-export function useElectionManager() {
+export function useElectionManager({ onChanged }: Options = {}) {
   const { toast, toastError } = useToast();
   const [states, setStates] = useState<State[]>([]);
   const [saving, setSaving] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [confirmFinalize, setConfirmFinalize] = useState<string | null>(null);
 
-  // Form State moved to Controller
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
-  const [form, setForm] = useState<ElectionFormState>(INITIAL_FORM);
+  const [form, setForm] = useState<ElectionFormState>(INITIAL_ELECTION_FORM);
+  const [savedForm, setSavedForm] = useState<ElectionFormState>(INITIAL_ELECTION_FORM);
 
   useEffect(() => {
     getStates().then(setStates).catch(() => {});
@@ -56,7 +74,7 @@ export function useElectionManager() {
         type: filters.type || undefined,
         status: filters.status || undefined
       });
-      const filtered = search 
+      const filtered = search
         ? data.filter(e => e.name.toLowerCase().includes(search.toLowerCase()))
         : data;
       return { data: filtered, total: filtered.length };
@@ -66,7 +84,9 @@ export function useElectionManager() {
   const resetForm = () => {
     setShowForm(false);
     setEditId(null);
-    setForm(INITIAL_FORM);
+    setForm(INITIAL_ELECTION_FORM);
+    setSavedForm(INITIAL_ELECTION_FORM);
+    setFieldErrors({});
   };
 
   const startCreate = () => {
@@ -75,45 +95,62 @@ export function useElectionManager() {
   };
 
   const startEdit = (el: Election) => {
-    setForm({
-      name: el.name,
-      type: el.type,
-      year: el.year,
-      state_id: el.state_id?.toString() || '',
-      tentative_next_date: el.tentative_next_date || ''
-    });
+    const f = toForm(el);
+    setForm(f);
+    setSavedForm(f);
     setEditId(el.id);
+    setFieldErrors({});
     setShowForm(true);
   };
 
-  const handleSave = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
+  /** Drop unsaved edits (panel Cancel). */
+  const revert = () => { setForm(savedForm); setFieldErrors({}); };
+
+  /** Saves the form; resolves to the saved election's id (the new id on create) or null on failure. */
+  const handleSave = async (e?: { preventDefault(): void }): Promise<string | null> => {
+    e?.preventDefault();
+    if (!form.name.trim() || !isValidElectionYear(form.year)) return null;
+    const submitted = form;
     setSaving(true);
     setFieldErrors({});
-    
-    const payload = {
-      name: form.name,
-      type: form.type,
-      year: form.year,
-      ...(form.state_id ? { state_id: Number(form.state_id) } : {}),
-      ...(form.tentative_next_date ? { tentative_next_date: form.tentative_next_date } : {}),
+
+    const base = {
+      name: submitted.name,
+      type: submitted.type,
+      year: Number(submitted.year.trim()),
     };
 
     try {
+      let savedId: string;
       if (editId) {
-        await updateElection(editId, payload);
+        // Edit always sends both fields so clearing them (VS to LS, no date) reaches the server as null.
+        await updateElection(editId, {
+          ...base,
+          state_id: submitted.state_id ? Number(submitted.state_id) : null,
+          tentative_next_date: submitted.tentative_next_date || null,
+        });
+        savedId = editId;
+        // The submitted values are the saved baseline; edits typed while saving stay dirty.
+        setSavedForm(submitted);
         toast('Election updated successfully');
       } else {
-        await createElection(payload);
+        const created = await createElection({
+          ...base,
+          ...(submitted.state_id ? { state_id: Number(submitted.state_id) } : {}),
+          ...(submitted.tentative_next_date ? { tentative_next_date: submitted.tentative_next_date } : {}),
+        });
+        savedId = created.id;
+        setForm(INITIAL_ELECTION_FORM);
+        setSavedForm(INITIAL_ELECTION_FORM);
         toast('New election registered');
       }
       list.refresh();
-      resetForm();
-      return true;
+      await onChanged?.();
+      return savedId;
     } catch (err) {
       setFieldErrors(fieldErrorMap(err));
       toastError(err, 'Operation failed');
-      return false;
+      return null;
     } finally {
       setSaving(false);
     }
@@ -124,6 +161,7 @@ export function useElectionManager() {
       await finalizeElection(id);
       toast('Election finalized and archived');
       list.refresh();
+      await onChanged?.();
     } catch (err) {
       toastError(err, 'Finalization failed');
     }
@@ -132,12 +170,15 @@ export function useElectionManager() {
   const goLive = async (id: string) => {
     try {
       await updateElection(id, { status: 'Live' });
-      toast('Election is now LIVE');
+      toast('Election is now live');
       list.refresh();
+      await onChanged?.();
     } catch (err) {
       toastError(err, 'Failed to go live');
     }
   };
+
+  const dirty = JSON.stringify(form) !== JSON.stringify(savedForm);
 
   return {
     fieldErrors,
@@ -151,6 +192,8 @@ export function useElectionManager() {
     editId,
     form,
     setForm,
+    dirty,
+    revert,
     startCreate,
     startEdit,
     handleSave,

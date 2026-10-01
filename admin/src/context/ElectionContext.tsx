@@ -12,6 +12,8 @@ interface ElectionContextValue {
   setElectionId: (id: string) => void;
   loading: boolean;
   error: string | null;
+  /** Re-fetch after create / go live / finalize; keeps the selection while it still exists. */
+  reload: () => Promise<void>;
 }
 
 const Ctx = createContext<ElectionContextValue | null>(null);
@@ -61,10 +63,21 @@ export function ElectionProvider({ children }: { children: ReactNode }) {
     setParams((prev) => { const next = new URLSearchParams(prev); next.set('election', id); return next; }, { replace: true });
   }, [setParams]);
 
+  const reload = useCallback(async () => {
+    try {
+      const all = await getElections();
+      setElections(all);
+      setId((cur) => (cur && all.some((e) => e.id === cur) ? cur : pickInitialElection(all, null, readStorage())));
+      setError(null);
+    } catch {
+      setError('Could not load elections');
+    }
+  }, []);
+
   const value = useMemo<ElectionContextValue>(() => ({
-    elections, electionId, setElectionId, loading, error,
+    elections, electionId, setElectionId, loading, error, reload,
     election: elections.find((e) => e.id === electionId) ?? null,
-  }), [elections, electionId, setElectionId, loading, error]);
+  }), [elections, electionId, setElectionId, loading, error, reload]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

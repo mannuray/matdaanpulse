@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { useParams } from 'react-router-dom';
 import { getManifest, saveManifestDraft, publishManifest, getElections } from '../services/election.service';
 import { getParties } from '../services/geo.service';
 import { getConstituencies } from '../services/constituency.service';
 import { useToast } from '../context/ToastContext';
+import { ApiError } from '../services/api-client';
 import { resolvePublishedManifest } from '../utils/manifest-helpers';
 import type { Election, ManifestData, Party, Constituency } from '../types';
 
@@ -22,30 +22,32 @@ const DEFAULT_MANIFEST: ManifestData = {
   geo: {}
 };
 
+/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
+export type ManifestLoadError = 'not_found' | 'failed';
+
 /**
  * CONTROLLER: Manifest Editor (MVC)
+ * One election's manifest (the panel at /manifests/:electionId): load draft → published → default,
+ * edit, save draft, publish.
  */
-export function useManifestEditor() {
-  const { id: urlId } = useParams<{ id: string }>();
+export function useManifestEditor(electionId: string | null) {
+  const selectedId = electionId ?? '';
   const { toast, toastError } = useToast();
-  
+
   const [elections, setElections] = useState<Election[]>([]);
-  const [selectedId, setSelectedId] = useState(urlId || '');
   const [parties, setParties] = useState<Party[]>([]);
   const [constituencies, setConstituencies] = useState<Constituency[]>([]);
   
   const [manifest, setManifest] = useState<ManifestData>(DEFAULT_MANIFEST);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(!!electionId);
   const [saving, setSaving] = useState(false);
   const [isDraft, setIsDraft] = useState(false);
   // Local edits not yet persisted to the server draft
   const [isDirty, setIsDirty] = useState(false);
+  // True once a manifest (or its default) has been loaded for this election; a failed first load leaves it false.
+  const [loaded, setLoaded] = useState(false);
+  const [loadError, setLoadError] = useState<ManifestLoadError | null>(null);
   const loadedIdRef = useRef<string | null>(null);
-
-  // Sync with URL if it changes
-  useEffect(() => {
-    if (urlId) setSelectedId(urlId);
-  }, [urlId]);
 
   useEffect(() => {
     getElections().then(setElections).catch(() => {});
@@ -55,6 +57,7 @@ export function useManifestEditor() {
   const loadManifest = useCallback(async (eid: string) => {
     if (!eid) return;
     setLoading(true);
+    setLoadError(null);
     try {
       const [m, c] = await Promise.all([
         getManifest(eid),
@@ -103,8 +106,10 @@ export function useManifestEditor() {
       setManifest(merged);
       setIsDirty(false);
       loadedIdRef.current = eid;
+      setLoaded(true);
     } catch (err) {
       console.error('Manifest load error:', err);
+      setLoadError(err instanceof ApiError && err.status === 404 ? 'not_found' : 'failed');
       toastError(err, 'Failed to load manifest data');
       // Only reset when switching elections; a failed reload keeps the local state.
       if (loadedIdRef.current !== eid) {
@@ -158,7 +163,7 @@ export function useManifestEditor() {
       toast('Draft saved successfully');
       setIsDraft(true);
       setIsDirty(false);
-      setManifest(prev => ({ ...prev, ...data }));
+      setManifest({ ...DEFAULT_MANIFEST, ...data });
       return true;
     } catch (err) {
       toastError(err, 'Failed to save draft');
@@ -169,39 +174,37 @@ export function useManifestEditor() {
   };
 
   /**
-   * Publishes the server draft. Unsaved local edits (or `pending` data, e.g. from
-   * the JSON tab) are saved first so the published version matches what's on screen.
+   * Publishes the server draft (the caller has already confirmed). Unsaved local edits (or `pending` data,
+   * e.g. from the JSON tab) are saved first so the published version matches what's on screen.
+   * Resolves true when published.
    */
-  const publish = async (pending?: ManifestData) => {
-    if (!selectedId) return;
-    const needsSave = isDirty || pending !== undefined;
-    const message = needsSave
-      ? 'You have unsaved changes. Save them and publish this manifest to the live frontend?'
-      : 'Publish this manifest to the live frontend?';
-    if (!window.confirm(message)) return;
-    if (needsSave) {
+  const publish = async (pending?: ManifestData): Promise<boolean> => {
+    if (!selectedId) return false;
+    if (isDirty || pending !== undefined) {
       const saved = await saveDraft(pending ?? manifest);
       if (!saved) {
         toast('Publish aborted: unsaved changes could not be saved', 'error');
-        return;
+        return false;
       }
     }
     setSaving(true);
     try {
       await publishManifest(selectedId);
-      toast('Manifest published LIVE');
+      toast('Manifest published to the live site');
       setIsDraft(false);
       loadManifest(selectedId);
+      return true;
     } catch (err) {
       toastError(err, 'Publish failed');
+      return false;
     } finally {
       setSaving(false);
     }
   };
 
   return {
-    selectedId, setSelectedId, elections, parties, constituencies,
-    manifest, updateManifest, setFullManifest, loading, saving, isDraft, isDirty,
+    selectedId, elections, parties, constituencies,
+    manifest, updateManifest, setFullManifest, loading, saving, isDraft, isDirty, loadError, loaded, reload: loadManifest,
     contestingParties: parties, partyMap, electionMap, trackedOptions,
     saveDraft, publish
   };

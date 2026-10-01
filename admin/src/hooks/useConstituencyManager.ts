@@ -1,70 +1,62 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { getAdminConstituencies, bulkTagConstituencies, computeConstituencyAnalysis } from '../services/constituency.service';
-import { getElections } from '../services/election.service';
-import { getStates } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
 import { useSelection } from './useSelection';
-import type { Constituency, Election, State } from '../types';
+import type { Constituency } from '../types';
+
+export const CONSTITUENCY_PAGE_SIZE = 100;
 
 /**
  * CONTROLLER: Constituency Manager (MVC)
- * Handles data fetching, filtering, and bulk operations.
+ * One page of the global election's seats (server search + paging), client-side district/tag filters on that
+ * page, and bulk tagging of the visible rows.
  */
-export function useConstituencyManager() {
+export function useConstituencyManager(electionId: string) {
   const { toast, toastError } = useToast();
-  
-  // Master Data
-  const [elections, setElections] = useState<Election[]>([]);
-  const [states, setStates] = useState<State[]>([]);
-  const [selectedElectionId, setSelectedElectionId] = useState(() => localStorage.getItem('admin_const_election') || '');
-  
-  // List State
+
   const [constituencies, setConstituencies] = useState<Constituency[]>([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState('');
+  const [error, setError] = useState(false);
+  const [search, setSearchState] = useState('');
   const [districtFilter, setDistrictFilter] = useState('');
   const [tagFilter, setTagFilter] = useState('');
-  const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-
-  const selection = useSelection<Constituency>(constituencies);
   const [computing, setComputing] = useState(false);
 
-  // 1. Initial Load
-  useEffect(() => {
-    getElections().then(setElections).catch(() => {});
-    getStates().then(setStates).catch(() => {});
-  }, []);
+  // The page belongs to one election: switching election reads page 1 at once (no fetch of the old page number).
+  const [pageState, setPageState] = useState({ electionId, page: 1 });
+  const page = pageState.electionId === electionId ? pageState.page : 1;
+  const setPage = useCallback((p: number) => setPageState({ electionId, page: Math.max(1, p) }), [electionId]);
+  const setSearch = (s: string) => { setSearchState(s); setPageState({ electionId, page: 1 }); };
 
-  // 2. Fetch constituencies
+  // A request counter drops late responses (fast typing, quick paging).
+  const requestRef = useRef(0);
   const loadData = useCallback(async () => {
-    if (!selectedElectionId) {
+    const req = ++requestRef.current;
+    setError(false);
+    if (!electionId) {
       setConstituencies([]);
+      setTotal(0);
       return;
     }
     setLoading(true);
     try {
-      const response = await getAdminConstituencies(selectedElectionId, page, 100, search || undefined);
+      const response = await getAdminConstituencies(electionId, page, CONSTITUENCY_PAGE_SIZE, search || undefined);
+      if (req !== requestRef.current) return;
       setConstituencies(response.data);
       setTotal(response.pagination.total);
-    } catch (err) {
-      toastError(err, 'Failed to load constituencies');
+    } catch {
+      // The page shows "Could not load seats" with Try again (not an empty list).
+      if (req === requestRef.current) { setConstituencies([]); setError(true); }
     } finally {
-      setLoading(false);
+      if (req === requestRef.current) setLoading(false);
     }
-  }, [selectedElectionId, page, search, toast]);
+  }, [electionId, page, search]);
 
   useEffect(() => {
     loadData();
   }, [loadData]);
 
-  useEffect(() => {
-    if (selectedElectionId) {
-      localStorage.setItem('admin_const_election', selectedElectionId);
-    }
-  }, [selectedElectionId]);
-
-  // 3. Computed Filters
   const allDistricts = useMemo(() => {
     const set = new Set<string>();
     constituencies.forEach(c => { if (c.district?.name) set.add(c.district.name); });
@@ -91,25 +83,41 @@ export function useConstituencyManager() {
     });
   }, [constituencies, districtFilter, tagFilter]);
 
-  // 4. Actions
-  const bulkAddTag = async (tag: string) => {
-    if (selection.selectedIds.size === 0 || !tag) return;
+  // Select-all and bulk tag act on the visible (filtered) rows only; any change of what is visible clears it.
+  const selection = useSelection<Constituency>(filteredConstituencies);
+  const { clear } = selection;
+  useEffect(() => { clear(); }, [electionId, page, search, districtFilter, tagFilter, clear]);
+  // The district/tag filters only describe the page they were picked on: a new page, search or election starts unfiltered.
+  useEffect(() => { setDistrictFilter(''); setTagFilter(''); }, [electionId, page, search]);
+  // A refresh can drop rows (or a filter hide them): never keep a selection that is not on screen.
+  const { setSelectedIds } = selection;
+  useEffect(() => {
+    const visible = new Set(filteredConstituencies.map((c) => c.id));
+    setSelectedIds((prev) => (Array.from(prev).every((id) => visible.has(id)) ? prev : new Set(Array.from(prev).filter((id) => visible.has(id)))));
+  }, [filteredConstituencies, setSelectedIds]);
+
+  /** Tags the selected rows that are on screen; resolves with the ids it tagged (empty on failure). */
+  const bulkAddTag = async (tag: string): Promise<string[]> => {
+    const visible = new Set(filteredConstituencies.map((c) => c.id));
+    const ids = Array.from(selection.selectedIds).filter((id) => visible.has(id));
+    if (ids.length === 0 || !tag) return [];
     try {
-      await bulkTagConstituencies(Array.from(selection.selectedIds), [tag], []);
+      await bulkTagConstituencies(ids, [tag], []);
       toast('Bulk tag applied');
       loadData();
       selection.clear();
+      return ids;
     } catch (err) {
       toastError(err, 'Bulk tag failed');
+      return [];
     }
   };
 
   const computeAnalysis = async () => {
-    if (!selectedElectionId || computing) return;
+    if (!electionId || computing) return;
     setComputing(true);
     try {
-      // For simplicity, passing empty history for now or derive from manifest if available
-      await computeConstituencyAnalysis(selectedElectionId, []);
+      await computeConstituencyAnalysis(electionId, []);
       toast('Analysis computation queued');
     } catch (err) {
       toastError(err, 'Failed to start computation');
@@ -119,10 +127,9 @@ export function useConstituencyManager() {
   };
 
   return {
-    elections, states, selectedElection: selectedElectionId, setSelectedElection: setSelectedElectionId,
-    constituencies: filteredConstituencies, loading,
+    constituencies: filteredConstituencies, loading, error,
     search, setSearch, districtFilter, setDistrictFilter, tagFilter, setTagFilter,
-    page, totalPages: Math.ceil(total / 100), total,
+    page, totalPages: Math.max(1, Math.ceil(total / CONSTITUENCY_PAGE_SIZE)), total,
     allDistricts, allTags, selection, computing,
     bulkAddTag, computeAnalysis, loadPage: setPage, refresh: loadData
   };
