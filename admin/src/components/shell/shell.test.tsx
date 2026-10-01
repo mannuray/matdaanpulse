@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { Sidebar } from './Sidebar';
@@ -27,18 +27,6 @@ const election = vi.hoisted(() => ({
 vi.mock('../../context/ElectionContext', () => ({
   useElection: () => ({ elections: election.elections, electionId: 'e1', setElectionId: election.setElectionId }),
 }));
-// Radix Select needs pointer capture / scrollIntoView in jsdom; a native <select> exercises the same onValueChange.
-vi.mock('@radix-ui/react-select', () => {
-  const Pass = ({ children }: { children?: ReactNode }) => <>{children}</>;
-  return {
-    Root: ({ value, onValueChange, children }: { value: string; onValueChange(v: string): void; children: ReactNode }) => (
-      <select aria-label="Election" value={value} onChange={(e) => onValueChange(e.target.value)}>{children}</select>
-    ),
-    Trigger: () => null, Value: Pass, Icon: Pass, Portal: Pass, Content: Pass, Viewport: Pass, ItemIndicator: () => null,
-    Item: ({ value }: { value: string }) => <option value={value}>{value}</option>,
-    ItemText: Pass,
-  };
-});
 vi.mock('@radix-ui/react-dropdown-menu', () => {
   const Pass = ({ children }: { children?: ReactNode }) => <>{children}</>;
   return {
@@ -102,24 +90,66 @@ describe('Sidebar', () => {
 });
 
 describe('ElectionPicker', () => {
+  const open = () => fireEvent.click(screen.getByRole('button', { name: 'Election' }));
+
+  it('shows the current election with its status, and lists elections as a state × year grid', () => {
+    render(<ElectionPicker />);
+    expect(screen.getByRole('button', { name: 'Election' }).textContent).toContain('Bihar · Vidhan Sabha 2025 · Live');
+    open();
+    expect(screen.getByText('Live & upcoming')).toBeTruthy();
+    expect(screen.getByText('Kerala')).toBeTruthy();
+    expect(screen.getByRole('option', { name: '2021' })).toBeTruthy();
+  });
+
+  it('typing filters and Enter picks the first match', () => {
+    render(<ElectionPicker />);
+    open();
+    const input = screen.getByLabelText('Search elections');
+    fireEvent.change(input, { target: { value: 'ker' } });
+    expect(within(screen.getByRole('listbox')).queryByText('Bihar')).toBeNull();
+    fireEvent.keyDown(input, { key: 'Enter' });
+    expect(election.setElectionId).toHaveBeenCalledWith('e2');
+  });
+
+  it('a search with no result says so', () => {
+    render(<ElectionPicker />);
+    open();
+    fireEvent.change(screen.getByLabelText('Search elections'), { target: { value: 'assam' } });
+    expect(screen.getByText(/No election matches/)).toBeTruthy();
+  });
+
+  it('E opens it from anywhere, but not while typing in a field', () => {
+    render(<><input aria-label="other" /><ElectionPicker /></>);
+    fireEvent.keyDown(screen.getByLabelText('other'), { key: 'e' });
+    expect(screen.queryByLabelText('Search elections')).toBeNull();
+    fireEvent.keyDown(document.body, { key: 'e' });
+    expect(screen.getByLabelText('Search elections')).toBeTruthy();
+  });
+
   it('with unsaved seat edits, switching election asks first and cancel keeps the election', () => {
     shell.editorDirty = true;
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
     render(<ElectionPicker />);
-    fireEvent.change(screen.getByLabelText('Election'), { target: { value: 'e2' } });
+    open();
+    fireEvent.click(screen.getByRole('option', { name: '2021' }));
     expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
     expect(election.setElectionId).not.toHaveBeenCalled();
     confirm.mockReturnValue(true);
-    fireEvent.change(screen.getByLabelText('Election'), { target: { value: 'e2' } });
+    fireEvent.click(screen.getByRole('option', { name: '2021' }));
     expect(election.setElectionId).toHaveBeenCalledWith('e2');
   });
 
-  it('switches straight away when nothing is unsaved', () => {
+  it('switches straight away when nothing is unsaved; re-picking the current one does nothing', () => {
     const confirm = vi.spyOn(window, 'confirm');
     render(<ElectionPicker />);
-    fireEvent.change(screen.getByLabelText('Election'), { target: { value: 'e2' } });
+    open();
+    fireEvent.click(screen.getByRole('option', { name: '2021' }));
     expect(confirm).not.toHaveBeenCalled();
     expect(election.setElectionId).toHaveBeenCalledWith('e2');
+    election.setElectionId.mockClear();
+    open();
+    fireEvent.click(screen.getAllByRole('option', { name: /2025/ })[0]);
+    expect(election.setElectionId).not.toHaveBeenCalled();
   });
 });
 
