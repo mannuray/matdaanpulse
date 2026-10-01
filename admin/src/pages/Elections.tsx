@@ -77,7 +77,7 @@ const columns = (states: State[], a: RowActions): Column<Election>[] => [
   { key: 'status', header: 'Status', cell: (e) => <ElectionStatusBadge status={e.status} /> },
   {
     key: 'next',
-    header: 'Next date',
+    header: 'Result date',
     className: 'tabular-nums text-ink-2',
     cell: (e) => (e.tentative_next_date ? formatIstDate(e.tentative_next_date) : <span className="text-muted">–</span>),
   },

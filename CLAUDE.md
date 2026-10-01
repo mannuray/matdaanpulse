@@ -38,7 +38,7 @@ matdaanpulse/
 ## Database Setup
 
 - **Only supported path:** `database/setup.sh` (psql, `ON_ERROR_STOP=1`, idempotent). Order: `schema.sql` → `migrations/001…NNN` → seeds. docker-compose runs it automatically on first boot of an empty volume.
-- Seed order matters (enforced in `setup.sh`): `seed.sql` → `seed_*_parties.sql` → VS results (Bihar newest-first) → `seed_*_districts_regions.sql` → `seed_bihar_persons.sql` → `seed_bihar_person_regions.sql` → `seed_party_symbols.sql`.
+- Seed order matters (enforced in `setup.sh`): `seed.sql` → `seed_*_parties.sql` → VS results (Bihar newest-first) → `seed_*_districts_regions.sql` → `seed_bihar_persons.sql` → `seed_bihar_person_regions.sql` → `seed_party_symbols.sql` → `seed_election_result_dates.sql`.
 - New migrations must be idempotent (`IF NOT EXISTS` / `DO` blocks) and must not depend on seed data. New seeds must use `ON CONFLICT DO NOTHING`, set `results.election_id`, and never `TRUNCATE`. Constituency UPDATEs keyed by `const_no` must be scoped to the election type/ID (LS and VS numbering overlap).
 - Keep `backend/prisma/schema.prisma` in sync with the SQL (check with `prisma migrate diff --from-url … --to-schema-datamodel …`). Prisma CLI commands that read the schema config need `DIRECT_URL` set (it may equal `DATABASE_URL` locally); the app and `prisma generate` do not.
 - Several seeds are partly estimated (see `docs/FEATURES.md` → Known Limitations). The public `/about` page lists each dataset's quality from `frontend/src/model/about/about.ts`: update that file in the same change whenever a seed is added or corrected.
@@ -52,7 +52,7 @@ matdaanpulse/
 - `database/schema.sql` + `database/migrations/*.sql` — base schema + incremental changes
 - `database/seed.sql` — Real 2024 Lok Sabha election data (states, parties, results, candidates)
 - `database/seed_bihar_vs_{2010,2015,2020,2025}.sql`, `database/seed_{wb,as,kl,tn,py}_vs_{2011,2016,2021}.sql` — Vidhan Sabha results
-- `database/seed_{as,kl,py,tn,wb}_parties.sql`, `database/seed_*_districts_regions.sql`, `database/seed_bihar_persons.sql`, `database/seed_bihar_person_regions.sql`, `database/seed_party_symbols.sql` — supporting seeds
+- `database/seed_{as,kl,py,tn,wb}_parties.sql`, `database/seed_*_districts_regions.sql`, `database/seed_bihar_persons.sql`, `database/seed_bihar_person_regions.sql`, `database/seed_party_symbols.sql`, `database/seed_election_result_dates.sql` (counting dates, fills only empty ones) — supporting seeds
 - `.env.example` — every env var (shared names across compose, setup.sh, backend, scraper)
 
 ## Rules

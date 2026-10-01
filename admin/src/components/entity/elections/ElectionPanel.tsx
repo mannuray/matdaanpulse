@@ -108,7 +108,7 @@ export function ElectionPanel({ mode, election, manager, loadingElections, loadF
                 </Select>
               </Field>
             )}
-            <Field label="Tentative next date" error={fieldErrors.tentative_next_date}>
+            <Field label="Result date" hint="Counting day. The public site counts down to it while the election is upcoming." error={fieldErrors.tentative_next_date}>
               <Input type="date" value={form.tentative_next_date} onChange={(e) => set({ tentative_next_date: e.target.value })} />
             </Field>
           </FormSection>

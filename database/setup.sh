@@ -93,4 +93,7 @@ run seed_bihar_person_regions.sql
 echo "==> Seeds: party symbols (must follow all party inserts)"
 run seed_party_symbols.sql
 
+echo "==> Seeds: election result dates (must follow every election insert)"
+run seed_election_result_dates.sql
+
 echo "==> Done. Create an admin user with: cd backend && npm run create-admin"
