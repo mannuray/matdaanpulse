@@ -24,3 +24,7 @@ Every number shown in these screens is a placeholder. Real values come from the 
 - Activity feed: there are no "verified" events (that feature was dropped). Lock take-over events do exist ("Priya S took over 145 Bikram").
 - Feedback card: there are no names or roles. Each preview shows a kind badge (`bug` rose, `data_error` amber, `suggestion` indigo,
   `other` slate), the first line of the message, the `page` path in monospace, and the relative time.
+
+### Login (`login.*`)
+- Use the real logo `/logo-mark.png` instead of the generic ballot icon.
+- Show the error banner only after a failed sign-in.
