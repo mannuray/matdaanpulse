@@ -46,6 +46,9 @@ export function PersonPanel({ id, onClose, onChanged }: { id: string; onClose: (
             : <EmptyState title="Person not found" description="It may have been merged into another record." />
       ) : (
         <div className="space-y-5">
+          {ed.loadError === 'failed' && (
+            <EmptyState title="Could not reload person" description="The details below may be out of date." action={<Button variant="outline" size="sm" onClick={() => { void ed.refresh(); }}>Try again</Button>} />
+          )}
           <div className="flex items-center gap-3">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-card border border-line bg-subtle text-lg font-semibold text-ink-2">
               {form.photo_url ? <img src={form.photo_url} alt="" className="h-full w-full object-cover" /> : person.name.charAt(0)}
@@ -128,7 +131,7 @@ export function PersonPanel({ id, onClose, onChanged }: { id: string; onClose: (
                       <div className="truncate font-medium text-ink">{p.name}</div>
                       <div className="text-muted">{p.candidate_count} contests</div>
                     </div>
-                    <Button size="sm" variant="danger" disabled={ed.merging || ed.dirty} aria-label={`Merge ${p.name} into this record`} onClick={() => merge(p.id, p.name)}>Merge</Button>
+                    <Button size="sm" variant="danger" disabled={ed.merging || ed.saving || ed.dirty} aria-label={`Merge ${p.name} into this record`} onClick={() => merge(p.id, p.name)}>Merge</Button>
                   </li>
                 ))}
               </ul>

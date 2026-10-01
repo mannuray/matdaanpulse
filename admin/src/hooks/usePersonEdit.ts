@@ -72,6 +72,9 @@ export function usePersonEdit(id?: string) {
     try {
       await updatePerson(id, {
         ...submitted,
+        // The DTO accepts null; '' would turn a stored null into an empty string.
+        gender: submitted.gender || null,
+        education: submitted.education || null,
         metadata: {
           ...person.metadata,
           wikipedia_url: submitted.wikipedia_url

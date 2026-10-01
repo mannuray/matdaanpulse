@@ -80,12 +80,13 @@ describe('Persons page', () => {
 
   it('a SUPER_ADMIN merges a duplicate into the open person and the list refreshes', async () => {
     auth.role = 'SUPER_ADMIN';
-    vi.spyOn(window, 'confirm').mockReturnValue(true);
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(true);
     renderAt('/persons/p1');
     const panel = await screen.findByRole('dialog', { name: 'Nitish Kumar' });
     fireEvent.change(await within(panel).findByLabelText('Search duplicates'), { target: { value: 'Nitish' } });
     fireEvent.click(await within(panel).findByRole('button', { name: 'Merge Nitish Kr into this record' }));
     await waitFor(() => expect(api.mergePersons).toHaveBeenCalledWith('p2', 'p1'));
+    expect(confirm.mock.calls[0][0]).toContain('into "Nitish Kumar"');
     await waitFor(() => expect(api.getPersons.mock.calls.filter(([, l]) => l === 50)).toHaveLength(2));
   });
 
@@ -123,5 +124,27 @@ describe('Persons page', () => {
     const panel = await screen.findByRole('dialog');
     expect(await within(panel).findByText('Person not found')).toBeTruthy();
     expect(within(panel).queryByRole('button', { name: 'Try again' })).toBeNull();
+  });
+
+  it('saving an unrelated field keeps a null gender/education as null', async () => {
+    api.getPerson.mockImplementationOnce(async (id: string) => ({ ...P(id, 'Blank Person', null), education: null, bio: null, metadata: {}, candidates: [] }));
+    renderAt('/persons/p7');
+    const panel = await screen.findByRole('dialog', { name: 'Blank Person' });
+    fireEvent.change(within(panel).getByLabelText('Name'), { target: { value: 'Blank P.' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
+    await waitFor(() => expect(api.updatePerson).toHaveBeenCalledWith('p7', expect.objectContaining({ name: 'Blank P.', gender: null, education: null })));
+  });
+
+  it('a failed reload after a merge shows an inline retry', async () => {
+    auth.role = 'SUPER_ADMIN';
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+    renderAt('/persons/p1');
+    const panel = await screen.findByRole('dialog', { name: 'Nitish Kumar' });
+    fireEvent.change(await within(panel).findByLabelText('Search duplicates'), { target: { value: 'Nitish' } });
+    const btn = await within(panel).findByRole('button', { name: 'Merge Nitish Kr into this record' });
+    api.getPerson.mockRejectedValueOnce(new Error('boom'));
+    fireEvent.click(btn);
+    fireEvent.click(await within(panel).findByRole('button', { name: 'Try again' }));
+    await waitFor(() => expect(within(panel).queryByText('Could not reload person')).toBeNull());
   });
 });
