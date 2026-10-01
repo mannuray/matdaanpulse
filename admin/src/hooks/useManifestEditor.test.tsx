@@ -62,4 +62,20 @@ describe('useManifestEditor save', () => {
     expect(result.current.manifest.compare_with).toEqual(['2019']);
     expect(result.current.isDirty).toBe(true);
   });
+
+  it('edits typed during the save step of a dirty publish survive the publish', async () => {
+    const { result } = await loaded();
+    act(() => result.current.updateManifest('compare_with', ['2019']));
+    let release!: () => void;
+    vi.mocked(saveManifestDraft).mockImplementationOnce(() => new Promise((r) => { release = () => r({} as never); }));
+    let publishing!: Promise<boolean>;
+    act(() => { publishing = result.current.publish(); });
+    act(() => result.current.updateManifest('compare_with', ['2019', '2014']));
+    vi.mocked(getManifest).mockClear();
+    await act(async () => { release(); await publishing; });
+    expect(publishManifest).toHaveBeenCalledTimes(1);
+    expect(getManifest).not.toHaveBeenCalled();
+    expect(result.current.manifest.compare_with).toEqual(['2019', '2014']);
+    expect(result.current.isDirty).toBe(true);
+  });
 });

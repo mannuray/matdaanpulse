@@ -109,8 +109,11 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
       if (jsonEdited) pending = parsed;
     }
     setPublishing(true);
+    const previousBase = jsonBaseRef.current;
+    if (pending) jsonBaseRef.current = jsonText;
     try {
       if (await c.publish(pending)) onPublished();
+      else jsonBaseRef.current = previousBase;
     } finally {
       setPublishing(false);
       setConfirmPublish(false);

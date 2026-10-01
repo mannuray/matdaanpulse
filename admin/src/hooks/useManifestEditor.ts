@@ -190,6 +190,8 @@ export function useManifestEditor(electionId: string | null) {
    */
   const publish = async (pending?: ManifestData): Promise<boolean> => {
     if (!selectedId) return false;
+    // Taken before the pre-publish save, so edits typed during that save also block the reload.
+    const versionAtPublish = editVersionRef.current;
     if (isDirty || pending !== undefined) {
       const saved = await saveDraft(pending ?? manifest);
       if (!saved) {
@@ -198,7 +200,6 @@ export function useManifestEditor(electionId: string | null) {
       }
     }
     setSaving(true);
-    const versionAtPublish = editVersionRef.current;
     try {
       await publishManifest(selectedId);
       toast('Manifest published to the live site');
