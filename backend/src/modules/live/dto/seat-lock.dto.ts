@@ -1,4 +1,4 @@
-import { IsBoolean, IsOptional } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString, Matches, MaxLength } from 'class-validator';
 import { IsUuidLike } from '../../../common/validation/uuid-like';
 
 export class SeatLockQuery {
@@ -10,7 +10,12 @@ export class SeatLockRelease {
   @IsUuidLike()
   election_id!: string;
 
-  @IsUuidLike()
+  // Constituency ids are strings like BR_VS_1_VALMIKI_NAGAR (not UUIDs). The charset keeps
+  // glob/separator characters (* ? [ ] :) out of the Redis key and SCAN pattern.
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(100)
+  @Matches(/^[A-Za-z0-9_&-]+$/)
   const_id!: string;
 }
 
