@@ -63,6 +63,24 @@ editor to pick the election again.
   If you move to another seat with unsaved edits, a prompt asks whether to save or discard.
 - **Live updates:** when an SSE update arrives for a seat, its list row flashes. If that seat is
   open with unsaved edits, a banner says it changed elsewhere, with a "Reload" option.
+- **Round progress (UI only):** the seat header shows "Round 4 of 24" with a small bar, using the
+  existing `current_round` / `total_rounds`. The page header shows overall counting progress
+  (% of seats with any votes).
+- **Seat lock (new feature, needs backend):** opening a seat for editing takes a soft lock
+  (Redis key `lock:seat:{election}:{const_id}` with a 2-minute TTL, refreshed while the editor is
+  open, released on save, discard or leaving). Other editors see a "Locked by X" banner, the inputs
+  are read-only, and there is a **Take over** button that logs to audit. Lock changes go out over
+  the existing SSE channel, and the seat list shows a lock icon. Endpoints:
+  `POST/DELETE /admin/live/locks/:constId` and `GET /admin/live/locks?election_id=`. If Redis is
+  down, locking is disabled and a warning shows. Saving does not require a lock.
+
+### Top bar extras
+
+- **Live-updates pill:** SSE connected (green) / reconnecting (amber) / offline (rose).
+- **Health dot:** a summary from `/health/ready` (DB + Redis) that links to System status.
+- **"?" button:** opens a keyboard-shortcuts sheet.
+- **Bell:** count of new feedback, linking to Feedback.
+- No Settings / Documentation items.
 
 ## 4. Entity pages (one pattern, used 6×)
 
@@ -144,4 +162,4 @@ Stitch numbers are placeholders. Real data comes from the API.
 
 ## Out of scope
 
-Mobile layouts, dark mode, new backend endpoints, changes to the public frontend.
+Mobile layouts, dark mode, changes to the public frontend. The only new backend work is seat locks (§3).
