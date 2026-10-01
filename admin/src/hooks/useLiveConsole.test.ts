@@ -45,6 +45,21 @@ describe('useLiveConsole', () => {
     expect(result.current.seats.map((s) => s.const_id)).toEqual(['s2']);
   });
 
+  it('holdSelection keeps the current seat when the filter hides it', async () => {
+    const { result } = renderHook(({ hold }) => useLiveConsole({ holdSelection: hold }), { initialProps: { hold: true } });
+    await waitFor(() => expect(result.current.selectedId).toBe('s1'));
+    act(() => result.current.setFilter('WON'));
+    expect(result.current.selectedId).toBe('s1');
+    expect(result.current.selected?.const_id).toBe('s1');
+  });
+
+  it('without holdSelection the filter moves the selection', async () => {
+    const { result } = renderHook(() => useLiveConsole({ holdSelection: false }));
+    await waitFor(() => expect(result.current.selectedId).toBe('s1'));
+    act(() => result.current.setFilter('WON'));
+    expect(result.current.selectedId).toBe('s3');
+  });
+
   it('move() walks the filtered list and stops at the ends', async () => {
     const { result } = renderHook(() => useLiveConsole());
     await waitFor(() => expect(result.current.selectedId).toBe('s1'));

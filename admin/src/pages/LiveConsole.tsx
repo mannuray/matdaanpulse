@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLiveConsole } from '../hooks/useLiveConsole';
 import { useSeatLock } from '../hooks/useSeatLock';
 import { useAuth } from '../context/AuthContext';
@@ -11,7 +11,8 @@ const isTypingTarget = (el: Element | null) => !!el && ['INPUT', 'SELECT', 'TEXT
 
 /** PAGE: Live Console — split view (seat list | seat editor), keyboard-first. */
 export default function LiveConsole() {
-  const lc = useLiveConsole();
+  const [editorDirty, setEditorDirty] = useState(false);
+  const lc = useLiveConsole({ holdSelection: editorDirty });
   const { user } = useAuth();
   const myId = user?.id ?? '';
   const lock = useSeatLock(lc.electionId, lc.selectedId, myId, lc.selectedId ? lc.locks[lc.selectedId] : undefined);
@@ -21,6 +22,7 @@ export default function LiveConsole() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
       const active = document.activeElement;
       if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && !isTypingTarget(active)) {
         if (editorRef.current?.dirty && !window.confirm('Discard unsaved edits for this seat?')) return;
@@ -73,6 +75,7 @@ export default function LiveConsole() {
                 lastSavedAt={lc.lastSavedAt[lc.selected.const_id]}
                 lock={lock}
                 onSave={lc.saveSeat}
+                onDirtyChange={setEditorDirty}
               />
             ) : (
               <p className="m-auto text-sm text-muted">No seat selected.</p>

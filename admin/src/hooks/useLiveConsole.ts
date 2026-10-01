@@ -16,7 +16,8 @@ export interface SeatSave {
 }
 
 /** CONTROLLER: Live Console — seats, filters, selection, live stream, seat locks, save. */
-export function useLiveConsole() {
+export function useLiveConsole(opts?: { holdSelection?: boolean }) {
+  const holdSelection = !!opts?.holdSelection;
   const { electionId, election } = useElection();
   const { setLive } = useShellStatus();
   const toasts = useToast();
@@ -110,9 +111,10 @@ export function useLiveConsole() {
 
   // Keep a valid selection inside the visible list.
   useEffect(() => {
+    if (holdSelection && selectedId && all.some((s) => s.const_id === selectedId)) return; // unsaved edits: keep the seat
     if (seats.length === 0) { if (selectedId !== null) setSelectedId(null); return; }
     if (!selectedId || !seats.some((s) => s.const_id === selectedId)) setSelectedId(seats[0].const_id);
-  }, [seats, selectedId]);
+  }, [seats, selectedId, holdSelection, all]);
 
   const move = useCallback((delta: 1 | -1) => {
     setSelectedId((cur) => {

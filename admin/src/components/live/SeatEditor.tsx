@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { Lock, RefreshCw } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Kbd } from '../ui/Kbd';
@@ -19,24 +19,28 @@ interface Props {
   lastSavedAt?: string;
   lock: { state: SeatLockState; holder: SeatLock | null; takeOver(): Promise<void> };
   onSave(constId: string, payload: SeatSave): Promise<boolean>;
+  onDirtyChange?(dirty: boolean): void;
 }
 
 const STATUS_LABEL: Record<OverrideStatus, string> = { LEADING: 'Leading', TRAILING: 'Trailing', WON: 'Won', LOST: 'Lost' };
 const fmt = (n: number) => n.toLocaleString('en-IN');
 const time = (iso?: string) => (iso ? new Date(iso).toLocaleTimeString('en-GB') : null);
 
-export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEditor({ seat, saving, lastSavedAt, lock, onSave }, ref) {
+export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEditor({ seat, saving, lastSavedAt, lock, onSave, onDirtyChange }, ref) {
   const ed = useSeatEditor(seat);
   const [error, setError] = useState<string | null>(null);
   const readOnly = lock.state === 'locked';
 
   const submit = async (declare: boolean) => {
-    if (readOnly) return;
+    if (readOnly || saving) return;
     const out = ed.build(declare);
     if (!out.ok) { setError(out.error); return; }
     setError(null);
     if (await onSave(seat.const_id, { overrides: out.overrides, rounds: out.rounds })) ed.markSaved();
   };
+
+  useEffect(() => { onDirtyChange?.(ed.dirty); }, [ed.dirty, onDirtyChange]);
+  useEffect(() => () => onDirtyChange?.(false), [onDirtyChange]);
 
   useImperativeHandle(ref, () => ({ save: () => void submit(false), discard: ed.discard, dirty: ed.dirty }));
 
