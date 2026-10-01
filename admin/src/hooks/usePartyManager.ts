@@ -4,7 +4,7 @@ import { getElections } from '../services/election.service';
 import { getStates } from '../services/geo.service';
 import { useResourceList } from './useResourceList';
 import { useToast } from '../context/ToastContext';
-import type { Election, State } from '../types';
+import type { Election, Party, State } from '../types';
 
 interface PartyFilters {
   stateId: number | '';
@@ -48,16 +48,17 @@ export function usePartyManager() {
     }
   });
 
-  const handleCreate = async (data: Parameters<typeof createParty>[0]) => {
+  /** Creates the party and returns it (the page then opens /parties/:id), or null on failure. */
+  const handleCreate = async (data: Parameters<typeof createParty>[0]): Promise<Party | null> => {
     setSaving(true);
     try {
-      await createParty(data);
+      const created = await createParty(data);
       toast('Party registered successfully');
       list.refresh();
-      return true;
+      return created;
     } catch (err) {
       toastError(err, 'Registration failed');
-      return false;
+      return null;
     } finally {
       setSaving(false);
     }

@@ -13,9 +13,8 @@ import UserManager from './pages/UserManager';
 import AuditLogs from './pages/AuditLogs';
 import Feedback from './pages/Feedback';
 import SystemStatus from './pages/SystemStatus';
-import PartyManager from './pages/PartyManager';
-import PartyDetail from './pages/PartyDetail';
-import PartyEdit from './pages/PartyEdit';
+import Parties from './pages/Parties';
+import { EditRedirect } from './components/routing/EditRedirect';
 import CandidateManager from './pages/CandidateManager';
 import CandidateDetail from './pages/CandidateDetail';
 import CandidateEdit from './pages/CandidateEdit';
@@ -58,10 +57,9 @@ function App() {
                 <Route path="manifests/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestDetail /></ProtectedRoute>} />
                 <Route path="manifests/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ManifestEditor /></ProtectedRoute>} />
                 
-                {/* Parties */}
-                <Route path="parties" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyManager /></ProtectedRoute>} />
-                <Route path="parties/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyDetail /></ProtectedRoute>} />
-                <Route path="parties/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><PartyEdit /></ProtectedRoute>} />
+                {/* Parties: list + panel at /parties/:id; old /:id/edit links redirect */}
+                <Route path="parties/:id/edit" element={<EditRedirect base="/parties" />} />
+                <Route path="parties/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Parties /></ProtectedRoute>} />
                 
                 {/* Candidates */}
                 <Route path="candidates" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><CandidateManager /></ProtectedRoute>} />
