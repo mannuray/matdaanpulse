@@ -1,0 +1,476 @@
+<!DOCTYPE html><!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Candidates - MatdaanPulse Admin</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {},
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Inter", "sans-serif"],
+            display: ["Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[type='text'],input:where(:not([type])),[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{-webkit-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0px;padding-top:0.5rem;padding-right:0.75rem;padding-bottom:0.5rem;padding-left:0.75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000;}[type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);border-color:#2563eb}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 0.5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:initial;background-position:initial;background-repeat:unset;background-size:initial;padding-right:0.75rem;print-color-adjust:unset}[type='checkbox'],[type='radio']{-webkit-appearance:none;appearance:none;padding:0;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type='checkbox']{border-radius:0px}[type='radio']{border-radius:100%}[type='checkbox']:focus,[type='radio']:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}[type='checkbox']:checked,[type='radio']:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat}[type='checkbox']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='checkbox']:checked{-webkit-appearance:auto;appearance:auto}}[type='radio']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='radio']:checked{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus{border-color:transparent;background-color:currentColor}[type='checkbox']:indeterminate{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat;}@media (forced-colors: active) {[type='checkbox']:indeterminate{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus{border-color:transparent;background-color:currentColor}[type='file']{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type='file']:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-y-0{top:0px;bottom:0px}.left-0{left:0px}.left-2\.5{left:0.625rem}.right-1{right:0.25rem}.right-2{right:0.5rem}.right-2\.5{right:0.625rem}.top-0{top:0px}.top-1{top:0.25rem}.top-1\/2{top:50%}.top-20{top:5rem}.z-10{z-index:10}.z-20{z-index:20}.z-30{z-index:30}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-2\.5{margin-bottom:0.625rem}.mb-3{margin-bottom:0.75rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-3\.5{margin-top:0.875rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.h-14{height:3.5rem}.h-2{height:0.5rem}.h-4{height:1rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-\[calc\(100vh-160px\)\]{height:calc(100vh - 160px)}.h-full{height:100%}.h-2\.5{height:0.625rem}.max-h-\[calc\(100vh-275px\)\]{max-height:calc(100vh - 275px)}.min-h-0{min-height:0px}.min-h-screen{min-height:100vh}.w-2{width:0.5rem}.w-4{width:1rem}.w-56{width:14rem}.w-60{width:15rem}.w-72{width:18rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-\[440px\]{width:440px}.w-full{width:100%}.w-px{width:1px}.w-2\.5{width:0.625rem}.w-\[400px\]{width:400px}.min-w-0{min-width:0px}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.border-collapse{border-collapse:collapse}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}.cursor-pointer{cursor:pointer}.appearance-none{-webkit-appearance:none;appearance:none}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.space-y-0\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.125rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-slate-100 > :not([hidden]) ~ :not([hidden]){--tw-divide-opacity:1;border-color:rgb(241 245 249 / var(--tw-divide-opacity, 1))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-\[10px\]{border-radius:10px}.rounded-\[6px\]{border-radius:6px}.rounded-\[8px\]{border-radius:8px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l-4{border-left-width:4px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-amber-200\/70{border-color:rgb(253 230 138 / 0.7)}.border-amber-300{--tw-border-opacity:1;border-color:rgb(252 211 77 / var(--tw-border-opacity, 1))}.border-blue-200\/70{border-color:rgb(191 219 254 / 0.7)}.border-emerald-200{--tw-border-opacity:1;border-color:rgb(167 243 208 / var(--tw-border-opacity, 1))}.border-emerald-200\/60{border-color:rgb(167 243 208 / 0.6)}.border-emerald-300{--tw-border-opacity:1;border-color:rgb(110 231 183 / var(--tw-border-opacity, 1))}.border-indigo-100{--tw-border-opacity:1;border-color:rgb(224 231 255 / var(--tw-border-opacity, 1))}.border-indigo-200{--tw-border-opacity:1;border-color:rgb(199 210 254 / var(--tw-border-opacity, 1))}.border-indigo-200\/60{border-color:rgb(199 210 254 / 0.6)}.border-rose-200{--tw-border-opacity:1;border-color:rgb(254 205 211 / var(--tw-border-opacity, 1))}.border-sky-200{--tw-border-opacity:1;border-color:rgb(186 230 253 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.border-slate-700\/40{border-color:rgb(51 65 85 / 0.4)}.border-slate-700\/50{border-color:rgb(51 65 85 / 0.5)}.border-yellow-200{--tw-border-opacity:1;border-color:rgb(254 240 138 / var(--tw-border-opacity, 1))}.border-l-indigo-600{--tw-border-opacity:1;border-left-color:rgb(79 70 229 / var(--tw-border-opacity, 1))}.bg-\[\#f8fafc\]{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235 / var(--tw-bg-opacity, 1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-indigo-100{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity, 1))}.bg-indigo-50{--tw-bg-opacity:1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.bg-indigo-50\/50{background-color:rgb(238 242 255 / 0.5)}.bg-indigo-50\/70{background-color:rgb(238 242 255 / 0.7)}.bg-indigo-600{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-rose-50{--tw-bg-opacity:1;background-color:rgb(255 241 242 / var(--tw-bg-opacity, 1))}.bg-rose-600{--tw-bg-opacity:1;background-color:rgb(225 29 72 / var(--tw-bg-opacity, 1))}.bg-sky-50{--tw-bg-opacity:1;background-color:rgb(240 249 255 / var(--tw-bg-opacity, 1))}.bg-sky-600{--tw-bg-opacity:1;background-color:rgb(2 132 199 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-400{--tw-bg-opacity:1;background-color:rgb(148 163 184 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-50\/90{background-color:rgb(248 250 252 / 0.9)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-yellow-400{--tw-bg-opacity:1;background-color:rgb(250 204 21 / var(--tw-bg-opacity, 1))}.bg-yellow-50{--tw-bg-opacity:1;background-color:rgb(254 252 232 / var(--tw-bg-opacity, 1))}.p-0\.5{padding:0.125rem}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pb-1{padding-bottom:0.25rem}.pb-1\.5{padding-bottom:0.375rem}.pl-1{padding-left:0.25rem}.pl-3{padding-left:0.75rem}.pl-60{padding-left:15rem}.pl-7{padding-left:1.75rem}.pl-8{padding-left:2rem}.pl-9{padding-left:2.25rem}.pr-12{padding-right:3rem}.pr-3{padding-right:0.75rem}.pr-8{padding-right:2rem}.pt-1{padding-top:0.25rem}.text-left{text-align:left}.text-right{text-align:right}.font-body{font-family:Inter, sans-serif}.font-headline{font-family:Inter, sans-serif}.font-label{font-family:Inter, sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-none{line-height:1}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6 / var(--tw-text-opacity, 1))}.text-amber-800{--tw-text-opacity:1;color:rgb(146 64 14 / var(--tw-text-opacity, 1))}.text-blue-800{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-indigo-600{--tw-text-opacity:1;color:rgb(79 70 229 / var(--tw-text-opacity, 1))}.text-indigo-700{--tw-text-opacity:1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.text-rose-600{--tw-text-opacity:1;color:rgb(225 29 72 / var(--tw-text-opacity, 1))}.text-rose-800{--tw-text-opacity:1;color:rgb(159 18 57 / var(--tw-text-opacity, 1))}.text-sky-800{--tw-text-opacity:1;color:rgb(7 89 133 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-800{--tw-text-opacity:1;color:rgb(133 77 14 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-slate-400::placeholder{--tw-placeholder-opacity:1;color:rgb(148 163 184 / var(--tw-placeholder-opacity, 1))}.opacity-75{opacity:0.75}.opacity-90{opacity:0.9}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-150{transition-duration:150ms}.selection\:bg-indigo-100 *::selection{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity, 1))}.selection\:text-indigo-900 *::selection{--tw-text-opacity:1;color:rgb(49 46 129 / var(--tw-text-opacity, 1))}.selection\:bg-indigo-100::selection{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity, 1))}.selection\:text-indigo-900::selection{--tw-text-opacity:1;color:rgb(49 46 129 / var(--tw-text-opacity, 1))}.hover\:bg-amber-100:hover{--tw-bg-opacity:1;background-color:rgb(254 243 199 / var(--tw-bg-opacity, 1))}.hover\:bg-indigo-50:hover{--tw-bg-opacity:1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.hover\:bg-indigo-700:hover{--tw-bg-opacity:1;background-color:rgb(67 56 202 / var(--tw-bg-opacity, 1))}.hover\:bg-rose-50:hover{--tw-bg-opacity:1;background-color:rgb(255 241 242 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700\/60:hover{background-color:rgb(51 65 85 / 0.6)}.hover\:text-slate-600:hover{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.hover\:text-slate-700:hover{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.hover\:text-slate-900:hover{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.focus\:border-indigo-500:focus{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-1:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-indigo-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(99 102 241 / var(--tw-ring-opacity, 1))}.disabled\:opacity-40:disabled{opacity:0.4}</style></head>
+<body class="bg-[#f8fafc] text-slate-900 font-body antialiased min-h-screen flex selection:bg-indigo-100 selection:text-indigo-900">
+<!-- Left Sidebar (240px, dark slate #1e293b) -->
+<aside class="fixed inset-y-0 left-0 w-60 z-30 flex flex-col bg-slate-800 border-r border-slate-700/50 shadow-sm justify-between">
+<div class="flex flex-col h-full">
+<!-- Brand Header -->
+<div class="h-14 px-4 flex items-center gap-3 border-b border-slate-700/40">
+<div class="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center text-white font-bold shadow-sm text-sm">
+<span class="material-symbols-outlined text-white" style="font-size: 20px;">how_to_vote</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline text-sm font-semibold text-white tracking-tight">MatdaanPulse Admin</span>
+<span class="font-body text-[11px] text-slate-400">Election Results Hub</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 px-3 py-3 overflow-y-auto custom-scroll space-y-4 text-xs">
+<!-- COUNTING Section -->
+<div>
+<div class="px-3 pb-1.5 text-[10px] font-medium text-slate-400">Counting</div>
+<div class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">dashboard</span>
+<span class="font-medium text-xs">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">podium</span>
+<span class="font-medium text-xs">Live Console</span>
+</a>
+</div>
+</div>
+<!-- DATA Section -->
+<div>
+<div class="px-3 pb-1.5 text-[10px] font-medium text-slate-400">Data</div>
+<div class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">how_to_vote</span>
+<span class="font-medium text-xs">Elections</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">description</span>
+<span class="font-medium text-xs">Manifests</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">flag</span>
+<span class="font-medium text-xs">Parties</span>
+</a>
+<!-- Active Tab: Candidates -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-md bg-indigo-600 text-white font-medium shadow-sm transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-white">groups</span>
+<span class="font-medium text-xs">Candidates</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">person</span>
+<span class="font-medium text-xs">Persons</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">map</span>
+<span class="font-medium text-xs">Constituencies</span>
+</a>
+</div>
+</div>
+<!-- ADMIN Section -->
+<div>
+<div class="px-3 pb-1.5 text-[10px] font-medium text-slate-400">Admin</div>
+<div class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">chat_bubble</span>
+<span class="font-medium text-xs">Feedback</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">group</span>
+<span class="font-medium text-xs">Users</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">history</span>
+<span class="font-medium text-xs">Audit logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-slate-400">dns</span>
+<span class="font-medium text-xs">System status</span>
+</a>
+</div>
+</div>
+</nav>
+</div>
+</aside>
+<!-- Main Canvas / Content Container -->
+<div class="pl-60 flex-1 flex flex-col min-w-0">
+<!-- Top Navbar -->
+<header class="h-14 bg-white border-b border-slate-200 sticky top-0 z-20 flex items-center justify-between px-6">
+<!-- Left side: Dropdown & Search -->
+<div class="flex items-center gap-3">
+<!-- Election Dropdown Pill -->
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition-colors duration-150 text-xs font-medium text-slate-800" type="button"><span class="w-2 h-2 rounded-full bg-indigo-600 shrink-0"></span><span class="whitespace-nowrap">Bihar VS 2025</span><span class="material-symbols-outlined text-slate-400" style="font-size:16px">expand_more</span></button>
+<!-- Global Search Field -->
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" style="font-size: 17px;">search</span>
+<input class="w-full pl-8 pr-12 py-1.5 bg-slate-50 border border-slate-200 rounded-md text-xs placeholder-slate-400 text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all" placeholder="Search seats, candidates…" type="text">
+<div class="absolute right-2 top-1/2 -translate-y-1/2 bg-white border border-slate-200 text-slate-400 text-[10px] font-medium px-1.5 py-0.5 rounded shadow-2xs">⌘K</div>
+</div>
+</div>
+<!-- Right side: Status and User Info -->
+<div class="flex items-center gap-3 text-xs">
+<!-- Live updates on pill -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/60 font-medium text-xs"><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shrink-0"></span><span class="whitespace-nowrap">Live updates on</span></div>
+<!-- All systems OK link -->
+<span title="All systems OK" class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block shrink-0"></span>
+<div class="h-4 w-px bg-slate-200"></div>
+<!-- Notifications button with badge -->
+<button class="relative p-1.5 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
+<span class="absolute top-1 right-1 w-4 h-4 bg-indigo-600 text-white rounded-full text-[9px] font-bold flex items-center justify-center leading-none">3</span>
+</button>
+<!-- Help / keyboard shortcut button -->
+<button class="p-1.5 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-md transition-colors" title="Keyboard shortcuts">
+<span class="material-symbols-outlined" style="font-size: 20px;">help</span>
+</button>
+<div class="h-4 w-px bg-slate-200"></div>
+<!-- User profile badge -->
+<div class="flex items-center gap-2.5 pl-1">
+<div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-semibold flex items-center justify-center text-xs border border-indigo-200">
+            MK
+          </div>
+<div class="flex flex-col text-left"><span class="text-xs font-semibold text-slate-800 leading-tight whitespace-nowrap">Mannu K</span></div>
+</div>
+</div>
+</header>
+<!-- Page Content (Padding 24px) -->
+<main class="p-6 flex-1 flex flex-col space-y-4">
+<!-- Page Header -->
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-3">
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight font-headline">Candidates</h1>
+<span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-slate-200 tabular-nums">1,204</span>
+<span class="text-xs text-slate-400">·</span>
+<p class="text-xs text-slate-500 font-normal">Bihar Vidhan Sabha 2025 · Candidate registry and master linking</p>
+</div>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium shadow-sm transition-colors duration-150" type="button">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+<span>New candidate</span>
+</button>
+</div>
+<!-- Main Two-Column Split Layout -->
+<div class="flex gap-4 items-start flex-1 min-h-0">
+<!-- Left Column: Table & Filters (flex-1) -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Toolbar Card -->
+
+<div class="bg-white rounded-[10px] p-3 border border-slate-200 shadow-sm mb-3 flex flex-col gap-2.5">
+  <div class="relative w-full"><span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" style="font-size:16px">search</span><input class="w-full pl-8 pr-3 py-1.5 bg-white border border-slate-200 rounded-[6px] text-xs placeholder-slate-400" placeholder="Search by name…" type="text"></div>
+  <div class="flex items-center justify-between gap-3 flex-wrap">
+    <div class="flex items-center gap-2"><select class="py-1.5 pl-3 pr-8 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-700"><option>State: Bihar</option></select><select class="py-1.5 pl-3 pr-8 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-700"><option>Seat: All seats</option></select></div>
+    <div class="flex items-center bg-slate-100 p-0.5 rounded-[8px] border border-slate-200 text-xs shrink-0"><button class="px-3 py-1 rounded-[6px] font-medium bg-indigo-600 text-white">All <span class="tabular-nums opacity-90">1,204</span></button><button class="px-3 py-1 rounded-[6px] font-medium text-slate-600">Linked <span class="tabular-nums text-slate-400">1,050</span></button><button class="px-3 py-1 rounded-[6px] font-medium text-slate-600">Unlinked <span class="tabular-nums text-slate-400">154</span></button></div>
+  </div>
+</div>
+<!-- Table Card -->
+<div class="bg-white rounded-[10px] border border-slate-200 shadow-sm flex flex-col overflow-hidden">
+<!-- Scrollable Table Container -->
+<div class="overflow-x-auto max-h-[calc(100vh-275px)] custom-scroll">
+<table class="w-full text-left border-collapse text-xs">
+<!-- Sticky Table Header -->
+<thead class="sticky top-0 bg-slate-50 border-b border-slate-200 z-10"><tr class="text-xs font-medium text-slate-500 border-b border-slate-200"><th class="py-2.5 px-4 font-medium text-left">Candidate</th><th class="py-2.5 px-4 font-medium text-left">Party</th><th class="py-2.5 px-4 font-medium text-left">Seat</th><th class="py-2.5 px-4 font-medium text-right">Person</th></tr></thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<tr class="bg-indigo-50/70 border-l-4 border-l-indigo-600 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span><span class="font-semibold">Ravi Prasad</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-200/70">BJP</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">142 Patna Sahib</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></span><span class="">Anil Kumar</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-blue-50 text-blue-800 border border-blue-200/70">INC</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">142 Patna Sahib</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span><span class="">Sunita Devi</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-yellow-50 text-yellow-800 border border-yellow-200">JSP</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">142 Patna Sahib</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-600 shrink-0"></span><span class="">Mohd Irfan</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-blue-50 text-blue-800 border border-blue-200/70">BSP</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">142 Patna Sahib</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><button class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-300" type="button"><span class="material-symbols-outlined text-amber-600" style="font-size:13px">link</span>Link…</button></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0"></span><span class="">Tejashwi Yadav</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">RJD</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">144 Raghopur</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span><span class="">Satish Kumar</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-200/70">BJP</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">144 Raghopur</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0"></span><span class="">Nitish Kumar</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">JD(U)</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">179 Nalanda</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-sky-600 shrink-0"></span><span class="">Shweta Singh</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-sky-50 text-sky-800 border border-sky-200">LJP(RV)</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">140 Phulwari</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><button class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-300" type="button"><span class="material-symbols-outlined text-amber-600" style="font-size:13px">link</span>Link…</button></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-rose-600 shrink-0"></span><span class="">Manoj Manzil</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-rose-50 text-rose-800 border border-rose-200">CPI(ML)</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">195 Agiaon</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0"></span><span class="">Alok Kumar Mehta</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">RJD</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">134 Ujiarpur</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0"></span><span class="">Sanjay Jha</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">JD(U)</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">88 Jhanjharpur</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/60"><span class="material-symbols-outlined text-emerald-600" style="font-size:13px">check_circle</span>Linked</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+  <td class="py-2.5 px-4 font-medium text-slate-900 whitespace-nowrap"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-slate-400 shrink-0"></span><span class="">Priya Kumari</span></div></td>
+  <td class="py-2.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-300">IND</span></td>
+  <td class="py-2.5 px-4 text-slate-600 whitespace-nowrap">145 Bikram</td>
+  <td class="py-2.5 px-4 whitespace-nowrap text-right"><button class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-300" type="button"><span class="material-symbols-outlined text-amber-600" style="font-size:13px">link</span>Link…</button></td>
+</tr></tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-white border-t border-slate-200 px-4 py-3 flex items-center justify-between text-xs text-slate-500">
+<span class="tabular-nums font-normal">Showing 1–50 of 1,204 candidates</span>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-40 transition-colors" type="button">Previous</button>
+<button class="px-2.5 py-1 rounded bg-indigo-50 text-indigo-600 font-semibold border border-indigo-200" type="button">1</button>
+<button class="px-2.5 py-1 rounded hover:bg-slate-50 text-slate-600" type="button">2</button>
+<button class="px-2.5 py-1 rounded hover:bg-slate-50 text-slate-600" type="button">3</button>
+<span class="px-1 text-slate-400">…</span>
+<button class="px-2.5 py-1 rounded hover:bg-slate-50 text-slate-600" type="button">25</button>
+<button class="px-2.5 py-1 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors" type="button">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Side Inspector Panel (440px fixed width) -->
+<aside class="shrink-0 bg-white rounded-[10px] border border-slate-200 shadow-sm flex flex-col justify-between overflow-hidden sticky top-20 h-[calc(100vh-160px)] w-[400px]">
+<!-- Panel Header -->
+<div class="p-4 border-b border-slate-200 flex items-center justify-between bg-white">
+<div>
+<h2 class="text-lg font-bold text-slate-900 tracking-tight font-headline">Ravi Prasad</h2>
+<p class="text-xs text-slate-500">Candidate · 142 Patna Sahib</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-1.5 rounded-md transition-colors" title="Close inspector" type="button">
+<span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+</button>
+</div>
+<!-- Panel Scrollable Body -->
+<div class="p-4 space-y-5 overflow-y-auto flex-1 custom-scroll text-sm">
+<!-- Section 1: Details -->
+<div>
+<div class="text-xs font-medium text-slate-500 mb-2.5">Details</div>
+<div class="space-y-3">
+<!-- Name Field -->
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1">Name</label>
+<input class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" type="text" value="Ravi Prasad">
+</div>
+<!-- Party Select -->
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1">Party</label>
+<div class="relative">
+<select class="w-full pl-7 pr-8 py-1.5 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 appearance-none cursor-pointer">
+<option selected="">BJP</option>
+<option>INC</option>
+<option>JD(U)</option>
+<option>RJD</option>
+</select>
+<span class="w-2 h-2 rounded-full bg-amber-500 absolute left-2.5 top-1/2 -translate-y-1/2"></span>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" style="font-size: 16px;">expand_more</span>
+</div>
+</div>
+<!-- Seat Select -->
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1">Seat</label>
+<div class="relative">
+<select class="w-full px-3 pr-8 py-1.5 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 appearance-none cursor-pointer">
+<option selected="">142 Patna Sahib</option>
+<option>144 Raghopur</option>
+<option>179 Nalanda</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" style="font-size: 16px;">expand_more</span>
+</div>
+</div>
+<!-- 2-col row: Gender & Age -->
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1">Gender</label>
+<select class="w-full px-3 pr-8 py-1.5 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+<option selected="">Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1">Age</label>
+<input class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 tabular-nums" type="number" value="58">
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Result -->
+<div class="pt-1 border-t border-slate-100">
+<div class="text-xs font-medium text-slate-500 mb-2.5">Result</div>
+<div class="space-y-3">
+<!-- Votes -->
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1">Votes</label>
+<input class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 tabular-nums font-medium" type="text" value="61,204">
+</div>
+<!-- Status Dropdown -->
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1">Status</label>
+<div class="relative">
+<select class="w-full pl-9 pr-8 py-1.5 bg-white border border-slate-200 rounded-[6px] text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer">
+<option selected="">Leading</option>
+<option>Won</option>
+<option>Trailing</option>
+<option>Lost</option>
+<option>Pending</option>
+</select>
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-indigo-600" style="font-size: 16px;">trending_up</span>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" style="font-size: 16px;">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Person Record -->
+<div class="pt-1 border-t border-slate-100">
+<div class="text-xs font-medium text-slate-500 mb-2.5">Person record</div>
+<!-- Linked Person Card -->
+<div class="bg-indigo-50/50 border border-indigo-100 rounded-lg p-3 flex items-start justify-between">
+<div class="flex items-start gap-2.5">
+<div class="w-9 h-9 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                    RP
+                  </div>
+<div>
+<h3 class="text-xs font-semibold text-slate-900 leading-tight">Ravi Shankar Prasad</h3>
+<p class="text-[11px] text-slate-500 mt-0.5">Contested 2015, 2020</p>
+<a class="inline-flex items-center gap-1 text-[11px] text-indigo-600 font-medium hover:underline mt-1" href="#">
+<span>Open person</span>
+<span class="material-symbols-outlined" style="font-size: 12px;">open_in_new</span>
+</a>
+</div>
+</div>
+<button class="text-xs text-rose-600 border border-rose-200 hover:bg-rose-50 px-2.5 py-1 rounded font-medium transition-colors" type="button">
+                  Unlink
+                </button>
+</div>
+<!-- Other suggestions -->
+<div class="mt-3.5">
+<div class="text-[11px] font-medium text-slate-400 mb-2">Other suggestions</div>
+<div class="space-y-2">
+<!-- Match 1 -->
+<div class="flex items-center justify-between p-2 rounded-md hover:bg-slate-50 border border-slate-100 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400" style="font-size: 15px;">person_outline</span>
+<span class="text-xs text-slate-700">Ravi Prasad Singh · <span class="text-indigo-600 font-medium">72% match</span></span>
+</div>
+<button class="text-xs text-indigo-600 border border-indigo-200 px-2 py-0.5 rounded hover:bg-indigo-50 font-medium transition-colors" type="button">
+                      Link
+                    </button>
+</div>
+<!-- Match 2 -->
+<div class="flex items-center justify-between p-2 rounded-md hover:bg-slate-50 border border-slate-100 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400" style="font-size: 15px;">person_outline</span>
+<span class="text-xs text-slate-700">Ravindra Prasad · <span class="text-slate-500 font-medium">64% match</span></span>
+</div>
+<button class="text-xs text-indigo-600 border border-indigo-200 px-2 py-0.5 rounded hover:bg-indigo-50 font-medium transition-colors" type="button">
+                      Link
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Inspector Footer -->
+<div class="p-3.5 border-t border-slate-200 bg-slate-50/90 flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-xs text-amber-600 font-medium">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span>Unsaved changes</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 rounded-[6px] text-xs font-medium transition-colors" type="button">
+                Cancel
+              </button>
+<button class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[6px] text-xs font-medium shadow-sm transition-colors" type="button">
+                Save changes
+              </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>
