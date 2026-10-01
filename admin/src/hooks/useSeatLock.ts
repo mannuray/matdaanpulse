@@ -61,12 +61,21 @@ export function useSeatLock(electionId: string, constId: string | null, myUserId
     };
   }, [electionId, constId, attempt]);
 
-  // Heartbeat while held.
+  // Heartbeat while held; while locked, retry a normal acquire at the same pace (covers a holder whose TTL
+  // lapsed without a release event). Both are "quiet": a transient failure keeps the current state.
   useEffect(() => {
-    if (state !== 'held' || !constId) return;
+    if ((state !== 'held' && state !== 'locked') || !constId) return;
     const t = setInterval(() => { void attempt(electionId, constId, false, true); }, LOCK_HEARTBEAT_MS);
     return () => clearInterval(t);
   }, [state, electionId, constId, attempt]);
+
+  // The holder released the seat (remote lock went from a lock to none) → try to take it normally.
+  const prevRemoteRef = useRef(remoteLock);
+  useEffect(() => {
+    const had = prevRemoteRef.current;
+    prevRemoteRef.current = remoteLock;
+    if (state === 'locked' && had && !remoteLock && electionId && constId) void attempt(electionId, constId, false, true);
+  }, [remoteLock, state, electionId, constId, attempt]);
 
   // Tab closing: best-effort keepalive release (the TTL covers the rest).
   useEffect(() => {

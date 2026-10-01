@@ -8,6 +8,13 @@ import type { LiveConstituency, SeatLock } from '../types';
 
 const FLASH_MS = 1500;
 const RELOAD_DEBOUNCE_MS = 500;
+/** Mirrors the backend SEAT_LOCK_TTL_SECONDS: an older lock has lapsed (heartbeats re-publish a fresh acquired_at). */
+export const SEAT_LOCK_TTL_MS = 120_000;
+const LOCK_SWEEP_MS = 15_000;
+const isLapsed = (l: SeatLock, now: number) => {
+  const t = Date.parse(l.acquired_at);
+  return Number.isFinite(t) && now - t > SEAT_LOCK_TTL_MS;
+};
 
 export type SeatFilter = 'all' | 'PENDING' | 'LEADING' | 'WON';
 export interface SeatSave {
@@ -18,7 +25,10 @@ export interface SeatSave {
 /** CONTROLLER: Live Console — seats, filters, selection, live stream, seat locks, save. */
 export function useLiveConsole(opts?: { holdSelection?: boolean }) {
   const holdSelection = !!opts?.holdSelection;
-  const { electionId, election } = useElection();
+  const { electionId, election, error: electionsError } = useElection();
+  // Responses for an election the user has already left must not land on the new one.
+  const electionRef = useRef(electionId);
+  electionRef.current = electionId;
   const { setLive } = useShellStatus();
   const toasts = useToast();
   // Held in a ref so callbacks/effects don't re-run if a provider hands out new toast fns.
@@ -31,19 +41,22 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
   const [filter, setFilter] = useState<SeatFilter>('all');
   const [search, setSearch] = useState('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [locks, setLocks] = useState<Record<string, SeatLock>>({});
+  const [rawLocks, setLocks] = useState<Record<string, SeatLock>>({});
+  const [now, setNow] = useState(() => Date.now());
   const [flashIds, setFlashIds] = useState<Set<string>>(new Set());
   const [lastSavedAt, setLastSavedAt] = useState<Record<string, string>>({});
 
   const load = useCallback(async (silent = false) => {
     if (!electionId) return;
+    const current = () => electionRef.current === electionId;
     if (!silent) setLoading(true);
     try {
-      setAll(await getLiveResults(electionId));
+      const seats = await getLiveResults(electionId);
+      if (current()) setAll(seats);
     } catch {
-      if (!silent) toastRef.current.toast('Failed to load live results', 'error');
+      if (!silent && current()) toastRef.current.toast('Failed to load live results', 'error');
     } finally {
-      if (!silent) setLoading(false);
+      if (!silent && current()) setLoading(false);
     }
   }, [electionId]);
 
@@ -51,11 +64,21 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     if (!electionId) return;
     try {
       const list = await getSeatLocks(electionId);
-      setLocks(Object.fromEntries(list.map((l) => [l.const_id, l])));
+      if (electionRef.current === electionId) setLocks(Object.fromEntries(list.map((l) => [l.const_id, l])));
     } catch {
-      setLocks({}); // locking unavailable — the editor shows it per seat
+      if (electionRef.current === electionId) setLocks({}); // locking unavailable — the editor shows it per seat
     }
   }, [electionId]);
+
+  // Re-check lock ages periodically so a lapsed lock disappears even when no event arrives.
+  useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), LOCK_SWEEP_MS);
+    return () => clearInterval(t);
+  }, []);
+  const locks = useMemo(() => {
+    const entries = Object.entries(rawLocks).filter(([, l]) => !isLapsed(l, now));
+    return entries.length === Object.keys(rawLocks).length ? rawLocks : Object.fromEntries(entries);
+  }, [rawLocks, now]);
 
   useEffect(() => { setSelectedId(null); void load(); void loadLocks(); }, [load, loadLocks]);
 
@@ -143,7 +166,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
   const reportingPct = all.length === 0 ? 0 : Math.round(((counts.LEADING + counts.WON) / all.length) * 100);
 
   return {
-    electionId, electionName: election?.name ?? '', loading, saving,
+    electionId, electionName: election?.name ?? '', electionsError, loading, saving,
     seats, counts, filter, setFilter, search, setSearch,
     selectedId, selected: all.find((s) => s.const_id === selectedId) ?? null, select: setSelectedId, move,
     locks, flashIds, reportingPct, saveSeat, lastSavedAt,

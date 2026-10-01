@@ -56,7 +56,8 @@ export function useSeatEditor(seat: LiveConstituency | null) {
     setDirty(true);
     setRows((prev) => {
       const next = prev.map((r) => (r.result_id === resultId ? { ...r, draftVotes: raw, votes: parseVotes(raw) ?? r.votes } : r));
-      if (statusTouched) return next;
+      // Declared seats keep their statuses: a vote correction must never silently un-declare the winner.
+      if (statusTouched || declared) return next;
       const derived = deriveStatuses(next, declared);
       return next.map((r, i) => ({ ...r, status: derived[i].status }));
     });
@@ -85,14 +86,16 @@ export function useSeatEditor(seat: LiveConstituency | null) {
   const view = useMemo(() => {
     const withErrors = rows.map((r) => ({ ...r, error: parseVotes(r.draftVotes) === null ? VOTE_ERROR : null }));
     const { leader, tie } = rankSeat(rows);
+    const won = rows.find((r) => r.status === 'WON');
     return {
       rows: withErrors,
       leaderId: leader?.result_id ?? null,
       tie,
       margin: seatMargin(rows),
       totalVotes: rows.reduce((sum, r) => sum + r.votes, 0),
+      winnerNotLeader: declared && !!won && (leader?.result_id ?? null) !== won.result_id,
     };
-  }, [rows]);
+  }, [rows, declared]);
 
   const build = useCallback((declare: boolean): BuildResult => {
     if (view.rows.some((r) => r.error)) return { ok: false, error: 'Fix the highlighted votes' };

@@ -1,8 +1,10 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
+import { useState } from 'react';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
-const { move, saveSeat, lockState } = vi.hoisted(() => ({
+const { move, saveSeat, lockState, page } = vi.hoisted(() => ({
+  page: { electionId: 'e1', electionsError: null as string | null },
   move: vi.fn(),
   saveSeat: vi.fn(async () => true),
   lockState: { value: { state: 'held', holder: null as any, takeOver: vi.fn() } },
@@ -16,7 +18,7 @@ const seat = {
 };
 vi.mock('../hooks/useLiveConsole', () => ({
   useLiveConsole: () => ({
-    electionId: 'e1', electionName: 'Bihar VS 2025', loading: false, saving: false,
+    electionId: page.electionId, electionsError: page.electionsError, electionName: 'Bihar VS 2025', loading: false, saving: false,
     seats: [seat], counts: { all: 1, PENDING: 0, LEADING: 1, WON: 0 }, filter: 'all', setFilter: vi.fn(),
     search: '', setSearch: vi.fn(), selectedId: 's2', selected: seat, select: vi.fn(), move,
     locks: {}, flashIds: new Set(), reportingPct: 100, saveSeat, lastSavedAt: {},
@@ -25,13 +27,22 @@ vi.mock('../hooks/useLiveConsole', () => ({
 vi.mock('../hooks/useSeatLock', () => ({ useSeatLock: () => lockState.value }));
 vi.mock('../context/AuthContext', () => ({ useAuth: () => ({ user: { id: 'me', name: 'Mannu K' } }) }));
 import LiveConsole from './LiveConsole';
+import { ShellStatusProvider, useShellStatus } from '../context/ShellStatusContext';
 
-beforeEach(() => { lockState.value = { state: 'held', holder: null, takeOver: vi.fn() }; });
+function DirtyProbe() { return <output data-testid="dirty">{String(useShellStatus().editorDirty)}</output>; }
+// The page reports unsaved edits to the shell (sidebar/picker guards), so render it inside the real provider.
+const renderPage = (page = <LiveConsole />) => render(<ShellStatusProvider>{page}<DirtyProbe /></ShellStatusProvider>);
+
+beforeEach(() => {
+  lockState.value = { state: 'held', holder: null, takeOver: vi.fn() };
+  page.electionId = 'e1';
+  page.electionsError = null;
+});
 afterEach(() => { cleanup(); move.mockClear(); saveSeat.mockClear(); vi.restoreAllMocks(); });
 
 describe('LiveConsole page', () => {
   it('shows the seat with calculated margin and sentence-case actions', () => {
-    render(<LiveConsole />);
+    renderPage();
     expect(screen.getByRole('heading', { name: /142 Patna Sahib/ })).toBeTruthy();
     expect(screen.getByText('+12,214')).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Save seat' })).toBeTruthy();
@@ -39,7 +50,7 @@ describe('LiveConsole page', () => {
   });
 
   it('↑/↓ move seats only when focus is not in an input', () => {
-    render(<LiveConsole />);
+    renderPage();
     fireEvent.keyDown(window, { key: 'ArrowDown' });
     expect(move).toHaveBeenCalledWith(1);
     move.mockClear();
@@ -50,7 +61,7 @@ describe('LiveConsole page', () => {
   });
 
   it('Save seat sends the whole seat with margins', async () => {
-    render(<LiveConsole />);
+    renderPage();
     fireEvent.change(screen.getByLabelText('Votes for Anil Kumar'), { target: { value: '50,000' } });
     fireEvent.click(screen.getByRole('button', { name: 'Save seat' }));
     await Promise.resolve();
@@ -63,8 +74,9 @@ describe('LiveConsole page', () => {
   });
 
   it('Enter inside the editor saves; Enter on a button or outside does not', () => {
-    render(<LiveConsole />);
+    renderPage();
     const votes = screen.getByLabelText('Votes for Ravi Prasad');
+    fireEvent.change(votes, { target: { value: '61205' } }); // a clean seat has nothing to save (M-3)
     votes.focus();
     fireEvent.keyDown(votes, { key: 'Enter' });
     expect(saveSeat).toHaveBeenCalledTimes(1);
@@ -79,7 +91,7 @@ describe('LiveConsole page', () => {
   });
 
   it('Esc inside the editor discards; Esc outside does not', () => {
-    render(<LiveConsole />);
+    renderPage();
     const votes = screen.getByLabelText('Votes for Anil Kumar') as HTMLInputElement;
     const original = votes.value;
     fireEvent.change(votes, { target: { value: '50,000' } });
@@ -93,14 +105,14 @@ describe('LiveConsole page', () => {
   });
 
   it('/ focuses the seat search', () => {
-    render(<LiveConsole />);
+    renderPage();
     fireEvent.keyDown(document.body, { key: '/' });
     expect(document.activeElement).toBe(screen.getByLabelText('Jump to seat'));
   });
 
   it('moving with unsaved edits asks first and false blocks the move', () => {
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
-    render(<LiveConsole />);
+    renderPage();
     fireEvent.change(screen.getByLabelText('Votes for Anil Kumar'), { target: { value: '50,000' } });
     (document.activeElement as HTMLElement | null)?.blur();
     fireEvent.keyDown(window, { key: 'ArrowDown' });
@@ -113,7 +125,7 @@ describe('LiveConsole page', () => {
 
   it('a locked seat is read only', () => {
     lockState.value = { state: 'locked', holder: { const_id: 's2', user_id: 'u2', user_name: 'Priya S', acquired_at: 't' }, takeOver: vi.fn() };
-    render(<LiveConsole />);
+    renderPage();
     for (const l of ['Votes for Ravi Prasad', 'Votes for Anil Kumar', 'Status for Ravi Prasad', 'Current round', 'Total rounds']) {
       expect((screen.getByLabelText(l) as HTMLInputElement).disabled).toBe(true);
     }
@@ -126,4 +138,61 @@ describe('LiveConsole page', () => {
     fireEvent.keyDown(votes, { key: 'Enter' });
     expect(saveSeat).not.toHaveBeenCalled();
   });
+
+  it('Save seat on a clean seat sends nothing; Declare won still works', async () => {
+    renderPage();
+    fireEvent.click(screen.getByRole('button', { name: 'Save seat' }));
+    await Promise.resolve();
+    expect(saveSeat).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: 'Declare won' }));
+    await Promise.resolve();
+    expect(saveSeat).toHaveBeenCalledTimes(1);
+  });
+
+  it('arrow keys already handled by a widget, or pressed inside a listbox/menu/dialog, do not move seats', () => {
+    renderPage();
+    const widget = document.createElement('div');
+    widget.tabIndex = 0;
+    widget.addEventListener('keydown', (e) => e.preventDefault());
+    document.body.appendChild(widget);
+    fireEvent.keyDown(widget, { key: 'ArrowDown' });
+    expect(move).not.toHaveBeenCalled();
+    const listbox = document.createElement('div');
+    listbox.setAttribute('role', 'listbox');
+    const option = document.createElement('div');
+    option.tabIndex = 0;
+    listbox.appendChild(option);
+    document.body.appendChild(listbox);
+    option.focus();
+    fireEvent.keyDown(option, { key: 'ArrowUp' });
+    expect(move).not.toHaveBeenCalled();
+    widget.remove();
+    listbox.remove();
+  });
+
+  it('unsaved edits are reported to the shell and arm the tab-close warning; unmount clears them', () => {
+    const { unmount } = render(<ShellStatusProvider><LiveConsoleToggle /><DirtyProbe /></ShellStatusProvider>);
+    const unload = () => { const e = new Event('beforeunload', { cancelable: true }); window.dispatchEvent(e); return e.defaultPrevented; };
+    expect(unload()).toBe(false);
+    fireEvent.change(screen.getByLabelText('Votes for Anil Kumar'), { target: { value: '50,000' } });
+    expect(screen.getByTestId('dirty').textContent).toBe('true');
+    expect(unload()).toBe(true);
+    fireEvent.click(screen.getByRole('button', { name: 'Hide page' }));
+    expect(screen.getByTestId('dirty').textContent).toBe('false');
+    expect(unload()).toBe(false);
+    unmount();
+  });
+
+  it('shows a load error instead of "pick an election" when elections fail to load', () => {
+    page.electionId = '';
+    page.electionsError = 'Could not load elections';
+    renderPage();
+    expect(screen.getByText('Could not load elections. Check the connection and reload.')).toBeTruthy();
+    expect(screen.queryByText(/Pick an election/)).toBeNull();
+  });
 });
+
+function LiveConsoleToggle() {
+  const [shown, setShown] = useState(true);
+  return <>{shown && <LiveConsole />}<button type="button" onClick={() => setShown(false)}>Hide page</button></>;
+}

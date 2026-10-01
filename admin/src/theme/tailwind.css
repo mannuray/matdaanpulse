@@ -8,6 +8,15 @@
 @source "../components/Layout.tsx";
 @source "../pages/LiveConsole.tsx";
 
+/* Preflight is off (legacy pages rely on browser defaults), so new-shell controls get a scoped reset.
+   `tw-ui` sits only on the new components' containers (Sidebar, TopBar, Live Console page root, Radix portal
+   content) — never on the Layout root — so legacy `.btn` pages are untouched. Utilities still win (higher layer). */
+@layer base {
+  .tw-ui, .tw-ui button, .tw-ui input, .tw-ui select, .tw-ui textarea { font-family: var(--font-sans); }
+  .tw-ui button { background: transparent; border: 0; color: inherit; font: inherit; padding: 0; cursor: pointer; }
+  .tw-ui input, .tw-ui select, .tw-ui textarea { font: inherit; color: inherit; }
+}
+
 @theme {
   /* Mirror admin.css :root so theme layer cannot change legacy pages. */
   --radius-sm: 6px;

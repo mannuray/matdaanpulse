@@ -14,7 +14,8 @@ const { handlers, svc } = vi.hoisted(() => {
   return { handlers, svc };
 });
 vi.mock('../services/election.service', () => svc);
-vi.mock('../context/ElectionContext', () => ({ useElection: () => ({ electionId: 'e1', election: { name: 'Bihar VS 2025' } }) }));
+const ctx = vi.hoisted(() => ({ electionId: 'e1' }));
+vi.mock('../context/ElectionContext', () => ({ useElection: () => ({ electionId: ctx.electionId, election: { name: 'Bihar VS 2025' }, error: null }) }));
 const setLive = vi.fn();
 vi.mock('../context/ShellStatusContext', () => ({ useShellStatus: () => ({ live: 'idle', setLive }) }));
 vi.mock('../context/ToastContext', () => ({ useToast: () => ({ toast: vi.fn(), toastError: vi.fn() }) }));
@@ -27,7 +28,7 @@ const seats = [
   { const_id: 's3', const_name: 'Danapur', const_no: 143, const_type: 'GEN', current_round: 24, total_rounds: 24, candidates: [c('WON', 20)] },
 ];
 
-beforeEach(() => { svc.getLiveResults.mockResolvedValue(seats); svc.bulkOverride.mockClear(); });
+beforeEach(() => { ctx.electionId = 'e1'; svc.getLiveResults.mockReset(); svc.getLiveResults.mockResolvedValue(seats); svc.bulkOverride.mockClear(); });
 
 describe('useLiveConsole', () => {
   it('counts, filters, searches and auto-selects', async () => {
@@ -94,5 +95,31 @@ describe('useLiveConsole', () => {
     expect(ok).toBe(true);
     expect(svc.bulkOverride).toHaveBeenCalledWith('e1', [{ result_id: 'r10', votes: 11, status: 'LEADING', margin: 11 }], { s2: { current_round: 5 } });
     expect(result.current.lastSavedAt.s2).toBeTruthy();
+  });
+
+  it('a late response for the previous election does not replace the new election\'s seats', async () => {
+    let resolveOld: (v: unknown) => void = () => {};
+    svc.getLiveResults.mockImplementationOnce(() => new Promise((r) => { resolveOld = r; }));
+    const e2seats = [{ ...seats[0], const_id: 'x1', const_name: 'Gaya', const_no: 1 }];
+    svc.getLiveResults.mockResolvedValueOnce(e2seats);
+    const { result, rerender } = renderHook(() => useLiveConsole());
+    ctx.electionId = 'e2';
+    rerender();
+    await waitFor(() => expect(result.current.seats.map((s) => s.const_id)).toEqual(['x1']));
+    await act(async () => { resolveOld(seats); });
+    expect(result.current.seats.map((s) => s.const_id)).toEqual(['x1']);
+    expect(result.current.loading).toBe(false);
+  });
+
+  it('drops locks older than the server TTL (holder vanished without a release event)', async () => {
+    const fresh = new Date().toISOString();
+    const old = new Date(Date.now() - 121_000).toISOString();
+    svc.getSeatLocks.mockResolvedValueOnce([
+      { const_id: 's1', user_id: 'u3', user_name: 'Old', acquired_at: old },
+      { const_id: 's2', user_id: 'u2', user_name: 'Priya S', acquired_at: fresh },
+    ]);
+    const { result } = renderHook(() => useLiveConsole());
+    await waitFor(() => expect(result.current.locks.s2?.user_name).toBe('Priya S'));
+    expect(result.current.locks.s1).toBeUndefined();
   });
 });

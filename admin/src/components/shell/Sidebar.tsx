@@ -1,15 +1,17 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusContext';
 import { NAV_GROUPS } from '../../utils/navigation.config';
 import { cn } from '../ui/cn';
 
 export function Sidebar() {
   const { hasRole } = useAuth();
   const { pathname } = useLocation();
+  const { editorDirty } = useShellStatus();
   const isActive = (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path));
 
   return (
-    <aside className="flex h-screen w-60 shrink-0 flex-col bg-sidebar text-sidebar-ink">
+    <aside className="tw-ui flex h-screen w-60 shrink-0 flex-col bg-sidebar text-sidebar-ink">
       <div className="flex items-center gap-2.5 border-b border-white/10 px-4 py-4">
         <img src="/logo-mark.png" alt="" aria-hidden className="h-8 w-8 rounded-control" />
         <div className="leading-tight">
@@ -29,6 +31,8 @@ export function Sidebar() {
                   key={path}
                   to={path}
                   aria-current={isActive(path) ? 'page' : undefined}
+                  // BrowserRouter has no useBlocker: ask here before the Live Console unmounts with unsaved edits.
+                  onClick={(e) => { if (!isActive(path) && !confirmDiscardEdits(editorDirty)) e.preventDefault(); }}
                   className={cn(
                     'flex items-center gap-2.5 rounded-control px-3 py-2 text-sm transition-colors',
                     isActive(path) ? 'bg-accent text-white' : 'hover:bg-white/5 hover:text-white',

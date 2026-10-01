@@ -72,4 +72,13 @@ describe('useSeatEditor', () => {
     act(() => result.current.setVotes('a', '101'));
     expect(result.current.rows.find((r) => r.result_id === 'b')?.status).toBe('LOST');
   });
+
+  it('a declared seat keeps its statuses when votes are corrected, and flags a winner who is no longer ahead', () => {
+    const { result } = renderHook(() => useSeatEditor(seat({ candidates: [cand('a', 100, 'WON'), cand('b', 80, 'LOST')] })));
+    expect(result.current.winnerNotLeader).toBe(false);
+    act(() => result.current.setVotes('b', '120'));
+    expect(result.current.rows.map((r) => r.status)).toEqual(['WON', 'LOST']);
+    expect(result.current.leaderId).toBe('b');
+    expect(result.current.winnerNotLeader).toBe(true);
+  });
 });

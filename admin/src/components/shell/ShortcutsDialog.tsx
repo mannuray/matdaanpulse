@@ -16,8 +16,8 @@ export function ShortcutsDialog() {
         <CircleHelp size={18} />
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-ink/30" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-panel border border-line bg-card p-6 shadow-lg">
+        <Dialog.Overlay className="tw-ui fixed inset-0 z-40 bg-ink/30" />
+        <Dialog.Content className="tw-ui fixed left-1/2 top-1/2 z-50 w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-panel border border-line bg-card p-6 shadow-lg">
           <div className="mb-4 flex items-center justify-between">
             <Dialog.Title className="text-base font-semibold text-ink">Keyboard shortcuts</Dialog.Title>
             <Dialog.Close aria-label="Close" className="text-muted hover:text-ink"><X size={16} /></Dialog.Close>

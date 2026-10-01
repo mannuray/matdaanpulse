@@ -61,7 +61,8 @@ editor to pick the election again.
   status is always TRAILING (LOST once the seat is declared).
 - **Statuses follow the votes:** while a seat isn't declared, editing votes recalculates statuses
   (leader LEADING, others TRAILING). The status select stays editable for manual corrections. With a
-  tie at the top, nobody is marked leader and "Declare won" is disabled.
+  tie at the top, nobody is marked leader and "Declare won" is disabled. Declared seats keep their
+  statuses when votes are corrected; a warning shows if the winner is no longer ahead.
 - **Actions:**
   - **Save seat** sends all changed candidates in one call to `POST /admin/results/override-bulk`.
   - **Declare won** sets the leader to WON and the others to LOST, then saves.
@@ -75,12 +76,15 @@ editor to pick the election again.
   constituency's `current_round` / `total_rounds`. The page header shows overall counting progress
   (% of seats with any votes).
 - **Seat lock (new feature, needs backend):** opening a seat for editing takes a soft lock
-  (Redis key `lock:seat:{election}:{const_id}` with a 2-minute TTL, refreshed while the editor is
-  open, released on save, discard or leaving). Other editors see a "Locked by X" banner, the inputs
-  are read-only, and there is a **Take over** button that logs to audit. Lock changes go out over
-  the existing SSE channel, and the seat list shows a lock icon. Endpoints:
-  `POST/DELETE /admin/live/locks/:constId` and `GET /admin/live/locks?election_id=`. If Redis is
-  down, locking is disabled and a warning shows. Saving does not require a lock.
+  (Redis key `lock:seat:{election}:{const_id}` with a 2-minute TTL, refreshed by a heartbeat while
+  the editor stays on the seat). The lock is held while the editor stays on the seat and released
+  when leaving the seat, the page or the tab (not on every save). Other editors see a "Locked by X"
+  banner, the inputs are read-only, and there is a **Take over** button that logs to audit; when the
+  holder leaves (release event or TTL lapse) the viewer takes the lock normally. Lock changes go out
+  over the existing SSE channel, and the seat list shows a lock icon. Endpoints:
+  `GET /admin/live/locks?election_id=`, `POST /admin/live/locks` `{election_id, const_id, take_over?}`
+  and `POST /admin/live/locks/release` (POST so the tab-close release can use `keepalive`). If Redis
+  is down, locking is disabled and a warning shows. Saving does not require a lock.
 
 ### Top bar extras
 

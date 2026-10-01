@@ -124,4 +124,31 @@ describe('useSeatLock', () => {
     rerender({ c: 'c2' });
     await waitFor(() => expect(release).toHaveBeenCalledWith('e1', 'c1', undefined));
   });
+
+  it('locked → the holder releases (remote lock gone) → acquires normally and becomes held', async () => {
+    acquire.mockRejectedValueOnce(new ApiError('locked', 409, 'RESULT_6002', [], { lock: lock('priya') }));
+    const { result, rerender } = renderHook(({ r }) => useSeatLock('e1', 'c1', 'me', r), { initialProps: { r: lock('priya') as ReturnType<typeof lock> | null } });
+    await waitFor(() => expect(result.current.state).toBe('locked'));
+    expect(acquire).toHaveBeenCalledTimes(1);
+    acquire.mockResolvedValueOnce(lock('me'));
+    rerender({ r: null });
+    await waitFor(() => expect(result.current.state).toBe('held'));
+    expect(acquire).toHaveBeenCalledTimes(2);
+    expect(acquire).toHaveBeenLastCalledWith('e1', 'c1', false);
+  });
+
+  it('while locked, retries a normal acquire every heartbeat (holder TTL lapsed with no event)', async () => {
+    acquire.mockRejectedValueOnce(new ApiError('locked', 409, 'RESULT_6002', [], { lock: lock('priya') }));
+    const { result } = renderHook(() => useSeatLock('e1', 'c1', 'me', undefined));
+    await waitFor(() => expect(result.current.state).toBe('locked'));
+    acquire.mockRejectedValueOnce(new ApiError('down', 503, 'RESULT_6003'));
+    await act(async () => { vi.advanceTimersByTime(LOCK_HEARTBEAT_MS); });
+    expect(acquire).toHaveBeenCalledTimes(2);
+    expect(acquire).toHaveBeenLastCalledWith('e1', 'c1', false);
+    expect(result.current.state).toBe('locked'); // a transient failure does not unlock someone else's seat
+    acquire.mockResolvedValueOnce(lock('me'));
+    await act(async () => { vi.advanceTimersByTime(LOCK_HEARTBEAT_MS); });
+    await waitFor(() => expect(result.current.state).toBe('held'));
+    expect(acquire).toHaveBeenCalledTimes(3);
+  });
 });

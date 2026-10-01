@@ -33,6 +33,7 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
 
   const submit = async (declare: boolean) => {
     if (readOnly || saving) return;
+    if (!declare && !ed.dirty) return; // nothing to save: don't write the server's own values back
     const out = ed.build(declare);
     if (!out.ok) { setError(out.error); return; }
     setError(null);
@@ -76,6 +77,11 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
         <div role="status" className="flex items-center justify-between gap-3 rounded-card border border-warn/40 bg-warn-soft px-4 py-2.5 text-sm text-warn-text">
           <span className="flex items-center gap-2"><Lock size={14} aria-hidden />Locked · {lock.holder?.user_name ?? 'another editor'} is editing this seat</span>
           <Button size="sm" variant="outline" onClick={() => void lock.takeOver()}>Take over</Button>
+        </div>
+      )}
+      {ed.winnerNotLeader && (
+        <div role="status" className="rounded-card border border-warn/40 bg-warn-soft px-4 py-2.5 text-sm text-warn-text">
+          The declared winner is no longer ahead on votes
         </div>
       )}
       {ed.changedElsewhere && (
