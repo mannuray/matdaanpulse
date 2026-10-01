@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { auditCsv, csvField, toCsv } from './csv';
+// @vitest-environment jsdom
+import { describe, it, expect, vi } from 'vitest';
+import { auditCsv, csvField, downloadCsv, toCsv } from './csv';
 import type { AuditLog } from '../types';
 
 describe('csvField', () => {
@@ -36,5 +37,22 @@ describe('toCsv and auditCsv', () => {
     expect(header).toBe('"Time (IST)","Time (UTC)","Admin","Admin email","Action","Entity type","Entity ID","Before","After"');
     expect(row).toBe('"01 Oct 2026, 13:30","2026-10-01T08:00:00.000Z","Deleted user","","Result override","Result","r1",'
       + '"{""votes"":60000,""status"":""TRAILING""}","{""votes"":61204,""status"":""LEADING""}"');
+  });
+});
+
+describe('downloadCsv', () => {
+  it('revokes the object URL only after the browser has had time to start the download', () => {
+    vi.useFakeTimers();
+    const create = vi.fn(() => 'blob:x');
+    const revoke = vi.fn();
+    Object.assign(URL, { createObjectURL: create, revokeObjectURL: revoke });
+    const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
+    downloadCsv('a.csv', 'x');
+    expect(click).toHaveBeenCalled();
+    expect(revoke).not.toHaveBeenCalled();
+    vi.advanceTimersByTime(1000);
+    expect(revoke).toHaveBeenCalledWith('blob:x');
+    click.mockRestore();
+    vi.useRealTimers();
   });
 });

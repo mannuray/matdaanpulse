@@ -23,7 +23,7 @@ function App() {
   return (
     <AuthProvider>
       <ToastProvider>
-        <ErrorBoundary>
+        <ErrorBoundary fullScreen>
           <BrowserRouter>
             <Routes>
               <Route path="/login" element={<Login />} />

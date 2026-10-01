@@ -102,6 +102,21 @@ describe('useSystemStatus', () => {
     expect(fetcher).toHaveBeenCalledTimes(5);
   });
 
+  it('an older response cannot overwrite a newer one', async () => {
+    const older = { ...fixture, db: { ...fixture.db, latencyMs: 111 } };
+    const newer = { ...fixture, db: { ...fixture.db, latencyMs: 222 } };
+    let releaseOlder!: (s: SystemStatus) => void;
+    const fetcher = vi.fn()
+      .mockImplementationOnce(() => new Promise<SystemStatus>((r) => { releaseOlder = r; }))
+      .mockResolvedValueOnce(newer);
+    const { result } = renderHook(() => useSystemStatus(fetcher, 10_000));
+    await act(async () => { await result.current.refresh(); });
+    expect(result.current.status).toEqual(newer);
+    expect(result.current.loading).toBe(false);
+    await act(async () => { releaseOlder(older); });
+    expect(result.current.status).toEqual(newer);
+  });
+
   it('surfaces a failed load as an error', async () => {
     const fetcher = vi.fn().mockRejectedValue(new Error('nope'));
     const { result } = renderHook(() => useSystemStatus(fetcher, 10_000));

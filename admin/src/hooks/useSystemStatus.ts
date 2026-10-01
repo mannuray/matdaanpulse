@@ -10,16 +10,21 @@ export function useSystemStatus(fetcher: () => Promise<SystemStatus> = getSystem
   const [loading, setLoading] = useState(true);
   const fetcherRef = useRef(fetcher);
   fetcherRef.current = fetcher;
+  const latest = useRef(0);
 
   const refresh = useCallback(async () => {
+    const mine = ++latest.current;
     setLoading(true);
     try {
-      setStatus(await fetcherRef.current());
+      const next = await fetcherRef.current();
+      if (mine !== latest.current) return;
+      setStatus(next);
       setError(null);
     } catch (e) {
+      if (mine !== latest.current) return;
       setError(e instanceof Error ? e.message : 'Failed to load status');
     } finally {
-      setLoading(false);
+      if (mine === latest.current) setLoading(false);
     }
   }, []);
 

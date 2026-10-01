@@ -33,5 +33,6 @@ export function downloadCsv(filename: string, text: string): void {
   a.href = url;
   a.download = filename;
   a.click();
-  URL.revokeObjectURL(url);
+  // Some browsers start the download asynchronously; revoking at once can yield an empty file.
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }

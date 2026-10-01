@@ -11,8 +11,10 @@ describe('SeatLockAcquire validation', () => {
   it('accepts a real constituency id', async () => {
     expect(await errorsFor({ election_id: ELECTION, const_id: 'BR_VS_1_VALMIKI_NAGAR' })).toEqual([]);
   });
-  it('accepts seeded ids containing &', async () => {
-    expect(await errorsFor({ election_id: ELECTION, const_id: 'DAMAN_&_DIU' })).toEqual([]);
+  it('accepts every seeded id containing &', async () => {
+    for (const c of ['ANDAMAN_&_NICOBAR', 'DADRA_&_NAGAR_HAVELI', 'DAMAN_&_DIU']) {
+      expect(await errorsFor({ election_id: ELECTION, const_id: c })).toEqual([]);
+    }
   });
   it('rejects empty and over-long const_id', async () => {
     expect(await errorsFor({ election_id: ELECTION, const_id: '' })).toContain('const_id');
@@ -20,6 +22,11 @@ describe('SeatLockAcquire validation', () => {
   });
   it('rejects glob and key separator characters', async () => {
     for (const c of ['A*', 'A?', 'A[1]', 'A:B', 'A B']) {
+      expect(await errorsFor({ election_id: ELECTION, const_id: c })).toContain('const_id');
+    }
+  });
+  it('rejects a backslash, a trailing newline and non-ASCII characters', async () => {
+    for (const c of ['A\\B', 'BR_1\n', 'BR_\u00e9']) {
       expect(await errorsFor({ election_id: ELECTION, const_id: c })).toContain('const_id');
     }
   });

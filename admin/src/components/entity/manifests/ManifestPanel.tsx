@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { useToast } from '../../../context/ToastContext';
 import { useManifestEditor } from '../../../hooks/useManifestEditor';
@@ -55,10 +55,19 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
   const dirty = c.isDirty || jsonEdited;
   useUnsavedGuard(dirty);
 
-  // Entering the JSON tab, or a save/reload while on it, shows the current manifest.
+  // The text last synced from (or submitted to) the manifest. A save/reload refreshes the JSON tab only while the
+  // text still equals it, so keystrokes typed during a save are kept.
+  const jsonBaseRef = useRef('');
+  const syncJson = () => {
+    const text = JSON.stringify(c.manifest, null, 2);
+    jsonBaseRef.current = text;
+    setJsonText(text);
+    setJsonError('');
+  };
   useEffect(() => {
-    if (tab === 'json') { setJsonText(JSON.stringify(c.manifest, null, 2)); setJsonError(''); }
-  }, [c.manifest, tab]);
+    if (tab === 'json' && jsonText === jsonBaseRef.current) syncJson();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [c.manifest]);
 
   const parseJson = (): ManifestData | null => {
     try { return objectError(jsonText) ? null : JSON.parse(jsonText) as ManifestData; } catch { return null; }
@@ -70,6 +79,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
       if (!parsed) { toast('Fix JSON errors before switching tabs', 'error'); return; }
       if (jsonEdited) c.setFullManifest(parsed);
     }
+    if (next === 'json') syncJson();
     setTab(next);
   };
 
@@ -80,7 +90,9 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
       if (!parsed) { toast('Invalid JSON format', 'error'); return; }
       data = parsed;
     }
-    await c.saveDraft(data);
+    const previousBase = jsonBaseRef.current;
+    if (tab === 'json') jsonBaseRef.current = jsonText;
+    if (!await c.saveDraft(data)) jsonBaseRef.current = previousBase;
   };
 
   // Publish asks first (ConfirmDialog); unsaved edits, including a pending JSON edit, are saved before publishing.
