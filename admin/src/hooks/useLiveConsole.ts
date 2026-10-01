@@ -1,194 +1,149 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { 
-  getElections, getManifest, getLiveResults, 
-  overrideResult, subscribeLiveUpdates 
-} from '../services/election.service';
-import { getStates } from '../services/geo.service';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { bulkOverride, getLiveResults, getSeatLocks, subscribeLiveUpdates } from '../services/election.service';
+import { useElection } from '../context/ElectionContext';
+import { useShellStatus } from '../context/ShellStatusContext';
 import { useToast } from '../context/ToastContext';
-import { resolvePublishedManifest } from '../utils/manifest-helpers';
-import type { OverridePayload } from '../utils/override-validation';
-import type { Election, State, LiveConstituency, LiveTab, ManifestData } from '../types';
+import { seatStatus, type BulkOverrideItem } from '../utils/seat-math';
+import type { LiveConstituency, SeatLock } from '../types';
 
-const TAB_SIZE = 15;
 const FLASH_MS = 1500;
 const RELOAD_DEBOUNCE_MS = 500;
 
-function autoChunkTabs(constituencies: LiveConstituency[]): LiveTab[] {
-  const tabs: LiveTab[] = [];
-  for (let i = 0; i < constituencies.length; i += TAB_SIZE) {
-    const chunk = constituencies.slice(i, i + TAB_SIZE);
-    const first = chunk[0].const_no;
-    const last = chunk[chunk.length - 1].const_no;
-    tabs.push({ label: `${first}–${last}`, const_nos: chunk.map((c) => c.const_no) });
-  }
-  return tabs;
+export type SeatFilter = 'all' | 'PENDING' | 'LEADING' | 'WON';
+export interface SeatSave {
+  overrides: BulkOverrideItem[];
+  rounds?: { current_round?: number; total_rounds?: number };
 }
 
-/**
- * CONTROLLER: Live Console (MVC)
- * Handles real-time result streaming, manual overrides, and multi-tab navigation.
- */
+/** CONTROLLER: Live Console — seats, filters, selection, live stream, seat locks, save. */
 export function useLiveConsole() {
-  const { toast, toastError } = useToast();
-  
-  // Master Data
-  const [elections, setElections] = useState<Election[]>([]);
-  const [states, setStates] = useState<State[]>([]);
-  const [selectedElectionId, setSelectedElectionId] = useState('');
-  const [constituencies, setConstituencies] = useState<LiveConstituency[]>([]);
-  const [tabs, setTabs] = useState<LiveTab[]>([]);
-  const [activeTab, setActiveTab] = useState(0);
-  
-  // UI State
+  const { electionId, election } = useElection();
+  const { setLive } = useShellStatus();
+  const toasts = useToast();
+  // Held in a ref so callbacks/effects don't re-run if a provider hands out new toast fns.
+  const toastRef = useRef(toasts);
+  toastRef.current = toasts;
+
+  const [all, setAll] = useState<LiveConstituency[]>([]);
   const [loading, setLoading] = useState(false);
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [editingResultId, setEditingResultId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [filter, setFilter] = useState<SeatFilter>('all');
+  const [search, setSearch] = useState('');
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [locks, setLocks] = useState<Record<string, SeatLock>>({});
   const [flashIds, setFlashIds] = useState<Set<string>>(new Set());
-  
-  const unsubscribeRef = useRef<(() => void) | null>(null);
+  const [lastSavedAt, setLastSavedAt] = useState<Record<string, string>>({});
 
-  // 1. Initial Load
-  useEffect(() => {
-    getElections().then((all) => {
-      setElections(all);
-      const live = all.find((e) => e.status === 'Live');
-      if (live) setSelectedElectionId(live.id);
-    }).catch(() => {});
-    getStates().then(setStates).catch(() => {});
-  }, []);
-
-  // 2. Load Results & Config
-  const loadResults = useCallback(async (eid: string, opts?: { silent?: boolean }) => {
-    if (!eid) return;
-    if (!opts?.silent) setLoading(true);
+  const load = useCallback(async (silent = false) => {
+    if (!electionId) return;
+    if (!silent) setLoading(true);
     try {
-      const [data, manifest] = await Promise.all([
-        getLiveResults(eid),
-        getManifest(eid).catch(() => null),
-      ]);
-      setConstituencies(data);
-
-      // Prefer the working draft; fall back to the published manifest.
-      let manifestData = manifest?.draft as ManifestData | null;
-      if (!manifestData?.live_tabs?.length) {
-        manifestData = await resolvePublishedManifest(manifest?.manifest_url);
-      }
-      if (manifestData?.live_tabs?.length) {
-        setTabs(manifestData.live_tabs);
-      } else {
-        setTabs(autoChunkTabs(data));
-      }
-    } catch (err) {
-      if (!opts?.silent) toast('Failed to load live results', 'error');
+      setAll(await getLiveResults(electionId));
+    } catch {
+      if (!silent) toastRef.current.toast('Failed to load live results', 'error');
     } finally {
-      if (!opts?.silent) setLoading(false);
+      if (!silent) setLoading(false);
     }
-  }, [toast]);
+  }, [electionId]);
+
+  const loadLocks = useCallback(async () => {
+    if (!electionId) return;
+    try {
+      const list = await getSeatLocks(electionId);
+      setLocks(Object.fromEntries(list.map((l) => [l.const_id, l])));
+    } catch {
+      setLocks({}); // locking unavailable — the editor shows it per seat
+    }
+  }, [electionId]);
+
+  useEffect(() => { setSelectedId(null); void load(); void loadLocks(); }, [load, loadLocks]);
 
   useEffect(() => {
-    if (selectedElectionId) loadResults(selectedElectionId);
-  }, [selectedElectionId, loadResults]);
-
-  // 3. Real-time Subscription (SSE)
-  useEffect(() => {
-    if (!selectedElectionId) return;
-    unsubscribeRef.current?.();
-
+    if (!electionId) return;
     let reloadTimer: ReturnType<typeof setTimeout> | null = null;
     const flashTimers = new Set<ReturnType<typeof setTimeout>>();
-
-    const flash = (constIds: string[]) => {
-      if (constIds.length === 0) return;
-      setFlashIds((prev) => {
-        const next = new Set(prev);
-        constIds.forEach((id) => next.add(id));
-        return next;
-      });
-      const timer = setTimeout(() => {
-        flashTimers.delete(timer);
-        setFlashIds((prev) => {
-          const next = new Set(prev);
-          constIds.forEach((id) => next.delete(id));
-          return next;
-        });
+    const flash = (ids: string[]) => {
+      if (ids.length === 0) return;
+      setFlashIds((prev) => new Set([...prev, ...ids]));
+      const t = setTimeout(() => {
+        flashTimers.delete(t);
+        setFlashIds((prev) => { const n = new Set(prev); ids.forEach((id) => n.delete(id)); return n; });
       }, FLASH_MS);
-      flashTimers.add(timer);
+      flashTimers.add(t);
     };
-
     const scheduleReload = () => {
       if (reloadTimer) clearTimeout(reloadTimer);
-      reloadTimer = setTimeout(() => {
-        reloadTimer = null;
-        loadResults(selectedElectionId, { silent: true });
-      }, RELOAD_DEBOUNCE_MS);
+      reloadTimer = setTimeout(() => { reloadTimer = null; void load(true); }, RELOAD_DEBOUNCE_MS);
     };
-
-    const unsubscribe = subscribeLiveUpdates(selectedElectionId, {
-      onReconnect: () => scheduleReload(),
-      onResultUpdate: (update) => {
-        flash([update.const_id]);
-        scheduleReload();
-      },
-      onBatchUpdate: (updates) => {
-        if (updates.length === 0) return;
-        flash(updates.map((u) => u.const_id));
-        scheduleReload();
-      },
+    const unsubscribe = subscribeLiveUpdates(electionId, {
+      onStatus: setLive,
+      onReconnect: () => { scheduleReload(); void loadLocks(); },
+      onResultUpdate: (u) => { flash([u.const_id]); scheduleReload(); },
+      onBatchUpdate: (us) => { flash(us.map((u) => u.const_id)); scheduleReload(); },
+      onSeatLock: ({ const_id, lock }) => setLocks((prev) => {
+        const next = { ...prev };
+        if (lock) next[const_id] = lock; else delete next[const_id];
+        return next;
+      }),
     });
-
-    unsubscribeRef.current = unsubscribe;
     return () => {
       unsubscribe();
+      setLive('idle');
       if (reloadTimer) clearTimeout(reloadTimer);
       flashTimers.forEach(clearTimeout);
     };
-  }, [selectedElectionId, loadResults]);
+  }, [electionId, load, loadLocks, setLive]);
 
-  // 4. Computed Stats & Views
-  const stats = useMemo(() => {
-    let won = 0, leading = 0, pending = 0;
-    constituencies.forEach(c => {
-      const leader = c.candidates[0];
-      if (!leader) pending++;
-      else if (leader.status === 'WON') won++;
-      else if (leader.status === 'LEADING') leading++;
-      else pending++;
+  const counts = useMemo(() => {
+    const out = { all: all.length, PENDING: 0, LEADING: 0, WON: 0 };
+    all.forEach((c) => { out[seatStatus(c)]++; });
+    return out;
+  }, [all]);
+
+  const seats = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return all
+      .filter((c) => filter === 'all' || seatStatus(c) === filter)
+      .filter((c) => !q || String(c.const_no).startsWith(q) || c.const_name.toLowerCase().includes(q))
+      .sort((a, b) => a.const_no - b.const_no);
+  }, [all, filter, search]);
+
+  // Keep a valid selection inside the visible list.
+  useEffect(() => {
+    if (seats.length === 0) { if (selectedId !== null) setSelectedId(null); return; }
+    if (!selectedId || !seats.some((s) => s.const_id === selectedId)) setSelectedId(seats[0].const_id);
+  }, [seats, selectedId]);
+
+  const move = useCallback((delta: 1 | -1) => {
+    setSelectedId((cur) => {
+      const i = seats.findIndex((s) => s.const_id === cur);
+      const next = seats[Math.min(seats.length - 1, Math.max(0, i + delta))];
+      return next ? next.const_id : cur;
     });
-    return { won, leading, pending, total: constituencies.length };
-  }, [constituencies]);
+  }, [seats]);
 
-  const tabConstituencies = useMemo(() => {
-    if (tabs.length === 0) return constituencies;
-    const nos = new Set(tabs[activeTab]?.const_nos || []);
-    return constituencies.filter(c => nos.has(c.const_no));
-  }, [constituencies, tabs, activeTab]);
-
-  // 5. Actions
-  const handleOverride = async (payload: OverridePayload) => {
+  const saveSeat = useCallback(async (constId: string, payload: SeatSave) => {
     setSaving(true);
     try {
-      await overrideResult(payload);
-      toast('Override applied successfully');
-      setEditingResultId(null);
-      loadResults(selectedElectionId);
+      await bulkOverride(electionId, payload.overrides, payload.rounds ? { [constId]: payload.rounds } : undefined);
+      setLastSavedAt((prev) => ({ ...prev, [constId]: new Date().toISOString() }));
+      toastRef.current.toast('Seat saved');
+      await load(true);
       return true;
     } catch (err) {
-      toastError(err, 'Failed to apply override');
+      toastRef.current.toastError(err, 'Failed to save seat');
       return false;
     } finally {
       setSaving(false);
     }
-  };
+  }, [electionId, load]);
+
+  const reportingPct = all.length === 0 ? 0 : Math.round(((counts.LEADING + counts.WON) / all.length) * 100);
 
   return {
-    elections, states, selectedElectionId, setSelectedElectionId,
-    constituencies: tabConstituencies, allConstituencies: constituencies,
-    tabs, activeTab, setActiveTab,
-    loading, saving, expandedId, setExpandedId,
-    editingResultId, setEditingResultId,
-    searchQuery, setSearchQuery, flashIds,
-    stats, handleOverride, refresh: () => loadResults(selectedElectionId)
+    electionId, electionName: election?.name ?? '', loading, saving,
+    seats, counts, filter, setFilter, search, setSearch,
+    selectedId, selected: all.find((s) => s.const_id === selectedId) ?? null, select: setSelectedId, move,
+    locks, flashIds, reportingPct, saveSeat, lastSavedAt,
   };
 }
