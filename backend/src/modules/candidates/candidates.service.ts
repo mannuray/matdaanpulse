@@ -20,7 +20,8 @@ export class CandidatesService {
     private readonly audit: AuditLogService,
   ) {}
 
-  findAll(filters?: { election_id?: string; const_id?: string }, take = 1000) {
+  /** `includeMetadata` is for the admin list only (age, criminal cases); the public list never selects it. */
+  findAll(filters?: { election_id?: string; const_id?: string }, take = 1000, includeMetadata = false) {
     return this.prisma.candidates.findMany({
       where: {
         election_id: filters?.election_id,
@@ -33,9 +34,9 @@ export class CandidatesService {
         party_id: true,
         const_id: true,
         is_incumbent: true,
-        // The admin list filters on the person link and shows age / criminal cases (the public DTO drops metadata).
+        // The admin list filters on the person link; the public summary also reports whether a person record exists.
         person_id: true,
-        metadata: true,
+        ...(includeMetadata ? { metadata: true } : {}),
         parties: {
           select: {
             id: true,

@@ -23,7 +23,7 @@ export class AdminCandidatesController {
     @Query('election_id') election_id?: string,
     @Query('const_id') const_id?: string,
   ) {
-    return this.candidatesService.findAll({ election_id, const_id });
+    return this.candidatesService.findAll({ election_id, const_id }, undefined, true);
   }
 
   @Get(':id')

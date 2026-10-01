@@ -173,6 +173,17 @@ describe('Person record page', () => {
     for (const t of ['Won', 'Lost', 'Leading']) expect(within(live).queryByText(t)).toBeNull();
   });
 
+  it('a Finalized election with no result row shows no outcome badge (not "Lost")', async () => {
+    api.getPerson.mockImplementationOnce(async (id: string) => ({
+      ...P(id, 'Nitish Kumar', 'M'), bio: null, metadata: {},
+      candidates: [contest({ id: 'c10', election_id: 'e1', election_name: 'Bihar Vidhan Sabha 2010', election_year: 2010, election_status: 'Finalized', status: null })],
+    }));
+    renderAt(`/persons/${NITISH}`);
+    await heading();
+    const old = row(/Bihar VS 2010/);
+    for (const t of ['Won', 'Lost']) expect(within(old).queryByText(t)).toBeNull();
+  });
+
   it('a history row opens the candidate in its election', async () => {
     renderAt(`/persons/${NITISH}?election=e1`);
     await heading();

@@ -71,7 +71,7 @@ export function CandidateMasterCard(props: CandidateMasterCardProps) {
                     </li>
                   ))}
                 </ul>
-                <Button size="sm" variant="primary" disabled={locked || busy} onClick={props.onLinkSuggested}>
+                <Button size="sm" variant="primary" disabled={locked || busy || !props.selectedMatches?.size} onClick={props.onLinkSuggested}>
                   {props.linkingSuggested ? 'Linking…' : 'Link selected'}
                 </Button>
               </div>

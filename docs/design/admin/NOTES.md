@@ -8,6 +8,20 @@ files here are the Stitch output with those operations applied locally, so treat
 
 Every number shown in these screens is a placeholder. Real values come from the API.
 
+## Record pages: Stitch items dropped (2026-10)
+
+The party, person, candidate and constituency record screens (`*-record.*`) were built as `components/record/RecordPage`
+pages, without these Stitch items (plan `docs/superpowers/plans/2026-10-02-admin-record-pages.md`, Decision 5):
+- Settings, Documentation and "Cluster" in the sidebar.
+- The "Chief Returning Officer" user label.
+- ALL-CAPS group labels (sentence case instead).
+- "Archive party".
+- "Created by" as a separate field (replaced by "Last edited by", read from the audit log).
+- ECI candidate serial, nomination date and a per-candidate "Certified" mark.
+- "View full archive".
+- "Voter elasticity" as a label (replaced by the line "Party changed K times in N elections").
+- Party "ECI registration" became the ECI recognition field (National / State / Unrecognised).
+
 ## Fix in code (not in the Stitch screens)
 
 ### Live console (`live-console.*`)

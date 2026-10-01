@@ -169,6 +169,10 @@ describe('admin candidates list and same-name search: the person link and affida
     const svc = new CandidatesService(prisma as any, {} as any, {} as any);
     const rows = await new AdminCandidatesController(svc, {} as any).findAll('e1', 's1');
     expect(prisma.candidates.findMany.mock.calls[0][0].select).toMatchObject({ person_id: true, metadata: true });
+    await svc.findAll({ election_id: 'e1' }); // the public path
+    const publicSelect = prisma.candidates.findMany.mock.calls[1][0].select;
+    expect(publicSelect.person_id).toBe(true);
+    expect(publicSelect).not.toHaveProperty('metadata');
     expect(map(AdminCandidateDto, rows)[0]).toMatchObject({ person_id: 'p1', metadata: { age: 44, criminal_cases: 2 }, party: { id: 'BJP' } });
   });
 

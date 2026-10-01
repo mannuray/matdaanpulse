@@ -260,6 +260,8 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
 - **Counting-day view:** admin → System status (in-memory counters since restart: traffic, 4xx/5xx/429, origin-shield 403s, slowest routes, cache hit rate, Redis state, live connections, overrides/min, DB latency). Shield 403s are counted separately and are not part of the request total.
 - **Logs and the SSE token:** the Live Console's stream URL carries its short-lived (5 min, single-election) token as `?token=`. The app redacts it in its own logs, but Render's and Cloudflare's platform access logs record the URL, so treat those logs as able to see a token that is valid for at most 5 minutes and cannot be used as a session credential.
 
+- **Database time zone:** `audit_logs.timestamp` and `constituency_analysis.updated_at` are `TIMESTAMP` (without a time zone) and the API reads them as UTC. Keep the database session time zone at UTC (Neon's default; do not set `TimeZone` on the role, database or connection URL), or the admin shows audit and analysis times shifted. The newer `updated_at` columns (migration 017) are `TIMESTAMPTZ` and unaffected.
+
 ## 6. Decisions
 
 | ID | Decision | Outcome |

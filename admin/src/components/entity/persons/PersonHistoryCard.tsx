@@ -10,12 +10,12 @@ const LIVE_STATUS: Record<string, string> = { LEADING: 'Leading', TRAILING: 'Tra
 
 /**
  * The outcome badge of a contest (Decision 7): `WON` → Won; any other status once the election is Finalized → Lost;
- * otherwise the status itself (sentence case for the known ones). No badge while there is no result yet.
+ * otherwise the status itself (sentence case for the known ones). No badge when there is no result row.
  */
 export function contestOutcome(c: Pick<PersonCandidate, 'status' | 'election_status'>): { label: string; tone: Tone } | null {
   if (c.status === 'WON') return { label: 'Won', tone: 'ok' };
+  if (!c.status) return null; // no result row: nothing to call a loss, even when the election is Finalized
   if (c.election_status === 'Finalized') return { label: 'Lost', tone: 'muted' };
-  if (!c.status) return null;
   return { label: LIVE_STATUS[c.status] ?? c.status, tone: c.status === 'LEADING' ? 'accent' : 'muted' };
 }
 

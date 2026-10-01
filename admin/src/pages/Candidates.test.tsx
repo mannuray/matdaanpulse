@@ -455,6 +455,21 @@ describe('Candidate record: master record', () => {
     expect(await within(table()).findByText('Suggestion')).toBeTruthy();
   });
 
+  it('"Link selected" is disabled until a match is ticked', async () => {
+    svc.searchCandidates.mockImplementation(async (q: string) =>
+      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
+    renderAt('/candidates/c2');
+    await record('Anil Kumar');
+    const master = card('Master record');
+    const box = await within(master).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/);
+    const btn = within(master).getByRole('button', { name: 'Link selected' }) as HTMLButtonElement;
+    expect(btn.disabled).toBe(true);
+    fireEvent.click(box);
+    expect(btn.disabled).toBe(false);
+    fireEvent.click(box);
+    expect(btn.disabled).toBe(true);
+  });
+
   it('a suggested match that already has a person record links to it instead of creating one', async () => {
     svc.searchCandidates.mockImplementation(async (q: string) =>
       q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2', person_id: 'p5' })] : []);

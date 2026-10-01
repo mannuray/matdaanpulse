@@ -6,7 +6,7 @@ export interface SeatRow {
   votes: number | null;
   /** Percent of all votes in the seat (NOTA included), 1 decimal; null when the seat has no votes recorded. */
   share: number | null;
-  /** Rank by votes among the non-NOTA candidates; with no votes recorded only the winner (1) has one. */
+  /** Rank by votes among the non-NOTA candidates; with no votes recorded only the winner (1) has one; a row with no votes in a seat that has votes has none. */
   position: number | null;
   status: string | null;
   /** The winner's `results.margin`; for others the vote gap to the winner (≤ 0), null when there are no votes. */
@@ -53,18 +53,26 @@ export function seatResult(candidateId: string, declared: boolean, candidates: S
     ...contenders.filter((r) => r !== winner),
     ...rows.filter((r) => isNota(r.c)).sort(byVotes),
   ];
-  if (total > 0) ordered.sort((a, b) => Number(isNota(a.c)) - Number(isNota(b.c)) || byVotes(a, b));
+  // With votes recorded, rank by votes; the winner leads only a tie (a WON row with no votes of its own sinks).
+  if (total > 0) {
+    ordered.sort((a, b) =>
+      Number(isNota(a.c)) - Number(isNota(b.c))
+      || (b.votes ?? -1) - (a.votes ?? -1)
+      || Number(b === winner) - Number(a === winner)
+      || a.c.name.localeCompare(b.c.name));
+  }
 
   const position = (r: (typeof rows)[number]): number | null => {
     if (isNota(r.c)) return null;
-    if (total === 0 || r.votes === null) return r === winner ? 1 : null;
+    if (total === 0) return r === winner ? 1 : null;
+    if (r.votes === null) return null; // seat has votes but not for this row: no rank, so nobody else is pushed to a shared 1
     // Competition ranking: equal votes share a position.
     return contenders.filter((o) => (o.votes ?? -1) > r.votes!).length + 1;
   };
   const margin = (r: (typeof rows)[number]): number | null => {
     if (r === winner) return r.margin;
     if (isNota(r.c) || !winner || total === 0 || r.votes === null || winner.votes === null) return null;
-    return r.votes - winner.votes;
+    return Math.min(0, r.votes - winner.votes); // a LEADING flag on a candidate with fewer votes must not give a loser a positive margin
   };
 
   const seat: SeatRow[] = ordered.map((r) => ({
