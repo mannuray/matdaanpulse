@@ -1,12 +1,14 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { useState } from 'react';
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { ManifestSection } from './ManifestSection';
 import { ChipSelect, DraftInput, ItemRow, SearchableSelect, moveItem } from './SharedControls';
 import { AllianceEditor } from './AllianceEditor';
 import { TrackedEditor } from './TrackedEditor';
-import type { Alliance, Party } from '../../types';
+import { WatchlistEditor } from './WatchlistEditor';
+import { CompareHistoryEditor, GeoConfigEditor, LiveTabsEditor, MilestonesEditor, RevisionEditor, VoteSplitsEditor } from './MiscEditors';
+import type { Alliance, Candidate, Constituency, Election, ManifestData, LiveTab, Party } from '../../types';
 
 const party = (id: string, color: string | null = '#f97316'): Party => ({
   id, name: `${id} party`, color, symbol_url: null, eci_symbol_url: null, abbreviation: id,
@@ -182,5 +184,156 @@ describe('TrackedEditor', () => {
     fireEvent.mouseDown(screen.getByRole('option', { name: /JDU party/ }));
     expect(onUpdate).toHaveBeenLastCalledWith(['NDA', 'INC', 'JDU']);
     expect(container.querySelector(LEGACY)).toBeNull();
+  });
+});
+
+const seat = (id: string, no: number, name: string): Constituency => ({
+  id, election_id: 'e1', name, const_no: no, type: 'GEN', state_id: 1, district_id: null, region_id: null, voter_turnout: null, metadata: {},
+});
+const SEATS = [seat('k1', 1, 'Valmiki Nagar'), seat('k2', 2, 'Ramnagar'), seat('k142', 142, 'Patna Sahib')];
+const cand = (id: string, name: string, party: string, constId: string): Candidate => ({
+  id, name, party_id: party, const_id: constId, person_id: null, election_id: 'e1', party: null, is_incumbent: false,
+});
+const election = (id: string, name: string, year: number): Election => ({
+  id, name, type: 'VS', state_id: 1, year, status: 'Finalized', tentative_next_date: null, manifest_url: null,
+});
+const ELECTIONS = [election('e1', 'Bihar 2020', 2020), election('e2', 'Bihar 2015', 2015)];
+const electionMap = new Map(ELECTIONS.map((e) => [e.id, e]));
+
+describe('WatchlistEditor', () => {
+  it('preset buttons add a named watchlist; a custom one starts unnamed', () => {
+    const onUpdate = vi.fn();
+    render(<WatchlistEditor watchlists={[]} contestingParties={PARTIES} constituencies={SEATS} partyMap={partyMap} onSearchCandidates={vi.fn()} onUpdate={onUpdate} />);
+    expect(screen.getByText('No watchlists configured.')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Leaders' }));
+    expect(onUpdate).toHaveBeenLastCalledWith([{ id: 'leaders', name: 'Leaders', entries: [] }]);
+    fireEvent.click(screen.getByRole('button', { name: 'Custom watchlist' }));
+    expect(onUpdate.mock.lastCall![0][0]).toMatchObject({ name: '', entries: [] });
+  });
+
+  it('an entry searches from two letters, ignores a stale answer, and fills party and seat on pick', async () => {
+    let releaseOld!: (c: Candidate[]) => void;
+    const search = vi.fn((q: string) => (q === 'ra'
+      ? new Promise<Candidate[]>((r) => { releaseOld = r; })
+      : Promise.resolve([cand('c1', 'Ravi Prasad', 'BJP', 'k142')])));
+    const onUpdate = vi.fn();
+    const WL = [{ id: 'leaders', name: 'Leaders', entries: [{ name: '', party_id: '', const_id: '' }] }];
+    render(<WatchlistEditor watchlists={WL} contestingParties={PARTIES} constituencies={SEATS} partyMap={partyMap} onSearchCandidates={search} onUpdate={onUpdate} />);
+    const input = screen.getByRole('combobox', { name: 'Entry 1 candidate' });
+    fireEvent.change(input, { target: { value: 'r' } });
+    expect(search).not.toHaveBeenCalled();
+    fireEvent.change(input, { target: { value: 'ra' } });
+    fireEvent.change(input, { target: { value: 'rav' } });
+    expect(await screen.findByRole('option', { name: /Ravi Prasad/ })).toBeTruthy();
+    await act(async () => { releaseOld([cand('c2', 'Old Result', 'INC', 'k1')]); });
+    expect(screen.queryByRole('option', { name: /Old Result/ })).toBeNull();
+    fireEvent.mouseDown(screen.getByRole('option', { name: /Ravi Prasad/ }));
+    expect(onUpdate).toHaveBeenLastCalledWith([{ ...WL[0], entries: [{ name: 'Ravi Prasad', party_id: 'BJP', const_id: 'k142' }] }]);
+  });
+
+  it('the role field and remove button act on their own entry', () => {
+    const onUpdate = vi.fn();
+    const WL = [{ id: 'leaders', name: 'Leaders', entries: [{ name: 'A', party_id: 'BJP', const_id: 'k1' }, { name: 'B', party_id: 'INC', const_id: 'k2' }] }];
+    render(<WatchlistEditor watchlists={WL} contestingParties={PARTIES} constituencies={SEATS} partyMap={partyMap} onSearchCandidates={vi.fn()} onUpdate={onUpdate} />);
+    fireEvent.change(screen.getByLabelText('Entry 2 role'), { target: { value: 'CM' } });
+    expect(onUpdate.mock.lastCall![0][0].entries[1]).toEqual({ name: 'B', party_id: 'INC', const_id: 'k2', role: 'CM' });
+    fireEvent.click(screen.getByRole('button', { name: 'Remove entry 1' }));
+    expect(onUpdate.mock.lastCall![0][0].entries).toEqual([WL[0].entries[1]]);
+    expect((screen.getByRole('combobox', { name: 'Entry 2 constituency' }) as HTMLInputElement).value).toBe('Ramnagar (#2)');
+  });
+});
+
+describe('MiscEditors', () => {
+  it('milestones edit the label and seats; Add milestone appends', () => {
+    const onUpdate = vi.fn();
+    render(<MilestonesEditor milestones={[{ label: 'Majority', value: 122 }]} onUpdate={onUpdate} />);
+    fireEvent.change(screen.getByLabelText('Milestone 1 seats'), { target: { value: '123' } });
+    expect(onUpdate).toHaveBeenLastCalledWith([{ label: 'Majority', value: 123 }]);
+    fireEvent.click(screen.getByRole('button', { name: 'Add milestone' }));
+    expect(onUpdate).toHaveBeenLastCalledWith([{ label: 'Majority', value: 122 }, { label: '', value: 0 }]);
+  });
+
+  it('history reorders with labelled buttons and keeps the years in step', () => {
+    const onHistory = vi.fn();
+    const onYears = vi.fn();
+    render(
+      <CompareHistoryEditor
+        compareWith={[]} history={['e1', 'e2']} historyYears={[2020, 2015]} elections={ELECTIONS} electionMap={electionMap}
+        onUpdateCompare={vi.fn()} onUpdateHistory={onHistory} onUpdateHistoryYears={onYears}
+      />,
+    );
+    expect(screen.getByRole('region', { name: 'Compare and history' })).toBeTruthy();
+    expect(screen.getByText('No comparison election set')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Move item 2 up' }));
+    expect(onHistory).toHaveBeenLastCalledWith(['e2', 'e1']);
+    expect(onYears).toHaveBeenLastCalledWith([2015, 2020]);
+    fireEvent.change(screen.getByLabelText('History 1 year'), { target: { value: '2021' } });
+    expect(onYears).toHaveBeenLastCalledWith([2021, 2015]);
+  });
+
+  it('vote splits pick the spoiler and the alliance it hurts', () => {
+    const onUpdate = vi.fn();
+    render(<VoteSplitsEditor voteSplits={[{ spoiler: '', hurts: '', label: '' }]} contestingParties={PARTIES} alliances={[NDA]} partyMap={partyMap} onUpdate={onUpdate} />);
+    fireEvent.change(screen.getByLabelText('Vote split 1 spoiler'), { target: { value: 'INC' } });
+    expect(onUpdate).toHaveBeenLastCalledWith([{ spoiler: 'INC', hurts: '', label: '' }]);
+    fireEvent.change(screen.getByLabelText('Vote split 1 alliance'), { target: { value: 'NDA' } });
+    expect(onUpdate).toHaveBeenLastCalledWith([{ spoiler: '', hurts: 'NDA', label: '' }]);
+  });
+
+  it('the map centre keeps a half-typed value, saves a complete one, and clearing it removes it', () => {
+    function Geo() {
+      const [geo, setGeo] = useState<ManifestData['geo']>({ map_url: '/geo/x.geojson' });
+      return <><GeoConfigEditor geo={geo} onUpdate={setGeo} /><output>{JSON.stringify(geo)}</output></>;
+    }
+    render(<Geo />);
+    const centre = screen.getByLabelText('Centre (lat, lng)') as HTMLInputElement;
+    fireEvent.change(centre, { target: { value: '22.5,' } });
+    expect(centre.value).toBe('22.5,');
+    fireEvent.change(centre, { target: { value: '22.5, 82.5' } });
+    expect(screen.getByRole('status').textContent).toBe('{"map_url":"/geo/x.geojson","center":[22.5,82.5]}');
+    fireEvent.change(centre, { target: { value: '' } });
+    expect(screen.getByRole('status').textContent).toBe('{"map_url":"/geo/x.geojson"}');
+  });
+
+  it('a live-tab seat list can be typed with commas', () => {
+    function Tabs() {
+      const [tabs, setTabs] = useState<LiveTab[]>([{ label: 'Patna', const_nos: [] }]);
+      return <><LiveTabsEditor liveTabs={tabs} onUpdate={setTabs} /><output>{JSON.stringify(tabs)}</output></>;
+    }
+    render(<Tabs />);
+    const seats = screen.getByLabelText('Tab 1 seats') as HTMLInputElement;
+    fireEvent.change(seats, { target: { value: '1,' } });
+    expect(seats.value).toBe('1,');
+    fireEvent.change(seats, { target: { value: '1, 2' } });
+    expect(screen.getByRole('status').textContent).toBe('[{"label":"Patna","const_nos":[1,2]}]');
+    expect(screen.getByText('2 seats')).toBeTruthy();
+  });
+
+  it('the electoral roll revision totals and per-seat changes', () => {
+    render(<RevisionEditor revision={{ label: 'SIR 2025', data: { 1: [1000, 900], 2: { pre: 500, post: 550 } } }} constituencies={SEATS} />);
+    const section = screen.getByRole('region', { name: 'Electoral roll revision' });
+    expect(within(section).getByText('SIR 2025')).toBeTruthy();
+    expect(within(section).getByText('1,500')).toBeTruthy();
+    expect(within(section).getByText('1,450')).toBeTruthy();
+    const table = within(section).getByRole('table', { name: 'Revision by seat' });
+    expect(within(table).getByText('Valmiki Nagar')).toBeTruthy();
+    expect(within(table).getByText('-100 (-10.0%)')).toBeTruthy();
+    expect(within(table).getByText('+50 (+10.0%)')).toBeTruthy();
+  });
+
+  it('no editor renders a legacy class', () => {
+    const { container } = render(
+      <>
+        <WatchlistEditor watchlists={[{ id: 'leaders', name: 'Leaders', entries: [{ name: 'A', party_id: 'BJP', const_id: 'k1' }] }]} contestingParties={PARTIES} constituencies={SEATS} partyMap={partyMap} onSearchCandidates={vi.fn()} onUpdate={vi.fn()} />
+        <MilestonesEditor milestones={[{ label: 'Majority', value: 122 }]} onUpdate={vi.fn()} />
+        <CompareHistoryEditor compareWith={['e1']} history={['e2']} historyYears={[2015]} elections={ELECTIONS} electionMap={electionMap} onUpdateCompare={vi.fn()} onUpdateHistory={vi.fn()} onUpdateHistoryYears={vi.fn()} />
+        <VoteSplitsEditor voteSplits={[{ spoiler: 'INC', hurts: 'NDA', label: 'Splitter' }]} contestingParties={PARTIES} alliances={[NDA]} partyMap={partyMap} onUpdate={vi.fn()} />
+        <GeoConfigEditor geo={{ map_url: '/geo/x.geojson', center: [22.5, 82.5], zoom: 6 }} onUpdate={vi.fn()} />
+        <LiveTabsEditor liveTabs={[{ label: 'Patna', const_nos: [1, 2] }]} onUpdate={vi.fn()} />
+        <RevisionEditor revision={{ data: { 1: [1000, 900] } }} constituencies={SEATS} />
+      </>,
+    );
+    expect(container.querySelector(LEGACY)).toBeNull();
+    expect(container.innerHTML).not.toMatch(/var\(--(bg-|text-|border|space-|danger|success|radius)/);
   });
 });

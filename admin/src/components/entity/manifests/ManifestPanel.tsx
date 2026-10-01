@@ -37,8 +37,7 @@ interface ManifestPanelProps {
 }
 
 /**
- * Full-width manifest sheet. Summary is rebuilt in Tailwind; Edit hosts the existing legacy-CSS editors
- * (so the body is `legacyBody`: no `tw-ui` around them); JSON is the raw manifest.
+ * Full-width manifest sheet: Summary (overview), Edit (the always-open editor sections) and JSON (the raw manifest).
  */
 export function ManifestPanel({ electionId, election, onClose, onPublished }: ManifestPanelProps) {
   const { hasRole } = useAuth();
@@ -117,7 +116,6 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
     <Sheet
       open
       width="full"
-      legacyBody
       onRequestClose={onClose}
       title={election?.name ?? 'Manifest'}
       description="What the public results page shows for this election: alliances, watchlists, milestones and map settings"
@@ -134,7 +132,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
         </>
       }
     >
-      <div className="tw-ui mb-4">
+      <div className="mb-4">
         <ChipGroup<Tab>
           label="Manifest view"
           value={tab}
@@ -144,15 +142,15 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
       </div>
 
       {c.loading ? (
-        <p className="tw-ui py-16 text-center text-sm text-muted">Loading manifest…</p>
+        <p className="py-16 text-center text-sm text-muted">Loading manifest…</p>
       ) : blocked ? (
-        <div className="tw-ui">
+        <div>
           {blocked === 'failed'
             ? <EmptyState title="Could not load manifest" description="Check the connection and try again." action={<Button variant="outline" size="sm" onClick={() => { void c.reload(electionId); }}>Try again</Button>} />
             : <EmptyState title="Election not found" description="It may have been removed. Close this panel to go back to the list." />}
         </div>
       ) : tab === 'summary' ? (
-        <div className="tw-ui">
+        <div>
           <ManifestSummary manifest={c.manifest} partyMap={c.partyMap} electionMap={c.electionMap} />
         </div>
       ) : tab === 'edit' ? (
@@ -199,7 +197,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
           </ErrorBoundary>
         </div>
       ) : (
-        <div className="tw-ui flex min-h-[480px] flex-col overflow-hidden rounded-card border border-line">
+        <div className="flex min-h-[480px] flex-col overflow-hidden rounded-card border border-line">
           {jsonError && <p role="alert" className="border-b border-line bg-bad-soft px-4 py-2 text-xs text-bad-text">{jsonError}</p>}
           <textarea
             aria-label="Manifest JSON"

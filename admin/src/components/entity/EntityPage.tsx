@@ -10,9 +10,8 @@ interface EntityPageProps {
 
 /**
  * Entity page layout: header, then a body with the list column (toolbar + table) and the panel column.
- * `tw-ui` sits on the header and list column only — Sheets carry their own, and a `legacyBody` Sheet
- * (manifest editor) must not inherit it. The list column is a bounded flex column (min-h-0) so the
- * DataTable's sticky header and inner scroll work.
+ * `tw-ui` sits on the header and list column only — Sheets carry their own. The list column is a bounded
+ * flex column (min-h-0) so the DataTable's sticky header and inner scroll work.
  */
 export function EntityPage({ header, toolbar, table, panel }: EntityPageProps) {
   return (

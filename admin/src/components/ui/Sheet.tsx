@@ -13,8 +13,6 @@ interface SheetProps {
   description?: ReactNode;
   width?: SheetWidth;
   footer?: ReactNode;
-  /** Only header + footer get the `tw-ui` reset, so legacy `.btn` markup in the body keeps its styles. */
-  legacyBody?: boolean;
   children: ReactNode;
 }
 
@@ -27,7 +25,7 @@ const WIDTH: Record<SheetWidth, string> = {
  * Record panel: a NON-modal Radix Dialog rendered in place (no portal), as the right column of the page body
  * (`full` covers the body, which must be `relative`). No overlay, no focus trap; outside clicks never close it.
  */
-export function Sheet({ open, onRequestClose, title, description, width = 'md', footer, legacyBody, children }: SheetProps) {
+export function Sheet({ open, onRequestClose, title, description, width = 'md', footer, children }: SheetProps) {
   const onEscape = (e: KeyboardEvent) => {
     e.preventDefault();
     // Esc inside an open combobox list closes that list only.
@@ -40,9 +38,9 @@ export function Sheet({ open, onRequestClose, title, description, width = 'md', 
         onEscapeKeyDown={onEscape}
         onInteractOutside={(e) => e.preventDefault()}
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className={cn('flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-sm', !legacyBody && 'tw-ui', WIDTH[width])}
+        className={cn('tw-ui flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-sm', WIDTH[width])}
       >
-        <div className={cn('flex items-start justify-between gap-3 border-b border-line px-4 py-3', legacyBody && 'tw-ui')}>
+        <div className="flex items-start justify-between gap-3 border-b border-line px-4 py-3">
           <div className="min-w-0">
             <Dialog.Title className="truncate text-lg font-semibold tracking-tight text-ink">{title}</Dialog.Title>
             <Dialog.Description className={cn('text-xs text-ink-2', !description && 'sr-only')}>{description ?? 'Record details'}</Dialog.Description>
@@ -53,7 +51,7 @@ export function Sheet({ open, onRequestClose, title, description, width = 'md', 
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto p-4">{children}</div>
         {footer && (
-          <div className={cn('flex items-center justify-between gap-2 border-t border-line bg-subtle/60 px-4 py-3', legacyBody && 'tw-ui')}>{footer}</div>
+          <div className="flex items-center justify-between gap-2 border-t border-line bg-subtle/60 px-4 py-3">{footer}</div>
         )}
       </Dialog.Content>
     </Dialog.Root>

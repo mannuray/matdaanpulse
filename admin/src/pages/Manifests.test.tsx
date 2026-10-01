@@ -104,6 +104,10 @@ describe('Manifests page', () => {
     fireEvent.click(within(panel).getByRole('button', { name: 'Edit' }));
     expect(within(panel).getAllByRole('region').length).toBeGreaterThanOrEqual(8);
     expect(panel.querySelector('button[aria-expanded]')).toBeNull();
+    for (const name of ['Alliances', 'Tracked', 'Watchlists', 'Milestones', 'Compare and history', 'Vote splits', 'Geo config', 'Live tabs']) {
+      expect(within(panel).getByRole('region', { name })).toBeTruthy();
+    }
+    expect(panel.querySelector('[class*="mf-"],.btn,.form-input,.form-select,.admin-table')).toBeNull();
   });
 
   it('a failed load offers Try again; a 404 says the election is not found', async () => {
