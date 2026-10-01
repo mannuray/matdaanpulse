@@ -1,5 +1,6 @@
 import { apiFetch, API_BASE_URL } from './api-client';
-import type { Election, Manifest, LiveConstituency } from '../types';
+import type { Election, Manifest, LiveConstituency, SeatLock } from '../types';
+import type { BulkOverrideItem } from '../utils/seat-math';
 
 export async function getElections(filters?: { type?: string; status?: string }) {
   const params = new URLSearchParams();
@@ -48,6 +49,37 @@ export function overrideResult(data: { result_id: string; votes?: number; status
   return apiFetch<void>('/admin/results/override', { method: 'PATCH', body: JSON.stringify(data) });
 }
 
+export function bulkOverride(
+  electionId: string,
+  overrides: BulkOverrideItem[],
+  rounds?: Record<string, { current_round?: number; total_rounds?: number }>,
+) {
+  return apiFetch<{ updated: number }>('/admin/results/override-bulk', {
+    method: 'POST',
+    body: JSON.stringify({ election_id: electionId, overrides, ...(rounds ? { rounds } : {}) }),
+  });
+}
+
+export async function getSeatLocks(electionId: string) {
+  return (await apiFetch<SeatLock[]>(`/admin/live/locks?election_id=${encodeURIComponent(electionId)}`)) || [];
+}
+
+export function acquireSeatLock(electionId: string, constId: string, takeOver = false) {
+  return apiFetch<SeatLock>('/admin/live/locks', {
+    method: 'POST',
+    body: JSON.stringify({ election_id: electionId, const_id: constId, ...(takeOver ? { take_over: true } : {}) }),
+  });
+}
+
+/** keepalive lets the release survive the tab closing (sendBeacon cannot send the auth header). */
+export async function releaseSeatLock(electionId: string, constId: string, opts?: { keepalive?: boolean }) {
+  await apiFetch<void>('/admin/live/locks/release', {
+    method: 'POST',
+    keepalive: opts?.keepalive,
+    body: JSON.stringify({ election_id: electionId, const_id: constId }),
+  });
+}
+
 /** Compact live result payload broadcast on the admin live SSE channel. */
 export interface LiveResultUpdate {
   const_id: string;
@@ -64,6 +96,10 @@ export interface LiveUpdateHandlers {
   onBatchUpdate: (updates: LiveResultUpdate[]) => void;
   /** A reconnect after a drop: events may have been missed, reload the data. */
   onReconnect?: () => void;
+  /** Another editor took, refreshed or released a seat lock. */
+  onSeatLock?: (event: { const_id: string; lock: SeatLock | null }) => void;
+  /** Stream state for the top-bar pill. */
+  onStatus?: (status: 'connecting' | 'open' | 'reconnecting') => void;
 }
 
 /** 5-minute, single-election token for the admin SSE stream (EventSource cannot send Authorization). */
@@ -100,6 +136,7 @@ export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHan
 
   async function connect() {
     if (closed) return;
+    handlers.onStatus?.('connecting');
     let token: string;
     try {
       token = (await getLiveSseToken(electionId)).token;
@@ -115,10 +152,12 @@ export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHan
       if (opened) handlers.onReconnect?.();
       opened = true;
       attempt = 0;
+      handlers.onStatus?.('open');
     };
     source.onerror = () => {
       source.close();
       if (es === source) es = null;
+      handlers.onStatus?.('reconnecting');
       retry();
     };
     source.addEventListener('result-update', (event) => {
@@ -131,6 +170,12 @@ export function subscribeLiveUpdates(electionId: string, handlers: LiveUpdateHan
       try {
         const data = JSON.parse((event as MessageEvent).data);
         if (Array.isArray(data)) handlers.onBatchUpdate(data.filter((u) => u?.const_id));
+      } catch { /* malformed frame */ }
+    });
+    source.addEventListener('seat-lock', (event) => {
+      try {
+        const data = JSON.parse((event as MessageEvent).data);
+        if (data?.const_id) handlers.onSeatLock?.({ const_id: data.const_id, lock: data.lock ?? null });
       } catch { /* malformed frame */ }
     });
   }
