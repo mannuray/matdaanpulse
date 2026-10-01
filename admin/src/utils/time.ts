@@ -23,7 +23,7 @@ export function timeAgo(iso: string, now: number = Date.now()): string {
 export function formatIst(iso: string): string {
   const d = parse(iso);
   return d
-    ? d.toLocaleString('en-IN', { timeZone: IST_TIME_ZONE, day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })
+    ? d.toLocaleString('en-IN', { timeZone: IST_TIME_ZONE, day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
     : '';
 }
 
@@ -36,7 +36,7 @@ export function formatIstDate(iso: string): string {
 /** "14:32:08" — IST, 24-hour. */
 export function clockIst(iso: string): string {
   const d = parse(iso);
-  return d ? d.toLocaleTimeString('en-GB', { timeZone: IST_TIME_ZONE, hour12: false }) : '';
+  return d ? d.toLocaleTimeString('en-GB', { timeZone: IST_TIME_ZONE, hourCycle: 'h23' }) : '';
 }
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;

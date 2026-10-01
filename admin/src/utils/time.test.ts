@@ -18,6 +18,10 @@ describe('IST formatting (independent of the machine zone)', () => {
   it('formatIst shows the IST date and 24-hour time', () => {
     expect(formatIst('2026-09-30T20:00:00Z')).toBe('01 Oct 2026, 01:30');
   });
+  it('midnight IST reads 00:xx, never 24:xx', () => {
+    expect(formatIst('2026-09-30T18:35:00Z')).toBe('01 Oct 2026, 00:05');
+    expect(clockIst('2026-09-30T18:35:00Z')).toBe('00:05:00');
+  });
   it('formatIstDate and clockIst', () => {
     expect(formatIstDate('2026-10-01T05:00:00Z')).toBe('1 Oct 2026');
     expect(clockIst('2026-09-30T10:00:00.000Z')).toBe('15:30:00');

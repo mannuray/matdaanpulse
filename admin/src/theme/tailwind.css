@@ -17,6 +17,7 @@
 @source "../pages/Constituencies.tsx";
 @source "../pages/Manifests.tsx";
 @source "../pages/Login.tsx";
+@source "../pages/Dashboard.tsx";
 @source "../components/routing";
 @source "../components/feedback";
 
