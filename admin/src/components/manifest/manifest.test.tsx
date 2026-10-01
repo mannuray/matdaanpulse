@@ -80,6 +80,13 @@ describe('SharedControls', () => {
     expect(screen.getByRole('listbox')).toBeTruthy();
     fireEvent.keyDown(input, { key: 'Escape' });
     expect(screen.queryByRole('listbox')).toBeNull();
+    // still focused: typing alone reopens the list
+    fireEvent.change(input, { target: { value: 'bjp' } });
+    expect(screen.getAllByRole('option')).toHaveLength(1);
+    fireEvent.mouseDown(screen.getByRole('option'));
+    expect(screen.queryByRole('listbox')).toBeNull();
+    fireEvent.change(input, { target: { value: 'jdu' } });
+    expect(screen.getAllByRole('option')).toHaveLength(1);
   });
 
   it('ChipSelect lists unselected matches while typing, adds on pick, and removes with the chip button', () => {
@@ -140,7 +147,7 @@ describe('AllianceEditor', () => {
     expect(onUpdate).toHaveBeenLastCalledWith([{ ...NDA, color: '#111111' }]);
     fireEvent.click(screen.getByRole('button', { name: 'Remove JDU from NDA' }));
     expect(onUpdate).toHaveBeenLastCalledWith([{ ...NDA, parties: ['BJP'] }]);
-    fireEvent.focus(screen.getByRole('combobox', { name: 'Add party' }));
+    fireEvent.focus(screen.getByRole('combobox', { name: 'Add party to NDA' }));
     fireEvent.mouseDown(screen.getByRole('option', { name: /INC party/ }));
     expect(onUpdate).toHaveBeenLastCalledWith([{ ...NDA, parties: ['BJP', 'JDU', 'INC'] }]);
     fireEvent.click(screen.getByRole('button', { name: 'Remove alliance NDA' }));

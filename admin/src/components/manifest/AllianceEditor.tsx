@@ -59,6 +59,7 @@ export function AllianceEditor({
                 })}
               </div>
               <PartySearch
+                label={`Add party to ${a.name || `alliance ${n}`}`}
                 parties={contestingParties || []}
                 onSelect={(p) => {
                   if (p && !(a.parties || []).includes(p.id)) {

@@ -170,6 +170,7 @@ export function SearchableSelect<T>({
   const close = () => { setShow(false); setQuery(''); };
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Escape' && show) { e.preventDefault(); close(); }
+    else if (e.key === 'ArrowDown' && !show) { e.preventDefault(); setShow(true); }
   };
 
   return (
@@ -185,7 +186,8 @@ export function SearchableSelect<T>({
         value={show ? query : (selectedItem ? getLabel(selectedItem) : '')}
         onFocus={() => { setShow(true); setQuery(''); }}
         onBlur={close}
-        onChange={e => setQuery(e.target.value)}
+        onChange={e => { setQuery(e.target.value); setShow(true); }}
+        onClick={() => setShow(true)}
         onKeyDown={onKeyDown}
       />
       {show && (
