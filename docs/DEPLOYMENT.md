@@ -2,6 +2,8 @@
 
 Status: **draft.** The backend blockers in [§4](#4-blockers-before-first-deploy) are fixed on branch `fix/backend-hardening` (2026-09-30). Hosting decisions are made (§6); the domain name is still to be chosen. The pre-deploy task **CDN-ready live** (§2.2) is implemented on the same branch. Source reviews: [`docs/reviews/2026-09-30-backend-review.md`](reviews/2026-09-30-backend-review.md), [`docs/reviews/2026-09-30-election-day-pipeline-review.md`](reviews/2026-09-30-election-day-pipeline-review.md).
 
+**Current deployment (2026-10-01, interim, no domain yet):** API on Render `election-tracker-api` (Singapore, Free) → `https://election-tracker-api.onrender.com`, origin shield off; Neon project `election-tracker` (ap-southeast-1, built with `setup.sh`); Upstash Redis (ap-southeast-1). Frontend and admin are on **Vercel** (Git-connected, root `frontend` / `admin`, `vercel.json` gives the SPA fallback) for testing only — move them to Cloudflare Pages (§5.4) once the domain is bought, before any real traffic (D13).
+
 Roadmap: fix code → **deploy** → data (2026 results backfill, curation) → live pipeline. Next live counting day: **27 Feb 2027**.
 
 Target cost: **$0/month off-season**; about **$7–10** in an election month (§3.1).
