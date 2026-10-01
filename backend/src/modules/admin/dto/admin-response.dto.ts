@@ -96,6 +96,27 @@ export class AdminCandidateDto {
   persons?: any;
 }
 
+/** One contest in a person's election history (GET /admin/persons/:id), as PersonsService.findWithCandidates maps it. */
+export class AdminPersonContestDto {
+  @Expose() id: string;
+  @Expose() name: string;
+  @Expose() party_id: string | null;
+  @Expose() party_name: string | null;
+  @Expose() party_color: string | null;
+  @Expose() election_id: string;
+  @Expose() election_name: string | null;
+  @Expose() election_year: number | null;
+  @Expose() election_type: string | null;
+  @Expose() election_status: string | null;
+  @Expose() const_id: string;
+  @Expose() constituency_name: string | null;
+  @Expose() const_no: number | null;
+  @Expose() votes: number;
+  @Expose() status: string | null;
+  @Expose() margin: number;
+  @Expose() is_incumbent: boolean;
+}
+
 export class AdminPersonDto {
   @Expose() id: string;
   @Expose() name: string;
@@ -123,8 +144,8 @@ export class AdminPersonDto {
   @Expose() elections?: string[];
   
   @Expose()
-  @Type(() => AdminCandidateDto)
-  candidates?: AdminCandidateDto[];
+  @Type(() => AdminPersonContestDto)
+  candidates?: AdminPersonContestDto[];
 }
 
 export class AdminUserDto {

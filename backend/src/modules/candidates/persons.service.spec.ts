@@ -1,6 +1,9 @@
 import { Logger } from '@nestjs/common';
+import { plainToInstance } from 'class-transformer';
+import { validate } from 'class-validator';
 import { PersonsService } from './persons.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
+import { CreatePersonDto, UpdatePersonDto } from './dto/person-input.dto';
 
 const person = {
   id: 'p1', name: 'Nitish Kumar', gender: 'M', education: null, date_of_birth: new Date('1951-03-01'),
@@ -69,5 +72,15 @@ describe('PersonsService audit rows', () => {
     await expect(svc.merge('p2', 'p1', 'u1')).resolves.toEqual({ merged: true, target_id: 'p1' });
     expect(tx.$executeRawUnsafe).toHaveBeenCalledWith('ROLLBACK TO SAVEPOINT audit_row');
     warn.mockRestore();
+  });
+});
+
+describe('Person input DTOs', () => {
+  it.each([['update', UpdatePersonDto], ['create', CreatePersonDto]] as const)('%s maps every blank nullable text field to null', async (_, cls) => {
+    const blank = { name: 'N', gender: '', education: '', bio: '', photo_url: '', date_of_birth: '', wikipedia_url: '' };
+    const dto = plainToInstance(cls, blank) as unknown as Record<string, unknown>;
+    expect(await validate(dto)).toEqual([]);
+    for (const k of ['gender', 'education', 'bio', 'photo_url', 'date_of_birth', 'wikipedia_url']) expect(dto[k]).toBeNull();
+    expect(dto.name).toBe('N');
   });
 });

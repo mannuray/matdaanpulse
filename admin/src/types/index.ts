@@ -75,11 +75,27 @@ export interface PersonWithCandidates extends Person {
   candidates: PersonCandidate[];
 }
 
-/** Candidacy row as returned in a person's election history. */
-export interface PersonCandidate extends Candidate {
-  constituency_name?: string;
-  election_name?: string;
-  election_year?: number;
+/** One contest in a person's election history (GET /admin/persons/:id, newest first). */
+export interface PersonCandidate {
+  /** The candidate id: the row opens /candidates/:id. */
+  id: string;
+  name: string;
+  party_id: string | null;
+  party_name?: string | null;
+  party_color?: string | null;
+  election_id: string;
+  election_name?: string | null;
+  election_year?: number | null;
+  election_type?: string | null;
+  election_status?: Election['status'] | null;
+  const_id: string;
+  constituency_name?: string | null;
+  const_no?: number | null;
+  votes?: number;
+  /** results.status (WON, LOST, LEADING…); null when the seat has no result row. */
+  status?: string | null;
+  margin?: number;
+  is_incumbent: boolean;
 }
 
 export interface Candidate {

@@ -114,6 +114,10 @@ export class PersonsService {
     const candidates = person.candidates.map((c) => {
       const r = c.results[0]; // Assuming 1:1 candidate to result mapping
       return {
+        // Type and status drive the admin history (short election name; "Lost" only once Finalized).
+        election_type: c.elections?.type || null,
+        election_status: c.elections?.status || null,
+        const_no: c.constituencies?.const_no ?? null,
         id: c.id,
         name: c.name,
         party_id: c.party_id,
@@ -130,6 +134,9 @@ export class PersonsService {
         is_incumbent: c.is_incumbent,
       };
     });
+
+    // Newest first. The query orders by election id (a UUID), which says nothing about time.
+    candidates.sort((a, b) => (b.election_year ?? 0) - (a.election_year ?? 0));
 
     return {
       ...person,

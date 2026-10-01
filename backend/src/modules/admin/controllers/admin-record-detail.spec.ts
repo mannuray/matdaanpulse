@@ -7,6 +7,7 @@ import {
   AdminPartyDto, AdminPersonDto, AdminCandidateDto, AdminConstituencyDto, AdminPartyUsageDto, AdminCandidateResultDto, AdminSeatHistoryDto,
 } from '../dto/admin-response.dto';
 import { AuditLogService } from '../../audit-log/audit-log.service';
+import { PersonsService } from '../../candidates/persons.service';
 
 const map = (dto: any, data: unknown) => plainToInstance(dto, data, { excludeExtraneousValues: true }) as any;
 const updated_at = new Date('2026-10-01T09:30:00Z');
@@ -76,5 +77,40 @@ describe('admin derived read endpoints: response mapping keeps every field', () 
     };
     const svc = { history: jest.fn().mockResolvedValue(out) };
     expect(map(AdminSeatHistoryDto, await new AdminConstituenciesController(svc as any, audit).history('BR_VS_1'))).toEqual(out);
+  });
+});
+
+describe('PersonsService.findWithCandidates (election history)', () => {
+  const contest = (id: string, year: number, status: string, result: { status: string; votes: number; margin: number } | null) => ({
+    id: `c-${id}`, name: 'Nitish Kumar', party_id: 'JDU', election_id: `e-${id}`, const_id: `s-${id}`, is_incumbent: year === 2025,
+    parties: { name: 'Janata Dal (United)', color: '#16a34a' },
+    elections: { name: `Bihar Vidhan Sabha ${year}`, year, type: 'VS', status },
+    constituencies: { name: 'Harnaut', const_no: 179 },
+    results: result ? [result] : [],
+  });
+
+  it('returns the history newest first with election type/status and seat number, and they survive AdminPersonDto', async () => {
+    const prisma = {
+      persons: {
+        findUnique: jest.fn(async () => ({
+          id: 'p1', name: 'Nitish Kumar', metadata: {}, updated_at, states: null, districts: null,
+          // Stored order is by election id, not year.
+          candidates: [
+            contest('a', 2015, 'Finalized', { status: 'WON', votes: 10, margin: 3 }),
+            contest('b', 2025, 'Live', null),
+            contest('c', 2020, 'Finalized', { status: 'LOST', votes: 5, margin: 0 }),
+          ],
+        })),
+      },
+    };
+    const svc = new PersonsService(prisma as any, new AuditLogService(prisma as any));
+    const out = map(AdminPersonDto, await svc.findWithCandidates('p1'));
+    expect(out.candidates.map((c: any) => c.election_year)).toEqual([2025, 2020, 2015]);
+    expect(out.candidates[2]).toEqual({
+      id: 'c-a', name: 'Nitish Kumar', party_id: 'JDU', party_name: 'Janata Dal (United)', party_color: '#16a34a',
+      election_id: 'e-a', election_name: 'Bihar Vidhan Sabha 2015', election_year: 2015, election_type: 'VS', election_status: 'Finalized',
+      const_id: 's-a', constituency_name: 'Harnaut', const_no: 179, votes: 10, status: 'WON', margin: 3, is_incumbent: false,
+    });
+    expect(out.candidates[0]).toMatchObject({ election_status: 'Live', status: null, is_incumbent: true });
   });
 });
