@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { Sheet } from './Sheet';
 import { ConfirmDialog } from './ConfirmDialog';
 
@@ -28,11 +28,17 @@ describe('Sheet', () => {
     expect(row.closest('[aria-hidden="true"]')).toBeNull();
   });
 
-  it('a pointer-down outside never asks to close; Esc and the close button do', () => {
+  it('a pointer-down outside is prevented from dismissing; Esc and the close button close', async () => {
     const onRequestClose = vi.fn();
     render(<Page onRequestClose={onRequestClose} />);
-    fireEvent.pointerDown(screen.getByRole('button', { name: 'Row in the table' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Row in the table' }));
+    // Radix registers its outside-pointer listener in setTimeout(0).
+    await act(async () => { await new Promise((r) => setTimeout(r, 0)); });
+    const row = screen.getByRole('button', { name: 'Row in the table' });
+    const Ev = typeof PointerEvent === 'function' ? PointerEvent : MouseEvent;
+    const down = new Ev('pointerdown', { bubbles: true, cancelable: true });
+    act(() => { row.dispatchEvent(down); });
+    fireEvent.click(row);
+    expect(screen.getByRole('dialog', { name: 'Bharatiya Janata Party' })).toBeTruthy();
     expect(onRequestClose).not.toHaveBeenCalled();
     fireEvent.keyDown(document.body, { key: 'Escape' });
     expect(onRequestClose).toHaveBeenCalledTimes(1);
@@ -70,5 +76,31 @@ describe('ConfirmDialog', () => {
     expect(onConfirm).toHaveBeenCalled();
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(onCancel).toHaveBeenCalled();
+  });
+
+  it('Esc cancels when not busy, is ignored while busy', () => {
+    const onCancel = vi.fn();
+    const props = { title: 'T', description: 'D', confirmLabel: 'Go', onConfirm: vi.fn(), onCancel };
+    const { rerender } = render(<ConfirmDialog open {...props} />);
+    fireEvent.keyDown(document.activeElement ?? document.body, { key: 'Escape' });
+    expect(onCancel).toHaveBeenCalledTimes(1);
+    rerender(<ConfirmDialog open busy {...props} />);
+    fireEvent.keyDown(document.activeElement ?? document.body, { key: 'Escape' });
+    expect(onCancel).toHaveBeenCalledTimes(1);
+    expect((screen.getByRole('button', { name: 'Cancel' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('Esc with a ConfirmDialog above an open Sheet cancels the dialog only', () => {
+    const onRequestClose = vi.fn();
+    const onCancel = vi.fn();
+    render(
+      <>
+        <Sheet open onRequestClose={onRequestClose} title="Rec"><input aria-label="Name" /></Sheet>
+        <ConfirmDialog open title="Sure?" description="D" confirmLabel="Yes" onConfirm={vi.fn()} onCancel={onCancel} />
+      </>,
+    );
+    fireEvent.keyDown(document.activeElement ?? document.body, { key: 'Escape' });
+    expect(onCancel).toHaveBeenCalledTimes(1);
+    expect(onRequestClose).not.toHaveBeenCalled();
   });
 });

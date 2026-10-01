@@ -31,11 +31,11 @@ export function Sheet({ open, onRequestClose, title, description, width = 'md', 
   const onEscape = (e: KeyboardEvent) => {
     e.preventDefault();
     // Esc inside an open combobox list closes that list only.
-    if ((document.activeElement as HTMLElement | null)?.closest('[aria-expanded="true"]')) return;
+    if ((document.activeElement as HTMLElement | null)?.closest('[role="combobox"][aria-expanded="true"]')) return;
     onRequestClose();
   };
   return (
-    <Dialog.Root open={open} modal={false}>
+    <Dialog.Root open={open} modal={false} onOpenChange={(o) => { if (!o) onRequestClose(); }}>
       <Dialog.Content
         onEscapeKeyDown={onEscape}
         onInteractOutside={(e) => e.preventDefault()}
