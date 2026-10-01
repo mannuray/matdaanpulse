@@ -17,9 +17,7 @@ import Parties from './pages/Parties';
 import { EditRedirect } from './components/routing/EditRedirect';
 import Candidates from './pages/Candidates';
 import LiveConsole from './pages/LiveConsole';
-import ConstituencyManager from './pages/ConstituencyManager';
-import ConstituencyDetail from './pages/ConstituencyDetail';
-import ConstituencyEdit from './pages/ConstituencyEdit';
+import Constituencies from './pages/Constituencies';
 import Persons from './pages/Persons';
 
 function ProtectedRoute({ children, roles }: { children: React.ReactNode; roles?: string[] }) {
@@ -67,9 +65,8 @@ function App() {
                 <Route path="persons/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Persons /></ProtectedRoute>} />
                 
                 {/* Constituencies */}
-                <Route path="constituencies" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ConstituencyManager /></ProtectedRoute>} />
-                <Route path="constituencies/:id" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ConstituencyDetail /></ProtectedRoute>} />
-                <Route path="constituencies/:id/edit" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><ConstituencyEdit /></ProtectedRoute>} />
+                <Route path="constituencies/:id/edit" element={<EditRedirect base="/constituencies" />} />
+                <Route path="constituencies/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Constituencies /></ProtectedRoute>} />
                 
                 {/* Overrides & Logs */}
                 <Route path="overrides" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><LiveConsole /></ProtectedRoute>} />
