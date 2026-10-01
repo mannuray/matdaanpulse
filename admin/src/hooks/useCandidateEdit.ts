@@ -19,6 +19,9 @@ export interface CandidateForm {
   assets: string;
 }
 
+/** Independents use the real `IND` party row (seeds, and migration 001's unique index keyed on party_id <> 'IND'). */
+export const INDEPENDENT = 'IND';
+
 const EMPTY_FORM: CandidateForm = { name: '', party_id: '', age: '', gender: '', education: '', criminal_cases: '', assets: '' };
 
 /** Age / criminal cases: empty, or a whole number of 0 or more. */
@@ -54,7 +57,8 @@ const toForm = (c: Candidate): CandidateForm => {
   const text = (v: unknown) => (v === null || v === undefined ? '' : String(v));
   return {
     name: c.name || '',
-    party_id: c.party_id || '',
+    // A stored null party is shown as Independent; it is written as IND only if the user saves.
+    party_id: c.party_id || INDEPENDENT,
     age: text(meta.age),
     gender: text(meta.gender),
     education: text(meta.education),
@@ -130,7 +134,7 @@ export function useCandidateEdit(id?: string) {
     try {
       await updateCandidate(id, {
         name: submitted.name,
-        party_id: submitted.party_id || null,
+        party_id: submitted.party_id || INDEPENDENT,
         metadata: {
           // Keep keys this form does not edit (e.g. affidavit links from the seed).
           ...(candidate?.metadata ?? {}),
@@ -178,44 +182,51 @@ export function useCandidateEdit(id?: string) {
     return () => { if (searchTimer.current) clearTimeout(searchTimer.current); };
   }, [personSearch]);
 
-  const linkToPerson = async (personId: string) => {
-    if (!id) return;
+  // Linking actions resolve true only when something changed (the panel then refreshes the table).
+  const linkToPerson = async (personId: string): Promise<boolean> => {
+    if (!id) return false;
     setIsLinking(true);
     try {
       await linkCandidatePerson(id, personId);
       toast('Linked to master record');
       loadData();
+      return true;
     } catch (err) {
       toastError(err, 'Linking failed');
+      return false;
     } finally {
       setIsLinking(false);
     }
   };
 
-  const createMasterRecord = async () => {
-    if (!id || !candidate) return;
+  const createMasterRecord = async (): Promise<boolean> => {
+    if (!id || !candidate) return false;
     setIsLinking(true);
     try {
       const person = await createPerson(candidate.name);
       await linkCandidatePerson(id, person.id);
       toast('Master record created and linked');
       loadData();
+      return true;
     } catch (err) {
       toastError(err, 'Operation failed');
+      return false;
     } finally {
       setIsLinking(false);
     }
   };
 
-  const unlink = async () => {
-    if (!id) return;
-    if (!window.confirm('Unlink from master record?')) return;
+  const unlink = async (): Promise<boolean> => {
+    if (!id) return false;
+    if (!window.confirm('Unlink from master record?')) return false;
     try {
       await unlinkCandidatePerson(id);
       toast('Unlinked successfully');
       loadData();
+      return true;
     } catch (err) {
       toastError(err, 'Unlink failed');
+      return false;
     }
   };
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { isWholeNumberOrEmpty, type CandidateForm } from '../../../hooks/useCandidateEdit';
+import { INDEPENDENT, isWholeNumberOrEmpty, type CandidateForm } from '../../../hooks/useCandidateEdit';
 import { Field, FormSection } from '../../ui/Field';
 import { Input, Select } from '../../ui/Input';
 import type { Party } from '../../../types';
@@ -22,6 +22,12 @@ export function CandidateFields({ form, onChange: set, parties, afterParty, flag
   const nameError = flagEmptyName && !form.name.trim() ? 'Name is required' : undefined;
   const ageError = isWholeNumberOrEmpty(form.age) ? undefined : NUMBER_ERROR;
   const casesError = isWholeNumberOrEmpty(form.criminal_cases) ? undefined : NUMBER_ERROR;
+  // Independent (the IND party row) first, listed once, even before the party list has loaded.
+  const ind = parties.find((p) => p.id === INDEPENDENT);
+  const partyOptions = [
+    { id: INDEPENDENT, name: ind?.name || 'Independent' },
+    ...parties.filter((p) => p.id !== INDEPENDENT),
+  ];
   return (
     <FormSection title="Details">
       <Field label="Name" error={nameError}>
@@ -29,9 +35,8 @@ export function CandidateFields({ form, onChange: set, parties, afterParty, flag
       </Field>
       <Field label="Party">
         <Select value={form.party_id} onChange={(e) => set({ party_id: e.target.value })}>
-          <option value="">Independent</option>
-          {parties.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
-          {form.party_id && !parties.some((p) => p.id === form.party_id) && <option value={form.party_id}>{form.party_id}</option>}
+          {partyOptions.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+          {form.party_id && !partyOptions.some((p) => p.id === form.party_id) && <option value={form.party_id}>{form.party_id}</option>}
         </Select>
       </Field>
       {afterParty}

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 import { useElection } from '../../../context/ElectionContext';
@@ -49,15 +49,26 @@ export function CandidatePanel({ id, suggestion, selectedMatches, onToggleMatch,
   const seatLabel = c?.constituency ? `${c.constituency.const_no} ${c.constituency.name}` : c?.const_id;
 
   const save = async () => { if (await ed.handleSave()) onChanged(); };
-  const linkTo = async (personId: string) => { await ed.linkToPerson(personId); onChanged(); };
-  const createMaster = async () => { await ed.createMasterRecord(); onChanged(); };
-  const unlink = async () => { await ed.unlink(); onChanged(); };
+  // The table refreshes only when a linking action actually changed something (not on cancel / failure).
+  const linkTo = async (personId: string) => { if (await ed.linkToPerson(personId)) onChanged(); };
+  const createMaster = async () => { if (await ed.createMasterRecord()) onChanged(); };
+  const unlink = async () => { if (await ed.unlink()) onChanged(); };
+  // Busy while "Link selected" runs, so a double click cannot create two person records.
+  const [linkingSuggested, setLinkingSuggested] = useState(false);
   const linkSuggested = async () => {
-    if (c && suggestion && await onLinkSuggested(c.id, suggestion.matches)) await ed.refresh();
+    if (!c || !suggestion || linkingSuggested) return;
+    setLinkingSuggested(true);
+    try {
+      if (await onLinkSuggested(c.id, suggestion.matches)) await ed.refresh();
+    } finally {
+      setLinkingSuggested(false);
+    }
   };
   // Every linking action reloads the record, which would silently drop unsaved form edits.
   const linkLocked = ed.dirty;
-  const retry = <Button variant="outline" size="sm" onClick={() => { void ed.refresh(); }}>Try again</Button>;
+  const busy = ed.isLinking || linkingSuggested;
+  // A reload would also overwrite unsaved edits.
+  const retry = <Button variant="outline" size="sm" disabled={ed.dirty} onClick={() => { void ed.refresh(); }}>Try again</Button>;
 
   return (
     <Sheet
@@ -107,7 +118,7 @@ export function CandidatePanel({ id, suggestion, selectedMatches, onToggleMatch,
                     Open person <ExternalLink size={12} aria-hidden />
                   </Link>
                 </div>
-                <Button size="sm" variant="danger" disabled={linkLocked} onClick={unlink}>Unlink</Button>
+                <Button size="sm" variant="danger" disabled={linkLocked || busy} onClick={unlink}>Unlink</Button>
               </div>
             ) : (
               <>
@@ -124,7 +135,7 @@ export function CandidatePanel({ id, suggestion, selectedMatches, onToggleMatch,
                         </li>
                       ))}
                     </ul>
-                    <Button size="sm" variant="primary" disabled={linkLocked} onClick={linkSuggested}>Link selected</Button>
+                    <Button size="sm" variant="primary" disabled={linkLocked || busy} onClick={linkSuggested}>{linkingSuggested ? 'Linking…' : 'Link selected'}</Button>
                   </div>
                 )}
                 <SearchInput label="Find a person" placeholder="Search persons…" value={ed.personSearch} onChange={ed.setPersonSearch} />
@@ -135,11 +146,11 @@ export function CandidatePanel({ id, suggestion, selectedMatches, onToggleMatch,
                         <div className="truncate font-medium text-ink">{p.name}</div>
                         <div className="text-muted">{p.candidate_count} contests</div>
                       </div>
-                      <Button size="sm" variant="outline" disabled={ed.isLinking || linkLocked} aria-label={`Link to ${p.name}`} onClick={() => linkTo(p.id)}>Link</Button>
+                      <Button size="sm" variant="outline" disabled={busy || linkLocked} aria-label={`Link to ${p.name}`} onClick={() => linkTo(p.id)}>Link</Button>
                     </li>
                   ))}
                 </ul>
-                <Button size="sm" variant="outline" disabled={ed.isLinking || linkLocked} onClick={createMaster}>Create new person record</Button>
+                <Button size="sm" variant="outline" disabled={busy || linkLocked} onClick={createMaster}>Create new person record</Button>
               </>
             )}
           </FormSection>

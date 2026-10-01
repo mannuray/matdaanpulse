@@ -31,9 +31,11 @@ export default function Candidates() {
 
   // Deep link / ⌘K: show the opened candidate's seat — only when the record (or election) changes,
   // so picking another seat afterwards is not undone.
+  // Only the record whose panel is open counts: a closed panel must not move the seat on a later election switch.
+  const current = opened && opened.id === route.id ? opened : null;
   useEffect(() => {
-    if (opened && opened.election_id === electionId && opened.const_id !== m.selectedConst) m.setSelectedConst(opened.const_id);
-  }, [opened?.id, electionId]);
+    if (current && current.election_id === electionId && current.const_id !== m.selectedConst) m.setSelectedConst(current.const_id);
+  }, [current?.id, electionId]);
 
   const seatOptions = useMemo(
     () => m.constituencies.map((c) => ({ value: c.id, label: `${c.const_no} ${c.name}`, hint: c.type })),

@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
-import { cleanup, fireEvent, screen, waitFor, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, screen, waitFor, within } from '@testing-library/react';
 import type { Candidate } from '../types';
 
 const data = vi.hoisted(() => {
@@ -29,7 +29,7 @@ const people = vi.hoisted(() => ({
 }));
 vi.mock('../services/person.api', () => people);
 vi.mock('../services/constituency.service', () => ({ getConstituencies: vi.fn(async (eid: string) => data.seats[eid] ?? []) }));
-vi.mock('../services/geo.service', () => ({ getParties: vi.fn(async () => [{ id: 'BJP', name: 'Bharatiya Janata Party' }]) }));
+vi.mock('../services/geo.service', () => ({ getParties: vi.fn(async () => [{ id: 'BJP', name: 'Bharatiya Janata Party' }, { id: 'IND', name: 'Independent' }]) }));
 // A tiny stateful stand-in for the global election, so "Switch election" really re-renders the page.
 const ctx = vi.hoisted(() => {
   const listeners = new Set<() => void>();
@@ -168,6 +168,102 @@ describe('Candidates page', () => {
     expect(within(panel).getByText('Save or cancel your changes first.')).toBeTruthy();
   });
 
+  it('Unlink is disabled while a linked candidate has unsaved edits; a cancelled unlink does not refresh the table', async () => {
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+    renderAt('/candidates/c1');
+    const panel = await screen.findByRole('dialog', { name: 'Ravi Prasad' });
+    const unlink = await within(panel).findByRole('button', { name: 'Unlink' });
+    await waitFor(() => expect(svc.getCandidates).toHaveBeenCalledWith('e1', 's1'));
+    const calls = svc.getCandidates.mock.calls.length;
+    fireEvent.click(unlink);
+    expect(confirm).toHaveBeenCalledWith('Unlink from master record?');
+    await new Promise((r) => setTimeout(r, 0));
+    expect(svc.unlinkCandidatePerson).not.toHaveBeenCalled();
+    expect(svc.getCandidates.mock.calls.length).toBe(calls);
+    fireEvent.change(within(panel).getByLabelText('Age'), { target: { value: '51' } });
+    expect((unlink as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('a stored candidate without a party shows Independent (listed once, first) and stays clean; Save writes IND', async () => {
+    const orig = ROWS.s1[1];
+    ROWS.s1[1] = { ...orig, party_id: null, party: null };
+    try {
+      renderAt('/candidates/c2');
+      const panel = await screen.findByRole('dialog', { name: 'Anil Kumar' });
+      const party = (await within(panel).findByLabelText('Party')) as HTMLSelectElement;
+      await waitFor(() => expect(party.options.length).toBe(2));
+      expect(Array.from(party.options).map((o) => o.textContent)).toEqual(['Independent', 'Bharatiya Janata Party']);
+      expect(party.value).toBe('IND');
+      expect(within(panel).getByText('No changes')).toBeTruthy();
+      fireEvent.change(within(panel).getByLabelText('Age'), { target: { value: '45' } });
+      fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
+      await waitFor(() => expect(svc.updateCandidate).toHaveBeenCalledWith('c2', expect.objectContaining({ party_id: 'IND' })));
+    } finally {
+      ROWS.s1[1] = orig;
+    }
+  });
+
+  it('saving the form keeps the ticked same-name suggestions', async () => {
+    svc.searchCandidates.mockImplementation(async (q: string) =>
+      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
+    renderAt('/candidates/c2');
+    const panel = await screen.findByRole('dialog', { name: 'Anil Kumar' });
+    const box = (await within(panel).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/)) as HTMLInputElement;
+    expect(box.checked).toBe(false);
+    fireEvent.click(box);
+    expect(box.checked).toBe(true);
+    const searches = svc.searchCandidates.mock.calls.length;
+    fireEvent.change(within(panel).getByLabelText('Age'), { target: { value: '45' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
+    await waitFor(() => expect(svc.updateCandidate).toHaveBeenCalled());
+    await waitFor(() => expect(svc.searchCandidates.mock.calls.length).toBeGreaterThan(searches));
+    await new Promise((r) => setTimeout(r, 0));
+    expect((within(panel).getByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/) as HTMLInputElement).checked).toBe(true);
+  });
+
+  it('"Link selected" is disabled while linking, so a double click creates one person', async () => {
+    svc.searchCandidates.mockImplementation(async (q: string) =>
+      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
+    let release!: () => void;
+    svc.linkCandidatePerson.mockImplementationOnce(() => new Promise((r) => { release = () => r({}); }));
+    renderAt('/candidates/c2');
+    const panel = await screen.findByRole('dialog', { name: 'Anil Kumar' });
+    fireEvent.click(await within(panel).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/));
+    const btn = within(panel).getByRole('button', { name: 'Link selected' }) as HTMLButtonElement;
+    fireEvent.click(btn);
+    await waitFor(() => expect(btn.disabled).toBe(true));
+    fireEvent.click(btn);
+    await waitFor(() => expect(svc.linkCandidatePerson).toHaveBeenCalledTimes(1));
+    release();
+    await waitFor(() => expect(svc.linkCandidatePerson).toHaveBeenCalledWith('old', 'p9'));
+    expect(people.createPerson).toHaveBeenCalledTimes(1);
+  });
+
+  it('after a failed reload, "Try again" is disabled while the form has unsaved edits', async () => {
+    svc.searchCandidates.mockImplementation(async (q: string) =>
+      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
+    renderAt('/candidates/c2');
+    const panel = await screen.findByRole('dialog', { name: 'Anil Kumar' });
+    fireEvent.click(await within(panel).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/));
+    svc.getCandidate.mockRejectedValueOnce(new ApiError('boom', 500));
+    fireEvent.click(within(panel).getByRole('button', { name: 'Link selected' }));
+    expect(await within(panel).findByText('Could not reload candidate')).toBeTruthy();
+    fireEvent.change(within(panel).getByLabelText('Age'), { target: { value: '45' } });
+    expect((within(panel).getByRole('button', { name: 'Try again' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('a closed panel no longer moves the Seat select on a later election switch', async () => {
+    renderAt('/candidates/c9');
+    await screen.findByRole('dialog', { name: 'Priya Kumari' });
+    await waitFor(() => expect(seatInput().value).toBe('142 Patna Sahib'));
+    fireEvent.click(screen.getByRole('button', { name: 'Close panel' }));
+    expect(where()).toBe('/candidates');
+    act(() => ctx.setElectionId('e2'));
+    await waitFor(() => expect(seatInput().value).toBe('5 Kochi'));
+    act(() => ctx.setElectionId('e1'));
+    await waitFor(() => expect(seatInput().value).toBe('1 Valmiki Nagar'));
+  });
+
   it('"Open person" asks before leaving a panel with unsaved edits', async () => {
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
     renderAt('/candidates/c1');
@@ -252,7 +348,7 @@ describe('Candidates page', () => {
       expect(await within(table()).findByText('Sunita Devi')).toBeTruthy();
     });
 
-    it('Independent sends party_id null; a seat picked in the panel switches the Seat select to it', async () => {
+    it('Independent sends the IND party; a seat picked in the panel switches the Seat select to it', async () => {
       const panel = await openCreate();
       const seat = within(panel).getByRole('combobox', { name: 'Seat' });
       fireEvent.focus(seat);
@@ -261,7 +357,7 @@ describe('Candidates page', () => {
       expect((seat as HTMLInputElement).value).toBe('142 Patna Sahib');
       fireEvent.change(within(panel).getByLabelText('Name'), { target: { value: 'Rekha Singh' } });
       fireEvent.click(within(panel).getByRole('button', { name: 'Create candidate' }));
-      await waitFor(() => expect(svc.createCandidate).toHaveBeenCalledWith(expect.objectContaining({ const_id: 's142', name: 'Rekha Singh', party_id: null })));
+      await waitFor(() => expect(svc.createCandidate).toHaveBeenCalledWith(expect.objectContaining({ const_id: 's142', name: 'Rekha Singh', party_id: 'IND' })));
       await waitFor(() => expect(where()).toBe('/candidates/new-1'));
       await waitFor(() => expect(seatInput().value).toBe('142 Patna Sahib'));
       expect(await within(table()).findByText('Rekha Singh')).toBeTruthy();

@@ -8,7 +8,7 @@ import type { Candidate, Constituency } from '../types';
 export type PersonFilter = 'all' | 'linked' | 'unlinked';
 export interface LinkSuggestion { candidate: Candidate; matches: Candidate[] }
 /** Body of POST /admin/candidates (backend CreateCandidateDto). */
-export interface NewCandidate { election_id: string; const_id: string; name: string; party_id: string | null; metadata: Record<string, unknown> }
+export interface NewCandidate { election_id: string; const_id: string; name: string; party_id: string; metadata: Record<string, unknown> }
 
 const isNota = (c: Candidate) => c.party_id === 'NOTA' || c.name === 'NOTA';
 
@@ -116,7 +116,15 @@ export function useCandidateManager(electionId: string) {
       }
       if (!cancelled) {
         setLinkingSuggestions(new Map(suggestions));
-        setSelectedMatches(new Map(preselected));
+        // A refresh (e.g. after saving the form) keeps the user's ticks for matches that are still suggested.
+        setSelectedMatches((prev) => {
+          const next = new Map(preselected);
+          suggestions.forEach(({ matches }, candidateId) => {
+            const ticked = prev.get(candidateId);
+            if (ticked) next.set(candidateId, new Set(matches.filter((m) => ticked.has(m.id)).map((m) => m.id)));
+          });
+          return next;
+        });
       }
     })();
 

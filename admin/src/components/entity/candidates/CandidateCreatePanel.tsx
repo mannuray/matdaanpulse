@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
-import { candidateMetadata, candidateNumbersValid, type CandidateForm } from '../../../hooks/useCandidateEdit';
+import { INDEPENDENT, candidateMetadata, candidateNumbersValid, type CandidateForm } from '../../../hooks/useCandidateEdit';
 import type { NewCandidate } from '../../../hooks/useCandidateManager';
 import { getParties } from '../../../services/geo.service';
 import { Sheet } from '../../ui/Sheet';
@@ -11,7 +11,7 @@ import { CandidateFields } from './CandidateFields';
 import type { Constituency, Party } from '../../../types';
 
 type CreateForm = CandidateForm & { const_id: string };
-const EMPTY: CreateForm = { name: '', party_id: '', const_id: '', age: '', gender: '', education: '', criminal_cases: '', assets: '' };
+const EMPTY: CreateForm = { name: '', party_id: INDEPENDENT, const_id: '', age: '', gender: '', education: '', criminal_cases: '', assets: '' };
 
 interface CandidateCreatePanelProps {
   electionId: string;
@@ -57,7 +57,7 @@ export function CandidateCreatePanel({ electionId, seats, defaultSeat, saving, o
       election_id: electionId,
       const_id: form.const_id,
       name: form.name.trim(),
-      party_id: form.party_id || null,
+      party_id: form.party_id || INDEPENDENT,
       metadata: candidateMetadata(form),
     });
   };

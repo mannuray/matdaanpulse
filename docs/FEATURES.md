@@ -329,7 +329,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` Â
 
 ### Admin redesign: entity pages (2026-10, phase 2)
 - Candidates (`/candidates`, panel at `/candidates/:id`): one seat of the global election at a time (searchable Seat select, default lowest seat number), All / Linked / Unlinked chips with counts, name search in the seat. The panel holds the affidavit form (age and criminal cases must be whole numbers), the read-only person photo, person linking (search pre-filled with the candidate's name) and the same-name suggestions from other elections with "Link selected". A record of another election offers "Switch election".
-- New candidate (`/candidates/new`): name, party (Independent = none), seat of the global election, affidavit fields. `POST /admin/candidates` checks the seat belongs to the election (404 otherwise) and, in the same transaction, adds the candidate's results row (0 votes, `TRAILING`) so it shows up in the Live Console.
+- New candidate (`/candidates/new`): name, party (Independent = the `IND` party row), seat of the global election, affidavit fields. `POST /admin/candidates` checks the seat belongs to the election (404 otherwise) and, in the same transaction, adds the candidate's results row (0 votes, `TRAILING`) so it shows up in the Live Console.
 
 ### Party Symbols
 - [x] DB: `eci_symbol_url` column on `parties` table (migration 006)
