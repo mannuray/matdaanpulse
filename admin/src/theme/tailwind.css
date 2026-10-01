@@ -21,6 +21,7 @@
 @source "../pages/Feedback.tsx";
 @source "../pages/Users.tsx";
 @source "../pages/AuditLogs.tsx";
+@source "../pages/SystemStatus.tsx";
 @source "../components/routing";
 @source "../components/feedback";
 
