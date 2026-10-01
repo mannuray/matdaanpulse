@@ -6,7 +6,7 @@ import { RecordCard, RecordMeta } from '../../record/RecordCard';
 import { Field } from '../../ui/Field';
 import { Input, Select, Textarea } from '../../ui/Input';
 import { Badge } from '../../ui/Badge';
-import { Button } from '../../ui/Button';
+import { RecordLoadError } from '../../record/RecordLoadError';
 import { ColourField } from './ColourField';
 import { SymbolField } from './SymbolField';
 import { PartyUsageCard, usageSummary } from './PartyUsageCard';
@@ -31,20 +31,9 @@ export function PartyRecord({ id, onBack, onSaved }: PartyRecordProps) {
   const yearError = isValidYear(form.founded_year) ? fieldErrors.founded_year : 'Enter a 4-digit year';
   const save = async () => { if (await ed.handleSave()) onSaved(); };
 
-  const error = party ? null : ed.loadError === 'failed' ? (
-    <div className="flex items-center justify-between gap-3">
-      <div>
-        <div className="font-medium">Could not load party</div>
-        <div className="text-xs">Check the connection and try again.</div>
-      </div>
-      <Button variant="outline" size="sm" onClick={() => { void ed.refresh(); }}>Try again</Button>
-    </div>
-  ) : ed.loadError === 'not_found' ? (
-    <div>
-      <div className="font-medium">Party not found</div>
-      <div className="text-xs">It may have been removed. Go back to the list.</div>
-    </div>
-  ) : null;
+  const error = !party && ed.loadError
+    ? <RecordLoadError kind={ed.loadError} noun="party" onRetry={() => { void ed.refresh(); }} />
+    : null;
 
   return (
     <RecordPage

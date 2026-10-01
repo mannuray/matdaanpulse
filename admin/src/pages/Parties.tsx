@@ -90,7 +90,7 @@ export default function Parties() {
               {list.states.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
             </Select>
             <Select aria-label="ECI recognition" className="w-44" value={list.filters.eci} onChange={(e) => list.updateFilters({ eci: e.target.value as EciFilter })}>
-              <option value="all">All</option>
+              <option value="all">All recognition</option>
               {ECI_RECOGNITIONS.map((r) => <option key={r} value={r}>{r}</option>)}
               <option value="none">Not set</option>
             </Select>

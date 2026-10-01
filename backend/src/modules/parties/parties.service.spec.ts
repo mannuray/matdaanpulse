@@ -107,6 +107,37 @@ describe('party DTOs: eci_recognition', () => {
   });
 });
 
+describe('party DTOs: empty strings', () => {
+  const NULLABLE = ['abbreviation', 'leader_name', 'headquarters', 'description', 'website', 'wikipedia_url', 'symbol_url', 'eci_symbol_url'];
+
+  it("'' becomes null for every nullable text field, on update and create", async () => {
+    const blank = Object.fromEntries(NULLABLE.map((k) => [k, '']));
+    const update = plainToInstance(UpdatePartyDto, blank) as unknown as Record<string, unknown>;
+    expect(await validate(update)).toEqual([]);
+    const create = plainToInstance(CreatePartyDto, { id: 'X', name: 'X', ...blank }) as unknown as Record<string, unknown>;
+    expect(await validate(create)).toEqual([]);
+    for (const k of NULLABLE) {
+      expect(update[k]).toBeNull();
+      expect(create[k]).toBeNull();
+    }
+  });
+
+  it('changing only ECI recognition, in a full admin form with blank fields, audits only eci_recognition', async () => {
+    const { svc, prisma } = make();
+    const body = {
+      name: BJP.name, color: BJP.color, leader_name: 'A', eci_recognition: 'State',
+      ...Object.fromEntries(NULLABLE.filter((k) => k !== 'leader_name').map((k) => [k, ''])),
+    };
+    const dto = plainToInstance(UpdatePartyDto, body);
+    expect(await validate(dto)).toEqual([]);
+    await svc.update('BJP', dto, 'u1');
+    expect(prisma.audit_logs.create).toHaveBeenCalledTimes(1);
+    const row = prisma.audit_logs.create.mock.calls[0][0].data;
+    expect(row.old_value).toEqual({ eci_recognition: null });
+    expect(row.new_value).toEqual({ eci_recognition: 'State' });
+  });
+});
+
 describe('PartiesService.usage', () => {
   const elections = [
     { id: 'e-ls24', name: 'Lok Sabha 2024', type: 'LS', year: 2024 },

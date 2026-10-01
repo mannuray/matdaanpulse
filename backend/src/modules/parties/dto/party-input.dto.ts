@@ -11,6 +11,7 @@ export type EciRecognition = (typeof ECI_RECOGNITIONS)[number];
 /** List filter: a recognition value, or `none` for NULL. */
 export type EciRecognitionFilter = EciRecognition | 'none';
 
+/** Nullable text fields map '' to null (no client can store ''); clearing a field means NULL. */
 class PartyFieldsDto {
   @IsOptional() @IsString() @MaxLength(10)
   color?: string | null;
@@ -22,16 +23,16 @@ class PartyFieldsDto {
   @IsOptional() @Transform(emptyToNull) @IsString() @IsSafeUrl({ allowRelative: true })
   eci_symbol_url?: string | null;
 
-  @IsOptional() @IsString() @MaxLength(20)
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
   abbreviation?: string | null;
 
-  @IsOptional() @IsString() @MaxLength(255)
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(255)
   leader_name?: string | null;
 
   @IsOptional() @Transform(emptyToNull) @IsInt() @Min(1800) @Max(2100)
   founded_year?: number | null;
 
-  @IsOptional() @IsString() @MaxLength(255)
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(255)
   headquarters?: string | null;
 
   @IsOptional() @Transform(emptyToNull) @IsUrl(HTTP_URL) @MaxLength(MAX_URL_LENGTH)
@@ -40,7 +41,7 @@ class PartyFieldsDto {
   @IsOptional() @Transform(emptyToNull) @IsUrl(HTTP_URL) @MaxLength(MAX_URL_LENGTH)
   wikipedia_url?: string | null;
 
-  @IsOptional() @IsString()
+  @IsOptional() @Transform(emptyToNull) @IsString()
   description?: string | null;
 
   /** null clears it (not set). */

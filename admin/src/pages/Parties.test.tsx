@@ -32,6 +32,7 @@ const USAGE: PartyUsage = {
   elections: [
     { election_id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, candidates: 101, wins: 89 },
     { election_id: 'e2', name: 'Kerala Vidhan Sabha 2021', type: 'VS', year: 2021, candidates: 1103, wins: 211 },
+    { election_id: 'e0', name: 'Lok Sabha General Election 2024', type: 'LS', year: 2024, candidates: 0, wins: 0 },
   ],
 };
 
@@ -98,7 +99,9 @@ describe('Parties list', () => {
     localStorage.setItem('parties_filters', JSON.stringify({ eci: 'Bogus' }));
     renderAt();
     await within(table()).findByText('Bharatiya Janata Party');
-    expect((screen.getByLabelText('ECI recognition') as HTMLSelectElement).value).toBe('all');
+    const filter = screen.getByLabelText('ECI recognition') as HTMLSelectElement;
+    expect(filter.value).toBe('all');
+    expect(filter.selectedOptions[0].textContent).toBe('All recognition');
     expect(api.getPartiesPaginated).toHaveBeenLastCalledWith(1, 25, undefined, undefined, undefined, undefined);
   });
 
@@ -148,9 +151,10 @@ describe('Party record page', () => {
     renderAt('/parties/BJP?election=e1');
     const usage = (await screen.findByRole('heading', { name: 'Usage' })).closest('section')!;
     expect(await within(usage).findByText('1,204 candidates · 2 elections · 300 won')).toBeTruthy();
-    expect(within(usage).getByText('Bihar Vidhan Sabha 2025')).toBeTruthy();
+    expect(within(usage).getByText('Bihar VS 2025')).toBeTruthy();
+    expect(within(usage).getByText('Lok Sabha 2024')).toBeTruthy();
     expect(within(usage).getByText('1,103 candidates · 211 won')).toBeTruthy();
-    const row = within(usage).getByRole('link', { name: /Kerala Vidhan Sabha 2021/ });
+    const row = within(usage).getByRole('link', { name: /Kerala VS 2021/ });
     expect(row.getAttribute('href')).toBe('/candidates?election=e2');
     fireEvent.click(row);
     expect(where()).toBe('/candidates?election=e2');
@@ -207,6 +211,20 @@ describe('Party record page', () => {
     await waitFor(() => expect(api.updateParty).toHaveBeenCalledWith('BJP', expect.objectContaining({ eci_recognition: null })));
   });
 
+  it('emptied text fields are saved as null, not \'\'', async () => {
+    api.getParty.mockResolvedValueOnce({ ...ROWS[0], leader_name: 'J P Nadda', headquarters: 'Delhi', website: 'https://bjp.org', description: 'About' });
+    renderAt('/parties/BJP');
+    fireEvent.change(await screen.findByLabelText('Leader'), { target: { value: '' } });
+    fireEvent.change(screen.getByLabelText('Headquarters'), { target: { value: '   ' } });
+    fireEvent.change(screen.getByLabelText('Website'), { target: { value: '' } });
+    fireEvent.change(screen.getByLabelText('Description'), { target: { value: '' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save changes' }));
+    await waitFor(() => expect(api.updateParty).toHaveBeenCalled());
+    const body = (api.updateParty.mock.calls[0] as unknown[])[1] as Record<string, unknown>;
+    expect(body).toMatchObject({ leader_name: null, headquarters: null, website: null, description: null, wikipedia_url: null, symbol_url: null, eci_symbol_url: null, eci_recognition: 'National' });
+    expect(Object.values(body)).not.toContain('');
+  });
+
   it('Cancel reverts the edits', async () => {
     renderAt('/parties/BJP');
     fireEvent.change(await nameInput(), { target: { value: 'Edited' } });
@@ -248,7 +266,7 @@ describe('Party record page', () => {
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
     renderAt('/parties/BJP?election=e1');
     fireEvent.change(await nameInput(), { target: { value: 'Edited' } });
-    fireEvent.click(await screen.findByRole('link', { name: /Kerala Vidhan Sabha 2021/ }));
+    fireEvent.click(await screen.findByRole('link', { name: /Kerala VS 2021/ }));
     expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
     expect(where()).toBe('/parties/BJP?election=e1');
     fireEvent.click(screen.getByRole('link', { name: /View candidates/ }));
@@ -260,6 +278,10 @@ describe('Party record page', () => {
     api.getParty.mockRejectedValueOnce(new ApiError('Party not found', 404));
     renderAt('/parties/NOPE');
     expect(await screen.findByText('Party not found')).toBeTruthy();
+    // The page says it; no error toast on top.
+    await new Promise((r) => setTimeout(r, 0));
+    expect(screen.getAllByText('Party not found')).toHaveLength(1);
+    expect(screen.queryByText(/Failed to load party/)).toBeNull();
     fireEvent.click(back());
     expect(where()).toBe('/parties');
   });

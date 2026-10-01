@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { RecordCard } from '../../record/RecordCard';
 import { RecordLink } from '../../record/RecordLink';
 import { Button } from '../../ui/Button';
+import { shortElectionName } from '../../shell/ElectionPicker';
 import type { usePartyUsage } from '../../../hooks/usePartyUsage';
 
 const n = (v: number) => v.toLocaleString('en-IN');
@@ -36,7 +37,7 @@ export function PartyUsageCard({ state }: { state: ReturnType<typeof usePartyUsa
                   electionId={e.election_id}
                   className="flex items-baseline justify-between gap-3 py-2.5 text-sm hover:text-accent"
                 >
-                  <span className="min-w-0 truncate text-ink">{e.name}</span>
+                  <span className="min-w-0 truncate text-ink" title={e.name}>{shortElectionName(e.name, e.type, e.year)}</span>
                   <span className="shrink-0 text-xs tabular-nums text-muted">
                     {plural(e.candidates, 'candidate', 'candidates')} · {n(e.wins)} won
                   </span>
