@@ -18,8 +18,8 @@
 **Tech Stack:** React 18, React Router 6 (`BrowserRouter`), Vite 5, Tailwind CSS v4 (utilities only, preflight off), Radix (`dialog`), `lucide-react`, `clsx` + `tailwind-merge`, Vitest + Testing Library (`fireEvent`, no user-event). No new npm dependencies. No backend change.
 
 **Spec:** `docs/superpowers/specs/2026-10-01-admin-redesign-design.md` (§1 Shell, §4 Entity pages, §5 Visual rules, §6 Architecture, Delivery phases → Phase 2).
-- Binding controller decisions: `.superpowers/phase2-input/decisions.md`.
-- Behaviour inventory that must not be lost: `.superpowers/phase2-input/entity-map.md`.
+- Binding controller decisions: `docs/superpowers/plans/phase2-input/decisions.md`.
+- Behaviour inventory that must not be lost: `docs/superpowers/plans/phase2-input/entity-map.md`.
 - Reference screen: `docs/design/admin/candidates.png` + `.html`.
 
 ## Global Constraints
