@@ -154,7 +154,16 @@ export interface LiveConstituency {
   const_name: string;
   const_no: number;
   const_type: string;
+  current_round: number | null;
+  total_rounds: number | null;
   candidates: LiveCandidate[];
+}
+
+export interface SeatLock {
+  const_id: string;
+  user_id: string;
+  user_name: string;
+  acquired_at: string;
 }
 
 export interface ManifestAlliance {
