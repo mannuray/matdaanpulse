@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Elections from './pages/Elections';
 import Manifests from './pages/Manifests';
-import UserManager from './pages/UserManager';
+import Users from './pages/Users';
 import AuditLogs from './pages/AuditLogs';
 import Feedback from './pages/Feedback';
 import SystemStatus from './pages/SystemStatus';
@@ -55,7 +55,7 @@ function App() {
                 {/* Overrides & Logs */}
                 <Route path="overrides" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><LiveConsole /></ProtectedRoute>} />
                 <Route path="feedback/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Feedback /></ProtectedRoute>} />
-                <Route path="users" element={<ProtectedRoute roles={['SUPER_ADMIN']}><UserManager /></ProtectedRoute>} />
+                <Route path="users/*" element={<ProtectedRoute roles={['SUPER_ADMIN']}><Users /></ProtectedRoute>} />
                 <Route path="logs" element={<ProtectedRoute roles={['SUPER_ADMIN']}><AuditLogs /></ProtectedRoute>} />
                 <Route path="status" element={<ProtectedRoute roles={['SUPER_ADMIN']}><SystemStatus /></ProtectedRoute>} />
               </Route>
