@@ -1,5 +1,7 @@
 import type { KeyboardEvent, ReactNode } from 'react';
-import { PanelFooter } from '../entity/PanelFooter';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '../ui/Button';
+import { cn } from '../ui/cn';
 
 interface RecordPageProps {
   backLabel: string;
@@ -44,7 +46,9 @@ export function RecordPage({
 
   return (
     <div className="h-full overflow-y-auto bg-page p-6 font-sans text-ink">
-      <button type="button" onClick={onBack} className="mb-3 text-xs font-medium text-ink-2 hover:text-ink">← {backLabel}</button>
+      <button type="button" onClick={onBack} className="mb-3 inline-flex items-center gap-1.5 text-xs font-medium text-ink-2 hover:text-ink">
+        <ArrowLeft size={14} aria-hidden />{backLabel}
+      </button>
       {error ? (
         <div role="alert" className="rounded-card border border-bad/40 bg-bad-soft p-4 text-sm text-bad-text">{error}</div>
       ) : loading ? (
@@ -56,14 +60,25 @@ export function RecordPage({
               {leading}
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                  <h1 className="text-xl font-semibold break-words text-ink">{title}</h1>
+                  <h1 className="text-2xl font-semibold break-words text-ink">{title}</h1>
                   {tags}
                 </div>
-                {meta && <div className="mt-1 text-xs text-muted">{meta}</div>}
+                {meta && <div className="mt-1 text-sm text-ink-2">{meta}</div>}
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-3">
-              <PanelFooter dirty={dirty} saving={saving} canSave={canSave} onCancel={onCancel} onSave={onSave} saveLabel={saveLabel} extra={headerActions} />
+              <span
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded-control px-2.5 py-1 text-xs font-medium',
+                  dirty ? 'border border-warn/40 bg-warn-soft text-warn-text' : 'text-muted',
+                )}
+              >
+                {dirty && <span className="h-2 w-2 rounded-full bg-warn" aria-hidden />}
+                {dirty ? 'Unsaved changes' : 'No changes'}
+              </span>
+              {headerActions}
+              <Button variant="outline" disabled={!dirty || saving} onClick={onCancel}>Cancel</Button>
+              <Button variant="primary" disabled={!dirty || !canSave || saving} onClick={onSave}>{saving ? 'Saving…' : saveLabel ?? 'Save changes'}</Button>
             </div>
           </header>
           <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[2fr_1fr]">

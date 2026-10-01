@@ -13,10 +13,10 @@ interface RecordCardProps {
 /** A section of a record page: white card, 1px line border, sentence-case title with an optional muted subtitle. */
 export function RecordCard({ title, subtitle, action, children }: RecordCardProps) {
   return (
-    <section className="rounded-card border border-line bg-card p-5">
+    <section className="rounded-card border border-line bg-card p-6 shadow-sm">
       <div className="mb-4 flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h2 className="text-sm font-semibold text-ink">{title}</h2>
+          <h2 className="text-base font-semibold text-ink">{title}</h2>
           {subtitle && <p className="mt-0.5 text-xs text-muted">{subtitle}</p>}
         </div>
         {action}
