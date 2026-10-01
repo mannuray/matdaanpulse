@@ -106,3 +106,57 @@ describe('party DTOs: eci_recognition', () => {
     expect(await errorsFor(PartiesQueryDto, { eci_recognition: 'Foo' })).toContain('eci_recognition');
   });
 });
+
+describe('PartiesService.usage', () => {
+  const elections = [
+    { id: 'e-ls24', name: 'Lok Sabha 2024', type: 'LS', year: 2024 },
+    { id: 'e-br20', name: 'Bihar Vidhan Sabha 2020', type: 'VS', year: 2020 },
+    { id: 'e-br25', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025 },
+  ];
+  function makeUsage(party: unknown = { id: 'BJP' }) {
+    return make({
+      parties: { findUnique: jest.fn().mockResolvedValue(party) },
+      candidates: {
+        groupBy: jest.fn().mockResolvedValue([
+          { election_id: 'e-ls24', _count: { _all: 441 } },
+          { election_id: 'e-br20', _count: { _all: 110 } },
+          { election_id: 'e-br25', _count: { _all: 101 } },
+        ]),
+      },
+      results: {
+        groupBy: jest.fn().mockResolvedValue([
+          { election_id: 'e-ls24', _count: { _all: 240 } },
+          { election_id: 'e-br25', _count: { _all: 89 } },
+        ]),
+      },
+      elections: { findMany: jest.fn().mockResolvedValue(elections) },
+    });
+  }
+
+  it('returns totals and per-election candidates and wins (WON only), newest year first', async () => {
+    const { svc, prisma } = makeUsage();
+    const out = await svc.usage('BJP');
+    expect(out.totals).toEqual({ candidates: 652, elections: 3, wins: 329 });
+    expect(out.elections).toEqual([
+      { election_id: 'e-br25', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, candidates: 101, wins: 89 },
+      { election_id: 'e-ls24', name: 'Lok Sabha 2024', type: 'LS', year: 2024, candidates: 441, wins: 240 },
+      { election_id: 'e-br20', name: 'Bihar Vidhan Sabha 2020', type: 'VS', year: 2020, candidates: 110, wins: 0 },
+    ]);
+    expect((prisma as any).results.groupBy.mock.calls[0][0].where).toEqual({ status: 'WON', candidates: { party_id: 'BJP' } });
+    expect((prisma as any).candidates.groupBy.mock.calls[0][0].where).toEqual({ party_id: 'BJP' });
+  });
+
+  it('a party with no candidates has zero totals and no rows', async () => {
+    const { svc, prisma } = makeUsage();
+    (prisma as any).candidates.groupBy.mockResolvedValue([]);
+    (prisma as any).results.groupBy.mockResolvedValue([]);
+    (prisma as any).elections.findMany.mockResolvedValue([]);
+    await expect(svc.usage('BJP')).resolves.toEqual({ totals: { candidates: 0, elections: 0, wins: 0 }, elections: [] });
+  });
+
+  it('an unknown party is a 404', async () => {
+    const { svc } = makeUsage(null);
+    const err = await svc.usage('NOPE').catch((e) => e);
+    expect(err.getStatus()).toBe(404);
+  });
+});

@@ -182,3 +182,70 @@ describe('CandidatesService update / link audit rows', () => {
     warn.mockRestore();
   });
 });
+
+describe('CandidatesService.seatResult', () => {
+  type Row = { id: string; name: string; party_id: string | null; results: { votes: number | null; status: string; margin: number | null }[] };
+  const r = (id: string, party_id: string | null, votes: number | null, status: string, margin: number | null = 0): Row =>
+    ({ id, name: `Name ${id}`, party_id, results: [{ votes, status, margin }] });
+  function make(seat: Row[], candidate: unknown = { id: 'c2', const_id: 'BR_VS_1', election_id: 'e1', elections: { status: 'Finalized' } }) {
+    const prisma = {
+      candidates: { findUnique: jest.fn().mockResolvedValue(candidate), findMany: jest.fn().mockResolvedValue(seat) },
+    };
+    const svc = new CandidatesService(prisma as any, {} as any, {} as any);
+    return { svc, prisma };
+  }
+
+  it('a seat with votes: share of all votes (NOTA included), rank by votes, NOTA last, loser margin is the gap to the winner', async () => {
+    const { svc, prisma } = make([
+      r('nota', 'NOTA', 1000, 'LOST'),
+      r('c2', 'INC', 30000, 'LOST', 21585),
+      r('c1', 'JDU', 51585, 'WON', 21585),
+      r('c3', 'BSP', 17415, 'LOST', 21585),
+    ]);
+    const out = await svc.seatResult('c2');
+    expect(prisma.candidates.findMany.mock.calls[0][0].where).toEqual({ const_id: 'BR_VS_1', election_id: 'e1' });
+    expect(out.declared).toBe(true);
+    expect(out.total_votes).toBe(100000);
+    expect(out.seat.map((s) => s.candidate_id)).toEqual(['c1', 'c2', 'c3', 'nota']);
+    expect(out.seat[0]).toEqual({
+      candidate_id: 'c1', name: 'Name c1', party_id: 'JDU', votes: 51585, share: 51.6, position: 1, status: 'WON', margin: 21585,
+    });
+    expect(out.candidate).toEqual({
+      candidate_id: 'c2', name: 'Name c2', party_id: 'INC', votes: 30000, share: 30, position: 2, status: 'LOST', margin: -21585,
+    });
+    expect(out.seat[2]).toMatchObject({ position: 3, share: 17.4, margin: -34170 });
+    expect(out.seat[3]).toMatchObject({ candidate_id: 'nota', share: 1, position: null, margin: null });
+  });
+
+  it('all-zero or missing votes: share null, the winner is position 1 by status, others null, no NaN', async () => {
+    const { svc } = make([
+      r('c2', 'PMK', 0, 'LOST', 50938),
+      { id: 'c3', name: 'Name c3', party_id: 'IND', results: [] },
+      r('nota', 'NOTA', null, 'LOST'),
+      r('c1', 'DMK', 0, 'WON', 50938),
+    ]);
+    const out = await svc.seatResult('c2');
+    expect(out.total_votes).toBe(0);
+    expect(out.seat.map((s) => s.candidate_id)).toEqual(['c1', 'c2', 'c3', 'nota']);
+    expect(out.seat[0]).toMatchObject({ position: 1, share: null, margin: 50938, status: 'WON' });
+    expect(out.candidate).toMatchObject({ votes: 0, position: null, share: null, margin: null });
+    expect(out.seat[2]).toMatchObject({ votes: null, status: null, position: null, share: null, margin: null });
+    expect(JSON.stringify(out)).not.toMatch(/NaN|Infinity/);
+  });
+
+  it('a seat still counting: LEADING is the reference, declared is false', async () => {
+    const { svc } = make(
+      [r('c1', 'BJP', 4000, 'LEADING', 1000), r('c2', 'INC', 3000, 'TRAILING', 1000)],
+      { id: 'c2', const_id: 'X', election_id: 'e1', elections: { status: 'Live' } },
+    );
+    const out = await svc.seatResult('c2');
+    expect(out.declared).toBe(false);
+    expect(out.candidate).toMatchObject({ position: 2, share: 42.9, margin: -1000 });
+  });
+
+  it('an unknown candidate is a 404', async () => {
+    const { svc } = make([], null);
+    const err = await svc.seatResult('nope').catch((e) => e);
+    expect(err.getStatus()).toBe(404);
+  });
+});

@@ -137,3 +137,67 @@ export class AdminUserDto {
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
   created_at: Date;
 }
+
+// --- Derived read models for the record pages' right-hand cards ---
+
+export class AdminPartyUsageTotalsDto {
+  @Expose() candidates: number;
+  @Expose() elections: number;
+  @Expose() wins: number;
+}
+
+export class AdminPartyUsageElectionDto {
+  @Expose() election_id: string;
+  @Expose() name: string;
+  @Expose() type: 'LS' | 'VS';
+  @Expose() year: number;
+  @Expose() candidates: number;
+  @Expose() wins: number;
+}
+
+/** GET /admin/parties/:id/usage */
+export class AdminPartyUsageDto {
+  @Expose() @Type(() => AdminPartyUsageTotalsDto) totals: AdminPartyUsageTotalsDto;
+  @Expose() @Type(() => AdminPartyUsageElectionDto) elections: AdminPartyUsageElectionDto[];
+}
+
+export class AdminSeatRowDto {
+  @Expose() candidate_id: string;
+  @Expose() name: string;
+  @Expose() party_id: string | null;
+  @Expose() votes: number | null;
+  @Expose() share: number | null;
+  @Expose() position: number | null;
+  @Expose() status: string | null;
+  @Expose() margin: number | null;
+}
+
+/** GET /admin/candidates/:id/result */
+export class AdminCandidateResultDto {
+  @Expose() declared: boolean;
+  @Expose() total_votes: number;
+  @Expose() @Type(() => AdminSeatRowDto) candidate: AdminSeatRowDto | null;
+  @Expose() @Type(() => AdminSeatRowDto) seat: AdminSeatRowDto[];
+}
+
+export class AdminSeatVolatilityDto {
+  @Expose() elections: number;
+  @Expose() changes: number;
+}
+
+export class AdminSeatHistoryRowDto {
+  @Expose() election_id: string;
+  @Expose() year: number;
+  @Expose() type: 'LS' | 'VS';
+  @Expose() winner: string | null;
+  @Expose() party_id: string | null;
+  @Expose() margin: number | null;
+  @Expose() turnout: number | null;
+  @Expose() is_current: boolean;
+}
+
+/** GET /admin/constituencies/:id/history */
+export class AdminSeatHistoryDto {
+  @Expose() @Type(() => AdminSeatVolatilityDto) volatility: AdminSeatVolatilityDto;
+  @Expose() @Type(() => AdminSeatHistoryRowDto) rows: AdminSeatHistoryRowDto[];
+}

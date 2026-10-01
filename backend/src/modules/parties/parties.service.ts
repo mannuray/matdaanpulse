@@ -87,6 +87,43 @@ export class PartiesService {
     return paginated(data, { page, limit, total });
   }
 
+  /**
+   * Where the party is used: candidates and wins (status WON) per election, newest year first, plus totals.
+   * `totals.elections` counts elections with at least one candidate of the party.
+   */
+  async usage(id: string) {
+    const party = await this.prisma.parties.findUnique({ where: { id }, select: { id: true } });
+    if (!party) throw new PartyNotFoundException(id);
+    const [candidates, wins] = await Promise.all([
+      this.prisma.candidates.groupBy({ by: ['election_id'], where: { party_id: id }, _count: { _all: true } }),
+      this.prisma.results.groupBy({
+        by: ['election_id'], where: { status: 'WON', candidates: { party_id: id } }, _count: { _all: true },
+      }),
+    ]);
+    const winsBy = new Map(wins.map((w) => [w.election_id, w._count._all]));
+    const countBy = new Map(candidates.map((c) => [c.election_id, c._count._all]));
+    const elections = countBy.size
+      ? await this.prisma.elections.findMany({
+        where: { id: { in: [...countBy.keys()] } },
+        select: { id: true, name: true, type: true, year: true },
+      })
+      : [];
+    const rows = elections
+      .map((e) => ({
+        election_id: e.id, name: e.name, type: e.type, year: e.year,
+        candidates: countBy.get(e.id) ?? 0, wins: winsBy.get(e.id) ?? 0,
+      }))
+      .sort((a, b) => b.year - a.year || a.name.localeCompare(b.name));
+    return {
+      totals: {
+        candidates: rows.reduce((n, r) => n + r.candidates, 0),
+        elections: rows.length,
+        wins: rows.reduce((n, r) => n + r.wins, 0),
+      },
+      elections: rows,
+    };
+  }
+
   async create(data: CreatePartyDto, userId?: string) {
     const party = await this.prisma.parties.create({
       data,

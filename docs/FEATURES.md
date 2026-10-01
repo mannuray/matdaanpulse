@@ -424,6 +424,14 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 
 ## In progress
 
+### Admin record pages (branch `feat/admin-election-picker`)
+- Plan: `docs/superpowers/plans/2026-10-02-admin-record-pages.md`.
+- **Admin API (derived, read only, SUPER_ADMIN / EDITOR):**
+  - `GET /admin/parties/:id/usage`: candidates and wins (status WON) per election, newest year first, plus totals; 404 for an unknown party.
+  - `GET /admin/candidates/:id/result`: the candidate's row and every row of its seat (votes desc, NOTA last). Share is of all votes in the seat, NOTA included (1 decimal, null when the seat has no votes). Position ranks non-NOTA candidates by votes; with no votes only the winner gets 1. Margin is `results.margin` for the winner (WON, else LEADING, else top by votes) and the vote gap to the winner (negative) for the others. `declared` is true for a Finalized election.
+  - `GET /admin/constituencies/:id/history`: winners of the same seat (same state, election type and `const_no` columns) across elections, newest first, read from results, not `constituency_analysis`. Volatility counts party changes between consecutive elections that have a winner. Unknown id → 404; a seat with no state or no earlier elections → only the current row.
+- Polling phase: the `constituencies.phase` column is canonical (1–20); a `phase` key in a metadata patch is ignored.
+
 ### Studio dashboard (redesign, branch `feat/fe-redesign`)
 - Non-scrolling dark tile wall (1440×900 / 1280×720) and map-first mobile layout with a swipeable card rail.
 - Tiles: top bar, map (layers, Map|Hex when `geo.hex_url` is set), scoreboard (compact ~148px tile), party standings, key leaders, stats + live ticker. Any tile expands to a focus overlay; `?layer=`, `?seat=`, `?focus=` make every view linkable.

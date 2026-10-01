@@ -129,6 +129,53 @@ export class ConstituenciesService {
     return updated;
   }
 
+  /**
+   * Seat history from results, newest first: the seats of every election of the same type with the same state
+   * and `const_no` (the columns, so an id that `extractConstNo` cannot parse still works). Independent of
+   * constituency_analysis. A seat with no state returns only itself. Volatility counts party changes between
+   * consecutive elections that have a winner.
+   */
+  async history(id: string) {
+    const seat = await this.prisma.constituencies.findUnique({
+      where: { id },
+      select: { id: true, state_id: true, const_no: true, elections: { select: { type: true } } },
+    });
+    if (!seat) throw new ConstituencyNotFoundException(id);
+    const matches = await this.prisma.constituencies.findMany({
+      where: seat.state_id === null
+        ? { id }
+        : { state_id: seat.state_id, const_no: seat.const_no, elections: { type: seat.elections.type } },
+      select: {
+        id: true,
+        election_id: true,
+        voter_turnout: true,
+        elections: { select: { year: true, type: true } },
+        results: {
+          where: { status: { in: ['WON', 'LEADING'] } },
+          select: { status: true, margin: true, candidates: { select: { name: true, party_id: true } } },
+        },
+      },
+    });
+    const rows = matches
+      .map((m) => {
+        const win = m.results.find((r) => r.status === 'WON') ?? m.results.find((r) => r.status === 'LEADING');
+        return {
+          election_id: m.election_id,
+          year: m.elections.year,
+          type: m.elections.type,
+          winner: win?.candidates.name ?? null,
+          party_id: win?.candidates.party_id ?? null,
+          margin: win?.margin ?? null,
+          turnout: m.voter_turnout === null ? null : Number(m.voter_turnout),
+          is_current: m.id === id,
+        };
+      })
+      .sort((a, b) => b.year - a.year);
+    const parties = rows.filter((r) => r.party_id !== null).map((r) => r.party_id);
+    const changes = parties.filter((p, i) => i > 0 && p !== parties[i - 1]).length;
+    return { volatility: { elections: parties.length, changes }, rows };
+  }
+
   /** One CONSTITUENCY_UPDATE audit row per seat whose tags changed, written after the commit. */
   async bulkTag(ids: string[], addTags?: string[], removeTags?: string[], userId?: string) {
     const constituencies = await this.prisma.constituencies.findMany({ where: { id: { in: ids } } });

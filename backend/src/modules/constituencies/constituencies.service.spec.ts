@@ -87,3 +87,52 @@ describe('UpdateConstituencyDto', () => {
     expect(await errorsFor({ type: null })).toContain('type');
   });
 });
+
+describe('ConstituenciesService.history', () => {
+  const win = (name: string, party_id: string, margin: number | null, status = 'WON') => ({ status, margin, candidates: { name, party_id } });
+  const match = (id: string, year: number, results: unknown[], voter_turnout: unknown = null) =>
+    ({ id, election_id: `e${year}`, voter_turnout, elections: { year, type: 'VS' }, results });
+  function make(seat: unknown, matches: unknown[]) {
+    const prisma: any = {
+      constituencies: { findUnique: jest.fn().mockResolvedValue(seat), findMany: jest.fn().mockResolvedValue(matches) },
+    };
+    return { svc: new ConstituenciesService(prisma, {} as any, [], {} as any), prisma };
+  }
+  const current = { id: 'BR_VS_1_VALMIKI_NAGAR', state_id: 5, const_no: 1, elections: { type: 'VS' } };
+
+  it('matches on state, election type and const_no; newest first; one party change across 3 elections', async () => {
+    const { svc, prisma } = make(current, [
+      match('BR_VS10_1_VALMIKI_NAGAR', 2010, [win('A', 'JDU', 1200)], { toString: () => '58.40', valueOf: () => 58.4 }),
+      match('BR_VS_1_VALMIKI_NAGAR', 2025, [win('C', 'BJP', 900, 'LEADING'), win('X', 'INC', 5, 'WON')]),
+      match('BR_VS15_1_VALMIKI_NAGAR', 2015, [win('B', 'JDU', null)]),
+    ]);
+    const out = await svc.history('BR_VS_1_VALMIKI_NAGAR');
+    expect(prisma.constituencies.findMany.mock.calls[0][0].where).toEqual({ state_id: 5, const_no: 1, elections: { type: 'VS' } });
+    expect(out.rows.map((r) => r.year)).toEqual([2025, 2015, 2010]);
+    expect(out.rows[0]).toEqual({
+      election_id: 'e2025', year: 2025, type: 'VS', winner: 'X', party_id: 'INC', margin: 5, turnout: null, is_current: true,
+    });
+    expect(out.rows[2]).toMatchObject({ winner: 'A', party_id: 'JDU', margin: 1200, turnout: 58.4, is_current: false });
+    expect(out.volatility).toEqual({ elections: 3, changes: 1 });
+  });
+
+  it('a seat with no result yet has winner null and is left out of the volatility count', async () => {
+    const { svc } = make(current, [match('BR_VS_1_VALMIKI_NAGAR', 2025, []), match('BR_VS20_1_VALMIKI_NAGAR', 2020, [win('A', 'JDU', 10)])]);
+    const out = await svc.history('BR_VS_1_VALMIKI_NAGAR');
+    expect(out.rows[0]).toMatchObject({ winner: null, party_id: null, margin: null, is_current: true });
+    expect(out.volatility).toEqual({ elections: 1, changes: 0 });
+  });
+
+  it('an id that does not parse still resolves through its columns; with no state it returns only the current seat', async () => {
+    const { svc, prisma } = make({ id: 'WEIRD', state_id: null, const_no: 7, elections: { type: 'LS' } }, [match('WEIRD', 2024, [])]);
+    const out = await svc.history('WEIRD');
+    expect(prisma.constituencies.findMany.mock.calls[0][0].where).toEqual({ id: 'WEIRD' });
+    expect(out).toEqual({ volatility: { elections: 0, changes: 0 }, rows: [expect.objectContaining({ is_current: true, winner: null })] });
+  });
+
+  it('an unknown id is a 404, not a 500', async () => {
+    const { svc } = make(null, []);
+    const err = await svc.history('NOPE').catch((e) => e);
+    expect(err.getStatus()).toBe(404);
+  });
+});

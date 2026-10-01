@@ -5,7 +5,7 @@ import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
-import { AdminConstituencyDto, AdminAnalysisDto } from '../dto/admin-response.dto';
+import { AdminConstituencyDto, AdminAnalysisDto, AdminSeatHistoryDto } from '../dto/admin-response.dto';
 import {
   UpdateConstituencyDto, BulkTagDto, ComputeAnalysisDto, UpdateAnalysisDto,
 } from '../../constituencies/dto/constituency-input.dto';
@@ -38,6 +38,14 @@ export class AdminConstituenciesController {
       this.audit.lastEdit('constituency', id),
     ]);
     return { ...constituency, last_edit };
+  }
+
+  /** Winners of this seat across elections (results, not constituency_analysis), newest first. */
+  @Get(':id/history')
+  @Roles('SUPER_ADMIN', 'EDITOR')
+  @UseInterceptors(new MapToDtoInterceptor(AdminSeatHistoryDto))
+  history(@Param('id') id: string) {
+    return this.constituenciesService.history(id);
   }
 
   @Patch(':id')

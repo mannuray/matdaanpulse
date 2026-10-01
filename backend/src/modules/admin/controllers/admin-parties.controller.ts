@@ -5,7 +5,7 @@ import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
-import { AdminPartyDto } from '../dto/admin-response.dto';
+import { AdminPartyDto, AdminPartyUsageDto } from '../dto/admin-response.dto';
 import { CreatePartyDto, UpdatePartyDto } from '../../parties/dto/party-input.dto';
 
 @Controller('admin')
@@ -30,6 +30,14 @@ export class AdminPartiesController {
   async findOne(@Param('id') id: string) {
     const [party, last_edit] = await Promise.all([this.partiesService.findOne(id), this.audit.lastEdit('party', id)]);
     return { ...party, last_edit };
+  }
+
+  /** Candidates and wins per election, for the party page's usage card. */
+  @Get('parties/:id/usage')
+  @Roles('SUPER_ADMIN', 'EDITOR')
+  @UseInterceptors(new MapToDtoInterceptor(AdminPartyUsageDto))
+  usage(@Param('id') id: string) {
+    return this.partiesService.usage(id);
   }
 
   @Put('parties/:id')

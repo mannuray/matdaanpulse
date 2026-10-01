@@ -5,7 +5,7 @@ import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
-import { AdminCandidateDto } from '../dto/admin-response.dto';
+import { AdminCandidateDto, AdminCandidateResultDto } from '../dto/admin-response.dto';
 import { CreateCandidateDto, UpdateCandidateDto, LinkPersonDto } from '../../candidates/dto/candidate-input.dto';
 
 @Controller('admin/candidates')
@@ -35,6 +35,14 @@ export class AdminCandidatesController {
       this.audit.lastEdit('candidate', id),
     ]);
     return { ...candidate, last_edit };
+  }
+
+  /** Read-only result strip and the other candidates of the seat. */
+  @Get(':id/result')
+  @Roles('SUPER_ADMIN', 'EDITOR')
+  @UseInterceptors(new MapToDtoInterceptor(AdminCandidateResultDto))
+  result(@Param('id', ParseUUIDPipe) id: string) {
+    return this.candidatesService.seatResult(id);
   }
 
   @Post()

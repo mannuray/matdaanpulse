@@ -7,6 +7,7 @@ import {
 import { ResultChangeNotifier } from '../live/result-change-notifier';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { changedFields, createdFields } from '../audit-log/audit-diff';
+import { seatResult } from './seat-result';
 import type { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
 @Injectable()
@@ -72,6 +73,20 @@ export class CandidatesService {
     });
     if (!candidate) throw new CandidateNotFoundException(id);
     return candidate;
+  }
+
+  /** The candidate's result in its seat plus every candidate of that seat (see `seatResult` in seat-result.ts). */
+  async seatResult(id: string) {
+    const candidate = await this.prisma.candidates.findUnique({
+      where: { id },
+      select: { id: true, const_id: true, election_id: true, elections: { select: { status: true } } },
+    });
+    if (!candidate) throw new CandidateNotFoundException(id);
+    const seat = await this.prisma.candidates.findMany({
+      where: { const_id: candidate.const_id, election_id: candidate.election_id },
+      select: { id: true, name: true, party_id: true, results: { select: { votes: true, status: true, margin: true }, take: 1 } },
+    });
+    return seatResult(candidate.id, candidate.elections.status === 'Finalized', seat);
   }
 
   findByName(name: string, election_id?: string, limit = 20) {

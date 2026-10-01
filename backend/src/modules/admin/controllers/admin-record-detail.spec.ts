@@ -3,7 +3,9 @@ import { AdminPartiesController } from './admin-parties.controller';
 import { AdminPersonsController } from './admin-persons.controller';
 import { AdminCandidatesController } from './admin-candidates.controller';
 import { AdminConstituenciesController } from './admin-constituencies.controller';
-import { AdminPartyDto, AdminPersonDto, AdminCandidateDto, AdminConstituencyDto } from '../dto/admin-response.dto';
+import {
+  AdminPartyDto, AdminPersonDto, AdminCandidateDto, AdminConstituencyDto, AdminPartyUsageDto, AdminCandidateResultDto, AdminSeatHistoryDto,
+} from '../dto/admin-response.dto';
 import { AuditLogService } from '../../audit-log/audit-log.service';
 
 const map = (dto: any, data: unknown) => plainToInstance(dto, data, { excludeExtraneousValues: true }) as any;
@@ -48,5 +50,31 @@ describe('admin detail responses: updated_at + last_edit', () => {
     expect(seat).toMatchObject({ phase: 2, updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
     expect(prisma.audit_logs.findFirst.mock.calls.map((c: any) => c[0].where.entity_type)).toEqual(['person', 'candidate', 'constituency']);
+  });
+});
+
+describe('admin derived read endpoints: response mapping keeps every field', () => {
+  const { audit } = auditWith(null);
+
+  it('party usage keeps totals and election rows', async () => {
+    const usage = { totals: { candidates: 3, elections: 1, wins: 1 }, elections: [{ election_id: 'e1', name: 'E', type: 'VS', year: 2025, candidates: 3, wins: 1 }] };
+    const svc = { usage: jest.fn().mockResolvedValue(usage) };
+    expect(map(AdminPartyUsageDto, await new AdminPartiesController(svc as any, audit).usage('BJP'))).toEqual(usage);
+  });
+
+  it('candidate result keeps the strip and the seat rows, nulls included', async () => {
+    const row = { candidate_id: 'c1', name: 'R', party_id: null, votes: 0, share: null, position: null, status: null, margin: null };
+    const out = { declared: false, total_votes: 0, candidate: row, seat: [row] };
+    const svc = { seatResult: jest.fn().mockResolvedValue(out) };
+    expect(map(AdminCandidateResultDto, await new AdminCandidatesController(svc as any, audit).result('c1'))).toEqual(out);
+  });
+
+  it('seat history keeps volatility and rows', async () => {
+    const out = {
+      volatility: { elections: 2, changes: 1 },
+      rows: [{ election_id: 'e1', year: 2025, type: 'VS', winner: 'A', party_id: 'BJP', margin: 10, turnout: 61.2, is_current: true }],
+    };
+    const svc = { history: jest.fn().mockResolvedValue(out) };
+    expect(map(AdminSeatHistoryDto, await new AdminConstituenciesController(svc as any, audit).history('BR_VS_1'))).toEqual(out);
   });
 });
