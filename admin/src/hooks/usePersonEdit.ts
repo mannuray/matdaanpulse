@@ -99,13 +99,15 @@ export function usePersonEdit(id?: string) {
     return () => { if (searchTimer.current) clearTimeout(searchTimer.current); };
   }, [mergeSearch, id]);
 
-  const handleMerge = async (sourceId: string, sourceName: string) => {
+  /** Merge a duplicate record INTO the person being viewed: the duplicate's contests move here and it is deleted. */
+  const handleMerge = async (duplicateId: string, duplicateName: string) => {
     if (!id) return;
-    if (!window.confirm(`Merge "${sourceName}" into "${person?.name}"? This action is permanent.`)) return;
-    
+    if (!window.confirm(`Merge "${duplicateName}" into "${person?.name}"? This action is permanent.`)) return;
+
     setMerging(true);
     try {
-      await mergePersons(id, sourceId);
+      // mergePersons(sourceId, targetId): the backend deletes the source.
+      await mergePersons(duplicateId, id);
       toast('Records merged successfully');
       setMergeSearch('');
       loadPerson();
