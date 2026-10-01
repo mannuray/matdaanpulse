@@ -44,7 +44,8 @@ editor to pick the election again.
 - A primary "Open Live Console" call-to-action.
 - Three cards: recent audit activity (last 10), system health (DB / Redis / SSE, from
   `status.service`), new feedback count with a link.
-- Nothing is collapsible.
+- Nothing is collapsible. Recent activity and System health are SUPER_ADMIN-only (their APIs are
+  `@Roles('SUPER_ADMIN')`), so they are hidden for EDITOR.
 
 ## 3. Live Console (split view)
 
@@ -54,7 +55,13 @@ editor to pick the election again.
 - **Right panel:** header with seat name, number, type, status and a "last saved hh:mm:ss" stamp.
   The table below lists every candidate with party, editable **votes** and an editable **status**
   select. The margin is **calculated automatically** from votes (leader − runner-up) and
-  shown read-only.
+  shown read-only. Margin follows the simulation's convention (`scraper/src/simulation`): the leader's
+  margin = leader votes − runner-up votes; every other candidate's margin = leader votes − their votes
+  (always ≥ 0, which the bulk endpoint requires). NOTA (`party_id = 'NOTA'`) is never the leader. Its
+  status is always TRAILING (LOST once the seat is declared).
+- **Statuses follow the votes:** while a seat isn't declared, editing votes recalculates statuses
+  (leader LEADING, others TRAILING). The status select stays editable for manual corrections. With a
+  tie at the top, nobody is marked leader and "Declare won" is disabled.
 - **Actions:**
   - **Save seat** sends all changed candidates in one call to `POST /admin/results/override-bulk`.
   - **Declare won** sets the leader to WON and the others to LOST, then saves.
@@ -63,8 +70,9 @@ editor to pick the election again.
   If you move to another seat with unsaved edits, a prompt asks whether to save or discard.
 - **Live updates:** when an SSE update arrives for a seat, its list row flashes. If that seat is
   open with unsaved edits, a banner says it changed elsewhere, with a "Reload" option.
-- **Round progress (UI only):** the seat header shows "Round 4 of 24" with a small bar, using the
-  existing `current_round` / `total_rounds`. The page header shows overall counting progress
+- **Round progress:** the seat header shows editable "Round [4] of [24]" with a small bar, saved via
+  the bulk endpoint's `rounds` map. Needs one backend change: `getLiveResults` must also return the
+  constituency's `current_round` / `total_rounds`. The page header shows overall counting progress
   (% of seats with any votes).
 - **Seat lock (new feature, needs backend):** opening a seat for editing takes a soft lock
   (Redis key `lock:seat:{election}:{const_id}` with a 2-minute TTL, refreshed while the editor is
@@ -162,4 +170,12 @@ Stitch numbers are placeholders. Real data comes from the API.
 
 ## Out of scope
 
-Mobile layouts, dark mode, changes to the public frontend. The only new backend work is seat locks (§3).
+Mobile layouts, dark mode, changes to the public frontend. Backend work: seat locks plus returning rounds in live results (§3). No Prisma/SQL change.
+
+## Delivery phases
+
+1. **Phase 1:** Tailwind/Radix setup, the new shell + ElectionContext, and the Live Console with
+   rounds and seat lock. Old pages keep working inside the new shell.
+2. **Phase 2:** the table + side-panel pattern for Candidates, Parties, Persons, Constituencies,
+   Elections, Manifests, plus ⌘K search (using the existing `/search` endpoints).
+3. **Phase 3:** Dashboard, Login, the other admin pages, then removing `admin.css` and the inline styles.
