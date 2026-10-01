@@ -1,6 +1,7 @@
-import { useId, useMemo, useState, type KeyboardEvent } from 'react';
+import { useEffect, useId, useMemo, useState, type KeyboardEvent } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from './cn';
+import { useDescribedBy } from './Field';
 
 export interface ComboOption { value: string; label: string; hint?: string }
 
@@ -11,13 +12,14 @@ interface ComboboxProps {
   onChange: (value: string) => void;
   placeholder?: string;
   emptyText?: string;
+  invalid?: boolean;
   className?: string;
 }
 
 const MAX_SHOWN = 100;
 
 /** Searchable single select (no portal): type to filter, ↑/↓ to move, Enter to pick, Esc to close the list. */
-export function Combobox({ label, options, value, onChange, placeholder, emptyText = 'No matches', className }: ComboboxProps) {
+export function Combobox({ label, options, value, onChange, placeholder, emptyText = 'No matches', invalid, className }: ComboboxProps) {
   const listId = useId();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -28,11 +30,29 @@ export function Combobox({ label, options, value, onChange, placeholder, emptyTe
     return (q ? options.filter((o) => o.label.toLowerCase().includes(q)) : options).slice(0, MAX_SHOWN);
   }, [options, query]);
 
+  const describedBy = useDescribedBy();
+  const optionId = (i: number) => `${listId}-${i}`;
+  const activeId = open && matches[active] ? optionId(active) : undefined;
+
+  useEffect(() => {
+    if (activeId) document.getElementById(activeId)?.scrollIntoView?.({ block: 'nearest' });
+  }, [activeId]);
+
+  const startIndex = () => {
+    const i = options.slice(0, MAX_SHOWN).findIndex((o) => o.value === value);
+    return i >= 0 ? i : 0;
+  };
+  const openList = () => { setOpen(true); setQuery(''); setActive(startIndex()); };
   const close = () => { setOpen(false); setQuery(''); };
   const pick = (o: ComboOption) => { onChange(o.value); close(); };
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'ArrowDown') { e.preventDefault(); setOpen(true); setActive((i) => Math.min(i + 1, matches.length - 1)); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((i) => Math.max(i - 1, 0)); }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (!open) openList(); else setActive((i) => Math.max(0, Math.min(i + 1, matches.length - 1)));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!open) openList(); else setActive((i) => Math.max(0, i - 1));
+    }
     else if (e.key === 'Enter' && open && matches[active]) { e.preventDefault(); pick(matches[active]); }
     else if (e.key === 'Escape' && open) { e.preventDefault(); close(); }
   };
@@ -45,13 +65,16 @@ export function Combobox({ label, options, value, onChange, placeholder, emptyTe
         aria-expanded={open}
         aria-controls={listId}
         aria-autocomplete="list"
+        aria-activedescendant={activeId}
+        aria-invalid={invalid || undefined}
+        aria-describedby={describedBy}
         value={open ? query : selected?.label ?? ''}
         placeholder={open ? selected?.label ?? placeholder : placeholder}
-        onFocus={() => { setOpen(true); setQuery(''); setActive(0); }}
+        onFocus={openList}
         onBlur={close}
         onChange={(e) => { setQuery(e.target.value); setActive(0); setOpen(true); }}
         onKeyDown={onKeyDown}
-        className="h-9 w-full rounded-control border border-line bg-card pl-3 pr-8 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+        className={cn('h-9 w-full rounded-control border bg-card pl-3 pr-8 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent', invalid ? 'border-bad' : 'border-line')}
       />
       <ChevronDown size={14} aria-hidden className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-muted" />
       {open && (
@@ -60,6 +83,7 @@ export function Combobox({ label, options, value, onChange, placeholder, emptyTe
           {matches.map((o, i) => (
             <li
               key={o.value}
+              id={optionId(i)}
               role="option"
               aria-selected={o.value === value}
               // mousedown (not click) runs before the input's blur closes the list
