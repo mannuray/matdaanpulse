@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useId } from 'react';
 import { useShellStatus } from '../context/ShellStatusContext';
 
 /**
@@ -8,10 +8,11 @@ import { useShellStatus } from '../context/ShellStatusContext';
  * browser Back button is not guarded.
  */
 export function useUnsavedGuard(dirty: boolean): void {
-  const { setEditorDirty } = useShellStatus();
+  const { markDirty } = useShellStatus();
+  const owner = useId();
 
-  useEffect(() => { setEditorDirty(dirty); }, [dirty, setEditorDirty]);
-  useEffect(() => () => setEditorDirty(false), [setEditorDirty]);
+  useEffect(() => { markDirty(owner, dirty); }, [dirty, owner, markDirty]);
+  useEffect(() => () => markDirty(owner, false), [owner, markDirty]);
 
   useEffect(() => {
     if (!dirty) return;

@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, afterEach } from 'vitest';
+import type { ReactNode } from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import { ShellStatusProvider, useShellStatus, DISCARD_EDITS_PROMPT } from '../context/ShellStatusContext';
 import { useUnsavedGuard } from './useUnsavedGuard';
@@ -21,6 +22,24 @@ describe('useUnsavedGuard', () => {
     rerender(<ShellStatusProvider><Probe /></ShellStatusProvider>);
     expect(screen.getByTestId('dirty').textContent).toBe('false');
     expect(unload()).toBe(false);
+  });
+
+  it('two guards do not clobber each other (mount, toggle, unmount of B while A stays dirty)', () => {
+    const dirty = () => screen.getByTestId('dirty').textContent;
+    const { rerender } = render(<ShellStatusProvider><Guarded dirty /><Probe /></ShellStatusProvider>);
+    expect(dirty()).toBe('true');
+    // B mounts clean: must not write false over A's true. Keys keep A's identity stable.
+    const tree = (b: ReactNode, a = true) => <ShellStatusProvider><Guarded dirty={a} /><Probe />{b}</ShellStatusProvider>;
+    rerender(tree(<Guarded key="b" dirty={false} />));
+    expect(dirty()).toBe('true');
+    rerender(tree(<Guarded key="b" dirty />));
+    expect(dirty()).toBe('true');
+    rerender(tree(<Guarded key="b" dirty={false} />));
+    expect(dirty()).toBe('true');
+    rerender(tree(null));
+    expect(dirty()).toBe('true');
+    rerender(tree(null, false));
+    expect(dirty()).toBe('false');
   });
 
   it('uses one generic prompt for seats and records', () => {

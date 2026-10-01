@@ -11,7 +11,7 @@ vi.mock('../../context/AuthContext', () => ({ useAuth: () => auth }));
 const shell = vi.hoisted(() => ({ editorDirty: false }));
 vi.mock('../../context/ShellStatusContext', async (importOriginal) => ({
   ...(await importOriginal<typeof import('../../context/ShellStatusContext')>()),
-  useShellStatus: () => ({ live: 'idle', setLive: () => {}, editorDirty: shell.editorDirty, setEditorDirty: () => {} }),
+  useShellStatus: () => ({ live: 'idle', setLive: () => {}, editorDirty: shell.editorDirty, markDirty: () => {} }),
 }));
 const election = vi.hoisted(() => ({ setElectionId: vi.fn() }));
 vi.mock('../../context/ElectionContext', () => ({
