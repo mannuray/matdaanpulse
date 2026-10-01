@@ -40,10 +40,17 @@ export function clockIst(iso: string): string {
 }
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
-/** A `<input type="date">` value: YYYY-MM-DD. */
-export const isIsoDay = (v: unknown): v is string => typeof v === 'string' && DAY.test(v);
+/** A `<input type="date">` value: YYYY-MM-DD, and a real calendar day. */
+export const isIsoDay = (v: unknown): v is string => {
+  if (typeof v !== 'string' || !DAY.test(v)) return false;
+  const d = new Date(`${v}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === v; // round-trip: rejects 2026-02-31
+};
 
 /** First instant of an IST calendar day, with its offset (the backend compares with `gte`). '' when not a day. */
 export const istDayStart = (day: string) => (isIsoDay(day) ? `${day}T00:00:00.000+05:30` : '');
 /** Last millisecond of an IST calendar day (the backend compares with `lte`, so the day is included). */
 export const istDayEnd = (day: string) => (isIsoDay(day) ? `${day}T23:59:59.999+05:30` : '');
+
+/** Today's IST calendar day, YYYY-MM-DD. */
+export const todayIst = (now: number = Date.now()) => new Date(now).toLocaleDateString('en-CA', { timeZone: IST_TIME_ZONE });

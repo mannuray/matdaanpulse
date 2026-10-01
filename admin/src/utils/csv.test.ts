@@ -16,6 +16,9 @@ describe('csvField', () => {
     ['+91 98765', '"\'+91 98765"'],
     ['@sum', '"\'@sum"'],
     ['-12', '"-12"'],
+    ['-1.5', '"-1.5"'],
+    ['-1+2', '"\'-1+2"'],
+    ["-cmd|' /C calc'!A0", `"'-cmd|' /C calc'!A0"`],
   ])('%j → %s', (value, expected) => expect(csvField(value)).toBe(expected));
 });
 

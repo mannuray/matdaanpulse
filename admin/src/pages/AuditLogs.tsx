@@ -13,7 +13,7 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { AUDIT_ACTIONS, AUDIT_ENTITIES, actionLabel, actionTone, auditActor, entityLabel, isAuditAction, isAuditEntity } from '../utils/audit';
 import { auditCsv, downloadCsv } from '../utils/csv';
-import { formatIst, isIsoDay } from '../utils/time';
+import { formatIst, isIsoDay, todayIst } from '../utils/time';
 import type { AuditLog } from '../types';
 
 type Filters = { action: string; entity_type: string; from: string; to: string };
@@ -69,7 +69,7 @@ export default function AuditLogs() {
   const invalidRange = rangeError(f);
   const hasFilters = !!(f.action || f.entity_type || f.from || f.to);
   const selected = route.id ? logs.find((l) => l.id === route.id) ?? null : null;
-  const exportCsv = () => downloadCsv(`audit-logs-${new Date().toISOString().slice(0, 10)}.csv`, auditCsv(logs));
+  const exportCsv = () => downloadCsv(`audit-logs-${todayIst()}.csv`, auditCsv(logs));
 
   return (
     <EntityPage
@@ -79,7 +79,7 @@ export default function AuditLogs() {
           subtitle="Result overrides, seat saves and lock take-overs · times in IST"
           actions={
             <>
-              <Button variant="outline" disabled={logs.length === 0} onClick={exportCsv}><Download size={14} aria-hidden />Download CSV</Button>
+              <Button variant="outline" title="Exports the rows shown (up to 200)" disabled={logs.length === 0} onClick={exportCsv}><Download size={14} aria-hidden />Download CSV</Button>
               <Button variant="outline" disabled={list.loading} onClick={() => { void list.refresh(); }}><RefreshCw size={14} aria-hidden />Refresh</Button>
             </>
           }

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { clockIst, formatIst, formatIstDate, isIsoDay, istDayEnd, istDayStart, timeAgo } from './time';
+import { todayIst, clockIst, formatIst, formatIstDate, isIsoDay, istDayEnd, istDayStart, timeAgo } from './time';
 
 const NOW = Date.parse('2026-10-01T10:00:00Z');
 
@@ -46,6 +46,16 @@ describe('IST day bounds (audit filter, both ends inclusive)', () => {
       expect(isIsoDay(bad)).toBe(false);
     }
     expect(isIsoDay('2026-10-01')).toBe(true);
+    expect(isIsoDay('2026-02-31')).toBe(false);
+    expect(isIsoDay('2026-13-01')).toBe(false);
+    expect(isIsoDay('2028-02-29')).toBe(true);
     expect(isIsoDay(20261001)).toBe(false);
+  });
+});
+
+describe('todayIst', () => {
+  it('is the IST day, not the UTC day', () => {
+    expect(todayIst(Date.parse('2026-10-01T20:00:00Z'))).toBe('2026-10-02');
+    expect(todayIst(Date.parse('2026-10-01T10:00:00Z'))).toBe('2026-10-01');
   });
 });

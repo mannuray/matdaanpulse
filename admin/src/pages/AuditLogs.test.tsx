@@ -119,6 +119,20 @@ describe('Audit logs page', () => {
     expect(text).toContain('"{""votes"":61204,""status"":""LEADING"",""margin"":12214}"');
   });
 
+  it('names the CSV file with the IST day and explains the export on the button', async () => {
+    vi.spyOn(Date, 'now').mockReturnValue(Date.parse('2026-10-01T20:00:00Z'));
+    let name = '';
+    Object.defineProperty(URL, 'createObjectURL', { configurable: true, value: vi.fn(() => 'blob:audit') });
+    Object.defineProperty(URL, 'revokeObjectURL', { configurable: true, value: vi.fn() });
+    vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (this: HTMLAnchorElement) { name = this.download; });
+    renderAt();
+    await within(table()).findByText('Priya S');
+    const button = screen.getByRole('button', { name: 'Download CSV' });
+    expect(button.getAttribute('title')).toBe('Exports the rows shown (up to 200)');
+    fireEvent.click(button);
+    expect(name).toBe('audit-logs-2026-10-02.csv');
+  });
+
   it('a row opens the panel with the full before/after JSON', async () => {
     renderAt();
     fireEvent.click(await within(table()).findByText('Mannu K'));

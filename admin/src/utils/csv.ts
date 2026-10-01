@@ -4,11 +4,11 @@ import { formatIst } from './time';
 
 /**
  * One RFC 4180 field: always quoted, inner quotes doubled; objects become JSON. A leading = + @ tab or CR
- * gets a ' so a spreadsheet does not run it as a formula ('-' is left alone: negative numbers).
+ * or - gets a ' so a spreadsheet does not run it as a formula; plain numbers such as -12 are left alone.
  */
 export function csvField(value: unknown): string {
   let s = value === null || value === undefined ? '' : typeof value === 'string' ? value : typeof value === 'object' ? JSON.stringify(value) : String(value);
-  if (/^[=+@\t\r]/.test(s)) s = `'${s}`;
+  if (/^[=+\-@\t\r]/.test(s) && !/^-?\d+(\.\d+)?$/.test(s)) s = `'${s}`;
   return `"${s.replace(/"/g, '""')}"`;
 }
 
