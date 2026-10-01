@@ -2,6 +2,7 @@ import { Transform } from 'class-transformer';
 import { IsEnum, IsIn, IsInt, IsISO8601, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
 import { IsUuidLike } from '../validation/uuid-like';
 import { election_status, election_type } from '@prisma/client';
+import { ECI_RECOGNITIONS, type EciRecognitionFilter } from '../../modules/parties/dto/party-input.dto';
 
 /**
  * Query-string DTOs for list endpoints (review E-M2). The global ValidationPipe
@@ -70,6 +71,10 @@ export class PartiesQueryDto extends PaginationQueryDto {
 
   @IsOptional() @OptionalNumber() @IsInt() @Min(1)
   state_id?: number;
+
+  /** A recognition value, or `none` for parties with none set. */
+  @IsOptional() @EmptyAsUndefined() @IsIn([...ECI_RECOGNITIONS, 'none'])
+  eci_recognition?: EciRecognitionFilter;
 }
 
 export class AdminConstituenciesQueryDto extends PaginationQueryDto {

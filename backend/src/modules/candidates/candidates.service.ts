@@ -5,6 +5,8 @@ import {
   CandidateNotFoundException, ConstituencyNotFoundException, ElectionFinalizedException, ElectionNotFoundException, PersonNotFoundException,
 } from '../../common/exceptions';
 import { ResultChangeNotifier } from '../live/result-change-notifier';
+import { AuditLogService } from '../audit-log/audit-log.service';
+import { changedFields, createdFields } from '../audit-log/audit-diff';
 import type { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
 @Injectable()
@@ -14,6 +16,7 @@ export class CandidatesService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly notifier: ResultChangeNotifier,
+    private readonly audit: AuditLogService,
   ) {}
 
   findAll(filters?: { election_id?: string; const_id?: string }, take = 1000) {
@@ -98,7 +101,7 @@ export class CandidatesService {
    * After the commit the same steps as a result override run (live-version memo, cache purge, admin SSE event),
    * so the new row shows up; a failure there is logged and never fails the request.
    */
-  async create(data: CreateCandidateDto) {
+  async create(data: CreateCandidateDto, userId?: string) {
     const { candidate, result } = await this.prisma.$transaction(async (tx) => {
       const election = await tx.elections.findUnique({ where: { id: data.election_id }, select: { status: true } });
       if (!election) throw new ElectionNotFoundException(data.election_id);
@@ -121,6 +124,10 @@ export class CandidatesService {
           margin: 0,
         },
       });
+      await this.audit.record(
+        { userId, action: 'CANDIDATE_CREATE', entityType: 'candidate', entityId: candidate.id, newValue: createdFields(candidate) },
+        tx,
+      );
       return { candidate, result };
     });
 
@@ -136,16 +143,19 @@ export class CandidatesService {
     return candidate;
   }
 
-  async update(id: string, data: UpdateCandidateDto) {
+  async update(id: string, data: UpdateCandidateDto, userId?: string) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id } });
     if (!candidate) throw new CandidateNotFoundException(id);
-    return this.prisma.candidates.update({
+    const updated = await this.prisma.candidates.update({
       where: { id },
       data: data as Prisma.candidatesUncheckedUpdateInput,
     });
+    const diff = changedFields(candidate, updated);
+    if (diff) await this.audit.record({ userId, action: 'CANDIDATE_UPDATE', entityType: 'candidate', entityId: id, ...diff });
+    return updated;
   }
 
-  async linkPerson(candidateId: string, personId: string) {
+  async linkPerson(candidateId: string, personId: string, userId?: string) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id: candidateId } });
     if (!candidate) throw new CandidateNotFoundException(candidateId);
     const person = await this.prisma.persons.findUnique({ where: { id: personId } });
@@ -163,18 +173,28 @@ export class CandidatesService {
       }
     });
 
-    return this.prisma.candidates.update({
+    const updated = await this.prisma.candidates.update({
       where: { id: candidateId },
       data: { person_id: personId },
     });
+    await this.audit.record({
+      userId, action: 'CANDIDATE_LINK_PERSON', entityType: 'candidate', entityId: candidateId,
+      oldValue: { person_id: candidate.person_id }, newValue: { person_id: personId },
+    });
+    return updated;
   }
 
-  async unlinkPerson(candidateId: string) {
+  async unlinkPerson(candidateId: string, userId?: string) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id: candidateId } });
     if (!candidate) throw new CandidateNotFoundException(candidateId);
-    return this.prisma.candidates.update({
+    const updated = await this.prisma.candidates.update({
       where: { id: candidateId },
       data: { person_id: null },
     });
+    await this.audit.record({
+      userId, action: 'CANDIDATE_UNLINK_PERSON', entityType: 'candidate', entityId: candidateId,
+      oldValue: { person_id: candidate.person_id }, newValue: { person_id: null },
+    });
+    return updated;
   }
 }

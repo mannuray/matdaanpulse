@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsInt, IsObject, IsArray, MaxLength, Min, ArrayMaxSize } from 'class-validator';
+import { IsString, IsOptional, IsInt, IsObject, IsArray, MaxLength, Min, Max, ArrayMaxSize, IsIn, ValidateIf } from 'class-validator';
 import { IsUuidLike } from '../../../common/validation/uuid-like';
 import { MAX_IDS_PER_REQUEST } from '../../../common/validation/dto-helpers';
 
@@ -13,6 +13,14 @@ export class UpdateConstituencyDto {
 
   @IsOptional() @IsInt() @Min(1)
   const_no?: number;
+
+  /** Polling phase (the column, not metadata.phase); null clears it. */
+  @IsOptional() @IsInt() @Min(1) @Max(99)
+  phase?: number | null;
+
+  /** Reservation. The column is NOT NULL, so null is rejected (only "not sent" is optional). */
+  @ValidateIf((_, v) => v !== undefined) @IsIn(['GEN', 'SC', 'ST'])
+  type?: 'GEN' | 'SC' | 'ST';
 
   @IsOptional() @IsObject()
   metadata?: Record<string, unknown>;

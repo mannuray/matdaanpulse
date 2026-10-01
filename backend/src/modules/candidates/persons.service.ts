@@ -3,6 +3,8 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { PersonNotFoundException } from '../../common/exceptions';
+import { AuditLogService } from '../audit-log/audit-log.service';
+import { changedFields } from '../audit-log/audit-diff';
 
 /** Editable person fields accepted from the admin API (see UpdatePersonDto). */
 export interface PersonInput {
@@ -31,7 +33,10 @@ export function normalizePersonName(name: string): string {
 
 @Injectable()
 export class PersonsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly audit: AuditLogService,
+  ) {}
 
   /**
    * Map DTO fields onto real columns. `bio` and `wikipedia_url` have no column
@@ -59,13 +64,17 @@ export class PersonsService {
     });
   }
 
-  async update(id: string, data: PersonInput) {
+  async update(id: string, data: PersonInput, userId?: string) {
     const person = await this.prisma.persons.findUnique({ where: { id } });
     if (!person) throw new PersonNotFoundException(id);
-    return this.prisma.persons.update({
+    const updated = await this.prisma.persons.update({
       where: { id },
       data: this.toPersonData(data, person.metadata) as Prisma.personsUncheckedUpdateInput,
     });
+    // bio / wikipedia_url live in metadata, so they show up as metadata.bio etc.
+    const diff = changedFields(person, updated);
+    if (diff) await this.audit.record({ userId, action: 'PERSON_UPDATE', entityType: 'person', entityId: id, ...diff });
+    return updated;
   }
 
   async findOne(id: string) {
@@ -177,7 +186,8 @@ export class PersonsService {
     });
   }
 
-  async merge(sourceId: string, targetId: string) {
+  /** The audit row (PERSON_MERGE) is on the target: the source row is deleted. */
+  async merge(sourceId: string, targetId: string, userId?: string) {
     if (sourceId === targetId) throw new BadRequestException('source_id and target_id must differ');
     const [source, target] = await Promise.all([
       this.prisma.persons.findUnique({ where: { id: sourceId } }),
@@ -186,14 +196,22 @@ export class PersonsService {
     if (!source) throw new PersonNotFoundException(sourceId);
     if (!target) throw new PersonNotFoundException(targetId);
 
-    // Re-point candidates and delete the source atomically.
-    await this.prisma.$transaction([
-      this.prisma.candidates.updateMany({
+    // Re-point candidates, delete the source and audit atomically.
+    await this.prisma.$transaction(async (tx) => {
+      const moved = await tx.candidates.updateMany({
         where: { person_id: sourceId },
         data: { person_id: targetId },
-      }),
-      this.prisma.persons.delete({ where: { id: sourceId } }),
-    ]);
+      });
+      await tx.persons.delete({ where: { id: sourceId } });
+      await this.audit.record(
+        {
+          userId, action: 'PERSON_MERGE', entityType: 'person', entityId: targetId,
+          oldValue: { source_id: sourceId, source_name: source.name },
+          newValue: { target_id: targetId, candidates_moved: moved.count },
+        },
+        tx,
+      );
+    });
     return { merged: true, target_id: targetId };
   }
 

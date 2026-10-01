@@ -2,6 +2,14 @@ import { Expose, Type, Transform } from 'class-transformer';
 
 // --- Shared / Dependency DTOs ---
 
+const toIso = ({ value }: { value: unknown }) => (value instanceof Date ? value.toISOString() : value);
+
+/** Newest audit row of the record (AuditLogService.lastEdit); null when never edited in the admin. */
+export class AdminLastEditDto {
+  @Expose() at: string;
+  @Expose() by: string | null;
+}
+
 export class AdminAnalysisDto {
   @Expose() id: string;
   @Expose() dominance: string;
@@ -22,7 +30,10 @@ export class AdminPartyDto {
   @Expose() website: string | null;
   @Expose() wikipedia_url: string | null;
   @Expose() description: string | null;
+  @Expose() eci_recognition: 'National' | 'State' | 'Unrecognised' | null;
   @Expose() candidate_count?: number;
+  @Expose() @Transform(toIso) updated_at?: string;
+  @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
 }
 
 export class AdminConstituencyDto {
@@ -38,7 +49,10 @@ export class AdminConstituencyDto {
   @Expose() total_rounds: number | null;
   @Expose() total_electors: number | null;
   @Expose() voter_turnout: number | null;
+  @Expose() phase: number | null;
   @Expose() metadata: any;
+  @Expose() @Transform(toIso) updated_at?: string;
+  @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
 
   @Expose()
   @Type(() => AdminAnalysisDto)
@@ -66,6 +80,8 @@ export class AdminCandidateDto {
   @Expose() is_incumbent: boolean;
   @Expose() metadata: any;
   @Expose() manifest?: any;
+  @Expose() @Transform(toIso) updated_at?: string;
+  @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
 
   @Expose()
   @Type(() => AdminPartyDto)
@@ -98,6 +114,8 @@ export class AdminPersonDto {
   @Expose() state_id: number | null;
   @Expose() region_id: number | null;
   @Expose() metadata: any;
+  @Expose() @Transform(toIso) updated_at?: string;
+  @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
 
   @Expose() state_name?: string;
   @Expose() region_name?: string;

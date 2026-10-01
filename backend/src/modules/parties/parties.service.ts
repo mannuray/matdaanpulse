@@ -1,12 +1,17 @@
 import { paginated } from '../../common/paginated';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { AuditLogService } from '../audit-log/audit-log.service';
+import { changedFields, createdFields } from '../audit-log/audit-diff';
 import { PartyNotFoundException } from '../../common/exceptions';
-import type { CreatePartyDto, UpdatePartyDto } from './dto/party-input.dto';
+import type { CreatePartyDto, UpdatePartyDto, EciRecognitionFilter } from './dto/party-input.dto';
 
 @Injectable()
 export class PartiesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly audit: AuditLogService,
+  ) {}
 
   findAll() {
     return this.prisma.parties.findMany({
@@ -23,7 +28,10 @@ export class PartiesService {
     return party;
   }
 
-  async findPaginated(page = 1, limit = 25, q?: string, electionId?: string, stateId?: number) {
+  /** `eciRecognition`: a value, or `none` for parties with no recognition set (NULL). */
+  async findPaginated(
+    page = 1, limit = 25, q?: string, electionId?: string, stateId?: number, eciRecognition?: EciRecognitionFilter,
+  ) {
     const skip = (page - 1) * limit;
     
     // Build the where clause
@@ -35,6 +43,7 @@ export class PartiesService {
         { abbreviation: { contains: q, mode: 'insensitive' } },
       ];
     }
+    if (eciRecognition) where.eci_recognition = eciRecognition === 'none' ? null : eciRecognition;
 
     const filterCandidates: any = {};
     let hasCandidateFilter = false;
@@ -78,18 +87,25 @@ export class PartiesService {
     return paginated(data, { page, limit, total });
   }
 
-  async create(data: CreatePartyDto) {
-    return this.prisma.parties.create({
+  async create(data: CreatePartyDto, userId?: string) {
+    const party = await this.prisma.parties.create({
       data,
     });
+    await this.audit.record({
+      userId, action: 'PARTY_CREATE', entityType: 'party', entityId: party.id, newValue: createdFields(party),
+    });
+    return party;
   }
 
-  async update(id: string, data: UpdatePartyDto) {
+  async update(id: string, data: UpdatePartyDto, userId?: string) {
     const party = await this.prisma.parties.findUnique({ where: { id } });
     if (!party) throw new PartyNotFoundException(id);
-    return this.prisma.parties.update({
+    const updated = await this.prisma.parties.update({
       where: { id },
       data,
     });
+    const diff = changedFields(party, updated);
+    if (diff) await this.audit.record({ userId, action: 'PARTY_UPDATE', entityType: 'party', entityId: id, ...diff });
+    return updated;
   }
 }

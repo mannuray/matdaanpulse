@@ -1,9 +1,15 @@
-import { IsString, IsNotEmpty, IsOptional, IsInt, MaxLength, Min, Max, IsUrl } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsInt, MaxLength, Min, Max, IsUrl, IsIn } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { IsSafeUrl, MAX_URL_LENGTH } from '../../../common/validation/safe-url';
 import { emptyToNull, HTTP_URL } from '../../../common/validation/dto-helpers';
 
 /** Request-body DTOs (moved out of admin/ so domain services do not depend on the admin module). */
+
+/** `parties.eci_recognition` values (CHECK constraint, migration 017); NULL = not set. */
+export const ECI_RECOGNITIONS = ['National', 'State', 'Unrecognised'] as const;
+export type EciRecognition = (typeof ECI_RECOGNITIONS)[number];
+/** List filter: a recognition value, or `none` for NULL. */
+export type EciRecognitionFilter = EciRecognition | 'none';
 
 class PartyFieldsDto {
   @IsOptional() @IsString() @MaxLength(10)
@@ -36,6 +42,10 @@ class PartyFieldsDto {
 
   @IsOptional() @IsString()
   description?: string | null;
+
+  /** null clears it (not set). */
+  @IsOptional() @Transform(emptyToNull) @IsIn(ECI_RECOGNITIONS)
+  eci_recognition?: EciRecognition | null;
 }
 
 export class UpdatePartyDto extends PartyFieldsDto {

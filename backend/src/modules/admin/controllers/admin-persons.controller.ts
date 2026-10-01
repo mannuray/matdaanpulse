@@ -1,5 +1,6 @@
-import { Controller, Delete, Get, Post, Put, Body, Param, Query, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { PersonsService } from '../../candidates/persons.service';
+import { AuditLogService } from '../../audit-log/audit-log.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
@@ -11,7 +12,10 @@ import { AdminPersonsQueryDto } from '../../../common/dto/query.dto';
 @Controller('admin/persons')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class AdminPersonsController {
-  constructor(private readonly personsService: PersonsService) {}
+  constructor(
+    private readonly personsService: PersonsService,
+    private readonly audit: AuditLogService,
+  ) {}
 
   @Get()
   @Roles('SUPER_ADMIN', 'EDITOR')
@@ -29,8 +33,12 @@ export class AdminPersonsController {
   @Get(':id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPersonDto))
-  findPersonDetail(@Param('id', ParseUUIDPipe) id: string) {
-    return this.personsService.findWithCandidates(id);
+  async findPersonDetail(@Param('id', ParseUUIDPipe) id: string) {
+    const [person, last_edit] = await Promise.all([
+      this.personsService.findWithCandidates(id),
+      this.audit.lastEdit('person', id),
+    ]);
+    return { ...person, last_edit };
   }
 
   @Post()
@@ -43,14 +51,15 @@ export class AdminPersonsController {
   @Put(':id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPersonDto))
-  updatePerson(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdatePersonDto) {
-    return this.personsService.update(id, body);
+  async updatePerson(@Req() req: any, @Param('id', ParseUUIDPipe) id: string, @Body() body: UpdatePersonDto) {
+    const person = await this.personsService.update(id, body, req.user?.id);
+    return { ...person, last_edit: await this.audit.lastEdit('person', id) };
   }
 
   @Post('merge')
   @Roles('SUPER_ADMIN')
-  mergePersons(@Body() body: MergePersonsDto) {
-    return this.personsService.merge(body.source_id, body.target_id);
+  mergePersons(@Req() req: any, @Body() body: MergePersonsDto) {
+    return this.personsService.merge(body.source_id, body.target_id, req.user?.id);
   }
 
   @Post('auto-link')

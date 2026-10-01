@@ -7,6 +7,7 @@ export class PartySummaryDto {
   @Expose() abbreviation: string | null;
   @Expose() symbol_url: string | null;
   @Expose() eci_symbol_url: string | null;
+  @Expose() eci_recognition: 'National' | 'State' | 'Unrecognised' | null;
   @Expose() candidate_count?: number;
 }
 
