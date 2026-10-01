@@ -57,6 +57,18 @@ describe('admin detail responses: updated_at + last_edit', () => {
   });
 });
 
+describe('AdminConstituencyDto: the record page fields', () => {
+  it('keeps the state code and the analysis notes and computed time (ISO)', () => {
+    const out = map(AdminConstituencyDto, {
+      id: 'BR_VS_176', voter_turnout: new Prisma.Decimal('58.40'), state: { id: 5, code: 'BR', name: 'Bihar' },
+      analysis: { id: 'a1', dominance: 'STRONG', dominance_party: 'JDU', incumbency: { incumbent_name: 'H' }, notes: 'Held since 2010', updated_at },
+    });
+    expect(out.voter_turnout).toBe(58.4);
+    expect(out.state).toEqual({ id: 5, code: 'BR', name: 'Bihar' });
+    expect(out.analysis).toMatchObject({ dominance: 'STRONG', notes: 'Held since 2010', updated_at: '2026-10-01T09:30:00.000Z' });
+  });
+});
+
 describe('admin derived read endpoints: response mapping keeps every field', () => {
   const { audit } = auditWith(null);
 

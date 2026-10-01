@@ -19,7 +19,7 @@ const isNota = (c: Candidate) => c.party_id === 'NOTA' || c.name === 'NOTA';
  * Candidates of one seat in the global election, person-link filters, and same-name link suggestions.
  * Cross-election candidate search lives in the ⌘K palette.
  */
-export function useCandidateManager(electionId: string) {
+export function useCandidateManager(electionId: string, initialSeat = '') {
   const { toast, toastError } = useToast();
 
   // Seats are tagged with their election, so a render right after an election switch never pairs
@@ -34,7 +34,9 @@ export function useCandidateManager(electionId: string) {
   const [candidatesFailed, setCandidatesFailed] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [selectedConst, setSelectedConst] = useState('');
+  // `initialSeat` (the page's ?seat=) is only a starting point: the default-seat effect replaces it when it is not a
+  // seat of this election.
+  const [selectedConst, setSelectedConst] = useState(initialSeat);
   const [personFilter, setPersonFilter] = useState<PersonFilter>('all');
   const [search, setSearch] = useState('');
 

@@ -29,7 +29,7 @@ export class ConstituenciesService {
   async findOneWithAnalysis(id: string) {
     const constituency = await this.prisma.constituencies.findUnique({
       where: { id },
-      include: { districts: true, regions: true, elections: true },
+      include: { districts: true, regions: true, elections: true, states: true },
     });
     if (!constituency) throw new ConstituencyNotFoundException(id);
 
@@ -42,6 +42,7 @@ export class ConstituenciesService {
       district: constituency.districts,
       region: constituency.regions,
       election: constituency.elections,
+      state: constituency.states,
       analysis: analysis || null,
     };
   }

@@ -19,7 +19,13 @@ export function getConstituencyHistory(id: string) {
   return apiFetch<ConstituencyHistory>(`/admin/constituencies/${id}/history`);
 }
 
-export function updateConstituency(id: string, patch: { district_id?: number | null; region_id?: number | null; const_no?: number; metadata?: Record<string, any> }) {
+export function updateConstituency(id: string, patch: {
+  district_id?: number | null; region_id?: number | null; const_no?: number;
+  /** The phase column (1–20); null clears it. */
+  phase?: number | null;
+  type?: Constituency['type'];
+  metadata?: Record<string, any>;
+}) {
   return apiFetch<Constituency>(`/admin/constituencies/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(patch),

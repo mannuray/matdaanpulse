@@ -5,7 +5,7 @@ import { ConstituenciesService } from './constituencies.service';
 import { Prisma } from '@prisma/client';
 import { ConstituencySummaryDto } from './dto/constituency-response.dto';
 import { AuditLogService } from '../audit-log/audit-log.service';
-import { UpdateConstituencyDto } from './dto/constituency-input.dto';
+import { UpdateAnalysisDto, UpdateConstituencyDto } from './dto/constituency-input.dto';
 
 const seat = { id: 'BR_VS_1', name: 'Valmiki Nagar', const_no: 1, type: 'GEN', phase: null, district_id: 5, metadata: { tags: ['border'] }, updated_at: new Date(1) };
 
@@ -87,6 +87,27 @@ describe('UpdateConstituencyDto', () => {
     expect(await errorsFor({ phase: 21 })).toContain('phase');
     expect(await errorsFor({ type: 'OBC' })).toContain('type');
     expect(await errorsFor({ type: null })).toContain('type');
+  });
+});
+
+describe('UpdateAnalysisDto', () => {
+  it('an emptied text field is saved as null, not \'\'', async () => {
+    const dto = plainToInstance(UpdateAnalysisDto, { dominance: '', dominance_party: '', notes: '' });
+    expect(dto).toMatchObject({ dominance: null, dominance_party: null, notes: null });
+    expect(await validate(dto)).toEqual([]);
+  });
+});
+
+describe('ConstituenciesService.findOneWithAnalysis', () => {
+  it('includes the state, so the record page can show its code', async () => {
+    const prisma: any = {
+      constituencies: { findUnique: jest.fn().mockResolvedValue({ ...seat, election_id: 'e1', districts: null, regions: null, elections: {}, states: { id: 5, code: 'BR', name: 'Bihar' } }) },
+      constituency_analysis: { findUnique: jest.fn().mockResolvedValue(null) },
+    };
+    const svc = new ConstituenciesService(prisma, {} as any, [], {} as any);
+    const out = await svc.findOneWithAnalysis('BR_VS_1');
+    expect(prisma.constituencies.findUnique.mock.calls[0][0].include).toMatchObject({ states: true });
+    expect(out.state).toEqual({ id: 5, code: 'BR', name: 'Bihar' });
   });
 });
 

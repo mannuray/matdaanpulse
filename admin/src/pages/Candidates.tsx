@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Plus } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import { useElection } from '../context/ElectionContext';
 import { useShellStatus } from '../context/ShellStatusContext';
 import { useCandidateManager, type NewCandidate, type PersonFilter } from '../hooks/useCandidateManager';
@@ -25,12 +26,14 @@ const meta = (c: Candidate) => (c.metadata ?? {}) as Meta;
  * PAGE: Candidates — one seat of the global election at a time, full width; a row opens the candidate's record page at
  * /candidates/:id, which replaces the list (create at /candidates/new, in a dialog over the list). The list hooks stay
  * mounted under `candidates/*`, so the seat, link filter and search survive the round trip to a record.
+ * `?seat=<constituency id>` picks the starting seat (the constituency record's "Candidates in this seat").
  */
 export default function Candidates() {
   const { electionId, election, loading: electionsLoading, error } = useElection();
   const { editorDirty } = useShellStatus();
   const route = useEntityRoute('/candidates', editorDirty);
-  const m = useCandidateManager(electionId);
+  const [params] = useSearchParams();
+  const m = useCandidateManager(electionId, params.get('seat') ?? '');
   const [opened, setOpened] = useState<Candidate | null>(null);
 
   // Deep link / ⌘K: show the opened candidate's seat — only when the record (or election) changes,

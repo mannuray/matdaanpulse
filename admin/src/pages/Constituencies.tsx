@@ -6,7 +6,7 @@ import { useEntityRoute } from '../hooks/useEntityRoute';
 import { shortElectionName } from '../components/shell/ElectionPicker';
 import { EntityPage } from '../components/entity/EntityPage';
 import { NoElection } from '../components/entity/NoElection';
-import { ConstituencyPanel } from '../components/entity/constituencies/ConstituencyPanel';
+import { ConstituencyRecord } from '../components/entity/constituencies/ConstituencyRecord';
 import { BULK_TAGS, tagLabel } from '../components/entity/constituencies/tags';
 import { PageHeader } from '../components/ui/PageHeader';
 import { SearchInput, Toolbar } from '../components/ui/Toolbar';
@@ -19,7 +19,11 @@ import { Button } from '../components/ui/Button';
 import { ConfirmDialog } from '../components/ui/ConfirmDialog';
 import type { Constituency } from '../types';
 
-/** PAGE: Constituencies — seats of the global election, 100 per page; panel at /constituencies/:id. */
+/**
+ * PAGE: Constituencies — seats of the global election, 100 per page, full width, with bulk tagging and Compute all
+ * analysis. A row opens the seat's record page at /constituencies/:id, which replaces the list; the list hooks stay
+ * mounted under `constituencies/*`, so the page, search and filters survive the round trip. There is no create flow.
+ */
 export default function Constituencies() {
   const { electionId, election, loading: electionsLoading, error } = useElection();
   const { editorDirty } = useShellStatus();
@@ -27,12 +31,6 @@ export default function Constituencies() {
   const m = useConstituencyManager(electionId);
   const sel = m.selection;
   const [confirmCompute, setConfirmCompute] = useState(false);
-  // Bumped when a bulk tag touched the record open in the panel, so the panel reloads it (if it has no unsaved edits).
-  const [panelRefresh, setPanelRefresh] = useState(0);
-  const bulkTag = async (tag: string) => {
-    const tagged = await m.bulkAddTag(tag);
-    if (route.id && tagged.includes(route.id)) setPanelRefresh((n) => n + 1);
-  };
 
   if (!electionId) {
     return (
@@ -41,6 +39,10 @@ export default function Constituencies() {
         table={electionsLoading ? <p className="p-10 text-center text-sm text-muted">Loading elections…</p> : <NoElection error={error} />}
       />
     );
+  }
+
+  if (route.id) {
+    return <ConstituencyRecord key={route.id} id={route.id} onBack={() => route.close()} onSaved={m.refresh} />;
   }
 
   const columns: Column<Constituency>[] = [
@@ -99,7 +101,7 @@ export default function Constituencies() {
           {sel.count > 0 && (
             <div className="ml-auto flex items-center gap-2 rounded-control bg-accent-soft px-2.5 py-1">
               <span className="text-xs font-medium text-accent">{sel.count} selected</span>
-              <Select aria-label="Add tag to selected" className="h-8 w-44" value="" onChange={(e) => { if (e.target.value) void bulkTag(e.target.value); }}>
+              <Select aria-label="Add tag to selected" className="h-8 w-44" value="" onChange={(e) => { if (e.target.value) void m.bulkAddTag(e.target.value); }}>
                 <option value="">Add tag…</option>
                 {BULK_TAGS.map((t) => <option key={t} value={t}>{tagLabel(t)}</option>)}
               </Select>
@@ -114,7 +116,6 @@ export default function Constituencies() {
           columns={columns}
           rows={m.constituencies}
           rowKey={(c) => c.id}
-          selectedKey={route.id}
           onRowClick={(c) => route.open(c.id)}
           loading={m.loading}
           empty={m.error
@@ -133,19 +134,16 @@ export default function Constituencies() {
         />
       }
       panel={
-        <>
-          {route.id ? <ConstituencyPanel key={route.id} id={route.id} onClose={() => route.close()} onSaved={m.refresh} refreshSignal={panelRefresh} /> : null}
-          <ConfirmDialog
-            open={confirmCompute}
-            title="Compute all analysis?"
-            description="This queues analysis for every seat in the selected election, which is heavy work. Existing analysis is replaced."
-            confirmLabel="Compute all"
-            tone="primary"
-            busy={m.computing}
-            onCancel={() => setConfirmCompute(false)}
-            onConfirm={async () => { await m.computeAnalysis(); setConfirmCompute(false); }}
-          />
-        </>
+        <ConfirmDialog
+          open={confirmCompute}
+          title="Compute all analysis?"
+          description="This queues analysis for every seat in the selected election, which is heavy work. Existing analysis is replaced."
+          confirmLabel="Compute all"
+          tone="primary"
+          busy={m.computing}
+          onCancel={() => setConfirmCompute(false)}
+          onConfirm={async () => { await m.computeAnalysis(); setConfirmCompute(false); }}
+        />
       }
     />
   );

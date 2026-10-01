@@ -5,7 +5,7 @@ import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusCo
 
 interface RecordLinkProps {
   to: string;
-  /** Open `to` in this election: the global election switches first, and the link carries `?election=`. */
+  /** Open `to` in this election: the global election switches first, and the link carries `election=` (`to` may have a query). */
   electionId?: string;
   className?: string;
   children: ReactNode;
@@ -20,7 +20,7 @@ export function RecordLink({ to, electionId, className, children }: RecordLinkPr
   const navigate = useNavigate();
   const { editorDirty } = useShellStatus();
   const election = useElection();
-  const href = electionId ? `${to}?election=${encodeURIComponent(electionId)}` : to;
+  const href = electionId ? `${to}${to.includes('?') ? '&' : '?'}election=${encodeURIComponent(electionId)}` : to;
 
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;

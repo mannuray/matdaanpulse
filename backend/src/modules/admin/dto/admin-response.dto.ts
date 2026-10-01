@@ -15,6 +15,9 @@ export class AdminAnalysisDto {
   @Expose() dominance: string;
   @Expose() dominance_party: string | null;
   @Expose() incumbency: any;
+  @Expose() notes: string | null;
+  /** When the analysis was last computed (TIMESTAMP without time zone, read as UTC). */
+  @Expose() @Transform(toIso) updated_at: string | null;
 }
 
 export class AdminPartyDto {
@@ -67,6 +70,10 @@ export class AdminConstituencyDto {
 
   @Expose()
   election?: any;
+
+  /** { id, code, name } on the detail response (the record page shows the code). */
+  @Expose()
+  state?: any;
 }
 
 // --- Main Entity DTOs (using lazy arrow functions for @Type to avoid circular ReferenceErrors) ---

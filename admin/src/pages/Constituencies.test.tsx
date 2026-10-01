@@ -18,6 +18,7 @@ const svc = vi.hoisted(() => ({
   bulkTagConstituencies: vi.fn(async () => []),
   computeConstituencyAnalysis: vi.fn(async () => ({ computed: 0 })),
   getAdminConstituencyDetail: vi.fn(),
+  getConstituencyHistory: vi.fn(),
   updateConstituency: vi.fn(async () => ({})),
 }));
 vi.mock('../services/constituency.service', () => svc);
@@ -33,13 +34,20 @@ beforeEach(() => {
     success: true, data: page === 1 ? data.page1 : [data.C('z', 101, 'Page Two Seat', 'Gaya')], pagination: { page, limit: 100, total: 243, totalPages: 3 },
   }));
   svc.getAdminConstituencyDetail.mockImplementation(async (id: string) => ({
-    ...data.page1.find((c) => c.id === id)!, metadata: { population: 1000, tags: ['urban'] }, analysis: null,
+    ...[...data.page1, data.C('z', 101, 'Page Two Seat', 'Gaya')].find((c) => c.id === id)!, metadata: { population: 1000, tags: ['urban'] }, analysis: null,
   }));
+  svc.getConstituencyHistory.mockResolvedValue({ volatility: { elections: 0, changes: 0 }, rows: [] });
 });
 afterEach(() => { cleanup(); localStorage.clear(); vi.clearAllMocks(); vi.restoreAllMocks(); });
 
 const renderAt = (at = '/constituencies') => renderEntityPage('/constituencies', <Constituencies />, at);
 const table = () => screen.getByRole('table', { name: 'Constituencies' });
+/** The record page, once its title (the seat name) shows. */
+const record = async (name = 'Patna Sahib') => {
+  await screen.findByRole('heading', { level: 1, name });
+  return document.body;
+};
+const card = (title: string) => screen.getByRole('heading', { name: title }).closest('section')!;
 
 describe('Constituencies page', () => {
   it('pages past the first 100 seats; a new search goes back to page 1', async () => {
@@ -65,31 +73,31 @@ describe('Constituencies page', () => {
     await waitFor(() => expect(svc.bulkTagConstituencies).toHaveBeenCalledWith(['a', 'b'], ['rural'], []));
   });
 
-  it('a row checkbox selects without opening the panel', async () => {
+  it('a row checkbox selects without opening the record', async () => {
     renderAt();
     fireEvent.click(await screen.findByLabelText('Select Bankipur'));
     expect(screen.getByText('1 selected')).toBeTruthy();
     expect(screen.getByTestId('where').textContent).toBe('/constituencies');
   });
 
-  it('the panel saves 0 as 0 and shows an invalid seat number inline without sending it', async () => {
+  it('the record saves 0 as 0 and shows an invalid seat number inline without sending it', async () => {
     renderAt('/constituencies/a');
-    const panel = await screen.findByRole('dialog', { name: 'Patna Sahib' });
-    fireEvent.change(await within(panel).findByLabelText('Urban %'), { target: { value: '0' } });
+    const panel = await record();
+    fireEvent.change(await within(panel).findByLabelText('Urban share'), { target: { value: '0' } });
     fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
     await waitFor(() => expect(svc.updateConstituency).toHaveBeenCalledWith('a', expect.objectContaining({
       const_no: 1, metadata: { urban_pct: 0 },
     })));
     await waitFor(() => expect(within(panel).getByText('No changes')).toBeTruthy());
-    fireEvent.change(within(panel).getByLabelText('Seat number'), { target: { value: 'abc' } });
-    fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
+    fireEvent.change(within(panel).getByLabelText('Constituency number'), { target: { value: 'abc' } });
     expect(await within(panel).findByText('Enter a whole number, 1 or more')).toBeTruthy();
+    expect((within(panel).getByRole('button', { name: 'Save changes' }) as HTMLButtonElement).disabled).toBe(true);
     expect(svc.updateConstituency).toHaveBeenCalledTimes(1);
   });
 
-  it('tags are added with Enter and removed in the panel', async () => {
+  it('tags are added with Enter and removed on the record', async () => {
     renderAt('/constituencies/a');
-    const panel = await screen.findByRole('dialog', { name: 'Patna Sahib' });
+    const panel = await record();
     const input = await within(panel).findByLabelText('Add a tag');
     fireEvent.change(input, { target: { value: 'flood_prone' } });
     fireEvent.keyDown(input, { key: 'Enter' });
@@ -110,8 +118,8 @@ describe('Constituencies page', () => {
 
   it('a percent over 100 shows inline and blocks Save', async () => {
     renderAt('/constituencies/a');
-    const panel = await screen.findByRole('dialog', { name: 'Patna Sahib' });
-    fireEvent.change(await within(panel).findByLabelText('Literacy %'), { target: { value: '101' } });
+    const panel = await record();
+    fireEvent.change(await within(panel).findByLabelText('Literacy rate'), { target: { value: '101' } });
     expect(await within(panel).findByText(/from 0 to 100/)).toBeTruthy();
     expect((within(panel).getByRole('button', { name: 'Save changes' }) as HTMLButtonElement).disabled).toBe(true);
   });
@@ -145,21 +153,106 @@ describe('Constituencies page', () => {
     expect(await screen.findByPlaceholderText('Search by name…')).toBeTruthy();
   });
 
-  it('bulk tagging the open (clean) record reloads its panel; an unrelated save does not send tags', async () => {
+  it('a row opens the record in place of the list; back returns to the same page', async () => {
+    renderAt();
+    await within(table()).findByText('Patna Sahib');
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }));
+    fireEvent.click(await within(table()).findByText('Page Two Seat'));
+    expect(await screen.findByRole('heading', { level: 1, name: 'Page Two Seat' })).toBeTruthy();
+    expect(screen.queryByRole('table', { name: 'Constituencies' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Constituencies' }));
+    expect(await within(table()).findByText('Page Two Seat')).toBeTruthy();
+    expect(screen.getByText('Page 2 of 3')).toBeTruthy();
+  });
+
+  it('phase saves to the column, not metadata', async () => {
     renderAt('/constituencies/a');
-    const panel = await screen.findByRole('dialog', { name: 'Patna Sahib' });
-    await within(panel).findByLabelText('Add a tag');
-    svc.getAdminConstituencyDetail.mockImplementation(async (id: string) => ({
-      ...data.page1.find((c) => c.id === id)!, metadata: { population: 1000, tags: ['urban', 'rural'] }, analysis: null,
-    }));
-    fireEvent.click(screen.getByLabelText('Select Patna Sahib'));
-    fireEvent.change(screen.getByLabelText('Add tag to selected'), { target: { value: 'rural' } });
-    expect(await within(panel).findByText('Rural')).toBeTruthy();
-    fireEvent.change(within(panel).getByLabelText('Phase'), { target: { value: '3' } });
+    const panel = await record();
+    fireEvent.change(await within(panel).findByLabelText('Polling phase'), { target: { value: '3' } });
     fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
     await waitFor(() => expect(svc.updateConstituency).toHaveBeenCalled());
-    const call = svc.updateConstituency.mock.calls[0] as unknown as [string, { metadata: Record<string, unknown> }];
-    expect(call[1].metadata).toEqual({ phase: '3' });
+    const call = svc.updateConstituency.mock.calls[0] as unknown as [string, Record<string, unknown>];
+    expect(call[1]).toMatchObject({ phase: 3, metadata: {} });
+  });
+
+  it('reservation is a select that saves type, and the header tag shows it', async () => {
+    renderAt('/constituencies/a');
+    const panel = await record();
+    expect(within(panel).getByText('GEN')).toBeTruthy();
+    fireEvent.change(await within(panel).findByLabelText('Reservation'), { target: { value: 'SC' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Save changes' }));
+    await waitFor(() => expect(svc.updateConstituency).toHaveBeenCalledWith('a', expect.objectContaining({ type: 'SC' })));
+  });
+
+  it('seat history lists winners newest first, marks this election and shows the volatility line', async () => {
+    svc.getConstituencyHistory.mockResolvedValue({
+      volatility: { elections: 3, changes: 2 },
+      rows: [
+        { election_id: 'e1', year: 2025, type: 'VS', winner: 'Ravi Prasad', party_id: 'BJP', margin: 12309, turnout: 58.4, is_current: true },
+        { election_id: 'e0', year: 2020, type: 'VS', winner: 'Anil Kumar', party_id: 'JDU', margin: 2700, turnout: null, is_current: false },
+        { election_id: 'e9', year: 2015, type: 'VS', winner: 'Sita Devi', party_id: 'BJP', margin: null, turnout: 55, is_current: false },
+      ],
+    });
+    renderAt('/constituencies/a');
+    await record();
+    const history = card('Seat history');
+    expect(await within(history).findByText('Party changed 2 times in 3 elections')).toBeTruthy();
+    const rows = within(history).getAllByRole('listitem');
+    expect(rows.map((r) => r.textContent)).toEqual([
+      expect.stringContaining('2025'), expect.stringContaining('2020'), expect.stringContaining('2015'),
+    ]);
+    expect(within(rows[0]).getByText('This election')).toBeTruthy();
+    expect(within(rows[0]).getByText('+12,309')).toBeTruthy();
+    expect(within(history).queryByText('No earlier elections for this seat')).toBeNull();
+  });
+
+  it('a seat with no earlier elections says so (history empty, or only this election)', async () => {
+    renderAt('/constituencies/a');
+    await record();
+    expect(await within(card('Seat history')).findByText('No earlier elections for this seat')).toBeTruthy();
+    cleanup();
+    svc.getConstituencyHistory.mockResolvedValue({
+      volatility: { elections: 1, changes: 0 },
+      rows: [{ election_id: 'e1', year: 2025, type: 'VS', winner: 'Ravi Prasad', party_id: 'BJP', margin: 10, turnout: null, is_current: true }],
+    });
+    renderAt('/constituencies/a');
+    await record();
+    expect(await within(card('Seat history')).findByText('No earlier elections for this seat')).toBeTruthy();
+    expect(within(card('Seat history')).queryByText(/Party changed/)).toBeNull();
+  });
+
+  it('analysis shows "Not computed yet" with the hint, or the computed values', async () => {
+    renderAt('/constituencies/a');
+    await record();
+    expect(within(card('Analysis')).getByText('Not computed yet')).toBeTruthy();
+    expect(within(card('Analysis')).getByText(/Compute all analysis/)).toBeTruthy();
+    cleanup();
+    svc.getAdminConstituencyDetail.mockImplementation(async (id: string) => ({
+      ...data.page1.find((c) => c.id === id)!, metadata: {}, voter_turnout: 58.4, state: { id: 1, code: 'BR', name: 'Bihar' },
+      analysis: {
+        id: 'x', const_id: id, election_id: 'e1', dominance: 'STRONG', dominance_party: 'JDU',
+        incumbency: { incumbent_name: 'Hari Singh', incumbent_party: 'JDU', re_contesting: true }, notes: 'Held since 2010',
+        updated_at: '2026-10-02T06:30:00.000Z',
+      },
+    }));
+    renderAt('/constituencies/a');
+    await record();
+    const analysis = card('Analysis');
+    expect(within(analysis).getByText('Computed 2 Oct 2026')).toBeTruthy();
+    expect(within(analysis).getByText('Hari Singh (JDU)')).toBeTruthy();
+    expect(within(analysis).getByText('Held since 2010')).toBeTruthy();
+    const rec = card('Record');
+    expect(within(rec).getByText('BR')).toBeTruthy();
+    expect(within(rec).getByText('58.4%')).toBeTruthy();
+  });
+
+  it('"Candidates in this seat" links to the Candidates page with the seat and election', async () => {
+    renderAt('/constituencies/a');
+    const panel = await record();
+    const link = within(panel).getByRole('link', { name: /Candidates in this seat/ });
+    expect(link.getAttribute('href')).toBe('/candidates?seat=a&election=e1');
+    fireEvent.click(link);
+    expect(screen.getByTestId('where').textContent).toBe('/candidates?seat=a&election=e1');
   });
 
   it('a failed seats load says "Could not load seats" and Try again reloads them', async () => {

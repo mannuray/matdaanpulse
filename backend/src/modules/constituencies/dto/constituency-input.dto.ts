@@ -1,6 +1,7 @@
 import { IsString, IsOptional, IsInt, IsObject, IsArray, MaxLength, Min, Max, ArrayMaxSize, IsIn, ValidateIf } from 'class-validator';
+import { Transform } from 'class-transformer';
 import { IsUuidLike } from '../../../common/validation/uuid-like';
-import { MAX_IDS_PER_REQUEST } from '../../../common/validation/dto-helpers';
+import { emptyToNull, MAX_IDS_PER_REQUEST } from '../../../common/validation/dto-helpers';
 
 /** Request-body DTOs (moved out of admin/ so domain services do not depend on the admin module). */
 
@@ -45,16 +46,17 @@ export class ComputeAnalysisDto {
   manifest?: Record<string, unknown>;
 }
 
+/** Emptied text fields are saved as null, not ''. */
 export class UpdateAnalysisDto {
-  @IsOptional() @IsString() @MaxLength(20)
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
   dominance?: string | null;
 
-  @IsOptional() @IsString() @MaxLength(20)
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
   dominance_party?: string | null;
 
   @IsOptional() @IsObject()
   incumbency?: Record<string, unknown>;
 
-  @IsOptional() @IsString()
+  @IsOptional() @Transform(emptyToNull) @IsString()
   notes?: string | null;
 }

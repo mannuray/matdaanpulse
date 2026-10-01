@@ -130,6 +130,16 @@ describe('Candidates list', () => {
     expect(within(table()).getByText('Anil Kumar')).toBeTruthy();
   });
 
+  it('?seat= preselects that seat (the constituency record links here); an unknown seat falls back to the lowest', async () => {
+    renderAt('/candidates?election=e1&seat=s142');
+    await waitFor(() => expect(svc.getCandidates).toHaveBeenCalledWith('e1', 's142'));
+    expect(seatInput().value).toBe('142 Patna Sahib');
+    expect(svc.getCandidates).not.toHaveBeenCalledWith('e1', 's1');
+    cleanup();
+    renderAt('/candidates?seat=k5');
+    await waitFor(() => expect(seatInput().value).toBe('1 Valmiki Nagar'));
+  });
+
   it('is full width: a row opens the record page in place of the list, and back returns to the same seat and filter', async () => {
     renderAt();
     fireEvent.click(await within(table()).findByText('Anil Kumar'));

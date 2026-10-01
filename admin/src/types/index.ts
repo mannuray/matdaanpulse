@@ -288,6 +288,8 @@ export interface Constituency {
   district?: { id: number; name: string; code: string } | null;
   region_id: number | null;
   region?: { id: number; name: string; code: string } | null;
+  /** On the admin detail response only. */
+  state?: { id: number; name: string; code: string } | null;
   voter_turnout: number | null;
   phase?: number | null;
   updated_at?: string;
@@ -329,8 +331,10 @@ export interface ConstituencyAnalysis {
     incumbent_party?: string;
     re_contesting?: boolean;
     switched_to?: string;
-  };
-  notes: string | null;
+  } | null;
+  notes?: string | null;
+  /** When it was last computed (ISO). */
+  updated_at?: string | null;
 }
 
 export interface ResultOverride {
