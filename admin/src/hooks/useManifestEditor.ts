@@ -163,7 +163,7 @@ export function useManifestEditor(electionId: string | null) {
       toast('Draft saved successfully');
       setIsDraft(true);
       setIsDirty(false);
-      setManifest(prev => ({ ...prev, ...data }));
+      setManifest({ ...DEFAULT_MANIFEST, ...data });
       return true;
     } catch (err) {
       toastError(err, 'Failed to save draft');

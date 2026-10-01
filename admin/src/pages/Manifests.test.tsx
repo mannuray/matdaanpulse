@@ -122,4 +122,46 @@ describe('Manifests page', () => {
     expect(await within(p2).findByText('Election not found')).toBeTruthy();
     expect(within(p2).queryByRole('button', { name: 'Try again' })).toBeNull();
   });
+
+  it('JSON must be an object: a number or array shows an error and blocks Save draft', async () => {
+    renderAt('/manifests/e1');
+    const panel = await screen.findByRole('dialog', { name: 'Bihar Vidhan Sabha 2025' });
+    await within(panel).findByText('NDA');
+    fireEvent.click(within(panel).getByRole('button', { name: 'JSON' }));
+    for (const bad of ['5', '[]', 'null']) {
+      fireEvent.change(within(panel).getByLabelText('Manifest JSON'), { target: { value: bad } });
+      expect(within(panel).getByRole('alert').textContent).toContain('object');
+      expect((within(panel).getByRole('button', { name: 'Save draft' }) as HTMLButtonElement).disabled).toBe(true);
+    }
+  });
+
+  it('Publish with a pending valid JSON edit saves that JSON first; a failed save aborts the publish', async () => {
+    auth.role = 'SUPER_ADMIN';
+    renderAt('/manifests/e1');
+    const panel = await screen.findByRole('dialog', { name: 'Bihar Vidhan Sabha 2025' });
+    await within(panel).findByText('NDA');
+    fireEvent.click(within(panel).getByRole('button', { name: 'JSON' }));
+    const next = { alliances: [], milestones: [{ label: 'Majority', value: 100 }] };
+    fireEvent.change(within(panel).getByLabelText('Manifest JSON'), { target: { value: JSON.stringify(next) } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Publish' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Publish now' }));
+    await waitFor(() => expect(svc.publishManifest).toHaveBeenCalledWith('e1'));
+    expect(svc.saveManifestDraft).toHaveBeenCalledWith('e1', next);
+    expect(svc.saveManifestDraft.mock.invocationCallOrder[0]).toBeLessThan(svc.publishManifest.mock.invocationCallOrder[0]);
+  });
+
+  it('a failed draft save aborts the publish', async () => {
+    auth.role = 'SUPER_ADMIN';
+    svc.saveManifestDraft.mockRejectedValueOnce(new Error('save failed'));
+    renderAt('/manifests/e1');
+    const panel = await screen.findByRole('dialog', { name: 'Bihar Vidhan Sabha 2025' });
+    await within(panel).findByText('NDA');
+    fireEvent.click(within(panel).getByRole('button', { name: 'JSON' }));
+    fireEvent.change(within(panel).getByLabelText('Manifest JSON'), { target: { value: '{"alliances":[]}' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Publish' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Publish now' }));
+    await waitFor(() => expect(svc.saveManifestDraft).toHaveBeenCalled());
+    await waitFor(() => expect(screen.queryByRole('button', { name: 'Publish now' })).toBeNull());
+    expect(svc.publishManifest).not.toHaveBeenCalled();
+  });
 });

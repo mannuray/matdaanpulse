@@ -20,6 +20,12 @@ import { EmptyState } from '../../ui/EmptyState';
 import { ManifestSummary } from './ManifestSummary';
 import type { Election, ManifestData } from '../../../types';
 
+/** '' when the text parses to a plain object (the manifest); otherwise why not. Throws on a syntax error. */
+function objectError(text: string): string {
+  const v: unknown = JSON.parse(text);
+  return v !== null && typeof v === 'object' && !Array.isArray(v) ? '' : 'Manifest must be a JSON object';
+}
+
 type Tab = 'summary' | 'edit' | 'json';
 
 interface ManifestPanelProps {
@@ -56,7 +62,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
   }, [c.manifest, tab]);
 
   const parseJson = (): ManifestData | null => {
-    try { return JSON.parse(jsonText) as ManifestData; } catch { return null; }
+    try { return objectError(jsonText) ? null : JSON.parse(jsonText) as ManifestData; } catch { return null; }
   };
 
   const switchTab = (next: Tab) => {
@@ -201,7 +207,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
             value={jsonText}
             onChange={(e) => {
               setJsonText(e.target.value);
-              try { JSON.parse(e.target.value); setJsonError(''); } catch (err) { setJsonError(err instanceof Error ? err.message : 'Invalid JSON'); }
+              try { setJsonError(objectError(e.target.value)); } catch (err) { setJsonError(err instanceof Error ? err.message : 'Invalid JSON'); }
             }}
             className="min-h-[480px] flex-1 resize-none bg-card p-4 font-mono text-[13px] text-ink focus:outline-none"
           />

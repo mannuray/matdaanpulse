@@ -31,7 +31,7 @@ export function ManifestSummary({ manifest, partyMap, electionMap }: ManifestSum
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {stats.map(([label, n]) => (
           <div key={label} className="rounded-card border border-line bg-card px-4 py-3">
             <div className="text-xs text-muted">{label}</div>
@@ -40,11 +40,11 @@ export function ManifestSummary({ manifest, partyMap, electionMap }: ManifestSum
         ))}
       </div>
 
-      <div className="grid grid-cols-2 items-start gap-4">
+      <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
         <div className="space-y-4">
           <Card title="Alliances">
             {(manifest.alliances ?? []).length === 0 && <None text="No alliances configured." />}
-            <ul className="space-y-2">
+            <ul className="m-0 list-none p-0 space-y-2">
               {(manifest.alliances ?? []).map((a) => (
                 <li key={a.id} className="rounded-control border-l-4 bg-subtle px-3 py-2" style={{ borderLeftColor: a.color }}>
                   <div className="text-sm font-medium text-ink">{a.name}</div>
@@ -62,7 +62,7 @@ export function ManifestSummary({ manifest, partyMap, electionMap }: ManifestSum
 
           <Card title="Vote splits">
             {(manifest.vote_splits ?? []).length === 0 && <None text="No vote splits configured." />}
-            <ul className="space-y-1.5">
+            <ul className="m-0 list-none p-0 space-y-1.5">
               {(manifest.vote_splits ?? []).map((v, i) => (
                 <li key={i} className="flex items-center gap-2 rounded-control bg-subtle px-3 py-1.5 text-sm">
                   <span className="font-medium text-bad-text">{v.spoiler}</span>
@@ -76,7 +76,7 @@ export function ManifestSummary({ manifest, partyMap, electionMap }: ManifestSum
 
           <Card title="Comparison history">
             {(manifest.history ?? []).length === 0 && <None text="No earlier elections configured for comparison." />}
-            <ul className="space-y-1.5">
+            <ul className="m-0 list-none p-0 space-y-1.5">
               {(manifest.history ?? []).map((hid, i) => {
                 const el = electionMap.get(hid);
                 return (
@@ -100,7 +100,7 @@ export function ManifestSummary({ manifest, partyMap, electionMap }: ManifestSum
               {(manifest.watchlists ?? []).map((w) => (
                 <div key={w.id}>
                   <div className="mb-1 text-xs font-medium text-accent">{w.name}</div>
-                  <ul className="space-y-1">
+                  <ul className="m-0 list-none p-0 space-y-1">
                     {w.entries.map((e, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
                         <span className="mt-1.5">{dot(partyMap.get(e.party_id)?.color)}</span>
@@ -134,7 +134,7 @@ export function ManifestSummary({ manifest, partyMap, electionMap }: ManifestSum
 
           <Card title="Milestones">
             {(manifest.milestones ?? []).length === 0 && <None text="No milestones." />}
-            <ul className="space-y-1">
+            <ul className="m-0 list-none p-0 space-y-1">
               {(manifest.milestones ?? []).map((ms, i) => (
                 <li key={i} className="flex justify-between text-sm">
                   <span className="text-ink">{ms.label}</span>
