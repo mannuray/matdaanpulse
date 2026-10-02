@@ -93,7 +93,7 @@ export interface PersonMerge {
   /** When it was undone (ISO); null while it stands. */
   undone_at: string | null;
   /** Why it can't be undone; null when it can. */
-  not_undoable_reason: 'undone' | 'contests_moved' | 'keeper_missing' | null;
+  not_undoable_reason: 'undone' | 'contests_moved' | null;
 }
 
 /** One contest in a person's election history (GET /admin/persons/:id, newest first). */
@@ -142,6 +142,8 @@ export interface Candidate {
   last_edit?: LastEdit | null;
   /** The person's candidacies across elections (detail response only). */
   person_contests?: { contests: number; first_year: number | null } | null;
+  /** Only on the change person response: set when moving the person's last contest merged it into the target. */
+  merge_id?: string | null;
 }
 
 /** One candidate of a seat in GET /admin/candidates/:id/result. */

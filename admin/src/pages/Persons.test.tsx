@@ -100,11 +100,11 @@ describe('Persons list', () => {
     expect(api.getPersons).toHaveBeenLastCalledWith(2, 50, undefined, {});
   });
 
-  it('the Contests filter (All / 1 contest / 2 or more) goes to the API and is kept in the list state', async () => {
+  it('the Contests filter (All / 1 contest / 2 or more / None) goes to the API and is kept in the list state', async () => {
     renderAt();
     await within(table()).findByText('Nitish Kumar');
     const group = screen.getByRole('group', { name: 'Contests' });
-    expect(within(group).getAllByRole('button').map((b) => b.textContent)).toEqual(['All', '1 contest', '2 or more']);
+    expect(within(group).getAllByRole('button').map((b) => b.textContent)).toEqual(['All', '1 contest', '2 or more', 'None']);
     expect(within(group).getByRole('button', { name: 'All' }).getAttribute('aria-pressed')).toBe('true');
     fireEvent.click(within(group).getByRole('button', { name: '2 or more' }));
     await waitFor(() => expect(api.getPersons).toHaveBeenLastCalledWith(1, 50, undefined, { contests: '2plus' }));
@@ -120,6 +120,8 @@ describe('Persons list', () => {
     await waitFor(() => expect(api.getPersons).toHaveBeenLastCalledWith(1, 50, undefined, { contests: '2plus' }));
     fireEvent.click(screen.getByRole('button', { name: '1 contest' }));
     await waitFor(() => expect(api.getPersons).toHaveBeenLastCalledWith(1, 50, undefined, { contests: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: 'None' }));
+    await waitFor(() => expect(api.getPersons).toHaveBeenLastCalledWith(1, 50, undefined, { contests: '0' }));
   });
 
   it('a stored contests value that is not an option falls back to All', async () => {

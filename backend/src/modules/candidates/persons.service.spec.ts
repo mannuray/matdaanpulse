@@ -327,6 +327,12 @@ describe('PersonsService.findAll contests filter', () => {
     expect((prisma.$queryRaw.mock.calls[0][1] as any).sql).toMatch(/p\.id\) = 1$/);
   });
 
+  it('0: no candidacies (persons created on their own, before or by POST /admin/persons)', async () => {
+    const { svc, prisma } = makeList();
+    await svc.findAll(1, 100, '', { contests: '0' });
+    expect((prisma.$queryRaw.mock.calls[0][1] as any).sql).toMatch(/p\.id\) = 0$/);
+  });
+
   it('without contests the Prisma path is used, and candidates are selected narrowly (no BigInt affidavit columns)', async () => {
     const { svc, prisma } = makeList();
     await svc.findAll(1, 100, 'x', { region_id: 3 });

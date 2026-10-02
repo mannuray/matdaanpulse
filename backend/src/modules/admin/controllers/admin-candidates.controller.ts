@@ -35,7 +35,7 @@ export class AdminCandidatesController {
       this.audit.lastEdit('candidate', id),
     ]);
     // The Master record card's "N contests · first YYYY" for the candidate's person.
-    const person_contests = candidate.person_id ? await this.candidatesService.personContests(candidate.person_id) : null;
+    const person_contests = await this.candidatesService.personContests(candidate.person_id);
     return { ...candidate, last_edit, person_contests };
   }
 
@@ -63,7 +63,10 @@ export class AdminCandidatesController {
     return { ...candidate, last_edit: await this.audit.lastEdit('candidate', id) };
   }
 
-  /** Change person: move this candidacy to another existing person. */
+  /**
+   * Change person: move this candidacy to another existing person. Moving a person's last contest merges that
+   * person into the target (logged, undoable by a super admin); `merge_id` is then set.
+   */
   @Put(':id/person')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminCandidateDto))

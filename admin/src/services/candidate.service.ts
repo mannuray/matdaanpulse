@@ -25,7 +25,10 @@ export async function searchCandidates(q: string, electionId?: string) {
   return (await apiFetch<Candidate[]>(`/candidates/search?${params.toString()}`)) || [];
 }
 
-/** Change person: move this candidacy to another existing person (its old person is deleted if left with no contests). */
+/**
+ * Change person: move this candidacy to another existing person. When it is the old person's last contest the
+ * backend merges the old person into the target (logged, undoable by a super admin) and sets `merge_id`.
+ */
 export function changeCandidatePerson(candidateId: string, personId: string) {
   return apiFetch<Candidate>(`/admin/candidates/${candidateId}/person`, {
     method: 'PUT',

@@ -51,7 +51,7 @@ describe('admin detail responses: updated_at + last_edit', () => {
     const person = map(AdminPersonDto, await new AdminPersonsController(persons as any, audit).findPersonDetail('p1'));
     expect(person).toMatchObject({ updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
-    const candidates = { findOne: jest.fn().mockResolvedValue({ id: 'c1', name: 'R', updated_at }) };
+    const candidates = { findOne: jest.fn().mockResolvedValue({ id: 'c1', name: 'R', person_id: 'p1', updated_at }), personContests: jest.fn().mockResolvedValue(null) };
     const candidate = map(AdminCandidateDto, await new AdminCandidatesController(candidates as any, audit).findOne('c1'));
     expect(candidate).toMatchObject({ updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
@@ -64,7 +64,7 @@ describe('admin detail responses: updated_at + last_edit', () => {
 });
 
 describe('admin candidate detail: person_contests', () => {
-  it('a linked candidate carries the person\'s contests count and first year', async () => {
+  it('the candidate carries its person\'s contests count and first year (every candidate has a person)', async () => {
     const { audit } = auditWith(null);
     const candidates = {
       findOne: jest.fn().mockResolvedValue({ id: 'c1', name: 'R', person_id: 'p1', updated_at }),
@@ -73,14 +73,6 @@ describe('admin candidate detail: person_contests', () => {
     const out = map(AdminCandidateDto, await new AdminCandidatesController(candidates as any, audit).findOne('c1'));
     expect(candidates.personContests).toHaveBeenCalledWith('p1');
     expect(out.person_contests).toEqual({ contests: 3, first_year: 2010 });
-  });
-
-  it('an unlinked candidate has person_contests null and no extra query', async () => {
-    const { audit } = auditWith(null);
-    const candidates = { findOne: jest.fn().mockResolvedValue({ id: 'c1', name: 'R', person_id: null, updated_at }), personContests: jest.fn() };
-    const out = map(AdminCandidateDto, await new AdminCandidatesController(candidates as any, audit).findOne('c1'));
-    expect(candidates.personContests).not.toHaveBeenCalled();
-    expect(out.person_contests).toBeNull();
   });
 });
 
@@ -200,7 +192,7 @@ describe('admin candidates list and same-name search: the person link and affida
       age: 44, assets: BigInt(4200000000), liabilities: BigInt(15000000), criminal_cases: 2, parties: { id: 'BJP', color: '#f59e0b' },
     };
     const prisma = { candidates: { findMany: jest.fn().mockResolvedValue([listRow]) } };
-    const svc = new CandidatesService(prisma as any, {} as any, {} as any);
+    const svc = new CandidatesService(prisma as any, {} as any, {} as any, {} as any);
     const rows = await new AdminCandidatesController(svc, {} as any).findAll('e1', 's1');
     expect(prisma.candidates.findMany.mock.calls[0][0].select).toMatchObject({ person_id: true, age: true, assets: true, liabilities: true, criminal_cases: true });
     await svc.findAll({ election_id: 'e1' }); // the public path
@@ -264,13 +256,13 @@ describe('person responses: identity columns and merge history', () => {
 });
 
 describe('change person, split and undo routes', () => {
-  it('PUT :id/person changes the person and return the candidate with last_edit', async () => {
+  it('PUT :id/person changes the person and returns the candidate with last_edit and merge_id (set when it merged)', async () => {
     const { audit } = auditWith(null);
-    const svc = { changePerson: jest.fn().mockResolvedValue({ id: 'c1', person_id: 'p2', assets: BigInt(7), old_person_deleted: true }) };
+    const svc = { changePerson: jest.fn().mockResolvedValue({ id: 'c1', person_id: 'p2', assets: BigInt(7), old_person_deleted: true, merge_id: 'm1' }) };
     const ctl = new AdminCandidatesController(svc as any, audit);
     const out = map(AdminCandidateDto, await ctl.changePerson({ user: { id: 'u1' } }, 'c1', { person_id: 'p2' }));
     expect(svc.changePerson).toHaveBeenCalledWith('c1', 'p2', 'u1');
-    expect(out).toMatchObject({ id: 'c1', person_id: 'p2', assets: 7, last_edit: null });
+    expect(out).toMatchObject({ id: 'c1', person_id: 'p2', assets: 7, last_edit: null, merge_id: 'm1' });
   });
 
   it('POST :id/split returns the new person id; POST merges/:id/undo passes the user', async () => {

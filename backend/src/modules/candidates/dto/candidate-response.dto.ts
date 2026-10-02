@@ -23,6 +23,11 @@ export class CandidateSummaryDto {
   party?: PartyMiniDto;
 }
 
+/** One public candidate search hit (GET /search/candidates): the summary plus its election. */
+export class CandidateSearchHitDto extends CandidateSummaryDto {
+  @Expose() election_id: string;
+}
+
 /** Adds the affidavit for this run (assets and liabilities in rupees, BigInt columns sent as numbers). */
 export class CandidateDetailDto extends CandidateSummaryDto {
   @Expose() election_id: string;

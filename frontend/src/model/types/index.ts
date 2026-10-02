@@ -65,7 +65,8 @@ export interface Constituency {
 
 export interface Candidate {
   id: string;
-  person_id: string | null;
+  /** Every candidate has a person (migration 018). */
+  person_id: string;
   election_id: string;
   const_id: string;
   party_id: string | null;
@@ -83,7 +84,8 @@ export interface CandidateResult {
   vote_share?: number;
   status: string | null;
   margin: number;
-  person_id?: string | null;
+  /** Every candidate has a person (migration 018); optional because not every response carries it. */
+  person_id?: string;
   person?: { id: string; photo_url: string | null } | null;
   isSplitter?: boolean;
 }

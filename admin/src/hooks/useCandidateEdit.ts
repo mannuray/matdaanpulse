@@ -222,9 +222,12 @@ export function useCandidateEdit(id?: string) {
     if (!id || isLinking) return false;
     setIsLinking(true);
     try {
-      await changeCandidatePerson(id, newPersonId);
-      const target = personMatches.find((p) => p.id === newPersonId)?.name;
-      toast(target ? `Contest moved to ${target}` : 'Contest moved to another person');
+      const merge_id = (await changeCandidatePerson(id, newPersonId))?.merge_id;
+      const target = personMatches.find((p) => p.id === newPersonId)?.name ?? 'another person';
+      const from = candidate?.person?.name ?? candidate?.name ?? 'the old person';
+      toast(merge_id
+        ? `Merged ${from} into ${target}. A super admin can undo it from ${target}'s merge history.`
+        : `Contest moved to ${target}`);
       setPersonSearch('');
       await loadData();
       return true;

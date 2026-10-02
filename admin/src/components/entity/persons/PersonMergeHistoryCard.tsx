@@ -23,7 +23,6 @@ export function mergeLine(m: PersonMerge): string {
 /** Why a merge has no Undo button: "Undone 02 Oct 2026, 10:00" (IST), or what blocks it. */
 export function notUndoableLabel(m: PersonMerge): string {
   if (m.not_undoable_reason === 'contests_moved') return "Can't undo: a contest has moved since";
-  if (m.not_undoable_reason === 'keeper_missing') return "Can't undo: the person it was merged into no longer exists";
   return m.undone_at ? `Undone ${formatIst(m.undone_at)}` : 'Undone';
 }
 

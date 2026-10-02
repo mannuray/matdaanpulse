@@ -75,7 +75,8 @@ describe('person merge, undo, change person and split (DB)', () => {
       },
     });
     const audit = new AuditLogService(client as any);
-    return { persons: new PersonsService(client as any, audit), candidates: new CandidatesService(client as any, {} as any, audit) };
+    const persons = new PersonsService(client as any, audit);
+    return { persons, candidates: new CandidatesService(client as any, {} as any, audit, persons) };
   }
 
   async function inRollbackTx(name: string, body: (tx: any, s: Seat) => Promise<void>) {
@@ -225,15 +226,37 @@ describe('person merge, undo, change person and split (DB)', () => {
     });
   });
 
-  it('change person that empties the old person: the trigger deletes it and PERSON_DELETE is audited', async () => {
-    await inRollbackTx('change person orphan', async (tx, s) => {
-      const { candidates } = services(tx);
-      const { keeper, k1, duplicate } = await setup(tx, s);
-      await expect(candidates.changePerson(k1.id, duplicate.id)).resolves.toMatchObject({ person_id: duplicate.id, old_person_deleted: true });
+  it("change person of a person's last contest merges it into the target: logged, fields filled, undoable", async () => {
+    await inRollbackTx('change person merge', async (tx, s) => {
+      const { candidates, persons } = services(tx);
+      const { keeper, k1, duplicate, d1, d2 } = await setup(tx, s);
+      await tx.persons.update({ where: { id: keeper.id }, data: { education: 'Graduate' } });
+      const [keeperBefore, targetBefore] = [await person(tx, keeper.id), await person(tx, duplicate.id)];
+
+      // k1 is the keeper's only contest: moving it merges the keeper into the duplicate.
+      const out = await candidates.changePerson(k1.id, duplicate.id);
+      expect(out).toMatchObject({ person_id: duplicate.id, old_person_deleted: true, merge_id: expect.any(String) });
       expect(await person(tx, keeper.id)).toBeNull();
-      expect(await auditActions(tx, [k1.id, keeper.id])).toEqual([`CANDIDATE_LINK_PERSON:${k1.id}`, `PERSON_DELETE:${keeper.id}`]);
-      const del = await tx.audit_logs.findFirst({ where: { action: 'PERSON_DELETE', entity_id: keeper.id } });
-      expect(del.old_value).toMatchObject({ id: keeper.id, name: 'TEST MERGE KEEPER', bio: 'keeper bio' });
+      expect(await person(tx, duplicate.id)).toEqual({ ...targetBefore, education: 'Graduate' });
+      expect(await tx.person_merges.findUnique({ where: { id: out.merge_id } })).toMatchObject({
+        keeper_ref: duplicate.id, candidate_ids: [k1.id], filled_fields: { education: null },
+      });
+      expect(await auditActions(tx, [k1.id, keeper.id, duplicate.id])).toEqual([`PERSON_MERGE:${duplicate.id}`, `CANDIDATE_LINK_PERSON:${k1.id}`]);
+
+      await expect(persons.undoMerge(out.merge_id!)).resolves.toMatchObject({ undone: true, person_id: keeper.id });
+      expect([await person(tx, keeper.id), await person(tx, duplicate.id)]).toEqual([keeperBefore, targetBefore]);
+      expect([await personOf(tx, k1.id), await personOf(tx, d1.id), await personOf(tx, d2.id)]).toEqual([keeper.id, duplicate.id, duplicate.id]);
+    });
+  });
+
+  it('change person of one of several contests is a plain move: no merge log, the old person kept', async () => {
+    await inRollbackTx('change person move', async (tx, s) => {
+      const { candidates } = services(tx);
+      const { keeper, duplicate, d1 } = await setup(tx, s);
+      await expect(candidates.changePerson(d1.id, keeper.id)).resolves.toMatchObject({ person_id: keeper.id, old_person_deleted: false, merge_id: null });
+      expect(await person(tx, duplicate.id)).not.toBeNull();
+      expect(await tx.person_merges.count({ where: { keeper_ref: keeper.id } })).toBe(0);
+      expect(await auditActions(tx, [d1.id, duplicate.id, keeper.id])).toEqual([`CANDIDATE_LINK_PERSON:${d1.id}`]);
     });
   });
 

@@ -14,7 +14,4 @@ describe('notUndoableLabel', () => {
   it('says a contest has moved', () => {
     expect(notUndoableLabel({ ...base, not_undoable_reason: 'contests_moved' })).toBe("Can't undo: a contest has moved since");
   });
-  it('says the keeper is missing', () => {
-    expect(notUndoableLabel({ ...base, not_undoable_reason: 'keeper_missing' })).toMatch(/no longer exists/);
-  });
 });

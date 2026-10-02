@@ -173,9 +173,12 @@ export function CandidateRecord({ id, onLoaded, onChanged, onBack, onOpenCandida
             open={pending?.kind === 'change'}
             title="Change person?"
             description={pending?.kind === 'change'
-              ? `This contest moves to ${pending.person.name}.${sole ? ` ${currentPerson} has no other contests, so that person record is deleted.` : ''}`
+              ? `This contest moves to ${pending.person.name}.${sole
+                ? ` It is ${currentPerson}'s only contest, so ${currentPerson} is merged into ${pending.person.name}: its details fill`
+                  + ` any empty fields there, and a super admin can undo the merge from ${pending.person.name}'s merge history.`
+                : ''}`
               : ''}
-            confirmLabel="Move contest"
+            confirmLabel={sole ? 'Move and merge' : 'Move contest'}
             tone="primary"
             busy={ed.isLinking}
             onConfirm={() => { void confirmPending(); }}

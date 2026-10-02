@@ -104,6 +104,8 @@ export class AdminCandidateDto {
   @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
   /** Only on the detail response. */
   @Expose() @Type(() => AdminPersonContestsDto) person_contests?: AdminPersonContestsDto | null;
+  /** Only on the change person response: the merge log id when moving the person's last contest merged it. */
+  @Expose() merge_id?: string | null;
 
   /** The admin reads the relations as party / constituency / person (its `Candidate` type), not the Prisma names. */
   @Expose({ name: 'parties' })
@@ -152,7 +154,7 @@ export class AdminPersonMergeDto {
   /** When it was undone; null while it stands. */
   @Expose() @Transform(toIso) undone_at: string | null;
   /** Why it can't be undone: already undone, a logged contest has moved since, or the keeper no longer exists. */
-  @Expose() not_undoable_reason: 'undone' | 'contests_moved' | 'keeper_missing' | null;
+  @Expose() not_undoable_reason: 'undone' | 'contests_moved' | null;
 }
 
 export class AdminPersonDto {

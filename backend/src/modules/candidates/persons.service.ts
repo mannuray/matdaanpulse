@@ -27,7 +27,7 @@ export interface PersonInput {
 }
 
 /** Persons list filter on the number of candidacies (GET /admin/persons?contests=). */
-export type ContestsFilter = '1' | '2plus';
+export type ContestsFilter = '0' | '1' | '2plus';
 
 /** Every person column a merge snapshots and an undo recreates (updated_at is left to the database). */
 const PERSON_COLUMNS = [
@@ -39,7 +39,7 @@ const PERSON_COLUMNS = [
 const FILLABLE = ['photo_url', 'gender', 'education', 'date_of_birth', 'bio', 'wikipedia_url', 'caste', 'religion', 'state_id'] as const;
 
 type Row = Record<string, unknown>;
-type NotUndoableReason = 'undone' | 'contests_moved' | 'keeper_missing' | null;
+type NotUndoableReason = 'undone' | 'contests_moved' | null;
 
 const jsonEqual = (a: unknown, b: unknown) => JSON.stringify(toJsonSafe(a)) === JSON.stringify(toJsonSafe(b));
 
@@ -147,7 +147,7 @@ export class PersonsService {
   }
 
   /**
-   * The admin persons list. `contests` filters on the number of candidacies (1, or 2 and more): Prisma
+   * The admin persons list. `contests` filters on the number of candidacies (none, 1, or 2 and more): Prisma
    * cannot filter on a relation count, so that page of ids and the total come from SQL (the other filters
    * applied there too) and the rows are then loaded by id, in the same name order.
    */
@@ -173,9 +173,9 @@ export class PersonsService {
     let data: Prisma.personsGetPayload<{ include: typeof include }>[];
     if (filters?.contests) {
       const conds: Prisma.Sql[] = [
-        filters.contests === '1'
-          ? Prisma.sql`(SELECT COUNT(*) FROM candidates c WHERE c.person_id = p.id) = 1`
-          : Prisma.sql`(SELECT COUNT(*) FROM candidates c WHERE c.person_id = p.id) >= 2`,
+        filters.contests === '2plus'
+          ? Prisma.sql`(SELECT COUNT(*) FROM candidates c WHERE c.person_id = p.id) >= 2`
+          : Prisma.sql`(SELECT COUNT(*) FROM candidates c WHERE c.person_id = p.id) = ${Prisma.raw(filters.contests === '0' ? '0' : '1')}`,
       ];
       if (q) conds.push(Prisma.sql`p.name ILIKE ${`%${q.replace(/[\\%_]/g, '\\$&')}%`}`);
       if (filters.state_id) conds.push(Prisma.sql`p.state_id = ${filters.state_id}`);
@@ -216,7 +216,8 @@ export class PersonsService {
   }
 
   /**
-   * Merge the duplicate into the keeper (SUPER_ADMIN), in one transaction:
+   * Merge the duplicate into the keeper (SUPER_ADMIN; change person also merges, for any editor, when it moves
+   * a person's last contest), in one transaction:
    *  1. snapshot the duplicate's row and its candidate ids — the orphan trigger (migration 018) deletes the
    *     duplicate as soon as its last candidate moves;
    *  2. fill the keeper's NULL identity fields from the duplicate (never overwriting a value). District and
@@ -229,49 +230,52 @@ export class PersonsService {
    */
   async merge(duplicateId: string, keeperId: string, userId?: string) {
     if (duplicateId === keeperId) throw new BadRequestException('source_id and target_id must differ');
-    return this.prisma.$transaction(async (tx) => {
-      const [duplicate, keeper] = await Promise.all([
-        tx.persons.findUnique({ where: { id: duplicateId } }),
-        tx.persons.findUnique({ where: { id: keeperId } }),
-      ]);
-      if (!duplicate) throw new PersonNotFoundException(duplicateId);
-      if (!keeper) throw new PersonNotFoundException(keeperId);
-      const snapshot = toJsonSafe(Object.fromEntries(PERSON_COLUMNS.map((c) => [c, duplicate[c]]))) as Row;
-      const candidateIds = (await tx.candidates.findMany({ where: { person_id: duplicateId }, select: { id: true } })).map((c) => c.id);
+    return this.prisma.$transaction((tx) => this.mergeInTx(tx, duplicateId, keeperId, userId));
+  }
 
-      const fill: Row = {};
-      for (const f of FILLABLE) if (keeper[f] == null && duplicate[f] != null) fill[f] = duplicate[f];
-      const keeperState = keeper.state_id ?? duplicate.state_id;
-      if (keeperState != null && keeperState === duplicate.state_id) {
-        for (const f of ['district_id', 'region_id'] as const) if (keeper[f] == null && duplicate[f] != null) fill[f] = duplicate[f];
-      }
-      const filledFields = Object.fromEntries(Object.keys(fill).map((f) => [f, null]));
-      if (Object.keys(fill).length) await tx.persons.update({ where: { id: keeperId }, data: fill as Prisma.personsUncheckedUpdateInput });
+  /** merge() inside the caller's transaction (change person uses it for a person's last contest). */
+  async mergeInTx(tx: Prisma.TransactionClient, duplicateId: string, keeperId: string, userId?: string) {
+    const [duplicate, keeper] = await Promise.all([
+      tx.persons.findUnique({ where: { id: duplicateId } }),
+      tx.persons.findUnique({ where: { id: keeperId } }),
+    ]);
+    if (!duplicate) throw new PersonNotFoundException(duplicateId);
+    if (!keeper) throw new PersonNotFoundException(keeperId);
+    const snapshot = toJsonSafe(Object.fromEntries(PERSON_COLUMNS.map((c) => [c, duplicate[c]]))) as Row;
+    const candidateIds = (await tx.candidates.findMany({ where: { person_id: duplicateId }, select: { id: true } })).map((c) => c.id);
 
-      if (candidateIds.length) {
-        const { count } = await tx.candidates.updateMany({ where: { id: { in: candidateIds }, person_id: duplicateId }, data: { person_id: keeperId } });
-        if (count !== candidateIds.length) throw new PersonMergeConflictException({ expected: candidateIds.length, moved: count });
-      }
-      // The orphan trigger has already deleted a duplicate that had candidates; this covers one with none.
-      await tx.persons.deleteMany({ where: { id: duplicateId } });
+    const fill: Row = {};
+    for (const f of FILLABLE) if (keeper[f] == null && duplicate[f] != null) fill[f] = duplicate[f];
+    const keeperState = keeper.state_id ?? duplicate.state_id;
+    if (keeperState != null && keeperState === duplicate.state_id) {
+      for (const f of ['district_id', 'region_id'] as const) if (keeper[f] == null && duplicate[f] != null) fill[f] = duplicate[f];
+    }
+    const filledFields = Object.fromEntries(Object.keys(fill).map((f) => [f, null]));
+    if (Object.keys(fill).length) await tx.persons.update({ where: { id: keeperId }, data: fill as Prisma.personsUncheckedUpdateInput });
 
-      const log = await tx.person_merges.create({
-        data: {
-          keeper_id: keeperId, keeper_ref: keeperId, duplicate: snapshot as Prisma.InputJsonValue, candidate_ids: candidateIds,
-          filled_fields: filledFields, merged_by: userId ?? null,
-        },
-        select: { id: true },
-      });
-      await this.audit.record(
-        {
-          userId, action: 'PERSON_MERGE', entityType: 'person', entityId: keeperId,
-          oldValue: { source_id: duplicateId, source_name: duplicate.name },
-          newValue: { target_id: keeperId, merge_id: log.id, candidates_moved: candidateIds.length, filled_fields: Object.keys(fill) },
-        },
-        tx,
-      );
-      return { merged: true, target_id: keeperId, merge_id: log.id };
+    if (candidateIds.length) {
+      const { count } = await tx.candidates.updateMany({ where: { id: { in: candidateIds }, person_id: duplicateId }, data: { person_id: keeperId } });
+      if (count !== candidateIds.length) throw new PersonMergeConflictException({ expected: candidateIds.length, moved: count });
+    }
+    // The orphan trigger has already deleted a duplicate that had candidates; this covers one with none.
+    await tx.persons.deleteMany({ where: { id: duplicateId } });
+
+    const log = await tx.person_merges.create({
+      data: {
+        keeper_id: keeperId, keeper_ref: keeperId, duplicate: snapshot as Prisma.InputJsonValue, candidate_ids: candidateIds,
+        filled_fields: filledFields, merged_by: userId ?? null,
+      },
+      select: { id: true },
     });
+    await this.audit.record(
+      {
+        userId, action: 'PERSON_MERGE', entityType: 'person', entityId: keeperId,
+        oldValue: { source_id: duplicateId, source_name: duplicate.name },
+        newValue: { target_id: keeperId, merge_id: log.id, candidates_moved: candidateIds.length, filled_fields: Object.keys(fill) },
+      },
+      tx,
+    );
+    return { merged: true, target_id: keeperId, merge_id: log.id };
   }
 
   /**
@@ -377,7 +381,7 @@ export class PersonsService {
       merged_by: m.merger?.name ?? null,
       undoable: !m.undone_at && m.candidate_ids.every((id) => current.has(id)),
       undone_at: m.undone_at,
-      // The keeper is the person being viewed, so it exists: 'keeper_missing' can't arise here (the undo itself checks).
+      // The keeper is the person being viewed, so it exists (the undo itself checks that keeper_ref still does).
       not_undoable_reason: (m.undone_at ? 'undone' : m.candidate_ids.every((id) => current.has(id)) ? null : 'contests_moved') as NotUndoableReason,
     }));
   }

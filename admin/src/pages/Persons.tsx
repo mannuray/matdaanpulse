@@ -22,6 +22,8 @@ const CONTEST_OPTIONS: { value: PersonFilters['contests']; label: string }[] = [
   { value: '', label: 'All' },
   { value: '1', label: '1 contest' },
   { value: '2plus', label: '2 or more' },
+  // Persons made on their own (no contest moved away, so no trigger removed them): open one to merge it.
+  { value: '0', label: 'None' },
 ];
 
 const COLUMNS: Column<PersonWithStats>[] = [

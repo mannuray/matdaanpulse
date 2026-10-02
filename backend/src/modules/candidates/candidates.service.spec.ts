@@ -9,7 +9,7 @@ import { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dt
 describe('CandidatesService.personContests', () => {
   const make = (rows: unknown[]) => {
     const prisma = { candidates: { findMany: jest.fn().mockResolvedValue(rows) } };
-    return { svc: new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any)), prisma };
+    return { svc: new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any), {} as any), prisma };
   };
 
   it('counts every contest of the person and takes the earliest election year', async () => {
@@ -48,7 +48,7 @@ describe('CandidatesService.create', () => {
       }),
     };
     const notifier = { afterCommit: jest.fn(async () => { order.push('afterCommit'); }) };
-    const svc = new CandidatesService(prisma as any, notifier as any, new AuditLogService(prisma as any));
+    const svc = new CandidatesService(prisma as any, notifier as any, new AuditLogService(prisma as any), {} as any);
     return { svc, tx, prisma, notifier, order };
   }
 
@@ -180,7 +180,7 @@ describe('CandidatesService.update audit rows', () => {
       },
       audit_logs: { create: jest.fn().mockResolvedValue({}) },
     };
-    const svc = new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any));
+    const svc = new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any), {} as any);
     return { svc, prisma };
   }
   const auditData = (prisma: any) => prisma.audit_logs.create.mock.calls.map((c: any) => c[0].data);
@@ -235,15 +235,18 @@ describe('CandidatesService.changePerson / split', () => {
       $executeRawUnsafe: jest.fn().mockResolvedValue(0),
     };
     const prisma = { $transaction: jest.fn(async (fn: (t: typeof tx) => unknown) => fn(tx)), audit_logs: { create: jest.fn() } };
-    const svc = new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any));
+    const persons = { mergeInTx: jest.fn(async () => { moved = true; return { merged: true, target_id: 'p-new', merge_id: 'm1' }; }) };
+    const svc = new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any), persons as any);
     const audit = () => tx.audit_logs.create.mock.calls.map((c: any) => c[0].data);
-    return { svc, tx, prisma, audit };
+    return { svc, tx, prisma, audit, persons };
   }
 
   it('change person moves the candidacy and writes CANDIDATE_LINK_PERSON, in one transaction', async () => {
-    const { svc, tx, prisma, audit } = make();
-    await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ person_id: 'p-new', old_person_deleted: false });
+    const { svc, tx, prisma, audit, persons } = make();
+    await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ person_id: 'p-new', old_person_deleted: false, merge_id: null });
     expect(prisma.$transaction).toHaveBeenCalledTimes(1);
+    expect(tx.candidates.count).toHaveBeenCalledWith({ where: { person_id: 'p-old' } });
+    expect(persons.mergeInTx).not.toHaveBeenCalled();
     expect(tx.candidates.update).toHaveBeenCalledWith({ where: { id: 'c1' }, data: { person_id: 'p-new' } });
     expect(audit()).toEqual([{
       user_id: 'u1', action: 'CANDIDATE_LINK_PERSON', entity_type: 'candidate', entity_id: 'c1',
@@ -251,9 +254,22 @@ describe('CandidatesService.changePerson / split', () => {
     }]);
   });
 
-  it('change person that empties the old person also writes PERSON_DELETE with its snapshot (taken before the move)', async () => {
+  it("change person of the old person's last contest is a merge of the old person into the target, in the same transaction", async () => {
+    const { svc, tx, audit, persons } = make({ contests: 1 });
+    tx.candidates.findUnique.mockResolvedValueOnce(candidate).mockResolvedValueOnce({ ...candidate, person_id: 'p-new' });
+    await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ person_id: 'p-new', old_person_deleted: true, merge_id: 'm1' });
+    expect(persons.mergeInTx).toHaveBeenCalledWith(tx, 'p-old', 'p-new', 'u1');
+    // The merge moved the contest; no separate update, no PERSON_DELETE (the merge log keeps the old person).
+    expect(tx.candidates.update).not.toHaveBeenCalled();
+    expect(audit()).toEqual([{
+      user_id: 'u1', action: 'CANDIDATE_LINK_PERSON', entity_type: 'candidate', entity_id: 'c1',
+      old_value: { person_id: 'p-old' }, new_value: { person_id: 'p-new', merge_id: 'm1' },
+    }]);
+  });
+
+  it('change person that a concurrent move left emptying the old person also writes PERSON_DELETE with its snapshot', async () => {
     const { svc, audit } = make({ oldPersonGone: true });
-    await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ old_person_deleted: true });
+    await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ old_person_deleted: true, merge_id: null });
     expect(audit().map((a: any) => a.action)).toEqual(['CANDIDATE_LINK_PERSON', 'PERSON_DELETE']);
     expect(audit()[1]).toMatchObject({
       entity_type: 'person', entity_id: 'p-old',
@@ -268,11 +284,12 @@ describe('CandidatesService.changePerson / split', () => {
     expect(audit()).toEqual([]);
   });
 
-  it('change person to an unknown person is a 404 and moves nothing', async () => {
-    const { svc, tx } = make({ target: null });
+  it('change person to an unknown person is a 404 and moves or merges nothing', async () => {
+    const { svc, tx, persons } = make({ target: null, contests: 1 });
     const err = await svc.changePerson('c1', 'p-new', 'u1').catch((e) => e);
     expect(err.getStatus()).toBe(404);
     expect(tx.candidates.update).not.toHaveBeenCalled();
+    expect(persons.mergeInTx).not.toHaveBeenCalled();
   });
 
   it('change person or split of an unknown candidate is a 404', async () => {
@@ -312,7 +329,7 @@ describe('CandidatesService.seatResult', () => {
     const prisma = {
       candidates: { findUnique: jest.fn().mockResolvedValue(candidate), findMany: jest.fn().mockResolvedValue(seat) },
     };
-    const svc = new CandidatesService(prisma as any, {} as any, {} as any);
+    const svc = new CandidatesService(prisma as any, {} as any, {} as any, {} as any);
     return { svc, prisma };
   }
 

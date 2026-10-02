@@ -7,7 +7,7 @@ import type { Person, PersonWithStats, PersonWithCandidates } from '../types';
  */
 
 /** Persons list filter by number of contests: exactly one, or two or more. */
-export type ContestsFilter = '1' | '2plus';
+export type ContestsFilter = '0' | '1' | '2plus';
 
 export function getPersons(page = 1, limit = 50, q?: string, filters: { stateId?: number; regionId?: number; contests?: ContestsFilter } = {}) {
   const params = new URLSearchParams({ page: String(page), limit: String(limit) });
@@ -20,13 +20,6 @@ export function getPersons(page = 1, limit = 50, q?: string, filters: { stateId?
 
 export function getPerson(id: string) {
   return apiFetch<PersonWithCandidates>(`/admin/persons/${id}`);
-}
-
-export function createPerson(name: string, bio?: { photo_url?: string; gender?: string; education?: string; date_of_birth?: string }) {
-  return apiFetch<Person>('/admin/persons', {
-    method: 'POST',
-    body: JSON.stringify({ name, ...bio }),
-  });
 }
 
 /** The fields PUT /admin/persons/:id accepts (the backend refuses any other key, e.g. metadata). */

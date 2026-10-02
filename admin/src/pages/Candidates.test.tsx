@@ -551,15 +551,23 @@ describe('Candidate record: master record', () => {
     expect(svc.changeCandidatePerson).not.toHaveBeenCalled();
   });
 
-  it("Change person on a person's only contest says the old record is deleted", async () => {
+  it("Change person on a person's only contest says it merges, then shows the merge", async () => {
     mockPersons([person('p5', 'Anil Kumar Singh', 2)]);
+    svc.changeCandidatePerson.mockImplementationOnce(async () => ({ merge_id: 'm1' }));
     renderAt('/candidates/c2');
     await record('Anil Kumar');
     fireEvent.click(within(master()).getByRole('button', { name: 'Change person' }));
     fireEvent.change(within(master()).getByLabelText('Find a person'), { target: { value: 'Anil' } });
     fireEvent.click(await within(master()).findByRole('button', { name: 'Move to Anil Kumar Singh' }));
-    expect(within(await dialog('Change person?')).getByText(
-      'This contest moves to Anil Kumar Singh. Anil Kumar has no other contests, so that person record is deleted.',
+    const confirm = await dialog('Change person?');
+    expect(within(confirm).getByText(
+      "This contest moves to Anil Kumar Singh. It is Anil Kumar's only contest, so Anil Kumar is merged into Anil Kumar Singh: "
+      + "its details fill any empty fields there, and a super admin can undo the merge from Anil Kumar Singh's merge history.",
+    )).toBeTruthy();
+    fireEvent.click(within(confirm).getByRole('button', { name: 'Move and merge' }));
+    await waitFor(() => expect(svc.changeCandidatePerson).toHaveBeenCalledWith('c2', 'p5'));
+    expect(await screen.findByText(
+      "Merged Anil Kumar into Anil Kumar Singh. A super admin can undo it from Anil Kumar Singh's merge history.",
     )).toBeTruthy();
   });
 
