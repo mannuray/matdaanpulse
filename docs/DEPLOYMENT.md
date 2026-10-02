@@ -189,6 +189,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   FEEDBACK_IP_SALT=<openssl rand -hex 32>
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
+  BLOB_READ_WRITE_TOKEN=<Vercel Blob store read-write token>   # admin image uploads; unset = upload returns 503
   # Defaults, set only to change them:
   # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5  THROTTLE_FEEDBACK_PER_MIN=5  SSE_MAX_CONNECTIONS=200
   # LOG_LEVEL=info  ALLOW_REGISTRATION=false  CORS_ORIGIN_REGEX=
@@ -218,6 +219,10 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
    | Output | `dist` | `dist` |
    | Env (build time) | `VITE_API_BASE_URL=https://api.<domain>/api/v1` | same |
    | Custom domain | `app.<domain>` | `admin.<domain>` |
+
+   **Admin extra build env (mandatory):** `VITE_PUBLIC_SITE_URL=<public site origin>` (currently `https://www.matdaanpulse.in`; later `https://app.<domain>`). Seeded party symbols are site-relative `/symbols/...` paths; `assetUrl()` resolves them against this. The default (`localhost:3080`) would break every symbol image in production. Currently set on the Vercel project `matdaanpulse-admin`.
+
+   **Image storage:** create a public Vercel Blob store (Vercel → Storage → Blob) and copy its read-write token into the Render env `BLOB_READ_WRITE_TOKEN` (§5.3). Uploaded party symbols and person photos live there; the DB stores the blob URL. Orphaned blobs are not cleaned up.
 
    SPA fallback: each app ships `public/_redirects` (`/*  /index.html  200`), already committed in `frontend/` and `admin/`. The admin dev proxy for `/symbols` (`admin/vite.config.ts`) does not exist in production — serve party symbols from `https://app.<domain>/symbols/…` or copy them into the admin build.
 3. **API hostname:** DNS `CNAME api → <service>.onrender.com`, **proxied** (orange cloud); add `api.<domain>` as a custom domain in Render so TLS validates. SSL mode **Full (strict)**.

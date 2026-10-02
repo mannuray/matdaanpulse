@@ -33,8 +33,8 @@ Date: 2026-10-02 · Status: approved in chat, awaiting spec review
 - Storage: `put()` from `@vercel/blob`, `access: 'public'`, `addRandomSuffix: true`, correct `contentType`. Paths: `parties/<id>/logo.<ext>`, `parties/<id>/eci.<ext>`, `persons/<id>/photo.<ext>`.
 - Response: `{ url, pathname, content_type, size }`.
 - SVG safety: files are served from the Blob store's own domain (not an app origin) and both apps render them only via `<img>`, which never runs scripts in an SVG.
-- Audit: `AuditLogService.record({ action: 'MEDIA_UPLOAD', entityType: 'party' | 'person', entityId: owner_id, … })`. The actual field change is audited by the existing party/person update when the admin saves.
-- Config: `BLOB_READ_WRITE_TOKEN` (Render env, `.env.example`). Without it the endpoint returns 503 "Image upload is not configured" — the rest of the API is unaffected.
+- Audit: no upload audit row (deviation from the first draft, which had `MEDIA_UPLOAD`). The field change is audited by the party/person update on Save; `RECORD_AUDIT_ACTIONS` drives "last edited by", and an upload that is cancelled must not show as an edit. Orphaned blobs (replaced, or uploaded then cancelled) are left in place.
+- Config: `BLOB_READ_WRITE_TOKEN` (Render env, `.env.example`). Without it the endpoint returns 503 "Image upload is not configured" (`MediaNotConfiguredException`, a `BusinessException`, code `MEDIA_0001`; `HttpExceptionFilter` passes BusinessException 5xx messages through) — the rest of the API is unaffected.
 - New module `backend/src/modules/media/` (controller, service, validator) so the storage call is mockable in one place.
 - Persons/parties update DTOs keep accepting `photo_url` / `symbol_url` / `eci_symbol_url` unchanged (URL or relative path, or null to remove).
 
