@@ -19,10 +19,9 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
     return <PageShell back={back}><p className="py-16 text-center text-muted">{vm.status === 'notFound' ? t('pp_not_found') : vm.status === 'error' ? t('error_occurred') : t('loading')}</p></PageShell>;
   }
   const g = vm.facts.gender;
-  const genderKey = g ? ({ m: 'M', male: 'M', f: 'F', female: 'F', o: 'O', other: 'O' } as Record<string, string>)[g.trim().toLowerCase()] : undefined;
   const facts = [
     vm.facts.age != null ? t('pp_age', { n: vm.facts.age }) : null,
-    g ? (genderKey ? t(`pp_gender_${genderKey}`) : g) : null,
+    g ? (g.labelKey ? t(g.labelKey) : g.raw) : null,
     vm.facts.education, vm.facts.home,
   ].filter(Boolean) as string[];
   const lastSwitch = vm.stats.switches[vm.stats.switches.length - 1];
@@ -30,7 +29,7 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
     { label: t('pp_contests'), value: String(vm.stats.contests) },
     { label: t('pp_wins'), value: String(vm.stats.wins) },
     ...(vm.stats.winRate != null ? [{ label: t('pp_win_rate'), value: `${vm.stats.winRate}%` }] : []),
-    { label: t('pp_parties'), value: String(vm.stats.parties.length), sub: lastSwitch ? t('pp_switch', lastSwitch) : undefined },
+    { label: t('pp_parties'), value: String(vm.stats.parties.length), sub: lastSwitch ? t('pp_switch', { from: lastSwitch.fromLabel, to: lastSwitch.toLabel, year: lastSwitch.year }) : undefined },
   ];
   const latest = vm.latest;
   return (
@@ -66,7 +65,7 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
         {vm.contests.length > 0 && (
           <section>
             <h2 className={h2}>{t('pp_timeline')}</h2>
-            <ol className="flex flex-col gap-2">
+            <ol className="flex list-none flex-col gap-2 pl-0">
               {vm.contests.map(c => (
                 <li key={c.key} className={cn(tile, 'relative hover:border-accent/60')}>
                   {/* The card link is stretched over the card; the party link sits above it, outside the card's <a>. */}
@@ -76,7 +75,7 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
                       <div className="font-display font-bold">{c.electionName} · {c.constituency}</div>
                       {c.partyHref && <Link to={c.partyHref} className="relative z-10 mt-1 inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} />{c.partyLabel}</Link>}
                     </div>
-                    <span className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{c.status === 'LOST' ? t('pp_lost') : t(`studio_status_${c.status.toLowerCase()}`)}</span>
+                    <span className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>
                   </div>
                   <div className="tabular mt-2 flex flex-wrap gap-x-4 text-sm">
                     <span className="font-semibold">{formatIN(c.votes)}</span>
@@ -106,8 +105,8 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
               <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-sm bg-live" />{t('pp_liabilities')}</span>
             </div>
             <ul className="mt-3 divide-y divide-line text-sm">
-              {[...vm.affidavit].reverse().map(p => (
-                <li key={p.year} className="flex justify-between gap-2 py-1.5"><span className="font-semibold">{p.year}</span>
+              {[...vm.affidavit].reverse().map((p, i) => (
+                <li key={`${p.year}-${i}`} className="flex justify-between gap-2 py-1.5"><span className="font-semibold">{p.year}</span>
                   <span className="tabular text-muted">{[formatRupees(p.assets), p.liabilities != null ? `− ${formatRupees(p.liabilities)}` : null].filter(Boolean).join(' / ')}</span></li>
               ))}
             </ul>

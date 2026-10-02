@@ -48,7 +48,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
   const header = (
     <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
       {loading && <><Skel className="h-5 w-16" /><Skel className="h-4 w-28" /></>}
-      {(vm.constNo != null || vm.type) && <span className="rounded-md border border-line px-2 py-0.5 font-mono text-xs text-ink">{[vm.constNo != null && `No. ${vm.constNo}`, vm.type && vm.type !== 'GEN' && vm.type].filter(Boolean).join(' · ')}</span>}
+      {(vm.constNo != null || vm.type) && <span className="rounded-md border border-line px-2 py-0.5 font-mono text-xs text-ink">{[vm.constNo != null && t('seat_no', { n: vm.constNo }), vm.type && vm.type !== 'GEN' && vm.type].filter(Boolean).join(' · ')}</span>}
       {vm.place && <span>{vm.place}</span>}
       <LiveChip live={vm.live} />
       <button type="button" onClick={vm.onToggleTrack} aria-pressed={vm.tracked}
@@ -92,24 +92,29 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
           )}
         </tbody>
       </table>
-      <div className="mt-4 flex flex-wrap items-center gap-2">
-        {vm.history.length > 0 && <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t('seat_past_winners')}</span>}
-        {loading && vm.history.length === 0 && [0, 1, 2].map(i => <Skel key={i} className="h-6 w-24 rounded-md" />)}
-        {vm.history.map((h, i) => {
-          const m = h.party ? vm.partyMeta.get(h.party) : undefined;
-          return (
-            <span key={`${h.year}-${i}`} className="inline-flex items-center gap-1.5 rounded-md border border-line px-2 py-0.5 text-xs text-ink">
-              {h.year}<PartyMark mark={m?.mark ?? null} color={m?.color ?? null} label={m?.abbreviation ?? h.party ?? ''} />{m?.abbreviation ?? h.party}{h.vote_share != null && ` · ${h.vote_share}%`}
-            </span>
-          );
-        })}
-        <Link to={vm.fullPageHref} className="ml-auto text-sm font-semibold text-accent hover:underline">{t('seat_full_page')} →</Link>
-      </div>
+      {/* Footer: past winners, then the 3-way / spoiler notes, then the full-page link last. */}
+      {(vm.history.length > 0 || loading) && (
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          {vm.history.length > 0 && <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t('seat_past_winners')}</span>}
+          {loading && vm.history.length === 0 && [0, 1, 2].map(i => <Skel key={i} className="h-6 w-24 rounded-md" />)}
+          {vm.history.map((h, i) => {
+            const m = h.party ? vm.partyMeta.get(h.party) : undefined;
+            return (
+              <span key={`${h.year}-${i}`} className="inline-flex items-center gap-1.5 rounded-md border border-line px-2 py-0.5 text-xs text-ink">
+                {h.year}<PartyMark mark={m?.mark ?? null} color={m?.color ?? null} label={m?.abbreviation ?? h.party ?? ''} />{m?.abbreviation ?? h.party}{h.vote_share != null && ` · ${h.vote_share}%`}
+              </span>
+            );
+          })}
+        </div>
+      )}
       {vm.notes.map(n => (
         <p key={n.kind} className="mt-3 rounded-tile border border-warn/50 bg-warn/10 px-3 py-2 text-xs text-warn-text">
-          ⚠ {n.kind === 'threeWay' ? t('seat_three_way') : t('seat_spoiler', { party: n.party, votes: formatIN(n.votes), margin: formatIN(n.margin) })}
+          ⚠ {n.kind === 'threeWay' ? t('seat_three_way') : t('seat_spoiler', { party: vm.partyMeta.get(n.party)?.abbreviation ?? n.party, votes: formatIN(n.votes), margin: formatIN(n.margin) })}
         </p>
       ))}
+      <div className="mt-4 flex justify-end">
+        <Link to={vm.fullPageHref} className="text-sm font-semibold text-accent hover:underline">{t('seat_full_page')} →</Link>
+      </div>
     </DetailDialog>
   );
 }

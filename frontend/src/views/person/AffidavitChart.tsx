@@ -13,7 +13,7 @@ export function AffidavitChart({ points, label }: { points: PersonPageVM['affida
       {points.map((p, i) => {
         const x = PAD + i * slot + slot / 2;
         return (
-          <g key={p.year}>
+          <g key={`${p.year}-${i}`}>
             {p.assets != null && <rect x={x - bw - 1} y={y(p.assets)} width={bw} height={H - PAD - y(p.assets)} className="fill-accent" />}
             {p.liabilities != null && <rect x={x + 1} y={y(p.liabilities)} width={bw} height={H - PAD - y(p.liabilities)} className="fill-live" />}
             <text x={x} y={H - 4} textAnchor="middle" className="fill-muted text-[9px]">{p.year}</text>

@@ -15,6 +15,10 @@ import type { SeatHistoryEntry, Election } from '../../model/types';
 const LS_PC = '/geo/india_pc.geojson';
 const NOT_FOUND = 'NOT_FOUND' as const;
 
+export const SEAT_CLASSES = ['stronghold', 'loyal', 'swing', 'anti_incumbency', 'new'] as const;
+export type SeatClass = typeof SEAT_CLASSES[number];
+const seatClass = (v: unknown): SeatClass | null => (SEAT_CLASSES as readonly unknown[]).includes(v) ? v as SeatClass : null;
+
 export interface ConstituencyPageVM {
   status: 'loading' | 'error' | 'notFound' | 'ready';
   electionName: string; electionHref: string; stateName: string | null; districtName: string | null;
@@ -23,7 +27,8 @@ export interface ConstituencyPageVM {
   facts: { electors: number | null; votesPolled: number | null; turnout: number | null; phase: number | null; region: string | null; district: string | null; progress: { current: number; total: number } | null };
   /** All candidates, NOTA last, no cap. */
   view: SeatView;
-  history: SeatHistoryEntry[]; dominance: string | null; notes: SeatNote[];
+  /** Seat classification from the analysis; null for a value this page has no label for. */
+  history: SeatHistoryEntry[]; dominance: SeatClass | null; notes: SeatNote[];
   partyMeta: Map<string, PartyMeta>;
   locator: { features: GeoFeature[]; seat: GeoFeature | null } | null;
   tracked: boolean; onToggleTrack(): void; shareText: string; personHref(id: string): string;
@@ -97,7 +102,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
     },
     view,
     history: seatHistory(analysis, e?.year ?? 0),
-    dominance: (analysis as { dominance?: string } | null)?.dominance ?? null,
+    dominance: seatClass((analysis as { dominance?: string } | null)?.dominance),
     notes: seatNotes(view, analysis),
     partyMeta,
     locator,

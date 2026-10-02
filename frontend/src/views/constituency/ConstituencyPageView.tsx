@@ -71,10 +71,10 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
       <nav className="text-xs uppercase tracking-wider text-muted">{[vm.electionName, vm.stateName, vm.districtName].filter(Boolean).join(' › ')}</nav>
       <div className="flex flex-wrap items-center gap-3 border-b border-line pb-3">
         <h1 className="font-display text-4xl font-bold uppercase lg:text-5xl">{vm.name}</h1>
-        {(vm.constNo != null || vm.type) && <span className="rounded-md border border-line px-2 py-0.5 font-mono text-xs">{[vm.constNo != null && `No. ${vm.constNo}`, vm.type && vm.type !== 'GEN' && vm.type].filter(Boolean).join(' · ')}</span>}
+        {(vm.constNo != null || vm.type) && <span className="rounded-md border border-line px-2 py-0.5 font-mono text-xs">{[vm.constNo != null && t('seat_no', { n: vm.constNo }), vm.type && vm.type !== 'GEN' && vm.type].filter(Boolean).join(' · ')}</span>}
         <LiveChip live={vm.live} />
         <div className="ml-auto flex items-center gap-2">
-          <button type="button" onClick={vm.onToggleTrack} aria-pressed={vm.tracked} className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-white aria-pressed:bg-tile-raised aria-pressed:text-accent">{vm.tracked ? t('studio_tracked') : t('studio_track')}</button>
+          <button type="button" onClick={vm.onToggleTrack} aria-pressed={vm.tracked} className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-on-accent aria-pressed:bg-tile-raised aria-pressed:text-accent">{vm.tracked ? t('studio_tracked') : t('studio_track')}</button>
           <ShareMenu text={vm.shareText} />
         </div>
       </div>
@@ -179,12 +179,12 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
         <div className="grid gap-4 lg:grid-cols-2">
           {vm.history.length > 0 && (
             <section className={tile}>
-              <h2 className={cn(h2, 'flex items-center gap-2')}>{t('cp_seat_history')}{vm.dominance && <span className="rounded-md border border-warn/50 px-1.5 text-[11px] text-warn-text">{t(`studio_chip_${vm.dominance}`, vm.dominance)}</span>}</h2>
-              <ol className="flex flex-col gap-2">
-                {vm.history.map(h => {
+              <h2 className={cn(h2, 'flex items-center gap-2')}>{t('cp_seat_history')}{vm.dominance && <span className="rounded-md border border-warn/50 px-1.5 text-[11px] text-warn-text">{t(`cp_class_${vm.dominance}`)}</span>}</h2>
+              <ol className="flex list-none flex-col gap-2 pl-0">
+                {vm.history.map((h, i) => {
                   const m = h.party ? vm.partyMeta.get(h.party) : undefined;
                   return (
-                    <li key={h.year} className="rounded-tile border border-line p-3">
+                    <li key={`${h.year}-${i}`} className="rounded-tile border border-line p-3">
                       <div className="flex justify-between"><span className="font-display font-bold">{h.year}</span><span className="tabular text-sm text-ok-text">+{formatIN(h.margin)}</span></div>
                       <div className="mt-1 flex items-center gap-1.5"><PartyMark mark={m?.mark ?? null} color={m?.color ?? null} label={m?.abbreviation ?? h.party ?? ''} /><span className="font-semibold">{h.candidate}</span><span className="text-muted">({m?.abbreviation ?? h.party})</span>{h.vote_share != null && <span className="ml-auto text-sm">{h.vote_share}%</span>}</div>
                       {h.runner_up && <div className="mt-0.5 text-xs text-muted">{t('cp_runner_up', { name: `${h.runner_up}${h.runner_up_party ? ` (${vm.partyMeta.get(h.runner_up_party)?.abbreviation ?? h.runner_up_party})` : ''}` })}</div>}
@@ -197,7 +197,7 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
           {vm.notes.length > 0 && (
             <section className={tile}>
               <h2 className={h2}>{t('cp_insights')}</h2>
-              {vm.notes.map(n => <p key={n.kind} className="mb-2 rounded-tile border border-warn/50 bg-warn/10 px-3 py-2 text-sm text-warn-text">⚠ {n.kind === 'threeWay' ? t('seat_three_way') : t('seat_spoiler', { party: n.party, votes: formatIN(n.votes), margin: formatIN(n.margin) })}</p>)}
+              {vm.notes.map(n => <p key={n.kind} className="mb-2 rounded-tile border border-warn/50 bg-warn/10 px-3 py-2 text-sm text-warn-text">⚠ {n.kind === 'threeWay' ? t('seat_three_way') : t('seat_spoiler', { party: vm.partyMeta.get(n.party)?.abbreviation ?? n.party, votes: formatIN(n.votes), margin: formatIN(n.margin) })}</p>)}
             </section>
           )}
         </div>

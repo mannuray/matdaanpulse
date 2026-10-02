@@ -73,6 +73,19 @@ describe('ConstituencyPageView', () => {
     expect(within(table).getAllByRole('link').filter(a => a.getAttribute('href')?.includes('?party='))).toHaveLength(2);
   });
 
+  it('classification chip uses the singular page label; the history list has no markers; the spoiler names the abbreviation', () => {
+    renderIt(vm({ partyMeta: new Map([['JDU', { id: 'JDU', name: 'Janata Dal (United)', abbreviation: 'JD(U)', color: '#1a7', mark: null, eciRecognition: null }]]),
+      notes: [{ kind: 'spoiler', party: 'JDU', votes: 900, margin: 220 }, { kind: 'spoiler', party: 'XYZ', votes: 5, margin: 1 }] as ConstituencyPageVM['notes'] }));
+    expect(screen.getByText('Swing seat')).toBeTruthy();
+    const ol = screen.getByText('Seat history').parentElement!.querySelector('ol')!;
+    expect(ol.className.split(' ')).toEqual(expect.arrayContaining(['list-none', 'pl-0']));
+    expect(screen.getByText(/JD\(U\) polled 900 votes/)).toBeTruthy();
+    expect(screen.getByText(/XYZ polled 5 votes/)).toBeTruthy();
+    cleanup();
+    renderIt(vm({ dominance: null }));
+    expect(screen.queryByText('Swing seat')).toBeNull();
+  });
+
   it('shows the not-found state', () => {
     renderIt(vm({ status: 'notFound' }));
     expect(screen.getByText('Constituency not found')).toBeTruthy();

@@ -6,7 +6,8 @@ export interface ContestView { key: string; year: number | null; electionName: s
   /** The contest's election dashboard with this party's dialog open (null when party-less). */
   partyHref: string | null; partyLabel: string; mark: string | null; color: string;
   status: ContestStatus; votes: number; share: number | null; margin: number | null; firstUnderParty: boolean }
-export interface PersonStats { contests: number; wins: number; winRate: number | null; parties: string[]; switches: { from: string; to: string; year: number }[] }
+export interface PersonStats { contests: number; wins: number; winRate: number | null; parties: string[]; /** Party ids plus display labels (abbreviation, else the id). */
+  switches: { from: string; to: string; fromLabel: string; toLabel: string; year: number }[] }
 export interface AffidavitPoint { year: number; assets: number | null; liabilities: number | null; criminalCases: number | null }
 
 const byYearDesc = (a: PersonCandidate, b: PersonCandidate) => (b.election_year ?? 0) - (a.election_year ?? 0);
@@ -42,11 +43,14 @@ export function personStats(cands: PersonCandidate[]): PersonStats {
   const wins = cands.filter(c => c.status === 'WON').length;
   const parties: string[] = [];
   for (const c of [...cands].sort(byYearDesc)) if (c.party_id && !parties.includes(c.party_id)) parties.push(c.party_id);
+  const label = new Map<string, string>();
+  for (const c of cands) if (c.party_id && c.party_abbreviation && !label.has(c.party_id)) label.set(c.party_id, c.party_abbreviation);
+  const lab = (id: string) => label.get(id) ?? id;
   const switches: PersonStats['switches'] = [];
   let prev: string | null = null;
   for (const c of [...cands].sort(byYearAsc)) {
     if (!c.party_id) continue;
-    if (prev && prev !== c.party_id) switches.push({ from: prev, to: c.party_id, year: c.election_year ?? 0 });
+    if (prev && prev !== c.party_id) switches.push({ from: prev, to: c.party_id, fromLabel: lab(prev), toLabel: lab(c.party_id), year: c.election_year ?? 0 });
     prev = c.party_id;
   }
   return { contests: cands.length, wins, winRate: decided.length ? Math.round((wins / decided.length) * 100) : null, parties, switches };

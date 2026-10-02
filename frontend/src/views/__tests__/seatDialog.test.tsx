@@ -53,6 +53,18 @@ describe('SeatDialog', () => {
     expect(screen.getByRole('dialog', { name: 'Patliputra' }).querySelectorAll('[data-skeleton]')).toHaveLength(0);
   });
 
+  it('footer order: past winners, then notes, then the full-page link last; spoiler shows the abbreviation; one other is singular', () => {
+    renderIt(vm({ partyMeta: new Map([['JDU', { id: 'JDU', name: 'Janata Dal (United)', abbreviation: 'JD(U)', color: '#1a7', mark: null, eciRecognition: null }]]),
+      notes: [{ kind: 'spoiler', party: 'JDU', votes: 900, margin: 200 }], view: { ...vm().view, others: { count: 1, votes: 5, share: 0.5 } } }));
+    const dlg = screen.getByRole('dialog', { name: 'Patliputra' });
+    const past = within(dlg).getByText('Past winners');
+    const note = within(dlg).getByText(/JD\(U\) polled 900 votes/);
+    const link = within(dlg).getByRole('link', { name: /Full constituency page/ });
+    expect(past.compareDocumentPosition(note) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(note.compareDocumentPosition(link) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(within(dlg).getByText('+1 other')).toBeTruthy();
+  });
+
   it('links a candidate with a person, opens the party dialog from the party cell', () => {
     const v = vm();
     renderIt(v);

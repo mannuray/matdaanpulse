@@ -18,7 +18,11 @@ describe('contestStatus', () => {
 describe('personStats', () => {
   const cands = [c({ election_year: 2025, status: 'LEADING', election_status: 'Live', party_id: 'BJP' }), c({ election_year: 2014, party_id: 'BJP' }), c({ election_year: 2009, status: 'LOST', party_id: 'RJD' })];
   it('counts contests and decided wins; detects the party switch', () => {
-    expect(personStats(cands)).toEqual({ contests: 3, wins: 1, winRate: 50, parties: ['BJP', 'RJD'], switches: [{ from: 'RJD', to: 'BJP', year: 2014 }] });
+    expect(personStats(cands)).toEqual({ contests: 3, wins: 1, winRate: 50, parties: ['BJP', 'RJD'], switches: [{ from: 'RJD', to: 'BJP', fromLabel: 'RJD', toLabel: 'BJP', year: 2014 }] });
+  });
+  it('labels a switch with the contest party abbreviation, falling back to the id', () => {
+    const s = personStats([c({ election_year: 2009, party_id: 'JDU', party_abbreviation: 'JD(U)' }), c({ election_year: 2014, party_id: 'BJP', party_abbreviation: null })]);
+    expect(s.switches).toEqual([{ from: 'JDU', to: 'BJP', fromLabel: 'JD(U)', toLabel: 'BJP', year: 2014 }]);
   });
   it('no contests: zeros and no win rate', () => {
     expect(personStats([])).toEqual({ contests: 0, wins: 0, winRate: null, parties: [], switches: [] });

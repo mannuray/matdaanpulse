@@ -20,4 +20,14 @@ describe('usePersonPageVM', () => {
     await waitFor(() => expect(result.current.status).toBe('ready'));
     expect(result.current.name).toBe('Real');
   });
+
+  it.each([
+    ['F', { labelKey: 'pp_gender_F', raw: 'F' }], [' male ', { labelKey: 'pp_gender_M', raw: ' male ' }], ['Other', { labelKey: 'pp_gender_O', raw: 'Other' }],
+    ['Non-binary', { labelKey: null, raw: 'Non-binary' }], ['', null], [null, null],
+  ])('maps gender %j to a label key, else keeps the stored value', async (gender, expected) => {
+    api.getPerson.mockResolvedValue({ ...person, id: 'g', gender });
+    const { result } = renderHook(() => usePersonPageVM('g'));
+    await waitFor(() => expect(result.current.status).toBe('ready'));
+    expect(result.current.facts.gender).toEqual(expected);
+  });
 });

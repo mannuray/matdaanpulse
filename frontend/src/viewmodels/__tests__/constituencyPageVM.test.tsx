@@ -49,6 +49,16 @@ describe('useConstituencyPageVM', () => {
     expect(result.current.live).toEqual({ kind: 'declared' });
   });
 
+  it('an unknown classification value gives no chip', async () => {
+    api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Finalized', year: 2025 });
+    api.getConstituency.mockResolvedValue({ ...detail, id: 'S3' });
+    api.getConstituencyAnalysis.mockResolvedValue({ dominance: 'mystery' });
+    api.getManifest.mockResolvedValue(null);
+    const { result } = renderHook(() => useConstituencyPageVM('e1', 'S3'));
+    await waitFor(() => expect(result.current.status).toBe('ready'));
+    expect(result.current.dominance).toBeNull();
+  });
+
   it('reports notFound on a 404', async () => {
     api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Finalized', year: 2025 });
     api.getConstituency.mockRejectedValue(new ApiError('Not found', 404));
