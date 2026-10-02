@@ -10,7 +10,7 @@ import { DashboardSourcesProvider } from '../sources/DashboardSourcesProvider';
 import { ElectionProvider } from '../data/useElection';
 import { useTopBarVM } from '../tiles/useTopBarVM';
 import { useLeadersVM } from '../tiles/useLeadersVM';
-import { useSeatPanelVM } from '../tiles/useSeatPanelVM';
+import { useSeatDialogVM } from '../tiles/useSeatDialogVM';
 import { useLocalStorage } from '../data/useLocalStorage';
 import type { CustomWatch } from '../../model/derive/leaders';
 import '../../i18n';
@@ -121,9 +121,14 @@ function sharedWatchWrap() {
   return Shared;
 }
 
-describe('shared watchlist (seat panel + leaders)', () => {
-  it('track from the seat panel shows in useLeadersVM().watchlist; leaders exclude custom; remove works', () => {
-    const { result } = renderHook(() => ({ leaders: useLeadersVM(), seat: useSeatPanelVM(), store: useDashboardStore() }), { wrapper: sharedWatchWrap() });
+describe('shared watchlist (seat dialog + leaders)', () => {
+  beforeEach(() => {
+    vi.spyOn(electionApi, 'getConstituency').mockResolvedValue(null as never);
+    vi.spyOn(electionApi, 'getConstituencyAnalysis').mockResolvedValue(null as never);
+  });
+
+  it('track from the seat dialog shows in useLeadersVM().watchlist; leaders exclude custom; remove works', () => {
+    const { result } = renderHook(() => ({ leaders: useLeadersVM(), seat: useSeatDialogVM(), store: useDashboardStore() }), { wrapper: sharedWatchWrap() });
     act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'BR_VS_3_AGIAON' }));
     expect(result.current.seat!.tracked).toBe(false);
     act(() => result.current.seat!.onToggleTrack());
@@ -139,7 +144,7 @@ describe('shared watchlist (seat panel + leaders)', () => {
   });
 
   it('onAddCustom dedupes and toggling an already tracked seat untracks it', () => {
-    const { result } = renderHook(() => ({ leaders: useLeadersVM(), seat: useSeatPanelVM(), store: useDashboardStore() }), { wrapper: sharedWatchWrap() });
+    const { result } = renderHook(() => ({ leaders: useLeadersVM(), seat: useSeatDialogVM(), store: useDashboardStore() }), { wrapper: sharedWatchWrap() });
     act(() => result.current.leaders.onAddCustom('BR_VS_3_AGIAON'));
     act(() => result.current.leaders.onAddCustom('BR_VS_3_AGIAON'));
     expect(JSON.parse(localStorage.getItem('watchlist_e1')!)).toHaveLength(1);
@@ -147,21 +152,5 @@ describe('shared watchlist (seat panel + leaders)', () => {
     expect(result.current.seat!.tracked).toBe(true);
     act(() => result.current.seat!.onToggleTrack());
     expect(result.current.leaders.watchlist).toEqual([]);
-  });
-});
-
-describe('useSeatPanelVM', () => {
-  it('is null without a selected seat; then returns seat data without fetching an analysis', async () => {
-    const analysis = vi.spyOn(electionApi, 'getConstituencyAnalysis');
-    const { result } = renderHook(() => ({ vm: useSeatPanelVM(), store: useDashboardStore() }), { wrapper: wrap() });
-    expect(result.current.vm).toBeNull();
-    act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'BR_VS_1_SANDESH' }));
-    await waitFor(() => expect(result.current.vm).not.toBeNull());
-    const vm = result.current.vm!;
-    expect(analysis).not.toHaveBeenCalled();
-    expect(vm.margin).toBe(27);
-    expect(vm.candidates.map(c => c.partyId)).toEqual(['JDU', 'RJD']);
-    expect(vm.name.toLowerCase()).toContain('sandesh');
-    expect(vm.fullPageHref).toBe('/election/e1/constituency/BR_VS_1_SANDESH');
   });
 });

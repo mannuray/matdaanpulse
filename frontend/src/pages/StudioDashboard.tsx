@@ -13,7 +13,7 @@ import { useSummaryVM } from '../viewmodels/tiles/useSummaryVM';
 import { useLeadersVM } from '../viewmodels/tiles/useLeadersVM';
 import { useStatsVM } from '../viewmodels/tiles/useStatsVM';
 import { useMapVM } from '../viewmodels/tiles/useMapVM';
-import { useSeatPanelVM } from '../viewmodels/tiles/useSeatPanelVM';
+import { useSeatDialogVM } from '../viewmodels/tiles/useSeatDialogVM';
 import { DashboardGrid } from '../views/dashboard/DashboardGrid';
 import type { Election } from '../model/types';
 
@@ -25,7 +25,7 @@ function Wall() {
     <DashboardGrid
       topBar={topBar} search={search}
       scoreboard={useScoreboardVM()} standings={useStandingsVM()} insight={useLayerInsightVM()} summary={useSummaryVM()}
-      leaders={useLeadersVM()} stats={useStatsVM()} map={useMapVM()} seatPanel={useSeatPanelVM()}
+      leaders={useLeadersVM()} stats={useStatsVM()} map={useMapVM()} seatDialog={useSeatDialogVM()}
       focus={state.focus} onCloseFocus={() => dispatch({ type: 'focus', tile: null })}
     />
   );

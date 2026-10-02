@@ -1,15 +1,12 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup, within } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import '../../i18n';
 import { StandingsTile, WatchlistPreview } from '../dashboard/StandingsTile';
 import { LeadersStrip } from '../dashboard/LeadersStrip';
-import { SeatPanel } from '../map/SeatPanel';
 import { fitCount } from '../../viewmodels/tiles/fit';
 import type { StandingsVM } from '../../viewmodels/tiles/useStandingsVM';
 import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
-import type { SeatPanelVM } from '../../viewmodels/tiles/useSeatPanelVM';
 
 const noop = () => {};
 const origW = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
@@ -132,26 +129,5 @@ describe('WatchlistPreview (rail)', () => {
     expect(screen.getByText('Seat 1')).toBeTruthy();
     expect(screen.getByText('Seat 2')).toBeTruthy();
     expect(screen.queryByText('Seat 3')).toBeNull();
-  });
-});
-
-describe('SeatPanel track toggle', () => {
-  const vm = (tracked: boolean, onToggleTrack = noop): SeatPanelVM => ({
-    seatId: 'C1', name: 'Seat One', candidates: [], margin: null, history: null, fullPageHref: '/x', tracked, onToggleTrack, onClose: noop,
-  });
-  const show = (v: SeatPanelVM) => render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><SeatPanel vm={v} /></MemoryRouter>);
-
-  it('reflects tracked state via aria-pressed and calls onToggleTrack', () => {
-    const onToggleTrack = vi.fn();
-    show(vm(false, onToggleTrack));
-    const btn = screen.getByRole('button', { name: '☆ Track' });
-    expect(btn.getAttribute('aria-pressed')).toBe('false');
-    fireEvent.click(btn);
-    expect(onToggleTrack).toHaveBeenCalled();
-  });
-
-  it('shows Tracked when tracked', () => {
-    show(vm(true));
-    expect(screen.getByRole('button', { name: '★ Tracked' }).getAttribute('aria-pressed')).toBe('true');
   });
 });
