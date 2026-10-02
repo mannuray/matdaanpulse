@@ -2,7 +2,7 @@ import { paginated } from '../../common/paginated';
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
-import { AnalysisContext, AnalysisStrategy } from './strategies/analysis-strategy.interface';
+import { AnalysisContext, AnalysisStrategy, SeatStats } from './strategies/analysis-strategy.interface';
 import { Prisma } from '@prisma/client';
 import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFoundException } from '../../common/exceptions';
 import type { UpdateAnalysisDto } from './dto/constituency-input.dto';
@@ -282,7 +282,29 @@ export class ConstituenciesService {
         party_id: w.candidates.party_id,
         candidate_name: w.candidates.name,
         margin: w.margin || 0,
+        votes: w.votes || 0,
       });
+    }
+
+    // Every result of these elections, highest votes first: per seat the total and the runner-up (seat history).
+    const allResults = await this.prisma.results.findMany({
+      where: { election_id: { in: allElectionIds } },
+      select: { election_id: true, const_id: true, votes: true, candidates: { select: { name: true, party_id: true } } },
+      orderBy: { votes: 'desc' },
+    });
+    const seatStatsByElection = new Map<string, Map<string, SeatStats>>();
+    const seen = new Map<string, number>();
+    for (const r of allResults) {
+      const constNo = this.extractConstNo(r.const_id);
+      if (!seatStatsByElection.has(r.election_id)) seatStatsByElection.set(r.election_id, new Map());
+      const byConst = seatStatsByElection.get(r.election_id)!;
+      const s = byConst.get(constNo) ?? { total: 0, runnerUp: null };
+      s.total += r.votes || 0;
+      const key = `${r.election_id}|${constNo}`;
+      const rank = (seen.get(key) ?? 0) + 1;
+      seen.set(key, rank);
+      if (rank === 2) s.runnerUp = { name: r.candidates.name, party_id: r.candidates.party_id };
+      byConst.set(constNo, s);
     }
 
     // Results by constituency for current election
@@ -321,6 +343,7 @@ export class ConstituenciesService {
         winnersByElection,
         resultsByConst,
         candidatesByElectionConst,
+        seatStatsByElection,
         manifest,
       };
 
