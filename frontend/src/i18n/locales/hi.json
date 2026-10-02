@@ -456,5 +456,8 @@
   "pp_growth_overall": "कुल {{pct}}%",
   "pp_latest_tag": "{{year}} (नवीनतम)",
   "pp_declaration_log": "हर चुनाव का घोषणा विवरण",
-  "pp_affidavit_title": "शपथपत्र: संपत्ति और मामले"
+  "pp_affidavit_title": "शपथपत्र: संपत्ति और मामले",
+  "footer_independent": "स्वतंत्र परियोजना",
+  "footer_not_official": "आधिकारिक स्रोत नहीं",
+  "footer_about": "परिचय और डेटा गुणवत्ता"
 }

@@ -456,5 +456,8 @@
   "pp_growth_overall": "{{pct}}% overall",
   "pp_latest_tag": "{{year}} (latest)",
   "pp_declaration_log": "Per-election declaration log",
-  "pp_affidavit_title": "Affidavit: assets & cases"
+  "pp_affidavit_title": "Affidavit: assets & cases",
+  "footer_independent": "Independent project",
+  "footer_not_official": "Not an official source",
+  "footer_about": "About & data quality"
 }
