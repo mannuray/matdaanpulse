@@ -75,14 +75,15 @@ describe('ConstituencyPageView', () => {
 
   it('classification chip uses the singular page label; the history list has no markers; the spoiler names the abbreviation', () => {
     renderIt(vm({ partyMeta: new Map([['JDU', { id: 'JDU', name: 'Janata Dal (United)', abbreviation: 'JD(U)', color: '#1a7', mark: null, eciRecognition: null }]]),
-      notes: [{ kind: 'spoiler', party: 'JDU', votes: 900, margin: 220 }, { kind: 'spoiler', party: 'XYZ', votes: 5, margin: 1 }] as ConstituencyPageVM['notes'] }));
+      notes: [{ kind: 'spoiler', party: 'JDU', votes: 900, margin: 220 }] }));
     expect(screen.getByText('Swing seat')).toBeTruthy();
     const ol = screen.getByText('Seat history').parentElement!.querySelector('ol')!;
     expect(ol.className.split(' ')).toEqual(expect.arrayContaining(['list-none', 'pl-0']));
     expect(screen.getByText(/JD\(U\) polled 900 votes/)).toBeTruthy();
-    expect(screen.getByText(/XYZ polled 5 votes/)).toBeTruthy();
     cleanup();
-    renderIt(vm({ dominance: null }));
+    // No classification → no chip; a party missing from the party list falls back to its id.
+    renderIt(vm({ dominance: null, notes: [{ kind: 'spoiler', party: 'XYZ', votes: 5, margin: 1 }] }));
+    expect(screen.getByText(/XYZ polled 5 votes/)).toBeTruthy();
     expect(screen.queryByText('Swing seat')).toBeNull();
   });
 
