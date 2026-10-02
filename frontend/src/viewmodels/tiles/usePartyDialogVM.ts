@@ -23,7 +23,9 @@ export function usePartyDialogVM(): PartyDialogVM | null {
   const alliances = useMemo(() => src.data.manifestData?.alliances ?? [], [src.data.manifestData]);
   const stats = useMemo(() => (id ? partyElectionStats(id, src.data.results, src.votePct, alliances) : null), [id, src.data.results, src.votePct, alliances]);
   const keyCandidates = useMemo(
-    () => (id ? deriveLeaderCards(collectLeaderEntries(src.data.manifestData, []), src.data.currentWinnerMap).filter(c => c.partyId === id) : []),
+    () => (id ? deriveLeaderCards(collectLeaderEntries(src.data.manifestData, []), src.data.currentWinnerMap)
+      // Only this party's leaders who hold or lead a seat (a card opens that seat).
+      .filter(c => c.partyId === id && c.constId && (c.status === 'WON' || c.status === 'LEADING')) : []),
     [id, src.data.manifestData, src.data.currentWinnerMap],
   );
   if (!id || !stats) return null;

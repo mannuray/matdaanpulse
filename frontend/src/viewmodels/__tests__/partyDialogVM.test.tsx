@@ -12,8 +12,8 @@ vi.mock('../../model/api/geo.service', async (orig) => ({ ...(await orig<typeof 
 
 import { usePartyDialogVM } from '../tiles/usePartyDialogVM';
 
-const wrap = (url: string) => ({ children }: { children: ReactNode }) => {
-  const s = makeSources();
+const wrap = (url: string, over: Parameters<typeof makeSources>[0] = {}) => ({ children }: { children: ReactNode }) => {
+  const s = makeSources(over);
   return <MemoryRouter initialEntries={[url]}><DashboardSourcesProvider value={s}><DashboardStoreProvider allowedLayers={s.availableLayers} knownSeats={null} knownParties={null}>{children}</DashboardStoreProvider></DashboardSourcesProvider></MemoryRouter>;
 };
 
@@ -39,5 +39,19 @@ describe('usePartyDialogVM', () => {
     expect(none.current).toBeNull();
     const { result: resultOnly } = renderHook(() => usePartyDialogVM(), { wrapper: wrap('/?party=RJD') });
     expect(resultOnly.current).toMatchObject({ id: 'RJD', name: 'Rashtriya Janata Dal', stats: { contested: 1 } });
+  });
+
+  it('key candidates: only this party\'s leaders who won or lead a seat', () => {
+    getParty.mockResolvedValue(null);
+    const base = makeSources();
+    const manifestData = { ...base.data.manifestData!, leaders: [
+      { name: 'Winner', party_id: 'JDU', const_id: 'BR_VS_1_SANDESH' },
+      { name: 'Pending', party_id: 'JDU', const_id: 'BR_VS_99_NOWHERE' },
+      { name: 'Seatless', party_id: 'JDU', const_id: '' },
+      { name: 'Loser', party_id: 'JDU', const_id: 'BR_VS_3_AGIAON' },
+      { name: 'Other party', party_id: 'BJP', const_id: 'BR_VS_3_AGIAON' },
+    ] };
+    const { result } = renderHook(() => usePartyDialogVM(), { wrapper: wrap('/?party=JDU', { data: { ...base.data, manifestData } as never }) });
+    expect(result.current!.keyCandidates.map(c => [c.name, c.status])).toEqual([['Winner', 'WON']]);
   });
 });
