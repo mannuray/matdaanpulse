@@ -29,12 +29,13 @@ Date: 2026-10-02 · Status: approved in chat, awaiting spec review
 - Validation:
   - Types: PNG, JPEG, WebP, SVG. Check the bytes (magic numbers; for SVG, the text parses as `<svg` root) — not only the extension or client MIME.
   - Size: 1 MB for `party-*`, 2 MB for `person-photo`. Rejected with 400 / 413 and a clear message.
-  - `owner_id` matches `^[A-Za-z0-9_-]{1,64}$` (or uuid) so it is safe in a path.
-- Storage: `put()` from `@vercel/blob`, `access: 'public'`, `addRandomSuffix: true`, correct `contentType`. Paths: `parties/<id>/logo.<ext>`, `parties/<id>/eci.<ext>`, `persons/<id>/photo.<ext>`.
+  - `owner_id` is any non-empty string up to 64 chars (party ids may contain punctuation, e.g. `JD(U)`). Only `blobPath` sanitises it for the path: every char outside `[A-Za-z0-9_-]` becomes `_` (`JD(U)` → `parties/JD_U_/logo.png`, `../x` → `___x`), so it can't traverse.
+  - The SVG check is a linear regex (prolog, comments, a DOCTYPE with optional internal subset, then `<svg`) — no nested ambiguous repeats, so 4 KB of hostile input can't cause catastrophic backtracking.
+- Storage: `put()` from `@vercel/blob`, `access: 'public'`, `addRandomSuffix: true`, correct `contentType`. A `put()` failure becomes 502 `MEDIA_0002` "Image storage failed" (`MediaStorageFailedException`, original error kept as `cause`: logged, never sent). Paths: `parties/<id>/logo.<ext>`, `parties/<id>/eci.<ext>`, `persons/<id>/photo.<ext>`.
 - Response: `{ url, pathname, content_type, size }`.
 - SVG safety: files are served from the Blob store's own domain (not an app origin) and both apps render them only via `<img>`, which never runs scripts in an SVG.
 - Audit: no upload audit row (deviation from the first draft, which had `MEDIA_UPLOAD`). The field change is audited by the party/person update on Save; `RECORD_AUDIT_ACTIONS` drives "last edited by", and an upload that is cancelled must not show as an edit. Orphaned blobs (replaced, or uploaded then cancelled) are left in place.
-- Config: `BLOB_READ_WRITE_TOKEN` (Render env, `.env.example`). Without it the endpoint returns 503 "Image upload is not configured" (`MediaNotConfiguredException`, a `BusinessException`, code `MEDIA_0001`; `HttpExceptionFilter` passes BusinessException 5xx messages through) — the rest of the API is unaffected.
+- Config: `BLOB_READ_WRITE_TOKEN` (Render env, `.env.example`). Without it the endpoint returns 503 "Image upload is not configured" (`MediaNotConfiguredException`, a `BusinessException`, code `MEDIA_0001`; `HttpExceptionFilter` passes BusinessException 5xx code/message through to the client but still logs them as server errors, so a BusinessException's message and details must never hold internal details) — the rest of the API is unaffected.
 - New module `backend/src/modules/media/` (controller, service, validator) so the storage call is mockable in one place.
 - Persons/parties update DTOs keep accepting `photo_url` / `symbol_url` / `eci_symbol_url` unchanged (URL or relative path, or null to remove).
 
@@ -45,21 +46,21 @@ Date: 2026-10-02 · Status: approved in chat, awaiting spec review
 - `utils/asset-url.ts` — `assetUrl(u)`: absolute URLs pass through; values starting with `/` are prefixed with `VITE_PUBLIC_SITE_URL` (default `http://localhost:3080`); empty → `''`. Used everywhere the admin renders a symbol or photo: Parties list, Persons list, party record, person record, candidate record header, `CandidateMasterCard`. The dev `/symbols` proxy in `vite.config.ts` is removed.
 - `services/media.service.ts` — `uploadImage(file, kind, ownerId)` via `apiFetch` (multipart; the client must not set `Content-Type` itself).
 - `hooks/useImageUpload.ts` — state machine `idle → uploading → idle | error`, returns the URL to put in the form. Client-side pre-checks mirror the server limits (type/size) to fail fast.
-- `components/ui/ImageUpload.tsx` — preview tile (spinner while uploading), **Replace** (opens file picker; also accepts a file dropped on the tile), **Remove**, error text under the tile; the previous image stays on failure. No URL text field. Replaces `components/entity/parties/SymbolField.tsx` (deleted).
+- `components/ui/ImageUpload.tsx` — the preview tile is itself the button: click opens the file picker (also accepts a file dropped on the tile); hover/focus dims it with a camera icon + "Replace". Empty: dashed box with an upload icon and "Upload". A small round ⓧ (lucide `X`, ~22 px, card background, border, shadow, half outside the top-right corner) removes the image, only when set, no confirm (Cancel undoes before Save). Uploading: spinner over the image (`role="status"` "Uploading"); the tile button is `aria-disabled` (not `disabled`, so focus stays) and ignores clicks/drops. Error text under the tile; the previous image stays on failure. Accessible names: "Replace ‹label›" / "Upload ‹label›", "Remove ‹label›"; the hidden file input is "‹label› file" with `tabIndex=-1`. No URL text field, no filename. Replaces `components/entity/parties/SymbolField.tsx` (deleted).
 
 ### Party record (`PartyRecord.tsx`)
 
-Symbols card per Stitch `docs/design/admin/party-record.png`: two tiles side by side — **Party logo** and **ECI symbol** — each with preview, Replace, Remove, and a small grey filename chip (last path segment, e.g. `BJP.svg`). Changes mark the page dirty like any field.
+Symbols card per Stitch `docs/design/admin/party-record.png`: two tiles side by side — **Party logo** and **ECI symbol** — each a click-to-replace preview with a corner ⓧ (see `ImageUpload`). Changes mark the page dirty like any field.
 
 ### Person record (`PersonRecord.tsx`)
 
-- Header avatar grows 56 → ~72 px and becomes a button. Hover/focus shows a small camera badge; with no photo it shows the initial plus the badge. Click opens a menu (Radix DropdownMenu): **Upload photo**, **Remove** (when set).
+- Header avatar grows 56 → ~72 px round and becomes a button (`components/record/PhotoButton.tsx`). Click opens the file picker directly; hover/focus dims it with a camera icon; with no photo it shows the initial. A corner ⓧ removes the photo (when set). Uploading/errors as in `ImageUpload`. Accessible names: "Change photo of ‹name›" / "Upload photo of ‹name›", "Remove photo of ‹name›"; the hidden input is "Photo file of ‹name›".
 - The "Photo URL" field is removed from the Profile card.
 - Staged photo marks the page dirty; Save sends `photo_url` with the other person fields.
 
 ### Candidate record (`CandidateRecord.tsx`, `useCandidateEdit.ts`)
 
-- Header photo is the person's photo and becomes clickable with the same menu, plus the note: *"Updates the photo on ‹person name›'s record — every contest shows it."*
+- Header photo is the person's photo, the same `PhotoButton`, with the note *"Updates the photo on ‹person name›'s record — every contest shows it."* as a hover/focus tooltip (native `title`) and the button's `aria-describedby` (sr-only span).
 - A staged photo marks the page dirty. **Save changes** saves the candidate fields first, then `PUT /admin/persons/:person_id` with only `photo_url`.
 - If the candidate save succeeds and the photo save fails: the photo stays staged (page still dirty) with an inline error and Retry; nothing is silently dropped. If only the photo changed, only the person request is sent.
 - `CandidateMasterCard` stays read-only and shows the same (saved) photo.
@@ -67,7 +68,7 @@ Symbols card per Stitch `docs/design/admin/party-record.png`: two tiles side by 
 ## Testing
 
 - Backend: media validator unit tests (each type accepted, spoofed extension rejected, SVG check, size per kind, bad `owner_id`); controller test for roles and 503 without token; `@vercel/blob` mocked.
-- Admin: `assetUrl` tests; `ImageUpload` (pick → uploading → preview, failure keeps old image + error, Remove, drop); updated `usePartyEdit`, `usePersonEdit`, `useCandidateEdit` (photo-only save, candidate-ok/photo-fail keeps dirty), `Parties`/`Persons` tests that referenced the URL inputs.
+- Admin: `assetUrl` tests; `ImageUpload` / `PhotoButton` (click image → chooser, pick → uploading → preview, uploading ignores clicks, failure keeps old image + error, ⓧ remove absent when empty, drop, candidate note via title/aria-describedby); updated `usePartyEdit`, `usePersonEdit`, `useCandidateEdit` (photo-only save, candidate-ok/photo-fail keeps dirty), `Parties`/`Persons` tests that referenced the URL inputs.
 - Manual: both record pages and the candidate page in the browser (screenshots), including a real upload against a Blob store, and the production `/symbols` fix verified on the deployed admin.
 
 ## Docs and config
