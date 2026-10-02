@@ -8,7 +8,7 @@ import { Input, Select, Textarea } from '../../ui/Input';
 import { Badge } from '../../ui/Badge';
 import { RecordLoadError } from '../../record/RecordLoadError';
 import { ColourField } from './ColourField';
-import { SymbolField } from './SymbolField';
+import { ImageUpload } from '../../ui/ImageUpload';
 import { PartyUsageCard, usageSummary } from './PartyUsageCard';
 import { ECI_RECOGNITIONS, EciRecognitionBadge } from './eciRecognition';
 
@@ -114,10 +114,13 @@ export function PartyRecord({ id, onBack, onSaved }: PartyRecordProps) {
       aside={
         <>
           <RecordCard title="Symbols">
-            <div className="space-y-4">
-              <SymbolField label="Logo URL" url={form.symbol_url} error={fieldErrors.symbol_url} onChange={(symbol_url) => set({ symbol_url })} />
-              <SymbolField label="ECI symbol URL" url={form.eci_symbol_url} error={fieldErrors.eci_symbol_url} onChange={(eci_symbol_url) => set({ eci_symbol_url })} />
+            <div className="grid grid-cols-2 gap-3">
+              <ImageUpload label="Party logo" kind="party-logo" ownerId={id} url={form.symbol_url} onChange={(symbol_url) => set({ symbol_url })} />
+              <ImageUpload label="ECI symbol" kind="party-eci" ownerId={id} url={form.eci_symbol_url} onChange={(eci_symbol_url) => set({ eci_symbol_url })} />
             </div>
+            {(fieldErrors.symbol_url || fieldErrors.eci_symbol_url) && (
+              <p className="mt-2 text-xs text-bad-text">{fieldErrors.symbol_url || fieldErrors.eci_symbol_url}</p>
+            )}
           </RecordCard>
           <PartyUsageCard state={usage} />
           <RecordCard title="Record">
