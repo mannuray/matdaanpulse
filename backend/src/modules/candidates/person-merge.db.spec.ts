@@ -14,6 +14,8 @@ import { PrismaClient } from '@prisma/client';
 import { PersonsService } from './persons.service';
 import { CandidatesService } from './candidates.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
+import { ValidationPipe } from '@nestjs/common';
+import { UpdateCandidateDto } from './dto/candidate-input.dto';
 
 config({ path: join(__dirname, '../../../.env') });
 
@@ -227,7 +229,11 @@ describe('person merge, undo, change person and split (DB)', () => {
     await inRollbackTx('bigint', async (tx, s) => {
       const { candidates } = services(tx);
       const { k1 } = await setup(tx, s);
-      const updated = await candidates.update(k1.id, { assets: 125000000000, liabilities: 0, age: 51, criminal_cases: 0 });
+      // The body as a request delivers it: a DTO class instance from the global ValidationPipe.
+      const pipe = new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true });
+      const body = await pipe.transform({ assets: 125000000000, liabilities: 0, age: 51, criminal_cases: 0 }, { type: 'body', metatype: UpdateCandidateDto });
+      expect(body).toBeInstanceOf(UpdateCandidateDto);
+      const updated = await candidates.update(k1.id, body);
       expect(updated).toMatchObject({ assets: BigInt(125000000000), liabilities: BigInt(0), age: 51, criminal_cases: 0 });
       const row = await tx.audit_logs.findFirst({ where: { action: 'CANDIDATE_UPDATE', entity_id: k1.id } });
       expect(row.new_value).toEqual({ assets: 125000000000, liabilities: 0, age: 51, criminal_cases: 0 });
