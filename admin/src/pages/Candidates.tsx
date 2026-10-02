@@ -26,14 +26,21 @@ const meta = (c: Candidate) => (c.metadata ?? {}) as Meta;
  * PAGE: Candidates — one seat of the global election at a time, full width; a row opens the candidate's record page at
  * /candidates/:id, which replaces the list (create at /candidates/new, in a dialog over the list). The list hooks stay
  * mounted under `candidates/*`, so the seat, link filter and search survive the round trip to a record.
- * `?seat=<constituency id>` picks the starting seat (the constituency record's "Candidates in this seat").
+ * `?seat=<constituency id>` picks the seat (the constituency record's "Candidates in this seat"); it is used once and then
+ * dropped from the URL (replace), so a reload or a copied link never brings back a seat the user has since moved off.
  */
 export default function Candidates() {
   const { electionId, election, loading: electionsLoading, error } = useElection();
   const { editorDirty } = useShellStatus();
   const route = useEntityRoute('/candidates', editorDirty);
-  const [params] = useSearchParams();
-  const m = useCandidateManager(electionId, params.get('seat') ?? '');
+  const [params, setParams] = useSearchParams();
+  const seatParam = params.get('seat');
+  const m = useCandidateManager(electionId, seatParam ?? '');
+  useEffect(() => {
+    if (!seatParam) return;
+    if (seatParam !== m.selectedConst) m.setSelectedConst(seatParam);
+    setParams((prev) => { const next = new URLSearchParams(prev); next.delete('seat'); return next; }, { replace: true });
+  }, [seatParam]);
   const [opened, setOpened] = useState<Candidate | null>(null);
 
   // Deep link / ⌘K: show the opened candidate's seat — only when the record (or election) changes,

@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { getPerson, updatePerson, mergePersons, getPersons } from '../services/person.api';
 import { PersonService } from '../services/person.service';
 import { useToast } from '../context/ToastContext';
-import { ApiError, fieldErrorMap } from '../services/api-client';
+import { fieldErrorMap } from '../services/api-client';
 import { blankToNull } from '../utils/record-payload';
-import type { RecordLoadErrorKind } from './useRecordQuery';
+import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
 import type { PersonWithCandidates, PersonWithStats } from '../types';
 
 export type PersonForm = ReturnType<typeof PersonService.prepareFormState>;
@@ -19,7 +19,7 @@ export function isValidDob(v: string): boolean {
   return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === v;
 }
 
-/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
+/** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
 export type LoadError = RecordLoadErrorKind;
 
 /**
@@ -55,10 +55,10 @@ export function usePersonEdit(id?: string) {
       setForm(next);
       setSaved(next);
     } catch (err) {
-      const notFound = err instanceof ApiError && err.status === 404;
-      setLoadError(notFound ? 'not_found' : 'failed');
-      // A 404 is said on the page ("Person not found"); only other failures toast.
-      if (!notFound) toastError(err, 'Failed to load person record');
+      const kind = recordLoadErrorKind(err);
+      setLoadError(kind);
+      // "Not found" is said on the page ("Person not found"); only other failures toast.
+      if (kind === 'failed') toastError(err, 'Failed to load person record');
     } finally {
       setLoading(false);
     }

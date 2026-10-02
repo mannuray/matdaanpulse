@@ -79,6 +79,13 @@ export class CandidatesService {
     return candidate;
   }
 
+  /** A person's candidacies across elections: the count and the earliest election year (null with none). */
+  async personContests(personId: string): Promise<{ contests: number; first_year: number | null }> {
+    const rows = await this.prisma.candidates.findMany({ where: { person_id: personId }, select: { elections: { select: { year: true } } } });
+    const years = rows.map((r) => r.elections.year);
+    return { contests: rows.length, first_year: years.length ? Math.min(...years) : null };
+  }
+
   /** The candidate's result in its seat plus every candidate of that seat (see `seatResult` in seat-result.ts). */
   async seatResult(id: string) {
     const candidate = await this.prisma.candidates.findUnique({

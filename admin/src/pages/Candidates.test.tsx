@@ -65,7 +65,10 @@ const cand = (id: string, name: string, const_id: string, over: Partial<Candidat
 });
 const ROWS: Record<string, Candidate[]> = {
   s1: [
-    cand('c1', 'Ravi Prasad', 's1', { person_id: 'p1', person: { id: 'p1', name: 'Ravi Shankar Prasad', photo_url: null, gender: 'Male', education: null, date_of_birth: null } }),
+    cand('c1', 'Ravi Prasad', 's1', {
+      person_id: 'p1', person: { id: 'p1', name: 'Ravi Shankar Prasad', photo_url: null, gender: 'Male', education: null, date_of_birth: null },
+      person_contests: { contests: 3, first_year: 2010 },
+    }),
     cand('c2', 'Anil Kumar', 's1', { metadata: { age: 44, criminal_cases: 2 } }),
     cand('nota', 'NOTA', 's1', { party_id: 'NOTA' }),
   ],
@@ -135,6 +138,8 @@ describe('Candidates list', () => {
     await waitFor(() => expect(svc.getCandidates).toHaveBeenCalledWith('e1', 's142'));
     expect(seatInput().value).toBe('142 Patna Sahib');
     expect(svc.getCandidates).not.toHaveBeenCalledWith('e1', 's1');
+    // Used once, then dropped from the URL, so a reload or a copied link never brings back a seat picked over.
+    await waitFor(() => expect(where()).toBe('/candidates?election=e1'));
     cleanup();
     renderAt('/candidates?seat=k5');
     await waitFor(() => expect(seatInput().value).toBe('1 Valmiki Nagar'));
@@ -390,6 +395,30 @@ describe('Candidate record page', () => {
     expect(screen.queryByText('Failed to load candidate data')).toBeNull();
   });
 
+  it('an id the server cannot parse (400) says "Candidate not found", with no retry and no toast', async () => {
+    svc.getCandidate.mockRejectedValueOnce(new ApiError('Validation failed (uuid is expected)', 400));
+    renderAt('/candidates/abc');
+    const alert = await screen.findByRole('alert');
+    expect(await within(alert).findByText('Candidate not found')).toBeTruthy();
+    expect(within(alert).queryByRole('button', { name: 'Try again' })).toBeNull();
+    expect(screen.queryByText('Failed to load candidate data')).toBeNull();
+  });
+
+  it('shows server field errors under the field', async () => {
+    svc.updateCandidate.mockRejectedValueOnce(new ApiError('Validation failed', 400, 'VALIDATION', [
+      { field: 'name', message: 'name must be shorter than or equal to 255 characters' },
+      { field: 'party_id', message: 'party_id must be shorter than or equal to 20 characters' },
+    ]));
+    renderAt('/candidates/c2');
+    await record('Anil Kumar');
+    fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Anil Kumar Singh' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save changes' }));
+    expect(await screen.findByText('name must be shorter than or equal to 255 characters')).toBeTruthy();
+    expect(screen.getByText('party_id must be shorter than or equal to 20 characters')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    expect(screen.queryByText('name must be shorter than or equal to 255 characters')).toBeNull();
+  });
+
   it('a non-404 load failure says "Could not load candidate" and Try again reloads', async () => {
     svc.getCandidate.mockRejectedValueOnce(new ApiError('boom', 500));
     renderAt('/candidates/c2');
@@ -407,6 +436,7 @@ describe('Candidate record: master record', () => {
     await record('Ravi Prasad');
     const master = card('Master record');
     expect(within(master).getByText('Ravi Shankar Prasad')).toBeTruthy();
+    expect(within(master).getByText('3 contests · first 2010')).toBeTruthy();
     fireEvent.change(screen.getByLabelText('Age'), { target: { value: '51' } });
     fireEvent.click(within(master).getByRole('link', { name: /Open person/ }));
     expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');

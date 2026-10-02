@@ -283,6 +283,15 @@ describe('Person record page', () => {
     expect(screen.queryByText(/Failed to load person/)).toBeNull();
     expect(screen.queryByRole('button', { name: 'Try again' })).toBeNull();
   });
+
+  it('an id the server cannot parse (400) shows "Person not found", not "Could not load"', async () => {
+    api.getPerson.mockRejectedValueOnce(new ApiError('Validation failed (uuid is expected)', 400));
+    renderAt('/persons/abc');
+    expect(await screen.findByText('Person not found')).toBeTruthy();
+    expect(screen.queryByText('Could not load person')).toBeNull();
+    expect(screen.queryByText(/Failed to load person/)).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Try again' })).toBeNull();
+  });
 });
 
 describe('Merge duplicate', () => {
@@ -325,6 +334,22 @@ describe('Merge duplicate', () => {
     fireEvent.change(screen.getByLabelText('Biographical summary'), { target: { value: 'New bio' } });
     expect((merge as HTMLButtonElement).disabled).toBe(true);
     expect(screen.getByText('Save or cancel your changes first.')).toBeTruthy();
+  });
+
+  it('after a failed reload, Try again is disabled while the form has unsaved edits', async () => {
+    auth.role = 'SUPER_ADMIN';
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+    renderAt(`/persons/${NITISH}`);
+    await heading();
+    fireEvent.change(screen.getByLabelText('Search duplicates'), { target: { value: 'Nitish' } });
+    const btn = await screen.findByRole('button', { name: 'Merge Nitish Kr into this record' });
+    api.getPerson.mockRejectedValueOnce(new Error('boom'));
+    fireEvent.click(btn);
+    const retry = await screen.findByRole('button', { name: 'Try again' });
+    fireEvent.change(screen.getByLabelText('Biographical summary'), { target: { value: 'Unsaved bio' } });
+    expect((retry as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.click(retry);
+    expect((screen.getByLabelText('Biographical summary') as HTMLTextAreaElement).value).toBe('Unsaved bio');
   });
 
   it('a failed reload after a merge shows an inline retry', async () => {

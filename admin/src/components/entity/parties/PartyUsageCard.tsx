@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { RecordCard } from '../../record/RecordCard';
 import { RecordLink } from '../../record/RecordLink';
+import { useElection } from '../../../context/ElectionContext';
 import { Button } from '../../ui/Button';
 import { shortElectionName } from '../../shell/ElectionPicker';
 import type { usePartyUsage } from '../../../hooks/usePartyUsage';
@@ -15,6 +16,7 @@ export const usageSummary = (t: { candidates: number; elections: number }) =>
 /** Party record, right column: candidates and wins per election, each row opening that election's candidates. */
 export function PartyUsageCard({ state }: { state: ReturnType<typeof usePartyUsage> }) {
   const { usage, loading, failed, retry } = state;
+  const { electionId } = useElection();
   return (
     <RecordCard title="Usage" subtitle="Candidates fielded in each election">
       {loading ? (
@@ -48,8 +50,8 @@ export function PartyUsageCard({ state }: { state: ReturnType<typeof usePartyUsa
         </>
       )}
       <div className="mt-3 border-t border-line pt-3">
-        {/* The Candidates page has no party filter yet, so this opens it as is. */}
-        <RecordLink to="/candidates" className="inline-flex items-center gap-1 text-xs font-medium text-accent hover:underline">
+        {/* The Candidates page has no party filter yet, so this opens it for the current election. */}
+        <RecordLink to="/candidates" electionId={electionId || undefined} className="inline-flex items-center gap-1 text-xs font-medium text-accent hover:underline">
           View candidates <ArrowRight size={12} aria-hidden />
         </RecordLink>
       </div>

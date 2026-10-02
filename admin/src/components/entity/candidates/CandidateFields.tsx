@@ -11,6 +11,8 @@ const NUMBER_ERROR = 'Enter a whole number';
 interface FieldsProps {
   form: CandidateForm;
   onChange: (patch: Partial<CandidateForm>) => void;
+  /** Server field errors by field name (`name`, `party_id`, `metadata.<key>`); the record page passes them. */
+  errors?: Record<string, string>;
 }
 
 interface IdentityFieldsProps extends FieldsProps {
@@ -24,8 +26,9 @@ interface IdentityFieldsProps extends FieldsProps {
 }
 
 /** Name and party, shared by the record page's Candidate card and the create dialog. */
-export function CandidateIdentityFields({ form, onChange: set, parties, besideParty, afterParty, flagEmptyName = true }: IdentityFieldsProps) {
-  const nameError = flagEmptyName && !form.name.trim() ? 'Name is required' : undefined;
+export function CandidateIdentityFields({ form, onChange: set, parties, besideParty, afterParty, flagEmptyName = true, errors = {} }: IdentityFieldsProps) {
+  const nameError = flagEmptyName && !form.name.trim() ? 'Name is required' : errors.name;
+  const partyError = errors.party_id;
   // Independent (the IND party row) first, listed once, even before the party list has loaded.
   const ind = parties.find((p) => p.id === INDEPENDENT);
   const partyOptions = [
@@ -33,8 +36,8 @@ export function CandidateIdentityFields({ form, onChange: set, parties, besidePa
     ...parties.filter((p) => p.id !== INDEPENDENT),
   ];
   const party = (
-    <Field label="Party" className={besideParty ? 'min-w-0 flex-1' : undefined}>
-      <Select value={form.party_id} onChange={(e) => set({ party_id: e.target.value })}>
+    <Field label="Party" error={partyError} className={besideParty ? 'min-w-0 flex-1' : undefined}>
+      <Select value={form.party_id} invalid={!!partyError} onChange={(e) => set({ party_id: e.target.value })}>
         {partyOptions.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
         {form.party_id && !partyOptions.some((p) => p.id === form.party_id) && <option value={form.party_id}>{form.party_id}</option>}
       </Select>
@@ -52,16 +55,16 @@ export function CandidateIdentityFields({ form, onChange: set, parties, besidePa
 }
 
 /** Age, gender, education, criminal cases and declared assets (stored in candidate metadata). */
-export function CandidateAffidavitFields({ form, onChange: set }: FieldsProps) {
-  const ageError = isWholeNumberOrEmpty(form.age) ? undefined : NUMBER_ERROR;
-  const casesError = isWholeNumberOrEmpty(form.criminal_cases) ? undefined : NUMBER_ERROR;
+export function CandidateAffidavitFields({ form, onChange: set, errors = {} }: FieldsProps) {
+  const ageError = isWholeNumberOrEmpty(form.age) ? errors['metadata.age'] : NUMBER_ERROR;
+  const casesError = isWholeNumberOrEmpty(form.criminal_cases) ? errors['metadata.criminal_cases'] : NUMBER_ERROR;
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <Field label="Age" error={ageError}>
           <Input inputMode="numeric" value={form.age} invalid={!!ageError} onChange={(e) => set({ age: e.target.value })} />
         </Field>
-        <Field label="Gender">
+        <Field label="Gender" error={errors['metadata.gender']}>
           <Select value={form.gender} onChange={(e) => set({ gender: e.target.value })}>
             <option value="">Not specified</option>
             {GENDERS.map((g) => <option key={g} value={g}>{g}</option>)}
@@ -69,13 +72,13 @@ export function CandidateAffidavitFields({ form, onChange: set }: FieldsProps) {
           </Select>
         </Field>
       </div>
-      <Field label="Education">
+      <Field label="Education" error={errors['metadata.education']}>
         <Input value={form.education} onChange={(e) => set({ education: e.target.value })} />
       </Field>
       <Field label="Criminal cases" error={casesError}>
         <Input inputMode="numeric" value={form.criminal_cases} invalid={!!casesError} onChange={(e) => set({ criminal_cases: e.target.value })} />
       </Field>
-      <Field label="Declared assets" hint={assetsHelper(form.assets) ?? undefined}>
+      <Field label="Declared assets" hint={assetsHelper(form.assets) ?? undefined} error={errors['metadata.assets'] ?? errors.metadata}>
         <Input value={form.assets} placeholder="Rupees, e.g. 24500000" onChange={(e) => set({ assets: e.target.value })} />
       </Field>
     </div>

@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ApiError } from '../services/api-client';
 
-/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
+/**
+ * 'not_found' for a 404, or a 400 (the server rejected the id itself, e.g. a typo'd or truncated link that is not a
+ * UUID); anything else (network, 5xx) is a retryable failure.
+ */
 export type RecordLoadErrorKind = 'not_found' | 'failed';
+
+/** The RecordLoadErrorKind of a failed record load. */
+export function recordLoadErrorKind(err: unknown): RecordLoadErrorKind {
+  return err instanceof ApiError && (err.status === 404 || err.status === 400) ? 'not_found' : 'failed';
+}
 
 /**
  * Loads `fn(id)` for a record page card (or the record itself): re-runs when `id` changes, drops responses that arrive
@@ -27,7 +35,7 @@ export function useRecordQuery<T>(fn: (id: string) => Promise<T>, id: string | n
       .catch((err) => {
         if (cancelled) return;
         setData(null);
-        setError(err instanceof ApiError && err.status === 404 ? 'not_found' : 'failed');
+        setError(recordLoadErrorKind(err));
       })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };

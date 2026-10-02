@@ -113,6 +113,8 @@ export interface Candidate {
   metadata?: Record<string, unknown>;
   updated_at?: string;
   last_edit?: LastEdit | null;
+  /** The linked person's candidacies across elections (detail response only; null when unlinked). */
+  person_contests?: { contests: number; first_year: number | null } | null;
 }
 
 /** One candidate of a seat in GET /admin/candidates/:id/result. */

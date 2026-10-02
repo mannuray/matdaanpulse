@@ -4,6 +4,7 @@ import { RecordLink } from '../../record/RecordLink';
 import { SearchInput } from '../../ui/Toolbar';
 import { Button } from '../../ui/Button';
 import type { LinkSuggestion } from '../../../hooks/useCandidateManager';
+import { contestsLabel } from '../../../utils/person-format';
 import type { Candidate, PersonWithStats } from '../../../types';
 
 interface CandidateMasterCardProps {
@@ -46,7 +47,9 @@ export function CandidateMasterCard(props: CandidateMasterCardProps) {
               </span>
               <div className="min-w-0">
                 <div className="truncate text-sm font-semibold text-ink">{person.name}</div>
-                <div className="font-mono text-[11px] text-muted">Master id {person.id.split('-')[0]}</div>
+                {c.person_contests
+                  ? <div className="text-xs text-muted">{contestsLabel(c.person_contests.contests, c.person_contests.first_year)}</div>
+                  : <div className="font-mono text-[11px] text-muted">Master id {person.id.split('-')[0]}</div>}
               </div>
             </div>
             <div className="flex items-center justify-between gap-3 border-t border-line px-3.5 py-2.5">

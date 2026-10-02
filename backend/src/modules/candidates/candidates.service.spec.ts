@@ -6,6 +6,23 @@ import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
+describe('CandidatesService.personContests', () => {
+  const make = (rows: unknown[]) => {
+    const prisma = { candidates: { findMany: jest.fn().mockResolvedValue(rows) } };
+    return { svc: new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any)), prisma };
+  };
+
+  it('counts every contest of the person and takes the earliest election year', async () => {
+    const { svc, prisma } = make([{ elections: { year: 2020 } }, { elections: { year: 2010 } }, { elections: { year: 2025 } }]);
+    await expect(svc.personContests('p1')).resolves.toEqual({ contests: 3, first_year: 2010 });
+    expect(prisma.candidates.findMany).toHaveBeenCalledWith({ where: { person_id: 'p1' }, select: { elections: { select: { year: true } } } });
+  });
+
+  it('is 0 contests with no first year for a person with no candidacies', async () => {
+    await expect(make([]).svc.personContests('p1')).resolves.toEqual({ contests: 0, first_year: null });
+  });
+});
+
 describe('CandidatesService.create', () => {
   function make(seat: unknown = { id: 'BR_VS_1', election_id: 'e1' }, election: unknown = { status: 'Live' }) {
     const order: string[] = [];

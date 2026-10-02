@@ -2,9 +2,10 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { getAdminConstituencyDetail, updateConstituency } from '../services/constituency.service';
 import { getDistricts, getRegions } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
-import { ApiError, fieldErrorMap } from '../services/api-client';
+import { fieldErrorMap } from '../services/api-client';
 import { parseSeatNumber, toOptionalNumber } from '../utils/numbers';
 import { blankToNull } from '../utils/record-payload';
+import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
 import type { Constituency } from '../types';
 
 export const SEAT_NUMBER_ERROR = 'Enter a whole number, 1 or more';
@@ -78,8 +79,8 @@ function metadataPatch(now: Snapshot, saved: Snapshot, serverTags: string[]): Re
   return out;
 }
 
-/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
-export type LoadError = 'not_found' | 'failed';
+/** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
+export type LoadError = RecordLoadErrorKind;
 
 const toSnapshot = (data: Constituency): Snapshot => {
   // `?? ''`, not `|| ''`: a stored 0 must show as "0".
@@ -147,8 +148,10 @@ export function useConstituencyEditor(id?: string) {
         setRegions(r);
       }
     } catch (err) {
-      setLoadError(err instanceof ApiError && err.status === 404 ? 'not_found' : 'failed');
-      toastError(err, 'Failed to load constituency details');
+      const kind = recordLoadErrorKind(err);
+      setLoadError(kind);
+      // "Not found" is said on the page ("Constituency not found"); only other failures toast.
+      if (kind === 'failed') toastError(err, 'Failed to load constituency details');
     } finally {
       setLoading(false);
     }

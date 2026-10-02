@@ -14,3 +14,9 @@ export function normalizeGender(g: string | null | undefined): string {
 export function genderLabel(g: string | null | undefined): string {
   return normalizeGender(g) || 'Not specified';
 }
+
+/** "5 contests · first 2010" (no first year when it is unknown). */
+export function contestsLabel(contests: number, firstYear: number | null | undefined): string {
+  const count = `${contests} ${contests === 1 ? 'contest' : 'contests'}`;
+  return typeof firstYear === 'number' ? `${count} · first ${firstYear}` : count;
+}

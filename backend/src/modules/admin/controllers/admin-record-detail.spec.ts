@@ -57,6 +57,27 @@ describe('admin detail responses: updated_at + last_edit', () => {
   });
 });
 
+describe('admin candidate detail: person_contests', () => {
+  it('a linked candidate carries the person\'s contests count and first year', async () => {
+    const { audit } = auditWith(null);
+    const candidates = {
+      findOne: jest.fn().mockResolvedValue({ id: 'c1', name: 'R', person_id: 'p1', updated_at }),
+      personContests: jest.fn().mockResolvedValue({ contests: 3, first_year: 2010 }),
+    };
+    const out = map(AdminCandidateDto, await new AdminCandidatesController(candidates as any, audit).findOne('c1'));
+    expect(candidates.personContests).toHaveBeenCalledWith('p1');
+    expect(out.person_contests).toEqual({ contests: 3, first_year: 2010 });
+  });
+
+  it('an unlinked candidate has person_contests null and no extra query', async () => {
+    const { audit } = auditWith(null);
+    const candidates = { findOne: jest.fn().mockResolvedValue({ id: 'c1', name: 'R', person_id: null, updated_at }), personContests: jest.fn() };
+    const out = map(AdminCandidateDto, await new AdminCandidatesController(candidates as any, audit).findOne('c1'));
+    expect(candidates.personContests).not.toHaveBeenCalled();
+    expect(out.person_contests).toBeNull();
+  });
+});
+
 describe('AdminConstituencyDto: the record page fields', () => {
   it('keeps the state code and the analysis notes and computed time (ISO)', () => {
     const out = map(AdminConstituencyDto, {
@@ -143,10 +164,11 @@ describe('admin candidate detail: relations reach the admin under the names it r
 
   it('exposes party, constituency and person (not the Prisma relation names), and a Decimal turnout as a number', async () => {
     const { audit } = auditWith(null);
-    const svc = { findOne: jest.fn().mockResolvedValue(row) };
+    const svc = { findOne: jest.fn().mockResolvedValue(row), personContests: jest.fn().mockResolvedValue({ contests: 1, first_year: 2023 }) };
     const out = map(AdminCandidateDto, await new AdminCandidatesController(svc as any, audit).findOne('c1'));
     expect(out).toMatchObject({
       is_incumbent: true,
+      person_contests: { contests: 1, first_year: 2023 },
       party: { id: 'BJP', color: '#FF7A1A' },
       constituency: { const_no: 1, name: 'Adilabad', voter_turnout: 65.28 },
       person: { id: 'p1', name: 'Godam Nagesh' },

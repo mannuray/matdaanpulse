@@ -10,6 +10,12 @@ export class AdminLastEditDto {
   @Expose() by: string | null;
 }
 
+/** The linked person's candidacies across elections (GET /admin/candidates/:id). */
+export class AdminPersonContestsDto {
+  @Expose() contests: number;
+  @Expose() first_year: number | null;
+}
+
 export class AdminAnalysisDto {
   @Expose() id: string;
   @Expose() dominance: string;
@@ -90,6 +96,8 @@ export class AdminCandidateDto {
   @Expose() manifest?: any;
   @Expose() @Transform(toIso) updated_at?: string;
   @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
+  /** Null when the candidate has no linked person. Only on the detail response. */
+  @Expose() @Type(() => AdminPersonContestsDto) person_contests?: AdminPersonContestsDto | null;
 
   /** The admin reads the relations as party / constituency / person (its `Candidate` type), not the Prisma names. */
   @Expose({ name: 'parties' })

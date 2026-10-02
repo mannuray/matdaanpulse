@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getParty, updateParty } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
-import { ApiError, fieldErrorMap } from '../services/api-client';
+import { fieldErrorMap } from '../services/api-client';
 import { blankToNull } from '../utils/record-payload';
-import type { RecordLoadErrorKind } from './useRecordQuery';
+import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
 import type { EciRecognition, Party } from '../types';
 
 export interface PartyForm {
@@ -45,7 +45,7 @@ const toForm = (data: Party): PartyForm => ({
 /** Empty, or a 4-digit year. */
 export const isValidYear = (v: string) => v.trim() === '' || /^\d{4}$/.test(v.trim());
 
-/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
+/** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
 export type LoadError = RecordLoadErrorKind;
 
 /**
@@ -76,10 +76,10 @@ export function usePartyEdit(id?: string) {
       setForm(next);
       setSaved(next);
     } catch (err) {
-      const notFound = err instanceof ApiError && err.status === 404;
-      setLoadError(notFound ? 'not_found' : 'failed');
-      // A 404 is said on the page ("Party not found"); only other failures toast.
-      if (!notFound) toastError(err, 'Failed to load party data');
+      const kind = recordLoadErrorKind(err);
+      setLoadError(kind);
+      // "Not found" is said on the page ("Party not found"); only other failures toast.
+      if (kind === 'failed') toastError(err, 'Failed to load party data');
     } finally {
       setLoading(false);
     }

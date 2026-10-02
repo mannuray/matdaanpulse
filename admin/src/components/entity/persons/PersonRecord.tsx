@@ -10,6 +10,7 @@ import { Input, Select, Textarea } from '../../ui/Input';
 import { Button } from '../../ui/Button';
 import { PersonHistoryCard } from './PersonHistoryCard';
 import { PersonMergeCard } from './PersonMergeCard';
+import { contestsLabel } from '../../../utils/person-format';
 import type { PersonCandidate } from '../../../types';
 
 const GENDERS = ['Male', 'Female', 'Other'];
@@ -25,8 +26,7 @@ interface PersonRecordProps {
 /** "5 contests · first 2010" (no first year without contests). */
 function contestsSummary(contests: PersonCandidate[]): string {
   const years = contests.map((c) => c.election_year).filter((y): y is number => typeof y === 'number');
-  const count = `${contests.length} ${contests.length === 1 ? 'contest' : 'contests'}`;
-  return years.length ? `${count} · first ${Math.min(...years)}` : count;
+  return contestsLabel(contests.length, years.length ? Math.min(...years) : null);
 }
 
 const isHttpUrl = (v: string) => /^https?:\/\/\S+$/i.test(v.trim());
@@ -87,7 +87,8 @@ export function PersonRecord({ id, onBack, onSaved }: PersonRecordProps) {
                 <div className="font-medium">Could not reload person</div>
                 <div className="text-xs">The details below may be out of date.</div>
               </div>
-              <Button variant="outline" size="sm" onClick={() => { void ed.refresh(); }}>Try again</Button>
+              {/* A reload would overwrite unsaved edits. */}
+              <Button variant="outline" size="sm" disabled={ed.dirty} onClick={() => { void ed.refresh(); }}>Try again</Button>
             </div>
           )}
 

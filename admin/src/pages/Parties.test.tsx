@@ -160,11 +160,12 @@ describe('Party record page', () => {
     expect(where()).toBe('/candidates?election=e2');
   });
 
-  it('"View candidates" goes to the Candidates page', async () => {
+  it('"View candidates" goes to the Candidates page and keeps ?election=', async () => {
     renderAt('/parties/BJP?election=e1');
     const link = await screen.findByRole('link', { name: /View candidates/ });
+    await waitFor(() => expect(link.getAttribute('href')).toBe('/candidates?election=e1'));
     fireEvent.click(link);
-    expect(where()).toBe('/candidates');
+    expect(where()).toBe('/candidates?election=e1');
   });
 
   it('a usage failure only blanks the Usage card; the form still loads', async () => {
@@ -284,6 +285,13 @@ describe('Party record page', () => {
     expect(screen.queryByText(/Failed to load party/)).toBeNull();
     fireEvent.click(back());
     expect(where()).toBe('/parties');
+  });
+
+  it('a 400 from the server says "Party not found", not "Could not load"', async () => {
+    api.getParty.mockRejectedValueOnce(new ApiError('Bad request', 400));
+    renderAt('/parties/x');
+    expect(await screen.findByText('Party not found')).toBeTruthy();
+    expect(screen.queryByText('Could not load party')).toBeNull();
   });
 
   it('a non-404 load failure says "Could not load party" and Try again reloads', async () => {

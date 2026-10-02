@@ -145,11 +145,12 @@ export function CandidateRecord({ id, suggestion, selectedMatches, onToggleMatch
               form={form}
               onChange={set}
               parties={ed.parties}
+              errors={ed.fieldErrors}
               besideParty={<IncumbentSwitch checked={form.is_incumbent} onChange={(is_incumbent) => set({ is_incumbent })} />}
             />
           </RecordCard>
           <RecordCard title="Affidavit" subtitle="Declared in the nomination affidavit">
-            <CandidateAffidavitFields form={form} onChange={set} />
+            <CandidateAffidavitFields form={form} onChange={set} errors={ed.fieldErrors} />
           </RecordCard>
           <CandidateResultCard result={result.data} loading={result.loading} failed={result.failed} onRetry={result.retry} />
         </>

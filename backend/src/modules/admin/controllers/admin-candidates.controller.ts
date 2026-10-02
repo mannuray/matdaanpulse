@@ -34,7 +34,9 @@ export class AdminCandidatesController {
       this.candidatesService.findOne(id),
       this.audit.lastEdit('candidate', id),
     ]);
-    return { ...candidate, last_edit };
+    // The Master record card's "N contests · first YYYY" for the linked person.
+    const person_contests = candidate.person_id ? await this.candidatesService.personContests(candidate.person_id) : null;
+    return { ...candidate, last_edit, person_contests };
   }
 
   /** Read-only result strip and the other candidates of the seat. */

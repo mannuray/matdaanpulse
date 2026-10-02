@@ -27,6 +27,13 @@ function pinnedLabel(e: Election) {
   return e.type === 'LS' ? `Lok Sabha ${e.year}` : `${electionGroup(e)} · Vidhan Sabha ${e.year}`;
 }
 
+/**
+ * Open layers the E shortcut must not open over: any dialog or panel prompt, a Radix menu (its typeahead
+ * uses letter keys, e.g. E for "Edit"), and any Radix popper (popover, select, dropdown). Not `listbox`: the
+ * Live Console seat list is one, permanently.
+ */
+const BLOCKING_LAYERS = '[role="dialog"], [role="menu"], [data-radix-popper-content-wrapper]';
+
 /** True when a keystroke is typed into a field (the E shortcut must not fire there). */
 function isTyping(target: EventTarget | null) {
   const el = target as HTMLElement | null;
@@ -35,7 +42,7 @@ function isTyping(target: EventTarget | null) {
 
 /**
  * Top-bar election switcher: a state × year grid with search. E opens it anywhere; type to filter
- * ("bih 20", "wb", "ls"), ↑↓/←→ move, Enter picks, Esc closes.
+ * ("bih 20", "wb", "ls"), ↑↓ move, Enter picks, Esc closes.
  */
 export function ElectionPicker() {
   const { elections, electionId, setElectionId } = useElection();
@@ -48,7 +55,7 @@ export function ElectionPicker() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!e.key || e.key.toLowerCase() !== 'e' || e.metaKey || e.ctrlKey || e.altKey || e.repeat || isTyping(e.target)) return;
-      if (document.querySelector('[role="dialog"]')) return; // never over another dialog or panel prompt
+      if (document.querySelector(BLOCKING_LAYERS)) return; // never over another dialog, menu or popover
       e.preventDefault();
       setOpen(true);
     };

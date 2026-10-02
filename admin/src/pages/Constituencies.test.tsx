@@ -124,6 +124,22 @@ describe('Constituencies page', () => {
     expect((within(panel).getByRole('button', { name: 'Save changes' }) as HTMLButtonElement).disabled).toBe(true);
   });
 
+  it('a 404 or an unparseable id (400) says not found, with no toast and no retry', async () => {
+    const { ApiError } = await import('../services/api-client');
+    svc.getAdminConstituencyDetail.mockRejectedValueOnce(new ApiError('gone', 404));
+    renderAt('/constituencies/a');
+    expect(await screen.findByText('Constituency not found')).toBeTruthy();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(screen.queryByText('Failed to load constituency details')).toBeNull();
+    expect(screen.queryByText('gone')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Try again' })).toBeNull();
+    cleanup();
+    svc.getAdminConstituencyDetail.mockRejectedValueOnce(new ApiError('bad id', 400));
+    renderAt('/constituencies/a');
+    expect(await screen.findByText('Constituency not found')).toBeTruthy();
+    expect(screen.queryByText('Could not load constituency')).toBeNull();
+  });
+
   it('a 404 says not found; another failure offers Try again', async () => {
     const { ApiError } = await import('../services/api-client');
     svc.getAdminConstituencyDetail.mockRejectedValueOnce(new ApiError('gone', 404));

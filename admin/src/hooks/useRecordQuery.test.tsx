@@ -22,6 +22,13 @@ describe('useRecordQuery', () => {
     await waitFor(() => expect(result.current.error).toBe('not_found'));
   });
 
+  it('a 400 (the id itself was rejected) is not_found; a 500 is failed', async () => {
+    const bad = renderHook(() => useRecordQuery(() => Promise.reject(new ApiError('bad id', 400)), 'abc'));
+    await waitFor(() => expect(bad.result.current.error).toBe('not_found'));
+    const down = renderHook(() => useRecordQuery(() => Promise.reject(new ApiError('boom', 500)), 'a'));
+    await waitFor(() => expect(down.result.current.error).toBe('failed'));
+  });
+
   it('drops a late response for the previous id', async () => {
     let releaseA!: (v: string) => void;
     const fn = vi.fn((id: string) => (id === 'a' ? new Promise<string>((r) => { releaseA = r; }) : Promise.resolve('B')));

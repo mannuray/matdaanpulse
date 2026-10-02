@@ -126,6 +126,19 @@ describe('ElectionPicker', () => {
     expect(screen.getByLabelText('Search elections')).toBeTruthy();
   });
 
+  it('E does nothing while a menu or a popover is open', () => {
+    const { rerender } = render(<><div role="menu"><div role="menuitem" tabIndex={-1}>Edit</div></div><ElectionPicker /></>);
+    fireEvent.keyDown(screen.getByRole('menuitem'), { key: 'e' });
+    fireEvent.keyDown(document.body, { key: 'e' });
+    expect(screen.queryByLabelText('Search elections')).toBeNull();
+    rerender(<><div data-radix-popper-content-wrapper=""><p>Popover</p></div><ElectionPicker /></>);
+    fireEvent.keyDown(document.body, { key: 'e' });
+    expect(screen.queryByLabelText('Search elections')).toBeNull();
+    rerender(<ElectionPicker />);
+    fireEvent.keyDown(document.body, { key: 'e' });
+    expect(screen.getByLabelText('Search elections')).toBeTruthy();
+  });
+
   it('with unsaved seat edits, switching election asks first and cancel keeps the election', () => {
     shell.editorDirty = true;
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);

@@ -6,8 +6,8 @@ import {
 import { getPersons, createPerson } from '../services/person.api';
 import { getParties } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
-import { ApiError } from '../services/api-client';
-import type { RecordLoadErrorKind } from './useRecordQuery';
+import { fieldErrorMap } from '../services/api-client';
+import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
 import type { Candidate, Party, PersonWithStats } from '../types';
 
 export interface CandidateForm {
@@ -74,7 +74,7 @@ const toForm = (c: Candidate): CandidateEditForm => {
   };
 };
 
-/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
+/** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
 export type LoadError = RecordLoadErrorKind;
 
 /**
@@ -90,6 +90,7 @@ export function useCandidateEdit(id?: string) {
   const [loading, setLoading] = useState(!!id);
   const [loadError, setLoadError] = useState<LoadError | null>(null);
   const [saving, setSaving] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   // The photo belongs to the linked person; it is shown read-only, never sent here.
   const [form, setForm] = useState<CandidateEditForm>(EMPTY_FORM);
@@ -122,10 +123,10 @@ export function useCandidateEdit(id?: string) {
       // Unlinked: start the person search with the candidate's name (the old table "Find" link).
       setPersonSearch(c.person_id ? '' : c.name);
     } catch (err) {
-      const notFound = err instanceof ApiError && err.status === 404;
-      setLoadError(notFound ? 'not_found' : 'failed');
-      // A 404 is said on the page ("Candidate not found"); only other failures toast.
-      if (!notFound) toastError(err, 'Failed to load candidate data');
+      const kind = recordLoadErrorKind(err);
+      setLoadError(kind);
+      // "Not found" is said on the page ("Candidate not found"); only other failures toast.
+      if (kind === 'failed') toastError(err, 'Failed to load candidate data');
     } finally {
       setLoading(false);
     }
@@ -140,6 +141,7 @@ export function useCandidateEdit(id?: string) {
     if (!id || !form.name.trim() || !candidateNumbersValid(form)) return false;
     const submitted = form;
     setSaving(true);
+    setFieldErrors({});
     try {
       await updateCandidate(id, {
         name: submitted.name,
@@ -166,6 +168,7 @@ export function useCandidateEdit(id?: string) {
       } catch { /* saved fine; the list refresh and next open will show server state */ }
       return true;
     } catch (err) {
+      setFieldErrors(fieldErrorMap(err));
       toastError(err, 'Failed to update profile');
       return false;
     } finally {
@@ -243,9 +246,10 @@ export function useCandidateEdit(id?: string) {
 
   const dirty = JSON.stringify(form) !== JSON.stringify(saved);
   /** Drop unsaved edits (panel Cancel). */
-  const reset = () => setForm(saved);
+  const reset = () => { setForm(saved); setFieldErrors({}); };
 
   return {
+    fieldErrors,
     candidate, parties, loading, loadError, saving, form, setForm, dirty, reset, refresh: loadData,
     personSearch, setPersonSearch, personResults, isLinking,
     handleSave, linkToPerson, createMasterRecord, unlink
