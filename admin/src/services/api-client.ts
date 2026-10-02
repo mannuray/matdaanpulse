@@ -55,7 +55,8 @@ export function fieldErrorMap(err: unknown): Record<string, string> {
  */
 export async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const token = getToken();
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  // A FormData body sets its own multipart Content-Type (with the boundary); never override it.
+  const headers: Record<string, string> = options?.body instanceof FormData ? {} : { 'Content-Type': 'application/json' };
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
