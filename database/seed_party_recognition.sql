@@ -1,5 +1,6 @@
--- ECI recognition for the national parties. Sets `parties.eci_recognition` only where it is NULL,
--- so a value set in the admin is never overwritten, and only for party ids that exist. Safe to re-run.
+-- ECI recognition for the national parties. Fills `parties.eci_recognition` only where it is empty
+-- (NULL), and only for party ids that exist. Safe to re-run: a value set in the admin is kept, but a
+-- value cleared in the admin ("Not set") is filled again by the next setup.sh run.
 -- Source: Election Commission of India list of recognised national parties.
 UPDATE parties p
 SET eci_recognition = 'National'

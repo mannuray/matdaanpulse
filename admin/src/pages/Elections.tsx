@@ -108,14 +108,22 @@ export default function Elections() {
     // Only when the open record changes — not when its object is refreshed by a reload.
   }, [route.id, target?.id]);
 
+  // ElectionContext reads ?election= only on first load, so switch first (as CommandPalette and
+  // RecordLink do); the navigation then carries the same election. No dirty check: the edit dialog
+  // is modal and closed whenever this menu is reachable.
+  const openForElection = (e: Election, path: string) => {
+    if (e.id !== ctx.electionId) ctx.setElectionId(e.id);
+    navigate(`${path}?election=${encodeURIComponent(e.id)}`);
+  };
+
   const actions: RowActions = {
     currentId: ctx.electionId,
     canFinalize,
     onEdit: (e) => route.open(e.id),
     onLifecycle: setConfirm,
     onMakeCurrent: (e) => ctx.setElectionId(e.id),
-    onManifest: (e) => navigate(`/manifests/${e.id}?election=${e.id}`),
-    onLiveConsole: (e) => navigate(`/overrides?election=${e.id}`),
+    onManifest: (e) => openForElection(e, `/manifests/${e.id}`),
+    onLiveConsole: (e) => openForElection(e, '/overrides'),
   };
 
   const save = async () => {

@@ -1,6 +1,7 @@
 -- Result (counting) dates for the seeded elections. `elections.tentative_next_date` is the counting day:
 -- the public site counts down to it and polls for the flip to Live around it; the admin labels it "Result date".
--- Fills only empty dates, so a date set in the admin is never overwritten. Safe to re-run.
+-- Fills only empty dates. Safe to re-run: a date set in the admin is kept, but a date cleared in the
+-- admin is filled again by the next setup.sh run.
 -- Sources: Election Commission of India result declarations.
 UPDATE elections e
 SET tentative_next_date = d.result_date

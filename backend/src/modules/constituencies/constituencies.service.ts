@@ -90,11 +90,12 @@ export class ConstituenciesService {
   }
 
   /**
-   * `phase` is the only store of the polling phase (migration 017), so a `phase` key in a metadata patch is
-   * dropped (the stored metadata keeps whatever it had); the save itself still succeeds.
+   * `phase` is the only store of the polling phase (migration 017), so a `phase` key is dropped from both the
+   * metadata patch and the stored metadata on every metadata write (migration 017 also strips it); the save
+   * itself still succeeds. A stored key would otherwise be copied back into a cleared column by a later run.
    */
-  private static withoutPhase(patch: Record<string, unknown> | null | undefined) {
-    const { phase: _phase, ...rest } = (patch || {}) as Record<string, unknown>;
+  private static withoutPhase(patch: Record<string, any> | null | undefined): Record<string, any> {
+    const { phase: _phase, ...rest } = (patch || {}) as Record<string, any>;
     return rest;
   }
 
@@ -111,7 +112,7 @@ export class ConstituenciesService {
         phase: patch.phase,
         type: patch.type,
         metadata: patch.metadata
-          ? { ...(constituency.metadata as any || {}), ...ConstituenciesService.withoutPhase(patch.metadata) }
+          ? { ...ConstituenciesService.withoutPhase(constituency.metadata as any), ...ConstituenciesService.withoutPhase(patch.metadata) }
           : undefined,
       }
     });
@@ -124,7 +125,7 @@ export class ConstituenciesService {
     if (!constituency) throw new ConstituencyNotFoundException(id);
     const updated = await this.prisma.constituencies.update({
       where: { id },
-      data: { metadata: { ...(constituency.metadata as any || {}), ...ConstituenciesService.withoutPhase(patch) } }
+      data: { metadata: { ...ConstituenciesService.withoutPhase(constituency.metadata as any), ...ConstituenciesService.withoutPhase(patch) } }
     });
     await this.auditUpdate(constituency, updated, id, userId);
     return updated;
@@ -181,7 +182,7 @@ export class ConstituenciesService {
   async bulkTag(ids: string[], addTags?: string[], removeTags?: string[], userId?: string) {
     const constituencies = await this.prisma.constituencies.findMany({ where: { id: { in: ids } } });
     const updates = constituencies.map(c => {
-      const meta = (c.metadata as any) || {};
+      const meta: any = ConstituenciesService.withoutPhase(c.metadata as any);
       let tags: string[] = meta.tags || [];
       if (addTags?.length) tags = [...new Set([...tags, ...addTags])];
       if (removeTags?.length) tags = tags.filter(t => !removeTags.includes(t));

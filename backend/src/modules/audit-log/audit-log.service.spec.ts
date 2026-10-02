@@ -1,5 +1,5 @@
 import { Logger } from '@nestjs/common';
-import { AuditLogService } from './audit-log.service';
+import { AuditLogService, RECORD_AUDIT_ACTIONS } from './audit-log.service';
 import { changedFields, createdFields } from './audit-diff';
 
 const entry = { userId: 'u1', action: 'PARTY_UPDATE' as const, entityType: 'party' as const, entityId: 'BJP', oldValue: { name: 'A' }, newValue: { name: 'B' } };
@@ -71,9 +71,18 @@ describe('AuditLogService.lastEdit', () => {
     const prisma = { audit_logs: { findFirst: jest.fn().mockResolvedValue(null) } };
     await expect(new AuditLogService(prisma as any).lastEdit('party', 'BJP')).resolves.toBeNull();
     expect(prisma.audit_logs.findFirst).toHaveBeenCalledWith(expect.objectContaining({
-      where: { entity_type: 'party', entity_id: 'BJP' },
+      where: { entity_type: 'party', entity_id: 'BJP', action: { in: [...RECORD_AUDIT_ACTIONS] } },
       orderBy: { timestamp: 'desc' },
     }));
+  });
+
+  it('counts only the 9 record-edit actions (a SEAT_LOCK_TAKEOVER on the seat is not an edit)', async () => {
+    const prisma = { audit_logs: { findFirst: jest.fn().mockResolvedValue(null) } };
+    await new AuditLogService(prisma as any).lastEdit('constituency', 'BR_VS_1');
+    const actions: string[] = prisma.audit_logs.findFirst.mock.calls[0][0].where.action.in;
+    expect(actions).toHaveLength(9);
+    expect(actions).toContain('CONSTITUENCY_UPDATE');
+    expect(actions).not.toContain('SEAT_LOCK_TAKEOVER');
   });
 
   it('returns the newest row as { at: ISO, by: user name }', async () => {

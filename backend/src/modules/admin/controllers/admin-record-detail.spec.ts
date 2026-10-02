@@ -7,7 +7,7 @@ import { AdminConstituenciesController } from './admin-constituencies.controller
 import {
   AdminPartyDto, AdminPersonDto, AdminCandidateDto, AdminConstituencyDto, AdminPartyUsageDto, AdminCandidateResultDto, AdminSeatHistoryDto,
 } from '../dto/admin-response.dto';
-import { AuditLogService } from '../../audit-log/audit-log.service';
+import { AuditLogService, RECORD_AUDIT_ACTIONS } from '../../audit-log/audit-log.service';
 import { PersonsService } from '../../candidates/persons.service';
 import { CandidatesService } from '../../candidates/candidates.service';
 import { CandidateSummaryDto } from '../../candidates/dto/candidate-response.dto';
@@ -26,7 +26,7 @@ describe('admin detail responses: updated_at + last_edit', () => {
     const svc = { findOne: jest.fn().mockResolvedValue({ id: 'BJP', name: 'BJP', eci_recognition: 'National', updated_at }) };
     const out = map(AdminPartyDto, await new AdminPartiesController(svc as any, audit).findOne('BJP'));
     expect(out).toMatchObject({ id: 'BJP', eci_recognition: 'National', updated_at: '2026-10-01T09:30:00.000Z', last_edit: null });
-    expect(prisma.audit_logs.findFirst.mock.calls[0][0].where).toEqual({ entity_type: 'party', entity_id: 'BJP' });
+    expect(prisma.audit_logs.findFirst.mock.calls[0][0].where).toEqual({ entity_type: 'party', entity_id: 'BJP', action: { in: [...RECORD_AUDIT_ACTIONS] } });
   });
 
   it('party update: the user id goes to the service and the response carries the new last_edit', async () => {

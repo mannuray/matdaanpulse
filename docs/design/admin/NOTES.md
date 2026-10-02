@@ -65,6 +65,15 @@ pages, without these Stitch items (plan `docs/superpowers/plans/2026-10-02-admin
 - Backend hardening: Lua `type(parsed)=='table'` guard; `forceSet` via `SET … GET`; 503 message rewritten by the filter (clients key on `RESULT_6003`).
 - Sidebar not responsive (desktop-only by spec); admin bundle > 500 kB (chunk warning).
 
+### Record pages open follow-ups (2026-10)
+- `seed_party_recognition.sql` and `seed_election_result_dates.sql` fill only empty values but run on every `setup.sh`
+  (each deploy), so a recognition or result date cleared in the admin comes back. Fix: run one-off data fills once,
+  gated by a marker (for example a row in a small `seed_runs` table).
+- Pre-existing: `seed_tn_districts_regions.sql` rewrites `district_id` on TN VS seats unconditionally, and its
+  overlapping ranges (Vellore) can change a row and change it back in one run. So each deploy reverts admin district
+  edits on those seats and moves their `updated_at` ("Last updated" on the record page). Fix: only fill NULLs, or the
+  same run-once marker.
+
 ### Phase 3 open follow-ups
 - The dashboard activity row "saved N results" lacks the seat name.
 - The audit log loader fetches 200 rows with no paging.

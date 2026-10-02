@@ -174,4 +174,31 @@ describe('Elections page', () => {
     expect(ctx.setElectionId).toHaveBeenCalledWith('e2');
     expect(where()).toBe('/elections');
   });
+
+  it('⋯ Open live console switches the global election before navigating', async () => {
+    renderAt();
+    await within(table()).findByText('Lok Sabha 2024');
+    fireEvent.keyDown(screen.getByRole('button', { name: 'More actions for Lok Sabha 2024' }), { key: 'Enter' });
+    fireEvent.click(await screen.findByRole('menuitem', { name: 'Open live console' }));
+    expect(ctx.setElectionId).toHaveBeenCalledWith('e2');
+    await waitFor(() => expect(where()).toBe('/overrides?election=e2'));
+  });
+
+  it('⋯ Open manifest switches the global election before navigating', async () => {
+    renderAt();
+    await within(table()).findByText('Kerala Vidhan Sabha 2026');
+    fireEvent.keyDown(screen.getByRole('button', { name: 'More actions for Kerala Vidhan Sabha 2026' }), { key: 'Enter' });
+    fireEvent.click(await screen.findByRole('menuitem', { name: 'Open manifest' }));
+    expect(ctx.setElectionId).toHaveBeenCalledWith('e3');
+    await waitFor(() => expect(where()).toBe('/manifests/e3?election=e3'));
+  });
+
+  it('⋯ Open manifest on the current election does not switch', async () => {
+    renderAt();
+    await within(table()).findByText('Bihar Vidhan Sabha 2025');
+    fireEvent.keyDown(screen.getByRole('button', { name: 'More actions for Bihar Vidhan Sabha 2025' }), { key: 'Enter' });
+    fireEvent.click(await screen.findByRole('menuitem', { name: 'Open manifest' }));
+    expect(ctx.setElectionId).not.toHaveBeenCalled();
+    await waitFor(() => expect(where()).toBe('/manifests/e1?election=e1'));
+  });
 });

@@ -5,7 +5,9 @@
 --     live-version triggers of migration 015, which compare their own columns only.
 --   * parties.eci_recognition: National / State / Unrecognised, or NULL (not set).
 --   * constituencies.phase is the only store of the polling phase: copy metadata->>'phase'
---     into the column where it is NULL. Non-numeric values are skipped.
+--     into the column where it is NULL (non-numeric values are skipped), then drop the
+--     metadata key, so a phase later cleared in the admin is not copied back on the next
+--     setup.sh run.
 --
 -- Idempotent; no seed dependency.
 
@@ -61,3 +63,9 @@ SET phase = btrim(metadata->>'phase')::smallint
 WHERE phase IS NULL
   AND metadata ? 'phase'
   AND btrim(metadata->>'phase') ~ '^([1-9]|1[0-9]|20)$';
+
+-- After the copy the key is dead data (the admin never reads or writes it). Unparseable legacy
+-- values go too: they were never a valid phase. Re-runs match no rows.
+UPDATE constituencies
+SET metadata = metadata - 'phase'
+WHERE metadata ? 'phase';

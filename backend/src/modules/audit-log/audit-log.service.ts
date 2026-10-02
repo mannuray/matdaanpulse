@@ -86,10 +86,14 @@ export class AuditLogService {
     }
   }
 
-  /** Newest audit row of an entity as { at, by: user name }, or null when it was never edited. */
+  /**
+   * Newest record-edit audit row of an entity as { at, by: user name }, or null when it was never edited.
+   * Only the RECORD_AUDIT_ACTIONS count: other rows on the same entity (e.g. SEAT_LOCK_TAKEOVER on a
+   * constituency) are not edits.
+   */
   async lastEdit(entityType: RecordEntityType, entityId: string): Promise<LastEdit | null> {
     const row = await this.prisma.audit_logs.findFirst({
-      where: { entity_type: entityType, entity_id: entityId },
+      where: { entity_type: entityType, entity_id: entityId, action: { in: [...RECORD_AUDIT_ACTIONS] } },
       orderBy: { timestamp: 'desc' },
       select: { timestamp: true, users: { select: { name: true } } },
     });
