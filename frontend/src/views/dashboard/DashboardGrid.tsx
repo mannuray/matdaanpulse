@@ -24,10 +24,12 @@ import { FocusOverlay } from './FocusOverlay';
 import { MobileCardRail } from './MobileCardRail';
 import { MapTile } from '../map/MapTile';
 import { SeatDialog } from '../seat/SeatDialog';
+import { PartyDialog } from '../party/PartyDialog';
+import type { PartyDialogVM } from '../../viewmodels/tiles/usePartyDialogVM';
 
 export interface DashboardViewProps {
   topBar: TopBarVM; search: SearchVM; scoreboard: ScoreboardVM; standings: StandingsVM; insight: LayerInsightVM; summary?: SummaryVM;
-  leaders: LeadersVM; stats: StatsVM; map: MapVM; seatDialog: SeatDialogVM | null;
+  leaders: LeadersVM; stats: StatsVM; map: MapVM; seatDialog: SeatDialogVM | null; partyDialog: PartyDialogVM | null;
   focus: FocusTile | null; onCloseFocus(): void;
 }
 
@@ -67,6 +69,7 @@ export function DashboardGrid(p: DashboardViewProps) {
         ]} />
         {overlay}
         <SeatDialog vm={p.seatDialog} />
+        <PartyDialog vm={p.partyDialog} />
       </div>
     );
   }
@@ -83,6 +86,7 @@ export function DashboardGrid(p: DashboardViewProps) {
       <div className="col-span-2 grid min-h-0"><StatsStrip vm={p.stats} variant="tile" /></div>
       {overlay}
       <SeatDialog vm={p.seatDialog} />
+      <PartyDialog vm={p.partyDialog} />
     </div>
   );
 }

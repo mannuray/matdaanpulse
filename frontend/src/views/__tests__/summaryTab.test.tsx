@@ -213,7 +213,7 @@ describe('SummaryPreview (rail)', () => {
 });
 
 describe('StandingsTile summary tab', () => {
-  const st: StandingsVM = { rows: [{ id: 'BJP', name: 'Bharatiya Janata Party', color: '#FF7A1A', seats: 89, votePct: null, allianceId: 'NDA' }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop };
+  const st: StandingsVM = { rows: [{ id: 'BJP', name: 'Bharatiya Janata Party', color: '#FF7A1A', seats: 89, votePct: null, allianceId: 'NDA' }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop, markOf: () => null, onOpenParty: noop };
   it('defaults to Summary with the layer in its label, and Parties is one click away', () => {
     height(300);
     mockWide(true);
@@ -238,7 +238,7 @@ describe('StandingsTile summary tab', () => {
   it('the card title follows the tab and the expand button opens that tab\'s focus', () => {
     height(300);
     const onFocus = vi.fn(); const onSummaryFocus = vi.fn();
-    const watchlist = { leaders: [], watchlist: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop };
+    const watchlist = { leaders: [], watchlist: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop };
     render(<StandingsTile vm={{ ...st, onFocus }} variant="tile" summary={mk({ onFocus: onSummaryFocus })} watchlist={watchlist} />);
     expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('Election summary');
     fireEvent.click(screen.getByRole('button', { name: /expand election summary/i }));

@@ -22,7 +22,7 @@ afterEach(cleanup);
 const noop = () => {};
 
 const row = (id: string, seats: number): StandingRow => ({ id, name: `${id} party`, color: '#f70', seats, votePct: null, allianceId: null });
-const standings = (rows: StandingRow[]): StandingsVM => ({ rows, allRows: rows, pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop });
+const standings = (rows: StandingRow[]): StandingsVM => ({ rows, allRows: rows, pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop, markOf: () => null, onOpenParty: noop });
 
 describe('StandingsPreview', () => {
   it('shows the top four parties (dot, short id, bar, seats) and +N more, with no buttons', () => {

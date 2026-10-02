@@ -10,6 +10,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { PillToggle } from '../ui/PillToggle';
 import { PickerSelect } from '../ui/PickerSelect';
 import { ScrollArea } from '../ui/ScrollArea';
+import { PartyMark } from '../ui/PartyMark';
 import { cn } from '../ui/cn';
 import { onKbdFocus } from '../ui/kbdFocus';
 
@@ -17,19 +18,25 @@ export type StandingsTab = 'parties' | 'watchlist';
 type TileTab = StandingsTab | 'summary';
 
 function Row({ r, max, vm, wide }: { r: StandingRow; max: number; vm: StandingsVM; wide?: boolean }) {
+  const { t } = useTranslation();
   return (
-    <button type="button" onClick={() => vm.onLockParty(r.id)} onMouseEnter={() => vm.onHoverParty(r.id)} onMouseLeave={() => vm.onHoverParty(null)} onFocus={onKbdFocus(() => vm.onHoverParty(r.id))} onBlur={() => vm.onHoverParty(null)}
-      aria-pressed={vm.lockedId === r.id} aria-label={`${r.id} ${r.name} ${r.seats}`}
-      className={cn('grid h-9 w-full grid-cols-[minmax(0,1fr)_minmax(60px,40%)_48px] items-center gap-3 rounded-[0.5rem] px-2 text-left hover:bg-tile-raised', vm.lockedId === r.id && 'bg-tile-raised ring-1 ring-accent', wide && 'grid-cols-[minmax(0,1fr)_minmax(80px,40%)_64px_64px]')}>
-      <span className="flex min-w-0 items-center gap-2">
-        <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: r.color }} />
-        <span className="font-semibold text-ink">{r.id}</span>
-        <span className="truncate text-xs text-muted">{r.name}</span>
-      </span>
-      <span className="h-1.5 overflow-hidden rounded-full bg-page"><span className="block h-full rounded-full" style={{ width: `${(r.seats / max) * 100}%`, background: r.color }} /></span>
-      {wide && <span className="tabular text-right text-sm text-muted">{r.votePct != null ? `${r.votePct}%` : '—'}</span>}
-      <span className="tabular text-right font-display text-2xl font-bold text-ink">{r.seats}</span>
-    </button>
+    <div className="flex items-center gap-1">
+      <button type="button" onClick={() => vm.onOpenParty(r.id)} aria-label={t('party_details', { name: r.name })}
+        className="grid h-9 w-8 shrink-0 place-items-center rounded-[0.5rem] hover:bg-tile-raised">
+        <PartyMark mark={vm.markOf(r.id)} color={r.color} label={r.id} />
+      </button>
+      <button type="button" onClick={() => vm.onLockParty(r.id)} onMouseEnter={() => vm.onHoverParty(r.id)} onMouseLeave={() => vm.onHoverParty(null)} onFocus={onKbdFocus(() => vm.onHoverParty(r.id))} onBlur={() => vm.onHoverParty(null)}
+        aria-pressed={vm.lockedId === r.id} aria-label={`${r.id} ${r.name} ${r.seats}`}
+        className={cn('grid h-9 min-w-0 flex-1 grid-cols-[minmax(0,1fr)_minmax(60px,40%)_48px] items-center gap-3 rounded-[0.5rem] px-2 text-left hover:bg-tile-raised', vm.lockedId === r.id && 'bg-tile-raised ring-1 ring-accent', wide && 'grid-cols-[minmax(0,1fr)_minmax(80px,40%)_64px_64px]')}>
+        <span className="flex min-w-0 items-center gap-2">
+          <span className="font-semibold text-ink">{r.id}</span>
+          <span className="truncate text-xs text-muted">{r.name}</span>
+        </span>
+        <span className="h-1.5 overflow-hidden rounded-full bg-page"><span className="block h-full rounded-full" style={{ width: `${(r.seats / max) * 100}%`, background: r.color }} /></span>
+        {wide && <span className="tabular text-right text-sm text-muted">{r.votePct != null ? `${r.votePct}%` : '—'}</span>}
+        <span className="tabular text-right font-display text-2xl font-bold text-ink">{r.seats}</span>
+      </button>
+    </div>
   );
 }
 
@@ -39,7 +46,7 @@ function WatchRow({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   return (
     <div className="flex h-9 w-full items-center gap-1 rounded-[0.5rem] hover:bg-tile-raised" onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)} onFocus={onKbdFocus(() => vm.onHoverSeat(c.constId))} onBlur={() => vm.onHoverSeat(null)}>
       <button type="button" onClick={() => vm.onSelectSeat(c.constId)} className="flex h-full min-w-0 flex-1 items-center gap-2 rounded-[0.5rem] px-2 text-left">
-        <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: color }} />
+        <span aria-hidden className="flex shrink-0"><PartyMark mark={vm.markOf(c.partyId)} color={color} label={c.partyId} /></span>
         <span className="max-w-[40%] shrink-0 truncate font-semibold text-ink">{c.constName}</span>
         <span className="shrink-0 text-xs text-muted">{c.partyId}</span>
         <span className="min-w-0 flex-1 truncate text-xs text-muted">{c.name}</span>
@@ -85,7 +92,7 @@ function WatchPreviewRow({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   const color = vm.partyColor.get(c.partyId) ?? 'var(--color-fallback)';
   return (
     <div className="flex h-9 w-full items-center gap-2 px-2">
-      <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: color }} />
+      <span aria-hidden className="flex shrink-0"><PartyMark mark={vm.markOf(c.partyId)} color={color} label={c.partyId} /></span>
       <span className="max-w-[40%] shrink-0 truncate font-semibold text-ink">{c.constName}</span>
       <span className="shrink-0 text-xs text-muted">{c.partyId}</span>
       <span className="min-w-0 flex-1 truncate text-xs text-muted">{c.name}</span>

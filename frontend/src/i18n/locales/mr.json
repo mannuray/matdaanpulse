@@ -380,5 +380,22 @@
   "seat_spoiler": "{{party}} polled {{votes}} votes, more than the {{margin}} margin",
   "seat_full_page": "Full constituency page",
   "seat_details_unavailable": "Details unavailable",
-  "seat_nota": "NOTA"
+  "seat_nota": "NOTA",
+  "party_this_election": "This election — {{name}}",
+  "party_won": "Won",
+  "party_leading": "Leading",
+  "party_contested": "Contested",
+  "party_vote_share": "Vote share",
+  "party_majority": "Majority {{n}}",
+  "party_leader": "Leader",
+  "party_founded": "Founded",
+  "party_hq": "Headquarters",
+  "party_alliance": "Alliance",
+  "party_website": "Website",
+  "party_wikipedia": "Wikipedia",
+  "party_key_candidates": "Key candidates",
+  "party_recognition_National": "National party",
+  "party_recognition_State": "State party",
+  "party_recognition_Unrecognised": "Unrecognised party",
+  "party_details": "Party details: {{name}}"
 }

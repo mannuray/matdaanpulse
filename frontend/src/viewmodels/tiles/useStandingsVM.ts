@@ -14,6 +14,8 @@ export interface StandingsVM {
   onFocus(): void;
   onHoverParty(id: string | null): void;
   onLockParty(id: string): void;
+  markOf(partyId: string): string | null;
+  onOpenParty(partyId: string): void;
 }
 
 export function useStandingsVM(): StandingsVM {
@@ -30,5 +32,7 @@ export function useStandingsVM(): StandingsVM {
     onFocus: () => dispatch({ type: 'focus', tile: 'standings' }),
     onHoverParty: id => intentFor(dispatch)(id ? { parties: [id], seats: [] } : null),
     onLockParty: id => dispatch({ type: 'toggleLock', chipId: `party:${id}`, highlight: { parties: [id], seats: [] }, label: id }),
+    markOf: id => src.partyMeta.get(id)?.mark ?? null,
+    onOpenParty: id => dispatch({ type: 'selectParty', party: id }),
   };
 }

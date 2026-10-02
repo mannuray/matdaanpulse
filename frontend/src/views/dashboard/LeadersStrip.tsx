@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
 import { fitCount } from '../../viewmodels/tiles/fit';
 import { useElementWidth } from '../hooks/useElementWidth';
+import { PartyMark } from '../ui/PartyMark';
 import { cn } from '../ui/cn';
 import { STATUS_STYLE } from './statusStyle';
 import { onKbdFocus } from '../ui/kbdFocus';
@@ -20,7 +21,7 @@ function Card({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
       <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border text-xs font-bold" style={{ borderColor: color, color }}>{initials}</span>
       <span className="min-w-0 flex-1">
         <span className="block truncate text-sm font-semibold text-ink">{c.name}</span>
-        <span className="block truncate text-xs text-muted">{c.constName} · {c.partyId}</span>
+        <span className="flex items-center gap-1.5 text-xs text-muted"><span aria-hidden className="flex shrink-0"><PartyMark mark={vm.markOf(c.partyId)} color={color} label={c.partyId} /></span><span className="truncate">{c.constName} · {c.partyId}</span></span>
       </span>
       <span className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>
       {c.margin != null && c.status !== 'PENDING' && <span className="tabular shrink-0 text-xs font-semibold text-ink">{c.status === 'WON' || c.status === 'LEADING' ? '+' : '−'}{c.margin.toLocaleString()}</span>}

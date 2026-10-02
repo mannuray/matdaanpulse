@@ -380,5 +380,22 @@
   "seat_spoiler": "{{party}} को {{votes}} वोट मिले, जो {{margin}} के अंतर से अधिक हैं",
   "seat_full_page": "पूरा निर्वाचन क्षेत्र पृष्ठ",
   "seat_details_unavailable": "विवरण उपलब्ध नहीं",
-  "seat_nota": "नोटा"
+  "seat_nota": "नोटा",
+  "party_this_election": "यह चुनाव — {{name}}",
+  "party_won": "जीते",
+  "party_leading": "आगे",
+  "party_contested": "लड़े",
+  "party_vote_share": "वोट हिस्सा",
+  "party_majority": "बहुमत {{n}}",
+  "party_leader": "नेता",
+  "party_founded": "स्थापना",
+  "party_hq": "मुख्यालय",
+  "party_alliance": "गठबंधन",
+  "party_website": "वेबसाइट",
+  "party_wikipedia": "विकिपीडिया",
+  "party_key_candidates": "प्रमुख उम्मीदवार",
+  "party_recognition_National": "राष्ट्रीय दल",
+  "party_recognition_State": "राज्य दल",
+  "party_recognition_Unrecognised": "गैर-मान्यता प्राप्त दल",
+  "party_details": "दल का विवरण: {{name}}"
 }

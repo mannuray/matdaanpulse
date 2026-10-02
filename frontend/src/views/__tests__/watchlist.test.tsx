@@ -23,9 +23,9 @@ const card = (i: number, over: Partial<LeaderCard> = {}): LeaderCard => ({
 });
 const leadersVM = (over: Partial<LeadersVM> = {}): LeadersVM => ({
   leaders: [], watchlist: [], partyColor: new Map(), seatOptions: [{ id: 'C9', name: 'Nine' }],
-  onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, ...over,
+  onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop, ...over,
 });
-const standingsVM: StandingsVM = { rows: [{ id: 'BJP', name: 'Party', color: '#fff', seats: 3, votePct: null, allianceId: null }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop };
+const standingsVM: StandingsVM = { rows: [{ id: 'BJP', name: 'Party', color: '#fff', seats: 3, votePct: null, allianceId: null }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop, markOf: () => null, onOpenParty: noop };
 
 describe('LeadersStrip fits by width', () => {
   it('renders only the cards that fit and a "+N more" chip that opens the focus view', () => {
@@ -129,5 +129,15 @@ describe('WatchlistPreview (rail)', () => {
     expect(screen.getByText('Seat 1')).toBeTruthy();
     expect(screen.getByText('Seat 2')).toBeTruthy();
     expect(screen.queryByText('Seat 3')).toBeNull();
+  });
+});
+
+describe('party mark in standings', () => {
+  it('opens the party dialog from the mark button, the row still locks', () => {
+    const onOpenParty = vi.fn(), onLockParty = vi.fn();
+    render(<StandingsTile vm={{ ...standingsVM, onOpenParty, onLockParty, markOf: () => null }} variant="tile" watchlist={leadersVM()} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Party details: Party' }));
+    expect(onOpenParty).toHaveBeenCalledWith('BJP');
+    expect(onLockParty).not.toHaveBeenCalled();
   });
 });

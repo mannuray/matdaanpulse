@@ -18,6 +18,8 @@ export interface LeadersVM {
   onHoverSeat(id: string | null): void;
   onAddCustom(constId: string): void;
   onRemoveCustom(constId: string): void;
+  markOf(partyId: string): string | null;
+  onOpenParty(partyId: string): void;
 }
 
 export function useLeadersVM(): LeadersVM {
@@ -43,5 +45,7 @@ export function useLeadersVM(): LeadersVM {
     onHoverSeat: id => intentFor(dispatch)(id ? { parties: [], seats: [id] } : null),
     onAddCustom: constId => src.addWatch(constId, seatOptions.find(s => s.id === constId)?.name ?? constId),
     onRemoveCustom: src.removeWatch,
+    markOf: id => src.partyMeta.get(id)?.mark ?? null,
+    onOpenParty: id => dispatch({ type: 'selectParty', party: id }),
   };
 }
