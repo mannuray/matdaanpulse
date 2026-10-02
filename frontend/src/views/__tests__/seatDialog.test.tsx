@@ -37,6 +37,22 @@ describe('SeatDialog', () => {
     expect(within(dlg).getByText(/3-way contest/)).toBeTruthy();
   });
 
+  it('while the detail loads: skeletons for the stats, the No./place chips and past winners; live rows render at once', () => {
+    renderIt(vm({ detailState: 'loading', constNo: null, type: null, place: null, electors: null, turnout: null, phase: null, history: [] }));
+    const dlg = screen.getByRole('dialog', { name: 'Patliputra' });
+    const skels = dlg.querySelectorAll('[data-skeleton]');
+    expect(skels.length).toBe(2 + 4 + 3);
+    skels.forEach(el => expect(el.className).toContain('animate-pulse'));
+    expect(within(dlg).queryByText('Electors')).toBeNull();
+    expect(within(dlg).getByText('Ram Kripal Yadav')).toBeTruthy();
+    expect(within(dlg).getByText('Misa Bharti')).toBeTruthy();
+  });
+
+  it('no skeletons once the detail is ready', () => {
+    renderIt(vm());
+    expect(screen.getByRole('dialog', { name: 'Patliputra' }).querySelectorAll('[data-skeleton]')).toHaveLength(0);
+  });
+
   it('links a candidate with a person, opens the party dialog from the party cell', () => {
     const v = vm();
     renderIt(v);

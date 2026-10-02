@@ -30,9 +30,15 @@ export function LiveChip({ live }: { live: SeatDialogVM['live'] }) {
   );
 }
 
+/** Placeholder block while the constituency detail loads (spec "Loading"). */
+function Skel({ className }: { className: string }) {
+  return <span aria-hidden data-skeleton className={cn('block animate-pulse rounded bg-tile-raised', className)} />;
+}
+
 export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
   const { t } = useTranslation();
   if (!vm) return null;
+  const loading = vm.detailState === 'loading';
   const stats = [
     vm.electors != null && <Stat key="e" label={t('seat_electors')} value={formatIN(vm.electors)} />,
     vm.turnout != null && <Stat key="t" label={t('seat_turnout')} value={`${vm.turnout}%`} />,
@@ -41,6 +47,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
   ].filter(Boolean);
   const header = (
     <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
+      {loading && <><Skel className="h-5 w-16" /><Skel className="h-4 w-28" /></>}
       {(vm.constNo != null || vm.type) && <span className="rounded-md border border-line px-2 py-0.5 font-mono text-xs text-ink">{[vm.constNo != null && `No. ${vm.constNo}`, vm.type && vm.type !== 'GEN' && vm.type].filter(Boolean).join(' · ')}</span>}
       {vm.place && <span>{vm.place}</span>}
       <LiveChip live={vm.live} />
@@ -52,7 +59,9 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
   );
   return (
     <DetailDialog open title={vm.name} onClose={vm.onClose} header={header}>
-      {stats.length > 0 && <div className="mb-4 grid grid-cols-2 gap-2 lg:grid-cols-4">{stats}</div>}
+      {loading
+        ? <div className="mb-4 grid grid-cols-2 gap-2 lg:grid-cols-4">{[0, 1, 2, 3].map(i => <Skel key={i} className="h-[58px] rounded-tile" />)}</div>
+        : stats.length > 0 && <div className="mb-4 grid grid-cols-2 gap-2 lg:grid-cols-4">{stats}</div>}
       {vm.detailState === 'error' && <p className="mb-2 text-xs text-muted">{t('seat_details_unavailable')}</p>}
       <table className="w-full text-sm">
         <thead><tr className="border-b border-line text-left text-[11px] uppercase tracking-wider text-muted">
@@ -85,6 +94,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
       </table>
       <div className="mt-4 flex flex-wrap items-center gap-2">
         {vm.history.length > 0 && <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t('seat_past_winners')}</span>}
+        {loading && vm.history.length === 0 && [0, 1, 2].map(i => <Skel key={i} className="h-6 w-24 rounded-md" />)}
         {vm.history.map((h, i) => {
           const m = h.party ? vm.partyMeta.get(h.party) : undefined;
           return (
