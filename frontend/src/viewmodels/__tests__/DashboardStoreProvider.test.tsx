@@ -9,7 +9,7 @@ function setup(url: string | string[], initialIndex?: number) {
   const entries = Array.isArray(url) ? url : [url];
   const wrapper = ({ children }: { children: ReactNode }) => (
     <MemoryRouter initialEntries={entries} initialIndex={initialIndex} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <DashboardStoreProvider allowedLayers={['overview', 'swing']} knownSeats={new Set(['A'])}>{children}</DashboardStoreProvider>
+      <DashboardStoreProvider allowedLayers={['overview', 'swing']} knownSeats={new Set(['A'])} knownParties={null}>{children}</DashboardStoreProvider>
     </MemoryRouter>
   );
   return renderHook(() => ({ store: useDashboardStore(), loc: useLocation(), nav: useNavigate() }), { wrapper });
@@ -20,7 +20,7 @@ describe('DashboardStoreProvider', () => {
     const { result } = setup('/election/x?layer=swing');
     expect(result.current.store.state.layer).toBe('swing');
     act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'A' }));
-    expect(result.current.loc.search).toBe('?layer=swing&seat=A&focus=map');
+    expect(result.current.loc.search).toBe('?layer=swing&seat=A');
   });
   it('drops an unknown seat from the URL', () => {
     const { result } = setup('/election/x?seat=ZZZ');

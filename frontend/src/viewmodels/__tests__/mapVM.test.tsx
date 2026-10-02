@@ -13,7 +13,7 @@ import '../../i18n';
 vi.spyOn(ElectionService, 'getGeoJSON').mockResolvedValue({ type: 'FeatureCollection', features: [] });
 
 const wrapper = ({ children }: { children: ReactNode }) => (
-  <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><DashboardSourcesProvider value={makeSources()}><DashboardStoreProvider allowedLayers={['overview', 'battle']} knownSeats={null}>{children}</DashboardStoreProvider></DashboardSourcesProvider></MemoryRouter>
+  <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><DashboardSourcesProvider value={makeSources()}><DashboardStoreProvider allowedLayers={['overview', 'battle']} knownSeats={null} knownParties={null}>{children}</DashboardStoreProvider></DashboardSourcesProvider></MemoryRouter>
 );
 
 describe('useMapVM', () => {

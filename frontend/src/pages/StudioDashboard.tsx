@@ -34,6 +34,7 @@ function Wall() {
 function Loaded({ election }: { election: Election }) {
   const sources = useDashboardSources(election);
   const { t } = useTranslation();
+  const knownParties = useMemo(() => (sources.partyMeta.size ? new Set(sources.partyMeta.keys()) : null), [sources.partyMeta]);
   const knownSeats = useMemo(() => (sources.data.mapRegions.length ? new Set(sources.data.mapRegions.map(r => r.id)) : null), [sources.data.mapRegions]);
   if (sources.data.error && sources.data.mapRegions.length === 0) {
     return (
@@ -45,7 +46,7 @@ function Loaded({ election }: { election: Election }) {
   }
   return (
     <DashboardSourcesProvider value={sources}>
-      <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={knownSeats}>
+      <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={knownSeats} knownParties={knownParties}>
         <Wall />
       </DashboardStoreProvider>
     </DashboardSourcesProvider>

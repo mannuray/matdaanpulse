@@ -7,28 +7,28 @@ import { dashboardReducer, effectiveLayer, initialUiState, parseUiParams, serial
 interface StoreValue { state: DashboardUiState; dispatch: Dispatch<DashboardAction> }
 const StoreContext = createContext<StoreValue | null>(null);
 
-export function DashboardStoreProvider({ allowedLayers, knownSeats, children }: { allowedLayers: LayerId[]; knownSeats: Set<string> | null; children: ReactNode }) {
+export function DashboardStoreProvider({ allowedLayers, knownSeats, knownParties, children }: { allowedLayers: LayerId[]; knownSeats: Set<string> | null; knownParties: Set<string> | null; children: ReactNode }) {
   const [params, setParams] = useSearchParams();
   const navigate = useNavigate();
   /** True while the current history entry (focus/seat open) was pushed by this store, so closing can pop it. */
   const pushedRef = useRef(false);
   /** The requested layer when that entry was pushed: Back only returns to a URL with the same layer (R29). */
   const pushedLayerRef = useRef<LayerId | null>(null);
-  const [raw, dispatch] = useReducer(dashboardReducer, undefined, () => ({ ...initialUiState, ...parseUiParams(params, knownSeats) }));
+  const [raw, dispatch] = useReducer(dashboardReducer, undefined, () => ({ ...initialUiState, ...parseUiParams(params, knownSeats, knownParties) }));
 
   // A pending hover clear must not outlive the store.
   useEffect(() => () => intentFor(dispatch).cancel(), []);
 
   // URL → state (back/forward, pasted links, late-loading seat list). Idempotent after our own writes.
   useEffect(() => {
-    dispatch({ type: 'syncFromUrl', params: parseUiParams(params, knownSeats) });
-  }, [params, knownSeats]);
+    dispatch({ type: 'syncFromUrl', params: parseUiParams(params, knownSeats, knownParties) });
+  }, [params, knownSeats, knownParties]);
 
   // state → URL (the REQUESTED layer is written, not the effective one).
   // Opening focus/seat from closed pushes one history entry; closing that entry goes Back (so Back never re-opens it) unless the layer changed meanwhile;
   // every other change (layer, switching tiles, closing a pasted link) replaces.
   useEffect(() => {
-    const isOpen = (p: URLSearchParams) => Boolean(p.get('focus') || p.get('seat'));
+    const isOpen = (p: URLSearchParams) => Boolean(p.get('focus') || p.get('seat') || p.get('party'));
     const next = serializeUiParams(raw, params);
     if (next.toString() === params.toString()) {
       if (!isOpen(params)) pushedRef.current = false; // closed by browser Back / URL change
@@ -49,7 +49,7 @@ export function DashboardStoreProvider({ allowedLayers, knownSeats, children }: 
       setParams(next, { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [raw.layer, raw.selectedSeat, raw.focus]);
+  }, [raw.layer, raw.selectedSeat, raw.selectedParty, raw.focus]);
 
   const allowedKey = allowedLayers.join(',');
   const state = useMemo(
