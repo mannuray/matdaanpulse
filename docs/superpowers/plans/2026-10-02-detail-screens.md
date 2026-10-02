@@ -1442,7 +1442,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```ts
 export interface SeatDialogVM {
   seatId: string; name: string; constNo: number | null; type: 'GEN' | 'SC' | 'ST' | null; place: string | null;
-  live: { kind: 'counting'; round: { current: number; total: number } | null; updatedAt: string | null } | { kind: 'declared' } | null;
+  live: { kind: 'counting'; round: { current: number; total: number } | null } | { kind: 'declared' } | null;
   electors: number | null; turnout: number | null; phase: number | null;
   view: SeatView; history: SeatHistoryEntry[]; notes: SeatNote[];
   partyMeta: Map<string, PartyMeta>;
@@ -1466,7 +1466,6 @@ Add to `en.json` (and the Hindi values to `hi.json`, same keys):
 | `seat_phase_n` | Phase {{n}} | चरण {{n}} |
 | `seat_counting` | Counting | मतगणना जारी |
 | `seat_round` | Round {{current}}/{{total}} | राउंड {{current}}/{{total}} |
-| `seat_updated_ago` | updated {{ago}} | अपडेट {{ago}} |
 | `seat_declared` | Declared | घोषित |
 | `seat_rank_candidate` | Rank & candidate | क्रम व उम्मीदवार |
 | `seat_party` | Party | दल |
@@ -1481,8 +1480,6 @@ Add to `en.json` (and the Hindi values to `hi.json`, same keys):
 | `seat_full_page` | Full constituency page | पूरा निर्वाचन क्षेत्र पृष्ठ |
 | `seat_details_unavailable` | Details unavailable | विवरण उपलब्ध नहीं |
 | `seat_nota` | NOTA | नोटा |
-
-Timestamps: reuse an existing relative-time helper if `src/views` has one (`grep -rn "ago" src/views src/model/live`); otherwise format with `Intl.RelativeTimeFormat(i18n.language, { numeric: 'auto' })` in the view, minutes granularity.
 
 - [ ] **Step 2: Write the failing VM test**
 
@@ -1575,7 +1572,7 @@ import type { SeatHistoryEntry } from '../../model/types';
 
 export interface SeatDialogVM {
   seatId: string; name: string; constNo: number | null; type: 'GEN' | 'SC' | 'ST' | null; place: string | null;
-  live: { kind: 'counting'; round: { current: number; total: number } | null; updatedAt: string | null } | { kind: 'declared' } | null;
+  live: { kind: 'counting'; round: { current: number; total: number } | null } | { kind: 'declared' } | null;
   electors: number | null; turnout: number | null; phase: number | null;
   view: SeatView; history: SeatHistoryEntry[]; notes: SeatNote[];
   partyMeta: Map<string, PartyMeta>;
@@ -1591,7 +1588,9 @@ export function useSeatDialogVM(): SeatDialogVM | null {
   const { state, dispatch } = useDashboardStore();
   const id = state.selectedSeat;
   const eid = src.election.id;
-  const detail = useApi(() => (id ? getConstituency(eid, id) : Promise.resolve(null)), [eid, id], { key: id ? ElectionService.getConstituencyCacheKey(eid, id) : undefined });
+  // Refetch while open on every new live version, so the counting round follows the snapshot (CDN-cached ~60 s).
+  const version = src.election.status === 'Live' ? src.data.liveVersion : null;
+  const detail = useApi(() => (id ? getConstituency(eid, id) : Promise.resolve(null)), [eid, id, version], { key: id ? `${ElectionService.getConstituencyCacheKey(eid, id)}_v${version ?? ''}` : undefined });
   const analysis = useApi(() => (id ? getConstituencyAnalysis(eid, id).catch(() => null) : Promise.resolve(null)), [eid, id], { key: id ? `${ElectionService.getConstituencyCacheKey(eid, id)}_analysis` : undefined });
   const rows = id ? src.data.constCandidates.get(id) : undefined;
   const view = useMemo(
@@ -1606,7 +1605,7 @@ export function useSeatDialogVM(): SeatDialogVM | null {
   const live: SeatDialogVM['live'] =
     src.election.status === 'Upcoming' ? null
     : src.election.status === 'Finalized' || allDeclared ? { kind: 'declared' }
-    : { kind: 'counting', round: d?.current_round && d.total_rounds ? { current: d.current_round, total: d.total_rounds } : null, updatedAt: d?.last_updated ?? null };
+    : { kind: 'counting', round: d?.current_round && d.total_rounds ? { current: d.current_round, total: d.total_rounds } : null };
   const fullAnalysis = analysis.data ?? null;
   return {
     seatId: id,
@@ -1652,7 +1651,7 @@ beforeAll(() => { window.matchMedia = vi.fn().mockReturnValue({ matches: true, a
 afterEach(cleanup);
 
 const vm = (over: Partial<SeatDialogVM> = {}): SeatDialogVM => ({
-  seatId: 'S', name: 'Patliputra', constNo: 30, type: 'SC', place: 'Patna · Bihar', live: { kind: 'counting', round: { current: 12, total: 24 }, updatedAt: null },
+  seatId: 'S', name: 'Patliputra', constNo: 30, type: 'SC', place: 'Patna · Bihar', live: { kind: 'counting', round: { current: 12, total: 24 } },
   electors: 2014532, turnout: 59.4, phase: 7,
   view: { totalVotes: 1000, margin: 200, others: { count: 4, votes: 20, share: 2 }, candidates: [
     { key: 'a', name: 'Ram Kripal Yadav', partyId: 'BJP', partyLabel: 'BJP', mark: '/l.svg', color: '#f80', votes: 600, share: 60, pill: 'LEADING', incumbent: true, photo: null, personId: 'p1', nota: false, affidavit: null },
@@ -1810,7 +1809,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
 
 Check the colour tokens exist in `src/theme/studio.css` (`ok-text`, `ok-tint`, `accent`, `warn`?). If there is no `warn` token, use the amber token the dashboard already uses for warnings (`grep -n "amber\|warn" src/theme/studio.css`) — do not add raw hex colours.
 
-Live chip timestamp: when `live.updatedAt` is set, append `t('seat_updated_ago', { ago })` with the relative-time formatter chosen in Step 1.
+No "updated X ago" in the chip: the detail response can be minutes older than the snapshot votes beside it (CDN `s-maxage=60` + `stale-while-revalidate=300`), so a timestamp there would be misleading (D9).
 
 - [ ] **Step 7: Wire it in and remove the seat panel**
 
@@ -1825,10 +1824,12 @@ Live chip timestamp: when `live.updatedAt` is set, append `t('seat_updated_ago',
 Run: `cd frontend && npx vitest run && npx tsc --noEmit -p tsconfig.json && npm run lint`
 Expected: PASS.
 
+Before committing, add the `docs/FEATURES.md` entry for this task (CLAUDE.md: document every feature before or during implementation): seat dialog — opened by any seat click (map, search, leaders, stats, summary, watchlist), contents, live numbers from the snapshot and facts from the CDN-cached detail endpoint, counting round refreshed on each live version; party marks (logo → ECI symbol → dot).
+
 - [ ] **Step 9: Commit**
 
 ```bash
-git add -A frontend/src
+git add docs/FEATURES.md -A frontend/src
 git commit -m "feat(fe): seat dialog with results and constituency info replaces the map seat panel
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
@@ -2225,10 +2226,12 @@ it('the party mark in a standings row opens the party dialog, the row still lock
 Run: `cd frontend && npx vitest run && npx tsc --noEmit -p tsconfig.json && npm run lint`
 Expected: PASS.
 
+Before committing, add the `docs/FEATURES.md` entry for this task (CLAUDE.md: document every feature before or during implementation): party dialog (`?party=`), opened from the mark button in standings and from party cells in the seat dialog; marks in standings, leaders, watchlist and the map tooltip.
+
 - [ ] **Step 9: Commit**
 
 ```bash
-git add -A frontend/src
+git add docs/FEATURES.md -A frontend/src
 git commit -m "feat(fe): party dialog; party marks in standings, leaders, watchlist and the map tooltip
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
@@ -2313,6 +2316,7 @@ vi.mock('../data/useLiveSnapshot', () => ({ useLiveSnapshot: () => ({ snapshot: 
 vi.mock('../data/usePartyMeta', () => ({ usePartyMeta: () => new Map() }));
 
 import { useConstituencyPageVM } from '../pages/useConstituencyPageVM';
+import { ApiError } from '../../model/api/api-client';
 
 const detail = {
   id: 'S', election_id: 'e1', name: 'Patliputra', const_no: 30, type: 'SC', voter_turnout: 59.4, phase: 7, total_electors: 2000,
@@ -2341,7 +2345,7 @@ describe('useConstituencyPageVM', () => {
 
   it('reports notFound on a 404', async () => {
     api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Finalized', year: 2025 });
-    api.getConstituency.mockRejectedValue(Object.assign(new Error('nf'), { status: 404 }));
+    api.getConstituency.mockRejectedValue(new ApiError('Not found', 404));
     api.getConstituencyAnalysis.mockResolvedValue(null);
     api.getManifest.mockResolvedValue(null);
     const { result } = renderHook(() => useConstituencyPageVM('e1', 'NOPE'));
@@ -2350,7 +2354,7 @@ describe('useConstituencyPageVM', () => {
 });
 ```
 
-(Check how `apiFetch` errors expose the HTTP status — `describeApiError` / the error class in `model/api/api-client.ts` — and use that field both in the VM and in this mock.)
+(`apiFetch` throws `ApiError(message, status, …)` from `model/api/api-client.ts`; check its constructor arity and pass what it needs.)
 
 Run → FAIL (module missing).
 
@@ -2365,6 +2369,7 @@ import { useLiveSnapshot } from '../data/useLiveSnapshot';
 import { usePartyMeta } from '../data/usePartyMeta';
 import { useLocalStorage } from '../data/useLocalStorage';
 import { getElection, getConstituency, getConstituencyAnalysis, getManifest, ElectionService } from '../../model/api/election.service';
+import { ApiError } from '../../model/api/api-client';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import { buildSeatView, detailToRows, seatHistory, seatNotes, type SeatView, type SeatNote } from '../../model/derive/seatView';
@@ -2374,13 +2379,17 @@ import type { SeatHistoryEntry, Election } from '../../model/types';
 import type { SeatDialogVM } from '../tiles/useSeatDialogVM';
 
 const LS_PC = '/geo/india_pc.geojson';
+const NOT_FOUND = 'NOT_FOUND' as const;
 
 export interface ConstituencyPageVM { /* exactly as in Interfaces above */ }
 
 export function useConstituencyPageVM(electionId: string, constId: string): ConstituencyPageVM {
   const partyMeta = usePartyMeta();
   const election = useApi(() => getElection(electionId), [electionId], { key: ElectionService.getCacheKey(electionId) });
-  const detail = useApi(() => getConstituency(electionId, constId), [electionId, constId], { key: ElectionService.getConstituencyCacheKey(electionId, constId) });
+  // useApi's error is a string, so a 404 is turned into a value here.
+  const detailRes = useApi(() => getConstituency(electionId, constId).catch(e => { if (e instanceof ApiError && e.status === 404) return NOT_FOUND; throw e; }),
+    [electionId, constId], { key: ElectionService.getConstituencyCacheKey(electionId, constId) });
+  const detail = { ...detailRes, data: detailRes.data === NOT_FOUND ? null : detailRes.data };
   const analysis = useApi(() => getConstituencyAnalysis(electionId, constId).catch(() => null), [electionId, constId], { key: `${ElectionService.getConstituencyCacheKey(electionId, constId)}_analysis` });
   const manifest = useApi(() => getManifest(electionId).catch(() => null), [electionId], { key: ElectionService.getCacheKey(electionId, 'manifest') });
   const isLive = election.data?.status === 'Live';
@@ -2411,7 +2420,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
     return { features, seat };
   }, [features, d, constId]);
 
-  const notFound = (detail.error as { status?: number } | null)?.status === 404;
+  const notFound = detailRes.data === NOT_FOUND;
   const status: ConstituencyPageVM['status'] = notFound ? 'notFound' : detail.error || election.error ? 'error' : d && election.data ? 'ready' : 'loading';
   const tracked = watch.some(w => w.const_id === constId);
   const allDeclared = rows.some(r => r.status === 'WON');
@@ -2422,7 +2431,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
     stateName: d?.state?.name ?? null, districtName: d?.district?.name ?? null,
     name: d?.name ?? '', constNo: d?.const_no ?? null, type: d?.type ?? null,
     live: !e || e.status === 'Upcoming' ? null : e.status === 'Finalized' || allDeclared ? { kind: 'declared' }
-      : { kind: 'counting', round: d?.current_round && d.total_rounds ? { current: d.current_round, total: d.total_rounds } : null, updatedAt: d?.last_updated ?? null },
+      : { kind: 'counting', round: d?.current_round && d.total_rounds ? { current: d.current_round, total: d.total_rounds } : null },
     facts: {
       electors: d?.total_electors ?? null, votesPolled: view.totalVotes > 0 ? view.totalVotes : null,
       turnout: d?.voter_turnout != null ? Number(d.voter_turnout) : null, phase: d?.phase ?? null,
@@ -2727,10 +2736,12 @@ The legacy page synced the global election context (`setElection`, `setElectionT
 Run: `cd frontend && npx vitest run && npx tsc --noEmit -p tsconfig.json && npm run lint`
 Expected: PASS.
 
+Before committing, add the `docs/FEATURES.md` entry for this task (CLAUDE.md: document every feature before or during implementation): studio constituency page (head-to-head, seat facts, locator, all candidates with affidavit columns, seat history with runner-up/share, insights).
+
 - [ ] **Step 7: Commit**
 
 ```bash
-git add -A frontend/src
+git add docs/FEATURES.md -A frontend/src
 git commit -m "feat(fe): studio constituency page (head-to-head, facts, locator, affidavits, history)
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
@@ -2934,14 +2945,19 @@ Run → PASS.
 import { useMemo } from 'react';
 import { useApi } from '../data/useApi';
 import { getPerson } from '../../model/api/person.service';
+import { ApiError } from '../../model/api/api-client';
 import { ageFrom, affidavitSeries, contestViews, personStats, type ContestView, type PersonStats, type AffidavitPoint } from '../../model/derive/personPage';
+
+const NOT_FOUND = 'NOT_FOUND' as const;
 
 export interface PersonPageVM { /* exactly as in Interfaces above */ }
 
 export function usePersonPageVM(id: string): PersonPageVM {
-  const { data: p, error } = useApi(() => getPerson(id), [id], { key: `person_${id}` });
+  // useApi's error is a string, so a 404 is turned into a value here.
+  const { data: raw, error } = useApi(() => getPerson(id).catch(e => { if (e instanceof ApiError && e.status === 404) return NOT_FOUND; throw e; }), [id], { key: `person_${id}` });
   return useMemo((): PersonPageVM => {
-    const notFound = (error as { status?: number } | null)?.status === 404;
+    const notFound = raw === NOT_FOUND;
+    const p = raw === NOT_FOUND ? null : raw;
     const cands = p?.candidates ?? [];
     const contests = contestViews(cands);
     const affidavit = affidavitSeries(cands);
@@ -2955,7 +2971,7 @@ export function usePersonPageVM(id: string): PersonPageVM {
       incumbent: !!cands.slice().sort((a, b) => (b.election_year ?? 0) - (a.election_year ?? 0))[0]?.is_incumbent,
       stats: personStats(cands), contests, affidavit, latest: affidavit[affidavit.length - 1] ?? null,
     };
-  }, [p, error]);
+  }, [raw, error]);
 }
 ```
 
@@ -3054,10 +3070,12 @@ export default function PersonDetail() {
 Run: `cd frontend && npx vitest run && npx tsc --noEmit -p tsconfig.json && npm run lint`
 Expected: PASS.
 
+Before committing, add the `docs/FEATURES.md` entry for this task (CLAUDE.md: document every feature before or during implementation): studio person page (profile, stats incl. party switches, contest timeline, affidavit trend); caste/religion never public.
+
 - [ ] **Step 6: Commit**
 
 ```bash
-git add -A frontend/src
+git add docs/FEATURES.md -A frontend/src
 git commit -m "feat(fe): studio person page (profile, stats, contest timeline, affidavit trend)
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
@@ -3138,7 +3156,7 @@ Expected: PASS.
 
 - [ ] **Step 3: Docs**
 
-`docs/FEATURES.md` — add a "Detail screens" section: party marks (logo → ECI symbol → dot) and where they appear; seat dialog (opened from any seat click; contents; live numbers from the snapshot, facts from the cached detail endpoint, round/updated time up to ~1 min behind); party dialog (`?party=`); constituency page; person page; caste/religion never public. Under Known Limitations: affidavit columns only where admins/seeds filled them; seat-history runner-up/share appear after the next analysis recompute; turnout change vs the previous election is not shown (no source yet).
+`docs/FEATURES.md` — the feature entries were written in Tasks 9–12; check they read as one "Detail screens" section. Under Known Limitations add: affidavit columns only where admins/seeds filled them; seat-history runner-up/share appear after the next analysis recompute; the counting round in the seat dialog can trail the vote numbers by up to a few minutes (CDN cache); turnout and vote-share change vs the previous election are not shown (no source yet).
 
 `CLAUDE.md` — in the Frontend bullet, add: "Constituency (`/election/:id/constituency/:constId`) and person (`/person/:id`) pages are studio MVVM pages (`src/viewmodels/pages`, `src/views/constituency`, `src/views/person`); party marks render through `views/ui/PartyMark` (logo → ECI symbol → dot)."
 
@@ -3165,6 +3183,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ## Spec deviations (decided while planning)
 
 - **Analysis comes from the existing `GET /elections/:id/constituencies/:constId/analysis`** instead of being added to the detail endpoint (the endpoint already exists and is CDN-cached; no duplication).
-- **Counting round and "updated" time come from the constituency detail endpoint** (CDN `s-maxage=60`), not the live snapshot: the snapshot has no round fields and round changes do not bump the live version, so adding them would need a migration (spec: no migration). They can lag up to ~1 min (plus stale-while-revalidate); votes/status stay live. Not shown in the map tooltip.
+- **Counting round comes from the constituency detail endpoint** (class-level `CACHE_CONTROL.PUBLIC`: `s-maxage=60, stale-while-revalidate=300`), not the live snapshot: the snapshot has no round fields and round changes do not bump the live version, so adding them would need a migration (spec: no migration). The open dialog refetches it on every new live version, but the CDN can still serve it up to ~6 min old; votes/status stay live. Not shown in the map tooltip.
+- **No "updated X ago" label** in the seat dialog / page chip (the spec mock-up had one): that time would come from the same cached response and could sit next to newer vote numbers (D9).
 - **Party "vote share change vs the previous election" and the constituency "turnout change" are not shown**: no source for the previous values exists yet (spec: "when known").
 - **Standings rows**: the row keeps its existing click = lock/highlight; the party mark in front of the row is a separate "Party details" button that opens the dialog (nested buttons are invalid HTML).
