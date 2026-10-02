@@ -98,12 +98,12 @@ test('baseline screenshot for side-by-side comparison', async ({ page }) => {
   await page.screenshot({ path: 'e2e/__shots__/baseline-1440x900.png' });
 });
 
-test('track a seat in the map focus and see it in the Watchlist tab', async ({ page }) => {
+test('track a seat from the seat dialog and see it in the Watchlist tab', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/election/${BIHAR}`);
   await page.evaluate(id => localStorage.removeItem(`watchlist_${id}`), BIHAR);
-  await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
-  const dialog = page.getByRole('dialog');
+  await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
+  const dialog = page.getByRole('dialog', { name: /Barauli/i });
   await expect(dialog).toBeVisible();
   const track = dialog.getByRole('button', { name: '☆ Track' });
   await expect(track).toBeVisible();
@@ -474,29 +474,34 @@ test.describe('theme selector', () => {
     await expectExpandTargets(page);
   });
 
-  test('legacy ConstituencyDetail (reached from the seat panel) in dark and light', async ({ page }) => {
+  test('constituency page (reached from the seat dialog) in dark and light', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
-    await page.getByRole('link', { name: /View full page/ }).click();
+    await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
+    await page.getByRole('dialog').getByRole('link', { name: /Full constituency page/ }).click();
     await expect(page).toHaveURL(/constituency\//);
+    await expect(page.getByRole('heading', { level: 1, name: /Barauli/i })).toBeVisible();
+    await expect(page.getByText('All candidates')).toBeVisible();
     await page.waitForTimeout(1500);
     expect(await themeOf(page)).toBe('dark');
     await page.screenshot({ path: `${SHOTS}/t25-legacy-dark.png` });
     await page.evaluate(() => localStorage.setItem('studio_theme', 'light'));
     await page.goto(page.url());
+    await expect(page.getByRole('heading', { level: 1, name: /Barauli/i })).toBeVisible();
     await page.waitForTimeout(1500);
     expect(await themeOf(page)).toBe('light');
     await page.screenshot({ path: `${SHOTS}/t25-legacy-light.png` });
   });
 
-  test('map focus seat list: rank numbers stay inside the panel', async ({ page }) => {
+  test('seat dialog: rank numbers stay inside the dialog', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
-    const aside = page.getByRole('dialog').locator('aside');
-    await expect(aside.locator('ol > li').first()).toBeVisible();
-    const ab = (await aside.boundingBox())!;
-    const lb = (await aside.locator('ol > li').first().boundingBox())!;
-    expect(lb.x).toBeGreaterThan(ab.x + 16);
+    await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
+    const dialog = page.getByRole('dialog', { name: /Barauli/i });
+    const rank = dialog.getByText('#1', { exact: true });
+    await expect(rank).toBeVisible();
+    const db = (await dialog.boundingBox())!;
+    const rb = (await rank.boundingBox())!;
+    expect(rb.x).toBeGreaterThan(db.x + 16);
+    expect(rb.x + rb.width).toBeLessThan(db.x + db.width);
     await page.waitForTimeout(400);
     await page.screenshot({ path: `${SHOTS}/t25-mapfocus-1440.png` });
   });

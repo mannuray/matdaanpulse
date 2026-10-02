@@ -496,6 +496,8 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
   - SC/ST type is `GEN` for every seat in Bihar VS 2010–2020 and all Assam years.
   - Candidate coverage: all candidates only in WB 2021; top 5 + NOTA in LS 2024 and Bihar 2025; winner + runner-up elsewhere. TN 2016 has 232/234 seats (2 postponed polls). No source recorded for AS/KL/PY.
 
+- **Detail screens:** affidavit columns (age, assets, liabilities, criminal cases) appear only where admins or seeds filled them; seat-history runner-up and share appear after the next analysis recompute; the counting round in the seat dialog can trail the vote numbers by up to a few minutes (CDN cache); turnout and vote-share change versus the previous election are not shown (no source yet).
+
 ## Planned
 
 ### Delimitation Strategy
@@ -809,20 +811,24 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] `utils/asset-url.ts` `assetUrl()` resolves site-relative `/symbols/...` paths against `VITE_PUBLIC_SITE_URL`; every symbol/photo URL in the admin renders through it. `VITE_PUBLIC_SITE_URL` is mandatory in the admin production build (see `docs/DEPLOYMENT.md`).
 - [ ] Rule for future live ECI ingestion (D7): ECI may be a photo source but only fills `persons.photo_url` when empty; it never overwrites an admin-set photo. Not implemented (ingestion is stubs only).
 
-### Seat dialog (2026-10-02, branch `feat/detail-screens`)
+### Detail screens (2026-10-02, branch `feat/detail-screens`)
+
+One set of screens for drilling into a seat, a party or a person, shared by every dashboard entry point: the seat dialog (`?seat=`), the party dialog (`?party=`), the constituency page and the person page. Constituency and person pages are studio MVVM pages (`src/viewmodels/pages`, `src/views/constituency`, `src/views/person`); party marks render through `views/ui/PartyMark`. The legacy detail components (candidate table/card, party icon and symbol cache, old detail hooks) are removed. e2e: `frontend/e2e/detail.spec.ts` and `dashboard.spec.ts`.
+
+#### Seat dialog
 
 - [x] Any seat click (map, search, leaders, stats, summary, watchlist) opens a seat dialog instead of focusing the map; the map focus view now uses the full width (the old side seat panel is removed). Desktop ≥1024 px is a centred Radix dialog, narrower screens a bottom sheet.
 - [x] Contents: constituency number and reservation type, district · state, a Counting (with round N/M) or Declared chip, a Track toggle, stat tiles (electors, turnout, margin, phase; hidden when unknown), the top 5 candidates with photo, party mark, votes, share bar and Leading/Won pill (+N others row), past winners with party marks, "3-way contest" / spoiler notes, and a link to the full constituency page. Candidate names link to the person page; the party cell opens the party dialog.
 - [x] Live numbers (votes, status, margin) come from the dashboard's versioned snapshot, so rows appear at once; the facts (electors, turnout, phase, round) come from the CDN-cached constituency detail endpoint and refetch on every new live version while counting. A failed detail keeps the rows and shows "Details unavailable". No "updated X ago" is shown, as the detail can be older than the snapshot.
 - [x] Party marks use the party logo, then the ECI symbol, then a colour dot. New `--color-warn` / `--color-warn-text` theme tokens style the notes.
 
-### Party dialog and party marks (2026-10-02, branch `feat/detail-screens`)
+#### Party dialog and party marks
 
 - [x] Party dialog, URL `?party=<id>`: opened from the party mark button in each standings row and from the party cell in the seat dialog (it stacks over the seat dialog; closing it leaves the seat dialog open). Desktop is a centred dialog, narrower screens a bottom sheet. An id that is neither in the party list nor in this election's results opens nothing.
 - [x] Contents: party mark, short name and recognition (National / State / Unrecognised party), "This election" Won / Leading / Contested / Vote share tiles with a seats bar against the majority line, a profile card (leader, founded year, headquarters, alliance from this election's alliance groups, website and Wikipedia links, description; empty fields are hidden), and the party's key candidates, each opening that seat. The profile comes from the party endpoint; if it fails the dialog still shows the election numbers.
 - [x] Party marks (logo, then ECI symbol, then colour dot) now appear in the standings rows, the watchlist rows, the key-leader cards and the map hover tooltip (which also shows the SC/ST type). The standings row keeps its lock/highlight button; the mark is a separate details button.
 
-### Studio constituency page (2026-10-02, branch `feat/detail-screens`)
+#### Studio constituency page
 
 - [x] `/election/:electionId/constituency/:constId` rebuilt in the studio style on a shared page shell (slim top bar with logo and back link, scrolling column). Not-found (404), error and loading states are shown in the shell.
 - [x] Header: breadcrumb (election, state, district), seat name, "No. N · SC/ST" chip, Declared / Counting chip, Track (shares the dashboard watchlist for that election) and Share.
@@ -830,9 +836,9 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] All candidates table (no cap, NOTA last): rank, candidate (links to the person page), party mark, votes, share bar, Won/Leading pill, age, assets, liabilities and criminal cases (amber chip only when above zero). Live votes come from the versioned snapshot when the election is live.
 - [x] Seat history (past winners with margin, vote share and runner-up) and insights (three-way contest, spoiler) appear only when there is data. No ECI/ADR sourcing claims, AI copy or adjacent seats.
 
-### Studio person page (2026-10-02, branch `feat/detail-screens`)
+#### Studio person page
 
-- [x] `/person/:id` rebuilt in the studio style on the shared page shell (scrolling column; not-found (404), error and loading states shown in the shell). The old person page components stay until the cleanup task.
+- [x] `/person/:id` rebuilt in the studio style on the shared page shell (scrolling column; not-found (404), error and loading states shown in the shell).
 - [x] Header: photo (initials when none) with the current party's mark as a badge (party of the most recent contest), name, party, an "Incumbent" chip when the latest contest is an incumbency, a facts line (age from date of birth, gender, education, district and state; each hidden when unknown), a Wikipedia link and the full biography. Gender `M`/`F`/`O` (or Male/Female/Other) is translated; any other stored value is shown as is. Caste and religion are never shown.
 - [x] Stats: contests, wins, win rate (wins over decided contests, i.e. finalized or already won; hidden when none are decided) and parties contested for, with the latest party switch ("RJD → BJP in 2014") under it.
 - [x] Contest timeline, newest first: one card per contest linking to the constituency page, with party mark, votes, vote share, margin, a Won / Leading / Trailing / Pending / Lost pill (Lost only once the election is finalized) and "First contest under <party>" on the first contest under each new party.
