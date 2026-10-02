@@ -197,25 +197,24 @@ export class ResultsService {
       include: {
         districts: true,
         states: true,
+        regions: { select: { id: true, name: true } },
         candidates: {
           include: {
-            parties: true,
-            persons: {
-              select: { id: true, photo_url: true }
-            },
-            results: {
-              where: { const_id: constId }
-            }
-          }
-        }
-      }
+            parties: { select: { id: true, name: true, abbreviation: true, color: true, symbol_url: true, eci_symbol_url: true } },
+            persons: { select: { id: true, photo_url: true, wikipedia_url: true } },
+            results: { where: { const_id: constId } },
+          },
+        },
+      },
     });
 
     if (!constituency) throw new ConstituencyNotFoundException(constId);
 
+    let lastUpdated: Date | null = null;
     const candidateResults = constituency.candidates
       .map(c => {
         const r = c.results[0];
+        if (r?.last_updated && (!lastUpdated || r.last_updated > lastUpdated)) lastUpdated = r.last_updated;
         return {
           id: c.id,
           name: c.name,
@@ -226,6 +225,10 @@ export class ResultsService {
           margin: r?.margin || 0,
           person_id: c.person_id,
           person: c.persons,
+          age: c.age,
+          assets: c.assets,
+          liabilities: c.liabilities,
+          criminal_cases: c.criminal_cases,
         };
       })
       .sort((a, b) => b.votes - a.votes);
@@ -234,7 +237,9 @@ export class ResultsService {
       ...constituency,
       district: constituency.districts,
       state: constituency.states,
-      candidates: candidateResults
+      region: constituency.regions,
+      last_updated: lastUpdated,
+      candidates: candidateResults,
     };
   }
 
