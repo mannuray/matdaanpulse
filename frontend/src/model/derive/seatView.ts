@@ -21,14 +21,14 @@ export function buildSeatView(rows: ResultRow[], o: { partyMeta: Map<string, Par
     if (na !== nb) return na ? 1 : -1;
     return (b.votes || 0) - (a.votes || 0);
   });
-  const all = sorted.map((r, i): SeatCandidateView => {
+  const all = sorted.map((r): SeatCandidateView => {
     const nota = isNota(r.party_id, r.candidate_name);
     const d = byKey.get(joinKey(r.party_id, r.candidate_name));
     const m = r.party_id ? o.partyMeta.get(r.party_id) : undefined;
     const counted = total > 0;
     const hasAffidavit = !!d && [d.age, d.assets, d.liabilities, d.criminal_cases].some(x => x != null);
     return {
-      key: `${i}-${r.party_id}-${r.candidate_name}`,
+      key: `${r.party_id || ''}-${r.candidate_name}`,
       name: r.candidate_name,
       partyId: nota ? null : r.party_id || null,
       partyLabel: nota ? '' : m?.abbreviation ?? r.party_id ?? '',
@@ -76,5 +76,5 @@ export function seatNotes(view: SeatView, analysis: AnalysisEntry | null): SeatN
 }
 
 export function detailToRows(constId: string, detail: CandidateResult[]): ResultRow[] {
-  return detail.map(c => ({ const_id: constId, party_id: c.party?.id ?? (isNota(null, c.name) ? 'NOTA' : 'IND'), candidate_name: c.name, votes: c.votes, status: c.status ?? 'PENDING', margin: c.margin }));
+  return detail.map(c => ({ const_id: constId, party_id: c.party?.id ?? (isNota(null, c.name) ? 'NOTA' : ''), candidate_name: c.name, votes: c.votes, status: c.status ?? 'PENDING', margin: c.margin }));
 }

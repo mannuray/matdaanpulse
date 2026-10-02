@@ -76,4 +76,13 @@ describe('detailToRows', () => {
     const rows = detailToRows('S', [{ id: 'c', name: 'A', party: { id: 'BJP', name: '', color: null, symbol_url: null, eci_symbol_url: null }, is_incumbent: false, votes: 5, status: 'WON', margin: 3 }]);
     expect(rows).toEqual([{ const_id: 'S', party_id: 'BJP', candidate_name: 'A', votes: 5, status: 'WON', margin: 3 }]);
   });
+
+  it('a detail candidate without a party uses empty string (joins detail by key)', () => {
+    const detail: CandidateResult[] = [{ id: 'c1', name: 'C', party: null, is_incumbent: true, votes: 0, status: null, margin: 0, person_id: 'p1',
+      person: { id: 'p1', photo_url: '/c.png' }, age: 25, assets: 50, liabilities: 10, criminal_cases: 0 }];
+    const rows = detailToRows('S', detail);
+    expect(rows).toEqual([{ const_id: 'S', party_id: '', candidate_name: 'C', votes: 0, status: 'PENDING', margin: 0 }]);
+    const v = buildSeatView(rows, { partyMeta: meta, partyColor: color, detail });
+    expect(v.candidates[0]).toMatchObject({ photo: '/c.png', personId: 'p1', incumbent: true, affidavit: { age: 25, assets: 50, liabilities: 10, criminalCases: 0 } });
+  });
 });
