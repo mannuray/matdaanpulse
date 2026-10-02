@@ -11,7 +11,7 @@ const byYearDesc = (a: PersonCandidate, b: PersonCandidate) => (b.election_year 
 const byYearAsc = (a: PersonCandidate, b: PersonCandidate) => -byYearDesc(a, b);
 
 export function contestStatus(c: PersonCandidate): ContestStatus {
-  if (c.status === 'WON' || c.status === 'LEADING' || c.status === 'LOST') return c.status;
+  if (c.status === 'WON' || c.status === 'LEADING') return c.status;
   if (c.election_status === 'Finalized') return 'LOST';
   if (c.status === 'TRAILING') return 'TRAILING';
   return 'PENDING';

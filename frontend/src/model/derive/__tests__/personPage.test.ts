@@ -10,6 +10,7 @@ describe('contestStatus', () => {
     expect(contestStatus(c({ status: 'LOST', election_status: 'Finalized' }))).toBe('LOST');
     expect(contestStatus(c({ status: null, election_status: 'Finalized' }))).toBe('LOST');
     expect(contestStatus(c({ status: null, election_status: 'Upcoming' }))).toBe('PENDING');
+    expect(contestStatus(c({ status: 'LOST', election_status: 'Live' }))).toBe('PENDING');
     expect(contestStatus(c({ status: 'LEADING', election_status: 'Live' }))).toBe('LEADING');
   });
 });

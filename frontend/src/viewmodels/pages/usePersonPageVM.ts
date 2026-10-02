@@ -4,7 +4,7 @@ import { getPerson } from '../../model/api/person.service';
 import { ApiError } from '../../model/api/api-client';
 import { ageFrom, affidavitSeries, contestViews, personStats, type ContestView, type PersonStats, type AffidavitPoint } from '../../model/derive/personPage';
 
-const NOT_FOUND = 'NOT_FOUND' as const;
+interface Missing { id: string; notFound: true }
 
 export interface PersonPageVM {
   status: 'loading' | 'error' | 'notFound' | 'ready';
@@ -15,11 +15,12 @@ export interface PersonPageVM {
 
 export function usePersonPageVM(id: string): PersonPageVM {
   // useApi's error is a string, so a 404 is turned into a value here.
-  const { data: raw, error } = useApi(() => getPerson(id).catch(e => { if (e instanceof ApiError && e.status === 404) return NOT_FOUND; throw e; }), [id], { key: `person_${id}` });
+  const { data: raw, error } = useApi(() => getPerson(id).catch((e): Missing => { if (e instanceof ApiError && e.status === 404) return { id, notFound: true }; throw e; }), [id], { key: `person_${id}` });
   return useMemo((): PersonPageVM => {
-    const notFound = raw === NOT_FOUND;
-    // useApi keeps the previous person's data while the next loads: only use data that belongs to this id.
-    const p = raw && raw !== NOT_FOUND && raw.id === id ? raw : null;
+    // useApi keeps the previous result while the next loads: only use a result that belongs to this id.
+    const mine = raw && raw.id === id ? raw : null;
+    const notFound = !!mine && 'notFound' in mine;
+    const p = mine && !('notFound' in mine) ? mine : null;
     const cands = p?.candidates ?? [];
     const contests = contestViews(cands);
     const affidavit = affidavitSeries(cands);
