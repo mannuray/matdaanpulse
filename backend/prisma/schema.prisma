@@ -26,9 +26,9 @@ model audit_logs {
   @@index([timestamp], map: "idx_audit_logs_timestamp")
 }
 
-/// person_id is required (migration 018): the DB column is nullable only so the AFTER INSERT trigger can
-/// fill it; a deferred constraint trigger rejects any commit that leaves it NULL. Omit it on create and
-/// the database creates the person.
+/// person_id is required (migration 018). The DB column is nullable only so the AFTER INSERT trigger can
+/// fill it, and a deferred constraint trigger rejects any commit that leaves it NULL. Prisma requires the
+/// field on create; only raw SQL inserts (seeds, scraper) may omit it, and the trigger then creates the person.
 model candidates {
   id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   person_id      String         @db.Uuid

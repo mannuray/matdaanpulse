@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { PersonsService } from './persons.service';
@@ -11,33 +11,27 @@ const person = {
 };
 
 function make() {
-  const tx = {
-    candidates: { updateMany: jest.fn().mockResolvedValue({ count: 3 }) },
-    persons: { deleteMany: jest.fn().mockResolvedValue({ count: 0 }) },
-    audit_logs: { create: jest.fn().mockResolvedValue({}) },
-    $executeRawUnsafe: jest.fn().mockResolvedValue(0),
-  };
   const prisma = {
     persons: {
-      findUnique: jest.fn(async ({ where }) => (where.id === 'p2' ? { ...person, id: 'p2', name: 'N. Kumar' } : person)),
+      findUnique: jest.fn(async () => person),
       update: jest.fn(async ({ data }) => ({ ...person, ...data, updated_at: new Date(2) })),
     },
     audit_logs: { create: jest.fn().mockResolvedValue({}) },
-    $transaction: jest.fn(async (fn: (t: typeof tx) => unknown) => fn(tx)),
   };
   const svc = new PersonsService(prisma as any, new AuditLogService(prisma as any));
-  return { svc, prisma, tx };
+  return { svc, prisma };
 }
 
 describe('PersonsService audit rows', () => {
   it('update writes one PERSON_UPDATE row with only the changed fields (bio is a column)', async () => {
     const { svc, prisma } = make();
-    await svc.update('p1', { name: 'Nitish Kumar', bio: 'new bio', date_of_birth: '1951-03-01', education: 'B.E.' }, 'u1');
+    await svc.update('p1', { name: 'Nitish Kumar', bio: 'new bio', date_of_birth: '1951-03-01', education: 'B.E.', caste: 'Kurmi' }, 'u1');
     expect(prisma.audit_logs.create).toHaveBeenCalledTimes(1);
+    expect(prisma.persons.update.mock.calls[0][0].data).toMatchObject({ bio: 'new bio', caste: 'Kurmi' });
     expect(prisma.audit_logs.create.mock.calls[0][0].data).toEqual({
       user_id: 'u1', action: 'PERSON_UPDATE', entity_type: 'person', entity_id: 'p1',
-      old_value: { education: null, bio: 'old bio' },
-      new_value: { education: 'B.E.', bio: 'new bio' },
+      old_value: { education: null, bio: 'old bio', caste: null },
+      new_value: { education: 'B.E.', bio: 'new bio', caste: 'Kurmi' },
     });
   });
 
@@ -49,39 +43,281 @@ describe('PersonsService audit rows', () => {
     expect(warn).toHaveBeenCalled();
     warn.mockRestore();
   });
+});
 
-  it('merge re-points, deletes and writes one PERSON_MERGE row on the target, in one transaction', async () => {
-    const { svc, prisma, tx } = make();
-    await expect(svc.merge('p2', 'p1', 'u1')).resolves.toEqual({ merged: true, target_id: 'p1' });
+const keeperRow = {
+  id: 'p1', name: 'Nitish Kumar', photo_url: null, gender: 'M', education: null, date_of_birth: null, bio: 'keeper bio',
+  wikipedia_url: null, caste: null, religion: null, state_id: 5, district_id: null, region_id: null, updated_at: new Date(1),
+};
+const duplicateRow = {
+  id: 'p2', name: 'N. Kumar', photo_url: 'https://x/p.jpg', gender: 'F', education: 'B.E.', date_of_birth: new Date('1951-03-01'),
+  bio: 'dup bio', wikipedia_url: null, caste: 'Kurmi', religion: null, state_id: 5, district_id: 7, region_id: 3, updated_at: new Date(1),
+};
+
+function makeMerge(over: { keeper?: object; duplicate?: object } = {}) {
+  const keeper = { ...keeperRow, ...over.keeper };
+  const duplicate = { ...duplicateRow, ...over.duplicate };
+  const tx = {
+    persons: {
+      findUnique: jest.fn(async ({ where }) => (where.id === 'p1' ? keeper : where.id === 'p2' ? duplicate : null)),
+      update: jest.fn().mockResolvedValue({}),
+      deleteMany: jest.fn().mockResolvedValue({ count: 0 }),
+    },
+    candidates: {
+      findMany: jest.fn().mockResolvedValue([{ id: 'c1' }, { id: 'c2' }]),
+      updateMany: jest.fn().mockResolvedValue({ count: 2 }),
+    },
+    person_merges: { create: jest.fn().mockResolvedValue({ id: 'm1' }) },
+    audit_logs: { create: jest.fn().mockResolvedValue({}) },
+    $executeRawUnsafe: jest.fn().mockResolvedValue(0),
+  };
+  const prisma = { $transaction: jest.fn(async (fn: (t: typeof tx) => unknown) => fn(tx)), audit_logs: { create: jest.fn() } };
+  return { svc: new PersonsService(prisma as any, new AuditLogService(prisma as any)), prisma, tx };
+}
+
+describe('PersonsService.merge', () => {
+  it('snapshots the duplicate and its candidates, fills only NULL keeper fields, moves, logs and audits in one transaction', async () => {
+    const { svc, prisma, tx } = makeMerge();
+    await expect(svc.merge('p2', 'p1', 'u1')).resolves.toEqual({ merged: true, target_id: 'p1', merge_id: 'm1' });
     expect(prisma.$transaction).toHaveBeenCalledTimes(1);
-    expect(tx.candidates.updateMany).toHaveBeenCalledWith({ where: { person_id: 'p2' }, data: { person_id: 'p1' } });
-    // The orphan trigger has usually deleted the source already, so a no-match delete must not throw.
+    // Keeper had gender M and a bio: kept. NULL fields take the duplicate's values (same state, so district/region too).
+    expect(tx.persons.update).toHaveBeenCalledWith({
+      where: { id: 'p1' },
+      data: { photo_url: 'https://x/p.jpg', education: 'B.E.', date_of_birth: duplicateRow.date_of_birth, caste: 'Kurmi', district_id: 7, region_id: 3 },
+    });
+    // The candidate ids were read before the move (the orphan trigger deletes the duplicate when its last one moves).
+    expect(tx.candidates.findMany.mock.invocationCallOrder[0]).toBeLessThan(tx.candidates.updateMany.mock.invocationCallOrder[0]);
+    expect(tx.candidates.updateMany).toHaveBeenCalledWith({ where: { id: { in: ['c1', 'c2'] } }, data: { person_id: 'p1' } });
     expect(tx.persons.deleteMany).toHaveBeenCalledWith({ where: { id: 'p2' } });
-    expect(prisma.audit_logs.create).not.toHaveBeenCalled();
-    expect(tx.audit_logs.create).toHaveBeenCalledTimes(1);
+    const log = tx.person_merges.create.mock.calls[0][0].data;
+    expect(log).toEqual({
+      keeper_id: 'p1', candidate_ids: ['c1', 'c2'], merged_by: 'u1',
+      duplicate: {
+        id: 'p2', name: 'N. Kumar', photo_url: 'https://x/p.jpg', gender: 'F', education: 'B.E.', date_of_birth: '1951-03-01T00:00:00.000Z',
+        bio: 'dup bio', wikipedia_url: null, caste: 'Kurmi', religion: null, state_id: 5, district_id: 7, region_id: 3,
+      },
+      filled_fields: { photo_url: null, education: null, date_of_birth: null, caste: null, district_id: null, region_id: null },
+    });
     expect(tx.audit_logs.create.mock.calls[0][0].data).toEqual({
       user_id: 'u1', action: 'PERSON_MERGE', entity_type: 'person', entity_id: 'p1',
       old_value: { source_id: 'p2', source_name: 'N. Kumar' },
-      new_value: { target_id: 'p1', candidates_moved: 3 },
+      new_value: { target_id: 'p1', merge_id: 'm1', candidates_moved: 2, filled_fields: ['photo_url', 'education', 'date_of_birth', 'caste', 'district_id', 'region_id'] },
     });
+  });
+
+  it('district and region are not filled from a duplicate in another state', async () => {
+    const { svc, tx } = makeMerge({ duplicate: { state_id: 9 } });
+    await svc.merge('p2', 'p1', 'u1');
+    const data = tx.persons.update.mock.calls[0][0].data;
+    expect(data).not.toHaveProperty('district_id');
+    expect(data).not.toHaveProperty('region_id');
+  });
+
+  it('a keeper with nothing to fill is not updated and the log has no filled fields', async () => {
+    const { svc, tx } = makeMerge({ duplicate: { ...Object.fromEntries(Object.keys(duplicateRow).map((k) => [k, null])), id: 'p2', name: 'N. Kumar' } });
+    await svc.merge('p2', 'p1', 'u1');
+    expect(tx.persons.update).not.toHaveBeenCalled();
+    expect(tx.person_merges.create.mock.calls[0][0].data.filled_fields).toEqual({});
+  });
+
+  it('rejects merging a person into itself, and an unknown person is a 404', async () => {
+    const { svc, tx } = makeMerge();
+    await expect(svc.merge('p1', 'p1')).rejects.toMatchObject({ status: 400 });
+    expect((await svc.merge('p9', 'p1').catch((e) => e)).getStatus()).toBe(404);
+    expect(tx.candidates.updateMany).not.toHaveBeenCalled();
   });
 
   it('a failing audit insert inside the merge still merges', async () => {
     const warn = jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
-    const { svc, tx } = make();
+    const { svc, tx } = makeMerge();
     tx.audit_logs.create.mockRejectedValue(new Error('x'));
-    await expect(svc.merge('p2', 'p1', 'u1')).resolves.toEqual({ merged: true, target_id: 'p1' });
+    await expect(svc.merge('p2', 'p1', 'u1')).resolves.toMatchObject({ merged: true });
     expect(tx.$executeRawUnsafe).toHaveBeenCalledWith('ROLLBACK TO SAVEPOINT audit_row');
     warn.mockRestore();
   });
 });
 
+describe('PersonsService.undoMerge', () => {
+  const snapshot = {
+    id: 'p2', name: 'N. Kumar', photo_url: 'https://x/p.jpg', gender: 'F', education: 'B.E.', date_of_birth: '1951-03-01T00:00:00.000Z',
+    bio: 'dup bio', wikipedia_url: null, caste: 'Kurmi', religion: null, state_id: 5, district_id: 7, region_id: 3,
+  };
+  const log = {
+    id: 'm1', keeper_id: 'p1', duplicate: snapshot, candidate_ids: ['c1', 'c2'],
+    filled_fields: { photo_url: null, education: null, caste: null }, undone_at: null,
+  };
+  /** The keeper after the merge, where the editor later changed the education the merge had filled. */
+  const keeperNow = { ...keeperRow, photo_url: 'https://x/p.jpg', education: 'M.A.', caste: 'Kurmi' };
+
+  function makeUndo(over: { log?: object | null; candidates?: object[]; claimed?: number; keeperGone?: boolean } = {}) {
+    const order: string[] = [];
+    let moved = false;
+    const tx = {
+      person_merges: {
+        findUnique: jest.fn().mockResolvedValue(over.log === undefined ? log : over.log),
+        updateMany: jest.fn(async () => { order.push('claim'); return { count: over.claimed ?? 1 }; }),
+      },
+      candidates: {
+        findMany: jest.fn().mockResolvedValue(over.candidates ?? [{ id: 'c1', name: 'N KUMAR', person_id: 'p1' }, { id: 'c2', name: 'NITISH', person_id: 'p1' }]),
+        updateMany: jest.fn(async () => { order.push('move'); moved = true; return { count: 2 }; }),
+      },
+      persons: {
+        findUnique: jest.fn(async ({ where }) => (where.id === 'p1' && !(moved && over.keeperGone) ? keeperNow : null)),
+        create: jest.fn(async () => { order.push('create'); return {}; }),
+        update: jest.fn(async ({ data }) => { order.push('restore'); return { ...keeperNow, ...data }; }),
+      },
+      audit_logs: { create: jest.fn().mockResolvedValue({}) },
+      $executeRawUnsafe: jest.fn().mockResolvedValue(0),
+    };
+    const prisma = { $transaction: jest.fn(async (fn: (t: typeof tx) => unknown) => fn(tx)), audit_logs: { create: jest.fn() } };
+    const audit = () => tx.audit_logs.create.mock.calls.map((c: any) => c[0].data);
+    return { svc: new PersonsService(prisma as any, new AuditLogService(prisma as any)), tx, prisma, order, audit };
+  }
+
+  it('recreates the duplicate with its id and fields, restores only the filled fields the keeper still holds, moves the candidates back', async () => {
+    const { svc, tx, prisma, order, audit } = makeUndo();
+    await expect(svc.undoMerge('m1', 'u1')).resolves.toEqual({ undone: true, merge_id: 'm1', person_id: 'p2', keeper_id: 'p1' });
+    expect(prisma.$transaction).toHaveBeenCalledTimes(1);
+    expect(tx.person_merges.updateMany).toHaveBeenCalledWith({ where: { id: 'm1', undone_at: null }, data: { undone_at: expect.any(Date), undone_by: 'u1' } });
+    expect(tx.persons.create).toHaveBeenCalledWith({ data: { ...snapshot, date_of_birth: new Date('1951-03-01') } });
+    // education was changed by an editor after the merge: left alone.
+    expect(tx.persons.update).toHaveBeenCalledWith({ where: { id: 'p1' }, data: { photo_url: null, caste: null } });
+    expect(tx.candidates.updateMany).toHaveBeenCalledWith({ where: { id: { in: ['c1', 'c2'] } }, data: { person_id: 'p2' } });
+    expect(order).toEqual(['claim', 'create', 'restore', 'move']);
+    expect(audit()).toEqual([{
+      user_id: 'u1', action: 'PERSON_MERGE_UNDO', entity_type: 'person', entity_id: 'p1',
+      old_value: { merge_id: 'm1', target_id: 'p1' },
+      new_value: { source_id: 'p2', source_name: 'N. Kumar', candidates_moved: 2, restored_fields: ['photo_url', 'caste'] },
+    }]);
+  });
+
+  it('an unknown merge is a 404', async () => {
+    const { svc } = makeUndo({ log: null });
+    expect((await svc.undoMerge('m9').catch((e) => e)).getStatus()).toBe(404);
+  });
+
+  it('an undone merge is a 409, also when a concurrent undo claimed it first', async () => {
+    const a = makeUndo({ log: { ...log, undone_at: new Date() } });
+    expect((await a.svc.undoMerge('m1').catch((e) => e)).getStatus()).toBe(409);
+    expect(a.tx.persons.create).not.toHaveBeenCalled();
+    const b = makeUndo({ claimed: 0 });
+    expect((await b.svc.undoMerge('m1').catch((e) => e)).getStatus()).toBe(409);
+    expect(b.tx.persons.create).not.toHaveBeenCalled();
+  });
+
+  it('a merge whose keeper is gone (keeper_id null) is a 409', async () => {
+    const { svc, tx } = makeUndo({ log: { ...log, keeper_id: null } });
+    const err = await svc.undoMerge('m1').catch((e) => e);
+    expect(err.getStatus()).toBe(409);
+    expect(err.getResponse().message).toMatch(/no longer exists/);
+    expect(tx.person_merges.updateMany).not.toHaveBeenCalled();
+  });
+
+  it('a candidate moved or deleted since is a 409 naming them, before any write', async () => {
+    const { svc, tx } = makeUndo({ candidates: [{ id: 'c1', name: 'N KUMAR', person_id: 'p7' }] });
+    const err = await svc.undoMerge('m1').catch((e) => e);
+    expect(err.getStatus()).toBe(409);
+    expect(err.getResponse()).toMatchObject({
+      message: "Can't undo this merge: N KUMAR, deleted candidate c2 no longer belong to this person.",
+      details: { moved: [{ id: 'c1', name: 'N KUMAR' }], missing: ['c2'] },
+    });
+    expect(tx.persons.create).not.toHaveBeenCalled();
+    expect(tx.persons.update).not.toHaveBeenCalled();
+    expect(tx.candidates.updateMany).not.toHaveBeenCalled();
+  });
+
+  it('a keeper left with no candidates is deleted by the trigger and audited as PERSON_DELETE', async () => {
+    const { svc, audit } = makeUndo({ keeperGone: true });
+    await svc.undoMerge('m1', 'u1');
+    expect(audit().map((a: any) => [a.action, a.entity_id])).toEqual([['PERSON_MERGE_UNDO', 'p1'], ['PERSON_DELETE', 'p1']]);
+  });
+});
+
+describe('PersonsService.mergeHistory', () => {
+  it('lists merges newest first; undoable only when not undone and every candidate is still on the person', async () => {
+    const rows = [
+      { id: 'm3', duplicate: { name: 'A' }, candidate_ids: ['c1'], merged_at: new Date(3), undone_at: null, merger: { name: 'Priya' } },
+      { id: 'm2', duplicate: { name: 'B' }, candidate_ids: ['c2', 'c9'], merged_at: new Date(2), undone_at: null, merger: null },
+      { id: 'm1', duplicate: { name: 'C' }, candidate_ids: ['c3'], merged_at: new Date(1), undone_at: new Date(4), merger: { name: 'Priya' } },
+    ];
+    const prisma = { person_merges: { findMany: jest.fn().mockResolvedValue(rows) } };
+    const svc = new PersonsService(prisma as any, {} as any);
+    const out = await svc.mergeHistory('p1', ['c1', 'c2', 'c3']);
+    expect(prisma.person_merges.findMany.mock.calls[0][0]).toMatchObject({ where: { keeper_id: 'p1' }, orderBy: { merged_at: 'desc' } });
+    expect(out).toEqual([
+      { id: 'm3', duplicate_name: 'A', candidate_count: 1, merged_at: new Date(3), merged_by: 'Priya', undoable: true },
+      { id: 'm2', duplicate_name: 'B', candidate_count: 2, merged_at: new Date(2), merged_by: null, undoable: false },
+      { id: 'm1', duplicate_name: 'C', candidate_count: 1, merged_at: new Date(1), merged_by: 'Priya', undoable: false },
+    ]);
+  });
+});
+
+describe('PersonsService.findAll contests filter', () => {
+  function makeList() {
+    const prisma = {
+      $queryRaw: jest.fn()
+        .mockResolvedValueOnce([{ count: 2 }])
+        .mockResolvedValueOnce([{ id: 'b' }, { id: 'a' }]),
+      persons: {
+        count: jest.fn().mockResolvedValue(0),
+        findMany: jest.fn().mockResolvedValue([
+          { id: 'a', name: 'Z', states: null, regions: null, _count: { candidates: 3 }, candidates: [] },
+          { id: 'b', name: 'A', states: { name: 'Bihar' }, regions: null, _count: { candidates: 2 }, candidates: [{ election_id: 'e1', elections: { name: 'BR 2025' } }] },
+        ]),
+      },
+    };
+    return { svc: new PersonsService(prisma as any, {} as any), prisma };
+  }
+  const sqlOf = (call: any[]) => (call[0] as TemplateStringsArray).join('?') + JSON.stringify(call.slice(1));
+
+  it('2plus: the page of ids and the total come from SQL with the count condition and the other filters, rows keep that order', async () => {
+    const { svc, prisma } = makeList();
+    const out = await svc.findAll(2, 10, 'ku_mar', { state_id: 5, contests: '2plus' });
+    expect(prisma.persons.count).not.toHaveBeenCalled();
+    const [countCall, idsCall] = prisma.$queryRaw.mock.calls;
+    const countSql = (countCall[1] as any).sql as string;
+    expect(countSql).toMatch(/COUNT\(\*\) FROM candidates c WHERE c\.person_id = p\.id\) >= 2/);
+    expect(countSql).toMatch(/p\.name ILIKE/);
+    expect(countSql).toMatch(/p\.state_id = /);
+    expect((countCall[1] as any).values).toEqual(['%ku\\_mar%', 5]);
+    expect(sqlOf(idsCall)).toMatch(/ORDER BY p\.name ASC, p\.id ASC LIMIT \? OFFSET \?\[.*,10,10\]/);
+    expect(prisma.persons.findMany.mock.calls[0][0].where).toEqual({ id: { in: ['b', 'a'] } });
+    expect(out.data.map((p: any) => p.id)).toEqual(['b', 'a']);
+    expect(out.data[0]).toMatchObject({ state_name: 'Bihar', candidate_count: 2, elections: ['BR 2025'] });
+    expect(out.meta).toMatchObject({ total: 2, page: 2, limit: 10 });
+  });
+
+  it('1: exactly one candidacy', async () => {
+    const { svc, prisma } = makeList();
+    await svc.findAll(1, 100, '', { contests: '1' });
+    expect((prisma.$queryRaw.mock.calls[0][1] as any).sql).toMatch(/p\.id\) = 1$/);
+  });
+
+  it('without contests the Prisma path is used, and candidates are selected narrowly (no BigInt affidavit columns)', async () => {
+    const { svc, prisma } = makeList();
+    await svc.findAll(1, 100, 'x', { region_id: 3 });
+    expect(prisma.$queryRaw).not.toHaveBeenCalled();
+    const args = prisma.persons.findMany.mock.calls[0][0];
+    expect(args.where).toEqual({ name: { contains: 'x', mode: 'insensitive' }, region_id: 3 });
+    expect(args.include.candidates).toEqual({ select: { election_id: true, elections: { select: { name: true } } }, distinct: ['election_id'] });
+  });
+});
+
 describe('Person input DTOs', () => {
   it.each([['update', UpdatePersonDto], ['create', CreatePersonDto]] as const)('%s maps every blank nullable text field to null', async (_, cls) => {
-    const blank = { name: 'N', gender: '', education: '', bio: '', photo_url: '', date_of_birth: '', wikipedia_url: '' };
+    const blank = { name: 'N', gender: '', education: '', bio: '', photo_url: '', date_of_birth: '', wikipedia_url: '', caste: '', religion: '' };
     const dto = plainToInstance(cls, blank) as unknown as Record<string, unknown>;
     expect(await validate(dto)).toEqual([]);
-    for (const k of ['gender', 'education', 'bio', 'photo_url', 'date_of_birth', 'wikipedia_url']) expect(dto[k]).toBeNull();
+    for (const k of ['gender', 'education', 'bio', 'photo_url', 'date_of_birth', 'wikipedia_url', 'caste', 'religion']) expect(dto[k]).toBeNull();
     expect(dto.name).toBe('N');
+  });
+});
+
+describe('Person input DTOs through the ValidationPipe', () => {
+  const pipe = new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true });
+  it('rejects metadata (dropped in migration 018) and accepts caste and religion', async () => {
+    await expect(pipe.transform({ metadata: { bio: 'x' } }, { type: 'body', metatype: UpdatePersonDto })).rejects.toBeInstanceOf(BadRequestException);
+    await expect(pipe.transform({ caste: 'Kurmi', religion: 'Hindu' }, { type: 'body', metatype: UpdatePersonDto }))
+      .resolves.toMatchObject({ caste: 'Kurmi', religion: 'Hindu' });
   });
 });

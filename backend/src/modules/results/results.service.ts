@@ -5,6 +5,11 @@ import { CacheService, CACHE_TTL } from '../redis/cache.service';
 import { LiveStateService } from './live-state.service';
 import { ConstituencyNotFoundException } from '../../common/exceptions';
 
+/** Candidate fields of a compare row (the affidavit's BigInt columns are not JSON-serialisable). */
+const COMPARE_CANDIDATE = {
+  id: true, name: true, party_id: true, const_id: true, election_id: true, person_id: true, is_incumbent: true, parties: true,
+} as const;
+
 @Injectable()
 export class ResultsService {
   constructor(
@@ -294,16 +299,17 @@ export class ResultsService {
     }));
   }
 
+  // compareConstituencies selects candidate columns explicitly: a full row carries the BigInt affidavit columns.
   async compareConstituencies(electionId: string, id1: string, id2: string) {
     const [r1, r2] = await Promise.all([
       this.prisma.results.findMany({
         where: { election_id: electionId, const_id: id1 },
-        include: { candidates: { include: { parties: true } } },
+        include: { candidates: { select: COMPARE_CANDIDATE } },
         orderBy: { votes: 'desc' },
       }),
       this.prisma.results.findMany({
         where: { election_id: electionId, const_id: id2 },
-        include: { candidates: { include: { parties: true } } },
+        include: { candidates: { select: COMPARE_CANDIDATE } },
         orderBy: { votes: 'desc' },
       })
     ]);

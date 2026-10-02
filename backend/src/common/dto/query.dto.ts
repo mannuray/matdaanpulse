@@ -91,6 +91,10 @@ export class AdminPersonsQueryDto extends PaginationQueryDto {
 
   @IsOptional() @OptionalNumber() @IsInt() @Min(1)
   region_id?: number;
+
+  /** Number of candidacies: exactly one, or two and more. */
+  @IsOptional() @EmptyAsUndefined() @IsIn(['1', '2plus'])
+  contests?: '1' | '2plus';
 }
 
 export class AuditLogsQueryDto {

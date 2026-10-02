@@ -10,7 +10,10 @@ import {
 import { AuditLogService, RECORD_AUDIT_ACTIONS } from '../../audit-log/audit-log.service';
 import { PersonsService } from '../../candidates/persons.service';
 import { CandidatesService } from '../../candidates/candidates.service';
-import { CandidateSummaryDto } from '../../candidates/dto/candidate-response.dto';
+import { CandidateSummaryDto, CandidateDetailDto, PersonProfileDto } from '../../candidates/dto/candidate-response.dto';
+import { Reflector } from '@nestjs/core';
+import { ROLES_KEY } from '../../auth/decorators/roles.decorator';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 
 const map = (dto: any, data: unknown) => plainToInstance(dto, data, { excludeExtraneousValues: true }) as any;
 const updated_at = new Date('2026-10-01T09:30:00Z');
@@ -41,7 +44,10 @@ describe('admin detail responses: updated_at + last_edit', () => {
     const edited = { timestamp: new Date('2026-10-01T10:00:00Z'), users: { name: 'Priya S' } };
     const { audit, prisma } = auditWith(edited);
 
-    const persons = { findWithCandidates: jest.fn().mockResolvedValue({ id: 'p1', name: 'N', metadata: {}, updated_at, candidates: [] }) };
+    const persons = {
+      findWithCandidates: jest.fn().mockResolvedValue({ id: 'p1', name: 'N', updated_at, candidates: [] }),
+      mergeHistory: jest.fn().mockResolvedValue([]),
+    };
     const person = map(AdminPersonDto, await new AdminPersonsController(persons as any, audit).findPersonDetail('p1'));
     expect(person).toMatchObject({ updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
@@ -129,7 +135,7 @@ describe('PersonsService.findWithCandidates (election history)', () => {
     const prisma = {
       persons: {
         findUnique: jest.fn(async () => ({
-          id: 'p1', name: 'Nitish Kumar', metadata: {}, updated_at, states: null, districts: null,
+          id: 'p1', name: 'Nitish Kumar', updated_at, states: null, districts: null,
           // Stored order is by election id, not year.
           candidates: [
             contest('a', 2015, 'Finalized', { status: 'WON', votes: 10, margin: 3 }),
@@ -155,10 +161,10 @@ describe('admin candidate detail: relations reach the admin under the names it r
   // A `CandidatesService.findOne` row: Prisma relation names, and a Decimal turnout on the seat.
   const row = {
     id: 'c1', person_id: 'p1', election_id: 'e1', const_id: 'ADILABAD', party_id: 'BJP', name: 'GODAM NAGESH', is_incumbent: true,
-    metadata: { age: 58 }, updated_at,
+    age: 58, assets: BigInt(125000000000), liabilities: null, criminal_cases: 0, updated_at,
     parties: { id: 'BJP', name: 'Bharatiya Janata Party', color: '#FF7A1A' },
     constituencies: { id: 'ADILABAD', election_id: 'e1', name: 'Adilabad', const_no: 1, type: 'ST', voter_turnout: new Prisma.Decimal('65.28') },
-    persons: { id: 'p1', name: 'Godam Nagesh', photo_url: null, metadata: {} },
+    persons: { id: 'p1', name: 'Godam Nagesh', photo_url: null },
     elections: { id: 'e1', status: 'Finalized' },
   };
 
@@ -168,11 +174,14 @@ describe('admin candidate detail: relations reach the admin under the names it r
     const out = map(AdminCandidateDto, await new AdminCandidatesController(svc as any, audit).findOne('c1'));
     expect(out).toMatchObject({
       is_incumbent: true,
+      age: 58, assets: 125000000000, liabilities: null, criminal_cases: 0,
       person_contests: { contests: 1, first_year: 2023 },
       party: { id: 'BJP', color: '#FF7A1A' },
       constituency: { const_no: 1, name: 'Adilabad', voter_turnout: 65.28 },
       person: { id: 'p1', name: 'Godam Nagesh' },
     });
+    expect(() => JSON.stringify(out)).not.toThrow();
+    expect(out).not.toHaveProperty('metadata');
     expect(out).not.toHaveProperty('parties');
     expect(out).not.toHaveProperty('constituencies');
     expect(out).not.toHaveProperty('persons');
@@ -186,7 +195,10 @@ describe('admin candidate detail: relations reach the admin under the names it r
 
 describe('admin candidates list and same-name search: the person link and affidavit reach the admin', () => {
   it('findAll selects person_id and the affidavit columns, and the admin list keeps the person with the party', async () => {
-    const listRow = { id: 'c2', name: 'Anil Kumar', party_id: 'BJP', const_id: 's1', is_incumbent: false, person_id: 'p1', age: 44, criminal_cases: 2, parties: { id: 'BJP', color: '#f59e0b' } };
+    const listRow = {
+      id: 'c2', name: 'Anil Kumar', party_id: 'BJP', const_id: 's1', is_incumbent: false, person_id: 'p1',
+      age: 44, assets: BigInt(4200000000), liabilities: BigInt(15000000), criminal_cases: 2, parties: { id: 'BJP', color: '#f59e0b' },
+    };
     const prisma = { candidates: { findMany: jest.fn().mockResolvedValue([listRow]) } };
     const svc = new CandidatesService(prisma as any, {} as any, {} as any);
     const rows = await new AdminCandidatesController(svc, {} as any).findAll('e1', 's1');
@@ -196,10 +208,103 @@ describe('admin candidates list and same-name search: the person link and affida
     expect(publicSelect.person_id).toBe(true);
     expect(publicSelect).not.toHaveProperty('age');
     expect(publicSelect).not.toHaveProperty('criminal_cases');
-    expect(map(AdminCandidateDto, rows)[0]).toMatchObject({ person_id: 'p1', party: { id: 'BJP' } });
+    const mapped = map(AdminCandidateDto, rows);
+    expect(mapped[0]).toMatchObject({ person_id: 'p1', party: { id: 'BJP' }, age: 44, assets: 4200000000, liabilities: 15000000, criminal_cases: 2 });
+    expect(JSON.parse(JSON.stringify(mapped))[0].assets).toBe(4200000000);
   });
 
   it('the public summary (used by the same-name suggestions) says whether a candidate already has a person record', () => {
-    expect(map(CandidateSummaryDto, { id: 'c1', name: 'R', person_id: 'p1', metadata: { x: 1 } })).toEqual({ id: 'c1', name: 'R', person_id: 'p1' });
+    expect(map(CandidateSummaryDto, { id: 'c1', name: 'R', person_id: 'p1', assets: BigInt(5) })).toEqual({ id: 'c1', name: 'R', person_id: 'p1' });
+  });
+
+  it('the public candidate detail carries the affidavit, BigInt columns as numbers', () => {
+    const out = map(CandidateDetailDto, { id: 'c1', name: 'R', person_id: 'p1', election_id: 'e1', age: 50, assets: BigInt(9007199254740991), liabilities: null, criminal_cases: 1 });
+    expect(out).toMatchObject({ age: 50, assets: 9007199254740991, liabilities: null, criminal_cases: 1 });
+    expect(out).not.toHaveProperty('metadata');
+    expect(() => JSON.stringify(out)).not.toThrow();
+  });
+});
+
+describe('person responses: identity columns and merge history', () => {
+  const personRow = {
+    id: 'p1', name: 'N', gender: 'M', education: 'B.E.', bio: 'b', wikipedia_url: 'https://en.wikipedia.org/wiki/N', caste: 'Kurmi', religion: 'Hindu',
+    date_of_birth: new Date('1951-03-01'), updated_at, candidates: [{ id: 'c1' }, { id: 'c2' }],
+  };
+
+  it('admin and public person DTOs expose bio, wikipedia_url, caste and religion at the top level, and no metadata', () => {
+    for (const dto of [AdminPersonDto, PersonProfileDto]) {
+      const out = map(dto, personRow);
+      expect(out).toMatchObject({ bio: 'b', wikipedia_url: 'https://en.wikipedia.org/wiki/N', caste: 'Kurmi', religion: 'Hindu' });
+      expect(out).not.toHaveProperty('metadata');
+    }
+  });
+
+  it('GET /admin/persons/:id lists the merges with the person\'s current candidate ids, merged_at as ISO', async () => {
+    const { audit } = auditWith(null);
+    const merges = [{ id: 'm1', duplicate_name: 'N. K', candidate_count: 2, merged_at: updated_at, merged_by: null, undoable: true }];
+    const persons = { findWithCandidates: jest.fn().mockResolvedValue(personRow), mergeHistory: jest.fn().mockResolvedValue(merges) };
+    const out = map(AdminPersonDto, await new AdminPersonsController(persons as any, audit).findPersonDetail('p1'));
+    expect(persons.mergeHistory).toHaveBeenCalledWith('p1', ['c1', 'c2']);
+    expect(out.merges).toEqual([{ id: 'm1', duplicate_name: 'N. K', candidate_count: 2, merged_at: '2026-10-01T09:30:00.000Z', merged_by: null, undoable: true }]);
+  });
+
+  it('the persons list passes the contests filter through', async () => {
+    const persons = { findAll: jest.fn().mockResolvedValue({}) };
+    await new AdminPersonsController(persons as any, {} as any).findAllPersons({ page: 2, contests: '2plus', state_id: 5 } as any);
+    expect(persons.findAll).toHaveBeenCalledWith(2, 100, '', { state_id: 5, region_id: undefined, contests: '2plus' });
+  });
+});
+
+describe('change person, split and undo routes', () => {
+  it('PUT :id/person and the older PUT :id/link-person both change the person and return the candidate with last_edit', async () => {
+    const { audit } = auditWith(null);
+    const svc = { changePerson: jest.fn().mockResolvedValue({ id: 'c1', person_id: 'p2', assets: BigInt(7), old_person_deleted: true }) };
+    const ctl = new AdminCandidatesController(svc as any, audit);
+    const out = map(AdminCandidateDto, await ctl.changePerson({ user: { id: 'u1' } }, 'c1', { person_id: 'p2' }));
+    expect(svc.changePerson).toHaveBeenCalledWith('c1', 'p2', 'u1');
+    expect(out).toMatchObject({ id: 'c1', person_id: 'p2', assets: 7, last_edit: null });
+    await ctl.linkPerson({ user: { id: 'u1' } }, 'c1', { person_id: 'p3' });
+    expect(svc.changePerson).toHaveBeenLastCalledWith('c1', 'p3', 'u1');
+  });
+
+  it('POST :id/split returns the new person id; POST merges/:id/undo passes the user', async () => {
+    const candidates = { split: jest.fn().mockResolvedValue({ person_id: 'p-new', old_person_deleted: false }) };
+    await expect(new AdminCandidatesController(candidates as any, {} as any).split({ user: { id: 'u1' } }, 'c1'))
+      .resolves.toEqual({ person_id: 'p-new', old_person_deleted: false });
+    expect(candidates.split).toHaveBeenCalledWith('c1', 'u1');
+    const persons = { undoMerge: jest.fn().mockResolvedValue({ undone: true }) };
+    await new AdminPersonsController(persons as any, {} as any).undoMerge({ user: { id: 'u9' } }, 'm1');
+    expect(persons.undoMerge).toHaveBeenCalledWith('m1', 'u9');
+  });
+
+  it('the unlink route and auto-link are gone', () => {
+    expect((AdminCandidatesController.prototype as any).unlinkPerson).toBeUndefined();
+    expect((AdminPersonsController.prototype as any).autoLink).toBeUndefined();
+  });
+});
+
+describe('role guards', () => {
+  const roles = (ctl: any, method: string) => Reflect.getMetadata(ROLES_KEY, ctl.prototype[method]);
+
+  it('merge and undo are SUPER_ADMIN only', () => {
+    expect(roles(AdminPersonsController, 'mergePersons')).toEqual(['SUPER_ADMIN']);
+    expect(roles(AdminPersonsController, 'undoMerge')).toEqual(['SUPER_ADMIN']);
+  });
+
+  it('change person and split are SUPER_ADMIN and EDITOR', () => {
+    for (const m of ['changePerson', 'linkPerson', 'split']) expect(roles(AdminCandidatesController, m)).toEqual(['SUPER_ADMIN', 'EDITOR']);
+  });
+
+  it('the guard refuses an EDITOR on undo and lets one through on split', () => {
+    const guard = new RolesGuard(new Reflector());
+    const ctx = (role: string, ctl: any, method: string) => ({
+      getHandler: () => ctl.prototype[method], getClass: () => ctl,
+      switchToHttp: () => ({ getRequest: () => ({ user: { id: 'u1', role } }) }),
+    }) as any;
+    const allowed = (role: string, ctl: any, method: string) => { try { return guard.canActivate(ctx(role, ctl, method)); } catch { return false; } };
+    expect(allowed('EDITOR', AdminPersonsController, 'undoMerge')).toBe(false);
+    expect(allowed('SUPER_ADMIN', AdminPersonsController, 'undoMerge')).toBe(true);
+    expect(allowed('EDITOR', AdminCandidatesController, 'split')).toBe(true);
+    expect(allowed('EDITOR', AdminCandidatesController, 'changePerson')).toBe(true);
   });
 });

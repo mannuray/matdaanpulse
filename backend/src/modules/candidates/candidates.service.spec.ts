@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 import { CandidatesService } from './candidates.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { ConstituencyNotFoundException, ElectionFinalizedException, ElectionNotFoundException, ErrorCodes } from '../../common/exceptions';
@@ -52,17 +52,16 @@ describe('CandidatesService.create', () => {
     return { svc, tx, prisma, notifier, order };
   }
 
-  const body = { election_id: 'e1', const_id: 'BR_VS_1', name: 'Ravi', party_id: 'BJP', metadata: { age: 40 } };
+  const body = { election_id: 'e1', const_id: 'BR_VS_1', name: 'Ravi', party_id: 'BJP', age: 40 };
 
   it('checks the seat belongs to the election, then creates the candidate and its results row in one transaction', async () => {
     const { svc, tx, prisma } = make();
     await expect(svc.create(body as any)).resolves.toMatchObject({ id: 'c-new' });
     expect(prisma.$transaction).toHaveBeenCalledTimes(1);
     expect(tx.constituencies.findFirst).toHaveBeenCalledWith({ where: { id: 'BR_VS_1', election_id: 'e1' }, select: { id: true, state_id: true } });
-    // No person given: one is created from the ballot name and the seat's state; metadata has no column.
+    // No person given: one is created from the ballot name and the seat's state.
     expect(tx.persons.create).toHaveBeenCalledWith({ data: { name: 'Ravi', state_id: 10 }, select: { id: true } });
-    const { metadata: _metadata, ...fields } = body;
-    expect(tx.candidates.create).toHaveBeenCalledWith({ data: { ...fields, person_id: 'p-auto' } });
+    expect(tx.candidates.create).toHaveBeenCalledWith({ data: { ...body, person_id: 'p-auto' } });
     expect(tx.results.create).toHaveBeenCalledWith({
       data: { candidate_id: 'c-new', const_id: 'BR_VS_1', election_id: 'e1', votes: 0, status: 'TRAILING', margin: 0 },
     });
@@ -73,9 +72,25 @@ describe('CandidatesService.create', () => {
 
   it('a candidate created with a person creates no person', async () => {
     const { svc, tx } = make();
+    (tx.persons as any).findUnique = jest.fn().mockResolvedValue({ id: 'p1' });
     await svc.create({ ...body, person_id: 'p1' } as any);
     expect(tx.persons.create).not.toHaveBeenCalled();
     expect(tx.candidates.create).toHaveBeenCalledWith({ data: expect.objectContaining({ person_id: 'p1' }) });
+  });
+
+  it('a candidate created with an unknown person is a 404 and writes nothing', async () => {
+    const { svc, tx } = make();
+    (tx.persons as any).findUnique = jest.fn().mockResolvedValue(null);
+    const err = await svc.create({ ...body, person_id: 'p-gone' } as any).catch((e) => e);
+    expect(err.getStatus()).toBe(404);
+    expect(tx.candidates.create).not.toHaveBeenCalled();
+  });
+
+  it('assets set on create: the CANDIDATE_CREATE audit row carries it as a number and the create is not rolled back', async () => {
+    const { svc, tx } = make();
+    tx.candidates.create.mockResolvedValue({ id: 'c-new', election_id: 'e1', const_id: 'BR_VS_1', name: 'Ravi', party_id: 'BJP', assets: BigInt(12500000) } as any);
+    await expect(svc.create({ ...body, assets: 12500000 } as any, 'u1')).resolves.toMatchObject({ id: 'c-new' });
+    expect(tx.audit_logs.create.mock.calls[0][0].data.new_value).toMatchObject({ assets: 12500000 });
   });
 
   it('rejects a seat of another election with ConstituencyNotFound (404) and writes nothing', async () => {
@@ -153,17 +168,15 @@ describe('CandidatesService.create', () => {
   });
 });
 
-describe('CandidatesService update / link audit rows', () => {
-  const row = { id: 'c1', name: 'Ravi', party_id: 'BJP', person_id: 'p-old', is_incumbent: false, updated_at: new Date(1) };
+describe('CandidatesService.update audit rows', () => {
+  const row = { id: 'c1', name: 'Ravi', party_id: 'BJP', person_id: 'p-old', is_incumbent: false, assets: null, updated_at: new Date(1) };
   function make() {
     const prisma = {
       candidates: {
         findUnique: jest.fn().mockResolvedValue(row),
-        update: jest.fn(async ({ data }) => ({ ...row, ...data, updated_at: new Date(2) })),
-      },
-      persons: {
-        findUnique: jest.fn().mockResolvedValue({ id: 'p-new', photo_url: 'x', gender: 'M', education: null }),
-        update: jest.fn().mockResolvedValue({}),
+        update: jest.fn(async ({ data }) => ({
+          ...row, ...data, ...(data.assets != null && { assets: BigInt(data.assets) }), updated_at: new Date(2),
+        })),
       },
       audit_logs: { create: jest.fn().mockResolvedValue({}) },
     };
@@ -182,31 +195,11 @@ describe('CandidatesService update / link audit rows', () => {
     }]);
   });
 
-  it('update ignores metadata (no column) and a null person_id (every candidate has a person)', async () => {
+  it('an assets change (a BigInt column) is audited as plain numbers', async () => {
     const { svc, prisma } = make();
-    await svc.update('c1', { is_incumbent: true, metadata: { age: 41 }, person_id: null } as any, 'u1');
-    expect(prisma.candidates.update).toHaveBeenCalledWith({ where: { id: 'c1' }, data: { is_incumbent: true } });
-  });
-
-  it('linkPerson writes one CANDIDATE_LINK_PERSON row', async () => {
-    const { svc, prisma } = make();
-    await svc.linkPerson('c1', 'p-new', 'u1');
-    expect(auditData(prisma)).toEqual([expect.objectContaining({
-      action: 'CANDIDATE_LINK_PERSON', entity_id: 'c1', old_value: { person_id: 'p-old' }, new_value: { person_id: 'p-new' },
-    })]);
-  });
-
-  it('linkPerson to the person already linked writes no audit row', async () => {
-    const { svc, prisma } = make();
-    await expect(svc.linkPerson('c1', 'p-old', 'u1')).resolves.toMatchObject({ person_id: 'p-old' });
-    expect(prisma.audit_logs.create).not.toHaveBeenCalled();
-  });
-
-  it('unlinkPerson is refused with 409 (every candidate has a person) and writes nothing', async () => {
-    const { svc, prisma } = make();
-    await expect(svc.unlinkPerson('c1', 'u1')).rejects.toMatchObject({ status: 409 });
-    expect(prisma.candidates.update).not.toHaveBeenCalled();
-    expect(prisma.audit_logs.create).not.toHaveBeenCalled();
+    const updated = await svc.update('c1', { assets: 4200000000 } as any, 'u1');
+    expect(updated.assets).toBe(BigInt(4200000000));
+    expect(auditData(prisma)).toEqual([expect.objectContaining({ old_value: { assets: null }, new_value: { assets: 4200000000 } })]);
   });
 
   it('an audit failure still returns the updated candidate', async () => {
@@ -215,6 +208,92 @@ describe('CandidatesService update / link audit rows', () => {
     prisma.audit_logs.create.mockRejectedValue(new Error('x'));
     await expect(svc.update('c1', { is_incumbent: true } as any, 'u1')).resolves.toMatchObject({ is_incumbent: true });
     warn.mockRestore();
+  });
+});
+
+describe('CandidatesService.changePerson / split', () => {
+  const candidate = { id: 'c1', name: 'RAVI KUMAR', person_id: 'p-old', constituencies: { state_id: 10 } };
+  const oldPerson = { id: 'p-old', name: 'Ravi Kumar', gender: 'M', date_of_birth: new Date('1970-01-02'), updated_at: new Date(1) };
+  /** `oldPersonGone`: the orphan trigger deleted p-old when the candidate moved (it was its only contest). */
+  function make({ oldPersonGone = false, target = { id: 'p-new' } as unknown } = {}) {
+    let moved = false;
+    const tx = {
+      candidates: {
+        findUnique: jest.fn().mockResolvedValue(candidate),
+        update: jest.fn(async ({ data }) => { moved = true; return { ...candidate, ...data }; }),
+      },
+      persons: {
+        findUnique: jest.fn(async ({ where }) => {
+          if (where.id === 'p-old') return moved && oldPersonGone ? null : oldPerson;
+          return where.id === 'p-new' ? target : null;
+        }),
+        create: jest.fn().mockResolvedValue({ id: 'p-split' }),
+      },
+      audit_logs: { create: jest.fn().mockResolvedValue({}) },
+      $executeRawUnsafe: jest.fn().mockResolvedValue(0),
+    };
+    const prisma = { $transaction: jest.fn(async (fn: (t: typeof tx) => unknown) => fn(tx)), audit_logs: { create: jest.fn() } };
+    const svc = new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any));
+    const audit = () => tx.audit_logs.create.mock.calls.map((c: any) => c[0].data);
+    return { svc, tx, prisma, audit };
+  }
+
+  it('change person moves the candidacy and writes CANDIDATE_LINK_PERSON, in one transaction', async () => {
+    const { svc, tx, prisma, audit } = make();
+    await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ person_id: 'p-new', old_person_deleted: false });
+    expect(prisma.$transaction).toHaveBeenCalledTimes(1);
+    expect(tx.candidates.update).toHaveBeenCalledWith({ where: { id: 'c1' }, data: { person_id: 'p-new' } });
+    expect(audit()).toEqual([{
+      user_id: 'u1', action: 'CANDIDATE_LINK_PERSON', entity_type: 'candidate', entity_id: 'c1',
+      old_value: { person_id: 'p-old' }, new_value: { person_id: 'p-new' },
+    }]);
+  });
+
+  it('change person that empties the old person also writes PERSON_DELETE with its snapshot (taken before the move)', async () => {
+    const { svc, audit } = make({ oldPersonGone: true });
+    await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ old_person_deleted: true });
+    expect(audit().map((a: any) => a.action)).toEqual(['CANDIDATE_LINK_PERSON', 'PERSON_DELETE']);
+    expect(audit()[1]).toMatchObject({
+      entity_type: 'person', entity_id: 'p-old',
+      old_value: { id: 'p-old', name: 'Ravi Kumar', gender: 'M', date_of_birth: '1970-01-02T00:00:00.000Z' },
+    });
+  });
+
+  it('change person to the same person is a no-op with no audit row', async () => {
+    const { svc, tx, audit } = make();
+    await expect(svc.changePerson('c1', 'p-old', 'u1')).resolves.toMatchObject({ person_id: 'p-old' });
+    expect(tx.candidates.update).not.toHaveBeenCalled();
+    expect(audit()).toEqual([]);
+  });
+
+  it('change person to an unknown person is a 404 and moves nothing', async () => {
+    const { svc, tx } = make({ target: null });
+    const err = await svc.changePerson('c1', 'p-new', 'u1').catch((e) => e);
+    expect(err.getStatus()).toBe(404);
+    expect(tx.candidates.update).not.toHaveBeenCalled();
+  });
+
+  it('change person or split of an unknown candidate is a 404', async () => {
+    const { svc, tx } = make();
+    tx.candidates.findUnique.mockResolvedValue(null);
+    expect((await svc.changePerson('nope', 'p-new').catch((e) => e)).getStatus()).toBe(404);
+    expect((await svc.split('nope').catch((e) => e)).getStatus()).toBe(404);
+  });
+
+  it('split creates a person from the ballot name and the seat state, moves the candidacy and writes CANDIDATE_SPLIT', async () => {
+    const { svc, tx, audit } = make();
+    await expect(svc.split('c1', 'u1')).resolves.toEqual({ person_id: 'p-split', old_person_deleted: false });
+    expect(tx.persons.create).toHaveBeenCalledWith({ data: { name: 'RAVI KUMAR', state_id: 10 }, select: { id: true } });
+    expect(tx.candidates.update).toHaveBeenCalledWith({ where: { id: 'c1' }, data: { person_id: 'p-split' } });
+    expect(audit()).toEqual([expect.objectContaining({
+      action: 'CANDIDATE_SPLIT', entity_id: 'c1', old_value: { person_id: 'p-old' }, new_value: { person_id: 'p-split' },
+    })]);
+  });
+
+  it('split that empties the old person also writes PERSON_DELETE', async () => {
+    const { svc, audit } = make({ oldPersonGone: true });
+    await expect(svc.split('c1', 'u1')).resolves.toEqual({ person_id: 'p-split', old_person_deleted: true });
+    expect(audit().map((a: any) => [a.action, a.entity_id])).toEqual([['CANDIDATE_SPLIT', 'c1'], ['PERSON_DELETE', 'p-old']]);
   });
 });
 
@@ -286,9 +365,9 @@ describe('CandidatesService.seatResult', () => {
 });
 
 describe('Candidate input DTOs', () => {
-  it.each([['update', UpdateCandidateDto], ['create', CreateCandidateDto]] as const)('%s maps a blank party_id and person_id to null', async (_, cls) => {
+  it('create maps a blank party_id and person_id to null', async () => {
     const body = { election_id: '11111111-1111-1111-1111-111111111111', const_id: 's1', name: 'N', party_id: '', person_id: '' };
-    const dto = plainToInstance(cls, body) as unknown as Record<string, unknown>;
+    const dto = plainToInstance(CreateCandidateDto, body) as unknown as Record<string, unknown>;
     expect(await validate(dto)).toEqual([]);
     expect(dto.party_id).toBeNull();
     expect(dto.person_id).toBeNull();
@@ -300,5 +379,30 @@ describe('Candidate input DTOs', () => {
     expect(await validate(plainToInstance(UpdateCandidateDto, { is_incumbent: false }))).toEqual([]);
     const errors = await validate(plainToInstance(UpdateCandidateDto, { is_incumbent: 'yes' }));
     expect(errors.map((e) => e.property)).toEqual(['is_incumbent']);
+  });
+
+  const AFFIDAVIT = ['age', 'assets', 'liabilities', 'criminal_cases'];
+
+  it.each([['update', UpdateCandidateDto], ['create', CreateCandidateDto]] as const)('%s: affidavit fields are whole numbers ≥ 0; blank is null, 0 stays 0', async (_, cls) => {
+    const base = { election_id: '11111111-1111-1111-1111-111111111111', const_id: 's1', name: 'N' };
+    const ok = plainToInstance(cls, { ...base, age: 0, assets: 125000000000, liabilities: '', criminal_cases: 3 }) as unknown as Record<string, unknown>;
+    expect(await validate(ok)).toEqual([]);
+    expect(ok).toMatchObject({ age: 0, assets: 125000000000, liabilities: null, criminal_cases: 3 });
+    for (const bad of [-1, 1.5, '12', 1e20]) {
+      const errors = await validate(plainToInstance(cls, { ...base, ...Object.fromEntries(AFFIDAVIT.map((k) => [k, bad])) }));
+      expect(errors.map((e) => e.property).sort()).toEqual([...AFFIDAVIT].sort());
+    }
+    // SMALLINT columns.
+    const big = await validate(plainToInstance(cls, { ...base, age: 40000, criminal_cases: 40000, assets: 40000 }));
+    expect(big.map((e) => e.property).sort()).toEqual(['age', 'criminal_cases']);
+  });
+});
+
+describe('Candidate input DTOs through the ValidationPipe (whitelist + forbidNonWhitelisted)', () => {
+  const pipe = new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true });
+  const body = (metatype: any, value: Record<string, unknown>) => pipe.transform(value, { type: 'body', metatype });
+
+  it.each(['metadata', 'gender', 'education', 'person_id'])('update rejects %s (no longer a candidate field to edit)', async (field) => {
+    await expect(body(UpdateCandidateDto, { [field]: field === 'metadata' ? {} : 'x' })).rejects.toBeInstanceOf(BadRequestException);
   });
 });

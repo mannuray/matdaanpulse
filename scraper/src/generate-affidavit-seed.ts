@@ -131,7 +131,7 @@ async function main() {
   console.log(`  Found ${dbCandidates.length} candidates (${linkedCount} linked to persons)\n`);
 
   if (linkedCount === 0) {
-    console.warn('  WARNING: No candidates linked to persons. Run auto-link first for person-level tracking.');
+    console.warn('  WARNING: No candidates linked to persons. Run database/setup.sh (migration 018 gives every candidate a person) first.');
     console.warn('  Continuing — will only update the candidate affidavit columns.\n');
   }
 

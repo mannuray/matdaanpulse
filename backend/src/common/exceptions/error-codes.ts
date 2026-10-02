@@ -25,6 +25,8 @@ export const ErrorCodes = {
   // User/Person (4xxx)
   USER_NOT_FOUND: 'USER_4001',
   PERSON_NOT_FOUND: 'USER_4002',
+  PERSON_MERGE_NOT_FOUND: 'USER_4003',
+  PERSON_MERGE_NOT_UNDOABLE: 'USER_4004',
 
   // Party (5xxx)
   PARTY_NOT_FOUND: 'PARTY_5001',

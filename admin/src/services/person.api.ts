@@ -35,7 +35,3 @@ export function mergePersons(sourceId: string, targetId: string) {
     body: JSON.stringify({ source_id: sourceId, target_id: targetId }),
   });
 }
-
-export function autoLinkCandidates() {
-  return apiFetch<{ persons_created: number; candidates_linked: number }>('/admin/persons/auto-link', { method: 'POST' });
-}

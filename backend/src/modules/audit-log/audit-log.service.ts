@@ -11,10 +11,15 @@ export interface AuditEntry {
   newValue?: object;
 }
 
-/** Admin record edits (Decision 6 of the admin record pages plan). */
+/**
+ * Admin record edits (Decision 6 of the admin record pages plan). CANDIDATE_LINK_PERSON is "change person";
+ * CANDIDATE_UNLINK_PERSON is no longer written (every candidate has a person, migration 018) but stays so
+ * `lastEdit` still finds the historical rows. PERSON_DELETE is written when an admin action leaves a person
+ * without candidates and the database deletes it.
+ */
 export const RECORD_AUDIT_ACTIONS = [
-  'PARTY_CREATE', 'PARTY_UPDATE', 'PERSON_UPDATE', 'PERSON_MERGE',
-  'CANDIDATE_CREATE', 'CANDIDATE_UPDATE', 'CANDIDATE_LINK_PERSON', 'CANDIDATE_UNLINK_PERSON',
+  'PARTY_CREATE', 'PARTY_UPDATE', 'PERSON_UPDATE', 'PERSON_MERGE', 'PERSON_MERGE_UNDO', 'PERSON_DELETE',
+  'CANDIDATE_CREATE', 'CANDIDATE_UPDATE', 'CANDIDATE_LINK_PERSON', 'CANDIDATE_UNLINK_PERSON', 'CANDIDATE_SPLIT',
   'CONSTITUENCY_UPDATE',
 ] as const;
 export type RecordAuditAction = (typeof RECORD_AUDIT_ACTIONS)[number];
