@@ -20,9 +20,10 @@ const QUALITIES = ['real', 'partial', 'estimated'] as const;
 
 const FIELD = 'w-full rounded-lg border border-line bg-tile-raised px-3 py-2 text-xs text-ink placeholder:text-muted/60 focus:border-accent focus:outline-none focus-visible:ring-1 focus-visible:ring-accent';
 const CARD = 'rounded-xl border border-line bg-tile';
-const H2 = 'font-display text-2xl font-bold uppercase tracking-wide text-ink';
-const H3 = 'font-display text-xl font-bold uppercase tracking-wide text-ink';
-const STEP = 'grid h-7 w-7 shrink-0 place-items-center rounded bg-line font-display text-sm font-bold tabular text-ink';
+const H2 = 'font-display text-xl font-bold uppercase tracking-wide text-ink';
+const H3 = 'font-display text-lg font-bold uppercase tracking-wide text-ink';
+const STEP = 'grid h-6 w-6 shrink-0 place-items-center rounded bg-line font-display text-xs font-bold tabular text-ink';
+const STEP_CARD = 'flex items-start gap-3 rounded-lg border border-line bg-tile-raised p-3';
 
 const datasetName = (t: (k: string) => string, house: 'LS' | 'VS', state: string | null, year?: number) => {
   const h = t(house === 'LS' ? 'lok_sabha' : 'vidhan_sabha');
@@ -41,29 +42,29 @@ function DataMatrixCard({ matrix }: { matrix: DataMatrix }) {
   const [picked, setPicked] = useState<DataSource | null>(null);
   const sel = picked ?? newest;
   return (
-    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
-      <div className="min-w-0 space-y-3 lg:col-span-7">
+    <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-12">
+      <div className="min-w-0 space-y-2 lg:col-span-7">
         <div className="overflow-x-auto rounded-lg border border-line bg-page">
           <table className="w-full border-collapse text-left text-xs [&_td]:border-0 [&_th]:border-0">
             <thead>
               <tr className="border-b border-line bg-tile-raised/60">
-                <th scope="col" className="sticky left-0 bg-tile-raised px-3 py-2.5 font-semibold text-muted">{t('about_matrix_col')}</th>
-                {matrix.years.map(y => <th key={y} scope="col" className="px-2 py-2.5 text-center font-semibold tabular text-muted">{y}</th>)}
+                <th scope="col" className="sticky left-0 bg-tile-raised px-3 py-2 font-semibold text-muted">{t('about_matrix_col')}</th>
+                {matrix.years.map(y => <th key={y} scope="col" className="px-1.5 py-2 text-center font-semibold tabular text-muted">{y}</th>)}
               </tr>
             </thead>
             <tbody>
               {matrix.rows.map(r => (
                 <tr key={`${r.house}-${r.state}`} className="border-t border-line/60 transition-colors first:border-t-0 hover:bg-tile-raised/30">
-                  <th scope="row" className="sticky left-0 whitespace-nowrap bg-page px-3 py-2.5 font-medium text-ink">{r.state ?? t('lok_sabha')}</th>
+                  <th scope="row" className="sticky left-0 whitespace-nowrap bg-page px-3 py-1 font-medium text-ink">{r.state ?? t('lok_sabha')}</th>
                   {matrix.years.map(y => {
                     const c = r.cells.get(y);
-                    if (!c) return <td key={y} className="px-2 py-2.5 text-center text-muted/40" aria-label={t('about_matrix_none')}>·</td>;
+                    if (!c) return <td key={y} className="px-1.5 py-1 text-center text-muted/40" aria-label={t('about_matrix_none')}>·</td>;
                     const on = c === sel;
                     return (
-                      <td key={y} className="px-1 py-1.5 text-center">
+                      <td key={y} className="px-1 py-0.5 text-center">
                         <button type="button" onClick={() => setPicked(c)} aria-pressed={on} data-matrix-cell
                           aria-label={`${datasetName(t, c.house, c.state, c.year)}: ${t(`about_quality_${c.quality}`)}`}
-                          className={cn('inline-grid h-7 w-7 place-items-center rounded-md transition-colors hover:bg-tile-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+                          className={cn('inline-grid h-6 w-6 place-items-center rounded-md transition-colors hover:bg-tile-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
                             on && 'bg-accent/15 shadow-[0_0_12px_color-mix(in_srgb,var(--color-accent)_40%,transparent)] ring-2 ring-accent')}>
                           <span className={cn('h-2.5 w-2.5 rounded-full', QUALITY_DOT[c.quality])} />
                         </button>
@@ -79,26 +80,26 @@ function DataMatrixCard({ matrix }: { matrix: DataMatrix }) {
       </div>
 
       {sel && (
-        <div className="min-w-0 space-y-4 rounded-lg border border-line bg-tile-raised p-5 lg:col-span-5" aria-live="polite" data-matrix-detail>
-          <div className="flex items-center justify-between border-b border-line pb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted">{t('about_matrix_selected')}</span>
+        <div className="min-w-0 space-y-2.5 rounded-lg border border-line bg-tile-raised p-4 lg:col-span-5" aria-live="polite" data-matrix-detail>
+          <div className="flex items-center justify-between border-b border-line pb-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t('about_matrix_selected')}</span>
             <span className={cn('inline-flex items-center gap-1.5 rounded border px-2.5 py-0.5 text-xs font-medium', QUALITY_PILL[sel.quality])}>
               <span className={cn('h-1.5 w-1.5 rounded-full', QUALITY_DOT[sel.quality])} />{t(`about_quality_${sel.quality}`)}
             </span>
           </div>
-          <div className="space-y-1">
-            <h3 className="font-display text-lg font-bold text-ink">{datasetName(t, sel.house, sel.state, sel.year)}</h3>
+          <div className="space-y-0.5">
+            <h3 className="font-display text-base font-bold text-ink">{datasetName(t, sel.house, sel.state, sel.year)}</h3>
             <p className="text-xs text-muted">{t('about_source')}: <span className="text-ink">{sel.source ?? t('about_source_unknown')}</span></p>
             <p className="text-[11px] text-muted">{t(`about_quality_${sel.quality}_desc`)}</p>
           </div>
           {sel.notes.length > 0 && (
-            <ul className="space-y-2 rounded border border-line bg-page p-3">
+            <ul className="space-y-1.5 rounded border border-line bg-page p-2.5">
               {sel.notes.map((n: DataNote) => (
                 <li key={n} className="flex items-start gap-2 text-xs leading-relaxed text-ink"><span aria-hidden className="mt-px text-accent-text">•</span>{t(`about_note_${n}`)}</li>
               ))}
             </ul>
           )}
-          <p className="flex items-center gap-1.5 pt-1 text-[11px] text-muted"><Icon name="info" className="h-3.5 w-3.5" />{t('about_matrix_hint')}</p>
+          <p className="flex items-center gap-1.5 text-[11px] text-muted"><Icon name="info" className="h-3.5 w-3.5" />{t('about_matrix_hint')}</p>
         </div>
       )}
     </div>
@@ -118,7 +119,7 @@ function FeedbackForm({ vm }: { vm: FeedbackFormVM }) {
     );
   }
   return (
-    <form noValidate onSubmit={e => { e.preventDefault(); vm.submit(); }} className="relative flex flex-col gap-3" data-feedback-form>
+    <form noValidate onSubmit={e => { e.preventDefault(); vm.submit(); }} className="relative flex flex-col gap-2.5" data-feedback-form>
       <fieldset className="m-0 flex flex-col gap-1.5 border-0 p-0">
         <legend className="mb-1.5 p-0 text-xs font-medium text-muted">{t('about_feedback_kind')}</legend>
         <div className="flex flex-wrap gap-2">
@@ -133,7 +134,7 @@ function FeedbackForm({ vm }: { vm: FeedbackFormVM }) {
       </fieldset>
       <label className="flex flex-col gap-1.5">
         <span className="text-xs font-medium text-muted">{t('about_feedback_message')}</span>
-        <textarea required rows={5} maxLength={vm.maxLength} value={vm.message} onChange={e => vm.setMessage(e.target.value)}
+        <textarea required rows={3} maxLength={vm.maxLength} value={vm.message} onChange={e => vm.setMessage(e.target.value)}
           placeholder={t('about_feedback_message_hint')} className={cn(FIELD, 'resize-y')} />
         <span className="self-end text-[11px] tabular text-muted">{vm.message.length}/{vm.maxLength}</span>
       </label>
@@ -165,22 +166,22 @@ export function AboutView({ matrix, elections, contactEmail, eciUrl, feedback }:
   feedback: FeedbackFormVM;
 }) {
   const { t } = useTranslation();
-  const chip = 'rounded-lg border border-line bg-tile-raised px-3.5 py-1.5 text-xs font-medium text-ink md:text-sm';
+  const chip = 'rounded-md border border-line bg-tile-raised px-2.5 py-1 text-xs font-medium text-ink';
   const dot = <span aria-hidden className="font-black text-line">·</span>;
   return (
     <PageShell back={{ href: '/', label: t('about_back') }}>
-      <div className="space-y-6 py-4 lg:space-y-8 lg:py-6">
+      <div className="space-y-3 py-1 lg:space-y-4 lg:py-2">
         {/* Hero */}
-        <section className={cn(CARD, 'relative overflow-hidden p-6 sm:p-8 lg:p-10')}>
+        <section className={cn(CARD, 'relative overflow-hidden p-5 lg:px-7 lg:py-6')}>
           <div aria-hidden className="pointer-events-none absolute right-0 top-0 h-80 w-80 bg-accent/5 blur-3xl" />
-          <div className="relative max-w-3xl space-y-5">
+          <div className="relative max-w-3xl space-y-3">
             <div className="flex items-center gap-2.5">
               <span aria-hidden className="grid h-7 w-7 place-items-center rounded border border-brand/30 bg-brand/15"><span className="h-2.5 w-2.5 rounded-full bg-brand" /></span>
               <span className="text-xs font-semibold uppercase tracking-wider text-muted">{t('about_eyebrow')}</span>
             </div>
-            <h1 className="font-display text-4xl font-bold uppercase tracking-tight text-ink md:text-5xl lg:text-6xl">{t('about_title')}</h1>
-            <p className="text-lg leading-relaxed text-muted md:text-xl">{t('about_tagline')}</p>
-            <div className="flex flex-wrap items-center gap-2.5 pt-2">
+            <h1 className="font-display text-3xl font-bold uppercase leading-none tracking-tight text-ink md:text-4xl">{t('about_title')}</h1>
+            <p className="text-sm leading-relaxed text-muted md:text-base">{t('about_tagline')}</p>
+            <div className="flex flex-wrap items-center gap-2 pt-1">
               <span className={chip}>{t('about_chip_elections', { count: elections })}</span>{dot}
               <span className={chip}>{t('about_chip_scope', { count: matrix.states })}</span>{dot}
               <span className={cn(chip, 'flex items-center gap-2')}><span aria-hidden className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />{t('about_chip_refresh')}</span>
@@ -189,39 +190,39 @@ export function AboutView({ matrix, elections, contactEmail, eciUrl, feedback }:
         </section>
 
         {/* Disclaimer */}
-        <section aria-label={t('about_disclaimer_title')} className="flex flex-col justify-between gap-4 rounded-xl border border-warn/30 bg-tile p-4 sm:flex-row sm:items-center sm:px-6">
-          <p className="flex items-start gap-3 text-xs leading-normal text-muted sm:items-center sm:text-sm">
-            <Icon name="warning" className="mt-0.5 h-5 w-5 text-warn sm:mt-0" />
+        <section aria-label={t('about_disclaimer_title')} className="flex flex-col justify-between gap-2 rounded-xl border border-warn/30 bg-tile px-4 py-2.5 sm:flex-row sm:items-center sm:gap-4 sm:px-5">
+          <p className="flex items-start gap-2.5 text-xs leading-normal text-muted sm:items-center">
+            <Icon name="warning" className="mt-0.5 h-4 w-4 text-warn sm:mt-0" />
             <span><strong className="font-semibold text-ink">{t('about_disclaimer_title')}</strong> — {t('about_disclaimer_body')}</span>
           </p>
-          <a href={eciUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 text-xs font-semibold text-warn-text hover:underline sm:text-sm">{t('about_disclaimer_link')} ↗</a>
+          <a href={eciUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 text-xs font-semibold text-warn-text hover:underline">{t('about_disclaimer_link')} ↗</a>
         </section>
 
         {/* How live counting works */}
-        <section aria-labelledby="about-live" className={cn(CARD, 'space-y-6 p-6 sm:p-8')}>
-          <h2 id="about-live" className={cn(H2, 'border-b border-line pb-4')}>{t('about_live_title')}</h2>
-          <ol className="grid gap-5 md:grid-cols-3">
-            <li className="flex flex-col gap-4 rounded-lg border border-line bg-tile-raised p-5"><span className={STEP}>1</span><p className="text-sm leading-relaxed text-ink">{t('about_live_step_refresh')}</p></li>
-            <li className="flex flex-col gap-4 rounded-lg border border-line bg-tile-raised p-5"><span className={STEP}>2</span>
-              <div className="space-y-3">
+        <section aria-labelledby="about-live" className={cn(CARD, 'space-y-3 p-4 sm:p-5')}>
+          <h2 id="about-live" className={cn(H2, 'border-b border-line pb-2.5')}>{t('about_live_title')}</h2>
+          <ol className="grid gap-2.5 md:grid-cols-3">
+            <li className={STEP_CARD}><span className={STEP}>1</span><p className="text-xs leading-relaxed text-ink">{t('about_live_step_refresh')}</p></li>
+            <li className={STEP_CARD}><span className={STEP}>2</span>
+              <div className="space-y-1.5">
                 <p className="flex items-start gap-2.5"><span className="mt-0.5 shrink-0 rounded border border-accent/40 bg-accent/20 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-accent-text">{t('studio_status_leading')}</span><span className="text-xs leading-snug text-muted">{t('about_live_leading_short')}</span></p>
                 <p className="flex items-start gap-2.5"><span className="mt-0.5 shrink-0 rounded border border-ok/40 bg-ok/20 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-ok-text">{t('studio_status_won')}</span><span className="text-xs leading-snug text-muted">{t('about_live_won_short')}</span></p>
               </div>
             </li>
-            <li className="flex flex-col gap-4 rounded-lg border border-line bg-tile-raised p-5"><span className={STEP}>3</span><p className="text-sm leading-relaxed text-ink">{t('about_live_step_trail')}</p></li>
+            <li className={STEP_CARD}><span className={STEP}>3</span><p className="text-xs leading-relaxed text-ink">{t('about_live_step_trail')}</p></li>
           </ol>
         </section>
 
         {/* Where the data comes from */}
-        <section aria-labelledby="about-data" className={cn(CARD, 'space-y-6 p-6 sm:p-8')}>
-          <div className="flex flex-col justify-between gap-4 border-b border-line pb-5 sm:flex-row sm:items-end">
+        <section aria-labelledby="about-data" className={cn(CARD, 'space-y-3 p-4 sm:p-5')}>
+          <div className="flex flex-col justify-between gap-2.5 border-b border-line pb-3 sm:flex-row sm:items-end">
             <div>
               <h2 id="about-data" className={H2}>{t('about_data_title')}</h2>
-              <p className="mt-1 max-w-2xl text-sm text-muted">{t('about_data_intro')}</p>
+              <p className="mt-0.5 max-w-2xl text-xs leading-relaxed text-muted">{t('about_data_intro')}</p>
             </div>
-            <ul className="flex flex-wrap items-center gap-3" aria-label={t('about_quality_legend')}>
+            <ul className="flex shrink-0 flex-wrap items-center gap-2" aria-label={t('about_quality_legend')}>
               {QUALITIES.map(q => (
-                <li key={q} title={t(`about_quality_${q}_desc`)} className="inline-flex items-center gap-1.5 rounded border border-line bg-tile-raised px-2.5 py-1 text-xs text-muted">
+                <li key={q} title={t(`about_quality_${q}_desc`)} className="inline-flex items-center gap-1.5 rounded border border-line bg-tile-raised px-2 py-0.5 text-[11px] text-muted">
                   <span aria-hidden className={cn('h-2 w-2 rounded-full', QUALITY_DOT[q])} />{t(`about_quality_${q}`)}
                 </li>
               ))}
@@ -231,25 +232,25 @@ export function AboutView({ matrix, elections, contactEmail, eciUrl, feedback }:
         </section>
 
         {/* Feedback + contact */}
-        <div className="grid gap-6 md:grid-cols-2">
-          <section aria-labelledby="about-feedback" className={cn(CARD, 'space-y-5 p-6 sm:p-7')}>
+        <div className="grid gap-3 md:grid-cols-2">
+          <section aria-labelledby="about-feedback" className={cn(CARD, 'space-y-3 p-4 sm:p-5')}>
             <div className="border-b border-line pb-3">
               <h2 id="about-feedback" className={H3}>{t('about_feedback_title')}</h2>
               <p className="mt-1 text-xs text-muted">{t('about_feedback_intro')}</p>
             </div>
             <FeedbackForm vm={feedback} />
           </section>
-          <section aria-labelledby="about-contact" className={cn(CARD, 'space-y-6 p-6 sm:p-7')}>
+          <section aria-labelledby="about-contact" className={cn(CARD, 'space-y-3 p-4 sm:p-5')}>
             <div className="border-b border-line pb-3">
               <h2 id="about-contact" className={H3}>{t('about_contact_title')}</h2>
               <p className="mt-1 text-xs text-muted">{t('about_contact_body')}</p>
-              <a href={`mailto:${contactEmail}`} className="mt-2 inline-block text-base font-bold tracking-tight text-accent-text hover:underline sm:text-lg">{contactEmail}</a>
+              <a href={`mailto:${contactEmail}`} className="mt-1 inline-block text-sm font-bold tracking-tight text-accent-text hover:underline sm:text-base">{contactEmail}</a>
             </div>
-            <div className="space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-muted">{t('about_tips_title')}</h3>
-              <ol className="space-y-2.5">
+            <div className="space-y-2">
+              <h3 className="text-[11px] font-bold uppercase tracking-wider text-muted">{t('about_tips_title')}</h3>
+              <ol className="space-y-1.5">
                 {(['seat', 'source', 'email'] as const).map((k, i) => (
-                  <li key={k} className="flex items-start gap-3 rounded-lg border border-line bg-tile-raised p-3">
+                  <li key={k} className="flex items-start gap-2.5 rounded-lg border border-line bg-tile-raised px-2.5 py-2">
                     <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded bg-line text-[11px] font-bold text-accent-text">{i + 1}</span>
                     <p className="text-xs leading-relaxed text-ink">{t(`about_tips_${k}`)}</p>
                   </li>
