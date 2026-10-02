@@ -235,6 +235,8 @@ export class ResultsService {
 
     return {
       ...constituency,
+      // Prisma Decimal is a class instance: class-transformer would try to rebuild it (DecimalError), so send a number.
+      voter_turnout: constituency.voter_turnout == null ? null : Number(constituency.voter_turnout),
       district: constituency.districts,
       state: constituency.states,
       region: constituency.regions,

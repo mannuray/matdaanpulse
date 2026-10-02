@@ -1,9 +1,10 @@
 import { plainToInstance } from 'class-transformer';
+import { Prisma } from '@prisma/client';
 import { ResultsService } from './results.service';
 import { ConstituencyDetailDto } from './dto/constituency-detail.dto';
 
 const row = {
-  id: 'BR_VS_100_X', election_id: 'e1', name: 'X', const_no: 100, type: 'SC', voter_turnout: '59.40', phase: 7,
+  id: 'BR_VS_100_X', election_id: 'e1', name: 'X', const_no: 100, type: 'SC', voter_turnout: new Prisma.Decimal('59.40'), phase: 7,
   total_electors: 200000, current_round: 12, total_rounds: 24, metadata: { secret: 1 }, district_id: 1, state_id: 4, region_id: 2,
   districts: { id: 1, name: 'Patna', code: 'PAT', state_id: 4 }, states: { id: 4, name: 'Bihar', code: 'BR' }, regions: { id: 2, name: 'Magadh' },
   candidates: [
