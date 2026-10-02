@@ -16,7 +16,7 @@ const vm = (over: Partial<SeatDialogVM> = {}): SeatDialogVM => ({
     { key: 'a', name: 'Ram Kripal Yadav', partyId: 'BJP', partyLabel: 'BJP', mark: '/l.svg', color: '#f80', votes: 600, share: 60, pill: 'LEADING', incumbent: true, photo: null, personId: 'p1', nota: false, affidavit: null },
     { key: 'b', name: 'Misa Bharti', partyId: 'RJD', partyLabel: 'RJD', mark: null, color: '#0a0', votes: 380, share: 38, pill: null, incumbent: false, photo: null, personId: null, nota: false, affidavit: null },
   ] },
-  history: [{ year: 2020, party: 'BJP', candidate: 'X', margin: 1, vote_share: 50.5 }], notes: [{ kind: 'threeWay', thirdVotes: 300, margin: 200 }],
+  history: [{ year: 2020, party: 'BJP', candidate: 'X', margin: 1, vote_share: 50.5 }], notes: [{ kind: 'threeWay', thirdName: 'C', thirdVotes: 300, margin: 200 }],
   partyMeta: new Map(), detailState: 'ready', fullPageHref: '/election/e/constituency/S', tracked: false,
   onToggleTrack: vi.fn(), onClose: vi.fn(), onOpenParty: vi.fn(), personHref: id => `/person/${id}`, ...over,
 });

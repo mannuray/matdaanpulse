@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { ReactElement } from 'react';
+import type { CSSProperties, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { ConstituencyPageVM } from '../../viewmodels/pages/useConstituencyPageVM';
 import { PageShell } from '../page/PageShell';
@@ -9,32 +9,46 @@ import { formatIN, formatRupees } from '../ui/format';
 import { LiveChip } from '../seat/SeatDialog';
 import { ShareMenu } from '../dashboard/ShareMenu';
 import { LocatorMap } from './LocatorMap';
-import { STATUS_STYLE } from '../dashboard/statusStyle';
 import { cn } from '../ui/cn';
 
-const tile = 'rounded-tile border border-line bg-tile p-4';
-const h2 = 'mb-3 font-display text-sm font-bold uppercase tracking-wider text-ink';
+const tile = 'rounded-2xl border border-line bg-tile';
+const tileHead = 'flex items-center justify-between border-b border-line/60 pb-2.5 mb-3';
+const h2 = 'font-display text-sm font-bold uppercase tracking-wider text-ink';
+
+/** A party colour (hex or var()) at a given opacity, for tints, glows and borders. */
+const tint = (color: string, pct: number) => `color-mix(in srgb, ${color} ${pct}%, transparent)`;
 
 type Cand = ConstituencyPageVM['view']['candidates'][number];
 
-function CandidateName({ c, vm }: { c: Cand; vm: ConstituencyPageVM }) {
+function CandidateName({ c, vm, strong }: { c: Cand; vm: ConstituencyPageVM; strong?: boolean }) {
   const { t } = useTranslation();
+  const cls = cn('text-sm font-bold', strong ? 'text-ink' : 'text-ink/85');
   return (
     <>
-      {c.personId ? <Link to={vm.personHref(c.personId)} className="font-semibold hover:underline">{c.name}</Link> : <span className="font-semibold">{c.nota ? t('seat_nota') : c.name}</span>}
-      {c.incumbent && <span className="rounded-full border border-accent/50 px-1.5 text-[10px] text-accent">{t('seat_incumbent')}</span>}
+      {c.personId ? <Link to={vm.personHref(c.personId)} className={cn(cls, 'hover:underline')}>{c.name}</Link> : <span className={cls}>{c.nota ? t('seat_nota') : c.name}</span>}
+      {c.incumbent && <span className="rounded px-1.5 py-0.5 text-[10px] font-medium text-warn-text">{t('seat_incumbent')}</span>}
     </>
   );
 }
 
 function PartyCell({ c, vm, size }: { c: Cand; vm: ConstituencyPageVM; size: 16 | 24 }) {
   if (!c.partyId) return null;
-  return <Link to={vm.partyHref(c.partyId)} className="flex items-center gap-1.5 hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={size} />{c.partyLabel}</Link>;
+  return <Link to={vm.partyHref(c.partyId)} className="flex items-center gap-2 font-semibold text-ink/85 hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={size} />{c.partyLabel}</Link>;
 }
 
+/** Status pill: WON/LEADING tinted; other statuses get no pill (design notes). */
 function Pill({ c }: { c: Cand }) {
   const { t } = useTranslation();
-  return c.pill ? <span className={cn('rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.pill])}>{t(`studio_status_${c.pill.toLowerCase()}`)}</span> : null;
+  if (!c.pill) return null;
+  return <span className="inline-flex rounded border border-ok-text/40 bg-ok-text/15 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ok-text">{t(`studio_status_${c.pill.toLowerCase()}`)}</span>;
+}
+
+function CasesChip({ n }: { n: number | null | undefined }) {
+  const { t } = useTranslation();
+  if (n == null) return null;
+  return n > 0
+    ? <span className="inline-flex rounded border border-warn/40 bg-warn/20 px-2 py-0.5 text-[10px] font-bold text-warn-text">{t('pp_cases', { count: n })}</span>
+    : <span className="text-muted">0</span>;
 }
 
 /** One muted line: "Age 64 · Assets ₹4.8 Cr · Liabilities ₹32 L · Criminal cases 1"; parts without data are left out. */
@@ -52,155 +66,282 @@ function AffidavitLine({ c }: { c: Cand }) {
   return <p data-affidavit className="mt-0.5 truncate text-xs text-muted">{parts.flatMap((p, i) => (i ? [' · ', p] : [p]))}</p>;
 }
 
+function Contender({ c, vm, rank, right }: { c: Cand; vm: ConstituencyPageVM; rank: number; right?: boolean }) {
+  const { t } = useTranslation();
+  return (
+    <div className={cn('flex min-w-0 flex-col gap-2', right && 'items-end text-right')}>
+      <div className={cn('flex items-start gap-3', right && 'flex-row-reverse')}>
+        <div className="relative shrink-0">
+          <div className="h-14 w-14 overflow-hidden rounded-xl border-2 shadow-md sm:h-16 sm:w-16" style={{ borderColor: tint(c.color, 80) }}>
+            <Avatar name={c.name} photo={c.photo} size="fill" className="h-full w-full rounded-none border-0 text-base" />
+          </div>
+          <span className={cn('absolute -bottom-2 rounded px-1.5 py-0.5 font-display text-[10px] font-black uppercase tracking-wider', right ? '-left-1 bg-line text-ink/80' : '-right-1 text-white')}
+            style={right ? undefined : { background: c.color }}>#{rank}</span>
+        </div>
+        <div className="min-w-0">
+          <div className={cn('flex flex-wrap items-center gap-1.5', right && 'justify-end')}>
+            {c.pill ? <Pill c={c} /> : <span className="rounded border border-line px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted">{t('studio_status_trailing')}</span>}
+            {c.incumbent && <span className="rounded bg-tile-raised px-1.5 py-0.5 text-[10px] font-medium text-muted">{t('seat_incumbent')}</span>}
+          </div>
+          <h3 className="mt-1 truncate text-base font-bold text-ink">
+            {c.personId ? <Link to={vm.personHref(c.personId)} className="text-ink hover:underline">{c.name}</Link> : c.name}
+          </h3>
+          {c.partyId && <Link to={vm.partyHref(c.partyId)} className={cn('mt-0.5 flex items-center gap-1.5 text-xs font-semibold text-ink/80 hover:underline', right && 'flex-row-reverse')}><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} />{c.partyLabel}</Link>}
+        </div>
+      </div>
+      <div>
+        <div className="tabular font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{formatIN(c.votes)}</div>
+        <div className={cn('flex items-baseline gap-2', right && 'flex-row-reverse')}>
+          <span className="tabular text-sm font-bold" style={{ color: c.color }}>{c.share}%</span>
+          <span className="text-[11px] uppercase text-muted">{t('cp_share_label')}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
   const { t } = useTranslation();
   const back = { href: vm.electionHref, label: t('cp_back') };
   if (vm.status !== 'ready') {
     return <PageShell back={back}><p className="py-16 text-center text-muted">{vm.status === 'notFound' ? t('cp_not_found') : vm.status === 'error' ? t('error_occurred') : t('loading')}</p></PageShell>;
   }
-  const [lead, second] = vm.view.candidates.filter(c => !c.nota);
+  const ranked = vm.view.candidates.filter(c => !c.nota);
+  const [lead, second] = ranked;
+  const others = lead ? Math.max(0, Math.round((100 - lead.share - (second?.share ?? 0)) * 10) / 10) : 0;
+  const hasNota = vm.view.candidates.some(c => c.nota);
+  const contestants = t('cp_contestants', { count: ranked.length });
+  const leaderColor = lead?.color ?? 'var(--color-accent)';
   const facts = ([
-    ['seat_electors', vm.facts.electors != null ? formatIN(vm.facts.electors) : null],
-    ['cp_votes_polled', vm.facts.votesPolled != null ? formatIN(vm.facts.votesPolled) : null],
-    ['seat_turnout', vm.facts.turnout != null ? `${vm.facts.turnout}%` : null],
-    ['seat_phase', vm.facts.phase != null ? t('seat_phase_n', { n: vm.facts.phase }) : null],
-    ['cp_region', vm.facts.region], ['cp_district', vm.facts.district],
+    ['seat_electors', vm.facts.electors != null ? formatIN(vm.facts.electors) : null, false],
+    ['cp_votes_polled', vm.facts.votesPolled != null ? formatIN(vm.facts.votesPolled) : null, false],
+    ['seat_turnout', vm.facts.turnout != null ? `${vm.facts.turnout}%` : null, true],
+    ['seat_phase', vm.facts.phase != null ? t('seat_phase_n', { n: vm.facts.phase }) : null, false],
+    ['cp_region', vm.facts.region, false], ['cp_district', vm.facts.district, false],
   ] as const).filter(([, v]) => v);
+  const house = vm.election?.type === 'LS' ? t('cp_house_LS') : t('cp_house_VS');
   return (
     <PageShell back={back}>
-      <nav className="text-xs uppercase tracking-wider text-muted">{[vm.electionName, vm.stateName, vm.districtName].filter(Boolean).join(' › ')}</nav>
-      <div className="flex flex-wrap items-center gap-3 border-b border-line pb-3">
-        <h1 className="font-display text-4xl font-bold uppercase lg:text-5xl">{vm.name}</h1>
-        {(vm.constNo != null || vm.type) && <span className="rounded-md border border-line px-2 py-0.5 font-mono text-xs">{[vm.constNo != null && t('seat_no', { n: vm.constNo }), vm.type && vm.type !== 'GEN' && vm.type].filter(Boolean).join(' · ')}</span>}
-        <LiveChip live={vm.live} />
-        <div className="ml-auto flex items-center gap-2">
-          <button type="button" onClick={vm.onToggleTrack} aria-pressed={vm.tracked} className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-on-accent aria-pressed:bg-tile-raised aria-pressed:text-accent">{vm.tracked ? t('studio_tracked') : t('studio_track')}</button>
+      {/* Header band */}
+      <section className="flex flex-col justify-between gap-3 border-b border-line pb-3 md:flex-row md:items-end">
+        <div className="space-y-1.5">
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+            <Link to={vm.electionHref} className="hover:text-ink">{vm.electionName}</Link>
+            {vm.stateName && <><span className="text-line">›</span><span>{vm.stateName}</span></>}
+            {vm.districtName && <><span className="text-line">›</span><span className="text-ink/80">{vm.districtName}</span></>}
+          </nav>
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="font-display text-4xl font-extrabold uppercase tracking-tight text-ink sm:text-5xl">{vm.name}</h1>
+            {(vm.constNo != null || vm.type) && <span className="rounded border border-line bg-tile px-2.5 py-1 font-display text-xs font-bold uppercase tracking-wider text-ink/80">{[vm.constNo != null && t('seat_no', { n: vm.constNo }), vm.type && vm.type !== 'GEN' && vm.type].filter(Boolean).join(' · ')}</span>}
+            <LiveChip live={vm.live} />
+          </div>
+        </div>
+        <div className="flex items-center gap-2.5">
+          <button type="button" onClick={vm.onToggleTrack} aria-pressed={vm.tracked}
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-on-accent shadow-sm hover:opacity-90 aria-pressed:bg-tile-raised aria-pressed:text-accent-text">
+            {vm.tracked ? t('studio_tracked') : t('studio_track')}
+          </button>
           <ShareMenu text={vm.shareText} />
         </div>
-      </div>
+      </section>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,0.8fr)]">
+      {/* Above the fold */}
+      <section className="grid grid-cols-1 gap-3 lg:grid-cols-12">
         {lead && (
-          <section className={tile} aria-label={t('cp_head_to_head')}>
-            <h2 className={h2}>{t('cp_head_to_head')}</h2>
-            <div className="flex items-start justify-between gap-4">
-              {[lead, second].filter(Boolean).map((c, i) => (
-                <div key={c!.key} className={cn('flex items-center gap-3', i === 1 && 'flex-row-reverse text-right')}>
-                  <Avatar name={c!.name} photo={c!.photo} size={72} />
-                  <div>
-                    {c!.pill && <span className={cn('rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c!.pill])}>{t(`studio_status_${c!.pill.toLowerCase()}`)}</span>}
-                    <div className="text-lg font-semibold">{c!.name}</div>
-                    {c!.partyId && <Link to={vm.partyHref(c!.partyId)} className={cn('flex items-center gap-1.5 text-sm text-muted hover:text-ink hover:underline', i === 1 && 'justify-end')}><PartyMark mark={c!.mark} color={c!.color} label={c!.partyLabel} />{c!.partyLabel}</Link>}
-                    <div className="tabular font-display text-3xl font-bold">{formatIN(c!.votes)}</div>
-                    <div className="text-sm" style={{ color: c!.color }}>{c!.share}%</div>
-                  </div>
-                </div>
-              ))}
+          <section className={cn(tile, 'relative flex flex-col justify-between overflow-hidden p-4 shadow-xl sm:p-5', facts.length || vm.locator ? 'lg:col-span-7' : 'lg:col-span-12')} aria-label={t('cp_head_to_head')}>
+            <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full blur-3xl" style={{ background: tint(lead.color, 12) }} aria-hidden />
+            {second && <div className="pointer-events-none absolute -bottom-24 -right-24 h-64 w-64 rounded-full blur-3xl" style={{ background: tint(second.color, 12) }} aria-hidden />}
+            <div className="relative">
+              <div className={tileHead}>
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted">{t('cp_head_to_head')}</span>
+                {vm.facts.progress && <span className="font-mono text-xs text-muted">{t('cp_round_of', vm.facts.progress)}</span>}
+              </div>
+              <div className="grid grid-cols-2 items-start gap-4 sm:gap-8">
+                <Contender c={lead} vm={vm} rank={1} />
+                {second && <Contender c={second} vm={vm} rank={2} right />}
+              </div>
             </div>
             {vm.view.totalVotes > 0 && (
-              <>
-                <div className="mt-4 flex h-2.5 overflow-hidden rounded-full bg-page">
-                  <span style={{ width: `${lead.share}%`, background: lead.color }} />
-                  <span className="flex-1" />
-                  {second && <span style={{ width: `${second.share}%`, background: second.color }} />}
+              <div className="relative mt-4 space-y-2 border-t border-line/70 pt-3">
+                {vm.view.margin != null && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium uppercase tracking-wider text-muted">{t('seat_margin')}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-medium" style={{ color: lead.color }}>{t('cp_ahead_by', { party: lead.partyLabel || lead.name })}</span>
+                      <span className="tabular rounded border border-ok-text/30 bg-ok-text/10 px-2.5 py-0.5 font-display text-sm font-extrabold text-ok-text">{t('cp_margin_votes', { n: formatIN(vm.view.margin) })}</span>
+                    </div>
+                  </div>
+                )}
+                <div className="flex h-3.5 w-full overflow-hidden rounded-full bg-page p-[2px]">
+                  <div className="h-full rounded-l-full" style={{ width: `${lead.share}%`, background: lead.color }} />
+                  <div className="h-full w-1 shrink-0 bg-tile" />
+                  {second && <div className="h-full" style={{ width: `${second.share}%`, background: second.color }} />}
+                  <div className="h-full flex-1 rounded-r-full bg-tile-raised" />
                 </div>
-                {vm.view.margin != null && <p className="mt-2 text-right text-sm font-semibold text-ok-text">{t('seat_margin')} +{formatIN(vm.view.margin)}</p>}
-              </>
+                <div className="flex items-center justify-between pt-0.5 text-[11px] text-muted">
+                  <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: lead.color }} />{lead.partyLabel || lead.name} {lead.share}%</span>
+                  <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-tile-raised" />{t('cp_others_nota', { pct: others })}</span>
+                  {second && <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: second.color }} />{second.partyLabel || second.name} {second.share}%</span>}
+                </div>
+              </div>
             )}
           </section>
         )}
         {facts.length > 0 && (
-          <section className={tile}>
-            <h2 className={h2}>{t('cp_seat_facts')}</h2>
-            <dl className="divide-y divide-line text-sm">{facts.map(([k, v]) => <div key={k} className="flex justify-between py-2"><dt className="text-muted">{t(k)}</dt><dd className="tabular font-semibold">{v}</dd></div>)}</dl>
+          <article className={cn(tile, 'flex flex-col justify-between p-4 shadow-xl lg:col-span-3')}>
+            <div>
+              <div className={tileHead}><h2 className={h2}>{t('cp_seat_facts')}</h2><span className="h-2 w-2 rounded-full bg-warn" aria-hidden /></div>
+              <dl className="space-y-1 text-xs">
+                {facts.map(([k, v, good], i) => (
+                  <div key={k} className={cn('flex items-center justify-between py-1.5', i < facts.length - 1 && 'border-b border-line/40')}>
+                    <dt className="text-muted">{t(k)}</dt><dd className={cn('tabular font-display text-sm font-bold', good ? 'text-ok-text' : 'text-ink')}>{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
             {vm.facts.progress && (
-              <div className="mt-3"><div className="flex justify-between text-xs text-muted"><span>{t('cp_counting_progress')}</span><span>{vm.facts.progress.current}/{vm.facts.progress.total}</span></div>
-                <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-page"><span className="block h-full bg-accent" style={{ width: `${(vm.facts.progress.current / vm.facts.progress.total) * 100}%` }} /></div></div>
+              <div className="mt-3 rounded-lg border border-line/60 bg-page/60 p-2.5">
+                <div className="flex items-center justify-between text-[11px]"><span className="text-muted">{t('cp_counting_progress')}</span>
+                  <span className="font-mono font-semibold text-warn-text">{Math.round((vm.facts.progress.current / vm.facts.progress.total) * 1000) / 10}% ({vm.facts.progress.current}/{vm.facts.progress.total})</span></div>
+                <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-line"><div className="h-full rounded-full bg-warn" style={{ width: `${(vm.facts.progress.current / vm.facts.progress.total) * 100}%` }} /></div>
+              </div>
             )}
-          </section>
+          </article>
         )}
         {vm.locator && (
-          <section className={tile}><h2 className={h2}>{t('cp_locator')}</h2><LocatorMap features={vm.locator.features} seat={vm.locator.seat} label={vm.name} /></section>
+          <article className={cn(tile, 'flex flex-col p-4 shadow-xl lg:col-span-2')}>
+            <div className={tileHead}><h2 className={h2}>{t('cp_locator')}</h2>{vm.stateName && <span className="text-[10px] text-muted">{vm.stateName}</span>}</div>
+            <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg border border-line/80 bg-page/80 p-2">
+              <LocatorMap features={vm.locator.features} seat={vm.locator.seat} label={vm.name} color={leaderColor} />
+              <div className="absolute bottom-2 left-2 right-2 rounded border bg-page/90 px-2 py-1 text-center backdrop-blur-sm" style={{ borderColor: tint(leaderColor, 40) }}>
+                <span className="block font-display text-[11px] font-bold uppercase tracking-wide" style={{ color: leaderColor }}>{vm.name}{vm.constNo != null && ` (#${vm.constNo})`}</span>
+                {vm.districtName && <span className="block text-[9px] text-muted">{vm.districtName}</span>}
+              </div>
+            </div>
+          </article>
         )}
-      </div>
+      </section>
 
-      <section className={cn(tile, 'p-0')} aria-label={t('cp_all_candidates')}>
-        <h2 className={cn(h2, 'px-4 pt-4')}>{t('cp_all_candidates')}</h2>
+      {/* All candidates */}
+      <section className={cn(tile, 'overflow-hidden shadow-xl')} aria-label={t('cp_all_candidates')}>
+        <div className="flex flex-col justify-between gap-2 border-b border-line bg-page/30 px-4 py-3 sm:flex-row sm:items-center lg:px-5">
+          <h2 className="flex items-center gap-2.5 font-display text-lg font-bold uppercase tracking-wide text-ink">
+            <span>{t('cp_all_candidates')}</span>
+            <span className="rounded-full border border-line bg-page px-2 py-0.5 font-sans text-xs font-medium normal-case tracking-normal text-muted">{hasNota ? t('cp_with_nota', { text: contestants }) : contestants}</span>
+          </h2>
+        </div>
         {/* Below lg: stacked rows (spec D10); lg+: the full table. */}
-        <ul className="flex list-none flex-col gap-2 px-4 pb-4 lg:hidden">
+        <ul className="flex list-none flex-col gap-2 p-3 lg:hidden">
           {vm.view.candidates.map((c, i) => (
-            <li key={c.key} className="rounded-tile border border-line bg-page/40 p-3">
+            <li key={c.key} className={cn('rounded-xl border border-line bg-page/40 p-3', i === 0 && !c.nota && 'bg-[color:var(--lead)]')} style={i === 0 ? { '--lead': tint(c.color, 6) } as CSSProperties : undefined}>
               <div className="flex items-start gap-3">
-                <span className="w-5 shrink-0 pt-2.5 text-xs text-muted">{c.nota ? '' : i + 1}</span>
-                <Avatar name={c.name} photo={c.photo} size={40} />
+                <span className="w-5 shrink-0 pt-2.5 font-mono text-xs text-muted">{c.nota ? '' : i + 1}</span>
+                <Avatar name={c.name} photo={c.photo} size={36} className="border" />
                 <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5"><CandidateName c={c} vm={vm} /><PartyCell c={c} vm={vm} size={16} /></div>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5"><CandidateName c={c} vm={vm} strong={i === 0} /><PartyCell c={c} vm={vm} size={16} /></div>
                   <AffidavitLine c={c} />
                 </div>
                 <div className="shrink-0 text-right">
-                  <div className="tabular font-semibold">{formatIN(c.votes)}</div>
-                  <div className="tabular text-xs text-muted">{c.share}%</div>
+                  <div className="tabular font-display text-sm font-bold">{formatIN(c.votes)}</div>
+                  <div className="tabular text-xs" style={{ color: c.color }}>{c.share}%</div>
                   <Pill c={c} />
                 </div>
               </div>
-              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-page"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></div>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-line"><span className="block h-full rounded-full" style={{ width: `${c.share}%`, background: c.color }} /></div>
             </li>
           ))}
         </ul>
         <div className="hidden overflow-x-auto lg:block">
-          <table className="w-full min-w-[880px] text-sm">
-            <thead><tr className="border-b border-line text-left text-[11px] uppercase tracking-wider text-muted">
-              <th className="px-4 py-2">#</th><th>{t('seat_rank_candidate')}</th><th>{t('seat_party')}</th><th className="text-right">{t('seat_votes')}</th><th className="pl-3">{t('seat_share')}</th>
-              <th>{t('seat_status')}</th><th className="text-right">{t('cp_age')}</th><th className="text-right">{t('cp_assets')}</th><th className="text-right">{t('cp_liabilities')}</th><th className="pr-4 text-right">{t('cp_criminal_cases')}</th>
+          <table className="w-full border-collapse whitespace-nowrap text-left text-xs [&_td]:border-x-0 [&_td]:border-t-0 [&_th]:border-0">
+            <thead><tr className="border-b border-line bg-page/40 font-display text-[11px] uppercase tracking-wider text-muted">
+              <th scope="col" className="w-12 px-4 py-2.5 text-center">#</th><th scope="col" className="px-4 py-2.5">{t('seat_rank_candidate')}</th><th scope="col" className="px-4 py-2.5">{t('seat_party')}</th>
+              <th scope="col" className="px-4 py-2.5 text-right">{t('seat_votes')}</th><th scope="col" className="px-4 py-2.5">{t('seat_share')}</th><th scope="col" className="px-4 py-2.5 text-center">{t('seat_status')}</th>
+              <th scope="col" className="px-3 py-2.5 text-center">{t('cp_age')}</th><th scope="col" className="px-3 py-2.5 text-right">{t('cp_assets')}</th><th scope="col" className="px-3 py-2.5 text-right">{t('cp_liabilities')}</th><th scope="col" className="px-4 py-2.5 text-center">{t('cp_criminal_cases')}</th>
             </tr></thead>
-            <tbody>
+            <tbody className="divide-y divide-line/50">
               {vm.view.candidates.map((c, i) => (
-                <tr key={c.key} className="border-b border-line/60">
-                  <td className="px-4 py-2 text-muted">{c.nota ? '' : i + 1}</td>
-                  <td><div className="flex items-center gap-2"><Avatar name={c.name} photo={c.photo} size={32} /><CandidateName c={c} vm={vm} /></div></td>
-                  <td><PartyCell c={c} vm={vm} size={24} /></td>
-                  <td className="tabular text-right font-semibold">{formatIN(c.votes)}</td>
-                  <td className="pl-3"><span className="tabular mr-2 inline-block w-12 text-xs">{c.share}%</span><span className="inline-block h-1.5 w-24 overflow-hidden rounded-full bg-page align-middle"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></span></td>
-                  <td><Pill c={c} /></td>
-                  <td className="tabular text-right">{c.affidavit?.age ?? ''}</td>
-                  <td className="tabular text-right">{formatRupees(c.affidavit?.assets ?? null) ?? ''}</td>
-                  <td className="tabular text-right">{formatRupees(c.affidavit?.liabilities ?? null) ?? ''}</td>
-                  <td className="pr-4 text-right">{c.affidavit?.criminalCases != null && (c.affidavit.criminalCases > 0
-                    ? <span className="rounded-md bg-warn/15 px-1.5 py-0.5 text-xs font-bold text-warn-text">{c.affidavit.criminalCases}</span>
-                    : <span className="text-muted">0</span>)}</td>
+                <tr key={c.key} className="transition-colors hover:bg-tile-raised/60" style={i === 0 && !c.nota ? { background: tint(c.color, 5) } : undefined}>
+                  <td className={cn('px-4 py-1.5 text-center font-mono', i === 0 ? 'font-bold text-ink' : 'text-muted')}>{c.nota ? '' : i + 1}</td>
+                  <td className="px-4 py-1.5"><div className="flex items-center gap-3">
+                    <span className="rounded-full border" style={{ borderColor: c.partyId ? tint(c.color, 80) : 'var(--color-line)' }}><Avatar name={c.name} photo={c.photo} size={26} className="border-0 text-[10px]" /></span>
+                    <div className="flex flex-col"><div className="flex items-center gap-1"><CandidateName c={c} vm={vm} strong={i === 0} /></div></div>
+                  </div></td>
+                  <td className="px-4 py-1.5"><PartyCell c={c} vm={vm} size={16} /></td>
+                  <td className={cn('tabular px-4 py-1.5 text-right font-display text-sm font-bold', i === 0 ? 'text-ink' : 'text-ink/85')}>{formatIN(c.votes)}</td>
+                  <td className="px-4 py-1.5"><div className="flex items-center gap-2">
+                    <span className="tabular inline-block w-12 text-right font-semibold" style={{ color: c.nota ? undefined : c.color }}>{c.share}%</span>
+                    <span className="h-1.5 w-24 overflow-hidden rounded-full bg-line"><span className="block h-full rounded-full" style={{ width: `${c.share}%`, background: c.color }} /></span>
+                  </div></td>
+                  <td className="px-4 py-1.5 text-center"><Pill c={c} /></td>
+                  <td className="tabular px-3 py-1.5 text-center font-mono text-ink/80">{c.affidavit?.age ?? ''}</td>
+                  <td className="tabular px-3 py-1.5 text-right font-mono font-medium text-ink/90">{formatRupees(c.affidavit?.assets ?? null) ?? ''}</td>
+                  <td className="tabular px-3 py-1.5 text-right font-mono text-muted">{formatRupees(c.affidavit?.liabilities ?? null) ?? ''}</td>
+                  <td className="px-4 py-1.5 text-center"><CasesChip n={c.affidavit?.criminalCases} /></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {vm.view.totalVotes > 0 && (
+          <div className="flex justify-end border-t border-line bg-page/40 px-4 py-2 font-mono text-[11px] text-muted lg:px-5">{t('cp_total_counted', { n: formatIN(vm.view.totalVotes) })}</div>
+        )}
       </section>
 
       {(vm.history.length > 0 || vm.notes.length > 0) && (
-        <div className="grid gap-4 lg:grid-cols-2">
+        <section className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {vm.history.length > 0 && (
-            <section className={tile}>
-              <h2 className={cn(h2, 'flex items-center gap-2')}>{t('cp_seat_history')}{vm.dominance && <span className="rounded-md border border-warn/50 px-1.5 text-[11px] text-warn-text">{t(`cp_class_${vm.dominance}`)}</span>}</h2>
-              <ol className="flex list-none flex-col gap-2 pl-0">
+            <article className={cn(tile, 'p-4 shadow-xl lg:p-5')}>
+              <div className={tileHead}>
+                <div className="flex items-center gap-2.5">
+                  <h2 className={h2}>{t('cp_seat_history')}</h2>
+                  {vm.dominance && <span className="rounded border border-warn/40 bg-warn/20 px-2 py-0.5 text-[10px] font-bold uppercase text-warn-text">{t(`cp_class_${vm.dominance}`)}</span>}
+                </div>
+                <span className="text-xs text-muted">{t('cp_last_n', { count: vm.history.length })}</span>
+              </div>
+              <ol className="relative list-none space-y-3 pl-0 before:absolute before:bottom-0 before:left-3 before:top-0 before:w-0.5 before:bg-line">
                 {vm.history.map((h, i) => {
                   const m = h.party ? vm.partyMeta.get(h.party) : undefined;
+                  const color = m?.color ?? 'var(--color-muted)';
+                  const label = m?.abbreviation ?? h.party ?? '';
                   return (
-                    <li key={`${h.year}-${i}`} className="rounded-tile border border-line p-3">
-                      <div className="flex justify-between"><span className="font-display font-bold">{h.year}</span><span className="tabular text-sm text-ok-text">+{formatIN(h.margin)}</span></div>
-                      <div className="mt-1 flex items-center gap-1.5"><PartyMark mark={m?.mark ?? null} color={m?.color ?? null} label={m?.abbreviation ?? h.party ?? ''} /><span className="font-semibold">{h.candidate}</span><span className="text-muted">({m?.abbreviation ?? h.party})</span>{h.vote_share != null && <span className="ml-auto text-sm">{h.vote_share}%</span>}</div>
-                      {h.runner_up && <div className="mt-0.5 text-xs text-muted">{t('cp_runner_up', { name: `${h.runner_up}${h.runner_up_party ? ` (${vm.partyMeta.get(h.runner_up_party)?.abbreviation ?? h.runner_up_party})` : ''}` })}</div>}
+                    <li key={`${h.year}-${i}`} className="relative flex items-start gap-3">
+                      <span className="relative z-10 grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 bg-tile" style={{ borderColor: color }} aria-hidden><span className="h-2 w-2 rounded-full" style={{ background: color }} /></span>
+                      <div className="flex-1 rounded-lg border border-line/80 bg-page/60 px-3 py-2.5">
+                        <div className="flex items-center justify-between">
+                          <span className="font-display text-sm font-bold text-ink">{h.year} {house}</span>
+                          <span className="tabular font-mono text-xs font-semibold text-ok-text">{t('cp_margin_suffix', { n: formatIN(h.margin) })}</span>
+                        </div>
+                        <div className="mt-1.5 flex items-center justify-between text-xs">
+                          <div className="flex min-w-0 items-center gap-1.5"><PartyMark mark={m?.mark ?? null} color={m?.color ?? null} label={label} /><span className="truncate font-bold text-ink/90">{h.candidate}</span><span className="text-muted">({label})</span></div>
+                          {h.vote_share != null && <span className="font-mono font-bold" style={{ color }}>{h.vote_share}%</span>}
+                        </div>
+                        {h.runner_up && <div className="mt-1 text-[11px] text-muted">{t('cp_runner_up', { name: `${h.runner_up}${h.runner_up_party ? ` (${vm.partyMeta.get(h.runner_up_party)?.abbreviation ?? h.runner_up_party})` : ''}` })}</div>}
+                      </div>
                     </li>
                   );
                 })}
               </ol>
-            </section>
+            </article>
           )}
           {vm.notes.length > 0 && (
-            <section className={tile}>
-              <h2 className={h2}>{t('cp_insights')}</h2>
-              {vm.notes.map(n => <p key={n.kind} className="mb-2 rounded-tile border border-warn/50 bg-warn/10 px-3 py-2 text-sm text-warn-text">⚠ {n.kind === 'threeWay' ? t('seat_three_way') : t('seat_spoiler', { party: vm.partyMeta.get(n.party)?.abbreviation ?? n.party, votes: formatIN(n.votes), margin: formatIN(n.margin) })}</p>)}
-            </section>
+            <article className={cn(tile, 'space-y-3 p-4 shadow-xl lg:p-5')}>
+              <div className={cn(tileHead, 'mb-0')}><h2 className={h2}>{t('cp_insights')}</h2></div>
+              {vm.notes.map((n, i) => (
+                <div key={`${n.kind}-${i}`} className="flex items-start gap-3 rounded-lg border border-warn/50 bg-warn/10 p-3">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="mt-0.5 h-5 w-5 shrink-0 text-warn-text" aria-hidden><path d="M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4a2 2 0 00-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  <div>
+                    <div className="text-sm font-bold text-warn-text">{n.kind === 'threeWay' ? t('cp_three_way_title') : t('cp_spoiler_title')}</div>
+                    <p className="mt-0.5 text-xs leading-relaxed text-ink/80">
+                      {n.kind === 'threeWay'
+                        ? t('cp_three_way_body', { margin: formatIN(n.margin), name: n.thirdName, votes: formatIN(n.thirdVotes) })
+                        : t('seat_spoiler', { party: vm.partyMeta.get(n.party)?.abbreviation ?? n.party, votes: formatIN(n.votes), margin: formatIN(n.margin) })}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </article>
           )}
-        </div>
+        </section>
       )}
     </PageShell>
   );

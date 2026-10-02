@@ -459,5 +459,22 @@
   "pp_affidavit_title": "Affidavit: assets & cases",
   "footer_independent": "Independent project",
   "footer_not_official": "Not an official source",
-  "footer_about": "About & data quality"
+  "footer_about": "About & data quality",
+  "cp_ahead_by": "{{party}} ahead by",
+  "cp_margin_votes": "+{{n}} votes",
+  "cp_others_nota": "Others/NOTA {{pct}}%",
+  "cp_contestants_one": "{{count}} contestant",
+  "cp_contestants_other": "{{count}} contestants",
+  "cp_with_nota": "{{text}} + NOTA",
+  "cp_total_counted": "Total votes counted: {{n}}",
+  "cp_last_n_one": "Last election",
+  "cp_last_n_other": "Last {{count}} elections",
+  "cp_house_VS": "Assembly",
+  "cp_house_LS": "Lok Sabha",
+  "cp_margin_suffix": "+{{n}} margin",
+  "cp_three_way_title": "3-way contest",
+  "cp_three_way_body": "The winning margin is only {{margin}} votes, while {{name}} polled {{votes}}.",
+  "cp_spoiler_title": "Possible spoiler",
+  "cp_round_of": "Round {{current}} of {{total}}",
+  "cp_share_label": "Vote share"
 }

@@ -59,7 +59,7 @@ describe('seatHistory', () => {
 describe('seatNotes', () => {
   it('flags a 3-way contest when the third candidate out-polls the margin', () => {
     const v = buildSeatView([r('BJP', 'A', 500, 'LEADING', 200), r('RJD', 'B', 300, 'TRAILING'), r('IND', 'C', 250, 'TRAILING')], { partyMeta: meta, partyColor: color });
-    expect(seatNotes(v, null)).toEqual([{ kind: 'threeWay', thirdVotes: 250, margin: 200 }]);
+    expect(seatNotes(v, null)).toEqual([{ kind: 'threeWay', thirdName: 'C', thirdVotes: 250, margin: 200 }]);
   });
   it('adds the spoiler from the analysis', () => {
     const v = buildSeatView([r('BJP', 'A', 500, 'WON', 200), r('RJD', 'B', 300, 'LOST')], { partyMeta: meta, partyColor: color });

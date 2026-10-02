@@ -459,5 +459,22 @@
   "pp_affidavit_title": "शपथपत्र: संपत्ति और मामले",
   "footer_independent": "स्वतंत्र परियोजना",
   "footer_not_official": "आधिकारिक स्रोत नहीं",
-  "footer_about": "परिचय और डेटा गुणवत्ता"
+  "footer_about": "परिचय और डेटा गुणवत्ता",
+  "cp_ahead_by": "{{party}} आगे",
+  "cp_margin_votes": "+{{n}} वोट",
+  "cp_others_nota": "अन्य/नोटा {{pct}}%",
+  "cp_contestants_one": "{{count}} उम्मीदवार",
+  "cp_contestants_other": "{{count}} उम्मीदवार",
+  "cp_with_nota": "{{text}} + नोटा",
+  "cp_total_counted": "कुल गिने गए वोट: {{n}}",
+  "cp_last_n_one": "पिछला चुनाव",
+  "cp_last_n_other": "पिछले {{count}} चुनाव",
+  "cp_house_VS": "विधानसभा",
+  "cp_house_LS": "लोकसभा",
+  "cp_margin_suffix": "+{{n}} अंतर",
+  "cp_three_way_title": "त्रिकोणीय मुकाबला",
+  "cp_three_way_body": "जीत का अंतर केवल {{margin}} वोट है, जबकि {{name}} को {{votes}} वोट मिले।",
+  "cp_spoiler_title": "संभावित वोट-कटवा",
+  "cp_round_of": "राउंड {{current}} / {{total}}",
+  "cp_share_label": "वोट हिस्सा"
 }

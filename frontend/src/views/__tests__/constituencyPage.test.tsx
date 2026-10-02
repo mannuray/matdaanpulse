@@ -31,7 +31,7 @@ describe('ConstituencyPageView', () => {
     const table = screen.getByRole('table');
     expect(within(table).getAllByRole('row')).toHaveLength(4); // header + 3
     expect(within(table).getByText('₹4.8 Cr')).toBeTruthy();
-    expect(within(table).getByText('5')).toBeTruthy();
+    expect(within(table).getByText('5 cases')).toBeTruthy();
     expect(screen.getByText(/Runner-up: B/)).toBeTruthy();
     expect(within(table).getByRole('link', { name: 'A' }).getAttribute('href')).toBe('/person/p1');
   });
@@ -77,7 +77,7 @@ describe('ConstituencyPageView', () => {
     renderIt(vm({ partyMeta: new Map([['JDU', { id: 'JDU', name: 'Janata Dal (United)', abbreviation: 'JD(U)', color: '#1a7', mark: null, eciRecognition: null }]]),
       notes: [{ kind: 'spoiler', party: 'JDU', votes: 900, margin: 220 }] }));
     expect(screen.getByText('Swing seat')).toBeTruthy();
-    const ol = screen.getByText('Seat history').parentElement!.querySelector('ol')!;
+    const ol = screen.getByText('Seat history').closest('article')!.querySelector('ol')!;
     expect(ol.className.split(' ')).toEqual(expect.arrayContaining(['list-none', 'pl-0']));
     expect(screen.getByText(/JD\(U\) polled 900 votes/)).toBeTruthy();
     cleanup();

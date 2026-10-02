@@ -76,13 +76,13 @@ export function seatHistory(analysis: AnalysisEntry | null, currentYear: number)
   return list.filter(h => h.year !== currentYear).sort((a, b) => b.year - a.year);
 }
 
-export type SeatNote = { kind: 'threeWay'; thirdVotes: number; margin: number } | { kind: 'spoiler'; party: string; votes: number; margin: number };
+export type SeatNote = { kind: 'threeWay'; thirdName: string; thirdVotes: number; margin: number } | { kind: 'spoiler'; party: string; votes: number; margin: number };
 
 export function seatNotes(view: SeatView, analysis: AnalysisEntry | null): SeatNote[] {
   const notes: SeatNote[] = [];
   const ranked = view.candidates.filter(c => !c.nota);
   if (view.totalVotes > 0 && view.margin != null && ranked.length >= 3 && ranked[2].votes > view.margin) {
-    notes.push({ kind: 'threeWay', thirdVotes: ranked[2].votes, margin: view.margin });
+    notes.push({ kind: 'threeWay', thirdName: ranked[2].name, thirdVotes: ranked[2].votes, margin: view.margin });
   }
   const sp = (analysis?.incumbency as { spoiler?: { spoiler_party: string; spoiler_votes: number; winner_margin: number } } | undefined)?.spoiler;
   if (sp) notes.push({ kind: 'spoiler', party: sp.spoiler_party, votes: sp.spoiler_votes, margin: sp.winner_margin });
