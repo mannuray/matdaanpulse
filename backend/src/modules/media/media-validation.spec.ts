@@ -22,6 +22,8 @@ describe('sniffImage', () => {
     '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
     '﻿<?xml version="1.0"?>\n<!-- logo -->\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "x">\n<svg viewBox="0 0 1 1"/>',
     '   \n<svg>',
+    '<?xml version="1.0"?>\n<!DOCTYPE svg [ <!ENTITY a "b"> ]>\n<svg/>',
+    '<!-- a - b -- c --><svg/>',
   ])('accepts SVG with prolog variants: %#', (s) => expect(sniffImage(svg(s))).toEqual({ ext: 'svg', contentType: 'image/svg+xml' }));
 
   it.each([
@@ -30,6 +32,12 @@ describe('sniffImage', () => {
     ['empty', Buffer.alloc(0)],
     ['svg-after-html', svg('<html><svg></svg></html>')],
   ])('rejects %s', (_n, buf) => expect(sniffImage(buf)).toBeNull());
+
+  it('rejects many empty comments in linear time (no ReDoS)', () => {
+    const start = Date.now();
+    expect(sniffImage(svg('<!---->'.repeat(600) + 'x'))).toBeNull();
+    expect(Date.now() - start).toBeLessThan(50);
+  });
 });
 
 describe('validateUpload', () => {
@@ -43,8 +51,15 @@ describe('validateUpload', () => {
   it('rejects a missing file', () => expect(() => validateUpload(undefined, 'party-logo', 'BJP')).toThrow(BadRequestException));
   it('rejects a spoofed type', () => expect(() => validateUpload(file(svg('<html>')), 'party-eci', 'BJP')).toThrow(/PNG, JPEG, WebP or SVG/));
   it('rejects an unknown kind', () => expect(() => validateUpload(file(PNG), 'banner' as any, 'BJP')).toThrow(BadRequestException));
-  it.each(['../x', 'a/b', '', 'x'.repeat(65)])('rejects owner id %p', (id) =>
+  it.each(['', 'x'.repeat(65)])('rejects owner id %p', (id) =>
     expect(() => validateUpload(file(PNG), 'party-logo', id)).toThrow(BadRequestException));
+  it('accepts a party id with punctuation and sanitises it for the path', () => {
+    expect(validateUpload(file(PNG), 'party-logo', 'JD(U)').path).toBe('parties/JD_U_/logo.png');
+  });
+  it.each(['../x', 'a/b', '..\\..\\x'])('owner id %p cannot traverse the blob path', (id) => {
+    const owner = validateUpload(file(PNG), 'party-logo', id).path.split('/')[1];
+    expect(owner).not.toMatch(/\.\.|[/\\]/);
+  });
   it('size limit is per kind', () => {
     const big = { buffer: PNG, size: MAX_BYTES['party-logo'] + 1 };
     expect(() => validateUpload(big, 'party-logo', 'BJP')).toThrow(PayloadTooLargeException);
