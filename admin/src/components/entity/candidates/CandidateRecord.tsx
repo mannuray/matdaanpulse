@@ -4,31 +4,26 @@ import { useCandidateEdit, candidateNumbersValid, type CandidateEditForm } from 
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { useRecordQuery } from '../../../hooks/useRecordQuery';
 import { getCandidateResult } from '../../../services/candidate.service';
-import type { LinkSuggestion } from '../../../hooks/useCandidateManager';
 import { shortElectionName } from '../../shell/ElectionPicker';
 import { RecordPage } from '../../record/RecordPage';
 import { RecordCard, RecordMeta } from '../../record/RecordCard';
 import { RecordLoadError } from '../../record/RecordLoadError';
 import { Badge } from '../../ui/Badge';
 import { Button } from '../../ui/Button';
+import { ConfirmDialog } from '../../ui/ConfirmDialog';
 import { cn } from '../../ui/cn';
 import { ElectionMismatch } from '../ElectionMismatch';
 import { CandidateAffidavitFields, CandidateIdentityFields } from './CandidateFields';
 import { CandidateResultCard } from './CandidateResultCard';
 import { CandidateSeatCard } from './CandidateSeatCard';
 import { CandidateMasterCard } from './CandidateMasterCard';
-import type { Candidate } from '../../../types';
+import type { Candidate, PersonWithStats } from '../../../types';
 
 interface CandidateRecordProps {
   id: string;
-  /** Same-name candidates in other elections (from the page's list hook), if any. */
-  suggestion?: LinkSuggestion;
-  selectedMatches?: Set<string>;
-  onToggleMatch: (candidateId: string, matchId: string) => void;
-  onLinkSuggested: (candidateId: string, matches: Candidate[]) => Promise<boolean>;
   /** Each loaded record (the page shows its seat in the list). Must be stable (a state setter). */
   onLoaded: (c: Candidate) => void;
-  /** Saved or linking changed: refresh the list. */
+  /** Saved, or the contest moved to another person: refresh the list. */
   onChanged: () => void;
   /** "← Candidates · <seat>": back to the list, through the unsaved guard. */
   onBack: () => void;
@@ -60,7 +55,7 @@ function IncumbentSwitch({ checked, onChange }: { checked: boolean; onChange: (v
  * Candidate record page at /candidates/:id: Candidate, Affidavit and the read-only Result on the left; the master
  * (person) record, the other candidates of the seat and record info on the right. The page keys it by id.
  */
-export function CandidateRecord({ id, suggestion, selectedMatches, onToggleMatch, onLinkSuggested, onLoaded, onChanged, onBack, onOpenCandidate }: CandidateRecordProps) {
+export function CandidateRecord({ id, onLoaded, onChanged, onBack, onOpenCandidate }: CandidateRecordProps) {
   const ed = useCandidateEdit(id);
   const { elections } = useElection();
   useUnsavedGuard(ed.dirty);
@@ -80,21 +75,25 @@ export function CandidateRecord({ id, suggestion, selectedMatches, onToggleMatch
   const party = c ? ed.parties.find((p) => p.id === c.party_id) ?? c.party : null;
 
   const save = async () => { if (await ed.handleSave()) onChanged(); };
-  // The list refreshes only when a linking action actually changed something (not on cancel / failure).
-  const linkTo = async (personId: string) => { if (await ed.linkToPerson(personId)) onChanged(); };
-  const createMaster = async () => { if (await ed.createMasterRecord()) onChanged(); };
-  const unlink = async () => { if (await ed.unlink()) onChanged(); };
-  // Busy while "Link selected" runs, so a double click cannot create two person records.
-  const [linkingSuggested, setLinkingSuggested] = useState(false);
-  const linkSuggested = async () => {
-    if (!c || !suggestion || linkingSuggested) return;
-    setLinkingSuggested(true);
-    try {
-      if (await onLinkSuggested(c.id, suggestion.matches)) await ed.refresh();
-    } finally {
-      setLinkingSuggested(false);
+
+  // Change person and Split each ask first (ConfirmDialog); the list refreshes only when the contest really moved.
+  const [changing, setChanging] = useState(false);
+  const [pending, setPending] = useState<{ kind: 'change'; person: PersonWithStats } | { kind: 'split' } | null>(null);
+  const toggleChange = (open: boolean) => {
+    setChanging(open);
+    if (!open) ed.setPersonSearch('');
+  };
+  const confirmPending = async () => {
+    if (!pending) return;
+    const ok = pending.kind === 'change' ? await ed.changePerson(pending.person.id) : !!(await ed.split());
+    setPending(null);
+    if (ok) {
+      setChanging(false);
+      onChanged();
     }
   };
+  const currentPerson = c?.person?.name ?? c?.name ?? '';
+  const sole = (c?.person_contests?.contests ?? 0) <= 1;
 
   const error = !c && ed.loadError
     ? <RecordLoadError kind={ed.loadError} noun="candidate" onRetry={() => { void ed.refresh(); }} />
@@ -160,19 +159,37 @@ export function CandidateRecord({ id, suggestion, selectedMatches, onToggleMatch
           <CandidateMasterCard
             candidate={c}
             locked={ed.dirty}
-            busy={ed.isLinking || linkingSuggested}
-            suggestion={suggestion}
-            selectedMatches={selectedMatches}
-            onToggleMatch={(matchId) => onToggleMatch(c.id, matchId)}
-            linkingSuggested={linkingSuggested}
-            onLinkSuggested={() => { void linkSuggested(); }}
+            busy={ed.isLinking}
+            changing={changing}
+            onToggleChange={toggleChange}
             personSearch={ed.personSearch}
             onPersonSearch={ed.setPersonSearch}
             personResults={ed.personResults}
-            onLinkTo={(personId) => { void linkTo(personId); }}
-            onCreateMaster={() => { void createMaster(); }}
-            onUnlink={() => { void unlink(); }}
-            electionName={electionName}
+            onPickPerson={(person) => setPending({ kind: 'change', person })}
+            onSplit={() => setPending({ kind: 'split' })}
+            duplicates={ed.sameNamePersons}
+          />
+          <ConfirmDialog
+            open={pending?.kind === 'change'}
+            title="Change person?"
+            description={pending?.kind === 'change'
+              ? `This contest moves to ${pending.person.name}.${sole ? ` ${currentPerson} has no other contests, so that person record is deleted.` : ''}`
+              : ''}
+            confirmLabel="Move contest"
+            tone="primary"
+            busy={ed.isLinking}
+            onConfirm={() => { void confirmPending(); }}
+            onCancel={() => setPending(null)}
+          />
+          <ConfirmDialog
+            open={pending?.kind === 'split'}
+            title="Split into new person?"
+            description="This contest moves to a new person record."
+            confirmLabel="Split"
+            tone="primary"
+            busy={ed.isLinking}
+            onConfirm={() => { void confirmPending(); }}
+            onCancel={() => setPending(null)}
           />
           <CandidateSeatCard
             candidateId={c.id}

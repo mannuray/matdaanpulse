@@ -3,28 +3,11 @@ import type { Person, PersonWithCandidates } from '../types';
 
 /**
  * CORE MODEL: Person Logic (MVC: Model)
- * Pure logic for persona-specific data presentation and metadata handling.
+ * Pure logic for the person form. Every identity field is a column (migration 018 dropped persons.metadata).
  */
 export const PersonService = {
   /**
-   * Resolves the best available biography for a person.
-   */
-  resolveBiography(person: Person | PersonWithCandidates | null): string {
-    if (!person) return '';
-    return person.bio || '';
-  },
-
-  /**
-   * Standardizes the Wikipedia URL from metadata.
-   */
-  resolveWikiUrl(person: Person | PersonWithCandidates | null): string {
-    if (!person) return '';
-    const meta = (person.metadata || {}) as any;
-    return meta.wikipedia_url || '';
-  },
-
-  /**
-   * Prepares a ready-to-render view model for person forms.
+   * The form's text values for a loaded person; null becomes ''.
    */
   prepareFormState(person: Person | PersonWithCandidates) {
     return {
@@ -33,8 +16,10 @@ export const PersonService = {
       gender: normalizeGender(person.gender),
       education: person.education || '',
       photo_url: person.photo_url || '',
-      bio: this.resolveBiography(person),
-      wikipedia_url: this.resolveWikiUrl(person)
+      bio: person.bio || '',
+      wikipedia_url: person.wikipedia_url || '',
+      caste: person.caste || '',
+      religion: person.religion || '',
     };
   }
 };

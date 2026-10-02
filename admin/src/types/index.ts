@@ -57,7 +57,10 @@ export interface Person {
   education: string | null;
   date_of_birth: string | null;
   bio?: string | null;
-  metadata?: Record<string, unknown>;
+  wikipedia_url?: string | null;
+  /** Admin-only identity fields (the public profile never shows them). */
+  caste?: string | null;
+  religion?: string | null;
   updated_at?: string;
   last_edit?: LastEdit | null;
 }
@@ -73,6 +76,20 @@ export interface PersonWithStats extends Person {
 
 export interface PersonWithCandidates extends Person {
   candidates: PersonCandidate[];
+  /** Merges into this person, newest first (GET /admin/persons/:id); undone ones stay listed with undoable false. */
+  merges?: PersonMerge[];
+}
+
+/** One merge log row of a person (AdminPersonMergeDto). */
+export interface PersonMerge {
+  id: string;
+  duplicate_name: string;
+  candidate_count: number;
+  merged_at: string;
+  /** The merging user's name; null when unknown. */
+  merged_by: string | null;
+  /** Not undone yet, and every contest it moved still belongs to this person. */
+  undoable: boolean;
 }
 
 /** One contest in a person's election history (GET /admin/persons/:id, newest first). */
@@ -100,7 +117,8 @@ export interface PersonCandidate {
 
 export interface Candidate {
   id: string;
-  person_id: string | null;
+  /** Every candidate has a person (migration 018). */
+  person_id: string;
   person?: Person | null;
   election_id: string;
   election?: Election;
@@ -108,12 +126,17 @@ export interface Candidate {
   constituency?: Constituency;
   party_id: string | null;
   party: Party | null;
+  /** The name as filed on the ballot (the person's name is the display name). */
   name: string;
   is_incumbent: boolean;
-  metadata?: Record<string, unknown>;
+  /** Affidavit for this run: age at nomination; assets and liabilities in rupees. */
+  age: number | null;
+  assets: number | null;
+  liabilities: number | null;
+  criminal_cases: number | null;
   updated_at?: string;
   last_edit?: LastEdit | null;
-  /** The linked person's candidacies across elections (detail response only; null when unlinked). */
+  /** The person's candidacies across elections (detail response only). */
   person_contests?: { contests: number; first_year: number | null } | null;
 }
 

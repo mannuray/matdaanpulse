@@ -3,7 +3,7 @@ import { Plus } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import { useElection } from '../context/ElectionContext';
 import { useShellStatus } from '../context/ShellStatusContext';
-import { useCandidateManager, type NewCandidate, type PersonFilter } from '../hooks/useCandidateManager';
+import { useCandidateManager, type NewCandidate } from '../hooks/useCandidateManager';
 import { NEW_ID, useEntityRoute } from '../hooks/useEntityRoute';
 import { shortElectionName } from '../components/shell/ElectionPicker';
 import { EntityPage } from '../components/entity/EntityPage';
@@ -11,7 +11,7 @@ import { NoElection } from '../components/entity/NoElection';
 import { CandidateRecord } from '../components/entity/candidates/CandidateRecord';
 import { ARCHIVED_HINT, CandidateCreateArchived, CandidateCreateDialog } from '../components/entity/candidates/CandidateCreateDialog';
 import { PageHeader } from '../components/ui/PageHeader';
-import { ChipGroup, SearchInput, Toolbar } from '../components/ui/Toolbar';
+import { SearchInput, Toolbar } from '../components/ui/Toolbar';
 import { Combobox } from '../components/ui/Combobox';
 import { DataTable, type Column } from '../components/ui/DataTable';
 import { EmptyState } from '../components/ui/EmptyState';
@@ -19,13 +19,10 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import type { Candidate } from '../types';
 
-type Meta = { age?: number | string | null; criminal_cases?: number | string | null };
-const meta = (c: Candidate) => (c.metadata ?? {}) as Meta;
-
 /**
  * PAGE: Candidates — one seat of the global election at a time, full width; a row opens the candidate's record page at
  * /candidates/:id, which replaces the list (create at /candidates/new, in a dialog over the list). The list hooks stay
- * mounted under `candidates/*`, so the seat, link filter and search survive the round trip to a record.
+ * mounted under `candidates/*`, so the seat and search survive the round trip to a record.
  * `?seat=<constituency id>` picks the seat (the constituency record's "Candidates in this seat"); it is used once and then
  * dropped from the URL (replace), so a reload or a copied link never brings back a seat the user has since moved off.
  */
@@ -81,10 +78,6 @@ export default function Candidates() {
       <CandidateRecord
         key={route.id}
         id={route.id}
-        suggestion={m.linkingSuggestions.get(route.id)}
-        selectedMatches={m.selectedMatches.get(route.id)}
-        onToggleMatch={m.toggleMatch}
-        onLinkSuggested={m.handleLink}
         onLoaded={setOpened}
         onChanged={m.refresh}
         onBack={() => route.close()}
@@ -106,22 +99,15 @@ export default function Candidates() {
       ),
     },
     { key: 'party', header: 'Party', cell: (c) => <Badge tone="muted">{c.party?.abbreviation || c.party_id || 'IND'}</Badge> },
-    { key: 'age', header: 'Age', className: 'tabular-nums text-ink-2', cell: (c) => meta(c).age ?? '–' },
+    { key: 'age', header: 'Age', className: 'tabular-nums text-ink-2', cell: (c) => c.age ?? '–' },
     {
       key: 'cases',
       header: 'Cases',
       className: 'tabular-nums',
-      cell: (c) => {
-        const n = Number(meta(c).criminal_cases ?? 0);
-        return <span className={n > 0 ? 'font-medium text-bad-text' : 'text-ink-2'}>{n}</span>;
-      },
-    },
-    {
-      key: 'person',
-      header: 'Person',
-      cell: (c) => c.person_id
-        ? <Badge tone="ok">Linked</Badge>
-        : m.linkingSuggestions.has(c.id) ? <Badge tone="accent">Suggestion</Badge> : <Badge tone="muted">Unlinked</Badge>,
+      // Unknown (null) is a dash, never 0.
+      cell: (c) => c.criminal_cases === null || c.criminal_cases === undefined
+        ? <span className="text-ink-2">–</span>
+        : <span className={c.criminal_cases > 0 ? 'font-medium text-bad-text' : 'text-ink-2'}>{c.criminal_cases}</span>,
     },
   ];
 
@@ -146,16 +132,6 @@ export default function Candidates() {
         toolbar={
           <Toolbar>
             <Combobox label="Seat" className="w-64" options={seatOptions} value={m.selectedConst} onChange={m.setSelectedConst} placeholder="Find a seat…" />
-            <ChipGroup<PersonFilter>
-              label="Person link"
-              value={m.personFilter}
-              onChange={m.setPersonFilter}
-              options={[
-                { value: 'all', label: 'All', count: m.counts.all },
-                { value: 'linked', label: 'Linked', count: m.counts.linked },
-                { value: 'unlinked', label: 'Unlinked', count: m.counts.unlinked },
-              ]}
-            />
             <SearchInput label="Search names in this seat" placeholder="Search names in this seat…" value={m.search} onChange={m.setSearch} />
           </Toolbar>
         }
@@ -175,7 +151,7 @@ export default function Candidates() {
                 />
               : m.constituencies.length === 0
                 ? <EmptyState title="No seats in this election" description="Add constituencies to this election first." />
-                : <EmptyState title="No candidates match" description="Try another seat, filter or name." />}
+                : <EmptyState title="No candidates match" description="Try another seat or name." />}
           />
         }
       />

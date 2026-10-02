@@ -18,15 +18,14 @@ const svc = vi.hoisted(() => ({
   getCandidate: vi.fn(),
   searchCandidates: vi.fn(async (_q: string): Promise<unknown[]> => []),
   updateCandidate: vi.fn(async (_id: string, _data: Record<string, unknown>) => ({})),
-  linkCandidatePerson: vi.fn(async (_c: string, _p: string) => ({})),
-  unlinkCandidatePerson: vi.fn(async () => ({})),
+  changeCandidatePerson: vi.fn(async (_c: string, _p: string) => ({})),
+  splitCandidate: vi.fn(async (_c: string) => ({ person_id: 'p-split', old_person_deleted: false })),
   createCandidate: vi.fn(),
   getCandidateResult: vi.fn(),
 }));
 vi.mock('../services/candidate.service', () => svc);
 const people = vi.hoisted(() => ({
   getPersons: vi.fn(async (..._args: unknown[]) => ({ success: true, data: [] as unknown[], pagination: { page: 1, limit: 10, total: 0, totalPages: 1 } })),
-  createPerson: vi.fn(async () => ({ id: 'p9' })),
 }));
 vi.mock('../services/person.api', () => people);
 vi.mock('../services/constituency.service', () => ({ getConstituencies: vi.fn(async (eid: string) => data.seats[eid] ?? []) }));
@@ -58,18 +57,26 @@ import { renderEntityPage } from '../test-utils/entity-harness';
 import { ApiError } from '../services/api-client';
 import { getConstituencies } from '../services/constituency.service';
 
+/** Every candidate has a person (migration 018): by default an auto-created one with the ballot name and this one contest. */
 const cand = (id: string, name: string, const_id: string, over: Partial<Candidate> = {}): Candidate => ({
-  id, person_id: null, person: null, election_id: 'e1', const_id, party_id: 'BJP',
+  id, person_id: `p-${id}`, person: { id: `p-${id}`, name, photo_url: null, gender: null, education: null, date_of_birth: null },
+  person_contests: { contests: 1, first_year: 2025 },
+  election_id: 'e1', const_id, party_id: 'BJP',
   party: { id: 'BJP', name: 'Bharatiya Janata Party', color: '#f59e0b', abbreviation: 'BJP' } as Candidate['party'],
-  name, is_incumbent: false, metadata: { age: 50, criminal_cases: 0 }, ...over,
+  name, is_incumbent: false, age: 50, assets: null, liabilities: null, criminal_cases: 0, ...over,
 });
+const person = (id: string, name: string, candidate_count = 1, elections: string[] = []) => ({
+  id, name, photo_url: null, gender: null, education: null, date_of_birth: null, candidate_count, elections,
+  state_id: null, state_name: null, region_id: null, region_name: null,
+});
+const personsPage = (rows: ReturnType<typeof person>[]) => ({ success: true, data: rows as unknown[], pagination: { page: 1, limit: 10, total: rows.length, totalPages: 1 } });
 const ROWS: Record<string, Candidate[]> = {
   s1: [
     cand('c1', 'Ravi Prasad', 's1', {
       person_id: 'p1', person: { id: 'p1', name: 'Ravi Shankar Prasad', photo_url: null, gender: 'Male', education: null, date_of_birth: null },
       person_contests: { contests: 3, first_year: 2010 },
     }),
-    cand('c2', 'Anil Kumar', 's1', { metadata: { age: 44, criminal_cases: 2 } }),
+    cand('c2', 'Anil Kumar', 's1', { age: 44, criminal_cases: 2 }),
     cand('nota', 'NOTA', 's1', { party_id: 'NOTA' }),
   ],
   s142: [cand('c9', 'Priya Kumari', 's142')],
@@ -122,15 +129,30 @@ const save = () => screen.getByRole('button', { name: 'Save changes' }) as HTMLB
 const backTo = (label: string | RegExp) => screen.getByRole('button', { name: label });
 
 describe('Candidates list', () => {
-  it('uses the global election, defaults to the lowest seat, hides NOTA, and filters by link state', async () => {
+  it('uses the global election, defaults to the lowest seat, hides NOTA; age and cases come from the affidavit columns', async () => {
     renderAt();
     expect(await within(table()).findByText('Ravi Prasad')).toBeTruthy();
     expect(within(table()).queryByText('NOTA')).toBeNull();
     expect(seatInput().value).toBe('1 Valmiki Nagar');
     expect(svc.getCandidates).toHaveBeenCalledWith('e1', 's1');
-    fireEvent.click(screen.getByRole('button', { name: /^Unlinked/ }));
-    expect(within(table()).queryByText('Ravi Prasad')).toBeNull();
-    expect(within(table()).getByText('Anil Kumar')).toBeTruthy();
+    const anil = within(table()).getByText('Anil Kumar').closest('tr')!;
+    expect(within(anil).getByText('44')).toBeTruthy();
+    expect(within(anil).getByText('2')).toBeTruthy();
+    // Every candidate has a person: there is no link-state filter or column any more.
+    expect(screen.queryByRole('group', { name: 'Person link' })).toBeNull();
+    expect(document.body.textContent).not.toMatch(/unlink/i);
+  });
+
+  it('unknown age and cases show a dash, not 0', async () => {
+    const orig = ROWS.s1[1];
+    ROWS.s1[1] = { ...orig, age: null, criminal_cases: null };
+    try {
+      renderAt();
+      const anil = (await within(table()).findByText('Anil Kumar')).closest('tr')!;
+      expect(within(anil).getAllByText('–')).toHaveLength(2);
+    } finally {
+      ROWS.s1[1] = orig;
+    }
   });
 
   it('?seat= preselects that seat (the constituency record links here); an unknown seat falls back to the lowest', async () => {
@@ -272,18 +294,38 @@ describe('Candidate record page', () => {
     expect(await within(result).findByText('78,412')).toBeTruthy();
   });
 
-  it('opening an unlinked candidate pre-fills the person search; Save sends no photo_url', async () => {
+  it('the Affidavit card has only age, assets, liabilities and criminal cases; Save sends them as top-level numbers', async () => {
     renderAt('/candidates/c2');
     await record('Anil Kumar');
-    await waitFor(() => expect((screen.getByLabelText('Find a person') as HTMLInputElement).value).toBe('Anil Kumar'));
-    await waitFor(() => expect(people.getPersons).toHaveBeenCalledWith(1, 10, 'Anil Kumar'));
+    const affidavit = card('Affidavit');
+    expect(within(affidavit).getAllByRole('textbox')).toHaveLength(4);
+    for (const l of ['Age', 'Declared assets', 'Declared liabilities', 'Criminal cases']) expect(within(affidavit).getByLabelText(l)).toBeTruthy();
+    expect(screen.queryByLabelText('Gender')).toBeNull();
+    expect(screen.queryByLabelText('Education')).toBeNull();
     fireEvent.change(screen.getByLabelText('Age'), { target: { value: '45' } });
+    fireEvent.change(screen.getByLabelText('Declared liabilities'), { target: { value: '0' } });
     fireEvent.click(save());
     await waitFor(() => expect(svc.updateCandidate).toHaveBeenCalled());
     const [id, payload] = svc.updateCandidate.mock.calls[0];
     expect(id).toBe('c2');
-    expect(payload).not.toHaveProperty('photo_url');
-    expect(payload.metadata).toEqual(expect.objectContaining({ age: 45, criminal_cases: 2 }));
+    // Exactly the whitelisted keys (the backend refuses metadata, gender, education, person_id, photo_url).
+    expect(payload).toEqual({ name: 'Anil Kumar', party_id: 'BJP', is_incumbent: false, age: 45, assets: null, liabilities: 0, criminal_cases: 2 });
+  });
+
+  it('a stored 0 shows as 0 (not blank) and stays 0 on save', async () => {
+    const orig = ROWS.s1[1];
+    ROWS.s1[1] = { ...orig, assets: 0, criminal_cases: 0 };
+    try {
+      renderAt('/candidates/c2');
+      await record('Anil Kumar');
+      expect((screen.getByLabelText('Declared assets') as HTMLInputElement).value).toBe('0');
+      expect((screen.getByLabelText('Criminal cases') as HTMLInputElement).value).toBe('0');
+      fireEvent.change(screen.getByLabelText('Age'), { target: { value: '46' } });
+      fireEvent.click(save());
+      await waitFor(() => expect(svc.updateCandidate).toHaveBeenCalledWith('c2', expect.objectContaining({ assets: 0, criminal_cases: 0, liabilities: null })));
+    } finally {
+      ROWS.s1[1] = orig;
+    }
   });
 
   it('the Incumbent toggle is editable and saved; emptied affidavit fields go out as null', async () => {
@@ -299,7 +341,7 @@ describe('Candidate record page', () => {
     await waitFor(() => expect(svc.updateCandidate).toHaveBeenCalled());
     const [, payload] = svc.updateCandidate.mock.calls[0];
     expect(payload.is_incumbent).toBe(true);
-    expect(payload.metadata).toEqual(expect.objectContaining({ age: null, gender: null, education: null, assets: null, criminal_cases: 2 }));
+    expect(payload).toEqual(expect.objectContaining({ age: null, assets: null, liabilities: null, criminal_cases: 2 }));
   });
 
   it('declared assets show the rupee value in Indian grouping with crore or lakh', async () => {
@@ -309,6 +351,23 @@ describe('Candidate record page', () => {
     expect(screen.getByText('₹2,45,00,000 · ₹2.45 crore')).toBeTruthy();
     fireEvent.change(screen.getByLabelText('Declared assets'), { target: { value: '8500000' } });
     expect(screen.getByText('₹85,00,000 · ₹85 lakh')).toBeTruthy();
+  });
+
+  it('declared liabilities use the same crore / lakh helper; rupee text with ₹ and commas is saved as a number', async () => {
+    renderAt('/candidates/c2');
+    await record('Anil Kumar');
+    fireEvent.change(screen.getByLabelText('Declared liabilities'), { target: { value: '₹12,50,000' } });
+    expect(screen.getByText('₹12,50,000 · ₹12.5 lakh')).toBeTruthy();
+    fireEvent.click(save());
+    await waitFor(() => expect(svc.updateCandidate).toHaveBeenCalledWith('c2', expect.objectContaining({ liabilities: 1250000 })));
+  });
+
+  it('decimal or text assets show an inline error and block Save', async () => {
+    renderAt('/candidates/c2');
+    await record('Anil Kumar');
+    fireEvent.change(screen.getByLabelText('Declared assets'), { target: { value: '2.5 crore' } });
+    expect(screen.getByText('Enter whole rupees')).toBeTruthy();
+    expect(save().disabled).toBe(true);
   });
 
   it('a deep link to a candidate in another seat shows that seat in the list behind it', async () => {
@@ -408,6 +467,7 @@ describe('Candidate record page', () => {
     svc.updateCandidate.mockRejectedValueOnce(new ApiError('Validation failed', 400, 'VALIDATION', [
       { field: 'name', message: 'name must be shorter than or equal to 255 characters' },
       { field: 'party_id', message: 'party_id must be shorter than or equal to 20 characters' },
+      { field: 'liabilities', message: 'liabilities must not be greater than 9007199254740991' },
     ]));
     renderAt('/candidates/c2');
     await record('Anil Kumar');
@@ -415,6 +475,7 @@ describe('Candidate record page', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Save changes' }));
     expect(await screen.findByText('name must be shorter than or equal to 255 characters')).toBeTruthy();
     expect(screen.getByText('party_id must be shorter than or equal to 20 characters')).toBeTruthy();
+    expect(within(card('Affidavit')).getByText('liabilities must not be greater than 9007199254740991')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByText('name must be shorter than or equal to 255 characters')).toBeNull();
   });
@@ -430,161 +491,152 @@ describe('Candidate record page', () => {
 });
 
 describe('Candidate record: master record', () => {
-  it('a linked candidate shows the person, "Open person" asks before leaving unsaved edits', async () => {
+  const master = () => card('Master record');
+  const dialog = (name: string) => screen.findByRole('dialog', { name });
+  /** The Change person search answers with these persons (limit 10); the duplicates lookup (limit 20) with `dupes`. */
+  const mockPersons = (search: ReturnType<typeof person>[], dupes: ReturnType<typeof person>[] = []) => {
+    people.getPersons.mockImplementation(async (...args: unknown[]) => personsPage(args[1] === 20 ? dupes : search));
+  };
+
+  it('always shows the person: name, "N contests · first YYYY" and "Open person", which asks before leaving unsaved edits', async () => {
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
     renderAt('/candidates/c1');
     await record('Ravi Prasad');
-    const master = card('Master record');
-    expect(within(master).getByText('Ravi Shankar Prasad')).toBeTruthy();
-    expect(within(master).getByText('3 contests · first 2010')).toBeTruthy();
+    expect(within(master()).getByText('Ravi Shankar Prasad')).toBeTruthy();
+    expect(within(master()).getByText('3 contests · first 2010')).toBeTruthy();
     fireEvent.change(screen.getByLabelText('Age'), { target: { value: '51' } });
-    fireEvent.click(within(master).getByRole('link', { name: /Open person/ }));
+    fireEvent.click(within(master()).getByRole('link', { name: /Open person/ }));
     expect(confirm).toHaveBeenCalledWith('Discard unsaved changes?');
     expect(where()).toBe('/candidates/c1');
   });
 
-  it('Unlink asks first; a cancelled unlink changes nothing; Unlink is disabled while the form is dirty', async () => {
-    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
-    renderAt('/candidates/c1');
-    await record('Ravi Prasad');
-    const unlink = within(card('Master record')).getByRole('button', { name: 'Unlink' }) as HTMLButtonElement;
-    await waitFor(() => expect(svc.getCandidates).toHaveBeenCalledWith('e1', 's1'));
-    const calls = svc.getCandidates.mock.calls.length;
-    fireEvent.click(unlink);
-    expect(confirm).toHaveBeenCalledWith('Unlink from master record?');
-    await new Promise((r) => setTimeout(r, 0));
-    expect(svc.unlinkCandidatePerson).not.toHaveBeenCalled();
-    expect(svc.getCandidates.mock.calls.length).toBe(calls);
-    fireEvent.change(screen.getByLabelText('Age'), { target: { value: '51' } });
-    expect(unlink.disabled).toBe(true);
+  it('has no unlink, "create master record" or "Link selected" UI', async () => {
+    renderAt('/candidates/c2');
+    await record('Anil Kumar');
+    expect(document.body.textContent).not.toMatch(/unlink/i);
+    expect(within(master()).queryByRole('button', { name: 'Create new person record' })).toBeNull();
+    expect(within(master()).queryByRole('button', { name: 'Link selected' })).toBeNull();
+    expect(within(master()).queryByRole('checkbox')).toBeNull();
   });
 
-  it('a confirmed Unlink unlinks and refreshes the list', async () => {
-    vi.spyOn(window, 'confirm').mockReturnValue(true);
+  it('Change person searches persons (not the current one), asks first, and moves the contest; the list refreshes', async () => {
+    mockPersons([person('p1', 'Ravi Shankar Prasad', 3), person('p5', 'Ravi S. Prasad', 2)]);
     renderAt('/candidates/c1');
     await record('Ravi Prasad');
     await waitFor(() => expect(svc.getCandidates).toHaveBeenCalledWith('e1', 's1'));
-    const calls = svc.getCandidates.mock.calls.length;
-    fireEvent.click(within(card('Master record')).getByRole('button', { name: 'Unlink' }));
-    await waitFor(() => expect(svc.unlinkCandidatePerson).toHaveBeenCalledWith('c1'));
-    await waitFor(() => expect(svc.getCandidates.mock.calls.length).toBeGreaterThan(calls));
+    const lists = svc.getCandidates.mock.calls.length;
+    fireEvent.click(within(master()).getByRole('button', { name: 'Change person' }));
+    fireEvent.change(within(master()).getByLabelText('Find a person'), { target: { value: 'Ravi' } });
+    const move = await within(master()).findByRole('button', { name: 'Move to Ravi S. Prasad' });
+    expect(within(master()).queryByRole('button', { name: 'Move to Ravi Shankar Prasad' })).toBeNull();
+    expect(people.getPersons).toHaveBeenCalledWith(1, 10, 'Ravi');
+    fireEvent.click(move);
+    const confirm = await dialog('Change person?');
+    expect(within(confirm).getByText('This contest moves to Ravi S. Prasad.')).toBeTruthy();
+    fireEvent.click(within(confirm).getByRole('button', { name: 'Move contest' }));
+    await waitFor(() => expect(svc.changeCandidatePerson).toHaveBeenCalledWith('c1', 'p5'));
+    await waitFor(() => expect(svc.getCandidates.mock.calls.length).toBeGreaterThan(lists));
+    expect(screen.queryByRole('dialog')).toBeNull();
   });
 
-  it('same-name suggestions show in the card (and as a list badge) and link the checked matches', async () => {
-    svc.searchCandidates.mockImplementation(async (q: string) =>
-      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
+  it('cancelling the Change person confirm changes nothing', async () => {
+    mockPersons([person('p5', 'Ravi S. Prasad', 2)]);
+    renderAt('/candidates/c1');
+    await record('Ravi Prasad');
+    fireEvent.click(within(master()).getByRole('button', { name: 'Change person' }));
+    fireEvent.change(within(master()).getByLabelText('Find a person'), { target: { value: 'Ravi' } });
+    fireEvent.click(await within(master()).findByRole('button', { name: 'Move to Ravi S. Prasad' }));
+    fireEvent.click(within(await dialog('Change person?')).getByRole('button', { name: 'Cancel' }));
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
+    expect(svc.changeCandidatePerson).not.toHaveBeenCalled();
+  });
+
+  it("Change person on a person's only contest says the old record is deleted", async () => {
+    mockPersons([person('p5', 'Anil Kumar Singh', 2)]);
     renderAt('/candidates/c2');
     await record('Anil Kumar');
-    const master = card('Master record');
-    fireEvent.click(await within(master).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/));
-    fireEvent.click(within(master).getByRole('button', { name: 'Link selected' }));
-    await waitFor(() => expect(svc.linkCandidatePerson).toHaveBeenCalledWith('old', 'p9'));
-    expect(people.createPerson).toHaveBeenCalledWith('Anil Kumar');
-    expect(svc.linkCandidatePerson).toHaveBeenCalledWith('c2', 'p9');
-    fireEvent.click(backTo(/^Candidates/));
-    expect(await within(table()).findByText('Suggestion')).toBeTruthy();
+    fireEvent.click(within(master()).getByRole('button', { name: 'Change person' }));
+    fireEvent.change(within(master()).getByLabelText('Find a person'), { target: { value: 'Anil' } });
+    fireEvent.click(await within(master()).findByRole('button', { name: 'Move to Anil Kumar Singh' }));
+    expect(within(await dialog('Change person?')).getByText(
+      'This contest moves to Anil Kumar Singh. Anil Kumar has no other contests, so that person record is deleted.',
+    )).toBeTruthy();
   });
 
-  it('"Link selected" is disabled until a match is ticked', async () => {
-    svc.searchCandidates.mockImplementation(async (q: string) =>
-      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
-    renderAt('/candidates/c2');
-    await record('Anil Kumar');
-    const master = card('Master record');
-    const box = await within(master).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/);
-    const btn = within(master).getByRole('button', { name: 'Link selected' }) as HTMLButtonElement;
-    expect(btn.disabled).toBe(true);
-    fireEvent.click(box);
-    expect(btn.disabled).toBe(false);
-    fireEvent.click(box);
-    expect(btn.disabled).toBe(true);
-  });
-
-  it('a suggested match that already has a person record links to it instead of creating one', async () => {
-    svc.searchCandidates.mockImplementation(async (q: string) =>
-      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2', person_id: 'p5' })] : []);
-    renderAt('/candidates/c2');
-    await record('Anil Kumar');
-    const master = card('Master record');
-    fireEvent.click(await within(master).findByLabelText(/has a person record/));
-    fireEvent.click(within(master).getByRole('button', { name: 'Link selected' }));
-    await waitFor(() => expect(svc.linkCandidatePerson).toHaveBeenCalledWith('c2', 'p5'));
-    expect(people.createPerson).not.toHaveBeenCalled();
-  });
-
-  it('linking is disabled while the form has unsaved edits (linking reloads the record)', async () => {
-    svc.searchCandidates.mockImplementation(async (q: string) =>
-      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
-    people.getPersons.mockResolvedValue({
-      success: true,
-      data: [{ id: 'p5', name: 'Anil Kumar', photo_url: null, gender: null, education: null, date_of_birth: null, candidate_count: 1, elections: [], state_id: null, state_name: null, region_id: null, region_name: null }],
-      pagination: { page: 1, limit: 10, total: 1, totalPages: 1 },
+  it('Split asks first, moves the contest to a new person and then shows it', async () => {
+    renderAt('/candidates/c1');
+    await record('Ravi Prasad');
+    const split = within(master()).getByRole('button', { name: 'Split into new person' }) as HTMLButtonElement;
+    expect(split.disabled).toBe(false);
+    // After the split the record reloads with its new person (named from the ballot).
+    const orig = ROWS.s1[0];
+    svc.splitCandidate.mockImplementationOnce(async () => {
+      ROWS.s1[0] = { ...orig, person_id: 'p-split', person: { id: 'p-split', name: 'Ravi Prasad', photo_url: null, gender: null, education: null, date_of_birth: null }, person_contests: { contests: 1, first_year: 2025 } };
+      return { person_id: 'p-split', old_person_deleted: false };
     });
+    try {
+      fireEvent.click(split);
+      const confirm = await dialog('Split into new person?');
+      expect(within(confirm).getByText('This contest moves to a new person record.')).toBeTruthy();
+      fireEvent.click(within(confirm).getByRole('button', { name: 'Split' }));
+      await waitFor(() => expect(svc.splitCandidate).toHaveBeenCalledWith('c1'));
+      await waitFor(() => expect(within(master()).getByRole('link', { name: /Open person/ }).getAttribute('href')).toBe('/persons/p-split'));
+      expect(within(master()).getByText('1 contest · first 2025')).toBeTruthy();
+      expect(within(master()).queryByText('Ravi Shankar Prasad')).toBeNull();
+    } finally {
+      ROWS.s1[0] = orig;
+    }
+  });
+
+  it("Split is disabled on the person's only contest (the backend refuses it with 409)", async () => {
     renderAt('/candidates/c2');
     await record('Anil Kumar');
-    const master = card('Master record');
-    const linkTo = await within(master).findByRole('button', { name: 'Link to Anil Kumar' });
-    const linkSelected = await within(master).findByRole('button', { name: 'Link selected' });
+    expect((within(master()).getByRole('button', { name: 'Split into new person' }) as HTMLButtonElement).disabled).toBe(true);
+    expect(within(master()).getByText("This is the person's only contest, so there is nothing to split.")).toBeTruthy();
+  });
+
+  it('a refused split shows the server message', async () => {
+    svc.splitCandidate.mockRejectedValueOnce(new ApiError("This is the person's only contest", 409));
+    renderAt('/candidates/c1');
+    await record('Ravi Prasad');
+    fireEvent.click(within(master()).getByRole('button', { name: 'Split into new person' }));
+    fireEvent.click(within(await dialog('Split into new person?')).getByRole('button', { name: 'Split' }));
+    expect(await screen.findByText("Split failed: This is the person's only contest")).toBeTruthy();
+  });
+
+  it('Possible duplicates: same-name persons other than this one, each linking to that person (where merge lives)', async () => {
+    mockPersons([], [
+      person('p-c2', 'Anil Kumar', 1),
+      person('p7', 'ANIL KUMAR', 2, ['Bihar Vidhan Sabha 2020', 'Bihar Vidhan Sabha 2015']),
+      person('p8', 'Anil Kumar Singh', 1),
+    ]);
+    renderAt('/candidates/c2');
+    await record('Anil Kumar');
+    const link = await within(master()).findByRole('link', { name: /ANIL KUMAR/ });
+    expect(within(master()).getByText('Possible duplicates')).toBeTruthy();
+    expect(link.getAttribute('href')).toBe('/persons/p7');
+    expect(link.textContent).toContain('2 contests');
+    expect(within(master()).queryByRole('link', { name: /Anil Kumar Singh/ })).toBeNull();
+    expect(people.getPersons).toHaveBeenCalledWith(1, 20, 'Anil Kumar');
+    fireEvent.click(link);
+    expect(where()).toBe('/persons/p7');
+  });
+
+  it('every action is disabled while the form has unsaved edits (they reload the record)', async () => {
+    renderAt('/candidates/c1');
+    await record('Ravi Prasad');
     fireEvent.change(screen.getByLabelText('Age'), { target: { value: '45' } });
-    expect((linkTo as HTMLButtonElement).disabled).toBe(true);
-    expect((linkSelected as HTMLButtonElement).disabled).toBe(true);
-    expect((within(master).getByRole('button', { name: 'Create new person record' }) as HTMLButtonElement).disabled).toBe(true);
-    expect(within(master).getByText('Save or cancel your changes first.')).toBeTruthy();
-  });
-
-  it('"Create new person record" creates one with the candidate name and links it', async () => {
-    renderAt('/candidates/c2');
-    await record('Anil Kumar');
-    fireEvent.click(within(card('Master record')).getByRole('button', { name: 'Create new person record' }));
-    await waitFor(() => expect(svc.linkCandidatePerson).toHaveBeenCalledWith('c2', 'p9'));
-    expect(people.createPerson).toHaveBeenCalledWith('Anil Kumar');
-  });
-
-  it('saving the form keeps the ticked same-name suggestions', async () => {
-    svc.searchCandidates.mockImplementation(async (q: string) =>
-      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
-    renderAt('/candidates/c2');
-    await record('Anil Kumar');
-    const box = (await within(card('Master record')).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/)) as HTMLInputElement;
-    expect(box.checked).toBe(false);
-    fireEvent.click(box);
-    expect(box.checked).toBe(true);
-    const searches = svc.searchCandidates.mock.calls.length;
-    fireEvent.change(screen.getByLabelText('Age'), { target: { value: '45' } });
-    fireEvent.click(save());
-    await waitFor(() => expect(svc.updateCandidate).toHaveBeenCalled());
-    await waitFor(() => expect(svc.searchCandidates.mock.calls.length).toBeGreaterThan(searches));
-    await new Promise((r) => setTimeout(r, 0));
-    expect((within(card('Master record')).getByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/) as HTMLInputElement).checked).toBe(true);
-  });
-
-  it('"Link selected" is disabled while linking, so a double click creates one person', async () => {
-    svc.searchCandidates.mockImplementation(async (q: string) =>
-      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
-    let release!: () => void;
-    svc.linkCandidatePerson.mockImplementationOnce(() => new Promise((r) => { release = () => r({}); }));
-    renderAt('/candidates/c2');
-    await record('Anil Kumar');
-    const master = card('Master record');
-    fireEvent.click(await within(master).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/));
-    const btn = within(master).getByRole('button', { name: 'Link selected' }) as HTMLButtonElement;
-    fireEvent.click(btn);
-    await waitFor(() => expect(btn.disabled).toBe(true));
-    fireEvent.click(btn);
-    await waitFor(() => expect(svc.linkCandidatePerson).toHaveBeenCalledTimes(1));
-    release();
-    await waitFor(() => expect(svc.linkCandidatePerson).toHaveBeenCalledWith('old', 'p9'));
-    expect(people.createPerson).toHaveBeenCalledTimes(1);
+    expect((within(master()).getByRole('button', { name: 'Change person' }) as HTMLButtonElement).disabled).toBe(true);
+    expect((within(master()).getByRole('button', { name: 'Split into new person' }) as HTMLButtonElement).disabled).toBe(true);
+    expect(within(master()).getByText('Save or cancel your changes first.')).toBeTruthy();
   });
 
   it('after a failed reload, "Try again" is disabled while the form has unsaved edits', async () => {
-    svc.searchCandidates.mockImplementation(async (q: string) =>
-      q === 'Anil Kumar' ? [cand('old', 'ANIL KUMAR', 'BR_VS2020_VALMIKI', { election_id: 'e2' })] : []);
-    renderAt('/candidates/c2');
-    await record('Anil Kumar');
-    fireEvent.click(await within(card('Master record')).findByLabelText(/Kerala VS 2021 · BR_VS2020_VALMIKI/));
+    renderAt('/candidates/c1');
+    await record('Ravi Prasad');
     svc.getCandidate.mockRejectedValueOnce(new ApiError('boom', 500));
-    fireEvent.click(within(card('Master record')).getByRole('button', { name: 'Link selected' }));
+    fireEvent.click(within(master()).getByRole('button', { name: 'Split into new person' }));
+    fireEvent.click(within(await dialog('Split into new person?')).getByRole('button', { name: 'Split' }));
     expect(await screen.findByText('Could not reload candidate')).toBeTruthy();
     fireEvent.change(screen.getByLabelText('Age'), { target: { value: '45' } });
     const alert = screen.getByText('Could not reload candidate').closest('[role="alert"]')!;
@@ -596,8 +648,11 @@ describe('New candidate', () => {
   beforeEach(() => {
     let n = 0;
     svc.createCandidate.mockImplementation(async (body: Record<string, unknown>) => {
+      // The backend creates the person (AFTER INSERT trigger): name = ballot name.
       const created = cand(`new-${++n}`, body.name as string, body.const_id as string, {
-        party_id: (body.party_id as string | null) ?? null, party: null, metadata: body.metadata as Record<string, unknown>,
+        party_id: (body.party_id as string | null) ?? null, party: null,
+        age: body.age as number | null, assets: body.assets as number | null, liabilities: body.liabilities as number | null,
+        criminal_cases: body.criminal_cases as number | null,
       });
       ROWS[created.const_id].push(created);
       return created;
@@ -625,10 +680,14 @@ describe('New candidate', () => {
     fireEvent.submit(name.closest('form')!);
     await waitFor(() => expect(svc.createCandidate).toHaveBeenCalledWith({
       election_id: 'e1', const_id: 's1', name: 'Sunita Devi', party_id: 'BJP',
-      metadata: { age: 39, gender: null, education: null, criminal_cases: 0, assets: null },
+      age: 39, assets: null, liabilities: null, criminal_cases: 0,
     }));
     await waitFor(() => expect(where()).toBe('/candidates/new-1'));
     expect(await record('Sunita Devi')).toBeTruthy();
+    // Review focus 5: the new candidate already has a person (created by the backend).
+    const master = card('Master record');
+    expect(within(master).getByText('Sunita Devi')).toBeTruthy();
+    expect(within(master).getByRole('link', { name: /Open person/ }).getAttribute('href')).toBe('/persons/p-new-1');
     expect(screen.queryByRole('dialog')).toBeNull();
     fireEvent.click(backTo('Candidates · 1 Valmiki Nagar'));
     expect(await within(table()).findByText('Sunita Devi')).toBeTruthy();

@@ -192,7 +192,8 @@ const seat = (id: string, no: number, name: string): Constituency => ({
 });
 const SEATS = [seat('k1', 1, 'Valmiki Nagar'), seat('k2', 2, 'Ramnagar'), seat('k142', 142, 'Patna Sahib')];
 const cand = (id: string, name: string, party: string, constId: string): Candidate => ({
-  id, name, party_id: party, const_id: constId, person_id: null, election_id: 'e1', party: null, is_incumbent: false,
+  id, name, party_id: party, const_id: constId, person_id: `p-${id}`, election_id: 'e1', party: null, is_incumbent: false,
+  age: null, assets: null, liabilities: null, criminal_cases: null,
 });
 const election = (id: string, name: string, year: number): Election => ({
   id, name, type: 'VS', state_id: 1, year, status: 'Finalized', tentative_next_date: null, manifest_url: null,

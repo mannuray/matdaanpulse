@@ -1,23 +1,22 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import {
-  getCandidate, updateCandidate,
-  unlinkCandidatePerson, linkCandidatePerson
+  getCandidate, updateCandidate, changeCandidatePerson, splitCandidate, type CandidateAffidavit,
 } from '../services/candidate.service';
-import { getPersons, createPerson } from '../services/person.api';
+import { getPersons } from '../services/person.api';
 import { getParties } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
 import { fieldErrorMap } from '../services/api-client';
 import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
 import type { Candidate, Party, PersonWithStats } from '../types';
 
+/** The create and edit form. The affidavit fields are text as typed; `candidateAffidavit` turns them into numbers. */
 export interface CandidateForm {
   name: string;
   party_id: string;
-  age: string | number;
-  gender: string;
-  education: string;
-  criminal_cases: string | number;
+  age: string;
   assets: string;
+  liabilities: string;
+  criminal_cases: string;
 }
 
 /** The record page's form: the create fields plus the Incumbent toggle (a new candidate is never an incumbent). */
@@ -25,61 +24,70 @@ export interface CandidateEditForm extends CandidateForm {
   is_incumbent: boolean;
 }
 
+type AffidavitForm = Pick<CandidateForm, 'age' | 'assets' | 'liabilities' | 'criminal_cases'>;
+
 /** Independents use the real `IND` party row (seeds, and migration 001's unique index keyed on party_id <> 'IND'). */
 export const INDEPENDENT = 'IND';
 
-const EMPTY_FORM: CandidateEditForm = { name: '', party_id: '', is_incumbent: false, age: '', gender: '', education: '', criminal_cases: '', assets: '' };
+export const EMPTY_AFFIDAVIT: AffidavitForm = { age: '', assets: '', liabilities: '', criminal_cases: '' };
+const EMPTY_FORM: CandidateEditForm = { name: '', party_id: '', is_incumbent: false, ...EMPTY_AFFIDAVIT };
 
 /** Age / criminal cases: empty, or a whole number of 0 or more. */
-export const isWholeNumberOrEmpty = (v: string | number) => {
-  const t = String(v).trim();
+export const isWholeNumberOrEmpty = (v: string) => {
+  const t = v.trim();
   return t === '' || /^\d+$/.test(t);
 };
 
-/** True when the form's numeric fields can be saved (the panels show an inline error otherwise). */
-export const candidateNumbersValid = (f: Pick<CandidateForm, 'age' | 'criminal_cases'>) =>
-  isWholeNumberOrEmpty(f.age) && isWholeNumberOrEmpty(f.criminal_cases);
-
-const wholeOrNull = (v: string | number) => {
-  const t = String(v).trim();
-  return t === '' ? null : Number(t);
+/** Rupee text as typed ("₹2,45,00,000", "24500000"): ₹, commas and spaces dropped. */
+const rupeeDigits = (v: string) => v.replace(/[₹,\s]/g, '');
+/** Assets / liabilities: empty, or whole rupees (₹, commas and spaces allowed; no decimals or words). */
+export const isRupeesOrEmpty = (v: string) => {
+  const t = rupeeDigits(v);
+  return t === '' || /^\d+$/.test(t);
 };
-const textOrNull = (v: string) => (v.trim() === '' ? null : v);
 
-/** The affidavit fields as stored in candidate metadata; emptied fields are sent as null, never ''. */
-export function candidateMetadata(f: CandidateForm): Record<string, unknown> {
+/** True when the affidavit can be saved (the fields show an inline error otherwise; the backend takes whole numbers only). */
+export const candidateNumbersValid = (f: AffidavitForm) =>
+  isWholeNumberOrEmpty(f.age) && isWholeNumberOrEmpty(f.criminal_cases) && isRupeesOrEmpty(f.assets) && isRupeesOrEmpty(f.liabilities);
+
+const wholeOrNull = (v: string) => (v.trim() === '' ? null : Number(v.trim()));
+const rupeesOrNull = (v: string) => (rupeeDigits(v) === '' ? null : Number(rupeeDigits(v)));
+
+/** The affidavit as PUT/POST /admin/candidates take it: top-level numbers; blank is null, "0" stays 0. */
+export function candidateAffidavit(f: AffidavitForm): CandidateAffidavit {
   return {
     age: wholeOrNull(f.age),
-    gender: textOrNull(f.gender),
-    education: textOrNull(f.education),
+    assets: rupeesOrNull(f.assets),
+    liabilities: rupeesOrNull(f.liabilities),
     criminal_cases: wholeOrNull(f.criminal_cases),
-    assets: textOrNull(f.assets),
   };
 }
 
 const toForm = (c: Candidate): CandidateEditForm => {
-  const meta = (c.metadata || {}) as Record<string, unknown>;
-  // Everything as text, so retyping a stored value (50 → "50") does not count as an edit.
-  const text = (v: unknown) => (v === null || v === undefined ? '' : String(v));
+  // Everything as text, so retyping a stored value (50 → "50") does not count as an edit; 0 shows as "0".
+  const text = (v: number | null | undefined) => (v === null || v === undefined ? '' : String(v));
   return {
     name: c.name || '',
     // A stored null party is shown as Independent; it is written as IND only if the user saves.
     party_id: c.party_id || INDEPENDENT,
     is_incumbent: !!c.is_incumbent,
-    age: text(meta.age),
-    gender: text(meta.gender),
-    education: text(meta.education),
-    criminal_cases: text(meta.criminal_cases),
-    assets: text(meta.assets)
+    age: text(c.age),
+    assets: text(c.assets),
+    liabilities: text(c.liabilities),
+    criminal_cases: text(c.criminal_cases),
   };
 };
+
+/** Names compared for "Possible duplicates": case and spacing do not matter. */
+const sameName = (a: string, b: string) => a.trim().replace(/\s+/g, ' ').toUpperCase() === b.trim().replace(/\s+/g, ' ').toUpperCase();
 
 /** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
 export type LoadError = RecordLoadErrorKind;
 
 /**
  * CONTROLLER: Candidate Edit (MVC)
- * Manages candidate form state, and master record linking. `dirty` compares the form with the loaded/saved snapshot.
+ * The candidacy form (name, party, incumbent, affidavit) and its person: change person, split into a new person,
+ * and same-name persons that may be duplicates. `dirty` compares the form with the loaded/saved snapshot.
  */
 export function useCandidateEdit(id?: string) {
   const { toast, toastError } = useToast();
@@ -92,17 +100,18 @@ export function useCandidateEdit(id?: string) {
   const [saving, setSaving] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
-  // The photo belongs to the linked person; it is shown read-only, never sent here.
+  // The photo belongs to the person; it is shown read-only, never sent here.
   const [form, setForm] = useState<CandidateEditForm>(EMPTY_FORM);
   const [saved, setSaved] = useState<CandidateEditForm>(EMPTY_FORM);
   const formRef = useRef(form);
   formRef.current = form;
 
-  // Linking State
+  // Person State
   const [personSearch, setPersonSearch] = useState('');
-  const [personResults, setPersonResults] = useState<PersonWithStats[]>([]);
+  const [personMatches, setPersonMatches] = useState<PersonWithStats[]>([]);
   const [isLinking, setIsLinking] = useState(false);
   const searchTimer = useRef<ReturnType<typeof setTimeout>>();
+  const [sameNamePersons, setSameNamePersons] = useState<PersonWithStats[]>([]);
 
   // 1. Initial Load
   const loadData = useCallback(async () => {
@@ -120,8 +129,6 @@ export function useCandidateEdit(id?: string) {
       const next = toForm(c);
       setForm(next);
       setSaved(next);
-      // Unlinked: start the person search with the candidate's name (the old table "Find" link).
-      setPersonSearch(c.person_id ? '' : c.name);
     } catch (err) {
       const kind = recordLoadErrorKind(err);
       setLoadError(kind);
@@ -143,16 +150,12 @@ export function useCandidateEdit(id?: string) {
     setSaving(true);
     setFieldErrors({});
     try {
+      // Only the keys the backend accepts (it refuses metadata, gender, education, person_id…).
       await updateCandidate(id, {
         name: submitted.name,
         party_id: submitted.party_id || INDEPENDENT,
         is_incumbent: submitted.is_incumbent,
-        // Emptied affidavit fields go out as null (never '' or Number('') = 0).
-        metadata: {
-          // Keep keys this form does not edit (e.g. affidavit links from the seed).
-          ...(candidate?.metadata ?? {}),
-          ...candidateMetadata(submitted)
-        }
+        ...candidateAffidavit(submitted),
       });
       toast('Candidate profile updated');
       // The submitted values are now the saved baseline; edits typed while saving stay dirty.
@@ -176,71 +179,77 @@ export function useCandidateEdit(id?: string) {
     }
   };
 
-  // 3. Linking Logic
+  // 3. Change person: the person search (the record's own person is never offered).
   useEffect(() => {
     if (searchTimer.current) clearTimeout(searchTimer.current);
     if (!personSearch || personSearch.trim().length < 2) {
-      setPersonResults([]);
+      setPersonMatches([]);
       return;
     }
 
     searchTimer.current = setTimeout(async () => {
       try {
         const response = await getPersons(1, 10, personSearch.trim());
-        setPersonResults(response.data);
+        setPersonMatches(response.data);
       } catch {
-        setPersonResults([]);
+        setPersonMatches([]);
       }
     }, 400);
 
     return () => { if (searchTimer.current) clearTimeout(searchTimer.current); };
   }, [personSearch]);
+  const personId = candidate?.person_id;
+  const personResults = useMemo(() => personMatches.filter((p) => p.id !== personId), [personMatches, personId]);
 
-  // Linking actions resolve true only when something changed (the panel then refreshes the table).
-  const linkToPerson = async (personId: string): Promise<boolean> => {
-    if (!id) return false;
+  // 4. Possible duplicates: other persons with this ballot name (or the person's name). One lookup per record.
+  const ballotName = candidate?.name;
+  const personName = candidate?.person?.name;
+  useEffect(() => {
+    if (!ballotName || !personId) { setSameNamePersons([]); return; }
+    let cancelled = false;
+    getPersons(1, 20, ballotName.trim())
+      .then((r) => {
+        if (cancelled) return;
+        setSameNamePersons((r.data ?? []).filter((p) =>
+          p.id !== personId && (sameName(p.name, ballotName) || (!!personName && sameName(p.name, personName)))));
+      })
+      .catch(() => { if (!cancelled) setSameNamePersons([]); });
+    return () => { cancelled = true; };
+  }, [ballotName, personName, personId]);
+
+  // Person actions resolve truthy only when something changed (the page then refreshes the list).
+  const changePerson = async (newPersonId: string): Promise<boolean> => {
+    if (!id || isLinking) return false;
     setIsLinking(true);
     try {
-      await linkCandidatePerson(id, personId);
-      toast('Linked to master record');
-      loadData();
+      await changeCandidatePerson(id, newPersonId);
+      const target = personMatches.find((p) => p.id === newPersonId)?.name;
+      toast(target ? `Contest moved to ${target}` : 'Contest moved to another person');
+      setPersonSearch('');
+      await loadData();
       return true;
     } catch (err) {
-      toastError(err, 'Linking failed');
+      toastError(err, 'Change person failed');
       return false;
     } finally {
       setIsLinking(false);
     }
   };
 
-  const createMasterRecord = async (): Promise<boolean> => {
-    if (!id || !candidate) return false;
+  /** Move this contest to a new person record; resolves the new person's id (null when refused or failed). */
+  const split = async (): Promise<string | null> => {
+    if (!id || isLinking) return null;
     setIsLinking(true);
     try {
-      const person = await createPerson(candidate.name);
-      await linkCandidatePerson(id, person.id);
-      toast('Master record created and linked');
-      loadData();
-      return true;
+      const { person_id } = await splitCandidate(id);
+      toast('Contest moved to a new person record');
+      await loadData();
+      return person_id;
     } catch (err) {
-      toastError(err, 'Operation failed');
-      return false;
+      toastError(err, 'Split failed');
+      return null;
     } finally {
       setIsLinking(false);
-    }
-  };
-
-  const unlink = async (): Promise<boolean> => {
-    if (!id) return false;
-    if (!window.confirm('Unlink from master record?')) return false;
-    try {
-      await unlinkCandidatePerson(id);
-      toast('Unlinked successfully');
-      loadData();
-      return true;
-    } catch (err) {
-      toastError(err, 'Unlink failed');
-      return false;
     }
   };
 
@@ -251,7 +260,7 @@ export function useCandidateEdit(id?: string) {
   return {
     fieldErrors,
     candidate, parties, loading, loadError, saving, form, setForm, dirty, reset, refresh: loadData,
-    personSearch, setPersonSearch, personResults, isLinking,
-    handleSave, linkToPerson, createMasterRecord, unlink
+    personSearch, setPersonSearch, personResults, isLinking, sameNamePersons,
+    handleSave, changePerson, split
   };
 }
