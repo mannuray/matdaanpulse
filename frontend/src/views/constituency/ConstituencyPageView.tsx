@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { ConstituencyPageVM } from '../../viewmodels/pages/useConstituencyPageVM';
 import { PageShell } from '../page/PageShell';
@@ -13,6 +14,43 @@ import { cn } from '../ui/cn';
 
 const tile = 'rounded-tile border border-line bg-tile p-4';
 const h2 = 'mb-3 font-display text-sm font-bold uppercase tracking-wider text-ink';
+
+type Cand = ConstituencyPageVM['view']['candidates'][number];
+
+function CandidateName({ c, vm }: { c: Cand; vm: ConstituencyPageVM }) {
+  const { t } = useTranslation();
+  return (
+    <>
+      {c.personId ? <Link to={vm.personHref(c.personId)} className="font-semibold hover:underline">{c.name}</Link> : <span className="font-semibold">{c.nota ? t('seat_nota') : c.name}</span>}
+      {c.incumbent && <span className="rounded-full border border-accent/50 px-1.5 text-[10px] text-accent">{t('seat_incumbent')}</span>}
+    </>
+  );
+}
+
+function PartyCell({ c, vm, size }: { c: Cand; vm: ConstituencyPageVM; size: 16 | 24 }) {
+  if (!c.partyId) return null;
+  return <Link to={vm.partyHref(c.partyId)} className="flex items-center gap-1.5 hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={size} />{c.partyLabel}</Link>;
+}
+
+function Pill({ c }: { c: Cand }) {
+  const { t } = useTranslation();
+  return c.pill ? <span className={cn('rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.pill])}>{t(`studio_status_${c.pill.toLowerCase()}`)}</span> : null;
+}
+
+/** One muted line: "Age 64 · Assets ₹4.8 Cr · Liabilities ₹32 L · Criminal cases 1"; parts without data are left out. */
+function AffidavitLine({ c }: { c: Cand }) {
+  const { t } = useTranslation();
+  const a = c.affidavit;
+  if (!a) return null;
+  const parts = [
+    a.age != null && <span key="age">{t('cp_age')} {a.age}</span>,
+    a.assets != null && <span key="assets">{t('cp_assets')} {formatRupees(a.assets)}</span>,
+    a.liabilities != null && <span key="liab">{t('cp_liabilities')} {formatRupees(a.liabilities)}</span>,
+    a.criminalCases != null && <span key="cases" className={cn(a.criminalCases > 0 && 'font-semibold text-warn-text')}>{t('cp_criminal_cases')} {a.criminalCases}</span>,
+  ].filter(Boolean) as ReactElement[];
+  if (!parts.length) return null;
+  return <p data-affidavit className="mt-0.5 truncate text-xs text-muted">{parts.flatMap((p, i) => (i ? [' · ', p] : [p]))}</p>;
+}
 
 export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
   const { t } = useTranslation();
@@ -86,34 +124,55 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
         )}
       </div>
 
-      <section className={cn(tile, 'overflow-x-auto p-0')}>
+      <section className={cn(tile, 'p-0')} aria-label={t('cp_all_candidates')}>
         <h2 className={cn(h2, 'px-4 pt-4')}>{t('cp_all_candidates')}</h2>
-        <table className="w-full min-w-[880px] text-sm">
-          <thead><tr className="border-b border-line text-left text-[11px] uppercase tracking-wider text-muted">
-            <th className="px-4 py-2">#</th><th>{t('seat_rank_candidate')}</th><th>{t('seat_party')}</th><th className="text-right">{t('seat_votes')}</th><th className="pl-3">{t('seat_share')}</th>
-            <th>{t('seat_status')}</th><th className="text-right">{t('cp_age')}</th><th className="text-right">{t('cp_assets')}</th><th className="text-right">{t('cp_liabilities')}</th><th className="pr-4 text-right">{t('cp_criminal_cases')}</th>
-          </tr></thead>
-          <tbody>
-            {vm.view.candidates.map((c, i) => (
-              <tr key={c.key} className="border-b border-line/60">
-                <td className="px-4 py-2 text-muted">{c.nota ? '' : i + 1}</td>
-                <td><div className="flex items-center gap-2"><Avatar name={c.name} photo={c.photo} size={32} />
-                  {c.personId ? <Link to={vm.personHref(c.personId)} className="font-semibold hover:underline">{c.name}</Link> : <span className="font-semibold">{c.nota ? t('seat_nota') : c.name}</span>}
-                  {c.incumbent && <span className="rounded-full border border-accent/50 px-1.5 text-[10px] text-accent">{t('seat_incumbent')}</span>}</div></td>
-                <td>{c.partyId && <Link to={vm.partyHref(c.partyId)} className="flex items-center gap-1.5 hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={24} />{c.partyLabel}</Link>}</td>
-                <td className="tabular text-right font-semibold">{formatIN(c.votes)}</td>
-                <td className="pl-3"><span className="tabular mr-2 text-xs">{c.share}%</span><span className="inline-block h-1.5 w-24 overflow-hidden rounded-full bg-page align-middle"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></span></td>
-                <td>{c.pill && <span className={cn('rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.pill])}>{t(`studio_status_${c.pill.toLowerCase()}`)}</span>}</td>
-                <td className="tabular text-right">{c.affidavit?.age ?? ''}</td>
-                <td className="tabular text-right">{formatRupees(c.affidavit?.assets ?? null) ?? ''}</td>
-                <td className="tabular text-right">{formatRupees(c.affidavit?.liabilities ?? null) ?? ''}</td>
-                <td className="pr-4 text-right">{c.affidavit?.criminalCases != null && (c.affidavit.criminalCases > 0
-                  ? <span className="rounded-md bg-warn/15 px-1.5 py-0.5 text-xs font-bold text-warn-text">{c.affidavit.criminalCases}</span>
-                  : <span className="text-muted">0</span>)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {/* Below lg: stacked rows (spec D10); lg+: the full table. */}
+        <ul className="flex list-none flex-col gap-2 px-4 pb-4 lg:hidden">
+          {vm.view.candidates.map((c, i) => (
+            <li key={c.key} className="rounded-tile border border-line bg-page/40 p-3">
+              <div className="flex items-start gap-3">
+                <span className="w-5 shrink-0 pt-2.5 text-xs text-muted">{c.nota ? '' : i + 1}</span>
+                <Avatar name={c.name} photo={c.photo} size={40} />
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5"><CandidateName c={c} vm={vm} /><PartyCell c={c} vm={vm} size={16} /></div>
+                  <AffidavitLine c={c} />
+                </div>
+                <div className="shrink-0 text-right">
+                  <div className="tabular font-semibold">{formatIN(c.votes)}</div>
+                  <div className="tabular text-xs text-muted">{c.share}%</div>
+                  <Pill c={c} />
+                </div>
+              </div>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-page"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></div>
+            </li>
+          ))}
+        </ul>
+        <div className="hidden overflow-x-auto lg:block">
+          <table className="w-full min-w-[880px] text-sm">
+            <thead><tr className="border-b border-line text-left text-[11px] uppercase tracking-wider text-muted">
+              <th className="px-4 py-2">#</th><th>{t('seat_rank_candidate')}</th><th>{t('seat_party')}</th><th className="text-right">{t('seat_votes')}</th><th className="pl-3">{t('seat_share')}</th>
+              <th>{t('seat_status')}</th><th className="text-right">{t('cp_age')}</th><th className="text-right">{t('cp_assets')}</th><th className="text-right">{t('cp_liabilities')}</th><th className="pr-4 text-right">{t('cp_criminal_cases')}</th>
+            </tr></thead>
+            <tbody>
+              {vm.view.candidates.map((c, i) => (
+                <tr key={c.key} className="border-b border-line/60">
+                  <td className="px-4 py-2 text-muted">{c.nota ? '' : i + 1}</td>
+                  <td><div className="flex items-center gap-2"><Avatar name={c.name} photo={c.photo} size={32} /><CandidateName c={c} vm={vm} /></div></td>
+                  <td><PartyCell c={c} vm={vm} size={24} /></td>
+                  <td className="tabular text-right font-semibold">{formatIN(c.votes)}</td>
+                  <td className="pl-3"><span className="tabular mr-2 inline-block w-12 text-xs">{c.share}%</span><span className="inline-block h-1.5 w-24 overflow-hidden rounded-full bg-page align-middle"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></span></td>
+                  <td><Pill c={c} /></td>
+                  <td className="tabular text-right">{c.affidavit?.age ?? ''}</td>
+                  <td className="tabular text-right">{formatRupees(c.affidavit?.assets ?? null) ?? ''}</td>
+                  <td className="tabular text-right">{formatRupees(c.affidavit?.liabilities ?? null) ?? ''}</td>
+                  <td className="pr-4 text-right">{c.affidavit?.criminalCases != null && (c.affidavit.criminalCases > 0
+                    ? <span className="rounded-md bg-warn/15 px-1.5 py-0.5 text-xs font-bold text-warn-text">{c.affidavit.criminalCases}</span>
+                    : <span className="text-muted">0</span>)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       {(vm.history.length > 0 || vm.notes.length > 0) && (

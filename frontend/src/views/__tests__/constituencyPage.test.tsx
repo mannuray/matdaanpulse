@@ -33,7 +33,35 @@ describe('ConstituencyPageView', () => {
     expect(within(table).getByText('₹4.8 Cr')).toBeTruthy();
     expect(within(table).getByText('5')).toBeTruthy();
     expect(screen.getByText(/Runner-up: B/)).toBeTruthy();
-    expect(screen.getByRole('link', { name: 'A' }).getAttribute('href')).toBe('/person/p1');
+    expect(within(table).getByRole('link', { name: 'A' }).getAttribute('href')).toBe('/person/p1');
+  });
+
+  it('below lg renders the same candidates as stacked rows with a one-line affidavit summary', () => {
+    renderIt(vm({ view: { ...vm().view, candidates: [
+      ...vm().view.candidates.slice(0, 2),
+      cand({ name: 'C', partyId: 'JSP', partyLabel: 'JSP', votes: 5, share: 0.5, affidavit: { age: 40, assets: null, liabilities: null, criminalCases: 0 } }),
+      vm().view.candidates[2],
+    ] } }));
+    const table = screen.getByRole('table');
+    const list = within(screen.getByRole('region', { name: 'All candidates' })).getByRole('list');
+    // Each layout is hidden at the other breakpoint.
+    expect(list.className).toContain('lg:hidden');
+    expect(list.className).toContain('list-none');
+    expect(table.parentElement!.className.split(' ')).toEqual(expect.arrayContaining(['hidden', 'lg:block']));
+    const tableNames = within(table).getAllByRole('row').slice(1).map(r => r.querySelectorAll('td')[1].textContent);
+    const items = within(list).getAllByRole('listitem');
+    expect(items.map(li => li.textContent)).toHaveLength(tableNames.length);
+    items.forEach((li, i) => expect(li.textContent).toContain(tableNames[i]!));
+    expect(within(items[0]).getByRole('link', { name: 'A' }).getAttribute('href')).toBe('/person/p1');
+    // Affidavit line: only the parts with data; criminal cases amber when above zero.
+    const line = items[0].querySelector('[data-affidavit]')!;
+    expect(line.textContent).toBe('Age 64 · Assets ₹4.8 Cr · Liabilities ₹32 L · Criminal cases 5');
+    expect(within(line as HTMLElement).getByText('Criminal cases 5').className).toContain('text-warn-text');
+    const lineC = items[2].querySelector('[data-affidavit]')!;
+    expect(lineC.textContent).toBe('Age 40 · Criminal cases 0');
+    expect(within(lineC as HTMLElement).getByText('Criminal cases 0').className).not.toContain('text-warn-text');
+    expect(items[1].querySelector('[data-affidavit]')).toBeNull();
+    expect(within(items[0]).getByText('Won')).toBeTruthy();
   });
 
   it('party names link to the election dashboard party dialog (not NOTA)', () => {
