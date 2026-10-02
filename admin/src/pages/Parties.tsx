@@ -14,6 +14,7 @@ import { Pager } from '../components/ui/Pager';
 import { EmptyState } from '../components/ui/EmptyState';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
+import { assetUrl } from '../utils/asset-url';
 import type { Party } from '../types';
 
 type PartyRow = Party & { candidate_count?: number };
@@ -41,7 +42,7 @@ const COLUMNS: Column<PartyRow>[] = [
     key: 'symbol',
     header: 'Symbol',
     cell: (p) => (p.symbol_url || p.eci_symbol_url)
-      ? <img src={p.symbol_url || p.eci_symbol_url || ''} alt="" className="h-6 w-6 object-contain" />
+      ? <img src={assetUrl(p.symbol_url || p.eci_symbol_url || '')} alt="" className="h-6 w-6 object-contain" />
       : <Badge tone="warn">Missing</Badge>,
   },
   {

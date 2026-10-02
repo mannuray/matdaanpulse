@@ -4,6 +4,7 @@ import { useCandidateEdit, candidateNumbersValid, type CandidateEditForm } from 
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { useRecordQuery } from '../../../hooks/useRecordQuery';
 import { getCandidateResult } from '../../../services/candidate.service';
+import { assetUrl } from '../../../utils/asset-url';
 import { shortElectionName } from '../../shell/ElectionPicker';
 import { RecordPage } from '../../record/RecordPage';
 import { RecordCard, RecordMeta } from '../../record/RecordCard';
@@ -107,7 +108,7 @@ export function CandidateRecord({ id, onLoaded, onChanged, onBack, onOpenCandida
       error={error}
       leading={
         <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-subtle text-lg font-semibold text-ink-2">
-          {c?.person?.photo_url ? <img src={c.person.photo_url} alt="" className="h-full w-full object-cover" /> : c?.name.charAt(0)}
+          {c?.person?.photo_url ? <img src={assetUrl(c.person.photo_url)} alt="" className="h-full w-full object-cover" /> : c?.name.charAt(0)}
         </span>
       }
       title={c?.name}

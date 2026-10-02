@@ -14,6 +14,7 @@ import { PersonHistoryCard } from './PersonHistoryCard';
 import { PersonMergeCard } from './PersonMergeCard';
 import { PersonMergeHistoryCard } from './PersonMergeHistoryCard';
 import { contestsLabel } from '../../../utils/person-format';
+import { assetUrl } from '../../../utils/asset-url';
 import type { PersonCandidate, PersonMerge } from '../../../types';
 
 const GENDERS = ['Male', 'Female', 'Other'];
@@ -80,7 +81,7 @@ export function PersonRecord({ id, onBack, onSaved, onOpenPerson }: PersonRecord
       error={error}
       leading={
         <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-subtle text-lg font-semibold text-ink-2">
-          {form.photo_url ? <img src={form.photo_url} alt="" className="h-full w-full object-cover" /> : person?.name.charAt(0)}
+          {form.photo_url ? <img src={assetUrl(form.photo_url)} alt="" className="h-full w-full object-cover" /> : person?.name.charAt(0)}
         </span>
       }
       title={person?.name}
