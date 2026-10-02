@@ -31,8 +31,38 @@ export interface Party {
   id: string;
   name: string;
   color: string | null;
+  abbreviation?: string | null;
   symbol_url: string | null;
   eci_symbol_url: string | null;
+  eci_recognition?: 'National' | 'State' | 'Unrecognised' | null;
+}
+
+export interface PartyDetail extends Party {
+  leader_name: string | null;
+  founded_year: number | null;
+  headquarters: string | null;
+  website: string | null;
+  wikipedia_url: string | null;
+  description: string | null;
+}
+
+/** A candidate's affidavit for one contest (rupees). */
+export interface Affidavit {
+  age: number | null;
+  assets: number | null;
+  liabilities: number | null;
+  criminal_cases: number | null;
+}
+
+/** One entry of constituency_analysis.incumbency.seat_history (runner-up/share absent on rows computed before 2026-10). */
+export interface SeatHistoryEntry {
+  year: number;
+  party: string | null;
+  candidate: string;
+  margin: number;
+  vote_share?: number | null;
+  runner_up?: string | null;
+  runner_up_party?: string | null;
 }
 
 export interface PartySummary {
@@ -61,6 +91,7 @@ export interface Constituency {
   candidates?: CandidateResult[];
   metadata?: Record<string, unknown>;
   region?: { id: number; name: string } | null;
+  last_updated?: string | null;
 }
 
 export interface Candidate {
@@ -75,7 +106,7 @@ export interface Candidate {
   is_incumbent: boolean;
 }
 
-export interface CandidateResult {
+export interface CandidateResult extends Partial<Affidavit> {
   id: string;
   name: string;
   party: Party | null;
@@ -86,7 +117,7 @@ export interface CandidateResult {
   margin: number;
   /** Every candidate has a person (migration 018); optional because not every response carries it. */
   person_id?: string;
-  person?: { id: string; photo_url: string | null } | null;
+  person?: { id: string; photo_url: string | null; wikipedia_url?: string | null } | null;
   isSplitter?: boolean;
 }
 
@@ -103,18 +134,24 @@ export interface PersonSummary {
   wikipedia_url?: string | null;
 }
 
-export interface PersonCandidate {
+export interface PersonCandidate extends Partial<Affidavit> {
   id: string;
   name: string;
   party_id: string | null;
   party_name: string | null;
   party_color: string | null;
+  party_abbreviation?: string | null;
+  party_symbol_url?: string | null;
+  party_eci_symbol_url?: string | null;
   election_name: string | null;
   election_year: number | null;
+  election_type?: 'LS' | 'VS' | null;
+  election_status?: 'Upcoming' | 'Live' | 'Finalized' | null;
   election_id: string;
   constituency_name: string | null;
   const_id: string;
   votes: number;
+  vote_share?: number | null;
   status: string | null;
   margin: number;
   is_incumbent: boolean;
