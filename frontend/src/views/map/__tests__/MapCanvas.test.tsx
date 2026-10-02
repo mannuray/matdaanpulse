@@ -24,6 +24,19 @@ function makeVM(): MapVM {
 }
 
 describe('MapCanvas', () => {
+  it('redraws when the features change while the map stays loaded (cached geojson on return)', () => {
+    const vm = makeVM();
+    const { container, rerender } = render(<MapCanvas vm={vm} />);
+    expect(container.querySelectorAll('path.pc')).toHaveLength(1);
+    const other = (name: string, x: number) => ({
+      type: 'Feature',
+      properties: { pc_name: name, st_name: 'Bihar' },
+      geometry: { type: 'Polygon', coordinates: [[[x, 25], [x + 1, 25], [x + 1, 26], [x, 26], [x, 25]]] },
+    }) as unknown as GeoFeature;
+    rerender(<MapCanvas vm={{ ...vm, features: [other('A', 84), other('B', 86)] }} />);
+    expect(container.querySelectorAll('path.pc')).toHaveLength(2);
+  });
+
   it('portals the tooltip to document.body and outlines the hovered seat', () => {
     const { container } = render(<MapCanvas vm={makeVM()} />);
     const path = container.querySelector('path.pc') as SVGPathElement;

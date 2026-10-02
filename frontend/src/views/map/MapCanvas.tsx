@@ -17,7 +17,7 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
   geoRef.current = vm.features.length ? { type: 'FeatureCollection', features: vm.features } : null;
   stateGeoRef.current = vm.stateFeatures ? { type: 'FeatureCollection', features: vm.stateFeatures } : null;
   const loaded = vm.status === 'ready' && vm.features.length > 0;
-  const { svgRef, gRef, handleResetZoom } = useMapRendering({ loaded, geoRef, stateGeoRef, isVS: vm.isVS, geoConfig: vm.geoConfig, MAP_WIDTH: W, MAP_HEIGHT: H, showLabels: true });
+  const { svgRef, gRef, handleResetZoom } = useMapRendering({ loaded, geoRef, stateGeoRef, isVS: vm.isVS, geoConfig: vm.geoConfig, MAP_WIDTH: W, MAP_HEIGHT: H, showLabels: true, geometry: [vm.features, vm.stateFeatures] });
   const [tip, setTip] = useState<{ id: string; x: number; y: number } | null>(null);
   // Hover only outlines the seat and shows the tooltip; it never dims the map.
   const hoveredId = tip?.id ?? null;
