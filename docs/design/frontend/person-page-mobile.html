@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatdaanPulse — Ram Kripal Yadav</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#080c14',
+              surface: '#0f1624',
+              surfaceAlt: '#141d2e',
+              border: '#1e293b',
+              borderLight: '#2a374d',
+              accent: '#8B7CFF',
+              lead: '#22c55e',
+              trail: '#ef4444',
+              bjp: '#FF9933',
+              rjd: '#1A9338'
+            }
+          },
+          fontFamily: {
+            headline: ['Barlow Condensed', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #080c14;
+      color: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-barlow {
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    /* Timeline track */
+    .timeline-line::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 17px;
+      width: 2px;
+      background: linear-gradient(180deg, #22c55e 0%, #1e293b 80%, #334155 100%);
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#080c14] text-slate-200 antialiased pb-12">
+  <div class="max-w-[390px] mx-auto min-h-screen bg-[#080c14] relative selection:bg-indigo-900 selection:text-white">
+
+    <!-- 1. COMPACT STICKY TOP BAR -->
+    <header class="sticky top-0 z-50 bg-[#080c14]/90 backdrop-blur-md border-b border-[#1e293b] px-4 h-13 py-3 flex items-center justify-between">
+      <button class="w-8 h-8 rounded-full flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/5 active:scale-95 transition" aria-label="Go back">
+        <span class="material-Icons-round text-xl">arrow_back</span>
+      </button>
+      <h1 class="font-barlow font-bold text-lg tracking-wider uppercase text-slate-100 truncate px-2">
+        Ram Kripal Yadav
+      </h1>
+      <button class="w-8 h-8 rounded-full flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/5 active:scale-95 transition" aria-label="Share profile">
+        <span class="material-icons-round text-xl">share</span>
+      </button>
+    </header>
+
+    <main class="px-4 pt-4 space-y-5">
+
+      <!-- 2. PROFILE HEADER -->
+      <section class="bg-[#0f1624] border border-[#1e293b] rounded-2xl p-4 shadow-lg shadow-black/40">
+        <div class="flex items-start gap-3.5">
+          <!-- Candidate Photo (96px) -->
+          <div class="relative shrink-0">
+            <img 
+              src="https://lh3.googleusercontent.com/aida/AEtjO1WoSJA1NP0Z_KIZjpXhNeJ3V_E8vz321uyIVPRFuze1k0OlvFLGWcerwmr2e5EejNPUF3gnklz6rjFDkc0PqBVz-V08NbUUQzjp54szno0XF7woBa_UIw972oaYLm4xFmCuK3ndzz_k09zGqt9sGPxWRccfsLvofs3shYtyfG5m0KenfCBy_9oVngajkbC657KdZJ2JBbtMyHNO9mw0A-i2fackDqnBTTgXpTPHzADd5o9jX5EryOIMTAo" 
+              alt="Ram Kripal Yadav" 
+              class="w-24 h-24 rounded-xl object-cover ring-2 ring-slate-700/60 shadow-md"
+            />
+            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-black text-[10px] font-bold px-1.5 py-0.5 rounded-full ring-2 ring-[#0f1624] flex items-center gap-0.5 shadow-sm">
+              <span class="material-icons-round text-[11px] leading-none">how_to_vote</span>
+              INC
+            </span>
+          </div>
+
+          <!-- Name & Details -->
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-1">
+              <h2 class="font-barlow font-bold text-2xl text-white tracking-tight leading-tight truncate">
+                Ram Kripal Yadav
+              </h2>
+            </div>
+
+            <!-- Current Party badge with real party image -->
+            <div class="flex items-center gap-1.5 mt-1.5">
+              <img 
+                src="https://lh3.googleusercontent.com/aida/AEtjO1Wax-sxWDfkPzYt_huT8DpgjvdxMvHbNrzGOVnhS34gNjfDQrRqx9N0839BjFMjYFpmY3qVC8WlTgk5fLvlWCS6rZuxB7_ESJlxhfVnwl2LEhB3FjPyFT7Yn37BHpkWo0E2HhEiVNtiUgBuOq--7jAwOie8EnN8wKPEg4QJNRpfYKh0hgyoqWmUs2ss9tHAeGq37vUGAZqm3peJ3nlC8zxIzufet4_0rOS7kbsdDE-g6pb5KRDrVv0wqQ" 
+                alt="BJP Logo" 
+                class="w-4 h-4 rounded object-contain shrink-0"
+              />
+              <span class="text-xs font-semibold tracking-wide text-orange-400 font-barlow text-sm uppercase">BJP</span>
+              <span class="text-slate-500 text-xs">·</span>
+              <span class="text-[11px] font-medium text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/20">
+                Incumbent MP
+              </span>
+            </div>
+
+            <!-- Facts Line -->
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Age 67 · Male · Post Graduate · Patna, Bihar
+            </p>
+
+            <!-- Wikipedia External Link -->
+            <div class="mt-2.5">
+              <a 
+                href="https://en.wikipedia.org/wiki/Ram_Kripal_Yadav" 
+                target="_blank" 
+                rel="noreferrer" 
+                class="inline-flex items-center gap-1 text-[11px] font-medium text-indigo-400 hover:text-indigo-300 transition-colors"
+              >
+                <span>Wikipedia</span>
+                <span class="material-icons-round text-[12px] leading-none">north_east</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-line Bio Below -->
+        <div class="mt-3.5 pt-3 border-t border-[#1e293b]/70">
+          <p class="text-xs text-slate-300 leading-relaxed line-clamp-3">
+            Senior parliamentarian and former Union Minister of State for Rural Development. Representing Patliputra in the Lok Sabha since 2014, with over three decades of legislative and grassroots public presence across Bihar.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. STATS: 2x2 GRID -->
+      <section>
+        <div class="flex items-center justify-between mb-2 px-1">
+          <h3 class="font-barlow text-xs font-bold uppercase tracking-wider text-slate-400">Career Mandate</h3>
+          <span class="text-[11px] text-slate-500">1993 – 2025</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5">
+          <!-- Stat 1 -->
+          <div class="bg-[#0f1624] border border-[#1e293b] rounded-xl p-3 flex flex-col justify-between">
+            <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wide">Contests</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span class="font-barlow font-bold text-3xl text-white">6</span>
+              <span class="text-[11px] text-slate-500">Elections</span>
+            </div>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="bg-[#0f1624] border border-[#1e293b] rounded-xl p-3 flex flex-col justify-between">
+            <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wide">Wins</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span class="font-barlow font-bold text-3xl text-emerald-400">4</span>
+              <span class="text-[11px] text-emerald-500/80 font-medium">Victories</span>
+            </div>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="bg-[#0f1624] border border-[#1e293b] rounded-xl p-3 flex flex-col justify-between">
+            <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wide">Win Rate</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span class="font-barlow font-bold text-3xl text-indigo-300">67%</span>
+              <span class="text-[11px] text-slate-500">4 of 6</span>
+            </div>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="bg-[#0f1624] border border-[#1e293b] rounded-xl p-3 flex flex-col justify-between">
+            <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wide">Parties</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span class="font-barlow font-bold text-3xl text-white">2</span>
+              <span class="text-[11px] text-slate-500">BJP · RJD</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. CONTEST TIMELINE -->
+      <section>
+        <div class="flex items-center justify-between mb-2.5 px-1">
+          <h3 class="font-barlow text-xs font-bold uppercase tracking-wider text-slate-400">Contest Timeline</h3>
+          <span class="text-[11px] text-slate-500">Newest first</span>
+        </div>
+
+        <div class="relative timeline-line space-y-2.5">
+
+          <!-- 2025 Bihar VS (Active/Leading) -->
+          <div class="relative z-10 flex items-start gap-3 bg-[#0f1624] border border-emerald-500/40 rounded-xl p-3 shadow-md hover:bg-[#141d2e] transition cursor-pointer group">
+            <!-- Timeline Pin -->
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
+
+            <!-- Card Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="font-barlow font-bold text-sm tracking-wide text-white">Bihar VS 2025</span>
+                  <span class="text-slate-500 text-xs">·</span>
+                  <span class="text-xs text-slate-300 font-medium">Patliputra</span>
+                </div>
+                <span class="material-icons-round text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all text-base shrink-0">arrow_forward</span>
+              </div>
+
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5">
+                  <img src="https://lh3.googleusercontent.com/aida/AEtjO1Wax-sxWDfkPzYt_huT8DpgjvdxMvHbNrzGOVnhS34gNjfDQrRqx9N0839BjFMjYFpmY3qVC8WlTgk5fLvlWCS6rZuxB7_ESJlxhfVnwl2LEhB3FjPyFT7Yn37BHpkWo0E2HhEiVNtiUgBuOq--7jAwOie8EnN8wKPEg4QJNRpfYKh0hgyoqWmUs2ss9tHAeGq37vUGAZqm3peJ3nlC8zxIzufet4_0rOS7kbsdDE-g6pb5KRDrVv0wqQ" alt="BJP" class="w-3.5 h-3.5 rounded object-contain"/>
+                  <span class="text-xs font-semibold text-orange-400 font-barlow uppercase">BJP</span>
+                </div>
+                <span class="text-[11px] font-bold font-barlow uppercase tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded">
+                  LEADING · +8,412
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2024 LS (Won) -->
+          <div class="relative z-10 flex items-start gap-3 bg-[#0f1624] border border-[#1e293b] rounded-xl p-3 hover:bg-[#141d2e] transition cursor-pointer group">
+            <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
+              <span class="material-icons-round text-emerald-400 text-sm">check</span>
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="font-barlow font-bold text-sm tracking-wide text-white">LS 2024</span>
+                  <span class="text-slate-500 text-xs">·</span>
+                  <span class="text-xs text-slate-300 font-medium">Patliputra</span>
+                </div>
+                <span class="material-icons-round text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all text-base shrink-0">arrow_forward</span>
+              </div>
+
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5">
+                  <img src="https://lh3.googleusercontent.com/aida/AEtjO1Wax-sxWDfkPzYt_huT8DpgjvdxMvHbNrzGOVnhS34gNjfDQrRqx9N0839BjFMjYFpmY3qVC8WlTgk5fLvlWCS6rZuxB7_ESJlxhfVnwl2LEhB3FjPyFT7Yn37BHpkWo0E2HhEiVNtiUgBuOq--7jAwOie8EnN8wKPEg4QJNRpfYKh0hgyoqWmUs2ss9tHAeGq37vUGAZqm3peJ3nlC8zxIzufet4_0rOS7kbsdDE-g6pb5KRDrVv0wqQ" alt="BJP" class="w-3.5 h-3.5 rounded object-contain"/>
+                  <span class="text-xs font-semibold text-orange-400 font-barlow uppercase">BJP</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[11px] font-bold font-barlow uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
+                    WON
+                  </span>
+                  <span class="text-xs text-slate-400 font-medium">margin +85,174</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2019 LS (Won) -->
+          <div class="relative z-10 flex items-start gap-3 bg-[#0f1624] border border-[#1e293b] rounded-xl p-3 hover:bg-[#141d2e] transition cursor-pointer group">
+            <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-emerald-500/80 flex items-center justify-center shrink-0 mt-0.5">
+              <span class="material-icons-round text-emerald-400 text-sm">check</span>
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="font-barlow font-bold text-sm tracking-wide text-white">LS 2019</span>
+                  <span class="text-slate-500 text-xs">·</span>
+                  <span class="text-xs text-slate-300 font-medium">Patliputra</span>
+                </div>
+                <span class="material-icons-round text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all text-base shrink-0">arrow_forward</span>
+              </div>
+
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5">
+                  <img src="https://lh3.googleusercontent.com/aida/AEtjO1Wax-sxWDfkPzYt_huT8DpgjvdxMvHbNrzGOVnhS34gNjfDQrRqx9N0839BjFMjYFpmY3qVC8WlTgk5fLvlWCS6rZuxB7_ESJlxhfVnwl2LEhB3FjPyFT7Yn37BHpkWo0E2HhEiVNtiUgBuOq--7jAwOie8EnN8wKPEg4QJNRpfYKh0hgyoqWmUs2ss9tHAeGq37vUGAZqm3peJ3nlC8zxIzufet4_0rOS7kbsdDE-g6pb5KRDrVv0wqQ" alt="BJP" class="w-3.5 h-3.5 rounded object-contain"/>
+                  <span class="text-xs font-semibold text-orange-400 font-barlow uppercase">BJP</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[11px] font-bold font-barlow uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
+                    WON
+                  </span>
+                  <span class="text-xs text-slate-400 font-medium">margin +39,321</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2014 LS (Won) -->
+          <div class="relative z-10 flex items-start gap-3 bg-[#0f1624] border border-[#1e293b] rounded-xl p-3 hover:bg-[#141d2e] transition cursor-pointer group">
+            <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-emerald-500/70 flex items-center justify-center shrink-0 mt-0.5">
+              <span class="material-icons-round text-emerald-400 text-sm">check</span>
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="font-barlow font-bold text-sm tracking-wide text-white">LS 2014</span>
+                  <span class="text-slate-500 text-xs">·</span>
+                  <span class="text-xs text-slate-300 font-medium">Patliputra</span>
+                </div>
+                <span class="material-icons-round text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all text-base shrink-0">arrow_forward</span>
+              </div>
+
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5">
+                  <img src="https://lh3.googleusercontent.com/aida/AEtjO1Wax-sxWDfkPzYt_huT8DpgjvdxMvHbNrzGOVnhS34gNjfDQrRqx9N0839BjFMjYFpmY3qVC8WlTgk5fLvlWCS6rZuxB7_ESJlxhfVnwl2LEhB3FjPyFT7Yn37BHpkWo0E2HhEiVNtiUgBuOq--7jAwOie8EnN8wKPEg4QJNRpfYKh0hgyoqWmUs2ss9tHAeGq37vUGAZqm3peJ3nlC8zxIzufet4_0rOS7kbsdDE-g6pb5KRDrVv0wqQ" alt="BJP" class="w-3.5 h-3.5 rounded object-contain"/>
+                  <span class="text-xs font-semibold text-orange-400 font-barlow uppercase">BJP</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[11px] font-bold font-barlow uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
+                    WON
+                  </span>
+                  <span class="text-xs text-slate-400 font-medium">margin +40,322</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2009 LS (Lost - with RJD real logo) -->
+          <div class="relative z-10 flex items-start gap-3 bg-[#0f1624] border border-[#1e293b] rounded-xl p-3 hover:bg-[#141d2e] transition cursor-pointer group">
+            <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-rose-500/60 flex items-center justify-center shrink-0 mt-0.5">
+              <span class="material-icons-round text-rose-400 text-sm">close</span>
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="font-barlow font-bold text-sm tracking-wide text-white">LS 2009</span>
+                  <span class="text-slate-500 text-xs">·</span>
+                  <span class="text-xs text-slate-300 font-medium">Patliputra</span>
+                </div>
+                <span class="material-icons-round text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all text-base shrink-0">arrow_forward</span>
+              </div>
+
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center gap-1.5">
+                  <img src="https://lh3.googleusercontent.com/aida/AEtjO1XDDRSrBr3-SGdH4ONPQrZoj0PlvhKudl7Y8KXXEvaSe_-gauGBEDHYPXvf85HhGYRAIgTiZxx2-jwVcz17guFqUMM3uY0NidJLf7ZEkHZO2QtMYEk0BBwIOpNBzGUUt0STitPikRQzZ2iK7z7bW8ZWSS68cYRstIAauRwtglRb9nBCA6m_VILv95fpPbePiFtsX7OorBbVj1PA2QetuRf5EO8CICZECfu_3DwnMT-Mv5QAJiqu9rELNA" alt="RJD Lantern Logo" class="w-3.5 h-3.5 rounded object-contain"/>
+                  <span class="text-xs font-semibold text-emerald-400 font-barlow uppercase">RJD</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[11px] font-bold font-barlow uppercase tracking-wider text-rose-400 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20">
+                    LOST
+                  </span>
+                  <span class="text-xs text-slate-500 font-medium">Runner-up</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 5. AFFIDAVIT TREND -->
+      <section class="bg-[#0f1624] border border-[#1e293b] rounded-2xl p-4 shadow-lg shadow-black/40">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-barlow text-xs font-bold uppercase tracking-wider text-slate-400">Affidavit Trend</h3>
+          <!-- Criminal cases amber chip -->
+          <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Criminal cases 1</span>
+          </div>
+        </div>
+
+        <!-- Latest Snapshot Summary Cards -->
+        <div class="grid grid-cols-2 gap-2.5 mb-4">
+          <div class="bg-[#141d2e] rounded-xl p-2.5 border border-[#1e293b]">
+            <span class="text-[11px] text-slate-400 font-medium">Latest Assets</span>
+            <div class="font-barlow font-bold text-xl text-white mt-0.5">
+              ₹4.8 Cr
+            </div>
+            <span class="text-[10px] text-emerald-400 font-medium">+14% vs 2019</span>
+          </div>
+          <div class="bg-[#141d2e] rounded-xl p-2.5 border border-[#1e293b]">
+            <span class="text-[11px] text-slate-400 font-medium">Latest Liabilities</span>
+            <div class="font-barlow font-bold text-xl text-white mt-0.5">
+              ₹32 L
+            </div>
+            <span class="text-[10px] text-slate-400 font-medium">₹35 L in 2020</span>
+          </div>
+        </div>
+
+        <!-- Small Chart of Assets / Liabilities over Contests -->
+        <div class="bg-[#080c14]/60 border border-[#1e293b]/70 rounded-xl p-3">
+          <div class="flex items-center justify-between text-[11px] mb-2">
+            <span class="text-slate-400 font-medium">Asset & Liability Growth (₹ Lakhs)</span>
+            <div class="flex items-center gap-3">
+              <span class="flex items-center gap-1 text-[10px] text-slate-300">
+                <span class="w-2 h-2 rounded-sm bg-indigo-400 inline-block"></span>
+                Assets
+              </span>
+              <span class="flex items-center gap-1 text-[10px] text-slate-400">
+                <span class="w-2 h-2 rounded-sm bg-rose-400 inline-block"></span>
+                Liabilities
+              </span>
+            </div>
+          </div>
+
+          <!-- Clean SVG Bar/Area Visualization -->
+          <div class="h-28 w-full mt-2">
+            <svg class="w-full h-full" viewBox="0 0 320 100" preserveAspectRatio="none">
+              <!-- Grid Lines -->
+              <line x1="0" y1="20" x2="320" y2="20" stroke="#1e293b" stroke-dasharray="3 3" stroke-width="1" />
+              <line x1="0" y1="50" x2="320" y2="50" stroke="#1e293b" stroke-dasharray="3 3" stroke-width="1" />
+              <line x1="0" y1="80" x2="320" y2="80" stroke="#1e293b" stroke-width="1" />
+
+              <!-- 2009 (Assets 1.1 Cr = 110L, Liab 8L) -->
+              <rect x="25" y="60" width="16" height="20" rx="2" fill="#818cf8" fill-opacity="0.85" />
+              <rect x="43" y="78" width="10" height="2" rx="1" fill="#f87171" />
+              <text x="37" y="93" fill="#64748b" font-size="9" text-anchor="middle" font-family="'Barlow Condensed', sans-serif">2009</text>
+
+              <!-- 2014 (Assets 2.2 Cr = 220L, Liab 14L) -->
+              <rect x="95" y="44" width="16" height="36" rx="2" fill="#818cf8" fill-opacity="0.85" />
+              <rect x="113" y="76" width="10" height="4" rx="1" fill="#f87171" />
+              <text x="107" y="93" fill="#64748b" font-size="9" text-anchor="middle" font-family="'Barlow Condensed', sans-serif">2014</text>
+
+              <!-- 2019 (Assets 4.2 Cr = 420L, Liab 35L) -->
+              <rect x="165" y="24" width="16" height="56" rx="2" fill="#818cf8" fill-opacity="0.85" />
+              <rect x="183" y="72" width="10" height="8" rx="1" fill="#f87171" />
+              <text x="177" y="93" fill="#64748b" font-size="9" text-anchor="middle" font-family="'Barlow Condensed', sans-serif">2019</text>
+
+              <!-- 2024 / 2025 (Assets 4.8 Cr = 480L, Liab 32L) -->
+              <rect x="235" y="14" width="16" height="66" rx="2" fill="#6366f1" />
+              <rect x="253" y="73" width="10" height="7" rx="1" fill="#f87171" />
+              <text x="247" y="93" fill="#cbd5e1" font-size="9" font-weight="bold" text-anchor="middle" font-family="'Barlow Condensed', sans-serif">2025</text>
+
+              <!-- Trend connecting curve for assets -->
+              <path d="M33 60 Q 100 48 103 44 T 173 24 T 243 14" fill="none" stroke="#a5b4fc" stroke-width="2" />
+              <circle cx="243" cy="14" r="3.5" fill="#ffffff" stroke="#6366f1" stroke-width="2" />
+            </svg>
+          </div>
+
+          <div class="flex items-center justify-between text-[10px] text-slate-500 pt-1 border-t border-[#1e293b]/60">
+            <span>2009: ₹1.1 Cr</span>
+            <span>2014: ₹2.2 Cr</span>
+            <span>2019: ₹4.2 Cr</span>
+            <span class="text-slate-300 font-semibold">2025: ₹4.8 Cr</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

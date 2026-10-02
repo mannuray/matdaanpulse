@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Patliputra Constituency - MatdaanPulse Election Studio</title>
+<!-- Google Fonts: Inter & Barlow Condensed / Public Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;family=Public+Sans:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            // Dark studio palette
+            studio: {
+              bg: '#0a0e17',
+              surface: '#0f1523',
+              card: '#111933',
+              border: '#1e2a4a',
+              accent: '#8b7cff'
+            }
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Barlow Condensed", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Inter", "sans-serif"],
+            num: ["Barlow Condensed", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .font-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-feature-settings: 'tnum' 1;
+    }
+    /* Glow animations and accents */
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.15); }
+    }
+    .live-pulse {
+      animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
+<body class="bg-[#0a0e17] text-[#f4f6fb] font-body antialiased min-h-screen selection:bg-[#8b7cff]/30 selection:text-white pb-14">
+<!-- Main Mobile Container (390px targeted layout) -->
+<div class="w-full max-w-[390px] mx-auto min-h-screen bg-[#0a0e17] flex flex-col relative shadow-2xl overflow-x-hidden border-x border-[#1e2a4a]/40">
+<!-- 1. COMPACT STICKY TOP BAR -->
+<header class="sticky top-0 z-40 w-full bg-[#0e131f]/90 backdrop-blur-md border-b border-slate-800/80 px-4 py-2.5 flex items-center justify-between">
+<button aria-label="Go Back" class="w-9 h-9 -ml-1 rounded-full flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800/60 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[24px]">chevron_left</span>
+</button>
+<div class="flex items-center gap-1.5">
+<span class="font-headline font-extrabold text-[15px] tracking-wider uppercase text-white">PATLIPUTRA</span>
+</div>
+<button aria-label="Share Constituency" class="w-9 h-9 -mr-1 rounded-full flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800/60 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</header>
+<!-- CONTENT BODY (16px gutters, normal scroll) -->
+<main class="flex-1 px-4 pt-3.5 space-y-4">
+<!-- 2. CONSTITUENCY HEADER & LIVE CHIP -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between text-xs text-slate-400">
+<span class="font-medium tracking-tight">Bihar VS 2025 › Patna district</span>
+<span class="font-num font-bold tracking-wider text-[11px] text-slate-500 uppercase">AC-30</span>
+</div>
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="rounded-md bg-slate-800/70 border border-slate-700/60 px-2 py-0.5 text-xs text-slate-300 font-mono tracking-tight font-medium">
+              No. 30 · SC
+            </span>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-800/50 text-[11px] font-medium text-emerald-400">
+<span class="w-2 h-2 rounded-full bg-emerald-500 live-pulse"></span>
+<span>Counting · Round 12/24 · 2 min ago</span>
+</div>
+</div>
+<button class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#8b7cff]/20 hover:bg-[#8b7cff]/30 text-[#8b7cff] border border-[#8b7cff]/40 text-xs font-semibold active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span>Track</span>
+</button>
+</div>
+</section>
+<!-- 3. HERO RESULT CARD (Visible above the fold) -->
+<section class="relative rounded-2xl bg-gradient-to-b from-[#111933] to-[#0d1428] border border-slate-800/90 p-4 shadow-[0_4px_24px_rgba(0,0,0,0.5)] overflow-hidden">
+<!-- Ambient subtle glow in top corner -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Leader Row (BJP) -->
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Ram Kripal Yadav" class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500/80 shadow-md" src="https://lh3.googleusercontent.com/aida/AEtjO1WoSJA1NP0Z_KIZjpXhNeJ3V_E8vz321uyIVPRFuze1k0OlvFLGWcerwmr2e5EejNPUF3gnklz6rjFDkc0PqBVz-V08NbUUQzjp54szno0XF7woBa_UIw972oaYLm4xFmCuK3ndzz_k09zGqt9sGPxWRccfsLvofs3shYtyfG5m0KenfCBy_9oVngajkbC657KdZJ2JBbtMyHNO9mw0A-i2fackDqnBTTgXpTPHzADd5o9jX5EryOIMTAo"/>
+<span class="absolute -bottom-1 -right-1 bg-emerald-500 text-slate-950 rounded-full p-0.5 shadow">
+<span class="material-symbols-outlined text-[11px] block font-black">check</span>
+</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h2 class="text-[15px] font-bold text-white tracking-tight leading-tight">Ram Kripal Yadav</h2>
+<span class="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold border border-slate-700/60">Incumbent</span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<img alt="BJP Logo" class="w-4 h-4 rounded-full object-contain bg-white/10 p-0.5" src="https://lh3.googleusercontent.com/aida/AEtjO1Wax-sxWDfkPzYt_huT8DpgjvdxMvHbNrzGOVnhS34gNjfDQrRqx9N0839BjFMjYFpmY3qVC8WlTgk5fLvlWCS6rZuxB7_ESJlxhfVnwl2LEhB3FjPyFT7Yn37BHpkWo0E2HhEiVNtiUgBuOq--7jAwOie8EnN8wKPEg4QJNRpfYKh0hgyoqWmUs2ss9tHAeGq37vUGAZqm3peJ3nlC8zxIzufet4_0rOS7kbsdDE-g6pb5KRDrVv0wqQ"/>
+<span class="text-xs font-semibold text-orange-400">BJP</span>
+<span class="text-slate-600 text-xs">•</span>
+<span class="bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 font-bold text-[10px] uppercase px-1.5 py-0.2 rounded tracking-wide">LEADING</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-num text-2xl font-black text-white tracking-tight leading-none">4,12,890</div>
+<div class="text-[11px] font-semibold text-emerald-400 mt-0.5 font-num">42.8% share</div>
+</div>
+</div>
+<!-- Head-to-Head Segmented Vote Bar -->
+<div class="my-2 space-y-1">
+<div class="h-2.5 w-full bg-slate-800 rounded-full overflow-hidden flex p-0.5 gap-0.5 shadow-inner">
+<div class="h-full bg-[#FF9933] rounded-l-full transition-all duration-500" style="width: 50.5%;"></div>
+<div class="h-full bg-[#22A447] rounded-r-full transition-all duration-500" style="width: 49.5%;"></div>
+</div>
+<div class="flex justify-between items-center text-[10px] font-mono px-0.5">
+<span class="text-orange-400 font-semibold">BJP 42.8%</span>
+<span class="text-slate-400 font-medium">Margin: <strong class="text-emerald-400 font-bold font-num text-xs">+8,412</strong></span>
+<span class="text-emerald-400 font-semibold">41.9% RJD</span>
+</div>
+</div>
+<!-- Runner-up Row (RJD) -->
+<div class="flex items-center justify-between pt-2 border-t border-slate-800/70">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Misa Bharti" class="w-10 h-10 rounded-full object-cover border border-slate-700/80 filter brightness-95" src="https://lh3.googleusercontent.com/aida/AEtjO1UU-dLOy0HiaREP_dkj9f_IM60aDlEO1r1MvqrL39qYJ4Eq2FlMdH9Bh_MMknjzs2wzU1TpXNfeIzjv8F2vudIaUYeEYXu1NfTamjj9oCTmvju8zJ4cNl8TKYI_pgORPk745cJILrqKM-HHmoHnEsAm2hwWErOKYHRjaf5zrPe1a7rfO3LEnWWZSdbuqd41nlKvVgkHCX7ZGmLdDPiVINeecz-duUjsuazWAiH5Gkpln5ePp0TnHFNQwVE"/>
+</div>
+<div>
+<div class="text-[14px] font-semibold text-slate-200 tracking-tight leading-tight">Misa Bharti</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<img alt="RJD Logo" class="w-3.5 h-3.5 rounded-full object-contain bg-white/10 p-0.5" src="https://lh3.googleusercontent.com/aida/AEtjO1XDDRSrBr3-SGdH4ONPQrZoj0PlvhKudl7Y8KXXEvaSe_-gauGBEDHYPXvf85HhGYRAIgTiZxx2-jwVcz17guFqUMM3uY0NidJLf7ZEkHZO2QtMYEk0BBwIOpNBzGUUt0STitPikRQzZ2iK7z7bW8ZWSS68cYRstIAauRwtglRb9nBCA6m_VILv95fpPbePiFtsX7OorBbVj1PA2QetuRf5EO8CICZECfu_3DwnMT-Mv5QAJiqu9rELNA"/>
+<span class="text-xs font-medium text-emerald-300">RJD</span>
+<span class="text-slate-600 text-xs">•</span>
+<span class="text-slate-400 text-[10px] font-medium uppercase tracking-wider">TRAILING</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-num text-xl font-bold text-slate-300 tracking-tight leading-none">4,04,478</div>
+<div class="text-[11px] font-medium text-slate-400 mt-0.5 font-num">41.9% share</div>
+</div>
+</div>
+<!-- Margin Callout Ribbon -->
+<div class="mt-3.5 rounded-lg bg-emerald-950/40 border border-emerald-500/20 px-3 py-1.5 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-emerald-400 text-[16px]">trending_up</span>
+<span class="text-xs text-slate-300 font-medium">Current Lead</span>
+</div>
+<span class="font-num font-bold text-sm text-emerald-400 tracking-wide drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]">
+            Margin +8,412 votes
+          </span>
+</div>
+</section>
+<!-- 4. SEAT FACTS (2x3 Grid) -->
+<section class="space-y-2">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Seat Facts</h3>
+<span class="text-[11px] text-slate-500">ECI Certified</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<!-- 1. Electors -->
+<div class="bg-[#111933]/90 rounded-xl p-3 border border-[#1e2a4a]">
+<div class="text-[11px] font-medium text-slate-400">Total Electors</div>
+<div class="font-num text-lg font-bold text-white mt-0.5">20,14,532</div>
+<div class="text-[10px] text-slate-500 mt-0.5">Voters enrolled</div>
+</div>
+<!-- 2. Votes polled -->
+<div class="bg-[#111933]/90 rounded-xl p-3 border border-[#1e2a4a]">
+<div class="text-[11px] font-medium text-slate-400">Votes Polled</div>
+<div class="font-num text-lg font-bold text-white mt-0.5">11,96,632</div>
+<div class="text-[10px] text-slate-500 mt-0.5">EVM total count</div>
+</div>
+<!-- 3. Turnout -->
+<div class="bg-[#111933]/90 rounded-xl p-3 border border-[#1e2a4a]">
+<div class="text-[11px] font-medium text-slate-400">Voter Turnout</div>
+<div class="flex items-baseline gap-1.5 mt-0.5">
+<span class="font-num text-lg font-bold text-white">59.4%</span>
+<span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/60 px-1 py-0.2 rounded border border-emerald-800/40 font-num">+2.1%</span>
+</div>
+<div class="text-[10px] text-slate-500 mt-0.5">vs 2020 election</div>
+</div>
+<!-- 4. Phase -->
+<div class="bg-[#111933]/90 rounded-xl p-3 border border-[#1e2a4a]">
+<div class="text-[11px] font-medium text-slate-400">Polling Phase</div>
+<div class="font-num text-lg font-bold text-slate-200 mt-0.5">Phase 7</div>
+<div class="text-[10px] text-slate-500 mt-0.5">Held on 01 Jun</div>
+</div>
+<!-- 5. Region -->
+<div class="bg-[#111933]/90 rounded-xl p-3 border border-[#1e2a4a]">
+<div class="text-[11px] font-medium text-slate-400">Region</div>
+<div class="font-semibold text-sm text-slate-200 mt-1 truncate">Magadh / Central</div>
+<div class="text-[10px] text-slate-500 mt-0.5">South of Ganga</div>
+</div>
+<!-- 6. District -->
+<div class="bg-[#111933]/90 rounded-xl p-3 border border-[#1e2a4a]">
+<div class="text-[11px] font-medium text-slate-400">District</div>
+<div class="font-semibold text-sm text-slate-200 mt-1">Patna</div>
+<div class="text-[10px] text-slate-500 mt-0.5">HQ Patna Sadar</div>
+</div>
+</div>
+</section>
+<!-- 5. ALL CANDIDATES (Stacked mobile rows with Affidavit Metrics) -->
+<section class="space-y-2.5 pt-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Candidate Breakdown</h3>
+<span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.2 rounded-full font-mono">12 Total</span>
+</div>
+<span class="text-[11px] text-slate-500">Affidavits (Myneta)</span>
+</div>
+<div class="space-y-2">
+<!-- Row 1: Ram Kripal Yadav (BJP) -->
+<div class="bg-[#111933] rounded-xl p-3 border border-slate-800 relative overflow-hidden">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<span class="font-num text-xs font-bold text-slate-500 w-3">#1</span>
+<img alt="Ram Kripal Yadav" class="w-9 h-9 rounded-full object-cover border border-orange-500/70" src="https://lh3.googleusercontent.com/aida/AEtjO1WoSJA1NP0Z_KIZjpXhNeJ3V_E8vz321uyIVPRFuze1k0OlvFLGWcerwmr2e5EejNPUF3gnklz6rjFDkc0PqBVz-V08NbUUQzjp54szno0XF7woBa_UIw972oaYLm4xFmCuK3ndzz_k09zGqt9sGPxWRccfsLvofs3shYtyfG5m0KenfCBy_9oVngajkbC657KdZJ2JBbtMyHNO9mw0A-i2fackDqnBTTgXpTPHzADd5o9jX5EryOIMTAo"/>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-semibold text-sm text-white">Ram Kripal Yadav</span>
+<img alt="BJP Logo" class="w-3.5 h-3.5 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wax-sxWDfkPzYt_huT8DpgjvdxMvHbNrzGOVnhS34gNjfDQrRqx9N0839BjFMjYFpmY3qVC8WlTgk5fLvlWCS6rZuxB7_ESJlxhfVnwl2LEhB3FjPyFT7Yn37BHpkWo0E2HhEiVNtiUgBuOq--7jAwOie8EnN8wKPEg4QJNRpfYKh0hgyoqWmUs2ss9tHAeGq37vUGAZqm3peJ3nlC8zxIzufet4_0rOS7kbsdDE-g6pb5KRDrVv0wqQ"/>
+<span class="text-[11px] font-bold text-orange-400">BJP</span>
+</div>
+<div class="text-[10px] text-slate-400 mt-0.5">
+                    Age 64 · Assets ₹4.2 Cr · Liabilities ₹35 L · Cases <span class="text-slate-300 font-semibold font-mono">0</span>
+</div>
+</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-num text-sm font-bold text-white">4,12,890</div>
+<div class="font-num text-[11px] font-semibold text-emerald-400">42.8%</div>
+</div>
+</div>
+<!-- Thin Bar -->
+<div class="w-full bg-slate-800/80 h-1.5 rounded-full mt-2.5 overflow-hidden">
+<div class="bg-[#FF9933] h-full rounded-full" style="width: 42.8%;"></div>
+</div>
+</div>
+<!-- Row 2: Misa Bharti (RJD) -->
+<div class="bg-[#111933] rounded-xl p-3 border border-slate-800 relative overflow-hidden">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<span class="font-num text-xs font-bold text-slate-500 w-3">#2</span>
+<img alt="Misa Bharti" class="w-9 h-9 rounded-full object-cover border border-emerald-500/70" src="https://lh3.googleusercontent.com/aida/AEtjO1UU-dLOy0HiaREP_dkj9f_IM60aDlEO1r1MvqrL39qYJ4Eq2FlMdH9Bh_MMknjzs2wzU1TpXNfeIzjv8F2vudIaUYeEYXu1NfTamjj9oCTmvju8zJ4cNl8TKYI_pgORPk745cJILrqKM-HHmoHnEsAm2hwWErOKYHRjaf5zrPe1a7rfO3LEnWWZSdbuqd41nlKvVgkHCX7ZGmLdDPiVINeecz-duUjsuazWAiH5Gkpln5ePp0TnHFNQwVE"/>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-semibold text-sm text-slate-100">Misa Bharti</span>
+<img alt="RJD Logo" class="w-3.5 h-3.5 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XDDRSrBr3-SGdH4ONPQrZoj0PlvhKudl7Y8KXXEvaSe_-gauGBEDHYPXvf85HhGYRAIgTiZxx2-jwVcz17guFqUMM3uY0NidJLf7ZEkHZO2QtMYEk0BBwIOpNBzGUUt0STitPikRQzZ2iK7z7bW8ZWSS68cYRstIAauRwtglRb9nBCA6m_VILv95fpPbePiFtsX7OorBbVj1PA2QetuRf5EO8CICZECfu_3DwnMT-Mv5QAJiqu9rELNA"/>
+<span class="text-[11px] font-bold text-emerald-400">RJD</span>
+</div>
+<div class="text-[10px] text-slate-400 mt-0.5">
+                    Age 49 · Assets ₹12.8 Cr · Liabilities ₹1.1 Cr · Cases <span class="text-amber-400 font-bold font-mono bg-amber-950/60 px-1 rounded border border-amber-500/30">2</span>
+</div>
+</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-num text-sm font-bold text-slate-200">4,04,478</div>
+<div class="font-num text-[11px] font-semibold text-slate-300">41.9%</div>
+</div>
+</div>
+<!-- Thin Bar -->
+<div class="w-full bg-slate-800/80 h-1.5 rounded-full mt-2.5 overflow-hidden">
+<div class="bg-[#1A9338] h-full rounded-full" style="width: 41.9%;"></div>
+</div>
+</div>
+<!-- Row 3: Pawan Kumar Sharma (JD(U) Rebel / IND) -->
+<div class="bg-[#111933] rounded-xl p-3 border border-slate-800 relative overflow-hidden">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<span class="font-num text-xs font-bold text-slate-500 w-3">#3</span>
+<img alt="Pawan Kumar Sharma" class="w-9 h-9 rounded-full object-cover border border-teal-500/50" src="https://lh3.googleusercontent.com/aida/AEtjO1VnZa5sbCBua17lcW3wwZqq6MqKg9hEwfZRV7shtZaZR6M-qU-kX7HZOuYGP3wqFGuiIm8dbvpzgUA0WsXyP1TW5WeD5tVaasmuoiJ50MYpvHYuX0METyP2WSeFH3fQvuqSLTwc4MzMgwysxqa-yoMPlgSMvQBrL0z5tA_GGuGHzcgmDgdzF0mv5bkU14CBfIZoWBOvaBrOZgTuzTSXuiYQB_DYiVQ4_Sw43wPZW39AnTXZaSfANqgOU0Y"/>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-semibold text-sm text-slate-200">Pawan Kumar Sharma</span>
+<img alt="Arrow Emblem" class="w-3.5 h-3.5 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UMcsv691ucmYg7b6aR0LWZ7v7zmbPrd5LUO-AwRq_w9C9_geTlefM6VnVd2IWemrS87TaTSzfsy_RRWub_aQe730K6RZHux79Y4uOkbZBNqmxmfcVINbpGdi95SWy_VDYrQdXmro4PbUGab1-zNRvvpBv2F4VZIhbLzUULe85GX8MS7ONtT3ZzDyqilbIXq7jFsvWkbKd1V9Ffp8CO8zRXeC_8089E6TwQwi-EOTnKN_JBLQ5NavRKgg"/>
+<span class="text-[10px] font-medium text-teal-400">JD(U) Rebel/IND</span>
+</div>
+<div class="text-[10px] text-slate-400 mt-0.5">
+                    Age 38 · Assets ₹85 L · Liabilities ₹8 L · Cases <span class="text-slate-300 font-semibold font-mono">0</span>
+</div>
+</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-num text-sm font-bold text-slate-300">86,215</div>
+<div class="font-num text-[11px] font-semibold text-slate-400">8.9%</div>
+</div>
+</div>
+<!-- Thin Bar -->
+<div class="w-full bg-slate-800/80 h-1.5 rounded-full mt-2.5 overflow-hidden">
+<div class="bg-teal-500 h-full rounded-full" style="width: 8.9%;"></div>
+</div>
+</div>
+<!-- Row 4: Rajesh Kumar Paswan (BSP) -->
+<div class="bg-[#111933] rounded-xl p-3 border border-slate-800">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<span class="font-num text-xs font-bold text-slate-500 w-3">#4</span>
+<div class="w-9 h-9 rounded-full bg-indigo-900/60 border border-indigo-700/50 flex items-center justify-center font-bold text-xs text-indigo-300">
+                  RK
+                </div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-medium text-sm text-slate-200">Rajesh Kumar Paswan</span>
+<span class="text-[11px] font-medium text-indigo-400">BSP</span>
+</div>
+<div class="text-[10px] text-slate-400 mt-0.5">
+                    Age 44 · Assets ₹42 L · Liabilities ₹3 L · Cases <span class="text-amber-400 font-bold font-mono bg-amber-950/60 px-1 rounded border border-amber-500/30">1</span>
+</div>
+</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-num text-sm font-semibold text-slate-300">24,650</div>
+<div class="font-num text-[11px] text-slate-400">2.6%</div>
+</div>
+</div>
+<div class="w-full bg-slate-800/80 h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-indigo-500 h-full rounded-full" style="width: 2.6%;"></div>
+</div>
+</div>
+<!-- Row 5: Anil Madhav (IND) -->
+<div class="bg-[#111933] rounded-xl p-3 border border-slate-800">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<span class="font-num text-xs font-bold text-slate-500 w-3">#5</span>
+<div class="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-xs text-slate-400">
+                  AM
+                </div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-medium text-sm text-slate-300">Anil Madhav</span>
+<span class="text-[11px] text-slate-400">IND</span>
+</div>
+<div class="text-[10px] text-slate-400 mt-0.5">
+                    Age 51 · Assets ₹1.9 Cr · Liabilities ₹14 L · Cases <span class="text-slate-300 font-semibold font-mono">0</span>
+</div>
+</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-num text-sm font-semibold text-slate-300">16,840</div>
+<div class="font-num text-[11px] text-slate-400">1.7%</div>
+</div>
+</div>
+<div class="w-full bg-slate-800/80 h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-slate-400 h-full rounded-full" style="width: 1.7%;"></div>
+</div>
+</div>
+<!-- Row 6: Sunita Devi (AAP / OTH) -->
+<div class="bg-[#111933] rounded-xl p-3 border border-slate-800">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<span class="font-num text-xs font-bold text-slate-500 w-3">#6</span>
+<img alt="Sunita Devi" class="w-9 h-9 rounded-full object-cover border border-slate-700" src="https://lh3.googleusercontent.com/aida/AEtjO1U_jGKz1ve_wYAo2dNWo7Nn5BwH25lPYqoWIGthBkH2PZDPbqy1EKw-9dfFP4HkaxHN2gfnEVjT8yJTVgRpNKpGdg8In0KpQCkX_K7XQ8sfZwzghiyR7uQCF4FTuyHFSEqVD3e_buszU86wj9Jo1-WpTEnr4hdAsUNI8LNCPHsZuVhOwGvJx3bOUiJXSGkK0HwQrM1rf6EY2A456hzFt5qP4duICJ90Ge3oyHnLpH_guMFEDo_KZdtSuOc"/>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-medium text-sm text-slate-300">Sunita Devi</span>
+<span class="text-[11px] text-cyan-400">AAP / OTH</span>
+</div>
+<div class="text-[10px] text-slate-400 mt-0.5">
+                    Age 36 · Assets ₹28 L · Liabilities ₹0 · Cases <span class="text-slate-300 font-semibold font-mono">0</span>
+</div>
+</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-num text-sm font-semibold text-slate-300">11,240</div>
+<div class="font-num text-[11px] text-slate-400">1.2%</div>
+</div>
+</div>
+<div class="w-full bg-slate-800/80 h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-cyan-500 h-full rounded-full" style="width: 1.2%;"></div>
+</div>
+</div>
+<!-- NOTA Row -->
+<div class="bg-slate-900/60 rounded-xl px-3 py-2.5 border border-slate-800/60 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-500 text-[18px]">cancel</span>
+<span class="text-xs font-medium text-slate-300">None of the Above (NOTA)</span>
+</div>
+<div class="text-right">
+<span class="font-num text-xs font-bold text-slate-300">9,219</span>
+<span class="text-[10px] text-slate-500 font-num ml-1">(1.0%)</span>
+</div>
+</div>
+<!-- Summary Strip -->
+<div class="rounded-lg bg-slate-900/40 border border-dashed border-slate-800 px-3 py-2 text-center text-xs text-slate-400 font-medium">
+            +5 other registered candidates · 9,230 votes (0.8%)
+          </div>
+</div>
+</section>
+<!-- 6. SEAT HISTORY (Compact timeline) -->
+<section class="space-y-2.5 pt-1">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Past Elections</h3>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-950/50 border border-amber-500/40 text-[10px] font-bold text-amber-300">
+<span class="material-symbols-outlined text-[12px]">sync_alt</span>
+            Swing Seat
+          </span>
+</div>
+<div class="bg-[#111933] rounded-2xl p-3.5 border border-slate-800 space-y-3">
+<!-- 2020 -->
+<div class="flex items-center justify-between text-xs pb-2.5 border-b border-slate-800/80">
+<div class="flex items-center gap-2.5">
+<span class="font-num font-bold text-slate-200 text-sm">2020</span>
+<img alt="BJP Logo" class="w-4 h-4 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wax-sxWDfkPzYt_huT8DpgjvdxMvHbNrzGOVnhS34gNjfDQrRqx9N0839BjFMjYFpmY3qVC8WlTgk5fLvlWCS6rZuxB7_ESJlxhfVnwl2LEhB3FjPyFT7Yn37BHpkWo0E2HhEiVNtiUgBuOq--7jAwOie8EnN8wKPEg4QJNRpfYKh0hgyoqWmUs2ss9tHAeGq37vUGAZqm3peJ3nlC8zxIzufet4_0rOS7kbsdDE-g6pb5KRDrVv0wqQ"/>
+<div>
+<span class="font-semibold text-white">BJP</span>
+<span class="text-slate-400 text-[11px] block">Ram Kripal Yadav</span>
+</div>
+</div>
+<div class="text-right font-num">
+<span class="text-emerald-400 font-semibold text-xs">+4,622</span>
+<span class="text-slate-500 text-[11px] block font-mono">43.2% vote</span>
+</div>
+</div>
+<!-- 2015 -->
+<div class="flex items-center justify-between text-xs pb-2.5 border-b border-slate-800/80">
+<div class="flex items-center gap-2.5">
+<span class="font-num font-bold text-slate-200 text-sm">2015</span>
+<img alt="RJD Logo" class="w-4 h-4 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XDDRSrBr3-SGdH4ONPQrZoj0PlvhKudl7Y8KXXEvaSe_-gauGBEDHYPXvf85HhGYRAIgTiZxx2-jwVcz17guFqUMM3uY0NidJLf7ZEkHZO2QtMYEk0BBwIOpNBzGUUt0STitPikRQzZ2iK7z7bW8ZWSS68cYRstIAauRwtglRb9nBCA6m_VILv95fpPbePiFtsX7OorBbVj1PA2QetuRf5EO8CICZECfu_3DwnMT-Mv5QAJiqu9rELNA"/>
+<div>
+<span class="font-semibold text-white">RJD</span>
+<span class="text-slate-400 text-[11px] block">Misa Bharti</span>
+</div>
+</div>
+<div class="text-right font-num">
+<span class="text-emerald-400 font-semibold text-xs">+8,110</span>
+<span class="text-slate-500 text-[11px] block font-mono">44.5% vote</span>
+</div>
+</div>
+<!-- 2010 -->
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-2.5">
+<span class="font-num font-bold text-slate-200 text-sm">2010</span>
+<img alt="JD(U) Logo" class="w-4 h-4 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UMcsv691ucmYg7b6aR0LWZ7v7zmbPrd5LUO-AwRq_w9C9_geTlefM6VnVd2IWemrS87TaTSzfsy_RRWub_aQe730K6RZHux79Y4uOkbZBNqmxmfcVINbpGdi95SWy_VDYrQdXmro4PbUGab1-zNRvvpBv2F4VZIhbLzUULe85GX8MS7ONtT3ZzDyqilbIXq7jFsvWkbKd1V9Ffp8CO8zRXeC_8089E6TwQwi-EOTnKN_JBLQ5NavRKgg"/>
+<div>
+<span class="font-semibold text-white">JD(U)</span>
+<span class="text-slate-400 text-[11px] block">Ranjan P. Yadav</span>
+</div>
+</div>
+<div class="text-right font-num">
+<span class="text-emerald-400 font-semibold text-xs">+23,450</span>
+<span class="text-slate-500 text-[11px] block font-mono">48.1% vote</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. LOCATOR MAP OF BIHAR (Stylized Graphic) -->
+<section class="space-y-2 pt-1">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Constituency Locator</h3>
+<span class="text-[11px] text-slate-500">Patna Division</span>
+</div>
+<div class="bg-[#111933] rounded-2xl p-3 border border-slate-800 relative overflow-hidden">
+<div class="w-full h-36 rounded-xl bg-[#0a0f1d] border border-slate-800/80 relative flex items-center justify-center overflow-hidden">
+<!-- Stylized SVG Outline of Bihar State -->
+<svg class="w-full h-full p-2 opacity-80" fill="none" viewbox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+<!-- Bihar Regional Contours -->
+<path d="M 28 58 Q 50 32 95 38 T 160 30 T 225 36 T 285 52 Q 295 90 270 125 T 215 155 T 140 152 T 75 140 T 32 105 Z" fill="#151f38" stroke="#25355a" stroke-width="1.5"></path>
+<!-- Internal Division Lines -->
+<path d="M 95 38 Q 120 70 140 100 Q 150 135 152 152" stroke="#1d2a48" stroke-dasharray="3 3" stroke-width="1"></path>
+<path d="M 160 30 Q 170 70 180 110 Q 185 140 215 155" stroke="#1d2a48" stroke-dasharray="3 3" stroke-width="1"></path>
+<!-- Ganga River Flow Simulation -->
+<path d="M 30 75 Q 85 88 145 84 T 220 90 T 280 105" fill="none" opacity="0.6" stroke="#224263" stroke-linecap="round" stroke-width="2"></path>
+<!-- Patliputra Highlight Seat Area -->
+<circle class="animate-pulse" cx="145" cy="85" fill="#f59e0b" fill-opacity="0.25" r="14"></circle>
+<circle cx="145" cy="85" fill="#f59e0b" r="7" stroke="#ffffff" stroke-width="1.5"></circle>
+</svg>
+<!-- Floating Locator Label Badge -->
+<div class="absolute bottom-2.5 left-2.5 bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-lg px-2.5 py-1 flex items-center gap-1.5 shadow-lg">
+<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+<span class="text-xs font-semibold text-white">Patliputra (#30)</span>
+<span class="text-[10px] text-slate-400 font-mono">South Bank</span>
+</div>
+<div class="absolute top-2.5 right-2.5 text-[10px] font-mono text-slate-500 uppercase tracking-widest bg-slate-950/60 px-2 py-0.5 rounded">
+              Bihar State Contours
+            </div>
+</div>
+</div>
+</section>
+<!-- 8. INSIGHTS ALERT CARD -->
+<section class="pt-1 pb-4">
+<div class="rounded-2xl bg-gradient-to-r from-amber-950/40 via-amber-900/20 to-slate-900 border border-amber-500/30 p-3.5 shadow-lg">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-amber-400 text-[20px] shrink-0 mt-0.5">warning</span>
+<div class="space-y-1">
+<h4 class="text-xs font-bold text-amber-300 uppercase tracking-wide">3-Way Contest Dynamic</h4>
+<p class="text-xs text-slate-300 leading-relaxed">
+                The lead margin (<strong class="text-emerald-400 font-mono">+8,412</strong>) is currently narrower than the votes secured by the 3rd candidate (<strong class="text-white font-mono">86,215</strong> from JD(U) Rebel Pawan Kumar Sharma). Crucial swing dynamic observed across Phulwari Sharif &amp; Danapur assembly segments.
+              </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Contextual Status Bar / Footer Anchor -->
+<div class="w-full bg-[#0a0e17] border-t border-slate-800/80 px-4 py-2.5 text-center text-[10px] text-slate-500 font-mono">
+      ECI Live Feeds · Data Refreshed Every 60s
+    </div>
+</div>
+</body></html>
