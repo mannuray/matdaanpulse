@@ -18,8 +18,15 @@ describe('PartyMark', () => {
     expect(container.querySelector('img')).toBeNull();
     const dot = container.querySelector('[data-party-dot]') as HTMLElement;
     expect(dot).toBeTruthy();
-    // Check that the background style is set (jsdom may normalize colors differently)
-    expect(dot.style.background).toBeTruthy();
+    // jsdom normalizes #f80 to rgb(255, 136, 0)
+    expect((dot as HTMLElement).style.background).toBe('rgb(255, 136, 0)');
+  });
+
+  it('uses the fallback colour when color prop is null', () => {
+    const { container } = render(<PartyMark mark={null} color={null} label="IND" />);
+    const dot = container.querySelector('[data-party-dot]') as HTMLElement;
+    expect(dot).toBeTruthy();
+    expect((dot as HTMLElement).style.background).toBe('var(--color-fallback)');
   });
 
   it('falls back to the dot when the image fails to load', () => {

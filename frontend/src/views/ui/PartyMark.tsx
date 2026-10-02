@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { cn } from './cn';
 
-const DOT: Record<number, string> = { 16: 'h-2.5 w-2.5', 24: 'h-3 w-3', 40: 'h-4 w-4', 64: 'h-6 w-6' };
+const DOT: Record<16 | 24 | 40 | 64, string> = { 16: 'h-2.5 w-2.5', 24: 'h-3 w-3', 40: 'h-4 w-4', 64: 'h-6 w-6' };
 
 /** D1: logo / ECI symbol image, else (or on load error) the party colour dot. */
 export function PartyMark({ mark, color, label, size = 16, className }: { mark: string | null; color: string | null; label: string; size?: 16 | 24 | 40 | 64; className?: string }) {
