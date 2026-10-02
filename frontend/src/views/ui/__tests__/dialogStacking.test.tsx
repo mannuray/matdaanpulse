@@ -1,11 +1,16 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach, beforeAll } from 'vitest';
-import { render, cleanup, screen, fireEvent } from '@testing-library/react';
+import { render as rtlRender, cleanup, screen, fireEvent } from '@testing-library/react';
+import type { ReactElement } from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { useState } from 'react';
 import '../../../i18n';
 import { DetailDialog } from '../DetailDialog';
 import { FocusDialog } from '../FocusDialog';
 import { BottomSheet } from '../BottomSheet';
+
+/** Dialogs carry the site footer (router links). */
+const render = (ui: ReactElement) => rtlRender(<MemoryRouter>{ui}</MemoryRouter>);
 
 let desktop = true;
 beforeAll(() => { window.matchMedia = vi.fn().mockImplementation(() => ({ matches: desktop, addEventListener: vi.fn(), removeEventListener: vi.fn() })) as never; });

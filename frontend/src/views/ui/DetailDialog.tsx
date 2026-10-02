@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { BottomSheet } from './BottomSheet';
+import { SiteFooter } from './SiteFooter';
 
 /** Seat / party dialog shell: centred on desktop, bottom sheet on mobile (spec D10). */
 /** `leading` sits left of the title (e.g. a party logo); `titleSuffix` follows the title on its line (e.g. the abbreviation). */
@@ -12,7 +13,7 @@ export function DetailDialog({ open, title, onClose, header, leading, titleSuffi
   const opener = useRef<HTMLElement | null>(null);
   useLayoutEffect(() => { if (open) opener.current = document.activeElement as HTMLElement | null; }, [open]);
   if (!desktop) {
-    return <BottomSheet open={open} onOpenChange={o => { if (!o) onClose(); }} title={title}>{leading || titleSuffix ? <div className="mb-2 flex items-center gap-3">{leading}{titleSuffix}</div> : null}{header}{children}</BottomSheet>;
+    return <BottomSheet open={open} onOpenChange={o => { if (!o) onClose(); }} title={title}>{leading || titleSuffix ? <div className="mb-2 flex items-center gap-3">{leading}{titleSuffix}</div> : null}{header}{children}<div className="-mx-4 -mb-4 mt-4"><SiteFooter compact /></div></BottomSheet>;
   }
   return (
     <Dialog.Root open={open} onOpenChange={o => { if (!o) onClose(); }}>
@@ -37,6 +38,7 @@ export function DetailDialog({ open, title, onClose, header, leading, titleSuffi
             </Dialog.Close>
           </div>
           <div className="min-h-0 flex-1 overflow-auto px-5 py-4">{children}</div>
+          <SiteFooter compact />
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

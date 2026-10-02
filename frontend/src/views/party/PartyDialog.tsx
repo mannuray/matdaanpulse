@@ -6,6 +6,7 @@ import { PartyMark } from '../ui/PartyMark';
 import { Avatar } from '../ui/Avatar';
 import { Icon } from '../ui/Icon';
 import { cn } from '../ui/cn';
+import { ScrollStrip } from '../ui/ScrollStrip';
 
 /** A party colour (hex or var()) at a given opacity, for tints and borders. */
 const tint = (color: string, pct: number) => `color-mix(in srgb, ${color} ${pct}%, transparent)`;
@@ -96,34 +97,46 @@ export function PartyDialog({ vm }: { vm: PartyDialogVM | null }) {
 
         {/* Key candidates */}
         {vm.keyCandidates.length > 0 && (
-          <section className="space-y-2.5">
-            <div className="flex items-center justify-between text-xs">
+          <ScrollStrip label={t('party_key_candidates')} header={
+            <div className="flex items-center justify-between gap-2 text-xs">
               <h2 className="font-display text-xs font-bold uppercase tracking-wider text-ink/80">{t('party_key_candidates')}</h2>
-              <span className="text-[10px] font-medium text-muted">{t('party_key_hint')}</span>
+              <span className="truncate text-[10px] font-medium text-muted">{t('party_key_hint')}</span>
             </div>
-            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-              {vm.keyCandidates.map(c => {
-                const body = (
-                  <>
-                    <div className="mb-2 flex items-start gap-2.5">
-                      <Avatar name={c.name} photo={c.photo} size={36} />
-                      <div className="min-w-0"><div className="truncate text-xs font-semibold leading-tight text-ink">{c.name}</div>
-                        <span className="block truncate text-[10px] text-muted">{c.constId ? c.constName : t('party_not_contesting')}</span>
-                        {c.leader && <span className="mt-1 inline-block rounded border px-1.5 py-px text-[9px] font-bold uppercase tracking-wider" style={{ color, borderColor: tint(color, 40), background: tint(color, 12) }}>{t('party_leader_tag')}</span>}</div>
-                    </div>
-                    <div className="mt-auto flex items-center justify-between gap-1 border-t border-line/60 pt-1 text-[10px]">
-                      {c.constNo != null ? <span className="tabular text-muted">{t('party_seat_no', { n: c.constNo })}</span> : <span />}
-                      {c.status && <span className={cn('rounded border px-1.5 py-0.5 text-[9px] font-bold uppercase', c.status === 'WON' || c.status === 'LEADING' ? 'border-ok-text/40 bg-ok-text/15 text-ok-text' : 'border-live-text/30 bg-live-text/10 text-live-text')}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>}
-                    </div>
-                  </>
-                );
-                const cls = 'group flex flex-col justify-between rounded-xl border border-line bg-page p-2.5 text-left transition-colors';
-                return c.constId
-                  ? <button key={c.key} type="button" onClick={() => vm.onSelectSeat(c.constId)} className={cn(cls, 'hover:border-[color:var(--hover)]')} style={{ '--hover': tint(color, 50) } as CSSProperties}>{body}</button>
-                  : <div key={c.key} className={cls}>{body}</div>;
-              })}
-            </div>
-          </section>
+          }>
+            {vm.keyCandidates.map(c => {
+              const body = (
+                <>
+                  <div className="mb-2 flex items-start gap-2.5 pr-5">
+                    <Avatar name={c.name} photo={c.photo} size={36} />
+                    <div className="min-w-0"><div className="truncate text-xs font-semibold leading-tight text-ink">{c.name}</div>
+                      <span className="block truncate text-[10px] text-muted">{c.constId ? c.constName : t('party_not_contesting')}</span>
+                      {c.leader && <span className="mt-1 inline-block rounded border px-1.5 py-px text-[9px] font-bold uppercase tracking-wider" style={{ color, borderColor: tint(color, 40), background: tint(color, 12) }}>{t('party_leader_tag')}</span>}</div>
+                  </div>
+                  <div className="mt-auto flex items-center justify-between gap-1 border-t border-line/60 pt-1 text-[10px]">
+                    {c.constNo != null ? <span className="tabular text-muted">{t('party_seat_no', { n: c.constNo })}</span> : <span />}
+                    {c.status && <span className={cn('rounded border px-1.5 py-0.5 text-[9px] font-bold uppercase', c.status === 'WON' || c.status === 'LEADING' ? 'border-ok-text/40 bg-ok-text/15 text-ok-text' : 'border-live-text/30 bg-live-text/10 text-live-text')}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>}
+                  </div>
+                </>
+              );
+              const cls = 'flex h-full w-full flex-col justify-between rounded-xl border border-line bg-page p-2.5 text-left transition-colors';
+              return (
+                <div key={c.key} className="group relative w-[180px] shrink-0 snap-start">
+                  {c.constId
+                    ? <button type="button" onClick={() => vm.onSelectSeat(c.constId)} className={cn(cls, 'hover:border-[color:var(--hover)]')} style={{ '--hover': tint(color, 50) } as CSSProperties}>{body}</button>
+                    : <div className={cls}>{body}</div>}
+                  {/* Track: shown on hover/focus (always on touch screens, and once tracked). */}
+                  {c.constId && (
+                    <button type="button" onClick={() => vm.onToggleTrack(c.constId, c.constName || c.name)} aria-pressed={c.tracked}
+                      aria-label={t(c.tracked ? 'party_untrack_seat' : 'party_track_seat', { seat: c.constName || c.name })} title={t(c.tracked ? 'studio_tracked' : 'studio_track')}
+                      className={cn('absolute right-1.5 top-1.5 grid h-6 w-6 place-items-center rounded-full border bg-tile transition-opacity focus-visible:opacity-100 group-hover:opacity-100 [@media(hover:none)]:opacity-100',
+                        c.tracked ? 'border-accent text-accent opacity-100' : 'border-line text-muted opacity-0 hover:border-accent hover:text-ink')}>
+                      <Icon name="star" className={cn('h-3.5 w-3.5', c.tracked && 'fill-current')} />
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </ScrollStrip>
         )}
       </div>
     </DetailDialog>

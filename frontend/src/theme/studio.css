@@ -18,6 +18,8 @@
   --color-line: #1E2A4A;
   --color-ink: #F4F6FB;
   --color-accent: #8B7CFF;
+  /* Wordmark saffron ("Matdaan" ink + "Pulse" brand, Stitch). */
+  --color-brand: #FF7A1A;
   --color-live: #FF3B3B;
   --color-map-bg: #0D1428;
   --color-map-stroke: #0A0F1E;
@@ -52,6 +54,7 @@
   --color-line: #C5CDDF;
   --color-ink: #0E1530;
   --color-accent: #6252DC;
+  --color-brand: #D9620F;
   --color-live: #D01F1F;
   --color-map-bg: #EAEEF6;
   --color-map-stroke: #FFFFFF;

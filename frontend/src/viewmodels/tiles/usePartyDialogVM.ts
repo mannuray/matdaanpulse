@@ -13,9 +13,14 @@ export interface PartyDialogVM {
   electionName: string; stats: PartyElectionStats; totalSeats: number; majority: number;
   profile: { leader: string | null; founded: number | null; hq: string | null; website: string | null; wikipedia: string | null; description: string | null } | null;
   /** The party's leaders first (a seatless one as party leader), then its biggest wins. */
-  keyCandidates: (PartyKeyCandidate & { photo: string | null })[];
+  keyCandidates: (PartyKeyCandidate & { photo: string | null; tracked: boolean })[];
+  /** Adds or removes the seat on the dashboard watchlist. */
+  onToggleTrack(constId: string, label: string): void;
   onClose(): void; onSelectSeat(id: string): void;
 }
+
+/** Cards in the scrolling key-candidates strip. */
+const KEY_LIMIT = 8;
 
 export function usePartyDialogVM(): PartyDialogVM | null {
   const src = useSources();
@@ -25,7 +30,7 @@ export function usePartyDialogVM(): PartyDialogVM | null {
   const alliances = useMemo(() => src.data.manifestData?.alliances ?? [], [src.data.manifestData]);
   const stats = useMemo(() => (id ? partyElectionStats(id, src.data.results, src.votePct, alliances) : null), [id, src.data.results, src.votePct, alliances]);
   const keyCandidates = useMemo(
-    () => (id ? partyKeyCandidates(id, deriveLeaderCards(resolveLeaderSeats(collectLeaderEntries(src.data.manifestData, []), src.data.results), src.data.currentWinnerMap), src.data.currentWinnerMap) : []),
+    () => (id ? partyKeyCandidates(id, deriveLeaderCards(resolveLeaderSeats(collectLeaderEntries(src.data.manifestData, []), src.data.results), src.data.currentWinnerMap), src.data.currentWinnerMap, KEY_LIMIT) : []),
     [id, src.data.manifestData, src.data.results, src.data.currentWinnerMap],
   );
   // Snapshot rows carry no photos: read them from the shown seats' details (the seat dialog's cache keys).
@@ -39,8 +44,8 @@ export function usePartyDialogVM(): PartyDialogVM | null {
     const d = details?.find(x => x?.id === c.constId);
     // One candidate per party per seat; manifest names differ from ballot names ("Tejashwi Yadav" vs "TEJASHWI PRASAD YADAV").
     const m = d?.candidates?.find(x => x.party?.id === id);
-    return { ...c, photo: m?.person?.photo_url ?? null };
-  }), [keyCandidates, details, id]);
+    return { ...c, photo: m?.person?.photo_url ?? null, tracked: !!c.constId && src.watchlist.some(w => w.const_id === c.constId) };
+  }), [keyCandidates, details, id, src.watchlist]);
   if (!id || !stats) return null;
   const m = src.partyMeta.get(id);
   // An id the loaded party list and this election's results both lack opens nothing.
@@ -58,6 +63,7 @@ export function usePartyDialogVM(): PartyDialogVM | null {
     majority: src.majority,
     profile: party && id === party.id ? { leader: party.leader_name, founded: party.founded_year, hq: party.headquarters, website: party.website, wikipedia: party.wikipedia_url, description: party.description } : null,
     keyCandidates: withPhotos,
+    onToggleTrack: (constId, label) => (src.watchlist.some(w => w.const_id === constId) ? src.removeWatch(constId) : src.addWatch(constId, label)),
     onClose: () => dispatch({ type: 'selectParty', party: null }),
     onSelectSeat: seat => { dispatch({ type: 'selectParty', party: null }); dispatch({ type: 'selectSeat', seat }); },
   };

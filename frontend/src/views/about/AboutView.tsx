@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import type { DataNote, DataQuality, DataSource, DataSourceGroup } from '../../model/about/about';
 import type { FeedbackFormVM } from '../../viewmodels/about/useFeedbackForm';
 import { cn } from '../ui/cn';
+import { Wordmark } from '../ui/Wordmark';
 
 const QUALITY_DOT: Record<DataQuality, string> = {
   real: 'bg-ok',
@@ -126,7 +127,7 @@ export function AboutView({ groups, contactEmail, eciUrl, feedback }: {
         <header className="flex h-12 items-center justify-between gap-2 rounded-tile border border-line bg-tile pl-3 pr-2">
           <Link to="/" className="flex h-11 min-w-0 items-center gap-2 font-display text-lg font-bold text-ink">
             <img src="/logo-mark.png" alt="" aria-hidden className="h-7 w-7 shrink-0 object-contain" />
-            <span className="truncate">{t('app_title')}</span>
+            <Wordmark className="truncate" />
           </Link>
           <Link to="/" className="flex h-11 shrink-0 items-center rounded-full px-3 text-sm font-medium text-muted hover:text-ink focus-visible:ring-2 focus-visible:ring-accent">
             ← {t('about_back')}

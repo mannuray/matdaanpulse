@@ -7,6 +7,7 @@ const PATHS = {
   percent: 'M19 5L5 19M7.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM16.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z',
   swap: 'M7 7h13l-3-3M17 17H4l3 3',
   arrow: 'M5 12h14M13 6l6 6-6 6',
+  chevron: 'M9 5l7 7-7 7',
   external: 'M7 17L17 7M9 7h8v8',
   gavel: 'M14 4l6 6M11 7l6 6M12.5 5.5l-5 5M15.5 8.5l-5 5M9 12l-6 6M4 21h9',
   wallet: 'M3 7a2 2 0 012-2h13v4M3 7v10a2 2 0 002 2h15V9H5a2 2 0 01-2-2zM16 14h.01',

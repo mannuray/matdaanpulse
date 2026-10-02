@@ -505,5 +505,9 @@
   "ins_aff_cases": "{{withCases}} of {{total}} candidates declared criminal cases.",
   "ins_aff_winner": "The leader declared {{n}}.",
   "ins_aff_richest": "Richest: {{name}} ({{assets}}).",
-  "party_seat_no": "Seat #{{n}}"
+  "party_seat_no": "Seat #{{n}}",
+  "scroll_prev": "Scroll back",
+  "scroll_next": "Scroll forward",
+  "party_track_seat": "Track {{seat}}",
+  "party_untrack_seat": "Stop tracking {{seat}}"
 }

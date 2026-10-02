@@ -8,6 +8,7 @@ import { PickerSelect } from '../ui/PickerSelect';
 import { BottomSheet } from '../ui/BottomSheet';
 import { SearchBox } from './SearchBox';
 import { ShareMenu } from './ShareMenu';
+import { Wordmark } from '../ui/Wordmark';
 
 const ICON_BTN = 'grid h-11 w-11 shrink-0 place-items-center rounded-full text-muted hover:bg-tile-raised hover:text-ink focus-visible:ring-2 focus-visible:ring-accent';
 
@@ -56,7 +57,7 @@ function CompactTopBar({ vm, search }: { vm: TopBarVM; search: SearchVM }) {
   const sheetSearch = useMemo<SearchVM>(() => ({ ...search, onPick: id => { search.onPick(id); setSheet(null); } }), [search]);
   return (
     <header className="flex h-[54px] min-w-0 items-center gap-1 rounded-tile border border-line bg-tile pl-3 pr-1">
-      <Link to="/" className="flex h-11 min-w-0 shrink items-center gap-2 font-display text-base font-bold text-ink max-[369px]:hidden"><img src="/logo-mark.png" alt="" aria-hidden className="h-8 w-8 shrink-0 object-contain" /><span className="truncate">{t('app_title')}</span></Link>
+      <Link to="/" className="flex h-11 min-w-0 shrink items-center gap-2 font-display text-base font-bold text-ink max-[369px]:hidden"><img src="/logo-mark.png" alt="" aria-hidden className="h-8 w-8 shrink-0 object-contain" /><Wordmark className="truncate" /></Link>
       <Link to="/" aria-label={t('app_title')} data-logo-mark className="hidden h-11 w-11 shrink-0 place-items-center max-[369px]:grid">
         <img src="/logo-mark.png" alt="" aria-hidden className="h-8 w-8 object-contain" />
       </Link>
@@ -98,7 +99,7 @@ export function TopBar({ vm, search, compact = false }: { vm: TopBarVM; search: 
   const s = vm.statusLabel;
   return (
     <header className="flex h-12 min-w-0 items-center gap-3 rounded-tile border border-line bg-tile px-4">
-      <Link to="/" className="flex shrink-0 items-center gap-2 font-display text-lg font-bold text-ink"><img src="/logo-mark.png" alt="" aria-hidden className="h-7 w-7 object-contain" />{t('app_title')}</Link>
+      <Link to="/" className="flex shrink-0 items-center gap-2 font-display text-lg font-bold text-ink"><img src="/logo-mark.png" alt="" aria-hidden className="h-7 w-7 object-contain" /><Wordmark /></Link>
       <PillToggle value={vm.electionType} onChange={vm.onType} ariaLabel={t('studio_election_type')} size="sm" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />
       {vm.electionType === 'VS' ? (
         <>
