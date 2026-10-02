@@ -53,6 +53,32 @@ describe('LeadersStrip fits by width', () => {
   });
 });
 
+describe('party dialog entry points', () => {
+  it('a leader card opens the party dialog from its own button (no nested buttons); a party-less card has none', () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, get: () => 1600 });
+    const onOpenParty = vi.fn();
+    const onSelectSeat = vi.fn();
+    const { container } = render(<LeadersStrip vm={leadersVM({ leaders: [card(1), card(2, { partyId: '' })], onOpenParty, onSelectSeat })} variant="tile" />);
+    expect(container.querySelectorAll('button button')).toHaveLength(0);
+    const party = screen.getAllByRole('button', { name: 'Party details: BJP' });
+    expect(party).toHaveLength(1);
+    fireEvent.click(party[0]);
+    expect(onOpenParty).toHaveBeenCalledWith('BJP');
+    expect(onSelectSeat).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: /^Leader 1/ }));
+    expect(onSelectSeat).toHaveBeenCalledWith('C1');
+  });
+
+  it('a watchlist row opens the party dialog from its own button', () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientHeight', { configurable: true, get: () => 300 });
+    const onOpenParty = vi.fn();
+    const { container } = render(<StandingsTile vm={standingsVM} variant="focus" watchlist={leadersVM({ watchlist: [card(1, { custom: true })], onOpenParty })} initialTab="watchlist" />);
+    expect(container.querySelectorAll('button button')).toHaveLength(0);
+    fireEvent.click(screen.getByRole('button', { name: 'Party details: BJP' }));
+    expect(onOpenParty).toHaveBeenCalledWith('BJP');
+  });
+});
+
 describe('StandingsTile watchlist tab', () => {
   it('defaults to Parties, switches to Watchlist rows, and the x removes a seat', () => {
     Object.defineProperty(HTMLElement.prototype, 'clientHeight', { configurable: true, get: () => 300 });

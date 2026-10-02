@@ -11,7 +11,7 @@ const base: PersonPageVM = {
   status: 'ready', name: 'Ram Kripal Yadav', photo: null, currentParty: { label: 'BJP', mark: null, color: '#f80' },
   facts: { age: 67, gender: 'M', education: 'Post Graduate', home: 'Patna, Bihar' }, wikipedia: 'https://en.wikipedia.org/wiki/R', bio: 'A long bio.',
   incumbent: true, stats: { contests: 2, wins: 1, winRate: 50, parties: ['BJP', 'RJD'], switches: [{ from: 'RJD', to: 'BJP', year: 2014 }] },
-  contests: [{ key: 'a', year: 2014, electionName: 'Lok Sabha 2014', constituency: 'Patliputra', constHref: '/election/e/constituency/P', partyId: 'BJP', partyLabel: 'BJP', mark: null, color: '#f80', status: 'WON', votes: 383266, share: 39.1, margin: 40322, firstUnderParty: true }],
+  contests: [{ key: 'a', year: 2014, electionName: 'Lok Sabha 2014', constituency: 'Patliputra', constHref: '/election/e/constituency/P', partyId: 'BJP', partyHref: '/election/e?party=BJP', partyLabel: 'BJP', mark: null, color: '#f80', status: 'WON', votes: 383266, share: 39.1, margin: 40322, firstUnderParty: true }],
   affidavit: [{ year: 2014, assets: 22000000, liabilities: null, criminalCases: 0 }], latest: { year: 2014, assets: 22000000, liabilities: null, criminalCases: 0 },
 };
 
@@ -26,6 +26,15 @@ describe('PersonPageView', () => {
     expect(screen.getByRole('link', { name: /Lok Sabha 2014/ }).getAttribute('href')).toBe('/election/e/constituency/P');
     expect(screen.getByText('First contest under BJP')).toBeTruthy();
     expect(screen.getAllByText('₹2.2 Cr').length).toBeGreaterThan(0);
+  });
+
+  it('the contest party links to the election dashboard party dialog, outside the card link', () => {
+    const { container } = render(<MemoryRouter><PersonPageView vm={{ ...base, contests: [...base.contests, { ...base.contests[0], key: 'b', partyId: null, partyHref: null, partyLabel: '' }] }} /></MemoryRouter>);
+    expect(screen.getByRole('link', { name: /BJP/ }).getAttribute('href')).toBe('/election/e?party=BJP');
+    expect(container.querySelectorAll('a a')).toHaveLength(0);
+    // A party-less contest has no party link.
+    expect(screen.getAllByRole('link', { name: /Lok Sabha 2014/ })).toHaveLength(2);
+    expect(screen.getAllByRole('link').filter(a => a.getAttribute('href')?.includes('?party='))).toHaveLength(1);
   });
 
   it('a person with no contests, DOB or affidavit still shows the header', () => {

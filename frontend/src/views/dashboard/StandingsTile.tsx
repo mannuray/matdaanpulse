@@ -13,6 +13,7 @@ import { ScrollArea } from '../ui/ScrollArea';
 import { PartyMark } from '../ui/PartyMark';
 import { cn } from '../ui/cn';
 import { onKbdFocus } from '../ui/kbdFocus';
+import { PartyButton } from '../ui/PartyButton';
 
 export type StandingsTab = 'parties' | 'watchlist';
 type TileTab = StandingsTab | 'summary';
@@ -45,10 +46,9 @@ function WatchRow({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   const color = vm.partyColor.get(c.partyId) ?? 'var(--color-fallback)';
   return (
     <div className="flex h-9 w-full items-center gap-1 rounded-[0.5rem] hover:bg-tile-raised" onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)} onFocus={onKbdFocus(() => vm.onHoverSeat(c.constId))} onBlur={() => vm.onHoverSeat(null)}>
+      {c.partyId && <PartyButton partyId={c.partyId} mark={vm.markOf(c.partyId)} color={color} onOpen={vm.onOpenParty} className="ml-1" />}
       <button type="button" onClick={() => vm.onSelectSeat(c.constId)} className="flex h-full min-w-0 flex-1 items-center gap-2 rounded-[0.5rem] px-2 text-left">
-        <span aria-hidden className="flex shrink-0"><PartyMark mark={vm.markOf(c.partyId)} color={color} label={c.partyId} /></span>
         <span className="max-w-[40%] shrink-0 truncate font-semibold text-ink">{c.constName}</span>
-        <span className="shrink-0 text-xs text-muted">{c.partyId}</span>
         <span className="min-w-0 flex-1 truncate text-xs text-muted">{c.name}</span>
         <span className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>
         {c.margin != null && c.status !== 'PENDING' && <span className="tabular shrink-0 text-xs font-semibold text-ink">{c.status === 'WON' || c.status === 'LEADING' ? '+' : '−'}{c.margin.toLocaleString()}</span>}

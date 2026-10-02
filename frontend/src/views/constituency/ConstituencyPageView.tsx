@@ -52,7 +52,7 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
                   <div>
                     {c!.pill && <span className={cn('rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c!.pill])}>{t(`studio_status_${c!.pill.toLowerCase()}`)}</span>}
                     <div className="text-lg font-semibold">{c!.name}</div>
-                    <div className={cn('flex items-center gap-1.5 text-sm text-muted', i === 1 && 'justify-end')}><PartyMark mark={c!.mark} color={c!.color} label={c!.partyLabel} />{c!.partyLabel}</div>
+                    {c!.partyId && <Link to={vm.partyHref(c!.partyId)} className={cn('flex items-center gap-1.5 text-sm text-muted hover:text-ink hover:underline', i === 1 && 'justify-end')}><PartyMark mark={c!.mark} color={c!.color} label={c!.partyLabel} />{c!.partyLabel}</Link>}
                     <div className="tabular font-display text-3xl font-bold">{formatIN(c!.votes)}</div>
                     <div className="text-sm" style={{ color: c!.color }}>{c!.share}%</div>
                   </div>
@@ -100,7 +100,7 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
                 <td><div className="flex items-center gap-2"><Avatar name={c.name} photo={c.photo} size={32} />
                   {c.personId ? <Link to={vm.personHref(c.personId)} className="font-semibold hover:underline">{c.name}</Link> : <span className="font-semibold">{c.nota ? t('seat_nota') : c.name}</span>}
                   {c.incumbent && <span className="rounded-full border border-accent/50 px-1.5 text-[10px] text-accent">{t('seat_incumbent')}</span>}</div></td>
-                <td>{c.partyId && <span className="flex items-center gap-1.5"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={24} />{c.partyLabel}</span>}</td>
+                <td>{c.partyId && <Link to={vm.partyHref(c.partyId)} className="flex items-center gap-1.5 hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={24} />{c.partyLabel}</Link>}</td>
                 <td className="tabular text-right font-semibold">{formatIN(c.votes)}</td>
                 <td className="pl-3"><span className="tabular mr-2 text-xs">{c.share}%</span><span className="inline-block h-1.5 w-24 overflow-hidden rounded-full bg-page align-middle"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></span></td>
                 <td>{c.pill && <span className={cn('rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.pill])}>{t(`studio_status_${c.pill.toLowerCase()}`)}</span>}</td>

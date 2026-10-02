@@ -28,6 +28,8 @@ export interface ConstituencyPageVM {
   partyMeta: Map<string, PartyMeta>;
   locator: { features: GeoFeature[]; seat: GeoFeature | null } | null;
   tracked: boolean; onToggleTrack(): void; shareText: string; personHref(id: string): string;
+  /** The election dashboard with this party's dialog open. */
+  partyHref(id: string): string;
   /** For the page to sync the global election context on a direct load. */
   election: Election | null;
 }
@@ -101,6 +103,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
     onToggleTrack: () => setWatch(tracked ? watch.filter(w => w.const_id !== constId) : [...watch, { const_id: constId, label: d?.name ?? constId }]),
     shareText: `${d?.name ?? ''} — ${e?.name ?? ''} · MatdaanPulse`,
     personHref: id => `/person/${id}`,
+    partyHref: id => `/election/${electionId}?party=${encodeURIComponent(id)}`,
     election: e,
   };
 }

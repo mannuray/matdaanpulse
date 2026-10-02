@@ -19,7 +19,7 @@ const vm = (over: Partial<ConstituencyPageVM> = {}): ConstituencyPageVM => ({
     cand({ name: 'NOTA', partyId: null, partyLabel: '', nota: true, votes: 20, share: 2 }),
   ] },
   history: [{ year: 2020, party: 'BJP', candidate: 'A', margin: 5, vote_share: 50.5, runner_up: 'B', runner_up_party: 'RJD' }], dominance: 'swing', notes: [],
-  partyMeta: new Map(), locator: null, tracked: false, onToggleTrack: vi.fn(), shareText: 'x', personHref: id => `/person/${id}`, election: null, ...over,
+  partyMeta: new Map(), locator: null, tracked: false, onToggleTrack: vi.fn(), shareText: 'x', personHref: id => `/person/${id}`, partyHref: id => `/election/e1?party=${id}`, election: null, ...over,
 });
 const renderIt = (v: ConstituencyPageVM) => render(<MemoryRouter><ConstituencyPageView vm={v} /></MemoryRouter>);
 
@@ -34,6 +34,15 @@ describe('ConstituencyPageView', () => {
     expect(within(table).getByText('5')).toBeTruthy();
     expect(screen.getByText(/Runner-up: B/)).toBeTruthy();
     expect(screen.getByRole('link', { name: 'A' }).getAttribute('href')).toBe('/person/p1');
+  });
+
+  it('party names link to the election dashboard party dialog (not NOTA)', () => {
+    renderIt(vm());
+    const table = screen.getByRole('table');
+    expect(within(table).getByRole('link', { name: /RJD/ }).getAttribute('href')).toBe('/election/e1?party=RJD');
+    const h2h = screen.getByRole('region', { name: 'Head-to-head' });
+    expect(within(h2h).getByRole('link', { name: /BJP/ }).getAttribute('href')).toBe('/election/e1?party=BJP');
+    expect(within(table).getAllByRole('link').filter(a => a.getAttribute('href')?.includes('?party='))).toHaveLength(2);
   });
 
   it('shows the not-found state', () => {

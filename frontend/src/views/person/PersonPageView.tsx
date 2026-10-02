@@ -68,22 +68,22 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
             <h2 className={h2}>{t('pp_timeline')}</h2>
             <ol className="flex flex-col gap-2">
               {vm.contests.map(c => (
-                <li key={c.key}>
-                  <Link to={c.constHref} aria-label={`${c.electionName} · ${c.constituency}`} className={cn(tile, 'block hover:border-accent/60')}>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <div className="font-display font-bold">{c.electionName} · {c.constituency}</div>
-                        <div className="mt-1 flex items-center gap-1.5 text-sm text-muted"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} />{c.partyLabel}</div>
-                      </div>
-                      <span className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{c.status === 'LOST' ? t('pp_lost') : t(`studio_status_${c.status.toLowerCase()}`)}</span>
+                <li key={c.key} className={cn(tile, 'relative hover:border-accent/60')}>
+                  {/* The card link is stretched over the card; the party link sits above it, outside the card's <a>. */}
+                  <Link to={c.constHref} aria-label={`${c.electionName} · ${c.constituency}`} className="absolute inset-0 rounded-tile" />
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="font-display font-bold">{c.electionName} · {c.constituency}</div>
+                      {c.partyHref && <Link to={c.partyHref} className="relative z-10 mt-1 inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} />{c.partyLabel}</Link>}
                     </div>
-                    <div className="tabular mt-2 flex flex-wrap gap-x-4 text-sm">
-                      <span className="font-semibold">{formatIN(c.votes)}</span>
-                      {c.share != null && <span style={{ color: c.color }}>{c.share}%</span>}
-                      {c.margin != null && <span className="text-muted">{t('seat_margin')} {formatIN(c.margin)}</span>}
-                    </div>
-                    {c.firstUnderParty && <div className="mt-1 text-xs text-warn-text">{t('pp_first_under', { party: c.partyLabel })}</div>}
-                  </Link>
+                    <span className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{c.status === 'LOST' ? t('pp_lost') : t(`studio_status_${c.status.toLowerCase()}`)}</span>
+                  </div>
+                  <div className="tabular mt-2 flex flex-wrap gap-x-4 text-sm">
+                    <span className="font-semibold">{formatIN(c.votes)}</span>
+                    {c.share != null && <span style={{ color: c.color }}>{c.share}%</span>}
+                    {c.margin != null && <span className="text-muted">{t('seat_margin')} {formatIN(c.margin)}</span>}
+                  </div>
+                  {c.firstUnderParty && <div className="mt-1 text-xs text-warn-text">{t('pp_first_under', { party: c.partyLabel })}</div>}
                 </li>
               ))}
             </ol>

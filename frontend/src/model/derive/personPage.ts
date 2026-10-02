@@ -2,7 +2,9 @@ import type { PersonCandidate } from '../types';
 import { partyMark } from './partyMeta';
 
 export type ContestStatus = 'LEADING' | 'TRAILING' | 'WON' | 'LOST' | 'PENDING';
-export interface ContestView { key: string; year: number | null; electionName: string; constituency: string; constHref: string; partyId: string | null; partyLabel: string; mark: string | null; color: string;
+export interface ContestView { key: string; year: number | null; electionName: string; constituency: string; constHref: string; partyId: string | null;
+  /** The contest's election dashboard with this party's dialog open (null when party-less). */
+  partyHref: string | null; partyLabel: string; mark: string | null; color: string;
   status: ContestStatus; votes: number; share: number | null; margin: number | null; firstUnderParty: boolean }
 export interface PersonStats { contests: number; wins: number; winRate: number | null; parties: string[]; switches: { from: string; to: string; year: number }[] }
 export interface AffidavitPoint { year: number; assets: number | null; liabilities: number | null; criminalCases: number | null }
@@ -28,7 +30,7 @@ export function contestViews(cands: PersonCandidate[]): ContestView[] {
   return [...cands].sort(byYearDesc).map(c => ({
     key: c.id + c.election_id, year: c.election_year, electionName: c.election_name ?? '', constituency: c.constituency_name ?? '',
     constHref: `/election/${c.election_id}/constituency/${c.const_id}`,
-    partyId: c.party_id, partyLabel: c.party_abbreviation ?? c.party_id ?? '',
+    partyId: c.party_id, partyHref: c.party_id ? `/election/${c.election_id}?party=${encodeURIComponent(c.party_id)}` : null, partyLabel: c.party_abbreviation ?? c.party_id ?? '',
     mark: partyMark({ symbol_url: c.party_symbol_url, eci_symbol_url: c.party_eci_symbol_url }),
     color: c.party_color ?? 'var(--color-fallback)', status: contestStatus(c), votes: c.votes, share: c.vote_share ?? null,
     margin: c.margin || null, firstUnderParty: first.has(c.id + c.election_id),
