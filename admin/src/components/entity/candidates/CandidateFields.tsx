@@ -1,17 +1,17 @@
 import type { ReactNode } from 'react';
-import { INDEPENDENT, isWholeNumberOrEmpty, type CandidateForm } from '../../../hooks/useCandidateEdit';
+import { INDEPENDENT, isRupeesOrEmpty, isWholeNumberOrEmpty, type CandidateForm } from '../../../hooks/useCandidateEdit';
 import { assetsHelper } from '../../../utils/numbers';
 import { Field, FormSection } from '../../ui/Field';
 import { Input, Select } from '../../ui/Input';
 import type { Party } from '../../../types';
 
-const GENDERS = ['Male', 'Female', 'Other'];
 const NUMBER_ERROR = 'Enter a whole number';
+const RUPEES_ERROR = 'Enter whole rupees';
 
 interface FieldsProps {
   form: CandidateForm;
   onChange: (patch: Partial<CandidateForm>) => void;
-  /** Server field errors by field name (`name`, `party_id`, `metadata.<key>`); the record page passes them. */
+  /** Server field errors by field name (`name`, `party_id`, `age`, `assets`…); the record page passes them. */
   errors?: Record<string, string>;
 }
 
@@ -54,32 +54,27 @@ export function CandidateIdentityFields({ form, onChange: set, parties, besidePa
   );
 }
 
-/** Age, gender, education, criminal cases and declared assets (stored in candidate metadata). */
+/** The affidavit for this run: age, criminal cases, declared assets and liabilities (rupees, with the crore / lakh helper). */
 export function CandidateAffidavitFields({ form, onChange: set, errors = {} }: FieldsProps) {
-  const ageError = isWholeNumberOrEmpty(form.age) ? errors['metadata.age'] : NUMBER_ERROR;
-  const casesError = isWholeNumberOrEmpty(form.criminal_cases) ? errors['metadata.criminal_cases'] : NUMBER_ERROR;
+  const ageError = isWholeNumberOrEmpty(form.age) ? errors.age : NUMBER_ERROR;
+  const casesError = isWholeNumberOrEmpty(form.criminal_cases) ? errors.criminal_cases : NUMBER_ERROR;
+  const assetsError = isRupeesOrEmpty(form.assets) ? errors.assets : RUPEES_ERROR;
+  const liabilitiesError = isRupeesOrEmpty(form.liabilities) ? errors.liabilities : RUPEES_ERROR;
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <Field label="Age" error={ageError}>
           <Input inputMode="numeric" value={form.age} invalid={!!ageError} onChange={(e) => set({ age: e.target.value })} />
         </Field>
-        <Field label="Gender" error={errors['metadata.gender']}>
-          <Select value={form.gender} onChange={(e) => set({ gender: e.target.value })}>
-            <option value="">Not specified</option>
-            {GENDERS.map((g) => <option key={g} value={g}>{g}</option>)}
-            {form.gender && !GENDERS.includes(form.gender) && <option value={form.gender}>{form.gender}</option>}
-          </Select>
+        <Field label="Criminal cases" error={casesError}>
+          <Input inputMode="numeric" value={form.criminal_cases} invalid={!!casesError} onChange={(e) => set({ criminal_cases: e.target.value })} />
         </Field>
       </div>
-      <Field label="Education" error={errors['metadata.education']}>
-        <Input value={form.education} onChange={(e) => set({ education: e.target.value })} />
+      <Field label="Declared assets" hint={assetsHelper(form.assets) ?? undefined} error={assetsError}>
+        <Input inputMode="numeric" value={form.assets} invalid={!!assetsError} placeholder="Rupees, e.g. 24500000" onChange={(e) => set({ assets: e.target.value })} />
       </Field>
-      <Field label="Criminal cases" error={casesError}>
-        <Input inputMode="numeric" value={form.criminal_cases} invalid={!!casesError} onChange={(e) => set({ criminal_cases: e.target.value })} />
-      </Field>
-      <Field label="Declared assets" hint={assetsHelper(form.assets) ?? undefined} error={errors['metadata.assets'] ?? errors.metadata}>
-        <Input value={form.assets} placeholder="Rupees, e.g. 24500000" onChange={(e) => set({ assets: e.target.value })} />
+      <Field label="Declared liabilities" hint={assetsHelper(form.liabilities) ?? undefined} error={liabilitiesError}>
+        <Input inputMode="numeric" value={form.liabilities} invalid={!!liabilitiesError} placeholder="Rupees, e.g. 1250000" onChange={(e) => set({ liabilities: e.target.value })} />
       </Field>
     </div>
   );

@@ -71,7 +71,7 @@ function ProfileHeader({ person, navigate }: { person: PersonDetailData; navigat
 
 function DossierColumn({ person }: { person: PersonDetailData }) {
   const bio = PersonService.formatBiography(person);
-  const wikiUrl = typeof person.metadata?.wikipedia_url === 'string' ? person.metadata.wikipedia_url : undefined;
+  const wikiUrl = person.wikipedia_url || undefined;
 
   return (
     <aside style={styles.leftCol}>

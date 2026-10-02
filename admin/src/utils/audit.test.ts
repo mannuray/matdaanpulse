@@ -12,12 +12,15 @@ describe('audit vocabulary', () => {
   it('lists exactly the actions and entities the backend writes', () => {
     expect(AUDIT_ACTIONS.map((a) => a.value)).toEqual([
       'RESULT_OVERRIDE', 'RESULT_BULK_OVERRIDE', 'SEAT_LOCK_TAKEOVER',
-      'PARTY_CREATE', 'PARTY_UPDATE', 'PERSON_UPDATE', 'PERSON_MERGE', 'CANDIDATE_CREATE', 'CANDIDATE_UPDATE',
-      'CANDIDATE_LINK_PERSON', 'CANDIDATE_UNLINK_PERSON', 'CONSTITUENCY_UPDATE',
+      'PARTY_CREATE', 'PARTY_UPDATE', 'PERSON_UPDATE', 'PERSON_MERGE', 'PERSON_MERGE_UNDO', 'PERSON_DELETE',
+      'CANDIDATE_CREATE', 'CANDIDATE_UPDATE', 'CANDIDATE_LINK_PERSON', 'CANDIDATE_SPLIT', 'CANDIDATE_UNLINK_PERSON', 'CONSTITUENCY_UPDATE',
     ]);
     expect(AUDIT_ENTITIES.map((e) => e.value)).toEqual(['result', 'election', 'constituency', 'party', 'person', 'candidate']);
     expect(actionLabel('PERSON_MERGE')).toBe('Persons merged');
-    expect(actionLabel('CANDIDATE_LINK_PERSON')).toBe('Candidate linked to person');
+    expect(actionLabel('CANDIDATE_LINK_PERSON')).toBe('Candidate moved to person');
+    expect(actionLabel('PERSON_MERGE_UNDO')).toBe('Merge undone');
+    expect(actionLabel('CANDIDATE_SPLIT')).toBe('Contest split to new person');
+    expect(actionLabel('PERSON_DELETE')).toBe('Person deleted (no contests left)');
     expect(actionLabel('CONSTITUENCY_UPDATE')).toBe('Seat edited');
     expect(isAuditAction('SEAT_LOCK_TAKEOVER')).toBe(true);
     expect(isAuditAction('MANIFEST_PUBLISH')).toBe(false);

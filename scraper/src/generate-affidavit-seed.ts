@@ -2,8 +2,8 @@
  * Generate affidavit data seed SQL by scraping MyNeta.info.
  *
  * Queries the DB for candidates (with person_id), scrapes MyNeta,
- * matches by const_no + name, generates UPDATE statements for both
- * candidates.metadata.affidavit and persons.metadata.affidavit_history.
+ * matches by const_no + name, generates UPDATE statements for the candidates'
+ * affidavit columns (age, assets, liabilities, criminal_cases) and the persons' education.
  *
  * Usage:
  *   cd scraper
@@ -80,10 +80,6 @@ function esc(s: string): string {
   return s.replace(/'/g, "''");
 }
 
-function jsonEsc(obj: object): string {
-  return esc(JSON.stringify(obj));
-}
-
 // ---------------------------------------------------------------------------
 // DB types
 // ---------------------------------------------------------------------------
@@ -135,8 +131,8 @@ async function main() {
   console.log(`  Found ${dbCandidates.length} candidates (${linkedCount} linked to persons)\n`);
 
   if (linkedCount === 0) {
-    console.warn('  WARNING: No candidates linked to persons. Run auto-link first for person-level tracking.');
-    console.warn('  Continuing — will only update candidates.metadata.\n');
+    console.warn('  WARNING: No candidates linked to persons. Run database/setup.sh (migration 018 gives every candidate a person) first.');
+    console.warn('  Continuing — will only update the candidate affidavit columns.\n');
   }
 
   // Group by const_no
@@ -261,61 +257,32 @@ async function main() {
   lines.push('BEGIN;');
   lines.push('');
 
-  // -- Candidate updates
+  // -- Candidate updates: the affidavit for this run (migration 018's typed columns).
+  // A value the scrape could not read (NaN, negative) is written as NULL.
+  const num = (v: number, max: number) =>
+    Number.isInteger(v) && v >= 0 && v <= max ? String(v) : 'NULL';
   lines.push('-- Candidate affidavit data');
   for (const m of matches) {
-    const aff = {
-      criminal_cases: m.affidavit.criminal_cases,
-      serious_ipc: m.affidavit.serious_ipc,
-      ipc_sections: m.affidavit.ipc_sections,
-      total_assets: m.affidavit.total_assets,
-      movable_assets: m.affidavit.movable_assets,
-      immovable_assets: m.affidavit.immovable_assets,
-      liabilities: m.affidavit.liabilities,
-      education: m.affidavit.education,
-      profession: m.affidavit.profession,
-      age: m.affidavit.age,
-      source_url: m.affidavit.source_url,
-    };
-
+    const a = m.affidavit;
     lines.push(
-      `UPDATE candidates SET metadata = jsonb_set(COALESCE(metadata, '{}'), '{affidavit}', '${jsonEsc(aff)}') WHERE id = '${m.dbCandidate.id}';`,
+      `UPDATE candidates SET age = ${num(a.age, 32767)}, assets = ${num(a.total_assets, Number.MAX_SAFE_INTEGER)}, ` +
+        `liabilities = ${num(a.liabilities, Number.MAX_SAFE_INTEGER)}, criminal_cases = ${num(a.criminal_cases, 32767)} ` +
+        `WHERE id = '${m.dbCandidate.id}';`,
     );
   }
 
-  // -- Person updates (affidavit_history keyed by election_id)
+  // -- Person updates: education belongs to the person; fill it only where it is empty.
   if (personMatches.length > 0) {
     lines.push('');
-    lines.push('-- Person affidavit history (keyed by election_id)');
-    lines.push(`-- Ensures affidavit_history object exists, then sets the election entry`);
-
-    // Group by person_id (a person might have multiple candidacies, though unlikely)
-    const byPerson = new Map<string, MatchResult[]>();
+    lines.push('-- Person education (only where not set)');
+    const done = new Set<string>();
     for (const m of personMatches) {
-      const pid = m.dbCandidate.personId!;
-      if (!byPerson.has(pid)) byPerson.set(pid, []);
-      byPerson.get(pid)!.push(m);
-    }
-
-    for (const [personId, personMatches] of byPerson) {
-      // Use the first match (one person = one candidacy per election)
-      const m = personMatches[0];
-      const aff = {
-        criminal_cases: m.affidavit.criminal_cases,
-        serious_ipc: m.affidavit.serious_ipc,
-        total_assets: m.affidavit.total_assets,
-        movable_assets: m.affidavit.movable_assets,
-        immovable_assets: m.affidavit.immovable_assets,
-        liabilities: m.affidavit.liabilities,
-        education: m.affidavit.education,
-        profession: m.affidavit.profession,
-        age: m.affidavit.age,
-        source_url: m.affidavit.source_url,
-      };
-
-      // First ensure affidavit_history key exists, then set the election entry
+      const personId = m.dbCandidate.personId!;
+      const education = m.affidavit.education?.trim();
+      if (done.has(personId) || !education) continue;
+      done.add(personId);
       lines.push(
-        `UPDATE persons SET metadata = jsonb_set(jsonb_set(COALESCE(metadata, '{}'), '{affidavit_history}', COALESCE(metadata->'affidavit_history', '{}'), true), '{affidavit_history,${ELECTION_ID}}', '${jsonEsc(aff)}') WHERE id = '${personId}';`,
+        `UPDATE persons SET education = '${esc(education.slice(0, 255))}' WHERE id = '${personId}' AND education IS NULL;`,
       );
     }
   }

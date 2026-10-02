@@ -25,6 +25,9 @@ export const ErrorCodes = {
   // User/Person (4xxx)
   USER_NOT_FOUND: 'USER_4001',
   PERSON_NOT_FOUND: 'USER_4002',
+  PERSON_MERGE_NOT_FOUND: 'USER_4003',
+  PERSON_MERGE_NOT_UNDOABLE: 'USER_4004',
+  PERSON_MERGE_CONFLICT: 'USER_4005',
 
   // Party (5xxx)
   PARTY_NOT_FOUND: 'PARTY_5001',
@@ -36,6 +39,7 @@ export const ErrorCodes = {
 
   // Candidate (7xxx)
   CANDIDATE_NOT_FOUND: 'CANDIDATE_7001',
+  CANDIDATE_SOLE_CONTEST: 'CANDIDATE_7002',
 
   // Manifest (8xxx)
   MANIFEST_NOT_FOUND: 'MANIFEST_8001',

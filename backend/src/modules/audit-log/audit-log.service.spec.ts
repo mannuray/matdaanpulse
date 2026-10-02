@@ -76,11 +76,11 @@ describe('AuditLogService.lastEdit', () => {
     }));
   });
 
-  it('counts only the 9 record-edit actions (a SEAT_LOCK_TAKEOVER on the seat is not an edit)', async () => {
+  it('counts only the 12 record-edit actions (a SEAT_LOCK_TAKEOVER on the seat is not an edit)', async () => {
     const prisma = { audit_logs: { findFirst: jest.fn().mockResolvedValue(null) } };
     await new AuditLogService(prisma as any).lastEdit('constituency', 'BR_VS_1');
     const actions: string[] = prisma.audit_logs.findFirst.mock.calls[0][0].where.action.in;
-    expect(actions).toHaveLength(9);
+    expect(actions).toHaveLength(12);
     expect(actions).toContain('CONSTITUENCY_UPDATE');
     expect(actions).not.toContain('SEAT_LOCK_TAKEOVER');
   });
@@ -135,5 +135,17 @@ describe('createdFields', () => {
   it('keeps the set (non-null) columns of a new row, without updated_at', () => {
     expect(createdFields({ id: 'X', name: 'X party', color: null, metadata: {}, updated_at: new Date() }))
       .toEqual({ id: 'X', name: 'X party' });
+  });
+});
+
+describe('audit diff: BigInt columns (candidates.assets / liabilities)', () => {
+  it('changedFields records a bigint change as plain numbers', () => {
+    expect(changedFields({ assets: null, liabilities: BigInt(5) }, { assets: BigInt(12500000), liabilities: BigInt(5) })).toEqual({
+      oldValue: { assets: null }, newValue: { assets: 12500000 },
+    });
+  });
+
+  it('createdFields turns a bigint into a number', () => {
+    expect(createdFields({ name: 'R', assets: BigInt(4200000000) })).toEqual({ name: 'R', assets: 4200000000 });
   });
 });

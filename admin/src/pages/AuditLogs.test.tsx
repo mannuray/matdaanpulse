@@ -55,8 +55,9 @@ describe('Audit logs page', () => {
     const options = (label: string) => within(screen.getByLabelText(label)).getAllByRole('option').map((o) => o.textContent);
     expect(options('Action')).toEqual([
       'Any action', 'Result override', 'Seat save (bulk)', 'Seat lock take-over',
-      'Party created', 'Party edited', 'Person edited', 'Persons merged', 'Candidate created', 'Candidate edited',
-      'Candidate linked to person', 'Candidate unlinked', 'Seat edited',
+      'Party created', 'Party edited', 'Person edited', 'Persons merged', 'Merge undone', 'Person deleted (no contests left)',
+      'Candidate created', 'Candidate edited', 'Candidate moved to person', 'Contest split to new person',
+      'Candidate unlinked (legacy)', 'Seat edited',
     ]);
     expect(options('Entity')).toEqual(['Any entity', 'Result', 'Election', 'Seat', 'Party', 'Person', 'Candidate']);
     fireEvent.change(screen.getByLabelText('Action'), { target: { value: 'SEAT_LOCK_TAKEOVER' } });

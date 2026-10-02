@@ -1,4 +1,5 @@
 import { Expose, Type, Transform } from 'class-transformer';
+import { bigintTransform } from '../../../common/util/json-safe';
 
 // --- Shared / Dependency DTOs ---
 
@@ -10,7 +11,7 @@ export class AdminLastEditDto {
   @Expose() by: string | null;
 }
 
-/** The linked person's candidacies across elections (GET /admin/candidates/:id). */
+/** The person's candidacies across elections (GET /admin/candidates/:id). */
 export class AdminPersonContestsDto {
   @Expose() contests: number;
   @Expose() first_year: number | null;
@@ -86,18 +87,25 @@ export class AdminConstituencyDto {
 
 export class AdminCandidateDto {
   @Expose() id: string;
-  @Expose() person_id: string | null;
+  @Expose() person_id: string;
   @Expose() election_id: string;
   @Expose() const_id: string;
   @Expose() party_id: string | null;
+  /** The name as filed on the ballot (the person's `name` is the display name). */
   @Expose() name: string;
   @Expose() is_incumbent: boolean;
-  @Expose() metadata: any;
+  /** Affidavit for this run. assets and liabilities are rupees (BigInt columns, sent as numbers). */
+  @Expose() age: number | null;
+  @Expose() @Transform(bigintTransform) assets: number | null;
+  @Expose() @Transform(bigintTransform) liabilities: number | null;
+  @Expose() criminal_cases: number | null;
   @Expose() manifest?: any;
   @Expose() @Transform(toIso) updated_at?: string;
   @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
-  /** Null when the candidate has no linked person. Only on the detail response. */
+  /** Only on the detail response. */
   @Expose() @Type(() => AdminPersonContestsDto) person_contests?: AdminPersonContestsDto | null;
+  /** Only on the change person response: the merge log id when moving the person's last contest merged it. */
+  @Expose() merge_id?: string | null;
 
   /** The admin reads the relations as party / constituency / person (its `Candidate` type), not the Prisma names. */
   @Expose({ name: 'parties' })
@@ -134,16 +142,31 @@ export class AdminPersonContestDto {
   @Expose() is_incumbent: boolean;
 }
 
+/** One merge into this person (GET /admin/persons/:id), newest first; undone merges stay listed with undoable false. */
+export class AdminPersonMergeDto {
+  @Expose() id: string;
+  @Expose() duplicate_name: string;
+  @Expose() candidate_count: number;
+  @Expose() @Transform(toIso) merged_at: string;
+  /** The merging user's name; null when unknown (user deleted). */
+  @Expose() merged_by: string | null;
+  @Expose() undoable: boolean;
+  /** When it was undone; null while it stands. */
+  @Expose() @Transform(toIso) undone_at: string | null;
+  /** Why it can't be undone: already undone, a logged contest has moved since, or the keeper no longer exists. */
+  @Expose() not_undoable_reason: 'undone' | 'contests_moved' | null;
+}
+
 export class AdminPersonDto {
   @Expose() id: string;
   @Expose() name: string;
   @Expose() photo_url: string | null;
   @Expose() gender: string | null;
   @Expose() education: string | null;
-  /** No `bio` column: resolved from metadata.bio. */
-  @Expose()
-  @Transform(({ obj }) => obj.bio ?? obj.metadata?.bio ?? null)
-  bio: string | null;
+  @Expose() bio: string | null;
+  @Expose() wikipedia_url: string | null;
+  @Expose() caste: string | null;
+  @Expose() religion: string | null;
 
   @Expose() 
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
@@ -151,9 +174,12 @@ export class AdminPersonDto {
   
   @Expose() state_id: number | null;
   @Expose() region_id: number | null;
-  @Expose() metadata: any;
+  @Expose() district_id: number | null;
   @Expose() @Transform(toIso) updated_at?: string;
   @Expose() @Type(() => AdminLastEditDto) last_edit?: AdminLastEditDto | null;
+
+  /** Only on the detail response. */
+  @Expose() @Type(() => AdminPersonMergeDto) merges?: AdminPersonMergeDto[];
 
   @Expose() state_name?: string;
   @Expose() region_name?: string;

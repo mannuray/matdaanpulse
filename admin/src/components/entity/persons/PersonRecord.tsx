@@ -1,4 +1,5 @@
 import { ExternalLink } from 'lucide-react';
+import { useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { usePersonEdit, isValidDob, type PersonForm } from '../../../hooks/usePersonEdit';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
@@ -8,10 +9,12 @@ import { RecordLoadError } from '../../record/RecordLoadError';
 import { Field } from '../../ui/Field';
 import { Input, Select, Textarea } from '../../ui/Input';
 import { Button } from '../../ui/Button';
+import { ConfirmDialog } from '../../ui/ConfirmDialog';
 import { PersonHistoryCard } from './PersonHistoryCard';
 import { PersonMergeCard } from './PersonMergeCard';
+import { PersonMergeHistoryCard } from './PersonMergeHistoryCard';
 import { contestsLabel } from '../../../utils/person-format';
-import type { PersonCandidate } from '../../../types';
+import type { PersonCandidate, PersonMerge } from '../../../types';
 
 const GENDERS = ['Male', 'Female', 'Other'];
 
@@ -19,8 +22,10 @@ interface PersonRecordProps {
   id: string;
   /** "← Persons": back to the list, through the unsaved guard. */
   onBack: () => void;
-  /** After a save or a merge, so the list shows the new values and counts. */
+  /** After a save, a merge or an undo, so the list shows the new values and counts. */
   onSaved: () => void;
+  /** Open another person (after an undo that deleted this one, the restored person). */
+  onOpenPerson: (id: string) => void;
 }
 
 /** "5 contests · first 2010" (no first year without contests). */
@@ -32,10 +37,11 @@ function contestsSummary(contests: PersonCandidate[]): string {
 const isHttpUrl = (v: string) => /^https?:\/\/\S+$/i.test(v.trim());
 
 /**
- * Person record page at /persons/:id: profile, links and biography on the left; election history, merge (SUPER_ADMIN)
- * and record info on the right. The page keys it by id.
+ * Person record page at /persons/:id: profile (with the admin-only caste and religion), links and biography on the
+ * left; election history, merge (SUPER_ADMIN), merge history (Undo for SUPER_ADMIN) and record info on the right.
+ * The page keys it by id.
  */
-export function PersonRecord({ id, onBack, onSaved }: PersonRecordProps) {
+export function PersonRecord({ id, onBack, onSaved, onOpenPerson }: PersonRecordProps) {
   const { hasRole } = useAuth();
   const canMerge = hasRole('SUPER_ADMIN');
   const ed = usePersonEdit(id);
@@ -48,9 +54,19 @@ export function PersonRecord({ id, onBack, onSaved }: PersonRecordProps) {
   const save = async () => { if (await ed.handleSave()) onSaved(); };
   const merge = async (dupId: string, dupName: string) => { if (await ed.handleMerge(dupId, dupName)) onSaved(); };
 
-  const meta = (person?.metadata ?? {}) as Record<string, unknown>;
-  const census = [meta.caste, meta.religion].filter((v): v is string => typeof v === 'string' && v.trim() !== '');
   const contests = person?.candidates ?? [];
+
+  // Undo merge (SUPER_ADMIN), after a confirm naming what comes back.
+  const [undo, setUndo] = useState<PersonMerge | null>(null);
+  const confirmUndo = async () => {
+    if (!undo) return;
+    const res = await ed.handleUndo(undo.id, undo.duplicate_name);
+    setUndo(null);
+    if (!res) return;
+    onSaved();
+    // This person had no contests of its own, so it was deleted: show the restored one instead.
+    if (res.keeperGone) onOpenPerson(res.restoredId);
+  };
 
   const error = !person && ed.loadError
     ? <RecordLoadError kind={ed.loadError} noun="person" onRetry={() => { void ed.refresh(); }} />
@@ -115,8 +131,15 @@ export function PersonRecord({ id, onBack, onSaved }: PersonRecordProps) {
               <Field label="Photo URL" error={fieldErrors.photo_url}>
                 <Input value={form.photo_url} placeholder="https://…" onChange={(e) => set({ photo_url: e.target.value })} />
               </Field>
-              {/* Read only: these come from the data import. */}
-              {census.length > 0 && <p className="text-xs text-muted">Census tags: {census.join(' · ')}</p>}
+              {/* Admin only: the public profile never shows caste or religion. */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="Caste" hint="Admin only" error={fieldErrors.caste}>
+                  <Input value={form.caste} onChange={(e) => set({ caste: e.target.value })} />
+                </Field>
+                <Field label="Religion" hint="Admin only" error={fieldErrors.religion}>
+                  <Input value={form.religion} onChange={(e) => set({ religion: e.target.value })} />
+                </Field>
+              </div>
             </div>
           </RecordCard>
 
@@ -149,6 +172,27 @@ export function PersonRecord({ id, onBack, onSaved }: PersonRecordProps) {
         <>
           <PersonHistoryCard contests={contests} />
           {canMerge && <PersonMergeCard ed={ed} onMerge={(dupId, dupName) => { void merge(dupId, dupName); }} />}
+          {person && (
+            <PersonMergeHistoryCard
+              merges={person.merges ?? []}
+              canUndo={canMerge}
+              locked={ed.dirty}
+              busy={ed.undoing || ed.merging || ed.saving}
+              onUndo={setUndo}
+            />
+          )}
+          <ConfirmDialog
+            open={!!undo}
+            title="Undo merge?"
+            description={undo
+              ? `"${undo.duplicate_name}" comes back as its own person record with its ${undo.candidate_count} ${undo.candidate_count === 1 ? 'contest' : 'contests'}, and the fields the merge filled in on ${person?.name ?? 'this person'} are cleared.`
+              : ''}
+            confirmLabel="Undo merge"
+            tone="danger"
+            busy={ed.undoing}
+            onConfirm={() => { void confirmUndo(); }}
+            onCancel={() => setUndo(null)}
+          />
           <RecordCard title="Record">
             <RecordMeta id={id} updatedAt={person?.updated_at} lastEdit={person?.last_edit} />
           </RecordCard>

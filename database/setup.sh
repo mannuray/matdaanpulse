@@ -7,7 +7,10 @@
 #                              → Bihar persons → party symbols → party recognition → result dates
 #
 # Every step is safe to re-run: schema/migrations use IF NOT EXISTS guards and every seed
-# INSERT uses ON CONFLICT DO NOTHING, so a second run never wipes or duplicates data.
+# INSERT uses ON CONFLICT DO NOTHING, so a second run never wipes or duplicates data. Seeds whose
+# rows admins edit later (Bihar persons and their regions, party recognition, result dates) are
+# run-once: they record themselves in seed_runs (migration 018) and skip when already applied.
+# Needs psql 10+ (the run-once seeds use \if / \gset).
 #
 # Usage:
 #   database/setup.sh                 # schema + migrations + all seeds
@@ -27,7 +30,7 @@ SCHEMA_ONLY=0
 for arg in "$@"; do
   case "$arg" in
     --schema-only) SCHEMA_ONLY=1 ;;
-    -h|--help) sed -n '2,23p' "${BASH_SOURCE[0]}"; exit 0 ;;
+    -h|--help) sed -n '2,24p' "${BASH_SOURCE[0]}"; exit 0 ;;
     *) echo "Unknown argument: $arg" >&2; exit 2 ;;
   esac
 done
@@ -35,7 +38,9 @@ done
 PSQL_ARGS=(-X -q -v ON_ERROR_STOP=1)
 # Seeds escape strings by doubling single quotes only; that is correct (and only correct)
 # with standard_conforming_strings=on, the PostgreSQL default since 9.1. Enforce it.
-export PGOPTIONS="${PGOPTIONS:-} -c standard_conforming_strings=on -c client_min_messages=warning"
+# lock_timeout: a migration's ALTER TABLE waits at most 5s for its lock (then fails, and setup.sh can be
+# re-run) instead of queueing every reader behind it. It comes first so a caller's PGOPTIONS overrides it.
+export PGOPTIONS="-c lock_timeout=5s ${PGOPTIONS:-} -c standard_conforming_strings=on -c client_min_messages=warning"
 
 if [[ -n "${DATABASE_URL:-}" ]]; then
   # Prisma-style URLs may carry ?schema=public, which libpq rejects — strip that param.

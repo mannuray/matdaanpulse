@@ -1,16 +1,16 @@
 /**
  * "Only the changed fields" for audit rows: compare two rows of the same table column by column.
- * Values are compared in their JSON form (Date → ISO string, Prisma Decimal → string), and
+ * Values are compared in their JSON form (Date → ISO string, Prisma Decimal → string, bigint → number), and
  * `metadata` is compared key by key so a one-key edit records just that key.
  */
+
+import { toJsonSafe } from '../../common/util/json-safe';
 
 const IGNORED = new Set(['updated_at']);
 
 type Row = Record<string, unknown>;
 
-function toJson(v: unknown): unknown {
-  return v === undefined ? null : JSON.parse(JSON.stringify(v));
-}
+const toJson = toJsonSafe;
 
 function stable(v: unknown): string {
   if (Array.isArray(v)) return `[${v.map(stable).join(',')}]`;

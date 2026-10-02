@@ -219,7 +219,7 @@ async function main() {
       const margin = Math.abs(cand.margin);
 
       candidateInserts.push(
-        `  ('${candId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(partyId)}', '${esc(cand.name)}', FALSE, '{}')`
+        `  ('${candId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(partyId)}', '${esc(cand.name)}', FALSE)`
       );
       resultInserts.push(
         `  ('${randomUUID()}', '${candId}', '${esc(constId)}', ${cand.votes}, '${isNota ? 'LOST' : status}', ${margin}, 0, '${ELECTION_ID}')`
@@ -228,7 +228,7 @@ async function main() {
     }
   }
 
-  lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES');
+  lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent) VALUES');
   lines.push(candidateInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 

@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsInt, IsObject, IsDateString, MaxLength, IsUrl } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsInt, IsDateString, MaxLength, IsUrl } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { IsUuidLike } from '../../../common/validation/uuid-like';
 import { MAX_URL_LENGTH } from '../../../common/validation/safe-url';
@@ -29,16 +29,17 @@ class PersonFieldsDto {
   @IsOptional() @IsInt()
   district_id?: number | null;
 
-  @IsOptional() @IsObject()
-  metadata?: Record<string, unknown>;
-
-  /** Stored in metadata.bio (no dedicated column). */
   @IsOptional() @Transform(emptyToNull) @IsString()
   bio?: string | null;
 
-  /** Stored in metadata.wikipedia_url (no dedicated column). */
   @IsOptional() @Transform(emptyToNull) @IsUrl(HTTP_URL) @MaxLength(MAX_URL_LENGTH)
   wikipedia_url?: string | null;
+
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(255)
+  caste?: string | null;
+
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(255)
+  religion?: string | null;
 }
 
 export class UpdatePersonDto extends PersonFieldsDto {

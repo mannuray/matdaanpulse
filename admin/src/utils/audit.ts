@@ -1,7 +1,7 @@
 import type { Tone } from '../components/ui/Badge';
 import type { AuditLog } from '../types';
 
-/** The actions the backend writes today: live overrides and seat locks, plus the record-page edits. */
+/** The actions the backend writes: live overrides and seat locks, plus the record-page edits (and one legacy action). */
 export const AUDIT_ACTIONS = [
   { value: 'RESULT_OVERRIDE', label: 'Result override' },
   { value: 'RESULT_BULK_OVERRIDE', label: 'Seat save (bulk)' },
@@ -10,10 +10,15 @@ export const AUDIT_ACTIONS = [
   { value: 'PARTY_UPDATE', label: 'Party edited' },
   { value: 'PERSON_UPDATE', label: 'Person edited' },
   { value: 'PERSON_MERGE', label: 'Persons merged' },
+  { value: 'PERSON_MERGE_UNDO', label: 'Merge undone' },
+  { value: 'PERSON_DELETE', label: 'Person deleted (no contests left)' },
   { value: 'CANDIDATE_CREATE', label: 'Candidate created' },
   { value: 'CANDIDATE_UPDATE', label: 'Candidate edited' },
-  { value: 'CANDIDATE_LINK_PERSON', label: 'Candidate linked to person' },
-  { value: 'CANDIDATE_UNLINK_PERSON', label: 'Candidate unlinked' },
+  // Change person (PUT /admin/candidates/:id/person) writes this action.
+  { value: 'CANDIDATE_LINK_PERSON', label: 'Candidate moved to person' },
+  { value: 'CANDIDATE_SPLIT', label: 'Contest split to new person' },
+  // No longer written (every candidate has a person since migration 018); kept so older entries stay filterable.
+  { value: 'CANDIDATE_UNLINK_PERSON', label: 'Candidate unlinked (legacy)' },
   { value: 'CONSTITUENCY_UPDATE', label: 'Seat edited' },
 ] as const;
 

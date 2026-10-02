@@ -91,6 +91,10 @@ export class AdminPersonsQueryDto extends PaginationQueryDto {
 
   @IsOptional() @OptionalNumber() @IsInt() @Min(1)
   region_id?: number;
+
+  /** Number of candidacies: none (a person made on its own, which no trigger removes), exactly one, or two and more. */
+  @IsOptional() @EmptyAsUndefined() @IsIn(['0', '1', '2plus'])
+  contests?: '0' | '1' | '2plus';
 }
 
 export class AuditLogsQueryDto {

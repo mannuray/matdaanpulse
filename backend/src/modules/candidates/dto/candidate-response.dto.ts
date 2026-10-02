@@ -1,4 +1,5 @@
 import { Expose, Type, Transform } from 'class-transformer';
+import { bigintTransform } from '../../../common/util/json-safe';
 
 export class PartyMiniDto {
   @Expose() id: string;
@@ -10,8 +11,8 @@ export class PartyMiniDto {
 export class CandidateSummaryDto {
   @Expose() id: string;
   @Expose() name: string;
-  /** Whether the candidate is already linked to a person record (the admin's same-name link suggestions reuse it). */
-  @Expose() person_id: string | null;
+  /** The candidate's person (always set since migration 018; the public profile is /candidates/persons/:id). */
+  @Expose() person_id: string;
   @Expose() party_id: string | null;
   @Expose() const_id: string;
   @Expose() is_incumbent: boolean;
@@ -22,11 +23,21 @@ export class CandidateSummaryDto {
   party?: PartyMiniDto;
 }
 
-export class CandidateDetailDto extends CandidateSummaryDto {
-  @Expose() metadata: any;
+/** One public candidate search hit (GET /search/candidates): the summary plus its election. */
+export class CandidateSearchHitDto extends CandidateSummaryDto {
   @Expose() election_id: string;
 }
 
+/** Adds the affidavit for this run (assets and liabilities in rupees, BigInt columns sent as numbers). */
+export class CandidateDetailDto extends CandidateSummaryDto {
+  @Expose() election_id: string;
+  @Expose() age: number | null;
+  @Expose() @Transform(bigintTransform) assets: number | null;
+  @Expose() @Transform(bigintTransform) liabilities: number | null;
+  @Expose() criminal_cases: number | null;
+}
+
+/** Public person profile. */
 export class PersonProfileDto {
   @Expose() id: string;
   @Expose() name: string;
@@ -38,12 +49,9 @@ export class PersonProfileDto {
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
   date_of_birth: Date | null;
   
-  /** No `bio` column: resolved from metadata.bio. */
-  @Expose()
-  @Transform(({ obj }) => obj.bio ?? obj.metadata?.bio ?? null)
-  bio: string | null;
+  @Expose() bio: string | null;
+  @Expose() wikipedia_url: string | null;
+  // caste and religion are admin-only (AdminPersonDto): never exposed on the public profile.
 
-  @Expose() metadata: any;
-  
   @Expose() candidates?: any[];
 }

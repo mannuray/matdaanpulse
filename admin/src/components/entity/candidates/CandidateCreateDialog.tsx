@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
-import { INDEPENDENT, candidateMetadata, candidateNumbersValid, type CandidateForm } from '../../../hooks/useCandidateEdit';
+import { EMPTY_AFFIDAVIT, INDEPENDENT, candidateAffidavit, candidateNumbersValid, type CandidateForm } from '../../../hooks/useCandidateEdit';
 import type { NewCandidate } from '../../../hooks/useCandidateManager';
 import { getParties } from '../../../services/geo.service';
 import { FormDialog } from '../../ui/FormDialog';
@@ -12,7 +12,7 @@ import { CandidateFields } from './CandidateFields';
 import type { Constituency, Party } from '../../../types';
 
 type CreateForm = CandidateForm & { const_id: string };
-const EMPTY: CreateForm = { name: '', party_id: INDEPENDENT, const_id: '', age: '', gender: '', education: '', criminal_cases: '', assets: '' };
+const EMPTY: CreateForm = { name: '', party_id: INDEPENDENT, const_id: '', ...EMPTY_AFFIDAVIT };
 
 interface CandidateCreateDialogProps {
   electionId: string;
@@ -70,7 +70,7 @@ export function CandidateCreateDialog({ electionId, seats, defaultSeat, saving, 
       const_id: form.const_id,
       name: form.name.trim(),
       party_id: form.party_id || INDEPENDENT,
-      metadata: candidateMetadata(form),
+      ...candidateAffidavit(form),
     });
   };
 
@@ -79,7 +79,7 @@ export function CandidateCreateDialog({ electionId, seats, defaultSeat, saving, 
       open
       onRequestClose={onClose}
       title="New candidate"
-      description="Starts with 0 votes in the Live Console. Link a person record after it is created."
+      description="Starts with 0 votes in the Live Console. A person record is created with the same name; merge it later if it is a duplicate."
       footer={<PanelFooter dirty={dirty} saving={saving} canSave={canSave} onCancel={() => setForm(initial)} onSave={submit} saveLabel="Create candidate" />}
     >
       <form onSubmit={(e) => { e.preventDefault(); submit(); }}>

@@ -18,7 +18,7 @@ const LAKH = 1e5;
 const CRORE = 1e7;
 
 /**
- * Helper under the "Declared assets" field: "₹2,45,00,000 · ₹2.45 crore" (or "· ₹85 lakh"). It reads plain rupee text
+ * Helper under the "Declared assets" and "Declared liabilities" fields: "₹2,45,00,000 · ₹2.45 crore" (or "· ₹85 lakh"). It reads plain rupee text
  * (₹, commas and spaces ignored) and says nothing for empty or free text; the stored value is never reformatted.
  */
 export function assetsHelper(v: string): string | null {

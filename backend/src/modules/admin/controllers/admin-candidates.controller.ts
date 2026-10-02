@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, HttpCode, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { CandidatesService } from '../../candidates/candidates.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
@@ -34,8 +34,8 @@ export class AdminCandidatesController {
       this.candidatesService.findOne(id),
       this.audit.lastEdit('candidate', id),
     ]);
-    // The Master record card's "N contests · first YYYY" for the linked person.
-    const person_contests = candidate.person_id ? await this.candidatesService.personContests(candidate.person_id) : null;
+    // The Master record card's "N contests · first YYYY" for the candidate's person.
+    const person_contests = await this.candidatesService.personContests(candidate.person_id);
     return { ...candidate, last_edit, person_contests };
   }
 
@@ -63,16 +63,22 @@ export class AdminCandidatesController {
     return { ...candidate, last_edit: await this.audit.lastEdit('candidate', id) };
   }
 
-  @Put(':id/link-person')
+  /**
+   * Change person: move this candidacy to another existing person. Moving a person's last contest merges that
+   * person into the target (logged, undoable by a super admin); `merge_id` is then set.
+   */
+  @Put(':id/person')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  linkPerson(@Req() req: any, @Param('id', ParseUUIDPipe) id: string, @Body() body: LinkPersonDto) {
-    return this.candidatesService.linkPerson(id, body.person_id, req.user?.id);
+  @UseInterceptors(new MapToDtoInterceptor(AdminCandidateDto))
+  async changePerson(@Req() req: any, @Param('id', ParseUUIDPipe) id: string, @Body() body: LinkPersonDto) {
+    const candidate = await this.candidatesService.changePerson(id, body.person_id, req.user?.id);
+    return { ...candidate, last_edit: await this.audit.lastEdit('candidate', id) };
   }
 
-  @Delete(':id/link-person')
+  /** Split: move this candidacy to a new person created from it. Returns the new person's id. */
+  @Post(':id/split')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  @HttpCode(204)
-  async unlinkPerson(@Req() req: any, @Param('id', ParseUUIDPipe) id: string) {
-    await this.candidatesService.unlinkPerson(id, req.user?.id);
+  split(@Req() req: any, @Param('id', ParseUUIDPipe) id: string) {
+    return this.candidatesService.split(id, req.user?.id);
   }
 }

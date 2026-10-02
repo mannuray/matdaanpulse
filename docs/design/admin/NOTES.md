@@ -78,3 +78,10 @@ pages, without these Stitch items (plan `docs/superpowers/plans/2026-10-02-admin
 - The dashboard activity row "saved N results" lacks the seat name.
 - The audit log loader fetches 200 rows with no paging.
 - The legacy-free regex scan has gaps.
+
+### Persons and candidates open follow-ups (2026-10)
+- Drop `candidates.metadata` and `persons.metadata` in a new migration once the person-required release (018) is live
+  everywhere. 018 is expand-only: it stopped the app using them and archived every non-empty value, but kept the columns
+  (nullable, `@ignore` in `schema.prisma`) so the previous backend works during the deploy (`docs/DEPLOYMENT.md` §5.0).
+- Scored duplicate matching and a review queue. Today "Possible duplicates" is a same-name suggestion list; a scored match
+  (name, date of birth, state, party history) with a queue of pending reviews is agreed for later.

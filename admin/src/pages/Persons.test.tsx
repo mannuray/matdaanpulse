@@ -1,13 +1,14 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { cleanup, fireEvent, screen, waitFor, within } from '@testing-library/react';
-import type { Election, PersonCandidate, PersonWithStats } from '../types';
+import type { Election, PersonCandidate, PersonMerge, PersonWithStats } from '../types';
 
 const api = vi.hoisted(() => ({
   getPersons: vi.fn(),
   getPerson: vi.fn(),
   updatePerson: vi.fn(async () => ({})),
-  mergePersons: vi.fn(async () => ({ merged: true, target_id: 'p1' })),
+  mergePersons: vi.fn(async () => ({ merged: true, target_id: 'p1', merge_id: 'm9' })),
+  undoMerge: vi.fn(async (_id: string) => ({ undone: true, merge_id: 'm1', person_id: 'dup1', keeper_id: 'x' })),
 }));
 vi.mock('../services/person.api', () => api);
 const ELECTIONS = vi.hoisted((): Election[] => [
@@ -46,6 +47,12 @@ const HISTORY: PersonCandidate[] = [
   }),
 ];
 
+// Newest first: one that can still be undone, one already undone.
+const MERGES: PersonMerge[] = [
+  { id: 'm1', duplicate_name: 'Nitish Kr', candidate_count: 1, merged_at: '2026-10-01T08:00:00.000Z', merged_by: 'Priya S', undoable: true, undone_at: null, not_undoable_reason: null },
+  { id: 'm0', duplicate_name: 'N. Kumar', candidate_count: 2, merged_at: '2026-09-30T04:30:00.000Z', merged_by: null, undoable: false, undone_at: '2026-10-02T04:30:00.000Z', not_undoable_reason: 'undone' },
+];
+
 beforeEach(() => {
   auth.role = 'EDITOR';
   api.getPersons.mockImplementation(async (p: number, limit: number) =>
@@ -53,8 +60,9 @@ beforeEach(() => {
   api.getPerson.mockImplementation(async (id: string) => ({
     ...(PAGE1.find((x) => x.id === id) ?? P(id, `Person ${id}`, null)),
     bio: null,
-    metadata: { caste: 'Kurmi', wikipedia_url: 'https://en.wikipedia.org/wiki/Nitish_Kumar' },
+    caste: 'Kurmi', religion: null, wikipedia_url: 'https://en.wikipedia.org/wiki/Nitish_Kumar',
     candidates: id === NITISH ? HISTORY : [],
+    merges: id === NITISH ? MERGES : [],
     updated_at: '2026-10-02T09:02:00Z',
     last_edit: null,
   }));
@@ -81,7 +89,7 @@ describe('Persons list', () => {
   it('?q= becomes the initial search (the Candidates "find person" link works)', async () => {
     renderAt('/persons?q=Nitish');
     expect((screen.getByLabelText('Search persons') as HTMLInputElement).value).toBe('Nitish');
-    await waitFor(() => expect(api.getPersons).toHaveBeenCalledWith(1, 50, 'Nitish'));
+    await waitFor(() => expect(api.getPersons).toHaveBeenCalledWith(1, 50, 'Nitish', {}));
   });
 
   it('pages through persons', async () => {
@@ -89,7 +97,40 @@ describe('Persons list', () => {
     await within(table()).findByText('Nitish Kumar');
     fireEvent.click(screen.getByRole('button', { name: 'Next' }));
     expect(await within(table()).findByText('Page Two')).toBeTruthy();
-    expect(api.getPersons).toHaveBeenLastCalledWith(2, 50, undefined);
+    expect(api.getPersons).toHaveBeenLastCalledWith(2, 50, undefined, {});
+  });
+
+  it('the Contests filter (All / 1 contest / 2 or more / None) goes to the API and is kept in the list state', async () => {
+    renderAt();
+    await within(table()).findByText('Nitish Kumar');
+    const group = screen.getByRole('group', { name: 'Contests' });
+    expect(within(group).getAllByRole('button').map((b) => b.textContent)).toEqual(['All', '1 contest', '2 or more', 'None']);
+    expect(within(group).getByRole('button', { name: 'All' }).getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(within(group).getByRole('button', { name: '2 or more' }));
+    await waitFor(() => expect(api.getPersons).toHaveBeenLastCalledWith(1, 50, undefined, { contests: '2plus' }));
+    // Open a record and come back: the filter is still on.
+    fireEvent.click(await within(table()).findByText('Rabri Devi'));
+    await screen.findByRole('heading', { level: 1, name: 'Rabri Devi' });
+    fireEvent.click(back());
+    await within(table()).findByText('Rabri Devi');
+    expect(screen.getByRole('button', { name: '2 or more' }).getAttribute('aria-pressed')).toBe('true');
+    // And it survives a reload (remembered like the other list filters).
+    cleanup();
+    renderAt();
+    await waitFor(() => expect(api.getPersons).toHaveBeenLastCalledWith(1, 50, undefined, { contests: '2plus' }));
+    fireEvent.click(screen.getByRole('button', { name: '1 contest' }));
+    await waitFor(() => expect(api.getPersons).toHaveBeenLastCalledWith(1, 50, undefined, { contests: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: 'None' }));
+    await waitFor(() => expect(api.getPersons).toHaveBeenLastCalledWith(1, 50, undefined, { contests: '0' }));
+  });
+
+  it('a stored contests value that is not an option falls back to All', async () => {
+    localStorage.setItem('persons_filters', JSON.stringify({ contests: 'many' }));
+    renderAt();
+    await within(table()).findByText('Nitish Kumar');
+    expect(api.getPersons).toHaveBeenCalledWith(1, 50, undefined, {});
+    expect(api.getPersons).not.toHaveBeenCalledWith(1, 50, undefined, { contests: 'many' });
+    expect(screen.getByRole('button', { name: 'All' }).getAttribute('aria-pressed')).toBe('true');
   });
 
   it('a row opens the record page in place of the list; back returns to the same page of the list', async () => {
@@ -116,22 +157,25 @@ describe('Person record page', () => {
     expect(screen.getByText('id 6a14c00a')).toBeTruthy();
   });
 
-  it('Profile, Links and Biography cards; census tags are read only; Wikipedia has an Open link', async () => {
+  it('Profile, Links and Biography cards; caste and religion are editable; Wikipedia has an Open link', async () => {
     renderAt(`/persons/${NITISH}`);
     await heading();
     for (const t of ['Profile', 'Links', 'Biography', 'Record']) expect(screen.getByRole('heading', { name: t })).toBeTruthy();
-    expect(screen.getByText('Census tags: Kurmi')).toBeTruthy();
+    expect(screen.queryByText(/Census tags/)).toBeNull();
+    expect((screen.getByLabelText('Caste') as HTMLInputElement).value).toBe('Kurmi');
+    expect((screen.getByLabelText('Religion') as HTMLInputElement).value).toBe('');
     const open = screen.getByRole('link', { name: /Open/ }) as HTMLAnchorElement;
     expect(open.href).toBe('https://en.wikipedia.org/wiki/Nitish_Kumar');
     expect(open.target).toBe('_blank');
     expect(screen.getByText('No edits recorded')).toBeTruthy();
   });
 
-  it('no census tags line when none are recorded', async () => {
-    api.getPerson.mockImplementationOnce(async (id: string) => ({ ...P(id, 'Blank Person', null), bio: null, metadata: {}, candidates: [] }));
+  it('a person with no contests and no merges', async () => {
+    api.getPerson.mockImplementationOnce(async (id: string) => ({ ...P(id, 'Blank Person', null), bio: null, candidates: [], merges: [] }));
     renderAt('/persons/p7');
     await screen.findByRole('heading', { level: 1, name: 'Blank Person' });
-    expect(screen.queryByText(/Census tags/)).toBeNull();
+    expect((screen.getByLabelText('Caste') as HTMLInputElement).value).toBe('');
+    expect(screen.getByText('No merges into this person.')).toBeTruthy();
     expect(screen.getByText('0 contests')).toBeTruthy();
     expect(screen.getByText('No contests recorded.')).toBeTruthy();
   });
@@ -164,7 +208,7 @@ describe('Person record page', () => {
 
   it('a Live election with no result yet shows no outcome badge', async () => {
     api.getPerson.mockImplementationOnce(async (id: string) => ({
-      ...P(id, 'Nitish Kumar', 'M'), bio: null, metadata: {},
+      ...P(id, 'Nitish Kumar', 'M'), bio: null,
       candidates: [contest({ id: 'c25', election_id: 'e1', election_name: 'Bihar Vidhan Sabha 2025', election_year: 2025, election_status: 'Live', status: null })],
     }));
     renderAt(`/persons/${NITISH}`);
@@ -175,7 +219,7 @@ describe('Person record page', () => {
 
   it('a Finalized election with no result row shows no outcome badge (not "Lost")', async () => {
     api.getPerson.mockImplementationOnce(async (id: string) => ({
-      ...P(id, 'Nitish Kumar', 'M'), bio: null, metadata: {},
+      ...P(id, 'Nitish Kumar', 'M'), bio: null,
       candidates: [contest({ id: 'c10', election_id: 'e1', election_name: 'Bihar Vidhan Sabha 2010', election_year: 2010, election_status: 'Finalized', status: null })],
     }));
     renderAt(`/persons/${NITISH}`);
@@ -191,17 +235,19 @@ describe('Person record page', () => {
     expect(where()).toBe('/candidates/c20?election=e2');
   });
 
-  it('saving keeps the normalised gender and the other metadata; bio and Wikipedia go into metadata', async () => {
+  it('saving sends the identity fields as columns (bio, Wikipedia, caste, religion) and never metadata', async () => {
     renderAt(`/persons/${NITISH}`);
     await heading();
     expect((screen.getByLabelText('Gender') as HTMLSelectElement).value).toBe('Male');
     fireEvent.change(screen.getByLabelText('Education'), { target: { value: 'MA' } });
     fireEvent.change(screen.getByLabelText('Biographical summary'), { target: { value: 'New bio' } });
+    fireEvent.change(screen.getByLabelText('Religion'), { target: { value: 'Hindu' } });
     fireEvent.click(screen.getByRole('button', { name: 'Save changes' }));
-    await waitFor(() => expect(api.updatePerson).toHaveBeenCalledWith(NITISH, expect.objectContaining({
-      education: 'MA', gender: 'Male', bio: 'New bio',
-      metadata: { caste: 'Kurmi', wikipedia_url: 'https://en.wikipedia.org/wiki/Nitish_Kumar', bio: 'New bio' },
-    })));
+    await waitFor(() => expect(api.updatePerson).toHaveBeenCalled());
+    expect((api.updatePerson.mock.calls[0] as unknown[])[1]).toEqual({
+      name: 'Nitish Kumar', date_of_birth: null, gender: 'Male', education: 'MA', photo_url: null,
+      bio: 'New bio', wikipedia_url: 'https://en.wikipedia.org/wiki/Nitish_Kumar', caste: 'Kurmi', religion: 'Hindu',
+    });
   });
 
   it('emptied fields are saved as null, never ""', async () => {
@@ -212,13 +258,13 @@ describe('Person record page', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Save changes' }));
     await waitFor(() => expect(api.updatePerson).toHaveBeenCalled());
     const body = (api.updatePerson.mock.calls[0] as unknown[])[1] as Record<string, unknown>;
-    expect(body).toMatchObject({ education: null, wikipedia_url: null, photo_url: null, date_of_birth: null, bio: null });
-    expect(body.metadata).toEqual({ caste: 'Kurmi', wikipedia_url: null, bio: null });
+    expect(body).toMatchObject({ education: null, wikipedia_url: null, photo_url: null, date_of_birth: null, bio: null, religion: null });
+    expect(body).not.toHaveProperty('metadata');
     expect(Object.values(body)).not.toContain('');
   });
 
   it('saving an unrelated field keeps a null gender/education as null', async () => {
-    api.getPerson.mockImplementationOnce(async (id: string) => ({ ...P(id, 'Blank Person', null), education: null, bio: null, metadata: {}, candidates: [] }));
+    api.getPerson.mockImplementationOnce(async (id: string) => ({ ...P(id, 'Blank Person', null), education: null, bio: null, candidates: [] }));
     renderAt('/persons/p7');
     fireEvent.change(await screen.findByLabelText('Name'), { target: { value: 'Blank P.' } });
     fireEvent.click(screen.getByRole('button', { name: 'Save changes' }));
@@ -312,6 +358,7 @@ describe('Merge duplicate', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Merge Nitish Kr into this record' }));
     await waitFor(() => expect(api.mergePersons).toHaveBeenCalledWith('p2', NITISH));
     expect(confirm.mock.calls[0][0]).toContain('into "Nitish Kumar"');
+    expect(await screen.findByText('Records merged. You can undo it from Merge history.')).toBeTruthy();
     await waitFor(() => expect(api.getPersons.mock.calls.filter(([, l]) => l === 50)).toHaveLength(2));
   });
 
@@ -364,5 +411,75 @@ describe('Merge duplicate', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Try again' }));
     await waitFor(() => expect(screen.queryByText('Could not reload person')).toBeNull());
     expect(await heading()).toBeTruthy();
+  });
+});
+
+describe('Merge history', () => {
+  const card = () => screen.getByRole('heading', { name: 'Merge history' }).closest('section')!;
+  const entry = (name: RegExp) => within(card()).getByText(name).closest('li')!;
+
+  it('lists every merge with name, contests, IST time and who; an EDITOR sees no Undo', async () => {
+    renderAt(`/persons/${NITISH}`);
+    await heading();
+    expect(within(card()).getByText('Nitish Kr · 1 contest · merged 01 Oct 2026, 13:30 by Priya S')).toBeTruthy();
+    expect(within(card()).getByText('N. Kumar · 2 contests · merged 30 Sept 2026, 10:00 by a deleted user')).toBeTruthy();
+    expect(within(entry(/^N\. Kumar/)).getByText('Undone 02 Oct 2026, 10:00')).toBeTruthy();
+    expect(within(card()).queryByRole('button', { name: /Undo/ })).toBeNull();
+  });
+
+  it('a SUPER_ADMIN undoes an undoable merge after a confirm that names what comes back; the record and list refresh', async () => {
+    auth.role = 'SUPER_ADMIN';
+    renderAt(`/persons/${NITISH}`);
+    await heading();
+    expect(within(entry(/^N\. Kumar/)).queryByRole('button')).toBeNull();
+    const loads = api.getPerson.mock.calls.length;
+    fireEvent.click(within(entry(/^Nitish Kr/)).getByRole('button', { name: 'Undo' }));
+    const dialog = await screen.findByRole('dialog', { name: 'Undo merge?' });
+    expect(within(dialog).getByText(
+      '"Nitish Kr" comes back as its own person record with its 1 contest, and the fields the merge filled in on Nitish Kumar are cleared.',
+    )).toBeTruthy();
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Undo merge' }));
+    await waitFor(() => expect(api.undoMerge).toHaveBeenCalledWith('m1'));
+    await waitFor(() => expect(api.getPerson.mock.calls.length).toBeGreaterThan(loads));
+    await waitFor(() => expect(api.getPersons.mock.calls.filter(([, l]) => l === 50)).toHaveLength(2));
+    expect(await screen.findByText('Merge undone: Nitish Kr is its own record again')).toBeTruthy();
+  });
+
+  it('cancelling the confirm does not undo', async () => {
+    auth.role = 'SUPER_ADMIN';
+    renderAt(`/persons/${NITISH}`);
+    await heading();
+    fireEvent.click(within(entry(/^Nitish Kr/)).getByRole('button', { name: 'Undo' }));
+    fireEvent.click(within(await screen.findByRole('dialog', { name: 'Undo merge?' })).getByRole('button', { name: 'Cancel' }));
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
+    expect(api.undoMerge).not.toHaveBeenCalled();
+  });
+
+  it('a refused undo (409) shows the server message', async () => {
+    auth.role = 'SUPER_ADMIN';
+    api.undoMerge.mockRejectedValueOnce(new ApiError("Can't undo this merge: Nitish Kumar no longer belongs to this person.", 409));
+    renderAt(`/persons/${NITISH}`);
+    await heading();
+    fireEvent.click(within(entry(/^Nitish Kr/)).getByRole('button', { name: 'Undo' }));
+    fireEvent.click(within(await screen.findByRole('dialog', { name: 'Undo merge?' })).getByRole('button', { name: 'Undo merge' }));
+    expect(await screen.findByText("Could not undo merge: Can't undo this merge: Nitish Kumar no longer belongs to this person.")).toBeTruthy();
+  });
+
+  it('when the undo leaves this person with no contests (it is deleted), the restored person opens', async () => {
+    auth.role = 'SUPER_ADMIN';
+    renderAt(`/persons/${NITISH}`);
+    await heading();
+    fireEvent.click(within(entry(/^Nitish Kr/)).getByRole('button', { name: 'Undo' }));
+    api.getPerson.mockRejectedValueOnce(new ApiError('Person not found', 404));
+    fireEvent.click(within(await screen.findByRole('dialog', { name: 'Undo merge?' })).getByRole('button', { name: 'Undo merge' }));
+    await waitFor(() => expect(where()).toBe('/persons/dup1'));
+  });
+
+  it('Undo is disabled while the form has unsaved edits', async () => {
+    auth.role = 'SUPER_ADMIN';
+    renderAt(`/persons/${NITISH}`);
+    await heading();
+    fireEvent.change(screen.getByLabelText('Education'), { target: { value: 'MA' } });
+    expect((within(entry(/^Nitish Kr/)).getByRole('button', { name: 'Undo' }) as HTMLButtonElement).disabled).toBe(true);
   });
 });

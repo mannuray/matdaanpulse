@@ -402,7 +402,7 @@ function main() {
 
     const winCandId = randomUUID();
     candidateInserts.push(
-      `  ('${winCandId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(winnerPartyId)}', '${esc(row.winnerName)}', FALSE, '{}')`
+      `  ('${winCandId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(winnerPartyId)}', '${esc(row.winnerName)}', FALSE)`
     );
     resultInserts.push(
       `  ('${randomUUID()}', '${winCandId}', '${esc(constId)}', ${winnerVotes}, 'WON', ${row.margin}, 0, '${ELECTION_ID}')`
@@ -411,7 +411,7 @@ function main() {
 
     const ruCandId = randomUUID();
     candidateInserts.push(
-      `  ('${ruCandId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(runnerUpPartyId)}', '${esc(row.runnerUpName)}', FALSE, '{}')`
+      `  ('${ruCandId}', NULL, '${ELECTION_ID}', '${esc(constId)}', '${esc(runnerUpPartyId)}', '${esc(row.runnerUpName)}', FALSE)`
     );
     resultInserts.push(
       `  ('${randomUUID()}', '${ruCandId}', '${esc(constId)}', ${runnerUpVotes}, 'LOST', ${row.margin}, 0, '${ELECTION_ID}')`
@@ -419,7 +419,7 @@ function main() {
     totalCandidates++;
   }
 
-  lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES');
+  lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent) VALUES');
   lines.push(candidateInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 

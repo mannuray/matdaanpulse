@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { getPerson, updatePerson, mergePersons, getPersons } from '../services/person.api';
+import { getPerson, updatePerson, mergePersons, getPersons, undoMerge } from '../services/person.api';
 import { PersonService } from '../services/person.service';
 import { useToast } from '../context/ToastContext';
-import { fieldErrorMap } from '../services/api-client';
+import { ApiError, fieldErrorMap } from '../services/api-client';
 import { blankToNull } from '../utils/record-payload';
 import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
 import type { PersonWithCandidates, PersonWithStats } from '../types';
 
 export type PersonForm = ReturnType<typeof PersonService.prepareFormState>;
 
-const EMPTY_FORM: PersonForm = { name: '', date_of_birth: '', gender: '', education: '', photo_url: '', bio: '', wikipedia_url: '' };
+const EMPTY_FORM: PersonForm = { name: '', date_of_birth: '', gender: '', education: '', photo_url: '', bio: '', wikipedia_url: '', caste: '', religion: '' };
 
 /** Empty, or a real calendar date as YYYY-MM-DD (what a date input produces). */
 export function isValidDob(v: string): boolean {
@@ -75,17 +75,8 @@ export function usePersonEdit(id?: string) {
     setFieldErrors({});
     try {
       // Emptied fields clear the value (null), never store ''. Name is required (Save is disabled without it).
-      const payload = blankToNull(submitted);
-      await updatePerson(id, {
-        ...payload,
-        name: submitted.name,
-        // bio and wikipedia_url have no column: they live in metadata, next to the imported keys (caste, religion…).
-        metadata: {
-          ...person.metadata,
-          wikipedia_url: payload.wikipedia_url,
-          bio: payload.bio
-        }
-      });
+      // Every field is a column (bio, wikipedia_url, caste and religion too); the backend refuses `metadata`.
+      await updatePerson(id, { ...blankToNull(submitted), name: submitted.name });
       toast('Person record updated');
       // The submitted values are now the saved baseline; edits typed while saving stay dirty.
       setSaved(submitted);
@@ -134,7 +125,7 @@ export function usePersonEdit(id?: string) {
     try {
       // mergePersons(sourceId, targetId): the backend deletes the source.
       await mergePersons(duplicateId, id);
-      toast('Records merged successfully');
+      toast('Records merged. You can undo it from Merge history.');
       setMergeSearch('');
       loadPerson();
       return true;
@@ -146,6 +137,38 @@ export function usePersonEdit(id?: string) {
     }
   };
 
+  /**
+   * Undo a merge into this person (SUPER_ADMIN; the page confirms first). Resolves the restored person's id, and
+   * whether this person is gone: one with no contests of its own is deleted once they move back. Null when refused
+   * (409, e.g. a contest moved since; the toast shows the server's reason) or failed.
+   */
+  const [undoing, setUndoing] = useState(false);
+  const handleUndo = async (mergeId: string, duplicateName?: string): Promise<{ restoredId: string; keeperGone: boolean } | null> => {
+    if (!id || undoing) return null;
+    setUndoing(true);
+    try {
+      const res = await undoMerge(mergeId);
+      toast(duplicateName ? `Merge undone: ${duplicateName} is its own record again` : 'Merge undone');
+      try {
+        const data = await getPerson(id);
+        const next = PersonService.prepareFormState(data);
+        setPerson(data);
+        setForm(next);
+        setSaved(next);
+        setLoadError(null);
+      } catch (err) {
+        if (err instanceof ApiError && err.status === 404) return { restoredId: res.person_id, keeperGone: true };
+        setLoadError(recordLoadErrorKind(err));
+      }
+      return { restoredId: res.person_id, keeperGone: false };
+    } catch (err) {
+      toastError(err, 'Could not undo merge');
+      return null;
+    } finally {
+      setUndoing(false);
+    }
+  };
+
   const dirty = JSON.stringify(form) !== JSON.stringify(saved);
   /** Drop unsaved edits (panel Cancel). */
   const reset = () => { setForm(saved); setFieldErrors({}); };
@@ -153,7 +176,7 @@ export function usePersonEdit(id?: string) {
   return {
     fieldErrors,
     person, loading, loadError, saving, form, setForm, dirty, reset,
-    mergeSearch, setMergeSearch, mergeResults, merging,
-    handleSave, handleMerge, refresh: loadPerson
+    mergeSearch, setMergeSearch, mergeResults, merging, undoing,
+    handleSave, handleMerge, handleUndo, refresh: loadPerson
   };
 }
