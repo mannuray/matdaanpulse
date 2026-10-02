@@ -1,30 +1,18 @@
-import { BrowserRouter, Routes, Route, useMatch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { ElectionProvider } from './hooks/useElection';
-import { useElection } from './hooks/useElection';
-import { useApi } from './hooks/useApi';
-import { getElections, getStates } from './services/api';
 import ErrorBoundary from './components/ErrorBoundary';
-import Header from './components/organisms/Header';
 import Home from './pages/Home';
 import ElectionView from './pages/ElectionView';
 import ConstituencyDetail from './pages/ConstituencyDetail';
 import PersonDetail from './pages/PersonDetail';
 import About from './pages/About';
 
+/** Every route is a studio screen with its own header; each page decides whether it scrolls (dashboard: no, detail pages: yes). */
 function AppLayout() {
-  const { data: elections } = useApi(() => getElections(), []);
-  const { data: states } = useApi(() => getStates(), []);
-  const { liveConnected } = useElection();
-  const onElection = useMatch('/election/:id');
-  const onHome = useMatch('/');
-  const onAbout = useMatch('/about');
-  const studio = Boolean(onElection || onHome || onAbout);
-
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      {!studio && <Header elections={elections || []} states={states || []} liveConnected={liveConnected} />}
-      <main style={{ flex: 1, width: '100%', overflowY: studio ? 'hidden' : 'auto', position: 'relative' }}>
+      <main style={{ flex: 1, minHeight: 0, width: '100%', overflow: 'hidden', position: 'relative' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/election/:id" element={<ElectionView />} />
