@@ -48,8 +48,7 @@ export class ElectionsController {
   async findOne(@Param('id', new ParseUUIDPipe()) id: string) {
     const election = await this.electionsService.findOne(id);
     const summary = await this.resultsService.getElectionSummary(id);
-    
-    const manifest = this.electionsService.parseManifest(election.manifest_url);
+    const manifest = await this.electionsService.comparableManifest(election, this.electionsService.parseManifest(election.manifest_url));
 
     return { ...election, manifest, summary };
   }

@@ -310,7 +310,7 @@ The manifest JSON controls how the election appears in the UI. It's stored in `e
   "milestones": [{ "label": "Majority", "value": 122 }],
   "compare_with": ["previous-election-id"],
   "geo": {
-    "map_url": "/geo/bihar_ac.geojson",
+    "map_url": "/geo/bihar_ac_2008.geojson",
     "center": [85.5, 25.6],
     "zoom": 8
   }
@@ -333,9 +333,9 @@ Each election needs a GeoJSON file with constituency boundaries.
 **Location:** `frontend/public/geo/`
 
 **Existing files:**
-- `india_pc.geojson` — 543 Lok Sabha constituencies
+- `india_pc_2008.geojson` — 543 Lok Sabha constituencies
 - `india_states.geojson` — 36 state boundaries
-- `bihar_ac.geojson` — 243 Bihar assembly constituencies
+- `bihar_ac_2008.geojson` — 243 Bihar assembly constituencies
 
 **Required properties per feature:**
 

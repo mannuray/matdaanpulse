@@ -134,16 +134,16 @@ describe('ConstituenciesService.history', () => {
     };
     return { svc: new ConstituenciesService(prisma, {} as any, [], {} as any), prisma };
   }
-  const current = { id: 'BR_VS_1_VALMIKI_NAGAR', state_id: 5, const_no: 1, elections: { type: 'VS' } };
+  const current = { id: 'BR_VS_1_VALMIKI_NAGAR', state_id: 5, const_no: 1, elections: { type: 'VS', delimitation: '2008' } };
 
-  it('matches on state, election type and const_no; newest first; one party change across 3 elections', async () => {
+  it('matches on state, election type, delimitation and const_no; newest first; one party change across 3 elections', async () => {
     const { svc, prisma } = make(current, [
       match('BR_VS10_1_VALMIKI_NAGAR', 2010, [win('A', 'JDU', 1200)], { toString: () => '58.40', valueOf: () => 58.4 }),
       match('BR_VS_1_VALMIKI_NAGAR', 2025, [win('C', 'BJP', 900, 'LEADING'), win('X', 'INC', 5, 'WON')]),
       match('BR_VS15_1_VALMIKI_NAGAR', 2015, [win('B', 'JDU', null)]),
     ]);
     const out = await svc.history('BR_VS_1_VALMIKI_NAGAR');
-    expect(prisma.constituencies.findMany.mock.calls[0][0].where).toEqual({ state_id: 5, const_no: 1, elections: { type: 'VS' } });
+    expect(prisma.constituencies.findMany.mock.calls[0][0].where).toEqual({ state_id: 5, const_no: 1, elections: { type: 'VS', delimitation: '2008' } });
     expect(out.rows.map((r) => r.year)).toEqual([2025, 2015, 2010]);
     expect(out.rows[0]).toEqual({
       election_id: 'e2025', year: 2025, type: 'VS', winner: 'X', party_id: 'INC', margin: 5, turnout: null, is_current: true,
@@ -160,10 +160,16 @@ describe('ConstituenciesService.history', () => {
   });
 
   it('an id that does not parse still resolves through its columns; with no state it returns only the current seat', async () => {
-    const { svc, prisma } = make({ id: 'WEIRD', state_id: null, const_no: 7, elections: { type: 'LS' } }, [match('WEIRD', 2024, [])]);
+    const { svc, prisma } = make({ id: 'WEIRD', state_id: null, const_no: 7, elections: { type: 'LS', delimitation: '2008' } }, [match('WEIRD', 2024, [])]);
     const out = await svc.history('WEIRD');
     expect(prisma.constituencies.findMany.mock.calls[0][0].where).toEqual({ id: 'WEIRD' });
     expect(out).toEqual({ volatility: { elections: 0, changes: 0 }, rows: [expect.objectContaining({ is_current: true, winner: null })] });
+  });
+
+  it('a seat whose election has no delimitation is compared with nothing (never a wrong flip)', async () => {
+    const { svc, prisma } = make({ ...current, elections: { type: 'VS', delimitation: null } }, [match('BR_VS_1_VALMIKI_NAGAR', 2025, [])]);
+    await svc.history('BR_VS_1_VALMIKI_NAGAR');
+    expect(prisma.constituencies.findMany.mock.calls[0][0].where).toEqual({ id: 'BR_VS_1_VALMIKI_NAGAR' });
   });
 
   it('an unknown id is a 404, not a 500', async () => {

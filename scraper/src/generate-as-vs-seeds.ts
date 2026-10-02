@@ -2,7 +2,7 @@
  * Generate Assam Vidhan Sabha seed SQL files for 2011, 2016, 2021.
  *
  * Reads JSON data from database/data/as_vs_{year}.json and GeoJSON from
- * frontend/public/geo/as_ac.geojson for canonical names + categories.
+ * frontend/public/geo/as_ac_2008.geojson for canonical names + categories.
  *
  * Usage: npx ts-node src/generate-as-vs-seeds.ts
  */
@@ -63,7 +63,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       vip_seats: {},
       milestones: [{ label: 'Majority', value: 64 }],
       geo: {
-        map_url: '/geo/as_ac.geojson',
+        map_url: '/geo/as_ac_2008.geojson',
         center: [92.9, 26.2],
         zoom: 8,
       },
@@ -106,7 +106,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       milestones: [{ label: 'Majority', value: 64 }],
       compare_with: ['f6a7b8c9-d0e1-2345-f012-567890122011'],
       geo: {
-        map_url: '/geo/as_ac.geojson',
+        map_url: '/geo/as_ac_2008.geojson',
         center: [92.9, 26.2],
         zoom: 8,
       },
@@ -147,7 +147,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       ],
       history_years: [2011, 2016],
       geo: {
-        map_url: '/geo/as_ac.geojson',
+        map_url: '/geo/as_ac_2008.geojson',
         center: [92.9, 26.2],
         zoom: 8,
       },
@@ -215,7 +215,7 @@ function main() {
   console.log('=== Assam Vidhan Sabha Seed Generator ===\n');
 
   // Load GeoJSON
-  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/as_ac.geojson');
+  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/as_ac_2008.geojson');
   const geoData = JSON.parse(fs.readFileSync(geoPath, 'utf8'));
   const geoMap: Record<number, GeoEntry> = {};
   for (const feat of geoData.features) {

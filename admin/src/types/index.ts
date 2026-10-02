@@ -14,6 +14,8 @@ export interface Election {
   year: number;
   status: 'Upcoming' | 'Live' | 'Finalized';
   tentative_next_date: string | null;
+  /** Delimitation order year the seats follow, e.g. "2008"; null = not known. */
+  delimitation: string | null;
   manifest_url: string | null;
 }
 

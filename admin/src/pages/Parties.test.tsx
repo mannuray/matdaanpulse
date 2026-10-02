@@ -14,8 +14,8 @@ const api = vi.hoisted(() => ({
 }));
 vi.mock('../services/geo.service', () => api);
 const ELECTIONS = vi.hoisted((): Election[] => [
-  { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, manifest_url: null },
-  { id: 'e2', name: 'Kerala Vidhan Sabha 2021', type: 'VS', state_id: 2, year: 2021, status: 'Finalized', tentative_next_date: null, manifest_url: null },
+  { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, delimitation: null, manifest_url: null },
+  { id: 'e2', name: 'Kerala Vidhan Sabha 2021', type: 'VS', state_id: 2, year: 2021, status: 'Finalized', tentative_next_date: null, delimitation: null, manifest_url: null },
 ]);
 vi.mock('../services/election.service', () => ({ getElections: vi.fn(async () => ELECTIONS) }));
 vi.mock('../context/AuthContext', () => ({ useAuth: () => ({ user: { id: 'u', name: 'Mannu K', role: 'EDITOR' }, hasRole: (r: string) => r === 'EDITOR' }) }));

@@ -8,6 +8,7 @@ import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFo
 import type { UpdateAnalysisDto } from './dto/constituency-input.dto';
 import { AuditLogService, type RecordAuditEntry } from '../audit-log/audit-log.service';
 import { changedFields } from '../audit-log/audit-diff';
+import { comparableElectionIds } from '../../common/comparable-elections';
 
 @Injectable()
 export class ConstituenciesService {
@@ -134,20 +135,23 @@ export class ConstituenciesService {
 
   /**
    * Seat history from results, newest first: the seats of every election of the same type with the same state
-   * and `const_no` (the columns, so an id that `extractConstNo` cannot parse still works). Independent of
-   * constituency_analysis. A seat with no state returns only itself. Volatility counts party changes between
+   * and `const_no` (the columns, so an id that `extractConstNo` cannot parse still works) and the same
+   * delimitation (migration 019). Independent of constituency_analysis. A seat with no state or no delimitation
+   * returns only itself. Volatility counts party changes between
    * consecutive elections that have a winner.
    */
   async history(id: string) {
     const seat = await this.prisma.constituencies.findUnique({
       where: { id },
-      select: { id: true, state_id: true, const_no: true, elections: { select: { type: true } } },
+      select: { id: true, state_id: true, const_no: true, elections: { select: { type: true, delimitation: true } } },
     });
     if (!seat) throw new ConstituencyNotFoundException(id);
+    // Same seat number only means the same place within one delimitation; no state or delimitation: only itself.
+    const { delimitation } = seat.elections;
     const matches = await this.prisma.constituencies.findMany({
-      where: seat.state_id === null
+      where: seat.state_id === null || !delimitation
         ? { id }
-        : { state_id: seat.state_id, const_no: seat.const_no, elections: { type: seat.elections.type } },
+        : { state_id: seat.state_id, const_no: seat.const_no, elections: { type: seat.elections.type, delimitation } },
       select: {
         id: true,
         election_id: true,
@@ -259,6 +263,9 @@ export class ConstituenciesService {
   async computeAnalysis(electionId: string, historyElectionIds: string[], manifest?: any) {
     const election = await this.prisma.elections.findUnique({ where: { id: electionId } });
     if (!election) throw new ElectionNotFoundException(electionId);
+
+    // Only elections of the same type, state and delimitation: seat numbers mean other places across a redraw.
+    historyElectionIds = await comparableElectionIds(this.prisma, election, historyElectionIds);
 
     const constituencies = await this.prisma.constituencies.findMany({ where: { election_id: electionId } });
     const allElectionIds = [...historyElectionIds, electionId];

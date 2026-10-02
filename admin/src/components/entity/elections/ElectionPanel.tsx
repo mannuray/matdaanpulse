@@ -1,4 +1,4 @@
-import { useElectionManager, isValidElectionYear, type ElectionFormState } from '../../../hooks/useElectionManager';
+import { useElectionManager, isValidElectionYear, isValidDelimitation, type ElectionFormState } from '../../../hooks/useElectionManager';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { FormDialog } from '../../ui/FormDialog';
 import { Field, FormSection } from '../../ui/Field';
@@ -45,6 +45,7 @@ export function ElectionPanel({ mode, election, manager, loadingElections, loadF
   const set = (patch: Partial<ElectionFormState>) => setForm({ ...form, ...patch });
   const nameError = form.name.trim() ? fieldErrors.name : 'Name is required';
   const yearError = isValidElectionYear(form.year) ? fieldErrors.year : 'Enter a 4-digit year';
+  const delimitationError = isValidDelimitation(form.delimitation) ? fieldErrors.delimitation : 'Enter a 4-digit year, or leave empty';
   const missing = mode === 'edit' && !election;
   const title = mode === 'new' ? 'New election' : election?.name ?? 'Election';
   const description = election
@@ -58,7 +59,7 @@ export function ElectionPanel({ mode, election, manager, loadingElections, loadF
       title={title}
       description={description}
       footer={missing ? undefined : (
-        <PanelFooter dirty={manager.dirty} saving={manager.saving} canSave={!!form.name.trim() && isValidElectionYear(form.year)} onCancel={manager.revert} onSave={onSave}
+        <PanelFooter dirty={manager.dirty} saving={manager.saving} canSave={!!form.name.trim() && isValidElectionYear(form.year) && isValidDelimitation(form.delimitation)} onCancel={manager.revert} onSave={onSave}
           saveLabel={mode === 'new' ? 'Create election' : 'Save changes'} />
       )}
     >
@@ -110,6 +111,9 @@ export function ElectionPanel({ mode, election, manager, loadingElections, loadF
             )}
             <Field label="Result date" hint="Counting day. The public site counts down to it while the election is upcoming." error={fieldErrors.tentative_next_date}>
               <Input type="date" value={form.tentative_next_date} onChange={(e) => set({ tentative_next_date: e.target.value })} />
+            </Field>
+            <Field label="Delimitation" hint="Year of the delimitation order the seats follow: 2008 for most seats today (Assam: 2023 from its 2026 election). Seat history and analysis compare only elections with the same one; leave empty if not known yet." error={delimitationError}>
+              <Input inputMode="numeric" placeholder="2008" invalid={!!delimitationError} value={form.delimitation} onChange={(e) => set({ delimitation: e.target.value })} />
             </Field>
           </FormSection>
           <button type="submit" hidden aria-hidden tabIndex={-1} />

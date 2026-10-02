@@ -2,7 +2,7 @@
  * Generate Tamil Nadu Vidhan Sabha seed SQL files for 2011, 2016, 2021.
  *
  * Reads JSON data from database/data/tn_vs_{year}.json and GeoJSON from
- * frontend/public/geo/tn_ac.geojson for canonical names + categories.
+ * frontend/public/geo/tn_ac_2008.geojson for canonical names + categories.
  *
  * Usage: npx ts-node src/generate-tn-vs-seeds.ts
  */
@@ -52,7 +52,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       vip_seats: {},
       milestones: [{ label: 'Majority', value: 118 }],
       geo: {
-        map_url: '/geo/tn_ac.geojson',
+        map_url: '/geo/tn_ac_2008.geojson',
         center: [78.6, 11.0],
         zoom: 7,
       },
@@ -95,7 +95,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       milestones: [{ label: 'Majority', value: 118 }],
       compare_with: ['e5f6a7b8-c9d0-1234-ef01-456789012011'],
       geo: {
-        map_url: '/geo/tn_ac.geojson',
+        map_url: '/geo/tn_ac_2008.geojson',
         center: [78.6, 11.0],
         zoom: 7,
       },
@@ -147,7 +147,7 @@ const YEAR_CONFIGS: YearConfig[] = [
         { spoiler: 'AMMK', hurts: 'ADMK', label: 'AMMK split' },
       ],
       geo: {
-        map_url: '/geo/tn_ac.geojson',
+        map_url: '/geo/tn_ac_2008.geojson',
         center: [78.6, 11.0],
         zoom: 7,
       },
@@ -220,7 +220,7 @@ function main() {
   console.log('=== Tamil Nadu Vidhan Sabha Seed Generator ===\n');
 
   // Load GeoJSON
-  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/tn_ac.geojson');
+  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/tn_ac_2008.geojson');
   const geoData = JSON.parse(fs.readFileSync(geoPath, 'utf8'));
   const geoMap: Record<number, GeoEntry> = {};
   for (const feat of geoData.features) {

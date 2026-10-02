@@ -21,9 +21,9 @@ vi.mock('../services/feedback.service', () => ({ getFeedback: svc.getFeedback })
 vi.mock('../services/user.service', () => ({ getUsers: svc.getUsers }));
 
 const ELECTIONS: Election[] = [
-  { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, manifest_url: null },
-  { id: 'e2', name: 'Kerala Vidhan Sabha 2026', type: 'VS', state_id: 2, year: 2026, status: 'Upcoming', tentative_next_date: '2026-04-20T00:00:00.000Z', manifest_url: null },
-  { id: 'e3', name: 'Lok Sabha 2024', type: 'LS', state_id: null, year: 2024, status: 'Finalized', tentative_next_date: null, manifest_url: null },
+  { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, delimitation: null, manifest_url: null },
+  { id: 'e2', name: 'Kerala Vidhan Sabha 2026', type: 'VS', state_id: 2, year: 2026, status: 'Upcoming', tentative_next_date: '2026-04-20T00:00:00.000Z', delimitation: null, manifest_url: null },
+  { id: 'e3', name: 'Lok Sabha 2024', type: 'LS', state_id: null, year: 2024, status: 'Finalized', tentative_next_date: null, delimitation: null, manifest_url: null },
 ];
 const ctx = vi.hoisted(() => ({ electionId: 'e1', loading: false, error: null as string | null, reload: vi.fn(async () => {}), list: [] as unknown[] }));
 vi.mock('../context/ElectionContext', () => ({

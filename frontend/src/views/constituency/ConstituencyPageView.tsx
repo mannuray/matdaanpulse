@@ -173,6 +173,7 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
             <h1 className="font-display text-4xl font-extrabold uppercase tracking-tight text-ink sm:text-5xl">{vm.name}</h1>
             {(vm.constNo != null || vm.type) && <span className="rounded border border-line bg-tile px-2.5 py-1 font-display text-xs font-bold uppercase tracking-wider text-ink/80">{[vm.constNo != null && t('seat_no', { n: vm.constNo }), vm.type && vm.type !== 'GEN' && vm.type].filter(Boolean).join(' · ')}</span>}
             <LiveChip live={vm.live} />
+            {vm.redrawnTo && <span className="rounded border border-warn/40 bg-warn/10 px-2 py-0.5 text-[11px] font-semibold text-warn-text" title={t('cp_redrawn_hint')}>{t('cp_redrawn', { year: vm.redrawnTo })}</span>}
           </div>
         </div>
         <div className="flex items-center gap-2.5">

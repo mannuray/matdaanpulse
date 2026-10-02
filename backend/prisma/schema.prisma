@@ -124,6 +124,8 @@ model elections {
   tentative_next_date   DateTime?               @db.Date
   manifest_url          String?
   manifest_draft        Json?
+  /// Boundary set the seats belong to (delimitation order year, e.g. "2008"); NULL compares with nothing (migration 019).
+  delimitation          String?                 @db.VarChar(10)
   candidates            candidates[]
   constituencies        constituencies[]
   constituency_analysis constituency_analysis[]

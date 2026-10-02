@@ -18,7 +18,7 @@ const vm = (over: Partial<ConstituencyPageVM> = {}): ConstituencyPageVM => ({
     cand({ name: 'B', partyId: 'RJD', partyLabel: 'RJD', votes: 380, share: 38 }),
     cand({ name: 'NOTA', partyId: null, partyLabel: '', nota: true, votes: 20, share: 2 }),
   ] },
-  history: [{ year: 2020, party: 'BJP', candidate: 'A', margin: 5, vote_share: 50.5, runner_up: 'B', runner_up_party: 'RJD' }], dominance: 'swing', notes: [], insights: [],
+  history: [{ year: 2020, party: 'BJP', candidate: 'A', margin: 5, vote_share: 50.5, runner_up: 'B', runner_up_party: 'RJD' }], dominance: 'swing', notes: [], insights: [], redrawnTo: null,
   partyMeta: new Map(), locator: null, tracked: false, onToggleTrack: vi.fn(), shareText: 'x', personHref: id => `/person/${id}`, partyHref: id => `/election/e1?party=${id}`, election: null, ...over,
 });
 const renderIt = (v: ConstituencyPageVM) => render(<MemoryRouter><ConstituencyPageView vm={v} /></MemoryRouter>);
@@ -62,6 +62,13 @@ describe('ConstituencyPageView', () => {
     expect(within(lineC as HTMLElement).getByText('Criminal cases 0').className).not.toContain('text-warn-text');
     expect(items[1].querySelector('[data-affidavit]')).toBeNull();
     expect(within(items[0]).getByText('Won')).toBeTruthy();
+  });
+
+  it('a redrawn seat says so in the header; otherwise nothing', () => {
+    const { rerender } = render(<MemoryRouter><ConstituencyPageView vm={vm({ redrawnTo: '2023' })} /></MemoryRouter>);
+    expect(screen.getByText('Boundaries redrawn in 2023')).toBeTruthy();
+    rerender(<MemoryRouter><ConstituencyPageView vm={vm()} /></MemoryRouter>);
+    expect(screen.queryByText(/Boundaries redrawn/)).toBeNull();
   });
 
   it('party names link to the election dashboard party dialog (not NOTA)', () => {

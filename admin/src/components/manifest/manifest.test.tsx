@@ -196,7 +196,7 @@ const cand = (id: string, name: string, party: string, constId: string): Candida
   age: null, assets: null, liabilities: null, criminal_cases: null,
 });
 const election = (id: string, name: string, year: number): Election => ({
-  id, name, type: 'VS', state_id: 1, year, status: 'Finalized', tentative_next_date: null, manifest_url: null,
+  id, name, type: 'VS', state_id: 1, year, status: 'Finalized', tentative_next_date: null, delimitation: null, manifest_url: null,
 });
 const ELECTIONS = [election('e1', 'Bihar 2020', 2020), election('e2', 'Bihar 2015', 2015)];
 const electionMap = new Map(ELECTIONS.map((e) => [e.id, e]));

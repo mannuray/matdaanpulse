@@ -4,12 +4,12 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach } from 'vitest';
 
 const api = {
-  getElection: vi.fn(), getConstituency: vi.fn(), getConstituencyAnalysis: vi.fn(), getManifest: vi.fn(),
+  getElection: vi.fn(), getElections: vi.fn().mockResolvedValue([]), getConstituency: vi.fn(), getConstituencyAnalysis: vi.fn(), getManifest: vi.fn(),
   getGeoJSON: vi.fn().mockResolvedValue({ type: 'FeatureCollection', features: [] }),
 };
 vi.mock('../../model/api/election.service', async (orig) => ({
   ...(await orig<typeof import('../../model/api/election.service')>()),
-  getElection: (...a: unknown[]) => api.getElection(...a), getConstituency: (...a: unknown[]) => api.getConstituency(...a),
+  getElection: (...a: unknown[]) => api.getElection(...a), getElections: (...a: unknown[]) => api.getElections(...a), getConstituency: (...a: unknown[]) => api.getConstituency(...a),
   getConstituencyAnalysis: (...a: unknown[]) => api.getConstituencyAnalysis(...a), getManifest: (...a: unknown[]) => api.getManifest(...a),
   ElectionService: { getCacheKey: (id: string, s?: string) => `e_${id}_${s}`, getConstituencyCacheKey: (e: string, c: string) => `c_${e}_${c}`, getGeoJSON: (u: string) => api.getGeoJSON(u) },
 }));

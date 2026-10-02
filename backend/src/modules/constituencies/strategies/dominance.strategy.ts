@@ -24,7 +24,10 @@ export class DominanceStrategy implements AnalysisStrategy {
     let dominanceParty: string | null = null;
     let dominanceWins = 0;
 
-    if (partyWins.size > 0) {
+    // No comparable past result (a first election, or the first after a redraw): a new seat, whatever this
+    // election's result. One win out of one election is not a stronghold.
+    const hasHistory = winnerList.some(w => w.election_id !== electionId);
+    if (partyWins.size > 0 && hasHistory) {
       const sorted = [...partyWins.entries()].sort((a, b) => b[1] - a[1]);
       const [topParty, topWins] = sorted[0];
       dominanceWins = topWins;

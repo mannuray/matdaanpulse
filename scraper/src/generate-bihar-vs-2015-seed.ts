@@ -454,7 +454,7 @@ function main() {
     milestones: [{ label: 'Majority', value: 122 }],
     compare_with: ['a1b2c3d4-e5f6-7890-abcd-111111111010'],
     geo: {
-      map_url: '/geo/bihar_ac.geojson',
+      map_url: '/geo/bihar_ac_2008.geojson',
       center: [85.5, 25.6] as [number, number],
       zoom: 8,
     },

@@ -524,5 +524,7 @@
   "about_matrix_col": "Election / State",
   "about_matrix_selected": "Selected dataset",
   "about_matrix_hint": "Select a cell to see its source and notes.",
-  "about_matrix_none": "No data"
+  "about_matrix_none": "No data",
+  "cp_redrawn": "Boundaries redrawn in {{year}}",
+  "cp_redrawn_hint": "Seats were redrawn: earlier results are for different areas and are not compared."
 }

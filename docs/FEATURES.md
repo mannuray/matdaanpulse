@@ -115,7 +115,7 @@
 ### State Assembly Election Support (Bihar VS 2025)
 - [x] ECI scraper for Vidhan Sabha results (`scraper/src/adapters/eci-vs-adapter.ts`)
 - [x] Seed generator script (`scraper/src/generate-bihar-vs-seed.ts`)
-- [x] Bihar AC GeoJSON with 243 assembly constituencies (`frontend/public/geo/bihar_ac.geojson`)
+- [x] Bihar AC GeoJSON with 243 assembly constituencies (`frontend/public/geo/bihar_ac_2008.geojson`)
 - [x] Seed SQL with 243 constituencies, ~1458 candidates, alliance manifest (`database/seed_bihar_vs_2025.sql`)
 - [x] Dynamic GeoJSON loading: map URL from election manifest `geo.map_url`
 - [x] Dynamic projection: `fitSize()` for state-level maps, India defaults for LS
@@ -153,7 +153,7 @@
 
 ### West Bengal VS Historical Data (2011, 2016, 2021)
 - [x] Seed generator (`scraper/src/generate-wb-vs-seeds.ts`) — single script for all 3 years, reads JSON + GeoJSON
-- [x] GeoJSON: `frontend/public/geo/wb_ac.geojson` (294 ACs with `ac_name`, `ac_no`, `ac_category`)
+- [x] GeoJSON: `frontend/public/geo/wb_ac_2008.geojson` (294 ACs with `ac_name`, `ac_no`, `ac_category`)
 - [x] Party SQL (`database/seed_wb_parties.sql`) — 8 new parties: SUCI, GJM, GNLF, JKP, JKPN, DSPP, RSMP, RCPIR
 - [x] **WB VS 2011** (`database/seed_wb_vs_2011.sql`) — 294 seats, real vote counts
   - Election ID: `d4e5f6a7-b8c9-0123-def0-345678901011`
@@ -574,7 +574,7 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 #### 2.0 Seed Bihar VS 2015 + 2010 — DONE
 - [x] Seed **Bihar VS 2015** (`database/seed_bihar_vs_2015.sql`)
 - [x] Seed **Bihar VS 2010** (`database/seed_bihar_vs_2010.sql`)
-- [x] All use same `bihar_ac.geojson` (post-2008 boundaries)
+- [x] All use same `bihar_ac_2008.geojson` (post-2008 boundaries)
 - [x] `BR_VS{YY}_` constituency ID prefixes (`BR_VS10_`, `BR_VS15_`)
 
 #### 2.1 Historical Dominance — DONE
@@ -794,6 +794,13 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Backend: `Paginated<T>` / `paginated()` (`common/paginated.ts`); the response interceptor builds `pagination` only for `Paginated` results and wraps everything else verbatim (no more merging of handler objects that contain `success`/`total`); `totalPages` is 1 when `limit` is 0/missing instead of NaN. Persons, parties and constituencies list services return `paginated(...)`; `MapToDtoInterceptor` preserves it.
 - [x] Error body: `{ success:false, error:{ code, message, requestId, timestamp, path, fields?, details? } }`; `fields` from class-validator via the global ValidationPipe `exceptionFactory`; `details` only for business exception data; `validationErrors` removed. See `docs/API_SPEC.md`.
 - [x] Admin: `ApiError` (code, fields, details, requestId); error toasts list field errors; field messages show under inputs on the user, election, party and person forms. Frontend: `ApiError` parsing. Scraper replay prints the new error message.
+
+### Delimitation-aware history and maps (2026-10-03)
+- [x] `elections.delimitation` (migration 019, filled by `seed_election_delimitation.sql`; Lok Sabha 2029 left empty until its boundaries are known), editable in the admin election dialog (4-digit year or empty).
+- [x] Seat history (`ConstituenciesService.history`), the seat analysis (`computeAnalysis` filters `history_election_ids`) and the public manifest (`history` + `history_years`, `compare_with`, filtered on read; the stored manifest is unchanged) compare only elections of the same type, state and delimitation. NULL compares with nothing. A seat with no comparable past result is classified `new` (it used to come out `stronghold` from its one win).
+- [x] Seat page header shows "Boundaries redrawn in YYYY" when earlier elections of the state used other boundaries (`model/derive/delimitation.ts`).
+- [x] Map files are versioned per delimitation (`/geo/<code>_ac_2008.geojson`, `/geo/india_pc_2008.geojson`; the Lok Sabha default is `LS_MAP_URL` in `model/geo/maps.ts`). Migration 019 rewrites old paths in stored manifests; old paths redirect. A redraw (e.g. Assam 2023) adds `as_ac_2023.geojson` and that election's manifest points at it.
+- Not planned: notional results (old votes recomputed onto new boundaries) — needs booth-level data.
 
 ### About page and feedback (2026-10-01)
 - [x] Public `/about` (`src/pages/About.tsx` → `views/about/AboutView.tsx`, form VM `viewmodels/about/useFeedbackForm.ts`): what MatdaanPulse is, "not an official source" disclaimer with a link to results.eci.gov.in, per-dataset data quality (Real votes / Partly incomplete / Votes estimated, with notes) from `model/about/about.ts`, how live counting works, feedback form, contact email (`CONTACT_EMAIL` in the same file). en/hi/mr/ta.

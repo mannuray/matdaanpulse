@@ -3,17 +3,18 @@ import { useApi } from '../data/useApi';
 import { useLiveSnapshot } from '../data/useLiveSnapshot';
 import { usePartyMeta } from '../data/usePartyMeta';
 import { useLocalStorage } from '../data/useLocalStorage';
-import { getElection, getConstituency, getConstituencyAnalysis, getManifest, ElectionService } from '../../model/api/election.service';
+import { getElection, getElections, getConstituency, getConstituencyAnalysis, getManifest, ElectionService } from '../../model/api/election.service';
 import { ApiError } from '../../model/api/api-client';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import { seatInsights, type SeatInsight } from '../../model/derive/seatInsights';
+import { redrawnTo } from '../../model/derive/delimitation';
 import { buildSeatView, detailToRows, liveChipState, seatHistory, seatNotes, type LiveChipState, type SeatView, type SeatNote } from '../../model/derive/seatView';
 import type { PartyMeta } from '../../model/derive/partyMeta';
 import type { CustomWatch } from '../../model/derive/leaders';
 import type { SeatHistoryEntry, Election } from '../../model/types';
+import { LS_MAP_URL } from '../../model/geo/maps';
 
-const LS_PC = '/geo/india_pc.geojson';
 const NOT_FOUND = 'NOT_FOUND' as const;
 
 export const SEAT_CLASSES = ['stronghold', 'loyal', 'swing', 'anti_incumbency', 'new'] as const;
@@ -32,6 +33,8 @@ export interface ConstituencyPageVM {
   history: SeatHistoryEntry[]; dominance: SeatClass | null; notes: SeatNote[];
   /** Data-backed facts about the seat, most important first (at most six). */
   insights: SeatInsight[];
+  /** The delimitation the seat was redrawn to, when earlier elections of this state used other boundaries. */
+  redrawnTo: string | null;
   partyMeta: Map<string, PartyMeta>;
   locator: { features: GeoFeature[]; seat: GeoFeature | null } | null;
   tracked: boolean; onToggleTrack(): void; shareText: string; personHref(id: string): string;
@@ -62,6 +65,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   const analysisRes = useApi(() => getConstituencyAnalysis(electionId, constId).catch(() => null), [electionId, constId], { key: `${ElectionService.getConstituencyCacheKey(electionId, constId)}_analysis` });
   const analysis = analysisRes.data && (!analysisRes.data.const_id || analysisRes.data.const_id === constId) ? analysisRes.data : null;
   const manifest = useApi(() => getManifest(electionId).catch(() => null), [electionId], { key: ElectionService.getCacheKey(electionId, 'manifest') });
+  const elections = useApi(() => getElections().catch(() => null), []);
   // Same key as the dashboard watchlist, so tracking is shared.
   const [watch, setWatch] = useLocalStorage<CustomWatch[]>(`watchlist_${electionId}`, []);
 
@@ -72,7 +76,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   const partyColor = useMemo(() => new Map((d?.candidates ?? []).filter(c => c.party).map(c => [c.party!.id, c.party!.color ?? 'var(--color-fallback)'])), [d]);
   const view = useMemo(() => buildSeatView(rows, { partyMeta, partyColor, detail: d?.candidates ?? null }), [rows, partyMeta, partyColor, d]);
 
-  const mapUrl = manifest.data?.draft?.geo?.map_url || (e?.type === 'LS' ? LS_PC : null);
+  const mapUrl = manifest.data?.draft?.geo?.map_url || (e?.type === 'LS' ? LS_MAP_URL : null);
   const [features, setFeatures] = useState<GeoFeature[]>([]);
   useEffect(() => {
     if (!mapUrl) return;
@@ -110,6 +114,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
     dominance: seatClass((analysis as { dominance?: string } | null)?.dominance),
     notes,
     insights: seatInsights(view, history, notes),
+    redrawnTo: e && elections.data ? redrawnTo(e, elections.data) : null,
     partyMeta,
     locator,
     tracked,

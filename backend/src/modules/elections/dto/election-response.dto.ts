@@ -15,6 +15,8 @@ export class ElectionSummaryDto {
   @Expose() state_id: number | null;
   /** Date column; serialised as an ISO timestamp. The dashboard poller reads it (shouldPoll). */
   @Expose() tentative_next_date: Date | null;
+  /** Boundary set the seats belong to (e.g. "2008"); seat history compares only elections of the same one. */
+  @Expose() delimitation: string | null;
 
   /** Populated from the Prisma `states` relation. */
   @Expose({ name: 'states' })

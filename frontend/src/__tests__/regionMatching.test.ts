@@ -7,7 +7,7 @@ import {
 } from '../utils/regionMatching';
 import type { FeatureProperties } from '../utils/geoHelpers';
 
-const geo = JSON.parse(readFileSync(resolve(__dirname, '../../public/geo/india_pc.geojson'), 'utf8')) as {
+const geo = JSON.parse(readFileSync(resolve(__dirname, '../../public/geo/india_pc_2008.geojson'), 'utf8')) as {
   features: { properties: FeatureProperties }[];
 };
 const features = geo.features;

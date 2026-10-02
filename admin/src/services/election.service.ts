@@ -14,7 +14,7 @@ export function getElection(id: string) {
   return apiFetch<Election>(`/elections/${id}`);
 }
 
-export function createElection(data: { name: string; type: string; year: number; state_id?: number; tentative_next_date?: string }) {
+export function createElection(data: { name: string; type: string; year: number; state_id?: number; tentative_next_date?: string; delimitation?: string }) {
   return apiFetch<Election>('/admin/elections', { method: 'POST', body: JSON.stringify(data) });
 }
 

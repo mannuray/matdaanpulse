@@ -94,7 +94,7 @@ describe('health summaries', () => {
 });
 
 describe('elections overview', () => {
-  const e = (id: string, status: Election['status']): Election => ({ id, name: id, type: 'VS', state_id: 1, year: 2025, status, tentative_next_date: null, manifest_url: null });
+  const e = (id: string, status: Election['status']): Election => ({ id, name: id, type: 'VS', state_id: 1, year: 2025, status, tentative_next_date: null, delimitation: null, manifest_url: null });
   it('groups by status and names each phase', () => {
     const g = groupElections([e('a', 'Live'), e('b', 'Upcoming'), e('c', 'Finalized'), e('d', 'Finalized')]);
     expect(g.live.map((x) => x.id)).toEqual(['a']);

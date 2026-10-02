@@ -39,8 +39,9 @@ matdaanpulse/
 ## Database Setup
 
 - **Only supported path:** `database/setup.sh` (psql, `ON_ERROR_STOP=1`, idempotent). Order: `schema.sql` → `migrations/001…NNN` → seeds. docker-compose runs it automatically on first boot of an empty volume.
-- Seed order matters (enforced in `setup.sh`): `seed.sql` → `seed_*_parties.sql` → VS results (Bihar newest-first) → `seed_*_districts_regions.sql` → `seed_bihar_persons.sql` → `seed_bihar_person_regions.sql` → `seed_party_symbols.sql` → `seed_party_recognition.sql` → `seed_election_result_dates.sql`.
+- Seed order matters (enforced in `setup.sh`): `seed.sql` → `seed_*_parties.sql` → VS results (Bihar newest-first) → `seed_*_districts_regions.sql` → `seed_bihar_persons.sql` → `seed_bihar_person_regions.sql` → `seed_party_symbols.sql` → `seed_party_recognition.sql` → `seed_election_result_dates.sql` → `seed_election_delimitation.sql`.
 - New migrations must be idempotent (`IF NOT EXISTS` / `DO` blocks) and must not depend on seed data. New seeds must use `ON CONFLICT DO NOTHING`, set `results.election_id`, and never `TRUNCATE`. Constituency UPDATEs keyed by `const_no` must be scoped to the election type/ID (LS and VS numbering overlap). A seed whose rows admins edit later must be run-once: guard it with a `seed_runs` marker (migration 018; see `scraper/src/seed-run-once.ts` and the Bihar person seeds), because `setup.sh` re-runs every seed on every deploy.
+- `elections.delimitation` (migration 019) is the boundary set the seats follow ("2008"; Assam "2023" from its 2026 election). Seat history, the seat analysis and the public manifest's `history` / `compare_with` compare only elections of the same type, state and delimitation (`backend/src/common/comparable-elections.ts`); NULL compares with nothing. The first election after a redraw has no history (its seats are `new`).
 - Every candidate has a person: an insert without one gets an auto-created person (trigger, migration 018), and a person left with no candidates is deleted by trigger. candidates/persons have no `metadata` column.
 - Keep `backend/prisma/schema.prisma` in sync with the SQL (check with `prisma migrate diff --from-url … --to-schema-datamodel …`). Prisma CLI commands that read the schema config need `DIRECT_URL` set (it may equal `DATABASE_URL` locally); the app and `prisma generate` do not. Expected drift: the diff always proposes `ALTER COLUMN person_id SET NOT NULL` on `candidates`; never apply it (NOT NULL is a deferred trigger, and seeds insert with NULL). Never apply a drop of `candidates.metadata` / `persons.metadata` either (kept, `@ignore`, until a later migration drops them), and never run `prisma db push`.
 - Several seeds are partly estimated (see `docs/FEATURES.md` → Known Limitations). The public `/about` page lists each dataset's quality from `frontend/src/model/about/about.ts`: update that file in the same change whenever a seed is added or corrected.
@@ -48,13 +49,13 @@ matdaanpulse/
 
 ## Key Data Files
 
-- `frontend/public/geo/india_pc.geojson` — 543 Lok Sabha parliamentary constituencies
+- `frontend/public/geo/india_pc_2008.geojson` — 543 Lok Sabha parliamentary constituencies. Map files are named per delimitation (`<code>_ac_<era>.geojson`, `india_pc_<era>.geojson`); each election's manifest `geo.map_url` names its own, and a redraw adds a new file (never edit one in place). Old unversioned paths redirect (`frontend/public/_redirects`, `frontend/vercel.json`)
 - `frontend/public/geo/india_states.geojson` — 36 state boundaries (merged from PCs)
 - `database/setup.sh` — builds/upgrades a DB (schema → migrations → seeds)
 - `database/schema.sql` + `database/migrations/*.sql` — base schema + incremental changes
 - `database/seed.sql` — Real 2024 Lok Sabha election data (states, parties, results, candidates)
 - `database/seed_bihar_vs_{2010,2015,2020,2025}.sql`, `database/seed_{wb,as,kl,tn,py}_vs_{2011,2016,2021}.sql` — Vidhan Sabha results
-- `database/seed_{as,kl,py,tn,wb}_parties.sql`, `database/seed_*_districts_regions.sql`, `database/seed_bihar_persons.sql`, `database/seed_bihar_person_regions.sql`, `database/seed_party_symbols.sql`, `database/seed_party_recognition.sql` (ECI national parties, fills only NULLs), `database/seed_election_result_dates.sql` (counting dates, fills only empty ones) — supporting seeds
+- `database/seed_{as,kl,py,tn,wb}_parties.sql`, `database/seed_*_districts_regions.sql`, `database/seed_bihar_persons.sql`, `database/seed_bihar_person_regions.sql`, `database/seed_party_symbols.sql`, `database/seed_party_recognition.sql` (ECI national parties, fills only NULLs), `database/seed_election_result_dates.sql` (counting dates, fills only empty ones), `database/seed_election_delimitation.sql` (each election's delimitation, fills only empty ones) — supporting seeds
 - `.env.example` — every env var (shared names across compose, setup.sh, backend, scraper)
 
 ## Rules

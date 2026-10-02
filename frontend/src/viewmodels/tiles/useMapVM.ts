@@ -8,8 +8,8 @@ import { seatFills, showOutline, type SeatFill } from '../../model/derive/mapFil
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import type { LayerId } from '../../model/types/dashboard';
+import { LS_MAP_URL } from '../../model/geo/maps';
 
-const LS_PC = '/geo/india_pc.geojson';
 const LS_STATES = '/geo/india_states.geojson';
 
 export interface MapVM {
@@ -44,7 +44,7 @@ export function useMapVM(): MapVM {
   const { state, dispatch } = useDashboardStore();
   const geo = src.data.manifestData?.geo;
   const isVS = src.election.type === 'VS';
-  const url = geo?.map_url || LS_PC;
+  const url = geo?.map_url || LS_MAP_URL;
   const [status, setStatus] = useState<MapVM['status']>('loading');
   const [features, setFeatures] = useState<GeoFeature[]>([]);
   const [stateFeatures, setStateFeatures] = useState<GeoFeature[] | null>(null);

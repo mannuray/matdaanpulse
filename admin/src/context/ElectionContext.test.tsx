@@ -7,7 +7,7 @@ import { getElections } from '../services/election.service';
 import type { Election } from '../types';
 
 const e = (id: string, status: Election['status'] = 'Finalized'): Election => ({
-  id, name: id, type: 'VS', state_id: 1, year: 2025, status, tentative_next_date: null, manifest_url: null,
+  id, name: id, type: 'VS', state_id: 1, year: 2025, status, tentative_next_date: null, delimitation: null, manifest_url: null,
 });
 
 vi.mock('../services/election.service', () => ({ getElections: vi.fn(async () => [e('a'), e('b', 'Live')]) }));

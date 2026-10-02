@@ -18,7 +18,7 @@ import { createElection, updateElection } from '../services/election.service';
 const wrapper = ({ children }: { children: ReactNode }) => <ToastProvider>{children}</ToastProvider>;
 afterEach(() => { vi.clearAllMocks(); localStorage.clear(); });
 
-const bihar: Election = { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 10, year: 2025, status: 'Upcoming', tentative_next_date: '2030-10-01T00:00:00.000Z', manifest_url: null };
+const bihar: Election = { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 10, year: 2025, status: 'Upcoming', tentative_next_date: '2030-10-01T00:00:00.000Z', delimitation: null, manifest_url: null };
 
 describe('useElectionManager', () => {
   it('startEdit is clean, an edit is dirty, revert is clean again; dates fit the date input', () => {
@@ -81,7 +81,19 @@ describe('useElectionManager', () => {
     act(() => result.current.setForm({ ...result.current.form, type: 'LS', state_id: '', tentative_next_date: '' }));
     await act(async () => { await result.current.handleSave(); });
     expect(updateElection).toHaveBeenCalledWith('e1', {
-      name: 'Bihar Vidhan Sabha 2025', type: 'LS', year: 2025, state_id: null, tentative_next_date: null,
+      name: 'Bihar Vidhan Sabha 2025', type: 'LS', year: 2025, state_id: null, tentative_next_date: null, delimitation: null,
     });
+  });
+
+  it('delimitation: loaded into the form, saved trimmed, and a bad value blocks the save', async () => {
+    const { result } = renderHook(() => useElectionManager(), { wrapper });
+    act(() => result.current.startEdit({ ...bihar, delimitation: '2008' }));
+    expect(result.current.form.delimitation).toBe('2008');
+    act(() => result.current.setForm({ ...result.current.form, delimitation: '20x' }));
+    await act(async () => { await result.current.handleSave(); });
+    expect(updateElection).not.toHaveBeenCalled();
+    act(() => result.current.setForm({ ...result.current.form, delimitation: ' 2023 ' }));
+    await act(async () => { await result.current.handleSave(); });
+    expect(updateElection).toHaveBeenCalledWith('e1', expect.objectContaining({ delimitation: '2023' }));
   });
 });
