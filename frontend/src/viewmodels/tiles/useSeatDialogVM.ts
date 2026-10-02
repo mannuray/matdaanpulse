@@ -30,21 +30,22 @@ export function useSeatDialogVM(): SeatDialogVM | null {
   const version = src.election.status === 'Live' ? src.data.liveVersion : null;
   const detail = useApi(() => (id ? getConstituency(eid, id) : Promise.resolve(null)), [eid, id, version], { key: id ? `${ElectionService.getConstituencyCacheKey(eid, id)}_v${version ?? ''}` : undefined });
   const analysis = useApi(() => (id ? getConstituencyAnalysis(eid, id).catch(() => null) : Promise.resolve(null)), [eid, id], { key: id ? `${ElectionService.getConstituencyCacheKey(eid, id)}_analysis` : undefined });
+  // useApi keeps the previous seat's data while the next one loads: only use data that belongs to the selected seat.
+  const d = detail.data && detail.data.id === id ? detail.data : null;
+  const fullAnalysis = analysis.data && analysis.data.const_id === id ? analysis.data : null;
   const rows = id ? src.data.constCandidates.get(id) : undefined;
   const view = useMemo(
-    () => buildSeatView(rows ?? [], { partyMeta: src.partyMeta, partyColor: src.data.partyColorMap, detail: detail.data?.candidates ?? null, limit: DIALOG_ROWS }),
-    [rows, src.partyMeta, src.data.partyColorMap, detail.data],
+    () => buildSeatView(rows ?? [], { partyMeta: src.partyMeta, partyColor: src.data.partyColorMap, detail: d?.candidates ?? null, limit: DIALOG_ROWS }),
+    [rows, src.partyMeta, src.data.partyColorMap, d],
   );
   if (!id) return null;
-  const d = detail.data;
   const tracked = src.watchlist.some(w => w.const_id === id);
   const name = d?.name ?? displayNameFromConstId(id);
-  const allDeclared = (rows ?? []).some(r => r.status === 'WON');
+  const hasWinner = (rows ?? []).some(r => r.status === 'WON');
   const live: SeatDialogVM['live'] =
     src.election.status === 'Upcoming' ? null
-    : src.election.status === 'Finalized' || allDeclared ? { kind: 'declared' }
+    : src.election.status === 'Finalized' || hasWinner ? { kind: 'declared' }
     : { kind: 'counting', round: d?.current_round && d.total_rounds ? { current: d.current_round, total: d.total_rounds } : null };
-  const fullAnalysis = analysis.data ?? null;
   return {
     seatId: id,
     name,

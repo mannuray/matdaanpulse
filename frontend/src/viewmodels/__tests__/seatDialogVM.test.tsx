@@ -52,6 +52,42 @@ describe('useSeatDialogVM', () => {
     expect(result.current?.view.candidates).toHaveLength(2);
   });
 
+  it('does not show the previous seat\'s detail while the next seat loads', async () => {
+    getConstituency.mockImplementation((_e: string, id: string) => id === 'BR_VS_1_SANDESH'
+      ? Promise.resolve({ id, name: 'Sandesh', const_no: 1, type: 'SC', total_electors: 2000, voter_turnout: 59.4, phase: 1, current_round: null, total_rounds: null, state: { id: 4, name: 'Bihar' }, district: { id: 1, name: 'Bhojpur' }, candidates: [] })
+      : new Promise(() => {}));
+    getConstituencyAnalysis.mockResolvedValue(null);
+    const { result } = renderHook(() => ({ vm: useSeatDialogVM(), store: useDashboardStore() }), { wrapper: wrap('/?seat=BR_VS_1_SANDESH') });
+    await waitFor(() => expect(result.current.vm?.detailState).toBe('ready'));
+    expect(result.current.vm?.electors).toBe(2000);
+    act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'BR_VS_2_BARHARA' }));
+    expect(result.current.vm?.seatId).toBe('BR_VS_2_BARHARA');
+    expect(result.current.vm?.name).not.toBe('Sandesh');
+    expect(result.current.vm?.electors).toBeNull();
+    expect(result.current.vm?.place).toBeNull();
+    expect(result.current.vm?.detailState).toBe('loading');
+  });
+
+  it('refetches the detail when the live version changes on a Live election', async () => {
+    getConstituency.mockClear();
+    getConstituency.mockResolvedValue(null);
+    getConstituencyAnalysis.mockResolvedValue(null);
+    const mk = (liveVersion: number) => { const s = makeSources(); return makeSources({ election: { ...s.election, status: 'Live' }, data: { ...s.data, liveVersion } }); };
+    let sources = mk(1);
+    const W = ({ children }: { children: ReactNode }) => (
+      <MemoryRouter initialEntries={['/?seat=BR_VS_1_SANDESH']}>
+        <DashboardSourcesProvider value={sources}>
+          <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={null} knownParties={null}>{children}</DashboardStoreProvider>
+        </DashboardSourcesProvider>
+      </MemoryRouter>
+    );
+    const { rerender } = renderHook(() => useSeatDialogVM(), { wrapper: W });
+    await waitFor(() => expect(getConstituency).toHaveBeenCalledTimes(1));
+    sources = mk(2);
+    rerender();
+    await waitFor(() => expect(getConstituency).toHaveBeenCalledTimes(2));
+  });
+
   it('opening a party from the dialog selects it in the store', () => {
     getConstituency.mockResolvedValue(null);
     getConstituencyAnalysis.mockResolvedValue(null);

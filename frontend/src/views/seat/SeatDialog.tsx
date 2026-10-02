@@ -65,7 +65,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
               <td className="py-2"><div className="flex items-center gap-2">
                 <span className="w-6 text-xs text-muted">#{i + 1}</span>
                 <Avatar name={c.name} photo={c.photo} size={36} />
-                {c.personId ? <Link to={vm.personHref(c.personId)} className="font-semibold text-ink hover:underline">{c.name}</Link> : <span className="font-semibold text-ink">{c.nota ? t('seat_nota') : c.name}</span>}
+                {c.nota ? <span className="font-semibold text-ink">{t('seat_nota')}</span> : c.personId ? <Link to={vm.personHref(c.personId)} className="font-semibold text-ink hover:underline">{c.name}</Link> : <span className="font-semibold text-ink">{c.name}</span>}
                 {c.incumbent && <span className="rounded-full border border-accent/50 px-1.5 text-[10px] text-accent">{t('seat_incumbent')}</span>}
               </div></td>
               <td>{c.partyId ? (
@@ -85,10 +85,10 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
       </table>
       <div className="mt-4 flex flex-wrap items-center gap-2">
         {vm.history.length > 0 && <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t('seat_past_winners')}</span>}
-        {vm.history.map(h => {
+        {vm.history.map((h, i) => {
           const m = h.party ? vm.partyMeta.get(h.party) : undefined;
           return (
-            <span key={h.year} className="inline-flex items-center gap-1.5 rounded-md border border-line px-2 py-0.5 text-xs text-ink">
+            <span key={`${h.year}-${i}`} className="inline-flex items-center gap-1.5 rounded-md border border-line px-2 py-0.5 text-xs text-ink">
               {h.year}<PartyMark mark={m?.mark ?? null} color={m?.color ?? null} label={m?.abbreviation ?? h.party ?? ''} />{m?.abbreviation ?? h.party}{h.vote_share != null && ` · ${h.vote_share}%`}
             </span>
           );
