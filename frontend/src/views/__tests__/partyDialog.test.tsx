@@ -12,7 +12,7 @@ const vm = (over: Partial<PartyDialogVM> = {}): PartyDialogVM => ({
   id: 'RJD', name: 'Rashtriya Janata Dal', abbreviation: 'RJD', mark: '/r.svg', color: '#0a0', recognition: 'State', electionName: 'Bihar Vidhan Sabha 2025',
   stats: { won: 52, leading: 23, contested: 143, votePct: 23.1, alliance: { id: 'MGB', name: 'Mahagathbandhan' } }, totalSeats: 243, majority: 122,
   profile: { leader: 'Tejashwi Yadav', founded: 1997, hq: null, website: 'https://rjd.co.in', wikipedia: null, description: null },
-  keyCandidates: [{ key: 'k', name: 'Tejashwi Yadav', constId: 'S', constName: 'Raghopur', status: 'WON', margin: 10, leader: true }, { key: 'n', name: 'Lalu Prasad Yadav', constId: '', constName: '', status: null, margin: null, leader: true }],
+  keyCandidates: [{ key: 'k', name: 'Tejashwi Yadav', constId: 'S', constName: 'Raghopur', constNo: 128, status: 'WON', margin: 10, leader: true, photo: null }, { key: 'n', name: 'Lalu Prasad Yadav', constId: '', constName: '', constNo: null, status: null, margin: null, leader: true, photo: null }],
   onClose: vi.fn(), onSelectSeat: vi.fn(), ...over,
 });
 

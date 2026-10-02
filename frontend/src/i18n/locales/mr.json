@@ -504,5 +504,6 @@
   "ins_aff_title": "From the affidavits",
   "ins_aff_cases": "{{withCases}} of {{total}} candidates declared criminal cases.",
   "ins_aff_winner": "The leader declared {{n}}.",
-  "ins_aff_richest": "Richest: {{name}} ({{assets}})."
+  "ins_aff_richest": "Richest: {{name}} ({{assets}}).",
+  "party_seat_no": "Seat #{{n}}"
 }

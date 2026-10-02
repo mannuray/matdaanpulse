@@ -106,12 +106,13 @@ export function PartyDialog({ vm }: { vm: PartyDialogVM | null }) {
                 const body = (
                   <>
                     <div className="mb-2 flex items-start gap-2.5">
-                      <Avatar name={c.name} photo={null} size={36} />
+                      <Avatar name={c.name} photo={c.photo} size={36} />
                       <div className="min-w-0"><div className="truncate text-xs font-semibold leading-tight text-ink">{c.name}</div>
-                        <span className="block truncate text-[10px] text-muted">{c.constId ? c.constName : t('party_not_contesting')}</span></div>
+                        <span className="block truncate text-[10px] text-muted">{c.constId ? c.constName : t('party_not_contesting')}</span>
+                        {c.leader && <span className="mt-1 inline-block rounded border px-1.5 py-px text-[9px] font-bold uppercase tracking-wider" style={{ color, borderColor: tint(color, 40), background: tint(color, 12) }}>{t('party_leader_tag')}</span>}</div>
                     </div>
-                    <div className="flex items-center justify-between gap-1 border-t border-line/60 pt-1.5">
-                      {c.leader ? <span className="truncate text-[9px] font-semibold uppercase tracking-wider" style={{ color }}>{t('party_leader_tag')}</span> : <span />}
+                    <div className="mt-auto flex items-center justify-between gap-1 border-t border-line/60 pt-1 text-[10px]">
+                      {c.constNo != null ? <span className="tabular text-muted">{t('party_seat_no', { n: c.constNo })}</span> : <span />}
                       {c.status && <span className={cn('rounded border px-1.5 py-0.5 text-[9px] font-bold uppercase', c.status === 'WON' || c.status === 'LEADING' ? 'border-ok-text/40 bg-ok-text/15 text-ok-text' : 'border-live-text/30 bg-live-text/10 text-live-text')}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>}
                     </div>
                   </>

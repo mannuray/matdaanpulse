@@ -35,4 +35,8 @@ describe('partyKeyCandidates', () => {
   it('a party without leaders shows its biggest wins only; no duplicates of a leader seat', () => {
     expect(partyKeyCandidates('RJD', [], winners, 2).map(c => c.constId)).toEqual(['B', 'C']);
   });
+  it('carries the seat number parsed from a VS id', () => {
+    const w = new Map([['BR_VS_128_RAGHOPUR', winner('BR_VS_128_RAGHOPUR', 'RJD', 'T', 10)]]);
+    expect(partyKeyCandidates('RJD', [], w)[0]).toMatchObject({ constNo: 128, constName: 'Raghopur' });
+  });
 });

@@ -250,12 +250,12 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
         {vm.locator && (
           <article className={cn(tile, 'flex flex-col p-4 shadow-xl lg:col-span-2')}>
             <div className={tileHead}><h2 className={h2}>{t('cp_locator')}</h2>{vm.stateName && <span className="text-[10px] text-muted">{vm.stateName}</span>}</div>
-            <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg border border-line/80 bg-page/80 p-2">
+            <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg border border-line/80 bg-page/80 p-2">
               <LocatorMap features={vm.locator.features} seat={vm.locator.seat} label={vm.name} color={leaderColor} />
-              <div className="absolute bottom-2 left-2 right-2 rounded border bg-page/90 px-2 py-1 text-center backdrop-blur-sm" style={{ borderColor: tint(leaderColor, 40) }}>
-                <span className="block font-display text-[11px] font-bold uppercase tracking-wide" style={{ color: leaderColor }}>{vm.name}{vm.constNo != null && ` (#${vm.constNo})`}</span>
-                {vm.districtName && <span className="block text-[9px] text-muted">{vm.districtName}</span>}
-              </div>
+            </div>
+            <div className="mt-2 rounded border bg-page/90 px-2 py-1 text-center" style={{ borderColor: tint(leaderColor, 40) }}>
+              <span className="block font-display text-[11px] font-bold uppercase tracking-wide" style={{ color: leaderColor }}>{vm.name}{vm.constNo != null && ` (#${vm.constNo})`}</span>
+              {vm.districtName && <span className="block text-[9px] text-muted">{vm.districtName}</span>}
             </div>
           </article>
         )}

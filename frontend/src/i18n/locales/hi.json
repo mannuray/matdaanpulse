@@ -504,5 +504,6 @@
   "ins_aff_title": "शपथपत्रों से",
   "ins_aff_cases": "{{total}} में से {{withCases}} उम्मीदवारों ने आपराधिक मामले घोषित किए।",
   "ins_aff_winner": "आगे चल रहे उम्मीदवार ने {{n}} घोषित किए।",
-  "ins_aff_richest": "सबसे अमीर: {{name}} ({{assets}})।"
+  "ins_aff_richest": "सबसे अमीर: {{name}} ({{assets}})।",
+  "party_seat_no": "सीट #{{n}}"
 }
