@@ -202,7 +202,15 @@ describe('migration 018: every candidate has a person (DB)', () => {
              (SELECT md5(string_agg(tgname || pg_get_triggerdef(oid), '|' ORDER BY tgname)) FROM pg_trigger WHERE tgrelid = 'candidates'::regclass),
              (SELECT md5(string_agg(table_name || column_name || data_type, '|' ORDER BY table_name, column_name))
                 FROM information_schema.columns WHERE table_name IN ('candidates', 'persons', 'person_merges'));`;
-    const script = ['BEGIN;', fingerprint, ...sql.flatMap((f) => [f, fingerprint]), 'ROLLBACK;'].join('\n');
+    const stdout = psqlRolledBack([fingerprint, ...sql.flatMap((f) => [f, fingerprint])].join('\n'));
+    const prints = stdout.split('\n').filter((l) => l.startsWith('fp|'));
+    expect(prints).toHaveLength(files.length + 1);
+    return prints;
+  }
+
+  /** Runs `body` through psql between BEGIN and ROLLBACK (so nothing is committed) and returns its output. */
+  function psqlRolledBack(body: string): string {
+    const script = ['BEGIN;', body, 'ROLLBACK;'].join('\n');
     const url = process.env.DATABASE_URL!.replace(/([?&])schema=[^&]*&?/, '$1').replace(/[?&]$/, '');
     const run = spawnSync('psql', ['-X', '-q', '-At', '-v', 'ON_ERROR_STOP=1', '-d', url], {
       input: script,
@@ -212,10 +220,11 @@ describe('migration 018: every candidate has a person (DB)', () => {
     });
     expect(run.stderr).toBe('');
     expect(run.status).toBe(0);
-    const prints = run.stdout.split('\n').filter((l) => l.startsWith('fp|'));
-    expect(prints).toHaveLength(files.length + 1);
-    return prints;
+    return run.stdout;
   }
+
+  /** The 018 file without its own BEGIN / COMMIT, for psqlRolledBack. */
+  const migrationBody = () => readFileSync(MIGRATION, 'utf8').replace(/^\s*(BEGIN|COMMIT);\s*$/gm, '');
 
   it('running 018 again (twice) is a no-op, and every candidate has a person', () => {
     const prints = runRolledBack('018 re-run', [MIGRATION, MIGRATION]);
@@ -225,6 +234,33 @@ describe('migration 018: every candidate has a person (DB)', () => {
     const [, , withoutPerson, orphans] = prints[0].split('|');
     expect(withoutPerson).toBe('0');
     expect(orphans).toBe('0');
+  });
+
+  it('metadata with keys no column took is archived before the drop; moved-only metadata is not', () => {
+    if (!runRolledBack('metadata archive', [])) return;
+    const [p1, p2] = ['00000000-0000-4000-8000-0000000018a1', '00000000-0000-4000-8000-0000000018a2'];
+    // Bring back the pre-018 columns (as on a database that never ran 018), with metadata in them.
+    const out = psqlRolledBack(`
+      ALTER TABLE persons ADD COLUMN metadata JSONB DEFAULT '{}';
+      ALTER TABLE candidates ADD COLUMN metadata JSONB DEFAULT '{}';
+      INSERT INTO persons (id, name, metadata) VALUES
+        ('${p1}', 'TEST 018 ARCHIVED', '{"bio":"b","affidavit_history":{"e1":{"age":40}}}'),
+        ('${p2}', 'TEST 018 MOVED ONLY', '{"caste":"c"}');
+      INSERT INTO candidates (person_id, election_id, const_id, party_id, name, is_incumbent, metadata)
+        VALUES ('${p1}', '${seat!.election_id}', '${seat!.const_id}', 'IND', 'TEST 018 ARCHIVED', FALSE,
+                '{"age":"40","unknown_key":1}');
+      ${migrationBody()}
+      SELECT 'pa', person_id, metadata::text FROM person_metadata_archive WHERE person_id IN ('${p1}', '${p2}');
+      SELECT 'ca', a.metadata::text FROM candidate_metadata_archive a JOIN candidates c ON c.id = a.candidate_id WHERE c.person_id = '${p1}';
+      SELECT 'cols', p.bio, p.caste, c.age FROM persons p JOIN candidates c ON c.person_id = p.id WHERE p.id = '${p1}';
+      SELECT 'gone', count(*) FROM information_schema.columns WHERE table_name IN ('persons', 'candidates') AND column_name = 'metadata';`);
+    const lines = out.split('\n');
+    expect(lines.filter((l) => l.startsWith('pa|'))).toEqual([
+      `pa|${p1}|{"bio": "b", "affidavit_history": {"e1": {"age": 40}}}`,
+    ]);
+    expect(lines.filter((l) => l.startsWith('ca|'))).toEqual(['ca|{"age": "40", "unknown_key": 1}']);
+    expect(lines).toContain('cols|b||40');
+    expect(lines).toContain('gone|0');
   });
 
   it('re-running the candidate seeds and the Bihar person links creates no person and leaves no orphan', () => {

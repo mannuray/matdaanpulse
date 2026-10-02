@@ -20,9 +20,11 @@
 --                                         once no candidate points to it.
 --      They coexist with migration 015's statement-level live-version triggers (which compare name
 --      and party only, so the person_id UPDATE never bumps a version) and 017's updated_at trigger.
---   6. person_merges: the merge log that undo reads. keeper_id cascades: a keeper that is itself
---      merged away or emptied has no candidates left, so none of its merges could be undone.
---   7. Drop candidates.metadata and persons.metadata, last.
+--   6. person_merges: the merge log that undo reads. keeper_id is ON DELETE SET NULL, so the history
+--      survives when the keeper is later merged away or emptied (undo refuses a merge without a keeper).
+--   7. Archive every metadata object that still holds keys not moved into columns (e.g. the affidavit
+--      generator's affidavit / affidavit_history) into candidate_metadata_archive /
+--      person_metadata_archive, then drop candidates.metadata and persons.metadata, last.
 --
 -- Idempotent: every metadata read is in a DO block guarded by the column still existing, the
 -- constraint trigger is created only if missing, the rest uses IF NOT EXISTS / CREATE OR REPLACE.
@@ -221,7 +223,7 @@ CREATE OR REPLACE TRIGGER candidates_delete_orphan_person
 
 CREATE TABLE IF NOT EXISTS person_merges (
     id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    keeper_id     UUID NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
+    keeper_id     UUID REFERENCES persons(id) ON DELETE SET NULL,
     duplicate     JSONB NOT NULL,
     candidate_ids UUID[] NOT NULL,
     filled_fields JSONB NOT NULL DEFAULT '{}'::jsonb,
@@ -233,7 +235,66 @@ CREATE TABLE IF NOT EXISTS person_merges (
 
 CREATE INDEX IF NOT EXISTS idx_person_merges_keeper ON person_merges (keeper_id);
 
--- 7. Drop the JSON columns, last ----------------------------------------------------------------
+-- A database that ran an earlier draft of 018 has keeper_id NOT NULL ... ON DELETE CASCADE.
+ALTER TABLE person_merges ALTER COLUMN keeper_id DROP NOT NULL;
+
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM pg_constraint
+               WHERE conrelid = 'person_merges'::regclass AND conname = 'person_merges_keeper_id_fkey' AND confdeltype <> 'n') THEN
+        ALTER TABLE person_merges DROP CONSTRAINT person_merges_keeper_id_fkey;
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_constraint
+                   WHERE conrelid = 'person_merges'::regclass AND conname = 'person_merges_keeper_id_fkey') THEN
+        ALTER TABLE person_merges ADD CONSTRAINT person_merges_keeper_id_fkey
+            FOREIGN KEY (keeper_id) REFERENCES persons(id) ON DELETE SET NULL ON UPDATE NO ACTION;
+    END IF;
+END $$;
+
+-- 7. Archive leftover metadata, then drop the JSON columns, last -------------------------------
+-- The whole object is archived when any key is left that no column took (the nested affidavit
+-- also holds fields with no column, so it counts as left over). No FK: the archive outlives
+-- deleted rows. Skipped once the column is gone; NOT EXISTS keeps a row from being archived twice.
+
+CREATE TABLE IF NOT EXISTS candidate_metadata_archive (
+    candidate_id UUID NOT NULL,
+    metadata     JSONB NOT NULL,
+    archived_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_candidate_metadata_archive_candidate ON candidate_metadata_archive (candidate_id);
+
+CREATE TABLE IF NOT EXISTS person_metadata_archive (
+    person_id   UUID NOT NULL,
+    metadata    JSONB NOT NULL,
+    archived_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_person_metadata_archive_person ON person_metadata_archive (person_id);
+
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM information_schema.columns
+               WHERE table_schema = current_schema() AND table_name = 'candidates' AND column_name = 'metadata') THEN
+        EXECUTE $sql$
+            INSERT INTO candidate_metadata_archive (candidate_id, metadata)
+            SELECT c.id, c.metadata
+            FROM candidates c
+            WHERE jsonb_typeof(c.metadata) = 'object'
+              AND (c.metadata - ARRAY['age', 'assets', 'liabilities', 'criminal_cases', 'gender', 'education']) <> '{}'::jsonb
+              AND NOT EXISTS (SELECT 1 FROM candidate_metadata_archive a WHERE a.candidate_id = c.id)
+        $sql$;
+    END IF;
+    IF EXISTS (SELECT 1 FROM information_schema.columns
+               WHERE table_schema = current_schema() AND table_name = 'persons' AND column_name = 'metadata') THEN
+        EXECUTE $sql$
+            INSERT INTO person_metadata_archive (person_id, metadata)
+            SELECT p.id, p.metadata
+            FROM persons p
+            WHERE jsonb_typeof(p.metadata) = 'object'
+              AND (p.metadata - ARRAY['bio', 'wikipedia_url', 'caste', 'religion']) <> '{}'::jsonb
+              AND NOT EXISTS (SELECT 1 FROM person_metadata_archive a WHERE a.person_id = p.id)
+        $sql$;
+    END IF;
+END $$;
 
 ALTER TABLE candidates DROP COLUMN IF EXISTS metadata;
 ALTER TABLE persons    DROP COLUMN IF EXISTS metadata;

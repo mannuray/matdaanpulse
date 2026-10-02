@@ -264,9 +264,10 @@ model users {
 }
 
 /// Merge log (migration 018): the duplicate's full row and the candidates that moved, so a merge can be undone once.
+/// keeper_id becomes NULL when the keeper is later deleted (merged away); such a merge can no longer be undone.
 model person_merges {
   id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  keeper_id     String    @db.Uuid
+  keeper_id     String?   @db.Uuid
   duplicate     Json
   candidate_ids String[]  @db.Uuid
   filled_fields Json      @default("{}")
@@ -274,7 +275,7 @@ model person_merges {
   merged_at     DateTime  @default(now()) @db.Timestamptz(6)
   undone_at     DateTime? @db.Timestamptz(6)
   undone_by     String?   @db.Uuid
-  keeper        persons   @relation(fields: [keeper_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  keeper        persons?  @relation(fields: [keeper_id], references: [id], onDelete: SetNull, onUpdate: NoAction)
   merger        users?    @relation("person_merges_merged_by", fields: [merged_by], references: [id], onDelete: SetNull, onUpdate: NoAction)
   undoer        users?    @relation("person_merges_undone_by", fields: [undone_by], references: [id], onDelete: SetNull, onUpdate: NoAction)
 
@@ -309,4 +310,25 @@ enum user_role {
   SUPER_ADMIN
   EDITOR
   VIEWER
+}
+
+/// Metadata objects that still held keys with no column when migration 018 dropped candidates.metadata.
+/// No unique key (an archive, read by hand), so Prisma Client ignores it.
+model candidate_metadata_archive {
+  candidate_id String   @db.Uuid
+  metadata     Json
+  archived_at  DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([candidate_id], map: "idx_candidate_metadata_archive_candidate")
+  @@ignore
+}
+
+/// Metadata objects that still held keys with no column when migration 018 dropped persons.metadata.
+model person_metadata_archive {
+  person_id   String   @db.Uuid
+  metadata    Json
+  archived_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([person_id], map: "idx_person_metadata_archive_person")
+  @@ignore
 }
