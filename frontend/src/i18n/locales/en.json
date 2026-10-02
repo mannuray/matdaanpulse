@@ -476,5 +476,11 @@
   "cp_three_way_body": "The winning margin is only {{margin}} votes, while {{name}} polled {{votes}}.",
   "cp_spoiler_title": "Possible spoiler",
   "cp_round_of": "Round {{current}} of {{total}}",
-  "cp_share_label": "Vote share"
+  "cp_share_label": "Vote share",
+  "party_seats_total": "Total seats: {{n}} / {{contested}} contested",
+  "party_scale": "{{total}} seats in the house",
+  "party_won_n": "Won ({{n}})",
+  "party_leading_n": "Leading ({{n}})",
+  "party_majority_mark": "Majority mark: {{n}}",
+  "party_key_hint": "Pick a candidate to open the seat"
 }

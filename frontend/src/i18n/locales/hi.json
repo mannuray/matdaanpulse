@@ -476,5 +476,11 @@
   "cp_three_way_body": "जीत का अंतर केवल {{margin}} वोट है, जबकि {{name}} को {{votes}} वोट मिले।",
   "cp_spoiler_title": "संभावित वोट-कटवा",
   "cp_round_of": "राउंड {{current}} / {{total}}",
-  "cp_share_label": "वोट हिस्सा"
+  "cp_share_label": "वोट हिस्सा",
+  "party_seats_total": "कुल सीटें: {{n}} / {{contested}} लड़ीं",
+  "party_scale": "सदन में {{total}} सीटें",
+  "party_won_n": "जीते ({{n}})",
+  "party_leading_n": "आगे ({{n}})",
+  "party_majority_mark": "बहुमत: {{n}}",
+  "party_key_hint": "सीट खोलने के लिए उम्मीदवार चुनें"
 }
