@@ -333,7 +333,9 @@ describe('Party record page', () => {
     expect(screen.getByText('ECI symbol')).toBeTruthy();
     expect(screen.queryByLabelText('Logo URL')).toBeNull();
     expect(screen.queryByLabelText('ECI symbol URL')).toBeNull();
-    expect(screen.getByLabelText('Upload Party logo')).toBeTruthy();
+    expect(screen.getByLabelText('Party logo file')).toBeTruthy();
+    expect(screen.getByRole('button', { name: /^(Replace|Upload) Party logo$/ })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /^(Replace|Upload) ECI symbol$/ })).toBeTruthy();
   });
 });
 
