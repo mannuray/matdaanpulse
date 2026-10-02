@@ -9,3 +9,4 @@ export * from './candidate.exception';
 export * from './result.exception';
 export * from './manifest.exception';
 export * from './feedback.exception';
+export * from './media.exception';

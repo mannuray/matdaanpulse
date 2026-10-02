@@ -5,6 +5,7 @@ import { usePersonEdit, isValidDob, type PersonForm } from '../../../hooks/usePe
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { RecordPage } from '../../record/RecordPage';
 import { RecordCard, RecordMeta } from '../../record/RecordCard';
+import { PhotoButton } from '../../record/PhotoButton';
 import { RecordLoadError } from '../../record/RecordLoadError';
 import { Field } from '../../ui/Field';
 import { Input, Select, Textarea } from '../../ui/Input';
@@ -78,11 +79,10 @@ export function PersonRecord({ id, onBack, onSaved, onOpenPerson }: PersonRecord
       onBack={onBack}
       loading={!person && !error}
       error={error}
-      leading={
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-subtle text-lg font-semibold text-ink-2">
-          {form.photo_url ? <img src={form.photo_url} alt="" className="h-full w-full object-cover" /> : person?.name.charAt(0)}
-        </span>
-      }
+      leading={person && (
+        <PhotoButton name={person.name} ownerId={id} url={form.photo_url} error={fieldErrors.photo_url}
+          onChange={(photo_url) => set({ photo_url })} />
+      )}
       title={person?.name}
       meta={person && (
         <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -127,9 +127,6 @@ export function PersonRecord({ id, onBack, onSaved, onOpenPerson }: PersonRecord
               </div>
               <Field label="Education" error={fieldErrors.education}>
                 <Input value={form.education} onChange={(e) => set({ education: e.target.value })} />
-              </Field>
-              <Field label="Photo URL" error={fieldErrors.photo_url}>
-                <Input value={form.photo_url} placeholder="https://…" onChange={(e) => set({ photo_url: e.target.value })} />
               </Field>
               {/* Admin only: the public profile never shows caste or religion. */}
               <div className="grid gap-4 sm:grid-cols-2">

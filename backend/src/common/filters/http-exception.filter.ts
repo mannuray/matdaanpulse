@@ -58,6 +58,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     // A PrismaClientValidationError is answered with 400 but almost always means a
     // server-side query bug, so it is logged like a 5xx (review M9).
+    // A BusinessException 5xx keeps its client-safe message below but is still an outage, so it is logged too.
     if (status >= 500 || exception instanceof Prisma.PrismaClientValidationError) {
       this.reportServerError(exception, status, requestId, request);
     }
@@ -85,8 +86,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       message = Array.isArray(raw) ? raw.join('; ') : typeof raw === 'string' ? raw : httpException.message;
     }
 
-    // 5xx never exposes exception text (the real one is logged above).
-    if (status >= 500) message = 'Internal server error';
+    // Unexpected 5xx never exposes exception text (the real one is logged above).
+    if (status >= 500 && !(httpException instanceof BusinessException)) message = 'Internal server error';
 
     const errorResponse = {
       success: false,
@@ -107,9 +108,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
   /** 5xx: full detail goes to logs and the active span, never to the client. */
   private reportServerError(exception: unknown, status: number, requestId: string, request: Request) {
     const err = exception instanceof Error ? exception : new Error(String(exception));
+    // A wrapped cause (e.g. the blob store's error behind MEDIA_0002) is the useful part.
+    const raw = (err as { cause?: unknown }).cause;
+    const cause = raw instanceof Error ? raw : undefined;
     this.logger.error(
-      `${request.method} ${redactUrl(request.originalUrl ?? request.url)} → ${status}: ${err.message} [requestId=${requestId}]`,
-      err.stack,
+      `${request.method} ${redactUrl(request.originalUrl ?? request.url)} → ${status}: ${err.message}` +
+        `${cause ? ` (cause: ${cause.message})` : ''} [requestId=${requestId}]`,
+      cause?.stack ?? err.stack,
     );
     const span = trace.getActiveSpan();
     if (span) {

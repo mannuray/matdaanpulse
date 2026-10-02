@@ -1,7 +1,7 @@
 import { ArgumentsHost, Logger, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { HttpExceptionFilter } from './http-exception.filter';
-import { UserNotFoundException } from '../exceptions';
+import { UserNotFoundException, MediaNotConfiguredException, MediaStorageFailedException } from '../exceptions';
 import { ErrorCodes } from '../exceptions/error-codes';
 import { BusinessException } from '../exceptions/base.exception';
 import { validationExceptionFactory } from '../validation/validation-failed.exception';
@@ -170,6 +170,24 @@ describe('HttpExceptionFilter', () => {
     expect(res.body.error.message).toBe('Internal server error');
     expect(JSON.stringify(res.body)).not.toMatch(/10\.0\.0\.9/);
     expect(errorSpy.mock.calls[0][0]).toMatch(/redis at 10\.0\.0\.9 down/);
+  });
+
+  it('a BusinessException 503 keeps its code and message and is still logged as a server error', () => {
+    const res = run(new MediaNotConfiguredException());
+    expect(res.statusCode).toBe(503);
+    expect(res.body.error.code).toBe(ErrorCodes.MEDIA_UPLOAD_NOT_CONFIGURED);
+    expect(res.body.error.message).toBe('Image upload is not configured');
+    expect(errorSpy).toHaveBeenCalledTimes(1);
+    expect(errorSpy.mock.calls[0][0]).toMatch(/→ 503: Image upload is not configured/);
+  });
+
+  it('a BusinessException 5xx cause is logged but never sent', () => {
+    const res = run(new MediaStorageFailedException(new Error('blob token rejected at 10.0.0.7')));
+    expect(res.statusCode).toBe(502);
+    expect(res.body.error.code).toBe(ErrorCodes.MEDIA_STORAGE_FAILED);
+    expect(res.body.error.message).toBe('Image storage failed');
+    expect(JSON.stringify(res.body)).not.toMatch(/10\.0\.0\.7/);
+    expect(errorSpy.mock.calls[0][0]).toMatch(/Image storage failed.*cause: blob token rejected at 10\.0\.0\.7/);
   });
 
   it('error.path omits the query string', () => {

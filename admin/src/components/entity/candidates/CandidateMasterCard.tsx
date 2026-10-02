@@ -4,6 +4,7 @@ import { RecordLink } from '../../record/RecordLink';
 import { SearchInput } from '../../ui/Toolbar';
 import { Button } from '../../ui/Button';
 import { contestsLabel } from '../../../utils/person-format';
+import { assetUrl } from '../../../utils/asset-url';
 import type { Candidate, PersonWithStats } from '../../../types';
 
 interface CandidateMasterCardProps {
@@ -47,7 +48,7 @@ export function CandidateMasterCard(props: CandidateMasterCardProps) {
         <div className="rounded-card border border-line">
           <div className="flex items-center gap-3 p-3.5">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-subtle text-sm font-semibold text-ink-2">
-              {person?.photo_url ? <img src={person.photo_url} alt="" className="h-full w-full object-cover" /> : (person?.name ?? c.name).charAt(0)}
+              {person?.photo_url ? <img src={assetUrl(person.photo_url)} alt="" className="h-full w-full object-cover" /> : (person?.name ?? c.name).charAt(0)}
             </span>
             <div className="min-w-0">
               <div className="truncate text-sm font-semibold text-ink">{person?.name ?? c.name}</div>

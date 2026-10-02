@@ -6,7 +6,7 @@ import { ToastProvider } from '../context/ToastContext';
 
 vi.mock('../services/candidate.service', () => ({
   getCandidate: vi.fn(async () => ({
-    id: 'c1', person_id: 'p1', person: { id: 'p1', name: 'Ravi Shankar Prasad', photo_url: null, gender: null, education: null, date_of_birth: null },
+    id: 'c1', person_id: 'p1', person: { id: 'p1', name: 'Ravi Shankar Prasad', photo_url: 'https://b/old.jpg', gender: null, education: null, date_of_birth: null },
     election_id: 'e1', const_id: 's1', party_id: 'BJP', party: null,
     name: 'Ravi Prasad', is_incumbent: false, age: 58, assets: 0, liabilities: 1250000, criminal_cases: 0,
     person_contests: { contests: 2, first_year: 2015 },
@@ -16,10 +16,13 @@ vi.mock('../services/candidate.service', () => ({
   splitCandidate: vi.fn(async () => ({ person_id: 'p-new', old_person_deleted: false })),
 }));
 vi.mock('../services/person.api', () => ({
+  updatePerson: vi.fn(async () => ({})),
   getPersons: vi.fn(async () => ({ success: true, data: [], pagination: { page: 1, limit: 10, total: 0, totalPages: 1 } })),
 }));
 vi.mock('../services/geo.service', () => ({ getParties: vi.fn(async () => []) }));
 import { useCandidateEdit, candidateAffidavit, candidateNumbersValid } from './useCandidateEdit';
+import { updatePerson } from '../services/person.api';
+import { ApiError } from '../services/api-client';
 import { changeCandidatePerson, getCandidate, splitCandidate, updateCandidate } from '../services/candidate.service';
 
 const wrapper = ({ children }: { children: ReactNode }) => <ToastProvider>{children}</ToastProvider>;
@@ -102,5 +105,53 @@ describe('useCandidateEdit person actions', () => {
     expect(personId).toBe('p-new');
     expect(splitCandidate).toHaveBeenCalledWith('c1');
     await waitFor(() => expect(getCandidate).toHaveBeenCalledTimes(2));
+  });
+});
+
+describe('useCandidateEdit header photo (saved on the person)', () => {
+  it('photo only: updates the person, not the candidate', async () => {
+    const { result } = renderHook(() => useCandidateEdit('c1'), { wrapper });
+    await waitFor(() => expect(result.current.form.photo_url).toBe('https://b/old.jpg'));
+    act(() => result.current.setForm({ ...result.current.form, photo_url: 'https://b/new.jpg' }));
+    expect(result.current.dirty).toBe(true);
+    await act(() => result.current.handleSave());
+    expect(updateCandidate).not.toHaveBeenCalled();
+    expect(updatePerson).toHaveBeenCalledWith('p1', { photo_url: 'https://b/new.jpg' });
+  });
+
+  it('removing the photo sends null', async () => {
+    const { result } = renderHook(() => useCandidateEdit('c1'), { wrapper });
+    await waitFor(() => expect(result.current.form.photo_url).toBe('https://b/old.jpg'));
+    act(() => result.current.setForm({ ...result.current.form, photo_url: '' }));
+    await act(() => result.current.handleSave());
+    expect(updatePerson).toHaveBeenCalledWith('p1', { photo_url: null });
+  });
+
+  it('fields only: never touches the person', async () => {
+    const { result } = renderHook(() => useCandidateEdit('c1'), { wrapper });
+    await waitFor(() => expect(result.current.candidate).not.toBeNull());
+    act(() => result.current.setForm({ ...result.current.form, age: '61' }));
+    await act(() => result.current.handleSave());
+    expect(updateCandidate).toHaveBeenCalled();
+    expect(vi.mocked(updateCandidate).mock.calls[0][1]).not.toHaveProperty('photo_url');
+    expect(updatePerson).not.toHaveBeenCalled();
+  });
+
+  it('candidate saved, photo failed: stays dirty for the photo only; next Save retries just the photo', async () => {
+    vi.mocked(updatePerson).mockRejectedValueOnce(new ApiError('Network down', 500));
+    const { result } = renderHook(() => useCandidateEdit('c1'), { wrapper });
+    await waitFor(() => expect(result.current.candidate).not.toBeNull());
+    act(() => result.current.setForm({ ...result.current.form, age: '61', photo_url: 'https://b/new.jpg' }));
+    let ok: boolean | undefined;
+    await act(async () => { ok = await result.current.handleSave(); });
+    expect(ok).toBe(false);
+    expect(result.current.photoError).toMatch(/Network down/);
+    expect(result.current.dirty).toBe(true);
+    expect(result.current.form.photo_url).toBe('https://b/new.jpg');
+    vi.mocked(updateCandidate).mockClear();
+    await act(() => result.current.handleSave());
+    expect(updateCandidate).not.toHaveBeenCalled();
+    expect(updatePerson).toHaveBeenLastCalledWith('p1', { photo_url: 'https://b/new.jpg' });
+    expect(result.current.photoError).toBeNull();
   });
 });

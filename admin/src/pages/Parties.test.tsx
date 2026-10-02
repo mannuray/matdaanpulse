@@ -326,6 +326,17 @@ describe('Party record page', () => {
     expect(where()).toBe('/parties/BJP?election=e1');
     expect(await screen.findByRole('heading', { level: 1, name: 'Bharatiya Janata Party' })).toBeTruthy();
   });
+
+  it('symbols card shows image tiles, no URL inputs', async () => {
+    renderAt('/parties/BJP');
+    expect(await screen.findByText('Party logo')).toBeTruthy();
+    expect(screen.getByText('ECI symbol')).toBeTruthy();
+    expect(screen.queryByLabelText('Logo URL')).toBeNull();
+    expect(screen.queryByLabelText('ECI symbol URL')).toBeNull();
+    expect(screen.getByLabelText('Party logo file')).toBeTruthy();
+    expect(screen.getByRole('button', { name: /^(Replace|Upload) Party logo$/ })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /^(Replace|Upload) ECI symbol$/ })).toBeTruthy();
+  });
 });
 
 describe('New party', () => {

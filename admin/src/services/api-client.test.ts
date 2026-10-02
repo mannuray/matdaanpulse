@@ -99,3 +99,14 @@ describe('admin GETs bypass shared caches', () => {
     expect(withCacheBuster('/a?b=1', 5)).toBe('/a?b=1&_=5');
   });
 });
+
+describe('apiFetch headers', () => {
+  it('sends JSON content type for JSON bodies and merges caller headers', async () => {
+    mockFetch(200, { success: true, data: {} });
+    await apiFetch('/x', { method: 'POST', body: '{}', headers: { 'X-Test': '1' } });
+    const init = (fetch as any).mock.calls[0][1] as RequestInit;
+    const h = init.headers as Record<string, string>;
+    expect(h['Content-Type']).toBe('application/json');
+    expect(h['X-Test']).toBe('1');
+  });
+});

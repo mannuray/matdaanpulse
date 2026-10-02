@@ -5,6 +5,7 @@ import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { useRecordQuery } from '../../../hooks/useRecordQuery';
 import { getCandidateResult } from '../../../services/candidate.service';
 import { shortElectionName } from '../../shell/ElectionPicker';
+import { PhotoButton } from '../../record/PhotoButton';
 import { RecordPage } from '../../record/RecordPage';
 import { RecordCard, RecordMeta } from '../../record/RecordCard';
 import { RecordLoadError } from '../../record/RecordLoadError';
@@ -105,11 +106,16 @@ export function CandidateRecord({ id, onLoaded, onChanged, onBack, onOpenCandida
       onBack={onBack}
       loading={!c && !error}
       error={error}
-      leading={
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-subtle text-lg font-semibold text-ink-2">
-          {c?.person?.photo_url ? <img src={c.person.photo_url} alt="" className="h-full w-full object-cover" /> : c?.name.charAt(0)}
-        </span>
-      }
+      leading={c && (
+        <PhotoButton
+          name={c.person?.name ?? c.name}
+          ownerId={c.person_id}
+          url={form.photo_url}
+          note={`Updates the photo on ${c.person?.name ?? c.name}'s record — every contest shows it.`}
+          error={ed.photoError}
+          onChange={(photo_url) => setForm((f) => ({ ...f, photo_url }))}
+        />
+      )}
       title={c?.name}
       tags={c && (
         <>

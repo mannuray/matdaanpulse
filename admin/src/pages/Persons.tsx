@@ -4,6 +4,7 @@ import { useResourceList } from '../hooks/useResourceList';
 import { useEntityRoute } from '../hooks/useEntityRoute';
 import { getPersons, type ContestsFilter } from '../services/person.api';
 import { genderLabel } from '../utils/person-format';
+import { assetUrl } from '../utils/asset-url';
 import { EntityPage } from '../components/entity/EntityPage';
 import { PersonRecord } from '../components/entity/persons/PersonRecord';
 import { PageHeader } from '../components/ui/PageHeader';
@@ -33,7 +34,7 @@ const COLUMNS: Column<PersonWithStats>[] = [
     cell: (p) => (
       <div className="flex items-center gap-2.5">
         <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-control border border-line bg-subtle text-xs font-semibold text-ink-2">
-          {p.photo_url ? <img src={p.photo_url} alt="" className="h-full w-full object-cover" /> : p.name.charAt(0)}
+          {p.photo_url ? <img src={assetUrl(p.photo_url)} alt="" className="h-full w-full object-cover" /> : p.name.charAt(0)}
         </span>
         <div className="min-w-0">
           <div className="truncate font-medium text-ink">{p.name}</div>
