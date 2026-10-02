@@ -26,3 +26,15 @@ export class PersonMergeNotUndoableException extends BusinessException {
     super(ErrorCodes.PERSON_MERGE_NOT_UNDOABLE, message, HttpStatus.CONFLICT, details);
   }
 }
+
+/** 409: the duplicate's candidates changed while the merge ran; the transaction rolls back. */
+export class PersonMergeConflictException extends BusinessException {
+  constructor(details?: Record<string, unknown>) {
+    super(
+      ErrorCodes.PERSON_MERGE_CONFLICT,
+      "The duplicate's contests changed while merging, so nothing was merged. Try again.",
+      HttpStatus.CONFLICT,
+      details,
+    );
+  }
+}

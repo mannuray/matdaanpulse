@@ -2,7 +2,9 @@ import { paginated } from '../../common/paginated';
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import { PersonMergeNotFoundException, PersonMergeNotUndoableException, PersonNotFoundException } from '../../common/exceptions';
+import {
+  PersonMergeConflictException, PersonMergeNotFoundException, PersonMergeNotUndoableException, PersonNotFoundException,
+} from '../../common/exceptions';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { changedFields } from '../audit-log/audit-diff';
 import { toJsonSafe } from '../../common/util/json-safe';
@@ -218,8 +220,10 @@ export class PersonsService {
    *     duplicate as soon as its last candidate moves;
    *  2. fill the keeper's NULL identity fields from the duplicate (never overwriting a value). District and
    *     region are filled only when the keeper ends up in the duplicate's state;
-   *  3. move the candidates (a duplicate with none is deleted explicitly);
-   *  4. log it in person_merges (snapshot, candidate ids, filled fields → previous value null) for undo;
+   *  3. move the candidates still on the duplicate; fewer than were read means one moved meanwhile, so 409
+   *     and the transaction rolls back (a duplicate with none is deleted explicitly);
+   *  4. log it in person_merges (keeper_ref = keeper, snapshot, candidate ids, filled fields → previous value
+   *     null) for undo;
    *  5. one PERSON_MERGE audit row on the keeper.
    */
   async merge(duplicateId: string, keeperId: string, userId?: string) {
@@ -244,14 +248,15 @@ export class PersonsService {
       if (Object.keys(fill).length) await tx.persons.update({ where: { id: keeperId }, data: fill as Prisma.personsUncheckedUpdateInput });
 
       if (candidateIds.length) {
-        await tx.candidates.updateMany({ where: { id: { in: candidateIds } }, data: { person_id: keeperId } });
+        const { count } = await tx.candidates.updateMany({ where: { id: { in: candidateIds }, person_id: duplicateId }, data: { person_id: keeperId } });
+        if (count !== candidateIds.length) throw new PersonMergeConflictException({ expected: candidateIds.length, moved: count });
       }
       // The orphan trigger has already deleted a duplicate that had candidates; this covers one with none.
       await tx.persons.deleteMany({ where: { id: duplicateId } });
 
       const log = await tx.person_merges.create({
         data: {
-          keeper_id: keeperId, duplicate: snapshot as Prisma.InputJsonValue, candidate_ids: candidateIds,
+          keeper_id: keeperId, keeper_ref: keeperId, duplicate: snapshot as Prisma.InputJsonValue, candidate_ids: candidateIds,
           filled_fields: filledFields, merged_by: userId ?? null,
         },
         select: { id: true },
@@ -270,11 +275,14 @@ export class PersonsService {
 
   /**
    * Undo a merge (SUPER_ADMIN), in one transaction, all or nothing:
-   *  - 404 for an unknown merge; 409 when it was already undone, when its keeper is gone (merged away or
-   *    emptied later), or when any logged candidate no longer belongs to the keeper (the message names them);
-   *  - recreate the duplicate with its original id and fields;
+   *  - 404 for an unknown merge; 409 when it was already undone, when no person with id keeper_ref exists
+   *    (merged away or emptied later, and not brought back by undoing that), or when any logged candidate no
+   *    longer belongs to the keeper (the message names them);
+   *  - recreate the duplicate with its original id and fields, and re-point keeper_id on older merges kept on
+   *    it (keeper_ref), so a chain of merges can be undone newest first;
    *  - restore the keeper's filled fields to NULL, only where the keeper still holds the value the merge put there;
-   *  - move the logged candidates back, mark the merge undone and write PERSON_MERGE_UNDO on the keeper.
+   *  - move the logged candidates back (only rows still on the keeper; a short count is a 409 and rolls back),
+   *    mark the merge undone and write PERSON_MERGE_UNDO on the keeper.
    * A keeper that had no candidates of its own is left empty and deleted by the trigger (PERSON_DELETE).
    */
   async undoMerge(mergeId: string, userId?: string) {
@@ -282,8 +290,9 @@ export class PersonsService {
       const log = await tx.person_merges.findUnique({ where: { id: mergeId } });
       if (!log) throw new PersonMergeNotFoundException(mergeId);
       if (log.undone_at) throw new PersonMergeNotUndoableException('This merge has already been undone.', { merge_id: mergeId });
-      const keeperId = log.keeper_id;
-      if (!keeperId) {
+      const keeperId = log.keeper_ref;
+      const keeper = await tx.persons.findUnique({ where: { id: keeperId } });
+      if (!keeper) {
         throw new PersonMergeNotUndoableException(
           'The person this merge was kept on no longer exists (it was merged or deleted later), so the merge can\'t be undone.',
           { merge_id: mergeId },
@@ -310,12 +319,12 @@ export class PersonsService {
 
       const snapshot = log.duplicate as Row;
       const filled = Object.keys((log.filled_fields as Row | null) ?? {});
-      const keeper = await tx.persons.findUnique({ where: { id: keeperId } });
-      if (!keeper) throw new PersonNotFoundException(keeperId);
 
       const data = Object.fromEntries(PERSON_COLUMNS.filter((c) => c in snapshot).map((c) => [c, snapshot[c]])) as Row;
       if (typeof data.date_of_birth === 'string') data.date_of_birth = new Date(data.date_of_birth);
       await tx.persons.create({ data: data as Prisma.personsUncheckedCreateInput });
+      // Merges kept on the recreated person lost keeper_id (SET NULL) when it was merged away: point them back.
+      await tx.person_merges.updateMany({ where: { keeper_ref: snapshot.id as string }, data: { keeper_id: snapshot.id as string } });
 
       const restore = filled.filter((f) => jsonEqual(keeper[f as keyof typeof keeper], snapshot[f]));
       let keeperAfter: Row = keeper;
@@ -326,7 +335,15 @@ export class PersonsService {
         });
       }
 
-      if (ids.length) await tx.candidates.updateMany({ where: { id: { in: ids } }, data: { person_id: snapshot.id as string } });
+      if (ids.length) {
+        const { count } = await tx.candidates.updateMany({ where: { id: { in: ids }, person_id: keeperId }, data: { person_id: snapshot.id as string } });
+        if (count !== ids.length) {
+          throw new PersonMergeNotUndoableException(
+            "Some of this merge's contests moved to another person while undoing, so nothing was undone. Try again.",
+            { merge_id: mergeId, expected: ids.length, moved: count },
+          );
+        }
+      }
       await this.audit.record(
         {
           userId, action: 'PERSON_MERGE_UNDO', entityType: 'person', entityId: keeperId,
@@ -346,7 +363,7 @@ export class PersonsService {
    */
   async mergeHistory(personId: string, currentCandidateIds: string[]) {
     const rows = await this.prisma.person_merges.findMany({
-      where: { keeper_id: personId },
+      where: { keeper_ref: personId },
       orderBy: { merged_at: 'desc' },
       select: { id: true, duplicate: true, candidate_ids: true, merged_at: true, undone_at: true, merger: { select: { name: true } } },
     });

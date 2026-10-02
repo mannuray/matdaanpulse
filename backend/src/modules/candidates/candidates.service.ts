@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import {
-  CandidateNotFoundException, ConstituencyNotFoundException, ElectionFinalizedException, ElectionNotFoundException, PersonNotFoundException,
+  CandidateNotFoundException, CandidateSoleContestException, ConstituencyNotFoundException, ElectionFinalizedException, ElectionNotFoundException, PersonNotFoundException,
 } from '../../common/exceptions';
 import { ResultChangeNotifier } from '../live/result-change-notifier';
 import { AuditLogService } from '../audit-log/audit-log.service';
@@ -217,7 +217,8 @@ export class CandidatesService {
 
   /**
    * Split: move this candidacy to a new person made from it (the ballot name and the seat's state), with
-   * CANDIDATE_SPLIT; PERSON_DELETE too when the old person is left without candidates. One transaction.
+   * CANDIDATE_SPLIT. 409 when it is the person's only contest. PERSON_DELETE too should a concurrent move
+   * have left the old person without candidates. One transaction.
    */
   async split(candidateId: string, userId?: string): Promise<{ person_id: string; old_person_deleted: boolean }> {
     return this.prisma.$transaction(async (tx) => {
@@ -226,6 +227,10 @@ export class CandidatesService {
         select: { id: true, name: true, person_id: true, constituencies: { select: { state_id: true } } },
       });
       if (!candidate) throw new CandidateNotFoundException(candidateId);
+      // Splitting the only contest would just replace the person with a copy of it.
+      if ((await tx.candidates.count({ where: { person_id: candidate.person_id } })) <= 1) {
+        throw new CandidateSoleContestException(candidateId);
+      }
       const before = await tx.persons.findUnique({ where: { id: candidate.person_id } });
       const person = await tx.persons.create({
         data: { name: candidate.name, state_id: candidate.constituencies.state_id },

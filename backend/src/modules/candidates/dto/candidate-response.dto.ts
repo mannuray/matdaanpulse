@@ -32,6 +32,7 @@ export class CandidateDetailDto extends CandidateSummaryDto {
   @Expose() criminal_cases: number | null;
 }
 
+/** Public person profile. */
 export class PersonProfileDto {
   @Expose() id: string;
   @Expose() name: string;
@@ -45,8 +46,7 @@ export class PersonProfileDto {
   
   @Expose() bio: string | null;
   @Expose() wikipedia_url: string | null;
-  @Expose() caste: string | null;
-  @Expose() religion: string | null;
+  // caste and religion are admin-only (AdminPersonDto): never exposed on the public profile.
 
   @Expose() candidates?: any[];
 }

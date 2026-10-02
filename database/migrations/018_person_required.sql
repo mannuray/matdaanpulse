@@ -21,7 +21,10 @@
 --      They coexist with migration 015's statement-level live-version triggers (which compare name
 --      and party only, so the person_id UPDATE never bumps a version) and 017's updated_at trigger.
 --   6. person_merges: the merge log that undo reads. keeper_id is ON DELETE SET NULL, so the history
---      survives when the keeper is later merged away or emptied (undo refuses a merge without a keeper).
+--      survives when the keeper is later merged away or emptied. keeper_ref (no FK, NOT NULL) keeps the
+--      original keeper id: history and undo read it, so a chain (X into K, then K into Z) can be undone
+--      in reverse. Undo refuses while no person with id keeper_ref exists; an undo that recreates a
+--      person re-points keeper_id on the older logs whose keeper_ref is that person.
 --   7. Archive every metadata object that still holds keys not moved into columns (e.g. the affidavit
 --      generator's affidavit / affidavit_history) into candidate_metadata_archive /
 --      person_metadata_archive, then drop candidates.metadata and persons.metadata, last.
@@ -250,6 +253,17 @@ BEGIN
             FOREIGN KEY (keeper_id) REFERENCES persons(id) ON DELETE SET NULL ON UPDATE NO ACTION;
     END IF;
 END $$;
+
+-- keeper_ref: the original keeper id, kept when keeper_id is SET NULL. Backfilled from keeper_id, then
+-- from the PERSON_MERGE audit row (entity_id = keeper, new_value.merge_id) for a row whose keeper is gone.
+ALTER TABLE person_merges ADD COLUMN IF NOT EXISTS keeper_ref UUID;
+UPDATE person_merges SET keeper_ref = keeper_id WHERE keeper_ref IS NULL AND keeper_id IS NOT NULL;
+UPDATE person_merges m SET keeper_ref = a.entity_id::uuid
+FROM audit_logs a
+WHERE m.keeper_ref IS NULL AND a.action = 'PERSON_MERGE' AND a.entity_type = 'person'
+  AND a.new_value->>'merge_id' = m.id::text;
+ALTER TABLE person_merges ALTER COLUMN keeper_ref SET NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_person_merges_keeper_ref ON person_merges (keeper_ref);
 
 -- 7. Archive leftover metadata, then drop the JSON columns, last -------------------------------
 -- The whole object is archived when any key is left that no column took (the nested affidavit

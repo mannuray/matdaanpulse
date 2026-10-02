@@ -215,11 +215,13 @@ describe('CandidatesService.changePerson / split', () => {
   const candidate = { id: 'c1', name: 'RAVI KUMAR', person_id: 'p-old', constituencies: { state_id: 10 } };
   const oldPerson = { id: 'p-old', name: 'Ravi Kumar', gender: 'M', date_of_birth: new Date('1970-01-02'), updated_at: new Date(1) };
   /** `oldPersonGone`: the orphan trigger deleted p-old when the candidate moved (it was its only contest). */
-  function make({ oldPersonGone = false, target = { id: 'p-new' } as unknown } = {}) {
+  /** `contests`: how many candidacies the old person has (split refuses the only one). */
+  function make({ oldPersonGone = false, target = { id: 'p-new' } as unknown, contests = 2 } = {}) {
     let moved = false;
     const tx = {
       candidates: {
         findUnique: jest.fn().mockResolvedValue(candidate),
+        count: jest.fn().mockResolvedValue(contests),
         update: jest.fn(async ({ data }) => { moved = true; return { ...candidate, ...data }; }),
       },
       persons: {
@@ -290,10 +292,15 @@ describe('CandidatesService.changePerson / split', () => {
     })]);
   });
 
-  it('split that empties the old person also writes PERSON_DELETE', async () => {
-    const { svc, audit } = make({ oldPersonGone: true });
-    await expect(svc.split('c1', 'u1')).resolves.toEqual({ person_id: 'p-split', old_person_deleted: true });
-    expect(audit().map((a: any) => [a.action, a.entity_id])).toEqual([['CANDIDATE_SPLIT', 'c1'], ['PERSON_DELETE', 'p-old']]);
+  it("split of the person's only contest is a 409 and creates or moves nothing", async () => {
+    const { svc, tx, audit } = make({ contests: 1 });
+    const err = await svc.split('c1', 'u1').catch((e) => e);
+    expect(err.getStatus()).toBe(409);
+    expect(err.getResponse().message).toBe("This is the person's only contest");
+    expect(tx.candidates.count).toHaveBeenCalledWith({ where: { person_id: 'p-old' } });
+    expect(tx.persons.create).not.toHaveBeenCalled();
+    expect(tx.candidates.update).not.toHaveBeenCalled();
+    expect(audit()).toEqual([]);
   });
 });
 

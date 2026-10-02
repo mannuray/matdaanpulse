@@ -231,12 +231,20 @@ describe('person responses: identity columns and merge history', () => {
     date_of_birth: new Date('1951-03-01'), updated_at, candidates: [{ id: 'c1' }, { id: 'c2' }],
   };
 
-  it('admin and public person DTOs expose bio, wikipedia_url, caste and religion at the top level, and no metadata', () => {
+  it('admin and public person DTOs expose bio and wikipedia_url at the top level, and no metadata', () => {
     for (const dto of [AdminPersonDto, PersonProfileDto]) {
       const out = map(dto, personRow);
-      expect(out).toMatchObject({ bio: 'b', wikipedia_url: 'https://en.wikipedia.org/wiki/N', caste: 'Kurmi', religion: 'Hindu' });
+      expect(out).toMatchObject({ bio: 'b', wikipedia_url: 'https://en.wikipedia.org/wiki/N' });
       expect(out).not.toHaveProperty('metadata');
     }
+  });
+
+  it('caste and religion are admin-only: the admin person DTO has them, the public profile does not', () => {
+    expect(map(AdminPersonDto, personRow)).toMatchObject({ caste: 'Kurmi', religion: 'Hindu' });
+    const pub = map(PersonProfileDto, personRow);
+    expect(pub).not.toHaveProperty('caste');
+    expect(pub).not.toHaveProperty('religion');
+    expect(JSON.stringify(pub)).not.toMatch(/caste|religion|Kurmi|Hindu/);
   });
 
   it('GET /admin/persons/:id lists the merges with the person\'s current candidate ids, merged_at as ISO', async () => {

@@ -181,15 +181,47 @@ describe('person merge, undo, change person and split (DB)', () => {
     });
   });
 
-  it('undo is refused with 409 once the keeper itself was merged away (keeper_id set to NULL)', async () => {
+  it('undo is refused with 409 while the keeper itself is merged away (keeper_id NULL, keeper_ref kept)', async () => {
     await inRollbackTx('keeper gone', async (tx, s) => {
       const { persons } = services(tx);
       const { keeper, duplicate } = await setup(tx, s);
       const final = await tx.persons.create({ data: { name: 'TEST MERGE FINAL' } });
       const { merge_id } = await persons.merge(duplicate.id, keeper.id);
       await persons.merge(keeper.id, final.id);
-      expect((await tx.person_merges.findUnique({ where: { id: merge_id } })).keeper_id).toBeNull();
+      expect(await tx.person_merges.findUnique({ where: { id: merge_id } })).toMatchObject({ keeper_id: null, keeper_ref: keeper.id });
       await expect(persons.undoMerge(merge_id)).rejects.toMatchObject({ status: 409 });
+    });
+  });
+
+  it('chained merges undo newest first: X into K, K into Z, undo K into Z, then undo X into K', async () => {
+    await inRollbackTx('chain', async (tx, s) => {
+      const { persons } = services(tx);
+      // X = duplicate (d1, d2), K = keeper (k1); Z has a contest of its own, so undoing K into Z leaves it in place.
+      const { keeper: k, duplicate: x, k1, d1, d2 } = await setup(tx, s);
+      const z = await tx.persons.create({ data: { name: 'TEST MERGE Z', state_id: s.state_id } });
+      const z1 = await tx.candidates.create({
+        data: { name: 'TEST MERGE Z1', person_id: z.id, election_id: s.election_id, const_id: s.const_id, party_id: 'IND' }, select: { id: true },
+      });
+      const [xBefore, kBefore, zBefore] = [await person(tx, x.id), await person(tx, k.id), await person(tx, z.id)];
+
+      const first = await persons.merge(x.id, k.id);
+      const second = await persons.merge(k.id, z.id);
+      expect(await tx.person_merges.findUnique({ where: { id: first.merge_id } })).toMatchObject({ keeper_id: null, keeper_ref: k.id });
+      expect(await persons.mergeHistory(k.id, [d1.id, d2.id, k1.id])).toMatchObject([{ id: first.merge_id, undoable: true }]);
+
+      await expect(persons.undoMerge(second.merge_id)).resolves.toMatchObject({ undone: true, person_id: k.id, keeper_id: z.id });
+      // K is back, and the older merge points at it again.
+      expect(await tx.person_merges.findUnique({ where: { id: first.merge_id } })).toMatchObject({ keeper_id: k.id, keeper_ref: k.id });
+      expect([await personOf(tx, d1.id), await personOf(tx, d2.id), await personOf(tx, k1.id), await personOf(tx, z1.id)])
+        .toEqual([k.id, k.id, k.id, z.id]);
+
+      await expect(persons.undoMerge(first.merge_id)).resolves.toMatchObject({ undone: true, person_id: x.id, keeper_id: k.id });
+      expect([await person(tx, x.id), await person(tx, k.id), await person(tx, z.id)]).toEqual([xBefore, kBefore, zBefore]);
+      expect([await personOf(tx, d1.id), await personOf(tx, d2.id), await personOf(tx, k1.id), await personOf(tx, z1.id)])
+        .toEqual([x.id, x.id, k.id, z.id]);
+      for (const id of [first.merge_id, second.merge_id]) {
+        expect((await tx.person_merges.findUnique({ where: { id } })).undone_at).not.toBeNull();
+      }
     });
   });
 
@@ -205,7 +237,7 @@ describe('person merge, undo, change person and split (DB)', () => {
     });
   });
 
-  it('split: a new person from the ballot name and seat state; the emptied old person is deleted and audited, a non-empty one kept', async () => {
+  it("split: a new person from the ballot name and seat state, the old person kept; the person's only contest is refused with 409", async () => {
     await inRollbackTx('split', async (tx, s) => {
       const { candidates } = services(tx);
       const { keeper, k1, duplicate, d1 } = await setup(tx, s);
@@ -216,12 +248,14 @@ describe('person merge, undo, change person and split (DB)', () => {
       expect(await person(tx, a.person_id)).toMatchObject({ name: 'TEST MERGE D1', state_id: s.state_id });
       expect(await personOf(tx, d1.id)).toBe(a.person_id);
 
-      const b = await candidates.split(k1.id);
-      expect(b.old_person_deleted).toBe(true);
-      expect(await person(tx, keeper.id)).toBeNull();
-      expect(await auditActions(tx, [d1.id, k1.id, keeper.id])).toEqual([
-        `CANDIDATE_SPLIT:${d1.id}`, `CANDIDATE_SPLIT:${k1.id}`, `PERSON_DELETE:${keeper.id}`,
-      ]);
+      // k1 is the keeper's only contest.
+      const keeperBefore = await person(tx, keeper.id);
+      const err = await candidates.split(k1.id).catch((e) => e);
+      expect(err.getStatus()).toBe(409);
+      expect(err.getResponse().message).toBe("This is the person's only contest");
+      expect(await person(tx, keeper.id)).toEqual(keeperBefore);
+      expect(await personOf(tx, k1.id)).toBe(keeper.id);
+      expect(await auditActions(tx, [d1.id, k1.id, keeper.id])).toEqual([`CANDIDATE_SPLIT:${d1.id}`]);
     });
   });
 

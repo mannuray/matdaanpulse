@@ -20,7 +20,7 @@ Only 958 of 12,379 candidates (8%, all in Bihar) are linked to a person today. P
 Changes from today:
 - `gender` and `education` leave the candidate.
 - The affidavit moves out of `candidates.metadata` into typed columns.
-- `bio`, `wikipedia_url`, `caste` and `religion` move out of `persons.metadata` into columns.
+- `bio`, `wikipedia_url`, `caste` and `religion` move out of `persons.metadata` into columns. `caste` and `religion` are admin-only: the public person profile does not expose them.
 - Both `metadata` columns are empty in the current data, so nothing needs copying. The migration still copies any keys it finds, in case production differs, and then drops the JSON columns.
 
 **Why the ballot name stays on the candidate:** it is a fact about that one candidacy (spellings differ between affidavits), and result imports match on it. The person's `name` is the cleaned-up name used for display.
@@ -43,7 +43,7 @@ Changes from today:
    - It is allowed only if those candidates still belong to the keeper. If any were moved again afterwards, the undo is refused with a message naming them.
    - Each merge can be undone once, and both the merge and the undo are written to the audit log.
 5. **Change person** (on the Candidate page) moves one candidacy to another existing person.
-6. **Split** (on the Candidate page) moves one candidacy to a new person created from it. This replaces "Unlink", because "no person" is no longer a valid state.
+6. **Split** (on the Candidate page) moves one candidacy to a new person created from it. This replaces "Unlink", because "no person" is no longer a valid state. Split is refused (409, "This is the person's only contest") when the candidacy is its person's only one.
 7. **Empty persons are deleted by the database**, with an audit row when the change came from the admin.
    - An `AFTER UPDATE OF person_id` / `AFTER DELETE` trigger on `candidates` deletes the old person once no candidates point to it.
    - It covers change person, split and merge (the duplicate disappears as its last candidate moves; the merge log has already snapshotted it).
@@ -57,7 +57,9 @@ All steps are idempotent:
 3. Create one person for each candidate with no `person_id`, using the ballot name and the seat's state, and link them. This is one set-based `INSERT … SELECT` plus an `UPDATE`, about 11.4k rows locally, so there are no long locks.
 4. Set `person_id` NOT NULL and the FK to RESTRICT.
 5. Create the trigger.
-6. Create the `person_merges` table (`id`, `keeper_id`, `duplicate` JSONB, `candidate_ids` UUID[], `filled_fields` JSONB, `merged_by`, `merged_at`, `undone_at`, `undone_by`).
+6. Create the `person_merges` table (`id`, `keeper_id`, `keeper_ref`, `duplicate` JSONB, `candidate_ids` UUID[], `filled_fields` JSONB, `merged_by`, `merged_at`, `undone_at`, `undone_by`).
+   - `keeper_id` is a nullable FK (ON DELETE SET NULL). `keeper_ref` is the original keeper id, NOT NULL with no FK. History and undo use `keeper_ref`, so a chain of merges (X into K, then K into Z) can be undone newest first.
+   - Undo refuses (409) while no person with id `keeper_ref` exists. An undo that recreates a person re-points `keeper_id` on older merges whose `keeper_ref` is that person.
 7. Drop `candidates.metadata` and `persons.metadata` last, after the copy. `schema.prisma` is updated to match.
    - 19 seed files insert `candidates (…, metadata)`, and every value is `'{}'`.
    - Those files, their generators in `scraper/src/generate-*.ts`, and `scraper/src/simulation/setup.ts` drop the column. This is a mechanical change; the rows themselves are unchanged.

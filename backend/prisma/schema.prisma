@@ -275,11 +275,14 @@ model person_merges {
   merged_at     DateTime  @default(now()) @db.Timestamptz(6)
   undone_at     DateTime? @db.Timestamptz(6)
   undone_by     String?   @db.Uuid
+  /// The original keeper id (no FK): kept when keeper_id is SET NULL; history and undo read it.
+  keeper_ref    String    @db.Uuid
   keeper        persons?  @relation(fields: [keeper_id], references: [id], onDelete: SetNull, onUpdate: NoAction)
   merger        users?    @relation("person_merges_merged_by", fields: [merged_by], references: [id], onDelete: SetNull, onUpdate: NoAction)
   undoer        users?    @relation("person_merges_undone_by", fields: [undone_by], references: [id], onDelete: SetNull, onUpdate: NoAction)
 
   @@index([keeper_id], map: "idx_person_merges_keeper")
+  @@index([keeper_ref], map: "idx_person_merges_keeper_ref")
 }
 
 enum constituency_type {

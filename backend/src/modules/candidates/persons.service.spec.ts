@@ -87,11 +87,12 @@ describe('PersonsService.merge', () => {
     });
     // The candidate ids were read before the move (the orphan trigger deletes the duplicate when its last one moves).
     expect(tx.candidates.findMany.mock.invocationCallOrder[0]).toBeLessThan(tx.candidates.updateMany.mock.invocationCallOrder[0]);
-    expect(tx.candidates.updateMany).toHaveBeenCalledWith({ where: { id: { in: ['c1', 'c2'] } }, data: { person_id: 'p1' } });
+    // Only rows still on the duplicate move (a concurrent change person is caught by the count).
+    expect(tx.candidates.updateMany).toHaveBeenCalledWith({ where: { id: { in: ['c1', 'c2'] }, person_id: 'p2' }, data: { person_id: 'p1' } });
     expect(tx.persons.deleteMany).toHaveBeenCalledWith({ where: { id: 'p2' } });
     const log = tx.person_merges.create.mock.calls[0][0].data;
     expect(log).toEqual({
-      keeper_id: 'p1', candidate_ids: ['c1', 'c2'], merged_by: 'u1',
+      keeper_id: 'p1', keeper_ref: 'p1', candidate_ids: ['c1', 'c2'], merged_by: 'u1',
       duplicate: {
         id: 'p2', name: 'N. Kumar', photo_url: 'https://x/p.jpg', gender: 'F', education: 'B.E.', date_of_birth: '1951-03-01T00:00:00.000Z',
         bio: 'dup bio', wikipedia_url: null, caste: 'Kurmi', religion: null, state_id: 5, district_id: 7, region_id: 3,
@@ -127,6 +128,17 @@ describe('PersonsService.merge', () => {
     expect(tx.candidates.updateMany).not.toHaveBeenCalled();
   });
 
+  it('a candidate that left the duplicate during the merge (short move count) is a 409, and nothing after the move runs', async () => {
+    const { svc, tx } = makeMerge();
+    tx.candidates.updateMany.mockResolvedValue({ count: 1 });
+    const err = await svc.merge('p2', 'p1', 'u1').catch((e) => e);
+    expect(err.getStatus()).toBe(409);
+    expect(err.getResponse()).toMatchObject({ details: { expected: 2, moved: 1 } });
+    expect(tx.persons.deleteMany).not.toHaveBeenCalled();
+    expect(tx.person_merges.create).not.toHaveBeenCalled();
+    expect(tx.audit_logs.create).not.toHaveBeenCalled();
+  });
+
   it('a failing audit insert inside the merge still merges', async () => {
     const warn = jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
     const { svc, tx } = makeMerge();
@@ -143,23 +155,27 @@ describe('PersonsService.undoMerge', () => {
     bio: 'dup bio', wikipedia_url: null, caste: 'Kurmi', religion: null, state_id: 5, district_id: 7, region_id: 3,
   };
   const log = {
-    id: 'm1', keeper_id: 'p1', duplicate: snapshot, candidate_ids: ['c1', 'c2'],
+    id: 'm1', keeper_id: 'p1', keeper_ref: 'p1', duplicate: snapshot, candidate_ids: ['c1', 'c2'],
     filled_fields: { photo_url: null, education: null, caste: null }, undone_at: null,
   };
   /** The keeper after the merge, where the editor later changed the education the merge had filled. */
   const keeperNow = { ...keeperRow, photo_url: 'https://x/p.jpg', education: 'M.A.', caste: 'Kurmi' };
 
-  function makeUndo(over: { log?: object | null; candidates?: object[]; claimed?: number; keeperGone?: boolean } = {}) {
+  function makeUndo(over: { log?: object | null; candidates?: object[]; claimed?: number; keeperGone?: boolean; movedBack?: number } = {}) {
     const order: string[] = [];
     let moved = false;
     const tx = {
       person_merges: {
         findUnique: jest.fn().mockResolvedValue(over.log === undefined ? log : over.log),
-        updateMany: jest.fn(async () => { order.push('claim'); return { count: over.claimed ?? 1 }; }),
+        updateMany: jest.fn(async ({ where }) => {
+          if (where.keeper_ref) { order.push('repoint'); return { count: 0 }; }
+          order.push('claim');
+          return { count: over.claimed ?? 1 };
+        }),
       },
       candidates: {
         findMany: jest.fn().mockResolvedValue(over.candidates ?? [{ id: 'c1', name: 'N KUMAR', person_id: 'p1' }, { id: 'c2', name: 'NITISH', person_id: 'p1' }]),
-        updateMany: jest.fn(async () => { order.push('move'); moved = true; return { count: 2 }; }),
+        updateMany: jest.fn(async () => { order.push('move'); moved = true; return { count: over.movedBack ?? 2 }; }),
       },
       persons: {
         findUnique: jest.fn(async ({ where }) => (where.id === 'p1' && !(moved && over.keeperGone) ? keeperNow : null)),
@@ -182,8 +198,11 @@ describe('PersonsService.undoMerge', () => {
     expect(tx.persons.create).toHaveBeenCalledWith({ data: { ...snapshot, date_of_birth: new Date('1951-03-01') } });
     // education was changed by an editor after the merge: left alone.
     expect(tx.persons.update).toHaveBeenCalledWith({ where: { id: 'p1' }, data: { photo_url: null, caste: null } });
-    expect(tx.candidates.updateMany).toHaveBeenCalledWith({ where: { id: { in: ['c1', 'c2'] } }, data: { person_id: 'p2' } });
-    expect(order).toEqual(['claim', 'create', 'restore', 'move']);
+    // Only rows still on the keeper move back.
+    expect(tx.candidates.updateMany).toHaveBeenCalledWith({ where: { id: { in: ['c1', 'c2'] }, person_id: 'p1' }, data: { person_id: 'p2' } });
+    // Older merges kept on the recreated person point at it again.
+    expect(tx.person_merges.updateMany).toHaveBeenCalledWith({ where: { keeper_ref: 'p2' }, data: { keeper_id: 'p2' } });
+    expect(order).toEqual(['claim', 'create', 'repoint', 'restore', 'move']);
     expect(audit()).toEqual([{
       user_id: 'u1', action: 'PERSON_MERGE_UNDO', entity_type: 'person', entity_id: 'p1',
       old_value: { merge_id: 'm1', target_id: 'p1' },
@@ -205,12 +224,27 @@ describe('PersonsService.undoMerge', () => {
     expect(b.tx.persons.create).not.toHaveBeenCalled();
   });
 
-  it('a merge whose keeper is gone (keeper_id null) is a 409', async () => {
-    const { svc, tx } = makeUndo({ log: { ...log, keeper_id: null } });
+  it('a merge whose keeper is gone (no person with id keeper_ref) is a 409', async () => {
+    const { svc, tx } = makeUndo({ log: { ...log, keeper_id: null, keeper_ref: 'p9' } });
     const err = await svc.undoMerge('m1').catch((e) => e);
     expect(err.getStatus()).toBe(409);
     expect(err.getResponse().message).toMatch(/no longer exists/);
     expect(tx.person_merges.updateMany).not.toHaveBeenCalled();
+  });
+
+  it('keeper_id null but the keeper_ref person back (a later merge was undone): the undo goes ahead on keeper_ref', async () => {
+    const { svc, tx } = makeUndo({ log: { ...log, keeper_id: null } });
+    await expect(svc.undoMerge('m1', 'u1')).resolves.toMatchObject({ undone: true, keeper_id: 'p1' });
+    expect(tx.persons.findUnique).toHaveBeenCalledWith({ where: { id: 'p1' } });
+  });
+
+  it('a candidate that left the keeper during the undo (short move-back count) is a 409', async () => {
+    const { svc, tx, audit } = makeUndo({ movedBack: 1 });
+    const err = await svc.undoMerge('m1', 'u1').catch((e) => e);
+    expect(err.getStatus()).toBe(409);
+    expect(err.getResponse()).toMatchObject({ details: { merge_id: 'm1', expected: 2, moved: 1 } });
+    expect(tx.candidates.updateMany).toHaveBeenCalledTimes(1);
+    expect(audit()).toEqual([]);
   });
 
   it('a candidate moved or deleted since is a 409 naming them, before any write', async () => {
@@ -243,7 +277,7 @@ describe('PersonsService.mergeHistory', () => {
     const prisma = { person_merges: { findMany: jest.fn().mockResolvedValue(rows) } };
     const svc = new PersonsService(prisma as any, {} as any);
     const out = await svc.mergeHistory('p1', ['c1', 'c2', 'c3']);
-    expect(prisma.person_merges.findMany.mock.calls[0][0]).toMatchObject({ where: { keeper_id: 'p1' }, orderBy: { merged_at: 'desc' } });
+    expect(prisma.person_merges.findMany.mock.calls[0][0]).toMatchObject({ where: { keeper_ref: 'p1' }, orderBy: { merged_at: 'desc' } });
     expect(out).toEqual([
       { id: 'm3', duplicate_name: 'A', candidate_count: 1, merged_at: new Date(3), merged_by: 'Priya', undoable: true },
       { id: 'm2', duplicate_name: 'B', candidate_count: 2, merged_at: new Date(2), merged_by: null, undoable: false },
