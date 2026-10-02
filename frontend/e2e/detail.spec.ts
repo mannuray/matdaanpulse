@@ -21,6 +21,32 @@ test('a party opens the party dialog from standings and the URL carries ?party='
   await expect(page.getByRole('dialog')).toContainText('This election');
 });
 
+test('a party opened from the seat dialog stacks over it and closing it returns to the seat', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
+  const seat = page.getByRole('dialog');
+  await expect(seat.getByRole('link', { name: /Full constituency page/ })).toBeVisible();
+  await seat.locator('table').getByRole('button').first().click();
+  await expect(page).toHaveURL(/party=/);
+  const party = page.getByRole('dialog').filter({ hasText: 'This election' });
+  await expect(party).toBeVisible();
+  await party.getByRole('button', { name: 'Close' }).click();
+  await expect(page).not.toHaveURL(/party=/);
+  await expect(page).toHaveURL(/seat=BR_VS_100_BARAULI/);
+  await expect(page.getByRole('dialog')).toHaveCount(1);
+  await expect(page.getByRole('dialog').getByRole('link', { name: /Full constituency page/ })).toBeVisible();
+});
+
+test('constituency page renders the heading, party marks and all candidates', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/election/${BIHAR}/constituency/BR_VS_100_BARAULI`);
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const all = page.getByRole('region', { name: 'All candidates' });
+  await expect(all.getByRole('heading', { name: 'All candidates' })).toBeVisible();
+  // A party mark is the logo / ECI symbol image or the colour dot (both role="img").
+  await expect(all.getByRole('img').first()).toBeAttached();
+});
+
 test('person page renders the profile and the contest timeline', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
@@ -36,8 +62,7 @@ test.describe('mobile', () => {
     await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
     const sheet = page.getByRole('dialog');
     await expect(sheet).toBeVisible();
-    await page.waitForTimeout(500);
-    const box = (await sheet.boundingBox())!;
-    expect(box.y + box.height).toBeGreaterThan(830);
+    // Wait for the sheet's slide-in to settle at the bottom edge.
+    await expect.poll(async () => { const b = await sheet.boundingBox(); return b ? b.y + b.height : 0; }).toBeGreaterThan(830);
   });
 });
