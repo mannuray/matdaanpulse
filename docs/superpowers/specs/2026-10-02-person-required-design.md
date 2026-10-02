@@ -1,6 +1,6 @@
 # Every candidate has a person: design
 
-**Status:** draft for review, 2026-10-02. **Owner decisions** (user, 2026-10-02):
+**Status:** approved 2026-10-02 (revised after a seed audit: AFTER-insert trigger, deferred NOT NULL, orphan-delete trigger, seeds drop `metadata`). **Owner decisions** (user, 2026-10-02):
 - Candidate and person stay separate records.
 - Every candidate must point to a person, and duplicates are fixed by merging.
 - Anything the two have in common belongs to the person. The candidate holds only facts about that one candidacy.
@@ -28,7 +28,11 @@ Changes from today:
 ## Rules
 
 1. **`candidates.person_id` is NOT NULL**, with `ON DELETE RESTRICT`. A person who still has candidates can't be deleted; you merge first.
-2. **A person is created automatically.** A `BEFORE INSERT` trigger on `candidates` creates a person when `person_id` is null, with name = the ballot name and state = the seat's state. The 20 seed files, the scraper, the live simulation and the admin "New candidate" form all keep working unchanged. Counting-day inserts never block on this.
+2. **A person is created automatically**, but only for rows that are actually inserted.
+   - An `AFTER INSERT` row trigger on `candidates` handles it. When `person_id` is null, it creates a person (name = ballot name, state = the seat's state) and sets `person_id`.
+   - Why `AFTER` and not `BEFORE`: the seeds use `ON CONFLICT DO NOTHING`. A `BEFORE` trigger would fire for skipped rows too and create stray persons on every re-run. An `AFTER` trigger never fires for a skipped row.
+   - Because a null `person_id` must survive until that trigger runs, NOT NULL is enforced by a deferred constraint trigger (`DEFERRABLE INITIALLY DEFERRED`). It raises at commit if any candidate still has no person.
+   - The seeds, the scraper, the live simulation and the admin "New candidate" form keep working, and counting-day inserts never block.
 3. **Merge** (super admin), from duplicate to keeper:
    - Moves every candidate to the keeper.
    - Fills the keeper's empty fields from the duplicate, but never overwrites values the keeper already has.
@@ -40,7 +44,10 @@ Changes from today:
    - Each merge can be undone once, and both the merge and the undo are written to the audit log.
 5. **Change person** (on the Candidate page) moves one candidacy to another existing person.
 6. **Split** (on the Candidate page) moves one candidacy to a new person created from it. This replaces "Unlink", because "no person" is no longer a valid state.
-7. **Empty persons.** If a change or split leaves the old person with no candidates, that person is deleted in the same transaction, with an audit row, so no orphans pile up.
+7. **Empty persons are deleted by the database**, with an audit row when the change came from the admin.
+   - An `AFTER UPDATE OF person_id` / `AFTER DELETE` trigger on `candidates` deletes the old person once no candidates point to it.
+   - It covers change person, split and merge (the duplicate disappears as its last candidate moves; the merge log has already snapshotted it).
+   - It also covers `seed_bihar_persons.sql`, which re-points Bihar candidates from their auto-created persons to the curated ones.
 
 ## Migration (018)
 
@@ -52,8 +59,13 @@ All steps are idempotent:
 5. Create the trigger.
 6. Create the `person_merges` table (`id`, `keeper_id`, `duplicate` JSONB, `candidate_ids` UUID[], `filled_fields` JSONB, `merged_by`, `merged_at`, `undone_at`, `undone_by`).
 7. Drop `candidates.metadata` and `persons.metadata` last, after the copy. `schema.prisma` is updated to match.
+   - 19 seed files insert `candidates (…, metadata)`, and every value is `'{}'`.
+   - Those files, their generators in `scraper/src/generate-*.ts`, and `scraper/src/simulation/setup.ts` drop the column. This is a mechanical change; the rows themselves are unchanged.
 
-**Seeds:** `seed_bihar_persons.sql` and `seed_bihar_person_regions.sql` keep working, because they run before nothing that needs them. Running `setup.sh` again creates no duplicate persons, since the trigger only fires when `person_id` is null.
+**Seeds:**
+- On a fresh DB, the VS seeds' inserts create one person per candidate.
+- `seed_bihar_persons.sql` then re-points 958 Bihar candidates to the curated persons, and the empty auto persons are deleted.
+- Re-running `setup.sh` creates no persons: conflicting inserts are skipped, and re-pointing to the same person is a no-op.
 
 ## API and UI
 
