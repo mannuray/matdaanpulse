@@ -80,7 +80,7 @@ function DataMatrixCard({ matrix }: { matrix: DataMatrix }) {
       </div>
 
       {sel && (
-        <div className="min-w-0 space-y-2.5 rounded-lg border border-line bg-tile-raised p-4 lg:col-span-5" aria-live="polite" data-matrix-detail>
+        <div className="min-w-0 space-y-2.5 rounded-lg border border-line bg-tile-raised p-4 lg:sticky lg:top-16 lg:col-span-5" aria-live="polite" data-matrix-detail>
           <div className="flex items-center justify-between border-b border-line pb-2">
             <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t('about_matrix_selected')}</span>
             <span className={cn('inline-flex items-center gap-1.5 rounded border px-2.5 py-0.5 text-xs font-medium', QUALITY_PILL[sel.quality])}>
