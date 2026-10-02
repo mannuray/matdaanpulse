@@ -133,12 +133,21 @@ Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-
 
 ## 5. Setup steps (once blockers are fixed)
 
-### 4.1 Migration 018 (every candidate has a person)
+### 5.0 Migration 018 (every candidate has a person)
 
+**Order** (also D9). 018 is expand-only: it adds columns and triggers and keeps `candidates.metadata` and `persons.metadata` (nullable), so the previous backend keeps working while it runs.
+1. Run `setup.sh` (applies 018). The running backend keeps serving; only its "unlink person" action fails from here on (a candidate without a person is refused).
+2. Deploy the backend right after.
+3. Merge to `main` (the admin and public site auto-deploy) only once the new backend is live: the new admin calls `PUT /admin/candidates/:id/person`, `POST …/split` and `POST /admin/persons/merges/:id/undo`, which the old backend doesn't have.
+4. **Later:** once this release is live everywhere, a new migration drops `candidates.metadata` and `persons.metadata`. 018 has archived every non-empty value into `candidate_metadata_archive` / `person_metadata_archive`, and rows the old backend writes during the deploy are archived by the next `setup.sh`. Don't apply Prisma's suggested drop before that migration exists (the columns are `@ignore` in `schema.prisma`).
+
+**Notes:**
 - **Never run `prisma db push`**, and never apply Prisma's suggested `SET NOT NULL` on `candidates.person_id`. NOT NULL is enforced by a deferred constraint trigger, and the seeds insert with NULL (an AFTER INSERT trigger fills it in).
-- Run 018 with `SET lock_timeout` (for example `'5s'`) and retry if it times out. Do not run it near counting day.
+- `setup.sh` sets `lock_timeout=5s` (in `PGOPTIONS`; a caller's `PGOPTIONS='-c lock_timeout=…'` overrides it), so an ALTER TABLE never queues readers behind it for long. If it times out, re-run `setup.sh`. Do not run it near counting day.
+- **Run-once seeds:** `setup.sh` re-runs every seed on every deploy. The Bihar person seeds (`seed_bihar_persons.sql`, `seed_bihar_person_regions.sql`) would otherwise undo admin merges, splits, person changes and region edits, so they record themselves in `seed_runs` and skip when already applied. On production, where they ran long ago, they detect that from the curated persons and the merge log and only write their marker. `seed_party_recognition.sql` and `seed_election_result_dates.sql` are run-once too, by marker only, so on the first deploy with 018 they run one last time (refilling a recognition or result date that was cleared in the admin).
 - Rare: if two admins move the last contest of the same person at the same moment, one request can fail with an FK error (the orphan-delete trigger races the move). Retry it.
-- Before deploying, check production for `persons.metadata.affidavit_history` (`SELECT count(*) FROM persons WHERE metadata ? 'affidavit_history'`). 018 archives leftover metadata before dropping the columns; it does not migrate affidavit history.
+- Before deploying, check production for `persons.metadata.affidavit_history` (`SELECT count(*) FROM persons WHERE metadata ? 'affidavit_history'`). 018 archives it but does not migrate affidavit history into columns.
+- After a merge, a CDN-cached public profile or seat detail can link to the merged-away person for up to about 6 minutes (`s-maxage=60` + `stale-while-revalidate=300`); that link 404s until the cache refreshes.
 
 ### 5.1 Neon
 
@@ -281,7 +290,7 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
 | D6 | Counting-day load / Upstash quota | **CDN-ready live** (§2.2): CDN caching + polling + versioned snapshots + single-flight; in-process cache optional after that |
 | D7 | ~~AI enrichment runs~~ | **Removed (2026-09-30):** no AI inside the app; AI-assisted data is produced offline (Claude Code playbooks) and loaded like scraped data |
 | D8 | Preview deployments | Cloudflare Pages preview URLs: allow via `CORS_ORIGIN_REGEX` anchored to the project's `*.pages.dev` previews, or keep exact origins only — decide when setting up Pages |
-| D9 | Deploy flow | Auto-deploy both Pages projects on push to `main`; manual backend deploy + migrations (`setup.sh` with `DIRECT_URL`) until CI exists; deploy migration 014 together with the backend that no longer uses the AI columns; apply migration 015 (`setup.sh`) **before** deploying the backend that reads `election_live_state` |
+| D9 | Deploy flow | Auto-deploy both Pages projects on push to `main`; manual backend deploy + migrations (`setup.sh` with `DIRECT_URL`) until CI exists; deploy migration 014 together with the backend that no longer uses the AI columns; apply migration 015 (`setup.sh`) **before** deploying the backend that reads `election_live_state`; migration 018: `setup.sh`, then the backend, then merge to `main` (§5.0), and drop the `metadata` columns in a later migration |
 | D10 | Backups | Scheduled `pg_dump` (GitHub Action) before counting days, plus Neon's point-in-time window |
 | D11 | Node version | **24.x** (LTS; pinned in `engines`, `NODE_VERSION=24` on Render; Node 20 reached end-of-life in April 2026) |
 | D12 | Secrets ownership | Name an owner for the Cloudflare/Render/Neon/Upstash accounts and `JWT_SECRET` rotation |

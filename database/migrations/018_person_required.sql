@@ -1,12 +1,20 @@
 -- Migration 018: every candidate has a person (spec docs/superpowers/specs/2026-10-02-person-required-design.md)
 --
+-- Expand only: the app stops using candidates.metadata and persons.metadata in this release, but the
+-- columns stay (nullable) so the previous backend keeps working during the deploy. A later migration
+-- drops them once this release is live everywhere (docs/DEPLOYMENT.md §5.0).
+--
+--   0. seed_runs: run-once markers. setup.sh re-runs every file on every deploy; a seed (or a one-off data
+--      step) that must not be re-applied over admin edits records its name here and skips itself when present.
 --   1. Typed columns: the affidavit for one run on candidates (age, assets, liabilities,
 --      criminal_cases; rupees, all >= 0) and identity on persons (bio, wikipedia_url, caste, religion).
+--      The metadata columns are re-added (empty) on a database where an earlier draft of 018 dropped them.
 --   2. Backfill: one person per candidate without one (name = ballot name, state = the seat's
 --      state), set-based through a temp table of gen_random_uuid() per candidate.
---   3. Copy any metadata keys into the new columns (both metadata columns are empty locally;
---      production may differ). Candidate gender / education go up to the person where its
---      column is NULL. Runs after the backfill so every candidate has a person to copy into.
+--   3. Copy any metadata keys into the new columns, once (seed_runs 'migration_018_metadata_copy'), so a
+--      value later cleared in the admin is not filled again by the next deploy. Candidate gender /
+--      education go up to the person where its column is NULL. Runs after the backfill so every candidate
+--      has a person to copy into. The metadata itself is left as it is.
 --   4. candidates.person_id FK -> ON DELETE RESTRICT (a person with candidates is merged, not deleted).
 --   5. Triggers on candidates:
 --        candidates_create_person         AFTER INSERT row trigger: creates the person for a row
@@ -25,15 +33,21 @@
 --      original keeper id: history and undo read it, so a chain (X into K, then K into Z) can be undone
 --      in reverse. Undo refuses while no person with id keeper_ref exists; an undo that recreates a
 --      person re-points keeper_id on the older logs whose keeper_ref is that person.
---   7. Archive every metadata object that still holds keys not moved into columns (e.g. the affidavit
---      generator's affidavit / affidavit_history) into candidate_metadata_archive /
---      person_metadata_archive, then drop candidates.metadata and persons.metadata, last.
+--   7. Archive every non-empty metadata value (moved keys included) into candidate_metadata_archive /
+--      person_metadata_archive, once per row, so nothing is lost when the later migration drops the columns.
 --
--- Idempotent: every metadata read is in a DO block guarded by the column still existing, the
--- constraint trigger is created only if missing, the rest uses IF NOT EXISTS / CREATE OR REPLACE.
+-- Idempotent: IF NOT EXISTS / CREATE OR REPLACE throughout, the constraint trigger is created only if
+-- missing, the copy runs once (marker), the archive skips rows already archived.
 -- No seed dependency. One transaction, so a failure leaves the database as it was.
 
 BEGIN;
+
+-- 0. Run-once markers ---------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS seed_runs (
+    name   TEXT PRIMARY KEY,
+    ran_at TIMESTAMPTZ DEFAULT now()
+);
 
 -- 1. Columns ------------------------------------------------------------------------------------
 
@@ -41,13 +55,15 @@ ALTER TABLE candidates
     ADD COLUMN IF NOT EXISTS age            SMALLINT CONSTRAINT chk_candidates_age            CHECK (age >= 0),
     ADD COLUMN IF NOT EXISTS assets         BIGINT   CONSTRAINT chk_candidates_assets         CHECK (assets >= 0),
     ADD COLUMN IF NOT EXISTS liabilities    BIGINT   CONSTRAINT chk_candidates_liabilities    CHECK (liabilities >= 0),
-    ADD COLUMN IF NOT EXISTS criminal_cases SMALLINT CONSTRAINT chk_candidates_criminal_cases CHECK (criminal_cases >= 0);
+    ADD COLUMN IF NOT EXISTS criminal_cases SMALLINT CONSTRAINT chk_candidates_criminal_cases CHECK (criminal_cases >= 0),
+    ADD COLUMN IF NOT EXISTS metadata       JSONB    DEFAULT '{}';
 
 ALTER TABLE persons
     ADD COLUMN IF NOT EXISTS bio           TEXT,
     ADD COLUMN IF NOT EXISTS wikipedia_url TEXT,
     ADD COLUMN IF NOT EXISTS caste         TEXT,
-    ADD COLUMN IF NOT EXISTS religion      TEXT;
+    ADD COLUMN IF NOT EXISTS religion      TEXT,
+    ADD COLUMN IF NOT EXISTS metadata      JSONB DEFAULT '{}';
 
 -- 2. Backfill -----------------------------------------------------------------------------------
 
@@ -67,75 +83,70 @@ WHERE c.id = t.candidate_id AND c.person_id IS NULL;
 
 DROP TABLE tmp_018_new_persons;
 
--- 3. Copy metadata keys (only while the columns exist) ------------------------------------------
+-- 3. Copy metadata keys, once ------------------------------------------------------------------
 -- Numbers parse only as plain digit strings short enough for the type (4 digits for SMALLINT,
--- 18 for BIGINT), so a junk or oversized value is skipped instead of aborting the migration.
--- CASE keeps the regex test ahead of the cast. A value already in a column is never overwritten.
+-- 15 for BIGINT, so the API's numbers stay exact), so a junk or oversized value is skipped instead of
+-- aborting the migration (the archive in step 7 keeps it). CASE keeps the regex test ahead of the cast.
+-- A value already in a column is never overwritten.
 -- The affidavit seed generator wrote metadata.affidavit.{age, total_assets, liabilities,
 -- criminal_cases, education}, so the nested keys are read too (top-level keys win).
 
 DO $$
 BEGIN
-    IF EXISTS (SELECT 1 FROM information_schema.columns
-               WHERE table_schema = current_schema() AND table_name = 'candidates' AND column_name = 'metadata') THEN
-        EXECUTE $sql$
-            WITH src AS (
-                SELECT id,
-                       btrim(COALESCE(metadata->>'age',            metadata#>>'{affidavit,age}'))            AS age,
-                       btrim(COALESCE(metadata->>'assets',         metadata#>>'{affidavit,total_assets}'))   AS assets,
-                       btrim(COALESCE(metadata->>'liabilities',    metadata#>>'{affidavit,liabilities}'))    AS liabilities,
-                       btrim(COALESCE(metadata->>'criminal_cases', metadata#>>'{affidavit,criminal_cases}')) AS criminal_cases
-                FROM candidates
-                WHERE metadata IS NOT NULL AND metadata <> '{}'::jsonb
-            )
-            UPDATE candidates c SET
-                age            = COALESCE(c.age,            CASE WHEN s.age            ~ '^[0-9]{1,4}$'  THEN s.age::smallint            END),
-                assets         = COALESCE(c.assets,         CASE WHEN s.assets         ~ '^[0-9]{1,18}$' THEN s.assets::bigint           END),
-                liabilities    = COALESCE(c.liabilities,    CASE WHEN s.liabilities    ~ '^[0-9]{1,18}$' THEN s.liabilities::bigint      END),
-                criminal_cases = COALESCE(c.criminal_cases, CASE WHEN s.criminal_cases ~ '^[0-9]{1,4}$'  THEN s.criminal_cases::smallint END)
-            FROM src s
-            WHERE c.id = s.id
-              AND (s.age IS NOT NULL OR s.assets IS NOT NULL OR s.liabilities IS NOT NULL OR s.criminal_cases IS NOT NULL)
-        $sql$;
-
-        -- gender / education belong to the person: copy up where the person's column is empty.
-        -- Per field, the newest election's candidate that has a usable value decides.
-        EXECUTE $sql$
-            WITH vals AS (
-                SELECT c.person_id, c.id, e.year,
-                       NULLIF(btrim(c.metadata->>'gender'), '') AS gender,
-                       NULLIF(btrim(COALESCE(c.metadata->>'education', c.metadata#>>'{affidavit,education}')), '') AS education
-                FROM candidates c
-                LEFT JOIN elections e ON e.id = c.election_id
-                WHERE c.metadata IS NOT NULL AND c.metadata <> '{}'::jsonb
-            ), src AS (
-                SELECT person_id,
-                       (array_agg(gender    ORDER BY year DESC NULLS LAST, id) FILTER (WHERE length(gender)    <= 10))[1]  AS gender,
-                       (array_agg(education ORDER BY year DESC NULLS LAST, id) FILTER (WHERE length(education) <= 255))[1] AS education
-                FROM vals
-                GROUP BY person_id
-            )
-            UPDATE persons p SET
-                gender    = COALESCE(p.gender,    s.gender),
-                education = COALESCE(p.education, s.education)
-            FROM src s
-            WHERE p.id = s.person_id
-              AND ((p.gender IS NULL AND s.gender IS NOT NULL) OR (p.education IS NULL AND s.education IS NOT NULL))
-        $sql$;
+    IF EXISTS (SELECT 1 FROM seed_runs WHERE name = 'migration_018_metadata_copy') THEN
+        RETURN;
     END IF;
 
-    IF EXISTS (SELECT 1 FROM information_schema.columns
-               WHERE table_schema = current_schema() AND table_name = 'persons' AND column_name = 'metadata') THEN
-        EXECUTE $sql$
-            UPDATE persons SET
-                bio           = COALESCE(bio,           CASE WHEN jsonb_typeof(metadata->'bio')           = 'string' THEN NULLIF(btrim(metadata->>'bio'), '')           END),
-                wikipedia_url = COALESCE(wikipedia_url, CASE WHEN jsonb_typeof(metadata->'wikipedia_url') = 'string' THEN NULLIF(btrim(metadata->>'wikipedia_url'), '') END),
-                caste         = COALESCE(caste,         CASE WHEN jsonb_typeof(metadata->'caste')         = 'string' THEN NULLIF(btrim(metadata->>'caste'), '')         END),
-                religion      = COALESCE(religion,      CASE WHEN jsonb_typeof(metadata->'religion')      = 'string' THEN NULLIF(btrim(metadata->>'religion'), '')      END)
-            WHERE metadata IS NOT NULL
-              AND metadata ?| ARRAY['bio', 'wikipedia_url', 'caste', 'religion']
-        $sql$;
-    END IF;
+    WITH src AS (
+        SELECT id,
+               btrim(COALESCE(metadata->>'age',            metadata#>>'{affidavit,age}'))            AS age,
+               btrim(COALESCE(metadata->>'assets',         metadata#>>'{affidavit,total_assets}'))   AS assets,
+               btrim(COALESCE(metadata->>'liabilities',    metadata#>>'{affidavit,liabilities}'))    AS liabilities,
+               btrim(COALESCE(metadata->>'criminal_cases', metadata#>>'{affidavit,criminal_cases}')) AS criminal_cases
+        FROM candidates
+        WHERE jsonb_typeof(metadata) = 'object' AND metadata <> '{}'::jsonb
+    )
+    UPDATE candidates c SET
+        age            = COALESCE(c.age,            CASE WHEN s.age            ~ '^[0-9]{1,4}$'  THEN s.age::smallint            END),
+        assets         = COALESCE(c.assets,         CASE WHEN s.assets         ~ '^[0-9]{1,15}$' THEN s.assets::bigint           END),
+        liabilities    = COALESCE(c.liabilities,    CASE WHEN s.liabilities    ~ '^[0-9]{1,15}$' THEN s.liabilities::bigint      END),
+        criminal_cases = COALESCE(c.criminal_cases, CASE WHEN s.criminal_cases ~ '^[0-9]{1,4}$'  THEN s.criminal_cases::smallint END)
+    FROM src s
+    WHERE c.id = s.id
+      AND (s.age IS NOT NULL OR s.assets IS NOT NULL OR s.liabilities IS NOT NULL OR s.criminal_cases IS NOT NULL);
+
+    -- gender / education belong to the person: copy up where the person's column is empty.
+    -- Per field, the newest election's candidate that has a usable value decides.
+    WITH vals AS (
+        SELECT c.person_id, c.id, e.year,
+               NULLIF(btrim(c.metadata->>'gender'), '') AS gender,
+               NULLIF(btrim(COALESCE(c.metadata->>'education', c.metadata#>>'{affidavit,education}')), '') AS education
+        FROM candidates c
+        LEFT JOIN elections e ON e.id = c.election_id
+        WHERE jsonb_typeof(c.metadata) = 'object' AND c.metadata <> '{}'::jsonb
+    ), src AS (
+        SELECT person_id,
+               (array_agg(gender    ORDER BY year DESC NULLS LAST, id) FILTER (WHERE length(gender)    <= 10))[1]  AS gender,
+               (array_agg(education ORDER BY year DESC NULLS LAST, id) FILTER (WHERE length(education) <= 255))[1] AS education
+        FROM vals
+        GROUP BY person_id
+    )
+    UPDATE persons p SET
+        gender    = COALESCE(p.gender,    s.gender),
+        education = COALESCE(p.education, s.education)
+    FROM src s
+    WHERE p.id = s.person_id
+      AND ((p.gender IS NULL AND s.gender IS NOT NULL) OR (p.education IS NULL AND s.education IS NOT NULL));
+
+    UPDATE persons SET
+        bio           = COALESCE(bio,           CASE WHEN jsonb_typeof(metadata->'bio')           = 'string' THEN NULLIF(btrim(metadata->>'bio'), '')           END),
+        wikipedia_url = COALESCE(wikipedia_url, CASE WHEN jsonb_typeof(metadata->'wikipedia_url') = 'string' THEN NULLIF(btrim(metadata->>'wikipedia_url'), '') END),
+        caste         = COALESCE(caste,         CASE WHEN jsonb_typeof(metadata->'caste')         = 'string' THEN NULLIF(btrim(metadata->>'caste'), '')         END),
+        religion      = COALESCE(religion,      CASE WHEN jsonb_typeof(metadata->'religion')      = 'string' THEN NULLIF(btrim(metadata->>'religion'), '')      END)
+    WHERE jsonb_typeof(metadata) = 'object'
+      AND metadata ?| ARRAY['bio', 'wikipedia_url', 'caste', 'religion'];
+
+    INSERT INTO seed_runs (name) VALUES ('migration_018_metadata_copy') ON CONFLICT (name) DO NOTHING;
 END $$;
 
 -- 4. person_id FK -> ON DELETE RESTRICT (same name) ---------------------------------------------
@@ -265,10 +276,11 @@ WHERE m.keeper_ref IS NULL AND a.action = 'PERSON_MERGE' AND a.entity_type = 'pe
 ALTER TABLE person_merges ALTER COLUMN keeper_ref SET NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_person_merges_keeper_ref ON person_merges (keeper_ref);
 
--- 7. Archive leftover metadata, then drop the JSON columns, last -------------------------------
--- The whole object is archived when any key is left that no column took (the nested affidavit
--- also holds fields with no column, so it counts as left over). No FK: the archive outlives
--- deleted rows. Skipped once the column is gone; NOT EXISTS keeps a row from being archived twice.
+-- 7. Archive metadata ---------------------------------------------------------------------------
+-- Every non-empty value is archived, whether or not its keys were copied (a value the copy rejected,
+-- e.g. "1,23,45,678", survives only here). No FK: the archive outlives deleted rows. NOT EXISTS keeps
+-- a row from being archived twice; a row whose metadata the previous backend writes after this runs is
+-- archived by the next deploy. The columns themselves are dropped by a later migration.
 
 CREATE TABLE IF NOT EXISTS candidate_metadata_archive (
     candidate_id UUID NOT NULL,
@@ -284,33 +296,18 @@ CREATE TABLE IF NOT EXISTS person_metadata_archive (
 );
 CREATE INDEX IF NOT EXISTS idx_person_metadata_archive_person ON person_metadata_archive (person_id);
 
-DO $$
-BEGIN
-    IF EXISTS (SELECT 1 FROM information_schema.columns
-               WHERE table_schema = current_schema() AND table_name = 'candidates' AND column_name = 'metadata') THEN
-        EXECUTE $sql$
-            INSERT INTO candidate_metadata_archive (candidate_id, metadata)
-            SELECT c.id, c.metadata
-            FROM candidates c
-            WHERE jsonb_typeof(c.metadata) = 'object'
-              AND (c.metadata - ARRAY['age', 'assets', 'liabilities', 'criminal_cases', 'gender', 'education']) <> '{}'::jsonb
-              AND NOT EXISTS (SELECT 1 FROM candidate_metadata_archive a WHERE a.candidate_id = c.id)
-        $sql$;
-    END IF;
-    IF EXISTS (SELECT 1 FROM information_schema.columns
-               WHERE table_schema = current_schema() AND table_name = 'persons' AND column_name = 'metadata') THEN
-        EXECUTE $sql$
-            INSERT INTO person_metadata_archive (person_id, metadata)
-            SELECT p.id, p.metadata
-            FROM persons p
-            WHERE jsonb_typeof(p.metadata) = 'object'
-              AND (p.metadata - ARRAY['bio', 'wikipedia_url', 'caste', 'religion']) <> '{}'::jsonb
-              AND NOT EXISTS (SELECT 1 FROM person_metadata_archive a WHERE a.person_id = p.id)
-        $sql$;
-    END IF;
-END $$;
+INSERT INTO candidate_metadata_archive (candidate_id, metadata)
+SELECT c.id, c.metadata
+FROM candidates c
+WHERE c.metadata IS NOT NULL
+  AND c.metadata NOT IN ('{}'::jsonb, 'null'::jsonb)
+  AND NOT EXISTS (SELECT 1 FROM candidate_metadata_archive a WHERE a.candidate_id = c.id);
 
-ALTER TABLE candidates DROP COLUMN IF EXISTS metadata;
-ALTER TABLE persons    DROP COLUMN IF EXISTS metadata;
+INSERT INTO person_metadata_archive (person_id, metadata)
+SELECT p.id, p.metadata
+FROM persons p
+WHERE p.metadata IS NOT NULL
+  AND p.metadata NOT IN ('{}'::jsonb, 'null'::jsonb)
+  AND NOT EXISTS (SELECT 1 FROM person_metadata_archive a WHERE a.person_id = p.id);
 
 COMMIT;

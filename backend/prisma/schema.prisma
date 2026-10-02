@@ -43,6 +43,8 @@ model candidates {
   assets         BigInt?
   liabilities    BigInt?
   criminal_cases Int?           @db.SmallInt
+  /// Unused since migration 018 (expand step; a later migration drops it). @ignore keeps it out of the client.
+  metadata       Json?          @default("{}") @ignore
   constituencies constituencies @relation(fields: [const_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   elections      elections      @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   parties        parties?       @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -190,6 +192,8 @@ model persons {
   wikipedia_url String?
   caste         String?
   religion      String?
+  /// Unused since migration 018 (expand step; a later migration drops it). @ignore keeps it out of the client.
+  metadata      Json?           @default("{}") @ignore
   candidates    candidates[]
   merges        person_merges[]
   districts     districts?      @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -315,7 +319,7 @@ enum user_role {
   VIEWER
 }
 
-/// Metadata objects that still held keys with no column when migration 018 dropped candidates.metadata.
+/// Every non-empty candidates.metadata value, archived by migration 018 before a later migration drops the column.
 /// No unique key (an archive, read by hand), so Prisma Client ignores it.
 model candidate_metadata_archive {
   candidate_id String   @db.Uuid
@@ -326,12 +330,21 @@ model candidate_metadata_archive {
   @@ignore
 }
 
-/// Metadata objects that still held keys with no column when migration 018 dropped persons.metadata.
+/// Every non-empty persons.metadata value, archived by migration 018 before a later migration drops the column.
 model person_metadata_archive {
   person_id   String   @db.Uuid
   metadata    Json
   archived_at DateTime @default(now()) @db.Timestamptz(6)
 
   @@index([person_id], map: "idx_person_metadata_archive_person")
+  @@ignore
+}
+
+/// Run-once markers (migration 018): a seed or one-off data step that must not be re-applied over admin
+/// edits records its name here; setup.sh re-runs every file, and the file skips itself when its row exists.
+model seed_runs {
+  name   String    @id
+  ran_at DateTime? @default(now()) @db.Timestamptz(6)
+
   @@ignore
 }

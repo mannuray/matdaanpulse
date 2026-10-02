@@ -2,7 +2,8 @@
  * Integration check of migration 018 (every candidate has a person) against the local database:
  * the AFTER INSERT trigger that creates a person, the deferred check that no candidate commits
  * without one, the trigger that deletes a person left without candidates, and a re-run of the
- * migration being a no-op. Every change is rolled back, except in the commit test, which must fail.
+ * migration being a no-op, the run-once metadata copy and archive, and the run-once Bihar person seeds.
+ * Every change is rolled back, except in the commit test, which must fail.
  *
  * Without a reachable database the tests print a "SKIPPED" warning and pass; REQUIRE_DB_TESTS=1
  * makes a missing database a failure (as in live-version.db.spec.ts). The re-run test also needs
@@ -236,31 +237,49 @@ describe('migration 018: every candidate has a person (DB)', () => {
     expect(orphans).toBe('0');
   });
 
-  it('metadata with keys no column took is archived before the drop; moved-only metadata is not', () => {
+  it('copies metadata once (a value cleared later is not refilled), archives every non-empty object, keeps the columns', () => {
     if (!runRolledBack('metadata archive', [])) return;
     const [p1, p2] = ['00000000-0000-4000-8000-0000000018a1', '00000000-0000-4000-8000-0000000018a2'];
-    // Bring back the pre-018 columns (as on a database that never ran 018), with metadata in them.
+    // As on production before 018: metadata in the (kept) columns, and the copy not yet run.
     const out = psqlRolledBack(`
-      ALTER TABLE persons ADD COLUMN metadata JSONB DEFAULT '{}';
-      ALTER TABLE candidates ADD COLUMN metadata JSONB DEFAULT '{}';
+      DELETE FROM seed_runs WHERE name = 'migration_018_metadata_copy';
       INSERT INTO persons (id, name, metadata) VALUES
         ('${p1}', 'TEST 018 ARCHIVED', '{"bio":"b","affidavit_history":{"e1":{"age":40}}}'),
         ('${p2}', 'TEST 018 MOVED ONLY', '{"caste":"c"}');
       INSERT INTO candidates (person_id, election_id, const_id, party_id, name, is_incumbent, metadata)
         VALUES ('${p1}', '${seat!.election_id}', '${seat!.const_id}', 'IND', 'TEST 018 ARCHIVED', FALSE,
-                '{"age":"40","unknown_key":1}');
+                '{"age":"40","unknown_key":1}'),
+               ('${p2}', '${seat!.election_id}', '${seat!.const_id}', 'IND', 'TEST 018 MOVED ONLY', FALSE,
+                '{"assets":"1,23,45,678","liabilities":"1234567890123456"}');
       ${migrationBody()}
-      SELECT 'pa', person_id, metadata::text FROM person_metadata_archive WHERE person_id IN ('${p1}', '${p2}');
-      SELECT 'ca', a.metadata::text FROM candidate_metadata_archive a JOIN candidates c ON c.id = a.candidate_id WHERE c.person_id = '${p1}';
-      SELECT 'cols', p.bio, p.caste, c.age FROM persons p JOIN candidates c ON c.person_id = p.id WHERE p.id = '${p1}';
-      SELECT 'gone', count(*) FROM information_schema.columns WHERE table_name IN ('persons', 'candidates') AND column_name = 'metadata';`);
+      SELECT 'pa', person_id, metadata::text FROM person_metadata_archive WHERE person_id IN ('${p1}', '${p2}') ORDER BY person_id;
+      SELECT 'ca', c.person_id, a.metadata::text FROM candidate_metadata_archive a JOIN candidates c ON c.id = a.candidate_id
+        WHERE c.person_id IN ('${p1}', '${p2}') ORDER BY c.person_id;
+      SELECT 'cols', p.id, p.bio, p.caste, c.age, c.assets, c.liabilities FROM persons p JOIN candidates c ON c.person_id = p.id
+        WHERE p.id IN ('${p1}', '${p2}') ORDER BY p.id;
+      UPDATE persons SET bio = NULL WHERE id = '${p1}';
+      UPDATE candidates SET age = NULL WHERE person_id = '${p1}';
+      ${migrationBody()}
+      SELECT 'rerun', p.bio IS NULL, c.age IS NULL FROM persons p JOIN candidates c ON c.person_id = p.id WHERE p.id = '${p1}';
+      SELECT 'archived_once', count(*) FROM person_metadata_archive WHERE person_id IN ('${p1}', '${p2}');
+      SELECT 'kept', count(*) FROM information_schema.columns
+        WHERE table_schema = current_schema() AND table_name IN ('persons', 'candidates') AND column_name = 'metadata';
+      SELECT 'marker', count(*) FROM seed_runs WHERE name = 'migration_018_metadata_copy';`);
     const lines = out.split('\n');
     expect(lines.filter((l) => l.startsWith('pa|'))).toEqual([
       `pa|${p1}|{"bio": "b", "affidavit_history": {"e1": {"age": 40}}}`,
+      `pa|${p2}|{"caste": "c"}`,
     ]);
-    expect(lines.filter((l) => l.startsWith('ca|'))).toEqual(['ca|{"age": "40", "unknown_key": 1}']);
-    expect(lines).toContain('cols|b||40');
-    expect(lines).toContain('gone|0');
+    expect(lines.filter((l) => l.startsWith('ca|'))).toEqual([
+      `ca|${p1}|{"age": "40", "unknown_key": 1}`,
+      // Not copied (not plain digits / more than 15 digits): the archive is the only copy.
+      `ca|${p2}|{"assets": "1,23,45,678", "liabilities": "1234567890123456"}`,
+    ]);
+    expect(lines.filter((l) => l.startsWith('cols|'))).toEqual([`cols|${p1}|b||40||`, `cols|${p2}||c|||`]);
+    expect(lines).toContain('rerun|t|t');
+    expect(lines).toContain('archived_once|2');
+    expect(lines).toContain('kept|2');
+    expect(lines).toContain('marker|1');
   });
 
   it('re-running the candidate seeds and the Bihar person links creates no person and leaves no orphan', () => {
@@ -276,5 +295,44 @@ describe('migration 018: every candidate has a person (DB)', () => {
     const counts = prints.map((p) => p.split('|').slice(1, 4).join('|'));
     expect(new Set(counts).size).toBe(1);
     expect(counts[0].split('|').slice(1)).toEqual(['0', '0']);
+  });
+
+  it('the Bihar person seeds are run-once: a split, a merge and a state edit survive a re-run, with or without the markers', () => {
+    if (!runRolledBack('seed run-once', [])) return;
+    const db = join(__dirname, '../../../../database');
+    const seeds = ['seed_bihar_persons.sql', 'seed_bihar_person_regions.sql']
+      .map((f) => readFileSync(join(db, f), 'utf8').replace(/^\s*(BEGIN|COMMIT);\s*$/gm, ''));
+    const fingerprint = `
+      SELECT 'fp', (SELECT md5(string_agg(to_jsonb(p)::text, '|' ORDER BY p.id)) FROM persons p),
+             (SELECT md5(string_agg(c.id::text || c.person_id::text, '|' ORDER BY c.id)) FROM candidates c),
+             (SELECT md5(coalesce(string_agg(to_jsonb(m)::text, '|' ORDER BY m.id), '')) FROM person_merges m);`;
+    const out = psqlRolledBack(`
+      -- Split: one of ALOK RANJAN's four contests moves to a new person.
+      WITH np AS (INSERT INTO persons (name, state_id) VALUES ('ALOK RANJAN', 5) RETURNING id)
+      UPDATE candidates SET person_id = (SELECT id FROM np) WHERE id = 'b5da2bcd-3cf5-48d0-914a-efbffc2d0e2d';
+      -- Merge: AMRENDRA KUMAR PANDEY into ANANT KUMAR SINGH, logged as PersonsService.merge does.
+      INSERT INTO person_merges (keeper_id, keeper_ref, duplicate, candidate_ids)
+      SELECT 'e63ec8a1-64f4-4f5e-a69b-72405c2511c9', 'e63ec8a1-64f4-4f5e-a69b-72405c2511c9', to_jsonb(p),
+             ARRAY(SELECT id FROM candidates WHERE person_id = p.id)
+      FROM persons p WHERE p.id = 'c10d3adf-7779-4904-988d-e47ba8907f11';
+      UPDATE candidates SET person_id = 'e63ec8a1-64f4-4f5e-a69b-72405c2511c9'
+      WHERE person_id = 'c10d3adf-7779-4904-988d-e47ba8907f11';
+      -- State edit.
+      UPDATE persons SET state_id = 10, region_id = NULL WHERE id = '99cba246-f19b-48dc-a4c2-f381e1d52e4f';
+      SELECT 'merged_away', count(*) FROM persons WHERE id = 'c10d3adf-7779-4904-988d-e47ba8907f11';
+      ${fingerprint}
+      ${seeds.join('\n')}
+      ${fingerprint}
+      -- As on production, where the seeds ran before seed_runs existed.
+      DELETE FROM seed_runs WHERE name IN ('seed_bihar_persons', 'seed_bihar_person_regions');
+      ${seeds.join('\n')}
+      ${fingerprint}
+      SELECT 'markers', count(*) FROM seed_runs WHERE name IN ('seed_bihar_persons', 'seed_bihar_person_regions');`);
+    const lines = out.split('\n');
+    expect(lines).toContain('merged_away|0');
+    const prints = lines.filter((l) => l.startsWith('fp|'));
+    expect(prints).toHaveLength(3);
+    expect(new Set(prints).size).toBe(1);
+    expect(lines).toContain('markers|2');
   });
 });

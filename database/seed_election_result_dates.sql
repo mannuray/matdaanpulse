@@ -1,8 +1,16 @@
 -- Result (counting) dates for the seeded elections. `elections.tentative_next_date` is the counting day:
 -- the public site counts down to it and polls for the flip to Live around it; the admin labels it "Result date".
--- Fills only empty dates. Safe to re-run: a date set in the admin is kept, but a date cleared in the
--- admin is filled again by the next setup.sh run.
+-- Fills only empty dates.
+-- Run once (seed_runs, migration 018): setup.sh re-runs every seed, so after the first run a date set or
+-- cleared in the admin is kept. On a database that ran this file before seed_runs existed it runs one last
+-- time, which can refill a date cleared in the admin.
+-- A row added here later is never applied where this file has run: put it in a new seed with its own marker.
 -- Sources: Election Commission of India result declarations.
+BEGIN;
+
+SELECT NOT EXISTS (SELECT 1 FROM seed_runs WHERE name = 'seed_election_result_dates') AS seed_apply \gset
+\if :seed_apply
+
 UPDATE elections e
 SET tentative_next_date = d.result_date
 FROM (VALUES
@@ -32,3 +40,8 @@ WHERE e.type = d.type::election_type
   AND e.year = d.year
   AND e.state_id IS NOT DISTINCT FROM s.id
   AND e.tentative_next_date IS NULL;
+
+\endif
+INSERT INTO seed_runs (name) VALUES ('seed_election_result_dates') ON CONFLICT (name) DO NOTHING;
+
+COMMIT;
