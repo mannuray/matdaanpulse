@@ -26,20 +26,27 @@ model audit_logs {
   @@index([timestamp], map: "idx_audit_logs_timestamp")
 }
 
+/// person_id is required (migration 018): the DB column is nullable only so the AFTER INSERT trigger can
+/// fill it; a deferred constraint trigger rejects any commit that leaves it NULL. Omit it on create and
+/// the database creates the person.
 model candidates {
   id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  person_id      String?        @db.Uuid
+  person_id      String         @db.Uuid
   election_id    String         @db.Uuid
   const_id       String         @db.VarChar(100)
   party_id       String?        @db.VarChar(20)
   name           String         @db.VarChar(255)
   is_incumbent   Boolean        @default(false)
-  metadata       Json?          @default("{}")
   updated_at     DateTime       @default(now()) @db.Timestamptz(6)
+  /// Affidavit for this run: age at nomination, assets and liabilities in rupees.
+  age            Int?           @db.SmallInt
+  assets         BigInt?
+  liabilities    BigInt?
+  criminal_cases Int?           @db.SmallInt
   constituencies constituencies @relation(fields: [const_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   elections      elections      @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   parties        parties?       @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  persons        persons?       @relation(fields: [person_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  persons        persons        @relation(fields: [person_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
   results        results[]
 
   @@index([const_id], map: "idx_candidates_const_id")
@@ -169,21 +176,25 @@ model parties {
 }
 
 model persons {
-  id            String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name          String       @db.VarChar(255)
-  metadata      Json?        @default("{}")
+  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String          @db.VarChar(255)
   photo_url     String?
-  gender        String?      @db.VarChar(10)
-  education     String?      @db.VarChar(255)
-  date_of_birth DateTime?    @db.Date
+  gender        String?         @db.VarChar(10)
+  education     String?         @db.VarChar(255)
+  date_of_birth DateTime?       @db.Date
   state_id      Int?
   region_id     Int?
   district_id   Int?
-  updated_at    DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime        @default(now()) @db.Timestamptz(6)
+  bio           String?
+  wikipedia_url String?
+  caste         String?
+  religion      String?
   candidates    candidates[]
-  districts     districts?   @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  regions       regions?     @relation(fields: [region_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  states        states?      @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  merges        person_merges[]
+  districts     districts?      @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  regions       regions?        @relation(fields: [region_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  states        states?         @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([district_id], map: "idx_persons_district")
   @@index([region_id], map: "idx_persons_region")
@@ -241,13 +252,33 @@ model states {
 }
 
 model users {
-  id            String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  email         String       @unique @db.VarChar(255)
-  password_hash String       @db.VarChar(255)
-  role          user_role    @default(VIEWER)
-  name          String       @db.VarChar(255)
-  created_at    DateTime     @default(now()) @db.Timestamp(6)
+  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email         String          @unique @db.VarChar(255)
+  password_hash String          @db.VarChar(255)
+  role          user_role       @default(VIEWER)
+  name          String          @db.VarChar(255)
+  created_at    DateTime        @default(now()) @db.Timestamp(6)
   audit_logs    audit_logs[]
+  merges_made   person_merges[] @relation("person_merges_merged_by")
+  merges_undone person_merges[] @relation("person_merges_undone_by")
+}
+
+/// Merge log (migration 018): the duplicate's full row and the candidates that moved, so a merge can be undone once.
+model person_merges {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  keeper_id     String    @db.Uuid
+  duplicate     Json
+  candidate_ids String[]  @db.Uuid
+  filled_fields Json      @default("{}")
+  merged_by     String?   @db.Uuid
+  merged_at     DateTime  @default(now()) @db.Timestamptz(6)
+  undone_at     DateTime? @db.Timestamptz(6)
+  undone_by     String?   @db.Uuid
+  keeper        persons   @relation(fields: [keeper_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  merger        users?    @relation("person_merges_merged_by", fields: [merged_by], references: [id], onDelete: SetNull, onUpdate: NoAction)
+  undoer        users?    @relation("person_merges_undone_by", fields: [undone_by], references: [id], onDelete: SetNull, onUpdate: NoAction)
+
+  @@index([keeper_id], map: "idx_person_merges_keeper")
 }
 
 enum constituency_type {

@@ -66,7 +66,7 @@ async function main() {
     // 4. Clone candidates
     console.log('Cloning candidates...');
     const candRows = await pool.query(
-      `SELECT id, person_id, const_id, party_id, name, is_incumbent, metadata
+      `SELECT id, person_id, const_id, party_id, name, is_incumbent
        FROM candidates WHERE election_id = $1`,
       [SOURCE_ELECTION_ID]
     );
@@ -87,16 +87,17 @@ async function main() {
         const newCandId = randomUUID();
         candIdMap.set(row.id, newCandId);
 
-        vals.push(`($${p++}, $${p++}, $${p++}, $${p++}, $${p++}, $${p++}, $${p++}, $${p++})`);
+        // The clone keeps the source person (same politician); without one, the DB creates it.
+        vals.push(`($${p++}, $${p++}, $${p++}, $${p++}, $${p++}, $${p++}, $${p++})`);
         params.push(
           newCandId, row.person_id, SIM_ELECTION_ID, newConstId,
-          row.party_id, row.name, row.is_incumbent, row.metadata
+          row.party_id, row.name, row.is_incumbent
         );
       }
 
       if (vals.length > 0) {
         await pool.query(
-          `INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata)
+          `INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent)
            VALUES ${vals.join(',\n')}`,
           params
         );

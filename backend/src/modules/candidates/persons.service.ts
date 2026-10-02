@@ -39,22 +39,14 @@ export class PersonsService {
   ) {}
 
   /**
-   * Map DTO fields onto real columns. `bio` and `wikipedia_url` have no column
-   * and are stored in metadata; date strings become Date objects.
+   * Map DTO fields onto columns (bio and wikipedia_url are columns since migration 018, which dropped
+   * metadata; a metadata object is ignored); date strings become Date objects.
    */
-  private toPersonData(data: PersonInput, existingMetadata?: unknown) {
-    const { bio, wikipedia_url, metadata, date_of_birth, ...columns } = data;
-    const meta: Record<string, unknown> = {
-      ...((existingMetadata as Record<string, unknown>) || {}),
-      ...(metadata || {}),
-    };
-    if (bio !== undefined) meta.bio = bio;
-    if (wikipedia_url !== undefined) meta.wikipedia_url = wikipedia_url;
-    const touchesMeta = metadata !== undefined || bio !== undefined || wikipedia_url !== undefined;
+  private toPersonData(data: PersonInput) {
+    const { metadata: _metadata, date_of_birth, ...columns } = data;
     return {
       ...columns,
       ...(date_of_birth !== undefined && { date_of_birth: date_of_birth ? new Date(date_of_birth) : null }),
-      ...(touchesMeta && { metadata: meta as Prisma.InputJsonValue }),
     };
   }
 
@@ -69,9 +61,8 @@ export class PersonsService {
     if (!person) throw new PersonNotFoundException(id);
     const updated = await this.prisma.persons.update({
       where: { id },
-      data: this.toPersonData(data, person.metadata) as Prisma.personsUncheckedUpdateInput,
+      data: this.toPersonData(data) as Prisma.personsUncheckedUpdateInput,
     });
-    // bio / wikipedia_url live in metadata, so they show up as metadata.bio etc.
     const diff = changedFields(person, updated);
     if (diff) await this.audit.record({ userId, action: 'PERSON_UPDATE', entityType: 'person', entityId: id, ...diff });
     return updated;
@@ -209,7 +200,8 @@ export class PersonsService {
         where: { person_id: sourceId },
         data: { person_id: targetId },
       });
-      await tx.persons.delete({ where: { id: sourceId } });
+      // The orphan trigger (migration 018) has already deleted the emptied source; this covers a source with no candidates.
+      await tx.persons.deleteMany({ where: { id: sourceId } });
       await this.audit.record(
         {
           userId, action: 'PERSON_MERGE', entityType: 'person', entityId: targetId,
@@ -273,7 +265,7 @@ export class PersonsService {
       if (personIds.size === 1) {
         const [personId] = personIds;
         await this.prisma.candidates.updateMany({
-          where: { id: { in: unlinked.map((m) => m.id) }, person_id: null },
+          where: { id: { in: unlinked.map((m) => m.id) } },
           data: { person_id: personId },
         });
         linked += unlinked.length;
@@ -285,7 +277,7 @@ export class PersonsService {
           data: { name: unlinked[0].name.trim(), state_id: unlinked[0].constituencies.state_id },
         });
         await tx.candidates.updateMany({
-          where: { id: { in: unlinked.map((m) => m.id) }, person_id: null },
+          where: { id: { in: unlinked.map((m) => m.id) } },
           data: { person_id: person.id },
         });
       });

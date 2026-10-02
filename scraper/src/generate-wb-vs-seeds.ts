@@ -318,7 +318,7 @@ function generateSeed(config: YearConfig, geoMap: Record<number, GeoEntry>) {
         const status = idx === 0 ? 'WON' : 'LOST';
         const candId = randomUUID();
         candidateInserts.push(
-          `  ('${candId}', NULL, '${electionId}', '${esc(constId)}', '${esc(partyId)}', '${esc(cand.name)}', FALSE, '{}')`
+          `  ('${candId}', NULL, '${electionId}', '${esc(constId)}', '${esc(partyId)}', '${esc(cand.name)}', FALSE)`
         );
         resultInserts.push(
           `  ('${randomUUID()}', '${candId}', '${esc(constId)}', ${cand.votes || 0}, '${status}', ${idx === 0 ? margin : 0}, 0, '${electionId}')`
@@ -349,7 +349,7 @@ function generateSeed(config: YearConfig, geoMap: Record<number, GeoEntry>) {
 
       const winCandId = randomUUID();
       candidateInserts.push(
-        `  ('${winCandId}', NULL, '${electionId}', '${esc(constId)}', '${esc(winnerPartyId)}', '${esc(r.winner.name)}', FALSE, '{}')`
+        `  ('${winCandId}', NULL, '${electionId}', '${esc(constId)}', '${esc(winnerPartyId)}', '${esc(r.winner.name)}', FALSE)`
       );
       resultInserts.push(
         `  ('${randomUUID()}', '${winCandId}', '${esc(constId)}', ${winnerVotes}, 'WON', ${margin}, 0, '${electionId}')`
@@ -358,7 +358,7 @@ function generateSeed(config: YearConfig, geoMap: Record<number, GeoEntry>) {
 
       const ruCandId = randomUUID();
       candidateInserts.push(
-        `  ('${ruCandId}', NULL, '${electionId}', '${esc(constId)}', '${esc(runnerUpPartyId)}', '${esc(r.runner_up.name)}', FALSE, '{}')`
+        `  ('${ruCandId}', NULL, '${electionId}', '${esc(constId)}', '${esc(runnerUpPartyId)}', '${esc(r.runner_up.name)}', FALSE)`
       );
       resultInserts.push(
         `  ('${randomUUID()}', '${ruCandId}', '${esc(constId)}', ${runnerUpVotes}, 'LOST', ${margin}, 0, '${electionId}')`
@@ -367,7 +367,7 @@ function generateSeed(config: YearConfig, geoMap: Record<number, GeoEntry>) {
     }
   }
 
-  lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES');
+  lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent) VALUES');
   lines.push(candidateInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
 

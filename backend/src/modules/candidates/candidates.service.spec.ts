@@ -24,11 +24,12 @@ describe('CandidatesService.personContests', () => {
 });
 
 describe('CandidatesService.create', () => {
-  function make(seat: unknown = { id: 'BR_VS_1', election_id: 'e1' }, election: unknown = { status: 'Live' }) {
+  function make(seat: unknown = { id: 'BR_VS_1', election_id: 'e1', state_id: 10 }, election: unknown = { status: 'Live' }) {
     const order: string[] = [];
     const tx = {
       elections: { findUnique: jest.fn().mockResolvedValue(election) },
       constituencies: { findFirst: jest.fn().mockResolvedValue(seat) },
+      persons: { create: jest.fn().mockResolvedValue({ id: 'p-auto' }) },
       candidates: { create: jest.fn().mockResolvedValue({ id: 'c-new', election_id: 'e1', const_id: 'BR_VS_1', name: 'Ravi', party_id: 'BJP' }) },
       results: {
         create: jest.fn().mockResolvedValue({ id: 'r-new', const_id: 'BR_VS_1', election_id: 'e1', votes: 0, status: 'TRAILING', margin: 0, round_no: 0 }),
@@ -57,14 +58,24 @@ describe('CandidatesService.create', () => {
     const { svc, tx, prisma } = make();
     await expect(svc.create(body as any)).resolves.toMatchObject({ id: 'c-new' });
     expect(prisma.$transaction).toHaveBeenCalledTimes(1);
-    expect(tx.constituencies.findFirst).toHaveBeenCalledWith({ where: { id: 'BR_VS_1', election_id: 'e1' }, select: { id: true } });
-    expect(tx.candidates.create).toHaveBeenCalledWith({ data: body });
+    expect(tx.constituencies.findFirst).toHaveBeenCalledWith({ where: { id: 'BR_VS_1', election_id: 'e1' }, select: { id: true, state_id: true } });
+    // No person given: one is created from the ballot name and the seat's state; metadata has no column.
+    expect(tx.persons.create).toHaveBeenCalledWith({ data: { name: 'Ravi', state_id: 10 }, select: { id: true } });
+    const { metadata: _metadata, ...fields } = body;
+    expect(tx.candidates.create).toHaveBeenCalledWith({ data: { ...fields, person_id: 'p-auto' } });
     expect(tx.results.create).toHaveBeenCalledWith({
       data: { candidate_id: 'c-new', const_id: 'BR_VS_1', election_id: 'e1', votes: 0, status: 'TRAILING', margin: 0 },
     });
     // Nothing is written outside the transaction.
     expect(prisma.candidates.create).not.toHaveBeenCalled();
     expect(prisma.results.create).not.toHaveBeenCalled();
+  });
+
+  it('a candidate created with a person creates no person', async () => {
+    const { svc, tx } = make();
+    await svc.create({ ...body, person_id: 'p1' } as any);
+    expect(tx.persons.create).not.toHaveBeenCalled();
+    expect(tx.candidates.create).toHaveBeenCalledWith({ data: expect.objectContaining({ person_id: 'p1' }) });
   });
 
   it('rejects a seat of another election with ConstituencyNotFound (404) and writes nothing', async () => {
@@ -143,7 +154,7 @@ describe('CandidatesService.create', () => {
 });
 
 describe('CandidatesService update / link audit rows', () => {
-  const row = { id: 'c1', name: 'Ravi', party_id: 'BJP', person_id: 'p-old', is_incumbent: false, metadata: { age: 40 }, updated_at: new Date(1) };
+  const row = { id: 'c1', name: 'Ravi', party_id: 'BJP', person_id: 'p-old', is_incumbent: false, updated_at: new Date(1) };
   function make() {
     const prisma = {
       candidates: {
@@ -163,12 +174,18 @@ describe('CandidatesService update / link audit rows', () => {
 
   it('update writes one CANDIDATE_UPDATE row with only the changed fields', async () => {
     const { svc, prisma } = make();
-    await svc.update('c1', { name: 'Ravi', is_incumbent: true, metadata: { age: 41 } } as any, 'u1');
+    await svc.update('c1', { name: 'Ravi', is_incumbent: true } as any, 'u1');
     expect(auditData(prisma)).toEqual([{
       user_id: 'u1', action: 'CANDIDATE_UPDATE', entity_type: 'candidate', entity_id: 'c1',
-      old_value: { is_incumbent: false, metadata: { age: 40 } },
-      new_value: { is_incumbent: true, metadata: { age: 41 } },
+      old_value: { is_incumbent: false },
+      new_value: { is_incumbent: true },
     }]);
+  });
+
+  it('update ignores metadata (no column) and a null person_id (every candidate has a person)', async () => {
+    const { svc, prisma } = make();
+    await svc.update('c1', { is_incumbent: true, metadata: { age: 41 }, person_id: null } as any, 'u1');
+    expect(prisma.candidates.update).toHaveBeenCalledWith({ where: { id: 'c1' }, data: { is_incumbent: true } });
   });
 
   it('linkPerson writes one CANDIDATE_LINK_PERSON row', async () => {
@@ -185,18 +202,10 @@ describe('CandidatesService update / link audit rows', () => {
     expect(prisma.audit_logs.create).not.toHaveBeenCalled();
   });
 
-  it('unlinkPerson writes one CANDIDATE_UNLINK_PERSON row', async () => {
+  it('unlinkPerson is refused with 409 (every candidate has a person) and writes nothing', async () => {
     const { svc, prisma } = make();
-    await svc.unlinkPerson('c1', 'u1');
-    expect(auditData(prisma)).toEqual([expect.objectContaining({
-      action: 'CANDIDATE_UNLINK_PERSON', entity_id: 'c1', old_value: { person_id: 'p-old' }, new_value: { person_id: null },
-    })]);
-  });
-
-  it('unlinkPerson on a candidate that is already unlinked writes no audit row', async () => {
-    const { svc, prisma } = make();
-    prisma.candidates.findUnique.mockResolvedValue({ ...row, person_id: null });
-    await expect(svc.unlinkPerson('c1', 'u1')).resolves.toMatchObject({ person_id: null });
+    await expect(svc.unlinkPerson('c1', 'u1')).rejects.toMatchObject({ status: 409 });
+    expect(prisma.candidates.update).not.toHaveBeenCalled();
     expect(prisma.audit_logs.create).not.toHaveBeenCalled();
   });
 
@@ -205,7 +214,6 @@ describe('CandidatesService update / link audit rows', () => {
     const { svc, prisma } = make();
     prisma.audit_logs.create.mockRejectedValue(new Error('x'));
     await expect(svc.update('c1', { is_incumbent: true } as any, 'u1')).resolves.toMatchObject({ is_incumbent: true });
-    await expect(svc.unlinkPerson('c1', 'u1')).resolves.toMatchObject({ person_id: null });
     warn.mockRestore();
   });
 });

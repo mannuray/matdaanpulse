@@ -7,13 +7,13 @@ import { CreatePersonDto, UpdatePersonDto } from './dto/person-input.dto';
 
 const person = {
   id: 'p1', name: 'Nitish Kumar', gender: 'M', education: null, date_of_birth: new Date('1951-03-01'),
-  metadata: { bio: 'old bio', wikipedia_url: 'https://en.wikipedia.org/wiki/N' }, updated_at: new Date(1),
+  bio: 'old bio', wikipedia_url: 'https://en.wikipedia.org/wiki/N', updated_at: new Date(1),
 };
 
 function make() {
   const tx = {
     candidates: { updateMany: jest.fn().mockResolvedValue({ count: 3 }) },
-    persons: { delete: jest.fn().mockResolvedValue({}) },
+    persons: { deleteMany: jest.fn().mockResolvedValue({ count: 0 }) },
     audit_logs: { create: jest.fn().mockResolvedValue({}) },
     $executeRawUnsafe: jest.fn().mockResolvedValue(0),
   };
@@ -30,14 +30,14 @@ function make() {
 }
 
 describe('PersonsService audit rows', () => {
-  it('update writes one PERSON_UPDATE row with only the changed fields (bio as metadata.bio)', async () => {
+  it('update writes one PERSON_UPDATE row with only the changed fields (bio is a column)', async () => {
     const { svc, prisma } = make();
     await svc.update('p1', { name: 'Nitish Kumar', bio: 'new bio', date_of_birth: '1951-03-01', education: 'B.E.' }, 'u1');
     expect(prisma.audit_logs.create).toHaveBeenCalledTimes(1);
     expect(prisma.audit_logs.create.mock.calls[0][0].data).toEqual({
       user_id: 'u1', action: 'PERSON_UPDATE', entity_type: 'person', entity_id: 'p1',
-      old_value: { education: null, metadata: { bio: 'old bio' } },
-      new_value: { education: 'B.E.', metadata: { bio: 'new bio' } },
+      old_value: { education: null, bio: 'old bio' },
+      new_value: { education: 'B.E.', bio: 'new bio' },
     });
   });
 
@@ -55,7 +55,8 @@ describe('PersonsService audit rows', () => {
     await expect(svc.merge('p2', 'p1', 'u1')).resolves.toEqual({ merged: true, target_id: 'p1' });
     expect(prisma.$transaction).toHaveBeenCalledTimes(1);
     expect(tx.candidates.updateMany).toHaveBeenCalledWith({ where: { person_id: 'p2' }, data: { person_id: 'p1' } });
-    expect(tx.persons.delete).toHaveBeenCalledWith({ where: { id: 'p2' } });
+    // The orphan trigger has usually deleted the source already, so a no-match delete must not throw.
+    expect(tx.persons.deleteMany).toHaveBeenCalledWith({ where: { id: 'p2' } });
     expect(prisma.audit_logs.create).not.toHaveBeenCalled();
     expect(tx.audit_logs.create).toHaveBeenCalledTimes(1);
     expect(tx.audit_logs.create.mock.calls[0][0].data).toEqual({

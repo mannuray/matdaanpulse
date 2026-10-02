@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { ConflictException, Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import {
@@ -20,7 +20,7 @@ export class CandidatesService {
     private readonly audit: AuditLogService,
   ) {}
 
-  /** `includeMetadata` is for the admin list only (age, criminal cases); the public list never selects it. */
+  /** `includeMetadata` is for the admin list only (the affidavit columns); the public list never selects them. */
   findAll(filters?: { election_id?: string; const_id?: string }, take = 1000, includeMetadata = false) {
     return this.prisma.candidates.findMany({
       where: {
@@ -36,7 +36,7 @@ export class CandidatesService {
         is_incumbent: true,
         // The admin list filters on the person link; the public summary also reports whether a person record exists.
         person_id: true,
-        ...(includeMetadata ? { metadata: true } : {}),
+        ...(includeMetadata ? { age: true, assets: true, liabilities: true, criminal_cases: true } : {}),
         parties: {
           select: {
             id: true,
@@ -134,11 +134,15 @@ export class CandidatesService {
       if (election.status === 'Finalized') throw new ElectionFinalizedException(data.election_id);
       const seat = await tx.constituencies.findFirst({
         where: { id: data.const_id, election_id: data.election_id },
-        select: { id: true },
+        select: { id: true, state_id: true },
       });
       if (!seat) throw new ConstituencyNotFoundException(data.const_id);
+      // Every candidate has a person (migration 018): without one, create it from the ballot name and the seat's state.
+      const { metadata: _metadata, ...fields } = data;
+      const person_id = fields.person_id
+        ?? (await tx.persons.create({ data: { name: data.name, state_id: seat.state_id }, select: { id: true } })).id;
       const candidate = await tx.candidates.create({
-        data: data as Prisma.candidatesUncheckedCreateInput,
+        data: { ...fields, person_id } as Prisma.candidatesUncheckedCreateInput,
       });
       const result = await tx.results.create({
         data: {
@@ -172,9 +176,11 @@ export class CandidatesService {
   async update(id: string, data: UpdateCandidateDto, userId?: string) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id } });
     if (!candidate) throw new CandidateNotFoundException(id);
+    // metadata has no column since migration 018; a null person_id would fail the commit, so it is ignored.
+    const { metadata: _metadata, person_id, ...fields } = data;
     const updated = await this.prisma.candidates.update({
       where: { id },
-      data: data as Prisma.candidatesUncheckedUpdateInput,
+      data: { ...fields, ...(person_id ? { person_id } : {}) } as Prisma.candidatesUncheckedUpdateInput,
     });
     const diff = changedFields(candidate, updated);
     if (diff) await this.audit.record({ userId, action: 'CANDIDATE_UPDATE', entityType: 'candidate', entityId: id, ...diff });
@@ -186,18 +192,6 @@ export class CandidatesService {
     if (!candidate) throw new CandidateNotFoundException(candidateId);
     const person = await this.prisma.persons.findUnique({ where: { id: personId } });
     if (!person) throw new PersonNotFoundException(personId);
-
-    const m = (candidate.metadata || {}) as any;
-    
-    // Update person with metadata if null
-    await this.prisma.persons.update({
-      where: { id: personId },
-      data: {
-        photo_url: person.photo_url || m.photo_url || undefined,
-        gender: person.gender || m.gender || undefined,
-        education: person.education || m.education || undefined,
-      }
-    });
 
     const updated = await this.prisma.candidates.update({
       where: { id: candidateId },
@@ -211,19 +205,11 @@ export class CandidatesService {
     return updated;
   }
 
-  async unlinkPerson(candidateId: string, userId?: string) {
-    const candidate = await this.prisma.candidates.findUnique({ where: { id: candidateId } });
+  /** Every candidate has a person (migration 018), so a candidacy is moved to another person, never unlinked. */
+  async unlinkPerson(candidateId: string, _userId?: string): Promise<never> {
+    const candidate = await this.prisma.candidates.findUnique({ where: { id: candidateId }, select: { id: true } });
     if (!candidate) throw new CandidateNotFoundException(candidateId);
-    // Already unlinked: nothing changes, so no write and no audit row (it would read null → null).
-    if (candidate.person_id === null) return candidate;
-    const updated = await this.prisma.candidates.update({
-      where: { id: candidateId },
-      data: { person_id: null },
-    });
-    await this.audit.record({
-      userId, action: 'CANDIDATE_UNLINK_PERSON', entityType: 'candidate', entityId: candidateId,
-      oldValue: { person_id: candidate.person_id }, newValue: { person_id: null },
-    });
-    return updated;
+    throw new ConflictException('Every candidate has a person: move this candidacy to another person instead.');
   }
+
 }

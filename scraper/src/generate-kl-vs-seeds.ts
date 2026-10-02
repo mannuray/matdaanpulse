@@ -286,7 +286,7 @@ function generateSeed(config: YearConfig, geoMap: Record<number, GeoEntry>) {
 
     const winCandId = randomUUID();
     const winnerName = r.winner.name || `${winnerPartyId} Candidate`;
-    candidateInserts.push(`  ('${winCandId}', NULL, '${electionId}', '${esc(constId)}', '${esc(winnerPartyId)}', '${esc(winnerName)}', FALSE, '{}')`);
+    candidateInserts.push(`  ('${winCandId}', NULL, '${electionId}', '${esc(constId)}', '${esc(winnerPartyId)}', '${esc(winnerName)}', FALSE)`);
     resultInserts.push(`  ('${randomUUID()}', '${winCandId}', '${esc(constId)}', ${winnerVotes}, 'WON', ${margin}, 0, '${electionId}')`);
     totalCandidates++;
 
@@ -297,13 +297,13 @@ function generateSeed(config: YearConfig, geoMap: Record<number, GeoEntry>) {
       if (ruPartyId === winnerPartyId) ruPartyId = ruPartyId + '2';
       const ruCandId = randomUUID();
       const ruName = r.runner_up.name || `${ruPartyId} Candidate`;
-      candidateInserts.push(`  ('${ruCandId}', NULL, '${electionId}', '${esc(constId)}', '${esc(ruPartyId)}', '${esc(ruName)}', FALSE, '{}')`);
+      candidateInserts.push(`  ('${ruCandId}', NULL, '${electionId}', '${esc(constId)}', '${esc(ruPartyId)}', '${esc(ruName)}', FALSE)`);
       resultInserts.push(`  ('${randomUUID()}', '${ruCandId}', '${esc(constId)}', ${runnerUpVotes}, 'LOST', ${margin}, 0, '${electionId}')`);
       totalCandidates++;
     }
   }
 
-  lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent, metadata) VALUES');
+  lines.push('INSERT INTO candidates (id, person_id, election_id, const_id, party_id, name, is_incumbent) VALUES');
   lines.push(candidateInserts.join(',\n') + '\nON CONFLICT DO NOTHING;');
   lines.push('');
   lines.push('-- Results');

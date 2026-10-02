@@ -185,17 +185,18 @@ describe('admin candidate detail: relations reach the admin under the names it r
 });
 
 describe('admin candidates list and same-name search: the person link and affidavit reach the admin', () => {
-  it('findAll selects person_id and metadata, and the admin list keeps them with the party', async () => {
-    const listRow = { id: 'c2', name: 'Anil Kumar', party_id: 'BJP', const_id: 's1', is_incumbent: false, person_id: 'p1', metadata: { age: 44, criminal_cases: 2 }, parties: { id: 'BJP', color: '#f59e0b' } };
+  it('findAll selects person_id and the affidavit columns, and the admin list keeps the person with the party', async () => {
+    const listRow = { id: 'c2', name: 'Anil Kumar', party_id: 'BJP', const_id: 's1', is_incumbent: false, person_id: 'p1', age: 44, criminal_cases: 2, parties: { id: 'BJP', color: '#f59e0b' } };
     const prisma = { candidates: { findMany: jest.fn().mockResolvedValue([listRow]) } };
     const svc = new CandidatesService(prisma as any, {} as any, {} as any);
     const rows = await new AdminCandidatesController(svc, {} as any).findAll('e1', 's1');
-    expect(prisma.candidates.findMany.mock.calls[0][0].select).toMatchObject({ person_id: true, metadata: true });
+    expect(prisma.candidates.findMany.mock.calls[0][0].select).toMatchObject({ person_id: true, age: true, assets: true, liabilities: true, criminal_cases: true });
     await svc.findAll({ election_id: 'e1' }); // the public path
     const publicSelect = prisma.candidates.findMany.mock.calls[1][0].select;
     expect(publicSelect.person_id).toBe(true);
-    expect(publicSelect).not.toHaveProperty('metadata');
-    expect(map(AdminCandidateDto, rows)[0]).toMatchObject({ person_id: 'p1', metadata: { age: 44, criminal_cases: 2 }, party: { id: 'BJP' } });
+    expect(publicSelect).not.toHaveProperty('age');
+    expect(publicSelect).not.toHaveProperty('criminal_cases');
+    expect(map(AdminCandidateDto, rows)[0]).toMatchObject({ person_id: 'p1', party: { id: 'BJP' } });
   });
 
   it('the public summary (used by the same-name suggestions) says whether a candidate already has a person record', () => {
