@@ -24,18 +24,19 @@ function statusColor(c: Contest): string {
   return 'var(--color-muted)';
 }
 
+/** One cell of the compact stats strip: icon + label on top, value with its sub-line beside it. */
 function Stat({ label, icon, iconColor, value, valueColor, sub, subColor }: {
   label: string; icon: IconName; iconColor?: string; value: string; valueColor?: string; sub?: string | null; subColor?: string;
 }) {
   return (
-    <div className={cn(tile, 'flex flex-col justify-between px-4 py-3')}>
-      <div className="flex items-center justify-between text-xs text-muted">
-        <span>{label}</span>
-        <span style={{ color: iconColor }} className={iconColor ? undefined : 'opacity-60'}><Icon name={icon} className="h-[18px] w-[18px]" /></span>
+    <div className="flex min-w-0 flex-col justify-center bg-tile px-4 py-2.5">
+      <div className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-muted">
+        <span style={{ color: iconColor }} className={iconColor ? undefined : 'opacity-60'}><Icon name={icon} className="h-3.5 w-3.5" /></span>
+        <span className="truncate">{label}</span>
       </div>
-      <div className="mt-1">
-        <div className="tabular font-display text-3xl font-bold leading-none" style={{ color: valueColor }}>{value}</div>
-        {sub && <div className="mt-0.5 text-[11px] font-semibold" style={{ color: subColor ?? 'var(--color-muted)' }}>{sub}</div>}
+      <div className="mt-0.5 flex min-w-0 items-baseline gap-2">
+        <span className="tabular font-display text-2xl font-bold leading-none" style={{ color: valueColor }}>{value}</span>
+        {sub && <span className="truncate text-[11px] font-semibold" style={{ color: subColor ?? 'var(--color-muted)' }}>{sub}</span>}
       </div>
     </div>
   );
@@ -246,7 +247,7 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
       </header>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-4">
         <Stat label={t('pp_contests')} icon="ballot" value={String(vm.stats.contests)} sub={housesSub} />
         <Stat label={t('pp_wins')} icon="star" iconColor="var(--color-ok-text)" value={String(vm.stats.wins)} valueColor="var(--color-ok-text)" />
         {vm.stats.winRate != null && <Stat label={t('pp_win_rate')} icon="percent" iconColor="var(--color-accent)" value={`${vm.stats.winRate}%`} sub={t('pp_win_rate_sub', { wins: vm.stats.wins, decided: vm.stats.decided })} />}
