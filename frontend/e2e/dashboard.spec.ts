@@ -519,6 +519,9 @@ test.describe('scrollable side card and restored charts', () => {
       const summary = region(page, /^Summary/);
       await expect(summary).toBeVisible();
       await expect(page.getByText('Avg Margin')).toBeVisible();
+      // sections after the first start collapsed: open them all so the card overflows
+      const collapsed = summary.locator('h3 button[aria-expanded="false"]');
+      while (await collapsed.count()) await collapsed.first().click();
       const m = await summary.evaluate(el => ({ sh: el.scrollHeight, ch: el.clientHeight }));
       expect(m.sh).toBeGreaterThan(m.ch);
       await expect(page.getByText(/\+\d+ more/)).toHaveCount(0);
@@ -633,12 +636,18 @@ test.describe('scrollable side card and restored charts', () => {
 test.describe('task 27: map highlight from the summary', () => {
   const SHOTS27 = '../.playwright-mcp';
   const hlCount = (page: Page) => page.locator('path.pc[data-highlighted="true"]').count();
-  const section = (page: Page, title: string) => page.locator('h3', { hasText: title }).locator('xpath=..');
+  // A card section's rows (sections after the first start collapsed: open it first).
+  const section = (page: Page, title: string) => page.locator('h3', { hasText: title }).locator('xpath=..').locator('[data-section-body]');
+  const openSection = async (page: Page, title: string) => {
+    const head = page.locator('h3', { hasText: title }).getByRole('button');
+    if ((await head.getAttribute('aria-expanded')) === 'false') await head.click();
+  };
   const dimmed = (page: Page) => page.evaluate(() => [...document.querySelectorAll('path.pc')].filter(p => !p.hasAttribute('data-highlighted') && (p as SVGPathElement).style.fillOpacity === '0.12').length);
 
   test('hovering a closest-battles row highlights exactly that seat; the rest is dimmed; the outline survives in both themes', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
+    await openSection(page, 'Closest battles');
     const rows = section(page, 'Closest battles').getByRole('button');
     await expect(rows.first()).toBeVisible();
     await rows.first().hover();
@@ -659,6 +668,7 @@ test.describe('task 27: map highlight from the summary', () => {
   test('hovering the first margin bucket highlights as many seats as its value', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
+    await openSection(page, 'Margin distribution');
     const first = section(page, 'Margin distribution').getByRole('button').first();
     await expect(first).toBeVisible();
     const value = Number((await first.innerText()).match(/(\d+)\s*$/)![1]);
@@ -672,6 +682,7 @@ test.describe('task 27: map highlight from the summary', () => {
   test('moving straight from one row to the next never drops the highlight in between', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
+    await openSection(page, 'Closest battles');
     const rows = section(page, 'Closest battles').getByRole('button');
     await expect(rows.nth(1)).toBeVisible();
     const litPath = () => page.locator('path.pc[data-highlighted="true"]').first().getAttribute('d');
@@ -706,6 +717,7 @@ test.describe('task 27: map highlight from the summary', () => {
   test('a locked row is previewed over by hovering another, and returns when the hover ends', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
+    await openSection(page, 'Margin distribution');
     const buckets = section(page, 'Margin distribution').getByRole('button');
     await expect(buckets.nth(1)).toBeVisible();
     const v0 = Number((await buckets.nth(0).innerText()).match(/(\d+)\s*$/)![1]);
@@ -723,6 +735,7 @@ test.describe('task 27: map highlight from the summary', () => {
   test('battle layer: the hovered close seat is drawn at full opacity', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}?layer=battle`);
+    await openSection(page, 'Closest contests');
     const rows = section(page, 'Closest contests').getByRole('button');
     await expect(rows.first()).toBeVisible();
     await expect.poll(() => page.locator('path.pc').evaluateAll(ps => ps.some(p => (p as SVGPathElement).style.fillOpacity === '0.25'))).toBe(true);
@@ -744,6 +757,7 @@ test.describe('task 27: map highlight from the summary', () => {
     await page.screenshot({ path: `${SHOTS27}/t27-ls-nda-1440.png` });
     await page.mouse.move(0, 0);
     await expect.poll(() => hlCount(page)).toBe(0);
+    await openSection(page, 'Closest battles');
     await section(page, 'Closest battles').getByRole('button').first().hover();
     await expect.poll(() => hlCount(page)).toBe(1);
     await expect(page.locator('g.pc-highlight path')).toHaveCount(1);

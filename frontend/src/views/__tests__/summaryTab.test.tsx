@@ -31,9 +31,13 @@ const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
   onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, ...over,
 });
 
+/** Cases that read every section open the collapsed headers first. */
+const expandAll = () => screen.queryAllByRole('button', { expanded: false }).forEach(b => fireEvent.click(b));
+
 describe('SummaryTab', () => {
-  it('shows every section with every row, sticky headers, and no "+N more" footer', () => {
+  it('shows every section with every row once expanded, sticky headers, and no "+N more" footer', () => {
     const { container } = render(<SummaryTab vm={mk()} />);
+    expandAll();
     expect(screen.getByText('Closest contests')).toBeTruthy();
     expect(screen.getByText('Sandesh')).toBeTruthy();
     expect(screen.getByText('27')).toBeTruthy();
@@ -91,6 +95,7 @@ describe('SummaryTab', () => {
       { id: 'vs', titleKey: 'studio_sum_vote_vs_seats_alliances', primaryCol: 0, rows: [{ id: 'alliance:NDA', label: 'NDA', partyIds: ['BJP'], seatIds: ['S1', 'S2'], value: 35, valueFormat: 'signed1', extra: [{ value: 48.1, format: 'pct' }] }] },
     ];
     render(<SummaryTab vm={mk({}, secs)} />);
+    expandAll();
     expect(screen.getByRole('button', { name: /JDU/ }).textContent).toContain('14');
     expect(screen.getByRole('button', { name: /MGB/ }).textContent).toContain('82.0%');
     expect(screen.getByRole('button', { name: /NDA/ }).textContent).toContain('+35.0');
@@ -250,5 +255,48 @@ describe('StandingsTile summary tab', () => {
     expect(onFocus).toHaveBeenCalled();
     fireEvent.click(screen.getByRole('radio', { name: /Watchlist/ }));
     expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('Watchlist');
+  });
+});
+
+describe('SummaryTab collapsible sections', () => {
+  const head = (name: RegExp) => screen.getByRole('button', { name });
+  const withStats: SummarySection[] = [
+    { id: 'key_stats', titleKey: '', layout: 'stats', rows: [{ id: 'declared', label: 'declared', labelKey: 'seats_declared', value: 243, valueFormat: 'int' }] },
+    ...sections,
+  ];
+
+  it('key stats always show; only the first section is open, the others collapsed with their row count', () => {
+    render(<SummaryTab vm={mk({}, withStats)} />);
+    expect(screen.getByText('243')).toBeTruthy();
+    expect(head(/^Closest contests/).getAttribute('aria-expanded')).toBe('true');
+    expect(screen.getByText('Sandesh')).toBeTruthy();
+    const swing = head(/^Net swing/);
+    expect(swing.getAttribute('aria-expanded')).toBe('false');
+    expect(swing.textContent).toContain('2');
+    expect(screen.queryByText('Q2')).toBeNull();
+  });
+
+  it('a heading click toggles its section; several can be open', () => {
+    render(<SummaryTab vm={mk()} />);
+    fireEvent.click(head(/^Net swing/));
+    expect(screen.getByText('Q2')).toBeTruthy();
+    expect(screen.getByText('Sandesh')).toBeTruthy();
+    fireEvent.click(head(/^Closest contests/));
+    expect(screen.queryByText('Sandesh')).toBeNull();
+  });
+
+  it('opens the first section when the data arrives after the first render', () => {
+    const { rerender } = render(<SummaryTab vm={mk({}, [])} />);
+    rerender(<SummaryTab vm={mk()} />);
+    expect(head(/^Closest contests/).getAttribute('aria-expanded')).toBe('true');
+  });
+
+  it('a new layer starts again with only its first section open', () => {
+    const { rerender } = render(<SummaryTab vm={mk()} />);
+    fireEvent.click(head(/^Net swing/));
+    const next: SummarySection[] = [sections[1], sections[0]];
+    rerender(<SummaryTab vm={mk({ layer: 'overview', summary: { layer: 'overview', sections: next } }, next)} />);
+    expect(head(/^Net swing/).getAttribute('aria-expanded')).toBe('true');
+    expect(head(/^Closest contests/).getAttribute('aria-expanded')).toBe('false');
   });
 });
