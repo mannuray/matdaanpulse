@@ -50,6 +50,7 @@ export const ErrorCodes = {
 
   // Media
   MEDIA_UPLOAD_NOT_CONFIGURED: 'MEDIA_0001',
+  MEDIA_STORAGE_FAILED: 'MEDIA_0002',
 
   // Validation (9xxx)
   VALIDATION_FAILED: 'VALIDATION_9001',
