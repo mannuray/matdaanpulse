@@ -55,18 +55,17 @@ describe('ConstituenciesService audit rows', () => {
     expect(prisma.audit_logs.create.mock.calls[0][0].data.new_value).toEqual({ metadata: { literacy: 61.8 } });
   });
 
-  it('a legacy metadata.phase already stored is dropped on every metadata write, never re-added', async () => {
+  it('never writes metadata.phase from a patch; a stored unparseable legacy value is kept untouched', async () => {
     const { svc, prisma } = make();
-    const legacy = { ...seat, metadata: { tags: ['border'], phase: '3' } };
+    const legacy = { ...seat, metadata: { tags: ['border'], phase: 'II' } };
     prisma.constituencies.findUnique.mockResolvedValue(legacy);
     prisma.constituencies.findMany.mockResolvedValue([legacy]);
-    await svc.updateMetadata('BR_VS_1', { literacy: 61.8 }, 'u1');
-    expect(prisma.constituencies.update.mock.calls[0][0].data.metadata).toEqual({ tags: ['border'], literacy: 61.8 });
-    await svc.updateConstituency('BR_VS_1', { phase: null, metadata: { literacy: 61.8 } }, 'u1');
-    expect(prisma.constituencies.update.mock.calls[1][0].data).toMatchObject({ phase: null });
-    expect(prisma.constituencies.update.mock.calls[1][0].data.metadata).not.toHaveProperty('phase');
+    await svc.updateMetadata('BR_VS_1', { literacy: 61.8, phase: '3' }, 'u1');
+    expect(prisma.constituencies.update.mock.calls[0][0].data.metadata).toEqual({ tags: ['border'], phase: 'II', literacy: 61.8 });
+    await svc.updateConstituency('BR_VS_1', { phase: null, metadata: { literacy: 61.8, phase: 4 } }, 'u1');
+    expect(prisma.constituencies.update.mock.calls[1][0].data).toMatchObject({ phase: null, metadata: { tags: ['border'], phase: 'II', literacy: 61.8 } });
     await svc.bulkTag(['BR_VS_1'], ['urban'], [], 'u1');
-    expect(prisma.constituencies.update.mock.calls[2][0].data.metadata).toEqual({ tags: ['border', 'urban'] });
+    expect(prisma.constituencies.update.mock.calls[2][0].data.metadata).toEqual({ tags: ['border', 'urban'], phase: 'II' });
   });
 
   it('bulkTag writes one row per seat whose tags changed, in one insert', async () => {

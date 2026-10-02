@@ -45,9 +45,11 @@ describe('migration 017 phase copy (DB)', () => {
     expect(phaseStatements()).toHaveLength(2);
     expect(copy).toMatch(/SET phase = /);
     expect(strip).toMatch(/SET metadata = metadata - 'phase'/);
+    // Only valid phases are stripped: the strip uses the same regex as the copy.
+    expect(strip).toContain("~ '^([1-9]|1[0-9]|20)$'");
   });
 
-  it('a phase cleared after the first run stays NULL when the migration runs again', async () => {
+  it('a phase cleared after the first run stays NULL on a re-run; an unparseable legacy value is kept', async () => {
     if (!prisma) {
       if (REQUIRE_DB) throw new Error('REQUIRE_DB_TESTS=1 but no database with migration 017 is reachable');
       console.warn('SKIPPED (no database with migration 017): phase re-run');
@@ -70,6 +72,13 @@ describe('migration 017 phase copy (DB)', () => {
         await tx.$executeRaw`UPDATE constituencies SET phase = NULL WHERE id = ${id}`;
         await runMigration(tx);
         expect(await read()).toEqual({ phase: null, has_key: false });
+        // An unparseable legacy value is neither copied nor removed, however often the migration runs.
+        await tx.$executeRaw`UPDATE constituencies SET phase = NULL, metadata = metadata || '{"phase":"Phase II"}'::jsonb WHERE id = ${id}`;
+        await runMigration(tx);
+        await runMigration(tx);
+        expect(await read()).toEqual({ phase: null, has_key: true });
+        const [{ value }] = await tx.$queryRaw<{ value: string }[]>`SELECT metadata->>'phase' AS value FROM constituencies WHERE id = ${id}`;
+        expect(value).toBe('Phase II');
         throw new Rollback();
       })
       .catch((e) => {

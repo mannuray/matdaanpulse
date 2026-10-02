@@ -6,8 +6,8 @@
 --   * parties.eci_recognition: National / State / Unrecognised, or NULL (not set).
 --   * constituencies.phase is the only store of the polling phase: copy metadata->>'phase'
 --     into the column where it is NULL (non-numeric values are skipped), then drop the
---     metadata key, so a phase later cleared in the admin is not copied back on the next
---     setup.sh run.
+--     metadata key where it holds a valid phase, so a phase later cleared in the admin is not
+--     copied back on the next setup.sh run. Unparseable legacy values are left untouched.
 --
 -- Idempotent; no seed dependency.
 
@@ -64,8 +64,10 @@ WHERE phase IS NULL
   AND metadata ? 'phase'
   AND btrim(metadata->>'phase') ~ '^([1-9]|1[0-9]|20)$';
 
--- After the copy the key is dead data (the admin never reads or writes it). Unparseable legacy
--- values go too: they were never a valid phase. Re-runs match no rows.
+-- After the copy a valid key is dead data (the admin never reads or writes it), so drop it; the same
+-- regex as the copy. Unparseable legacy values stay in metadata (no data is lost), and the copy never
+-- picks them up. Re-runs match no rows.
 UPDATE constituencies
 SET metadata = metadata - 'phase'
-WHERE metadata ? 'phase';
+WHERE metadata ? 'phase'
+  AND btrim(metadata->>'phase') ~ '^([1-9]|1[0-9]|20)$';
