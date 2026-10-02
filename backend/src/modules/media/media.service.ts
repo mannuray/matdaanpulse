@@ -1,6 +1,7 @@
-import { Injectable, ServiceUnavailableException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { put } from '@vercel/blob';
+import { MediaNotConfiguredException } from '../../common/exceptions';
 import { validateUpload, type MediaKind } from './media-validation';
 
 export interface UploadedMedia { url: string; pathname: string; content_type: string; size: number }
@@ -12,7 +13,7 @@ export class MediaService {
 
   async upload(file: { buffer: Buffer; size: number } | undefined, kind: MediaKind, ownerId: string): Promise<UploadedMedia> {
     const token = this.config.get<string>('BLOB_READ_WRITE_TOKEN');
-    if (!token) throw new ServiceUnavailableException('Image upload is not configured');
+    if (!token) throw new MediaNotConfiguredException();
     const { path, contentType } = validateUpload(file, kind, ownerId);
     const blob = await put(path, file!.buffer, { access: 'public', addRandomSuffix: true, contentType, token });
     return { url: blob.url, pathname: blob.pathname, content_type: contentType, size: file!.size };

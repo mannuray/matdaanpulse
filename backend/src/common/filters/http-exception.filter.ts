@@ -58,7 +58,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     // A PrismaClientValidationError is answered with 400 but almost always means a
     // server-side query bug, so it is logged like a 5xx (review M9).
-    if (status >= 500 || exception instanceof Prisma.PrismaClientValidationError) {
+    // A BusinessException is a deliberate, client-safe answer (e.g. 503 "not configured"), not an unexpected failure.
+    if ((status >= 500 && !(httpException instanceof BusinessException)) || exception instanceof Prisma.PrismaClientValidationError) {
       this.reportServerError(exception, status, requestId, request);
     }
 
@@ -85,8 +86,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       message = Array.isArray(raw) ? raw.join('; ') : typeof raw === 'string' ? raw : httpException.message;
     }
 
-    // 5xx never exposes exception text (the real one is logged above).
-    if (status >= 500) message = 'Internal server error';
+    // Unexpected 5xx never exposes exception text (the real one is logged above).
+    if (status >= 500 && !(httpException instanceof BusinessException)) message = 'Internal server error';
 
     const errorResponse = {
       success: false,

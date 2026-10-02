@@ -48,6 +48,9 @@ export const ErrorCodes = {
   // Feedback
   FEEDBACK_NOT_FOUND: 'FEEDBACK_0001',
 
+  // Media
+  MEDIA_UPLOAD_NOT_CONFIGURED: 'MEDIA_0001',
+
   // Validation (9xxx)
   VALIDATION_FAILED: 'VALIDATION_9001',
 } as const;

@@ -1,4 +1,4 @@
-import { ServiceUnavailableException } from '@nestjs/common';
+import { MediaNotConfiguredException } from '../../common/exceptions';
 jest.mock('@vercel/blob', () => ({ put: jest.fn() }));
 import { put } from '@vercel/blob';
 import { MediaService } from './media.service';
@@ -10,7 +10,7 @@ describe('MediaService', () => {
   afterEach(() => jest.clearAllMocks());
 
   it('503 when BLOB_READ_WRITE_TOKEN is missing (before touching the file)', async () => {
-    await expect(new MediaService(config()).upload(undefined, 'party-logo', 'BJP')).rejects.toThrow(ServiceUnavailableException);
+    await expect(new MediaService(config()).upload(undefined, 'party-logo', 'BJP')).rejects.toThrow(MediaNotConfiguredException);
     expect(put).not.toHaveBeenCalled();
   });
 

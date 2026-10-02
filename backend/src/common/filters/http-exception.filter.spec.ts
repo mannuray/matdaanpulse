@@ -1,7 +1,7 @@
 import { ArgumentsHost, Logger, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { HttpExceptionFilter } from './http-exception.filter';
-import { UserNotFoundException } from '../exceptions';
+import { UserNotFoundException, MediaNotConfiguredException } from '../exceptions';
 import { ErrorCodes } from '../exceptions/error-codes';
 import { BusinessException } from '../exceptions/base.exception';
 import { validationExceptionFactory } from '../validation/validation-failed.exception';
@@ -170,6 +170,14 @@ describe('HttpExceptionFilter', () => {
     expect(res.body.error.message).toBe('Internal server error');
     expect(JSON.stringify(res.body)).not.toMatch(/10\.0\.0\.9/);
     expect(errorSpy.mock.calls[0][0]).toMatch(/redis at 10\.0\.0\.9 down/);
+  });
+
+  it('a BusinessException 503 keeps its code and message and is not logged as a server error', () => {
+    const res = run(new MediaNotConfiguredException());
+    expect(res.statusCode).toBe(503);
+    expect(res.body.error.code).toBe(ErrorCodes.MEDIA_UPLOAD_NOT_CONFIGURED);
+    expect(res.body.error.message).toBe('Image upload is not configured');
+    expect(errorSpy).not.toHaveBeenCalled();
   });
 
   it('error.path omits the query string', () => {
