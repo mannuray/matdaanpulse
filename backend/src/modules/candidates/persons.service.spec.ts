@@ -279,9 +279,9 @@ describe('PersonsService.mergeHistory', () => {
     const out = await svc.mergeHistory('p1', ['c1', 'c2', 'c3']);
     expect(prisma.person_merges.findMany.mock.calls[0][0]).toMatchObject({ where: { keeper_ref: 'p1' }, orderBy: { merged_at: 'desc' } });
     expect(out).toEqual([
-      { id: 'm3', duplicate_name: 'A', candidate_count: 1, merged_at: new Date(3), merged_by: 'Priya', undoable: true },
-      { id: 'm2', duplicate_name: 'B', candidate_count: 2, merged_at: new Date(2), merged_by: null, undoable: false },
-      { id: 'm1', duplicate_name: 'C', candidate_count: 1, merged_at: new Date(1), merged_by: 'Priya', undoable: false },
+      { id: 'm3', duplicate_name: 'A', candidate_count: 1, merged_at: new Date(3), merged_by: 'Priya', undoable: true, undone_at: null, not_undoable_reason: null },
+      { id: 'm2', duplicate_name: 'B', candidate_count: 2, merged_at: new Date(2), merged_by: null, undoable: false, undone_at: null, not_undoable_reason: 'contests_moved' },
+      { id: 'm1', duplicate_name: 'C', candidate_count: 1, merged_at: new Date(1), merged_by: 'Priya', undoable: false, undone_at: new Date(4), not_undoable_reason: 'undone' },
     ]);
   });
 });

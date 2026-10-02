@@ -39,6 +39,7 @@ const PERSON_COLUMNS = [
 const FILLABLE = ['photo_url', 'gender', 'education', 'date_of_birth', 'bio', 'wikipedia_url', 'caste', 'religion', 'state_id'] as const;
 
 type Row = Record<string, unknown>;
+type NotUndoableReason = 'undone' | 'contests_moved' | 'keeper_missing' | null;
 
 const jsonEqual = (a: unknown, b: unknown) => JSON.stringify(toJsonSafe(a)) === JSON.stringify(toJsonSafe(b));
 
@@ -375,6 +376,9 @@ export class PersonsService {
       merged_at: m.merged_at,
       merged_by: m.merger?.name ?? null,
       undoable: !m.undone_at && m.candidate_ids.every((id) => current.has(id)),
+      undone_at: m.undone_at,
+      // The keeper is the person being viewed, so it exists: 'keeper_missing' can't arise here (the undo itself checks).
+      not_undoable_reason: (m.undone_at ? 'undone' : m.candidate_ids.every((id) => current.has(id)) ? null : 'contests_moved') as NotUndoableReason,
     }));
   }
 }

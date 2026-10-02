@@ -14,10 +14,10 @@
 - [x] Candidate filtering: `GET /candidates?election_id=UUID&const_id=STR`
 - [x] Person linking: admin UI suggests same-name candidates across elections, links via `person_id`
 - [x] Person bio columns: `photo_url`, `gender`, `education`, `date_of_birth` on `persons` table — stable bio data shared across elections, editable from admin candidate form
-- [x] Auto-link endpoint: `POST /admin/candidates/auto-link` (batch name+constituency matching)
+- [x] ~~Auto-link endpoint~~ removed 2026-10-02: every candidate gets a person automatically (see Persons and candidates)
 - [x] Persons list page: `/persons` — browse all persons with candidate count, photo filter, name search
 - [x] Person detail page: `/persons/:id` — edit bio, view election history, merge duplicates (SUPER_ADMIN)
-- [x] Candidate filters: filter by linked/unlinked in candidate table (AI enriched/not enriched filters removed 2026-09-30)
+- [x] Candidate filters: ~~linked/unlinked~~ (removed 2026-10-02, every candidate has a person) (AI enriched/not enriched filters removed 2026-09-30)
 - [x] Clickable person ID in candidate table → navigates to person detail page
 - [x] Regions table: `regions` (state_id, name, code) with Bihar's 9 regions seeded
 - [x] Person state/region tagging: `state_id` + `region_id` on `persons`, filterable via `GET /admin/persons?state_id=&region_id=`
@@ -339,7 +339,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - Result date: `elections.tentative_next_date` is the counting day (one date, however many polling phases). The admin labels it "Result date"; the public site counts down to it and polls around it only while the election is upcoming (the countdown hides itself once the date has passed). `database/seed_election_result_dates.sql` fills the real counting dates of the 20 seeded past elections, only where empty (it runs on every `setup.sh`, so a date cleared in the admin comes back).
 - Parties (`/parties`, record page at `/parties/:id`): server-side search and paging, plus an ECI recognition filter.
 - Persons (`/persons`, record page at `/persons/:id`): `?q=` search. Merge duplicates merges the found record **into** the open one, so the viewed person is kept.
-- Candidates (`/candidates`, record page at `/candidates/:id`): one seat of the global election at a time (searchable Seat select, default lowest seat number; `?seat=` picks the seat once and is then dropped from the URL), All / Linked / Unlinked chips with counts, name search in the seat. The record page holds the affidavit form (age and criminal cases must be whole numbers), the read-only person photo, person linking (search pre-filled with the candidate's name) and same-name suggestions from other elections with "Link selected". A record of another election offers "Switch election".
+- Candidates (`/candidates`, record page at `/candidates/:id`): one seat of the global election at a time (searchable Seat select, default lowest seat number; `?seat=` picks the seat once and is then dropped from the URL), name search in the seat. The record page holds the affidavit form (age and criminal cases must be whole numbers), the read-only person photo, "Change person" and "Split into new person" on the Master record card, and "Possible duplicates" (same name, other persons) that open the merge. A record of another election offers "Switch election".
 - New candidate (`/candidates/new`, a `FormDialog`): name, party (Independent = the `IND` party row), seat of the global election, affidavit fields. `POST /admin/candidates` checks the seat belongs to the election (404 otherwise) and, in the same transaction, adds the candidate's results row (0 votes, `TRAILING`) so it shows up in the Live Console. A Finalized election is refused with 409 (`ELECTION_FINALIZED`); the page disables "New candidate" for it. After the commit the same post-commit steps as a result override run (live-version memo, cache purge, admin SSE `result-update`); a failure there is only logged.
 - Constituencies (`/constituencies`, record page at `/constituencies/:id`): seats of the global election, 100 per page with a pager; a new search returns to page 1. District and tag filters are labelled "(this page)" because the API only searches by name. Select-all and bulk "Add tag" act on the visible rows only; the selection clears when the page, search, filter or election changes. "Compute all analysis" asks for confirmation. The record page edits demographics (population whole number; literacy, urban and SC/ST % from 0 to 100 with one decimal; 0 is kept as 0, emptied fields are cleared), district, region, seat number (whole number, 1 or more), phase and tags (15 suggested tags plus free text), and shows the seat history (see "Admin record pages").
 - Manifests (`/manifests`, full-width panel at `/manifests/:electionId`): one row per election, "Published" or "Not published" from the election's manifest URL. The panel has Summary (read-only counts, alliances, vote splits, comparison history, watchlists, map, milestones), Edit (all ten editors, every section always open) and JSON tabs, a Draft badge, Save draft, and Publish (SUPER_ADMIN only, behind a confirm; unsaved edits are saved first). Invalid JSON blocks tab switches, Save draft and Publish. A failed load offers Try again; a 404 says the election was not found. Load order: draft, then published, then default.
@@ -354,7 +354,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - Unsaved changes: `useUnsavedGuard(dirty)` stays on every editor ("Discard unsaved changes?" on the back link, sidebar links, the election picker, ⌘K and closing the tab). Blank optional fields save as null.
 - New data (migration `017_record_pages.sql`):
   - `updated_at TIMESTAMPTZ` on parties, persons, candidates and constituencies (default `now()`, set by a trigger only when the row actually changes). Each admin detail response carries `updated_at`.
-  - Last edited by: admin edits write audit rows (`PARTY_CREATE`, `PARTY_UPDATE`, `PERSON_UPDATE`, `PERSON_MERGE`, `CANDIDATE_CREATE`, `CANDIDATE_UPDATE`, `CANDIDATE_LINK_PERSON`, `CANDIDATE_UNLINK_PERSON`, `CONSTITUENCY_UPDATE`; entity types `party`, `person`, `candidate`, `constituency`), holding only the changed fields. Detail responses gain `last_edit: { at, by } | null`, the newest of those record-edit rows for the record (other rows on the same entity, such as `SEAT_LOCK_TAKEOVER`, do not count). A failed audit write is logged and never fails the save. The Audit logs filters list the new actions and entities.
+  - Last edited by: admin edits write audit rows (`PARTY_CREATE`, `PARTY_UPDATE`, `PERSON_UPDATE`, `PERSON_MERGE`, `CANDIDATE_CREATE`, `CANDIDATE_UPDATE`, `CANDIDATE_LINK_PERSON` (change person), `CANDIDATE_SPLIT`, `PERSON_MERGE_UNDO`, `PERSON_DELETE` (orphan cleanup), `CONSTITUENCY_UPDATE`; entity types `party`, `person`, `candidate`, `constituency`), holding only the changed fields. Detail responses gain `last_edit: { at, by } | null`, the newest of those record-edit rows for the record (other rows on the same entity, such as `SEAT_LOCK_TAKEOVER`, do not count). A failed audit write is logged and never fails the save. The Audit logs filters list the new actions and entities.
   - `parties.eci_recognition` (`National` / `State` / `Unrecognised`, NULL = not set): editable on the party page and a Parties list filter. `database/seed_party_recognition.sql` sets National for BJP, INC, BSP, CPI(M), AAP and NPP where it is still NULL (it runs on every `setup.sh`, so a value cleared in the admin comes back).
   - Polling phase: `constituencies.phase` is the only store. The migration copies `metadata->>'phase'` into it where the column is NULL, then removes the `phase` key from `metadata` where it held a valid phase (so a phase cleared in the admin is not copied back on the next `setup.sh`); unparseable legacy values stay in metadata untouched and are never copied. The admin reads and writes the column, and the service drops a `phase` key from any metadata patch, so it never writes `metadata.phase`.
 - Derived endpoints (read only, not stored):
@@ -439,6 +439,28 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Incumbent badge shows "Contesting" before counting, "Retained/Lost" after results
 - [x] Candidate table hides vote/share/status columns when no votes yet
 - [x] System status (admin, SUPER_ADMIN only): `GET /api/v1/admin/status` + admin page "System status". In-memory counters (single instance, reset on restart, O(1) per request): uptime/version/git sha/memory; HTTP totals by status class, 429 count, 5-min and 60-min request and 5xx rates (per-minute ring buffer), 10 slowest routes by p95 of each route's last ≤200 requests within 60 min (route templates, at most 300 routes tracked); cache hits/misses/Redis fallbacks; Redis pub/sub states and publish counts/errors; SSE connections, events published, result overrides (per min, last at); DB `SELECT 1` latency (2 s timeout) and pool `connection_limit`. No secrets or hostnames in the response, `Cache-Control: no-store`. Works with OTel off; MetricsService call sites feed both OTel and StatusService. Page auto-refreshes every 10 s while visible.
+
+### Persons and candidates (migration 018, 2026-10-02)
+
+Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candidate has a person; duplicates are fixed by merging.
+
+| Record | Holds | Fields |
+|---|---|---|
+| **Person**: who someone is, across all elections | Identity | `name` (display name), `date_of_birth`, `gender`, `education`, `photo_url`, `bio`, `wikipedia_url`, `caste`, `religion` (admin-only, not in the public API), home `state_id` / `district_id` / `region_id` |
+| **Candidate**: one run, in one seat, in one election | Candidacy only | `person_id` (required, `ON DELETE RESTRICT`), `election_id`, `const_id`, `party_id`, `name` as filed on the ballot (results and live ingestion match on it), `is_incumbent`, affidavit for this run: `age`, `assets`, `liabilities`, `criminal_cases`. The result lives in `results`. |
+
+`candidates.metadata` and `persons.metadata` no longer exist.
+
+- **Triggers:**
+  1. `AFTER INSERT` on `candidates`: when `person_id` is null, creates a person (ballot name, the seat's state) and sets `person_id`. `AFTER`, so seeds using `ON CONFLICT DO NOTHING` create no stray persons on re-runs.
+  2. Deferred constraint trigger (`DEFERRABLE INITIALLY DEFERRED`): enforces NOT NULL at commit, so the insert in 1 can run first. Inserts without a person (seeds, scraper, simulation, admin "New candidate") keep working.
+  3. `AFTER UPDATE OF person_id` / `AFTER DELETE` on `candidates`: deletes the old person once no candidates point to it (change, split, merge, and `seed_bihar_persons.sql` re-pointing). The admin writes an audit row for it.
+- **Merge** (SUPER_ADMIN, Person page): moves all candidates from the duplicate to the keeper, fills the keeper's empty fields from the duplicate (never overwriting), deletes the duplicate, and saves a `person_merges` row (duplicate's full row, moved candidate ids, filled fields). Merging a person into itself is rejected.
+- **Undo merge** (SUPER_ADMIN, "Merge history" card on the keeper's page; `POST /admin/persons/merges/:id/undo`): recreates the duplicate with its original id, moves the logged candidates back, restores the filled fields. Refused (409) if any of those contests moved again, or the keeper no longer exists; each merge is undone once. Merge history shows "Undone <IST date>" or "Can't undo: a contest has moved since". Chained merges (X into K, K into Z) undo newest first (`keeper_ref`).
+- **Change person** (`PUT /admin/candidates/:id/person`): moves one candidacy to another existing person. **Split** (`POST /admin/candidates/:id/split`): moves it to a new person created from it; replaces "Unlink"; refused (409) when it is the person's only contest.
+- **Contests filter** on the admin Persons list: All / 1 / 2+ contests, so single-contest persons do not crowd the list.
+- Public site: every candidate has a profile; `PersonDetail` reads the top-level `wikipedia_url` and `bio`.
+- Follow-up: scored duplicate matching and a review queue (`docs/design/admin/NOTES.md`).
 
 ## In progress
 
@@ -610,11 +632,11 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
   - DB-connected: queries candidates + person_id, no seed SQL parsing
   - Matches MyNeta candidates by const_no + normalized name, fuzzy fallback (Levenshtein ≤ 3)
   - Outputs `database/seed_affidavit_<slug>.sql`
-  - Dual writes: `candidates.metadata.affidavit` (per-election) + `persons.metadata.affidavit_history.<election_id>` (person-level rollup)
+  - Dual writes (superseded by migration 018: the metadata columns are gone and the affidavit is in typed columns on `candidates`)
   - Match report: exact/fuzzy/unmatched counts, person linking stats
 - [x] Affidavit data: criminal cases (count + IPC sections + serious flag), total/movable/immovable assets, liabilities, education, profession, age, source URL
-- [x] Data stored in existing JSONB `metadata` columns — no schema changes needed
-- [x] Workflow: link candidates to persons (auto-link) → run affidavit scraper → person history builds up across elections
+- [x] Data was stored in JSONB `metadata` columns (superseded by migration 018: typed `candidates.age/assets/liabilities/criminal_cases`)
+- [x] Workflow: every candidate already has a person → run affidavit scraper → person history builds up across elections
 
 ---
 

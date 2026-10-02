@@ -49,8 +49,8 @@ const HISTORY: PersonCandidate[] = [
 
 // Newest first: one that can still be undone, one already undone.
 const MERGES: PersonMerge[] = [
-  { id: 'm1', duplicate_name: 'Nitish Kr', candidate_count: 1, merged_at: '2026-10-01T08:00:00.000Z', merged_by: 'Priya S', undoable: true },
-  { id: 'm0', duplicate_name: 'N. Kumar', candidate_count: 2, merged_at: '2026-09-30T04:30:00.000Z', merged_by: null, undoable: false },
+  { id: 'm1', duplicate_name: 'Nitish Kr', candidate_count: 1, merged_at: '2026-10-01T08:00:00.000Z', merged_by: 'Priya S', undoable: true, undone_at: null, not_undoable_reason: null },
+  { id: 'm0', duplicate_name: 'N. Kumar', candidate_count: 2, merged_at: '2026-09-30T04:30:00.000Z', merged_by: null, undoable: false, undone_at: '2026-10-02T04:30:00.000Z', not_undoable_reason: 'undone' },
 ];
 
 beforeEach(() => {
@@ -421,7 +421,7 @@ describe('Merge history', () => {
     await heading();
     expect(within(card()).getByText('Nitish Kr · 1 contest · merged 01 Oct 2026, 13:30 by Priya S')).toBeTruthy();
     expect(within(card()).getByText('N. Kumar · 2 contests · merged 30 Sept 2026, 10:00 by a deleted user')).toBeTruthy();
-    expect(within(entry(/^N\. Kumar/)).getByText('Undone')).toBeTruthy();
+    expect(within(entry(/^N\. Kumar/)).getByText('Undone 02 Oct 2026, 10:00')).toBeTruthy();
     expect(within(card()).queryByRole('button', { name: /Undo/ })).toBeNull();
   });
 

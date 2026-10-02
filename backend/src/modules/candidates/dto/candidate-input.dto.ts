@@ -54,7 +54,7 @@ export class CreateCandidateDto extends CandidateFieldsDto {
   name: string;
 }
 
-/** PUT /admin/candidates/:id/person (change person); also the body of the older PUT …/link-person. */
+/** PUT /admin/candidates/:id/person (change person). */
 export class LinkPersonDto {
   @IsUuidLike()
   person_id: string;

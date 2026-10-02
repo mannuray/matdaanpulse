@@ -78,3 +78,9 @@ pages, without these Stitch items (plan `docs/superpowers/plans/2026-10-02-admin
 - The dashboard activity row "saved N results" lacks the seat name.
 - The audit log loader fetches 200 rows with no paging.
 - The legacy-free regex scan has gaps.
+
+### Persons and candidates open follow-ups (2026-10)
+- Scored duplicate matching and a review queue. Today "Possible duplicates" is a same-name suggestion list; a scored match
+  (name, date of birth, state, party history) with a queue of pending reviews is agreed for later.
+- `not_undoable_reason: 'keeper_missing'` is never produced by the person-detail history (the keeper is the page's own
+  person); it exists for a future cross-person merge log.

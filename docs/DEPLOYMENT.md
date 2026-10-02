@@ -133,6 +133,13 @@ Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-
 
 ## 5. Setup steps (once blockers are fixed)
 
+### 4.1 Migration 018 (every candidate has a person)
+
+- **Never run `prisma db push`**, and never apply Prisma's suggested `SET NOT NULL` on `candidates.person_id`. NOT NULL is enforced by a deferred constraint trigger, and the seeds insert with NULL (an AFTER INSERT trigger fills it in).
+- Run 018 with `SET lock_timeout` (for example `'5s'`) and retry if it times out. Do not run it near counting day.
+- Rare: if two admins move the last contest of the same person at the same moment, one request can fail with an FK error (the orphan-delete trigger races the move). Retry it.
+- Before deploying, check production for `persons.metadata.affidavit_history` (`SELECT count(*) FROM persons WHERE metadata ? 'affidavit_history'`). 018 archives leftover metadata before dropping the columns; it does not migrate affidavit history.
+
 ### 5.1 Neon
 
 1. Create project in the region chosen in D1. Note both connection strings:

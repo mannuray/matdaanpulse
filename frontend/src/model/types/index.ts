@@ -72,7 +72,6 @@ export interface Candidate {
   party: Party | null;
   name: string;
   is_incumbent: boolean;
-  metadata?: Record<string, unknown>;
 }
 
 export interface CandidateResult {
@@ -99,7 +98,7 @@ export interface PersonSummary {
   state?: { id: number; name: string } | null;
   district?: { id: number; name: string } | null;
   bio?: string | null;
-  metadata?: Record<string, unknown>;
+  wikipedia_url?: string | null;
 }
 
 export interface PersonCandidate {

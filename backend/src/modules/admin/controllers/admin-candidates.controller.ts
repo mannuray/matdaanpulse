@@ -72,14 +72,6 @@ export class AdminCandidatesController {
     return { ...candidate, last_edit: await this.audit.lastEdit('candidate', id) };
   }
 
-  /** The older name of change person, still called by the admin's linkCandidatePerson. */
-  @Put(':id/link-person')
-  @Roles('SUPER_ADMIN', 'EDITOR')
-  @UseInterceptors(new MapToDtoInterceptor(AdminCandidateDto))
-  linkPerson(@Req() req: any, @Param('id', ParseUUIDPipe) id: string, @Body() body: LinkPersonDto) {
-    return this.changePerson(req, id, body);
-  }
-
   /** Split: move this candidacy to a new person created from it. Returns the new person's id. */
   @Post(':id/split')
   @Roles('SUPER_ADMIN', 'EDITOR')

@@ -264,15 +264,13 @@ describe('person responses: identity columns and merge history', () => {
 });
 
 describe('change person, split and undo routes', () => {
-  it('PUT :id/person and the older PUT :id/link-person both change the person and return the candidate with last_edit', async () => {
+  it('PUT :id/person changes the person and return the candidate with last_edit', async () => {
     const { audit } = auditWith(null);
     const svc = { changePerson: jest.fn().mockResolvedValue({ id: 'c1', person_id: 'p2', assets: BigInt(7), old_person_deleted: true }) };
     const ctl = new AdminCandidatesController(svc as any, audit);
     const out = map(AdminCandidateDto, await ctl.changePerson({ user: { id: 'u1' } }, 'c1', { person_id: 'p2' }));
     expect(svc.changePerson).toHaveBeenCalledWith('c1', 'p2', 'u1');
     expect(out).toMatchObject({ id: 'c1', person_id: 'p2', assets: 7, last_edit: null });
-    await ctl.linkPerson({ user: { id: 'u1' } }, 'c1', { person_id: 'p3' });
-    expect(svc.changePerson).toHaveBeenLastCalledWith('c1', 'p3', 'u1');
   });
 
   it('POST :id/split returns the new person id; POST merges/:id/undo passes the user', async () => {
@@ -285,7 +283,8 @@ describe('change person, split and undo routes', () => {
     expect(persons.undoMerge).toHaveBeenCalledWith('m1', 'u9');
   });
 
-  it('the unlink route and auto-link are gone', () => {
+  it('the unlink and link-person routes and auto-link are gone', () => {
+    expect((AdminCandidatesController.prototype as any).linkPerson).toBeUndefined();
     expect((AdminCandidatesController.prototype as any).unlinkPerson).toBeUndefined();
     expect((AdminPersonsController.prototype as any).autoLink).toBeUndefined();
   });
@@ -300,7 +299,7 @@ describe('role guards', () => {
   });
 
   it('change person and split are SUPER_ADMIN and EDITOR', () => {
-    for (const m of ['changePerson', 'linkPerson', 'split']) expect(roles(AdminCandidatesController, m)).toEqual(['SUPER_ADMIN', 'EDITOR']);
+    for (const m of ['changePerson', 'split']) expect(roles(AdminCandidatesController, m)).toEqual(['SUPER_ADMIN', 'EDITOR']);
   });
 
   it('the guard refuses an EDITOR on undo and lets one through on split', () => {

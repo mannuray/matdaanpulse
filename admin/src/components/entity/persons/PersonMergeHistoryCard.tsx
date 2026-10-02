@@ -20,10 +20,17 @@ export function mergeLine(m: PersonMerge): string {
   return `${m.duplicate_name} · ${contests} · merged ${formatIst(m.merged_at)} by ${m.merged_by ?? 'a deleted user'}`;
 }
 
+/** Why a merge has no Undo button: "Undone 02 Oct 2026, 10:00" (IST), or what blocks it. */
+export function notUndoableLabel(m: PersonMerge): string {
+  if (m.not_undoable_reason === 'contests_moved') return "Can't undo: a contest has moved since";
+  if (m.not_undoable_reason === 'keeper_missing') return "Can't undo: the person it was merged into no longer exists";
+  return m.undone_at ? `Undone ${formatIst(m.undone_at)}` : 'Undone';
+}
+
 /**
  * Person record, right column: every merge into this person, newest first. A merge that can still be undone has an
  * Undo button for a SUPER_ADMIN (the page confirms first); one that can't (already undone, or a contest has moved
- * since) is labelled "Undone".
+ * since) says "Undone <date>" or why it can't be undone).
  */
 export function PersonMergeHistoryCard({ merges, canUndo, locked, busy, onUndo }: PersonMergeHistoryCardProps) {
   return (
@@ -39,7 +46,7 @@ export function PersonMergeHistoryCard({ merges, canUndo, locked, busy, onUndo }
                 ? canUndo && (
                     <Button size="sm" variant="outline" disabled={locked || busy} onClick={() => onUndo(m)}>Undo</Button>
                   )
-                : <Badge tone="muted" className="shrink-0">Undone</Badge>}
+                : <Badge tone="muted" className="shrink-0">{notUndoableLabel(m)}</Badge>}
             </li>
           ))}
         </ul>

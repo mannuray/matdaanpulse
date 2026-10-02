@@ -90,6 +90,10 @@ export interface PersonMerge {
   merged_by: string | null;
   /** Not undone yet, and every contest it moved still belongs to this person. */
   undoable: boolean;
+  /** When it was undone (ISO); null while it stands. */
+  undone_at: string | null;
+  /** Why it can't be undone; null when it can. */
+  not_undoable_reason: 'undone' | 'contests_moved' | 'keeper_missing' | null;
 }
 
 /** One contest in a person's election history (GET /admin/persons/:id, newest first). */

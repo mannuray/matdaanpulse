@@ -149,6 +149,10 @@ export class AdminPersonMergeDto {
   /** The merging user's name; null when unknown (user deleted). */
   @Expose() merged_by: string | null;
   @Expose() undoable: boolean;
+  /** When it was undone; null while it stands. */
+  @Expose() @Transform(toIso) undone_at: string | null;
+  /** Why it can't be undone: already undone, a logged contest has moved since, or the keeper no longer exists. */
+  @Expose() not_undoable_reason: 'undone' | 'contests_moved' | 'keeper_missing' | null;
 }
 
 export class AdminPersonDto {
