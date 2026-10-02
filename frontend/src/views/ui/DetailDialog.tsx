@@ -16,7 +16,8 @@ export function DetailDialog({ open, title, onClose, header, children }: { open:
   return (
     <Dialog.Root open={open} onOpenChange={o => { if (!o) onClose(); }}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-scrim backdrop-blur-sm" />
+        {/* Same z as the content: a later-opened dialog (later in the body) then dims every earlier one. */}
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-scrim backdrop-blur-sm" />
         <Dialog.Content aria-describedby={undefined} onCloseAutoFocus={e => { e.preventDefault(); opener.current?.focus(); }}
           className="studio-root fixed left-1/2 top-1/2 z-50 flex max-h-[88vh] w-[min(760px,92vw)] -translate-x-1/2 -translate-y-1/2 flex-col rounded-tile border border-line bg-tile shadow-2xl outline-none">
           <div className="flex items-start justify-between gap-3 border-b border-line px-5 py-4">
