@@ -4,6 +4,7 @@ import { validate } from 'class-validator';
 import { PersonsService } from './persons.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { CreatePersonDto, UpdatePersonDto } from './dto/person-input.dto';
+import { PersonProfileDto } from './dto/candidate-response.dto';
 
 const person = {
   id: 'p1', name: 'Nitish Kumar', gender: 'M', education: null, date_of_birth: new Date('1951-03-01'),
@@ -359,5 +360,47 @@ describe('Person input DTOs through the ValidationPipe', () => {
     await expect(pipe.transform({ metadata: { bio: 'x' } }, { type: 'body', metatype: UpdatePersonDto })).rejects.toBeInstanceOf(BadRequestException);
     await expect(pipe.transform({ caste: 'Kurmi', religion: 'Hindu' }, { type: 'body', metatype: UpdatePersonDto }))
       .resolves.toMatchObject({ caste: 'Kurmi', religion: 'Hindu' });
+  });
+});
+
+describe('PersonsService.findWithCandidates (public profile)', () => {
+  const full = {
+    ...person, caste: 'X', religion: 'Y', states: { id: 4, name: 'Bihar' }, districts: { id: 1, name: 'Patna' },
+    candidates: [
+      { id: 'c1', name: 'Nitish Kumar', party_id: 'JDU', const_id: 'BR_VS_1_A', election_id: 'e1', is_incumbent: true,
+        age: 74, assets: BigInt(16400000), liabilities: null, criminal_cases: 0,
+        parties: { id: 'JDU', name: 'Janata Dal (United)', color: '#1fa37a', abbreviation: 'JD(U)', symbol_url: '/symbols/logos/JDU.svg', eci_symbol_url: '/symbols/eci/JDU.jpg' },
+        constituencies: { name: 'A', const_no: 1 }, elections: { name: 'Bihar VS 2025', year: 2025, type: 'VS', status: 'Finalized' },
+        results: [{ votes: 600, status: 'WON', margin: 200 }] },
+      { id: 'c0', name: 'Nitish Kumar', party_id: 'JDU', const_id: 'BR_VS2020_1_A', election_id: 'e0', is_incumbent: false,
+        age: null, assets: null, liabilities: null, criminal_cases: null, parties: null,
+        constituencies: { name: 'A', const_no: 1 }, elections: { name: 'Bihar VS 2020', year: 2020, type: 'VS', status: 'Finalized' },
+        results: [] },
+    ],
+  };
+  function make2() {
+    const prisma: any = {
+      persons: { findUnique: jest.fn().mockResolvedValue(full) },
+      results: { groupBy: jest.fn().mockResolvedValue([{ const_id: 'BR_VS_1_A', _sum: { votes: 1000 } }]) },
+    };
+    return { svc: new PersonsService(prisma, new AuditLogService(prisma)), prisma };
+  }
+
+  it('adds affidavit, vote share and party marks to each contest', async () => {
+    const { svc } = make2();
+    const out: any = await svc.findWithCandidates('p1');
+    expect(out.candidates[0]).toMatchObject({ age: 74, assets: 16400000, liabilities: null, criminal_cases: 0, vote_share: 60,
+      party_abbreviation: 'JD(U)', party_symbol_url: '/symbols/logos/JDU.svg', party_eci_symbol_url: '/symbols/eci/JDU.jpg' });
+    expect(out.candidates[1]).toMatchObject({ vote_share: null, party_abbreviation: null, party_symbol_url: null });
+  });
+
+  it('the public DTO exposes home state/district and never caste or religion', async () => {
+    const { svc } = make2();
+    const json = JSON.parse(JSON.stringify(plainToInstance(PersonProfileDto, await svc.findWithCandidates('p1'), { excludeExtraneousValues: true })));
+    expect(json.state).toEqual({ id: 4, name: 'Bihar' });
+    expect(json.district).toEqual({ id: 1, name: 'Patna' });
+    expect(json.caste).toBeUndefined();
+    expect(json.religion).toBeUndefined();
+    expect(json.candidates[0].assets).toBe(16400000);
   });
 });

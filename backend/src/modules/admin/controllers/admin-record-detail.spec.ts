@@ -136,6 +136,13 @@ describe('PersonsService.findWithCandidates (election history)', () => {
           ],
         })),
       },
+      results: {
+        groupBy: jest.fn(async () => [
+          { const_id: 's-a', _sum: { votes: 100 } },
+          { const_id: 's-b', _sum: { votes: 200 } },
+          { const_id: 's-c', _sum: { votes: 150 } },
+        ]),
+      },
     };
     const svc = new PersonsService(prisma as any, new AuditLogService(prisma as any));
     const out = map(AdminPersonDto, await svc.findWithCandidates('p1'));

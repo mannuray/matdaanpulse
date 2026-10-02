@@ -7,7 +7,7 @@ import {
 } from '../../common/exceptions';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { changedFields } from '../audit-log/audit-diff';
-import { toJsonSafe } from '../../common/util/json-safe';
+import { bigintToNumber, toJsonSafe } from '../../common/util/json-safe';
 import { auditIfPersonDeleted } from './person-orphan';
 
 /** Editable person fields accepted from the admin API (see UpdatePersonDto). */
@@ -111,6 +111,13 @@ export class PersonsService {
 
     if (!person) throw new PersonNotFoundException(id);
 
+    // Seat totals for the vote share of each contest (one grouped query).
+    const constIds = [...new Set(person.candidates.map(c => c.const_id))];
+    const totals = constIds.length
+      ? await this.prisma.results.groupBy({ by: ['const_id'], where: { const_id: { in: constIds } }, _sum: { votes: true } })
+      : [];
+    const totalByConst = new Map(totals.map(t => [t.const_id, t._sum.votes ?? 0]));
+
     const candidates = person.candidates.map((c) => {
       const r = c.results[0]; // Assuming 1:1 candidate to result mapping
       return {
@@ -132,6 +139,16 @@ export class PersonsService {
         status: r?.status || null,
         margin: r?.margin ?? 0,
         is_incumbent: c.is_incumbent,
+        age: c.age,
+        assets: bigintToNumber(c.assets),
+        liabilities: bigintToNumber(c.liabilities),
+        criminal_cases: c.criminal_cases,
+        vote_share: r && (totalByConst.get(c.const_id) ?? 0) > 0
+          ? Math.round((r.votes / totalByConst.get(c.const_id)!) * 1000) / 10
+          : null,
+        party_abbreviation: c.parties?.abbreviation ?? null,
+        party_symbol_url: c.parties?.symbol_url ?? null,
+        party_eci_symbol_url: c.parties?.eci_symbol_url ?? null,
       };
     });
 
