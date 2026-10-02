@@ -20,7 +20,7 @@ export function ImageUpload({ label, kind, ownerId, url, onChange, showFilename 
   const input = useRef<HTMLInputElement>(null);
   const [over, setOver] = useState(false);
   const { uploading, error, upload, clearError } = useImageUpload(kind, ownerId, onChange);
-  const pick = (files: FileList | null | undefined) => { const f = files?.[0]; if (f) void upload(f); };
+  const pick = (files: FileList | null | undefined) => { const f = files?.[0]; if (f && !uploading) void upload(f); };
 
   return (
     <div className="flex min-w-0 flex-col items-center gap-2 rounded-card border border-line p-3 text-center">
@@ -35,7 +35,7 @@ export function ImageUpload({ label, kind, ownerId, url, onChange, showFilename 
       >
         {url ? <img src={assetUrl(url)} alt={label} className="max-h-full max-w-full object-contain" /> : <span className="text-[11px] text-muted">None</span>}
         {uploading && (
-          <span className="absolute inset-0 flex items-center justify-center bg-card/70" aria-label="Uploading">
+          <span className="absolute inset-0 flex items-center justify-center bg-card/70" role="status" aria-label="Uploading">
             <Loader2 size={18} className="animate-spin text-accent" aria-hidden />
           </span>
         )}
@@ -43,7 +43,7 @@ export function ImageUpload({ label, kind, ownerId, url, onChange, showFilename 
       <input ref={input} type="file" accept={ACCEPT} className="sr-only" aria-label={`Upload ${label}`}
         onChange={(e) => { pick(e.target.files); e.target.value = ''; }} />
       <div className="flex gap-1.5">
-        <Button variant="outline" size="sm" disabled={uploading} onClick={() => { clearError(); input.current?.click(); }}>
+        <Button variant="outline" size="sm" disabled={uploading} aria-label={`Choose file for ${label}`} onClick={() => { clearError(); input.current?.click(); }}>
           {url ? 'Replace' : 'Upload'}
         </Button>
         {url && <Button variant="ghost" size="sm" disabled={uploading} aria-label={`Remove ${label}`} onClick={() => { clearError(); onChange(''); }}>Remove</Button>}

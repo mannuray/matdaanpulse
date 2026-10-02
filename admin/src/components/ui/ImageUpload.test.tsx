@@ -53,8 +53,49 @@ describe('ImageUpload', () => {
     await waitFor(() => expect(onChange).toHaveBeenCalledWith('https://b/d.png'));
   });
 
-  it('fileNameOf strips the Blob random suffix-free path to its last segment', () => {
+  it('fileNameOf returns the last path segment', () => {
     expect(fileNameOf('/symbols/logos/BJP.svg')).toBe('BJP.svg');
     expect(fileNameOf('https://x.public.blob.vercel-storage.com/parties/BJP/logo-Ab12.png')).toBe('logo-Ab12.png');
+  });
+
+  it('ignores a drop while an upload is in flight; the second pick does not race the first', async () => {
+    let resolve!: (v: any) => void;
+    vi.mocked(uploadImage).mockReturnValue(new Promise((r) => { resolve = r; }));
+    const onChange = vi.fn();
+    render(<ImageUpload label="Party logo" kind="party-logo" ownerId="BJP" url="" onChange={onChange} />);
+    fireEvent.drop(screen.getByTestId('image-drop'), { dataTransfer: { files: [png()] } });
+    fireEvent.drop(screen.getByTestId('image-drop'), { dataTransfer: { files: [png()] } });
+    expect(uploadImage).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('status', { name: 'Uploading' })).toBeTruthy();
+    resolve({ url: 'https://b/1.png', pathname: 'p', content_type: 'image/png', size: 1 });
+    await waitFor(() => expect(onChange).toHaveBeenCalledTimes(1));
+  });
+
+  it('ignores a result that arrives after unmount', async () => {
+    let resolve!: (v: any) => void;
+    vi.mocked(uploadImage).mockReturnValue(new Promise((r) => { resolve = r; }));
+    const err = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const onChange = vi.fn();
+    const { unmount } = render(<ImageUpload label="Party logo" kind="party-logo" ownerId="BJP" url="" onChange={onChange} />);
+    fireEvent.change(screen.getByLabelText('Upload Party logo'), { target: { files: [png()] } });
+    unmount();
+    resolve({ url: 'https://b/late.png', pathname: 'p', content_type: 'image/png', size: 1 });
+    await new Promise((r) => setTimeout(r, 0));
+    expect(onChange).not.toHaveBeenCalled();
+    expect(err).not.toHaveBeenCalled();
+    err.mockRestore();
+  });
+
+  it('ignores a result after the owner changed', async () => {
+    let resolve!: (v: any) => void;
+    vi.mocked(uploadImage).mockReturnValue(new Promise((r) => { resolve = r; }));
+    const onChange = vi.fn();
+    const { rerender } = render(<ImageUpload label="Party logo" kind="party-logo" ownerId="BJP" url="" onChange={onChange} />);
+    fireEvent.change(screen.getByLabelText('Upload Party logo'), { target: { files: [png()] } });
+    rerender(<ImageUpload label="Party logo" kind="party-logo" ownerId="INC" url="" onChange={onChange} />);
+    resolve({ url: 'https://b/late.png', pathname: 'p', content_type: 'image/png', size: 1 });
+    await new Promise((r) => setTimeout(r, 0));
+    expect(onChange).not.toHaveBeenCalled();
+    expect(screen.queryByRole('status')).toBeNull();
   });
 });
