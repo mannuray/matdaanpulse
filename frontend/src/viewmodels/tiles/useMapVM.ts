@@ -29,7 +29,8 @@ export interface MapVM {
   mapMode: MapMode;
   hexAvailable: boolean;
   lockedLabel: string | null;
-  seatInfo(id: string): { name: string; candidate: string; party: string; status: string; margin?: number; color: string; mark: string | null; type: 'GEN' | 'SC' | 'ST' | null } | null;
+  /** Tooltip facts; state is the seat's state (LS: from the PC map, VS: the election's state) when known. */
+  seatInfo(id: string): { name: string; state: string | null; candidate: string; party: string; status: string; margin?: number; color: string; mark: string | null; type: 'GEN' | 'SC' | 'ST' | null } | null;
   onLayer(l: LayerId): void;
   onMapMode(m: MapMode): void;
   onSelect(id: string): void;
@@ -91,7 +92,7 @@ export function useMapVM(): MapVM {
     seatInfo: id => {
       const s = byId.get(id);
       if (!s) return null;
-      return { name: s.name, candidate: s.candidate, party: s.party, status: s.party ? t(s.status.toLowerCase(), s.status) : t('results_pending'), margin: s.margin, color: s.partyColor, mark: s.party ? src.partyMeta.get(s.party)?.mark ?? null : null, type: s.type ?? null };
+      return { name: s.name, state: (isVS ? src.election.state?.name : s.state) || null, candidate: s.candidate, party: s.party, status: s.party ? t(s.status.toLowerCase(), s.status) : t('results_pending'), margin: s.margin, color: s.partyColor, mark: s.party ? src.partyMeta.get(s.party)?.mark ?? null : null, type: s.type ?? null };
     },
     onLayer: l => dispatch({ type: 'setLayer', layer: l }),
     onMapMode: m => dispatch({ type: 'setMapMode', mode: m }),

@@ -83,6 +83,7 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
       {info && tip && createPortal(
         <div className="studio-root pointer-events-none fixed z-30 rounded-xl border border-l-[3px] border-line border-l-[var(--seat-color)] bg-page/95 px-3 py-2 text-xs shadow-xl" style={{ left: tip.x + 14, top: tip.y - 12, '--seat-color': info.color } as CSSProperties}>
           <div className="flex items-center gap-2 font-display text-sm font-bold uppercase text-ink">{info.name}{info.type && info.type !== 'GEN' && <span className="rounded border border-line px-1 text-[10px]">{info.type}</span>}</div>
+          {info.state && <div data-tip-state className="text-[11px] text-muted">{info.state}</div>}
           {info.candidate && <div className="text-ink">{info.candidate}</div>}
           <div className="flex items-center gap-1.5 text-muted">{info.party && <PartyMark mark={info.mark} color={info.color} label={info.party} />}{info.party} · {info.status}{info.margin ? ` · +${info.margin.toLocaleString('en-IN')}` : ''}</div>
         </div>,

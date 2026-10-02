@@ -18,7 +18,7 @@ function makeVM(): MapVM {
     seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: false }]]), outline: true,
     recentSeats: new Set(), selectedSeat: null, layer: 'overview', layers: ['overview'], mapMode: 'map',
     hexAvailable: false, lockedLabel: null,
-    seatInfo: () => ({ name: 'Sandesh', candidate: 'A', party: 'JDU', status: 'Won', color: '#1FA37A', mark: null, type: null }),
+    seatInfo: () => ({ name: 'Sandesh', state: 'Bihar', candidate: 'A', party: 'JDU', status: 'Won', color: '#1FA37A', mark: null, type: null }),
     onLayer: vi.fn(), onMapMode: vi.fn(), onSelect: vi.fn(), onClearLock: vi.fn(), onFocus: vi.fn(),
   };
 }
@@ -34,6 +34,7 @@ describe('MapCanvas', () => {
     expect(tip).toBeTruthy();
     expect(container.contains(tip)).toBe(false);
     expect(tip.parentElement).toBe(document.body);
+    expect(tip.querySelector('[data-tip-state]')?.textContent).toBe('Bihar');
     expect(path.style.stroke).toBe('var(--color-ink)');
     expect(path.style.fillOpacity).toBe('1');
     fireEvent.mouseLeave(path);
