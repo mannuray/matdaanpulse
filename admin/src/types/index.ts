@@ -17,6 +17,14 @@ export interface Election {
   manifest_url: string | null;
 }
 
+/** Newest audit row of a record, from the admin detail responses. */
+export interface LastEdit {
+  at: string;
+  by: string | null;
+}
+
+export type EciRecognition = 'National' | 'State' | 'Unrecognised';
+
 export interface Party {
   id: string;
   name: string;
@@ -30,6 +38,15 @@ export interface Party {
   website: string | null;
   wikipedia_url: string | null;
   description: string | null;
+  eci_recognition?: EciRecognition | null;
+  updated_at?: string;
+  last_edit?: LastEdit | null;
+}
+
+/** GET /admin/parties/:id/usage */
+export interface PartyUsage {
+  totals: { candidates: number; elections: number; wins: number };
+  elections: { election_id: string; name: string; type: string; year: number; candidates: number; wins: number }[];
 }
 
 export interface Person {
@@ -41,6 +58,8 @@ export interface Person {
   date_of_birth: string | null;
   bio?: string | null;
   metadata?: Record<string, unknown>;
+  updated_at?: string;
+  last_edit?: LastEdit | null;
 }
 
 export interface PersonWithStats extends Person {
@@ -56,11 +75,27 @@ export interface PersonWithCandidates extends Person {
   candidates: PersonCandidate[];
 }
 
-/** Candidacy row as returned in a person's election history. */
-export interface PersonCandidate extends Candidate {
-  constituency_name?: string;
-  election_name?: string;
-  election_year?: number;
+/** One contest in a person's election history (GET /admin/persons/:id, newest first). */
+export interface PersonCandidate {
+  /** The candidate id: the row opens /candidates/:id. */
+  id: string;
+  name: string;
+  party_id: string | null;
+  party_name?: string | null;
+  party_color?: string | null;
+  election_id: string;
+  election_name?: string | null;
+  election_year?: number | null;
+  election_type?: string | null;
+  election_status?: Election['status'] | null;
+  const_id: string;
+  constituency_name?: string | null;
+  const_no?: number | null;
+  votes?: number;
+  /** results.status (WON, LOST, LEADING…); null when the seat has no result row. */
+  status?: string | null;
+  margin?: number;
+  is_incumbent: boolean;
 }
 
 export interface Candidate {
@@ -76,6 +111,31 @@ export interface Candidate {
   name: string;
   is_incumbent: boolean;
   metadata?: Record<string, unknown>;
+  updated_at?: string;
+  last_edit?: LastEdit | null;
+  /** The linked person's candidacies across elections (detail response only; null when unlinked). */
+  person_contests?: { contests: number; first_year: number | null } | null;
+}
+
+/** One candidate of a seat in GET /admin/candidates/:id/result. */
+export interface SeatRow {
+  candidate_id: string;
+  name: string;
+  party_id: string | null;
+  votes: number | null;
+  /** Percent of all votes in the seat, 1 decimal; null when no votes are recorded. */
+  share: number | null;
+  position: number | null;
+  status: string | null;
+  /** The winner's margin; for others the gap to the winner (<= 0); null when unknown. */
+  margin: number | null;
+}
+
+export interface CandidateResult {
+  declared: boolean;
+  total_votes: number;
+  candidate: SeatRow | null;
+  seat: SeatRow[];
 }
 
 export interface AuditLog {
@@ -230,10 +290,30 @@ export interface Constituency {
   district?: { id: number; name: string; code: string } | null;
   region_id: number | null;
   region?: { id: number; name: string; code: string } | null;
+  /** On the admin detail response only. */
+  state?: { id: number; name: string; code: string } | null;
   voter_turnout: number | null;
+  phase?: number | null;
+  updated_at?: string;
+  last_edit?: LastEdit | null;
   metadata: ConstituencyMetadata;
   analysis?: ConstituencyAnalysis | null;
   election?: Election;
+}
+
+/** GET /admin/constituencies/:id/history */
+export interface ConstituencyHistory {
+  volatility: { elections: number; changes: number };
+  rows: {
+    election_id: string;
+    year: number;
+    type: string;
+    winner: string | null;
+    party_id: string | null;
+    margin: number | null;
+    turnout: number | null;
+    is_current: boolean;
+  }[];
 }
 
 export interface ConstituencyMetadata {
@@ -253,8 +333,10 @@ export interface ConstituencyAnalysis {
     incumbent_party?: string;
     re_contesting?: boolean;
     switched_to?: string;
-  };
-  notes: string | null;
+  } | null;
+  notes?: string | null;
+  /** When it was last computed (ISO). */
+  updated_at?: string | null;
 }
 
 export interface ResultOverride {

@@ -7,8 +7,8 @@ import { ToastProvider } from '../context/ToastContext';
 vi.mock('../services/constituency.service', () => ({
   getAdminConstituencyDetail: vi.fn(async () => ({
     id: 'BR_VS2025_PATNA', election_id: 'e1', name: 'Patna Sahib', const_no: 142, type: 'GEN', state_id: 1,
-    district_id: 7, region_id: 3, voter_turnout: null,
-    metadata: { population: 0, literacy_pct: 61.2, urban_pct: 40, dominant_castes: 'Yadav', tags: ['urban'], phase: 2, source: 'census' },
+    district_id: 7, region_id: 3, voter_turnout: null, phase: 2,
+    metadata: { population: 0, literacy_pct: 61.2, urban_pct: 40, dominant_castes: 'Yadav', tags: ['urban'], phase: 9, source: 'census' },
   })),
   updateConstituency: vi.fn(async () => ({})),
 }));
@@ -24,7 +24,32 @@ describe('useConstituencyEditor numbers', () => {
     const { result } = renderHook(() => useConstituencyEditor('BR_VS2025_PATNA'), { wrapper });
     await waitFor(() => expect(result.current.constituency).not.toBeNull());
     expect(result.current.editDemographics.population).toBe('0');
+    // The phase column is canonical; a stale metadata.phase is ignored.
     expect(result.current.adminInfo.phase).toBe('2');
+    expect(result.current.adminInfo.type).toBe('GEN');
+  });
+
+  it('phase saves to the column (a number, or null when cleared) and never into metadata', async () => {
+    const { result } = renderHook(() => useConstituencyEditor('BR_VS2025_PATNA'), { wrapper });
+    await waitFor(() => expect(result.current.constituency).not.toBeNull());
+    act(() => result.current.setAdminInfo({ ...result.current.adminInfo, phase: '4' }));
+    await act(() => result.current.handleSave());
+    const body = (updateConstituency as any).mock.calls[0][1];
+    expect(body.phase).toBe(4);
+    expect(body.metadata).not.toHaveProperty('phase');
+    act(() => result.current.setAdminInfo({ ...result.current.adminInfo, phase: '' }));
+    await act(() => result.current.handleSave());
+    expect((updateConstituency as any).mock.calls[1][1].phase).toBeNull();
+  });
+
+  it('reservation saves type; untouched phase and type are not sent', async () => {
+    const { result } = renderHook(() => useConstituencyEditor('BR_VS2025_PATNA'), { wrapper });
+    await waitFor(() => expect(result.current.constituency).not.toBeNull());
+    act(() => result.current.setAdminInfo({ ...result.current.adminInfo, type: 'SC' }));
+    await act(() => result.current.handleSave());
+    const body = (updateConstituency as any).mock.calls[0][1];
+    expect(body.type).toBe('SC');
+    expect(body).not.toHaveProperty('phase');
   });
 
   it('saves 0 as 0, empty as null, and sends only the changed keys (the server merges metadata)', async () => {

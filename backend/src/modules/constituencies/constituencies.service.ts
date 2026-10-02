@@ -6,6 +6,8 @@ import { AnalysisContext, AnalysisStrategy } from './strategies/analysis-strateg
 import { Prisma } from '@prisma/client';
 import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFoundException } from '../../common/exceptions';
 import type { UpdateAnalysisDto } from './dto/constituency-input.dto';
+import { AuditLogService, type RecordAuditEntry } from '../audit-log/audit-log.service';
+import { changedFields } from '../audit-log/audit-diff';
 
 @Injectable()
 export class ConstituenciesService {
@@ -16,12 +18,18 @@ export class ConstituenciesService {
     private readonly cache: CacheService,
     @Inject('ANALYSIS_STRATEGIES')
     private readonly strategies: AnalysisStrategy[],
+    private readonly audit: AuditLogService,
   ) {}
+
+  private async auditUpdate(before: object, after: object, id: string, userId?: string) {
+    const diff = changedFields(before as Record<string, unknown>, after as Record<string, unknown>);
+    if (diff) await this.audit.record({ userId, action: 'CONSTITUENCY_UPDATE', entityType: 'constituency', entityId: id, ...diff });
+  }
 
   async findOneWithAnalysis(id: string) {
     const constituency = await this.prisma.constituencies.findUnique({
       where: { id },
-      include: { districts: true, regions: true, elections: true },
+      include: { districts: true, regions: true, elections: true, states: true },
     });
     if (!constituency) throw new ConstituencyNotFoundException(id);
 
@@ -34,6 +42,7 @@ export class ConstituenciesService {
       district: constituency.districts,
       region: constituency.regions,
       election: constituency.elections,
+      state: constituency.states,
       analysis: analysis || null,
     };
   }
@@ -80,30 +89,98 @@ export class ConstituenciesService {
     return paginated(data, { page, limit, total });
   }
 
-  async updateConstituency(id: string, patch: any) {
+  /**
+   * `phase` is the only store of the polling phase (migration 017), so a `phase` key in a metadata patch is
+   * dropped and the service never writes metadata.phase; the save itself still succeeds. A stored legacy key is
+   * kept as it was: migration 017 strips the valid ones it copied, and leaves only unparseable values, which no
+   * run ever copies into the column.
+   */
+  private static withoutPhase(patch: Record<string, any> | null | undefined): Record<string, any> {
+    const { phase: _phase, ...rest } = (patch || {}) as Record<string, any>;
+    return rest;
+  }
+
+  /** `phase` is the only store of the polling phase (migration 017); `type` is the reservation. */
+  async updateConstituency(id: string, patch: any, userId?: string) {
     const constituency = await this.prisma.constituencies.findUnique({ where: { id } });
     if (!constituency) throw new ConstituencyNotFoundException(id);
-    return this.prisma.constituencies.update({
+    const updated = await this.prisma.constituencies.update({
       where: { id },
       data: {
         district_id: patch.district_id,
         region_id: patch.region_id,
         const_no: patch.const_no,
-        metadata: patch.metadata ? { ...(constituency.metadata as any || {}), ...patch.metadata } : undefined,
+        phase: patch.phase,
+        type: patch.type,
+        metadata: patch.metadata
+          ? { ...(constituency.metadata as any || {}), ...ConstituenciesService.withoutPhase(patch.metadata) }
+          : undefined,
       }
     });
+    await this.auditUpdate(constituency, updated, id, userId);
+    return updated;
   }
 
-  async updateMetadata(id: string, patch: any) {
+  async updateMetadata(id: string, patch: any, userId?: string) {
     const constituency = await this.prisma.constituencies.findUnique({ where: { id } });
     if (!constituency) throw new ConstituencyNotFoundException(id);
-    return this.prisma.constituencies.update({
+    const updated = await this.prisma.constituencies.update({
       where: { id },
-      data: { metadata: { ...(constituency.metadata as any || {}), ...patch } }
+      data: { metadata: { ...(constituency.metadata as any || {}), ...ConstituenciesService.withoutPhase(patch) } }
     });
+    await this.auditUpdate(constituency, updated, id, userId);
+    return updated;
   }
 
-  async bulkTag(ids: string[], addTags?: string[], removeTags?: string[]) {
+  /**
+   * Seat history from results, newest first: the seats of every election of the same type with the same state
+   * and `const_no` (the columns, so an id that `extractConstNo` cannot parse still works). Independent of
+   * constituency_analysis. A seat with no state returns only itself. Volatility counts party changes between
+   * consecutive elections that have a winner.
+   */
+  async history(id: string) {
+    const seat = await this.prisma.constituencies.findUnique({
+      where: { id },
+      select: { id: true, state_id: true, const_no: true, elections: { select: { type: true } } },
+    });
+    if (!seat) throw new ConstituencyNotFoundException(id);
+    const matches = await this.prisma.constituencies.findMany({
+      where: seat.state_id === null
+        ? { id }
+        : { state_id: seat.state_id, const_no: seat.const_no, elections: { type: seat.elections.type } },
+      select: {
+        id: true,
+        election_id: true,
+        voter_turnout: true,
+        elections: { select: { year: true, type: true } },
+        results: {
+          where: { status: { in: ['WON', 'LEADING'] } },
+          select: { status: true, margin: true, candidates: { select: { name: true, party_id: true } } },
+        },
+      },
+    });
+    const rows = matches
+      .map((m) => {
+        const win = m.results.find((r) => r.status === 'WON') ?? m.results.find((r) => r.status === 'LEADING');
+        return {
+          election_id: m.election_id,
+          year: m.elections.year,
+          type: m.elections.type,
+          winner: win?.candidates.name ?? null,
+          party_id: win?.candidates.party_id ?? null,
+          margin: win?.margin ?? null,
+          turnout: m.voter_turnout === null ? null : Number(m.voter_turnout),
+          is_current: m.id === id,
+        };
+      })
+      .sort((a, b) => b.year - a.year);
+    const parties = rows.filter((r) => r.party_id !== null).map((r) => r.party_id);
+    const changes = parties.filter((p, i) => i > 0 && p !== parties[i - 1]).length;
+    return { volatility: { elections: parties.length, changes }, rows };
+  }
+
+  /** One CONSTITUENCY_UPDATE audit row per seat whose tags changed, written after the commit. */
+  async bulkTag(ids: string[], addTags?: string[], removeTags?: string[], userId?: string) {
     const constituencies = await this.prisma.constituencies.findMany({ where: { id: { in: ids } } });
     const updates = constituencies.map(c => {
       const meta = (c.metadata as any) || {};
@@ -116,7 +193,15 @@ export class ConstituenciesService {
       });
     });
     // Batch inside a transaction to avoid N parallel connections
-    return this.prisma.$transaction(updates);
+    const updated = await this.prisma.$transaction(updates);
+    const before = new Map(constituencies.map((c) => [c.id, c]));
+    const entries: RecordAuditEntry[] = [];
+    for (const after of updated) {
+      const diff = changedFields(before.get(after.id) as any, after as any);
+      if (diff) entries.push({ userId, action: 'CONSTITUENCY_UPDATE', entityType: 'constituency', entityId: after.id, ...diff });
+    }
+    await this.audit.recordMany(entries);
+    return updated;
   }
 
   async getAnalysis(electionId: string) {

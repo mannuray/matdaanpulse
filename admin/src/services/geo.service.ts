@@ -1,5 +1,5 @@
 import { apiFetch, type PaginatedResponse } from './api-client';
-import type { State, Party } from '../types';
+import type { State, Party, PartyUsage, EciRecognition } from '../types';
 
 export async function getStates() {
   return (await apiFetch<State[]>('/states')) || [];
@@ -21,12 +21,18 @@ export function getParty(id: string) {
   return apiFetch<Party>(`/admin/parties/${id}`);
 }
 
-export function getPartiesPaginated(page = 1, limit = 25, q?: string, electionId?: string, stateId?: number) {
+/** `eciRecognition`: a recognition value, or 'none' for parties with none set. */
+export function getPartiesPaginated(page = 1, limit = 25, q?: string, electionId?: string, stateId?: number, eciRecognition?: EciRecognition | 'none') {
   const params = new URLSearchParams({ page: String(page), limit: String(limit) });
   if (q) params.set('q', q);
   if (electionId) params.set('election_id', electionId);
   if (stateId) params.set('state_id', String(stateId));
+  if (eciRecognition) params.set('eci_recognition', eciRecognition);
   return apiFetch<PaginatedResponse<Party & { candidate_count?: number }>>(`/parties?${params.toString()}`);
+}
+
+export function getPartyUsage(id: string) {
+  return apiFetch<PartyUsage>(`/admin/parties/${id}/usage`);
 }
 
 export function createParty(data: { id: string; name: string; color?: string; symbol_url?: string; abbreviation?: string; leader_name?: string; founded_year?: number; headquarters?: string; website?: string }) {

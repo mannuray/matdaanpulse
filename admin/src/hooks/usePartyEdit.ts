@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getParty, updateParty } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
-import { ApiError, fieldErrorMap } from '../services/api-client';
-import type { Party } from '../types';
+import { fieldErrorMap } from '../services/api-client';
+import { blankToNull } from '../utils/record-payload';
+import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
+import type { EciRecognition, Party } from '../types';
 
 export interface PartyForm {
   name: string;
@@ -16,11 +18,13 @@ export interface PartyForm {
   website: string;
   wikipedia_url: string;
   description: string;
+  /** '' = not set (saved as null). */
+  eci_recognition: EciRecognition | '';
 }
 
 const EMPTY_FORM: PartyForm = {
   name: '', color: '', symbol_url: '', eci_symbol_url: '', abbreviation: '', leader_name: '',
-  founded_year: '', headquarters: '', website: '', wikipedia_url: '', description: '',
+  founded_year: '', headquarters: '', website: '', wikipedia_url: '', description: '', eci_recognition: '',
 };
 
 const toForm = (data: Party): PartyForm => ({
@@ -35,13 +39,14 @@ const toForm = (data: Party): PartyForm => ({
   website: data.website || '',
   wikipedia_url: data.wikipedia_url || '',
   description: data.description || '',
+  eci_recognition: data.eci_recognition || '',
 });
 
 /** Empty, or a 4-digit year. */
 export const isValidYear = (v: string) => v.trim() === '' || /^\d{4}$/.test(v.trim());
 
-/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
-export type LoadError = 'not_found' | 'failed';
+/** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
+export type LoadError = RecordLoadErrorKind;
 
 /**
  * CONTROLLER: Party Edit (MVC)
@@ -71,8 +76,10 @@ export function usePartyEdit(id?: string) {
       setForm(next);
       setSaved(next);
     } catch (err) {
-      setLoadError(err instanceof ApiError && err.status === 404 ? 'not_found' : 'failed');
-      toastError(err, 'Failed to load party data');
+      const kind = recordLoadErrorKind(err);
+      setLoadError(kind);
+      // "Not found" is said on the page ("Party not found"); only other failures toast.
+      if (kind === 'failed') toastError(err, 'Failed to load party data');
     } finally {
       setLoading(false);
     }
@@ -89,7 +96,9 @@ export function usePartyEdit(id?: string) {
     setFieldErrors({});
     try {
       const year = submitted.founded_year.trim();
-      await updateParty(id, { ...submitted, founded_year: year ? Number(year) : null });
+      // Emptied fields clear the column (null), never store ''.
+      // Name is required (Save is disabled without it), so it is sent as typed.
+      await updateParty(id, { ...blankToNull(submitted), name: submitted.name, founded_year: year ? Number(year) : null });
       toast('Party profile updated');
       // The submitted values are now the saved baseline; edits typed while saving stay dirty.
       setSaved(submitted);
@@ -113,7 +122,7 @@ export function usePartyEdit(id?: string) {
   };
 
   const dirty = JSON.stringify(form) !== JSON.stringify(saved);
-  /** Drop unsaved edits (panel Cancel). */
+  /** Drop unsaved edits (Cancel). */
   const reset = () => { setForm(saved); setFieldErrors({}); };
 
   return {

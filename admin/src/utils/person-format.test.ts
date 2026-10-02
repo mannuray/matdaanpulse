@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { genderLabel, normalizeGender } from './person-format';
+import { contestsLabel, genderLabel, normalizeGender } from './person-format';
 import { PersonService } from '../services/person.service';
 
 describe('person gender', () => {
@@ -21,5 +21,13 @@ describe('person gender', () => {
   it('prepareFormState loads a legacy "M" as Male so the select matches', () => {
     const form = PersonService.prepareFormState({ id: 'p1', name: 'A', photo_url: null, gender: 'M', education: null, date_of_birth: null });
     expect(form.gender).toBe('Male');
+  });
+});
+
+describe('contestsLabel', () => {
+  it('"N contests · first YYYY", singular for one, no first year without one', () => {
+    expect(contestsLabel(5, 2010)).toBe('5 contests · first 2010');
+    expect(contestsLabel(1, 2025)).toBe('1 contest · first 2025');
+    expect(contestsLabel(0, null)).toBe('0 contests');
   });
 });

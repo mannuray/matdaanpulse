@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AuditLogModule } from '../audit-log/audit-log.module';
 import { ConstituenciesController } from './constituencies.controller';
 import { ConstituenciesService } from './constituencies.service';
 import { DominanceStrategy } from './strategies/dominance.strategy';
@@ -10,6 +11,7 @@ import { ElectoralRevisionStrategy } from './strategies/electoral-revision.strat
 import { SeatHistoryStrategy } from './strategies/seat-history.strategy';
 
 @Module({
+  imports: [AuditLogModule],
   controllers: [ConstituenciesController],
   providers: [
     ConstituenciesService,

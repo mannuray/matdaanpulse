@@ -6,7 +6,8 @@ import {
 import { getPersons, createPerson } from '../services/person.api';
 import { getParties } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
-import { ApiError } from '../services/api-client';
+import { fieldErrorMap } from '../services/api-client';
+import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
 import type { Candidate, Party, PersonWithStats } from '../types';
 
 export interface CandidateForm {
@@ -19,10 +20,15 @@ export interface CandidateForm {
   assets: string;
 }
 
+/** The record page's form: the create fields plus the Incumbent toggle (a new candidate is never an incumbent). */
+export interface CandidateEditForm extends CandidateForm {
+  is_incumbent: boolean;
+}
+
 /** Independents use the real `IND` party row (seeds, and migration 001's unique index keyed on party_id <> 'IND'). */
 export const INDEPENDENT = 'IND';
 
-const EMPTY_FORM: CandidateForm = { name: '', party_id: '', age: '', gender: '', education: '', criminal_cases: '', assets: '' };
+const EMPTY_FORM: CandidateEditForm = { name: '', party_id: '', is_incumbent: false, age: '', gender: '', education: '', criminal_cases: '', assets: '' };
 
 /** Age / criminal cases: empty, or a whole number of 0 or more. */
 export const isWholeNumberOrEmpty = (v: string | number) => {
@@ -51,7 +57,7 @@ export function candidateMetadata(f: CandidateForm): Record<string, unknown> {
   };
 }
 
-const toForm = (c: Candidate): CandidateForm => {
+const toForm = (c: Candidate): CandidateEditForm => {
   const meta = (c.metadata || {}) as Record<string, unknown>;
   // Everything as text, so retyping a stored value (50 → "50") does not count as an edit.
   const text = (v: unknown) => (v === null || v === undefined ? '' : String(v));
@@ -59,6 +65,7 @@ const toForm = (c: Candidate): CandidateForm => {
     name: c.name || '',
     // A stored null party is shown as Independent; it is written as IND only if the user saves.
     party_id: c.party_id || INDEPENDENT,
+    is_incumbent: !!c.is_incumbent,
     age: text(meta.age),
     gender: text(meta.gender),
     education: text(meta.education),
@@ -67,8 +74,8 @@ const toForm = (c: Candidate): CandidateForm => {
   };
 };
 
-/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
-export type LoadError = 'not_found' | 'failed';
+/** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
+export type LoadError = RecordLoadErrorKind;
 
 /**
  * CONTROLLER: Candidate Edit (MVC)
@@ -83,10 +90,11 @@ export function useCandidateEdit(id?: string) {
   const [loading, setLoading] = useState(!!id);
   const [loadError, setLoadError] = useState<LoadError | null>(null);
   const [saving, setSaving] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   // The photo belongs to the linked person; it is shown read-only, never sent here.
-  const [form, setForm] = useState<CandidateForm>(EMPTY_FORM);
-  const [saved, setSaved] = useState<CandidateForm>(EMPTY_FORM);
+  const [form, setForm] = useState<CandidateEditForm>(EMPTY_FORM);
+  const [saved, setSaved] = useState<CandidateEditForm>(EMPTY_FORM);
   const formRef = useRef(form);
   formRef.current = form;
 
@@ -115,8 +123,10 @@ export function useCandidateEdit(id?: string) {
       // Unlinked: start the person search with the candidate's name (the old table "Find" link).
       setPersonSearch(c.person_id ? '' : c.name);
     } catch (err) {
-      setLoadError(err instanceof ApiError && err.status === 404 ? 'not_found' : 'failed');
-      toastError(err, 'Failed to load candidate data');
+      const kind = recordLoadErrorKind(err);
+      setLoadError(kind);
+      // "Not found" is said on the page ("Candidate not found"); only other failures toast.
+      if (kind === 'failed') toastError(err, 'Failed to load candidate data');
     } finally {
       setLoading(false);
     }
@@ -131,10 +141,13 @@ export function useCandidateEdit(id?: string) {
     if (!id || !form.name.trim() || !candidateNumbersValid(form)) return false;
     const submitted = form;
     setSaving(true);
+    setFieldErrors({});
     try {
       await updateCandidate(id, {
         name: submitted.name,
         party_id: submitted.party_id || INDEPENDENT,
+        is_incumbent: submitted.is_incumbent,
+        // Emptied affidavit fields go out as null (never '' or Number('') = 0).
         metadata: {
           // Keep keys this form does not edit (e.g. affidavit links from the seed).
           ...(candidate?.metadata ?? {}),
@@ -155,6 +168,7 @@ export function useCandidateEdit(id?: string) {
       } catch { /* saved fine; the list refresh and next open will show server state */ }
       return true;
     } catch (err) {
+      setFieldErrors(fieldErrorMap(err));
       toastError(err, 'Failed to update profile');
       return false;
     } finally {
@@ -232,9 +246,10 @@ export function useCandidateEdit(id?: string) {
 
   const dirty = JSON.stringify(form) !== JSON.stringify(saved);
   /** Drop unsaved edits (panel Cancel). */
-  const reset = () => setForm(saved);
+  const reset = () => { setForm(saved); setFieldErrors({}); };
 
   return {
+    fieldErrors,
     candidate, parties, loading, loadError, saving, form, setForm, dirty, reset, refresh: loadData,
     personSearch, setPersonSearch, personResults, isLinking,
     handleSave, linkToPerson, createMasterRecord, unlink

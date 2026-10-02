@@ -53,8 +53,12 @@ describe('Audit logs page', () => {
     renderAt();
     await within(table()).findByText('Priya S');
     const options = (label: string) => within(screen.getByLabelText(label)).getAllByRole('option').map((o) => o.textContent);
-    expect(options('Action')).toEqual(['Any action', 'Result override', 'Seat save (bulk)', 'Seat lock take-over']);
-    expect(options('Entity')).toEqual(['Any entity', 'Result', 'Election', 'Seat']);
+    expect(options('Action')).toEqual([
+      'Any action', 'Result override', 'Seat save (bulk)', 'Seat lock take-over',
+      'Party created', 'Party edited', 'Person edited', 'Persons merged', 'Candidate created', 'Candidate edited',
+      'Candidate linked to person', 'Candidate unlinked', 'Seat edited',
+    ]);
+    expect(options('Entity')).toEqual(['Any entity', 'Result', 'Election', 'Seat', 'Party', 'Person', 'Candidate']);
     fireEvent.change(screen.getByLabelText('Action'), { target: { value: 'SEAT_LOCK_TAKEOVER' } });
     await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: 'SEAT_LOCK_TAKEOVER', entity_type: '', from: '', to: '' }));
   });

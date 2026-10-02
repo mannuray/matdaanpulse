@@ -5,6 +5,9 @@ import {
   CandidateNotFoundException, ConstituencyNotFoundException, ElectionFinalizedException, ElectionNotFoundException, PersonNotFoundException,
 } from '../../common/exceptions';
 import { ResultChangeNotifier } from '../live/result-change-notifier';
+import { AuditLogService } from '../audit-log/audit-log.service';
+import { changedFields, createdFields } from '../audit-log/audit-diff';
+import { seatResult } from './seat-result';
 import type { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
 @Injectable()
@@ -14,9 +17,11 @@ export class CandidatesService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly notifier: ResultChangeNotifier,
+    private readonly audit: AuditLogService,
   ) {}
 
-  findAll(filters?: { election_id?: string; const_id?: string }, take = 1000) {
+  /** `includeMetadata` is for the admin list only (age, criminal cases); the public list never selects it. */
+  findAll(filters?: { election_id?: string; const_id?: string }, take = 1000, includeMetadata = false) {
     return this.prisma.candidates.findMany({
       where: {
         election_id: filters?.election_id,
@@ -29,6 +34,9 @@ export class CandidatesService {
         party_id: true,
         const_id: true,
         is_incumbent: true,
+        // The admin list filters on the person link; the public summary also reports whether a person record exists.
+        person_id: true,
+        ...(includeMetadata ? { metadata: true } : {}),
         parties: {
           select: {
             id: true,
@@ -71,6 +79,27 @@ export class CandidatesService {
     return candidate;
   }
 
+  /** A person's candidacies across elections: the count and the earliest election year (null with none). */
+  async personContests(personId: string): Promise<{ contests: number; first_year: number | null }> {
+    const rows = await this.prisma.candidates.findMany({ where: { person_id: personId }, select: { elections: { select: { year: true } } } });
+    const years = rows.map((r) => r.elections.year);
+    return { contests: rows.length, first_year: years.length ? Math.min(...years) : null };
+  }
+
+  /** The candidate's result in its seat plus every candidate of that seat (see `seatResult` in seat-result.ts). */
+  async seatResult(id: string) {
+    const candidate = await this.prisma.candidates.findUnique({
+      where: { id },
+      select: { id: true, const_id: true, election_id: true, elections: { select: { status: true } } },
+    });
+    if (!candidate) throw new CandidateNotFoundException(id);
+    const seat = await this.prisma.candidates.findMany({
+      where: { const_id: candidate.const_id, election_id: candidate.election_id },
+      select: { id: true, name: true, party_id: true, results: { select: { votes: true, status: true, margin: true }, take: 1 } },
+    });
+    return seatResult(candidate.id, candidate.elections.status === 'Finalized', seat);
+  }
+
   findByName(name: string, election_id?: string, limit = 20) {
     return this.prisma.candidates.findMany({
       where: {
@@ -98,7 +127,7 @@ export class CandidatesService {
    * After the commit the same steps as a result override run (live-version memo, cache purge, admin SSE event),
    * so the new row shows up; a failure there is logged and never fails the request.
    */
-  async create(data: CreateCandidateDto) {
+  async create(data: CreateCandidateDto, userId?: string) {
     const { candidate, result } = await this.prisma.$transaction(async (tx) => {
       const election = await tx.elections.findUnique({ where: { id: data.election_id }, select: { status: true } });
       if (!election) throw new ElectionNotFoundException(data.election_id);
@@ -121,6 +150,10 @@ export class CandidatesService {
           margin: 0,
         },
       });
+      await this.audit.record(
+        { userId, action: 'CANDIDATE_CREATE', entityType: 'candidate', entityId: candidate.id, newValue: createdFields(candidate) },
+        tx,
+      );
       return { candidate, result };
     });
 
@@ -136,16 +169,19 @@ export class CandidatesService {
     return candidate;
   }
 
-  async update(id: string, data: UpdateCandidateDto) {
+  async update(id: string, data: UpdateCandidateDto, userId?: string) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id } });
     if (!candidate) throw new CandidateNotFoundException(id);
-    return this.prisma.candidates.update({
+    const updated = await this.prisma.candidates.update({
       where: { id },
       data: data as Prisma.candidatesUncheckedUpdateInput,
     });
+    const diff = changedFields(candidate, updated);
+    if (diff) await this.audit.record({ userId, action: 'CANDIDATE_UPDATE', entityType: 'candidate', entityId: id, ...diff });
+    return updated;
   }
 
-  async linkPerson(candidateId: string, personId: string) {
+  async linkPerson(candidateId: string, personId: string, userId?: string) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id: candidateId } });
     if (!candidate) throw new CandidateNotFoundException(candidateId);
     const person = await this.prisma.persons.findUnique({ where: { id: personId } });
@@ -163,18 +199,31 @@ export class CandidatesService {
       }
     });
 
-    return this.prisma.candidates.update({
+    const updated = await this.prisma.candidates.update({
       where: { id: candidateId },
       data: { person_id: personId },
     });
+    // Re-linking the same person changes nothing, so it leaves no audit row.
+    if (candidate.person_id !== personId) await this.audit.record({
+      userId, action: 'CANDIDATE_LINK_PERSON', entityType: 'candidate', entityId: candidateId,
+      oldValue: { person_id: candidate.person_id }, newValue: { person_id: personId },
+    });
+    return updated;
   }
 
-  async unlinkPerson(candidateId: string) {
+  async unlinkPerson(candidateId: string, userId?: string) {
     const candidate = await this.prisma.candidates.findUnique({ where: { id: candidateId } });
     if (!candidate) throw new CandidateNotFoundException(candidateId);
-    return this.prisma.candidates.update({
+    // Already unlinked: nothing changes, so no write and no audit row (it would read null → null).
+    if (candidate.person_id === null) return candidate;
+    const updated = await this.prisma.candidates.update({
       where: { id: candidateId },
       data: { person_id: null },
     });
+    await this.audit.record({
+      userId, action: 'CANDIDATE_UNLINK_PERSON', entityType: 'candidate', entityId: candidateId,
+      oldValue: { person_id: candidate.person_id }, newValue: { person_id: null },
+    });
+    return updated;
   }
 }

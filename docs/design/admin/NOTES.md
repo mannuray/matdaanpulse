@@ -8,6 +8,20 @@ files here are the Stitch output with those operations applied locally, so treat
 
 Every number shown in these screens is a placeholder. Real values come from the API.
 
+## Record pages: Stitch items dropped (2026-10)
+
+The party, person, candidate and constituency record screens (`*-record.*`) were built as `components/record/RecordPage`
+pages, without these Stitch items (plan `docs/superpowers/plans/2026-10-02-admin-record-pages.md`, Decision 5):
+- Settings, Documentation and "Cluster" in the sidebar.
+- The "Chief Returning Officer" user label.
+- ALL-CAPS group labels (sentence case instead).
+- "Archive party".
+- "Created by" as a separate field (replaced by "Last edited by", read from the audit log).
+- ECI candidate serial, nomination date and a per-candidate "Certified" mark.
+- "View full archive".
+- "Voter elasticity" as a label (replaced by the line "Party changed K times in N elections").
+- Party "ECI registration" became the ECI recognition field (National / State / Unrecognised).
+
 ## Fix in code (not in the Stitch screens)
 
 ### Live console (`live-console.*`)
@@ -50,6 +64,15 @@ Every number shown in these screens is a placeholder. Real values come from the 
 - Small test gaps: NOTA margin clamp, self-take-over audit, controller-level HTTP tests.
 - Backend hardening: Lua `type(parsed)=='table'` guard; `forceSet` via `SET … GET`; 503 message rewritten by the filter (clients key on `RESULT_6003`).
 - Sidebar not responsive (desktop-only by spec); admin bundle > 500 kB (chunk warning).
+
+### Record pages open follow-ups (2026-10)
+- `seed_party_recognition.sql` and `seed_election_result_dates.sql` fill only empty values but run on every `setup.sh`
+  (each deploy), so a recognition or result date cleared in the admin comes back. Fix: run one-off data fills once,
+  gated by a marker (for example a row in a small `seed_runs` table).
+- Pre-existing: `seed_tn_districts_regions.sql` rewrites `district_id` on TN VS seats unconditionally, and its
+  overlapping ranges (Vellore) can change a row and change it back in one run. So each deploy reverts admin district
+  edits on those seats and moves their `updated_at` ("Last updated" on the record page). Fix: only fill NULLs, or the
+  same run-once marker.
 
 ### Phase 3 open follow-ups
 - The dashboard activity row "saved N results" lacks the seat name.

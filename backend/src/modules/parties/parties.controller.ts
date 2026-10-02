@@ -13,14 +13,15 @@ export class PartiesController {
 
   @Get()
   @UseInterceptors(new MapToDtoInterceptor(PartySummaryDto))
-  async findAll(@Query() { page, limit, q, election_id, state_id }: PartiesQueryDto) {
-    if (page || limit || election_id || state_id) {
+  async findAll(@Query() { page, limit, q, election_id, state_id, eci_recognition }: PartiesQueryDto) {
+    if (page || limit || election_id || state_id || eci_recognition) {
       const result = await this.partiesService.findPaginated(
         page ?? 1,
         limit ?? 25,
         q,
         election_id,
         state_id,
+        eci_recognition,
       );
       return paginated(
         result.data.map((p) => Object.assign(new PartySummaryDto(), p)),

@@ -27,6 +27,8 @@ export function DataTable<T>({ label, columns, rows, rowKey, selectedKey, onRowC
     if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); onRowClick?.(row); }
   };
   const onClick = (e: MouseEvent<HTMLTableRowElement>, row: T) => {
+    // React bubbles clicks out of portals (menus, dialogs opened from a cell); those are not row clicks.
+    if (!e.currentTarget.contains(e.target as Node)) return;
     const inner = (e.target as Element).closest('button,a,input,select,textarea,label,[data-row-ignore]');
     if (inner && inner !== e.currentTarget && e.currentTarget.contains(inner)) return;
     onRowClick?.(row);

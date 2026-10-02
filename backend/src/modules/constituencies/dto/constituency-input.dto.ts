@@ -1,6 +1,7 @@
-import { IsString, IsOptional, IsInt, IsObject, IsArray, MaxLength, Min, ArrayMaxSize } from 'class-validator';
+import { IsString, IsOptional, IsInt, IsObject, IsArray, MaxLength, Min, Max, ArrayMaxSize, IsIn, ValidateIf } from 'class-validator';
+import { Transform } from 'class-transformer';
 import { IsUuidLike } from '../../../common/validation/uuid-like';
-import { MAX_IDS_PER_REQUEST } from '../../../common/validation/dto-helpers';
+import { emptyToNull, MAX_IDS_PER_REQUEST } from '../../../common/validation/dto-helpers';
 
 /** Request-body DTOs (moved out of admin/ so domain services do not depend on the admin module). */
 
@@ -13,6 +14,14 @@ export class UpdateConstituencyDto {
 
   @IsOptional() @IsInt() @Min(1)
   const_no?: number;
+
+  /** Polling phase (the column, not metadata.phase), 1–20 as in migration 017's copy; null clears it. */
+  @IsOptional() @IsInt() @Min(1) @Max(20)
+  phase?: number | null;
+
+  /** Reservation. The column is NOT NULL, so null is rejected (only "not sent" is optional). */
+  @ValidateIf((_, v) => v !== undefined) @IsIn(['GEN', 'SC', 'ST'])
+  type?: 'GEN' | 'SC' | 'ST';
 
   @IsOptional() @IsObject()
   metadata?: Record<string, unknown>;
@@ -37,16 +46,17 @@ export class ComputeAnalysisDto {
   manifest?: Record<string, unknown>;
 }
 
+/** Emptied text fields are saved as null, not ''. */
 export class UpdateAnalysisDto {
-  @IsOptional() @IsString() @MaxLength(20)
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
   dominance?: string | null;
 
-  @IsOptional() @IsString() @MaxLength(20)
+  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
   dominance_party?: string | null;
 
   @IsOptional() @IsObject()
   incumbency?: Record<string, unknown>;
 
-  @IsOptional() @IsString()
+  @IsOptional() @Transform(emptyToNull) @IsString()
   notes?: string | null;
 }

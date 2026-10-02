@@ -10,8 +10,15 @@ const log = (over: Partial<AuditLog>): AuditLog => ({
 
 describe('audit vocabulary', () => {
   it('lists exactly the actions and entities the backend writes', () => {
-    expect(AUDIT_ACTIONS.map((a) => a.value)).toEqual(['RESULT_OVERRIDE', 'RESULT_BULK_OVERRIDE', 'SEAT_LOCK_TAKEOVER']);
-    expect(AUDIT_ENTITIES.map((e) => e.value)).toEqual(['result', 'election', 'constituency']);
+    expect(AUDIT_ACTIONS.map((a) => a.value)).toEqual([
+      'RESULT_OVERRIDE', 'RESULT_BULK_OVERRIDE', 'SEAT_LOCK_TAKEOVER',
+      'PARTY_CREATE', 'PARTY_UPDATE', 'PERSON_UPDATE', 'PERSON_MERGE', 'CANDIDATE_CREATE', 'CANDIDATE_UPDATE',
+      'CANDIDATE_LINK_PERSON', 'CANDIDATE_UNLINK_PERSON', 'CONSTITUENCY_UPDATE',
+    ]);
+    expect(AUDIT_ENTITIES.map((e) => e.value)).toEqual(['result', 'election', 'constituency', 'party', 'person', 'candidate']);
+    expect(actionLabel('PERSON_MERGE')).toBe('Persons merged');
+    expect(actionLabel('CANDIDATE_LINK_PERSON')).toBe('Candidate linked to person');
+    expect(actionLabel('CONSTITUENCY_UPDATE')).toBe('Seat edited');
     expect(isAuditAction('SEAT_LOCK_TAKEOVER')).toBe(true);
     expect(isAuditAction('MANIFEST_PUBLISH')).toBe(false);
     expect(isAuditEntity('constituency')).toBe(true);

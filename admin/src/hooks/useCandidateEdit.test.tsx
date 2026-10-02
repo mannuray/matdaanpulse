@@ -35,6 +35,17 @@ describe('useCandidateEdit save payload', () => {
     const [, payload] = vi.mocked(updateCandidate).mock.calls[0];
     expect(payload).not.toHaveProperty('photo_url');
     expect(payload.metadata).toEqual({ affidavit_url: 'https://x/a.pdf', age: null, gender: null, education: null, criminal_cases: 0, assets: null });
+    expect(payload.is_incumbent).toBe(false);
+  });
+
+  it('the Incumbent toggle is part of the form: it makes the form dirty and is saved', async () => {
+    const { result } = renderHook(() => useCandidateEdit('c1'), { wrapper });
+    await waitFor(() => expect(result.current.candidate).not.toBeNull());
+    expect(result.current.form.is_incumbent).toBe(false);
+    act(() => result.current.setForm({ ...result.current.form, is_incumbent: true }));
+    expect(result.current.dirty).toBe(true);
+    await act(() => result.current.handleSave());
+    expect(vi.mocked(updateCandidate).mock.calls[0][1]).toEqual(expect.objectContaining({ is_incumbent: true }));
   });
 
   it('is clean after load, pre-fills the person search with the name while unlinked, and reset drops edits', async () => {

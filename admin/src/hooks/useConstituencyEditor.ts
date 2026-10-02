@@ -2,26 +2,40 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { getAdminConstituencyDetail, updateConstituency } from '../services/constituency.service';
 import { getDistricts, getRegions } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
-import { ApiError, fieldErrorMap } from '../services/api-client';
+import { fieldErrorMap } from '../services/api-client';
 import { parseSeatNumber, toOptionalNumber } from '../utils/numbers';
+import { blankToNull } from '../utils/record-payload';
+import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
 import type { Constituency } from '../types';
 
 export const SEAT_NUMBER_ERROR = 'Enter a whole number, 1 or more';
 export const POPULATION_ERROR = 'Enter a whole number, 0 or more';
 export const PERCENT_ERROR = 'Enter a number from 0 to 100, with at most one decimal';
+export const PHASE_ERROR = 'Enter a phase from 1 to 20';
+
+/** Reservation (`constituencies.type`). */
+export type Reservation = Constituency['type'];
+export const RESERVATIONS: { value: Reservation; label: string }[] = [
+  { value: 'GEN', label: 'General (GEN)' },
+  { value: 'SC', label: 'Scheduled Caste (SC)' },
+  { value: 'ST', label: 'Scheduled Tribe (ST)' },
+];
+/** Polling phases the server accepts (UpdateConstituencyDto). */
+export const MAX_PHASE = 20;
 
 export interface Demographics {
   population: string; literacy_pct: string; urban_pct: string; sc_st_pct: string;
   dominant_castes: string; religions: string;
 }
+/** Seat fields stored in columns. `phase` is the `phase` column (not metadata.phase); `type` is the reservation. */
 export interface AdminInfo {
-  district_id: string | number; region_id: string | number; const_no: string | number; phase: string | number;
+  district_id: string | number; region_id: string | number; const_no: string | number; phase: string | number; type: Reservation;
 }
 interface Snapshot { demo: Demographics; admin: AdminInfo; tags: string[] }
 
 const EMPTY: Snapshot = {
   demo: { population: '', literacy_pct: '', urban_pct: '', sc_st_pct: '', dominant_castes: '', religions: '' },
-  admin: { district_id: '', region_id: '', const_no: '', phase: '' },
+  admin: { district_id: '', region_id: '', const_no: '', phase: '', type: 'GEN' },
   tags: [],
 };
 
@@ -30,7 +44,13 @@ const isPercent = (v: string) => {
   const t = v.trim();
   return /^\d+(\.\d)?$/.test(t) && Number(t) <= 100;
 };
-const textOrNull = (v: string | number) => (String(v).trim() === '' ? null : String(v));
+/** Phase text → 1–20, null when blank, undefined when invalid. */
+const parsePhase = (v: string | number): number | null | undefined => {
+  const t = String(v).trim();
+  if (t === '') return null;
+  const n = Number(t);
+  return Number.isInteger(n) && n >= 1 && n <= MAX_PHASE ? n : undefined;
+};
 
 const tagsOf = (meta: Record<string, unknown> | null | undefined): string[] =>
   Array.isArray(meta?.tags) ? (meta!.tags as string[]) : [];
@@ -47,10 +67,10 @@ function metadataPatch(now: Snapshot, saved: Snapshot, serverTags: string[]): Re
   (['population', 'literacy_pct', 'urban_pct', 'sc_st_pct'] as const).forEach((k) => {
     if (edited(now.demo[k], saved.demo[k])) out[k] = toOptionalNumber(now.demo[k]);
   });
+  const text = blankToNull({ dominant_castes: now.demo.dominant_castes, religions: now.demo.religions });
   (['dominant_castes', 'religions'] as const).forEach((k) => {
-    if (edited(now.demo[k], saved.demo[k])) out[k] = textOrNull(now.demo[k]);
+    if (edited(now.demo[k], saved.demo[k])) out[k] = text[k];
   });
-  if (edited(now.admin.phase, saved.admin.phase)) out.phase = textOrNull(now.admin.phase);
   if (tagsEdited(now, saved)) {
     const removed = new Set(saved.tags.filter((t) => !now.tags.includes(t)));
     const added = now.tags.filter((t) => !saved.tags.includes(t));
@@ -59,8 +79,8 @@ function metadataPatch(now: Snapshot, saved: Snapshot, serverTags: string[]): Re
   return out;
 }
 
-/** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
-export type LoadError = 'not_found' | 'failed';
+/** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
+export type LoadError = RecordLoadErrorKind;
 
 const toSnapshot = (data: Constituency): Snapshot => {
   // `?? ''`, not `|| ''`: a stored 0 must show as "0".
@@ -72,7 +92,10 @@ const toSnapshot = (data: Constituency): Snapshot => {
       sc_st_pct: text(meta.sc_st_pct), dominant_castes: text(meta.dominant_castes), religions: text(meta.religions),
     },
     // Strings throughout, so choosing the original option again is not an edit.
-    admin: { district_id: text(data.district_id), region_id: text(data.region_id), const_no: text(data.const_no), phase: text(meta.phase) },
+    admin: {
+      district_id: text(data.district_id), region_id: text(data.region_id), const_no: text(data.const_no),
+      phase: text(data.phase), type: data.type ?? 'GEN',
+    },
     tags: tagsOf(meta),
   };
 };
@@ -125,8 +148,10 @@ export function useConstituencyEditor(id?: string) {
         setRegions(r);
       }
     } catch (err) {
-      setLoadError(err instanceof ApiError && err.status === 404 ? 'not_found' : 'failed');
-      toastError(err, 'Failed to load constituency details');
+      const kind = recordLoadErrorKind(err);
+      setLoadError(kind);
+      // "Not found" is said on the page ("Constituency not found"); only other failures toast.
+      if (kind === 'failed') toastError(err, 'Failed to load constituency details');
     } finally {
       setLoading(false);
     }
@@ -151,8 +176,9 @@ export function useConstituencyEditor(id?: string) {
       if (changed(d[k], saved.demo[k]) && d[k].trim() !== '' && !isPercent(d[k])) e[k] = PERCENT_ERROR;
     });
     if (parseSeatNumber(adminInfo.const_no) === null) e.const_no = SEAT_NUMBER_ERROR;
+    if (changed(adminInfo.phase, saved.admin.phase) && parsePhase(adminInfo.phase) === undefined) e.phase = PHASE_ERROR;
     return e;
-  }, [editDemographics, adminInfo.const_no, saved]);
+  }, [editDemographics, adminInfo.const_no, adminInfo.phase, saved]);
 
   // Server-side field errors show until the next save; they never block retrying.
   const fieldErrors = { ...serverErrors, ...liveErrors };
@@ -163,6 +189,8 @@ export function useConstituencyEditor(id?: string) {
     if (!id || !constituency || !valid) return false;
     const submitted = current.current;
     const constNo = parseSeatNumber(submitted.admin.const_no);
+    // `valid` (checked above) already rejects an edited out-of-range phase.
+    const phase = parsePhase(submitted.admin.phase) ?? null;
     if (constNo === null) return false;
     setServerErrors({});
     setSaving(true);
@@ -176,13 +204,20 @@ export function useConstituencyEditor(id?: string) {
         district_id: submitted.admin.district_id ? Number(submitted.admin.district_id) : null,
         region_id: submitted.admin.region_id ? Number(submitted.admin.region_id) : null,
         const_no: constNo,
+        // Phase and reservation only when edited: an old out-of-range phase must not block an unrelated save.
+        ...(submitted.admin.phase !== saved.admin.phase ? { phase } : {}),
+        ...(submitted.admin.type !== saved.admin.type ? { type: submitted.admin.type } : {}),
         metadata,
       });
       toast('Constituency updated');
       // The submitted values are now the saved baseline; edits typed while saving stay dirty.
       setSaved(submitted);
       // If the re-read below fails, the next save still diffs against what was just written.
-      setConstituency({ ...constituency, metadata: { ...(constituency.metadata ?? {}), ...metadata } });
+      setConstituency({
+        ...constituency,
+        phase: submitted.admin.phase !== saved.admin.phase ? phase : constituency.phase,
+        type: submitted.admin.type, metadata: { ...(constituency.metadata ?? {}), ...metadata },
+      });
       try {
         const data = await getAdminConstituencyDetail(id);
         setConstituency(data);

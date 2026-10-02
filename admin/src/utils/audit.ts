@@ -1,18 +1,30 @@
 import type { Tone } from '../components/ui/Badge';
 import type { AuditLog } from '../types';
 
-/** The actions the backend writes today (live/result-override, live/bulk-override, live/seat-lock). */
+/** The actions the backend writes today: live overrides and seat locks, plus the record-page edits. */
 export const AUDIT_ACTIONS = [
   { value: 'RESULT_OVERRIDE', label: 'Result override' },
   { value: 'RESULT_BULK_OVERRIDE', label: 'Seat save (bulk)' },
   { value: 'SEAT_LOCK_TAKEOVER', label: 'Seat lock take-over' },
+  { value: 'PARTY_CREATE', label: 'Party created' },
+  { value: 'PARTY_UPDATE', label: 'Party edited' },
+  { value: 'PERSON_UPDATE', label: 'Person edited' },
+  { value: 'PERSON_MERGE', label: 'Persons merged' },
+  { value: 'CANDIDATE_CREATE', label: 'Candidate created' },
+  { value: 'CANDIDATE_UPDATE', label: 'Candidate edited' },
+  { value: 'CANDIDATE_LINK_PERSON', label: 'Candidate linked to person' },
+  { value: 'CANDIDATE_UNLINK_PERSON', label: 'Candidate unlinked' },
+  { value: 'CONSTITUENCY_UPDATE', label: 'Seat edited' },
 ] as const;
 
-/** Entity types of those actions: a result row, an election (bulk save), a constituency (lock). */
+/** Entity types of those actions: a result row, an election (bulk save), a constituency (lock, seat edit), and the record-page entities. */
 export const AUDIT_ENTITIES = [
   { value: 'result', label: 'Result' },
   { value: 'election', label: 'Election' },
   { value: 'constituency', label: 'Seat' },
+  { value: 'party', label: 'Party' },
+  { value: 'person', label: 'Person' },
+  { value: 'candidate', label: 'Candidate' },
 ] as const;
 
 const humanise = (v: string) => {

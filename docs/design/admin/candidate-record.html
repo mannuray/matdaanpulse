@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MatdaanPulse Admin — Candidate Record</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {},
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            headline: ["Inter", "sans-serif"],
+            display: ["Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-900 min-h-screen flex antialiased">
+<!-- Left Sidebar (240px, fixed dark slate #1e293b) -->
+<aside class="fixed inset-y-0 left-0 w-60 z-30 flex flex-col bg-slate-800 border-r border-slate-700/50 shadow-sm select-none">
+<!-- Brand Header -->
+<div class="px-5 pt-5 pb-4 flex items-center gap-3 border-b border-slate-700/40">
+<div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold shadow-md shadow-indigo-600/30 text-lg tracking-tight">
+        M
+      </div>
+<div>
+<h1 class="text-sm font-semibold text-white tracking-tight leading-snug">MatdaanPulse Admin</h1>
+<p class="text-[11px] text-slate-400 font-medium leading-none mt-0.5">Election Results Hub</p>
+</div>
+</div>
+<!-- Navigation Scroll Area -->
+<div class="flex-1 overflow-y-auto px-3 py-4 space-y-5">
+<!-- Section: Counting -->
+<div>
+<div class="px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+          Counting
+        </div>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">podium</span>
+<span>Live Console</span>
+</a>
+</nav>
+</div>
+<!-- Section: Data -->
+<div>
+<div class="px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+          Data
+        </div>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">how_to_vote</span>
+<span>Elections</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>Manifests</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+<span>Parties</span>
+</a>
+<!-- Active: Candidates -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-md bg-indigo-600 text-white font-medium shadow-sm transition-colors duration-150 text-xs" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span>Candidates</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">person</span>
+<span>Persons</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">map</span>
+<span>Constituencies</span>
+</a>
+</nav>
+</div>
+<!-- Section: Admin -->
+<div>
+<div class="px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+          Admin
+        </div>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+<span>Feedback</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span>Users</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Audit logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors duration-150 text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">dns</span>
+<span>System status</span>
+</a>
+</nav>
+</div>
+</div>
+</aside>
+<!-- Right App Content Canvas (Offset 240px) -->
+<div class="pl-60 flex-1 flex flex-col min-w-0">
+<!-- Top Navigation Bar (56px) -->
+<header class="h-14 bg-white border-b border-slate-200 sticky top-0 z-20 px-6 flex items-center justify-between">
+<!-- Left side: Election picker pill + Quick search -->
+<div class="flex items-center gap-4">
+<!-- Election Selector Pill -->
+<button class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50/70 hover:bg-slate-100 text-xs font-medium text-slate-800 transition-colors">
+<span class="w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-emerald-100"></span>
+<span>Bihar · Vidhan Sabha 2025 · Finalized</span>
+<span class="material-symbols-outlined text-[16px] text-slate-400">expand_more</span>
+</button>
+<!-- Search Bar with cmd+K -->
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+<input class="w-full h-8 pl-8 pr-12 text-xs bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-800 placeholder-slate-400" placeholder="Search seats, candidates..." type="text"/>
+<kbd class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-medium text-slate-400 bg-white border border-slate-200 px-1.5 py-0.5 rounded shadow-[0_1px_1px_rgba(0,0,0,0.04)]">⌘K</kbd>
+</div>
+</div>
+<!-- Right side: Health dot, actions, user avatar -->
+<div class="flex items-center gap-4">
+<!-- System Health Pill -->
+<div class="hidden sm:flex items-center gap-1.5 text-xs text-slate-600 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-[11px] font-medium">All systems OK</span>
+</div>
+<!-- Notification & Help Icons -->
+<div class="flex items-center gap-1 text-slate-500">
+<button class="relative p-1.5 rounded-md hover:bg-slate-100 text-slate-600 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-slate-100 text-slate-600 transition-colors">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+</div>
+<div class="h-5 w-px bg-slate-200"></div>
+<!-- User Profile Pill -->
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-semibold text-xs flex items-center justify-center border border-indigo-200">
+            MK
+          </div>
+<div class="text-left hidden md:block">
+<div class="text-xs font-semibold text-slate-900 leading-tight">Chief Returning Officer</div>
+<div class="text-[10px] font-medium text-slate-500">Administrator</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Workspace (Padding 24px) -->
+<main class="p-6 max-w-[1360px] w-full mx-auto space-y-6">
+<!-- Breadcrumbs Row -->
+<nav class="flex items-center text-xs text-slate-500 font-medium">
+<a class="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Candidates</span>
+</a>
+<span class="mx-2 text-slate-300">/</span>
+<span class="text-slate-800">176 Harnaut</span>
+</nav>
+<!-- Page Title Bar -->
+<div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+<!-- Left: Avatar + Candidate details -->
+<div class="flex items-center gap-4">
+<div class="relative w-12 h-12 rounded-full overflow-hidden border border-slate-200 bg-slate-100 shadow-sm shrink-0">
+<img alt="Hari Narayan Singh" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UeSI2CiReRuPM37STZwaNctfyY_ZM_6LimOpuAp3XAY2849GCplYl5Wp_ZMteJAcDoKmqkoYJ29C6KP3bgXhtLktppYhGTU01hQgEC5AtBHANE3N8EZVz8VmzXuCGS-gS5Hb7Lg8ybJz-I5mIyGeh8OH8-5YG40YDghZrGxZAGTHuUZT_JZTNDg3mMLP_if038DmN6fQhFLHOoItSAXfMOsURiDgOYSmz9_F4_pKWubUz8kVOG8QlO0qI"/>
+</div>
+<div>
+<div class="flex items-center gap-2.5 flex-wrap">
+<h2 class="text-2xl font-semibold text-slate-900 tracking-tight leading-tight">
+                Hari Narayan Singh
+              </h2>
+<!-- Party Chip -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                JD(U)
+              </span>
+<!-- Incumbent Badge -->
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-indigo-50 text-indigo-700 border border-indigo-200">
+                Incumbent
+              </span>
+</div>
+<p class="text-xs text-slate-500 font-normal mt-0.5">
+              Bihar VS 2025 · 176 Harnaut
+            </p>
+</div>
+</div>
+<!-- Right: Unsaved status and Action Buttons -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1.5 text-xs text-amber-700 bg-amber-50 border border-amber-200/80 px-2.5 py-1 rounded-md font-medium">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span>Unsaved changes</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-md border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors">
+            Cancel
+          </button>
+<button class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Save changes</span>
+</button>
+</div>
+</div>
+<!-- Two-Column Grid Layout (2/3 Left + 1/3 Right) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- LEFT COLUMN (Approx 66% = 8 cols) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- 1. Card: Candidate Details -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<div class="border-b border-slate-100 pb-3 mb-4">
+<h3 class="text-sm font-semibold text-slate-900 leading-snug">Candidate</h3>
+<p class="text-xs text-slate-500">Official nomination profile and registered alignment</p>
+</div>
+<div class="space-y-4">
+<!-- Name Input -->
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1.5" for="candidate-name">Candidate name (as registered)</label>
+<input class="w-full text-sm border-slate-300 rounded-lg py-2 px-3 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-800" id="candidate-name" type="text" value="Hari Narayan Singh"/>
+</div>
+<!-- Row: Party + Incumbent Toggle -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
+<div class="sm:col-span-7">
+<label class="block text-xs font-medium text-slate-700 mb-1.5" for="party-select">Affiliated political party</label>
+<div class="relative">
+<select class="w-full text-sm border-slate-300 rounded-lg py-2 pl-3 pr-8 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-800 bg-white" id="party-select">
+<option selected="">JD(U) — Janata Dal (United)</option>
+<option>RJD — Rashtriya Janata Dal</option>
+<option>BJP — Bharatiya Janata Party</option>
+<option>INC — Indian National Congress</option>
+<option>Independent</option>
+</select>
+</div>
+</div>
+<div class="sm:col-span-5 sm:pt-5">
+<div class="flex items-center justify-between p-2 rounded-lg border border-slate-200 bg-slate-50">
+<span class="text-xs font-medium text-slate-700">Incumbent candidate</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Card: Affidavit -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<div class="border-b border-slate-100 pb-3 mb-4">
+<h3 class="text-sm font-semibold text-slate-900 leading-snug">Affidavit</h3>
+<p class="text-xs text-slate-500">Declared statutory disclosures verified by returning officer</p>
+</div>
+<div class="space-y-4">
+<!-- Row 1: Age & Gender -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1.5" for="affidavit-age">Age</label>
+<input class="w-full text-sm border-slate-300 rounded-lg py-2 px-3 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-800" id="affidavit-age" type="number" value="68"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1.5" for="affidavit-gender">Gender</label>
+<select class="w-full text-sm border-slate-300 rounded-lg py-2 px-3 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-800 bg-white" id="affidavit-gender">
+<option selected="">Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</div>
+</div>
+<!-- Row 2: Education -->
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1.5" for="affidavit-education">Educational qualification</label>
+<select class="w-full text-sm border-slate-300 rounded-lg py-2 px-3 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-800 bg-white" id="affidavit-education">
+<option selected="">Graduate — B.A. Patna University</option>
+<option>Post Graduate — M.A. Patna University</option>
+<option>Doctorate / Ph.D.</option>
+<option>Higher Secondary (12th Pass)</option>
+<option>Secondary (10th Pass)</option>
+</select>
+</div>
+<!-- Row 3: Criminal Cases -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-xs font-medium text-slate-700" for="affidavit-cases">Criminal cases pending</label>
+<span class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                    None declared
+                  </span>
+</div>
+<input class="w-full text-sm border-slate-300 rounded-lg py-2 px-3 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-800" id="affidavit-cases" type="number" value="0"/>
+</div>
+<!-- Row 4: Declared Assets -->
+<div>
+<label class="block text-xs font-medium text-slate-700 mb-1.5" for="affidavit-assets">Total declared assets</label>
+<div class="relative rounded-md shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="text-slate-500 text-sm font-semibold">₹</span>
+</div>
+<input class="w-full text-sm border-slate-300 rounded-lg py-2 pl-8 pr-3 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-800 font-medium" id="affidavit-assets" type="text" value="2,45,00,000"/>
+</div>
+<p class="mt-1.5 text-xs text-slate-500">
+                  ₹2.45 crore · Movable ₹85L, Immovable ₹1.60 Cr
+                </p>
+</div>
+</div>
+</section>
+<!-- 3. Card: Result (Read-only status card) -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+<div>
+<h3 class="text-sm font-semibold text-slate-900 leading-snug">Result</h3>
+<p class="text-xs text-slate-500">Counting finalised · ECI certificate issued</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
+                Certified
+              </span>
+</div>
+<!-- 4-Stat Metric Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- Metric 1: Votes -->
+<div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200/80">
+<span class="text-[11px] font-medium text-slate-500 uppercase tracking-wider block mb-1">Votes</span>
+<span class="text-xl font-bold text-slate-900 tracking-tight font-headline">78,412</span>
+<span class="block text-[11px] text-slate-500 mt-0.5">Valid EVM votes</span>
+</div>
+<!-- Metric 2: Vote Share -->
+<div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200/80">
+<span class="text-[11px] font-medium text-slate-500 uppercase tracking-wider block mb-1">Vote share</span>
+<span class="text-xl font-bold text-slate-900 tracking-tight font-headline">41.3%</span>
+<div class="w-full bg-slate-200 rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-indigo-600 h-1.5 rounded-full" style="width: 41.3%"></div>
+</div>
+</div>
+<!-- Metric 3: Position -->
+<div class="p-3.5 rounded-lg bg-emerald-50/60 border border-emerald-200/80">
+<span class="text-[11px] font-medium text-emerald-800 uppercase tracking-wider block mb-1">Position</span>
+<div class="flex items-center gap-1.5">
+<span class="text-xl font-bold text-emerald-900 tracking-tight font-headline">1st</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-600 text-white">
+                    Won
+                  </span>
+</div>
+<span class="block text-[11px] text-emerald-700 mt-0.5">Seat retained</span>
+</div>
+<!-- Metric 4: Margin -->
+<div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200/80">
+<span class="text-[11px] font-medium text-slate-500 uppercase tracking-wider block mb-1">Margin</span>
+<span class="text-xl font-bold text-indigo-600 tracking-tight font-headline">+12,309</span>
+<span class="block text-[11px] text-slate-500 mt-0.5">vs runner-up (RJD)</span>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN (Approx 33% = 4 cols) -->
+<div class="lg:col-span-4 space-y-6">
+<!-- 1. Card: Master record -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<div class="border-b border-slate-100 pb-3 mb-4">
+<h3 class="text-sm font-semibold text-slate-900 leading-snug">Master record</h3>
+<p class="text-xs text-slate-500">Cross-election identity alignment</p>
+</div>
+<!-- Linked politician card -->
+<div class="p-3.5 rounded-lg border border-slate-200 bg-slate-50/70 mb-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200 bg-white shrink-0 mt-0.5">
+<img alt="Hari Narayan Singh profile thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UeSI2CiReRuPM37STZwaNctfyY_ZM_6LimOpuAp3XAY2849GCplYl5Wp_ZMteJAcDoKmqkoYJ29C6KP3bgXhtLktppYhGTU01hQgEC5AtBHANE3N8EZVz8VmzXuCGS-gS5Hb7Lg8ybJz-I5mIyGeh8OH8-5YG40YDghZrGxZAGTHuUZT_JZTNDg3mMLP_if038DmN6fQhFLHOoItSAXfMOsURiDgOYSmz9_F4_pKWubUz8kVOG8QlO0qI"/>
+</div>
+<div class="min-w-0 flex-1">
+<h4 class="text-xs font-semibold text-slate-900 truncate">Hari Narayan Singh</h4>
+<p class="text-[11px] text-slate-600 leading-snug mt-0.5">4 contests · First 2010</p>
+<p class="text-[10px] font-mono text-slate-400 mt-1">Master ID: 8c34f01b</p>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-200/80 flex items-center justify-between">
+<a class="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700" href="#">
+<span>Open person</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+<button class="px-2.5 py-1 text-xs text-slate-600 hover:text-rose-600 border border-slate-200 hover:border-rose-200 bg-white rounded-md transition-colors font-medium">
+                  Unlink
+                </button>
+</div>
+</div>
+<p class="text-[11px] text-slate-500 leading-normal">
+              Links this contest to the politician's record across elections.
+            </p>
+</section>
+<!-- 2. Card: Other candidates in Harnaut -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<div class="border-b border-slate-100 pb-3 mb-3">
+<h3 class="text-sm font-semibold text-slate-900 leading-snug">Other candidates in Harnaut</h3>
+<p class="text-xs text-slate-500">176 Harnaut · 5 total candidates</p>
+</div>
+<!-- Compact Candidate List -->
+<div class="divide-y divide-slate-100 text-xs">
+<!-- Candidate 1 (Current Active Row) -->
+<div class="py-2.5 px-2 -mx-2 rounded-lg bg-indigo-50/60 border border-indigo-100/80 flex items-center justify-between">
+<div class="min-w-0 pr-2">
+<div class="flex items-center gap-1.5">
+<span class="text-indigo-900 font-semibold truncate">1. Hari Narayan Singh</span>
+<span class="inline-block px-1.5 py-0.2 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Won</span>
+</div>
+<div class="text-[11px] text-indigo-700/80 mt-0.5">JD(U)</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-semibold text-slate-900 tabular-nums">78,412</div>
+<div class="text-[10px] text-slate-500">41.3%</div>
+</div>
+</div>
+<!-- Candidate 2 -->
+<div class="py-2.5 px-2 flex items-center justify-between hover:bg-slate-50 rounded-lg transition-colors">
+<div class="min-w-0 pr-2">
+<div class="flex items-center gap-1.5">
+<span class="text-slate-800 font-medium truncate">2. Sunil Kumar</span>
+<span class="text-[10px] text-slate-400 font-medium">Trailing</span>
+</div>
+<div class="text-[11px] text-slate-500 mt-0.5">RJD</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-medium text-slate-800 tabular-nums">66,103</div>
+<div class="text-[10px] text-slate-400">34.8%</div>
+</div>
+</div>
+<!-- Candidate 3 -->
+<div class="py-2.5 px-2 flex items-center justify-between hover:bg-slate-50 rounded-lg transition-colors">
+<div class="min-w-0 pr-2">
+<div class="flex items-center gap-1.5">
+<span class="text-slate-800 font-medium truncate">3. Mamta Devi</span>
+<span class="text-[10px] text-slate-400 font-medium">Trailing</span>
+</div>
+<div class="text-[11px] text-slate-500 mt-0.5">JSP</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-medium text-slate-800 tabular-nums">14,210</div>
+<div class="text-[10px] text-slate-400">7.5%</div>
+</div>
+</div>
+<!-- Candidate 4 -->
+<div class="py-2.5 px-2 flex items-center justify-between hover:bg-slate-50 rounded-lg transition-colors">
+<div class="min-w-0 pr-2">
+<div class="flex items-center gap-1.5">
+<span class="text-slate-800 font-medium truncate">4. Ramesh Prasad</span>
+<span class="text-[10px] text-slate-400 font-medium">Trailing</span>
+</div>
+<div class="text-[11px] text-slate-500 mt-0.5">BSP</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-medium text-slate-800 tabular-nums">3,140</div>
+<div class="text-[10px] text-slate-400">1.7%</div>
+</div>
+</div>
+<!-- Candidate 5 (NOTA) -->
+<div class="py-2.5 px-2 flex items-center justify-between hover:bg-slate-50 rounded-lg transition-colors">
+<div class="min-w-0 pr-2">
+<div class="flex items-center gap-1.5">
+<span class="text-slate-600 font-normal truncate">5. NOTA</span>
+</div>
+<div class="text-[11px] text-slate-400 mt-0.5">— None of the Above</div>
+</div>
+<div class="text-right shrink-0">
+<div class="font-normal text-slate-600 tabular-nums">1,890</div>
+<div class="text-[10px] text-slate-400">1.0%</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Card: Record Metadata -->
+<section class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<div class="border-b border-slate-100 pb-3 mb-3">
+<h3 class="text-sm font-semibold text-slate-900 leading-snug">Record</h3>
+<p class="text-xs text-slate-500">ECI administrative metadata</p>
+</div>
+<dl class="space-y-3 text-xs">
+<div>
+<dt class="text-slate-500 font-medium">Candidate ID</dt>
+<dd class="font-mono text-slate-800 bg-slate-50 px-2 py-1 rounded border border-slate-200/80 mt-1 inline-block text-[11px]">
+                  cand_2025_bih_176_01
+                </dd>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100">
+<div>
+<dt class="text-slate-500 font-medium">ECI Candidate Sl</dt>
+<dd class="text-slate-800 font-semibold mt-0.5">3</dd>
+</div>
+<div>
+<dt class="text-slate-500 font-medium">Nomination date</dt>
+<dd class="text-slate-800 font-medium mt-0.5">14 Oct 2025</dd>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100">
+<dt class="text-slate-500 font-medium">Last updated</dt>
+<dd class="text-slate-700 text-[11px] mt-0.5">
+                  14 Nov 2025, 18:05 IST by <span class="font-medium text-slate-900">RO Harnaut</span>
+</dd>
+</div>
+</dl>
+</section>
+</div>
+</div>
+</main>
+</div>
+</body></html>

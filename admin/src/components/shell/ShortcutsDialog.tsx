@@ -4,6 +4,7 @@ import { Kbd } from '../ui/Kbd';
 
 const SHORTCUTS: [string[], string][] = [
   [['⌘', 'K'], 'Search seats, candidates, parties, persons'],
+  [['E'], 'Switch election'],
   [['↑', '↓'], 'Move between seats (Live console)'],
   [['Enter'], 'Save seat / open the focused row'],
   [['Esc'], 'Discard seat edits / close the record panel'],

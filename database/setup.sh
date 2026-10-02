@@ -4,7 +4,7 @@
 #   1. schema.sql              base schema (idempotent)
 #   2. migrations/NNN_*.sql    in numeric order (all idempotent)
 #   3. seeds                   LS 2024 → state parties → VS results → districts/regions
-#                              → Bihar persons → party symbols
+#                              → Bihar persons → party symbols → party recognition → result dates
 #
 # Every step is safe to re-run: schema/migrations use IF NOT EXISTS guards and every seed
 # INSERT uses ON CONFLICT DO NOTHING, so a second run never wipes or duplicates data.
@@ -92,5 +92,11 @@ run seed_bihar_person_regions.sql
 
 echo "==> Seeds: party symbols (must follow all party inserts)"
 run seed_party_symbols.sql
+
+echo "==> Seeds: party ECI recognition (must follow all party inserts)"
+run seed_party_recognition.sql
+
+echo "==> Seeds: election result dates (must follow every election insert)"
+run seed_election_result_dates.sql
 
 echo "==> Done. Create an admin user with: cd backend && npm run create-admin"

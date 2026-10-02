@@ -3,8 +3,9 @@ import { useShellStatus } from '../context/ShellStatusContext';
 import { usePartyManager } from '../hooks/usePartyManager';
 import { NEW_ID, useEntityRoute } from '../hooks/useEntityRoute';
 import { EntityPage } from '../components/entity/EntityPage';
-import { PartyPanel } from '../components/entity/parties/PartyPanel';
-import { PartyCreatePanel, type NewParty } from '../components/entity/parties/PartyCreatePanel';
+import { PartyRecord } from '../components/entity/parties/PartyRecord';
+import { PartyCreateDialog, type NewParty } from '../components/entity/parties/PartyCreateDialog';
+import { ECI_RECOGNITIONS, EciRecognitionBadge, type EciFilter } from '../components/entity/parties/eciRecognition';
 import { PageHeader } from '../components/ui/PageHeader';
 import { SearchInput, Toolbar } from '../components/ui/Toolbar';
 import { Select } from '../components/ui/Input';
@@ -43,9 +44,18 @@ const COLUMNS: Column<PartyRow>[] = [
       ? <img src={p.symbol_url || p.eci_symbol_url || ''} alt="" className="h-6 w-6 object-contain" />
       : <Badge tone="warn">Missing</Badge>,
   },
+  {
+    key: 'eci',
+    header: 'ECI recognition',
+    cell: (p) => (p.eci_recognition ? <EciRecognitionBadge value={p.eci_recognition} /> : <span className="text-muted">–</span>),
+  },
 ];
 
-/** PAGE: Parties — registry table + party panel at /parties/:id (create at /parties/new). */
+/**
+ * PAGE: Parties — full-width registry table; a row opens the party's record page at /parties/:id, which replaces the
+ * list (create at /parties/new, in a dialog over the list). The list hooks stay mounted under `parties/*`, so its search,
+ * filters and page survive the round trip to a record.
+ */
 export default function Parties() {
   const { editorDirty } = useShellStatus();
   const route = useEntityRoute('/parties', editorDirty);
@@ -57,64 +67,62 @@ export default function Parties() {
     if (created) route.open(created.id, { force: true });
   };
 
-  const panel = !route.id ? null : route.isNew
-    ? <PartyCreatePanel saving={list.saving} onCreate={create} onClose={() => route.close()} />
-    : (
-      <PartyPanel
-        key={route.id}
-        id={route.id}
-        candidateCount={rows.find((p) => p.id === route.id)?.candidate_count}
-        onClose={() => route.close()}
-        onSaved={list.refresh}
-      />
-    );
+  if (route.id && !route.isNew) {
+    return <PartyRecord key={route.id} id={route.id} onBack={() => route.close()} onSaved={list.refresh} />;
+  }
 
   return (
-    <EntityPage
-      header={
-        <PageHeader
-          title="Parties"
-          count={list.total}
-          subtitle="Registry, colours and symbols"
-          actions={<Button variant="primary" onClick={() => route.open(NEW_ID)}><Plus size={16} aria-hidden />New party</Button>}
-        />
-      }
-      toolbar={
-        <Toolbar>
-          <SearchInput label="Search parties" placeholder="Search by name or ID…" value={list.search} onChange={list.handleSearch} />
-          <Select aria-label="State" className="w-44" value={String(list.filters.stateId)} onChange={(e) => list.updateFilters({ stateId: e.target.value ? Number(e.target.value) : '' })}>
-            <option value="">All states</option>
-            {list.states.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
-          </Select>
-          <Select aria-label="Symbol (this page)" className="w-48" value={list.filters.symbol} onChange={(e) => list.updateFilters({ symbol: e.target.value as SymbolFilter })}>
-            <option value="all">All symbols</option>
-            <option value="has_logo">Has logo</option>
-            <option value="has_eci">Has ECI symbol</option>
-            <option value="missing">Missing symbol</option>
-          </Select>
-        </Toolbar>
-      }
-      table={
-        <DataTable
-          label="Parties"
-          columns={COLUMNS}
-          rows={rows}
-          rowKey={(p) => p.id}
-          selectedKey={route.id}
-          onRowClick={(p) => route.open(p.id)}
-          loading={list.loading}
-          empty={list.error
-            ? <EmptyState title="Could not load parties" description={list.error} />
-            : <EmptyState title="No parties match" description="Try a different search or filter." />}
-          footer={
-            <Pager
-              page={list.page} totalPages={list.totalPages} total={list.total} pageSize={PAGE_SIZE} noun="parties" onPage={list.loadPage}
-              note={list.filters.symbol !== 'all' ? 'symbol filter applies to this page' : undefined}
-            />
-          }
-        />
-      }
-      panel={panel}
-    />
+    <>
+      <EntityPage
+        header={
+          <PageHeader
+            title="Parties"
+            count={list.total}
+            subtitle="Registry, colours and symbols"
+            actions={<Button variant="primary" onClick={() => route.open(NEW_ID)}><Plus size={16} aria-hidden />New party</Button>}
+          />
+        }
+        toolbar={
+          <Toolbar>
+            <SearchInput label="Search parties" placeholder="Search by name or ID…" value={list.search} onChange={list.handleSearch} />
+            <Select aria-label="State" className="w-44" value={String(list.filters.stateId)} onChange={(e) => list.updateFilters({ stateId: e.target.value ? Number(e.target.value) : '' })}>
+              <option value="">All states</option>
+              {list.states.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+            </Select>
+            <Select aria-label="ECI recognition" className="w-44" value={list.filters.eci} onChange={(e) => list.updateFilters({ eci: e.target.value as EciFilter })}>
+              <option value="all">All recognition</option>
+              {ECI_RECOGNITIONS.map((r) => <option key={r} value={r}>{r}</option>)}
+              <option value="none">Not set</option>
+            </Select>
+            <Select aria-label="Symbol (this page)" className="w-48" value={list.filters.symbol} onChange={(e) => list.updateFilters({ symbol: e.target.value as SymbolFilter })}>
+              <option value="all">All symbols</option>
+              <option value="has_logo">Has logo</option>
+              <option value="has_eci">Has ECI symbol</option>
+              <option value="missing">Missing symbol</option>
+            </Select>
+          </Toolbar>
+        }
+        table={
+          <DataTable
+            label="Parties"
+            columns={COLUMNS}
+            rows={rows}
+            rowKey={(p) => p.id}
+            onRowClick={(p) => route.open(p.id)}
+            loading={list.loading}
+            empty={list.error
+              ? <EmptyState title="Could not load parties" description={list.error} />
+              : <EmptyState title="No parties match" description="Try a different search or filter." />}
+            footer={
+              <Pager
+                page={list.page} totalPages={list.totalPages} total={list.total} pageSize={PAGE_SIZE} noun="parties" onPage={list.loadPage}
+                note={list.filters.symbol !== 'all' ? 'symbol filter applies to this page' : undefined}
+              />
+            }
+          />
+        }
+      />
+      {route.isNew && <PartyCreateDialog saving={list.saving} onCreate={create} onClose={() => route.close()} />}
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { useElectionManager, isValidElectionYear, type ElectionFormState } from '../../../hooks/useElectionManager';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
-import { Sheet } from '../../ui/Sheet';
+import { FormDialog } from '../../ui/FormDialog';
 import { Field, FormSection } from '../../ui/Field';
 import { Input, Select } from '../../ui/Input';
 import { Badge } from '../../ui/Badge';
@@ -38,7 +38,7 @@ interface ElectionPanelProps {
   onFinalize: () => void;
 }
 
-/** Elections have no detail page: the panel is the create/edit form plus the lifecycle actions. */
+/** Elections have no detail page: a centred dialog holds the create/edit form plus the lifecycle actions. */
 export function ElectionPanel({ mode, election, manager, loadingElections, loadFailed, onRetry, canFinalize, onClose, onSave, onGoLive, onFinalize }: ElectionPanelProps) {
   const { form, setForm, states, fieldErrors } = manager;
   useUnsavedGuard(manager.dirty);
@@ -52,7 +52,7 @@ export function ElectionPanel({ mode, election, manager, loadingElections, loadF
     : mode === 'new' ? 'Name, type, year and state' : undefined;
 
   return (
-    <Sheet
+    <FormDialog
       open
       onRequestClose={onClose}
       title={title}
@@ -108,13 +108,13 @@ export function ElectionPanel({ mode, election, manager, loadingElections, loadF
                 </Select>
               </Field>
             )}
-            <Field label="Tentative next date" error={fieldErrors.tentative_next_date}>
+            <Field label="Result date" hint="Counting day. The public site counts down to it while the election is upcoming." error={fieldErrors.tentative_next_date}>
               <Input type="date" value={form.tentative_next_date} onChange={(e) => set({ tentative_next_date: e.target.value })} />
             </Field>
           </FormSection>
           <button type="submit" hidden aria-hidden tabIndex={-1} />
         </form>
       )}
-    </Sheet>
+    </FormDialog>
   );
 }

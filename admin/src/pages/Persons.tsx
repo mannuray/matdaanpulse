@@ -5,7 +5,7 @@ import { useEntityRoute } from '../hooks/useEntityRoute';
 import { getPersons } from '../services/person.api';
 import { genderLabel } from '../utils/person-format';
 import { EntityPage } from '../components/entity/EntityPage';
-import { PersonPanel } from '../components/entity/persons/PersonPanel';
+import { PersonRecord } from '../components/entity/persons/PersonRecord';
 import { PageHeader } from '../components/ui/PageHeader';
 import { SearchInput, Toolbar } from '../components/ui/Toolbar';
 import { DataTable, type Column } from '../components/ui/DataTable';
@@ -36,7 +36,11 @@ const COLUMNS: Column<PersonWithStats>[] = [
   { key: 'contests', header: 'Contests', className: 'tabular-nums text-ink-2', cell: (p) => p.candidate_count },
 ];
 
-/** PAGE: Persons — master registry table + person panel at /persons/:id. `?q=` seeds the search. */
+/**
+ * PAGE: Persons — full-width master registry table; a row opens the person's record page at /persons/:id, which
+ * replaces the list. The list hooks stay mounted under `persons/*`, so its search and page survive the round trip.
+ * `?q=` seeds the search. There is no create flow: persons come from the data import.
+ */
 export default function Persons() {
   const [params] = useSearchParams();
   const { editorDirty } = useShellStatus();
@@ -52,6 +56,10 @@ export default function Persons() {
     },
   });
 
+  if (route.id) {
+    return <PersonRecord key={route.id} id={route.id} onBack={() => route.close()} onSaved={list.refresh} />;
+  }
+
   return (
     <EntityPage
       header={<PageHeader title="Persons" count={list.total} subtitle="One record per politician, across elections" />}
@@ -66,7 +74,6 @@ export default function Persons() {
           columns={COLUMNS}
           rows={list.items as PersonWithStats[]}
           rowKey={(p) => p.id}
-          selectedKey={route.id}
           onRowClick={(p) => route.open(p.id)}
           loading={list.loading}
           empty={list.error
@@ -75,7 +82,6 @@ export default function Persons() {
           footer={<Pager page={list.page} totalPages={list.totalPages} total={list.total} pageSize={PAGE_SIZE} noun="persons" onPage={list.loadPage} />}
         />
       }
-      panel={route.id ? <PersonPanel key={route.id} id={route.id} onClose={() => route.close()} onChanged={list.refresh} /> : null}
     />
   );
 }

@@ -4,12 +4,15 @@ import { getElections } from '../services/election.service';
 import { getStates } from '../services/geo.service';
 import { useResourceList } from './useResourceList';
 import { useToast } from '../context/ToastContext';
+import { isEciFilter, type EciFilter } from '../components/entity/parties/eciRecognition';
 import type { Election, Party, State } from '../types';
 
 interface PartyFilters {
   stateId: number | '';
   electionId: string;
   symbol: 'all' | 'has_logo' | 'has_eci' | 'missing';
+  /** Server-side (`eci_recognition=`). */
+  eci: EciFilter;
 }
 
 /**
@@ -29,14 +32,16 @@ export function usePartyManager() {
 
   const list = useResourceList<PartyFilters>({
     key: 'parties',
-    initialFilters: { stateId: '', electionId: '', symbol: 'all' },
+    initialFilters: { stateId: '', electionId: '', symbol: 'all', eci: 'all' },
+    sanitizeFilters: (f) => (isEciFilter(f.eci) ? f : { ...f, eci: 'all' }),
     onLoad: async (page, search, filters) => {
       const response = await getPartiesPaginated(
         page, 
         25, 
         search || undefined, 
         filters.electionId || undefined, 
-        filters.stateId ? Number(filters.stateId) : undefined
+        filters.stateId ? Number(filters.stateId) : undefined,
+        filters.eci !== 'all' ? filters.eci : undefined,
       );
       
       let data = response.data;

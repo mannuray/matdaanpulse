@@ -35,6 +35,7 @@ model candidates {
   name           String         @db.VarChar(255)
   is_incumbent   Boolean        @default(false)
   metadata       Json?          @default("{}")
+  updated_at     DateTime       @default(now()) @db.Timestamptz(6)
   constituencies constituencies @relation(fields: [const_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   elections      elections      @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   parties        parties?       @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -62,6 +63,7 @@ model constituencies {
   region_id             Int?
   current_round         Int?
   total_rounds          Int?
+  updated_at            DateTime                @default(now()) @db.Timestamptz(6)
   candidates            candidates[]
   districts             districts?              @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   elections             elections               @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -147,20 +149,23 @@ model feedback {
   @@index([status, created_at(sort: Desc)], map: "idx_feedback_status_created_at")
 }
 
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model parties {
-  id             String       @id @db.VarChar(20)
-  name           String       @db.VarChar(255)
-  color          String?      @db.VarChar(10)
-  symbol_url     String?
-  abbreviation   String?      @db.VarChar(20)
-  leader_name    String?      @db.VarChar(255)
-  founded_year   Int?
-  headquarters   String?      @db.VarChar(255)
-  website        String?
-  eci_symbol_url String?
-  wikipedia_url  String?
-  description    String?
-  candidates     candidates[]
+  id              String       @id @db.VarChar(20)
+  name            String       @db.VarChar(255)
+  color           String?      @db.VarChar(10)
+  symbol_url      String?
+  abbreviation    String?      @db.VarChar(20)
+  leader_name     String?      @db.VarChar(255)
+  founded_year    Int?
+  headquarters    String?      @db.VarChar(255)
+  website         String?
+  eci_symbol_url  String?
+  wikipedia_url   String?
+  description     String?
+  eci_recognition String?      @db.VarChar(20)
+  updated_at      DateTime     @default(now()) @db.Timestamptz(6)
+  candidates      candidates[]
 }
 
 model persons {
@@ -174,6 +179,7 @@ model persons {
   state_id      Int?
   region_id     Int?
   district_id   Int?
+  updated_at    DateTime     @default(now()) @db.Timestamptz(6)
   candidates    candidates[]
   districts     districts?   @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   regions       regions?     @relation(fields: [region_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
