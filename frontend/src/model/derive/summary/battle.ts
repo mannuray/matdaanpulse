@@ -1,7 +1,6 @@
 import { deriveScoreboard } from '../scoreboard';
 import { rankSeats } from '../stats';
-import { CLOSE_THRESHOLD } from '../layerInsights';
-import { avg, bucketIndex, buckets, compact, int, ledSeats, refRow } from './shared';
+import { bucketIndex, buckets, int, ledSeats, refRow } from './shared';
 import type { SummaryContext, SummarySection } from './types';
 
 const CLOSEST_LIMIT = 5;
@@ -20,24 +19,7 @@ export function battleSummary(ctx: SummaryContext): SummarySection[] {
   const blocOf = (party: string) => blocs.find(b => b.partyIds.includes(party));
   const seats = led.filter(s => blocOf(s.party));
   if (seats.length === 0) return [];
-  const threshold = CLOSE_THRESHOLD[ctx.electionType];
   const b = buckets(ctx);
-
-  // BattleSection.tsx:71-93 — seats, close wins (< threshold) and average margin per bloc.
-  const summary: SummarySection = {
-    id: 'seat_summary', titleKey: 'studio_sum_seat_summary',
-    columnsKeys: ['studio_col_seats', 'studio_col_close', 'studio_col_avg_margin'],
-    rows: blocs.map(bloc => {
-      const own = seats.filter(s => blocOf(s.party)?.id === bloc.id);
-      const sum = own.reduce((n, s) => n + s.margin!, 0);
-      return {
-        id: `bloc:${bloc.id}`, label: bloc.name, value: own.length, valueFormat: 'int' as const,
-        // Legacy showed 0 for a bloc without seats; null renders "—" instead of an invented 0.
-        extra: [int(own.filter(s => s.margin! < threshold).length), compact(avg(sum, own.length))],
-        color: bloc.color, seatIds: own.map(s => s.id), partyIds: bloc.partyIds,
-      };
-    }),
-  };
 
   // BattleSection.tsx:39-57 — margin histogram grouped by bloc.
   const counts = blocs.map(bloc => {
@@ -69,5 +51,5 @@ export function battleSummary(ctx: SummaryContext): SummarySection[] {
     rows: rankSeats(seats, 'closest', CLOSEST_LIMIT).map(r => refRow(r, blocOf(r.party)!.color, blocOf(r.party)!.name)),
   };
   // Legacy order: margin distribution, seat summary, closest contests.
-  return [dist, summary, closest];
+  return [dist, closest];
 }

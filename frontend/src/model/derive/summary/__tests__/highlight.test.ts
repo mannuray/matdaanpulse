@@ -61,9 +61,6 @@ describe('summary rows name their exact seats', () => {
     expect(ids(row('overview', 'wasted', 'alliance:MGB'))).toEqual(['C', 'E']);
     expect(row('overview', 'wasted', 'efficiency_gap').seatIds).toBeUndefined();
   });
-  it('seat_summary: the bloc seats', () => {
-    expect(ids(row('battle', 'seat_summary', 'bloc:NDA'))).toEqual(['A', 'B', 'D']);
-  });
   it('net_swing: seats gained by the bloc', () => {
     expect(ids(row('swing', 'net_swing', 'bloc:NDA'))).toEqual(['A', 'D']);
     expect(ids(row('swing', 'net_swing', 'bloc:MGB'))).toEqual(['C']);
