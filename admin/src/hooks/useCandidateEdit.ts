@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import {
   getCandidate, updateCandidate, changeCandidatePerson, splitCandidate, type CandidateAffidavit,
 } from '../services/candidate.service';
-import { getPersons } from '../services/person.api';
+import { getPersons, updatePerson } from '../services/person.api';
 import { getParties } from '../services/geo.service';
 import { useToast } from '../context/ToastContext';
 import { fieldErrorMap } from '../services/api-client';
@@ -19,9 +19,10 @@ export interface CandidateForm {
   criminal_cases: string;
 }
 
-/** The record page's form: the create fields plus the Incumbent toggle (a new candidate is never an incumbent). */
+/** The record page's form: the create fields, the Incumbent toggle, and the person's photo (saved on the person). */
 export interface CandidateEditForm extends CandidateForm {
   is_incumbent: boolean;
+  photo_url: string;
 }
 
 type AffidavitForm = Pick<CandidateForm, 'age' | 'assets' | 'liabilities' | 'criminal_cases'>;
@@ -30,7 +31,7 @@ type AffidavitForm = Pick<CandidateForm, 'age' | 'assets' | 'liabilities' | 'cri
 export const INDEPENDENT = 'IND';
 
 export const EMPTY_AFFIDAVIT: AffidavitForm = { age: '', assets: '', liabilities: '', criminal_cases: '' };
-const EMPTY_FORM: CandidateEditForm = { name: '', party_id: '', is_incumbent: false, ...EMPTY_AFFIDAVIT };
+const EMPTY_FORM: CandidateEditForm = { name: '', party_id: '', is_incumbent: false, photo_url: '', ...EMPTY_AFFIDAVIT };
 
 /** Age / criminal cases: empty, or a whole number of 0 or more. */
 export const isWholeNumberOrEmpty = (v: string) => {
@@ -71,6 +72,7 @@ const toForm = (c: Candidate): CandidateEditForm => {
     // A stored null party is shown as Independent; it is written as IND only if the user saves.
     party_id: c.party_id || INDEPENDENT,
     is_incumbent: !!c.is_incumbent,
+    photo_url: c.person?.photo_url || '',
     age: text(c.age),
     assets: text(c.assets),
     liabilities: text(c.liabilities),
@@ -99,8 +101,9 @@ export function useCandidateEdit(id?: string) {
   const [loadError, setLoadError] = useState<LoadError | null>(null);
   const [saving, setSaving] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [photoError, setPhotoError] = useState<string | null>(null);
 
-  // The photo belongs to the person; it is shown read-only, never sent here.
+  // photo_url is the person's photo: shown and edited here, saved with PUT /admin/persons/:id.
   const [form, setForm] = useState<CandidateEditForm>(EMPTY_FORM);
   const [saved, setSaved] = useState<CandidateEditForm>(EMPTY_FORM);
   const formRef = useRef(form);
@@ -147,17 +150,42 @@ export function useCandidateEdit(id?: string) {
   const handleSave = async () => {
     if (!id || !form.name.trim() || !candidateNumbersValid(form)) return false;
     const submitted = form;
+    const base = saved;
+    const { photo_url: _p, ...fields } = submitted;
+    const { photo_url: _b, ...baseFields } = base;
+    const fieldsChanged = JSON.stringify(fields) !== JSON.stringify(baseFields);
+    const photoChanged = submitted.photo_url !== base.photo_url;
     setSaving(true);
     setFieldErrors({});
+    setPhotoError(null);
     try {
-      // Only the keys the backend accepts (it refuses metadata, gender, education, person_id…).
-      await updateCandidate(id, {
-        name: submitted.name,
-        party_id: submitted.party_id || INDEPENDENT,
-        is_incumbent: submitted.is_incumbent,
-        ...candidateAffidavit(submitted),
-      });
-      toast('Candidate profile updated');
+      if (fieldsChanged) {
+        try {
+          // Only the keys the backend accepts (it refuses metadata, gender, education, person_id…).
+          await updateCandidate(id, {
+            name: submitted.name,
+            party_id: submitted.party_id || INDEPENDENT,
+            is_incumbent: submitted.is_incumbent,
+            ...candidateAffidavit(submitted),
+          });
+        } catch (err) {
+          setFieldErrors(fieldErrorMap(err));
+          toastError(err, 'Failed to update profile');
+          return false;
+        }
+      }
+      if (photoChanged && candidate?.person_id) {
+        try {
+          await updatePerson(candidate.person_id, { photo_url: submitted.photo_url || null });
+        } catch (err) {
+          // The candidate fields (if any) are saved; only the photo stays unsaved, so Save retries just that.
+          setSaved({ ...submitted, photo_url: base.photo_url });
+          setPhotoError(err instanceof Error && err.message ? `Photo not saved: ${err.message}` : 'Photo not saved');
+          toastError(err, 'Failed to save photo');
+          return false;
+        }
+      }
+      toast(photoChanged && !fieldsChanged ? 'Photo updated' : 'Candidate profile updated');
       // The submitted values are now the saved baseline; edits typed while saving stay dirty.
       setSaved(submitted);
       try {
@@ -170,10 +198,6 @@ export function useCandidateEdit(id?: string) {
         }
       } catch { /* saved fine; the list refresh and next open will show server state */ }
       return true;
-    } catch (err) {
-      setFieldErrors(fieldErrorMap(err));
-      toastError(err, 'Failed to update profile');
-      return false;
     } finally {
       setSaving(false);
     }
@@ -258,10 +282,10 @@ export function useCandidateEdit(id?: string) {
 
   const dirty = JSON.stringify(form) !== JSON.stringify(saved);
   /** Drop unsaved edits (panel Cancel). */
-  const reset = () => { setForm(saved); setFieldErrors({}); };
+  const reset = () => { setForm(saved); setFieldErrors({}); setPhotoError(null); };
 
   return {
-    fieldErrors,
+    fieldErrors, photoError,
     candidate, parties, loading, loadError, saving, form, setForm, dirty, reset, refresh: loadData,
     personSearch, setPersonSearch, personResults, isLinking, sameNamePersons,
     handleSave, changePerson, split
