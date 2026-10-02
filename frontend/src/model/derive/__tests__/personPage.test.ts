@@ -18,14 +18,17 @@ describe('contestStatus', () => {
 describe('personStats', () => {
   const cands = [c({ election_year: 2025, status: 'LEADING', election_status: 'Live', party_id: 'BJP' }), c({ election_year: 2014, party_id: 'BJP' }), c({ election_year: 2009, status: 'LOST', party_id: 'RJD' })];
   it('counts contests and decided wins; detects the party switch', () => {
-    expect(personStats(cands)).toEqual({ contests: 3, wins: 1, winRate: 50, parties: ['BJP', 'RJD'], switches: [{ from: 'RJD', to: 'BJP', fromLabel: 'RJD', toLabel: 'BJP', year: 2014 }] });
+    expect(personStats(cands)).toEqual({ contests: 3, wins: 1, decided: 2, winRate: 50, houses: [], parties: ['BJP', 'RJD'], switches: [{ from: 'RJD', to: 'BJP', fromLabel: 'RJD', toLabel: 'BJP', year: 2014 }] });
   });
   it('labels a switch with the contest party abbreviation, falling back to the id', () => {
     const s = personStats([c({ election_year: 2009, party_id: 'JDU', party_abbreviation: 'JD(U)' }), c({ election_year: 2014, party_id: 'BJP', party_abbreviation: null })]);
     expect(s.switches).toEqual([{ from: 'JDU', to: 'BJP', fromLabel: 'JD(U)', toLabel: 'BJP', year: 2014 }]);
   });
   it('no contests: zeros and no win rate', () => {
-    expect(personStats([])).toEqual({ contests: 0, wins: 0, winRate: null, parties: [], switches: [] });
+    expect(personStats([])).toEqual({ contests: 0, wins: 0, decided: 0, winRate: null, houses: [], parties: [], switches: [] });
+  });
+  it('lists the houses contested, Lok Sabha first', () => {
+    expect(personStats([c({ election_type: 'VS' }), c({ election_type: 'LS' }), c({ election_type: 'VS' })]).houses).toEqual(['LS', 'VS']);
   });
 });
 
@@ -48,7 +51,7 @@ describe('contestViews', () => {
 describe('affidavitSeries', () => {
   it('oldest first, skipping contests without affidavit values', () => {
     expect(affidavitSeries([c({ election_year: 2025, assets: 48000000, liabilities: 3200000, criminal_cases: 1 }), c({ election_year: 2014 }), c({ election_year: 2009, assets: 11000000 })]))
-      .toEqual([{ year: 2009, assets: 11000000, liabilities: null, criminalCases: null }, { year: 2025, assets: 48000000, liabilities: 3200000, criminalCases: 1 }]);
+      .toEqual([{ year: 2009, house: null, assets: 11000000, liabilities: null, criminalCases: null }, { year: 2025, house: null, assets: 48000000, liabilities: 3200000, criminalCases: 1 }]);
   });
 });
 

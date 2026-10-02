@@ -11,7 +11,7 @@ const genderOf = (g: string | null | undefined) => (g?.trim() ? { labelKey: GEND
 
 export interface PersonPageVM {
   status: 'loading' | 'error' | 'notFound' | 'ready';
-  name: string; photo: string | null; currentParty: { label: string; mark: string | null; color: string } | null;
+  name: string; photo: string | null; currentParty: { label: string; name: string; mark: string | null; color: string } | null;
   /** gender: an i18n key for M/F/O (or Male/Female/Other), else the stored value as is. */
   facts: { age: number | null; gender: { labelKey: string | null; raw: string } | null; education: string | null; home: string | null }; wikipedia: string | null; bio: string | null;
   incumbent: boolean; stats: PersonStats; contests: ContestView[]; affidavit: AffidavitPoint[]; latest: AffidavitPoint | null;
@@ -33,7 +33,7 @@ export function usePersonPageVM(id: string): PersonPageVM {
     return {
       status: notFound ? 'notFound' : p ? 'ready' : error ? 'error' : 'loading',
       name: p?.name ?? '', photo: p?.photo_url ?? null,
-      currentParty: latestContest?.partyId ? { label: latestContest.partyLabel, mark: latestContest.mark, color: latestContest.color } : null,
+      currentParty: latestContest?.partyId ? { label: latestContest.partyLabel, name: latestContest.partyName, mark: latestContest.mark, color: latestContest.color } : null,
       facts: { age: ageFrom(p?.date_of_birth ?? null), gender: genderOf(p?.gender), education: p?.education || null, home: [p?.district?.name, p?.state?.name].filter(Boolean).join(', ') || null },
       wikipedia: p?.wikipedia_url ?? null, bio: p?.bio?.trim() ? p.bio : null,
       incumbent: !!newest?.is_incumbent,

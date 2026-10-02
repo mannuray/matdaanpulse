@@ -1,16 +1,189 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import type { CSSProperties, ReactNode } from 'react';
 import type { PersonPageVM } from '../../viewmodels/pages/usePersonPageVM';
 import { PageShell } from '../page/PageShell';
 import { PartyMark } from '../ui/PartyMark';
 import { Avatar } from '../ui/Avatar';
+import { Icon, type IconName } from '../ui/Icon';
 import { formatIN, formatRupees } from '../ui/format';
-import { STATUS_STYLE } from '../dashboard/statusStyle';
-import { AffidavitChart } from './AffidavitChart';
 import { cn } from '../ui/cn';
 
-const tile = 'rounded-tile border border-line bg-tile p-4';
-const h2 = 'mb-3 font-display text-sm font-bold uppercase tracking-wider text-ink';
+type Contest = PersonPageVM['contests'][number];
+
+/** A party colour (hex or var()) at a given opacity, for tinted chips, glows and borders. */
+const tint = (color: string, pct: number) => `color-mix(in srgb, ${color} ${pct}%, transparent)`;
+
+const tile = 'rounded-2xl border border-line bg-tile';
+
+/** Status colours of a contest: pill, timeline node and card hover border. */
+function statusColor(c: Contest): string {
+  if (c.status === 'WON') return 'var(--color-ok-text)';
+  if (c.status === 'LOST') return 'var(--color-live-text)';
+  if (c.status === 'LEADING') return c.color;
+  return 'var(--color-muted)';
+}
+
+function Stat({ label, icon, iconColor, value, valueColor, sub, subColor }: {
+  label: string; icon: IconName; iconColor?: string; value: string; valueColor?: string; sub?: string | null; subColor?: string;
+}) {
+  return (
+    <div className={cn(tile, 'flex flex-col justify-between p-4')}>
+      <div className="flex items-center justify-between text-xs text-muted">
+        <span>{label}</span>
+        <span style={{ color: iconColor }} className={iconColor ? undefined : 'opacity-60'}><Icon name={icon} className="h-[18px] w-[18px]" /></span>
+      </div>
+      <div className="mt-2">
+        <div className="tabular font-display text-4xl font-bold" style={{ color: valueColor }}>{value}</div>
+        {sub && <div className="mt-0.5 text-[11px] font-semibold" style={{ color: subColor ?? 'var(--color-muted)' }}>{sub}</div>}
+      </div>
+    </div>
+  );
+}
+
+function Metric({ label, value, color }: { label: string; value: string; color?: string }) {
+  return (
+    <div>
+      <span className="block text-[11px] text-muted">{label}</span>
+      <span className="tabular font-display text-lg font-bold" style={{ color }}>{value}</span>
+    </div>
+  );
+}
+
+function ContestCard({ c, current }: { c: Contest; current: boolean }) {
+  const { t } = useTranslation();
+  const sc = statusColor(c);
+  const marginLabel = c.status === 'WON' ? t('pp_victory_margin') : c.status === 'LOST' ? t('pp_defeat_margin') : t('pp_lead_margin');
+  const marginSign = c.status === 'LOST' || c.status === 'TRAILING' ? '−' : '+';
+  const live = c.status === 'LEADING' || c.status === 'TRAILING';
+  return (
+    <li className="group relative">
+      {/* Timeline node */}
+      <span className="absolute -left-6 top-4 grid h-4 w-4 -translate-x-[5px] place-items-center rounded-full border-2 bg-tile sm:-left-8" style={{ borderColor: sc }} aria-hidden>
+        <span className={cn('h-1.5 w-1.5 rounded-full', live && 'animate-ping')} style={{ background: sc }} />
+      </span>
+      <div className="relative rounded-xl border border-line bg-page p-4 transition-colors" style={{ borderColor: current && live ? tint(sc, 40) : undefined }}>
+        {/* The whole card opens the seat; the party link sits above that overlay, outside it. */}
+        <Link to={c.constHref} aria-label={`${c.electionName} · ${c.constituency}`} className="absolute inset-0 rounded-xl border border-transparent transition-colors group-hover:border-[color:var(--hover)]" style={{ '--hover': tint(sc, 50) } as CSSProperties} />
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line bg-tile p-1">
+              {c.partyId ? <PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={24} /> : null}
+            </span>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-x-2 text-sm font-bold text-ink">
+                <span>{c.electionName}</span><span className="font-normal text-muted">· {c.constituency}</span>
+              </div>
+              {c.partyHref && (
+                <div className="flex flex-wrap items-center gap-1 text-xs">
+                  <Link to={c.partyHref} className="relative z-10 font-semibold hover:underline" style={{ color: current || c.firstUnderParty ? c.color : 'var(--color-muted)' }}>{c.partyName}</Link>
+                  {c.firstUnderParty && <span className="text-muted">({t('pp_first_under', { party: c.partyLabel })})</span>}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className={cn('inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-bold uppercase', live && 'animate-pulse')}
+              style={{ color: sc, background: tint(sc, 18), borderColor: tint(sc, 40) }}>
+              {live && <span className="h-1.5 w-1.5 rounded-full" style={{ background: sc }} />}
+              {t(`studio_status_${c.status.toLowerCase()}`)}
+            </span>
+            <span className="grid h-7 w-7 place-items-center rounded-lg border border-line bg-tile text-muted group-hover:text-ink" aria-hidden><Icon name="arrow" /></span>
+          </div>
+        </div>
+        <div className="mt-4 grid grid-cols-2 gap-3 border-t border-line/80 pt-3 sm:grid-cols-3">
+          <Metric label={t('pp_votes')} value={formatIN(c.votes)} />
+          {c.share != null && <Metric label={t('pp_vote_share')} value={`${c.share}%`} />}
+          {c.margin != null && <Metric label={marginLabel} value={`${marginSign}${formatIN(c.margin)}`} color={c.status === 'LOST' || c.status === 'TRAILING' ? 'var(--color-live-text)' : 'var(--color-ok-text)'} />}
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function AffidavitTile({ vm }: { vm: PersonPageVM }) {
+  const { t } = useTranslation();
+  const latest = vm.latest!;
+  const withAssets = vm.affidavit.filter(p => p.assets != null);
+  const first = withAssets[0];
+  const last = withAssets[withAssets.length - 1];
+  const max = Math.max(1, ...withAssets.map(p => p.assets!));
+  const growth = first && last && first !== last && first.assets! > 0 ? Math.round(((last.assets! - first.assets!) / first.assets!) * 100) : null;
+  const house = (h: 'LS' | 'VS' | null) => (h === 'LS' ? t('lok_sabha') : h === 'VS' ? t('vidhan_sabha') : null);
+  const newestFirst = [...vm.affidavit].reverse();
+  return (
+    <section className={cn(tile, 'space-y-6 p-6')}>
+      <div className="flex items-center justify-between border-b border-line pb-3">
+        <h2 className="font-display text-xl font-bold uppercase tracking-wide text-ink">{t('pp_affidavit_title')}</h2>
+        <span className="text-muted"><Icon name="wallet" className="h-[18px] w-[18px]" /></span>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        {latest.assets != null && (
+          <div className="rounded-xl border border-line bg-page p-3.5">
+            <div className="text-[11px] text-muted">{t('pp_latest_assets')}</div>
+            <div className="tabular mt-0.5 font-display text-2xl font-bold text-ok-text">{formatRupees(latest.assets)}</div>
+            <div className="mt-1 text-[10px] text-muted">{t('pp_declared', { year: latest.year })}</div>
+          </div>
+        )}
+        {latest.liabilities != null && (
+          <div className="rounded-xl border border-line bg-page p-3.5">
+            <div className="text-[11px] text-muted">{t('pp_latest_liabilities')}</div>
+            <div className="tabular mt-0.5 font-display text-2xl font-bold text-ink">{formatRupees(latest.liabilities)}</div>
+            <div className="mt-1 text-[10px] text-muted">{t('pp_declared', { year: latest.year })}</div>
+          </div>
+        )}
+      </div>
+      {latest.criminalCases != null && (
+        <div className={cn('flex items-center justify-between rounded-xl border bg-page p-3', latest.criminalCases > 0 ? 'border-warn/30' : 'border-line')}>
+          <div className="flex items-center gap-2">
+            <span className={latest.criminalCases > 0 ? 'text-warn-text' : 'text-muted'}><Icon name="gavel" className="h-[18px] w-[18px]" /></span>
+            <span className="text-xs text-muted">{t('pp_criminal_cases')}</span>
+          </div>
+          <span className={cn('rounded-full border px-2.5 py-0.5 text-xs font-bold', latest.criminalCases > 0 ? 'border-warn/30 bg-warn/20 text-warn-text' : 'border-line text-muted')}>
+            {t('pp_cases', { count: latest.criminalCases })}
+          </span>
+        </div>
+      )}
+      {withAssets.length > 1 && (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-medium text-muted">{t('pp_asset_growth', { from: first.year, to: last.year })}</span>
+            {growth != null && <span className="tabular text-[11px] font-semibold text-ok-text">{t('pp_growth_overall', { pct: growth > 0 ? `+${growth}` : growth })}</span>}
+          </div>
+          <div className="space-y-2.5 rounded-xl border border-line bg-page p-4">
+            {[...withAssets].reverse().map((p, i) => (
+              <div key={`${p.year}-${i}`}>
+                <div className="mb-1 flex justify-between text-[11px]">
+                  <span className={cn('font-medium', i === 0 ? 'text-ink' : 'text-muted')}>{i === 0 ? t('pp_latest_tag', { year: p.year }) : p.year}</span>
+                  <span className={cn('tabular font-semibold', i === 0 ? 'font-bold text-ok-text' : 'text-muted')}>{formatRupees(p.assets)}</span>
+                </div>
+                <div className="h-2 w-full overflow-hidden rounded-full bg-line">
+                  <div className="h-full rounded-full bg-ok-text" style={{ width: `${(p.assets! / max) * 100}%`, opacity: Math.max(0.3, 1 - i * 0.2) }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      <div className="space-y-2">
+        <div className="text-xs font-semibold uppercase tracking-wider text-muted">{t('pp_declaration_log')}</div>
+        <ul className="list-none divide-y divide-line pl-0 text-xs">
+          {newestFirst.map((p, i) => (
+            <li key={`${p.year}-${i}`} className="flex items-center justify-between py-2">
+              <div><span className="font-bold text-ink">{p.year}</span>{house(p.house) && <span className="ml-1.5 text-[11px] text-muted">({house(p.house)})</span>}</div>
+              <div className="text-right">
+                <span className={cn('tabular font-semibold', i === 0 ? 'text-ok-text' : 'text-ink')}>{[formatRupees(p.assets), p.liabilities != null ? `− ${formatRupees(p.liabilities)}` : null].filter(Boolean).join(' / ')}</span>
+                {p.criminalCases != null && <span className="ml-1.5 text-[10px] text-muted">| {t('pp_cases', { count: p.criminalCases })}</span>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function Sep() { return <span className="text-line" aria-hidden>|</span>; }
 
 export function PersonPageView({ vm }: { vm: PersonPageVM }) {
   const { t } = useTranslation();
@@ -18,100 +191,85 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
   if (vm.status !== 'ready') {
     return <PageShell back={back}><p className="py-16 text-center text-muted">{vm.status === 'notFound' ? t('pp_not_found') : vm.status === 'error' ? t('error_occurred') : t('loading')}</p></PageShell>;
   }
+  const party = vm.currentParty;
+  const accent = party?.color ?? 'var(--color-accent)';
   const g = vm.facts.gender;
-  const facts = [
-    vm.facts.age != null ? t('pp_age', { n: vm.facts.age }) : null,
-    g ? (g.labelKey ? t(g.labelKey) : g.raw) : null,
-    vm.facts.education, vm.facts.home,
-  ].filter(Boolean) as string[];
+  const facts: ReactNode[] = [
+    vm.facts.age != null && <span key="age" className="font-medium text-ink">{t('pp_age', { n: vm.facts.age })}</span>,
+    g && <span key="g">{g.labelKey ? t(g.labelKey) : g.raw}</span>,
+    vm.facts.education && <span key="edu">{t('pp_education')}: <strong className="font-semibold text-ink">{vm.facts.education}</strong></span>,
+    vm.facts.home && <span key="home">{t('pp_home')}: <strong className="font-semibold text-ink">{vm.facts.home}</strong></span>,
+    vm.wikipedia && <a key="wiki" href={vm.wikipedia} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-medium text-accent-text hover:underline">{t('pp_wikipedia')}<Icon name="external" className="h-3.5 w-3.5" /></a>,
+  ].filter(Boolean);
   const lastSwitch = vm.stats.switches[vm.stats.switches.length - 1];
-  const statTiles: { label: string; value: string; sub?: string }[] = [
-    { label: t('pp_contests'), value: String(vm.stats.contests) },
-    { label: t('pp_wins'), value: String(vm.stats.wins) },
-    ...(vm.stats.winRate != null ? [{ label: t('pp_win_rate'), value: `${vm.stats.winRate}%` }] : []),
-    { label: t('pp_parties'), value: String(vm.stats.parties.length), sub: lastSwitch ? t('pp_switch', { from: lastSwitch.fromLabel, to: lastSwitch.toLabel, year: lastSwitch.year }) : undefined },
-  ];
-  const latest = vm.latest;
+  const housesSub = vm.stats.houses.length === 2 ? t('pp_houses_both') : vm.stats.houses[0] === 'LS' ? t('lok_sabha') : vm.stats.houses[0] === 'VS' ? t('vidhan_sabha') : null;
+  // Timeline rail: from the current party's colour down to the oldest contest's party colour.
+  const oldest = vm.contests[vm.contests.length - 1];
+  const rail = `linear-gradient(to bottom, ${vm.contests[0]?.color ?? accent}, var(--color-line), ${oldest?.color ?? accent})`;
   return (
     <PageShell back={back}>
-      <header className="flex flex-col gap-4 border-b border-line pb-4 sm:flex-row sm:items-start">
-        <div className="relative shrink-0 self-start">
-          <Avatar name={vm.name} photo={vm.photo} size={128} className="text-3xl" />
-          {vm.currentParty && <span className="absolute -bottom-1 -right-1 rounded-full border border-line bg-page p-1"><PartyMark mark={vm.currentParty.mark} color={vm.currentParty.color} label={vm.currentParty.label} size={24} /></span>}
-        </div>
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="font-display text-4xl font-bold uppercase lg:text-5xl">{vm.name}</h1>
-            {vm.incumbent && <span className="rounded-full border border-accent/50 px-2 py-0.5 text-xs text-accent">{t('seat_incumbent')}</span>}
+      {/* Profile header */}
+      <header className={cn(tile, 'relative overflow-hidden p-6 lg:p-7')}>
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full blur-3xl" style={{ background: tint(accent, 12) }} aria-hidden />
+        <div className="relative z-10 flex flex-col items-start gap-6 md:flex-row md:items-center lg:gap-8">
+          <div className="relative shrink-0">
+            <div className="h-36 w-36 overflow-hidden rounded-2xl border-2 border-line bg-page shadow-md md:h-40 md:w-40">
+              <Avatar name={vm.name} photo={vm.photo} size="fill" className="h-full w-full rounded-none border-0 object-top text-4xl" />
+            </div>
+            {party && (
+              <span className="absolute -bottom-2 -right-2 grid h-10 w-10 place-items-center rounded-xl border-2 border-line bg-tile p-0.5 shadow-lg">
+                <PartyMark mark={party.mark} color={party.color} label={party.label} size={24} />
+              </span>
+            )}
           </div>
-          {vm.currentParty && <div className="mt-1 text-sm font-semibold text-muted">{vm.currentParty.label}</div>}
-          {facts.length > 0 && <p className="mt-2 text-sm text-muted">{facts.join(' · ')}</p>}
-          {vm.wikipedia && <a href={vm.wikipedia} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-sm text-accent-text hover:underline">{t('pp_wikipedia')} ↗</a>}
-          {vm.bio && <p className="mt-3 max-w-3xl whitespace-pre-line text-sm leading-relaxed">{vm.bio}</p>}
+          <div className="min-w-0 flex-1 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h1 className="font-display text-4xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-5xl lg:text-6xl">{vm.name}</h1>
+              <div className="flex flex-wrap items-center gap-2">
+                {vm.incumbent && <span className="rounded-lg border border-accent/40 px-2.5 py-1 text-xs font-semibold text-accent-text">{t('seat_incumbent')}</span>}
+                {party && (
+                  <span className="inline-flex items-center gap-2 rounded-lg border px-3 py-1.5" style={{ background: tint(party.color, 10), borderColor: tint(party.color, 30) }}>
+                    <PartyMark mark={party.mark} color={party.color} label={party.label} size={16} />
+                    <span className="text-xs font-bold tracking-wide" style={{ color: party.color }}>{party.name && party.name !== party.label ? `${party.name} · ${party.label}` : party.label}</span>
+                  </span>
+                )}
+              </div>
+            </div>
+            {facts.length > 0 && (
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted">
+                {facts.flatMap((f, i) => (i === 0 ? [f] : [<Sep key={`s${i}`} />, f]))}
+              </div>
+            )}
+            {vm.bio && <p className="max-w-4xl whitespace-pre-line text-sm leading-relaxed text-muted">{vm.bio}</p>}
+          </div>
         </div>
       </header>
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {statTiles.map(s => (
-          <div key={s.label} className={tile}>
-            <div className="text-[11px] uppercase tracking-wider text-muted">{s.label}</div>
-            <div className="tabular font-display text-3xl font-bold">{s.value}</div>
-            {s.sub && <div className="mt-1 text-xs text-muted">{s.sub}</div>}
-          </div>
-        ))}
+      {/* Stats */}
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <Stat label={t('pp_contests')} icon="ballot" value={String(vm.stats.contests)} sub={housesSub} />
+        <Stat label={t('pp_wins')} icon="star" iconColor="var(--color-ok-text)" value={String(vm.stats.wins)} valueColor="var(--color-ok-text)" />
+        {vm.stats.winRate != null && <Stat label={t('pp_win_rate')} icon="percent" iconColor="var(--color-accent)" value={`${vm.stats.winRate}%`} sub={t('pp_win_rate_sub', { wins: vm.stats.wins, decided: vm.stats.decided })} />}
+        <Stat label={t('pp_parties')} icon="swap" iconColor={lastSwitch ? accent : undefined} value={String(vm.stats.parties.length)}
+          sub={lastSwitch ? t('pp_switch', { from: lastSwitch.fromLabel, to: lastSwitch.toLabel, year: lastSwitch.year }) : party?.label ?? null} subColor={accent} />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
         {vm.contests.length > 0 && (
-          <section>
-            <h2 className={h2}>{t('pp_timeline')}</h2>
-            <ol className="flex list-none flex-col gap-2 pl-0">
-              {vm.contests.map(c => (
-                <li key={c.key} className={cn(tile, 'relative hover:border-accent/60')}>
-                  {/* The card link is stretched over the card; the party link sits above it, outside the card's <a>. */}
-                  <Link to={c.constHref} aria-label={`${c.electionName} · ${c.constituency}`} className="absolute inset-0 rounded-tile" />
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <div className="font-display font-bold">{c.electionName} · {c.constituency}</div>
-                      {c.partyHref && <Link to={c.partyHref} className="relative z-10 mt-1 inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} />{c.partyLabel}</Link>}
-                    </div>
-                    <span className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>
-                  </div>
-                  <div className="tabular mt-2 flex flex-wrap gap-x-4 text-sm">
-                    <span className="font-semibold">{formatIN(c.votes)}</span>
-                    {c.share != null && <span style={{ color: c.color }}>{c.share}%</span>}
-                    {c.margin != null && <span className="text-muted">{t('seat_margin')} {formatIN(c.margin)}</span>}
-                  </div>
-                  {c.firstUnderParty && <div className="mt-1 text-xs text-warn-text">{t('pp_first_under', { party: c.partyLabel })}</div>}
-                </li>
-              ))}
-            </ol>
-          </section>
-        )}
-        {vm.affidavit.length > 0 && latest && (
-          <section className={cn(tile, 'self-start')}>
-            <h2 className={h2}>{t('pp_affidavit')}</h2>
-            <dl className="grid grid-cols-2 gap-3">
-              {latest.assets != null && <div><dt className="text-[11px] uppercase tracking-wider text-muted">{t('pp_latest_assets')}</dt><dd className="tabular font-display text-xl font-bold">{formatRupees(latest.assets)}</dd></div>}
-              {latest.liabilities != null && <div><dt className="text-[11px] uppercase tracking-wider text-muted">{t('pp_latest_liabilities')}</dt><dd className="tabular font-display text-xl font-bold">{formatRupees(latest.liabilities)}</dd></div>}
-            </dl>
-            {latest.criminalCases != null && (
-              <p className="mt-3 text-sm"><span className="text-muted">{t('cp_criminal_cases')} </span>
-                {latest.criminalCases > 0 ? <span className="rounded-md bg-warn/15 px-1.5 py-0.5 text-xs font-bold text-warn-text">{latest.criminalCases}</span> : <span className="text-muted">0</span>}</p>
-            )}
-            <div className="mt-3"><AffidavitChart points={vm.affidavit} label={t('pp_affidavit')} /></div>
-            <div className="mt-2 flex gap-4 text-xs text-muted">
-              <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-sm bg-accent" />{t('pp_assets')}</span>
-              <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-sm bg-live" />{t('pp_liabilities')}</span>
+          <section className={cn(tile, 'p-6', vm.affidavit.length > 0 ? 'lg:col-span-8' : 'lg:col-span-12')}>
+            <div className="mb-6 border-b border-line pb-4">
+              <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-ink">{t('pp_timeline')}</h2>
+              <p className="mt-0.5 text-xs text-muted">{t('pp_timeline_sub')}</p>
             </div>
-            <ul className="mt-3 divide-y divide-line text-sm">
-              {[...vm.affidavit].reverse().map((p, i) => (
-                <li key={`${p.year}-${i}`} className="flex justify-between gap-2 py-1.5"><span className="font-semibold">{p.year}</span>
-                  <span className="tabular text-muted">{[formatRupees(p.assets), p.liabilities != null ? `− ${formatRupees(p.liabilities)}` : null].filter(Boolean).join(' / ')}</span></li>
-              ))}
-            </ul>
+            <div className="relative pl-6 sm:pl-8">
+              <span className="absolute bottom-3 left-2 top-3 w-[2px] sm:left-3" style={{ background: rail }} aria-hidden />
+              <ol className="list-none space-y-6 pl-0">
+                {vm.contests.map((c, i) => <ContestCard key={c.key} c={c} current={i === 0} />)}
+              </ol>
+            </div>
           </section>
         )}
+        {vm.affidavit.length > 0 && vm.latest && <aside className="lg:col-span-4"><AffidavitTile vm={vm} /></aside>}
       </div>
     </PageShell>
   );

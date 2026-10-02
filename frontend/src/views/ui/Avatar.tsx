@@ -7,9 +7,10 @@ function initials(name: string): string {
   return (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
 }
 
-export function Avatar({ name, photo, size = 40, className }: { name: string; photo: string | null; size?: number; className?: string }) {
+/** `size` in px, or 'fill' to take the container's size (set it with className). */
+export function Avatar({ name, photo, size = 40, className }: { name: string; photo: string | null; size?: number | 'fill'; className?: string }) {
   const [failed, setFailed] = useState<string | null>(null);
-  const style = { width: size, height: size };
+  const style = size === 'fill' ? undefined : { width: size, height: size };
   if (photo && failed !== photo) {
     return <img src={photo} alt={name} style={style} loading="lazy" onError={() => setFailed(photo)} className={cn('shrink-0 rounded-full object-cover', className)} />;
   }
