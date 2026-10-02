@@ -5,7 +5,9 @@ import { useHistoricalResults } from '../data/useHistoricalResults';
 import { useAnalysis } from '../data/useAnalysis';
 import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
+import { usePartyMeta } from '../data/usePartyMeta';
 import type { CustomWatch } from '../../model/derive/leaders';
+import type { PartyMeta } from '../../model/derive/partyMeta';
 import { appendTicker, type TickerEvent } from '../../model/live/ticker';
 import { diffLeaders } from '../../model/live/liveUpdates';
 import type { Election, ResultRow, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint, PartyTrendPoint } from '../../model/types';
@@ -34,6 +36,8 @@ export interface DashboardSources {
   /** Live election: the last poll succeeded. */
   liveConnected: boolean;
   availableLayers: LayerId[];
+  /** Party abbreviation and mark (logo → ECI symbol) by party id. */
+  partyMeta: Map<string, PartyMeta>;
   /** The user's own tracked seats (shared by the seat panel and the watchlist tab). */
   watchlist: CustomWatch[];
   addWatch(constId: string, label: string): void;
@@ -43,6 +47,7 @@ export interface DashboardSources {
 export function useDashboardSources(pageElection: Election): DashboardSources {
   const data = useDashboardData(pageElection);
   const { setLiveConnected } = useElection();
+  const partyMeta = usePartyMeta();
   const { manifestData, results, currentWinnerMap, constCandidates, mapRegions, voteShare, liveConnected, liveStatus, liveVersion } = data;
   // The election as the tiles should see it: its status follows /live (Upcoming → Live → Finalized
   // without a reload).
@@ -132,7 +137,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
 
   return {
     election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, prevYear,
-    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers,
+    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta,
     watchlist, addWatch, removeWatch,
   };
 }
