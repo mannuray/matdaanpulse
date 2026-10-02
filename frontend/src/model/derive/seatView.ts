@@ -57,6 +57,20 @@ export function buildSeatView(rows: ResultRow[], o: { partyMeta: Map<string, Par
   };
 }
 
+/** Counting / Declared chip of a seat; null hides it (election not started, or status unknown). */
+export type LiveChipState = { kind: 'counting'; round: { current: number; total: number } | null } | { kind: 'declared' } | null;
+
+/** One rule for the seat dialog and the constituency page: declared once the election is final or the seat has a winner. */
+export function liveChipState(
+  status: 'Upcoming' | 'Live' | 'Finalized' | null | undefined,
+  rows: ResultRow[],
+  detail: { current_round?: number | null; total_rounds?: number | null } | null,
+): LiveChipState {
+  if (!status || status === 'Upcoming') return null;
+  if (status === 'Finalized' || rows.some(r => r.status === 'WON')) return { kind: 'declared' };
+  return { kind: 'counting', round: detail?.current_round && detail.total_rounds ? { current: detail.current_round, total: detail.total_rounds } : null };
+}
+
 export function seatHistory(analysis: AnalysisEntry | null, currentYear: number): SeatHistoryEntry[] {
   const list = (analysis?.incumbency as { seat_history?: SeatHistoryEntry[] } | undefined)?.seat_history ?? [];
   return list.filter(h => h.year !== currentYear).sort((a, b) => b.year - a.year);

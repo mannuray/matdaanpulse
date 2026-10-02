@@ -7,11 +7,10 @@ import { getElection, getConstituency, getConstituencyAnalysis, getManifest, Ele
 import { ApiError } from '../../model/api/api-client';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
-import { buildSeatView, detailToRows, seatHistory, seatNotes, type SeatView, type SeatNote } from '../../model/derive/seatView';
+import { buildSeatView, detailToRows, liveChipState, seatHistory, seatNotes, type LiveChipState, type SeatView, type SeatNote } from '../../model/derive/seatView';
 import type { PartyMeta } from '../../model/derive/partyMeta';
 import type { CustomWatch } from '../../model/derive/leaders';
 import type { SeatHistoryEntry, Election } from '../../model/types';
-import type { SeatDialogVM } from '../tiles/useSeatDialogVM';
 
 const LS_PC = '/geo/india_pc.geojson';
 const NOT_FOUND = 'NOT_FOUND' as const;
@@ -20,7 +19,7 @@ export interface ConstituencyPageVM {
   status: 'loading' | 'error' | 'notFound' | 'ready';
   electionName: string; electionHref: string; stateName: string | null; districtName: string | null;
   name: string; constNo: number | null; type: 'GEN' | 'SC' | 'ST' | null;
-  live: SeatDialogVM['live'];
+  live: LiveChipState;
   facts: { electors: number | null; votesPolled: number | null; turnout: number | null; phase: number | null; region: string | null; district: string | null; progress: { current: number; total: number } | null };
   /** All candidates, NOTA last, no cap. */
   view: SeatView;
@@ -37,10 +36,17 @@ export interface ConstituencyPageVM {
 export function useConstituencyPageVM(electionId: string, constId: string): ConstituencyPageVM {
   const partyMeta = usePartyMeta();
   const election = useApi(() => getElection(electionId), [electionId], { key: ElectionService.getCacheKey(electionId) });
+  const e = election.data && election.data.id === electionId ? election.data : null;
+  // Poll while counting and before it starts, so a page left open on counting day picks up the first results.
+  const live = useLiveSnapshot(electionId, e?.status === 'Live' || e?.status === 'Upcoming');
+  // /live reports status changes (Upcoming → Live → Finalized) before the election record is refetched.
+  const electionStatus = live.status ?? e?.status ?? null;
+  // Refetch the detail on every new live version, so the counting round follows the snapshot (CDN-cached).
+  const version = live.snapshot?.version ?? null;
   // useApi's error is a string, so a 404 is turned into a value here.
   const detailRes = useApi(
     () => getConstituency(electionId, constId).catch(e => { if (e instanceof ApiError && e.status === 404) return NOT_FOUND; throw e; }),
-    [electionId, constId], { key: ElectionService.getConstituencyCacheKey(electionId, constId) },
+    [electionId, constId, version], { key: `${ElectionService.getConstituencyCacheKey(electionId, constId)}_v${version ?? ''}` },
   );
   const notFound = detailRes.data === NOT_FOUND;
   // useApi keeps the previous seat's data while the next loads: only use data that belongs to this seat.
@@ -48,9 +54,6 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   const analysisRes = useApi(() => getConstituencyAnalysis(electionId, constId).catch(() => null), [electionId, constId], { key: `${ElectionService.getConstituencyCacheKey(electionId, constId)}_analysis` });
   const analysis = analysisRes.data && (!analysisRes.data.const_id || analysisRes.data.const_id === constId) ? analysisRes.data : null;
   const manifest = useApi(() => getManifest(electionId).catch(() => null), [electionId], { key: ElectionService.getCacheKey(electionId, 'manifest') });
-  const e = election.data && election.data.id === electionId ? election.data : null;
-  const isLive = e?.status === 'Live';
-  const live = useLiveSnapshot(electionId, isLive);
   // Same key as the dashboard watchlist, so tracking is shared.
   const [watch, setWatch] = useLocalStorage<CustomWatch[]>(`watchlist_${electionId}`, []);
 
@@ -80,14 +83,13 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
 
   const status: ConstituencyPageVM['status'] = notFound ? 'notFound' : detailRes.error || election.error ? 'error' : d && e ? 'ready' : 'loading';
   const tracked = watch.some(w => w.const_id === constId);
-  const declared = rows.some(r => r.status === 'WON');
   const progress = d?.current_round && d.total_rounds ? { current: d.current_round, total: d.total_rounds } : null;
   return {
     status,
     electionName: e?.name ?? '', electionHref: `/election/${electionId}`,
     stateName: d?.state?.name ?? null, districtName: d?.district?.name ?? null,
     name: d?.name ?? '', constNo: d?.const_no ?? null, type: d?.type ?? null,
-    live: !e || e.status === 'Upcoming' ? null : e.status === 'Finalized' || declared ? { kind: 'declared' } : { kind: 'counting', round: progress },
+    live: e ? liveChipState(electionStatus, rows, d) : null,
     facts: {
       electors: d?.total_electors ?? null, votesPolled: view.totalVotes > 0 ? view.totalVotes : null,
       turnout: d?.voter_turnout != null ? Number(d.voter_turnout) : null, phase: d?.phase ?? null,

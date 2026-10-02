@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildSeatView, seatHistory, seatNotes, detailToRows } from '../seatView';
+import { buildSeatView, seatHistory, seatNotes, detailToRows, liveChipState } from '../seatView';
 import type { ResultRow, CandidateResult, AnalysisEntry } from '../../types';
 import type { PartyMeta } from '../partyMeta';
 
@@ -84,5 +84,21 @@ describe('detailToRows', () => {
     expect(rows).toEqual([{ const_id: 'S', party_id: '', candidate_name: 'C', votes: 0, status: 'PENDING', margin: 0 }]);
     const v = buildSeatView(rows, { partyMeta: meta, partyColor: color, detail });
     expect(v.candidates[0]).toMatchObject({ photo: '/c.png', personId: 'p1', incumbent: true, affidavit: { age: 25, assets: 50, liabilities: 10, criminalCases: 0 } });
+  });
+});
+
+describe('liveChipState', () => {
+  const row = (status: string): ResultRow => ({ const_id: 'S', party_id: 'BJP', candidate_name: 'A', votes: 1, status, margin: 0 } as ResultRow);
+  it('hidden before counting or when the status is unknown', () => {
+    expect(liveChipState('Upcoming', [row('LEADING')], null)).toBeNull();
+    expect(liveChipState(null, [], null)).toBeNull();
+  });
+  it('declared once final or when the seat has a winner', () => {
+    expect(liveChipState('Finalized', [], null)).toEqual({ kind: 'declared' });
+    expect(liveChipState('Live', [row('WON')], null)).toEqual({ kind: 'declared' });
+  });
+  it('counting with the round when the detail has one', () => {
+    expect(liveChipState('Live', [row('LEADING')], { current_round: 4, total_rounds: 18 })).toEqual({ kind: 'counting', round: { current: 4, total: 18 } });
+    expect(liveChipState('Live', [], { current_round: null, total_rounds: 18 })).toEqual({ kind: 'counting', round: null });
   });
 });

@@ -4,13 +4,13 @@ import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { useApi } from '../data/useApi';
 import { getConstituency, getConstituencyAnalysis, ElectionService } from '../../model/api/election.service';
 import { displayNameFromConstId } from '../../model/geo/regionMatching';
-import { buildSeatView, seatHistory, seatNotes, type SeatView, type SeatNote } from '../../model/derive/seatView';
+import { buildSeatView, liveChipState, seatHistory, seatNotes, type LiveChipState, type SeatView, type SeatNote } from '../../model/derive/seatView';
 import type { PartyMeta } from '../../model/derive/partyMeta';
 import type { SeatHistoryEntry } from '../../model/types';
 
 export interface SeatDialogVM {
   seatId: string; name: string; constNo: number | null; type: 'GEN' | 'SC' | 'ST' | null; place: string | null;
-  live: { kind: 'counting'; round: { current: number; total: number } | null } | { kind: 'declared' } | null;
+  live: LiveChipState;
   electors: number | null; turnout: number | null; phase: number | null;
   view: SeatView; history: SeatHistoryEntry[]; notes: SeatNote[];
   partyMeta: Map<string, PartyMeta>;
@@ -41,11 +41,7 @@ export function useSeatDialogVM(): SeatDialogVM | null {
   if (!id) return null;
   const tracked = src.watchlist.some(w => w.const_id === id);
   const name = d?.name ?? displayNameFromConstId(id);
-  const hasWinner = (rows ?? []).some(r => r.status === 'WON');
-  const live: SeatDialogVM['live'] =
-    src.election.status === 'Upcoming' ? null
-    : src.election.status === 'Finalized' || hasWinner ? { kind: 'declared' }
-    : { kind: 'counting', round: d?.current_round && d.total_rounds ? { current: d.current_round, total: d.total_rounds } : null };
+  const live = liveChipState(src.election.status, rows ?? [], d);
   return {
     seatId: id,
     name,
