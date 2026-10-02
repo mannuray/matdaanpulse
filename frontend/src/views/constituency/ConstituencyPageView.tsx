@@ -100,6 +100,45 @@ function Contender({ c, vm, rank, right }: { c: Cand; vm: ConstituencyPageVM; ra
   );
 }
 
+type Insight = ConstituencyPageVM['insights'][number];
+
+const WARN_PATH = 'M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4a2 2 0 00-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z';
+const INFO_PATH = 'M12 8h.01M11 12h1v4h1M12 3a9 9 0 110 18 9 9 0 010-18z';
+const SWAP_PATH = 'M7 7h13l-3-3M17 17H4l3 3';
+
+function InsightCard({ i, vm }: { i: Insight; vm: ConstituencyPageVM }) {
+  const { t } = useTranslation();
+  const party = (id: string) => vm.partyMeta.get(id)?.abbreviation ?? id;
+  const partyColor = (id: string) => vm.partyMeta.get(id)?.color ?? 'var(--color-accent)';
+  let tone: 'warn' | 'info' | 'party' = 'info';
+  let color = 'var(--color-accent-text)';
+  let title = '';
+  let body = '';
+  let icon = INFO_PATH;
+  switch (i.kind) {
+    case 'flip': tone = 'party'; color = partyColor(i.to); icon = SWAP_PATH; title = t('ins_flip_title'); body = t('ins_flip_body', { to: party(i.to), from: party(i.from), year: i.fromYear }); break;
+    case 'hold': tone = 'party'; color = partyColor(i.party); title = t('ins_hold_title', { party: party(i.party) }); body = t('ins_hold_body', { count: i.streak, year: vm.history[0]?.year }); break;
+    case 'photoFinish': tone = 'warn'; icon = WARN_PATH; title = t('ins_photo_title'); body = t('ins_photo_body', { margin: formatIN(i.margin), pct: i.pct }); break;
+    case 'nota': tone = 'warn'; icon = WARN_PATH; title = t('ins_nota_title'); body = t('ins_nota_body', { nota: formatIN(i.nota), margin: formatIN(i.margin) }); break;
+    case 'incumbent': title = t(i.won ? 'ins_inc_kept_title' : 'ins_inc_lost_title'); body = t(i.won ? 'ins_inc_kept_body' : 'ins_inc_lost_body', { name: i.name }); break;
+    case 'marginChange': title = t(i.now >= i.prev ? 'ins_margin_up_title' : 'ins_margin_down_title'); body = t('ins_margin_body', { prev: formatIN(i.prev), year: i.prevYear, now: formatIN(i.now) }); break;
+    case 'threeWay': tone = 'warn'; icon = WARN_PATH; title = t('cp_three_way_title'); body = t('cp_three_way_body', { margin: formatIN(i.margin), name: i.thirdName, votes: formatIN(i.thirdVotes) }); break;
+    case 'spoiler': tone = 'warn'; icon = WARN_PATH; title = t('cp_spoiler_title'); body = t('seat_spoiler', { party: party(i.party), votes: formatIN(i.votes), margin: formatIN(i.margin) }); break;
+    case 'affidavit': title = t('ins_aff_title'); body = [t('ins_aff_cases', { withCases: i.withCases, total: i.total }), i.winnerCases != null ? t('ins_aff_winner', { n: i.winnerCases }) : null, i.richest ? t('ins_aff_richest', { name: i.richest.name, assets: formatRupees(i.richest.assets) }) : null].filter(Boolean).join(' '); break;
+  }
+  if (tone === 'warn') color = 'var(--color-warn-text)';
+  const style = tone === 'warn' ? undefined : { borderColor: tint(color, 35), background: tint(color, 7) };
+  return (
+    <div className={cn('flex items-start gap-3 rounded-lg border p-3', tone === 'warn' && 'border-warn/50 bg-warn/10')} style={style}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="mt-0.5 h-4 w-4 shrink-0" style={{ color }} aria-hidden><path d={icon} strokeLinecap="round" strokeLinejoin="round" /></svg>
+      <div className="min-w-0">
+        <div className="text-sm font-bold" style={{ color }}>{title}</div>
+        <p className="mt-0.5 text-xs leading-relaxed text-ink/80">{body}</p>
+      </div>
+    </div>
+  );
+}
+
 export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
   const { t } = useTranslation();
   const back = { href: vm.electionHref, label: t('cp_back') };
@@ -287,7 +326,7 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
         )}
       </section>
 
-      {(vm.history.length > 0 || vm.notes.length > 0) && (
+      {(vm.history.length > 0 || vm.insights.length > 0) && (
         <section className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {vm.history.length > 0 && (
             <article className={cn(tile, 'p-4 shadow-xl lg:p-5')}>
@@ -323,22 +362,12 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
               </ol>
             </article>
           )}
-          {vm.notes.length > 0 && (
+          {vm.insights.length > 0 && (
             <article className={cn(tile, 'space-y-3 p-4 shadow-xl lg:p-5')}>
               <div className={cn(tileHead, 'mb-0')}><h2 className={h2}>{t('cp_insights')}</h2></div>
-              {vm.notes.map((n, i) => (
-                <div key={`${n.kind}-${i}`} className="flex items-start gap-3 rounded-lg border border-warn/50 bg-warn/10 p-3">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="mt-0.5 h-5 w-5 shrink-0 text-warn-text" aria-hidden><path d="M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4a2 2 0 00-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  <div>
-                    <div className="text-sm font-bold text-warn-text">{n.kind === 'threeWay' ? t('cp_three_way_title') : t('cp_spoiler_title')}</div>
-                    <p className="mt-0.5 text-xs leading-relaxed text-ink/80">
-                      {n.kind === 'threeWay'
-                        ? t('cp_three_way_body', { margin: formatIN(n.margin), name: n.thirdName, votes: formatIN(n.thirdVotes) })
-                        : t('seat_spoiler', { party: vm.partyMeta.get(n.party)?.abbreviation ?? n.party, votes: formatIN(n.votes), margin: formatIN(n.margin) })}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              <div className="grid grid-cols-1 gap-2.5 xl:grid-cols-2">
+                {vm.insights.map((i, n) => <InsightCard key={`${i.kind}-${n}`} i={i} vm={vm} />)}
+              </div>
             </article>
           )}
         </section>

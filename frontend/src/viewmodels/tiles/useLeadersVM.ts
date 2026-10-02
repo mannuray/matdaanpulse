@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { intentFor } from '../store/hoverIntent';
-import { collectLeaderEntries, deriveLeaderCards, type LeaderCard } from '../../model/derive/leaders';
+import { collectLeaderEntries, deriveLeaderCards, resolveLeaderSeats, type LeaderCard } from '../../model/derive/leaders';
 
 export type { LeaderCard };
 
@@ -25,10 +25,11 @@ export interface LeadersVM {
 export function useLeadersVM(): LeadersVM {
   const src = useSources();
   const { dispatch } = useDashboardStore();
-  const { manifestData, currentWinnerMap, mapRegions } = src.data;
+  const { manifestData, currentWinnerMap, mapRegions, results } = src.data;
+  // Manifest leaders without a seat get it from this election's results (name match within the party).
   const leaders = useMemo(
-    () => deriveLeaderCards(collectLeaderEntries(manifestData, []), currentWinnerMap),
-    [manifestData, currentWinnerMap],
+    () => deriveLeaderCards(resolveLeaderSeats(collectLeaderEntries(manifestData, []), results), currentWinnerMap),
+    [manifestData, currentWinnerMap, results],
   );
   const watchlist = useMemo(
     () => deriveLeaderCards(collectLeaderEntries(null, src.watchlist), currentWinnerMap),

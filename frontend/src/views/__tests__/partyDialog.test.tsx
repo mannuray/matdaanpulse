@@ -12,7 +12,7 @@ const vm = (over: Partial<PartyDialogVM> = {}): PartyDialogVM => ({
   id: 'RJD', name: 'Rashtriya Janata Dal', abbreviation: 'RJD', mark: '/r.svg', color: '#0a0', recognition: 'State', electionName: 'Bihar Vidhan Sabha 2025',
   stats: { won: 52, leading: 23, contested: 143, votePct: 23.1, alliance: { id: 'MGB', name: 'Mahagathbandhan' } }, totalSeats: 243, majority: 122,
   profile: { leader: 'Tejashwi Yadav', founded: 1997, hq: null, website: 'https://rjd.co.in', wikipedia: null, description: null },
-  keyCandidates: [{ key: 'k', name: 'Tejashwi Yadav', constId: 'S', constName: 'Raghopur', partyId: 'RJD', status: 'WON', margin: 10, custom: false }],
+  keyCandidates: [{ key: 'k', name: 'Tejashwi Yadav', constId: 'S', constName: 'Raghopur', status: 'WON', margin: 10, leader: true }, { key: 'n', name: 'Lalu Prasad Yadav', constId: '', constName: '', status: null, margin: null, leader: true }],
   onClose: vi.fn(), onSelectSeat: vi.fn(), ...over,
 });
 
@@ -35,5 +35,11 @@ describe('PartyDialog', () => {
     render(<PartyDialog vm={vm({ profile: null, keyCandidates: [] })} />);
     expect(screen.queryByText('Leader')).toBeNull();
     expect(screen.queryByText('Key candidates')).toBeNull();
+  });
+  it('a leader without a seat is a plain card marked party leader / not contesting', () => {
+    render(<PartyDialog vm={vm()} />);
+    expect(screen.queryByRole('button', { name: /Lalu Prasad Yadav/ })).toBeNull();
+    expect(screen.getByText('Not contesting this election')).toBeTruthy();
+    expect(screen.getAllByText('Party leader')).toHaveLength(2);
   });
 });

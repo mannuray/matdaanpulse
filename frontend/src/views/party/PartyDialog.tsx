@@ -98,22 +98,29 @@ export function PartyDialog({ vm }: { vm: PartyDialogVM | null }) {
         {vm.keyCandidates.length > 0 && (
           <section className="space-y-2.5">
             <div className="flex items-center justify-between text-xs">
-              <h2 className="font-display font-bold uppercase tracking-wider text-ink/80">{t('party_key_candidates')}</h2>
+              <h2 className="font-display text-xs font-bold uppercase tracking-wider text-ink/80">{t('party_key_candidates')}</h2>
               <span className="text-[10px] font-medium text-muted">{t('party_key_hint')}</span>
             </div>
             <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-              {vm.keyCandidates.map(c => (
-                <button key={c.key} type="button" onClick={() => vm.onSelectSeat(c.constId)}
-                  className="group flex flex-col justify-between rounded-xl border border-line bg-page p-2.5 text-left transition-colors hover:border-[color:var(--hover)]" style={{ '--hover': tint(color, 50) } as CSSProperties}>
-                  <div className="mb-2 flex items-start gap-2.5">
-                    <Avatar name={c.name} photo={null} size={36} />
-                    <div className="min-w-0"><div className="truncate text-xs font-semibold leading-tight text-ink">{c.name}</div><span className="block truncate text-[10px] text-muted">{c.constName}</span></div>
-                  </div>
-                  <div className="flex items-center justify-end border-t border-line/60 pt-1.5">
-                    <span className="rounded border border-ok-text/40 bg-ok-text/15 px-1.5 py-0.5 text-[9px] font-bold uppercase text-ok-text">{t(`studio_status_${c.status.toLowerCase()}`)}</span>
-                  </div>
-                </button>
-              ))}
+              {vm.keyCandidates.map(c => {
+                const body = (
+                  <>
+                    <div className="mb-2 flex items-start gap-2.5">
+                      <Avatar name={c.name} photo={null} size={36} />
+                      <div className="min-w-0"><div className="truncate text-xs font-semibold leading-tight text-ink">{c.name}</div>
+                        <span className="block truncate text-[10px] text-muted">{c.constId ? c.constName : t('party_not_contesting')}</span></div>
+                    </div>
+                    <div className="flex items-center justify-between gap-1 border-t border-line/60 pt-1.5">
+                      {c.leader ? <span className="truncate text-[9px] font-semibold uppercase tracking-wider" style={{ color }}>{t('party_leader_tag')}</span> : <span />}
+                      {c.status && <span className={cn('rounded border px-1.5 py-0.5 text-[9px] font-bold uppercase', c.status === 'WON' || c.status === 'LEADING' ? 'border-ok-text/40 bg-ok-text/15 text-ok-text' : 'border-live-text/30 bg-live-text/10 text-live-text')}>{t(`studio_status_${c.status.toLowerCase()}`)}</span>}
+                    </div>
+                  </>
+                );
+                const cls = 'group flex flex-col justify-between rounded-xl border border-line bg-page p-2.5 text-left transition-colors';
+                return c.constId
+                  ? <button key={c.key} type="button" onClick={() => vm.onSelectSeat(c.constId)} className={cn(cls, 'hover:border-[color:var(--hover)]')} style={{ '--hover': tint(color, 50) } as CSSProperties}>{body}</button>
+                  : <div key={c.key} className={cls}>{body}</div>;
+              })}
             </div>
           </section>
         )}

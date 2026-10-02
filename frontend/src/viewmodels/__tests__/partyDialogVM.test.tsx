@@ -41,7 +41,7 @@ describe('usePartyDialogVM', () => {
     expect(resultOnly.current).toMatchObject({ id: 'RJD', name: 'Rashtriya Janata Dal', stats: { contested: 1 } });
   });
 
-  it('key candidates: only this party\'s leaders who won or lead a seat', () => {
+  it('key candidates: all this party\'s leaders first (a seatless one with no status)', () => {
     getParty.mockResolvedValue(null);
     const base = makeSources();
     const manifestData = { ...base.data.manifestData!, leaders: [
@@ -52,6 +52,14 @@ describe('usePartyDialogVM', () => {
       { name: 'Other party', party_id: 'BJP', const_id: 'BR_VS_3_AGIAON' },
     ] };
     const { result } = renderHook(() => usePartyDialogVM(), { wrapper: wrap('/?party=JDU', { data: { ...base.data, manifestData } as never }) });
-    expect(result.current!.keyCandidates.map(c => [c.name, c.status])).toEqual([['Winner', 'WON']]);
+    expect(result.current!.keyCandidates.map(c => [c.name, c.status, c.leader])).toEqual([['Winner', 'WON', true], ['Pending', 'PENDING', true], ['Seatless', null, true], ['Loser', 'LOST', true]]);
+  });
+
+  it('key candidates: without manifest leaders the party\'s biggest wins fill the cards', () => {
+    getParty.mockResolvedValue(null);
+    const base = makeSources();
+    const manifestData = { ...base.data.manifestData!, leaders: [] };
+    const { result } = renderHook(() => usePartyDialogVM(), { wrapper: wrap('/?party=JDU', { data: { ...base.data, manifestData } as never }) });
+    expect(result.current!.keyCandidates.map(c => [c.name, c.leader])).toEqual([['KALADHAR PRASAD MANDAL', false], ['RADHA CHARAN SAH', false]]);
   });
 });

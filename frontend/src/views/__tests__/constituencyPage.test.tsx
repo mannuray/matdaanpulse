@@ -18,7 +18,7 @@ const vm = (over: Partial<ConstituencyPageVM> = {}): ConstituencyPageVM => ({
     cand({ name: 'B', partyId: 'RJD', partyLabel: 'RJD', votes: 380, share: 38 }),
     cand({ name: 'NOTA', partyId: null, partyLabel: '', nota: true, votes: 20, share: 2 }),
   ] },
-  history: [{ year: 2020, party: 'BJP', candidate: 'A', margin: 5, vote_share: 50.5, runner_up: 'B', runner_up_party: 'RJD' }], dominance: 'swing', notes: [],
+  history: [{ year: 2020, party: 'BJP', candidate: 'A', margin: 5, vote_share: 50.5, runner_up: 'B', runner_up_party: 'RJD' }], dominance: 'swing', notes: [], insights: [],
   partyMeta: new Map(), locator: null, tracked: false, onToggleTrack: vi.fn(), shareText: 'x', personHref: id => `/person/${id}`, partyHref: id => `/election/e1?party=${id}`, election: null, ...over,
 });
 const renderIt = (v: ConstituencyPageVM) => render(<MemoryRouter><ConstituencyPageView vm={v} /></MemoryRouter>);
@@ -75,14 +75,14 @@ describe('ConstituencyPageView', () => {
 
   it('classification chip uses the singular page label; the history list has no markers; the spoiler names the abbreviation', () => {
     renderIt(vm({ partyMeta: new Map([['JDU', { id: 'JDU', name: 'Janata Dal (United)', abbreviation: 'JD(U)', color: '#1a7', mark: null, eciRecognition: null }]]),
-      notes: [{ kind: 'spoiler', party: 'JDU', votes: 900, margin: 220 }] }));
+      notes: [{ kind: 'spoiler', party: 'JDU', votes: 900, margin: 220 }], insights: [{ kind: 'spoiler', party: 'JDU', votes: 900, margin: 220 }] }));
     expect(screen.getByText('Swing seat')).toBeTruthy();
     const ol = screen.getByText('Seat history').closest('article')!.querySelector('ol')!;
     expect(ol.className.split(' ')).toEqual(expect.arrayContaining(['list-none', 'pl-0']));
     expect(screen.getByText(/JD\(U\) polled 900 votes/)).toBeTruthy();
     cleanup();
     // No classification → no chip; a party missing from the party list falls back to its id.
-    renderIt(vm({ dominance: null, notes: [{ kind: 'spoiler', party: 'XYZ', votes: 5, margin: 1 }] }));
+    renderIt(vm({ dominance: null, notes: [{ kind: 'spoiler', party: 'XYZ', votes: 5, margin: 1 }], insights: [{ kind: 'spoiler', party: 'XYZ', votes: 5, margin: 1 }] }));
     expect(screen.getByText(/XYZ polled 5 votes/)).toBeTruthy();
     expect(screen.queryByText('Swing seat')).toBeNull();
   });
@@ -93,9 +93,23 @@ describe('ConstituencyPageView', () => {
   });
 
   it('hides empty tiles (no history, no notes, no locator)', () => {
-    renderIt(vm({ history: [], notes: [], locator: null }));
+    renderIt(vm({ history: [], notes: [], insights: [], locator: null }));
     expect(screen.queryByText('Seat history')).toBeNull();
     expect(screen.queryByText('Insights')).toBeNull();
     expect(screen.queryByText('Locator')).toBeNull();
+  });
+  it('renders each insight kind as a card with its numbers', () => {
+    renderIt(vm({ insights: [
+      { kind: 'flip', from: 'RJD', to: 'BJP', fromYear: 2020 },
+      { kind: 'photoFinish', pct: 0.5, margin: 981 },
+      { kind: 'nota', nota: 3635, margin: 981 },
+      { kind: 'incumbent', name: 'B', won: false },
+    ] }));
+    const box = screen.getByText('Insights').closest('article')!;
+    expect(within(box as HTMLElement).getByText('Seat changed hands')).toBeTruthy();
+    expect(within(box as HTMLElement).getByText(/BJP took it from RJD, the 2020 winner/)).toBeTruthy();
+    expect(within(box as HTMLElement).getByText(/Decided by 981 votes, 0.5%/)).toBeTruthy();
+    expect(within(box as HTMLElement).getByText(/NOTA polled 3,635 votes/)).toBeTruthy();
+    expect(within(box as HTMLElement).getByText('Incumbent behind')).toBeTruthy();
   });
 });

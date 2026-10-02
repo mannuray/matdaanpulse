@@ -7,6 +7,7 @@ import { getElection, getConstituency, getConstituencyAnalysis, getManifest, Ele
 import { ApiError } from '../../model/api/api-client';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
+import { seatInsights, type SeatInsight } from '../../model/derive/seatInsights';
 import { buildSeatView, detailToRows, liveChipState, seatHistory, seatNotes, type LiveChipState, type SeatView, type SeatNote } from '../../model/derive/seatView';
 import type { PartyMeta } from '../../model/derive/partyMeta';
 import type { CustomWatch } from '../../model/derive/leaders';
@@ -29,6 +30,8 @@ export interface ConstituencyPageVM {
   view: SeatView;
   /** Seat classification from the analysis; null for a value this page has no label for. */
   history: SeatHistoryEntry[]; dominance: SeatClass | null; notes: SeatNote[];
+  /** Data-backed facts about the seat, most important first (at most six). */
+  insights: SeatInsight[];
   partyMeta: Map<string, PartyMeta>;
   locator: { features: GeoFeature[]; seat: GeoFeature | null } | null;
   tracked: boolean; onToggleTrack(): void; shareText: string; personHref(id: string): string;
@@ -89,6 +92,8 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   const status: ConstituencyPageVM['status'] = notFound ? 'notFound' : detailRes.error || election.error ? 'error' : d && e ? 'ready' : 'loading';
   const tracked = watch.some(w => w.const_id === constId);
   const progress = d?.current_round && d.total_rounds ? { current: d.current_round, total: d.total_rounds } : null;
+  const history = seatHistory(analysis, e?.year ?? 0);
+  const notes = seatNotes(view, analysis);
   return {
     status,
     electionName: e?.name ?? '', electionHref: `/election/${electionId}`,
@@ -101,9 +106,10 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
       region: d?.region?.name ?? null, district: d?.district?.name ?? null, progress,
     },
     view,
-    history: seatHistory(analysis, e?.year ?? 0),
+    history,
     dominance: seatClass((analysis as { dominance?: string } | null)?.dominance),
-    notes: seatNotes(view, analysis),
+    notes,
+    insights: seatInsights(view, history, notes),
     partyMeta,
     locator,
     tracked,
