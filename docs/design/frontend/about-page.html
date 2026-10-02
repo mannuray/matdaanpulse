@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About MatdaanPulse — Election-Night Studio</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter & Barlow Condensed / Public Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=Public+Sans:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#0b101b',
+              surface: '#0e1526',
+              elevated: '#141c2e',
+              border: '#222d42',
+              accent: '#8B7CFF',
+              accentHover: '#7a6af5',
+              orange: '#FF7A1A',
+              green: '#22C55E',
+              amber: '#F59E0B',
+              textPrimary: '#F4F6FB',
+              textSecondary: '#8C96B0'
+            }
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Barlow Condensed", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Inter", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #0b101b;
+      color: #F4F6FB;
+      font-family: 'Inter', sans-serif;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    .condensed-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body class="bg-[#0b101b] text-[#F4F6FB] min-h-screen antialiased selection:bg-[#8B7CFF]/30 selection:text-[#F4F6FB]">
+<!-- SLIM TOP BAR -->
+<header class="sticky top-0 w-full z-40 bg-[#0e1526]/90 backdrop-blur-md border-b border-[#222d42]">
+<div class="max-w-[1200px] mx-auto px-6 h-14 flex items-center justify-between">
+<!-- Brand Logo / Badge -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-8 h-8 rounded-lg bg-[#141c2e] border border-[#222d42] flex items-center justify-center relative overflow-hidden group-hover:border-[#8B7CFF]/60 transition-colors">
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-[#FF7A1A] rounded-full"></div>
+<span class="material-symbols-outlined text-[#8B7CFF] text-lg" style="font-variation-settings: 'FILL' 1;">how_to_vote</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-headline font-extrabold text-lg tracking-tight text-[#F4F6FB]">MatdaanPulse</span>
+<span class="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-[#141c2e] text-[#8C96B0] border border-[#222d42]">STUDIO</span>
+</div>
+</a>
+<!-- Right Action Link -->
+<a class="text-sm font-medium text-[#8C96B0] hover:text-[#F4F6FB] transition-colors flex items-center gap-1.5 py-1 px-3 rounded-lg hover:bg-[#141c2e] border border-transparent hover:border-[#222d42]" href="#">
+<span>←</span>
+<span>Results</span>
+</a>
+</div>
+</header>
+<!-- MAIN CANVAS CONTAINER -->
+<main class="max-w-[1200px] mx-auto px-6 py-10 space-y-10">
+<!-- SECTION 1: HERO -->
+<section class="bg-[#0e1526] border border-[#222d42] rounded-xl p-8 lg:p-10 relative overflow-hidden">
+<!-- Ambient subtle studio glow -->
+<div class="absolute top-0 right-0 w-80 h-80 bg-[#8B7CFF]/5 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl space-y-5">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded bg-[#FF7A1A]/15 border border-[#FF7A1A]/30 flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-[#FF7A1A]"></span>
+</div>
+<span class="text-xs uppercase font-semibold tracking-wider text-[#8C96B0]">DOCUMENTATION &amp; SYSTEM SPECIFICATION</span>
+</div>
+<h1 class="condensed-title text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#F4F6FB]">
+          ABOUT MATDAANPULSE
+        </h1>
+<p class="text-lg md:text-xl text-[#8C96B0] font-normal leading-relaxed">
+          Indian election results — live counting, maps and seat-by-seat detail
+        </p>
+<!-- Plain Fact Chips -->
+<div class="flex flex-wrap items-center gap-2.5 pt-2">
+<div class="px-3.5 py-1.5 rounded-lg bg-[#141c2e] border border-[#222d42] text-xs md:text-sm font-medium text-[#F4F6FB]">
+            19 elections covered
+          </div>
+<span class="text-[#222d42] font-black">·</span>
+<div class="px-3.5 py-1.5 rounded-lg bg-[#141c2e] border border-[#222d42] text-xs md:text-sm font-medium text-[#F4F6FB]">
+            Lok Sabha + 6 states
+          </div>
+<span class="text-[#222d42] font-black">·</span>
+<div class="px-3.5 py-1.5 rounded-lg bg-[#141c2e] border border-[#222d42] text-xs md:text-sm font-medium text-[#F4F6FB] flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#8B7CFF] animate-pulse"></span>
+            Refreshes every 10–15 s on counting day
+          </div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: DISCLAIMER BAND -->
+<section class="rounded-xl border border-amber-500/30 bg-[#0e1526] p-4 sm:px-6 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start sm:items-center gap-3">
+<span class="material-symbols-outlined text-[#F59E0B] text-xl flex-shrink-0 mt-0.5 sm:mt-0" style="font-variation-settings: 'FILL' 1;">warning</span>
+<p class="text-xs sm:text-sm text-[#8C96B0] leading-normal">
+<strong class="text-[#F4F6FB] font-semibold">Not an official source</strong> — MatdaanPulse is not affiliated with the Election Commission of India or any party. Numbers can contain errors or lag behind official figures.
+        </p>
+</div>
+<a class="flex-shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#F59E0B] hover:text-amber-400 hover:underline transition-colors" href="https://results.eci.gov.in" rel="noopener noreferrer" target="_blank">
+<span>Official ECI results ↗</span>
+</a>
+</section>
+<!-- SECTION 3: HOW LIVE COUNTING WORKS -->
+<section class="bg-[#0e1526] border border-[#222d42] rounded-xl p-6 sm:p-8 space-y-6">
+<div class="border-b border-[#222d42] pb-4">
+<h2 class="condensed-title text-2xl font-bold uppercase tracking-wide text-[#F4F6FB]">
+          HOW LIVE COUNTING WORKS
+        </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Step 1 -->
+<div class="bg-[#141c2e] border border-[#222d42] rounded-lg p-5 flex flex-col justify-between space-y-4">
+<div class="w-7 h-7 rounded bg-[#222d42] text-[#F4F6FB] text-sm font-bold flex items-center justify-center font-display tabular-nums">
+            1
+          </div>
+<p class="text-sm text-[#F4F6FB] leading-relaxed">
+            Results refresh automatically every 10–15 seconds — no reload needed.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-[#141c2e] border border-[#222d42] rounded-lg p-5 flex flex-col justify-between space-y-4">
+<div class="w-7 h-7 rounded bg-[#222d42] text-[#F4F6FB] text-sm font-bold flex items-center justify-center font-display tabular-nums">
+            2
+          </div>
+<div class="space-y-3">
+<div class="flex items-start gap-2.5">
+<span class="inline-flex px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-[#8B7CFF]/20 text-[#8B7CFF] border border-[#8B7CFF]/40 flex-shrink-0 mt-0.5">
+                LEADING
+              </span>
+<span class="text-xs text-[#8C96B0] leading-snug">
+                ahead in the votes counted so far; can still change
+              </span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="inline-flex px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-[#22C55E]/20 text-[#22C55E] border border-[#22C55E]/40 flex-shrink-0 mt-0.5">
+                WON
+              </span>
+<span class="text-xs text-[#8C96B0] leading-snug">
+                counting complete, result declared
+              </span>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-[#141c2e] border border-[#222d42] rounded-lg p-5 flex flex-col justify-between space-y-4">
+<div class="w-7 h-7 rounded bg-[#222d42] text-[#F4F6FB] text-sm font-bold flex items-center justify-center font-display tabular-nums">
+            3
+          </div>
+<p class="text-sm text-[#F4F6FB] leading-relaxed">
+            Our figures can trail the official count by a short time.
+          </p>
+</div>
+</div>
+</section>
+<!-- SECTION 4: DATA QUALITY (WHERE THE DATA COMES FROM) -->
+<section class="bg-[#0e1526] border border-[#222d42] rounded-xl p-6 sm:p-8 space-y-6">
+<!-- Title & Intro -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#222d42] pb-5">
+<div>
+<h2 class="condensed-title text-2xl font-bold uppercase tracking-wide text-[#F4F6FB]">
+            WHERE THE DATA COMES FROM
+          </h2>
+<p class="text-sm text-[#8C96B0] mt-1">
+            We are open about the quality of every dataset.
+          </p>
+</div>
+<!-- Legend Pills -->
+<div class="flex flex-wrap items-center gap-3">
+<span class="inline-flex items-center gap-1.5 text-xs text-[#8C96B0] bg-[#141c2e] border border-[#222d42] px-2.5 py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-[#22C55E]"></span>
+            Real votes
+          </span>
+<span class="inline-flex items-center gap-1.5 text-xs text-[#8C96B0] bg-[#141c2e] border border-[#222d42] px-2.5 py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-[#8C96B0]"></span>
+            Partly incomplete
+          </span>
+<span class="inline-flex items-center gap-1.5 text-xs text-[#8C96B0] bg-[#141c2e] border border-[#222d42] px-2.5 py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+            Votes estimated
+          </span>
+</div>
+</div>
+<!-- Two-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left Matrix Table (~60% = 7 cols) -->
+<div class="lg:col-span-7 space-y-3">
+<div class="overflow-x-auto border border-[#222d42] rounded-lg bg-[#0b101b]">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="border-b border-[#222d42] bg-[#141c2e]/60">
+<th class="py-2.5 px-3 text-[#8C96B0] font-semibold">Election / State</th>
+<th class="py-2.5 px-2 text-center text-[#8C96B0] font-semibold tabular-nums">2010</th>
+<th class="py-2.5 px-2 text-center text-[#8C96B0] font-semibold tabular-nums">2011</th>
+<th class="py-2.5 px-2 text-center text-[#8C96B0] font-semibold tabular-nums">2015</th>
+<th class="py-2.5 px-2 text-center text-[#8C96B0] font-semibold tabular-nums">2016</th>
+<th class="py-2.5 px-2 text-center text-[#8C96B0] font-semibold tabular-nums">2020</th>
+<th class="py-2.5 px-2 text-center text-[#8C96B0] font-semibold tabular-nums">2021</th>
+<th class="py-2.5 px-2 text-center text-[#8C96B0] font-semibold tabular-nums">2024</th>
+<th class="py-2.5 px-2 text-center text-[#8C96B0] font-semibold tabular-nums">2025</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#222d42]/60">
+<!-- Lok Sabha -->
+<tr class="hover:bg-[#141c2e]/30 transition-colors">
+<td class="py-2.5 px-3 font-medium text-[#F4F6FB]">Lok Sabha</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#8C96B0]" title="Partly incomplete"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+</tr>
+<!-- Bihar (with 2025 Selected Highlight) -->
+<tr class="bg-[#141c2e]/20 hover:bg-[#141c2e]/40 transition-colors">
+<td class="py-2.5 px-3 font-medium text-[#F4F6FB]">Bihar</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#F59E0B]" title="Votes estimated"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#F59E0B]" title="Votes estimated"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#F59E0B]" title="Votes estimated"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center relative">
+<!-- Highlighted cell ring/glow -->
+<div class="inline-flex items-center justify-center p-1 rounded-md ring-2 ring-[#8B7CFF] bg-[#8B7CFF]/15 shadow-[0_0_12px_rgba(139,124,255,0.4)]">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</div>
+</td>
+</tr>
+<!-- West Bengal -->
+<tr class="hover:bg-[#141c2e]/30 transition-colors">
+<td class="py-2.5 px-3 font-medium text-[#F4F6FB]">West Bengal</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+</tr>
+<!-- Tamil Nadu -->
+<tr class="hover:bg-[#141c2e]/30 transition-colors">
+<td class="py-2.5 px-3 font-medium text-[#F4F6FB]">Tamil Nadu</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#F59E0B]" title="Votes estimated"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+</tr>
+<!-- Kerala -->
+<tr class="hover:bg-[#141c2e]/30 transition-colors">
+<td class="py-2.5 px-3 font-medium text-[#F4F6FB]">Kerala</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#F59E0B]" title="Votes estimated"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+</tr>
+<!-- Assam -->
+<tr class="hover:bg-[#141c2e]/30 transition-colors">
+<td class="py-2.5 px-3 font-medium text-[#F4F6FB]">Assam</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#8C96B0]" title="Partly incomplete"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#8C96B0]" title="Partly incomplete"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#F59E0B]" title="Votes estimated"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+</tr>
+<!-- Puducherry -->
+<tr class="hover:bg-[#141c2e]/30 transition-colors">
+<td class="py-2.5 px-3 font-medium text-[#F4F6FB]">Puducherry</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#22C55E]" title="Real votes"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#F59E0B]" title="Votes estimated"></span>
+</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+<td class="py-2.5 px-2 text-center text-[#8C96B0]/40">·</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="text-[11px] text-[#8C96B0]/80 italic">
+            Districts and regions (such as Mithila or Seemanchal) are our own groupings, not official units.
+          </p>
+</div>
+<!-- Right Detail Panel (~40% = 5 cols) -->
+<div class="lg:col-span-5 bg-[#141c2e] border border-[#222d42] rounded-lg p-5 space-y-4 shadow-sm">
+<div class="flex items-center justify-between border-b border-[#222d42] pb-3">
+<span class="text-xs uppercase font-semibold tracking-wider text-[#8C96B0]">SELECTED DATASET</span>
+<span class="inline-flex items-center gap-1.5 text-xs text-[#22C55E] bg-[#22C55E]/10 border border-[#22C55E]/30 px-2.5 py-0.5 rounded font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
+              Real votes
+            </span>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline font-bold text-lg text-[#F4F6FB]">Bihar · Vidhan Sabha 2025</h3>
+<p class="text-xs text-[#8C96B0]">Source: <a class="text-[#8B7CFF] hover:underline" href="https://results.eci.gov.in" rel="noopener noreferrer" target="_blank">ECI (results.eci.gov.in)</a></p>
+</div>
+<div class="p-3 bg-[#0b101b] rounded border border-[#222d42] space-y-2">
+<div class="flex items-start gap-2">
+<span class="text-[#8B7CFF] text-sm mt-0.5">•</span>
+<p class="text-xs text-[#F4F6FB] leading-relaxed">
+                Top 5 candidates and NOTA per seat; other candidates are not included.
+              </p>
+</div>
+</div>
+<div class="pt-2 text-[11px] text-[#8C96B0] flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-[#8C96B0]">info</span>
+<span>Select a cell to see its source and notes.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: FEEDBACK + CONTACT -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Left Card: SEND FEEDBACK -->
+<div class="bg-[#0e1526] border border-[#222d42] rounded-xl p-6 sm:p-7 flex flex-col justify-between space-y-5">
+<div class="space-y-4">
+<div class="border-b border-[#222d42] pb-3">
+<h3 class="condensed-title text-xl font-bold uppercase tracking-wide text-[#F4F6FB]">
+              SEND FEEDBACK
+            </h3>
+<p class="text-xs text-[#8C96B0] mt-1">
+              Found a wrong number, a bug, or have an idea? Tell us.
+            </p>
+</div>
+<!-- Kind selector tabs -->
+<div class="space-y-1.5">
+<label class="text-xs text-[#8C96B0] font-medium">Category</label>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 text-xs font-semibold rounded bg-[#8B7CFF] text-[#0b101b] transition-all" type="button">
+                Wrong data
+              </button>
+<button class="px-3 py-1.5 text-xs font-medium rounded bg-[#141c2e] text-[#8C96B0] hover:text-[#F4F6FB] border border-[#222d42] transition-colors" type="button">
+                Bug
+              </button>
+<button class="px-3 py-1.5 text-xs font-medium rounded bg-[#141c2e] text-[#8C96B0] hover:text-[#F4F6FB] border border-[#222d42] transition-colors" type="button">
+                Idea
+              </button>
+</div>
+</div>
+<!-- Message Textarea -->
+<div class="space-y-1.5">
+<label class="text-xs text-[#8C96B0] font-medium" for="feedback-msg">Message</label>
+<textarea class="w-full bg-[#141c2e] border border-[#222d42] rounded-lg p-3 text-xs text-[#F4F6FB] placeholder-[#8C96B0]/50 focus:outline-none focus:border-[#8B7CFF] focus:ring-1 focus:ring-[#8B7CFF] transition-all" id="feedback-msg" placeholder="Describe the issue or suggestion..." rows="3"></textarea>
+</div>
+<!-- Optional Email Field -->
+<div class="space-y-1.5">
+<label class="text-xs text-[#8C96B0] font-medium" for="feedback-email">Email <span class="text-[#8C96B0]/60 font-normal">(optional)</span></label>
+<input class="w-full bg-[#141c2e] border border-[#222d42] rounded-lg px-3 py-2 text-xs text-[#F4F6FB] placeholder-[#8C96B0]/50 focus:outline-none focus:border-[#8B7CFF] focus:ring-1 focus:ring-[#8B7CFF] transition-all" id="feedback-email" placeholder="your@email.com" type="email"/>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-[#8B7CFF] hover:bg-[#7a6af5] text-[#0b101b] font-bold text-xs uppercase tracking-wider transition-colors active:scale-[0.99]" type="button">
+          Send
+        </button>
+</div>
+<!-- Right Card: CONTACT -->
+<div class="bg-[#0e1526] border border-[#222d42] rounded-xl p-6 sm:p-7 flex flex-col justify-between space-y-6">
+<div class="space-y-6">
+<div class="border-b border-[#222d42] pb-3">
+<h3 class="condensed-title text-xl font-bold uppercase tracking-wide text-[#F4F6FB]">
+              CONTACT
+            </h3>
+<p class="text-xs text-[#8C96B0] mt-1">
+              For press and corrections, email us:
+            </p>
+<div class="mt-2">
+<a class="text-base sm:text-lg font-bold text-[#8B7CFF] hover:text-[#7a6af5] hover:underline transition-colors tracking-tight" href="mailto:hello@matdaanpulse.in">
+                hello@matdaanpulse.in
+              </a>
+</div>
+</div>
+<div class="space-y-3">
+<h4 class="text-xs font-bold uppercase tracking-wider text-[#8C96B0]">
+              WHAT HELPS US FIX IT FAST
+            </h4>
+<div class="space-y-2.5">
+<div class="flex items-start gap-3 p-3 rounded-lg bg-[#141c2e] border border-[#222d42]">
+<span class="w-5 h-5 rounded bg-[#222d42] text-[#8B7CFF] font-bold text-[11px] flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+<p class="text-xs text-[#F4F6FB] leading-relaxed">
+                  Name the election and the seat you were looking at.
+                </p>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-[#141c2e] border border-[#222d42]">
+<span class="w-5 h-5 rounded bg-[#222d42] text-[#8B7CFF] font-bold text-[11px] flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+<p class="text-xs text-[#F4F6FB] leading-relaxed">
+                  Tell us the correct figure and where it comes from, ideally an ECI link.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<div class="text-[11px] text-[#8C96B0]/70 border-t border-[#222d42]/60 pt-3">
+          Queries typically reviewed within 2 hours during counting sessions.
+        </div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="py-8 text-center border-t border-[#222d42]/40">
+<p class="text-xs text-[#8C96B0]">
+        MatdaanPulse · independent project
+      </p>
+</footer>
+</main>
+</body></html>

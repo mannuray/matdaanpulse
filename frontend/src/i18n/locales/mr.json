@@ -509,5 +509,20 @@
   "scroll_prev": "Scroll back",
   "scroll_next": "Scroll forward",
   "party_track_seat": "Track {{seat}}",
-  "party_untrack_seat": "Stop tracking {{seat}}"
+  "party_untrack_seat": "Stop tracking {{seat}}",
+  "about_eyebrow": "How it works & data quality",
+  "about_tagline": "Indian election results — live counting, maps and seat-by-seat detail",
+  "about_chip_elections_one": "{{count}} election covered",
+  "about_chip_elections_other": "{{count}} elections covered",
+  "about_chip_scope_one": "Lok Sabha + {{count}} state",
+  "about_chip_scope_other": "Lok Sabha + {{count}} states",
+  "about_chip_refresh": "Refreshes every 10–15 s on counting day",
+  "about_live_step_refresh": "Results refresh automatically every 10–15 seconds — no reload needed.",
+  "about_live_step_trail": "Our figures can trail the official count by a short time.",
+  "about_live_leading_short": "ahead in the votes counted so far; can still change",
+  "about_live_won_short": "counting complete, result declared",
+  "about_matrix_col": "Election / State",
+  "about_matrix_selected": "Selected dataset",
+  "about_matrix_hint": "Select a cell to see its source and notes.",
+  "about_matrix_none": "No data"
 }

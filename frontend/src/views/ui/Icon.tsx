@@ -8,6 +8,8 @@ const PATHS = {
   swap: 'M7 7h13l-3-3M17 17H4l3 3',
   arrow: 'M5 12h14M13 6l6 6-6 6',
   chevron: 'M9 5l7 7-7 7',
+  info: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 11v5M12 8h.01',
+  warning: 'M12 3l9.5 17h-19L12 3zM12 10v4M12 17h.01',
   external: 'M7 17L17 7M9 7h8v8',
   gavel: 'M14 4l6 6M11 7l6 6M12.5 5.5l-5 5M15.5 8.5l-5 5M9 12l-6 6M4 21h9',
   wallet: 'M3 7a2 2 0 012-2h13v4M3 7v10a2 2 0 002 2h15V9H5a2 2 0 01-2-2zM16 14h.01',

@@ -509,5 +509,20 @@
   "scroll_prev": "पीछे",
   "scroll_next": "आगे",
   "party_track_seat": "{{seat}} ट्रैक करें",
-  "party_untrack_seat": "{{seat}} ट्रैक करना बंद करें"
+  "party_untrack_seat": "{{seat}} ट्रैक करना बंद करें",
+  "about_eyebrow": "यह कैसे काम करता है और डेटा गुणवत्ता",
+  "about_tagline": "भारतीय चुनाव परिणाम — लाइव गिनती, नक्शे और सीट-दर-सीट विवरण",
+  "about_chip_elections_one": "{{count}} चुनाव शामिल",
+  "about_chip_elections_other": "{{count}} चुनाव शामिल",
+  "about_chip_scope_one": "लोकसभा + {{count}} राज्य",
+  "about_chip_scope_other": "लोकसभा + {{count}} राज्य",
+  "about_chip_refresh": "मतगणना के दिन हर 10–15 सेकंड में अपडेट",
+  "about_live_step_refresh": "परिणाम हर 10–15 सेकंड में अपने-आप अपडेट होते हैं — रीलोड की ज़रूरत नहीं।",
+  "about_live_step_trail": "हमारे आँकड़े आधिकारिक गिनती से थोड़ा पीछे हो सकते हैं।",
+  "about_live_leading_short": "अब तक गिने गए वोटों में आगे; बदल सकता है",
+  "about_live_won_short": "गिनती पूरी, परिणाम घोषित",
+  "about_matrix_col": "चुनाव / राज्य",
+  "about_matrix_selected": "चुना गया डेटासेट",
+  "about_matrix_hint": "स्रोत और नोट्स देखने के लिए कोई सेल चुनें।",
+  "about_matrix_none": "डेटा नहीं"
 }
