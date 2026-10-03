@@ -21,7 +21,10 @@ export class IngestAlertsService implements OnModuleInit, OnModuleDestroy {
     private readonly prisma: PrismaService,
     private readonly status: IngestStatusService,
     @Optional() @Inject(ALERT_WEBHOOK_URL) private readonly url: string | undefined,
-    @Optional() @Inject(ALERT_POST) private readonly post: Post = async (u, b) => { await fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b) }); },
+    @Optional() @Inject(ALERT_POST) private readonly post: Post = async (u, b) => {
+      const res = await fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b), signal: AbortSignal.timeout(10_000) });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    },
   ) {}
 
   onModuleInit() {
@@ -44,9 +47,11 @@ export class IngestAlertsService implements OnModuleInit, OnModuleDestroy {
       for (const a of (await this.status.status(e.id, now)).alerts) {
         const last = this.sent.get(a.key);
         if (last && now.getTime() - last < REPEAT_MS) continue;
-        this.sent.set(a.key, now.getTime());
-        try { await this.post(this.url, { text: `${a.level === 'error' ? '🚨' : '⚠️'} ${e.name} — ${a.message}` }); }
-        catch (err) { this.logger.warn(`alert webhook failed: ${(err as Error).message}`); }
+        // Marked sent only once the webhook took it, so a failed post is retried on the next tick.
+        try {
+          await this.post(this.url, { text: `${a.level === 'error' ? '🚨' : '⚠️'} ${e.name} — ${a.message}` });
+          this.sent.set(a.key, now.getTime());
+        } catch (err) { this.logger.warn(`alert webhook failed: ${(err as Error).message}`); }
       }
     }
   }

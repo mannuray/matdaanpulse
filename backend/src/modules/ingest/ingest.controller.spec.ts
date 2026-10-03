@@ -1,4 +1,6 @@
+import 'reflect-metadata';
 import { IngestController } from './ingest.controller';
+import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
 import { IngestNoLeaseException, IngestShardNotFoundException } from '../../common/exceptions';
 
 describe('IngestController.lease', () => {
@@ -17,5 +19,11 @@ describe('IngestController.lease', () => {
     const c = new IngestController({} as any, leases, shards);
     await expect(c.lease('e', { shard: 'rest', holder: 'h' }, req)).rejects.toBeInstanceOf(IngestNoLeaseException);
     expect(await c.lease('e', { shard: 'rest', holder: 'h' }, req)).toEqual({ expires_at: exp });
+  });
+});
+
+describe('IngestController throttling', () => {
+  it('skips every named throttler (a worker posts many chunks a minute)', () => {
+    for (const name of Object.keys(SKIP_ALL_THROTTLERS)) expect(Reflect.getMetadata(`THROTTLER:SKIP${name}`, IngestController)).toBe(true);
   });
 });

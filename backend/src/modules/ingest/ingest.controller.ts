@@ -6,11 +6,12 @@ import { LeaseService } from './lease.service';
 import { LeaseBody, SeatsBody, TallyBody } from './dto/ingest.dto';
 import { REST, ShardsService } from './shards.service';
 import { IngestNoLeaseException } from '../../common/exceptions';
+import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
 
 /** Spec §4: machine-key routes. Not admin JWTs; every response is no-store (Authorization header). */
 @Controller('ingest/elections/:electionId')
 @UseGuards(IngestKeyGuard)
-@SkipThrottle()
+@SkipThrottle(SKIP_ALL_THROTTLERS)
 export class IngestController {
   constructor(private readonly ingest: IngestService, private readonly leases: LeaseService, private readonly shards: ShardsService) {}
 
