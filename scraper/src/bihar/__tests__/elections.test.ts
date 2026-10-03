@@ -3,7 +3,7 @@ import { ELECTIONS, STATES, electionOf, electionsOf, parseState } from '../elect
 
 describe('election registry', () => {
   it('lists every state election once, with unique ids and prefixes', () => {
-    expect(ELECTIONS).toHaveLength(4 + 15);
+    expect(ELECTIONS).toHaveLength(4 + 15 + 5);
     expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
     expect(new Set(ELECTIONS.map(e => e.constPrefix)).size).toBe(ELECTIONS.length);
   });
@@ -24,5 +24,19 @@ describe('election registry', () => {
   it('rejects unknown states and years', () => {
     expect(() => parseState('XX')).toThrow(/BR, WB, TN, KL, AS, PY/);
     expect(() => electionOf('KL', 2006)).toThrow(/KL 2006/);
+  });
+});
+
+describe('2026 elections', () => {
+  it('registers the five 2026 elections from the new-site reports with their own delimitation', () => {
+    const as = electionOf('AS', 2026);
+    expect(as).toMatchObject({ electionId: 'f6a7b8c9-d0e1-2345-f012-567890122026', constPrefix: 'AS_VS26_', category: 23,
+      newElection: { delimitation: '2023', reserved: { sc: 9, st: 19 } }, resultsSite: { eciCode: 'S03' }, myneta: 'assam2026' });
+    expect(electionOf('WB', 2026)).toMatchObject({ category: 28, resultsSite: { eciCode: 'S25' }, newElection: { delimitation: '2008' } });
+    expect((['KL', 'PY', 'TN'] as const).map(s => electionOf(s, 2026).category)).toEqual([24, 25, 26]);
+    expect(electionsOf('AS').map(e => e.year)).toEqual([2011, 2016, 2021, 2026]);
+  });
+  it('keeps every election id unique', () => {
+    expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
   });
 });

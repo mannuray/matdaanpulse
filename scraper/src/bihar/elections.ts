@@ -22,12 +22,21 @@ export interface ElectionConfig extends YearConfig {
   docid?: number;
   /** Seats the report leaves out (postponed polls); dropped when loading. */
   excludeSeats?: number[];
+  /** ECI new-site statistical report category (`election-result?category_id=`; fetch). */
+  category?: number;
+  /** An election with no old seed: its elections row and constituencies are emitted from the registry and the report. */
+  newElection?: { name: string; delimitation: string; resultDate: string; reserved?: { sc: number; st: number } };
+  /** ECI results site of the election (candidate photos, winner cross-check). */
+  resultsSite?: { base: string; eciCode: string };
+  /** MyNeta (ADR) site slug for the winners' affidavits. */
+  myneta?: string;
 }
 export interface StateConfig {
   code: StateCode; slug: string; name: string; stateId: number; seats: number; reserved: { sc: number; st: number };
   partiesSeed: string; correctionsSeed: string; linksSeed: string; linksSeedName: string; yearSeed: (year: number) => string;
 }
 
+export const ECI_RESULTS_2026 = 'https://results.eci.gov.in/ResultAcGenMay2026/';
 const OLD = (docid: number) => `https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=${docid}`;
 
 const state = (code: StateCode, slug: string, name: string, stateId: number, seats: number, sc: number, st: number): StateConfig => ({
@@ -54,6 +63,17 @@ const hist = (code: StateCode, year: number, electionId: string, docid: number, 
   files: files ?? { pdf: `${year}/report.pdf` },
 });
 
+/** A 2026 election: new-site statistical report (category), no old seed, results site for photos, MyNeta for affidavits. */
+const y2026 = (code: StateCode, electionId: string, category: number, eciCode: string, myneta: string, expectedPhases: number,
+  delimitation: string, reserved?: { sc: number; st: number }): ElectionConfig => ({
+  state: code, year: 2026, electionId, constPrefix: `${code}_VS26_`, expectedPhases, category,
+  source: { title: `ECI Statistical Report, ${STATES[code].name} Legislative Assembly 2026`, url: `https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=${category}` },
+  files: { detailed: '2026/10-Detailed_Results.xlsx', summary: '2026/8-Constituency_Data_Summery_Report.xlsx',
+    parties: '2026/3-List_Of_Political_Parties_Participated.xlsx', performance: '2026/5-Performance_of_Political_Parties.xlsx' },
+  newElection: { name: `${STATES[code].name} Vidhan Sabha 2026`, delimitation, resultDate: '2026-05-04', ...(reserved ? { reserved } : {}) },
+  resultsSite: { base: ECI_RESULTS_2026, eciCode }, myneta,
+});
+
 export const ELECTIONS: ElectionConfig[] = [
   { state: 'BR', year: 2010, electionId: 'a1b2c3d4-e5f6-7890-abcd-111111111010', constPrefix: 'BR_VS10_', expectedPhases: 6, docid: 3903,
     source: { title: 'ECI Statistical Report, Bihar Legislative Assembly 2010', url: OLD(3903) },
@@ -65,7 +85,7 @@ export const ELECTIONS: ElectionConfig[] = [
     source: { title: 'ECI Statistical Report, Bihar Legislative Assembly 2020', url: OLD(12787) },
     files: { detailed: '2020/10_-_Detailed_Results.xls', summary: '2020/8_-_Constituency_Data_Summary.xlsx',
       parties: '2020/3_-_List_Of_Political_Parties_Participated.xls', performance: '2020/5-Performance_of_Political_Parties.xlsx' } },
-  { state: 'BR', year: 2025, electionId: 'c3d4e5f6-a7b8-9012-cdef-234567890abc', constPrefix: 'BR_VS_', expectedPhases: 2,
+  { state: 'BR', year: 2025, electionId: 'c3d4e5f6-a7b8-9012-cdef-234567890abc', constPrefix: 'BR_VS_', expectedPhases: 2, category: 16,
     source: { title: 'ECI Statistical Report, Bihar Legislative Assembly 2025', url: 'https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=16' },
     files: { detailed: '2025/10-Detailed_Results.xlsx', summary: '2025/8-Constituency_Data_Summery_Report.xlsx',
       parties: '2025/3-List_Of_Political_Parties_Participated.xlsx', performance: '2025/5-Performance_of_Political_Parties.xlsx' } },
@@ -96,6 +116,13 @@ export const ELECTIONS: ElectionConfig[] = [
     parties: '2016/List_Of_Political_Parties_Participated.xlsx', performance: '2016/Performance_of_Poltical_Parties.xlsx' }),
   hist('WB', 2021, 'd4e5f6a7-b8c9-0123-def0-345678901021', 14106, 9, { detailed: '2021/10-Detailed_Results.xlsx', summary: '2021/8-Constituency_Data_Summary.xlsx',
     parties: '2021/3-List_Of_Political_Parties_Participated.xlsx', performance: '2021/5-Performance_of_Political_Parties.xlsx' }),
+  // 2026: the ECI statistical reports (new site). Assam follows the 2023 delimitation (9 SC, 19 ST); West Bengal's set 28
+  // includes AC 144 Falta (re-polled in May 2026), so its poll dates are two phases plus the re-poll.
+  y2026('AS', 'f6a7b8c9-d0e1-2345-f012-567890122026', 23, 'S03', 'assam2026', 1, '2023', { sc: 9, st: 19 }),
+  y2026('KL', 'a7b8c9d0-e1f2-3456-0123-678901232026', 24, 'S11', 'kerala2026', 1, '2008'),
+  y2026('PY', 'b1c2d3e4-f5a6-7890-1234-567890ab2026', 25, 'U07', 'puducherry2026', 1, '2008'),
+  y2026('TN', 'e5f6a7b8-c9d0-1234-ef01-456789012026', 26, 'S22', 'tamilnadu2026', 1, '2008'),
+  y2026('WB', 'd4e5f6a7-b8c9-0123-def0-345678901026', 28, 'S25', 'westbengal2026', 3, '2008'),
 ];
 
 /** The registry entry of an election id. */

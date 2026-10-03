@@ -26,7 +26,7 @@ async function save(year: string, name: string, url: string) {
   await sleep(2000);
 }
 
-/** 2025: new-site report list (each item has title + xlsx_url). Saved without ECI's timestamp suffix. */
+/** New-site report list (Bihar 2025, the 2026 elections) (each item has title + xlsx_url). Saved without ECI's timestamp suffix. */
 async function fetchNew(year: string, categoryId: number) {
   const body = await (await get(`${BASE}/api/election-result?category_id=${categoryId}`)).json() as { results: { title: string; xlsx_url: string | null }[] };
   for (const r of body.results) if (r.xlsx_url) await save(year, path.basename(r.xlsx_url).replace(/_\d{9,}(\.\w+)$/, '$1'), r.xlsx_url.replace('public//', 'public/'));
@@ -48,7 +48,7 @@ async function fetchOld(year: string, docid: number) {
   for (const e of electionsOf(ST).filter(x => !want.length || want.includes(x.year))) {
     console.log(`${STATES[ST].name} ${e.year}`);
     if (e.docid) await fetchOld(String(e.year), e.docid);
-    else if (ST === 'BR' && e.year === 2025) await fetchNew('2025', 16);
+    else if (e.category) await fetchNew(String(e.year), e.category);
     else console.log('  no ECI report source in the registry');
   }
 })().catch(e => { console.error(e); process.exit(1); });
