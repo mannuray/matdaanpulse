@@ -169,9 +169,9 @@ Bihar VS 2010 / 2015 / 2020 / 2025 carry every candidate + NOTA with real ECI vo
 ### Bihar persons, leaders and affidavits, 2026-10-03
 Plan `docs/superpowers/plans/2026-10-03-bihar-persons-leaders.md` (spec §6–§7). All seeds are run-once (`seed_runs`) and fill-only.
 - [x] **Cross-election linking** (`scraper/src/bihar/links.ts`, `links-cli.ts` → `seed_bihar_person_links_v2.sql`): same name (alias dropped) in
-  the same seat in two or more years. `high` = same party, `medium` = party switch; `review` (common names with differing parties or IND,
+  the same seat in two or more years. `high` = same party, `medium` = party switch or an IND member with every declared age fitting the years; `review` (common names with differing parties or IND, single-word names, ages that contradict the years,
   same-year duplicates) is not linked (`scraper/data/bihar/links-review.json`). Each group anchors on its most-linked person; only
-  auto-created single-candidacy persons outside the merge log move. 1,252 persons now have more than one contest.
+  auto-created single-candidacy persons outside the merge log move. 1,055 persons have more than one contest on a fresh build.
 - [x] **Tier A leaders** (`scraper/data/bihar/leaders.json`): 41 people curated from the Nitish Kumar ministry articles (2010/2015/2020/2025)
   and the LoP article, with sources, user-reviewed. `profiles-cli.ts` reads Wikidata/Commons, uploads each photo once to our Vercel Blob
   store (`persons/<QID>/photo.<ext>`), records source/author/licence (`leader-profiles.json`); birth dates only at day precision.
