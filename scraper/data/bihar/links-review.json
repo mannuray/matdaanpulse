@@ -1,0 +1,1380 @@
+[
+ {
+  "key": "AJAY KUMAR|90",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ed1abeb6-ddaf-4cfe-85d3-1dcfe892b5c2",
+    "year": 2015,
+    "constNo": 90,
+    "name": "Ajay Kumar",
+    "partyId": "BJP"
+   },
+   {
+    "candidateId": "de82d121-3291-5df7-ae05-6f7889aa550b",
+    "year": 2020,
+    "constNo": 90,
+    "name": "Ajay Kumar",
+    "partyId": "LJP"
+   },
+   {
+    "candidateId": "111f3af3-3cbf-4815-bee5-11ed30e4e975",
+    "year": 2025,
+    "constNo": 90,
+    "name": "Ajay Kumar",
+    "partyId": "JDU"
+   }
+  ]
+ },
+ {
+  "key": "AJAY KUMAR|94",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b2b11384-99d2-55e2-ac0e-309f88672279",
+    "year": 2015,
+    "constNo": 94,
+    "name": "Ajay Kumar",
+    "partyId": "LAD"
+   },
+   {
+    "candidateId": "d87cf8ae-e6da-5db9-b802-fe18cb750a08",
+    "year": 2025,
+    "constNo": 94,
+    "name": "Ajay Kumar",
+    "partyId": "BVP"
+   }
+  ]
+ },
+ {
+  "key": "AJIT KUMAR|95",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a76109ef-05db-4cc6-afde-01b2f06df8e4",
+    "year": 2010,
+    "constNo": 95,
+    "name": "Ajit Kumar",
+    "partyId": "JDU"
+   },
+   {
+    "candidateId": "4199380f-bcc2-4c1f-99bd-ee71002927b8",
+    "year": 2015,
+    "constNo": 95,
+    "name": "Ajit Kumar",
+    "partyId": "HAMS"
+   },
+   {
+    "candidateId": "07c1b805-c6d6-5e94-9703-758b6988a9d3",
+    "year": 2015,
+    "constNo": 95,
+    "name": "Ajit Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "c082e293-4751-4614-8caa-41e97fb9a19f",
+    "year": 2020,
+    "constNo": 95,
+    "name": "Ajit Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "6b75ff97-f77e-51cc-a8a4-b0866a0477be",
+    "year": 2020,
+    "constNo": 95,
+    "name": "Ajit Kumar",
+    "partyId": "GJKP"
+   },
+   {
+    "candidateId": "180ff65f-8c1b-4842-a358-aac11072d332",
+    "year": 2025,
+    "constNo": 95,
+    "name": "Ajit Kumar",
+    "partyId": "JDU"
+   },
+   {
+    "candidateId": "c4dac9e3-3d64-5311-a321-e05c2baacf57",
+    "year": 2025,
+    "constNo": 95,
+    "name": "Ajit Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|130",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "65d71af3-2c03-5712-8f15-5def874a136e",
+    "year": 2015,
+    "constNo": 130,
+    "name": "Anil Kumar",
+    "partyId": "GAAP"
+   },
+   {
+    "candidateId": "3562958f-9061-5829-a6bf-726e09c881ea",
+    "year": 2020,
+    "constNo": 130,
+    "name": "Anil Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|143",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c0fb27ed-77a2-5bd5-b97d-1e581fdc9d63",
+    "year": 2010,
+    "constNo": 143,
+    "name": "Anil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "496ec2e1-5387-5503-82ed-f80d8ba61cea",
+    "year": 2015,
+    "constNo": 143,
+    "name": "Anil Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|171",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "87abdd85-c668-5d29-902d-9b3e9d880ac2",
+    "year": 2010,
+    "constNo": 171,
+    "name": "Anil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "3df862e1-fcf3-4af5-a965-cb064cd8c84d",
+    "year": 2020,
+    "constNo": 171,
+    "name": "Anil Kumar",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "a9b6b6d9-a084-5741-adaa-3d4a8083f62b",
+    "year": 2020,
+    "constNo": 171,
+    "name": "Anil Kumar",
+    "partyId": "BMF"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|189",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "eb99714f-a176-436f-adc8-9ecfbebf8abc",
+    "year": 2010,
+    "constNo": 189,
+    "name": "Anil Kumar",
+    "partyId": "LJP"
+   },
+   {
+    "candidateId": "571efbc9-0b52-514e-99f3-ad625e160280",
+    "year": 2020,
+    "constNo": 189,
+    "name": "Anil Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|191",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e9d4e85d-852c-472b-a6b9-669b0525708c",
+    "year": 2010,
+    "constNo": 191,
+    "name": "Anil Kumar",
+    "partyId": "BJP"
+   },
+   {
+    "candidateId": "4f75fe42-e269-4925-8e16-fb6543453fd0",
+    "year": 2015,
+    "constNo": 191,
+    "name": "Anil Kumar",
+    "partyId": "BJP"
+   },
+   {
+    "candidateId": "f6efac55-184c-44d4-ad11-d8ec79f759f7",
+    "year": 2020,
+    "constNo": 191,
+    "name": "Anil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "b55eff12-981a-47e3-8cba-558c10657bdd",
+    "year": 2025,
+    "constNo": 191,
+    "name": "Anil Kumar",
+    "partyId": "INC"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|196",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4b82dfda-72f6-5229-adf7-5a0f4924305e",
+    "year": 2015,
+    "constNo": 196,
+    "name": "Anil Kumar",
+    "partyId": "GAAP"
+   },
+   {
+    "candidateId": "00e322e8-5f56-5b26-95f8-8361d9b6ad6f",
+    "year": 2020,
+    "constNo": 196,
+    "name": "Anil Kumar",
+    "partyId": "JTVP_BR"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|230",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "196a70ec-4d0c-5823-b132-523afc52a4f7",
+    "year": 2010,
+    "constNo": 230,
+    "name": "Anil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "c1486736-f202-5b63-92fb-bde7edf23cb0",
+    "year": 2025,
+    "constNo": 230,
+    "name": "Anil Kumar",
+    "partyId": "AAP"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|231",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "78bb9676-ea03-4487-b4e5-3e1822f7cbe0",
+    "year": 2015,
+    "constNo": 231,
+    "name": "Anil Kumar",
+    "partyId": "HAMS"
+   },
+   {
+    "candidateId": "63c24447-fa1b-52f6-ad1f-4b1ba3df4f8a",
+    "year": 2015,
+    "constNo": 231,
+    "name": "Anil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "87f0504f-3a6c-4bee-ba9b-bac6ef39235c",
+    "year": 2020,
+    "constNo": 231,
+    "name": "Anil Kumar",
+    "partyId": "HAMS"
+   },
+   {
+    "candidateId": "29337b18-588f-47b9-b894-df74c1f64c93",
+    "year": 2025,
+    "constNo": 231,
+    "name": "Anil Kumar",
+    "partyId": "HAMS"
+   }
+  ]
+ },
+ {
+  "key": "ASHOK KUMAR SINGH|224",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "af5f4fbc-607d-4732-8dd2-5b03f7acb405",
+    "year": 2010,
+    "constNo": 224,
+    "name": "Ashok Kumar Singh",
+    "partyId": "JDU"
+   },
+   {
+    "candidateId": "61ce5cf1-4283-40f1-8cd9-8065d73e01f6",
+    "year": 2015,
+    "constNo": 224,
+    "name": "Ashok Kumar Singh",
+    "partyId": "JDU"
+   },
+   {
+    "candidateId": "fdec63ed-f54c-5e40-a476-db4eb4bb3af5",
+    "year": 2020,
+    "constNo": 224,
+    "name": "Ashok Kumar Singh",
+    "partyId": "JDU"
+   },
+   {
+    "candidateId": "1df3e032-215b-597e-a815-47f7c2fed9d0",
+    "year": 2020,
+    "constNo": 224,
+    "name": "Ashok Kumar Singh",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "ASHOK KUMAR|208",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "869bbeb1-6cfc-4752-bba5-c0931b7bdce3",
+    "year": 2015,
+    "constNo": 208,
+    "name": "Ashok Kumar",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "2bfe3fb2-a7f8-4e18-b53e-b084080d163d",
+    "year": 2020,
+    "constNo": 208,
+    "name": "Ashok Kumar",
+    "partyId": "JDU"
+   },
+   {
+    "candidateId": "38dc0855-0dfb-46ee-b63e-c9c97c7c0404",
+    "year": 2025,
+    "constNo": 208,
+    "name": "Ashok Kumar",
+    "partyId": "BSP"
+   }
+  ]
+ },
+ {
+  "key": "ASHOK KUMAR|215",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "87b4af43-594d-507b-af81-8ecb675b56fb",
+    "year": 2010,
+    "constNo": 215,
+    "name": "Ashok Kumar",
+    "partyId": "NCP"
+   },
+   {
+    "candidateId": "3ab8d879-c258-4784-89ed-68b80ca05f60",
+    "year": 2025,
+    "constNo": 215,
+    "name": "Ashok Kumar",
+    "partyId": "BSP"
+   }
+  ]
+ },
+ {
+  "key": "ASHOK KUMAR|231",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b6781724-422d-559b-a42f-a29a8ab86f70",
+    "year": 2020,
+    "constNo": 231,
+    "name": "Ashok Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "45bd5ef4-9b16-5bc6-9463-6826a99ee84f",
+    "year": 2025,
+    "constNo": 231,
+    "name": "Ashok Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "MANOJ KUMAR|124",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b44d3d4b-fb65-5c6b-b946-2bebe11486c3",
+    "year": 2015,
+    "constNo": 124,
+    "name": "Manoj Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "f219cee8-6555-52ac-9b59-7e96a0802c6c",
+    "year": 2020,
+    "constNo": 124,
+    "name": "Manoj Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "MANOJ KUMAR|172",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "7bcaa8c8-d0a8-5408-b487-cafb83d4c389",
+    "year": 2015,
+    "constNo": 172,
+    "name": "Manoj Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "9aa3e4e1-7cdf-5afc-a873-543d753e9ba2",
+    "year": 2025,
+    "constNo": 172,
+    "name": "Manoj Kumar",
+    "partyId": "AAP"
+   }
+  ]
+ },
+ {
+  "key": "MANOJ KUMAR|69",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "d7341842-5fcf-5486-9e34-cabac8cd4f70",
+    "year": 2010,
+    "constNo": 69,
+    "name": "Manoj Kumar",
+    "partyId": "LJP"
+   },
+   {
+    "candidateId": "3971cf7b-6b18-51e6-a018-e3209b3eab8d",
+    "year": 2015,
+    "constNo": 69,
+    "name": "Manoj Kumar",
+    "partyId": "JDR"
+   }
+  ]
+ },
+ {
+  "key": "MANOJ KUMAR|94",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6a04967d-fdd1-5476-8147-60ce366f7edb",
+    "year": 2020,
+    "constNo": 94,
+    "name": "Manoj Kumar",
+    "partyId": "JDR"
+   },
+   {
+    "candidateId": "faf6e929-11fb-591d-978e-496ff4dbc436",
+    "year": 2025,
+    "constNo": 94,
+    "name": "Manoj Kumar",
+    "partyId": "RJP"
+   }
+  ]
+ },
+ {
+  "key": "MUKESH KUMAR YADAV|27",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4250d998-7e61-4a0f-97d1-f5043c6d94f8",
+    "year": 2020,
+    "constNo": 27,
+    "name": "Mukesh Kumar Yadav",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "09fc4fb6-5663-5c39-bfe6-206895a1af2b",
+    "year": 2020,
+    "constNo": 27,
+    "name": "Mukesh Kumar Yadav",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "e2b246b8-18e2-4c6b-b015-891b7ccee9d7",
+    "year": 2025,
+    "constNo": 27,
+    "name": "Mukesh Kumar Yadav",
+    "partyId": "RJD"
+   }
+  ]
+ },
+ {
+  "key": "PANKAJ KUMAR|127",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a51a989f-bc0d-580c-9901-72873aaf6140",
+    "year": 2010,
+    "constNo": 127,
+    "name": "Pankaj Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "1640bf42-341a-5ac2-8fba-6f13da9c4d37",
+    "year": 2015,
+    "constNo": 127,
+    "name": "Pankaj Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "b43b9635-cada-5779-908d-9b0ca1d43b25",
+    "year": 2025,
+    "constNo": 127,
+    "name": "Pankaj Kumar",
+    "partyId": "ASPKR"
+   }
+  ]
+ },
+ {
+  "key": "RAJESH KUMAR|146",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "7d4e35b8-f060-561a-8cd0-cd0f8738f78d",
+    "year": 2015,
+    "constNo": 146,
+    "name": "Rajesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "6666b17a-ea91-5a10-a15c-dd97d1c00b41",
+    "year": 2020,
+    "constNo": 146,
+    "name": "Rajesh Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "RAJESH KUMAR|224",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9c5efacd-6e69-50da-8cc7-c01183e8d257",
+    "year": 2010,
+    "constNo": 224,
+    "name": "Rajesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "c95b28ed-dabe-5716-980f-cb5ab772d079",
+    "year": 2025,
+    "constNo": 224,
+    "name": "Rajesh Kumar",
+    "partyId": "SBKP"
+   }
+  ]
+ },
+ {
+  "key": "RAJMANGAL PRASAD|17",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "53a164dc-4c20-451f-b6a1-67ac9861d470",
+    "year": 2020,
+    "constNo": 17,
+    "name": "Rajmangal Prasad",
+    "partyId": "CPIM"
+   },
+   {
+    "candidateId": "839e3de1-aa8d-4f51-8ad1-b95cfaff8206",
+    "year": 2025,
+    "constNo": 17,
+    "name": "Rajmangal Prasad",
+    "partyId": "CPIM"
+   },
+   {
+    "candidateId": "fc1624be-d427-4148-937d-e22698c62377",
+    "year": 2025,
+    "constNo": 17,
+    "name": "Rajmangal Prasad",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "RAJU KUMAR|128",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "1c30f6d0-52a9-5cdc-8ba9-491bc48c4a02",
+    "year": 2020,
+    "constNo": 128,
+    "name": "Raju Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "9abd421a-50c5-4672-b4a9-3d54efc4f78a",
+    "year": 2025,
+    "constNo": 128,
+    "name": "Raju Kumar",
+    "partyId": "AAP"
+   }
+  ]
+ },
+ {
+  "key": "RAKESH KUMAR|151",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "40d1d5b9-0852-5783-8d1d-d287411772c2",
+    "year": 2010,
+    "constNo": 151,
+    "name": "Rakesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "9adb3d3e-1d90-5922-83d0-dc1e08fe5bb4",
+    "year": 2015,
+    "constNo": 151,
+    "name": "Rakesh Kumar",
+    "partyId": "AAHPTY"
+   }
+  ]
+ },
+ {
+  "key": "RAKESH KUMAR|165",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3e1eb27d-e934-58b9-b483-17528ce65806",
+    "year": 2010,
+    "constNo": 165,
+    "name": "Rakesh Kumar",
+    "partyId": "NCP"
+   },
+   {
+    "candidateId": "88d3aa16-22aa-5f12-baa8-002d928d3fb2",
+    "year": 2025,
+    "constNo": 165,
+    "name": "Rakesh Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "RAKESH KUMAR|235",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e7cd3ea8-b64c-5de9-9f83-54f343e47d87",
+    "year": 2015,
+    "constNo": 235,
+    "name": "Rakesh Kumar",
+    "partyId": "BSP"
+   },
+   {
+    "candidateId": "d97dbdc9-5660-56fd-b680-5ab3add6780a",
+    "year": 2020,
+    "constNo": 235,
+    "name": "Rakesh Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "RAKESH KUMAR|37",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "be9be0bb-3629-5a27-b5e9-2d5c630f9624",
+    "year": 2015,
+    "constNo": 37,
+    "name": "Rakesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "cf2cfb35-80cd-517d-a9e7-37e73ec20642",
+    "year": 2020,
+    "constNo": 37,
+    "name": "Rakesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "7b481052-3b9b-5e1e-aa4c-775baa5a6a5c",
+    "year": 2025,
+    "constNo": 37,
+    "name": "Rakesh Kumar",
+    "partyId": "APNJNTP"
+   }
+  ]
+ },
+ {
+  "key": "RAKESH KUMAR|96",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "323228a9-6936-5ad5-b8ae-8bda513812ee",
+    "year": 2020,
+    "constNo": 96,
+    "name": "Rakesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "b0bd0e62-f4ab-49fd-8ffd-d1af27ca6455",
+    "year": 2025,
+    "constNo": 96,
+    "name": "Rakesh Kumar",
+    "partyId": "VIP"
+   }
+  ]
+ },
+ {
+  "key": "RAMESH KUMAR|122",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b7415def-b66e-5d37-b3be-15a3b06cbdb5",
+    "year": 2020,
+    "constNo": 122,
+    "name": "Ramesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "6d17bfe9-f5d8-47a6-a9e9-bc2e58251821",
+    "year": 2025,
+    "constNo": 122,
+    "name": "Ramesh Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "RAMESH KUMAR|199",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3bbe4424-6140-5244-8826-7f831957ff3a",
+    "year": 2015,
+    "constNo": 199,
+    "name": "Ramesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "92a3d922-f7a4-52ae-9af0-f33016bef549",
+    "year": 2020,
+    "constNo": 199,
+    "name": "Ramesh Kumar",
+    "partyId": "VCSMP"
+   }
+  ]
+ },
+ {
+  "key": "RAMESH KUMAR|90",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "cc977e7a-820e-59ea-848b-6bda301b2620",
+    "year": 2020,
+    "constNo": 90,
+    "name": "Ramesh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "c2d27fa2-4735-5fa5-a85b-eb1dc715553b",
+    "year": 2025,
+    "constNo": 90,
+    "name": "Ramesh Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "SANJAY KUMAR|147",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6a852b69-e650-50f6-b0f9-682b91967d6e",
+    "year": 2020,
+    "constNo": 147,
+    "name": "Sanjay Kumar",
+    "partyId": "TPP"
+   },
+   {
+    "candidateId": "8d0cb74c-85b7-44f4-addc-0167ee8c3593",
+    "year": 2025,
+    "constNo": 147,
+    "name": "Sanjay Kumar",
+    "partyId": "LJPRV"
+   },
+   {
+    "candidateId": "ef842807-ba55-43f1-9dcd-d3d264e493c5",
+    "year": 2025,
+    "constNo": 147,
+    "name": "Sanjay Kumar",
+    "partyId": "JSP"
+   }
+  ]
+ },
+ {
+  "key": "SANJAY KUMAR|150",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3e9a2b00-e7cc-5747-a77b-6b01270787e1",
+    "year": 2010,
+    "constNo": 150,
+    "name": "Sanjay Kumar",
+    "partyId": "BSP"
+   },
+   {
+    "candidateId": "0f99879c-216d-5f8c-bca4-61bd8343d69b",
+    "year": 2015,
+    "constNo": 150,
+    "name": "Sanjay Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "d923b697-fab8-5af9-b4b2-77dbbf097442",
+    "year": 2020,
+    "constNo": 150,
+    "name": "Sanjay kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "SANJAY KUMAR|164",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "588db5f6-4fb9-56e9-af63-59594e1fa078",
+    "year": 2010,
+    "constNo": 164,
+    "name": "Sanjay Kumar",
+    "partyId": "INC"
+   },
+   {
+    "candidateId": "d4c0538a-f0b0-5b14-9c12-1edb78a3674a",
+    "year": 2015,
+    "constNo": 164,
+    "name": "Sanjay Kumar",
+    "partyId": "JMM"
+   }
+  ]
+ },
+ {
+  "key": "SANJAY KUMAR|20",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "0ac6e662-0ae4-523c-a212-a9f0b6e52acd",
+    "year": 2020,
+    "constNo": 20,
+    "name": "Sanjay Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "e23549d9-18f1-5243-8bc5-06c016d83728",
+    "year": 2020,
+    "constNo": 20,
+    "name": "Sanjay Kumar",
+    "partyId": "SHS"
+   },
+   {
+    "candidateId": "9b038432-66bd-4b51-8a59-a5e59472ed78",
+    "year": 2025,
+    "constNo": 20,
+    "name": "Sanjay Kumar",
+    "partyId": "JSP"
+   }
+  ]
+ },
+ {
+  "key": "SANJAY KUMAR|216",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a1381969-1d7b-5cea-96ee-90e8f2d7bea6",
+    "year": 2010,
+    "constNo": 216,
+    "name": "Sanjay Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "d132fa89-f01a-59ee-98cb-f363cbefe1a7",
+    "year": 2015,
+    "constNo": 216,
+    "name": "Sanjay Kumar",
+    "partyId": "SHS"
+   },
+   {
+    "candidateId": "233fe49b-8086-5079-80a5-9adda708554e",
+    "year": 2020,
+    "constNo": 216,
+    "name": "Sanjay Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "SANJAY KUMAR|94",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3c007fb2-6e79-593c-9ec1-ea2d6ae26d71",
+    "year": 2010,
+    "constNo": 94,
+    "name": "Sanjay Kumar",
+    "partyId": "BJKD"
+   },
+   {
+    "candidateId": "a0d9aac7-60ff-594b-ae6d-36ebceacb05e",
+    "year": 2020,
+    "constNo": 94,
+    "name": "Sanjay Kumar",
+    "partyId": "SJDD"
+   }
+  ]
+ },
+ {
+  "key": "SANTOSH KUMAR|177",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4e00b7a4-012f-5d44-a224-c16e58cf2d41",
+    "year": 2010,
+    "constNo": 177,
+    "name": "Santosh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "3aff3eca-d06a-50b7-883f-6ebdd88c63ab",
+    "year": 2015,
+    "constNo": 177,
+    "name": "Santosh Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "SANTOSH KUMAR|90",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "406faa43-4467-51b5-aed8-44f0e40aec99",
+    "year": 2020,
+    "constNo": 90,
+    "name": "Santosh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "406faa43-4467-51b5-aed8-44f0e40aec99",
+    "year": 2020,
+    "constNo": 90,
+    "name": "Santosh Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "67ce7b50-0d1c-5a9a-9b2e-247b89a411ea",
+    "year": 2025,
+    "constNo": 90,
+    "name": "Santosh Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "SANTOSH KUMAR|96",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f4627e34-ad00-5712-955e-c92f878edd18",
+    "year": 2020,
+    "constNo": 96,
+    "name": "Santosh Kumar",
+    "partyId": "HSAP"
+   },
+   {
+    "candidateId": "7f0d750b-fda5-52bd-a216-0e0e047cc97e",
+    "year": 2025,
+    "constNo": 96,
+    "name": "Santosh Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|12",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "fc8324ea-e08c-55b1-b61e-156496097b57",
+    "year": 2010,
+    "constNo": 12,
+    "name": "Sunil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "9412caf4-ea43-5519-b9a9-cb977d1bfd92",
+    "year": 2015,
+    "constNo": 12,
+    "name": "Sunil Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|120",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "46cb712a-a12c-4f92-89fe-11b135206dfd",
+    "year": 2010,
+    "constNo": 120,
+    "name": "Sunil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "6b72dd25-c058-52fe-89bc-06bed37be46b",
+    "year": 2015,
+    "constNo": 120,
+    "name": "Sunil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "a47b91a4-fb69-4839-b79b-f8744147f7bf",
+    "year": 2020,
+    "constNo": 120,
+    "name": "Sunil Kumar",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "56e9c6fb-6a77-4319-8f10-91e2fb0f14cc",
+    "year": 2025,
+    "constNo": 120,
+    "name": "Sunil Kumar",
+    "partyId": "RJD"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|190",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "df21efe4-1fde-5862-9e22-e7ca52c5adf8",
+    "year": 2020,
+    "constNo": 190,
+    "name": "Sunil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "b5285a4f-a064-40f4-9b25-6225427da694",
+    "year": 2025,
+    "constNo": 190,
+    "name": "Sunil Kumar",
+    "partyId": "LJPRV"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|201",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "795d744a-33e3-4394-8b00-141c89f99ef9",
+    "year": 2010,
+    "constNo": 201,
+    "name": "Sunil Kumar",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "9bf300de-fa2f-541d-8c44-279da3b96eb5",
+    "year": 2020,
+    "constNo": 201,
+    "name": "Sunil Kumar @ Pappu Yadav",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|215",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "1d78fd32-64e1-5d84-a280-c3296b559c48",
+    "year": 2015,
+    "constNo": 215,
+    "name": "Sunil Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "20293d39-c58b-51ba-a8db-d7984c49b7b3",
+    "year": 2020,
+    "constNo": 215,
+    "name": "Sunil Kumar",
+    "partyId": "PPOI1"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|28",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c3abee71-fc8a-4531-9de6-2be68bfc29b1",
+    "year": 2010,
+    "constNo": 28,
+    "name": "Sunil Kumar Alias Pintu",
+    "partyId": "BJP"
+   },
+   {
+    "candidateId": "14523a2a-d8d9-40f6-abbb-3e99da23b1db",
+    "year": 2015,
+    "constNo": 28,
+    "name": "Sunil Kumar",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "ecee17ad-c40e-4aa1-8eae-49116d7e7ca2",
+    "year": 2015,
+    "constNo": 28,
+    "name": "Sunil Kumar Alias Pintu",
+    "partyId": "BJP"
+   },
+   {
+    "candidateId": "82c50ed5-f52f-48fd-8a03-a6c306ab6032",
+    "year": 2020,
+    "constNo": 28,
+    "name": "Sunil Kumar",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "566dd067-0210-426e-8290-37a5a3626952",
+    "year": 2025,
+    "constNo": 28,
+    "name": "Sunil Kumar",
+    "partyId": "RJD"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|5",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "1e230cbb-22e7-59d7-8566-0b1b621bf74e",
+    "year": 2015,
+    "constNo": 5,
+    "name": "Sunil Kumar",
+    "partyId": "BSP"
+   },
+   {
+    "candidateId": "db6815a1-cd35-4156-a2b9-c0c261f68fe1",
+    "year": 2025,
+    "constNo": 5,
+    "name": "Sunil Kumar",
+    "partyId": "JSP"
+   }
+  ]
+ },
+ {
+  "key": "SURENDRA KUMAR|145",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c9769a72-676c-5dc4-b813-3877e224a35f",
+    "year": 2020,
+    "constNo": 145,
+    "name": "Surendra Kumar Alias Surendra Vivek",
+    "partyId": "LJP"
+   },
+   {
+    "candidateId": "0970c8a0-85ea-4f52-aca4-7c69340adebc",
+    "year": 2025,
+    "constNo": 145,
+    "name": "Surendra Kumar Alias Surendra Vivek",
+    "partyId": "LJPRV"
+   },
+   {
+    "candidateId": "509f0b1f-9728-5697-b776-53a29d62723b",
+    "year": 2025,
+    "constNo": 145,
+    "name": "Surendra Kumar",
+    "partyId": "PPOI"
+   }
+  ]
+ },
+ {
+  "key": "SURENDRA KUMAR|89",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9c44ed7d-ebdd-41ab-8876-e06a5016415d",
+    "year": 2010,
+    "constNo": 89,
+    "name": "Surendra Kumar",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "6d44b54a-b32f-4e40-9000-727f99b2a0af",
+    "year": 2015,
+    "constNo": 89,
+    "name": "Surendra Kumar",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "6a12d8f4-58e0-5daa-ba2e-cf134ae320aa",
+    "year": 2015,
+    "constNo": 89,
+    "name": "Surendra Kumar",
+    "partyId": "BVP"
+   },
+   {
+    "candidateId": "0e161305-9060-5afa-b3af-10276330d9cf",
+    "year": 2020,
+    "constNo": 89,
+    "name": "Surendra Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "VIJAY KUMAR SINGH|221",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "befedbfa-bc6b-40ac-a810-c7c20ed2dbae",
+    "year": 2010,
+    "constNo": 221,
+    "name": "Vijay Kumar Singh",
+    "partyId": "LJP"
+   },
+   {
+    "candidateId": "e6e36945-8459-5f6c-b5e5-a14cbb668465",
+    "year": 2015,
+    "constNo": 221,
+    "name": "Vijay Kumar Singh",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "f1a1212b-2baa-4401-ab8d-d9bb198417d5",
+    "year": 2020,
+    "constNo": 221,
+    "name": "Vijay Kumar Singh Alias Dabloo Singh",
+    "partyId": "RJD"
+   },
+   {
+    "candidateId": "a098645c-621e-510e-8c99-a370864e49ac",
+    "year": 2020,
+    "constNo": 221,
+    "name": "Vijay Kumar Singh",
+    "partyId": "LJP"
+   }
+  ]
+ },
+ {
+  "key": "VIJAY KUMAR|14",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e227cca3-0c8e-5049-95bc-46219f8fefc0",
+    "year": 2010,
+    "constNo": 14,
+    "name": "Vijay Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "7b04eb90-2e8d-5606-9eb5-04af8cbe38f4",
+    "year": 2015,
+    "constNo": 14,
+    "name": "Vijay Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "VIJAY KUMAR|168",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6011ac08-5952-567b-8476-c66a91378e25",
+    "year": 2020,
+    "constNo": 168,
+    "name": "Vijay Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "43f20c24-3bb8-4df1-9de7-e6e3b6f67a2e",
+    "year": 2025,
+    "constNo": 168,
+    "name": "Vijay Kumar",
+    "partyId": "IND"
+   }
+  ]
+ },
+ {
+  "key": "VIJAY KUMAR|169",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "863e10f6-9db4-5ece-ac2f-6f1000fc5289",
+    "year": 2015,
+    "constNo": 169,
+    "name": "Vijay Kumar",
+    "partyId": "JAPL"
+   },
+   {
+    "candidateId": "a2681064-0f1f-49a4-8774-f02c2c1ffcee",
+    "year": 2020,
+    "constNo": 169,
+    "name": "Vijay Kumar",
+    "partyId": "RJD"
+   }
+  ]
+ },
+ {
+  "key": "VIJAY KUMAR|39",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "5b2fc421-7391-5ec4-81f3-a77b30559e04",
+    "year": 2020,
+    "constNo": 39,
+    "name": "Vijay Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "3015b859-9d3f-555b-bd8d-24e6222c5915",
+    "year": 2025,
+    "constNo": 39,
+    "name": "Vijay Kumar",
+    "partyId": "BSP"
+   }
+  ]
+ },
+ {
+  "key": "VIJAY KUMAR|97",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3534d4bd-df7c-5461-8568-a336bbb0f782",
+    "year": 2015,
+    "constNo": 97,
+    "name": "Vijay Kumar",
+    "partyId": "IND"
+   },
+   {
+    "candidateId": "9fcc0ee8-0ada-5b84-9709-ddc843a4aa22",
+    "year": 2020,
+    "constNo": 97,
+    "name": "Vijay Kumar",
+    "partyId": "BHRTSBLP"
+   },
+   {
+    "candidateId": "a591ca6c-8dd5-47c4-9f49-a0b0857a75c7",
+    "year": 2025,
+    "constNo": 97,
+    "name": "Vijay Kumar",
+    "partyId": "BSP"
+   }
+  ]
+ }
+]
