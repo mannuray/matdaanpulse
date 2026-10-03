@@ -42,18 +42,24 @@ fetch (cached raw files) → parse + validate (normalised JSON, committed) → g
 - **Fetch** downloads each source once into `scraper/data/raw/bihar/…` (gitignored), with a browser User-Agent and
   ~2 s between requests. Re-runs read the cache and never re-hit the source.
 - **Parse** writes `scraper/data/bihar/vs-<year>.json` (committed), so a bad parse is a reviewable diff. Validation and
-  the TCPD cross-check run here. Any failure exits non-zero and lists the seats concerned.
+  the ECI internal cross-check run here. Any failure exits non-zero and lists the seats concerned.
 - **Generate** writes SQL from the committed JSON only.
 
 ### Sources
 
-- **Source of record: ECI.** The statistical reports per election (detailed results: every candidate, sex, age,
-  category, party, votes incl. postal; constituency electors, turnout, reservation, phase). For 2025, the ECI results
-  site archive, which lists every candidate.
-- **Cross-check: TCPD Lok Dhaba** (Ashoka University) CSVs. Used only inside the parse step, never shipped or seeded,
-  so its licence does not bind the site. Compared per seat: candidate count, total votes, winner, electors, turnout.
-  A mismatch fails the parse. Seats where TCPD itself is known to be wrong can be listed in a committed
-  `crosscheck-exceptions.json` with a reason.
+- **Source of record: ECI statistical reports**, from the ECI backend
+  (`https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=16` for 2025;
+  `/api/old-site-statistical-report-data?docid=<id>` for older years: 2020 = 12787, 2015 = 3904, 2010 = 3903).
+  2025 and 2020 come as XLS/XLSX reports; 2010 and 2015 only as one full-report PDF each (text layer, read with
+  `pdftotext -layout`). Used reports: Detailed Results (every candidate: sex, age, category, party, general/postal/total
+  votes; electors; turnout), Constituency Data Summary (reservation, electors, voters, NOTA, winner, margin, poll date),
+  List of Political Parties Participated, Performance of Political Parties. 2010 has no NOTA (introduced 2013).
+- **Cross-check: ECI against itself.** TCPD Lok Dhaba was the planned cross-check but is unreachable (server refuses
+  connections, no mirror found, checked 2026-10-03). Instead, the parse step compares independent tables of the same
+  report: Detailed Results vs Constituency Data Summary per seat (electors, total voters, NOTA, winner, runner-up,
+  margin, reservation), and Detailed Results vs Performance of Political Parties statewide (seats won and votes per
+  party). A mismatch fails the parse. Known errors in ECI's own tables can be listed in a committed
+  `scraper/data/bihar/crosscheck-exceptions.json` with a reason.
 - **Party symbols:** ECI symbol notifications plus Wikimedia Commons (free licences only).
 - **Leaders:** Wikidata / Wikipedia / Commons.
 - **Affidavits:** MyNeta (ADR), via `scraper/src/adapters/myneta-adapter.ts`.
@@ -70,20 +76,29 @@ existing DB.
    existing row by seat + party (+ name similarity for `IND` and for parties with two candidates in a seat) **keep
    their existing candidate and result UUIDs**. `seed_bihar_persons.sql` and other id-keyed seeds keep working.
 2. **New run-once `database/seed_bihar_corrections_v1.sql`** (`seed_runs` marker via `scraper/src/seed-run-once.ts`),
-   for existing DBs. It updates votes, status and margin on matched results, and names on matched candidates (ECI spelling).
-   It also updates constituency `type`, `total_electors`, `voter_turnout` and `phase`, and inserts the missing candidates and
-   their result rows. On a fresh DB every statement is a no-op.
-3. **Old rows that match nothing in ECI** are written to a review report by the generator and never deleted
-   automatically, because deleting a candidate can delete its person (orphan trigger). The user decides each one; the
-   decision becomes an explicit statement in the corrections seed.
-4. `setup.sh`: the corrections seed runs right after the Bihar VS results and before the person seeds.
+   for existing DBs. It deletes the old rows decided as `delete`, updates votes/status/margin on matched results,
+   name/party/age on matched candidates (ECI spelling), the names of auto-created single-candidacy persons that still
+   carry the old name, and constituency `type`, `total_electors`, `voter_turnout`, `phase`. It inserts nothing: the year
+   seeds insert the missing candidates afterwards. On a fresh DB (no Bihar rows yet) the body is skipped and only the
+   marker is written. Once applied in production it is frozen; a later correction is a new `_v2` seed.
+3. **Old rows that match nothing in ECI** are written to a review file (`scraper/data/bihar/review-<year>.json`) and the
+   generator refuses to emit until each has a decision in `scraper/data/bihar/decisions.json` (`delete`, or `match` to a
+   named ECI candidate). Nothing is deleted without that explicit decision, because deleting a candidate can delete its person
+   (orphan trigger). The user reviews the delete and low-similarity lists.
+4. `setup.sh` order: `seed_bihar_parties.sql` → `seed_bihar_corrections_v1.sql` → `seed_bihar_vs_<year>.sql`. The
+   corrections must run first: otherwise the partial unique index `uq_candidates_election_const_party` would make a year
+   seed skip a new candidate that shares seat + party with an old row, and its result row would then fail the FK.
+5. Year seeds set the manifest only `WHERE manifest_url IS NULL` (the published manifest lives in `manifest_url`;
+   the current seeds overwrite it on every deploy).
+6. **Verification:** a fresh `setup.sh` DB and an upgraded copy of today's DB (with `setup.sh` run twice) must hold identical
+   Bihar constituencies, candidates and results.
 
 ## 4. Results and constituencies
 
 - **Results:** every candidate + NOTA, votes (postal included), status `WON`/`LOST`, margin on every row (as now).
   `round_no` 0.
 - **Candidates:** `age` from the ECI report. **Persons:** `gender` from the ECI report, filled only where NULL.
-- **Constituencies:** `type` (GEN/SC/ST) per year, `total_electors`, `voter_turnout`, `phase`. Verify only `district_id`, which is already set.
+- **Constituencies:** `type` (GEN/SC/ST) per year, `total_electors`, `voter_turnout`, `phase` (derived from the seat's poll date in the Constituency Data Summary). Verify only `district_id`, which is already set.
 - **Party mapping:** ECI labels → party id through `scraper/src/live/adapters/eci-mapping.ts` (`mapParty`), extended
   as needed. An unknown label fails the parse with a list; each one is decided once (new party, or an alias of an
   existing one). Independents → `IND`.
@@ -174,7 +189,7 @@ Name, party, votes, plus age/gender from ECI. Nothing more.
 
 Each step ships on its own.
 
-1. ECI fetch + parse + TCPD cross-check for **2020** end to end (proves the pipeline).
+1. ECI fetch + parse + internal cross-check for **2020** end to end (proves the pipeline).
 2. 2010, 2015, 2025; seed rewrite; corrections seed; constituency fields; About + FEATURES.
 3. Party rows + symbols, with the user's contact-sheet review.
 4. `image_credits` migration + Prisma sync + credits read path.
@@ -184,7 +199,7 @@ Each step ships on its own.
 
 ## 9. Testing
 
-- **Parsers:** unit tests against small committed fixtures cut from real ECI and TCPD files.
+- **Parsers:** unit tests against small committed fixtures cut from real ECI files.
 - **Generator:** UUID reuse for matched candidates; the corrections seed is a no-op on fresh data; run-once markers;
   the validation rules reject bad input.
 - **Frontend:** `leaders.ts` tests for `person_id` match and name fallback.
@@ -194,7 +209,7 @@ Each step ships on its own.
 
 ## 10. Done when
 
-- Bihar 2010–2025 has every candidate with real ECI votes, correct SC/ST, electors and turnout; the TCPD cross-check
+- Bihar 2010–2025 has every candidate with real ECI votes, correct SC/ST, electors and turnout; the ECI internal cross-check
   passes; the About page lists all four as real.
 - Reviewed party symbols are live, with credits.
 - ~30–50 leaders have Blob-hosted, credited photos; Bihar manifests link leaders and cabinet by `person_id`.

@@ -36,6 +36,9 @@ yarn-error.log*
 # Scraper output
 scraper/output/
 
+# Downloaded source files (ECI reports etc.; re-fetch with the fetch scripts, do not commit)
+scraper/data/raw/
+
 # Scraped MyNeta HTML cache (regenerable; do not commit third-party pages)
 scraper/src/cache/myneta/
 
