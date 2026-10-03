@@ -18,8 +18,8 @@ export async function runCycle(electionId: string, shard: string, st: LoopState,
   let cfg;
   try { cfg = await d.client.config(electionId, shard); }
   catch (e) { st.failures++; d.log(`${tag} config failed: ${(e as Error).message}`); return Math.min(BACKOFF_MAX_MS, BACKOFF_BASE_MS * 2 ** st.failures); }
-  st.failures = 0;
   const idle = async (why: string) => {
+    st.failures = 0;
     if (st.leased) { await d.client.release(electionId, shard, d.holder).catch(() => undefined); st.leased = false; }
     d.log(`${tag} idle: ${why}`);
     return cfg.poll_hint_ms;
@@ -32,16 +32,16 @@ export async function runCycle(electionId: string, shard: string, st: LoopState,
   try { await d.client.lease(electionId, shard, d.holder); st.leased = true; }
   catch (e) {
     st.leased = false;
-    if (e instanceof IngestApiError && e.status === 409) { d.log(`${tag} lease held by ${(e.details as any)?.holder ?? 'another job'}`, undefined); return cfg.poll_hint_ms; }
+    if (e instanceof IngestApiError && e.status === 409) { st.failures = 0; d.log(`${tag} lease held by ${(e.details as any)?.holder ?? 'another job'}`, undefined); return cfg.poll_hint_ms; }
     d.log(`${tag} lease failed: ${(e as Error).message}`); return cfg.poll_hint_ms;
   }
 
   try {
-    if (st.source !== cfg.source || !st.adapter || Date.now() - st.preparedAt > REPREPARE_MS) {
-      st.adapter = factory(d.adapterOpts[cfg.source] ?? {});
-      st.source = cfg.source;
-      const report = await st.adapter.prepare(await d.client.roster(electionId, shard));
-      st.preparedAt = Date.now();
+    if (st.source !== cfg.source || !st.adapter || now().getTime() - st.preparedAt > REPREPARE_MS) {
+      const fresh = factory(d.adapterOpts[cfg.source] ?? {});
+      st.adapter = null; st.source = null;
+      const report = await fresh.prepare(await d.client.roster(electionId, shard));
+      st.adapter = fresh; st.source = cfg.source; st.preparedAt = now().getTime();
       d.log(`${tag} prepared ${cfg.source}: ${report.seats_mapped}/${report.seats_total} seats mapped`, report.unmapped.slice(0, 20));
     }
     const observed_at = now().toISOString();
@@ -58,6 +58,7 @@ export async function runCycle(electionId: string, shard: string, st: LoopState,
         if (r.mismatch.length) d.log(`${tag} tally mismatch`, r.mismatch);
       }
     }
+    st.failures = 0;
     return jitter(st.adapter.intervalMs);
   } catch (e) {
     st.failures++;

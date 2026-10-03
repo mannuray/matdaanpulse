@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { newLoopState, runCycle, POST_CHUNK, type LoopDeps } from '../loop';
+import { newLoopState, runCycle, POST_CHUNK, REPREPARE_MS, type LoopDeps } from '../loop';
 import { IngestApiError } from '../client';
 
 const roster = { election: { id: 'e', type: 'VS', state_id: 4, year: 2026, status: 'Live' }, parties: [], seats: [] };
@@ -52,5 +52,38 @@ describe('runCycle', () => {
     const st = newLoopState();
     expect(await runCycle('e', 'rest', st, d)).toBe(10_000);
     expect(await runCycle('e', 'rest', st, d)).toBe(20_000);
+  });
+  it('cycle failures (poll rejecting) back off 10s, 20s, 40s, then cap at 60s', async () => {
+    const { d, adapter } = deps();
+    adapter.poll.mockRejectedValue(new Error('boom'));
+    const st = newLoopState();
+    const waits = [];
+    for (let i = 0; i < 5; i++) waits.push(await runCycle('e', 'rest', st, d));
+    expect(waits).toEqual([10_000, 20_000, 40_000, 60_000, 60_000]);
+  });
+  it('a failed prepare after a source switch is retried before any poll', async () => {
+    const { d, adapter, client } = deps();
+    const st = newLoopState();
+    await runCycle('e', 'rest', st, d);
+    expect(adapter.prepare).toHaveBeenCalledTimes(1);
+    client.config.mockResolvedValue({ status: 'Live', source: 'fake2', poll_hint_ms: 10_000, shard: { name: 'rest', seat_count: 1 }, lease: { holder: null, expires_at: null } });
+    const adapter2 = { ...adapter, prepare: vi.fn().mockRejectedValueOnce(new Error('roster')).mockResolvedValue({ seats_total: 1, seats_mapped: 1, unmapped: [] }), poll: vi.fn(async () => []) };
+    d.adapters.fake2 = () => adapter2;
+    await runCycle('e', 'rest', st, d);
+    expect(adapter2.poll).not.toHaveBeenCalled();
+    await runCycle('e', 'rest', st, d);
+    expect(adapter2.prepare).toHaveBeenCalledTimes(2);
+    expect(adapter2.poll).toHaveBeenCalledTimes(1);
+  });
+  it('re-prepares after REPREPARE_MS using the injected clock', async () => {
+    const { d, adapter } = deps();
+    let t = Date.parse('2027-02-27T04:00:00Z');
+    d.now = () => new Date(t);
+    const st = newLoopState();
+    await runCycle('e', 'rest', st, d);
+    t += REPREPARE_MS - 1; await runCycle('e', 'rest', st, d);
+    expect(adapter.prepare).toHaveBeenCalledTimes(1);
+    t += 2; await runCycle('e', 'rest', st, d);
+    expect(adapter.prepare).toHaveBeenCalledTimes(2);
   });
 });
