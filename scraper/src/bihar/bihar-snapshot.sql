@@ -1,6 +1,6 @@
--- One md5 per Bihar VS table, over the columns the seeds own. Persons are excluded: an upgraded DB keeps admin and
+-- One md5 per table, over the VS elections of Bihar and the five Phase 2 states, over the columns the seeds own. Persons are excluded: an upgraded DB keeps admin and
 -- multi-candidacy person names by design. Seat analysis is excluded: it is computed through the admin API after deploy.
-WITH e AS (SELECT id FROM elections WHERE state_id = 5 AND type = 'VS')
+WITH e AS (SELECT id FROM elections WHERE state_id IN (5, 4, 16, 27, 31, 36) AND type = 'VS')
 SELECT 'constituencies', count(*), md5(string_agg(concat_ws('|', k.id, k.election_id, k.district_id, k.region_id, k.name, k.const_no, k.type, k.voter_turnout, k.phase, k.total_electors), E'\n' ORDER BY k.id))
   FROM constituencies k JOIN e ON e.id = k.election_id
 UNION ALL

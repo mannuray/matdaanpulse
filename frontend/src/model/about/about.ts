@@ -39,7 +39,6 @@ export interface DataSource {
   notes: DataNote[];
 }
 
-const ECI_ELECTIONS_IN = 'ECI / elections.in';
 const ECI_STAT_REPORT = 'ECI statistical report';
 
 export const DATA_SOURCES: readonly DataSource[] = [
@@ -50,25 +49,25 @@ export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'VS', state: 'Bihar', year: 2015, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Bihar', year: 2010, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
-  { house: 'VS', state: 'West Bengal', year: 2021, source: ECI_ELECTIONS_IN, quality: 'real', notes: ['all_candidates'] },
-  { house: 'VS', state: 'West Bengal', year: 2016, source: ECI_ELECTIONS_IN, quality: 'real', notes: ['two_candidates'] },
-  { house: 'VS', state: 'West Bengal', year: 2011, source: ECI_ELECTIONS_IN, quality: 'real', notes: ['two_candidates'] },
+  { house: 'VS', state: 'West Bengal', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'West Bengal', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'West Bengal', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
-  { house: 'VS', state: 'Tamil Nadu', year: 2021, source: ECI_ELECTIONS_IN, quality: 'estimated', notes: ['votes_from_margin', 'two_candidates'] },
-  { house: 'VS', state: 'Tamil Nadu', year: 2016, source: ECI_ELECTIONS_IN, quality: 'real', notes: ['two_candidates', 'seats_postponed'] },
-  { house: 'VS', state: 'Tamil Nadu', year: 2011, source: ECI_ELECTIONS_IN, quality: 'real', notes: ['two_candidates'] },
+  { house: 'VS', state: 'Tamil Nadu', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Tamil Nadu', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'seats_postponed'] },
+  { house: 'VS', state: 'Tamil Nadu', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
-  { house: 'VS', state: 'Kerala', year: 2021, source: null, quality: 'estimated', notes: ['votes_from_margin', 'two_candidates', 'source_unrecorded'] },
-  { house: 'VS', state: 'Kerala', year: 2016, source: null, quality: 'real', notes: ['two_candidates', 'source_unrecorded'] },
-  { house: 'VS', state: 'Kerala', year: 2011, source: null, quality: 'real', notes: ['two_candidates', 'source_unrecorded'] },
+  { house: 'VS', state: 'Kerala', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Kerala', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Kerala', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
-  { house: 'VS', state: 'Assam', year: 2021, source: null, quality: 'estimated', notes: ['placeholder_names', 'votes_from_margin', 'reserved_wrong', 'source_unrecorded'] },
-  { house: 'VS', state: 'Assam', year: 2016, source: null, quality: 'partial', notes: ['two_candidates', 'reserved_wrong', 'source_unrecorded'] },
-  { house: 'VS', state: 'Assam', year: 2011, source: null, quality: 'partial', notes: ['two_candidates', 'reserved_wrong', 'source_unrecorded'] },
+  { house: 'VS', state: 'Assam', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Assam', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Assam', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
-  { house: 'VS', state: 'Puducherry', year: 2021, source: null, quality: 'estimated', notes: ['winner_only', 'votes_from_margin', 'source_unrecorded'] },
-  { house: 'VS', state: 'Puducherry', year: 2016, source: null, quality: 'real', notes: ['two_candidates', 'source_unrecorded'] },
-  { house: 'VS', state: 'Puducherry', year: 2011, source: null, quality: 'real', notes: ['two_candidates', 'source_unrecorded'] },
+  { house: 'VS', state: 'Puducherry', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Puducherry', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Puducherry', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 ];
 
 export interface DataSourceGroup {

@@ -147,6 +147,13 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | The local DB has sample/preview data | revert only fields the seeds don't own; take a backup first |
 | Background tasks stop after 2 hours | run servers and long jobs detached with `nohup` |
 | A check that can't fail (grouped by the field it tests) | verify a check by running it on data known to be wrong |
+| ECI download links failing (HTTP 500) for one report | the user downloads the four XLSX files by hand; register them |
+| Report layouts differ by year/state (flat sheet without TURNOUT rows, letter-typed party tables, "CONSTITUENCY :- N - Name") | parser aliases and layout detection, each with a fixture test |
+| A summary whose valid total includes NOTA (no NOTA line) | cross-check accepts candidates + NOTA there |
+| Seats a report leaves out (TN 2016 postponed polls) | registry `excludeSeats` + `seats` |
+| Stable ids colliding across states (same year/seat/serial) | namespace ids by state slug |
+| One ECI name meaning another party in a state | per-state `party-overrides.json` |
+| Old seeds with duplicate/garbled rows | decisions: delete the garbled twin, match the clean row |
 
 ## 10. Running things
 

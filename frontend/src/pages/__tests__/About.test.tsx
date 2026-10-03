@@ -26,7 +26,7 @@ describe('About page', () => {
     const { container } = renderAbout();
     expect(container.querySelectorAll('[data-matrix-cell]')).toHaveLength(DATA_SOURCES.length);
     expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Lok Sabha', 'Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry']);
-    expect(screen.getByRole('button', { name: 'Kerala · Vidhan Sabha 2021: Votes estimated' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Kerala · Vidhan Sabha 2021: Real votes' })).toBeTruthy();
     expect(screen.getByText(`${DATA_SOURCES.length} elections covered`)).toBeTruthy();
     expect(screen.getByText('Lok Sabha + 6 states')).toBeTruthy();
     expect(container.textContent).not.toMatch(/about_[a-z_]+/);
@@ -36,12 +36,12 @@ describe('About page', () => {
     const { container } = renderAbout();
     const panel = () => container.querySelector('[data-matrix-detail]')!.textContent!;
     expect(panel()).toMatch(/Bihar · Vidhan Sabha 2025/);
-    const cell = screen.getByRole('button', { name: 'Tamil Nadu · Vidhan Sabha 2021: Votes estimated' });
+    const cell = screen.getByRole('button', { name: /Lok Sabha.*2024: Partly incomplete/ });
     fireEvent.click(cell);
     expect(cell.getAttribute('aria-pressed')).toBe('true');
-    expect(panel()).toMatch(/Tamil Nadu · Vidhan Sabha 2021/);
-    expect(panel()).toMatch(/only the winning margin is real/);
-    expect(panel()).toMatch(/elections\.in/);
+    expect(panel()).toMatch(/2024/);
+    expect(panel()).toMatch(/Top 5 candidates and NOTA/);
+    expect(panel()).toMatch(/OpenCity/);
   });
 
   it('links to the official ECI results and the contact address', () => {

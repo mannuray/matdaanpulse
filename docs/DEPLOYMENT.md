@@ -175,6 +175,11 @@ watchlists written once into each Bihar manifest's published `manifest_url`), an
 Publish or discard any Bihar manifest draft being edited before this deploy: the published manifest's `watchlists` is replaced once.
 Migration 022 adds `image_credits`; the backend serves `GET /credits`.
 
+**Five states' history (Phase 2A).** For each of WB, AS, KL, TN, PY, `setup.sh` runs `seed_<st>_vs_parties.sql` →
+`seed_<st>_corrections_v1.sql` (run-once, with the same pre-flight as Bihar: it stops, changing nothing, if production
+holds candidates the old seeds didn't have or a changed party) → the year seeds; then `seed_<st>_person_links_v1.sql`.
+After the deploy, recompute the seat analysis for the 15 elections (ids in `scraper/src/bihar/elections.ts`).
+
 ### 5.1 Neon
 
 1. Create project in the region chosen in D1. Note both connection strings:

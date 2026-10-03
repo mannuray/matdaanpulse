@@ -166,6 +166,20 @@ Bihar VS 2010 / 2015 / 2020 / 2025 carry every candidate + NOTA with real ECI vo
 - Display names: all-caps names (2010/2015) become Title Case; ECI's "Father's Name :- …" suffix is dropped. The 2015
   supplement seats have no general/postal split or candidate age/sex.
 
+### Five states' historical results (WB, TN, KL, AS, PY 2011-2021), 2026-10-03
+Plan `docs/superpowers/plans/2026-10-03-phase2a-historical-results.md` (historical track: results only).
+- [x] The seeding pipeline is state-aware (`scraper/src/bihar/elections.ts` registry: ids, prefixes, report docids,
+  expected seats / SC-ST / poll dates, seed names); every CLI takes a state code; Bihar's output is byte-identical.
+- [x] All 15 elections from ECI statistical reports, every candidate + NOTA, real votes, SC/ST, electors, turnout,
+  phase; ECI-internal cross-check (documented ECI table slips in `scraper/data/<slug>/crosscheck-exceptions.json`).
+  Kerala 2021's report files were downloaded by hand (ECI's links fail). Tamil Nadu 2016 covers the 232 seats polled in
+  May (Aravakurichi and Thanjavur were polled in Nov 2016 and are outside ECI's report).
+- [x] Existing rows corrected by run-once `seed_<slug>_corrections_v1.sql` (frozen) before the year seeds; old
+  invented rows (Assam 2021 runner-ups, misplaced/garbled West Bengal rows) deleted by user-approved decisions.
+- [x] Cross-election person links per state (`seed_<slug>_person_links_v1.sql`, run-once).
+- Per-state party overrides (`scraper/data/<slug>/party-overrides.json`) where an ECI name means another party here
+  (Kerala 2011's "Muslim League Kerala State Committee" = IUML).
+
 ### Bihar 2025 party profiles, 2026-10-03
 - [x] The 15 top parties of Bihar 2025 (won a seat, 1 %+ of the vote, or alliance member: RJD, BJP, JDU, INC, LJPRV, JSP,
   CPIML, AIMIM, BSP, VIP, HAMS, RLM, CPIM, IIP, CPI) researched with sources into `scraper/data/bihar/parties-2025.json`
@@ -546,11 +560,9 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
 - **Live ECI ingestion is built but untested against a real counting day.** The worker (`scraper/src/live`, adapter `eci-web`) matches ECI's results site as of 2026; the page format may change. Rehearse per `docs/LIVE_RUNBOOK.md`; the simulation exercises the same ingest path with the mock server.
 
 - **Estimated / incomplete seed data** (audit 2026-10-01; listed publicly on `/about`, source of truth `frontend/src/model/about/about.ts`, update it whenever a seed is corrected):
-  - Synthetic votes (runner-up 50,000, winner 50,000 + margin; only margin and names/parties real): AS/KL/TN VS 2021, PY VS 2021 (winners only, no runner-up). Bihar was fixed on 2026-10-03.
-  - Assam VS 2021: placeholder winner names (`"<PARTY> Candidate"`) and an invented IND "Runner-up".
+  - Synthetic votes: none left in Vidhan Sabha data (Bihar and the five states fixed on 2026-10-03).
   - LS 2024: `voter_turnout` / `total_electors` implausible (e.g. Lakshadweep 1,474,599 electors; in 294 seats the votes exceed electors × turnout).
-  - SC/ST type is `GEN` for every seat in all Assam years.
-  - Candidate coverage: all candidates in WB 2021 and Bihar 2010–2025; top 5 + NOTA in LS 2024; winner + runner-up elsewhere. TN 2016 has 232/234 seats (2 postponed polls). No source recorded for AS/KL/PY.
+  - Candidate coverage: all candidates in every Vidhan Sabha election (Bihar 2010–2025, five states 2011–2021); top 5 + NOTA in LS 2024. TN 2016 has 232/234 seats (2 postponed polls).
 
 - **Detail screens:** affidavit columns (age, assets, liabilities, criminal cases) appear only where admins or seeds filled them; seat-history runner-up and share appear after the next analysis recompute; the counting round in the seat dialog can trail the vote numbers by up to a few minutes (CDN cache); turnout and vote-share change versus the previous election are not shown (no source yet).
 
