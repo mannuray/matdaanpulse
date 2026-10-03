@@ -8,7 +8,7 @@ import * as path from 'path';
 import { DATA_DIR } from './load';
 import { readExistingSeed } from './existing-seed';
 import { matchYear, LOW_SIMILARITY, type Decision } from './match';
-import { emitCorrections, emitParties, emitYear, type Plan } from './emit';
+import { changedRows, emitCorrections, emitParties, emitYear, type Plan } from './emit';
 import { validateElection } from './crosscheck';
 import type { ElectionJson, PartyEntry, Year } from './types';
 
@@ -43,6 +43,15 @@ for (const p of plans.flatMap(pl => pl.json.parties)) if (!['IND', 'NOTA'].inclu
 fs.writeFileSync(path.join(DB_DIR, 'seed_bihar_parties.sql'), emitParties([...parties.values()]));
 // Run-once seed: frozen after its first generation (it may already be applied in production); a later fix is a _v2 file.
 const corrections = path.join(DB_DIR, 'seed_bihar_corrections_v1.sql');
+if (fs.existsSync(corrections)) {
+  // Existing DBs never see a changed row of a year seed (ON CONFLICT DO NOTHING); only fresh DBs would. Refuse.
+  const changed = plans.flatMap(p => changedRows(fs.readFileSync(path.join(DB_DIR, `seed_bihar_vs_${p.json.year}.sql`), 'utf8'), emitYear(p))
+    .map(id => `${p.json.year}: ${id}`));
+  if (changed.length) {
+    console.error(`${changed.length} existing rows would change; existing DBs would not get them. Write a seed_bihar_corrections_v2 for:\n  ${changed.slice(0, 50).join('\n  ')}`);
+    process.exit(1);
+  }
+}
 if (!fs.existsSync(corrections)) fs.writeFileSync(corrections, emitCorrections(plans));
 else console.log('seed_bihar_corrections_v1.sql exists (frozen run-once seed); not rewritten');
 for (const p of plans) fs.writeFileSync(path.join(DB_DIR, `seed_bihar_vs_${p.json.year}.sql`), emitYear(p));

@@ -153,7 +153,16 @@ Recommended alongside (not strictly blocking): 5 MB body limit only on the inges
 
 `setup.sh` applies `seed_bihar_parties.sql` → `seed_bihar_corrections_v1.sql` (run-once) → the Bihar year seeds. On
 production the corrections seed rewrites the old estimated Bihar 2010–2020 rows (and the 2025 top-5 rows) to the real
-ECI values, then the year seeds insert the missing candidates. Afterwards:
+ECI values, then the year seeds insert the missing candidates (each year seed is one transaction).
+
+**Pre-flight (built in):** the corrections seed first checks that production holds exactly the old seeds' Bihar
+candidates with their seeded parties. If an admin added a Bihar candidate or changed one's party, `setup.sh` stops with
+`seed_bihar_corrections_v1: N Bihar candidates are not in the old seeds and M changed party since` and nothing is
+applied. Reconcile before re-running: list the rows with
+`SELECT c.id, c.const_id, c.party_id, c.name FROM candidates c JOIN elections e ON e.id = c.election_id WHERE e.state_id = 5 AND e.type = 'VS' ORDER BY c.updated_at DESC LIMIT 20;`
+then either undo the admin change, or add a `decisions.json` entry, delete `seed_bihar_corrections_v1.sql`, restore the
+old seeds (`git show 935ea82:database/seed_bihar_vs_<year>.sql`) and re-run `generate-cli.ts` (only while v1 has not
+run in production). Afterwards:
 1. Recompute the seat analysis for the four Bihar elections (admin, or `POST /api/v1/admin/constituencies/analysis/compute/:electionId`
    with an admin token) for `a1b2c3d4-e5f6-7890-abcd-111111111010` (2010), `a1b2c3d4-e5f6-7890-abcd-111111111015` (2015),
    `b2c3d4e5-f6a7-8901-bcde-123456789020` (2020), `c3d4e5f6-a7b8-9012-cdef-234567890abc` (2025).

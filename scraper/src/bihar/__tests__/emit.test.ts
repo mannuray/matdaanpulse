@@ -1,6 +1,6 @@
 // scraper/src/bihar/__tests__/emit.test.ts
 import { describe, it, expect } from 'vitest';
-import { emitCorrections, emitParties, emitYear, seatMargin, candidateIds, type Plan } from '../emit';
+import { changedRows, emitCorrections, emitParties, emitYear, seatMargin, candidateIds, type Plan } from '../emit';
 import type { ElectionJson } from '../types';
 
 const json: ElectionJson = { year: 2010, electionId: 'a1b2c3d4-e5f6-7890-abcd-111111111010', source: { title: 'ECI Statistical Report, Bihar 2010', url: 'https://eci', retrieved: '2026-10-03' },
@@ -46,6 +46,20 @@ describe('emit', () => {
     expect(sql).not.toContain('33333333-3333-3333-3333-333333333333');
     expect(sql).not.toMatch(/metadata/);
   });
+  it('wraps the year seed in one transaction so a failure leaves nothing half-applied', () => {
+    const sql = emitYear(plan());
+    expect(sql.trimStart().split('\n').find(l => !l.startsWith('--') && l.trim())).toBe('BEGIN;');
+    expect(sql.trimEnd().endsWith('COMMIT;')).toBe(true);
+  });
+  it('starts the corrections body with a pre-flight that stops on production rows the seeds do not know', () => {
+    const sql = emitCorrections([plan()]);
+    const body = sql.slice(sql.indexOf('\\if :seed_apply'));
+    expect(body.indexOf('RAISE EXCEPTION')).toBeGreaterThan(0);
+    expect(body.indexOf('RAISE EXCEPTION')).toBeLessThan(body.indexOf('DELETE FROM results'));
+    expect(sql).toContain("('11111111-1111-1111-1111-111111111111', 'JDU')");
+    expect(sql).toContain("('33333333-3333-3333-3333-333333333333', 'LJP')");
+    expect(sql).toContain("c.election_id IN ('a1b2c3d4-e5f6-7890-abcd-111111111010')");
+  });
   it('emits a run-once corrections seed: deletes, result/candidate/constituency updates, guarded person rename', () => {
     const sql = emitCorrections([plan()]);
     expect(sql).toContain("NOT EXISTS (SELECT 1 FROM seed_runs WHERE name = 'seed_bihar_corrections_v1')");
@@ -57,5 +71,23 @@ describe('emit', () => {
     expect(sql).toContain('(SELECT count(*) FROM candidates c2 WHERE c2.person_id = p.id) = 1');
     expect(sql).toContain("('BR_VS10_1_VALMIKI_NAGAR', 'SC', 240418, 59.77, 2)");
     expect(sql.indexOf('DELETE FROM results')).toBeLessThan(sql.indexOf('UPDATE results'));
+  });
+});
+
+describe('changedRows', () => {
+  it('lists ids present in both seeds whose row changed, ignoring new and removed rows', () => {
+    const before = emitYear(plan());
+    const p = plan(); p.json = JSON.parse(JSON.stringify(json)); p.json.seats[0].candidates[0].votes = 42290;
+    p.json.seats[0].candidates.push({ serial: 9, name: 'New Person', partyId: 'IND', sex: 'M', age: 30, votes: 1, status: 'LOST' });
+    const after = emitYear(p);
+    expect(changedRows(before, before)).toEqual([]);
+    const changed = changedRows(before, after);
+    // the winner's result (votes) and the seat's other two result rows (margin 14672); the new candidate is not listed
+    expect(changed).toHaveLength(3);
+    expect(changed).toContain('22222222-2222-2222-2222-222222222222');
+  });
+  it('detects a changed candidate name (not masked by the gender-fill rows keyed by the same id)', () => {
+    const p = plan(); p.json = JSON.parse(JSON.stringify(json)); p.json.seats[0].candidates[0].name = 'Rajesh Kumar Singh';
+    expect(changedRows(emitYear(plan()), emitYear(p))).toEqual(['11111111-1111-1111-1111-111111111111']);
   });
 });
