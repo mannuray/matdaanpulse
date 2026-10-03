@@ -73,6 +73,13 @@ function json(): ElectionJson {
 }
 
 describe('validateElection', () => {
+  it('uses a new election\'s own reserved counts (Assam 2023: 9 SC, 19 ST)', () => {
+    const e = json(); e.seats.forEach((s, i) => { s.phase = 1; s.type = i < 9 ? 'SC' : i < 28 ? 'ST' : 'GEN'; });
+    const cfg = { ...electionOf('AS', 2026), seats: e.seats.length };
+    expect(validateElection(e, cfg).filter(x => x.startsWith('reserved'))).toEqual([]);
+    e.seats[0].type = 'GEN';
+    expect(validateElection(e, cfg)).toEqual(expect.arrayContaining([expect.stringMatching(/^reserved: SC 8 \/ ST 19, expected 9 \/ 19/)]));
+  });
   it('accepts a well-formed election (phase count per year)', () => {
     const e = json(); e.seats.forEach((s, i) => { s.phase = (i % 3) + 1; });
     expect(validateElection(e, electionOf('BR', 2020))).toEqual([]);

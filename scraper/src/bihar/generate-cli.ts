@@ -11,6 +11,7 @@ import { readExistingSeed } from './existing-seed';
 import { matchYear, LOW_SIMILARITY, type Decision } from './match';
 import { changedRows, emitCorrections, emitParties, emitYear, type Plan } from './emit';
 import { validateElection } from './crosscheck';
+import { newElectionSeed } from './new-election';
 import { alliancePartyGaps, emitManifestFixes, type ManifestFixes } from './manifest-fixes';
 import type { ElectionJson, PartyEntry } from './types';
 
@@ -24,13 +25,27 @@ const aliases: Record<string, string> = JSON.parse(fs.readFileSync(path.join(PAR
 const fixesFile = path.join(DATA_DIR, 'manifest-party-fixes.json');
 const manifestFixes: Record<string, ManifestFixes> = fs.existsSync(fixesFile) ? JSON.parse(fs.readFileSync(fixesFile, 'utf8')) : {};
 
+/** Manifest keys emitted for a new election (curated files may carry `_sources` and notes). */
+const MANIFEST_KEYS = ['alliances', 'leaders', 'cabinet', 'tracked', 'vip_seats', 'milestones', 'compare_with', 'history', 'history_years', 'geo', 'delimitation_era'];
+const curatedManifest = (y: number): string | null => {
+  const f = path.join(DATA_DIR, `manifest-${y}.json`);
+  if (!fs.existsSync(f)) return null;
+  const m = JSON.parse(fs.readFileSync(f, 'utf8'));
+  return JSON.stringify(Object.fromEntries(MANIFEST_KEYS.filter(k => k in m).map(k => [k, m[k]])));
+};
+
 const plans: Plan[] = [];
+/** Years whose seed did not exist before this run (new elections): nothing in a DB can differ from them yet. */
+const fresh = new Set<number>();
 let blocked = 0;
 for (const y of electionsOf(ST).map(e => e.year)) {
   const json: ElectionJson = JSON.parse(fs.readFileSync(path.join(DATA_DIR, `vs-${y}.json`), 'utf8'));
   const errs = validateElection(json, electionOf(ST, y));
   if (errs.length) { console.error(`vs-${y}.json fails validation:\n  ${errs.join('\n  ')}`); process.exit(1); }
-  const seed = readExistingSeed(fs.readFileSync(path.join(DB_DIR, state.yearSeed(y)), 'utf8'));
+  const cfg = electionOf(ST, y);
+  const seedFile = path.join(DB_DIR, state.yearSeed(y));
+  if (cfg.newElection && !fs.existsSync(seedFile)) fresh.add(y);
+  const seed = fresh.has(y) ? newElectionSeed(cfg, json, curatedManifest(y)) : readExistingSeed(fs.readFileSync(seedFile, 'utf8'));
   const matches = matchYear(json, seed, decisions, aliases);
   const gaps = alliancePartyGaps(seed.manifestJson, json, manifestFixes[y] ?? {});
   if (gaps.length) console.error(`${y}: manifest alliance parties with no candidate: ${gaps.join(', ')} (map them in party-overrides.json or manifest-party-fixes.json)`);
@@ -55,7 +70,7 @@ fs.writeFileSync(path.join(DB_DIR, state.partiesSeed), emitParties([...parties.v
 const corrections = path.join(DB_DIR, state.correctionsSeed);
 if (fs.existsSync(corrections)) {
   // Existing DBs never see a changed row of a year seed (ON CONFLICT DO NOTHING); only fresh DBs would. Refuse.
-  const changed = plans.flatMap(p => changedRows(fs.readFileSync(path.join(DB_DIR, state.yearSeed(p.json.year)), 'utf8'), emitYear(p))
+  const changed = plans.filter(p => !fresh.has(p.json.year)).flatMap(p => changedRows(fs.readFileSync(path.join(DB_DIR, state.yearSeed(p.json.year)), 'utf8'), emitYear(p))
     .map(id => `${p.json.year}: ${id}`));
   if (changed.length) {
     console.error(`${changed.length} existing rows would change; existing DBs would not get them. Write a ${state.correctionsSeed.replace('_v1.sql', '_v2')} for:\n  ${changed.slice(0, 50).join('\n  ')}`);

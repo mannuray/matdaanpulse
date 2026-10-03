@@ -2,6 +2,7 @@
 import { describe, it, expect } from 'vitest';
 import { normalize } from '../normalize';
 import { YEARS } from '../years';
+import { electionOf } from '../elections';
 import type { PartyMap, RawElection } from '../types';
 
 const map: PartyMap = {
@@ -20,6 +21,11 @@ const raw = (): RawElection => ({
 });
 
 describe('normalize', () => {
+  it('names the seats only for a new election (existing JSON keeps its shape)', () => {
+    const r = raw(); r.seats[0].acName = 'DISPUR';
+    expect(normalize(r, electionOf('AS', 2026), map, '2026-10-03').json.seats[0].name).toBe('Dispur');
+    expect('name' in normalize(raw(), YEARS[2010], map, '2026-10-03').json.seats[0]).toBe(false);
+  });
   it('builds seats with statuses, display names, turnout and phase from poll date order', () => {
     const { json, errors } = normalize(raw(), YEARS[2010], map, '2026-10-03');
     expect(errors).toEqual([]);

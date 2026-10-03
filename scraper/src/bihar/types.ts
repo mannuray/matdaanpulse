@@ -20,5 +20,5 @@ export interface PartyEntry { id: string; name: string; abbreviation: string | n
 export type PartyMap = Record<string, PartyEntry>;
 
 export interface CandidateJson { serial: number; name: string; partyId: string; sex: Sex | null; age: number | null; votes: number; status: 'WON' | 'LOST' }
-export interface SeatJson { constNo: number; type: SeatType; electors: number; voters: number; turnout: number; phase: number; pollDate: string; candidates: CandidateJson[] }
+export interface SeatJson { constNo: number; /** Only for a new election (no old seed to take names from). */ name?: string; type: SeatType; electors: number; voters: number; turnout: number; phase: number; pollDate: string; candidates: CandidateJson[] }
 export interface ElectionJson { year: Year; electionId: string; source: { title: string; url: string; retrieved: string }; parties: PartyEntry[]; seats: SeatJson[] }

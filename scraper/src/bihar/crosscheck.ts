@@ -59,7 +59,8 @@ export function validateElection(e: ElectionJson, cfg: ElectionConfig): string[]
   const seats = cfg.seats ?? st.seats;
   if (e.seats.length !== seats) errs.push(`seats: ${e.seats.length} seats, expected ${seats}`);
   const count = (t: string) => e.seats.filter(s => s.type === t).length;
-  if (count('SC') !== st.reserved.sc || count('ST') !== st.reserved.st) errs.push(`reserved: SC ${count('SC')} / ST ${count('ST')}, expected ${st.reserved.sc} / ${st.reserved.st}`);
+  const reserved = cfg.newElection?.reserved ?? st.reserved;
+  if (count('SC') !== reserved.sc || count('ST') !== reserved.st) errs.push(`reserved: SC ${count('SC')} / ST ${count('ST')}, expected ${reserved.sc} / ${reserved.st}`);
   const phases = new Set(e.seats.map(s => s.phase)).size;
   if (phases !== cfg.expectedPhases) errs.push(`phases: ${phases} distinct phases, expected ${cfg.expectedPhases}`);
   for (const s of e.seats) {
