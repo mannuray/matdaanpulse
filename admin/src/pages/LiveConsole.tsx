@@ -88,7 +88,7 @@ export default function LiveConsole() {
                 seat={lc.selected}
                 saving={lc.saving}
                 lastSavedAt={lc.lastSavedAt[lc.selected.const_id]}
-                holdUntil={lc.holdUntil[lc.selected.const_id]}
+                holdUntil={lc.holds.find((h) => h.const_id === lc.selected!.const_id)?.expires_at}
                 lock={lock}
                 onSave={lc.saveSeat}
                 onDirtyChange={setEditorDirty}

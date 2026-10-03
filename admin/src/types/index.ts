@@ -242,6 +242,7 @@ export interface LiveCandidate {
   last_updated: string;
 }
 
+export type SeatStateName = 'not_started' | 'counting' | 'declared' | 'countermanded' | 'adjourned';
 export interface LiveConstituency {
   const_id: string;
   const_name: string;
@@ -249,6 +250,7 @@ export interface LiveConstituency {
   const_type: string;
   current_round: number | null;
   total_rounds: number | null;
+  seat_state?: SeatStateName | null;
   candidates: LiveCandidate[];
 }
 

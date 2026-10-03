@@ -284,6 +284,9 @@ export class ResultsService {
       orderBy: { const_no: 'asc' }
     });
 
+    const seatStates = await this.prisma.seat_ingest_state.findMany({ where: { election_id: id }, select: { const_id: true, state: true } });
+    const stateOf = new Map(seatStates.map(s => [s.const_id, s.state as string]));
+
     return constituencies.map(co => ({
       const_id: co.id,
       const_name: co.name,
@@ -291,6 +294,7 @@ export class ResultsService {
       const_type: co.type,
       current_round: co.current_round ?? null,
       total_rounds: co.total_rounds ?? null,
+      seat_state: stateOf.get(co.id) ?? null,
       candidates: co.results.map(r => ({
         result_id: r.id,
         candidate_id: r.candidate_id,

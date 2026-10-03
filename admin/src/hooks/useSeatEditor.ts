@@ -17,9 +17,10 @@ function fromServer(seat: LiveConstituency | null): DraftRow[] {
   }));
 }
 const roundOf = (s: LiveConstituency | null) => ({ current: s?.current_round?.toString() ?? '', total: s?.total_rounds?.toString() ?? '' });
-const stateOf = (s: LiveConstituency | null): SeatStateName => (s?.candidates.some((c) => c.status === 'WON') ? 'declared' : 'counting');
+const stateOf = (s: LiveConstituency | null): SeatStateName =>
+  s?.seat_state ?? (s?.candidates.some((c) => c.status === 'WON') ? 'declared' : 'counting');
 const fingerprint = (s: LiveConstituency | null) =>
-  s ? `${s.const_id}|${s.current_round}|${s.total_rounds}|${s.candidates.map((c) => `${c.result_id}:${c.votes}:${c.status}`).join(',')}` : '';
+  s ? `${s.const_id}|${s.current_round}|${s.total_rounds}|${s.seat_state ?? ''}|${s.candidates.map((c) => `${c.result_id}:${c.votes}:${c.status}`).join(',')}` : '';
 
 /** Draft state for the Live Console seat editor. Never loses unsaved edits to a background reload. */
 export function useSeatEditor(seat: LiveConstituency | null) {

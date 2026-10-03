@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 
 const { move, saveSeat, releaseHold, lockState, page } = vi.hoisted(() => ({
-  page: { electionId: 'e1', electionsError: null as string | null, feedError: null as string | null, holds: [] as any[], holdUntil: {} as Record<string, string> },
+  page: { electionId: 'e1', electionsError: null as string | null, feedError: null as string | null, holds: [] as any[], seat: null as string | null },
   releaseHold: vi.fn(async () => undefined),
   move: vi.fn(),
   saveSeat: vi.fn(async () => true),
@@ -21,9 +21,9 @@ vi.mock('../hooks/useLiveConsole', () => ({
   useLiveConsole: () => ({
     electionId: page.electionId, electionsError: page.electionsError, electionName: 'Bihar VS 2025', loading: false, saving: false,
     seats: [seat], counts: { all: 1, PENDING: 0, LEADING: 1, WON: 0 }, filter: 'all', setFilter: vi.fn(),
-    search: '', setSearch: vi.fn(), selectedId: 's2', selected: seat, select: vi.fn(), move,
+    search: '', setSearch: vi.fn(), selectedId: 's2', selected: page.seat ? { ...seat, seat_state: page.seat } : seat, select: vi.fn(), move,
     locks: {}, flashIds: new Set(), reportingPct: 100, saveSeat, lastSavedAt: {},
-    holds: page.holds, releaseHold, holdUntil: page.holdUntil,
+    holds: page.holds, releaseHold,
   }),
 }));
 vi.mock('../hooks/useIngestFeed', () => ({
@@ -44,7 +44,7 @@ beforeEach(() => {
   page.electionsError = null;
   page.feedError = null;
   page.holds = [];
-  page.holdUntil = {};
+  page.seat = null;
 });
 afterEach(() => { cleanup(); move.mockClear(); saveSeat.mockClear(); vi.restoreAllMocks(); });
 
@@ -209,13 +209,27 @@ describe('LiveConsole page', () => {
     expect(saveSeat).toHaveBeenCalledWith('s2', expect.objectContaining({ state: 'countermanded' }));
   });
 
+  it('a seat whose server state is countermanded opens as Countermanded and a votes-only save keeps it', async () => {
+    page.seat = 'countermanded';
+    renderPage();
+    expect((screen.getByLabelText('Seat state') as HTMLSelectElement).value).toBe('countermanded');
+    fireEvent.change(screen.getByLabelText('Votes for Anil Kumar'), { target: { value: '50,000' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save seat' }));
+    await Promise.resolve();
+    expect(saveSeat).toHaveBeenCalledWith('s2', expect.objectContaining({ state: 'countermanded' }));
+  });
+
   it('shows the hold line for the selected seat and the holds panel releases', () => {
-    page.holdUntil = { s2: new Date(Date.now() + 600_000).toISOString() };
     page.holds = [{ const_id: 's2', const_no: 142, name: 'Patna Sahib', round_at_hold: 4, expires_at: new Date(Date.now() + 600_000).toISOString(), created_by_name: 'Asha' }];
     renderPage();
     expect(screen.getByText(/On hold until .* \(IST\)/)).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Release #142 Patna Sahib' }));
     expect(releaseHold).toHaveBeenCalledWith('s2');
+  });
+
+  it('without a hold for the seat there is no hold line', () => {
+    renderPage();
+    expect(screen.queryByText(/On hold until/)).toBeNull();
   });
 
   it('shows a feed refresh error without hiding the console', () => {

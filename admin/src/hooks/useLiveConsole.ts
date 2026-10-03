@@ -5,7 +5,7 @@ import { useElection } from '../context/ElectionContext';
 import { useShellStatus } from '../context/ShellStatusContext';
 import { useToast } from '../context/ToastContext';
 import { countSeats, isLockLapsed, reportingPercent, seatStatus, SEAT_LOCK_TTL_MS } from '../utils/seat-math';
-import type { HoldRow, LiveConstituency, SeatLock } from '../types';
+import type { HoldRow, LiveConstituency, SeatLock, SeatStateName } from '../types';
 
 const FLASH_MS = 1500;
 const RELOAD_DEBOUNCE_MS = 500;
@@ -14,7 +14,7 @@ export { SEAT_LOCK_TTL_MS };
 const LOCK_SWEEP_MS = 15_000;
 
 export type SeatFilter = 'all' | 'PENDING' | 'LEADING' | 'WON';
-export type SeatStateName = 'not_started' | 'counting' | 'declared' | 'countermanded' | 'adjourned';
+export type { SeatStateName };
 export interface SeatSave { state: SeatStateName; round: { current: number; total: number } | null; votes: Record<string, number> }
 
 /** CONTROLLER: Live Console — seats, filters, selection, live stream, seat locks, save. */
@@ -41,7 +41,6 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
   const [flashIds, setFlashIds] = useState<Set<string>>(new Set());
   const [lastSavedAt, setLastSavedAt] = useState<Record<string, string>>({});
   const [holds, setHolds] = useState<HoldRow[]>([]);
-  const [holdUntil, setHoldUntil] = useState<Record<string, string>>({});
 
   const load = useCallback(async (silent = false) => {
     if (!electionId) return;
@@ -87,7 +86,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     return entries.length === Object.keys(rawLocks).length ? rawLocks : Object.fromEntries(entries);
   }, [rawLocks, now]);
 
-  useEffect(() => { setSelectedId(null); setHolds([]); setHoldUntil({}); void load(); void loadLocks(); void loadHolds(); }, [load, loadLocks, loadHolds]);
+  useEffect(() => { setSelectedId(null); setHolds([]); void load(); void loadLocks(); void loadHolds(); }, [load, loadLocks, loadHolds]);
 
   useEffect(() => {
     if (!electionId) return;
@@ -153,8 +152,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
   const saveSeat = useCallback(async (constId: string, payload: SeatSave) => {
     setSaving(true);
     try {
-      const res = await correctSeat(electionId, constId, payload);
-      if (res?.hold_expires_at) setHoldUntil((prev) => ({ ...prev, [constId]: res.hold_expires_at }));
+      await correctSeat(electionId, constId, payload);
       setLastSavedAt((prev) => ({ ...prev, [constId]: new Date().toISOString() }));
       toastRef.current.toast('Seat saved');
       await load(true);
@@ -171,7 +169,6 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
   const releaseHold = useCallback(async (constId: string) => {
     try {
       await releaseHoldRequest(electionId, constId);
-      setHoldUntil((prev) => { const n = { ...prev }; delete n[constId]; return n; });
       toastRef.current.toast('Hold released');
     } catch (err) {
       toastRef.current.toastError(err, 'Failed to release hold');
@@ -185,6 +182,6 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     electionId, electionName: election?.name ?? '', electionsError, loading, saving,
     seats, counts, filter, setFilter, search, setSearch,
     selectedId, selected: all.find((s) => s.const_id === selectedId) ?? null, select: setSelectedId, move,
-    locks, flashIds, reportingPct, saveSeat, lastSavedAt, holds, releaseHold, holdUntil,
+    locks, flashIds, reportingPct, saveSeat, lastSavedAt, holds, releaseHold,
   };
 }

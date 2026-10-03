@@ -103,7 +103,6 @@ describe('useLiveConsole', () => {
     expect(ingest.correctSeat).toHaveBeenCalledWith('e1', 's2', save);
     expect(ingest.getHolds).toHaveBeenCalledTimes(2);
     expect(result.current.lastSavedAt.s2).toBeTruthy();
-    expect(result.current.holdUntil.s2).toBe('2026-10-03T05:12:00Z');
   });
 
   it('lists holds and releaseHold deletes one then reloads the list', async () => {
