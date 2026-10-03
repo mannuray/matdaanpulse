@@ -1,0 +1,82 @@
+[
+ {
+  "year": 2016,
+  "key": "party-contested:BJP",
+  "reason": "ECI performance table counts 188 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 187"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:BSP",
+  "reason": "ECI performance table counts 158 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 156"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:PMK",
+  "reason": "ECI performance table counts 232 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 230"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:ADMK",
+  "reason": "ECI performance table counts 234 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 232"
+ },
+ {
+  "year": 2016,
+  "key": "party-won:ADMK",
+  "reason": "ECI performance table shows 135 seats; detailed results over the 232 seats polled in May 2016 give 134, matching the declared May 2016 result (AIADMK 134, DMK 89)"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:DMDK",
+  "reason": "ECI performance table counts 104 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 103"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:DMK",
+  "reason": "ECI performance table counts 180 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 178"
+ },
+ {
+  "year": 2016,
+  "key": "party-won:DMK",
+  "reason": "ECI performance table shows 88 seats; detailed results over the 232 seats polled in May 2016 give 89, matching the declared May 2016 result (AIADMK 134, DMK 89)"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:GokMK",
+  "reason": "ECI performance table counts 9 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 8"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:IJK",
+  "reason": "ECI performance table counts 44 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 43"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:KMDK",
+  "reason": "ECI performance table counts 71 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 70"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:MDMK",
+  "reason": "ECI performance table counts 29 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 28"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:ntk",
+  "reason": "ECI performance table counts 231 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 229"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:PPIS",
+  "reason": "ECI performance table counts 26 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 25"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:SDPI",
+  "reason": "ECI performance table counts 29 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 28"
+ },
+ {
+  "year": 2016,
+  "key": "party-contested:TMMK",
+  "reason": "ECI performance table counts 52 candidates including seats 134/174 (polled Nov 2016, left out of the rest of the report); detailed results over the 232 May seats: 50"
+ }
+]

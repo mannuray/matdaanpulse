@@ -44,3 +44,10 @@ export function applySupplement(raw: RawElection, seats: SupplementSeat[]): RawE
   });
   return { ...raw, seats: [...raw.seats, ...added].sort((a, b) => a.constNo - b.constNo) };
 }
+
+/** Leaves out seats an election's report does not cover (Tamil Nadu 2016: two seats polled months later). */
+export function withoutSeats(raw: RawElection, constNos: number[]): RawElection {
+  if (!constNos.length) return raw;
+  const drop = new Set(constNos);
+  return { ...raw, seats: raw.seats.filter(s => !drop.has(s.constNo)), summaries: raw.summaries.filter(s => !drop.has(s.constNo)) };
+}

@@ -6,7 +6,7 @@ import { STATES, electionOf, electionsOf, type StateCode } from './elections';
 import { parseDetailedRows, parsePartyListRows, parsePerformanceRows, parseSummaryRows, performanceByAbbr, type Row } from './xls-report';
 import { parseDetailedText, parsePartyListText, parsePerformanceText, parseSummaryText } from './pdf-report';
 import * as fs from 'fs';
-import { applySupplement, type Supplement } from './supplement';
+import { applySupplement, withoutSeats, type Supplement } from './supplement';
 
 export const dataDir = (s: StateCode) => path.resolve(__dirname, '../../data', STATES[s].slug);
 export const rawDir = (s: StateCode) => path.resolve(__dirname, '../../data/raw', STATES[s].slug);
@@ -27,7 +27,7 @@ const pdfText = (s: StateCode, file: string): string =>
 export function loadRaw(s: StateCode, year: Year): RawElection {
   const file = path.join(dataDir(s), 'supplement.json');
   const sup: Supplement = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
-  return applySupplement(loadReport(s, year), sup[year] ?? []);
+  return withoutSeats(applySupplement(loadReport(s, year), sup[year] ?? []), electionOf(s, year).excludeSeats ?? []);
 }
 
 function loadReport(s: StateCode, year: Year): RawElection {

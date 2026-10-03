@@ -20,6 +20,8 @@ export interface ElectionConfig extends YearConfig {
   seats?: number;
   /** ECI old-site statistical report document id (fetch). */
   docid?: number;
+  /** Seats the report leaves out (postponed polls); dropped when loading. */
+  excludeSeats?: number[];
 }
 export interface StateConfig {
   code: StateCode; slug: string; name: string; stateId: number; seats: number; reserved: { sc: number; st: number };
@@ -79,9 +81,12 @@ export const ELECTIONS: ElectionConfig[] = [
     parties: '2016/List_Of_Political_Parties_Participated.xlsx', performance: '2016/Performance_of_Poltical_Parties.xlsx' }),
   hist('PY', 2021, 'b1c2d3e4-f5a6-7890-1234-567890ab2021', 13417, 1, { detailed: '2021/10-_Detailed_Results.xlsx', summary: '2021/8-_Constituency_Data_Summary.xlsx',
     parties: '2021/3-_List_Of_Political_Parties_Participated.xlsx', performance: '2021/5-Performance_of_Political_Parties.xlsx' }),
-  hist('TN', 2011, 'e5f6a7b8-c9d0-1234-ef01-456789012011', 3340, 1),
-  hist('TN', 2016, 'e5f6a7b8-c9d0-1234-ef01-456789012016', 3473, 2),
-  hist('TN', 2021, 'e5f6a7b8-c9d0-1234-ef01-456789012021', 13680, 1),
+  hist('TN', 2011, 'e5f6a7b8-c9d0-1234-ef01-456789012011', 3340, 1, { pdf: '2011/2011.pdf' }),
+  // Aravakurichi (134) and Thanjavur (174) were polled in Nov 2016; the report covers the 232 seats polled in May.
+  { ...hist('TN', 2016, 'e5f6a7b8-c9d0-1234-ef01-456789012016', 3473, 1, { detailed: '2016/Detailed_Results.xlsx', summary: '2016/Constituency_Data_Summry.pdf',
+    parties: '2016/List_Of_Political_Parties_Participated.xlsx', performance: '2016/Performance_of_Poltical_Parties.xlsx' }), seats: 232, excludeSeats: [134, 174] },
+  hist('TN', 2021, 'e5f6a7b8-c9d0-1234-ef01-456789012021', 13680, 1, { detailed: '2021/10-_Detailed_Results.xlsx', summary: '2021/8-_Constituency_Data_Summary.xlsx',
+    parties: '2021/3-_List_of_Political_Parties_Participated.xlsx', performance: '2021/5-_Performance_of_Political_Parties.xlsx' }),
   hist('WB', 2011, 'd4e5f6a7-b8c9-0123-def0-345678901011', 3195, 6),
   hist('WB', 2016, 'd4e5f6a7-b8c9-0123-def0-345678901016', 3469, 7),
   hist('WB', 2021, 'd4e5f6a7-b8c9-0123-def0-345678901021', 14106, 8),

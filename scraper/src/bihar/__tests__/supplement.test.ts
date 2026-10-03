@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { applySupplement, parseEciResultsHtml } from '../supplement';
+import { applySupplement, parseEciResultsHtml, withoutSeats } from '../supplement';
 import type { RawElection } from '../types';
 
 // Trimmed from the archived eciresults.nic.in page for Bihar 2015 seat 195 (Agiaon).
@@ -52,5 +52,16 @@ describe('applySupplement', () => {
   });
   it('fails on a party name that is not in the year\'s list', () => {
     expect(() => applySupplement(raw(), [{ constNo: 195, source: 'x', candidates: [{ name: 'A', party: 'Unknown Party', votes: 1 }] }])).toThrow(/Unknown Party/);
+  });
+});
+
+describe('withoutSeats', () => {
+  it('drops seats the report leaves out (postponed polls) from seats and summaries', () => {
+    const r = raw();
+    r.seats = [{ constNo: 134, acName: 'A', type: null, electors: 1, nota: null, totalVotes: 0, candidates: [] }, { constNo: 195, acName: 'B', type: null, electors: 1, nota: null, totalVotes: 0, candidates: [] }];
+    const out = withoutSeats(r, [134]);
+    expect(out.seats.map(s => s.constNo)).toEqual([195]);
+    expect(out.summaries.map(s => s.constNo)).toEqual([195]);
+    expect(withoutSeats(r, []).seats).toHaveLength(2);
   });
 });

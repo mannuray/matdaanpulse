@@ -55,6 +55,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "AANAITHINTHIYAJANANAYAKAPATHUKAPPUKAZHAGAM": {
+    "id": "AJPK",
+    "name": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+    "abbreviation": "AJPK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "AAPAURHUMPARTY": {
     "id": "AAHPTY",
     "name": "Aap Aur Hum Party",
@@ -97,6 +104,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "AHIMSASOCIALISTPARTY": {
+    "id": "AHIMSASP",
+    "name": "Ahimsa Socialist Party",
+    "abbreviation": "AHIMSASP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "AKHANDBHARATJANPRIYAPARTY": {
     "id": "ABJP",
     "name": "Akhand Bharat Janpriya Party",
@@ -124,6 +138,20 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "AKHILAINDIAJANANAYAKAMAKKALKATCHIDRISAAC": {
+    "id": "AIJMK_TN",
+    "name": "Akhila India Jananayaka Makkal Katchi (Dr. Isaac)",
+    "abbreviation": "AIJMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILAINDIAJANANAYAKAMAKKALKATCHIDRISSAC": {
+    "id": "AIJMK",
+    "name": "Akhila India Jananayaka Makkal Katchi (Dr. Issac)",
+    "abbreviation": "AIJMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "AKHILAKERALATRINAMOOLPARTY": {
     "id": "AKTP",
@@ -223,6 +251,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "AKILAINDIAVALLALARPERAVAI": {
+    "id": "AIVP",
+    "name": "Akila India Vallalar Peravai",
+    "abbreviation": "AIVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ALLINDIAANNADRAVIDAMUNNETRAKAZHAGAM": {
     "id": "AIADMK",
     "name": "All India Anna Dravida Munnetra Kazhagam",
@@ -251,6 +286,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "ALLINDIAJANANAYAKAMAKKALKAZHAGAM": {
+    "id": "AIJYMKG",
+    "name": "All India Jananayaka Makkal Kazhagam",
+    "abbreviation": "AIJYMKG",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ALLINDIAMAJLISEINQUILABEMILLAT": {
     "id": "AIM",
     "name": "All India Majlis-E-Inquilab-E-Millat",
@@ -265,6 +307,13 @@
     "color": "#2BB673",
     "recognition": null
   },
+  "ALLINDIAMGRMAKKALMUNNETRAKAZHAGAM": {
+    "id": "AIMGRMMK",
+    "name": "All India MGR Makkal Munnetra Kazhagam",
+    "abbreviation": "AIMGRMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ALLINDIAMINORITIESFRONT": {
     "id": "AIMF",
     "name": "All India Minorities Front",
@@ -278,6 +327,62 @@
     "abbreviation": "AINRC",
     "color": "#FF9933",
     "recognition": null
+  },
+  "ALLINDIAPARTYFORTHEPROTECTIONOFCIVILRIGHTS": {
+    "id": "AIPPMR",
+    "name": "All India Party for the Protection of Civil Rights",
+    "abbreviation": "AIPPMR",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLINDIAPATTALIMUNNETRAKATCHI": {
+    "id": "AIPMK",
+    "name": "All India Pattali Munnetra Katchi",
+    "abbreviation": "AIPMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLINDIASAMATHUVAMAKHALKATCHI": {
+    "id": "AISMK",
+    "name": "All India Samathuva Makhal Katchi",
+    "abbreviation": "AISMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLINDIATRINAMOOLCONGRESS": {
+    "id": "TMC",
+    "name": "All India Trinamool Congress",
+    "abbreviation": null,
+    "color": "#00CC44",
+    "recognition": null
+  },
+  "ALLINDIAUZHAVARGALUZHAIPPALARGALKATCHI": {
+    "id": "AIUUK",
+    "name": "All India Uzhavargal Uzhaippalargal Katchi",
+    "abbreviation": "AIUUK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLINDIAWOMENUNITEDPARTY": {
+    "id": "AIWUP",
+    "name": "All India Women United Party",
+    "abbreviation": "AIWUP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLINDIAYOUTHDEVELOPMENTPARTY": {
+    "id": "AIYDPMP",
+    "name": "All India Youth Development Party",
+    "abbreviation": "AIYDPMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLPENSIONERSPARTY": {
+    "id": "APNP",
+    "name": "ALL PENSIONER'S PARTY",
+    "abbreviation": "APNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "ALPJANSAMAJPARTY": {
     "id": "AJSP",
@@ -300,6 +405,20 @@
     "color": "#808080",
     "recognition": null
   },
+  "AMBEDKARPEOPLESMOVEMENT": {
+    "id": "APM",
+    "name": "Ambedkar People's Movement",
+    "abbreviation": "APM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AMBEDKARPOLITICALPARTY": {
+    "id": "AMBDKPP",
+    "name": "Ambedkar Political Party",
+    "abbreviation": "AMBDKPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "AMMAMAKKALMUNNETTRAKAZAGAM": {
     "id": "AMMK",
     "name": "Amma Makkal Munnettra Kazagam",
@@ -307,10 +426,94 @@
     "color": "#808080",
     "recognition": null
   },
+  "ANAITHINDIADRAVIDARSAMUDAYAMUNNETRAKAZHAGAM": {
+    "id": "ADSMK",
+    "name": "Anaithindia Dravidar Samudaya Munnetra Kazhagam",
+    "abbreviation": "ADSMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANAITHINDIASAMUDAYAMUNNETRAKAZHAGAM": {
+    "id": "ANSMK",
+    "name": "Anaithindia Samudaya Munnetra Kazhagam",
+    "abbreviation": "ANSMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANAITHINTHIYATHAMIZHAGAMUNNETRAKAZHAGAM": {
+    "id": "ATMK",
+    "name": "Anaithinthiya Thamizhaga Munnetra Kazhagam",
+    "abbreviation": "ATMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANAITHUMAKKALARASIYALKATCHI": {
+    "id": "AMAK",
+    "name": "Anaithu Makkal Arasiyal Katchi",
+    "abbreviation": "AMAK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANAITHUMAKKALMUNNETRAKAZHAGAM": {
+    "id": "AMMK_TN",
+    "name": "Anaithu Makkal Munnetra Kazhagam",
+    "abbreviation": "AMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANAITHUMAKKALPURATCHIKATCHI": {
+    "id": "AMPK",
+    "name": "Anaithu Makkal Puratchi Katchi",
+    "abbreviation": "AMPK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANAITHUULAGATAMILARGALMUNNETRAKALAGAM": {
+    "id": "AUTMK",
+    "name": "Anaithu Ulaga Tamilargal Munnetra Kalagam",
+    "abbreviation": "AUTMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANBUUDHAYAMKATCHI": {
+    "id": "AUK",
+    "name": "Anbu Udhayam Katchi",
+    "abbreviation": "AUK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ANGIKASAMAJPARTY": {
     "id": "ANGSP",
     "name": "Angika Samaj Party",
     "abbreviation": "AngSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANNADRAVIDARKAZHAGAM": {
+    "id": "ADK",
+    "name": "Anna Dravidar Kazhagam",
+    "abbreviation": "ADK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANNAMGRDRAVIDAMAKKALKALGAM": {
+    "id": "AMGRDMK",
+    "name": "Anna MGR Dravida Makkal Kalgam",
+    "abbreviation": "AMGRDMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANNAMGRDRAVIDAMUNNETRAKAZHAGAM": {
+    "id": "AMDMK",
+    "name": "Anna MGR Dravida Munnetra Kazhagam",
+    "abbreviation": "AMDMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANNAPURATCHITHALAIVARAMMADRAVIDAMUNNETRAKAZHAGAM": {
+    "id": "APTADMK",
+    "name": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
+    "abbreviation": "APTADMK",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -387,6 +590,13 @@
   "AZADSAMAJPARTY": {
     "id": "ASP8",
     "name": "Azad Samaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BAHUJANDRAVIDAPARTY": {
+    "id": "BDP1",
+    "name": "Bahujan Dravida Party",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
@@ -748,6 +958,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "BHARTIYAMANAVADHIKAARFEDERALPARTY": {
+    "id": "BMFP",
+    "name": "Bhartiya Manavadhikaar Federal Party",
+    "abbreviation": "BMFP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "BHARTIYAMANAVTAPARTY": {
     "id": "BRMNP",
     "name": "Bhartiya Manavta Party",
@@ -853,6 +1070,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "CHRISTIANDEMOCRATICFRONT": {
+    "id": "CDF",
+    "name": "Christian Democratic Front",
+    "abbreviation": "CDF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "COMMUNISTMARXISTPARTYKERALASTATECOMMITTEE": {
     "id": "CMPKSC_KL",
     "name": "Communist Marxist Party Kerala State Committee",
@@ -909,6 +1133,20 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "DEMOCRATICCORRUPTIONLIBERATIONFRONT": {
+    "id": "DCLF",
+    "name": "Democratic Corruption Liberation Front",
+    "abbreviation": "DCLF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "DESAMAKKALMUNNETRAKKAZHGAM": {
+    "id": "DMMK",
+    "name": "Desa Makkal Munnetrak Kazhgam",
+    "abbreviation": "DMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "DESEEYAPRAJASOCIALISTPARTY": {
     "id": "DPSP",
     "name": "Deseeya Praja Socialist Party",
@@ -930,11 +1168,32 @@
     "color": "#808080",
     "recognition": null
   },
+  "DESIYAMAKKALSAKTHIKATCHI": {
+    "id": "DMSK",
+    "name": "Desiya Makkal Sakthi Katchi",
+    "abbreviation": "DMSK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "DESIYAMURPOKKUDRAVIDAKAZHAGAM": {
     "id": "DMDK",
     "name": "Desiya Murpokku Dravida Kazhagam",
     "abbreviation": null,
     "color": "#DAA520",
+    "recognition": null
+  },
+  "DESIYASIRUPANMAYINARMAKKALIYAKKAM": {
+    "id": "DESMI",
+    "name": "Desiya Sirupanmayinar Makkal Iyakkam",
+    "abbreviation": "DESMI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "DHESIYAMAKKALKAZHAGAM": {
+    "id": "DMK1",
+    "name": "Dhesiya Makkal Kazhagam",
+    "abbreviation": null,
+    "color": "#808080",
     "recognition": null
   },
   "DRAVIDAMUNNETRAKAZHAGAM": {
@@ -944,12 +1203,33 @@
     "color": "#E30B0B",
     "recognition": null
   },
+  "DRAVIDAMURPOKKUMAKKALKATCHI": {
+    "id": "DRMRPMKKC",
+    "name": "Dravida Murpokku Makkal Katchi",
+    "abbreviation": "DRMRPMKKC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "EKTADALUNITED": {
     "id": "EDU",
     "name": "Ekta Dal United",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "ELUCHIDESAMPARTY": {
+    "id": "EDP",
+    "name": "Eluchi Desam Party",
+    "abbreviation": "EDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "EZHUCHITAMILARGALMUNNETRAKAZHAGAM": {
+    "id": "ETMK",
+    "name": "Ezhuchi Tamilargal Munnetra Kazhagam",
+    "abbreviation": "ETMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "FAUJIJANTAPARTY": {
     "id": "FJP",
@@ -965,12 +1245,40 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "FORWARDDEMOCRATICLABOURPARTY": {
+    "id": "FDLP",
+    "name": "Forward Democratic Labour Party",
+    "abbreviation": "FDLP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GANASANGAMPARTYOFINDIA": {
+    "id": "GPI",
+    "name": "Ganasangam Party of India",
+    "abbreviation": "GPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "GANASURAKSHAPARTY": {
     "id": "GSP",
     "name": "Gana Suraksha Party",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "GANDHIYAMAKKALIYAKKAM": {
+    "id": "GMI",
+    "name": "Gandhiya Makkal Iyakkam",
+    "abbreviation": "GMI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GANDHIYANPEOPLESPARTY": {
+    "id": "GAPP",
+    "name": "Gandhiyan Peoples Party",
+    "abbreviation": "GAPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "GANTANTRIKSAMAJPARTY": {
     "id": "GNTKSP",
@@ -1021,6 +1329,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "GOKULAMAKKALKATCHI": {
+    "id": "GOKMK",
+    "name": "Gokula Makkal Katchi",
+    "abbreviation": "GokMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "GONDVANAGANTANTRAPARTY": {
     "id": "GGP",
     "name": "Gondvana Gantantra Party",
@@ -1063,6 +1378,13 @@
     "color": "#E8C547",
     "recognition": null
   },
+  "HINDUSTANJANTAPARTY": {
+    "id": "HJP_TN",
+    "name": "Hindustan Janta Party",
+    "abbreviation": "HJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "HINDUSTANKRANTIKARIDAL": {
     "id": "HKRD",
     "name": "Hindustan Krantikari Dal",
@@ -1088,6 +1410,48 @@
     "id": "HND",
     "name": "Hindusthan Nirman Dal",
     "abbreviation": "HND",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ILANTAMILARMUNNANIKAZHAGAM": {
+    "id": "IMK",
+    "name": "Ilantamilar Munnani Kazhagam",
+    "abbreviation": "IMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INDHIAKUDIARASUKATCHI": {
+    "id": "INKK",
+    "name": "Indhia Kudiarasu Katchi",
+    "abbreviation": "INKK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INDIADRAVIDAMAKKALMUNNETRAKATCHI": {
+    "id": "IDMMK",
+    "name": "India Dravida Makkal Munnetra Katchi",
+    "abbreviation": "IDMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INDIAMAKKALMUNNETRAKATCHI": {
+    "id": "INMMK",
+    "name": "India Makkal Munnetra Katchi",
+    "abbreviation": "INMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INDIANCHRISTIANFRONT": {
+    "id": "ICF",
+    "name": "Indian Christian Front",
+    "abbreviation": "ICF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INDIANDEMOCRATICPARTY": {
+    "id": "IDP",
+    "name": "Indian Democratic Party",
+    "abbreviation": "IDP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1343,6 +1707,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "JANSHAKTIDAL": {
+    "id": "JASD",
+    "name": "Jan Shakti Dal",
+    "abbreviation": "JaSD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "JANSHAKTIJANTADAL": {
     "id": "JJD",
     "name": "Janshakti Janta Dal",
@@ -1420,6 +1791,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "JEBAMANIJANATA": {
+    "id": "JJ",
+    "name": "Jebamani Janata",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "JHARKHANDDISOMPARTY": {
     "id": "JDP",
     "name": "Jharkhand Disom Party",
@@ -1434,6 +1812,13 @@
     "color": "#2E8B57",
     "recognition": null
   },
+  "JHARKHANDMUKTIMORCHAULGULAN": {
+    "id": "JMMU",
+    "name": "Jharkhand Mukti Morcha (Ulgulan)",
+    "abbreviation": "JMM(U)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "JHARKHANDVIKASMORCHAPRAJATANTRIK": {
     "id": "JVM",
     "name": "Jharkhand Vikas Morcha (Prajatantrik)",
@@ -1445,6 +1830,13 @@
     "id": "KS",
     "name": "Kalinga Sena",
     "abbreviation": "KS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KAMARAJARDESEEYACONGRESS": {
+    "id": "KDC",
+    "name": "Kamarajar Deseeya Congress",
+    "abbreviation": "KDC",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1553,6 +1945,27 @@
     "color": "#808080",
     "recognition": null
   },
+  "KONGUDESAMARUMALARCHIMAKKALKATCHI": {
+    "id": "KDMMK",
+    "name": "Kongu Desa Marumalarchi Makkal Katchi",
+    "abbreviation": "KDMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KONGUNADUMAKKALDESIAKATCHI": {
+    "id": "KMDK",
+    "name": "Kongunadu Makkal Desia Katchi",
+    "abbreviation": "KMDK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KONGUNADUMUNNETRAKAZHAGAM": {
+    "id": "KNMK",
+    "name": "Kongu Nadu Munnetra Kazhagam",
+    "abbreviation": "KNMK",
+    "color": "#607D8B",
+    "recognition": null
+  },
   "KRANTIKARISAMYAVADIPARTY": {
     "id": "KSVP",
     "name": "Krantikari Samyavadi Party",
@@ -1578,6 +1991,13 @@
     "id": "LM",
     "name": "Lal Morcha",
     "abbreviation": "LM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LENINCOMMUNISTPARTY": {
+    "id": "LCOP",
+    "name": "Lenin Communist Party",
+    "abbreviation": "LCOP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1655,6 +2075,13 @@
     "id": "LSMP",
     "name": "Lok Samaj Party",
     "abbreviation": "LSMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKSATTAPARTY": {
+    "id": "LSP_TN",
+    "name": "Lok Satta Party",
+    "abbreviation": "LSP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1742,6 +2169,55 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "MAHATHMAMAKKALMUNNETRAKAZHAKAM": {
+    "id": "MAHMMK",
+    "name": "Mahathma Makkal Munnetra Kazhakam",
+    "abbreviation": "MAHMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAKKALATCHIKATCHI": {
+    "id": "MKAT",
+    "name": "Makkalatchi Katchi",
+    "abbreviation": "MKat",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAKKALKOOTAMAIPUKATCHI": {
+    "id": "MAKKK",
+    "name": "Makkal Kootamaipu Katchi",
+    "abbreviation": "MakKK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAKKALMANADUKATCHI": {
+    "id": "MMKA",
+    "name": "Makkal Manadu Katchi",
+    "abbreviation": "MMKA",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAKKALMUNNETRAPERAVAI": {
+    "id": "MKLMNTRAPR",
+    "name": "Makkal Munnetra Peravai",
+    "abbreviation": "MKLMNTRAPR",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAKKALNALAKAZHAGAM": {
+    "id": "MNK",
+    "name": "Makkal Nala Kazhagam",
+    "abbreviation": "MNK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAKKALNALVAAZHVUKKATCHI": {
+    "id": "MANAK",
+    "name": "Makkal Nalvaazhvuk Katchi",
+    "abbreviation": "MANAK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "MAKKALNEEDHIMAIAM": {
     "id": "MNM",
     "name": "Makkal Needhi Maiam",
@@ -1749,10 +2225,45 @@
     "color": "#FF4081",
     "recognition": null
   },
+  "MAKKALSAKTHIKATCHI": {
+    "id": "MSK",
+    "name": "MAKKAL SAKTHI KATCHI",
+    "abbreviation": "MSK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAKKALSANANAYAGAKUDIYARASUKATCHI": {
+    "id": "MSKK",
+    "name": "Makkal Sananayaga Kudiyarasu Katchi,",
+    "abbreviation": "MSKK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAKKALTHILAGAMMUNNETRAKAZHAGAM": {
+    "id": "MTMK",
+    "name": "Makkal Thilagam Munnetra Kazhagam,",
+    "abbreviation": "MTMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "MANAVADHIKARJANSHAKTIPARTY": {
     "id": "MAJP",
     "name": "Manavadhikar Janshakti Party",
     "abbreviation": "MaJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MANITHANEYAMAKKALKATCHI": {
+    "id": "MAMAK",
+    "name": "Manithaneya Makkal Katchi",
+    "abbreviation": "MAMAK",
+    "color": "#795548",
+    "recognition": null
+  },
+  "MANITHAURIMAIGALKALAAGAM": {
+    "id": "MAUK",
+    "name": "Manitha Urimaigal Kalaagam",
+    "abbreviation": "mauk",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1788,6 +2299,20 @@
     "id": "MKDVP",
     "name": "Mazdoor Kirayedar Vikas Party",
     "abbreviation": "MKDVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MGRMAKKALKATCHI": {
+    "id": "MGRMKKT",
+    "name": "MGR Makkal Katchi",
+    "abbreviation": "MGRMKKT",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MGRTHONDERKALKATCHI": {
+    "id": "MGRTK",
+    "name": "MGR Thonderkal Katchi",
+    "abbreviation": "MGRTK",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1847,12 +2372,54 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "NAADAALUMMAKKALKATCHI": {
+    "id": "NADLMMKLK",
+    "name": "Naadaalum Makkal Katchi",
+    "abbreviation": "NADLMMKLK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NAAMINDIARPARTY": {
+    "id": "NIP",
+    "name": "Naam Indiar Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "NAAMTAMILARKATCHI": {
     "id": "NTK",
     "name": "Naam Tamilar Katchi",
     "abbreviation": null,
     "color": "#800020",
     "recognition": null
+  },
+  "NAMADHUMAKKALKATCHI": {
+    "id": "NMK",
+    "name": "Namadhu Makkal Katchi",
+    "abbreviation": "NMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NAMATHUKONGUMUNNETRAKALAGAM": {
+    "id": "NKMK",
+    "name": "Namathu Kongu Munnetra Kalagam",
+    "abbreviation": "NKMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NAMINDIANAAMINDIYARKATCHI": {
+    "id": "NINIK",
+    "name": "Nam India Naam Indiyar Katchi",
+    "abbreviation": "NINIK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALDEMOCRATICPARTYOFSOUTHINDIA": {
+    "id": "NDPOSI",
+    "name": "National Democratic Party of South India",
+    "abbreviation": "NDPOSI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "NATIONALISTCONGRESSPARTY": {
     "id": "NCP",
@@ -1952,6 +2519,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "NEWGENERATIONPEOPLESPARTY": {
+    "id": "NGPP",
+    "name": "New Generation People’s Party",
+    "abbreviation": "NGPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "NEWINDIAUNITEDPARTY": {
     "id": "NIUP",
     "name": "New India United Party",
@@ -2011,6 +2585,13 @@
   "PEOPLESPARTYOFINDIADEMOCRATIC": {
     "id": "PPOI1",
     "name": "Peoples Party of India (Democratic)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PEOPLESPARTYOFINDIASECULAR": {
+    "id": "PPOI2",
+    "name": "People's Party of India(secular)",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
@@ -2106,11 +2687,25 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "PURATCHIKARATHOZILALARKATCHI": {
+    "id": "PTK",
+    "name": "Puratchikara Thozilalar Katchi",
+    "abbreviation": "PTK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "PURVANCHALMAHAPANCHAYAT": {
     "id": "PM",
     "name": "Purvanchal Mahapanchayat",
     "abbreviation": null,
     "color": "#808080",
+    "recognition": null
+  },
+  "PUTHIYATAMILAGAM": {
+    "id": "PT",
+    "name": "Puthiya Tamilagam",
+    "abbreviation": "PT",
+    "color": "#9C27B0",
     "recognition": null
   },
   "RAJNAITIKCHETNADAL": {
@@ -2301,6 +2896,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "RASHTRIYAJANTAPARTY": {
+    "id": "RTRJP",
+    "name": "Rashtriya Janta Party",
+    "abbreviation": "RtrJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "RASHTRIYAJANVIKASPARTY": {
     "id": "RJVP",
@@ -2547,6 +3149,20 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "REPUBLICANPARTYOFINDIASIVARAJ": {
+    "id": "RPIS",
+    "name": "Republican Party of India (Sivaraj)",
+    "abbreviation": "RPI(S)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "REPUBLICANSENA": {
+    "id": "RS",
+    "name": "Republican Sena",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "REVOLUTIONARYSOCIALISTPARTY": {
     "id": "RSP",
     "name": "Revolutionary Socialist Party",
@@ -2567,6 +3183,13 @@
     "abbreviation": "SABJAN",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
+  },
+  "SAINIKSAMAJPARTY": {
+    "id": "SSP5",
+    "name": "Sainik Samaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
   },
   "SAMAJSATTADAL": {
     "id": "SSD",
@@ -2617,6 +3240,20 @@
     "color": "#E60000",
     "recognition": null
   },
+  "SAMAJWADISAMAJPARTY": {
+    "id": "SASAP",
+    "name": "Samajwadi Samaj Party",
+    "abbreviation": "SaSaP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAMANIYAMAKKALNALAKATCHI": {
+    "id": "SMNK",
+    "name": "Samaniya Makkal Nala Katchi",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "SAMATAPARTY": {
     "id": "SP1",
     "name": "Samata Party",
@@ -2649,6 +3286,13 @@
     "id": "SAMDAL",
     "name": "Samta Dal (Pragatisheel)",
     "abbreviation": "SAMDAL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAMUGAMAKKALKATCHI": {
+    "id": "SMK",
+    "name": "Samuga Makkal Katchi",
+    "abbreviation": "SMK",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2834,6 +3478,13 @@
     "color": "#CC0000",
     "recognition": null
   },
+  "SOUTHINDIAFORWARDBLOC": {
+    "id": "SIFB",
+    "name": "South India Forward Bloc",
+    "abbreviation": "SIFB",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "SUBHASHWADIBHARTIYASAMAJWADIPARTYSUBHASPARTY": {
     "id": "SBSPSP",
     "name": "Subhashwadi Bhartiya Samajwadi Party (Subhas Party)",
@@ -2859,6 +3510,13 @@
     "id": "SBSP_BR",
     "name": "Suheldev Bhartiya Samaj Party",
     "abbreviation": "SBSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SUPERNATIONPARTY": {
+    "id": "SUNP",
+    "name": "Super Nation Party",
+    "abbreviation": "SuNP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2897,10 +3555,94 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "TAMILAGAMAKKALMUNNETRAKAZHAGAM": {
+    "id": "TMMK",
+    "name": "Tamilaga Makkal Munnetra Kazhagam",
+    "abbreviation": "TMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TAMILAGAMAKKALTHANNURIMAIKATCHI": {
+    "id": "TMTHK",
+    "name": "Tamilaga Makkal Thannurimai Katchi",
+    "abbreviation": "TMTHK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TAMILAGASTHABANACONGRESS": {
+    "id": "TSC",
+    "name": "Tamilaga Sthabana Congress",
+    "abbreviation": "TSC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TAMILARMAKKALKATCHI": {
+    "id": "TMK",
+    "name": "Tamilar Makkal Katchi",
+    "abbreviation": "TMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TAMILMAANILACONGRESSMOOPANAR": {
+    "id": "TMC1",
+    "name": "Tamil Maanila Congress  (Moopanar)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "TAMILNADUILANGYARKATCHI": {
+    "id": "TNLK",
+    "name": "Tamil Nadu Ilangyar Katchi",
+    "abbreviation": "TNLK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TAMILNADUMAHATMAGANDHIMAKKALKATCHI": {
+    "id": "TMGMK",
+    "name": "Tamilnadu Mahatma Gandhi Makkal Katchi",
+    "abbreviation": "TMGMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TAMILNADUMAKKALNALVAZHVUPERIYAKKAM": {
+    "id": "TMNP",
+    "name": "Tamilnadu Makkal Nalvazhvu Periyakkam",
+    "abbreviation": "TMNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TAMILTELUGUNATIONALPARTY": {
+    "id": "TTNP",
+    "name": "Tamil Telugu National Party",
+    "abbreviation": "TTNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TAMIZHAGAMURPOKKUMAKKALKATCHI": {
+    "id": "MMKA_TN",
+    "name": "Tamizhaga Murpokku Makkal Katchi",
+    "abbreviation": "MMKA",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "TAMIZHAGAVAAZHVURIMAIKATCHI": {
     "id": "TAVK",
     "name": "Tamizhaga Vaazhvurimai Katchi",
     "abbreviation": "tavk",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "THAMIZHAGAMUNNETRACONGRESS": {
+    "id": "TMC_TN",
+    "name": "Thamizhaga Munnetra Congress",
+    "abbreviation": "tmc",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "THEFUTUREINDIAPARTY": {
+    "id": "FIP",
+    "name": "The Future India Party",
+    "abbreviation": "FIP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2918,12 +3660,75 @@
     "color": "#808080",
     "recognition": null
   },
+  "THOZHILALARPARTY": {
+    "id": "THP",
+    "name": "Thozhilalar Party",
+    "abbreviation": "ThP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "TIPUSULTANPARTY": {
+    "id": "TPSTP",
+    "name": "Tipu Sultan Party",
+    "abbreviation": "TPSTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "UDAYBHARATAMPARTY": {
     "id": "UBP",
     "name": "Uday Bharatam Party",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "ULAGAMAKKALKATCHI": {
+    "id": "ULAMK",
+    "name": "Ulaga Makkal Katchi",
+    "abbreviation": "UlaMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ULZAIPALIMAKKALKATCHY": {
+    "id": "UMK",
+    "name": "Ulzaipali Makkal Katchy",
+    "abbreviation": "UMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "UNITEDCOMMUNISTPARTYOFINDIA": {
+    "id": "UCPI",
+    "name": "United Communist Party of India",
+    "abbreviation": "UCPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "UNITEDSTATESOFINDIAPARTY": {
+    "id": "USIP",
+    "name": "United States of India Party",
+    "abbreviation": "USIP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "UNIVERSALBROTHERHOODMOVEMENT": {
+    "id": "UBM",
+    "name": "Universal Brotherhood Movement",
+    "abbreviation": "UBM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "VALAMAANATAMIZHAGAMKATCHI": {
+    "id": "VTK",
+    "name": "Valamaana Tamizhagam Katchi",
+    "abbreviation": "VTK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "VALIMAIVALARTCHIINDIANSPARTY": {
+    "id": "VVIP_TN",
+    "name": "Valimai Valartchi Indians Party",
+    "abbreviation": "VVIP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "VANCHITADHIKARPARTY": {
     "id": "VAP",
@@ -2953,12 +3758,40 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "VEERATHTHIYAGIVISWANATHADOSSTHOZHILALARKALKATCHI": {
+    "id": "VTVTK",
+    "name": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+    "abbreviation": "VTVTK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "VIDIALVALARCHIPERANI": {
+    "id": "VIDVP",
+    "name": "Vidial Valarchi Perani",
+    "abbreviation": "VidVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "VIDIYALAITHEDUMINDHIYARGALPARTY": {
+    "id": "VTIP",
+    "name": "Vidiyalai Thedum Indhiyargal Party",
+    "abbreviation": "VTIP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "VIDUTHALAICHIRUTHAIGALKATCHI": {
     "id": "VCK",
     "name": "Viduthalai Chiruthaigal Katchi",
     "abbreviation": null,
     "color": "#8B0000",
     "recognition": null
+  },
+  "VIJAYABHARATHAMAKKALPEOPLEPARTY": {
+    "id": "VBMP",
+    "name": "Vijaya Bharatha Makkal (People) Party",
+    "abbreviation": "VBMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "VIKASINSAFPARTY": {
     "id": "VIP1",
@@ -3020,6 +3853,13 @@
     "id": "WPOI",
     "name": "Welfare Party Of India",
     "abbreviation": "WPOI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "YOUTHANDSTUDENTSPARTY": {
+    "id": "YSP",
+    "name": "Youth And Students Party",
+    "abbreviation": "YSP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
