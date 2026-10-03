@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { Input, Select } from '../ui/Input';
 import { ConfirmDialog } from '../ui/ConfirmDialog';
@@ -65,7 +66,10 @@ export function FeedPanel({ status, sources, saving, onApply }: Props) {
         <tbody>
           {status.shards.map(s => (
             <tr key={s.name} className="border-t border-line align-top text-ink">
-              <td className="py-1.5 font-semibold">{s.name}</td>
+              <td className="py-1.5 font-semibold">
+                {s.name}
+                {s.tally_mismatch && s.tally_mismatch.length > 0 && <Badge tone="warn" className="ml-2">Tally differs: {s.tally_mismatch.map(m => m.party_id).join(', ')}</Badge>}
+              </td>
               <td className="tabular-nums">{s.seat_count}</td>
               <td>{s.source ?? <span className="text-muted">paused</span>}</td>
               <td>

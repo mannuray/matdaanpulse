@@ -28,4 +28,14 @@ describe('useIngestFeed', () => {
     renderHook(() => useIngestFeed(null), { wrapper });
     expect(svc.getIngestStatus).not.toHaveBeenCalled();
   });
+  it('resets on election change and ignores a late answer for the old election', async () => {
+    let releaseOld: (v: any) => void = () => {};
+    (svc.getIngestStatus as any).mockImplementation((id: string) =>
+      id === 'old' ? new Promise(r => { releaseOld = r; }) : Promise.resolve({ election_id: id, status: 'Live', active_source: 'news', hold_minutes: 10, shards: [], alerts: [] }));
+    const { result, rerender } = renderHook(({ id }) => useIngestFeed(id), { wrapper, initialProps: { id: 'old' } });
+    rerender({ id: 'new' });
+    await waitFor(() => expect(result.current.status?.election_id).toBe('new'));
+    await act(async () => { releaseOld({ election_id: 'old', status: 'Live', active_source: 'eci-web', hold_minutes: 10, shards: [], alerts: [] }); });
+    expect(result.current.status?.election_id).toBe('new');
+  });
 });

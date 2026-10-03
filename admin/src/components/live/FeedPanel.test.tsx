@@ -30,6 +30,11 @@ describe('FeedPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Apply' }));
     expect(screen.getByRole('dialog').textContent).toMatch(/Switch the live source to news/);
   });
+  it('flags a shard whose tally differs', () => {
+    const st = { ...status, shards: [{ ...status.shards[0], tally_mismatch: [{ party_id: 'BJP' }, { party_id: 'INC' }] }] };
+    render(<ShellStatusProvider><FeedPanel status={st} sources={[]} saving={false} onApply={vi.fn()} /></ShellStatusProvider>);
+    expect(screen.getByText(/Tally differs: BJP, INC/)).toBeTruthy();
+  });
   it('Other… reveals a text input for a new source', () => {
     const onApply = vi.fn(async () => true);
     renderPanel(onApply);

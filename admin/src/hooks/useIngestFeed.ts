@@ -15,16 +15,25 @@ export function useIngestFeed(electionId: string | null) {
   const toastRef = useRef({ toast, toastError });
   toastRef.current = { toast, toastError };
 
+  const currentId = useRef(electionId);
+  currentId.current = electionId;
+
   const reload = useCallback(async () => {
     if (!electionId) return;
-    try { setStatus(await getIngestStatus(electionId)); setError(null); }
-    catch (e) { setError((e as Error).message); }
+    try {
+      const next = await getIngestStatus(electionId);
+      if (currentId.current !== electionId) return; // a late answer for a previous election
+      setStatus(next); setError(null);
+    } catch (e) {
+      if (currentId.current === electionId) setError((e as Error).message);
+    }
   }, [electionId]);
 
   useEffect(() => {
+    setStatus(null); setSources([]); setError(null);
     if (!electionId) return;
     void reload();
-    getSources(electionId).then(setSources).catch(() => setSources([]));
+    getSources(electionId).then(s => { if (currentId.current === electionId) setSources(s); }).catch(() => { if (currentId.current === electionId) setSources([]); });
     const t = setInterval(() => void reload(), POLL_MS);
     return () => clearInterval(t);
   }, [electionId, reload]);
@@ -32,7 +41,11 @@ export function useIngestFeed(electionId: string | null) {
   const setFeed = useCallback(async (active_source: string | null, hold_minutes: number) => {
     if (!electionId) return false;
     setSaving(true);
-    try { setStatus(await putFeedSettings(electionId, { active_source, hold_minutes })); toastRef.current.toast('Feed updated'); return true; }
+    try {
+      const next = await putFeedSettings(electionId, { active_source, hold_minutes });
+      if (currentId.current === electionId) setStatus(next);
+      toastRef.current.toast('Feed updated'); return true;
+    }
     catch (e) { toastRef.current.toastError(e, 'Failed to update the feed'); return false; }
     finally { setSaving(false); }
   }, [electionId]);

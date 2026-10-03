@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 
 const { move, saveSeat, lockState, page } = vi.hoisted(() => ({
-  page: { electionId: 'e1', electionsError: null as string | null },
+  page: { electionId: 'e1', electionsError: null as string | null, feedError: null as string | null },
   move: vi.fn(),
   saveSeat: vi.fn(async () => true),
   lockState: { value: { state: 'held', holder: null as any, takeOver: vi.fn() } },
@@ -25,7 +25,7 @@ vi.mock('../hooks/useLiveConsole', () => ({
   }),
 }));
 vi.mock('../hooks/useIngestFeed', () => ({
-  useIngestFeed: () => ({ status: null, sources: [], error: null, saving: false, setFeed: vi.fn(), reload: vi.fn() }),
+  useIngestFeed: () => ({ status: null, sources: [], error: page.feedError, saving: false, setFeed: vi.fn(), reload: vi.fn() }),
 }));
 vi.mock('../hooks/useSeatLock', () => ({ useSeatLock: () => lockState.value }));
 vi.mock('../context/AuthContext', () => ({ useAuth: () => ({ user: { id: 'me', name: 'Mannu K' } }) }));
@@ -40,6 +40,7 @@ beforeEach(() => {
   lockState.value = { state: 'held', holder: null, takeOver: vi.fn() };
   page.electionId = 'e1';
   page.electionsError = null;
+  page.feedError = null;
 });
 afterEach(() => { cleanup(); move.mockClear(); saveSeat.mockClear(); vi.restoreAllMocks(); });
 
@@ -201,6 +202,13 @@ describe('LiveConsole page', () => {
     expect(screen.getByTestId('dirty').textContent).toBe('false');
     expect(unload()).toBe(false);
     unmount();
+  });
+
+  it('shows a feed refresh error without hiding the console', () => {
+    page.feedError = 'Network down';
+    renderPage();
+    expect(screen.getByText('Feed status could not be refreshed: Network down')).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Save seat' })).toBeTruthy();
   });
 
   it('shows a load error instead of "pick an election" when elections fail to load', () => {
