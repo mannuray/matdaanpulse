@@ -356,6 +356,13 @@
     "color": "#00CC44",
     "recognition": null
   },
+  "ALLINDIAUNITEDDEMOCRATICFRONT": {
+    "id": "AIUDF",
+    "name": "All India United Democratic Front",
+    "abbreviation": null,
+    "color": "#2F4F4F",
+    "recognition": null
+  },
   "ALLINDIAUZHAVARGALUZHAIPPALARGALKATCHI": {
     "id": "AIUUK",
     "name": "All India Uzhavargal Uzhaippalargal Katchi",
@@ -566,9 +573,44 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "ASOMGANAPARISHAD": {
+    "id": "AGP",
+    "name": "Asom Gana Parishad",
+    "abbreviation": null,
+    "color": "#FF7F50",
+    "recognition": null
+  },
+  "ASOMJANAMORCHA": {
+    "id": "AJM",
+    "name": "Asom Jana Morcha",
+    "abbreviation": "AJM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ASOMSONGRAMIMANCHAASOM": {
+    "id": "ASM",
+    "name": "Asom Songrami Mancha(Asom)",
+    "abbreviation": "ASM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ASSAMJATIYAPARISHAD": {
+    "id": "AJP",
+    "name": "Assam Jatiya Parishad",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "ATULYABHARATPARTY": {
     "id": "ABP1",
     "name": "Atulya Bharat Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AUTONOMOUSSTATEDEMANDCOMMITTEE": {
+    "id": "ASDC",
+    "name": "Autonomous State Demand Committee",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
@@ -730,6 +772,13 @@
   "BHARATIYAEKTADAL": {
     "id": "BED",
     "name": "Bharatiya Ekta Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATIYAGANAPARISHAD": {
+    "id": "BGP",
+    "name": "Bharatiya Gana Parishad",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
@@ -1000,6 +1049,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "BHARTIYARASHTRAWADIPARTY": {
+    "id": "BHARP",
+    "name": "Bhartiya Rashtrawadi Party",
+    "abbreviation": "BhaRP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "BHARTIYARASHTRIYADAL": {
     "id": "BRD",
     "name": "Bhartiya Rashtriya Dal",
@@ -1032,6 +1088,13 @@
     "id": "BASAPA",
     "name": "Bhartiya Sarvodaya Party",
     "abbreviation": "BaSaPa",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYATRIBALPARTY": {
+    "id": "BTP",
+    "name": "Bhartiya Tribal Party",
+    "abbreviation": "BTP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1069,6 +1132,13 @@
     "abbreviation": "BLND",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
+  },
+  "BODOLANDPEOPLESFRONT": {
+    "id": "BOPF",
+    "name": "Bodoland People's Front",
+    "abbreviation": "BOPF",
+    "color": "#2E7D32",
+    "recognition": null
   },
   "CHRISTIANDEMOCRATICFRONT": {
     "id": "CDF",
@@ -1623,6 +1693,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "JANATACONGRESSPARTYOFBHARATVARSHA": {
+    "id": "JCPB",
+    "name": "Janata Congress Party of Bharat Varsha",
+    "abbreviation": "JCPB",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "JANATADALSECULAR": {
     "id": "JDS",
     "name": "Janata Dal  (Secular)",
@@ -1641,6 +1718,13 @@
     "id": "JP_BR",
     "name": "Janata Party",
     "abbreviation": "JP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANCONGRESSPARTY": {
+    "id": "JNCP",
+    "name": "Jan Congress Party",
+    "abbreviation": "JnCP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2001,6 +2085,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "LIBERALDEMOCRATICPARTY": {
+    "id": "LDP",
+    "name": "Liberal Democratic Party",
+    "abbreviation": "LDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "LOGJANPARTYSECULAR": {
     "id": "LGJNPSCL",
     "name": "Log Jan Party - Secular,",
@@ -2019,6 +2110,13 @@
     "id": "LAD",
     "name": "Lok Awaz Dal",
     "abbreviation": "lad",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKBHARATI": {
+    "id": "LB",
+    "name": "Lok Bharati",
+    "abbreviation": "LB",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2064,10 +2162,24 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "LOKOSANMILON": {
+    "id": "LKS",
+    "name": "Loko Sanmilon",
+    "abbreviation": "LKS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "LOKPRIYASAMAJPARTY": {
     "id": "LPSP",
     "name": "Lokpriya Samaj Party",
     "abbreviation": "LPSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKRAKSHAPARTY": {
+    "id": "LRAP",
+    "name": "Lok Raksha Party",
+    "abbreviation": "LRAP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2463,6 +2575,13 @@
     "color": "#808080",
     "recognition": "National"
   },
+  "NATIONALREPUBLICANCONGRESS": {
+    "id": "NRCONG",
+    "name": "National Republican Congress",
+    "abbreviation": "NRCong",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "NATIONALSECULARCONFERENCE": {
     "id": "NSC_KL",
     "name": "National Secular Conference",
@@ -2592,6 +2711,13 @@
   "PEOPLESPARTYOFINDIASECULAR": {
     "id": "PPOI2",
     "name": "People's Party of India(secular)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "POLITICALJUSTICEPARTY": {
+    "id": "PJP1",
+    "name": "Political Justice Party",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
@@ -3065,6 +3191,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "RASHTRIYASECULARCONGRESS": {
+    "id": "RSSC",
+    "name": "Rashtriya Secular Congress",
+    "abbreviation": "RsSC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "RASHTRIYASECULARMAJLISPARTY": {
     "id": "RSMP",
     "name": "Rashtriya Secular Majlis Party",
@@ -3161,6 +3294,13 @@
     "name": "Republican Sena",
     "abbreviation": null,
     "color": "#808080",
+    "recognition": null
+  },
+  "REVOLUTIONARYCOMMUNISTPARTYOFINDIARASIKBHATT": {
+    "id": "RCPIR",
+    "name": "Revolutionary Communist Party of India (Rasik Bhatt)",
+    "abbreviation": null,
+    "color": "#CC0000",
     "recognition": null
   },
   "REVOLUTIONARYSOCIALISTPARTY": {
@@ -3548,6 +3688,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "SWARNABHARATPARTY": {
+    "id": "SWABP",
+    "name": "Swarna Bharat Party",
+    "abbreviation": "SwaBP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "SWATANTRASAMAJPARTY": {
     "id": "SWSP",
     "name": "Swatantra Samaj Party",
@@ -3701,6 +3848,13 @@
     "abbreviation": "UCPI",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
+  },
+  "UNITEDPEOPLESPARTYLIBERAL": {
+    "id": "UPPL",
+    "name": "United People's Party Liberal",
+    "abbreviation": "UPPL",
+    "color": "#00BCD4",
+    "recognition": null
   },
   "UNITEDSTATESOFINDIAPARTY": {
     "id": "USIP",
