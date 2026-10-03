@@ -532,5 +532,6 @@
   "person_photo_credit": "Photo: {{author}}, {{licence}}",
   "person_photo_credit_unknown": "unknown author",
   "about_credits_title": "Credits",
-  "about_credits_intro": "Results and party symbols: Election Commission of India. Candidate affidavits: ADR / MyNeta. Photos: Wikimedia Commons contributors, credited below."
+  "about_credits_intro": "Results and party symbols: Election Commission of India. Candidate affidavits: ADR / MyNeta. Photos: Wikimedia Commons contributors and the Election Commission of India, credited below.",
+  "about_credits_group": "{{count}} photos"
 }

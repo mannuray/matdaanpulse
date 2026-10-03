@@ -24,6 +24,13 @@ describe('AboutView credits', () => {
     expect(item.textContent).toContain('CC BY-SA 4.0');
     expect(within(item).getByRole('link').getAttribute('href')).toBe('https://commons.wikimedia.org/wiki/File:N.jpg');
   });
+  it('collapses many images with the same author and licence into one counted line', () => {
+    const eci = Array.from({ length: 5 }, (_, i) => ({ url: `u${i}`, source_url: `https://web.archive.org/${i}`, author: 'Election Commission of India', licence: 'ECI results website (no licence stated)', used_by: `P${i}` }));
+    view([...eci, { url: 'w', source_url: 'https://commons.wikimedia.org/wiki/File:N.jpg', author: 'A', licence: 'CC BY 4.0', used_by: 'Nitish Kumar' }]);
+    const items = within(screen.getByRole('region', { name: 'Credits' })).getAllByRole('listitem');
+    expect(items).toHaveLength(2);
+    expect(items.map(i => i.textContent).join('|')).toMatch(/5 photos · Election Commission of India · ECI results website/);
+  });
   it('survives a malformed source URL', () => {
     view([{ url: 'u', source_url: 'not a url', author: null, licence: 'CC0', used_by: null }]);
     expect(screen.getByRole('link', { name: 'not a url' })).toBeTruthy();

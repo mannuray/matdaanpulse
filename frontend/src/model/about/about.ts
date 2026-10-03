@@ -104,3 +104,21 @@ export function dataMatrix(sources: readonly DataSource[]): DataMatrix {
   const rows = groupDataSources(sources).map(g => ({ house: g.house, state: g.state, cells: new Map(g.rows.map(r => [r.year, r])) }));
   return { years, rows, states: rows.filter(r => r.house === 'VS').length };
 }
+
+export interface CreditLike { url: string; source_url: string; author: string | null; licence: string; used_by: string | null }
+export type CreditItem<C extends CreditLike = CreditLike> = { kind: 'one'; credit: C } | { kind: 'group'; author: string | null; licence: string; count: number };
+
+/** Images sharing an author and licence collapse into one counted line when there are more than `max` of them. */
+export function groupCredits<C extends CreditLike>(credits: C[], max = 3): CreditItem<C>[] {
+  const key = (c: C) => `${c.author ?? ''}|${c.licence}`;
+  const counts = new Map<string, number>();
+  for (const c of credits) counts.set(key(c), (counts.get(key(c)) ?? 0) + 1);
+  const out: CreditItem<C>[] = [];
+  const grouped = new Set<string>();
+  for (const c of credits) {
+    const k = key(c);
+    if ((counts.get(k) ?? 0) <= max) out.push({ kind: 'one', credit: c });
+    else if (!grouped.has(k)) { grouped.add(k); out.push({ kind: 'group', author: c.author, licence: c.licence, count: counts.get(k)! }); }
+  }
+  return out;
+}

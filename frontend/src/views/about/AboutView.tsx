@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { DataMatrix, DataNote, DataQuality, DataSource } from '../../model/about/about';
+import { groupCredits, type DataMatrix, type DataNote, type DataQuality, type DataSource } from '../../model/about/about';
 import type { FeedbackFormVM } from '../../viewmodels/about/useFeedbackForm';
 import type { ImageCredit } from '../../model/types';
 import { cn } from '../ui/cn';
@@ -245,11 +245,16 @@ export function AboutView({ matrix, elections, contactEmail, eciUrl, feedback, c
           </div>
           {credits.length > 0 && (
             <ul className="grid gap-1.5 text-xs sm:grid-cols-2">
-              {credits.map(c => (
-                <li key={c.url} className="min-w-0 text-muted">
-                  <span className="font-semibold text-ink">{c.used_by ?? c.url}</span>
-                  {' · '}{c.author ?? t('person_photo_credit_unknown')}{' · '}{c.licence}{' · '}
-                  <a href={c.source_url} target="_blank" rel="noopener noreferrer" className="break-all text-accent hover:underline">{hostOf(c.source_url)}</a>
+              {groupCredits(credits).map(item => item.kind === 'group' ? (
+                <li key={`g-${item.author}-${item.licence}`} className="min-w-0 text-muted">
+                  <span className="font-semibold text-ink">{t('about_credits_group', { count: item.count })}</span>
+                  {' · '}{item.author ?? t('person_photo_credit_unknown')}{' · '}{item.licence}
+                </li>
+              ) : (
+                <li key={item.credit.url} className="min-w-0 text-muted">
+                  <span className="font-semibold text-ink">{item.credit.used_by ?? item.credit.url}</span>
+                  {' · '}{item.credit.author ?? t('person_photo_credit_unknown')}{' · '}{item.credit.licence}{' · '}
+                  <a href={item.credit.source_url} target="_blank" rel="noopener noreferrer" className="break-all text-accent hover:underline">{hostOf(item.credit.source_url)}</a>
                 </li>
               ))}
             </ul>
