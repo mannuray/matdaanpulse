@@ -470,11 +470,11 @@
    "recognition": "National"
   },
   {
-   "id": "CPOI",
-   "name": "Communist Party of India  (Marxist-Leninist)  (Liberation)",
-   "abbreviation": null,
-   "color": "#808080",
-   "recognition": null
+   "id": "CPIML",
+   "name": "Communist Party of India (Marxist-Leninist) (Liberation)",
+   "abbreviation": "CPI(ML)(L)",
+   "color": "#E5484D",
+   "recognition": "State"
   },
   {
    "id": "FJKSP",
@@ -1611,7 +1611,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -1730,7 +1730,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -1930,7 +1930,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -2085,7 +2085,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -2195,7 +2195,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -2350,7 +2350,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -2487,7 +2487,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -2597,7 +2597,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -2619,7 +2619,7 @@
     {
      "serial": 1,
      "name": "Birendra Prasad Gupta",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 51,
      "votes": 49075,
@@ -2761,7 +2761,7 @@
      "status": "LOST"
     },
     {
-     "serial": 17,
+     "serial": 18,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -2898,7 +2898,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -3053,7 +3053,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -3190,7 +3190,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -3273,7 +3273,7 @@
      "status": "LOST"
     },
     {
-     "serial": 8,
+     "serial": 9,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -3392,7 +3392,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -3565,7 +3565,7 @@
      "status": "LOST"
     },
     {
-     "serial": 18,
+     "serial": 19,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -3666,7 +3666,7 @@
      "status": "LOST"
     },
     {
-     "serial": 10,
+     "serial": 11,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -3821,7 +3821,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -3949,7 +3949,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -4095,7 +4095,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -4331,7 +4331,7 @@
      "status": "LOST"
     },
     {
-     "serial": 25,
+     "serial": 26,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -4432,7 +4432,7 @@
      "status": "LOST"
     },
     {
-     "serial": 10,
+     "serial": 11,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -4587,7 +4587,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -4805,7 +4805,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -4951,7 +4951,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -5088,7 +5088,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -5252,7 +5252,7 @@
      "status": "LOST"
     },
     {
-     "serial": 17,
+     "serial": 18,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -5452,7 +5452,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -5580,7 +5580,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -5681,7 +5681,7 @@
      "status": "LOST"
     },
     {
-     "serial": 10,
+     "serial": 11,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -5836,7 +5836,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -6009,7 +6009,7 @@
      "status": "LOST"
     },
     {
-     "serial": 18,
+     "serial": 19,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -6164,7 +6164,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -6382,7 +6382,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -6519,7 +6519,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -6656,7 +6656,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -6784,7 +6784,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -6894,7 +6894,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -7076,7 +7076,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -7231,7 +7231,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -7386,7 +7386,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -7541,7 +7541,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -7723,7 +7723,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -7842,7 +7842,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -7943,7 +7943,7 @@
      "status": "LOST"
     },
     {
-     "serial": 10,
+     "serial": 11,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -8161,7 +8161,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -8361,7 +8361,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -8489,7 +8489,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -8626,7 +8626,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -8754,7 +8754,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -8855,7 +8855,7 @@
      "status": "LOST"
     },
     {
-     "serial": 10,
+     "serial": 11,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -9001,7 +9001,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -9102,7 +9102,7 @@
      "status": "LOST"
     },
     {
-     "serial": 10,
+     "serial": 11,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -9212,7 +9212,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -9412,7 +9412,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -9540,7 +9540,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -9659,7 +9659,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -9787,7 +9787,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -9924,7 +9924,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -10061,7 +10061,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -10216,7 +10216,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -10398,7 +10398,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -10625,7 +10625,7 @@
      "status": "LOST"
     },
     {
-     "serial": 24,
+     "serial": 25,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -10816,7 +10816,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -10998,7 +10998,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -11020,7 +11020,7 @@
     {
      "serial": 1,
      "name": "Mahboob Alam",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 63,
      "votes": 104489,
@@ -11144,7 +11144,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -11281,7 +11281,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -11400,7 +11400,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -11546,7 +11546,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -11674,7 +11674,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -11784,7 +11784,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -12002,7 +12002,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -12112,7 +12112,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -12294,7 +12294,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -12458,7 +12458,7 @@
      "status": "LOST"
     },
     {
-     "serial": 17,
+     "serial": 18,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -12604,7 +12604,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -12822,7 +12822,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -12977,7 +12977,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -13132,7 +13132,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -13368,7 +13368,7 @@
      "status": "LOST"
     },
     {
-     "serial": 25,
+     "serial": 26,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -13514,7 +13514,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -13651,7 +13651,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -13734,7 +13734,7 @@
      "status": "LOST"
     },
     {
-     "serial": 8,
+     "serial": 9,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -13925,7 +13925,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -14035,7 +14035,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -14190,7 +14190,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -14345,7 +14345,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -14473,7 +14473,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -14772,7 +14772,7 @@
      "status": "LOST"
     },
     {
-     "serial": 32,
+     "serial": 33,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -14803,7 +14803,7 @@
     {
      "serial": 2,
      "name": "Md. Aftab Alam",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 33,
      "votes": 42613,
@@ -14927,7 +14927,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -15127,7 +15127,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -15273,7 +15273,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -15392,7 +15392,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -15583,7 +15583,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -15855,7 +15855,7 @@
      "status": "LOST"
     },
     {
-     "serial": 29,
+     "serial": 30,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -16073,7 +16073,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -16219,7 +16219,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -16410,7 +16410,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -16610,7 +16610,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -16747,7 +16747,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -16929,7 +16929,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -17147,7 +17147,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -17284,7 +17284,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -17315,7 +17315,7 @@
     {
      "serial": 2,
      "name": "Jitendra Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 30,
      "votes": 73605,
@@ -17403,7 +17403,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -17558,7 +17558,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -17704,7 +17704,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -17726,7 +17726,7 @@
     {
      "serial": 1,
      "name": "Amarjeet Kushwaha",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 49,
      "votes": 69442,
@@ -17832,7 +17832,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -17854,7 +17854,7 @@
     {
      "serial": 1,
      "name": "Satyadeo Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 50,
      "votes": 81067,
@@ -17888,7 +17888,7 @@
      "status": "LOST"
     },
     {
-     "serial": 5,
+     "serial": 6,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -17984,7 +17984,7 @@
     {
      "serial": 2,
      "name": "Amarnath Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 55,
      "votes": 60614,
@@ -18072,7 +18072,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -18218,7 +18218,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -18454,7 +18454,7 @@
      "status": "LOST"
     },
     {
-     "serial": 25,
+     "serial": 26,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -18717,7 +18717,7 @@
      "status": "LOST"
     },
     {
-     "serial": 28,
+     "serial": 29,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -18836,7 +18836,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -19000,7 +19000,7 @@
      "status": "LOST"
     },
     {
-     "serial": 17,
+     "serial": 18,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -19137,7 +19137,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -19310,7 +19310,7 @@
      "status": "LOST"
     },
     {
-     "serial": 18,
+     "serial": 19,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -19528,7 +19528,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -19692,7 +19692,7 @@
      "status": "LOST"
     },
     {
-     "serial": 17,
+     "serial": 18,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -19802,7 +19802,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -19948,7 +19948,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -20058,7 +20058,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -20213,7 +20213,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -20395,7 +20395,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -20640,7 +20640,7 @@
      "status": "LOST"
     },
     {
-     "serial": 26,
+     "serial": 27,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -20786,7 +20786,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -21013,7 +21013,7 @@
      "status": "LOST"
     },
     {
-     "serial": 24,
+     "serial": 25,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -21159,7 +21159,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -21305,7 +21305,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -21442,7 +21442,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -21588,7 +21588,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -21619,7 +21619,7 @@
     {
      "serial": 2,
      "name": "Ranjeet Kumar Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 35,
      "votes": 62028,
@@ -21707,7 +21707,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -21738,7 +21738,7 @@
     {
      "serial": 2,
      "name": "Phoolbabu Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 44,
      "votes": 54555,
@@ -21907,7 +21907,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -22161,7 +22161,7 @@
      "status": "LOST"
     },
     {
-     "serial": 27,
+     "serial": 28,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -22361,7 +22361,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -22552,7 +22552,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -22671,7 +22671,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -22862,7 +22862,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -23008,7 +23008,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -23136,7 +23136,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -23228,7 +23228,7 @@
      "status": "LOST"
     },
     {
-     "serial": 9,
+     "serial": 10,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -23401,7 +23401,7 @@
      "status": "LOST"
     },
     {
-     "serial": 18,
+     "serial": 19,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -23592,7 +23592,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -23738,7 +23738,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -23875,7 +23875,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -23985,7 +23985,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -24167,7 +24167,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -24304,7 +24304,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -24450,7 +24450,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -24659,7 +24659,7 @@
      "status": "LOST"
     },
     {
-     "serial": 22,
+     "serial": 23,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -24832,7 +24832,7 @@
      "status": "LOST"
     },
     {
-     "serial": 18,
+     "serial": 19,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -24987,7 +24987,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -25079,7 +25079,7 @@
      "status": "LOST"
     },
     {
-     "serial": 9,
+     "serial": 10,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -25171,7 +25171,7 @@
      "status": "LOST"
     },
     {
-     "serial": 9,
+     "serial": 10,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -25380,7 +25380,7 @@
      "status": "LOST"
     },
     {
-     "serial": 22,
+     "serial": 23,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -25526,7 +25526,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -25690,7 +25690,7 @@
      "status": "LOST"
     },
     {
-     "serial": 17,
+     "serial": 18,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -25827,7 +25827,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -26009,7 +26009,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -26137,7 +26137,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -26256,7 +26256,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -26447,7 +26447,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -26512,7 +26512,7 @@
      "status": "LOST"
     },
     {
-     "serial": 6,
+     "serial": 7,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -26667,7 +26667,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -26912,7 +26912,7 @@
      "status": "LOST"
     },
     {
-     "serial": 26,
+     "serial": 27,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -27067,7 +27067,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -27258,7 +27258,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -27449,7 +27449,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -27631,7 +27631,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -27750,7 +27750,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -27860,7 +27860,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -28051,7 +28051,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -28072,7 +28072,7 @@
    "candidates": [
     {
      "serial": 1,
-     "name": "Dr. Sunil Kumar Father's Name :-Bhagwat Prasad",
+     "name": "Dr. Sunil Kumar",
      "partyId": "BJP",
      "sex": "M",
      "age": 63,
@@ -28081,7 +28081,7 @@
     },
     {
      "serial": 2,
-     "name": "Sunil Kumar Father’s Name :- Shyamnandan Prasad",
+     "name": "Sunil Kumar",
      "partyId": "RJD",
      "sex": "M",
      "age": 54,
@@ -28278,7 +28278,7 @@
      "status": "LOST"
     },
     {
-     "serial": 24,
+     "serial": 25,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -28496,7 +28496,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -28669,7 +28669,7 @@
      "status": "LOST"
     },
     {
-     "serial": 18,
+     "serial": 19,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -28860,7 +28860,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -29060,7 +29060,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -29296,7 +29296,7 @@
      "status": "LOST"
     },
     {
-     "serial": 25,
+     "serial": 26,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -29388,7 +29388,7 @@
      "status": "LOST"
     },
     {
-     "serial": 9,
+     "serial": 10,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -29570,7 +29570,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -29716,7 +29716,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -29747,7 +29747,7 @@
     {
      "serial": 2,
      "name": "Shashi Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 51,
      "votes": 51084,
@@ -29898,7 +29898,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -30116,7 +30116,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -30352,7 +30352,7 @@
      "status": "LOST"
     },
     {
-     "serial": 25,
+     "serial": 26,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -30480,7 +30480,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -30671,7 +30671,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -30862,7 +30862,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -31080,7 +31080,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -31102,7 +31102,7 @@
     {
      "serial": 1,
      "name": "Gopal Ravidas",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 51,
      "votes": 91124,
@@ -31334,7 +31334,7 @@
      "status": "LOST"
     },
     {
-     "serial": 27,
+     "serial": 28,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -31471,7 +31471,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -31493,7 +31493,7 @@
     {
      "serial": 1,
      "name": "Sandeep Saurav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 33,
      "votes": 67917,
@@ -31716,7 +31716,7 @@
      "status": "LOST"
     },
     {
-     "serial": 26,
+     "serial": 27,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -31871,7 +31871,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -31990,7 +31990,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -32100,7 +32100,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -32131,7 +32131,7 @@
     {
      "serial": 2,
      "name": "Quyamuddin Ansari",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 48,
      "votes": 68779,
@@ -32255,7 +32255,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -32277,7 +32277,7 @@
     {
      "serial": 1,
      "name": "Manoj Manzil",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 36,
      "votes": 86327,
@@ -32365,7 +32365,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -32387,7 +32387,7 @@
     {
      "serial": 1,
      "name": "Sudama Prasad S/o Ganga Dayal Sah",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 52,
      "votes": 73945,
@@ -32484,7 +32484,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -32666,7 +32666,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -32893,7 +32893,7 @@
      "status": "LOST"
     },
     {
-     "serial": 24,
+     "serial": 25,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -33039,7 +33039,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -33185,7 +33185,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -33207,7 +33207,7 @@
     {
      "serial": 1,
      "name": "Ajit Kumar Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 34,
      "votes": 71320,
@@ -33367,7 +33367,7 @@
      "status": "LOST"
     },
     {
-     "serial": 19,
+     "serial": 20,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -33513,7 +33513,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -33641,7 +33641,7 @@
      "status": "LOST"
     },
     {
-     "serial": 13,
+     "serial": 14,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -33778,7 +33778,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -33924,7 +33924,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -34115,7 +34115,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -34270,7 +34270,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -34470,7 +34470,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -34670,7 +34670,7 @@
      "status": "LOST"
     },
     {
-     "serial": 21,
+     "serial": 22,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -34861,7 +34861,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -35016,7 +35016,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -35162,7 +35162,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -35184,7 +35184,7 @@
     {
      "serial": 1,
      "name": "Arun Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 59,
      "votes": 82700,
@@ -35299,7 +35299,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -35321,7 +35321,7 @@
     {
      "serial": 1,
      "name": "Maha Nand Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 57,
      "votes": 68286,
@@ -35526,7 +35526,7 @@
      "status": "LOST"
     },
     {
-     "serial": 24,
+     "serial": 25,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -35717,7 +35717,7 @@
      "status": "LOST"
     },
     {
-     "serial": 20,
+     "serial": 21,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -35872,7 +35872,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -35894,7 +35894,7 @@
     {
      "serial": 1,
      "name": "Ram Bali Singh Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 54,
      "votes": 74712,
@@ -35991,7 +35991,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -36092,7 +36092,7 @@
      "status": "LOST"
     },
     {
-     "serial": 10,
+     "serial": 11,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -36265,7 +36265,7 @@
      "status": "LOST"
     },
     {
-     "serial": 18,
+     "serial": 19,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -36375,7 +36375,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -36512,7 +36512,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -36658,7 +36658,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -36759,7 +36759,7 @@
      "status": "LOST"
     },
     {
-     "serial": 10,
+     "serial": 11,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -36914,7 +36914,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -37141,7 +37141,7 @@
      "status": "LOST"
     },
     {
-     "serial": 24,
+     "serial": 25,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -37260,7 +37260,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -37370,7 +37370,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -37507,7 +37507,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -37680,7 +37680,7 @@
      "status": "LOST"
     },
     {
-     "serial": 18,
+     "serial": 19,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -37943,7 +37943,7 @@
      "status": "LOST"
     },
     {
-     "serial": 28,
+     "serial": 29,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -38188,7 +38188,7 @@
      "status": "LOST"
     },
     {
-     "serial": 26,
+     "serial": 27,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -38325,7 +38325,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -38444,7 +38444,7 @@
      "status": "LOST"
     },
     {
-     "serial": 12,
+     "serial": 13,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -38662,7 +38662,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -38880,7 +38880,7 @@
      "status": "LOST"
     },
     {
-     "serial": 23,
+     "serial": 24,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -38972,7 +38972,7 @@
      "status": "LOST"
     },
     {
-     "serial": 9,
+     "serial": 10,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -39127,7 +39127,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -39282,7 +39282,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -39392,7 +39392,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -39547,7 +39547,7 @@
      "status": "LOST"
     },
     {
-     "serial": 16,
+     "serial": 17,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -39693,7 +39693,7 @@
      "status": "LOST"
     },
     {
-     "serial": 15,
+     "serial": 16,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -39803,7 +39803,7 @@
      "status": "LOST"
     },
     {
-     "serial": 11,
+     "serial": 12,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,
@@ -39940,7 +39940,7 @@
      "status": "LOST"
     },
     {
-     "serial": 14,
+     "serial": 15,
      "name": "NOTA",
      "partyId": "NOTA",
      "sex": null,

@@ -19,7 +19,7 @@ export function normalize(raw: RawElection, cfg: YearConfig, map: PartyMap, retr
       if (p.id !== 'NOTA') parties.set(p.id, p);
       return { serial: c.serial, name: displayName(c.name), partyId: p.id, sex: c.sex, age: c.age, votes: c.total, status: c.total === top ? 'WON' : 'LOST' };
     }).filter((c): c is CandidateJson => c !== null);
-    if (seat.nota !== null) candidates.push({ serial: seat.candidates.length + 1, name: 'NOTA', partyId: 'NOTA', sex: null, age: null, votes: seat.nota, status: 'LOST' });
+    if (seat.nota !== null) candidates.push({ serial: Math.max(0, ...seat.candidates.map(c => c.serial)) + 1, name: 'NOTA', partyId: 'NOTA', sex: null, age: null, votes: seat.nota, status: 'LOST' });
     seats.push({ constNo: seat.constNo, type: m.type, electors: m.electors, voters: m.voters, turnout: Math.round((m.voters / m.electors) * 10000) / 100,
       phase: dates.indexOf(m.pollDate) + 1, pollDate: m.pollDate, candidates });
   }

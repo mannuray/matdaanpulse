@@ -21,7 +21,7 @@ export function stripSerial(raw: string): { serial: number | null; name: string 
 
 /** All-caps names (2010/2015 PDFs) become Title Case; mixed-case names are kept as ECI wrote them. */
 export function displayName(raw: string): string {
-  const s = raw.replace(/\s+/g, ' ').trim();
+  const s = raw.replace(/\s+/g, ' ').replace(/\s*Father[’']s Name\s*:-.*$/i, '').trim();
   if (s !== s.toUpperCase()) return s;
   return s.toLowerCase().replace(/(^|[\s.(\-'])([a-z])/g, (_m, p: string, c: string) => p + c.toUpperCase());
 }

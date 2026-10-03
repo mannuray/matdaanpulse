@@ -32,10 +32,10 @@ describe('normalize', () => {
       { serial: 2, name: 'Sita Devi', partyId: 'BJP', sex: 'F', age: 35, votes: 600, status: 'WON' },
     ]);
   });
-  it('adds a NOTA candidate when the seat has NOTA votes', () => {
-    const r = raw(); r.seats[0].nota = 25;
+  it('adds a NOTA candidate with a serial after every candidate serial (ECI serials skip NOTA\'s slot)', () => {
+    const r = raw(); r.seats[0].nota = 25; r.seats[0].candidates[1].serial = 3;
     const { json } = normalize(r, YEARS[2010], map, '2026-10-03');
-    expect(json.seats[0].candidates.at(-1)).toEqual({ serial: 3, name: 'NOTA', partyId: 'NOTA', sex: null, age: null, votes: 25, status: 'LOST' });
+    expect(json.seats[0].candidates.at(-1)).toEqual({ serial: 4, name: 'NOTA', partyId: 'NOTA', sex: null, age: null, votes: 25, status: 'LOST' });
   });
   it('collects unknown parties instead of throwing', () => {
     const { errors } = normalize(raw(), YEARS[2010], {}, '2026-10-03');

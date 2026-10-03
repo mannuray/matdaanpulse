@@ -36,6 +36,13 @@ describe('matchYear', () => {
     const mt = matchYear(json(), sd, { 'old-ind': { action: 'match', serial: 7, reason: 'same person, misspelt' } })[0];
     expect(mt.matched.find(m => m.old.id === 'old-ind')!.serial).toBe(7);
   });
+  it('falls back to a same-name match when the party label changed, and marks it', () => {
+    const sd = seed(); sd.candidates[0].partyId = 'XYZ';
+    const [s] = matchYear(json(), sd, {});
+    const m = s.matched.find(x => x.old.id === 'old-jdu')!;
+    expect(m.serial).toBe(1); expect(m.partyChanged).toBe(true);
+    expect(s.matched.find(x => x.old.id === 'old-ind')!.partyChanged).toBe(false);
+  });
   it('treats an aliased old party id as the new one (duplicate DB ids)', () => {
     const sd = seed(); sd.candidates[0].partyId = 'JDU_OLD';
     const [s] = matchYear(json(), sd, {}, { JDU_OLD: 'JDU' });

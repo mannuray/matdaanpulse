@@ -4,10 +4,12 @@ import type { ExistingSeed, OldCand } from './existing-seed';
 import { similarity } from './names';
 
 export type Decision = { action: 'delete'; reason: string } | { action: 'match'; serial: number; reason: string };
-export interface Matched { old: OldCand; serial: number; similarity: number }
+export interface Matched { old: OldCand; serial: number; similarity: number; partyChanged: boolean }
 export interface SeatMatch { constId: string; matched: Matched[]; unmatchedOld: OldCand[]; deleted: OldCand[] }
 export const LOW_SIMILARITY = 0.5;
 const NAME_MATCH = 0.6;
+/** Same seat, (almost) the same name, different party label: the same candidacy with a corrected party. */
+const NAME_ONLY_MATCH = 0.85;
 
 /** Name-based (v5-shaped) UUID from the given parts: regenerating a seed never changes ids. */
 export function stableUuid(...parts: (string | number)[]): string {
@@ -27,7 +29,7 @@ export function matchYear(json: ElectionJson, seed: ExistingSeed, decisions: Rec
     const take = (old: OldCand, serial: number) => {
       const c = seat.candidates.find(x => x.serial === serial)!;
       taken.add(serial);
-      res.matched.push({ old, serial, similarity: c.partyId === 'NOTA' ? 1 : similarity(old.name, c.name) });
+      res.matched.push({ old, serial, similarity: c.partyId === 'NOTA' ? 1 : similarity(old.name, c.name), partyChanged: c.partyId !== (aliases[old.partyId] ?? old.partyId) });
     };
     for (const old of olds) {
       const d = decisions[old.id];
@@ -45,6 +47,12 @@ export function matchYear(json: ElectionJson, seed: ExistingSeed, decisions: Rec
       if (pool.length === 1 && party !== 'IND') take(old, pool[0].serial);
       else if (best && best.s >= NAME_MATCH) take(old, best.c.serial);
       else res.unmatchedOld.push(old);
+    }
+    for (const old of [...res.unmatchedOld]) {
+      if (old.partyId === 'NOTA') continue;
+      const best = seat.candidates.filter(c => c.partyId !== 'NOTA' && !taken.has(c.serial))
+        .map(c => ({ c, s: similarity(old.name, c.name) })).sort((a, b) => b.s - a.s)[0];
+      if (best && best.s >= NAME_ONLY_MATCH) { take(old, best.c.serial); res.unmatchedOld.splice(res.unmatchedOld.indexOf(old), 1); }
     }
     res.matched.sort((a, b) => olds.indexOf(a.old) - olds.indexOf(b.old));
     return res;

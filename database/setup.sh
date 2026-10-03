@@ -3,7 +3,7 @@
 #
 #   1. schema.sql              base schema (idempotent)
 #   2. migrations/NNN_*.sql    in numeric order (all idempotent)
-#   3. seeds                   LS 2024 → state parties → VS results → districts/regions
+#   3. seeds                   LS 2024 → state parties → VS results (Bihar: parties → corrections → years) → districts/regions
 #                              → Bihar persons → party symbols → party recognition → result dates
 #
 # Every step is safe to re-run: schema/migrations use IF NOT EXISTS guards and every seed
@@ -81,7 +81,10 @@ echo "==> Seeds: state parties"
 for st in as kl py tn wb; do run "seed_${st}_parties.sql"; done
 
 echo "==> Seeds: Vidhan Sabha results"
-# Newest first: older Bihar files reference parties (LJP, HAMS) first defined in newer ones.
+# Bihar: parties first, then the run-once corrections (brings an old-seeded DB to the real ECI values and deletes the
+# old rows ECI does not have, so the seat+party unique index cannot skip a new candidate), then the year files.
+run seed_bihar_parties.sql
+run seed_bihar_corrections_v1.sql
 for y in 2025 2020 2015 2010; do run "seed_bihar_vs_${y}.sql"; done
 for st in wb as kl tn py; do
   for y in 2011 2016 2021; do run "seed_${st}_vs_${y}.sql"; done

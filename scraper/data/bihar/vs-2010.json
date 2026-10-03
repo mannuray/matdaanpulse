@@ -225,11 +225,11 @@
    "recognition": "National"
   },
   {
-   "id": "CPOI",
-   "name": "Communist Party of India  (Marxist-Leninist)  (Liberation)",
-   "abbreviation": null,
-   "color": "#808080",
-   "recognition": null
+   "id": "CPIML",
+   "name": "Communist Party of India (Marxist-Leninist) (Liberation)",
+   "abbreviation": "CPI(ML)(L)",
+   "color": "#E5484D",
+   "recognition": "State"
   },
   {
    "id": "GGP",
@@ -824,7 +824,7 @@
     {
      "serial": 5,
      "name": "Rameshvar Manjhee",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 33,
      "votes": 4129,
@@ -1170,7 +1170,7 @@
     {
      "serial": 9,
      "name": "Bhikhari Sah",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 41,
      "votes": 1607,
@@ -1891,7 +1891,7 @@
     {
      "serial": 4,
      "name": "Virendra Prasad Gupta",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 41,
      "votes": 5921,
@@ -2293,7 +2293,7 @@
     {
      "serial": 10,
      "name": "Prabhudeo Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 2026,
@@ -4375,7 +4375,7 @@
     {
      "serial": 10,
      "name": "Neyaz Ahmad Siddiqee",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 52,
      "votes": 1389,
@@ -5345,7 +5345,7 @@
     {
      "serial": 11,
      "name": "Ram Chandra Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 55,
      "votes": 995,
@@ -5518,7 +5518,7 @@
     {
      "serial": 14,
      "name": "Kalyan Bharti",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 53,
      "votes": 678,
@@ -5610,7 +5610,7 @@
     {
      "serial": 7,
      "name": "Utim Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 47,
      "votes": 2169,
@@ -5720,7 +5720,7 @@
     {
      "serial": 8,
      "name": "Yognath Mandal",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 63,
      "votes": 1574,
@@ -6331,7 +6331,7 @@
     {
      "serial": 16,
      "name": "Yogendra Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 40,
      "votes": 828,
@@ -6533,7 +6533,7 @@
     {
      "serial": 11,
      "name": "Ghanshyam Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 43,
      "votes": 822,
@@ -6917,7 +6917,7 @@
     {
      "serial": 5,
      "name": "Suresh Rishideo",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 34,
      "votes": 3692,
@@ -7072,7 +7072,7 @@
     {
      "serial": 13,
      "name": "Champa Lal Mandal",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 40,
      "votes": 678,
@@ -7218,7 +7218,7 @@
     {
      "serial": 11,
      "name": "Sushil Kumar Biswas",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 27,
      "votes": 1170,
@@ -8280,7 +8280,7 @@
     {
      "serial": 6,
      "name": "Sanjay Kumar",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 25,
      "votes": 1266,
@@ -8500,7 +8500,7 @@
     {
      "serial": 7,
      "name": "Avinash Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 38,
      "votes": 2052,
@@ -8700,7 +8700,7 @@
     {
      "serial": 13,
      "name": "Yamuna Pd. Murmu",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 52,
      "votes": 2100,
@@ -9221,7 +9221,7 @@
     {
      "serial": 2,
      "name": "Mahboob Alam",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 53,
      "votes": 45432,
@@ -9484,7 +9484,7 @@
     {
      "serial": 14,
      "name": "Abdus Salam",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 30,
      "votes": 545,
@@ -9630,7 +9630,7 @@
     {
      "serial": 13,
      "name": "Gita Devi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 27,
      "votes": 902,
@@ -9740,7 +9740,7 @@
     {
      "serial": 9,
      "name": "Avinash Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 40,
      "votes": 1065,
@@ -10710,7 +10710,7 @@
     {
      "serial": 6,
      "name": "Raj Kumar Choudhary",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 41,
      "votes": 1818,
@@ -10993,7 +10993,7 @@
     {
      "serial": 10,
      "name": "Lal Bahadur Sada",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 1678,
@@ -11487,7 +11487,7 @@
     {
      "serial": 13,
      "name": "Shanichri Devi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 36,
      "votes": 1604,
@@ -11579,7 +11579,7 @@
     {
      "serial": 7,
      "name": "Rabindra Kumar Dutta",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 40,
      "votes": 1154,
@@ -11725,7 +11725,7 @@
     {
      "serial": 11,
      "name": "Satya Narayan Mukhiya",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 42,
      "votes": 1285,
@@ -11799,7 +11799,7 @@
     {
      "serial": 4,
      "name": "Baijnath Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 43,
      "votes": 6889,
@@ -12008,7 +12008,7 @@
     {
      "serial": 6,
      "name": "Rambabu Sahu",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 1917,
@@ -12291,7 +12291,7 @@
     {
      "serial": 10,
      "name": "Jitendra Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 36,
      "votes": 2200,
@@ -12702,7 +12702,7 @@
     {
      "serial": 6,
      "name": "Ram Nandan Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 43,
      "votes": 2725,
@@ -13122,7 +13122,7 @@
     {
      "serial": 5,
      "name": "Suraj Kumar Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 27,
      "votes": 1305,
@@ -14142,7 +14142,7 @@
     {
      "serial": 9,
      "name": "Sarajuddin Ahamad",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 41,
      "votes": 1510,
@@ -14499,7 +14499,7 @@
     {
      "serial": 4,
      "name": "Jitendra Manghi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 26,
      "votes": 8800,
@@ -14672,7 +14672,7 @@
     {
      "serial": 10,
      "name": "Santraj Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 2082,
@@ -14782,7 +14782,7 @@
     {
      "serial": 3,
      "name": "Naimuddin Ansari",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 37,
      "votes": 4051,
@@ -15000,7 +15000,7 @@
     {
      "serial": 2,
      "name": "Amarjeet Kushwaha",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 20522,
@@ -15272,7 +15272,7 @@
     {
      "serial": 2,
      "name": "Satyadeo Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 40,
      "votes": 33987,
@@ -15409,7 +15409,7 @@
     {
      "serial": 2,
      "name": "Amar Nath Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 45,
      "votes": 18362,
@@ -15582,7 +15582,7 @@
     {
      "serial": 6,
      "name": "Jawed Baig",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 45,
      "votes": 3076,
@@ -15827,7 +15827,7 @@
     {
      "serial": 10,
      "name": "Malti Devi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 34,
      "votes": 1931,
@@ -16036,7 +16036,7 @@
     {
      "serial": 14,
      "name": "Sujit Subhani",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 26,
      "votes": 1428,
@@ -16910,7 +16910,7 @@
     {
      "serial": 10,
      "name": "Satyendra Kr. Sahani",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 42,
      "votes": 1580,
@@ -18496,7 +18496,7 @@
     {
      "serial": 12,
      "name": "Md. Shamshad Ahmad",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 47,
      "votes": 1521,
@@ -19242,7 +19242,7 @@
     {
      "serial": 10,
      "name": "Tapeshwar Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 49,
      "votes": 1207,
@@ -19334,7 +19334,7 @@
     {
      "serial": 6,
      "name": "Arvind Kumar Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 25,
      "votes": 3704,
@@ -19471,7 +19471,7 @@
     {
      "serial": 9,
      "name": "Jibachh Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 42,
      "votes": 1662,
@@ -19662,7 +19662,7 @@
     {
      "serial": 7,
      "name": "Pramila Rai",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 33,
      "votes": 2127,
@@ -19808,7 +19808,7 @@
     {
      "serial": 7,
      "name": "Phool Babu Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 33,
      "votes": 3624,
@@ -19945,7 +19945,7 @@
     {
      "serial": 8,
      "name": "Dinesh Rai",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 1425,
@@ -21063,7 +21063,7 @@
     {
      "serial": 6,
      "name": "Es Em Nur Alam",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 53,
      "votes": 1849,
@@ -21411,7 +21411,7 @@
     {
      "serial": 6,
      "name": "Borhan Sada",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 50,
      "votes": 2885,
@@ -21896,7 +21896,7 @@
     {
      "serial": 9,
      "name": "Sudhir Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 926,
@@ -22024,7 +22024,7 @@
     {
      "serial": 10,
      "name": "Bindeshwari Mandal",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 44,
      "votes": 1351,
@@ -22435,7 +22435,7 @@
     {
      "serial": 11,
      "name": "Mukesh Mukta Das",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 31,
      "votes": 407,
@@ -23201,7 +23201,7 @@
     {
      "serial": 13,
      "name": "Umakant Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 59,
      "votes": 815,
@@ -23421,7 +23421,7 @@
     {
      "serial": 12,
      "name": "Atal Bihari",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 34,
      "votes": 1458,
@@ -23686,7 +23686,7 @@
     {
      "serial": 11,
      "name": "Kailash Singh Nishad",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 34,
      "votes": 1140,
@@ -24068,7 +24068,7 @@
     {
      "serial": 14,
      "name": "Chandra Deo Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 65,
      "votes": 1054,
@@ -24342,7 +24342,7 @@
     {
      "serial": 12,
      "name": "Kamlesh Kumar Manav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 40,
      "votes": 982,
@@ -24681,7 +24681,7 @@
     {
      "serial": 9,
      "name": "Masudan Sharma",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 61,
      "votes": 804,
@@ -25020,7 +25020,7 @@
     {
      "serial": 4,
      "name": "Shashi Yadav",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 36,
      "votes": 4550,
@@ -25833,7 +25833,7 @@
     {
      "serial": 10,
      "name": "Murtaja Ali",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 61,
      "votes": 1025,
@@ -25943,7 +25943,7 @@
     {
      "serial": 6,
      "name": "Vijay Kumar",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 50,
      "votes": 847,
@@ -26226,7 +26226,7 @@
     {
      "serial": 5,
      "name": "Ram Narayan Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 1230,
@@ -26363,7 +26363,7 @@
     {
      "serial": 4,
      "name": "Umesh Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 47,
      "votes": 3533,
@@ -26646,7 +26646,7 @@
     {
      "serial": 4,
      "name": "Gopal Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 37,
      "votes": 4764,
@@ -26792,7 +26792,7 @@
     {
      "serial": 3,
      "name": "Jay Prakash Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 36,
      "votes": 8005,
@@ -26929,7 +26929,7 @@
     {
      "serial": 3,
      "name": "Gopal Ravidas",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 41,
      "votes": 14532,
@@ -27066,7 +27066,7 @@
     {
      "serial": 3,
      "name": "N.K. Nanda",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 50,
      "votes": 16748,
@@ -27230,7 +27230,7 @@
     {
      "serial": 6,
      "name": "Leela Verma",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 37,
      "votes": 4004,
@@ -27367,7 +27367,7 @@
     {
      "serial": 4,
      "name": "Rameshwar Prasad",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 62,
      "votes": 15095,
@@ -27549,7 +27549,7 @@
     {
      "serial": 4,
      "name": "Rajiv Ranjan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 32,
      "votes": 3672,
@@ -27677,7 +27677,7 @@
     {
      "serial": 3,
      "name": "Meena Tiwari",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 42,
      "votes": 5314,
@@ -27868,7 +27868,7 @@
     {
      "serial": 3,
      "name": "Sidhnath Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 64,
      "votes": 21739,
@@ -27996,7 +27996,7 @@
     {
      "serial": 3,
      "name": "Kamta Prasad Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 57,
      "votes": 30111,
@@ -28088,7 +28088,7 @@
     {
      "serial": 3,
      "name": "Sudama Prasad",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 42,
      "votes": 16129,
@@ -28317,7 +28317,7 @@
     {
      "serial": 7,
      "name": "Harendra Prasad Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 32,
      "votes": 2497,
@@ -28771,7 +28771,7 @@
     {
      "serial": 5,
      "name": "Ayodhya Kumar Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 27,
      "votes": 6573,
@@ -28917,7 +28917,7 @@
     {
      "serial": 6,
      "name": "Ramashanker Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 50,
      "votes": 3715,
@@ -29117,7 +29117,7 @@
     {
      "serial": 13,
      "name": "Baban Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 45,
      "votes": 1041,
@@ -29209,7 +29209,7 @@
     {
      "serial": 5,
      "name": "Tetari Devi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 35,
      "votes": 2848,
@@ -29373,7 +29373,7 @@
     {
      "serial": 12,
      "name": "Akaloo Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 37,
      "votes": 1313,
@@ -30209,7 +30209,7 @@
     {
      "serial": 15,
      "name": "Ram Ashish Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 70,
      "votes": 818,
@@ -30301,7 +30301,7 @@
     {
      "serial": 6,
      "name": "Rambachan Kesari",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 52,
      "votes": 3568,
@@ -30438,7 +30438,7 @@
     {
      "serial": 3,
      "name": "Saiyad Kaisar Nehal",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 50,
      "votes": 9295,
@@ -30674,7 +30674,7 @@
     {
      "serial": 6,
      "name": "Ashok Kumar Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 40,
      "votes": 2252,
@@ -30802,7 +30802,7 @@
     {
      "serial": 3,
      "name": "Arun Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 49,
      "votes": 23179,
@@ -30930,7 +30930,7 @@
     {
      "serial": 2,
      "name": "Mahanand Prasad",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 42,
      "votes": 19782,
@@ -31157,7 +31157,7 @@
     {
      "serial": 5,
      "name": "Upendra Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 36,
      "votes": 4065,
@@ -31285,7 +31285,7 @@
     {
      "serial": 4,
      "name": "Bindeshwar Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 30,
      "votes": 6447,
@@ -31467,7 +31467,7 @@
     {
      "serial": 4,
      "name": "Rambali Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 44,
      "votes": 12203,
@@ -31568,7 +31568,7 @@
     {
      "serial": 4,
      "name": "Abhimanyu Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 40,
      "votes": 3487,
@@ -31714,7 +31714,7 @@
     {
      "serial": 7,
      "name": "Sanjay Sharma",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 49,
      "votes": 1734,
@@ -31815,7 +31815,7 @@
     {
      "serial": 3,
      "name": "Rajaram Singh",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 54,
      "votes": 18463,
@@ -32271,7 +32271,7 @@
     {
      "serial": 14,
      "name": "Yogendra Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 34,
      "votes": 1056,
@@ -32381,7 +32381,7 @@
     {
      "serial": 9,
      "name": "Satyendra Narayan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 38,
      "votes": 1152,
@@ -32911,7 +32911,7 @@
     {
      "serial": 4,
      "name": "Kamal Deo Paswan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 3011,
@@ -33358,7 +33358,7 @@
     {
      "serial": 6,
      "name": "Rita Devi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 34,
      "votes": 1859,
@@ -33468,7 +33468,7 @@
     {
      "serial": 6,
      "name": "Mundrika Ram",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 59,
      "votes": 1838,
@@ -33578,7 +33578,7 @@
     {
      "serial": 7,
      "name": "Prashuram Rai",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 46,
      "votes": 1814,
@@ -33888,7 +33888,7 @@
     {
      "serial": 6,
      "name": "Sudama Devi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 46,
      "votes": 1460,
@@ -34171,7 +34171,7 @@
     {
      "serial": 10,
      "name": "Savitri Devi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "F",
      "age": 46,
      "votes": 1123,
@@ -34454,7 +34454,7 @@
     {
      "serial": 9,
      "name": "Jagdish Prasad Chavan",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 39,
      "votes": 1247,
@@ -35011,7 +35011,7 @@
     {
      "serial": 12,
      "name": "Kalu Marandi",
-     "partyId": "CPOI",
+     "partyId": "CPIML",
      "sex": "M",
      "age": 37,
      "votes": 1329,

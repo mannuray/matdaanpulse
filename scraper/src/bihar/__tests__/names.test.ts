@@ -18,6 +18,10 @@ describe('names', () => {
     expect(displayName('DHIRENDRA PRATAP SINGH ALIAS RINKU SINGH')).toBe('Dhirendra Pratap Singh Alias Rinku Singh');
     expect(displayName('Dhirendra Pratap Singh alias Rinku singh')).toBe('Dhirendra Pratap Singh alias Rinku singh');
   });
+  it('drops the "Father\'s Name" disambiguation ECI appends to some names', () => {
+    expect(displayName("Dr. Sunil Kumar Father's Name :-Bhagwat Prasad")).toBe('Dr. Sunil Kumar');
+    expect(displayName('Sunil Kumar Father’s Name :- Shyamnandan Prasad')).toBe('Sunil Kumar');
+  });
   it('reads sex in all ECI spellings', () => {
     expect(sexOf('MALE')).toBe('M'); expect(sexOf(' F ')).toBe('F'); expect(sexOf('THIRD GENDER')).toBe('O');
     expect(sexOf('TG')).toBe('O'); expect(sexOf('')).toBeNull(); expect(sexOf(null)).toBeNull();

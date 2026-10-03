@@ -826,11 +826,11 @@
     "recognition": "National"
   },
   "COMMUNISTPARTYOFINDIAMARXISTLENINISTLIBERATION": {
-    "id": "CPOI",
-    "name": "Communist Party of India  (Marxist-Leninist)  (Liberation)",
-    "abbreviation": null,
-    "color": "#808080",
-    "recognition": null
+    "id": "CPIML",
+    "name": "Communist Party of India (Marxist-Leninist) (Liberation)",
+    "abbreviation": "CPI(ML)(L)",
+    "color": "#E5484D",
+    "recognition": "State"
   },
   "CONGRESSSECULAR": {
     "id": "CS",

@@ -18,7 +18,7 @@ export const CONSTITUENCY_DELAY_MAX_MS = 500;
 /** DB connection from env (DATABASE_URL or DB_HOST/DB_PORT/DB_USER/DB_PASS/DB_NAME — see .env.example). */
 export const DB_CONFIG = getDbConfig();
 
-/** Party full-name → short ID mapping (from generate-bihar-vs-seed.ts) */
+/** Party full-name → short ID mapping (from the old Bihar 2025 seed generator) */
 export const PARTY_NAME_TO_ID: Record<string, string> = {
   'Bharatiya Janata Party': 'BJP',
   'Indian National Congress': 'INC',
