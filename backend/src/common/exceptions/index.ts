@@ -10,3 +10,4 @@ export * from './result.exception';
 export * from './manifest.exception';
 export * from './feedback.exception';
 export * from './media.exception';
+export * from './ingest.exception';
