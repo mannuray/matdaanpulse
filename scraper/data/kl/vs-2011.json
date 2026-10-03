@@ -1,0 +1,10509 @@
+{
+ "year": 2011,
+ "electionId": "a7b8c9d0-e1f2-3456-0123-678901232011",
+ "source": {
+  "title": "ECI Statistical Report, Kerala Legislative Assembly 2011",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3763",
+  "retrieved": "2026-10-03"
+ },
+ "parties": [
+  {
+   "id": "AIADMK",
+   "name": "All India Anna Dravida Munnetra Kazhagam",
+   "abbreviation": null,
+   "color": "#006400",
+   "recognition": null
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "BSP",
+   "name": "Bahujan Samaj Party",
+   "abbreviation": null,
+   "color": "#4B5BD6",
+   "recognition": "National"
+  },
+  {
+   "id": "CMPKSC_KL",
+   "name": "Communist Marxist Party Kerala State Committee",
+   "abbreviation": "CMPKSC",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "CPIML",
+   "name": "Communist Party of India (Marxist-Leninist) (Liberation)",
+   "abbreviation": "CPI(ML)(L)",
+   "color": "#E5484D",
+   "recognition": "State"
+  },
+  {
+   "id": "DPSP",
+   "name": "Deseeya Praja Socialist Party",
+   "abbreviation": "DPSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "INL",
+   "name": "Indian National League",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "IUML",
+   "name": "Indian Union Muslim League",
+   "abbreviation": null,
+   "color": "#006600",
+   "recognition": null
+  },
+  {
+   "id": "JDS",
+   "name": "Janata Dal  (Secular)",
+   "abbreviation": null,
+   "color": "#228B22",
+   "recognition": null
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "JPSS_KL",
+   "name": "Janadhipathya Samrakshana Samithi",
+   "abbreviation": "JPSS",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "KCAMG",
+   "name": "Kerala Congress (Anti-merger Group)",
+   "abbreviation": "KC(AMG)",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "KECB",
+   "name": "Kerala Congress (B)",
+   "abbreviation": "KC(B)",
+   "color": "#CD5C5C",
+   "recognition": null
+  },
+  {
+   "id": "KECJ_KL",
+   "name": "Kerala Congress (Jacob)",
+   "abbreviation": "KEC(J)",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "KECM",
+   "name": "Kerala Congress (M)",
+   "abbreviation": "KC(M)",
+   "color": "#8B0000",
+   "recognition": null
+  },
+  {
+   "id": "KJ",
+   "name": "Kerala Janapaksham",
+   "abbreviation": "KJ",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "KRSP_KL",
+   "name": "Kerala Revolutionary Socialist Party(Baby John)",
+   "abbreviation": "KRSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "LJP",
+   "name": "Lok Janshakti Party",
+   "abbreviation": null,
+   "color": "#0000CD",
+   "recognition": null
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "PDP",
+   "name": "Peoples Democratic Party",
+   "abbreviation": "PDP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RSP",
+   "name": "Revolutionary Socialist Party",
+   "abbreviation": null,
+   "color": "#DC143C",
+   "recognition": null
+  },
+  {
+   "id": "SDPOI",
+   "name": "Social Democratic Party Of India",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "abbreviation": null,
+   "color": "#FF6600",
+   "recognition": null
+  },
+  {
+   "id": "SJD_KL",
+   "name": "SOCIALIST JANTA (DEMOCRATIC)",
+   "abbreviation": "SJD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SJP2",
+   "name": "Samajwadi Jan Parishad",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SLAP",
+   "name": "Social Action Party",
+   "abbreviation": "SLAP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SUCI",
+   "name": "Socialist Unity Centre of India (Communist)",
+   "abbreviation": null,
+   "color": "#CC0000",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "type": "GEN",
+   "electors": 176817,
+   "voters": 132984,
+   "turnout": 75.21,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P B Abdul Razak",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 55,
+     "votes": 49817,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K Surendran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 43989,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. C H Kunhambu",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 51,
+     "votes": 35067,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Hafsa Muneer",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 34,
+     "votes": 1076,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Majeed",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 869,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abdulla Timber",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 547,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kunhambu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 490,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Razak K",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 465,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Abbas M",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 391,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Abdulla P M",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 262,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "type": "GEN",
+   "electors": 159289,
+   "voters": 117071,
+   "turnout": 73.5,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "N.A.Nellikkunnu",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 57,
+     "votes": 53068,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jayalakshmi N Bhat",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 53,
+     "votes": 43330,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Azeez Kadappuram",
+     "partyId": "INL",
+     "sex": "M",
+     "age": 44,
+     "votes": 16467,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A H Muneer",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 34,
+     "votes": 1260,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Govinda Raja Kuntikkanamata",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 938,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Saifudeen K Makkodu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 807,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ajith Kumar Azad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 739,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdulla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 422,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "type": "GEN",
+   "electors": 173459,
+   "voters": 128647,
+   "turnout": 74.17,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.Kunhiraman",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 62,
+     "votes": 61646,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. C K Sreedharan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 50266,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sunitha Prasanth",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 33,
+     "votes": 13073,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Faisal Koliyadukkam",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 31,
+     "votes": 1265,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P Damodaran",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 37,
+     "votes": 1096,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Krishnankutty",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 866,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kunhiraman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 414,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "type": "GEN",
+   "electors": 178139,
+   "voters": 139906,
+   "turnout": 78.54,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "E.Chandrashekharan",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 63,
+     "votes": 66640,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.M C Jose",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 54462,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Madikai Kammaran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 72,
+     "votes": 15543,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P M Joseph",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1919,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gopalan K",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 72,
+     "votes": 1277,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "type": "GEN",
+   "electors": 169395,
+   "voters": 136895,
+   "turnout": 80.81,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K Kunhiraman",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 67,
+     "votes": 67871,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.V.Gangadharan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 59106,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "T.Radhakrishnan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 5450,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Razak Haji Parambath",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 44,
+     "votes": 1741,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Arun Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 1031,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.K.Dileep Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 789,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "type": "GEN",
+   "electors": 158613,
+   "voters": 130722,
+   "turnout": 82.42,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C.Krishnan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 62,
+     "votes": 78116,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. K. Brijesh Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 32,
+     "votes": 45992,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "C.K.Ramesan Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 5019,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Geetha",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 44,
+     "votes": 625,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "T.P.Padmanabhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 536,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kottayodi Viswanathan",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 57,
+     "votes": 378,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "type": "GEN",
+   "electors": 157384,
+   "voters": 124899,
+   "turnout": 79.36,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T.V. Rajesh",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 37,
+     "votes": 73190,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. P. Indira",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 40,
+     "votes": 43244,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. Sreekanth Ravi Varma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 5499,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A.P. Mahamood",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 28,
+     "votes": 2281,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K. Gopalakrishnan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 64,
+     "votes": 640,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "type": "GEN",
+   "electors": 174788,
+   "voters": 144431,
+   "turnout": 82.63,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "James Mathew",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 50,
+     "votes": 81031,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv Job Michel",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 45,
+     "votes": 53170,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.Jayaprakash",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 6492,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Muhammedali.S.P",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 36,
+     "votes": 1930,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nidheesh Thillankeri",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 927,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Thomas.M.V",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 813,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "type": "GEN",
+   "electors": 169262,
+   "voters": 130770,
+   "turnout": 77.26,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K. C. Joseph",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 68503,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. P. Santhosh Kumar",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 39,
+     "votes": 56746,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M. G. Ramakrishnan Nair",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 3529,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Joseph",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 740,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ammini Krishnan",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 43,
+     "votes": 633,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Biju Thomas",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 552,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "type": "GEN",
+   "electors": 147782,
+   "voters": 121851,
+   "turnout": 82.45,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.M.Shaji",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 39,
+     "votes": 55077,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M.Prakashan Master",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 51,
+     "votes": 54584,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M.K.Saseendran Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 7540,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Noushad Punnakkal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 2935,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shaji.K.M.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 602,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "C.Balakrishnan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 458,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Paul T Samuel",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 32,
+     "votes": 414,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Prakashan Kuzhiparambil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 222,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "type": "GEN",
+   "electors": 143828,
+   "voters": 113361,
+   "turnout": 78.82,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A.P Abdullakutty",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 55427,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ramachandran Kadannappalli",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 48984,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "U.T.Jayandan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 4568,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Adv.P.C.Noushad",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 37,
+     "votes": 2538,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.P.Abdullakutty",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1100,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.Sudhakaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 517,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "S.Noorudheen",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 226,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "type": "GEN",
+   "electors": 163674,
+   "voters": 136351,
+   "turnout": 83.31,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.K. Narayanan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 63,
+     "votes": 72354,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mambaram Divakaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 57192,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "C.P.Sangeetha",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 37,
+     "votes": 4963,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Poyilore Kunnumbrom Divakaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 871,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Madhu.S.Vayanan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 55,
+     "votes": 797,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "type": "GEN",
+   "electors": 149689,
+   "voters": 117777,
+   "turnout": 78.68,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kodiyeri Balakrishnan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 57,
+     "votes": 66870,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rijil Makkutty",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 28,
+     "votes": 40361,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. V. Rathnakaran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 6973,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A.C Jalaluddin",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 48,
+     "votes": 2068,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K.Raghunath",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 674,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rijil Muliyil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 539,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Balakrishnan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 278,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "type": "GEN",
+   "electors": 160335,
+   "voters": 127940,
+   "turnout": 79.8,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.P.Mohanan S/o P R Kurup",
+     "partyId": "SJD_KL",
+     "sex": "M",
+     "age": 61,
+     "votes": 57164,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "S A Puthiya Valappil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 53861,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "O.K.Vasu Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 11835,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K.P. Mohanan S/o Kunhikannan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1982,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "S Poovalappil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 1199,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.P. Mohanan S/o Nanu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 1130,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sulaim T.B",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 758,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "type": "GEN",
+   "electors": 160711,
+   "voters": 132963,
+   "turnout": 82.73,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "E.P.Jayarajan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 60,
+     "votes": 75177,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Joseph Chaavara",
+     "partyId": "SJD_KL",
+     "sex": "M",
+     "age": 50,
+     "votes": 44665,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Biju Elakkuzhi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 8707,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Adv.K.C.Muhammad Sabeer",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 38,
+     "votes": 2757,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Joseph",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 858,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Hameed",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 783,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "type": "GEN",
+   "electors": 145983,
+   "voters": 116832,
+   "turnout": 80.03,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.Sunny Joseph",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 56151,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.K.Shailaja Teacher",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 54,
+     "votes": 52711,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.K.Velayudhan.",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 4055,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P.K. Ayyappan Master.",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 59,
+     "votes": 1537,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sunny Joseph",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 903,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "A.Shylaja",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 37,
+     "votes": 565,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Raghavan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 526,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Radhamani Narayana Kumar",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 50,
+     "votes": 365,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "type": "ST",
+   "electors": 167097,
+   "voters": 124075,
+   "turnout": 74.25,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.K.Jayalakshmi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 28,
+     "votes": 62996,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.C.Kunhiraman",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 51,
+     "votes": 50262,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Irumuttoor Kunhaman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 5732,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A. Gopakumar",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 45,
+     "votes": 2342,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.U Babu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 1712,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Annan- Madakkimala",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 1008,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "type": "ST",
+   "electors": 198645,
+   "voters": 145551,
+   "turnout": 73.27,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "I.C Balakrishnan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 71509,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "E.A .Sankaran",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 36,
+     "votes": 63926,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Palliyara Raman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 8829,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mukundan Cheengeri",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 67,
+     "votes": 1248,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "type": "GEN",
+   "electors": 170245,
+   "voters": 126587,
+   "turnout": 74.36,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "M.V Sreyamskumar",
+     "partyId": "SJD_KL",
+     "sex": "M",
+     "age": 44,
+     "votes": 67018,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P.A Muhammed",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 72,
+     "votes": 48849,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Anand Kumar.P.G",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 6580,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jameela",
+     "partyId": "SDPOI",
+     "sex": "F",
+     "age": 44,
+     "votes": 1597,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K. Naseerudheen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 1197,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Cleatus",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 760,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mujeeb Rahman Anjukunnu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 583,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "type": "GEN",
+   "electors": 141564,
+   "voters": 114298,
+   "turnout": 80.74,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C.K.Nanu",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 79,
+     "votes": 46912,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.M.K. Premnath",
+     "partyId": "SJD_KL",
+     "sex": "M",
+     "age": 59,
+     "votes": 46065,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "N.Venu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 10098,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M.P.Rajan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 6909,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Saalim Azhiyur",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 29,
+     "votes": 3488,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "V.K.Premanathan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 795,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "type": "GEN",
+   "electors": 162389,
+   "voters": 142456,
+   "turnout": 87.73,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.K.Lathika",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 49,
+     "votes": 70258,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Soopi Narikkatteri",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 49,
+     "votes": 63286,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V.K.Sajeevan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 6272,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Raheem Master",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 38,
+     "votes": 1045,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.Sathi",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 47,
+     "votes": 407,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Soopi Thoduvayil Valappil Meethal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 333,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Lathika Valiyakulangara Kuniyil",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 36,
+     "votes": 247,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Soopi Alakkatt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Lathika Nidumanalkuni",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 41,
+     "votes": 207,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "M.K.Rajan,",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 49,
+     "votes": 189,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "type": "GEN",
+   "electors": 177993,
+   "voters": 146454,
+   "turnout": 82.28,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "E.K.Vijayan",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 58,
+     "votes": 72078,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V.M.Chandran",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 64532,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.Prakash Babu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 6058,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ismail Kammana",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 39,
+     "votes": 1865,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Chandran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 745,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "C.K Vijayan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 708,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K.P.Vijayan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 444,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "type": "GEN",
+   "electors": 166632,
+   "voters": 136414,
+   "turnout": 81.87,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.Dasan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 58,
+     "votes": 64374,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ad.K.P.Anil Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 60235,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "T.P.Jayachandran Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 8086,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "C.Muneer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 985,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rashid,p.T",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 33,
+     "votes": 985,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.P.Anilkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 520,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K.V.Krishnan,koduvayal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 466,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Dasan M.K",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 418,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Dasan,v.K",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 325,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "type": "GEN",
+   "electors": 159699,
+   "voters": 135367,
+   "turnout": 84.76,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K. Kunhammad Master",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 61,
+     "votes": 70248,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. Mohammed Ikbal",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 42,
+     "votes": 54979,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.Chandrika Teacher",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 58,
+     "votes": 7214,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "T.K.Kunhammad Faisy",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 43,
+     "votes": 1494,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Akhilkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 801,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.K.Vasu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 55,
+     "votes": 598,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "type": "SC",
+   "electors": 185109,
+   "voters": 151038,
+   "turnout": 81.59,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Purushan Kadalundi",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 62,
+     "votes": 74259,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A. Balaram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 70,
+     "votes": 65377,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.T.K.Raman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 69,
+     "votes": 9304,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bhadran.M.P",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 47,
+     "votes": 1404,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K.K.Satheesh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 660,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "type": "GEN",
+   "electors": 162830,
+   "voters": 133967,
+   "turnout": 82.27,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A.K. Saseendran",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 64,
+     "votes": 67143,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shaik P Harriz",
+     "partyId": "SJD_KL",
+     "sex": "M",
+     "age": 45,
+     "votes": 52489,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V V Rajan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 11901,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A Sasindran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 1402,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ramesh Nanmanda",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 971,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "type": "GEN",
+   "electors": 150425,
+   "voters": 116308,
+   "turnout": 77.32,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A. Pradeep Kumar",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 46,
+     "votes": 57123,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P.V Gangadharan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 67,
+     "votes": 48125,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P. Reghunath",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 9894,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pradeep Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 420,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gangadharan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 367,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Looka Joseph",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 58,
+     "votes": 229,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "P.M Sreekumar",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 42,
+     "votes": 142,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "type": "GEN",
+   "electors": 132780,
+   "voters": 103674,
+   "turnout": 78.08,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. M.K. Muneer",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 48,
+     "votes": 47771,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "C.P. Musafer Ahammed",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 39,
+     "votes": 46395,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jaya Sadanandan",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 43,
+     "votes": 7512,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Faiz Mohammed",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 45,
+     "votes": 749,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "T.T. Muneer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 488,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mussafar Ahammed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 433,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Muhammed Asharaf",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 51,
+     "votes": 323,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "type": "GEN",
+   "electors": 164045,
+   "voters": 129394,
+   "turnout": 78.88,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Elamaram Kareem",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 57,
+     "votes": 60550,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adam Mulsi .M.P.",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 30,
+     "votes": 55234,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.P.Sreesan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 11040,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Muhammed Musthafa",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 29,
+     "votes": 954,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K.S.Hariharan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 564,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.T.Latha",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 46,
+     "votes": 469,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Adam Malique .E",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 396,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Kareem",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 183,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "type": "GEN",
+   "electors": 178089,
+   "voters": 150214,
+   "turnout": 84.35,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.P.T.A.Rahim",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 66169,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "U.C.Raman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 62900,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "C.K.Padmanabhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 17123,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "C.Muhammed Master",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 57,
+     "votes": 1178,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Raman.C.K",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 701,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.K.Kunhikanaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 427,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "E.P.Abdul Raheem",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 421,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Raman.P.C",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 404,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Abdu Raheem.M.T",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 325,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "M.P.Baburaj",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 47,
+     "votes": 303,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "O.P.Sundaran",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 236,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "type": "GEN",
+   "electors": 142384,
+   "voters": 113847,
+   "turnout": 79.96,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V.M.Ummer Master",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 54,
+     "votes": 60365,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M.Mehaboob",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 51,
+     "votes": 43813,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gireesh Thevally",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 6519,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M.T.Abu Haji",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 50,
+     "votes": 1688,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Aboobaker",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 51,
+     "votes": 496,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mehaboob Kanichadikkuzhi Valeparammel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 324,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ummer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 313,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mehaboob Illikkathodi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 306,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "type": "GEN",
+   "electors": 145763,
+   "voters": 115769,
+   "turnout": 79.42,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C Moyinkutty",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 67,
+     "votes": 56386,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "George M Thomas",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 57,
+     "votes": 52553,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jose Kappattmala",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 3894,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "C T Ashraf",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 38,
+     "votes": 790,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K Moyinkutty",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 576,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "George Thomas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 574,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K P Basheer Haji",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 541,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Gafoor Puthuppady",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 440,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "type": "GEN",
+   "electors": 158057,
+   "voters": 119679,
+   "turnout": 75.72,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K Muhammedunni Haji",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 67,
+     "votes": 67998,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P C Naushad",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 42,
+     "votes": 39849,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr Kumari Sukumaran",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 61,
+     "votes": 6840,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdu Rahiman P T (Bappu)",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 50,
+     "votes": 2026,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "T K Mammunni Haji",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 72,
+     "votes": 1817,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "E P Madhavan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 730,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Noushad P",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 415,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "type": "GEN",
+   "electors": 141833,
+   "voters": 114444,
+   "turnout": 80.69,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.K.Basheer",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 51,
+     "votes": 58698,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Anver.P.V",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 47452,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.P. Baburaj Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 3448,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ashrafali Kaliyath",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 36,
+     "votes": 2700,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.P.Showkathali",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 45,
+     "votes": 2137,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "type": "GEN",
+   "electors": 174945,
+   "voters": 136390,
+   "turnout": 77.96,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Aryadan Mohammed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 75,
+     "votes": 66331,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Professor.M.Thomas Mathew",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 60733,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.C.Velayudhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 4425,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "C.G.Unni",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 43,
+     "votes": 2566,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thariyan Kiliyan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 62,
+     "votes": 1291,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Thomas Mathew",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 1012,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "type": "SC",
+   "electors": 180715,
+   "voters": 132650,
+   "turnout": 73.4,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A.P.Anilkumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 77580,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V. Ramesan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 39,
+     "votes": 48661,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kotheri Ayyappan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 2885,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Krishnan Eranhikkal",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 38,
+     "votes": 1682,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P. Anilkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 953,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "T.C.Theyyan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 849,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "type": "GEN",
+   "electors": 164144,
+   "voters": 116556,
+   "turnout": 71.01,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.M.Ummer",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 57,
+     "votes": 67594,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prof:p.Gouri",
+     "partyId": "CPI",
+     "sex": "F",
+     "age": 59,
+     "votes": 38515,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.G.Upendran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 6319,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jaleel Neelambra",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 55,
+     "votes": 2906,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Feroz Babu Ishtadanam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 653,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shamsudheen Aslami",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 26,
+     "votes": 566,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "type": "GEN",
+   "electors": 165042,
+   "voters": 134646,
+   "turnout": 81.58,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Manjalamkuzhi Ali",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 58,
+     "votes": 69730,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sasikumar",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 49,
+     "votes": 60141,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "C.K .Kunhimuhammed",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 1989,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Saidalikkutty@saeed Madani",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 45,
+     "votes": 1067,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohammed Ali",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 808,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "type": "GEN",
+   "electors": 164067,
+   "voters": 121265,
+   "turnout": 73.91,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T.A.Ahmed Kabeer",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 55,
+     "votes": 67756,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kadeeja Sathar",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 44,
+     "votes": 44163,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manikandan.K",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 4387,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr.C.H.Ashraf",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 44,
+     "votes": 3015,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anwar Babu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 1926,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "type": "GEN",
+   "electors": 167739,
+   "voters": 122306,
+   "turnout": 72.91,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P. Ubaidulla",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 51,
+     "votes": 77928,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Madathil Sadikali",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 40,
+     "votes": 33420,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Advocate: Sadik Naduthodi",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 41,
+     "votes": 3968,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K. Velayudhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 3841,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abu Thwahir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 2179,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Pookk Attil Ali Haji",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 909,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "type": "GEN",
+   "electors": 144317,
+   "voters": 99535,
+   "turnout": 68.97,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.K.Kunhalikutty",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 59,
+     "votes": 63138,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.P.Ismayil",
+     "partyId": "INL",
+     "sex": "M",
+     "age": 51,
+     "votes": 24901,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdul Majeed Faizi",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 40,
+     "votes": 4683,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Subrahmanian",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 3417,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K.P.Ismayil(Kalluparamba N)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 1615,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kunhalikutty.K.P.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 1079,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Safarudeen",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 405,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ismayil.K.T",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 292,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "type": "GEN",
+   "electors": 156307,
+   "voters": 113304,
+   "turnout": 72.49,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.K.N.A.Khader",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 61,
+     "votes": 57250,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.V. Sankaranarayanan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 39128,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Preman Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 11099,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Salam Moonniyur",
+     "partyId": "PDP",
+     "sex": "M",
+     "age": 33,
+     "votes": 2666,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Latheef",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 55,
+     "votes": 2571,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Neelakantan Chelari",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 590,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "type": "GEN",
+   "electors": 152896,
+   "voters": 100330,
+   "turnout": 65.62,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.K.Abdu Rabb",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 62,
+     "votes": 58666,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.K.K.Abdu Samad",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 30,
+     "votes": 28458,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sasidharan Punnassery",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 5480,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ibrahim Thirurangadi",
+     "partyId": "PDP",
+     "sex": "M",
+     "age": 40,
+     "votes": 4281,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adv.A.A.Rahim",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 36,
+     "votes": 2945,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abuyazar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 493,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "type": "GEN",
+   "electors": 133276,
+   "voters": 104111,
+   "turnout": 78.12,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdurahiman Randathani",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 50,
+     "votes": 51549,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "E.Jayan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 40,
+     "votes": 42116,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ravi Thelath",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 7304,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K.K.Majeed Khasimi",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 37,
+     "votes": 3137,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "type": "GEN",
+   "electors": 166314,
+   "voters": 126365,
+   "turnout": 75.98,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C Mammootty",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 51,
+     "votes": 69305,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P P Abdullakutty",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 68,
+     "votes": 45739,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P T Ali Haji",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 5543,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A.K Majeed Master",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 38,
+     "votes": 2696,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Alikutty Alias Bappu Puthanathani",
+     "partyId": "PDP",
+     "sex": "M",
+     "age": 38,
+     "votes": 1802,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohandas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 781,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "T Ayyappan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 487,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "type": "GEN",
+   "electors": 167498,
+   "voters": 118343,
+   "turnout": 70.65,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdussamad Samadani",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 52,
+     "votes": 69717,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr.C.P.K.Gurukkal",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 61,
+     "votes": 33815,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.K. Surendran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 7782,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ali Kadampuzha",
+     "partyId": "PDP",
+     "sex": "M",
+     "age": 44,
+     "votes": 3027,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adv.K.C.Naseer",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 32,
+     "votes": 2650,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kadampuzha Bindhu Devarajan",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 45,
+     "votes": 894,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Madathil Muhammad Ellias",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 458,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "type": "GEN",
+   "electors": 156486,
+   "voters": 122299,
+   "turnout": 78.15,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr.K.T. Jaleel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 57729,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. V.V. Prakash",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 50875,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nirmala Kuttikrishnan Punnakkal",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 54,
+     "votes": 7107,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nurul Hack",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 33,
+     "votes": 3116,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "V V Prakashan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 1351,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "T.A. Jaleel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 820,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "T.K. Jaleel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 768,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Nanda Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 531,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "type": "GEN",
+   "electors": 158680,
+   "voters": 121168,
+   "turnout": 76.36,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.Sreeramakrishnan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 43,
+     "votes": 57615,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P.T.Ajay Mohan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 53514,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V.T.Jayaprakash Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 5680,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Yahiya Koya Thangal",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 36,
+     "votes": 3250,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ajayan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 1099,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "type": "GEN",
+   "electors": 155638,
+   "voters": 122121,
+   "turnout": 78.46,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.V.T. Balram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 32,
+     "votes": 57848,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mammikutty. P",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 58,
+     "votes": 54651,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V. Ramankutty",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 72,
+     "votes": 5899,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Baburajan. O.T",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 43,
+     "votes": 1320,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.Mammikutty",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 902,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "P. Shamsudheen",
+     "partyId": "PDP",
+     "sex": "M",
+     "age": 38,
+     "votes": 590,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ramesan Perumannur",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 543,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "K Balaraman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 367,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "type": "GEN",
+   "electors": 153713,
+   "voters": 117834,
+   "turnout": 76.66,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C.P.Mohammed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 57728,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.P.Suresh Raj",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 40,
+     "votes": 45253,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pookkattiri Babu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 8874,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Adv.K.M. Asharaf",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 55,
+     "votes": 3742,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suresh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 754,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Asharaf Ali Vallappuzha",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 39,
+     "votes": 749,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Maseef Haji",
+     "partyId": "PDP",
+     "sex": "M",
+     "age": 45,
+     "votes": 718,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "type": "GEN",
+   "electors": 163885,
+   "voters": 120273,
+   "turnout": 73.39,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.S.Saleekha",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 50,
+     "votes": 59616,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Santha Jayaram",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 56,
+     "votes": 46123,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V.B.Muralidharan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 36,
+     "votes": 10562,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khalid.A",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 35,
+     "votes": 3065,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.C.Velayudhan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 58,
+     "votes": 894,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "type": "GEN",
+   "electors": 175066,
+   "voters": 131462,
+   "turnout": 75.09,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "M. Hamza",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 49,
+     "votes": 65023,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V.K. Sreekandan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 51820,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P. Venugopalan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 9631,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "E.S. Kajahussain",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 41,
+     "votes": 1933,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M. Hamza",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 1097,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.T.Padmini",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 37,
+     "votes": 947,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "N. Hamza",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 604,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Aravindan Karimpuzha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 379,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "type": "SC",
+   "electors": 155799,
+   "voters": 113501,
+   "turnout": 72.85,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.V.Vijayadas",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 51,
+     "votes": 52920,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P.Swaminathan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 49355,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V.Devayani",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 40,
+     "votes": 8467,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vijayadasan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 1543,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K. Velayudhan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 1198,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "type": "GEN",
+   "electors": 166275,
+   "voters": 121209,
+   "turnout": 72.9,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Advocate N. Samsudheen",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 41,
+     "votes": 60191,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V. Chamunni",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 62,
+     "votes": 51921,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "O.P. Vasudevanunni",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 5655,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Chamunni",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 1370,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Muhammed Gafoor Madani",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 30,
+     "votes": 1238,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ramakrishnan.A",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 39,
+     "votes": 820,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "type": "GEN",
+   "electors": 180648,
+   "voters": 136344,
+   "turnout": 75.47,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V.S.Achuthanandan.",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 87,
+     "votes": 77752,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lathika Subhash",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 47,
+     "votes": 54312,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.P. K. Majeed Pedikkatt",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 55,
+     "votes": 2772,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ravi Pallatheri",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 29,
+     "votes": 1480,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "type": "GEN",
+   "electors": 154374,
+   "voters": 112377,
+   "turnout": 72.8,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shafi Parambil",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 27,
+     "votes": 47641,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K. K. Divakaran",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 64,
+     "votes": 40238,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "C. Udaybhaskar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 22317,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shaji Abraham",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 637,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Hari Arumbil",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 27,
+     "votes": 490,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Muhammed Shafi (Shafi Purakara)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 377,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "C.Sampath",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 57,
+     "votes": 337,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Divakaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 310,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "type": "SC",
+   "electors": 149387,
+   "voters": 112297,
+   "turnout": 75.17,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A. K. Balan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 62,
+     "votes": 64175,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "N. Vinesh",
+     "partyId": "KECJ_KL",
+     "sex": "M",
+     "age": 31,
+     "votes": 38419,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M. Lakshmanan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 5385,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P.C.Narayanankutty",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2346,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K. Vinesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 1963,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "type": "GEN",
+   "electors": 167800,
+   "voters": 136223,
+   "turnout": 81.18,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.Achuthan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 69916,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "S. Subhash Chandrabose",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 38,
+     "votes": 57586,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "A.K.Omanakuttan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 4518,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K. Kaladharan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 1319,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "A.Muhamed Haneefa",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 38,
+     "votes": 1192,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "V. Lakshmi",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 32,
+     "votes": 626,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K.Achuthan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 570,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "A.Rajeena",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 27,
+     "votes": 472,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "type": "GEN",
+   "electors": 172069,
+   "voters": 134102,
+   "turnout": 77.94,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V. Chenthamarakshan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 50,
+     "votes": 64169,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M.V.Raghavan",
+     "partyId": "CMPKSC_KL",
+     "sex": "M",
+     "age": 77,
+     "votes": 55475,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "N. Sivarajan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 9123,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sakkeer Hussain",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 39,
+     "votes": 1809,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Chandran",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 1484,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sugunan.S",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 47,
+     "votes": 1279,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Joy Peter.T",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 50,
+     "votes": 735,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "type": "GEN",
+   "electors": 152827,
+   "voters": 116071,
+   "turnout": 75.95,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "M.Chandran",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 64,
+     "votes": 66977,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. K. Kusala Kumar",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 46,
+     "votes": 42236,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.A.Sulaiman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 5460,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P.D.Paulose",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 64,
+     "votes": 1372,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 61,
+   "type": "SC",
+   "electors": 173746,
+   "voters": 132947,
+   "turnout": 76.52,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.Radhakrishnan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 46,
+     "votes": 73683,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.B.Sasikumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 49007,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V.A.Krishnakumaran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 7056,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A. Subrahmanian",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 46,
+     "votes": 2224,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suresh Babu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 972,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 62,
+   "type": "GEN",
+   "electors": 174161,
+   "voters": 131346,
+   "turnout": 75.42,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Babu.M.Palissery",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 52,
+     "votes": 58244,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "C.P.John",
+     "partyId": "CMPKSC_KL",
+     "sex": "M",
+     "age": 53,
+     "votes": 57763,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.K.K.Aneeshkumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 11725,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K.P.Preman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 2059,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "John",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 860,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Unnikrishnan Varoli",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 693,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 63,
+   "type": "GEN",
+   "electors": 178144,
+   "voters": 128280,
+   "turnout": 72.01,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.V.Abdul Khader",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 47,
+     "votes": 62246,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Asharaf Kokkur",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 55,
+     "votes": 52278,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dayanandan Mampully",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 9306,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Asharafvadakoot",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 40,
+     "votes": 2187,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adv. Shameerbabu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 1017,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.V.Abdulkhader",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 415,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vijayanath",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 353,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "C.V.Premraj",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 43,
+     "votes": 242,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Muhammed Asharaf",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 232,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 64,
+   "type": "GEN",
+   "electors": 189976,
+   "voters": 139509,
+   "turnout": 73.44,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.A. Madhavan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 63077,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Baby John",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 59,
+     "votes": 62596,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.M. Gopinathan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 10543,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P.K. Usman",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 34,
+     "votes": 2293,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suresh Tachappilly",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 51,
+     "votes": 594,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Aravindakshan M.K.",
+     "partyId": "KJ",
+     "sex": "M",
+     "age": 62,
+     "votes": 388,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 65,
+   "type": "GEN",
+   "electors": 176069,
+   "voters": 139227,
+   "turnout": 79.08,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C.N.Balakrishnan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 76,
+     "votes": 67911,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "N.R.Balan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 61,
+     "votes": 61226,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shajumon Vattekad",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 7451,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Govindan Machad",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 58,
+     "votes": 1419,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Balakrishnan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 1177,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 66,
+   "type": "GEN",
+   "electors": 176875,
+   "voters": 131718,
+   "turnout": 74.47,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "M.P. Vincent",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 64823,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajaji Mathew Thomas",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 56,
+     "votes": 58576,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sundararajan Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 6761,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Suresh M.R.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 717,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sunny K. John",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 77,
+     "votes": 434,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ratheesh T. Nair",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 407,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 67,
+   "type": "GEN",
+   "electors": 161886,
+   "voters": 112839,
+   "turnout": 69.7,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.Therambil Ramakrishnan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 69,
+     "votes": 59991,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P. Balachandran",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 48,
+     "votes": 43822,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. Ravikumar Uppath",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 6697,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Therambil Ramakrishnan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 1405,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adv. A. Jayaram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 879,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 68,
+   "type": "SC",
+   "electors": 179535,
+   "voters": 128590,
+   "turnout": 71.62,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Geetha Gopi",
+     "partyId": "CPI",
+     "sex": "F",
+     "age": 37,
+     "votes": 64555,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vikas Chakrapani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 48501,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sarju Thoyakkavu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 11144,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dinesh Kumar.E.V",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 1636,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.S.Vasanthy",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 34,
+     "votes": 826,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "P.K.Subramanian",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 600,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "N.V.Mani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 513,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "C.K.Chandran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 497,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Pushpakaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 310,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 69,
+   "type": "GEN",
+   "electors": 151356,
+   "voters": 117129,
+   "turnout": 77.39,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.V S Sunilkumar",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 43,
+     "votes": 58789,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Umesh Challiyil",
+     "partyId": "JPSS_KL",
+     "sex": "M",
+     "age": 49,
+     "votes": 45219,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "A N Radhakrishnan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 10716,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M M Manoj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 937,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P A Kuttappan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 53,
+     "votes": 811,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "C U Nimi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 638,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 70,
+   "type": "GEN",
+   "electors": 174214,
+   "voters": 132383,
+   "turnout": 75.99,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.Thomas Unniyadan",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 52,
+     "votes": 68445,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. K.R.Vijaya",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 41,
+     "votes": 56041,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K. C. Venu Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 6672,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "T V Sivadasan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 772,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Subramanian",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 449,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 71,
+   "type": "GEN",
+   "electors": 176055,
+   "voters": 138261,
+   "turnout": 78.53,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Prof: C. Raveendranath",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 55,
+     "votes": 73047,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. K. P. Viswanathan,",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 70,
+     "votes": 46565,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sobha Surendran,",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 35,
+     "votes": 14425,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P. J. Monsy,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 2084,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.C.Pushpakaran,",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 1013,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Paulson Kalloor,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 622,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K. V. Purushothaman,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 495,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 72,
+   "type": "GEN",
+   "electors": 172679,
+   "voters": 132060,
+   "turnout": 76.48,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Devassy.B.D.",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 60,
+     "votes": 63610,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Benny.K.T.",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 61061,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.Sudheer Baby",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 5976,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pushpangadan P.M",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 681,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Subramanian.V.K.",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 451,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jayakumar.E.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 258,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 73,
+   "type": "GEN",
+   "electors": 169056,
+   "voters": 128735,
+   "turnout": 76.15,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T.N.Prathapan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 64495,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.G.Sivanandhan",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 48,
+     "votes": 55063,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "I.R.Vijayan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 6732,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ambily Unnikrishnan",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 35,
+     "votes": 624,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Haridas.K.B",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 461,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajesh Appatt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 377,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ally Ravi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 45,
+     "votes": 343,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Suja Antony",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 30,
+     "votes": 330,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "T.U.Radhakrishnan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 289,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 74,
+   "type": "GEN",
+   "electors": 154432,
+   "voters": 125743,
+   "turnout": 81.42,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Saju Paul",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 44,
+     "votes": 59628,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.Jaison Joseph",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 56246,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "O. C. Asokan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 5464,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "O.Aliyar",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 64,
+     "votes": 2401,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "N.K. Muhammed Haji",
+     "partyId": "PDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 1094,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "P.N.Sunilkumar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 38,
+     "votes": 494,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bindu Jayan",
+     "partyId": "CPIML",
+     "sex": "F",
+     "age": 31,
+     "votes": 412,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 75,
+   "type": "GEN",
+   "electors": 152370,
+   "voters": 124087,
+   "turnout": 81.44,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Advocate Jose Thettayil",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 60,
+     "votes": 61500,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Advocate Johny Nelloor",
+     "partyId": "KECJ_KL",
+     "sex": "M",
+     "age": 60,
+     "votes": 54330,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M.A.Brahmaraj",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 4117,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Johnson. I.T. (Inchakadan Johny)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1374,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.G.Purushothaman",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 774,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Poulose Kidangen",
+     "partyId": "KJ",
+     "sex": "M",
+     "age": 68,
+     "votes": 518,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K.C.Jayan",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 45,
+     "votes": 514,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Francis Njaliyan",
+     "partyId": "SJP2",
+     "sex": "M",
+     "age": 47,
+     "votes": 482,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Johnson",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "John Chacko",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 229,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 76,
+   "type": "GEN",
+   "electors": 158819,
+   "voters": 127874,
+   "turnout": 80.52,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Anwar Sadath",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 64244,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A.M. Yousaf",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 59,
+     "votes": 51030,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M.N.Gopi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 8264,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Roy Arackal",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 42,
+     "votes": 1684,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.M. Yoosaf Mundakkal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 829,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anwar Sadath Panackaparambil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 547,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K.Y.Kunjumon",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 38,
+     "votes": 479,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Azeez",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 473,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Antony Joseph Manjooran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 182,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "K.K. Sobha",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 45,
+     "votes": 138,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 77,
+   "type": "GEN",
+   "electors": 165107,
+   "voters": 131702,
+   "turnout": 79.77,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V. K. Ebrahim Kunju",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 58,
+     "votes": 62843,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K. Chandran Pillai",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 54,
+     "votes": 55054,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.P.Krishnadas",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 8438,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P.A. Muhammed Aslam",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 47,
+     "votes": 2104,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "T.A. Mujeeb Rahman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 1236,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chandrasekhara Pillai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 657,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gireesh Babu. G.",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 508,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shibu Thattampadi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 505,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "D. Sundara Moorthy",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 34,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "K.P. Mohanan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 145,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 78,
+   "type": "GEN",
+   "electors": 171172,
+   "voters": 144127,
+   "turnout": 84.2,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.V.D.Satheesan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 74632,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pannian Raveednran",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 61,
+     "votes": 63283,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "E.S. Purushothaman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 3934,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K.K. Jyothivas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 754,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.S. Rajendra Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 614,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "P. P. Raveendran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 493,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "M. Manoj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 28,
+     "votes": 414,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 79,
+   "type": "GEN",
+   "electors": 152040,
+   "voters": 120732,
+   "turnout": 79.41,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "S.Sarma",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 56,
+     "votes": 60814,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ajay Tharayil",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 55572,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "T.G.Surendran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2930,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "T.K.Sivanandan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 56,
+     "votes": 546,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Santhosh Sarma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 490,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Benny Joseph",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 374,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 80,
+   "type": "GEN",
+   "electors": 158548,
+   "voters": 105601,
+   "turnout": 66.61,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dominic Presentation",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 56352,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M.C.Josephine",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 61,
+     "votes": 39849,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K. Sasidharan Master",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 5480,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Yoosuf Mufthi",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 45,
+     "votes": 1992,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dominic. C.J.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 590,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kamarudheen. T. A.",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 482,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "A.P. Ibrahim Kutty",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 394,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Adv. Jacob Pulikkan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 258,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "T.A. Krishnan Kutty",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 195,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 81,
+   "type": "GEN",
+   "electors": 171652,
+   "voters": 131059,
+   "turnout": 76.35,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.Babu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 69886,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "C.M.Dinesh Mani",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 60,
+     "votes": 54108,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.Sabu Vargheese",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 4942,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kartikeyan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 56,
+     "votes": 826,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Babu Keezhathuparambu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 330,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Saju Kolattukudy",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 327,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Saji Thuruthikunnel",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 39,
+     "votes": 316,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "P.K. Thankamani",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 47,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "K.P. Ayyappan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 105,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 82,
+   "type": "GEN",
+   "electors": 136722,
+   "voters": 97297,
+   "turnout": 71.16,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hibi Eden",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 27,
+     "votes": 59919,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Sebastian Paul",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 27482,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "C.G. Rajagopal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 6362,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sebastian Njalamkunnel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 2347,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Iqbal Thamarassery",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 742,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "T.R. Vasudevan",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 43,
+     "votes": 445,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 83,
+   "type": "GEN",
+   "electors": 159877,
+   "voters": 117932,
+   "turnout": 73.76,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Benny Behanan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 65854,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M.E. Hassainar",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 60,
+     "votes": 43448,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "N.Saji Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 5935,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Hassainar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 933,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Salam Parakkadan",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 55,
+     "votes": 869,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Benny George",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 410,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shereef Thankayathil",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 404,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 84,
+   "type": "SC",
+   "electors": 153102,
+   "voters": 128037,
+   "turnout": 83.63,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V.P. Sajeendran",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 63624,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M. A. Surendran",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 42,
+     "votes": 54892,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M. Ravi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 5862,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M. K. Manoj Kumar",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 45,
+     "votes": 2969,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajeev. P. T.",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 625,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 85,
+   "type": "GEN",
+   "electors": 176302,
+   "voters": 139936,
+   "turnout": 79.37,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T. M. Jacob",
+     "partyId": "KECJ_KL",
+     "sex": "M",
+     "age": 60,
+     "votes": 66503,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M.J.Jacob",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 66,
+     "votes": 66346,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M.N. Madhu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 4234,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Joshy Joseph",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 29,
+     "votes": 979,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sabu Kunjappan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 958,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "M.K. Usha",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 42,
+     "votes": 908,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 86,
+   "type": "GEN",
+   "electors": 154440,
+   "voters": 116273,
+   "turnout": 75.29,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Joseph Vazhackkan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 58012,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Babu Paul",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 55,
+     "votes": 52849,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jiji Joseph",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 4367,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Biju Sreedharan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 546,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Boby Kalloor",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 487,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 87,
+   "type": "GEN",
+   "electors": 144256,
+   "voters": 107446,
+   "turnout": 74.48,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shev.T.U.Kuruvilla",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 74,
+     "votes": 52924,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Commander Skariah Thomas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 40702,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. K.Radhakrishnan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 5769,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shine Muhammed",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 33,
+     "votes": 4691,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Skaria Thomas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 1008,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "T. T. Kuruvila",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 718,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Devaki Narayanan",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 46,
+     "votes": 524,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Joy Davasia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 419,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Skaria Thomman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 73,
+     "votes": 363,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Somini Prabhakaran",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 41,
+     "votes": 319,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 88,
+   "type": "SC",
+   "electors": 147855,
+   "voters": 107070,
+   "turnout": 72.42,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "S. Rajendran",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 47,
+     "votes": 51849,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A.K.Moni",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 47771,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "S Rajagopal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 3582,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Selvaraj Madaswami",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1060,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "T. C. Thankappan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 64,
+     "votes": 913,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mallika",
+     "partyId": "AIADMK",
+     "sex": "F",
+     "age": 33,
+     "votes": 646,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Raju Ayyappan",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 52,
+     "votes": 628,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "P. K. Mani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 336,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Manikandan K",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 274,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 89,
+   "type": "GEN",
+   "electors": 153563,
+   "voters": 110570,
+   "turnout": 72,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.K.Jayachandran",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 59,
+     "votes": 56923,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.Jossy Sebastian",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 47090,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Narayana Raju",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 3836,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Muhammed Sharafudheen",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 36,
+     "votes": 1331,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Benny Thomas",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 714,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.C.Mammachan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 669,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 90,
+   "type": "GEN",
+   "electors": 177529,
+   "voters": 127760,
+   "turnout": 71.97,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.J.Joseph",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 69,
+     "votes": 66325,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prof. Joseph Augustine",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 43457,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.M.Velayudhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 10049,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M. A. Najeeb",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 36,
+     "votes": 5386,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Binu Sebastian",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 677,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "C. R. Dileep Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 655,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "T. S. Sreenivasan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 482,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Jomon John",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 282,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Siby C Mathew",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 37,
+     "votes": 246,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shibu Mon",
+     "partyId": "KJ",
+     "sex": "M",
+     "age": 32,
+     "votes": 179,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 91,
+   "type": "GEN",
+   "electors": 169984,
+   "voters": 119837,
+   "turnout": 70.5,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Roshy Augustine,",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 41,
+     "votes": 65734,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "C.V.Varghese,",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 50,
+     "votes": 49928,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "C.C.Krishnan,",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 3013,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kanchiyar Peethambaran,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 389,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.C.Prabhakaran,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 325,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "M.K.Narayanan,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 75,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "V.Lakshmanan,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 158,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 92,
+   "type": "GEN",
+   "electors": 165380,
+   "voters": 115223,
+   "turnout": 69.67,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "E. S. Bijimol",
+     "partyId": "CPI",
+     "sex": "F",
+     "age": 39,
+     "votes": 56748,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.E.M.Augusthy",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 51971,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P. P. Sanu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 3380,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M.K. Suppu Royal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 694,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K.D. Vasudevan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 667,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Biju Mattappally",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 31,
+     "votes": 641,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "P. S. Madhu",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 64,
+     "votes": 437,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Augusthy. M",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 359,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Joseph Jacob",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 307,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 93,
+   "type": "GEN",
+   "electors": 169192,
+   "voters": 124669,
+   "turnout": 73.68,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.M.Mani",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 79,
+     "votes": 61239,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mani.C.Kappen",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 54,
+     "votes": 55980,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Prof.B.Vijayakumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 6359,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "C.V John",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 576,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "James Joseph",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 465,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 94,
+   "type": "GEN",
+   "electors": 171486,
+   "voters": 122052,
+   "turnout": 71.17,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.Mons Joseph",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 46,
+     "votes": 68787,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Stephen George",
+     "partyId": "KCAMG",
+     "sex": "M",
+     "age": 47,
+     "votes": 45730,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.G.Bijukumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 5340,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M.D.Thomas",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 2169,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 95,
+   "type": "SC",
+   "electors": 153205,
+   "voters": 121267,
+   "turnout": 79.15,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K. Ajith",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 39,
+     "votes": 62603,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A Saneeshkumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 52035,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ramesh Kavimattam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 4512,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K. Sanesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 691,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P. K. Prakasan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 645,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K. S. Sasikala",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 41,
+     "votes": 412,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "M. K. Dasan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 367,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 96,
+   "type": "GEN",
+   "electors": 150807,
+   "voters": 118402,
+   "turnout": 78.51,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv. K. Suresh Kurup",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 54,
+     "votes": 57381,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thomas Chazhikadan",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 58,
+     "votes": 55580,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V.G. Gopakumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 3385,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K.T. Thomas",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 763,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Justin Mathew",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 466,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "E.V. Prakash",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 29,
+     "votes": 454,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anish Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 228,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 97,
+   "type": "GEN",
+   "electors": 148225,
+   "voters": 114933,
+   "turnout": 77.54,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thiruvanchoor Radhakrishnan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 53825,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V.N.Vasavan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 56,
+     "votes": 53114,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.Narayanan Namboothiri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 5449,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V.S. Shajan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 1737,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajeev Abraham",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 387,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "N.K. Biju",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 43,
+     "votes": 276,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "George.P.Elias",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 113,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 98,
+   "type": "GEN",
+   "electors": 157222,
+   "voters": 117060,
+   "turnout": 74.46,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Oommen Chandy",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 67,
+     "votes": 69922,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Suja Susan George",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 49,
+     "votes": 36667,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.Sunilkumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 6679,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Adv. Saji K Cheraman",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 3230,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adv. Jayakumar Kavunkal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 537,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 99,
+   "type": "GEN",
+   "electors": 149193,
+   "voters": 108257,
+   "turnout": 72.56,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C.F Thomas",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 71,
+     "votes": 51019,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr.B.Ekbal",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 63,
+     "votes": 48465,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M.B.Rajagopal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 6281,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mathews John",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 1058,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mansoor",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 44,
+     "votes": 907,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.Sadanandan",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 39,
+     "votes": 281,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Naseer.K.M",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 246,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 100,
+   "type": "GEN",
+   "electors": 161648,
+   "voters": 113172,
+   "turnout": 70.01,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. N.Jayaraj",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 55,
+     "votes": 57021,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. Suresh.T.Nair",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 31,
+     "votes": 44815,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajamohan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 8037,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Adv. P.K.Geetha Krishnan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 3268,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 101,
+   "type": "GEN",
+   "electors": 167928,
+   "voters": 117810,
+   "turnout": 70.16,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P C George, Plathottam",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 60,
+     "votes": 59809,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv Mohan Thomas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 44105,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K M Santhoshkumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 5010,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V M Sulaiman Moulavi",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 50,
+     "votes": 3579,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P P Joshy",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 2956,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sivan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 524,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "P K Divakaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 455,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "P C Geroge, Ponnattu Puthenpurayil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 417,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "K Rajappan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 280,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Raju Vattappara",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 51,
+     "votes": 243,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mano George",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Anoop Bhaskaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Anil Mathew",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 107,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 102,
+   "type": "GEN",
+   "electors": 174130,
+   "voters": 146678,
+   "turnout": 84.23,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.Am.Ariff",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 46,
+     "votes": 76675,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A.A.Shukoor",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 59823,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "T.Sajeev Lal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 7486,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V.Lenin",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 58,
+     "votes": 787,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suresh Babu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 776,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jayaprakash",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 30,
+     "votes": 476,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "S.Sarath",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 378,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Adv.P.T.Radhakrishnan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 275,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 103,
+   "type": "GEN",
+   "electors": 190806,
+   "voters": 162345,
+   "turnout": 85.08,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.Thilothaman",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 54,
+     "votes": 86193,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.R.Gouriamma",
+     "partyId": "JPSS_KL",
+     "sex": "F",
+     "age": 91,
+     "votes": 67878,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. P.K.Binoy",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 5933,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K.R.Rajeevan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 37,
+     "votes": 1185,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shajimon",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 1094,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 104,
+   "type": "GEN",
+   "electors": 173942,
+   "voters": 141247,
+   "turnout": 81.2,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr.T.M.Thomas Isaac",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 58,
+     "votes": 75857,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.P.J.Mathew",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 59515,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kottaram Unnikrishnan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 3540,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "T.M.Samad",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 44,
+     "votes": 1158,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sebastian",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 646,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "C.P.Thilakan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 527,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 105,
+   "type": "GEN",
+   "electors": 146890,
+   "voters": 117036,
+   "turnout": 79.68,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "G.Sudhakaran",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 64,
+     "votes": 63728,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.M.Liju",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 32,
+     "votes": 47148,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.K.Vasudevan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 2668,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "S.H.Alhadhi",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 65,
+     "votes": 1852,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Omanakuttan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 672,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.R.Sasi",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 52,
+     "votes": 415,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sivakumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 24,
+     "votes": 347,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Nazeer Ahammed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 136,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 106,
+   "type": "GEN",
+   "electors": 150213,
+   "voters": 118123,
+   "turnout": 78.64,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thomas Chandy",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 62,
+     "votes": 60010,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr.K.C.Joseph",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 62,
+     "votes": 52039,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.Soman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 4395,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shibu Vadakkettom",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 697,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.R.Satheesan",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 39,
+     "votes": 373,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Joseph",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 361,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Asok Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 235,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 107,
+   "type": "GEN",
+   "electors": 171834,
+   "voters": 134745,
+   "turnout": 78.42,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ramesh Chennithala",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 67378,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "G.Krishnaprasad",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 34,
+     "votes": 61858,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.Ajith Sankar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 3145,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rameshan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 499,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Somalal Babu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 62,
+     "votes": 425,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Krishnaprasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 339,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Venu",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 40,
+     "votes": 327,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "K.J.Sheela",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 44,
+     "votes": 305,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Biju.J",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 233,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "N.Divakaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 171,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 108,
+   "type": "GEN",
+   "electors": 182036,
+   "voters": 139684,
+   "turnout": 76.73,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C.K.Sadasivan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 58,
+     "votes": 67409,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M.Murali",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 66094,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. T.O.Noushad",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 3083,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K. Sadasivan,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 744,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Murali",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 704,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ambujan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 602,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shal Mohan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 585,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kalesh Manimandiram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 405,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 109,
+   "type": "SC",
+   "electors": 177789,
+   "voters": 133721,
+   "turnout": 75.21,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "R. Rajesh",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 29,
+     "votes": 65903,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.K Shaju",
+     "partyId": "JPSS_KL",
+     "sex": "M",
+     "age": 48,
+     "votes": 60754,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "S. Girija",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 39,
+     "votes": 4984,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "R.Rajeesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 1185,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Subhash Mankamkuzhy",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 860,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 110,
+   "type": "GEN",
+   "electors": 176875,
+   "voters": 125374,
+   "turnout": 70.88,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.C.Vishnunath",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 65156,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.C.S.Sujatha",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 45,
+     "votes": 52656,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "B. Radhakrishna Menon",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 6062,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Surendran Karippuzha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 848,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "V.Venugopal",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 41,
+     "votes": 623,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 111,
+   "type": "GEN",
+   "electors": 193874,
+   "voters": 126654,
+   "turnout": 65.33,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv Mathew T Thomas",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 49,
+     "votes": 63289,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Victor T Thomas",
+     "partyId": "KECM",
+     "sex": "M",
+     "age": 50,
+     "votes": 52522,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajan Moolaveettil",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 7656,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Adv Kurian Joseph",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 1511,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Radhamani. S",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 47,
+     "votes": 456,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kathikan Niranam Rajan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 439,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Adv P K Sukumaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 398,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sam Kutty Jacob",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 66,
+     "votes": 371,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 112,
+   "type": "GEN",
+   "electors": 175669,
+   "voters": 120409,
+   "turnout": 68.54,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raju Abrham",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 49,
+     "votes": 58391,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Peelipose Thomas",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 51777,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh Kadambari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 7442,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V D Saji Mon",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 1300,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adv. Ibrahim Kuttty",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 34,
+     "votes": 905,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "S Radhakrishnan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 350,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ulakan Thevan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 73,
+     "votes": 196,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 113,
+   "type": "GEN",
+   "electors": 207229,
+   "voters": 136012,
+   "turnout": 65.63,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.K.Sivadasan Nair",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 64845,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.C.Rajagopalan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 67,
+     "votes": 58334,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. K.Haridas",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 10227,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Amruthakumar.T",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 721,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nazurudheen",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 38,
+     "votes": 709,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sugathan.R",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 387,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "D. Sivadasan Achari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 343,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Madhu.G",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Adv. K.V. Varghese",
+     "partyId": "SLAP",
+     "sex": "M",
+     "age": 49,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Pushpangadan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 69,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 114,
+   "type": "GEN",
+   "electors": 182384,
+   "voters": 131070,
+   "turnout": 71.86,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv. Adoor Prakash",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 65724,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M. S. Rajendran",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 42,
+     "votes": 57950,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V. S. Harish Chandran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 5994,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sinto Stephen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 655,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thattayil Saraswathi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 43,
+     "votes": 276,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Lekshmi R Sekhar",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 27,
+     "votes": 247,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Renjini C T",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 30,
+     "votes": 207,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 115,
+   "type": "SC",
+   "electors": 194014,
+   "voters": 135060,
+   "turnout": 69.61,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chittayam Gopakumar",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 45,
+     "votes": 63501,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pandalam Sudhakaran",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 62894,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.K.Sasi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 6210,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Olikkulangara Surendran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 994,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kodumon Ramachandran",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 519,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Piravanthoor Sreedharan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 462,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Remanan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 315,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anil.K.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 162,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 116,
+   "type": "GEN",
+   "electors": 182508,
+   "voters": 137809,
+   "turnout": 75.51,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "C. Divakaran",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 67,
+     "votes": 69086,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. A. N. Rajanbabu",
+     "partyId": "JPSS_KL",
+     "sex": "M",
+     "age": 62,
+     "votes": 54564,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nazarudheen Elamaram",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 44,
+     "votes": 7645,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Malumel Suresh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 5097,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.D. Sudheer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 868,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Twinkle Prabhakaran",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 33,
+     "votes": 547,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 117,
+   "type": "GEN",
+   "electors": 159655,
+   "voters": 127077,
+   "turnout": 79.59,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shibu Baby John",
+     "partyId": "KRSP_KL",
+     "sex": "M",
+     "age": 47,
+     "votes": 65002,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "N.K.Premachandran",
+     "partyId": "RSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 58941,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nalini Sankaramangalam",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 54,
+     "votes": 2026,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Maniyan.G.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 567,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "V. Varadharajan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 59,
+     "votes": 532,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 118,
+   "type": "SC",
+   "electors": 194463,
+   "voters": 144072,
+   "turnout": 74.09,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kovoor Kunjumon",
+     "partyId": "RSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 71923,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P.K. Ravi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 59835,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Raji Prasad",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 28,
+     "votes": 5949,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thulaseedharan Pallikkal",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 42,
+     "votes": 2310,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adv. Vallikunnam Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 1354,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Pulikuzhy Balachandran",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 1145,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shylaja. P",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 27,
+     "votes": 611,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ravi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 525,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "V. Remadevi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 39,
+     "votes": 266,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 119,
+   "type": "GEN",
+   "electors": 184917,
+   "voters": 137463,
+   "turnout": 74.34,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv:p.Aisha Potty",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 54,
+     "votes": 74069,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr:n.N.Murali",
+     "partyId": "KECB",
+     "sex": "M",
+     "age": 58,
+     "votes": 53477,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vayakkal Madhu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 6370,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dhaneshlal Panavely",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 1063,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.T.Prasanna Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 911,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "S. Solomon",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 773,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Prakash V",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 454,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Prakash R",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 320,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 120,
+   "type": "GEN",
+   "electors": 172946,
+   "voters": 128372,
+   "turnout": 74.23,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.B Ganesh Kumar",
+     "partyId": "KECB",
+     "sex": "M",
+     "age": 45,
+     "votes": 71421,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K. Rajagopal",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 59,
+     "votes": 51019,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "R. Subhash Pattazhy",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 2839,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Aneesh Antony",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 1613,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Punalur Salim",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 864,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "N. Sunilkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 611,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 121,
+   "type": "GEN",
+   "electors": 189994,
+   "voters": 133257,
+   "turnout": 70.14,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.K.Raju",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 56,
+     "votes": 72648,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.Johnson Abraham",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 54643,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "B.Radhamani",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 54,
+     "votes": 4155,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "S.Jayakumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 699,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kuzhichayil Sunil",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 606,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "S.Shailaja",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 42,
+     "votes": 494,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 122,
+   "type": "GEN",
+   "electors": 177610,
+   "voters": 127480,
+   "turnout": 71.78,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mullakkara Ratnakaran",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 56,
+     "votes": 71231,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shahida Kamal",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 43,
+     "votes": 47607,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "T.C.Saju Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 4160,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jaleel Kadakkal",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 37,
+     "votes": 1800,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shibu.K. Chadayamangalam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 1078,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Koottukkal Prasad",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 996,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Oyoor Nazeer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 557,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 123,
+   "type": "GEN",
+   "electors": 178990,
+   "voters": 127944,
+   "turnout": 71.48,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "M.A. Baby",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 57,
+     "votes": 67135,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv:p.Jermias",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 52342,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vellimon Dileep",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 5990,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sandhya Pallimon",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 27,
+     "votes": 957,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suseela Mohan",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 45,
+     "votes": 947,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Antony Vincent",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 50,
+     "votes": 553,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 124,
+   "type": "GEN",
+   "electors": 160475,
+   "voters": 114028,
+   "turnout": 71.06,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.K.Gurudasan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 75,
+     "votes": 57986,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.C.Rajan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 49446,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "G.Hari.",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 4207,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A.A. Shafi",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 67,
+     "votes": 1168,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mangad Thulaseedharan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 507,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanu.K",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 372,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "C.N.Narayanan Nair",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "V. Mohanan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 141,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 125,
+   "type": "GEN",
+   "electors": 153575,
+   "voters": 104673,
+   "turnout": 68.16,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A.A. Azeez",
+     "partyId": "RSP",
+     "sex": "M",
+     "age": 69,
+     "votes": 51271,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P.K.K. Bava",
+     "partyId": "IUML",
+     "sex": "M",
+     "age": 62,
+     "votes": 43259,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pattathanam Babu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 5048,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mylakkad Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 3234,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sushama Vijayan",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 53,
+     "votes": 580,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abdul Azeez",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 552,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Saiju V.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 391,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Deepu. N.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 310,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 126,
+   "type": "GEN",
+   "electors": 160688,
+   "voters": 114305,
+   "turnout": 71.13,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "G.S.Jayalal",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 39,
+     "votes": 60187,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv: Bindu Krishna",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 38,
+     "votes": 47598,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv:kizhakkanela Sudhakaran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 3839,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A.Sasi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 1134,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jayalal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 763,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mailode Sudhan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 490,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sasikumar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 49,
+     "votes": 287,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 127,
+   "type": "GEN",
+   "electors": 151930,
+   "voters": 110232,
+   "turnout": 72.55,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Varkala Kahar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 57755,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A.A.Rahim",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 30,
+     "votes": 47045,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Elakaman Satheesan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 3430,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Cherunniyoor Ganesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 927,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kunnil Shajahan",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 37,
+     "votes": 795,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Aneesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 275,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 128,
+   "type": "SC",
+   "electors": 171684,
+   "voters": 114650,
+   "turnout": 66.78,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Advocate. B. Satyan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 45,
+     "votes": 63558,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thankamony Divakaran",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 54,
+     "votes": 33493,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Attingal Suresh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 7857,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr.P.P. Vava",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 4844,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "V.V.Selvaraj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 1713,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K. G. Soman",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 55,
+     "votes": 1561,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dr.M.Chinnamma",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 56,
+     "votes": 1235,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "G.Anirudhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 377,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 129,
+   "type": "SC",
+   "electors": 169988,
+   "voters": 112616,
+   "turnout": 66.25,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V.Sasi",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 60,
+     "votes": 59601,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K.Vidyadharan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 47376,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Aythiyoor Surendran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 2078,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anil Mangalapuram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 1414,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sajimon Chelayam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 1277,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anilkumar.B",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 857,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 130,
+   "type": "GEN",
+   "electors": 175795,
+   "voters": 124933,
+   "turnout": 71.07,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Palode Ravi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 59789,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.P. Ramachandran Nair",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 59,
+     "votes": 54759,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Anjana.K.S",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 40,
+     "votes": 5971,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Andoorkonam Sulfi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1255,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Noorjahan.A.",
+     "partyId": "SDPOI",
+     "sex": "F",
+     "age": 39,
+     "votes": 1200,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Idamma.N.",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 50,
+     "votes": 731,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vazhode Ravi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 346,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Biju.A.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 342,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Anad.G.Ramachandran Nair",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 277,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Saji",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 237,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 131,
+   "type": "GEN",
+   "electors": 174408,
+   "voters": 123393,
+   "turnout": 70.75,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Koliakode.N. Krishnan Nair",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 73,
+     "votes": 57381,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.C.Mohanachandran",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 55145,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Karette Sivaprasad",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 5228,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Adv. Pirappankode Shajahan",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 40,
+     "votes": 2225,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Seleena Prakkanam",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 32,
+     "votes": 1613,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sasi R Cheraman",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 867,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Irinchayam Suresh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 437,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Krishnan Nair",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 275,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bharathannoor Balan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 205,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 132,
+   "type": "GEN",
+   "electors": 163199,
+   "voters": 109520,
+   "turnout": 67.11,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv. M. A. Vaheed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 50787,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "C Ajayakumar",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 55,
+     "votes": 48591,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. Padmakumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 7508,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M Wahid",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 986,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K Bhuvanendran Chettiar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 678,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "M.A. Jaleel",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 51,
+     "votes": 418,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sudarshanan S",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 325,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "K Ajithkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 205,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 133,
+   "type": "GEN",
+   "electors": 175398,
+   "voters": 112675,
+   "turnout": 64.24,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.Muralidharan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 56531,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Cheriyan Philip",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 40364,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv.V.V.Rajesh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 13494,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kaithakodu Radhakrishnan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 62,
+     "votes": 915,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Cheriyan.P.T",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 551,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajan.K",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 488,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "G.Balakrishnan Nair",
+     "partyId": "KJ",
+     "sex": "M",
+     "age": 68,
+     "votes": 294,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 134,
+   "type": "GEN",
+   "electors": 177442,
+   "voters": 107152,
+   "turnout": 60.39,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adv.V.S.Sivakumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 49122,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V.Surendran Pillai",
+     "partyId": "KCAMG",
+     "sex": "M",
+     "age": 55,
+     "votes": 43770,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "B.K.Shekhar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 11519,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdu Razak. A",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 64,
+     "votes": 807,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P.Surendran Pillai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 518,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "S.Sivakumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 485,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "P.S Gopakumar",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 40,
+     "votes": 235,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "N.Sivakumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 221,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sundaran Pillai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 207,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "C.Vasantha Kumari",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 55,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "George Mankidian",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 98,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 135,
+   "type": "GEN",
+   "electors": 172493,
+   "voters": 116608,
+   "turnout": 67.6,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V.Sivankutty",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 56,
+     "votes": 50076,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "O.Rajagopal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 81,
+     "votes": 43661,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Charupara Ravi",
+     "partyId": "SJD_KL",
+     "sex": "M",
+     "age": 62,
+     "votes": 20248,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jain Wilson",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 964,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "O.Maheen",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 667,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Thiruvallam Sreekantan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 338,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "J.Vikraman",
+     "partyId": "DPSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 303,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ramachandran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 217,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 136,
+   "type": "GEN",
+   "electors": 165638,
+   "voters": 116432,
+   "turnout": 70.29,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "G. Karthikeyen",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 56797,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ambalathara Sreedharan Nair",
+     "partyId": "RSP",
+     "sex": "M",
+     "age": 71,
+     "votes": 46123,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sivankutty . C",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 7694,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A. Balan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 1746,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adv. Poovathoor .S.Rajeev",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 972,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanil V O",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 913,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "R.Rajappan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 753,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Karakulam Sathyakumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 651,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "S. Sreekumar",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 36,
+     "votes": 525,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Latha B Vellumannadi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 30,
+     "votes": 244,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 137,
+   "type": "GEN",
+   "electors": 188442,
+   "voters": 135297,
+   "turnout": 71.8,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A.T. George",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 60578,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Anavoor Nagappan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 62,
+     "votes": 60073,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adv. S. Suresh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 10310,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "J.Sudhakaran",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 62,
+     "votes": 2269,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "T.K.Viswambharan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 1207,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ooruttukala Anikumar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 38,
+     "votes": 774,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 138,
+   "type": "GEN",
+   "electors": 166306,
+   "voters": 117362,
+   "turnout": 70.57,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "N Sakthan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 52368,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv. M.V.Jayadali",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 33,
+     "votes": 39452,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P K Krishnadas",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 22550,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vengode Sunil Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 1303,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kattakkada Rajan",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 36,
+     "votes": 613,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "S Sujithra",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 26,
+     "votes": 586,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Malayinkeezh Rajesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 475,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 139,
+   "type": "GEN",
+   "electors": 183616,
+   "voters": 125025,
+   "turnout": 68.09,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jameela Prakasam",
+     "partyId": "JDS",
+     "sex": "F",
+     "age": 53,
+     "votes": 59510,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adv.George Mercier",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 52305,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Venganoor Satheesh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 9127,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thanka Bai.T.",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 70,
+     "votes": 1231,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "A.M. Nizam",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 40,
+     "votes": 1193,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Muraleedharan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 1157,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vazhamuttom Rajendran",
+     "partyId": "DPSP",
+     "sex": "M",
+     "age": 55,
+     "votes": 485,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 140,
+   "type": "GEN",
+   "electors": 157851,
+   "voters": 111715,
+   "turnout": 70.77,
+   "phase": 1,
+   "pollDate": "2011-04-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "R Selvaraj",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 62,
+     "votes": 54711,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thampanoor Ravi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 48009,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Athiyannoor Sreekumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 6730,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kovilloor.A.Babu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 1168,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohanan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 557,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Manaloor.B.Vasantha",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 58,
+     "votes": 523,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 // scraper/src/bihar/__tests__/party-map.test.ts
 import { describe, it, expect } from 'vitest';
-import { resolveParty, suggestEntries, NEW_PARTY_COLOR } from '../party-map';
+import { applyOverrides, resolveParty, suggestEntries, NEW_PARTY_COLOR } from '../party-map';
 import type { PartyEntry, PartyListEntry } from '../types';
 
 const list2010: PartyListEntry[] = [{ abbr: 'CPM', name: 'Communist Party of India (Marxist)', recognition: 'National' }];
@@ -66,5 +66,19 @@ describe('suggestEntries', () => {
   });
   it('keeps entries already in the map', () => {
     expect(suggestEntries(list2020, db, map).add).toEqual({});
+  });
+});
+
+describe('applyOverrides', () => {
+  it('points a full name at another existing party for one state, leaving the shared map alone', () => {
+    const iuml = { id: 'IUML', name: 'Indian Union Muslim League', abbreviation: 'IUML', color: '#00A651', recognition: 'State' as const };
+    const mul = { id: 'MUL_BR', name: 'Muslim League Kerala State Committee', abbreviation: 'MUL', color: '#9CA3AF', recognition: 'State' as const };
+    const shared = { INDIANUNIONMUSLIMLEAGUE: iuml, MUSLIMLEAGUEKERALASTATECOMMITTEE: mul };
+    const eff = applyOverrides(shared, { MUSLIMLEAGUEKERALASTATECOMMITTEE: 'IUML' });
+    expect(eff.MUSLIMLEAGUEKERALASTATECOMMITTEE).toBe(iuml);
+    expect(shared.MUSLIMLEAGUEKERALASTATECOMMITTEE).toBe(mul);
+  });
+  it('fails on an override to an id the map does not know', () => {
+    expect(() => applyOverrides({}, { X: 'NOPE' })).toThrow(/NOPE/);
   });
 });

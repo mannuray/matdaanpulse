@@ -125,6 +125,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "AKHILAKERALATRINAMOOLPARTY": {
+    "id": "AKTP",
+    "name": "Akhila Kerala Trinamool Party",
+    "abbreviation": "AKTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "AKHILBHARATHINDUMAHASABHA": {
     "id": "ABHM",
     "name": "Akhil Bharat Hindu Mahasabha",
@@ -481,6 +488,13 @@
     "abbreviation": "BHMP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
+  },
+  "BHARATHDHARMAJANASENA": {
+    "id": "BDJS",
+    "name": "Bharath Dharma Jana Sena",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
   },
   "BHARATHEEYAJAWANKISANPARTY": {
     "id": "BJKP",
@@ -839,6 +853,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "COMMUNISTMARXISTPARTYKERALASTATECOMMITTEE": {
+    "id": "CMPKSC_KL",
+    "name": "Communist Marxist Party Kerala State Committee",
+    "abbreviation": "CMPKSC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "COMMUNISTPARTYOFINDIA": {
     "id": "CPI",
     "name": "Communist Party of India",
@@ -860,6 +881,13 @@
     "color": "#E5484D",
     "recognition": "State"
   },
+  "COMMUNISTPARTYOFINDIAMARXISTLENINISTREDSTAR": {
+    "id": "CPIM_KL",
+    "name": "Communist Party of India (Marxist-Leninist) Red Star",
+    "abbreviation": "CPIM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "CONGRESSSECULAR": {
     "id": "CS",
     "name": "Congress (Secular)",
@@ -878,6 +906,13 @@
     "id": "DSP",
     "name": "Dalit Samaj Party",
     "abbreviation": "DSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "DESEEYAPRAJASOCIALISTPARTY": {
+    "id": "DPSP",
+    "name": "Deseeya Praja Socialist Party",
+    "abbreviation": "DPSP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1056,6 +1091,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "INDIANGANDHIYANPARTY": {
+    "id": "IGP",
+    "name": "Indian Gandhiyan Party",
+    "abbreviation": "igp",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "INDIANINCLUSIVEPARTY": {
     "id": "IIP",
     "name": "Indian Inclusive Party",
@@ -1202,6 +1244,13 @@
     "abbreviation": "JAPL",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
+  },
+  "JANADHIPATHYASAMRAKSHANASAMITHI": {
+    "id": "JPSS_KL",
+    "name": "Janadhipathya Samrakshana Samithi",
+    "abbreviation": "JPSS",
+    "color": "#9CA3AF",
+    "recognition": "State"
   },
   "JANATACONGRESS": {
     "id": "JAC",
@@ -1396,6 +1445,76 @@
     "id": "KS",
     "name": "Kalinga Sena",
     "abbreviation": "KS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KERALACONGRESS": {
+    "id": "KEC",
+    "name": "Kerala Congress",
+    "abbreviation": null,
+    "color": "#5F9EA0",
+    "recognition": null
+  },
+  "KERALACONGRESSANTIMERGERGROUP": {
+    "id": "KCAMG",
+    "name": "Kerala Congress (Anti-merger Group)",
+    "abbreviation": "KC(AMG)",
+    "color": "#9CA3AF",
+    "recognition": "State"
+  },
+  "KERALACONGRESSB": {
+    "id": "KECB",
+    "name": "Kerala Congress (B)",
+    "abbreviation": "KC(B)",
+    "color": "#CD5C5C",
+    "recognition": null
+  },
+  "KERALACONGRESSJACOB": {
+    "id": "KECJ_KL",
+    "name": "Kerala Congress (Jacob)",
+    "abbreviation": "KEC(J)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KERALACONGRESSM": {
+    "id": "KECM",
+    "name": "Kerala Congress (M)",
+    "abbreviation": "KC(M)",
+    "color": "#8B0000",
+    "recognition": null
+  },
+  "KERALACONGRESSSECULAR": {
+    "id": "KCS",
+    "name": "Kerala Congress Secular",
+    "abbreviation": "KCS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KERALACONGRESSSKARIAHTHOMAS": {
+    "id": "KCST",
+    "name": "Kerala Congress (Skariah Thomas)",
+    "abbreviation": "KCST",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KERALAJANAPAKSHAM": {
+    "id": "KJ",
+    "name": "Kerala Janapaksham",
+    "abbreviation": "KJ",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KERALAJANATHAPARTY": {
+    "id": "KLJP",
+    "name": "Kerala Janatha Party",
+    "abbreviation": "KLJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KERALAREVOLUTIONARYSOCIALISTPARTYBABYJOHN": {
+    "id": "KRSP_KL",
+    "name": "Kerala Revolutionary Socialist Party(Baby John)",
+    "abbreviation": "KRSP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1777,6 +1896,13 @@
     "color": "#808080",
     "recognition": "National"
   },
+  "NATIONALSECULARCONFERENCE": {
+    "id": "NSC_KL",
+    "name": "National Secular Conference",
+    "abbreviation": "NSC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "NATIONALTARGETPARTY": {
     "id": "NATP",
     "name": "National Target Party",
@@ -1867,6 +1993,20 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "PEOPLESDEMOCRATICPARTY": {
+    "id": "PDP",
+    "name": "Peoples Democratic Party",
+    "abbreviation": "PDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PEOPLESGREENPARTY": {
+    "id": "PPGP",
+    "name": "Peoples Green Party",
+    "abbreviation": "PpGP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "PEOPLESPARTYOFINDIADEMOCRATIC": {
     "id": "PPOI1",
@@ -2631,6 +2771,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "SOCIALACTIONPARTY": {
+    "id": "SLAP",
+    "name": "Social Action Party",
+    "abbreviation": "SLAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "SOCIALDEMOCRATICPARTYOFINDIA": {
     "id": "SDPOI",
     "name": "Social Democratic Party Of India",
@@ -2638,10 +2785,24 @@
     "color": "#808080",
     "recognition": null
   },
+  "SOCIALISTICDEMOCRATICPARTY": {
+    "id": "SDP",
+    "name": "Socialistic Democratic Party",
+    "abbreviation": "SDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "SOCIALISTJANATAPARTY": {
     "id": "SOJP_BR",
     "name": "Socialist Janata Party",
     "abbreviation": "SoJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SOCIALISTJANTADEMOCRATIC": {
+    "id": "SJD_KL",
+    "name": "SOCIALIST JANTA (DEMOCRATIC)",
+    "abbreviation": "SJD",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2854,6 +3015,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "WELFAREPARTYOFINDIA": {
+    "id": "WPOI",
+    "name": "Welfare Party Of India",
+    "abbreviation": "WPOI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "YUGKRANTIDAL": {
     "id": "YGKRTDL",

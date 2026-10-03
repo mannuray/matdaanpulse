@@ -17,7 +17,11 @@ async function save(year: string, name: string, url: string) {
   const out = path.join(rawDir(ST), year, name);
   if (fs.existsSync(out)) { console.log(`  have ${year}/${name}`); return; }
   fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, Buffer.from(await (await get(url)).arrayBuffer()));
+  // ECI's download endpoint sometimes answers 500; retry, then skip the file (a missing report shows up when parsing).
+  for (let i = 1; ; i++) {
+    try { fs.writeFileSync(out, Buffer.from(await (await get(url)).arrayBuffer())); break; }
+    catch (e) { if (i >= 3) { console.warn(`  FAILED ${year}/${name}: ${(e as Error).message.slice(0, 60)}`); return; } await sleep(5000 * i); }
+  }
   console.log(`  saved ${year}/${name}`);
   await sleep(2000);
 }

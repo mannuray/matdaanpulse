@@ -1,4 +1,4 @@
-/** Propose party-map.json entries for every party in a state's party lists. Usage: npx ts-node src/bihar/suggest-parties-cli.ts <STATE> */
+/** Propose party-map.json entries for every party in a state's party lists. Usage: npx ts-node src/bihar/suggest-parties-cli.ts <STATE> [years] */
 import * as fs from 'fs';
 import { Client } from 'pg';
 import { suggestEntries, type DbParty } from './party-map';
@@ -15,7 +15,7 @@ async function main() {
   const rows = (await db.query<DbParty>(`SELECT p.id, p.name, p.abbreviation, p.color, p.eci_recognition AS recognition,
     (SELECT count(*)::int FROM candidates c WHERE c.party_id = p.id) AS candidates FROM parties p ORDER BY p.id`)).rows;
   await db.end();
-  const lists = await loadPartyLists(ST);
+  const lists = await loadPartyLists(ST, process.argv.slice(3).map(Number));
   const used = lists.filter(p => p.used); // only parties that fielded a candidate in this state
   const { add, problems, notes, aliases } = suggestEntries(used, rows, map, ST);
   const aliasFile = `${PARTY_DIR}/party-aliases.json`;

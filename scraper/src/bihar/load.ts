@@ -49,8 +49,8 @@ function loadReport(s: StateCode, year: Year): RawElection {
 }
 
 /** Every year's party list, each entry marked `used` when that year has a candidate with its abbreviation. */
-export async function loadPartyLists(s: StateCode): Promise<(PartyListEntry & { used: boolean })[]> {
-  return electionsOf(s).map(e => e.year).flatMap(y => {
+export async function loadPartyLists(s: StateCode, years: number[] = []): Promise<(PartyListEntry & { used: boolean })[]> {
+  return electionsOf(s).map(e => e.year).filter(y => !years.length || years.includes(y)).flatMap(y => {
     const raw = loadRaw(s, y);
     const used = new Set(raw.seats.flatMap(s => s.candidates.map(c => c.party.replace(/\s/g, '').toUpperCase())));
     return raw.parties.map(p => ({ ...p, used: used.has(p.abbr.replace(/\s/g, '').toUpperCase()) }));
