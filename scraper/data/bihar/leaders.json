@@ -1,0 +1,1078 @@
+{
+  "people": [
+    {
+      "key": "nitish-kumar",
+      "name": "Nitish Kumar",
+      "wikidata": "Q122304",
+      "candidacies": []
+    },
+    {
+      "key": "sushil-kumar-modi",
+      "name": "Sushil Kumar Modi",
+      "wikidata": "Q7648950",
+      "candidacies": []
+    },
+    {
+      "key": "tejashwi-yadav",
+      "name": "Tejashwi Yadav",
+      "wikidata": "Q14317045",
+      "candidacies": [
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_128_RAGHOPUR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_128_RAGHOPUR"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_128_RAGHOPUR"
+        }
+      ]
+    },
+    {
+      "key": "abdul-bari-siddiqui",
+      "name": "Abdul Bari Siddiqui",
+      "wikidata": "Q4665307",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_81_ALINAGAR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_81_ALINAGAR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_86_KEOTI"
+        }
+      ]
+    },
+    {
+      "key": "prem-kumar",
+      "name": "Prem Kumar",
+      "wikidata": "Q20716912",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_230_GAYA_TOWN"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_230_GAYA_TOWN"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_230_GAYA_TOWN"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_230_GAYA_TOWN"
+        }
+      ]
+    },
+    {
+      "key": "vijay-kumar-chaudhary",
+      "name": "Vijay Kumar Chaudhary",
+      "wikidata": "Q17198073",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_136_SARAIRANJAN"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_136_SARAIRANJAN"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_136_SARAIRANJAN"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_136_SARAIRANJAN"
+        }
+      ]
+    },
+    {
+      "key": "bijendra-prasad-yadav",
+      "name": "Bijendra Prasad Yadav",
+      "wikidata": "Q40039127",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_43_SUPAUL"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_43_SUPAUL"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_43_SUPAUL"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_43_SUPAUL"
+        }
+      ]
+    },
+    {
+      "key": "nand-kishore-yadav",
+      "name": "Nand Kishore Yadav",
+      "wikidata": "Q6963115",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_184_PATNA_SAHIB"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_184_PATNA_SAHIB"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_184_PATNA_SAHIB"
+        }
+      ]
+    },
+    {
+      "key": "ashwini-kumar-choubey",
+      "name": "Ashwini Kumar Choubey",
+      "wikidata": "Q16728021",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_156_BHAGALPUR"
+        }
+      ]
+    },
+    {
+      "key": "nitish-mishra",
+      "name": "Nitish Mishra",
+      "wikidata": "Q7041327",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_38_JHANJHARPUR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_38_JHANJHARPUR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_38_JHANJHARPUR"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_38_JHANJHARPUR"
+        }
+      ]
+    },
+    {
+      "key": "ramai-ram",
+      "name": "Ramai Ram",
+      "wikidata": "Q99703201",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_91_BOCHAHA"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_91_BOCHAHA"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_91_BOCHAHAN"
+        }
+      ]
+    },
+    {
+      "key": "chandra-mohan-rai",
+      "name": "Chandra Mohan Rai",
+      "wikidata": "Q20675905",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_7_CHANPATIA"
+        }
+      ]
+    },
+    {
+      "key": "jitan-ram-manjhi",
+      "name": "Jitan Ram Manjhi",
+      "wikidata": "Q16910976",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_218_MAKHDUMPUR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_218_MAKHDUMPUR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_227_IMAMGANJ"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_227_IMAMGANJ"
+        }
+      ]
+    },
+    {
+      "key": "brishin-patel",
+      "name": "Brishin Patel",
+      "wikidata": "Q51602958",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_125_VAISHALI"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_125_VAISHALI"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_125_VAISHALI"
+        }
+      ]
+    },
+    {
+      "key": "narendra-narayan-yadav",
+      "name": "Narendra Narayan Yadav",
+      "wikidata": "Q94704929",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_70_ALAMNAGAR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_70_ALAMNAGAR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_70_ALAMNAGAR"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_70_ALAMNAGAR"
+        }
+      ]
+    },
+    {
+      "key": "shyam-rajak",
+      "name": "Shyam Rajak",
+      "wikidata": "Q7505932",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_188_PHULWARI"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_188_PHULWARI"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_188_PHULWARI"
+        }
+      ]
+    },
+    {
+      "key": "tej-pratap-yadav",
+      "name": "Tej Pratap Yadav",
+      "wikidata": "Q21516723",
+      "candidacies": [
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_126_MAHUA"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_140_HASANPUR"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_126_MAHUA"
+        }
+      ]
+    },
+    {
+      "key": "shrawan-kumar",
+      "name": "Shrawan Kumar",
+      "wikidata": "Q41256135",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_176_NALANDA"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_176_NALANDA"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_176_NALANDA"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_176_NALANDA"
+        }
+      ]
+    },
+    {
+      "key": "ram-vichar-ray",
+      "name": "Ram Vichar Ray",
+      "wikidata": "Q94702440",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_98_SAHEBGANJ"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_98_SAHEBGANJ"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_98_SAHEBGANJ"
+        }
+      ]
+    },
+    {
+      "key": "jai-kumar-singh",
+      "name": "Jai Kumar Singh",
+      "wikidata": "Q87072529",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_210_DINARA"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_210_DINARA"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_210_DINARA"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_210_DINARA"
+        }
+      ]
+    },
+    {
+      "key": "krishna-nandan-prasad-verma",
+      "name": "Krishna Nandan Prasad Verma",
+      "wikidata": "Q120637737",
+      "candidacies": [
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_217_GHOSI"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_216_JEHANABAD"
+        }
+      ]
+    },
+    {
+      "key": "chandrika-roy",
+      "name": "Chandrika Roy",
+      "wikidata": "Q89434184",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_121_PARSA"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_121_PARSA"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_121_PARSA"
+        }
+      ]
+    },
+    {
+      "key": "maheshwar-hazari",
+      "name": "Maheshwar Hazari",
+      "wikidata": "Q16194579",
+      "candidacies": [
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_131_KALYANPUR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_131_KALYANPUR"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_131_KALYANPUR"
+        }
+      ]
+    },
+    {
+      "key": "awadhesh-kumar-singh",
+      "name": "Awadhesh Kumar Singh",
+      "wikidata": null,
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_234_WAZIRGANJ"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_234_WAZIRGANJ"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_234_WAZIRGANJ"
+        }
+      ]
+    },
+    {
+      "key": "tarkishore-prasad",
+      "name": "Tarkishore Prasad",
+      "wikidata": "Q101882775",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_63_KATIHAR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_63_KATIHAR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_63_KATIHAR"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_63_KATIHAR"
+        }
+      ]
+    },
+    {
+      "key": "renu-devi",
+      "name": "Renu Devi",
+      "wikidata": "Q18394037",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_8_BETTIAH"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_8_BETTIAH"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_8_BETTIAH"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_8_BETTIAH"
+        }
+      ]
+    },
+    {
+      "key": "amrendra-pratap-singh",
+      "name": "Amrendra Pratap Singh",
+      "wikidata": "Q17385559",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_194_ARRAH"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_194_ARRAH"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_194_ARRAH"
+        }
+      ]
+    },
+    {
+      "key": "mewalal-chaudhary",
+      "name": "Mewalal Chaudhary",
+      "wikidata": "Q102047806",
+      "candidacies": [
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_164_TARAPUR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_164_TARAPUR"
+        }
+      ]
+    },
+    {
+      "key": "jibesh-kumar",
+      "name": "Jibesh Kumar",
+      "wikidata": "Q106613091",
+      "candidacies": [
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_87_JALE"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_87_JALE"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_87_JALE"
+        }
+      ]
+    },
+    {
+      "key": "ram-prit-paswan",
+      "name": "Ram Prit Paswan",
+      "wikidata": "Q27947710",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_37_RAJNAGAR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_37_RAJNAGAR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_37_RAJNAGAR"
+        }
+      ]
+    },
+    {
+      "key": "ram-surat-rai",
+      "name": "Ram Surat Rai",
+      "wikidata": "Q108434857",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_89_AURAI"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_89_AURAI"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_89_AURAI"
+        }
+      ]
+    },
+    {
+      "key": "sheela-kumari",
+      "name": "Sheela Kumari",
+      "wikidata": "Q121548016",
+      "candidacies": [
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_39_PHULPARAS"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_39_PHULPARAS"
+        }
+      ]
+    },
+    {
+      "key": "samrat-choudhary",
+      "name": "Samrat Choudhary",
+      "wikidata": "Q65285292",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_151_PARBATTA"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_164_TARAPUR"
+        }
+      ]
+    },
+    {
+      "key": "vijay-kumar-sinha",
+      "name": "Vijay Kumar Sinha",
+      "wikidata": "Q102345188",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_168_LAKHISARAI"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_168_LAKHISARAI"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_168_LAKHISARAI"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_168_LAKHISARAI"
+        }
+      ]
+    },
+    {
+      "key": "mangal-pandey",
+      "name": "Mangal Pandey",
+      "wikidata": "Q20177447",
+      "candidacies": [
+        {
+          "year": 2025,
+          "const_id": "BR_VS_105_SIWAN"
+        }
+      ]
+    },
+    {
+      "key": "ram-kripal-yadav",
+      "name": "Ram Kripal Yadav",
+      "wikidata": "Q7288501",
+      "candidacies": [
+        {
+          "year": 2025,
+          "const_id": "BR_VS_186_DANAPUR"
+        }
+      ]
+    },
+    {
+      "key": "sunil-kumar",
+      "name": "Sunil Kumar",
+      "wikidata": "Q110095791",
+      "candidacies": [
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_103_BHOREY"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_103_BHOREY"
+        }
+      ]
+    },
+    {
+      "key": "nitin-nabin",
+      "name": "Nitin Nabin",
+      "wikidata": "Q28924924",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_182_BANKIPUR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_182_BANKIPUR"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_182_BANKIPUR"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_182_BANKIPUR"
+        }
+      ]
+    },
+    {
+      "key": "leshi-singh",
+      "name": "Leshi Singh",
+      "wikidata": "Q19661632",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_61_DHAMDAHA"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_61_DHAMDAHA"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_61_DHAMDAHA"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_61_DHAMDAHA"
+        }
+      ]
+    },
+    {
+      "key": "shreyasi-singh",
+      "name": "Shreyasi Singh",
+      "wikidata": "Q17435457",
+      "candidacies": [
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_241_JAMUI"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_241_JAMUI"
+        }
+      ]
+    },
+    {
+      "key": "madan-sahni",
+      "name": "Madan Sahni",
+      "wikidata": "Q101438714",
+      "candidacies": [
+        {
+          "year": 2010,
+          "const_id": "BR_VS10_85_BAHADURPUR"
+        },
+        {
+          "year": 2015,
+          "const_id": "BR_VS15_79_GORA_BAURAM"
+        },
+        {
+          "year": 2020,
+          "const_id": "BR_VS20_85_BAHADURPUR"
+        },
+        {
+          "year": 2025,
+          "const_id": "BR_VS_85_BAHADURPUR"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2010": {
+      "leaders": [
+        {
+          "key": "nitish-kumar",
+          "role": "Chief Minister",
+          "party_id": "JDU"
+        },
+        {
+          "key": "sushil-kumar-modi",
+          "role": "Deputy Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "abdul-bari-siddiqui",
+          "role": "Leader of the Opposition",
+          "party_id": "RJD"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "vijay-kumar-chaudhary",
+          "role": "Minister of Water Resources",
+          "party_id": "JDU"
+        },
+        {
+          "key": "bijendra-prasad-yadav",
+          "role": "Minister of Energy",
+          "party_id": "JDU"
+        },
+        {
+          "key": "nand-kishore-yadav",
+          "role": "Minister of Road Construction",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ashwini-kumar-choubey",
+          "role": "Minister of Health",
+          "party_id": "BJP"
+        },
+        {
+          "key": "nitish-mishra",
+          "role": "Minister of Rural Development",
+          "party_id": "JDU"
+        },
+        {
+          "key": "ramai-ram",
+          "role": "Minister of Revenue and Land Reforms",
+          "party_id": "JDU"
+        },
+        {
+          "key": "chandra-mohan-rai",
+          "role": "Minister of Public Health Engineering",
+          "party_id": "BJP"
+        },
+        {
+          "key": "narendra-narayan-yadav",
+          "role": "Minister of Law",
+          "party_id": "JDU"
+        },
+        {
+          "key": "brishin-patel",
+          "role": "Minister of Transport",
+          "party_id": "JDU"
+        },
+        {
+          "key": "prem-kumar",
+          "role": "Minister of Urban Development and Housing",
+          "party_id": "BJP"
+        },
+        {
+          "key": "jitan-ram-manjhi",
+          "role": "Minister of SC/ST Welfare",
+          "party_id": "JDU"
+        },
+        {
+          "key": "shyam-rajak",
+          "role": "Minister of Food and Consumer Protection",
+          "party_id": "JDU"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Third_Nitish_Kumar_ministry",
+        "https://en.wikipedia.org/wiki/Leader_of_the_Opposition_in_the_Bihar_Legislative_Assembly",
+        "https://en.wikipedia.org/wiki/2010_Bihar_Legislative_Assembly_election"
+      ]
+    },
+    "2015": {
+      "leaders": [
+        {
+          "key": "nitish-kumar",
+          "role": "Chief Minister",
+          "party_id": "JDU"
+        },
+        {
+          "key": "tejashwi-yadav",
+          "role": "Deputy Chief Minister",
+          "party_id": "RJD"
+        },
+        {
+          "key": "prem-kumar",
+          "role": "Leader of the Opposition",
+          "party_id": "BJP"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "abdul-bari-siddiqui",
+          "role": "Minister of Finance",
+          "party_id": "RJD"
+        },
+        {
+          "key": "tej-pratap-yadav",
+          "role": "Minister of Health",
+          "party_id": "RJD"
+        },
+        {
+          "key": "bijendra-prasad-yadav",
+          "role": "Minister of Energy",
+          "party_id": "JDU"
+        },
+        {
+          "key": "shrawan-kumar",
+          "role": "Minister of Rural Development",
+          "party_id": "JDU"
+        },
+        {
+          "key": "ram-vichar-ray",
+          "role": "Minister of Agriculture",
+          "party_id": "RJD"
+        },
+        {
+          "key": "jai-kumar-singh",
+          "role": "Minister of Industries",
+          "party_id": "JDU"
+        },
+        {
+          "key": "krishna-nandan-prasad-verma",
+          "role": "Minister of Public Health Engineering",
+          "party_id": "JDU"
+        },
+        {
+          "key": "chandrika-roy",
+          "role": "Minister of Transport",
+          "party_id": "RJD"
+        },
+        {
+          "key": "maheshwar-hazari",
+          "role": "Minister of Urban Development",
+          "party_id": "JDU"
+        },
+        {
+          "key": "awadhesh-kumar-singh",
+          "role": "Minister of Animal Husbandry",
+          "party_id": "INC"
+        },
+        {
+          "key": "madan-sahni",
+          "role": "Minister of Food and Consumer Protection",
+          "party_id": "JDU"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Fifth_Nitish_Kumar_ministry",
+        "https://en.wikipedia.org/wiki/Leader_of_the_Opposition_in_the_Bihar_Legislative_Assembly",
+        "https://en.wikipedia.org/wiki/2015_Bihar_Legislative_Assembly_election"
+      ]
+    },
+    "2020": {
+      "leaders": [
+        {
+          "key": "nitish-kumar",
+          "role": "Chief Minister",
+          "party_id": "JDU"
+        },
+        {
+          "key": "tarkishore-prasad",
+          "role": "Deputy Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "renu-devi",
+          "role": "Deputy Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "tejashwi-yadav",
+          "role": "Leader of the Opposition",
+          "party_id": "RJD"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "vijay-kumar-chaudhary",
+          "role": "Minister of Rural Development",
+          "party_id": "JDU"
+        },
+        {
+          "key": "bijendra-prasad-yadav",
+          "role": "Minister of Energy",
+          "party_id": "JDU"
+        },
+        {
+          "key": "amrendra-pratap-singh",
+          "role": "Minister of Agriculture",
+          "party_id": "BJP"
+        },
+        {
+          "key": "mewalal-chaudhary",
+          "role": "Minister of Education",
+          "party_id": "JDU"
+        },
+        {
+          "key": "ram-surat-rai",
+          "role": "Minister of Revenue and Land Reforms",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ram-prit-paswan",
+          "role": "Minister of Public Health Engineering",
+          "party_id": "BJP"
+        },
+        {
+          "key": "jibesh-kumar",
+          "role": "Minister of Labour Resources",
+          "party_id": "BJP"
+        },
+        {
+          "key": "sheela-kumari",
+          "role": "Minister of Transport",
+          "party_id": "JDU"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Seventh_Nitish_Kumar_ministry",
+        "https://en.wikipedia.org/wiki/Leader_of_the_Opposition_in_the_Bihar_Legislative_Assembly",
+        "https://en.wikipedia.org/wiki/2020_Bihar_Legislative_Assembly_election"
+      ]
+    },
+    "2025": {
+      "leaders": [
+        {
+          "key": "nitish-kumar",
+          "role": "Chief Minister",
+          "party_id": "JDU"
+        },
+        {
+          "key": "samrat-choudhary",
+          "role": "Deputy Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "vijay-kumar-sinha",
+          "role": "Deputy Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "tejashwi-yadav",
+          "role": "Leader of the Opposition",
+          "party_id": "RJD"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "vijay-kumar-chaudhary",
+          "role": "Minister of Water Resources",
+          "party_id": "JDU"
+        },
+        {
+          "key": "bijendra-prasad-yadav",
+          "role": "Minister of Finance",
+          "party_id": "JDU"
+        },
+        {
+          "key": "shrawan-kumar",
+          "role": "Minister of Rural Development",
+          "party_id": "JDU"
+        },
+        {
+          "key": "mangal-pandey",
+          "role": "Minister of Health",
+          "party_id": "BJP"
+        },
+        {
+          "key": "nitin-nabin",
+          "role": "Minister of Road Construction",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ram-kripal-yadav",
+          "role": "Minister of Agriculture",
+          "party_id": "BJP"
+        },
+        {
+          "key": "sunil-kumar",
+          "role": "Minister of Education",
+          "party_id": "JDU"
+        },
+        {
+          "key": "leshi-singh",
+          "role": "Minister of Food and Consumer Protection",
+          "party_id": "JDU"
+        },
+        {
+          "key": "madan-sahni",
+          "role": "Minister of Social Welfare",
+          "party_id": "JDU"
+        },
+        {
+          "key": "shreyasi-singh",
+          "role": "Minister of Information Technology and Sports",
+          "party_id": "BJP"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Tenth_Nitish_Kumar_ministry",
+        "https://en.wikipedia.org/wiki/Leader_of_the_Opposition_in_the_Bihar_Legislative_Assembly",
+        "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election"
+      ]
+    }
+  }
+}
