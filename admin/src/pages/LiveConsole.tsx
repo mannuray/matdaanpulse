@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLiveConsole } from '../hooks/useLiveConsole';
+import { useIngestFeed } from '../hooks/useIngestFeed';
 import { useSeatLock } from '../hooks/useSeatLock';
 import { useUnsavedGuard } from '../hooks/useUnsavedGuard';
 import { useAuth } from '../context/AuthContext';
 import { confirmDiscardEdits } from '../context/ShellStatusContext';
 import { LiveHeader } from '../components/live/LiveHeader';
+import { FeedPanel } from '../components/live/FeedPanel';
 import { SeatList } from '../components/live/SeatList';
 import { SeatEditor, type SeatEditorHandle } from '../components/live/SeatEditor';
 import Spinner from '../components/atoms/Spinner';
@@ -19,6 +21,7 @@ export default function LiveConsole() {
   const [editorDirty, setEditorDirty] = useState(false);
   useUnsavedGuard(editorDirty);
   const lc = useLiveConsole({ holdSelection: editorDirty });
+  const feed = useIngestFeed(lc.electionId || null);
   const { user } = useAuth();
   const myId = user?.id ?? '';
   const lock = useSeatLock(lc.electionId, lc.selectedId, myId, lc.selectedId ? lc.locks[lc.selectedId] : undefined);
@@ -61,6 +64,7 @@ export default function LiveConsole() {
   return (
     <div className="flex h-full flex-col">
       <LiveHeader electionName={lc.electionName} reportingPct={lc.reportingPct} />
+      {feed.status && <FeedPanel status={feed.status} sources={feed.sources} saving={feed.saving} onApply={feed.setFeed} />}
       {lc.loading && lc.seats.length === 0 ? (
         <Spinner label="Loading seats…" />
       ) : (

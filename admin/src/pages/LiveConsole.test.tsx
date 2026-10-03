@@ -24,6 +24,9 @@ vi.mock('../hooks/useLiveConsole', () => ({
     locks: {}, flashIds: new Set(), reportingPct: 100, saveSeat, lastSavedAt: {},
   }),
 }));
+vi.mock('../hooks/useIngestFeed', () => ({
+  useIngestFeed: () => ({ status: null, sources: [], error: null, saving: false, setFeed: vi.fn(), reload: vi.fn() }),
+}));
 vi.mock('../hooks/useSeatLock', () => ({ useSeatLock: () => lockState.value }));
 vi.mock('../context/AuthContext', () => ({ useAuth: () => ({ user: { id: 'me', name: 'Mannu K' } }) }));
 import LiveConsole from './LiveConsole';
