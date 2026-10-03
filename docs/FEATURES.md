@@ -487,7 +487,7 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
 
 ## Known Limitations
 
-- **Live ECI ingestion is not implemented.** The scraper's live pipeline (`scraper/src/index.ts`, `scheduler/`, `adapters/eci-adapter.ts`, `normalizer/`) is placeholder code only. Counting-day flows are exercised end-to-end via the Live Election Simulation System (mock ECI server + replay through the admin bulk-override API); real results today come from the historical seed files.
+- **Live ECI ingestion is built but untested against a real counting day.** The worker (`scraper/src/live`, adapter `eci-web`) matches ECI's results site as of 2026; the page format may change. Rehearse per `docs/LIVE_RUNBOOK.md`; the simulation exercises the same ingest path with the mock server.
 
 - **Estimated / incomplete seed data** (audit 2026-10-01; listed publicly on `/about`, source of truth `frontend/src/model/about/about.ts`, update it whenever a seed is corrected):
   - Synthetic votes (runner-up 50,000, winner 50,000 + margin; only margin and names/parties real): Bihar VS 2010/2015/2020, AS/KL/TN VS 2021, PY VS 2021 (winners only, no runner-up).

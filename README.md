@@ -28,7 +28,7 @@ Four independent services communicate through PostgreSQL (source of truth) and R
 | Backend     | NestJS (TypeScript), Prisma, JWT auth, Helmet, Throttler               |
 | Public FE   | React + Vite (TypeScript SPA), D3.js (SVG choropleths), react-i18next  |
 | Admin FE    | React + Vite (TypeScript SPA), JWT-protected                           |
-| Scraper     | Node.js + ts-node: seed generators, live simulation (live ECI ingestion not implemented) |
+| Scraper     | Node.js + ts-node: seed generators, counting-day live worker (`scraper/src/live`), live simulation |
 | Database    | PostgreSQL 15                                                          |
 | Cache / RT  | Redis 7 (live tally cache, pub/sub for admin SSE)                       |
 | Observability | OpenTelemetry → SigNoz                                               |
@@ -105,15 +105,16 @@ cd admin && npm install && npm run dev
 ```
 
 ### 5. (Optional) Live-counting simulation
-Live ECI ingestion is **not implemented** — `scraper/src/index.ts` only prints a notice. To exercise
-the counting-day pipeline (admin bulk overrides → DB version bump → `/live` poll → snapshot → frontend; Redis pub/sub → SSE feeds the admin Live Console), use the simulation,
+Real counting days use the live worker (`scraper/src/live`, `npm run live`), which posts ECI results to the ingest API; see `docs/LIVE_RUNBOOK.md`. To exercise
+the counting-day pipeline (worker → ingest API → DB version bump → `/live` poll → snapshot → frontend; Redis pub/sub → SSE feeds the admin Live Console), use the simulation,
 which replays Bihar 2025 results round by round as a fictional "Bihar 2027" live election:
 ```bash
 cd scraper && npm install
 set -a; source ../.env; set +a   # DB_*, API_BASE_URL, SIM_ADMIN_EMAIL / SIM_ADMIN_PASSWORD
 npm run sim:setup                # clone Bihar 2025 → Bihar 2027 (Live)
 npm run sim:mock-eci             # mock ECI server on :4444 (leave running)
-npm run sim:replay               # in another shell; pushes each round via the admin API
+npm run sim:live                 # the live worker on the mock-eci adapter (posts to the ingest API)
+npm run sim:replay               # in another shell; advances the mock server's rounds
 npm run sim:reset                # zero results to replay again; sim:cleanup removes it
 ```
 
@@ -134,7 +135,7 @@ Open `http://localhost:3080` for the public tracker, `http://localhost:3081` for
 - Election lifecycle (`Upcoming → Live → Finalized`) with draft/published manifest versioning
 - Master-data management (parties, candidates, constituencies, persons) with CSV bulk import
 - Person linking across elections, photo/bio management, duplicate merge
-- Scraper control center, manual result overrides, audit logs
+- Scraper control center, live feed control and seat corrections, audit logs
 - **Live simulation mode** — clone an election, mock the ECI endpoint, replay rounds to test the live pipeline
 
 ### Data & Analysis

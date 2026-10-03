@@ -26,7 +26,7 @@ Deployed only for counting windows: the live worker (see §5.8). Not deployed: t
 ### What Redis is used for
 
 - **Cache:** results / constituency lists, 5–10 min TTL, and versioned live snapshots (`results.service.ts`, `constituencies.service.ts`). Identical concurrent misses share one load (single-flight in `CacheService.getOrSet`).
-- **Pub/sub:** admin result overrides are published and fanned out to the admin Live Console's SSE clients (`live.service.ts`, `GET /admin/live/updates` with a 5-min SSE token, ≤ `SSE_MAX_CONNECTIONS` per process). Public viewers poll (§2.2) and hold no connection.
+- **Pub/sub:** ingest and seat-correction result changes are published and fanned out to the admin Live Console's SSE clients (`live.service.ts`, `GET /admin/live/updates` with a 5-min SSE token, ≤ `SSE_MAX_CONNECTIONS` per process). Public viewers poll (§2.2) and hold no connection.
 - Nothing needs persistence: the cache refills itself and live messages only matter to connected viewers. On a single instance Redis is optional; it becomes required for pub/sub once there is more than one backend instance.
 
 ## 2. Architecture
@@ -43,7 +43,7 @@ Browser (India)
                                            └── Upstash Redis (rediss://, TLS) ← ap-southeast-1
 ```
 
-Keep the API, database and Redis in the **same region**: every uncached request makes several sequential DB round trips. Render Singapore ↔ Neon us-east-2 adds ~200–250 ms per round trip (a constituency page ≈ 1.3 s, a single override ≈ 1.5 s); with Neon in Singapore it is ~1–3 ms.
+Keep the API, database and Redis in the **same region**: every uncached request makes several sequential DB round trips. Render Singapore ↔ Neon us-east-2 adds ~200–250 ms per round trip (a constituency page ≈ 1.3 s, a seat correction ≈ 1.5 s); with Neon in Singapore it is ~1–3 ms.
 
 ### 2.1 Traffic shape
 
@@ -60,7 +60,7 @@ Per-viewer SSE does not scale behind a CDN (every open tab holds an origin conne
 | Other public GETs (elections, constituencies, …) | as today | `public, max-age=0, s-maxage=60, stale-while-revalidate=300` (longer for finished elections) |
 | Admin, auth, SSE, health | — | `no-store` / not cached |
 
-- The backend bumps `version` on every committed results batch (single or bulk override, later the scraper).
+- The backend bumps `version` on every committed results batch (an ingest post or a seat correction).
 - Browser: poll `/live` every 10 s + random 0–3 s; pause while the tab is hidden; on a version change wait random 0–2 s, then fetch `results?v=<new>`; exponential backoff with jitter on errors and honour `Retry-After`.
 - Herd protection: the CDN answers polls (each upper-tier PoP asks origin at most once per 5 s; **Smart Tiered Cache** is on the free plan); versioned snapshot URLs are identical for everyone; `stale-while-revalidate` serves the old copy during a refresh; the backend single-flights identical in-flight requests (one DB query per key). Polling holds no connections, so there is no reconnect storm after a deploy.
 - Trade-off: viewers see changes 10–20 s late (ECI itself updates every few minutes); snapshots are atomic per version.
@@ -69,9 +69,9 @@ Per-viewer SSE does not scale behind a CDN (every open tab holds an origin conne
 Expected origin load on counting day: roughly (upper-tier PoPs × 1 request / 5 s) for `/live` + one fetch per new version per PoP — independent of viewer count.
 
 **Implementation (branch `fix/backend-hardening`):**
-- Version: table `election_live_state` (migration 015). Statement-level DB triggers on `results` (insert/update/delete), `candidates` and `parties` (update) bump it inside the writing transaction, so every writer — API overrides, the simulation's direct SQL, seeds, admin edits — moves it, and a committed change and its version become visible together. Value: `GREATEST(version + 1, now in epoch ms)` — never decreases, and a rebuilt database never reuses a version a CDN may still hold as immutable.
+- Version: table `election_live_state` (migration 015). Statement-level DB triggers on `results` (insert/update/delete), `candidates` and `parties` (update) bump it inside the writing transaction, so every writer — ingest posts, seat corrections, the simulation's direct SQL, seeds, admin edits — moves it, and a committed change and its version become visible together. Value: `GREATEST(version + 1, now in epoch ms)` — never decreases, and a rebuilt database never reuses a version a CDN may still hold as immutable.
 - UPDATE triggers bump only when a snapshot column changes (results votes/status/margin/ids, candidate name/party, constituency type, party name/colour); the migration runs in one transaction with `CREATE OR REPLACE TRIGGER`, so re-running it never leaves a moment without triggers. After a DB restore / PITR run `UPDATE election_live_state SET version = GREATEST(version + 1, (extract(epoch FROM clock_timestamp()) * 1000)::bigint);` so no version number is reused.
-- `/live` returns `{ version, status, updatedAt, declared, total }` through a 1 s in-process memo with single-flight (`s-maxage=5` while `Live`, `30` otherwise); override services forget the memo after commit, purge the Redis caches, and only then publish the admin SSE event (pipeline review M5). Admin election PATCH/finalize also forget the memo, so a status flip shows at once.
+- `/live` returns `{ version, status, updatedAt, declared, total }` through a 1 s in-process memo with single-flight (`s-maxage=5` while `Live`, `30` otherwise); the ingest and seat-correction services forget the memo after commit, purge the Redis caches, and only then publish the admin SSE event (pipeline review M5). Admin election PATCH/finalize also forget the memo, so a status flip shows at once.
 - `results?v=<current>` returns `{ version, results, summary, voteShare }` — results rows, seat tally and vote share computed from **one** query, read together with the version in one `REPEATABLE READ` transaction, so a snapshot labelled V holds exactly version V's data and map, scoreboard and standings update atomically. It is cached in Redis under `election:<id>:snapshot:v<version>` only when the version read equals V (otherwise served `no-store`). `v` older than current → `302` to the current URL (`s-maxage=5`); `v` newer (a poll raced ahead of this instance) → current data with `no-store`. Without `v` the endpoint is unchanged (rows array, `s-maxage=10, stale-while-revalidate=30`).
 - The unversioned results-derived Redis caches (`summary`, `vote-share`, `full-results`) are keyed by the live version too (`…:v<version>`), so a direct-SQL write (simulation, manual fix) moves readers to fresh keys without a purge; the CDN's 60 s + swr remains. `CacheService` invalidations only detach in-flight loads of the keys they match (per election), and `:v<version>` keys are never detached.
 - Headers: `@CacheControl()` opt-in per public controller; everything else (admin, auth, health), **every error**, and every request carrying `Authorization` (the admin panel, which also appends `_=` to its GETs) is `no-store`, so the CDN never caches a 4xx/5xx or an admin read. Publicly cacheable responses drop the per-client `X-RateLimit-*` headers. SSE keeps Nest's `private, no-cache`. Success bodies have no `requestId`/`timestamp` (`X-Request-ID` and `Date` headers instead).
@@ -109,7 +109,7 @@ Run the load test (§5.6) after switching up. During the window the database is 
 
 **Off-season expectations:** nothing should keep the **database** awake. Upcoming elections with a far-off `tentative_next_date` make the dashboard stop polling (the public API exposes the field), and the uptime monitor hits only `/health/live`, which does no I/O — so Neon suspends after ~5 min idle. The `/live` monitor does keep the Render free instance awake all month (no cold starts); that fits the free instance-hour allowance for one service but not for two. If you'd rather let Render sleep too, pause the monitor off-season and accept ~1 min cold starts.
 
-**Deploys and counting:** a bulk override runs in one transaction of up to 60 s (`bulk-override.service.ts`). A Render deploy or instance swap gives the old instance only a short shutdown grace; if it is cut mid-batch the connection drops, Postgres rolls the batch back and the feeder must retry (nothing is half-applied). Runbook: no backend deploys during counting; pause the feeder before an unavoidable one.
+**Deploys and counting:** an ingest post applies its seats in one transaction (spec §4). A Render deploy or instance swap gives the old instance only a short shutdown grace; if it is cut mid-batch the connection drops, Postgres rolls the batch back and the worker retries on its next poll (nothing is half-applied). Runbook: no backend deploys during counting; set the feed to Paused (Live Console) before an unavoidable one.
 
 ## 4. Blockers before first deploy
 
@@ -129,7 +129,7 @@ From the backend review (IDs refer to it). All are code/config changes in `backe
 | B10 | Neon needs pooled vs direct URLs; `setup.sh` can't take the pooled Prisma URL | §6 | `directUrl` in `schema.prisma`; run `setup.sh` with the direct URL | Done — `DIRECT_URL` (only Prisma CLI commands need it; may equal `DATABASE_URL` locally) |
 | B11 | CORS origins not trimmed | S-L3 | Trim/filter the list; exact Vercel origins | Done — plus optional `CORS_ORIGIN_REGEX`; `credentials` dropped |
 
-Recommended alongside (not strictly blocking): 5 MB body limit only on the bulk-override route (S-M3) — **done**; query DTOs on list endpoints (E-M2) — **done**; SSE heartbeat 20 s + `retry:` (O-M3) — **done**; stop public self-registration (S-M1) — **done** (`ALLOW_REGISTRATION`, plus last-SUPER_ADMIN guard); URL validation (S-M2; the `GEMINI_MODEL` part became moot when the built-in AI was removed), request-id validation (S-L2), log correlation + `LOG_LEVEL` (O-M1) — **done**. `Cache-Control` + drop per-response `requestId`/`timestamp` from bodies so ETags work (P-M1) — **done** (§2.2). Still open: in-process cache in front of Redis (D6; optional now that the CDN absorbs viewer traffic).
+Recommended alongside (not strictly blocking): 5 MB body limit only on the ingest seats route (S-M3) — **done**; query DTOs on list endpoints (E-M2) — **done**; SSE heartbeat 20 s + `retry:` (O-M3) — **done**; stop public self-registration (S-M1) — **done** (`ALLOW_REGISTRATION`, plus last-SUPER_ADMIN guard); URL validation (S-M2; the `GEMINI_MODEL` part became moot when the built-in AI was removed), request-id validation (S-L2), log correlation + `LOG_LEVEL` (O-M1) — **done**. `Cache-Control` + drop per-response `requestId`/`timestamp` from bodies so ETags work (P-M1) — **done** (§2.2). Still open: in-process cache in front of Redis (D6; optional now that the CDN absorbs viewer traffic).
 
 ## 5. Setup steps (once blockers are fixed)
 
@@ -247,7 +247,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 
 1. `GET https://api.<domain>/api/v1/health/ready` → 200 with DB + Redis ok (through Cloudflare once the shield is on).
 2. Open the dashboard → Bihar 2025 loads; map, scoreboard, summary render.
-3. Set an election to `Live`, open its dashboard, then in the admin Live Console apply one override → the Live Console updates at once (SSE) and the dashboard updates within ~20 s without reload (polling). Set the status back afterwards.
+3. Set an election to `Live`, open its dashboard, then in the admin Live Console save one seat correction → the Live Console updates at once (SSE) and the dashboard updates within ~20 s without reload (polling). Set the status back afterwards.
 4. Wait > 15 min idle → reload: cold start works; polling resumes on its own (no connection to re-establish).
 
 5. Admin → System status (SUPER_ADMIN): uptime, non-zero requests, DB latency and both Redis connections show as ok. Counters are in memory and reset on every restart/cold start.
@@ -278,7 +278,7 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
   - **Election window** (same calendar reminders as the Render Starter switch): `https://api.<domain>/api/v1/health/ready` every 5 min → email/phone alert. Switch back afterwards.
   - Either monitor keeps the Render free instance awake; one always-pinged free service is what the monthly free instance-hour allowance is sized for (verify against Render's current terms, and do not put a second free service on the account).
   - Health probes are excluded from the System status traffic counters and logged at `debug`.
-- **Counting-day view:** admin → System status (in-memory counters since restart: traffic, 4xx/5xx/429, origin-shield 403s, slowest routes, cache hit rate, Redis state, live connections, overrides/min, DB latency). Shield 403s are counted separately and are not part of the request total.
+- **Counting-day view:** admin → System status (in-memory counters since restart: traffic, 4xx/5xx/429, origin-shield 403s, slowest routes, cache hit rate, Redis state, live connections, result changes/min, DB latency). Shield 403s are counted separately and are not part of the request total.
 - **Logs and the SSE token:** the Live Console's stream URL carries its short-lived (5 min, single-election) token as `?token=`. The app redacts it in its own logs, but Render's and Cloudflare's platform access logs record the URL, so treat those logs as able to see a token that is valid for at most 5 minutes and cannot be used as a session credential.
 
 - **Database time zone:** `audit_logs.timestamp` and `constituency_analysis.updated_at` are `TIMESTAMP` (without a time zone) and the API reads them as UTC. Keep the database session time zone at UTC (Neon's default; do not set `TimeZone` on the role, database or connection URL), or the admin shows audit and analysis times shifted. The newer `updated_at` columns (migration 017) are `TIMESTAMPTZ` and unaffected.
