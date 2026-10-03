@@ -1,7 +1,7 @@
 import { resolveLeaderSeats } from '../leaders';
 import { describe, it, expect } from 'vitest';
 import { collectLeaderEntries, deriveLeaderCards } from '../leaders';
-import type { ResultRow } from '../../types';
+import type { ManifestData, ResultRow } from '../../types';
 
 const winners = new Map<string, ResultRow>([
   ['BR_VS_128_RAGHOPUR', { const_id: 'BR_VS_128_RAGHOPUR', party_id: 'RJD', candidate_name: 'TEJASHWI PRASAD YADAV', votes: 1, status: 'WON', margin: 14532 }],
@@ -61,5 +61,22 @@ describe('resolveLeaderSeats', () => {
   it('does not guess when two same-party candidates match', () => {
     const two = [...rows, { const_id: 'BR_VS_3_W', party_id: 'RJD', candidate_name: 'TEJASHWI YADAV', votes: 1, status: 'LOST', margin: 0 }];
     expect(resolveLeaderSeats([{ name: 'Tejashwi Yadav', partyId: 'RJD', constId: '', custom: false }], two)[0].constId).toBe('');
+  });
+});
+
+describe('person_id on leader entries', () => {
+  it('carries person_id from watchlist entries to the cards', () => {
+    const manifest = { watchlists: [{ id: 'leaders', name: 'Leaders', entries: [{ name: 'Nitish Kumar', party_id: 'JDU', const_id: '', role: 'Chief Minister', person_id: 'p-nk' }] }] } as unknown as ManifestData;
+    const [e] = collectLeaderEntries(manifest, []);
+    expect(e.personId).toBe('p-nk');
+    expect(deriveLeaderCards([e], new Map())[0].personId).toBe('p-nk');
+  });
+  it('never name-matches an entry that has a person_id', () => {
+    const e = { name: 'Rajesh Singh', partyId: 'JDU', constId: '', personId: 'p1', custom: false };
+    const results = [{ const_id: 'BR_VS10_1_X', party_id: 'JDU', candidate_name: 'Rajesh Singh', votes: 1, status: 'WON', margin: 1 }];
+    expect(resolveLeaderSeats([e], results)[0].constId).toBe('');
+  });
+  it('custom watch cards have no person', () => {
+    expect(deriveLeaderCards(collectLeaderEntries(null, [{ const_id: 'X', label: 'X' }]), new Map())[0].personId).toBeNull();
   });
 });

@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
 import { fitCount } from '../../viewmodels/tiles/fit';
 import { useElementWidth } from '../hooks/useElementWidth';
@@ -19,8 +20,10 @@ function Card({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
   // The seat button is stretched over the whole card; the party button sits above it (no nested buttons).
   return (
     <div className="relative flex h-12 min-w-[240px] flex-1 items-center gap-3 rounded-xl border border-line bg-page/50 px-3 text-left hover:border-accent">
-      <button type="button" onClick={() => vm.onSelectSeat(c.constId)} onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)} onFocus={onKbdFocus(() => vm.onHoverSeat(c.constId))} onBlur={() => vm.onHoverSeat(null)}
-        aria-label={`${c.name} · ${c.constName} · ${status}`} className="absolute inset-0 rounded-xl" />
+      {!c.constId && c.personId
+        ? <Link to={`/person/${c.personId}`} aria-label={c.role ? `${c.name} · ${c.role}` : c.name} className="absolute inset-0 rounded-xl" />
+        : <button type="button" onClick={() => vm.onSelectSeat(c.constId)} onMouseEnter={() => vm.onHoverSeat(c.constId)} onMouseLeave={() => vm.onHoverSeat(null)} onFocus={onKbdFocus(() => vm.onHoverSeat(c.constId))} onBlur={() => vm.onHoverSeat(null)}
+            aria-label={`${c.name} · ${c.constName} · ${status}`} className="absolute inset-0 rounded-xl" />}
       <span aria-hidden className="grid h-8 w-8 shrink-0 place-items-center rounded-full border text-xs font-bold" style={{ borderColor: color, color }}>{initials}</span>
       <span className="min-w-0 flex-1">
         <span className="block truncate text-sm font-semibold text-ink">{c.name}</span>

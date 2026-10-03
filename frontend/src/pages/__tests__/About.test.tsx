@@ -36,12 +36,12 @@ describe('About page', () => {
     const { container } = renderAbout();
     const panel = () => container.querySelector('[data-matrix-detail]')!.textContent!;
     expect(panel()).toMatch(/Bihar · Vidhan Sabha 2025/);
-    const cell = screen.getByRole('button', { name: 'Bihar · Vidhan Sabha 2020: Votes estimated' });
+    const cell = screen.getByRole('button', { name: 'Tamil Nadu · Vidhan Sabha 2021: Votes estimated' });
     fireEvent.click(cell);
     expect(cell.getAttribute('aria-pressed')).toBe('true');
-    expect(panel()).toMatch(/Bihar · Vidhan Sabha 2020/);
+    expect(panel()).toMatch(/Tamil Nadu · Vidhan Sabha 2021/);
     expect(panel()).toMatch(/only the winning margin is real/);
-    expect(panel()).toMatch(/StatisticsTimes/);
+    expect(panel()).toMatch(/elections\.in/);
   });
 
   it('links to the official ECI results and the contact address', () => {

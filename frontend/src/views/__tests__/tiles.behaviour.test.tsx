@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import '../../i18n';
 import { StandingsTile } from '../dashboard/StandingsTile';
 import { LayerInsightStrip } from '../dashboard/LayerInsightStrip';
@@ -62,6 +63,16 @@ describe('tile behaviour', () => {
     expect(onHoverSeat).toHaveBeenLastCalledWith(null);
     fireEvent.click(card);
     expect(onSelectSeat).toHaveBeenCalledWith('C7');
+  });
+
+  it('a seatless leader with a person links to the person page', () => {
+    const vm: LeadersVM = {
+      leaders: [{ key: 'k', name: 'Nitish Kumar', constId: '', constName: '', partyId: 'JDU', status: 'PENDING', margin: null, custom: false, personId: 'p-nk' }], watchlist: [],
+      partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop,
+    };
+    render(<MemoryRouter><LeadersStrip vm={vm} variant="focus" /></MemoryRouter>);
+    expect(screen.getByRole('link', { name: /Nitish Kumar/ }).getAttribute('href')).toBe('/person/p-nk');
+    expect(screen.queryByRole('button', { name: /Nitish Kumar/ })).toBeNull();
   });
 
   it('leaders strip reserves the "+N more" chip and the gap before it', () => {
