@@ -1,5 +1,8 @@
 # Upcoming 2026 State Assembly Elections — Preparation Tracker
 
+> **Done (2026-10-04, Phase 2B).** All five 2026 elections are loaded; see `docs/FEATURES.md` and `docs/SEEDING_PLAYBOOK.md`.
+> This tracker is historical and partly wrong: **Assam 2026 follows the 2023 delimitation** (126 seats, 9 SC, 19 ST), not 2008.
+
 ## Elections
 
 | # | State | Seats | Delimitation | Comparable Elections | Expected Date |

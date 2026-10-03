@@ -158,6 +158,15 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | Regenerating a corrections seed after the year seeds were already regenerated | restore the old year seeds first (`git show <pre-branch commit>:database/…`); corrections are a diff against the old rows |
 | Flat 2016 sheets: summing the parsed rows as the seat total makes the turnout check compare a number with itself | read the sheet's own "Total Votes" column |
 
+| A brand-new election has no old seed to take names/ids from | registry `newElection` → `new-election.ts` (elections row, constituency ids `<ST>_VS<yy>_<no>_<NAME>`, curated `manifest-<year>.json`) |
+| ECI boundary files: seat names carry "(SC)"/"(ST)" and other spellings; mapshaper writes counter-clockwise rings (d3 draws a square) | map features take our seat names; `rewindForD3` after mapshaper |
+| A redraw (Assam 2023): seat-number seeds (districts/regions, person links) would join unrelated seats | scope old seeds to the old delimitation; tag new seats one by one; link only within one delimitation |
+| Regenerating a state rewrites the old years' review files against already-new seeds | restore them (`git checkout -- scraper/data/*/review-20{11,16,21}.json`) |
+| party-profiles CLI is not re-runnable and can delete an image another party still uses | run once from a clean tree; never let two ids share a symbol file |
+| MyNeta hides ~11 % of 2026 winners in packed scripts (assets as images) | decode the "hunter" packer arithmetically; never execute the page's JavaScript |
+| MyNeta seat spellings (Labhpur/Labpur) and nicknames in names | variant fallback: close seat + same winner name, unique only |
+| Two candidates with the leader's exact name in one seat | `pickCandidacy` prefers the winner |
+
 ## 10. Running things
 
 - Long scripts (photos, profiles) can exceed the 2-hour background limit: start them detached

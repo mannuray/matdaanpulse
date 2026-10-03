@@ -49,22 +49,27 @@ export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'VS', state: 'Bihar', year: 2015, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Bihar', year: 2010, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
+  { house: 'VS', state: 'West Bengal', year: 2026, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'West Bengal', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'West Bengal', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'West Bengal', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
+  { house: 'VS', state: 'Tamil Nadu', year: 2026, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Tamil Nadu', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Tamil Nadu', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'seats_postponed'] },
   { house: 'VS', state: 'Tamil Nadu', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
+  { house: 'VS', state: 'Kerala', year: 2026, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Kerala', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Kerala', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Kerala', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
+  { house: 'VS', state: 'Assam', year: 2026, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Assam', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Assam', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Assam', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
+  { house: 'VS', state: 'Puducherry', year: 2026, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Puducherry', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Puducherry', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Puducherry', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },

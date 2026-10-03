@@ -190,6 +190,15 @@ If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds f
    WB `d4e5f6a7-b8c9-0123-def0-345678901011`, `…-345678901016`, `…-345678901021`.
 2. Spot-check an alliance tally: Assam 2016 NDA must read 86 seats (BJP 60, AGP 14, BPF 12).
 
+**The five 2026 elections (Phase 2B).** `setup.sh` now also runs, per state, `seed_<st>_vs_2026.sql` (new elections:
+elections row, constituencies, candidates, results, manifest); `seed_as_2026_districts_regions.sql` (the old Assam
+districts seed is scoped to 2008-delimitation elections); `seed_<st>_person_links_v2.sql` (KL, PY, TN, WB); then the
+run-once `seed_<st>_leaders.sql`, `seed_<st>_candidate_photos.sql`, `seed_<st>_affidavits.sql` and, after the Bihar party
+profiles, `seed_<st>_party_profiles.sql`. Publish or discard any 2026 manifest draft first. Seat analysis for the 2026
+elections is recomputed later together with all elections (decided 2026-10-03): ids AS `f6a7b8c9-d0e1-2345-f012-567890122026`,
+KL `a7b8c9d0-e1f2-3456-0123-678901232026`, PY `b1c2d3e4-f5a6-7890-1234-567890ab2026`, TN `e5f6a7b8-c9d0-1234-ef01-456789012026`,
+WB `d4e5f6a7-b8c9-0123-def0-345678901026` (Assam: no history ids, it is the first election on the 2023 boundaries).
+
 ### 5.1 Neon
 
 1. Create project in the region chosen in D1. Note both connection strings:

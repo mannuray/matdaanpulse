@@ -27,6 +27,7 @@ describe('About page', () => {
     expect(container.querySelectorAll('[data-matrix-cell]')).toHaveLength(DATA_SOURCES.length);
     expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Lok Sabha', 'Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry']);
     expect(screen.getByRole('button', { name: 'Kerala · Vidhan Sabha 2021: Real votes' })).toBeTruthy();
+    for (const st of ['Assam', 'Kerala', 'Puducherry', 'Tamil Nadu', 'West Bengal']) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha 2026: Real votes` })).toBeTruthy();
     expect(screen.getByText(`${DATA_SOURCES.length} elections covered`)).toBeTruthy();
     expect(screen.getByText('Lok Sabha + 6 states')).toBeTruthy();
     expect(container.textContent).not.toMatch(/about_[a-z_]+/);
@@ -35,7 +36,7 @@ describe('About page', () => {
   it('the detail panel starts on the newest dataset and follows the picked cell', () => {
     const { container } = renderAbout();
     const panel = () => container.querySelector('[data-matrix-detail]')!.textContent!;
-    expect(panel()).toMatch(/Bihar · Vidhan Sabha 2025/);
+    expect(panel()).toMatch(/West Bengal · Vidhan Sabha 2026/);
     const cell = screen.getByRole('button', { name: /Lok Sabha.*2024: Partly incomplete/ });
     fireEvent.click(cell);
     expect(cell.getAttribute('aria-pressed')).toBe('true');

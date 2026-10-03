@@ -180,6 +180,21 @@ Plan `docs/superpowers/plans/2026-10-03-phase2a-historical-results.md` (historic
 - Per-state party overrides (`scraper/data/<slug>/party-overrides.json`) where an ECI name means another party here
   (Kerala 2011's "Muslim League Kerala State Committee" = IUML).
 
+### The five 2026 elections (AS, KL, PY, TN, WB), 2026-10-04
+Plan `docs/superpowers/plans/2026-10-03-phase2b-2026-elections.md` (current track).
+- [x] Results from the ECI statistical reports (May 2026; West Bengal's set includes the AC 144 Falta re-poll): every
+  candidate + NOTA, real votes, SC/ST, electors, turnout, poll-date phases; winners match ECI's party tallies. New
+  elections are emitted without an old seed (`scraper/src/bihar/new-election.ts`), manifests curated with sources in
+  `scraper/data/<slug>/manifest-2026.json`.
+- [x] Assam follows the 2023 delimitation (126 seats, 9 SC, 19 ST): map `frontend/public/geo/as_ac_2023.geojson` built
+  from ECI's boundary file (`geo-cli.ts`: our seat names, d3 winding, mapshaper); seats tagged by district/region one by
+  one (`seed_as_2026_districts_regions.sql`); no seat history, no links to 2008-era candidacies.
+- [x] Region comparison for redrawn elections: `GET /elections/:id/region-shares` + a "Regions" tab in the standings tile
+  (statewide and per region, each year's own alliances, labelled approximate).
+- [x] 2026 candidates linked to their 2011-2021 persons (`seed_<slug>_person_links_v2.sql`, same delimitation only).
+- [x] Leaders (CM, LoP, opposition chiefs, cabinet; user-approved) with Blob photos; 40 top-party profiles (user-approved);
+  top-4 candidate photos from the live ECI results site; winners' affidavits from MyNeta (packed rows decoded, never run).
+
 ### Bihar 2025 party profiles, 2026-10-03
 - [x] The 15 top parties of Bihar 2025 (won a seat, 1 %+ of the vote, or alliance member: RJD, BJP, JDU, INC, LJPRV, JSP,
   CPIML, AIMIM, BSP, VIP, HAMS, RLM, CPIM, IIP, CPI) researched with sources into `scraper/data/bihar/parties-2025.json`
@@ -562,7 +577,7 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
 - **Estimated / incomplete seed data** (audit 2026-10-01; listed publicly on `/about`, source of truth `frontend/src/model/about/about.ts`, update it whenever a seed is corrected):
   - Synthetic votes: none left in Vidhan Sabha data (Bihar and the five states fixed on 2026-10-03).
   - LS 2024: `voter_turnout` / `total_electors` implausible (e.g. Lakshadweep 1,474,599 electors; in 294 seats the votes exceed electors × turnout).
-  - Candidate coverage: all candidates in every Vidhan Sabha election (Bihar 2010–2025, five states 2011–2021); top 5 + NOTA in LS 2024. TN 2016 has 232/234 seats (2 postponed polls).
+  - Candidate coverage: all candidates in every Vidhan Sabha election (Bihar 2010–2025, five states 2011–2026); top 5 + NOTA in LS 2024. TN 2016 has 232/234 seats (2 postponed polls).
 
 - **Detail screens:** affidavit columns (age, assets, liabilities, criminal cases) appear only where admins or seeds filled them; seat-history runner-up and share appear after the next analysis recompute; the counting round in the seat dialog can trail the vote numbers by up to a few minutes (CDN cache); turnout and vote-share change versus the previous election are not shown (no source yet).
 
