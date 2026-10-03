@@ -1,0 +1,514 @@
+[
+ {
+  "id": "RSP",
+  "name": "Revolutionary Socialist Party",
+  "abbreviation": "RSP",
+  "eci_recognition": "State",
+  "founded_year": 1940,
+  "leader_name": "Manoj Bhattacharya",
+  "headquarters": "New Delhi, Delhi",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Revolutionary_Socialist_Party_(India)",
+  "color": "#D84C4C",
+  "description": "A Marxist party founded in 1940 with roots in the Bengal anti-colonial movement, a Left Front member in West Bengal and part of the Congress-led UDF in Kerala. In 2026 it won 3 of its 4 seats in Kerala with the UDF, while its 18 Left Front candidates in West Bengal all lost.",
+  "eci_symbol": "Spade and Stoker",
+  "logo": {
+   "file": "RSP-logo.svg",
+   "commons": "File:RSP-flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:RSP-flag.svg",
+   "author": "Nichalp",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "RSP-eci.png",
+   "commons": "File:Indian Election Symbol Spade and Stoker.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Spade_and_Stoker.png",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Revolutionary_Socialist_Party_(India)",
+   "https://en.wikipedia.org/wiki/Manoj_Bhattacharya",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=28",
+   "https://commons.wikimedia.org/wiki/File:RSP-flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Spade_and_Stoker.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "NCPSP",
+  "name": "Nationalist Congress Party – Sharadchandra Pawar",
+  "abbreviation": "NCP–SP",
+  "eci_recognition": "State",
+  "founded_year": 2024,
+  "leader_name": "Sharad Pawar",
+  "headquarters": "New Delhi, Delhi",
+  "website": "https://ncpsp.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Nationalist_Congress_Party_%E2%80%93_Sharadchandra_Pawar",
+  "color": "#0029B0",
+  "description": "The party of Sharad Pawar's faction, formed in 2024 after the Election Commission awarded the original NCP name and symbol to Ajit Pawar's group. In Kerala it contested three seats in the LDF in 2026 and won none.",
+  "eci_symbol": "Man Blowing Turha",
+  "logo": {
+   "file": "NCPSP-logo.png",
+   "commons": "File:NCP–SP Flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:NCP–SP_Flag.png",
+   "author": "Soumava2002",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "NCPSP-eci.png",
+   "commons": "File:Indian Election Symbol Man Blowing Turha.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Man_Blowing_Turha.png",
+   "author": "Election Commission of India",
+   "licence": "Public domain"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Nationalist_Congress_Party_%E2%80%93_Sharadchandra_Pawar",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://ncpsp.org/",
+   "https://commons.wikimedia.org/wiki/File:NCP–SP_Flag.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Man_Blowing_Turha.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "RMPI",
+  "name": "Revolutionary Marxist Party of India",
+  "abbreviation": "RMPI",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2016,
+  "leader_name": "Mangat Ram Pasla",
+  "headquarters": "Jalandhar, Punjab",
+  "website": "http://www.rmpi.in/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Revolutionary_Marxist_Party_of_India",
+  "color": "#FF0000",
+  "description": "A Marxist party formed in 2016 by merging Kerala's Revolutionary Marxist Party, founded by the slain T. P. Chandrasekharan, with breakaway CPI(M) groups from other states. Backed by the UDF, its Kerala leader K. K. Rema held Vadakara in 2026.",
+  "eci_symbol": null,
+  "logo": {
+   "file": "RMPI-logo.jpg",
+   "commons": "File:RMPI flag.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:RMPI_flag.jpg",
+   "author": "RMPI",
+   "licence": "Public domain"
+  },
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Revolutionary_Marxist_Party_of_India",
+   "https://en.wikipedia.org/wiki/K._K._Rema",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:RMPI_flag.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "ISJD",
+  "name": "Indian Socialist Janata Dal",
+  "abbreviation": "ISJD",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2026,
+  "leader_name": "Mathew T. Thomas",
+  "headquarters": null,
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Indian_Socialist_Janata_Dal",
+  "color": "#33CC00",
+  "description": "A Kerala socialist party founded in January 2026 by Mathew T. Thomas as a breakaway from the Janata Dal (Secular). It contested two seats as part of the LDF in 2026 and won none.",
+  "eci_symbol": null,
+  "logo": {
+   "file": "ISJD-logo.png",
+   "commons": "File:Indian Socialist Janata Dal Flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Socialist_Janata_Dal_Flag.png",
+   "author": "XYZ 250706",
+   "licence": "CC0"
+  },
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Indian_Socialist_Janata_Dal",
+   "https://keralakaumudi.com/en/news/news.php?id=1716372",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:Indian_Socialist_Janata_Dal_Flag.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "KRSPLM",
+  "name": "Kerala Revolutionary Socialist Party (Leninist-Marxist)",
+  "abbreviation": "RSP(L)",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2016,
+  "leader_name": "Kovoor Kunjumon",
+  "headquarters": null,
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Revolutionary_Socialist_Party_(Leninist)",
+  "color": "#FF0000",
+  "description": "The party of Kovoor Kunjumon, known as the RSP (Leninist), formed in 2016 after a split from the Revolutionary Socialist Party and allied with the LDF. Kunjumon, who had held Kunnathur since 2001, lost the seat to the RSP in 2026.",
+  "eci_symbol": null,
+  "logo": {
+   "file": "KRSPLM-logo.png",
+   "commons": "File:RSP (Leninist) Flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:RSP_(Leninist)_Flag.png",
+   "author": "Soumava2002",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Revolutionary_Socialist_Party_(Leninist)",
+   "https://www.onmanorama.com/news/kerala/2026/05/04/kerala-assembly-election-results-2026-kollam-udf-sweep-bindu-krishna-vishnunadh.amp.html",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:RSP_(Leninist)_Flag.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "IUML",
+  "name": "Indian Union Muslim League",
+  "abbreviation": "IUML",
+  "eci_recognition": "State",
+  "founded_year": 1948,
+  "leader_name": "K. M. Kader Mohideen",
+  "headquarters": "Chennai, Tamil Nadu",
+  "website": "https://iumlkerala.org",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Indian_Union_Muslim_League",
+  "color": "#006600",
+  "description": "A Muslim community party that traces its first council to Madras in March 1948, strongest in Kerala where it is the main partner of the Congress-led UDF. In 2026 it won 22 of its 26 Kerala seats and two seats in Tamil Nadu as a DMK ally, later backing the TVK government there.",
+  "eci_symbol": "Ladder",
+  "logo": {
+   "file": "IUML-logo.svg",
+   "commons": "File:Flag of the Indian Union Muslim League.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Indian_Union_Muslim_League.svg",
+   "author": "Zscout370",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "IUML-eci.svg",
+   "commons": "File:Indian Election Symbol Lader.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Lader.svg",
+   "author": "Junior Jumper (formerly Tæ)",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Indian_Union_Muslim_League",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:Flag_of_the_Indian_Union_Muslim_League.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Lader.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "KECM",
+  "name": "Kerala Congress (M)",
+  "abbreviation": "KC(M)",
+  "eci_recognition": "State",
+  "founded_year": 1979,
+  "leader_name": "Jose K. Mani",
+  "headquarters": "Kottayam, Kerala",
+  "website": "https://www.keralacongressm.co.in",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(M)",
+  "color": "#89BADF",
+  "description": "A Kerala regional party founded by K. M. Mani in 1979, rooted in the Christian farming belt of central Travancore and a member of the CPI(M)-led LDF since 2020. It contested 12 seats for the LDF in 2026 and won none.",
+  "eci_symbol": "Two Leaves",
+  "logo": {
+   "file": "KECM-logo.svg",
+   "commons": "File:Kerala-Congress-flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Kerala-Congress-flag.svg",
+   "author": "Nichalp (assumed)",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "KECM-eci.svg",
+   "commons": "File:Indian election symbol two leaves.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_two_leaves.svg",
+   "author": "Furfur",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Kerala_Congress_(M)",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:Kerala-Congress-flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_two_leaves.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "KEC",
+  "name": "Kerala Congress",
+  "abbreviation": "KEC",
+  "eci_recognition": "State",
+  "founded_year": 1964,
+  "leader_name": "P. J. Joseph",
+  "headquarters": "Kottayam, Kerala",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kerala_Congress",
+  "color": "#809FFF",
+  "description": "The P. J. Joseph-led party that holds the original Kerala Congress name (the movement dates from 1964) and sits in the Congress-led UDF. It won seven of the eight seats it contested in Kerala in 2026.",
+  "eci_symbol": "Auto Rickshaw",
+  "logo": {
+   "file": "KEC-logo.svg",
+   "commons": "File:Kerala-Congress-flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Kerala-Congress-flag.svg",
+   "author": "Nichalp (assumed)",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "KEC-eci.svg",
+   "commons": "File:Auto Rickshaw Election Symbol.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Auto_Rickshaw_Election_Symbol.svg",
+   "author": "Election Commission of India",
+   "licence": "CC BY-SA 3.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Kerala_Congress",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:Kerala-Congress-flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Auto_Rickshaw_Election_Symbol.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "TP",
+  "name": "Twenty 20 Party",
+  "abbreviation": "TTP",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2015,
+  "leader_name": "Sabu M. Jacob",
+  "headquarters": "Kizhakkambalam, Ernakulam, Kerala",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Twenty_20_Party",
+  "color": "#62C0FE",
+  "description": "A party that grew out of the Kitex group's welfare movement in Kizhakkambalam panchayat, launched by industrialist Sabu M. Jacob in 2015. It joined the NDA for 2026 and contested 19 Kerala seats without winning any.",
+  "eci_symbol": "Jackfruit",
+  "logo": null,
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Twenty_20_Party",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "BDJS",
+  "name": "Bharath Dharma Jana Sena",
+  "abbreviation": "BDJS",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2015,
+  "leader_name": "Thushar Vellappally",
+  "headquarters": null,
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Bharath_Dharma_Jana_Sena",
+  "color": "#800000",
+  "description": "A Kerala party formed in December 2015 with backing from the Ezhava community organisation SNDP Yogam and a member of the BJP-led NDA. It contested 22 seats in Kerala in 2026 and won none.",
+  "eci_symbol": "Coconut Farm",
+  "logo": {
+   "file": "BDJS-logo.png",
+   "commons": "File:Bharath Dharma Jana Sena Flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bharath_Dharma_Jana_Sena_Flag.png",
+   "author": "Jbt498",
+   "licence": "CC0"
+  },
+  "eci_image": {
+   "file": "BDJS-eci.jpg",
+   "commons": "File:Indian Election Symbol Coconut Farm.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Coconut_Farm.jpg",
+   "author": "Election Commission of India",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Bharath_Dharma_Jana_Sena",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:Bharath_Dharma_Jana_Sena_Flag.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Coconut_Farm.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "KECJ",
+  "name": "Kerala Congress (Jacob)",
+  "abbreviation": "KC(J)",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 1993,
+  "leader_name": "Anoop Jacob",
+  "headquarters": "Kottayam, Kerala",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(Jacob)",
+  "color": "#BFCFFF",
+  "description": "A Kerala Congress faction founded by T. M. Jacob in 1993 and now led by his son Anoop Jacob, allied with the Congress-led UDF. It contested and won one seat in 2026.",
+  "eci_symbol": null,
+  "logo": {
+   "file": "KECJ-logo.svg",
+   "commons": "File:Kerala-Congress-flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Kerala-Congress-flag.svg",
+   "author": "Nichalp (assumed)",
+   "licence": "Public domain"
+  },
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Kerala_Congress_(Jacob)",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:Kerala-Congress-flag.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "KECB",
+  "name": "Kerala Congress (B)",
+  "abbreviation": "KC(B)",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 1977,
+  "leader_name": "K. B. Ganesh Kumar",
+  "headquarters": "Thiruvananthapuram, Kerala",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(B)",
+  "color": "#2F027E",
+  "description": "A Kerala Congress faction founded by R. Balakrishna Pillai in 1977, now chaired by his son K. B. Ganesh Kumar and part of the LDF. Its single 2026 candidate, Ganesh Kumar, lost Pathanapuram.",
+  "eci_symbol": null,
+  "logo": {
+   "file": "KECB-logo.png",
+   "commons": "File:KCB.Pathanapuram.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:KCB.Pathanapuram.png",
+   "author": "MNKary",
+   "licence": "CC0"
+  },
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Kerala_Congress_(B)",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:KCB.Pathanapuram.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "INCS",
+  "name": "Congress (Secular)",
+  "abbreviation": "Cong(S)",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 1978,
+  "leader_name": "Kadannappalli Ramachandran",
+  "headquarters": "Kochi, Kerala",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Congress_(Secular)",
+  "color": "#4FE8DB",
+  "description": "A small party that survives from the 1978 split of the Congress, led in Kerala by Kadannappalli Ramachandran and allied with the LDF. It contested one seat in 2026 and did not win.",
+  "eci_symbol": null,
+  "logo": {
+   "file": "INCS-logo.jpg",
+   "commons": "File:Congress (Secular) Flag.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Congress_(Secular)_Flag.jpg",
+   "author": "Arjun Muraleedharan Madathiparambil",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Congress_(Secular)",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://commons.wikimedia.org/wiki/File:Congress_(Secular)_Flag.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "CMPKSC",
+  "name": "Communist Marxist Party Kerala State Committee",
+  "abbreviation": "CMP",
+  "eci_recognition": "Unrecognised",
+  "founded_year": null,
+  "leader_name": "C. P. John",
+  "headquarters": "Thiruvananthapuram, Kerala",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Communist_Marxist_Party",
+  "color": "#FF0000",
+  "description": "The C. P. John-led faction of the Communist Marxist Party, which M. V. Raghavan founded in 1986 after his expulsion from the CPI(M); it is a UDF ally. John contested its only 2026 seat and won.",
+  "eci_symbol": "Ship",
+  "logo": {
+   "file": "CMPKSC-logo.svg",
+   "commons": "File:CMP-banner.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:CMP-banner.svg",
+   "author": "Nichalp",
+   "licence": "Public domain"
+  },
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Communist_Marxist_Party",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://keralakaumudi.com/en/news/news.php?id=1721986",
+   "https://commons.wikimedia.org/wiki/File:CMP-banner.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "INL",
+  "name": "Indian National League",
+  "abbreviation": "INL",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 1994,
+  "leader_name": "Mohammad Soleiman",
+  "headquarters": null,
+  "website": "https://indiannationalleague.party/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Indian_National_League",
+  "color": "#2E8B57",
+  "description": "A party formed in 1994 by Ebrahim Sulaiman Sait after he left the IUML, allied with the LDF in Kerala. It contested one seat each in Kerala and Tamil Nadu in 2026 and won neither.",
+  "eci_symbol": null,
+  "logo": {
+   "file": "INL-logo.png",
+   "commons": "File:INL FLAG.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:INL_FLAG.png",
+   "author": "Shabeeb1",
+   "licence": "CC0"
+  },
+  "eci_image": null,
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Indian_National_League",
+   "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=24",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:INL_FLAG.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ }
+]

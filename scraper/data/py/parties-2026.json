@@ -1,0 +1,388 @@
+[
+ {
+  "id": "AINRC",
+  "name": "All India N.R. Congress",
+  "abbreviation": "AINRC",
+  "eci_recognition": "State",
+  "founded_year": 2011,
+  "leader_name": "N. Rangaswamy",
+  "headquarters": "Puducherry, Puducherry",
+  "website": "http://allindianrcongress.com/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All_India_N._R._Congress",
+  "color": "#89C27A",
+  "description": "A Puducherry party founded in 2011 by former Congress chief minister N. Rangaswamy, who was chief minister from 2011 to 2016 and again from 2021. It headed the NDA in 2026 and won 12 of the 16 seats it contested, the most of any party.",
+  "eci_symbol": "Jug",
+  "logo": {
+   "file": "AINRC-logo.png",
+   "commons": "File:All India N.R. Congress.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:All_India_N.R._Congress.png",
+   "author": "Unknown (uploader states own work)",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "AINRC-eci.png",
+   "commons": "File:Indian Election Symbol Jug.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Jug.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/All_India_N._R._Congress",
+   "https://en.wikipedia.org/wiki/2026_Puducherry_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=25",
+   "https://commons.wikimedia.org/wiki/File:All_India_N.R._Congress.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Jug.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "LJK",
+  "name": "Latchiya Jananayaka Katchi",
+  "abbreviation": "LJK",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2025,
+  "leader_name": "Jose Charles Martin",
+  "headquarters": "Puducherry, Puducherry",
+  "website": "https://ljkofficial.com/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Latchiya_Jananayaka_Katchi",
+  "color": "#002395",
+  "description": "A Puducherry party founded in December 2025 by the businessman Jose Charles Martin. It contested two seats in the NDA in 2026 and won one, with Martin elected from Kamaraj Nagar.",
+  "eci_symbol": "Watermelon",
+  "logo": null,
+  "eci_image": {
+   "file": "LJK-eci.jpg",
+   "commons": "File:Indian Election Symbol Watermelon.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Watermelon.jpg",
+   "author": "Election Commission of India",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Latchiya_Jananayaka_Katchi",
+   "https://en.wikipedia.org/wiki/2026_Puducherry_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=25",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Watermelon.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "NYMK",
+  "name": "Neyam Makkal Kazhagam",
+  "abbreviation": "NMK",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2025,
+  "leader_name": "G. Nehru Kuppusamy",
+  "headquarters": null,
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/G._Nehru_Kuppusamy",
+  "color": null,
+  "description": "A small Puducherry party founded by G. Nehru Kuppusamy, a former AINRC MLA who won Orleampeth as an independent in 2021. It contested two seats in the TVK-led alliance in 2026 and won one, with Kuppusamy re-elected from Orleampeth.",
+  "eci_symbol": null,
+  "logo": null,
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/G._Nehru_Kuppusamy",
+   "https://en.wikipedia.org/wiki/2026_Puducherry_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=25",
+   "https://results.eci.gov.in/ResultAcGenMay2026/ConstituencywiseU0716.htm"
+  ]
+ },
+ {
+  "id": "TVK",
+  "name": "Tamilaga Vettri Kazhagam",
+  "abbreviation": "TVK",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2024,
+  "leader_name": "C. Joseph Vijay",
+  "headquarters": "Panaiyur, Chennai, Tamil Nadu",
+  "website": "https://tvkvijay.com",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Tamilaga_Vettri_Kazhagam",
+  "color": "#F2B705",
+  "description": "A party launched by film actor Vijay in February 2024 as a challenger to the DMK–AIADMK duopoly. In its first election in 2026 it became the largest party in Tamil Nadu with 108 of 234 seats and Vijay formed the government with outside support.",
+  "eci_symbol": "Whistle",
+  "logo": {
+   "file": "TVK-logo.png",
+   "commons": "File:Tamilaga Vettri Kazhagam (TVK) Flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tamilaga_Vettri_Kazhagam_(TVK)_Flag.png",
+   "author": "TVK IT Wing",
+   "licence": "CC0"
+  },
+  "eci_image": {
+   "file": "TVK-eci.svg",
+   "commons": "File:Indian Election Symbol Whistle.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Whistle.svg",
+   "author": "Election Commission of India",
+   "licence": "CC0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Tamilaga_Vettri_Kazhagam",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:Tamilaga_Vettri_Kazhagam_(TVK)_Flag.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Whistle.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "DMK",
+  "name": "Dravida Munnetra Kazhagam",
+  "abbreviation": "DMK",
+  "eci_recognition": "State",
+  "founded_year": 1949,
+  "leader_name": "M. K. Stalin",
+  "headquarters": "Chennai, Tamil Nadu",
+  "website": "https://www.dmk.in/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Dravida_Munnetra_Kazhagam",
+  "color": "#FA2223",
+  "description": "A Dravidian party founded by C. N. Annadurai in 1949 that led Tamil Nadu from 2021 at the head of the Secular Progressive Alliance. It lost power in 2026, winning 59 seats, and became the main opposition.",
+  "eci_symbol": "Rising Sun",
+  "logo": {
+   "file": "DMK-logo.svg",
+   "commons": "File:Flag DMK.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Flag_DMK.svg",
+   "author": "Amit6",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "DMK-eci.svg",
+   "commons": "File:Indian election symbol rising sun.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_rising_sun.svg",
+   "author": "Furfur",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Dravida_Munnetra_Kazhagam",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:Flag_DMK.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_rising_sun.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "AIADMK",
+  "name": "All India Anna Dravida Munnetra Kazhagam",
+  "abbreviation": "AIADMK",
+  "eci_recognition": "State",
+  "founded_year": 1972,
+  "leader_name": "Edappadi K. Palaniswami",
+  "headquarters": "Chennai, Tamil Nadu",
+  "website": "https://aiadmk.com/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All_India_Anna_Dravida_Munnetra_Kazhagam",
+  "color": "#009933",
+  "description": "A Dravidian party founded by M. G. Ramachandran in 1972 after his split from the DMK. It led an alliance with the BJP in 2026 and won 47 seats.",
+  "eci_symbol": "Two Leaves",
+  "logo": {
+   "file": "AIADMK-logo.svg",
+   "commons": "File:AIADMK Flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AIADMK_Flag.svg",
+   "author": "KindCowboy69",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "AIADMK-eci.svg",
+   "commons": "File:Indian election symbol two leaves.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_two_leaves.svg",
+   "author": "Furfur",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": true,
+  "sources": [
+   "https://en.wikipedia.org/wiki/All_India_Anna_Dravida_Munnetra_Kazhagam",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:AIADMK_Flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_two_leaves.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "NTK",
+  "name": "Naam Tamilar Katchi",
+  "abbreviation": "NTK",
+  "eci_recognition": "State",
+  "founded_year": 1958,
+  "leader_name": "Seeman",
+  "headquarters": "Porur, Chennai, Tamil Nadu",
+  "website": "http://www.naamtamilar.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Naam_Tamilar_Katchi",
+  "color": "#B31818",
+  "description": "A Tamil nationalist party, revived by Seeman in 2010 from S. P. Adithanar's 1958 outfit, that always contests alone. It fielded candidates in all 234 Tamil Nadu seats in 2026, polling about 4% without winning a seat.",
+  "eci_symbol": "Farmer",
+  "logo": null,
+  "eci_image": {
+   "file": "NTK-eci.jpg",
+   "commons": "File:NTK-EC-Symbol.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:NTK-EC-Symbol.jpg",
+   "author": "Mohantry-3009",
+   "licence": "CC0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Naam_Tamilar_Katchi",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.thehindu.com/news/national/tamil-nadu/ntk-gets-farmer-as-partys-election-symbol-seeman/article69561036.ece",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:NTK-EC-Symbol.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "VCK",
+  "name": "Viduthalai Chiruthaigal Katchi",
+  "abbreviation": "VCK",
+  "eci_recognition": "State",
+  "founded_year": 1982,
+  "leader_name": "Thol. Thirumavalavan",
+  "headquarters": null,
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Viduthalai_Chiruthaigal_Katchi",
+  "color": "#1E90FF",
+  "description": "An Ambedkarite Dalit party led by Thol. Thirumavalavan and a long-time member of the DMK-led alliance. It won two of its eight seats in 2026 and then gave unconditional support to the TVK government.",
+  "eci_symbol": "Pot",
+  "logo": {
+   "file": "VCK-logo.svg",
+   "commons": "File:VCK.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:VCK.svg",
+   "author": "Suthir",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "VCK-eci.png",
+   "commons": "File:Pot Symbol.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pot_Symbol.png",
+   "author": "Aharon Noraha",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Viduthalai_Chiruthaigal_Katchi",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:VCK.svg",
+   "https://commons.wikimedia.org/wiki/File:Pot_Symbol.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "PMK",
+  "name": "Pattali Makkal Katchi",
+  "abbreviation": "PMK",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 1989,
+  "leader_name": "Anbumani Ramadoss",
+  "headquarters": "Tindivanam, Tamil Nadu",
+  "website": "http://pmkofficial.com/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Pattali_Makkal_Katchi",
+  "color": "#FFFF00",
+  "description": "A party founded by S. Ramadoss in 1989 to represent the Vanniyar community of northern Tamil Nadu, led by his son Anbumani after a 2025 split. It contested 18 seats in the AIADMK-led alliance in 2026 and won four.",
+  "eci_symbol": "Mango",
+  "logo": {
+   "file": "PMK-logo.svg",
+   "commons": "File:PMK.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:PMK.svg",
+   "author": "Arafath.riyath (PMK.jpg); derivative work: Germo",
+   "licence": "CC BY-SA 3.0"
+  },
+  "eci_image": {
+   "file": "PMK-eci.svg",
+   "commons": "File:Indian Election Symbol Mango SVG.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Mango_SVG.svg",
+   "author": "Election Commission of India (election logo released by the Indian government)",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Pattali_Makkal_Katchi",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:PMK.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Mango_SVG.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "AIPTMMK",
+  "name": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
+  "abbreviation": "AIPTMMK",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2026,
+  "leader_name": "V. K. Sasikala",
+  "headquarters": null,
+  "website": null,
+  "wikipedia_url": null,
+  "color": "#336633",
+  "description": "A party named in March 2026 by former AIADMK interim general secretary V. K. Sasikala after she gave up her claim on the AIADMK. It led a front with the Ramadoss faction of the PMK in 2026 and won no seats.",
+  "eci_symbol": "Coconut Farm",
+  "logo": null,
+  "eci_image": {
+   "file": "AIPTMMK-eci.jpg",
+   "commons": "File:Indian Election Symbol Coconut Farm.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Coconut_Farm.jpg",
+   "author": "Election Commission of India",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/V._K._Sasikala",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.thehindu.com/news/national/tamil-nadu/sasikala-announces-her-partys-name-all-india-puratchi-thalaivar-makkal-munnetra-kazhagam/article70738382.ece",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Coconut_Farm.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "AJPK",
+  "name": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+  "abbreviation": "AJPK",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2025,
+  "leader_name": "S. Ramadoss",
+  "headquarters": "Tindivanam, Tamil Nadu",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Anaithindhiya_Jananayaka_Padhugappu_Kazhagam",
+  "color": null,
+  "description": "The party vehicle of PMK founder S. Ramadoss's faction after his 2025 split with his son Anbumani, allied with Sasikala's AIPTMMK in 2026 without winning a seat. It merged back into the PMK when the two resolved their dispute on 24 June 2026.",
+  "eci_symbol": "Gas Cylinder",
+  "logo": {
+   "file": "AJPK-logo.svg",
+   "commons": "File:PMK.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:PMK.svg",
+   "author": "Arafath.riyath (PMK.jpg); derivative work: Germo",
+   "licence": "CC BY-SA 3.0"
+  },
+  "eci_image": {
+   "file": "AJPK-eci.jpg",
+   "commons": "File:Gas Cylinder.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gas_Cylinder.jpg",
+   "author": "Faiznkm",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Anaithindhiya_Jananayaka_Padhugappu_Kazhagam",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:PMK.svg",
+   "https://commons.wikimedia.org/wiki/File:Gas_Cylinder.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ }
+]

@@ -1,0 +1,64 @@
+[
+ {
+  "id": "DMDK",
+  "name": "Desiya Murpokku Dravida Kazhagam",
+  "abbreviation": "DMDK",
+  "eci_recognition": "State",
+  "founded_year": 2005,
+  "leader_name": "Premallatha Vijayakant",
+  "headquarters": "Chennai, Tamil Nadu",
+  "website": "https://dmdkparty.com/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Desiya_Murpokku_Dravida_Kazhagam",
+  "color": "#FFD700",
+  "description": "A party founded by actor Vijayakant in 2005 and led since his death by his wife Premalatha. It joined the DMK-led alliance for 2026 and won one of its ten seats.",
+  "eci_symbol": "Nagara",
+  "logo": null,
+  "eci_image": {
+   "file": "DMDK-eci.svg",
+   "commons": "File:Indian Election Symbol Nagara.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Nagara.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Desiya_Murpokku_Dravida_Kazhagam",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Nagara.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "AMMK",
+  "name": "Amma Makkal Munnettra Kazagam",
+  "abbreviation": "AMMK",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2018,
+  "leader_name": "T. T. V. Dhinakaran",
+  "headquarters": "Chennai, Tamil Nadu",
+  "website": "http://www.ammk.com/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Amma_Makkal_Munnetra_Kazhagam",
+  "color": "#006633",
+  "description": "A breakaway from the AIADMK launched by T. T. V. Dhinakaran in 2018. It rejoined the AIADMK-led alliance for 2026 and won one of its 11 seats.",
+  "eci_symbol": "Pressure Cooker",
+  "logo": null,
+  "eci_image": {
+   "file": "AMMK-eci.png",
+   "commons": "File:AMMK SYMBOL PRESSURE COOKER.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AMMK_SYMBOL_PRESSURE_COOKER.png",
+   "author": "Thiyagu Ganesh",
+   "licence": "CC0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Amma_Makkal_Munnetra_Kazhagam",
+   "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=26",
+   "https://commons.wikimedia.org/wiki/File:AMMK_SYMBOL_PRESSURE_COOKER.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ }
+]

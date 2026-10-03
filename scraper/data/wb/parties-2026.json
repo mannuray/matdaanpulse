@@ -1,0 +1,107 @@
+[
+ {
+  "id": "AISF",
+  "name": "All India Secular Front",
+  "abbreviation": "ISF",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2021,
+  "leader_name": "Nawsad Siddique",
+  "headquarters": "Furfura Sharif, West Bengal",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All_India_Secular_Front",
+  "color": "#0204EF",
+  "description": "A West Bengal party, popularly the Indian Secular Front, founded in 2021 by the Furfura Sharif cleric Abbas Siddiqui and chaired by his brother Nawsad Siddique. It fought the 2026 election with the Left Front, contesting 30 seats and holding Bhangar, its only win.",
+  "eci_symbol": "Envelope",
+  "logo": {
+   "file": "AISF-logo.svg",
+   "commons": "File:ISF flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ISF_flag.svg",
+   "author": "jayantanth",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "AISF-eci.jpg",
+   "commons": "File:Indian Election Symbol Envelope.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Envelope.jpg",
+   "author": "Election Commission of India",
+   "licence": "GODL-India"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/All_India_Secular_Front",
+   "https://www.socialnews.xyz/2026/09/19/bengal-eci-allots-new-symbols-to-ajup-aisf/",
+   "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=28",
+   "https://commons.wikimedia.org/wiki/File:ISF_flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Envelope.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "AJUP",
+  "name": "Aam Janata Unnayan Party",
+  "abbreviation": "AJUP",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2025,
+  "leader_name": "Humayun Kabir",
+  "headquarters": "Saktipur, West Bengal",
+  "website": "https://ajup.net/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Aam_Janata_Unnayan_Party",
+  "color": "#8AB800",
+  "description": "A Murshidabad-based party founded in December 2025 by Humayun Kabir after his suspension from the Trinamool Congress. It contested 143 seats in its first election in 2026 and won 2, both by Kabir himself in Naoda and Rejinagar.",
+  "eci_symbol": "Whistle",
+  "logo": {
+   "file": "AJUP-logo.png",
+   "commons": "File:AJUPFlag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AJUPFlag.png",
+   "author": "Karl Emanuel Jacob",
+   "licence": "CC0"
+  },
+  "eci_image": {
+   "file": "AJUP-eci.svg",
+   "commons": "File:Indian Election Symbol Whistle.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Whistle.svg",
+   "author": "Election Commission of India",
+   "licence": "CC0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Aam_Janata_Unnayan_Party",
+   "https://www.socialnews.xyz/2026/09/19/bengal-eci-allots-new-symbols-to-ajup-aisf/",
+   "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=28",
+   "https://ajup.net/",
+   "https://commons.wikimedia.org/wiki/File:AJUPFlag.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Whistle.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "BGPM",
+  "name": "Bharatiya Gorkha Prajatantrik Morcha",
+  "abbreviation": "BGPM",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2021,
+  "leader_name": "Anit Thapa",
+  "headquarters": null,
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Bharatiya_Gorkha_Prajatantrik_Morcha",
+  "color": "#FFEF03",
+  "description": "A Darjeeling hills party founded in 2021 by Anit Thapa. An ally of the Trinamool Congress, it contested the three hill seats under its own symbol in 2026 and lost all three to the BJP.",
+  "eci_symbol": null,
+  "logo": null,
+  "eci_image": null,
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Bharatiya_Gorkha_Prajatantrik_Morcha",
+   "https://www.newsonair.gov.in/west-bengal-bgpm-announces-candidates-for-three-darjeeling-hills-assembly-seats",
+   "https://www.etvbharat.com/en/state/bengal-assembly-polls-2026-seat-sharing-deadlock-grips-bjp-as-bgpm-seizes-early-momentum-in-darjeeling-enn26031606998",
+   "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=28",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ }
+]

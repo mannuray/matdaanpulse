@@ -1,0 +1,359 @@
+[
+ {
+  "id": "AGP",
+  "name": "Asom Gana Parishad",
+  "abbreviation": "AGP",
+  "eci_recognition": "State",
+  "founded_year": 1985,
+  "leader_name": "Atul Bora",
+  "headquarters": "Guwahati, Assam",
+  "website": "https://agpofficial.in/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Asom_Gana_Parishad",
+  "color": "#99CCFF",
+  "description": "An Assamese regionalist party formed in 1985 out of the Assam Movement after the Assam Accord, which governed the state twice under Prafulla Kumar Mahanta. In 2026 it contested 26 seats as a junior partner in the BJP-led NDA and won 10.",
+  "eci_symbol": "Elephant",
+  "logo": {
+   "file": "AGP-logo.svg",
+   "commons": "File:Asom Gana Parishad flag (1).svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Asom_Gana_Parishad_flag_(1).svg",
+   "author": "STMC2421",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "AGP-eci.svg",
+   "commons": "File:Elephant electoral symbol.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Elephant_electoral_symbol.svg",
+   "author": "Gnoeee",
+   "licence": "CC BY 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Asom_Gana_Parishad",
+   "https://en.wikipedia.org/wiki/Atul_Bora_(AGP_politician)",
+   "https://nenow.in/north-east-news/assam/assam-polls-agp-announces-26-candidates-atul-bora-keshab-mahanta-in-the-list.html",
+   "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://agpofficial.in/",
+   "https://commons.wikimedia.org/wiki/File:Asom_Gana_Parishad_flag_(1).svg",
+   "https://commons.wikimedia.org/wiki/File:Elephant_electoral_symbol.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "AIUDF",
+  "name": "All India United Democratic Front",
+  "abbreviation": "AIUDF",
+  "eci_recognition": "State",
+  "founded_year": 2005,
+  "leader_name": "Badruddin Ajmal",
+  "headquarters": "Guwahati, Assam",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All_India_United_Democratic_Front",
+  "color": "#348017",
+  "description": "An Assam party founded in 2005 by the businessman and cleric Badruddin Ajmal, drawing its support mainly from Bengali-origin Muslims. It fought the 2026 election outside both main alliances, contesting 30 seats and winning 2.",
+  "eci_symbol": "Lock and Key",
+  "logo": {
+   "file": "AIUDF-logo.webp",
+   "commons": "File:AIUDF logo.webp",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AIUDF_logo.webp",
+   "author": "AIUDF, Guwahati",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "AIUDF-eci.svg",
+   "commons": "File:Indian Election Symbol Lock And Key.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Lock_And_Key.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/All_India_United_Democratic_Front",
+   "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://commons.wikimedia.org/wiki/File:AIUDF_logo.webp",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Lock_And_Key.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "BOPF",
+  "name": "Bodoland People's Front",
+  "abbreviation": "BPF",
+  "eci_recognition": "State",
+  "founded_year": 2005,
+  "leader_name": "Hagrama Mohilary",
+  "headquarters": "Kokrajhar, Assam",
+  "website": "http://www.bpfassam.in/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Bodoland_People%27s_Front",
+  "color": "#FF6600",
+  "description": "A Bodo regional party founded in 2005 by Hagrama Mohilary, based in the Bodoland Territorial Region, whose council it won back in 2025. It joined the BJP-led NDA for 2026 and won 10 of the 11 seats it contested.",
+  "eci_symbol": "Nangol",
+  "logo": {
+   "file": "BOPF-logo.svg",
+   "commons": "File:BPF-Flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:BPF-Flag.svg",
+   "author": "Rajuonline",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "BOPF-eci.svg",
+   "commons": "File:Indian Election Symbol Nangol.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Nangol.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Bodoland_People%27s_Front",
+   "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://nenow.in/?p=496225",
+   "https://www.tribuneindia.com/news/india/bpf-stakes-claim-to-form-next-bodoland-territorial-council-after-thumping-win-in-polls-in-assam",
+   "https://commons.wikimedia.org/wiki/File:BPF-Flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Nangol.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "RJRD",
+  "name": "Raijor Dal",
+  "abbreviation": "RD",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2020,
+  "leader_name": "Akhil Gogoi",
+  "headquarters": "Guwahati, Assam",
+  "website": "http://www.raijordal.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Raijor_Dal",
+  "color": "#FEE502",
+  "description": "An Assam party launched in 2020 by the peasant-rights activist Akhil Gogoi out of the Krishak Mukti Sangram Samiti and the anti-CAA movement. In 2026 it contested 13 seats in the Congress-led Asom Sonmilito Morcha and won 2, including Gogoi in Sibsagar.",
+  "eci_symbol": "Gas Cylinder",
+  "logo": {
+   "file": "RJRD-logo.jpg",
+   "commons": "File:Raijor Dal.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Raijor_Dal.jpg",
+   "author": "Goswami21",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "RJRD-eci.jpg",
+   "commons": "File:Gas Cylinder.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gas_Cylinder.jpg",
+   "author": "Faiznkm",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Raijor_Dal",
+   "https://www.deccanherald.com/elections/assam/assam-assembly-election-results-2026-akhil-gogoi-lone-prominent-voice-in-opposition-camp-to-win-polls-3990989",
+   "https://nenow.in/north-east-news/assam/assam-polls-raijor-dal-finalizes-candidates-for-13-seats-in-alliance-with-congress.html",
+   "https://results.eci.gov.in/ResultAcGenMay2026/partywiseleadresult-3289S03.htm",
+   "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://commons.wikimedia.org/wiki/File:Raijor_Dal.jpg",
+   "https://commons.wikimedia.org/wiki/File:Gas_Cylinder.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "AJP",
+  "name": "Assam Jatiya Parishad",
+  "abbreviation": "AJP",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2020,
+  "leader_name": "Lurinjyoti Gogoi",
+  "headquarters": "Guwahati, Assam",
+  "website": "https://assamjatiyaparishad.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Assam_Jatiya_Parishad",
+  "color": "#0048BA",
+  "description": "An Assamese regional party formed in 2020 by leaders of the All Assam Students Union and the AJYCP, with Lurinjyoti Gogoi as its first president. It contested 10 seats in the Congress-led Asom Sonmilito Morcha in 2026 and won none.",
+  "eci_symbol": "Ship",
+  "logo": {
+   "file": "AJP-logo.jpg",
+   "commons": "File:AJP FLAG.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AJP_FLAG.jpg",
+   "author": "Goswami21",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "AJP-eci.png",
+   "commons": "File:Indian election symbol ship.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_ship.png",
+   "author": "XYZ 250706",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Assam_Jatiya_Parishad",
+   "https://morungexpress.com/assam-eci-allots-ship-as-party-symbol-to-ajp",
+   "https://www.sentinelassam.com/topheadlines/ajp-announces-candidates-for-2026-assam-assembly-election",
+   "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://assamjatiyaparishad.org/",
+   "https://commons.wikimedia.org/wiki/File:AJP_FLAG.jpg",
+   "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_ship.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "UPPL",
+  "name": "United People's Party Liberal",
+  "abbreviation": "UPPL",
+  "eci_recognition": "State",
+  "founded_year": 2015,
+  "leader_name": "Pramod Boro",
+  "headquarters": "Kokrajhar, Assam",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/United_People%27s_Party_Liberal",
+  "color": "#FAED09",
+  "description": "A Bodo regional party founded in 2015, based in the Bodoland Territorial Region and led by Pramod Boro. In 2026 it contested 18 seats outside the main alliances and won none.",
+  "eci_symbol": "Tractor Chalata Kisan",
+  "logo": null,
+  "eci_image": {
+   "file": "UPPL-eci.png",
+   "commons": "File:UPPL Election Symbol.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:UPPL_Election_Symbol.png",
+   "author": "Rraz4u",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/United_People%27s_Party_Liberal",
+   "https://sundayguardianlive.com/news/uppl-draws-red-line-in-assam-polls-eyes-bodoland-contest-169083/",
+   "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://commons.wikimedia.org/wiki/File:UPPL_Election_Symbol.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "JMM",
+  "name": "Jharkhand Mukti Morcha",
+  "abbreviation": "JMM",
+  "eci_recognition": "State",
+  "founded_year": 1972,
+  "leader_name": "Hemant Soren",
+  "headquarters": "Ranchi, Jharkhand",
+  "website": "https://jmmparty.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jharkhand_Mukti_Morcha",
+  "color": "#337316",
+  "description": "Jharkhand's ruling party, founded in 1972 by Shibu Soren, Binod Bihari Mahato and A. K. Roy, which led the movement for a separate Jharkhand state. In Assam it contested 16 seats on its own in 2026, courting tea-garden Adivasi voters, and won none.",
+  "eci_symbol": "Bow and Arrow",
+  "logo": {
+   "file": "JMM-logo.svg",
+   "commons": "File:Jharkhand Mukti Morcha flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jharkhand_Mukti_Morcha_flag.svg",
+   "author": "VNC200",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "JMM-eci.png",
+   "commons": "File:Indian Election Symbol Bow And Arrow.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Bow_And_Arrow.png",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Jharkhand_Mukti_Morcha",
+   "https://www.newsarenaindia.com/states/jmm-to-go-solo-on-19-seats-in-assam-after-talks-fail-with-cong/72910",
+   "https://www.prabhatkhabar.com/national/assam-election-results-2026-hemant-soren-jmm-party-issue-and-candidates-list",
+   "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://jmmparty.org/",
+   "https://commons.wikimedia.org/wiki/File:Jharkhand_Mukti_Morcha_flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Bow_And_Arrow.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "TMC",
+  "name": "All India Trinamool Congress",
+  "abbreviation": "AITC",
+  "eci_recognition": "State",
+  "founded_year": 1998,
+  "leader_name": "Mamata Banerjee",
+  "headquarters": "Kolkata, West Bengal",
+  "website": "https://aitcofficial.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All_India_Trinamool_Congress",
+  "color": "#05472A",
+  "description": "A West Bengal party founded in 1998 by Mamata Banerjee as a breakaway from the Congress, which ruled the state from 2011 until it lost the 2026 election to the BJP, winning 80 of the 291 seats it contested. After a post-poll split, the Election Commission froze its name and symbol in September 2026 and gave the Mamata Banerjee and rebel factions separate interim names.",
+  "eci_symbol": "Flowers and Grass",
+  "logo": {
+   "file": "TMC-logo.svg",
+   "commons": "File:All India Trinamool Congress logo (3).svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:All_India_Trinamool_Congress_logo_(3).svg",
+   "author": "VNC200",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "TMC-eci.svg",
+   "commons": "File:All India Trinamool Congress symbol 2021.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:All_India_Trinamool_Congress_symbol_2021.svg",
+   "author": "VNC200",
+   "licence": "CC BY-SA 3.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": true,
+  "sources": [
+   "https://en.wikipedia.org/wiki/All_India_Trinamool_Congress",
+   "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=28",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://www.businesstoday.in/india/story/ec-temporarily-freezes-tmcs-jora-phool-symbol-allots-separate-symbols-names-to-mamata-ritabrata-factions-556446-2026-09-18",
+   "https://newsonair.gov.in/election-commission-freezes-trinamool-congress-name-and-symbol/",
+   "https://aitcofficial.org/",
+   "https://commons.wikimedia.org/wiki/File:All_India_Trinamool_Congress_logo_(3).svg",
+   "https://commons.wikimedia.org/wiki/File:All_India_Trinamool_Congress_symbol_2021.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "AIFB",
+  "name": "All India Forward Bloc",
+  "abbreviation": "AIFB",
+  "eci_recognition": "State",
+  "founded_year": 1939,
+  "leader_name": "G. Devarajan",
+  "headquarters": "New Delhi, Delhi",
+  "website": "https://allindiaforwardbloc.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All_India_Forward_Bloc",
+  "color": "#AC1313",
+  "description": "A left-wing party founded by Subhas Chandra Bose in 1939 within the Congress, and a long-standing member of the Left Front in West Bengal. In 2026 it contested 24 seats in West Bengal as part of the Left Front and won none.",
+  "eci_symbol": "Lion",
+  "logo": {
+   "file": "AIFB-logo.png",
+   "commons": "File:AIFB Flag 2026.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AIFB_Flag_2026.png",
+   "author": "XYZ 250706",
+   "licence": "CC0"
+  },
+  "eci_image": {
+   "file": "AIFB-eci.svg",
+   "commons": "File:Indian Election Symbol Lion.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Lion.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/All_India_Forward_Bloc",
+   "https://www.anandabazar.com/india/devarajan-naren-chatterjee-at-the-top-of-fwd-bloc-leadership/cid/1410271",
+   "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=28",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=23",
+   "https://allindiaforwardbloc.org/",
+   "https://commons.wikimedia.org/wiki/File:AIFB_Flag_2026.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Lion.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ }
+]
