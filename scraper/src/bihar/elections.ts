@@ -77,7 +77,9 @@ export const ELECTIONS: ElectionConfig[] = [
   hist('KL', 2011, 'a7b8c9d0-e1f2-3456-0123-678901232011', 3763, 1, { pdf: '2011/2011.pdf' }),
   hist('KL', 2016, 'a7b8c9d0-e1f2-3456-0123-678901232016', 3767, 1, { detailed: '2016/Detailed_Results.xlsx', summary: '2016/Constituency_Data_Summry.pdf',
     parties: '2016/List_Of_Political_Parties_Participated.xlsx', performance: '2016/Performance_of_Poltical_Parties.xlsx' }),
-  hist('KL', 2021, 'a7b8c9d0-e1f2-3456-0123-678901232021', 13827, 1),
+  // ECI's download links for this report fail (HTTP 500); the four files were downloaded by hand from the same report.
+  hist('KL', 2021, 'a7b8c9d0-e1f2-3456-0123-678901232021', 13827, 1, { detailed: '2021/10-Detailed_Results.xlsx', summary: '2021/8-Constituency_Data_Summary.xlsx',
+    parties: '2021/3-List_Of_Political_Parties_Participated.xlsx', performance: '2021/5-Performance_of_Political_Parties.xlsx' }),
   hist('PY', 2011, 'b1c2d3e4-f5a6-7890-1234-567890ab2011', 3438, 1, { pdf: '2011/2011.pdf' }),
   hist('PY', 2016, 'b1c2d3e4-f5a6-7890-1234-567890ab2016', 3474, 1, { detailed: '2016/Detailed_Results.xlsx', summary: '2016/Constituency_Data_Summry.pdf',
     parties: '2016/List_Of_Political_Parties_Participated.xlsx', performance: '2016/Performance_of_Poltical_Parties.xlsx' }),

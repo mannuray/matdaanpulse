@@ -531,6 +531,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "ANNADEMOCRATICHUMANRIGHTSMOVEMENTPARTYOFINDIA": {
+    "id": "ADHRMPI",
+    "name": "Anna Democratic Human Rights Movement Party Of India",
+    "abbreviation": "ADHRMPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ANNADRAVIDARKAZHAGAM": {
     "id": "ADK",
     "name": "Anna Dravidar Kazhagam",
@@ -1252,6 +1259,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "DEMOCRATICHUMANRIGHTSMOVEMENTPARTY": {
+    "id": "DHRMP",
+    "name": "Democratic Human Rights Movement Party",
+    "abbreviation": "DHRMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "DEMOCRATICSOCIALISTPARTYOFINDIA": {
     "id": "DSPI",
     "name": "Democratic Socialist Party of India",
@@ -1265,6 +1279,13 @@
     "abbreviation": null,
     "color": "#CC0000",
     "recognition": null
+  },
+  "DEMOCRATICSOCIALJUSTICEPARTY": {
+    "id": "DSJP",
+    "name": "Democratic Social Justice Party",
+    "abbreviation": "DSJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "DESAMAKKALMUNNETRAKKAZHGAM": {
     "id": "DMMK",
@@ -1609,6 +1630,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "INDIANCHRISTIANSECULARPARTY": {
+    "id": "ICSP",
+    "name": "Indian Christian Secular Party",
+    "abbreviation": "ICSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "INDIANDEMOCRATICPARTY": {
     "id": "IDP",
     "name": "Indian Democratic Party",
@@ -1795,6 +1823,13 @@
     "id": "JAPL",
     "name": "Jan Adhikar Party (Loktantrik)",
     "abbreviation": "JAPL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANADHIPATHIYAKERALACONGRESS": {
+    "id": "JKC_KL",
+    "name": "Janadhipathiya Kerala Congress",
+    "abbreviation": "JKC",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2131,6 +2166,13 @@
     "id": "KJ",
     "name": "Kerala Janapaksham",
     "abbreviation": "KJ",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KERALAJANAPAKSHAMSECULAR": {
+    "id": "KJPS",
+    "name": "Kerala Janapaksham (secular),",
+    "abbreviation": "KJPS",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2736,6 +2778,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "NATIONALLABOURPARTY": {
+    "id": "NALAP",
+    "name": "National Labour Party",
+    "abbreviation": "NALAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "NATIONALLOKMATPARTY": {
     "id": "NALP",
     "name": "National Lokmat Party",
@@ -2840,6 +2889,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "NEWLABOURPARTY": {
+    "id": "NWLBRP",
+    "name": "New Labour Party",
+    "abbreviation": "NWLBRP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "NIRJATITASAMAJBIPLABIPARTY": {
     "id": "NSBP",
@@ -3562,6 +3618,13 @@
     "color": "#CC0000",
     "recognition": null
   },
+  "REVOLUTIONARYMARXISTPARTYOFINDIA": {
+    "id": "RMPI",
+    "name": "Revolutionary Marxist Party of India",
+    "abbreviation": "RMPI",
+    "color": "#DC143C",
+    "recognition": null
+  },
   "REVOLUTIONARYSOCIALISTPARTY": {
     "id": "RSP",
     "name": "Revolutionary Socialist Party",
@@ -3622,6 +3685,13 @@
     "id": "STPI",
     "name": "Samajtantric Party of India",
     "abbreviation": "STPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAMAJWADIFORWARDBLOC": {
+    "id": "SMFB",
+    "name": "Samajwadi Forward Bloc",
+    "abbreviation": "SMFB",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -3804,6 +3874,13 @@
     "id": "SATBP",
     "name": "Satya Bahumat Party",
     "abbreviation": "SatBP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SECULARDEMOCRATICCONGRESS": {
+    "id": "SDC",
+    "name": "Secular Democratic Congress",
+    "abbreviation": "SDC",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -4107,6 +4184,13 @@
     "abbreviation": "TPSTP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
+  },
+  "TWENTY20PARTY": {
+    "id": "TP",
+    "name": "Twenty 20 Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
   },
   "UDAYBHARATAMPARTY": {
     "id": "UBP",
