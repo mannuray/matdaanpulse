@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { createHash, randomBytes } from 'crypto';
 import { PrismaService } from '../prisma/prisma.service';
+import { IngestKeyNotFoundException } from '../../common/exceptions';
 
 export interface IngestKeyRow { id: string; name: string; created_at: Date; last_used_at: Date | null; revoked_at: Date | null }
 const sha = (s: string) => createHash('sha256').update(s).digest('hex');
@@ -35,6 +36,7 @@ export class IngestKeysService {
   }
 
   async revoke(id: string): Promise<void> {
-    await this.prisma.ingest_keys.update({ where: { id }, data: { revoked_at: new Date() } });
+    const { count } = await this.prisma.ingest_keys.updateMany({ where: { id }, data: { revoked_at: new Date() } });
+    if (!count) throw new IngestKeyNotFoundException(id);
   }
 }

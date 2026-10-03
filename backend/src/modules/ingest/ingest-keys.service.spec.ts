@@ -1,5 +1,6 @@
 import { createHash } from 'crypto';
 import { IngestKeysService } from './ingest-keys.service';
+import { IngestKeyNotFoundException } from '../../common/exceptions';
 
 const sha = (s: string) => createHash('sha256').update(s).digest('hex');
 
@@ -11,6 +12,7 @@ describe('IngestKeysService', () => {
       findUnique: jest.fn(async ({ where }) => rows.find(r => r.key_hash === where.key_hash) ?? null),
       update: jest.fn(async ({ where, data }) => Object.assign(rows.find(r => r.id === where.id), data)),
       findMany: jest.fn(async () => rows),
+      updateMany: jest.fn(async ({ where, data }) => { const r = rows.filter(x => x.id === where.id); r.forEach(x => Object.assign(x, data)); return { count: r.length }; }),
     } };
     return { svc: new IngestKeysService(prisma), prisma, rows };
   };
@@ -30,6 +32,11 @@ describe('IngestKeysService', () => {
     expect(await svc.verify('mpk_nope')).toBeNull();
     await svc.revoke(row.id);
     expect(await svc.verify(key)).toBeNull();
+  });
+
+  it('revoking an unknown key is a 404, not a Prisma error', async () => {
+    const { svc } = make();
+    await expect(svc.revoke('nope')).rejects.toBeInstanceOf(IngestKeyNotFoundException);
   });
 
   it('touches last_used_at at most once a minute', async () => {

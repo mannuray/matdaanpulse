@@ -27,3 +27,6 @@ export class IngestShardNotFoundException extends BusinessException {
 export class IngestShardOverlapException extends BusinessException {
   constructor(other: string, sample: string[]) { super(ErrorCodes.INGEST_SHARD_OVERLAP, `Shard overlaps ${other}`, HttpStatus.CONFLICT, { other, sample }); }
 }
+export class IngestKeyNotFoundException extends BusinessException {
+  constructor(id: string) { super(ErrorCodes.INGEST_KEY_NOT_FOUND, `Ingest key ${id} not found`, HttpStatus.NOT_FOUND, { id }); }
+}
