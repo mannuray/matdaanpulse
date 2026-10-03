@@ -46,6 +46,7 @@ matdaanpulse/
 - Migration 020 (live ingest): `ingest_keys`, feed/shard/lease/hold tables, seat state and rounds on results, and `reopen` support; see the spec. Results are written only through the ingest API (worker) or the admin seat correction.
 - Every candidate has a person: an insert without one gets an auto-created person (trigger, migration 018), and a person left with no candidates is deleted by trigger. candidates/persons have no `metadata` column.
 - Keep `backend/prisma/schema.prisma` in sync with the SQL (check with `prisma migrate diff --from-url … --to-schema-datamodel …`). Prisma CLI commands that read the schema config need `DIRECT_URL` set (it may equal `DATABASE_URL` locally); the app and `prisma generate` do not. Expected drift: the diff always proposes `ALTER COLUMN person_id SET NOT NULL` on `candidates`; never apply it (NOT NULL is a deferred trigger, and seeds insert with NULL). Never apply a drop of `candidates.metadata` / `persons.metadata` either (kept, `@ignore`, until a later migration drops them), and never run `prisma db push`.
+- **Seeding an election's data: follow `docs/SEEDING_PLAYBOOK.md`** (sources, pipeline, checks, traps; Bihar is the worked example).
 - Several seeds are partly estimated (see `docs/FEATURES.md` → Known Limitations). The public `/about` page lists each dataset's quality from `frontend/src/model/about/about.ts`: update that file in the same change whenever a seed is added or corrected.
 - No admin user is seeded: `cd backend && npm run create-admin` (uses `ADMIN_EMAIL` / `ADMIN_PASSWORD`).
 
