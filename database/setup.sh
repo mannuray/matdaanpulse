@@ -110,6 +110,9 @@ run seed_party_symbols.sql
 echo "==> Seeds: party ECI recognition (must follow all party inserts)"
 run seed_party_recognition.sql
 
+echo "==> Seeds: Bihar 2025 party profiles (run-once, fill-only; must follow party symbols and recognition)"
+run seed_bihar_party_profiles.sql
+
 echo "==> Seeds: election result dates (must follow every election insert)"
 run seed_election_result_dates.sql
 

@@ -166,6 +166,17 @@ Bihar VS 2010 / 2015 / 2020 / 2025 carry every candidate + NOTA with real ECI vo
 - Display names: all-caps names (2010/2015) become Title Case; ECI's "Father's Name :- …" suffix is dropped. The 2015
   supplement seats have no general/postal split or candidate age/sex.
 
+### Bihar 2025 party profiles, 2026-10-03
+- [x] The 15 top parties of Bihar 2025 (won a seat, 1 %+ of the vote, or alliance member: RJD, BJP, JDU, INC, LJPRV, JSP,
+  CPIML, AIMIM, BSP, VIP, HAMS, RLM, CPIM, IIP, CPI) researched with sources into `scraper/data/bihar/parties-2025.json`
+  (user-reviewed): abbreviation, ECI recognition, founding year, leader as of Nov 2025, headquarters (registered address),
+  website, Wikipedia, brand colour, our own one-line description, ECI symbol name. `party-profiles-cli.ts` →
+  `seed_bihar_party_profiles.sql` (run-once, fill-only; colour only replaces a grey placeholder; name spacing tidied).
+- [x] Images from Wikimedia Commons (free licences, credited in `image_credits`): ECI ballot symbols for 11 parties (the old
+  RJD and JD(U) "symbols" were photos of people), logos for BSP and IIP, HAM(S)'s broken red-block logo removed. Rule: a
+  new image replaces a current one only when that one is wrong or missing. Wired through `seed_party_symbols.sql`.
+- The other 146 parties of 2025 keep their bare ECI records.
+
 ### Bihar persons, leaders and affidavits, 2026-10-03
 Plan `docs/superpowers/plans/2026-10-03-bihar-persons-leaders.md` (spec §6–§7). All seeds are run-once (`seed_runs`) and fill-only.
 - [x] **Cross-election linking** (`scraper/src/bihar/links.ts`, `links-cli.ts` → `seed_bihar_person_links_v2.sql`): same name (alias dropped) in

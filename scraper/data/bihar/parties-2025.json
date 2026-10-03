@@ -1,0 +1,564 @@
+[
+  {
+    "id": "RJD",
+    "name": "Rashtriya Janata Dal",
+    "abbreviation": "RJD",
+    "eci_recognition": "State",
+    "founded_year": 1997,
+    "leader_name": "Lalu Prasad Yadav",
+    "headquarters": "New Delhi, Delhi",
+    "website": "https://rjd.co.in/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rashtriya_Janata_Dal",
+    "color": "#056D05",
+    "description": "A Bihar-based state party founded in 1997 by Lalu Prasad Yadav after a split from the Janata Dal. It led the Mahagathbandhan in the 2025 election with Tejashwi Yadav as its chief-ministerial face.",
+    "eci_symbol": "Hurricane Lamp",
+    "logo": {
+      "file": "RJD-logo.svg",
+      "commons": "File:RJD Flag.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:RJD_Flag.svg",
+      "author": "Gppande",
+      "licence": "CC BY-SA 3.0"
+    },
+    "eci_image": {
+      "file": "RJD-eci.png",
+      "commons": "File:Indian Election Symbol Hurricane Lamp.png",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Hurricane_Lamp.png",
+      "author": "Abilngeorge",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": false,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Rashtriya_Janata_Dal",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://rjd.co.in/",
+      "https://commons.wikimedia.org/wiki/File:RJD_Flag.svg",
+      "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Hurricane_Lamp.png",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "BJP",
+    "name": "Bharatiya Janata Party",
+    "abbreviation": "BJP",
+    "eci_recognition": "National",
+    "founded_year": 1980,
+    "leader_name": "J. P. Nadda",
+    "headquarters": "New Delhi, Delhi",
+    "website": "https://www.bjp.org/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
+    "color": "#FF9933",
+    "description": "A national party founded in 1980 as the successor to the Bharatiya Jana Sangh and the leading member of the National Democratic Alliance. It contested 101 seats in Bihar in 2025 as part of the NDA.",
+    "eci_symbol": "Lotus",
+    "logo": {
+      "file": "BJP-logo.svg",
+      "commons": "File:Logo of the Bharatiya Janata Party.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Logo_of_the_Bharatiya_Janata_Party.svg",
+      "author": "SantoUY",
+      "licence": "Public domain"
+    },
+    "eci_image": {
+      "file": "BJP-eci.svg",
+      "commons": "File:Lotus flower symbol.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lotus_flower_symbol.svg",
+      "author": "Ministry of Education",
+      "licence": "CC BY-SA 3.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": true,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://www.etvbharat.com/en/!bharat/bjp-announces-poll-in-charges-for-bihar-bengal-and-tamil-nadu-enn25092503451",
+      "https://www.bjp.org/",
+      "https://commons.wikimedia.org/wiki/File:Logo_of_the_Bharatiya_Janata_Party.svg",
+      "https://commons.wikimedia.org/wiki/File:Lotus_flower_symbol.svg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "JDU",
+    "name": "Janata Dal (United)",
+    "abbreviation": "JD(U)",
+    "eci_recognition": "State",
+    "founded_year": 2003,
+    "leader_name": "Nitish Kumar",
+    "headquarters": "New Delhi, Delhi",
+    "website": "https://jdu.org.in/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Janata_Dal_(United)",
+    "color": "#003366",
+    "description": "A socialist party formed in 2003 by Sharad Yadav, George Fernandes and Nitish Kumar, with its main base in Bihar. It contested the 2025 election in the NDA under Chief Minister Nitish Kumar.",
+    "eci_symbol": "Arrow",
+    "logo": {
+      "file": "JDU-logo.png",
+      "commons": "File:JanataDalUnitedFlag.PNG",
+      "source_url": "https://commons.wikimedia.org/wiki/File:JanataDalUnitedFlag.PNG",
+      "author": "Gppande",
+      "licence": "CC BY-SA 3.0"
+    },
+    "eci_image": {
+      "file": "JDU-eci.svg",
+      "commons": "File:Indian Election Symbol Arrow.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Arrow.svg",
+      "author": "Abilngeorge",
+      "licence": "CC BY-SA 3.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": false,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Janata_Dal_(United)",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://jdu.org.in/",
+      "https://commons.wikimedia.org/wiki/File:JanataDalUnitedFlag.PNG",
+      "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Arrow.svg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "INC",
+    "name": "Indian National Congress",
+    "abbreviation": "INC",
+    "eci_recognition": "National",
+    "founded_year": 1885,
+    "leader_name": "Mallikarjun Kharge",
+    "headquarters": "New Delhi, Delhi",
+    "website": "https://inc.in/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Indian_National_Congress",
+    "color": "#00BFFF",
+    "description": "India's oldest national party, founded in 1885. In Bihar in 2025 it was a junior partner of the RJD-led Mahagathbandhan.",
+    "eci_symbol": "Hand",
+    "logo": {
+      "file": "INC-logo.svg",
+      "commons": "File:Indian National Congress hand logo.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_National_Congress_hand_logo.svg",
+      "author": "Original design of flag &amp; emblem by Indian National Congress.Vectorized version by Swapnil1101.",
+      "licence": "Public domain"
+    },
+    "eci_image": {
+      "file": "INC-eci.svg",
+      "commons": "File:Hand INC.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Hand_INC.svg",
+      "author": "Furfur",
+      "licence": "CC BY-SA 3.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": true,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Indian_National_Congress",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://inc.in/",
+      "https://commons.wikimedia.org/wiki/File:Indian_National_Congress_hand_logo.svg",
+      "https://commons.wikimedia.org/wiki/File:Hand_INC.svg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "LJPRV",
+    "name": "Lok Janshakti Party (Ram Vilas)",
+    "abbreviation": "LJP(RV)",
+    "eci_recognition": "State",
+    "founded_year": 2021,
+    "leader_name": "Chirag Paswan",
+    "headquarters": "Patna, Bihar",
+    "website": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Lok_Janshakti_Party_(Ram_Vilas)",
+    "color": "#5B006A",
+    "description": "Formed in 2021 by Chirag Paswan after the split of Ram Vilas Paswan's Lok Janshakti Party, with a Dalit (Paswan) support base in Bihar. It contested 28 seats in 2025 as an NDA member.",
+    "eci_symbol": "Helicopter",
+    "logo": {
+      "file": "LJPRV-logo.svg",
+      "commons": "File:Lok Janshakti Party Flag.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lok_Janshakti_Party_Flag.svg",
+      "author": "see below",
+      "licence": "Public domain"
+    },
+    "eci_image": {
+      "file": "LJPRV-eci.jpg",
+      "commons": "File:Indian Election Symbol Helicopter.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Helicopter.jpg",
+      "author": "Election Commission of India",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": null,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Lok_Janshakti_Party_(Ram_Vilas)",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://commons.wikimedia.org/wiki/File:Lok_Janshakti_Party_Flag.svg",
+      "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Helicopter.jpg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "JSP",
+    "name": "Jan Suraaj Party",
+    "abbreviation": "JSP",
+    "eci_recognition": "Unrecognised",
+    "founded_year": 2024,
+    "leader_name": "Uday Singh",
+    "headquarters": "New Delhi, Delhi",
+    "website": "https://www.jansuraaj.org/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Jan_Suraaj_Party",
+    "color": "#FFCD19",
+    "description": "A party launched in 2024 by political strategist Prashant Kishor out of his Jan Suraaj campaign in Bihar. It contested the 2025 election on its own, outside both the NDA and the Mahagathbandhan.",
+    "eci_symbol": "School Bag",
+    "logo": null,
+    "eci_image": {
+      "file": "JSP-eci.png",
+      "commons": "File:Indian Election Symbol School Bag.png",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_School_Bag.png",
+      "author": "Santhosharu",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": null,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Jan_Suraaj_Party",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://www.jansuraaj.org/",
+      "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_School_Bag.png",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "CPIML",
+    "name": "Communist Party of India (Marxist–Leninist) Liberation",
+    "abbreviation": "CPI(ML)L",
+    "eci_recognition": "State",
+    "founded_year": 1974,
+    "leader_name": "Dipankar Bhattacharya",
+    "headquarters": "Delhi",
+    "website": "https://cpiml.org/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Communist_Party_of_India_(Marxist–Leninist)_Liberation",
+    "color": "#C41301",
+    "description": "A far-left communist party reorganised in 1974, whose strongest base is among rural poor and landless voters in Bihar. It was part of the Mahagathbandhan in 2025.",
+    "eci_symbol": "Flag with Three Stars",
+    "logo": {
+      "file": "CPIML-logo.png",
+      "commons": "File:CPIML LIBERATION FLAG.png",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CPIML_LIBERATION_FLAG.png",
+      "author": "Unknown author",
+      "licence": "Public domain"
+    },
+    "eci_image": {
+      "file": "CPIML-eci.png",
+      "commons": "File:Flag Logo of CPIML.png",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Flag_Logo_of_CPIML.png",
+      "author": "Atharvgairola692004",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": null,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Communist_Party_of_India_(Marxist–Leninist)_Liberation",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://cpiml.org/",
+      "https://commons.wikimedia.org/wiki/File:CPIML_LIBERATION_FLAG.png",
+      "https://commons.wikimedia.org/wiki/File:Flag_Logo_of_CPIML.png",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "AIMIM",
+    "name": "All India Majlis-e-Ittehadul Muslimeen",
+    "abbreviation": "AIMIM",
+    "eci_recognition": "State",
+    "founded_year": 1927,
+    "leader_name": "Asaduddin Owaisi",
+    "headquarters": "Hyderabad, Telangana",
+    "website": "https://www.aimim.org/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/All_India_Majlis-e-Ittehadul_Muslimeen",
+    "color": "#0C6B4B",
+    "description": "A Hyderabad-based party with roots in the Majlis-e-Ittehadul Muslimeen of 1927, led by Asaduddin Owaisi, whose Bihar base is in the Muslim-majority Seemanchal region. In 2025 it led its own Grand Democratic Alliance, outside the NDA and the Mahagathbandhan.",
+    "eci_symbol": "Kite",
+    "logo": {
+      "file": "AIMIM-logo.png",
+      "commons": "File:AIMIM FLAG.png",
+      "source_url": "https://commons.wikimedia.org/wiki/File:AIMIM_FLAG.png",
+      "author": "Eaglespirit",
+      "licence": "CC0"
+    },
+    "eci_image": {
+      "file": "AIMIM-eci.svg",
+      "commons": "File:Indian Election Symbol Kite.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Kite.svg",
+      "author": "Junior Jumper (formerly Tæ)",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": null,
+    "sources": [
+      "https://en.wikipedia.org/wiki/All_India_Majlis-e-Ittehadul_Muslimeen",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://www.aimim.org/",
+      "https://commons.wikimedia.org/wiki/File:AIMIM_FLAG.png",
+      "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Kite.svg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "BSP",
+    "name": "Bahujan Samaj Party",
+    "abbreviation": "BSP",
+    "eci_recognition": "National",
+    "founded_year": 1984,
+    "leader_name": "Mayawati",
+    "headquarters": "New Delhi, Delhi",
+    "website": "https://bahujansamajparty.net/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Bahujan_Samaj_Party",
+    "color": "#22409A",
+    "description": "A national party founded by Kanshi Ram in 1984 to represent Dalits and other marginalised communities, led by Mayawati. It contested the 2025 Bihar election outside both major alliances.",
+    "eci_symbol": "Elephant",
+    "logo": {
+      "file": "BSP-logo.svg",
+      "commons": "File:Elephant Bahujan Samaj Party.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Elephant_Bahujan_Samaj_Party.svg",
+      "author": "Furfur",
+      "licence": "CC BY-SA 3.0"
+    },
+    "eci_image": {
+      "file": "BSP-eci.svg",
+      "commons": "File:Elephant electoral symbol.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Elephant_electoral_symbol.svg",
+      "author": "Gnoeee",
+      "licence": "CC BY 4.0"
+    },
+    "current_logo_ok": null,
+    "current_eci_ok": true,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Bahujan_Samaj_Party",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://bahujansamajparty.net/",
+      "https://commons.wikimedia.org/wiki/File:Elephant_Bahujan_Samaj_Party.svg",
+      "https://commons.wikimedia.org/wiki/File:Elephant_electoral_symbol.svg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "VIP",
+    "name": "Vikassheel Insaan Party",
+    "abbreviation": "VIP",
+    "eci_recognition": "Unrecognised",
+    "founded_year": 2018,
+    "leader_name": "Mukesh Sahani",
+    "headquarters": "Patna, Bihar",
+    "website": "https://www.vipparty.in/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Vikassheel_Insaan_Party",
+    "color": "#1E74BF",
+    "description": "A Bihar party founded in 2018 by Mukesh Sahani, drawing on the Nishad (Mallah) and allied riverine communities. It was in the Mahagathbandhan in 2025, with Sahani named its deputy chief-ministerial face.",
+    "eci_symbol": "Boat with Man and Sail",
+    "logo": null,
+    "eci_image": {
+      "file": "VIP-eci.jpg",
+      "commons": "File:Indian Election Symbol Boat with Man and Sail.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Boat_with_Man_and_Sail.jpg",
+      "author": "Election Commission of India",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": null,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Vikassheel_Insaan_Party",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://www.vipparty.in/",
+      "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Boat_with_Man_and_Sail.jpg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "HAMS",
+    "name": "Hindustani Awam Morcha (Secular)",
+    "abbreviation": "HAM(S)",
+    "eci_recognition": "Unrecognised",
+    "founded_year": 2015,
+    "leader_name": "Santosh Kumar Suman",
+    "headquarters": "Patna, Bihar",
+    "website": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Hindustani_Awam_Morcha_(Secular)",
+    "color": "#F5D62A",
+    "description": "A Bihar party founded in 2015 by former chief minister Jitan Ram Manjhi after he left the JD(U), with a Mahadalit base. It contested six seats in 2025 as part of the NDA.",
+    "eci_symbol": "Pan",
+    "logo": null,
+    "eci_image": {
+      "file": "HAMS-eci.jpg",
+      "commons": "File:Indian Election Symbol Pan.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Pan.jpg",
+      "author": "Election Commission of India",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": false,
+    "current_eci_ok": null,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Hindustani_Awam_Morcha_(Secular)",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://www.theweek.in/wire-updates/national/2025/09/14/cal48-bh-manjhi.html",
+      "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Pan.jpg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "RLM",
+    "name": "Rashtriya Lok Morcha",
+    "abbreviation": "RLM",
+    "eci_recognition": "Unrecognised",
+    "founded_year": 2023,
+    "leader_name": "Upendra Kushwaha",
+    "headquarters": "Patna, Bihar",
+    "website": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rashtriya_Lok_Morcha",
+    "color": "#100CA4",
+    "description": "A Bihar party founded in 2023 by Upendra Kushwaha after he left the JD(U), drawing mainly on Kushwaha (Koeri) voters. It contested six seats in 2025 as part of the NDA.",
+    "eci_symbol": "Gas Cylinder",
+    "logo": {
+      "file": "RLM-logo.jpg",
+      "commons": "File:Flag of Rashtriya Lok Morcha.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Flag_of_Rashtriya_Lok_Morcha.jpg",
+      "author": null,
+      "licence": "Public domain"
+    },
+    "eci_image": {
+      "file": "RLM-eci.jpg",
+      "commons": "File:Gas Cylinder.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Gas_Cylinder.jpg",
+      "author": "Faiznkm",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": null,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Rashtriya_Lok_Morcha",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://commons.wikimedia.org/wiki/File:Flag_of_Rashtriya_Lok_Morcha.jpg",
+      "https://commons.wikimedia.org/wiki/File:Gas_Cylinder.jpg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "CPIM",
+    "name": "Communist Party of India (Marxist)",
+    "abbreviation": "CPI(M)",
+    "eci_recognition": "National",
+    "founded_year": 1964,
+    "leader_name": "M. A. Baby",
+    "headquarters": "New Delhi, Delhi",
+    "website": "https://cpim.org/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Communist_Party_of_India_(Marxist)",
+    "color": "#CC0D0D",
+    "description": "A national communist party formed in 1964 by a split from the Communist Party of India, strongest in Kerala, with a small presence in Bihar. It contested four seats in 2025 within the Mahagathbandhan.",
+    "eci_symbol": "Hammer, Sickle and Star",
+    "logo": {
+      "file": "CPIM-logo.svg",
+      "commons": "File:CPI-M-flag.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CPI-M-flag.svg",
+      "author": null,
+      "licence": "Public domain"
+    },
+    "eci_image": {
+      "file": "CPIM-eci.svg",
+      "commons": "File:CPI(M) election symbol - Hammer Sickle and Star.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CPI(M)_election_symbol_-_Hammer_Sickle_and_Star.svg",
+      "author": "MS Sakib",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": true,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Communist_Party_of_India_(Marxist)",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://cpim.org/",
+      "https://commons.wikimedia.org/wiki/File:CPI-M-flag.svg",
+      "https://commons.wikimedia.org/wiki/File:CPI(M)_election_symbol_-_Hammer_Sickle_and_Star.svg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "IIP",
+    "name": "Indian Inclusive Party",
+    "abbreviation": "IIP",
+    "eci_recognition": "Unrecognised",
+    "founded_year": 2025,
+    "leader_name": "Indrajeet Prasad Gupta",
+    "headquarters": "Patna, Bihar",
+    "website": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Indian_Inclusive_Party",
+    "color": "#0259FF",
+    "description": "A Bihar party founded in October 2025 by Indrajeet Prasad Gupta, shortly before the election. It joined the Mahagathbandhan and contested three seats.",
+    "eci_symbol": "Trowel",
+    "logo": {
+      "file": "IIP-logo.png",
+      "commons": "File:Logo of Indian Inclusive Party.png",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Logo_of_Indian_Inclusive_Party.png",
+      "author": "Subaltern1",
+      "licence": "CC BY-SA 4.0"
+    },
+    "eci_image": {
+      "file": "IIP-eci.jpg",
+      "commons": "File:Indian Election Symbol Trowel.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Trowel.jpg",
+      "author": "Election Commission of India",
+      "licence": "CC BY-SA 4.0"
+    },
+    "current_logo_ok": null,
+    "current_eci_ok": null,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Indian_Inclusive_Party",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://commons.wikimedia.org/wiki/File:Logo_of_Indian_Inclusive_Party.png",
+      "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Trowel.jpg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  },
+  {
+    "id": "CPI",
+    "name": "Communist Party of India",
+    "abbreviation": "CPI",
+    "eci_recognition": "State",
+    "founded_year": 1925,
+    "leader_name": "D. Raja",
+    "headquarters": "New Delhi, Delhi",
+    "website": "https://www.communistparty.in/",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Communist_Party_of_India",
+    "color": "#F50222",
+    "description": "India's oldest communist party, founded in 1925, which lost national-party status in 2023. It contested nine seats in Bihar in 2025 as part of the Mahagathbandhan.",
+    "eci_symbol": "Ears of Corn and Sickle",
+    "logo": {
+      "file": "CPI-logo.svg",
+      "commons": "File:CPI-banner.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CPI-banner.svg",
+      "author": "Unknown author",
+      "licence": "Public domain"
+    },
+    "eci_image": {
+      "file": "CPI-eci.svg",
+      "commons": "File:CPI symbol.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CPI_symbol.svg",
+      "author": "Furfur",
+      "licence": "CC BY-SA 3.0"
+    },
+    "current_logo_ok": true,
+    "current_eci_ok": true,
+    "sources": [
+      "https://en.wikipedia.org/wiki/Communist_Party_of_India",
+      "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election",
+      "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+      "https://www.communistparty.in/",
+      "https://commons.wikimedia.org/wiki/File:CPI-banner.svg",
+      "https://commons.wikimedia.org/wiki/File:CPI_symbol.svg",
+      "https://en.wikipedia.org/wiki/Module:Political_party"
+    ]
+  }
+]
