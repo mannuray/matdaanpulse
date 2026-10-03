@@ -4,7 +4,8 @@ export class IngestApiError extends Error {
   constructor(message: string, public status: number, public code: string | null, public details: unknown) { super(message); }
 }
 
-/** Typed client for the ingest API (spec §4). Retries network errors, timeouts (per-request `timeoutMs`, default 30s) and 5xx with backoff; 4xx are thrown at once. */
+/** Typed client for the ingest API (spec §4). Retries network errors, timeouts (per-request `timeoutMs`, default 30s), 5xx, 408 and 429
+ *  with backoff (a Retry-After header, capped at 60 s, replaces the backoff for the next attempt); other 4xx are thrown at once. */
 export class IngestClient {
   private readonly f: typeof fetch;
   private readonly retries: number;
@@ -32,8 +33,10 @@ export class IngestClient {
 
   private async call<T>(method: string, path: string, body?: unknown): Promise<T> {
     let last: unknown;
+    let retryAfterMs: number | null = null;
     for (let attempt = 0; attempt <= this.retries; attempt++) {
-      if (attempt > 0) await this.sleep(Math.min(30_000, 500 * 2 ** attempt) + Math.random() * 250);
+      if (attempt > 0) await this.sleep(retryAfterMs ?? Math.min(30_000, 500 * 2 ** attempt) + Math.random() * 250);
+      retryAfterMs = null;
       let res: Response;
       try {
         res = await this.f(`${this.opts.baseUrl}${path}`, {
@@ -44,9 +47,17 @@ export class IngestClient {
       const json: any = await res.json().catch(() => null);
       if (res.ok) return json?.data as T;
       const e = new IngestApiError(json?.error?.message ?? `HTTP ${res.status}`, res.status, json?.error?.code ?? null, json?.error?.details ?? null);
-      if (res.status < 500) throw e;
+      if (res.status < 500 && res.status !== 408 && res.status !== 429) throw e;
+      retryAfterMs = parseRetryAfter(res.headers.get('retry-after'));
       last = e;
     }
     throw last instanceof IngestApiError ? last : new IngestApiError(String((last as Error)?.message ?? last), 0, null, null);
   }
+}
+
+/** Retry-After as delta-seconds or an HTTP date; null when absent or unparsable. Capped at 60 s. */
+export function parseRetryAfter(v: string | null, now = Date.now()): number | null {
+  if (!v) return null;
+  const ms = /^\d+$/.test(v.trim()) ? Number(v.trim()) * 1000 : Date.parse(v) - now;
+  return Number.isFinite(ms) ? Math.min(60_000, Math.max(0, ms)) : null;
 }

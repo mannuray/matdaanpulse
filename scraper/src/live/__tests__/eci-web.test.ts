@@ -48,14 +48,14 @@ describe('EciWebAdapter on real ECI pages', () => {
     expect(first[0].const_id).toBe('WB_100');
     expect(Object.keys(first[0].votes)).toHaveLength(roster.seats[0].candidates.length);
     expect(first[0].state).toBe('declared');
-    a.commit();
+    a.commit(['WB_100']);
     expect(await a.poll()).toEqual([]);   // unchanged list signature: no refetch, nothing sent
   });
   it('sends If-Modified-Since on the second poll and reuses the page on 304', async () => {
     const { roster } = rosterFromFixtures();
     const { fetchText } = fakeFetch();
     const a = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText });
-    await a.prepare(roster as any); await a.poll(); a.commit();
+    await a.prepare(roster as any); await a.poll(); a.commit(['WB_100']);
     fetchText.mockImplementationOnce(async () => ({ status: 304, text: '', lastModified: null }));
     await a.poll();
     expect(fetchText.mock.calls.some(c => c[1] === 'Mon, 05 May 2026 10:48:00 GMT')).toBe(true);
@@ -88,8 +88,30 @@ describe('EciWebAdapter on real ECI pages', () => {
     await a.prepare(roster as any);
     expect(await a.poll()).toHaveLength(1);
     expect(await a.poll()).toHaveLength(1);   // not committed: delivered state unknown
-    a.commit();
+    a.commit(['WB_100']);
     expect(await a.poll()).toEqual([]);
+  });
+  it('commit(constIds) promotes only the given seats (a held / rejected / undelivered seat is sent again)', async () => {
+    const { roster } = rosterFromFixtures();
+    const a = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText: fakeFetch().fetchText });
+    await a.prepare(roster as any);
+    await a.poll();
+    a.commit(['WB_OTHER_SEAT']);
+    expect(await a.poll()).toHaveLength(1);
+    a.commit([]);
+    expect(await a.poll()).toHaveLength(1);
+    a.commit(['WB_100']);
+    expect(await a.poll()).toEqual([]);
+  });
+  it('tally logs party-wise rows it cannot map', async () => {
+    const { roster } = rosterFromFixtures();
+    const pw = fx('eci-partywise.htm');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const a = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText: async () => ({ status: 200, text: pw, lastModified: null }) });
+    await a.prepare({ ...roster, parties: [] } as any);
+    expect(await a.tally()).toEqual([]);
+    expect(warn).toHaveBeenCalledWith(expect.stringMatching(/^\[eci-web\] tally: \d+ unmapped part/));
+    warn.mockRestore();
   });
   it('a throwing candidate fetch does not reject poll(); other seats are still returned', async () => {
     const { roster } = rosterFromFixtures();

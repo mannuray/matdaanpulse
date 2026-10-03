@@ -25,7 +25,7 @@ export class EciWebAdapter implements SourceAdapter {
   private signature = new Map<number, string>();
   private declaredAt = new Map<number, number>();
   private rechecked = new Set<number>();
-  /** Bookkeeping from the latest poll(); promoted by commit() once the loop has delivered the seats, discarded by the next poll(). */
+  /** Bookkeeping from the latest poll() by const_no; promoted per seat by commit(constIds) once delivered, discarded by the next poll(). */
   private pending = { signature: new Map<number, string>(), declaredAt: new Map<number, number>(), rechecked: new Set<number>() };
 
   constructor(private readonly opts: { id: string; baseUrl: string; stateCode: string; intervalMs?: number; concurrency?: number; partyAliases?: Record<string, string>; fetchText?: FetchText; fetchTimeoutMs?: number }) {
@@ -44,11 +44,17 @@ export class EciWebAdapter implements SourceAdapter {
     return { seats_total: roster.seats.length, seats_mapped: roster.seats.filter(s => s.candidates.length > 0).length, unmapped };
   }
 
-  commit(): void {
-    for (const [k, v] of this.pending.signature) this.signature.set(k, v);
-    for (const [k, v] of this.pending.declaredAt) this.declaredAt.set(k, v);
-    for (const k of this.pending.rechecked) this.rechecked.add(k);
-    this.pending = { signature: new Map(), declaredAt: new Map(), rechecked: new Set() };
+  commit(constIds: string[]): void {
+    const noOf = new Map((this.roster?.seats ?? []).map(s => [s.const_id, s.const_no]));
+    for (const id of constIds) {
+      const k = noOf.get(id);
+      if (k === undefined) continue;
+      const sig = this.pending.signature.get(k);
+      if (sig !== undefined) { this.signature.set(k, sig); this.pending.signature.delete(k); }
+      const at = this.pending.declaredAt.get(k);
+      if (at !== undefined) { this.declaredAt.set(k, at); this.pending.declaredAt.delete(k); }
+      if (this.pending.rechecked.delete(k)) this.rechecked.add(k);
+    }
   }
 
   async poll(): Promise<SeatState[]> {
@@ -70,7 +76,7 @@ export class EciWebAdapter implements SourceAdapter {
       try {
         const sig = `${r.winnerName}|${r.winnerParty}|${r.margin}|${r.rounds}|${r.status}`;
         const { state, round } = seatStateFrom(r.rounds, r.status);
-        if (state === 'not_started') { pending.signature.set(r.constNo, sig); return; }
+        if (state === 'not_started') { this.signature.set(r.constNo, sig); return; } // nothing is sent, so nothing to confirm
         const page = await this.fetchText(`${this.opts.baseUrl}/candidateswise-${this.opts.stateCode}${r.constNo}.htm`);
         if (page.status !== 200) return;
         const mapped = mapCandidates(seat, parseCandidateDetailPage(page.text), this.roster!.parties, this.opts.partyAliases ?? {});
@@ -93,10 +99,14 @@ export class EciWebAdapter implements SourceAdapter {
     const page = await this.fetchText(`${this.opts.baseUrl}/partywiseresult-${this.opts.stateCode}.htm`);
     if (page.status !== 200) return null;
     const out: PartyTally[] = [];
+    const unmapped: string[] = [];
     for (const r of parsePartywisePage(page.text)) {
       const id = mapParty(r.party, this.roster.parties, this.opts.partyAliases ?? {});
       if (id) out.push({ party_id: id, won: r.won, leading: r.leading });
+      else if (r.won || r.leading) unmapped.push(`${r.party} (${r.won}/${r.leading})`);
     }
+    // An unmapped party's seats would otherwise show as a silent tally mismatch; add a partyAliases entry for it.
+    if (unmapped.length) console.warn(`[${this.id}] tally: ${unmapped.length} unmapped part${unmapped.length === 1 ? 'y' : 'ies'} (won/leading): ${unmapped.join(', ')}`);
     return out;
   }
 

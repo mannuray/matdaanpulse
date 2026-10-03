@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { newLoopState, runCycle, POST_CHUNK, REPREPARE_MS, type LoopDeps } from '../loop';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import { newLoopState, runCycle, POST_CHUNK, REPREPARE_MS, HEARTBEAT_MS, TALLY_EVERY, type LoopDeps } from '../loop';
 import { IngestApiError } from '../client';
 
 const roster = { election: { id: 'e', type: 'VS', state_id: 4, year: 2026, status: 'Live' }, parties: [], seats: [] };
@@ -20,19 +20,88 @@ function deps(over: Partial<{ status: string; source: string | null; lease: 'ok'
 }
 
 describe('runCycle commit', () => {
-  it('commits after all chunks posted, not when a post rejects', async () => {
+  it('commits each delivered chunk with its const_ids; nothing for a chunk that failed', async () => {
     const { d, client, adapter } = deps({ seats: POST_CHUNK + 1 });
     const commit = vi.fn(); (adapter as any).commit = commit;
     await runCycle('e', 'rest', newLoopState(), d);
-    expect(commit).toHaveBeenCalledTimes(1);
+    expect(commit).toHaveBeenCalledTimes(2);
+    expect(commit.mock.calls[0][0]).toHaveLength(POST_CHUNK);
+    expect(commit.mock.calls[1][0]).toEqual([`S${POST_CHUNK}`]);
     commit.mockClear();
     client.seats.mockRejectedValueOnce(new Error('5xx'));
     await runCycle('e', 'rest', newLoopState(), d);
     expect(commit).not.toHaveBeenCalled();
     commit.mockClear();
-    client.seats.mockResolvedValueOnce({ counts: { applied: 0, unchanged: 0, stale: 0, held: 0, rejected: 0 }, seats: [] }).mockRejectedValueOnce(new Error('second chunk'));
+    client.seats.mockResolvedValueOnce({ counts: { applied: POST_CHUNK, unchanged: 0, stale: 0, held: 0, rejected: 0 }, seats: [] }).mockRejectedValueOnce(new Error('second chunk'));
     await runCycle('e', 'rest', newLoopState(), d);
-    expect(commit).not.toHaveBeenCalled();
+    expect(commit).toHaveBeenCalledTimes(1);   // the first chunk was delivered and stays delivered
+    expect(commit.mock.calls[0][0]).toHaveLength(POST_CHUNK);
+  });
+  it('seats the server held or rejected are not committed; stale and unchanged are', async () => {
+    const { d, client, adapter } = deps({ seats: 4 });
+    const commit = vi.fn(); (adapter as any).commit = commit;
+    client.seats.mockResolvedValueOnce({ counts: { applied: 0, unchanged: 1, stale: 1, held: 1, rejected: 1 },
+      seats: [{ const_id: 'S1', outcome: 'stale' }, { const_id: 'S2', outcome: 'held' }, { const_id: 'S3', outcome: 'rejected', reason: 'roster_mismatch' }] } as any);
+    await runCycle('e', 'rest', newLoopState(), d);
+    expect(commit).toHaveBeenCalledWith(['S0', 'S1']);
+  });
+});
+
+describe('runCycle lease', () => {
+  afterEach(() => { vi.useRealTimers(); });
+  it('renews the lease from a heartbeat while a poll outlasts the lease TTL, and the posts still go through', async () => {
+    vi.useFakeTimers();
+    const { d, client, adapter } = deps({ seats: 2 });
+    adapter.poll.mockImplementation(() => new Promise(r => setTimeout(() => r([{ const_id: 'S0', state: 'counting', votes: {} }, { const_id: 'S1', state: 'counting', votes: {} }]), 150_000)));
+    const p = runCycle('e', 'rest', newLoopState(), d);
+    await vi.advanceTimersByTimeAsync(150_000);
+    await p;
+    // 1 claim + 5 heartbeats (30 s … 150 s) + 1 re-claim before the chunk
+    expect(client.lease).toHaveBeenCalledTimes(1 + 150_000 / HEARTBEAT_MS + 1);
+    expect(client.seats).toHaveBeenCalledTimes(1);
+    const n = client.lease.mock.calls.length;
+    await vi.advanceTimersByTimeAsync(5 * HEARTBEAT_MS);
+    expect(client.lease).toHaveBeenCalledTimes(n);   // heartbeat stopped with the cycle
+  });
+  it('a 409 on the re-claim before a chunk ends the cycle cleanly: no post, no backoff, lease marked lost', async () => {
+    const { d, client, log } = deps({ seats: POST_CHUNK + 1 });
+    client.lease.mockResolvedValueOnce({ expires_at: 't' }).mockResolvedValueOnce({ expires_at: 't' })
+      .mockRejectedValueOnce(new IngestApiError('held', 409, 'INGEST_0004', { holder: 'laptop' }));
+    const st = newLoopState();
+    expect(await runCycle('e', 'rest', st, d)).toBe(10_000);
+    expect(client.seats).toHaveBeenCalledTimes(1);
+    expect(st).toMatchObject({ leased: false, failures: 0 });
+    expect(log).toHaveBeenCalledWith(expect.stringContaining('lease lost to laptop'));
+  });
+  it('a heartbeat 409 stops the cycle before its next chunk', async () => {
+    vi.useFakeTimers();
+    const { d, client, adapter } = deps({ seats: 1 });
+    adapter.poll.mockImplementation(() => new Promise(r => setTimeout(() => r([{ const_id: 'S0', state: 'counting', votes: {} }]), 40_000)));
+    client.lease.mockResolvedValueOnce({ expires_at: 't' }).mockRejectedValue(new IngestApiError('held', 409, 'INGEST_0004', { holder: 'laptop' }));
+    const p = runCycle('e', 'rest', newLoopState(), d);
+    await vi.advanceTimersByTimeAsync(40_000);
+    expect(await p).toBe(10_000);
+    expect(client.seats).not.toHaveBeenCalled();
+  });
+});
+
+describe('runCycle tally and timing', () => {
+  it('only the rest loop posts the tally by default; a task flag overrides it', async () => {
+    for (const [shard, flag, want] of [['rest', undefined, 1], ['upper', undefined, 0], ['upper', true, 1], ['rest', false, 0]] as const) {
+      const { d, client, adapter } = deps();
+      (adapter as any).tally = vi.fn(async () => [{ party_id: 'BJP', won: 1, leading: 0 }]);
+      if (flag !== undefined) d.tally = flag;
+      const st = newLoopState();
+      for (let i = 0; i < TALLY_EVERY; i++) await runCycle('e', shard, st, d);
+      expect(client.tally).toHaveBeenCalledTimes(want);
+    }
+  });
+  it('logs the cycle duration and warns over 60 s', async () => {
+    const { d, log } = deps();
+    let t = Date.parse('2027-02-27T04:00:00Z');
+    d.now = () => { const r = new Date(t); t += 31_000; return r; };
+    await runCycle('e', 'rest', newLoopState(), d);
+    expect(log).toHaveBeenCalledWith(expect.stringMatching(/^WARN slow cycle: \[e:rest\] cycle 1: 1 seat\(s\) in \d+\.\ds$/));
   });
 });
 

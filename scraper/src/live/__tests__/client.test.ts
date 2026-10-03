@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { IngestClient, IngestApiError } from '../client';
+import { IngestClient, IngestApiError, parseRetryAfter } from '../client';
 
 const ok = (data: unknown) => new Response(JSON.stringify({ success: true, data }), { status: 200, headers: { 'Content-Type': 'application/json' } });
 const err = (status: number, code: string) => new Response(JSON.stringify({ success: false, error: { code, message: 'x', details: { holder: 'other' } } }), { status });
@@ -31,5 +31,27 @@ describe('IngestClient', () => {
     const c = new IngestClient({ baseUrl: 'http://api', key: 'k', timeoutMs: 20, fetch: f as any, sleep: async () => {} });
     expect(await c.lease('e', 'rest', 'w')).toEqual({ expires_at: 't' });
     expect(f).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('IngestClient 429 / 408', () => {
+  it('retries a 429 after its Retry-After, and a 408 with backoff', async () => {
+    const sleeps: number[] = [];
+    const f = vi.fn()
+      .mockResolvedValueOnce(new Response(JSON.stringify({ success: false, error: { code: 'GEN_0429', message: 'slow down' } }), { status: 429, headers: { 'Retry-After': '7' } }))
+      .mockResolvedValueOnce(new Response('', { status: 408 }))
+      .mockResolvedValueOnce(ok({ expires_at: 't' }));
+    const c = new IngestClient({ baseUrl: 'http://api', key: 'k', fetch: f as any, sleep: async ms => { sleeps.push(ms); } });
+    expect(await c.lease('e', 'rest', 'w')).toEqual({ expires_at: 't' });
+    expect(f).toHaveBeenCalledTimes(3);
+    expect(sleeps[0]).toBe(7_000);
+    expect(sleeps[1]).toBeGreaterThanOrEqual(2_000); expect(sleeps[1]).toBeLessThan(2_250);
+  });
+  it('parses Retry-After seconds and dates, capped at 60 s', () => {
+    expect(parseRetryAfter('3')).toBe(3_000);
+    expect(parseRetryAfter('600')).toBe(60_000);
+    expect(parseRetryAfter(new Date(10_000).toUTCString(), 5_000)).toBe(5_000);
+    expect(parseRetryAfter('soon')).toBeNull();
+    expect(parseRetryAfter(null)).toBeNull();
   });
 });

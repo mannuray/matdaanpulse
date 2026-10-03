@@ -8,7 +8,8 @@ import { IngestClient } from './client';
 import { runForever } from './loop';
 import { ADAPTERS } from './registry';
 
-interface LiveConfigFile { apiBaseUrl?: string; holder?: string; tasks: { election: string; shards?: string[] }[]; adapters?: Record<string, Record<string, string>> }
+/** tasks[].tally: post the source's party-wise tally from these loops (default: only the rest shard's loop). */
+interface LiveConfigFile { apiBaseUrl?: string; holder?: string; tasks: { election: string; shards?: string[]; tally?: boolean }[]; adapters?: Record<string, Record<string, string>> }
 
 function arg(name: string): string | undefined { const i = process.argv.indexOf(`--${name}`); return i >= 0 ? process.argv[i + 1] : undefined; }
 
@@ -21,7 +22,7 @@ async function main() {
   const ac = new AbortController();
   for (const sig of ['SIGINT', 'SIGTERM'] as const) process.on(sig, () => { console.log(`${sig}: releasing leases…`); ac.abort(); });
   const log = (msg: string, extra?: unknown) => console.log(`${new Date().toISOString()} ${msg}`, ...(extra && (!Array.isArray(extra) || extra.length) ? [JSON.stringify(extra)] : []));
-  const loops = cfg.tasks.flatMap(t => (t.shards?.length ? t.shards : ['rest']).map(s => runForever(t.election, s, { client, adapters: ADAPTERS, adapterOpts: cfg.adapters ?? {}, holder, log }, ac.signal)));
+  const loops = cfg.tasks.flatMap(t => (t.shards?.length ? t.shards : ['rest']).map(s => runForever(t.election, s, { client, adapters: ADAPTERS, adapterOpts: cfg.adapters ?? {}, holder, log, ...(t.tally !== undefined ? { tally: t.tally } : {}) }, ac.signal)));
   console.log(`worker ${holder}: ${loops.length} loop(s), adapters: ${Object.keys(ADAPTERS).join(', ') || 'none'}`);
   await Promise.all(loops);
 }
