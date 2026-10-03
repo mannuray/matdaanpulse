@@ -1,0 +1,1052 @@
+[
+ {
+  "key": "AKHRUZZAMAN|59",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "71c87ca1-ffbc-45f7-abdc-4f64bf184bee",
+    "year": 2011,
+    "constNo": 59,
+    "name": "Akhruzzaman",
+    "partyId": "INC",
+    "age": 47
+   },
+   {
+    "candidateId": "13ecc554-cb55-4927-a297-8dc048faede7",
+    "year": 2016,
+    "constNo": 59,
+    "name": "Akhruzzaman",
+    "partyId": "INC",
+    "age": 51
+   },
+   {
+    "candidateId": "32ef5f65-2195-4e57-977e-2e01be28e530",
+    "year": 2021,
+    "constNo": 59,
+    "name": "Akhruzzaman",
+    "partyId": "TMC",
+    "age": 56
+   }
+  ]
+ },
+ {
+  "key": "AKSHAY THAKUR|4",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f9529065-2c3f-4295-8920-b4561a6e20ee",
+    "year": 2011,
+    "constNo": 4,
+    "name": "Akshay Thakur",
+    "partyId": "AIFB",
+    "age": 58
+   },
+   {
+    "candidateId": "e416e180-ef2c-4622-8f49-26df6f4c32c1",
+    "year": 2021,
+    "constNo": 4,
+    "name": "Akshay Thakur",
+    "partyId": "AIFB",
+    "age": 71
+   }
+  ]
+ },
+ {
+  "key": "AMAL ACHARJEE|36",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b3839f27-5e26-4b4f-8b3b-ca32a03a6045",
+    "year": 2011,
+    "constNo": 36,
+    "name": "Amal Acharjee",
+    "partyId": "TMC",
+    "age": 55
+   },
+   {
+    "candidateId": "694f6589-6ada-4c02-9ce5-7b5e5a7eac94",
+    "year": 2016,
+    "constNo": 36,
+    "name": "Amal Acharjee",
+    "partyId": "TMC",
+    "age": 57
+   }
+  ]
+ },
+ {
+  "key": "APURBA CHAKRABORTY|270",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "52f45fd7-c503-5167-b7c3-9f9f9511f608",
+    "year": 2011,
+    "constNo": 270,
+    "name": "Apurba Chakraborty",
+    "partyId": "SUCI",
+    "age": 44
+   },
+   {
+    "candidateId": "8e589def-4ac7-54b0-ab76-ac2d0b17db28",
+    "year": 2016,
+    "constNo": 270,
+    "name": "Apurba Chakraborty",
+    "partyId": "SUCI",
+    "age": 55
+   },
+   {
+    "candidateId": "d421d4fb-2585-4647-84ad-4d58aa0bdee1",
+    "year": 2021,
+    "constNo": 270,
+    "name": "Apurba Chakraborty",
+    "partyId": "SUCI",
+    "age": 60
+   }
+  ]
+ },
+ {
+  "key": "AROOP BISWAS|152",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "08e03232-adda-48ce-b45c-4dbb0eca963f",
+    "year": 2011,
+    "constNo": 152,
+    "name": "Aroop Biswas",
+    "partyId": "TMC",
+    "age": 42
+   },
+   {
+    "candidateId": "89adc6c9-16c6-4db5-8039-a334af4f2a1d",
+    "year": 2016,
+    "constNo": 152,
+    "name": "Aroop Biswas",
+    "partyId": "TMC",
+    "age": 52
+   },
+   {
+    "candidateId": "a06d8dc5-6242-4578-8fce-92f94c391229",
+    "year": 2021,
+    "constNo": 152,
+    "name": "Aroop Biswas",
+    "partyId": "TMC",
+    "age": 57
+   }
+  ]
+ },
+ {
+  "key": "ASISH BANERJEE|291",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "188e4f64-dbf0-41bb-bcb8-33d9cc264e9b",
+    "year": 2011,
+    "constNo": 291,
+    "name": "Asish Banerjee",
+    "partyId": "TMC",
+    "age": 59
+   },
+   {
+    "candidateId": "b0fafea0-19ce-41ec-8b61-94d965c57961",
+    "year": 2016,
+    "constNo": 291,
+    "name": "Asish Banerjee",
+    "partyId": "TMC",
+    "age": 60
+   },
+   {
+    "candidateId": "67ea4871-40e5-44ea-a053-a747e546f315",
+    "year": 2021,
+    "constNo": 291,
+    "name": "Asish Banerjee",
+    "partyId": "TMC",
+    "age": 69
+   }
+  ]
+ },
+ {
+  "key": "BISWANATH TUDU|249",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "fe5d802e-ea8f-5b80-9506-7d40882db60c",
+    "year": 2011,
+    "constNo": 249,
+    "name": "Biswanath Tudu",
+    "partyId": "IND",
+    "age": 36
+   },
+   {
+    "candidateId": "4c1b9a5c-496d-584c-aa4c-2f250fb93f3b",
+    "year": 2016,
+    "constNo": 249,
+    "name": "Biswanath Tudu",
+    "partyId": "JDP",
+    "age": 37
+   }
+  ]
+ },
+ {
+  "key": "BULU CHIK BARAIK|20",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f5de42cc-a356-4f24-9b2b-7d656fdadd81",
+    "year": 2011,
+    "constNo": 20,
+    "name": "Bulu Chik Baraik",
+    "partyId": "CPIM",
+    "age": 47
+   },
+   {
+    "candidateId": "55ac4976-a3c9-454a-a0b2-559879f10727",
+    "year": 2016,
+    "constNo": 20,
+    "name": "Bulu Chik Baraik",
+    "partyId": "TMC",
+    "age": 57
+   },
+   {
+    "candidateId": "4a81adfd-b8d6-4f19-91a4-108df7bbc72c",
+    "year": 2021,
+    "constNo": 20,
+    "name": "Bulu Chik Baraik",
+    "partyId": "TMC",
+    "age": 61
+   }
+  ]
+ },
+ {
+  "key": "CHAMPA CHAKRABORTY|190",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a9354ef1-1ea7-5178-a145-79775d8abbe4",
+    "year": 2011,
+    "constNo": 190,
+    "name": "Champa Chakraborty",
+    "partyId": "BJP",
+    "age": 40
+   },
+   {
+    "candidateId": "e3622896-f053-556b-b4e1-3332a40bd6dd",
+    "year": 2016,
+    "constNo": 190,
+    "name": "Champa Chakraborty",
+    "partyId": "BJP",
+    "age": 53
+   }
+  ]
+ },
+ {
+  "key": "CHANCHALA KARMAKAR|49",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "58d7225f-0322-5f7a-aeb6-369605d38d87",
+    "year": 2011,
+    "constNo": 49,
+    "name": "Chanchala Karmakar",
+    "partyId": "BSP",
+    "age": 45
+   },
+   {
+    "candidateId": "daf82c47-2ccd-50c7-a1b7-e2afb35a531e",
+    "year": 2016,
+    "constNo": 49,
+    "name": "Chanchala Karmakar",
+    "partyId": "BSP",
+    "age": 45
+   },
+   {
+    "candidateId": "b7a6a53d-7cb5-4b3e-8b7f-366df60afb57",
+    "year": 2021,
+    "constNo": 49,
+    "name": "Chanchala Karmakar",
+    "partyId": "BSP",
+    "age": 55
+   }
+  ]
+ },
+ {
+  "key": "DEBES MANDAL|126",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "765f794b-af6f-43ce-9d20-333f3b9131e2",
+    "year": 2011,
+    "constNo": 126,
+    "name": "Debes Mandal",
+    "partyId": "TMC",
+    "age": 43
+   },
+   {
+    "candidateId": "906ae291-23ee-4c23-a5db-44221acb5cb5",
+    "year": 2016,
+    "constNo": 126,
+    "name": "Debes Mandal",
+    "partyId": "TMC",
+    "age": 48
+   },
+   {
+    "candidateId": "263b88ae-7a0f-4e84-b6e8-d23d1b9a256e",
+    "year": 2021,
+    "constNo": 126,
+    "name": "Debes Mandal",
+    "partyId": "TMC",
+    "age": 56
+   }
+  ]
+ },
+ {
+  "key": "DEBESH DAS|163",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "221963f1-cbec-4bfd-8d3a-98fe1cdd433b",
+    "year": 2011,
+    "constNo": 163,
+    "name": "Debesh Das",
+    "partyId": "CPIM",
+    "age": 48
+   },
+   {
+    "candidateId": "7d87bd3b-dd2c-44bf-95f7-8d173edb7093",
+    "year": 2016,
+    "constNo": 163,
+    "name": "Debesh Das",
+    "partyId": "CPIM",
+    "age": 56
+   }
+  ]
+ },
+ {
+  "key": "DHIREN RAJAK|242",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "aaa02ae8-13b3-504b-816f-28031a1ee8b5",
+    "year": 2011,
+    "constNo": 242,
+    "name": "Dhiren Rajak",
+    "partyId": "IND",
+    "age": 46
+   },
+   {
+    "candidateId": "1ad93aac-5d9d-58b6-8d15-490ab6122e1c",
+    "year": 2016,
+    "constNo": 242,
+    "name": "Dhiren Rajak",
+    "partyId": "IND",
+    "age": 58
+   }
+  ]
+ },
+ {
+  "key": "DULAL MURMU|220",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3352f016-4e59-484e-a533-50c7d39fa195",
+    "year": 2011,
+    "constNo": 220,
+    "name": "Dulal Murmu",
+    "partyId": "TMC",
+    "age": 47
+   },
+   {
+    "candidateId": "42873735-16d2-408a-a3ba-0bf03f0a4d7d",
+    "year": 2016,
+    "constNo": 220,
+    "name": "Dulal Murmu",
+    "partyId": "TMC",
+    "age": 40
+   },
+   {
+    "candidateId": "cfd7287e-94d5-44ff-9b16-bfd4b7baca9a",
+    "year": 2021,
+    "constNo": 220,
+    "name": "Dulal Murmu",
+    "partyId": "TMC",
+    "age": 44
+   }
+  ]
+ },
+ {
+  "key": "FIRDOUSI BEGUM|151",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "15b8840f-be3a-4ed2-87d6-951d4a7ef921",
+    "year": 2011,
+    "constNo": 151,
+    "name": "Firdousi Begum",
+    "partyId": "TMC",
+    "age": 32
+   },
+   {
+    "candidateId": "29d9b2fa-7ef7-403f-aad8-ce25f57c339c",
+    "year": 2016,
+    "constNo": 151,
+    "name": "Firdousi Begum",
+    "partyId": "TMC",
+    "age": 41
+   },
+   {
+    "candidateId": "1ae66ca2-2b7c-41c6-a165-4b956d7cad86",
+    "year": 2021,
+    "constNo": 151,
+    "name": "Firdousi Begum",
+    "partyId": "TMC",
+    "age": 42
+   }
+  ]
+ },
+ {
+  "key": "GOPAL ROY|3",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6fb42609-7781-5bfb-9e2f-28adf7f1be8a",
+    "year": 2016,
+    "constNo": 3,
+    "name": "Gopal Roy",
+    "partyId": "IND",
+    "age": 56
+   },
+   {
+    "candidateId": "ec097f19-1411-4f46-8cd7-f17a92346505",
+    "year": 2021,
+    "constNo": 3,
+    "name": "Gopal Roy",
+    "partyId": "AMB",
+    "age": 41
+   }
+  ]
+ },
+ {
+  "key": "GUNASINDHU HALDAR|134",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "29119346-e929-561e-8576-56dbbc7c28df",
+    "year": 2016,
+    "constNo": 134,
+    "name": "Gunasindhu Haldar",
+    "partyId": "SUCI",
+    "age": 60
+   },
+   {
+    "candidateId": "b5ef6b9f-7483-4d04-a65d-91bb7289fb7d",
+    "year": 2021,
+    "constNo": 134,
+    "name": "Gunasindhu Haldar",
+    "partyId": "SUCI",
+    "age": 71
+   }
+  ]
+ },
+ {
+  "key": "HUMAYUN KABIR|69",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "14002c5c-ea69-53b1-b39e-6f333ae061cc",
+    "year": 2016,
+    "constNo": 69,
+    "name": "Humayun Kabir",
+    "partyId": "SP",
+    "age": 49
+   },
+   {
+    "candidateId": "bb682b07-ba8d-4dcc-bec1-437ab0b163b6",
+    "year": 2021,
+    "constNo": 69,
+    "name": "Humayun Kabir",
+    "partyId": "TMC",
+    "age": 61
+   }
+  ]
+ },
+ {
+  "key": "IQBAL AHMED|202",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "722217dc-23ad-4476-ac5e-3b4b8cf100a9",
+    "year": 2011,
+    "constNo": 202,
+    "name": "Iqbal Ahmed",
+    "partyId": "TMC",
+    "age": 52
+   },
+   {
+    "candidateId": "4adbc200-f3fd-4ec8-9717-a781f4775d29",
+    "year": 2016,
+    "constNo": 202,
+    "name": "Iqbal Ahmed",
+    "partyId": "TMC",
+    "age": 60
+   }
+  ]
+ },
+ {
+  "key": "JAGADISH ADHIKARI|5",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "743029c4-2354-5648-8b51-c952bf25f0a5",
+    "year": 2016,
+    "constNo": 5,
+    "name": "Jagadish Adhikari",
+    "partyId": "SUCI",
+    "age": 49
+   },
+   {
+    "candidateId": "a89c6b17-a099-4199-b895-0855d60bc8c1",
+    "year": 2021,
+    "constNo": 5,
+    "name": "Jagadish Adhikari",
+    "partyId": "SUCI",
+    "age": 50
+   }
+  ]
+ },
+ {
+  "key": "JOYDEB HALDER|135",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "49d55b0d-4347-431d-acb5-01ef2f00b30b",
+    "year": 2011,
+    "constNo": 135,
+    "name": "Joydeb Halder",
+    "partyId": "TMC",
+    "age": 49
+   },
+   {
+    "candidateId": "af87d81a-7f24-4b5a-a79e-f8526f6263c2",
+    "year": 2021,
+    "constNo": 135,
+    "name": "Joydeb Halder",
+    "partyId": "TMC",
+    "age": 45
+   }
+  ]
+ },
+ {
+  "key": "KHAGEN MURMU|43",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6d97b462-9d65-4423-9446-62da5cfb197e",
+    "year": 2011,
+    "constNo": 43,
+    "name": "Khagen Murmu",
+    "partyId": "CPIM",
+    "age": 56
+   },
+   {
+    "candidateId": "5d8b22a7-c55d-474f-8236-fbfc8e33de51",
+    "year": 2016,
+    "constNo": 43,
+    "name": "Khagen Murmu",
+    "partyId": "CPIM",
+    "age": 55
+   }
+  ]
+ },
+ {
+  "key": "MANOJIT MONDAL|138",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "bbdfa481-cb59-59a9-bab9-6eb799e8c832",
+    "year": 2011,
+    "constNo": 138,
+    "name": "Manojit Mondal",
+    "partyId": "BJP",
+    "age": 27
+   },
+   {
+    "candidateId": "4376e2df-1c89-5c5e-8533-a93cedf83c6d",
+    "year": 2016,
+    "constNo": 138,
+    "name": "Manojit Mondal",
+    "partyId": "BJP",
+    "age": 37
+   }
+  ]
+ },
+ {
+  "key": "MIRZA NASHIRUDDIN|58",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "01ce9442-f404-5f01-baee-f4607732bccb",
+    "year": 2011,
+    "constNo": 58,
+    "name": "Mirza Nashiruddin",
+    "partyId": "SUCI",
+    "age": 46
+   },
+   {
+    "candidateId": "4cf5195d-e8b7-55c9-9993-7c641e40ca83",
+    "year": 2016,
+    "constNo": 58,
+    "name": "Mirza Nashiruddin",
+    "partyId": "SUCI",
+    "age": 59
+   },
+   {
+    "candidateId": "c9b9d605-9589-45b8-aea5-c44e68ee6f05",
+    "year": 2021,
+    "constNo": 58,
+    "name": "Mirza Nashiruddin",
+    "partyId": "SUCI",
+    "age": 64
+   }
+  ]
+ },
+ {
+  "key": "MOINUDDIN SHAMS|293",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ef09b404-4a8e-4d36-9798-1ec3efd1eee4",
+    "year": 2016,
+    "constNo": 293,
+    "name": "Moinuddin Shams",
+    "partyId": "TMC",
+    "age": 52
+   },
+   {
+    "candidateId": "4e4be898-4c86-4a1f-a85f-fbdf3bfca46c",
+    "year": 2021,
+    "constNo": 293,
+    "name": "Moinuddin Shams",
+    "partyId": "IND",
+    "age": 54
+   }
+  ]
+ },
+ {
+  "key": "MRIGENDRA NATH MAITI|236",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "7f832a94-80dc-4b46-89fa-68ca590b5f5b",
+    "year": 2011,
+    "constNo": 236,
+    "name": "Mrigendra Nath Maiti",
+    "partyId": "TMC",
+    "age": 65
+   },
+   {
+    "candidateId": "8e1d9bd8-3096-4f45-83f5-45d011569504",
+    "year": 2016,
+    "constNo": 236,
+    "name": "Mrigendra Nath Maiti",
+    "partyId": "TMC",
+    "age": 73
+   }
+  ]
+ },
+ {
+  "key": "PARESH MURMU|223",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "53cf6a90-696e-4626-9368-bb0e4237afa1",
+    "year": 2016,
+    "constNo": 223,
+    "name": "Paresh Murmu",
+    "partyId": "TMC",
+    "age": 50
+   },
+   {
+    "candidateId": "e9f3238b-fd4f-488b-952d-a8d2254095b7",
+    "year": 2021,
+    "constNo": 223,
+    "name": "Paresh Murmu",
+    "partyId": "TMC",
+    "age": 52
+   }
+  ]
+ },
+ {
+  "key": "RABIUL ALAM|59",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "625e8dfc-d8d7-5a4f-9395-8b4d177a43c7",
+    "year": 2011,
+    "constNo": 59,
+    "name": "Rabiul Alam",
+    "partyId": "SUCI",
+    "age": 39
+   },
+   {
+    "candidateId": "7dd7767f-faa9-5819-9239-7706104893f3",
+    "year": 2016,
+    "constNo": 59,
+    "name": "Rabiul Alam",
+    "partyId": "SUCI",
+    "age": 44
+   },
+   {
+    "candidateId": "1739e028-8583-44c0-bbfd-364936adf62e",
+    "year": 2021,
+    "constNo": 59,
+    "name": "Rabiul Alam",
+    "partyId": "SUCI",
+    "age": 46
+   }
+  ]
+ },
+ {
+  "key": "RAMA BISWAS|90",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c3b52a75-ed2c-4398-b3c8-711372df9ea2",
+    "year": 2016,
+    "constNo": 90,
+    "name": "Rama Biswas",
+    "partyId": "CPIM",
+    "age": 53
+   },
+   {
+    "candidateId": "e0e01f53-fe0f-469a-892f-a0478a8952ad",
+    "year": 2021,
+    "constNo": 90,
+    "name": "Rama Biswas",
+    "partyId": "CPIM",
+    "age": 61
+   }
+  ]
+ },
+ {
+  "key": "RUPARANI MONDAL|292",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "684c28ba-6ec2-580f-aedb-df35ce3ffe71",
+    "year": 2011,
+    "constNo": 292,
+    "name": "Ruparani Mondal",
+    "partyId": "BJP",
+    "age": 43
+   },
+   {
+    "candidateId": "f75f8a69-3ab8-551c-8b54-ad7c97162486",
+    "year": 2016,
+    "constNo": 292,
+    "name": "Ruparani Mondal",
+    "partyId": "BJP",
+    "age": 39
+   }
+  ]
+ },
+ {
+  "key": "SAMIRUDDIN|57",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4a4d42cb-842a-53c7-8683-f1564f15113d",
+    "year": 2011,
+    "constNo": 57,
+    "name": "Samiruddin",
+    "partyId": "SUCI",
+    "age": 40
+   },
+   {
+    "candidateId": "83b2db92-6015-5ad5-8101-aec104cdedef",
+    "year": 2016,
+    "constNo": 57,
+    "name": "Samiruddin",
+    "partyId": "SUCI",
+    "age": 46
+   }
+  ]
+ },
+ {
+  "key": "SANDHYARANI TUDU|243",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "5d8c715c-284b-4532-b6be-89c6ed81d353",
+    "year": 2011,
+    "constNo": 243,
+    "name": "Sandhyarani Tudu",
+    "partyId": "TMC",
+    "age": 33
+   },
+   {
+    "candidateId": "1278f18e-9285-4ef2-befa-1931d2d3cd6a",
+    "year": 2021,
+    "constNo": 243,
+    "name": "Sandhyarani Tudu",
+    "partyId": "TMC",
+    "age": 50
+   }
+  ]
+ },
+ {
+  "key": "SAUMEN KUMAR MAHAPATRA|203",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f2b93ec5-e0e9-4ae0-8bda-faacf2927f2f",
+    "year": 2011,
+    "constNo": 203,
+    "name": "Saumen Kumar Mahapatra",
+    "partyId": "TMC",
+    "age": 52
+   },
+   {
+    "candidateId": "ef3488fb-013c-4eb3-8ee1-8d04498a1694",
+    "year": 2021,
+    "constNo": 203,
+    "name": "Saumen Kumar Mahapatra",
+    "partyId": "TMC",
+    "age": 65
+   }
+  ]
+ },
+ {
+  "key": "SHYAMAL MONDAL|138",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "1b280325-5721-41a7-9b38-479f3f692091",
+    "year": 2011,
+    "constNo": 138,
+    "name": "Shyamal Mondal",
+    "partyId": "TMC",
+    "age": 42
+   },
+   {
+    "candidateId": "4fe406b1-261f-429d-ba06-ca0a919af185",
+    "year": 2016,
+    "constNo": 138,
+    "name": "Shyamal Mondal",
+    "partyId": "TMC",
+    "age": 50
+   }
+  ]
+ },
+ {
+  "key": "SUBRATA SAHA|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f85f2ade-c64c-4a46-a19e-e16c7bb8a7cd",
+    "year": 2011,
+    "constNo": 60,
+    "name": "Subrata Saha",
+    "partyId": "TMC",
+    "age": 58
+   },
+   {
+    "candidateId": "37885781-2a46-493e-bd1e-8b38e2412c0f",
+    "year": 2016,
+    "constNo": 60,
+    "name": "Subrata Saha",
+    "partyId": "TMC",
+    "age": 63
+   },
+   {
+    "candidateId": "2a970db2-5d35-4ee1-8d19-4a4a17c8c3a0",
+    "year": 2021,
+    "constNo": 60,
+    "name": "Subrata Saha",
+    "partyId": "TMC",
+    "age": 71
+   }
+  ]
+ },
+ {
+  "key": "SUKUMAR CHAULYA|208",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f9994a94-e501-52dd-b3d0-b3a6da5da08c",
+    "year": 2011,
+    "constNo": 208,
+    "name": "Sukumar Chaulya",
+    "partyId": "PDS",
+    "age": 35
+   },
+   {
+    "candidateId": "9de0a816-057e-55e3-9b5c-0e3b0a0ec4b9",
+    "year": 2016,
+    "constNo": 208,
+    "name": "Sukumar Chaulya",
+    "partyId": "PDS",
+    "age": 45
+   }
+  ]
+ },
+ {
+  "key": "SUNIL ROY|165",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "80113de6-5a84-5086-a81a-416293509389",
+    "year": 2011,
+    "constNo": 165,
+    "name": "Sunil Roy",
+    "partyId": "SJPR",
+    "age": 49
+   },
+   {
+    "candidateId": "7ce49224-b5dd-5509-861d-593bd9758a50",
+    "year": 2016,
+    "constNo": 165,
+    "name": "Sunil Roy",
+    "partyId": "IND",
+    "age": 58
+   }
+  ]
+ },
+ {
+  "key": "SUPEN ROY|18",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b67c895c-b62c-5ad9-8ab3-1be349448819",
+    "year": 2011,
+    "constNo": 18,
+    "name": "Supen Roy",
+    "partyId": "BJP",
+    "age": 47
+   },
+   {
+    "candidateId": "d075cf0a-9fc5-4aca-8791-5b9773cba399",
+    "year": 2021,
+    "constNo": 18,
+    "name": "Supen Roy",
+    "partyId": "BJP",
+    "age": 60
+   }
+  ]
+ },
+ {
+  "key": "SWADESH RANJAN NAYAK|217",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "39194a9e-86d3-43cf-86fc-4431176ce86a",
+    "year": 2011,
+    "constNo": 217,
+    "name": "Swadesh Ranjan Nayak",
+    "partyId": "CPIM",
+    "age": 59
+   },
+   {
+    "candidateId": "9881af79-5728-417a-85f1-b0fffe86e1bb",
+    "year": 2021,
+    "constNo": 217,
+    "name": "Swadesh Ranjan Nayak",
+    "partyId": "BJP",
+    "age": 66
+   }
+  ]
+ },
+ {
+  "key": "SWAPAN BHATTACHARYA|269",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e2d5ffe1-c281-5837-9b1f-936dc1c40b5e",
+    "year": 2011,
+    "constNo": 269,
+    "name": "Swapan Bhattacharya",
+    "partyId": "BJP",
+    "age": 57
+   },
+   {
+    "candidateId": "0cf92704-e15e-5d98-986f-34fa818e94ac",
+    "year": 2016,
+    "constNo": 269,
+    "name": "Swapan Bhattacharya",
+    "partyId": "BJP",
+    "age": 66
+   }
+  ]
+ },
+ {
+  "key": "SWAPAN KUMAR DAS|35",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "13c4695a-7d7b-516e-bf68-ff81c7cd7f13",
+    "year": 2011,
+    "constNo": 35,
+    "name": "Swapan Kumar Das",
+    "partyId": "BSP",
+    "age": 38
+   },
+   {
+    "candidateId": "f327d7ac-8e81-5d12-865b-feab779a7da3",
+    "year": 2016,
+    "constNo": 35,
+    "name": "Swapan Kumar Das",
+    "partyId": "BSP",
+    "age": 40
+   }
+  ]
+ },
+ {
+  "key": "SWAPAN MONDAL|143",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "7f791074-d211-5627-9507-a33803c83c40",
+    "year": 2016,
+    "constNo": 143,
+    "name": "Swapan Mondal",
+    "partyId": "IND",
+    "age": 57
+   },
+   {
+    "candidateId": "005dfd1e-64e1-4ca8-97aa-0c852785e0d3",
+    "year": 2021,
+    "constNo": 143,
+    "name": "Swapan Mondal",
+    "partyId": "IND",
+    "age": 57
+   }
+  ]
+ },
+ {
+  "key": "TANUJA CHAKRABORTY|101",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9af31faa-8bb7-542b-8fd5-1d710d68f98f",
+    "year": 2016,
+    "constNo": 101,
+    "name": "Tanuja Chakraborty",
+    "partyId": "BJP",
+    "age": 45
+   },
+   {
+    "candidateId": "be39cac6-d2e7-4ac4-91d8-0158e56d77d8",
+    "year": 2021,
+    "constNo": 101,
+    "name": "Tanuja Chakraborty",
+    "partyId": "BJP",
+    "age": 50
+   },
+   {
+    "candidateId": "baaa0cb0-1d26-4166-b1ee-c4a032a8cdf1",
+    "year": 2021,
+    "constNo": 101,
+    "name": "Tanuja Chakraborty",
+    "partyId": "IND",
+    "age": 46
+   }
+  ]
+ }
+]

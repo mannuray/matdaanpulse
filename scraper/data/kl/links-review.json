@@ -1,0 +1,584 @@
+[
+ {
+  "key": "ADVAMARIFF|102",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c661c2c4-5f89-4d70-9cc6-1cf54041a0c2",
+    "year": 2011,
+    "constNo": 102,
+    "name": "Adv.Am.Ariff",
+    "partyId": "CPIM",
+    "age": 46
+   },
+   {
+    "candidateId": "d6d1a507-5697-40ac-aac2-ac2ca2128da1",
+    "year": 2016,
+    "constNo": 102,
+    "name": "Adv.A.M.Ariff",
+    "partyId": "CPIM",
+    "age": 51
+   }
+  ]
+ },
+ {
+  "key": "ADVKRAJU|121",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c1763da0-9f91-4f80-9568-277064a05b03",
+    "year": 2011,
+    "constNo": 121,
+    "name": "Adv.K.Raju",
+    "partyId": "CPI",
+    "age": 56
+   },
+   {
+    "candidateId": "4aac2b6e-8c89-450c-82ac-b6d5ee792e33",
+    "year": 2016,
+    "constNo": 121,
+    "name": "Adv.K.Raju",
+    "partyId": "CPI",
+    "age": 63
+   }
+  ]
+ },
+ {
+  "key": "ADVMLIJU|105",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4dca97c1-2598-4233-bc10-fd2f59db5f10",
+    "year": 2011,
+    "constNo": 105,
+    "name": "Adv.M.Liju",
+    "partyId": "INC",
+    "age": 32
+   },
+   {
+    "candidateId": "e78436c4-3f2e-44fc-ae33-1fcd7af381ee",
+    "year": 2021,
+    "constNo": 105,
+    "name": "Adv.m.liju",
+    "partyId": "INC",
+    "age": 41
+   }
+  ]
+ },
+ {
+  "key": "ADVVVRAJESH|133",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "fe592566-a1b8-553e-af59-fac378af4507",
+    "year": 2011,
+    "constNo": 133,
+    "name": "Adv.V.V.Rajesh",
+    "partyId": "BJP",
+    "age": 35
+   },
+   {
+    "candidateId": "574ae7c5-c7d1-493b-9cd9-8365a4ae88ce",
+    "year": 2021,
+    "constNo": 133,
+    "name": "Adv.v.v.rajesh",
+    "partyId": "BJP",
+    "age": 45
+   }
+  ]
+ },
+ {
+  "key": "ANIYAPPAN|102",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ffa62e91-2357-5516-8663-9b91223848de",
+    "year": 2016,
+    "constNo": 102,
+    "name": "Aniyappan",
+    "partyId": "BDJS",
+    "age": 45
+   },
+   {
+    "candidateId": "da0475d2-5a49-512e-a5eb-e31578ca2896",
+    "year": 2021,
+    "constNo": 102,
+    "name": "Aniyappan",
+    "partyId": "BDJS",
+    "age": 49
+   }
+  ]
+ },
+ {
+  "key": "CKNANU|20",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f57cf6ce-45c1-4dae-9744-a4db60afa7c4",
+    "year": 2011,
+    "constNo": 20,
+    "name": "C.K.Nanu",
+    "partyId": "JDS",
+    "age": 79
+   },
+   {
+    "candidateId": "38d23739-da2d-4210-8c83-1a6fa08f7c96",
+    "year": 2016,
+    "constNo": 20,
+    "name": "C.K.Nanu",
+    "partyId": "JDS",
+    "age": 78
+   }
+  ]
+ },
+ {
+  "key": "CKPADMANABHAN|30",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b0e50be8-9a61-5104-9994-186a2597d718",
+    "year": 2011,
+    "constNo": 30,
+    "name": "C.K.Padmanabhan",
+    "partyId": "BJP",
+    "age": 61
+   },
+   {
+    "candidateId": "4ce0d448-97c8-5fb4-b0f8-8b53a4061055",
+    "year": 2016,
+    "constNo": 30,
+    "name": "C.K.Padmanabhan",
+    "partyId": "BJP",
+    "age": 67
+   }
+  ]
+ },
+ {
+  "key": "GSJAYALAL|126",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c2b5a639-9928-43ab-a814-7ba9d98df9ff",
+    "year": 2011,
+    "constNo": 126,
+    "name": "G.S.Jayalal",
+    "partyId": "CPI",
+    "age": 39
+   },
+   {
+    "candidateId": "bda630d7-49ad-467e-961f-90d73116cefd",
+    "year": 2016,
+    "constNo": 126,
+    "name": "G.S.Jayalal",
+    "partyId": "CPI",
+    "age": 43
+   }
+  ]
+ },
+ {
+  "key": "GSUDHAKARAN|105",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b2d9946a-7d1a-4829-9124-034064029261",
+    "year": 2011,
+    "constNo": 105,
+    "name": "G.Sudhakaran",
+    "partyId": "CPIM",
+    "age": 64
+   },
+   {
+    "candidateId": "5af6cccd-6b2e-43f9-804d-7ff1c3e41981",
+    "year": 2016,
+    "constNo": 105,
+    "name": "G.Sudhakaran",
+    "partyId": "CPIM",
+    "age": 68
+   }
+  ]
+ },
+ {
+  "key": "JAIN WILSON|135",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "5d73c8a4-9c9f-5e1c-a6ec-82e3cc2a75c2",
+    "year": 2011,
+    "constNo": 135,
+    "name": "Jain Wilson",
+    "partyId": "IND",
+    "age": 51
+   },
+   {
+    "candidateId": "5c764fd1-33bc-5d04-8042-2a64f1a60f55",
+    "year": 2016,
+    "constNo": 135,
+    "name": "Jain Wilson",
+    "partyId": "IND",
+    "age": 53
+   },
+   {
+    "candidateId": "3c750ada-8d71-509e-be46-bc9d0dde7577",
+    "year": 2021,
+    "constNo": 135,
+    "name": "Jain Wilson",
+    "partyId": "IND",
+    "age": 61
+   }
+  ]
+ },
+ {
+  "key": "KDASAN|23",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "bd3e6c9a-4581-4061-a67c-015783242fa4",
+    "year": 2011,
+    "constNo": 23,
+    "name": "K.Dasan",
+    "partyId": "CPIM",
+    "age": 58
+   },
+   {
+    "candidateId": "08769ed1-b3b3-4808-9bfb-1c4b9e67e191",
+    "year": 2016,
+    "constNo": 23,
+    "name": "K.Dasan",
+    "partyId": "CPIM",
+    "age": 63
+   }
+  ]
+ },
+ {
+  "key": "KDPRASENAN|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f963817b-443b-4423-a809-8e275368ca68",
+    "year": 2016,
+    "constNo": 60,
+    "name": "K.D.Prasenan",
+    "partyId": "CPIM",
+    "age": 50
+   },
+   {
+    "candidateId": "cad871f2-2078-4911-877e-28b42392e2a6",
+    "year": 2021,
+    "constNo": 60,
+    "name": "K.d.prasenan",
+    "partyId": "CPIM",
+    "age": 55
+   }
+  ]
+ },
+ {
+  "key": "KOCHUMANI|132",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "76442809-496a-5ebe-8ed3-5ba0e027a4df",
+    "year": 2016,
+    "constNo": 132,
+    "name": "Kochumani",
+    "partyId": "BSP",
+    "age": 48
+   },
+   {
+    "candidateId": "532304a4-6801-5997-9ce4-b200640c19a8",
+    "year": 2021,
+    "constNo": 132,
+    "name": "Kochumani",
+    "partyId": "BSP",
+    "age": 52
+   }
+  ]
+ },
+ {
+  "key": "KVVIJAYADAS|53",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "1a0f3a3c-f4ac-46b9-81fe-1e290e965a3a",
+    "year": 2011,
+    "constNo": 53,
+    "name": "K.V.Vijayadas",
+    "partyId": "CPIM",
+    "age": 51
+   },
+   {
+    "candidateId": "a172a8c6-d394-4b69-9ca7-4d42430149ce",
+    "year": 2016,
+    "constNo": 53,
+    "name": "K.V.Vijayadas",
+    "partyId": "CPIM",
+    "age": 57
+   }
+  ]
+ },
+ {
+  "key": "LAKSHMI|17",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "0f181a8c-5210-575a-9467-7c115d059ff3",
+    "year": 2016,
+    "constNo": 17,
+    "name": "Lakshmi",
+    "partyId": "IND",
+    "age": 47
+   },
+   {
+    "candidateId": "fb71bb25-93fb-539a-a4fe-2bc63d99fa79",
+    "year": 2021,
+    "constNo": 17,
+    "name": "Lakshmi",
+    "partyId": "IND",
+    "age": 53
+   }
+  ]
+ },
+ {
+  "key": "MJJACOB|85",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "278fbafb-5e3e-48ad-b471-a2a7a6059381",
+    "year": 2011,
+    "constNo": 85,
+    "name": "M.J.Jacob",
+    "partyId": "CPIM",
+    "age": 66
+   },
+   {
+    "candidateId": "1654a0a8-7b09-42b1-8a61-49d687133d88",
+    "year": 2016,
+    "constNo": 85,
+    "name": "M.J.Jacob",
+    "partyId": "CPIM",
+    "age": 74
+   }
+  ]
+ },
+ {
+  "key": "ORAJAGOPAL|135",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "fd191dee-8faa-47b3-9202-67a7dcc0c003",
+    "year": 2011,
+    "constNo": 135,
+    "name": "O.Rajagopal",
+    "partyId": "BJP",
+    "age": 81
+   },
+   {
+    "candidateId": "1accb459-fa2f-4927-8d63-4db566d06d3b",
+    "year": 2016,
+    "constNo": 135,
+    "name": "O.Rajagopal",
+    "partyId": "BJP",
+    "age": 85
+   }
+  ]
+ },
+ {
+  "key": "P VENUGOPALAN|52",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "70bedf5c-288c-5804-b78c-fb88d583017f",
+    "year": 2011,
+    "constNo": 52,
+    "name": "P. Venugopalan",
+    "partyId": "BJP",
+    "age": 42
+   },
+   {
+    "candidateId": "6fc3ad24-380d-5e5b-80ab-c90b88d56c01",
+    "year": 2016,
+    "constNo": 52,
+    "name": "P Venugopalan",
+    "partyId": "BJP",
+    "age": 52
+   },
+   {
+    "candidateId": "30a649ff-e926-5281-a597-6b129bc19f80",
+    "year": 2021,
+    "constNo": 52,
+    "name": "P. Venugopalan",
+    "partyId": "BJP",
+    "age": 51
+   }
+  ]
+ },
+ {
+  "key": "PCVISHNUNATH|110",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "838d8e4a-f78f-46d2-817c-1c27bf0ae812",
+    "year": 2011,
+    "constNo": 110,
+    "name": "P.C.Vishnunath",
+    "partyId": "INC",
+    "age": 33
+   },
+   {
+    "candidateId": "48ca38d5-d10b-4cc9-820b-d588a8f306a0",
+    "year": 2016,
+    "constNo": 110,
+    "name": "P.C.Vishnunath",
+    "partyId": "INC",
+    "age": 38
+   }
+  ]
+ },
+ {
+  "key": "PKJAYALAKSHMI|17",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b87f14c2-1dea-47d6-84e1-59f4c6d066d8",
+    "year": 2011,
+    "constNo": 17,
+    "name": "P.K.Jayalakshmi",
+    "partyId": "INC",
+    "age": 28
+   },
+   {
+    "candidateId": "da9867b2-0c7c-4969-912c-ec78c5e348da",
+    "year": 2021,
+    "constNo": 17,
+    "name": "P.k.jayalakshmi",
+    "partyId": "INC",
+    "age": 40
+   }
+  ]
+ },
+ {
+  "key": "PTHILOTHAMAN|103",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "fff09100-0020-44ef-a772-143a66b24bf5",
+    "year": 2011,
+    "constNo": 103,
+    "name": "P.Thilothaman",
+    "partyId": "CPI",
+    "age": 54
+   },
+   {
+    "candidateId": "b3a17dd1-7d1a-477e-a756-2398da1521da",
+    "year": 2016,
+    "constNo": 103,
+    "name": "P.Thilothaman",
+    "partyId": "CPI",
+    "age": 58
+   }
+  ]
+ },
+ {
+  "key": "RADHAMANI NARAYANA KUMAR|16",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c19579d4-d32c-5ee5-b195-97adc03f4ac6",
+    "year": 2011,
+    "constNo": 16,
+    "name": "Radhamani Narayana Kumar",
+    "partyId": "IND",
+    "age": 50
+   },
+   {
+    "candidateId": "d9b8f956-1dbe-5e66-bd4e-84f2ad171c6c",
+    "year": 2016,
+    "constNo": 16,
+    "name": "Radhamani Narayana Kumar",
+    "partyId": "IND",
+    "age": 47
+   }
+  ]
+ },
+ {
+  "key": "RAMACHANDRAN KADANNAPPALLI|11",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "98104864-22a6-49c3-a80f-257096b4370a",
+    "year": 2011,
+    "constNo": 11,
+    "name": "Ramachandran Kadannappalli",
+    "partyId": "IND",
+    "age": 53
+   },
+   {
+    "candidateId": "38953681-efaa-42df-aee1-f4fe2f28d66e",
+    "year": 2016,
+    "constNo": 11,
+    "name": "Ramachandran Kadannappalli",
+    "partyId": "CS",
+    "age": 71
+   },
+   {
+    "candidateId": "47093ba6-5509-48e0-8606-826d2364d244",
+    "year": 2021,
+    "constNo": 11,
+    "name": "Ramachandran Kadannappalli",
+    "partyId": "CS",
+    "age": 76
+   }
+  ]
+ },
+ {
+  "key": "VELAYUDHAN|34",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e7b6cc21-6a5d-5b0b-8804-31565c5c2b6e",
+    "year": 2016,
+    "constNo": 34,
+    "name": "Velayudhan",
+    "partyId": "BSP",
+    "age": 58
+   },
+   {
+    "candidateId": "bd9a3239-f201-5d3a-9933-52ffee197576",
+    "year": 2021,
+    "constNo": 34,
+    "name": "Velayudhan",
+    "partyId": "BSP",
+    "age": 62
+   }
+  ]
+ },
+ {
+  "key": "VSIVANKUTTY|135",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "52f6e281-5399-410c-b9fa-7a3d749b7e1b",
+    "year": 2011,
+    "constNo": 135,
+    "name": "V.Sivankutty",
+    "partyId": "CPIM",
+    "age": 56
+   },
+   {
+    "candidateId": "5ac502da-e3d1-4151-9a2b-41e9142fc483",
+    "year": 2016,
+    "constNo": 135,
+    "name": "V.Sivankutty",
+    "partyId": "CPIM",
+    "age": 61
+   },
+   {
+    "candidateId": "f7d80d63-1832-4615-ab3c-780e948e0d85",
+    "year": 2021,
+    "constNo": 135,
+    "name": "V.sivankutty",
+    "partyId": "CPIM",
+    "age": 66
+   }
+  ]
+ }
+]

@@ -1,0 +1,112 @@
+[
+ {
+  "key": "ANGAPPIN|15",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e7dbf7f5-463f-5302-8f91-81e952fdeb1e",
+    "year": 2011,
+    "constNo": 15,
+    "name": "Angappin @ Rousseau Angappin",
+    "partyId": "LJP",
+    "age": 51
+   },
+   {
+    "candidateId": "be81f3d0-1661-513d-8d41-079f9bd3d91f",
+    "year": 2016,
+    "constNo": 15,
+    "name": "Angappin @ Lopes Rousseau Angappin",
+    "partyId": "IJK",
+    "age": 57
+   }
+  ]
+ },
+ {
+  "key": "K MURUGAN|13",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "eb064276-da74-595c-8890-8ac66df7b174",
+    "year": 2016,
+    "constNo": 13,
+    "name": "K. Murugan",
+    "partyId": "CPI",
+    "age": 49
+   },
+   {
+    "candidateId": "81d26166-c450-550a-bcfd-8c9a4ffdb8e4",
+    "year": 2021,
+    "constNo": 13,
+    "name": "K. Murugan",
+    "partyId": "AMMK",
+    "age": 46
+   }
+  ]
+ },
+ {
+  "key": "M NEHRU|16",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "30889eba-7e50-5e6f-b59f-8391768ddf3f",
+    "year": 2011,
+    "constNo": 16,
+    "name": "M. Nehru",
+    "partyId": "IND",
+    "age": 50
+   },
+   {
+    "candidateId": "e976a230-9ea0-52ba-8131-f6574de5212d",
+    "year": 2016,
+    "constNo": 16,
+    "name": "M. Nehru",
+    "partyId": "IND",
+    "age": 35
+   }
+  ]
+ },
+ {
+  "key": "M SELVAM|22",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ae48631c-4801-5839-b3d8-3749df83b973",
+    "year": 2011,
+    "constNo": 22,
+    "name": "M. Selvam",
+    "partyId": "IND",
+    "age": 34
+   },
+   {
+    "candidateId": "7e5a77d2-64f8-593a-ae45-46a606e1e75c",
+    "year": 2021,
+    "constNo": 22,
+    "name": "M Selvam",
+    "partyId": "AMMK",
+    "age": 62
+   }
+  ]
+ },
+ {
+  "key": "V MURUGANANDHAM|1",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "affa93ac-8d94-570e-bf45-b4b244140218",
+    "year": 2011,
+    "constNo": 1,
+    "name": "V. Muruganandham",
+    "partyId": "IND",
+    "age": 35
+   },
+   {
+    "candidateId": "2d77235a-549f-5307-bc07-c52a94e11cbd",
+    "year": 2016,
+    "constNo": 1,
+    "name": "V. Muruganandham",
+    "partyId": "IND",
+    "age": 36
+   }
+  ]
+ }
+]

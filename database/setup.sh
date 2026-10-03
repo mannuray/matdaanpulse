@@ -96,6 +96,8 @@ done
 echo "==> Seeds: districts & regions (must follow VS results — they UPDATE constituencies)"
 run seed_bihar_districts_regions.sql
 for st in as kl py tn wb; do run "seed_${st}_districts_regions.sql"; done
+# Person links across 2011-2021 (run-once; must follow the VS results)
+for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 
 echo "==> Seeds: Bihar persons (must follow Bihar VS results + regions)"
 run seed_bihar_persons.sql
