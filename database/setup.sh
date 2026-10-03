@@ -100,6 +100,8 @@ run seed_manifest_alliances_v1.sql
 echo "==> Seeds: districts & regions (must follow VS results — they UPDATE constituencies)"
 run seed_bihar_districts_regions.sql
 for st in as kl py tn wb; do run "seed_${st}_districts_regions.sql"; done
+# Assam 2026 seats (2023 delimitation): tagged one by one (the seed above covers only 2008-era seats)
+run seed_as_2026_districts_regions.sql
 # Person links across 2011-2021 (run-once; must follow the VS results)
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 

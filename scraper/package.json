@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/pg": "^8.16.0",
+    "mapshaper": "^0.7.72",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "vitest": "^2.1.9"
