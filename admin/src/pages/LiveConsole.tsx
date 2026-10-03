@@ -66,7 +66,7 @@ export default function LiveConsole() {
     <div className="flex h-full flex-col">
       <LiveHeader electionName={lc.electionName} reportingPct={lc.reportingPct} />
       {feed.error && <p role="status" className="mx-6 mb-2 rounded-control bg-warn-soft px-3 py-2 text-sm text-warn-text">Feed status could not be refreshed: {feed.error}</p>}
-      {feed.status && <FeedPanel status={feed.status} sources={feed.sources} saving={feed.saving} onApply={feed.setFeed} />}
+      {feed.status && <FeedPanel status={feed.status} sources={feed.sources} saving={feed.saving} onApply={feed.setFeed} onShardsChanged={() => { void feed.reload(); }} />}
       <HoldsPanel holds={lc.holds} onRelease={(id) => { void lc.releaseHold(id); }} />
       {lc.loading && lc.seats.length === 0 ? (
         <Spinner label="Loading seats…" />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getElections, createElection, updateElection, finalizeElection } from '../services/election.service';
 import { getStates } from '../services/geo.service';
+import { reopenElection } from '../services/ingest.service';
 import { useResourceList } from './useResourceList';
 import { useToast } from '../context/ToastContext';
 import { fieldErrorMap } from '../services/api-client';
@@ -176,6 +177,17 @@ export function useElectionManager({ onChanged }: Options = {}) {
     }
   };
 
+  const handleReopen = async (id: string) => {
+    try {
+      await reopenElection(id);
+      toast('Election reopened: it is Live again');
+      list.refresh();
+      await onChanged?.();
+    } catch (err) {
+      toastError(err, 'Could not reopen the election');
+    }
+  };
+
   const goLive = async (id: string) => {
     try {
       await updateElection(id, { status: 'Live' });
@@ -207,6 +219,7 @@ export function useElectionManager({ onChanged }: Options = {}) {
     startEdit,
     handleSave,
     handleFinalize,
+    handleReopen,
     goLive,
     resetForm
   };

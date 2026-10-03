@@ -20,7 +20,7 @@ import { Badge } from '../components/ui/Badge';
 import { formatIstDate } from '../utils/time';
 import type { Election, State } from '../types';
 
-type Lifecycle = { kind: 'live' | 'finalize'; election: Election };
+type Lifecycle = { kind: 'live' | 'finalize' | 'reopen'; election: Election };
 
 interface RowActions {
   currentId: string;
@@ -184,10 +184,12 @@ export default function Elections() {
             loadFailed={!!ctx.error}
             onRetry={() => { void ctx.reload(); }}
             canFinalize={canFinalize}
+            canReopen={canFinalize}
             onClose={() => route.close()}
             onSave={save}
             onGoLive={() => { if (target) setConfirm({ kind: 'live', election: target }); }}
             onFinalize={() => { if (target) setConfirm({ kind: 'finalize', election: target }); }}
+            onReopen={() => { if (target) setConfirm({ kind: 'reopen', election: target }); }}
           />
       )}
       <ConfirmDialog
@@ -207,6 +209,16 @@ export default function Elections() {
           confirmLabel="Yes, finalize"
           onCancel={() => setConfirm(null)}
           onConfirm={() => { const c = confirm; setConfirm(null); if (c) void m.handleFinalize(c.election.id); }}
+        />
+      )}
+      {canFinalize && (
+        <ConfirmDialog
+          open={confirm?.kind === 'reopen'}
+          title="Reopen election?"
+          description={`Reopen ${confirm?.election.name ?? 'this election'}? It becomes Live again: the feed and admin corrections can change results until you finalize it again.`}
+          confirmLabel="Reopen"
+          onCancel={() => setConfirm(null)}
+          onConfirm={() => { const c = confirm; setConfirm(null); if (c) void m.handleReopen(c.election.id); }}
         />
       )}
     </>

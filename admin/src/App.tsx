@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Elections from './pages/Elections';
 import Manifests from './pages/Manifests';
 import Users from './pages/Users';
+import IngestKeys from './pages/IngestKeys';
 import AuditLogs from './pages/AuditLogs';
 import Feedback from './pages/Feedback';
 import SystemStatus from './pages/SystemStatus';
@@ -57,6 +58,7 @@ function App() {
                 <Route path="feedback/*" element={<ProtectedRoute roles={['SUPER_ADMIN', 'EDITOR']}><Feedback /></ProtectedRoute>} />
                 <Route path="users/*" element={<ProtectedRoute roles={['SUPER_ADMIN']}><Users /></ProtectedRoute>} />
                 <Route path="logs/*" element={<ProtectedRoute roles={['SUPER_ADMIN']}><AuditLogs /></ProtectedRoute>} />
+                <Route path="ingest-keys" element={<ProtectedRoute roles={['SUPER_ADMIN']}><IngestKeys /></ProtectedRoute>} />
                 <Route path="status" element={<ProtectedRoute roles={['SUPER_ADMIN']}><SystemStatus /></ProtectedRoute>} />
               </Route>
             </Routes>

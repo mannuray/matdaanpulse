@@ -6,9 +6,10 @@ import { ConfirmDialog } from '../ui/ConfirmDialog';
 import { useUnsavedGuard } from '../../hooks/useUnsavedGuard';
 import { formatIst, timeAgo } from '../../utils/time';
 import { cn } from '../ui/cn';
+import { ShardsDialog } from './ShardsDialog';
 import type { IngestStatus } from '../../types';
 
-interface Props { status: IngestStatus; sources: string[]; saving: boolean; onApply(source: string | null, holdMinutes: number): Promise<boolean> | void }
+interface Props { status: IngestStatus; sources: string[]; saving: boolean; onApply(source: string | null, holdMinutes: number): Promise<boolean> | void; onShardsChanged?(): void }
 
 const OTHER = '__other__';
 
@@ -19,12 +20,13 @@ const expiresIn = (iso: string | null) => {
 };
 
 /** Live Console feed controls (spec §5): source / pause, hold time, per-shard status, alerts. */
-export function FeedPanel({ status, sources, saving, onApply }: Props) {
+export function FeedPanel({ status, sources, saving, onApply, onShardsChanged }: Props) {
   const [choice, setChoice] = useState(status.active_source ?? '');
   const [other, setOther] = useState('');
   const [hold, setHold] = useState(String(status.hold_minutes));
   const [confirm, setConfirm] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
+  const [shardsOpen, setShardsOpen] = useState(false);
   useEffect(() => { setChoice(status.active_source ?? ''); setOther(''); setHold(String(status.hold_minutes)); }, [status.active_source, status.hold_minutes]);
   const source = choice === OTHER ? other.trim() : choice;
   const holdN = Number(hold);
@@ -59,6 +61,7 @@ export function FeedPanel({ status, sources, saving, onApply }: Props) {
           <Input aria-label="Hold (minutes)" inputMode="numeric" value={hold} invalid={!holdOk} onChange={e => setHold(e.target.value)} className="w-24" />
         </label>
         <Button variant="primary" disabled={!dirty || !holdOk || !sourceOk || saving} onClick={apply}>Apply</Button>
+        <Button variant="ghost" onClick={() => setShardsOpen(true)}>Shards…</Button>
         <span className="ml-auto text-xs text-muted">{status.active_source ? `Live from ${status.active_source}` : 'Feed paused'}</span>
       </div>
       <table className="w-full text-left text-xs">
@@ -87,6 +90,8 @@ export function FeedPanel({ status, sources, saving, onApply }: Props) {
           ))}
         </tbody>
       </table>
+      <ShardsDialog open={shardsOpen} electionId={status.election_id} shards={status.shards.filter(s => s.name !== 'rest')}
+        onClose={() => setShardsOpen(false)} onSaved={() => onShardsChanged?.()} />
       <ConfirmDialog open={confirm} title="Switch source" tone="danger" confirmLabel="Switch"
         description={`Switch the live source to ${source}? The current source's posts will be refused from now on.`}
         onCancel={() => setConfirm(false)} onConfirm={() => { setConfirm(false); void onApply(source || null, holdN); }} />

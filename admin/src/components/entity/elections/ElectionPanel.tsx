@@ -32,14 +32,17 @@ interface ElectionPanelProps {
   loadFailed: boolean;
   onRetry: () => void;
   canFinalize: boolean;
+  /** SUPER_ADMIN: a Finalized election can be reopened for corrections. */
+  canReopen?: boolean;
   onClose: () => void;
   onSave: () => void | Promise<void>;
   onGoLive: () => void;
   onFinalize: () => void;
+  onReopen?: () => void;
 }
 
 /** Elections have no detail page: a centred dialog holds the create/edit form plus the lifecycle actions. */
-export function ElectionPanel({ mode, election, manager, loadingElections, loadFailed, onRetry, canFinalize, onClose, onSave, onGoLive, onFinalize }: ElectionPanelProps) {
+export function ElectionPanel({ mode, election, manager, loadingElections, loadFailed, onRetry, canFinalize, canReopen, onClose, onSave, onGoLive, onFinalize, onReopen }: ElectionPanelProps) {
   const { form, setForm, states, fieldErrors } = manager;
   useUnsavedGuard(manager.dirty);
   const set = (patch: Partial<ElectionFormState>) => setForm({ ...form, ...patch });
@@ -78,6 +81,7 @@ export function ElectionPanel({ mode, election, manager, loadingElections, loadF
                 <div className="flex gap-2">
                   {election.status === 'Upcoming' && <Button size="sm" variant="primary" onClick={onGoLive}>Go live</Button>}
                   {election.status === 'Live' && canFinalize && <Button size="sm" variant="danger" onClick={onFinalize}>Finalize</Button>}
+                  {election.status === 'Finalized' && canReopen && onReopen && <Button size="sm" variant="danger" onClick={onReopen}>Reopen for corrections</Button>}
                 </div>
               </div>
               <p className="text-xs text-muted">{HELP[election.status]}</p>
