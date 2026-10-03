@@ -68,7 +68,7 @@ All admin endpoints require `@UseGuards(JwtAuthGuard, RolesGuard)`. Role require
 *   **`PUT /admin/elections/{id}/alliances`**: Manage election-specific alliances and their member parties. *(EDITOR+)*
 
 ### 3.5 Live Operations
-*   **`PATCH /admin/results/override`**: Force update a lead/win during counting (manual override). *(EDITOR+)*
+*   **`PUT /admin/elections/{id}/seats/{constId}`**: Correct a seat by hand (state, votes); the seat is held against the feed. *(EDITOR+)* Results otherwise arrive through the machine-key ingest API `/ingest/elections/{id}/…`; see `docs/LIVE_RUNBOOK.md`. The former `/admin/results/override(-bulk)` endpoints are removed.
 
 ### 3.6 Scraper Control
 *   **`GET /admin/scrapers/status`**: Health and lag monitoring of active scrapers.

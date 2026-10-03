@@ -1,12 +1,9 @@
 {
   "name": "matdaanpulse-scraper",
   "version": "1.0.0",
-  "description": "Seed generators and live-counting simulation for MatdaanPulse (live ECI ingestion not implemented)",
-  "main": "dist/index.js",
+  "description": "Seed generators, the counting-day live worker (posts to the ingest API) and the live-counting simulation for MatdaanPulse",
   "scripts": {
-    "start": "ts-node src/index.ts",
     "build": "tsc",
-    "dev": "ts-node src/index.ts",
     "sim:setup": "ts-node src/simulation/setup.ts",
     "sim:mock-eci": "ts-node src/simulation/mock-eci-server.ts",
     "sim:replay": "ts-node src/simulation/replay.ts",

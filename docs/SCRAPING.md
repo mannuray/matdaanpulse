@@ -2,6 +2,8 @@
 
 How we scrape, generate, and load election data into the tracker.
 
+> **Live counting day** is handled by the live worker (`scraper/src/live/`, `npm run live`), which posts to the ingest API. See `docs/LIVE_RUNBOOK.md`. This guide covers seed generation only.
+
 ---
 
 ## Directory Structure
@@ -11,9 +13,8 @@ scraper/
 ├── package.json              # cheerio, ioredis, pg, node-cron, ts-node
 ├── tsconfig.json
 └── src/
-    ├── index.ts              # Entry point (scheduler placeholder)
+    ├── live/                 # Counting-day worker (posts to the ingest API)
     ├── adapters/
-    │   ├── eci-adapter.ts    # Lok Sabha adapter (stub)
     │   └── eci-vs-adapter.ts # Vidhan Sabha adapter (working)
     ├── generate-bihar-vs-seed.ts       # Bihar 2025 (live scrape from ECI)
     └── generate-bihar-vs-2020-seed.ts  # Bihar 2020 (hardcoded data)
@@ -50,7 +51,7 @@ Base URL:  https://results.eci.gov.in/ResultAcGen{MONTH}{YEAR}
 
 Examples:
   Bihar VS 2025:  https://results.eci.gov.in/ResultAcGenNov2025
-  (Lok Sabha would be a different pattern — see eci-adapter.ts stub)
+  (Lok Sabha would be a different pattern — no adapter yet)
 ```
 
 **Constituency list pages** (paginated, ~20 per page):

@@ -21,7 +21,7 @@ Target cost: **$0/month off-season**; about **$7–10** in an election month (§
 
 Why Cloudflare Pages rather than Vercel: Vercel Hobby includes 100 GB/month of transfer, cannot buy more, and is for personal, non-commercial use only. One counting day (~100k visits × 1.5–2 MB per visit: JS ~200 KB gz, fonts ~200 KB, map GeoJSON 0.3–0.9 MB gz, results ~150 KB gz) is ~200 GB. Cloudflare Pages publishes no bandwidth/request cap for static assets on the free plan (limits: 500 builds/month, 20,000 files/site, 25 MiB/file — our largest file is 3.7 MB), allows commercial use, and the same account caches the API and holds the DNS.
 
-Not deployed: `scraper/` (seed generators and the live-count simulation; run locally or in CI against the API). The earlier plan's BullMQ queues, S3, and "Landing"/"Student" frontends belong to another app — none exist here.
+Deployed only for counting windows: the live worker (see §5.8). Not deployed: the rest of `scraper/` (seed generators and the simulation; run locally or in CI against the API). The earlier plan's BullMQ queues, S3, and "Landing"/"Student" frontends belong to another app — none exist here.
 
 ### What Redis is used for
 
@@ -282,6 +282,17 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
 - **Logs and the SSE token:** the Live Console's stream URL carries its short-lived (5 min, single-election) token as `?token=`. The app redacts it in its own logs, but Render's and Cloudflare's platform access logs record the URL, so treat those logs as able to see a token that is valid for at most 5 minutes and cannot be used as a session credential.
 
 - **Database time zone:** `audit_logs.timestamp` and `constituency_analysis.updated_at` are `TIMESTAMP` (without a time zone) and the API reads them as UTC. Keep the database session time zone at UTC (Neon's default; do not set `TimeZone` on the role, database or connection URL), or the admin shows audit and analysis times shifted. The newer `updated_at` columns (migration 017) are `TIMESTAMPTZ` and unaffected.
+
+### 5.8 Live worker
+
+The counting-day worker posts ECI results to the ingest API (`docs/LIVE_RUNBOOK.md`).
+
+1. Host: a Render background worker or a Fly.io machine in Singapore (same region as the API), root `scraper/`.
+2. Command: `npm run live -- --config live.config.json`.
+3. Env: `INGEST_API_URL` (the API base, `.../api/v1`), `INGEST_KEY` (a `worker-<host>` key from Admin -> Ingest keys), `LIVE_HOLDER` (a name for this worker, e.g. `cloud`).
+4. Start it before counting begins and stop it after finalizing (`Ctrl-C`/SIGTERM releases its leases); it can stay suspended off-season.
+5. The laptop runs the same command (`holder` `laptop`, key `laptop`) as backup; it takes over a shard within 90 s of the cloud worker stopping.
+6. Optional on the API: `INGEST_ALERT_WEBHOOK_URL` for alerts.
 
 ## 6. Decisions
 

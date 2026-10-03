@@ -185,7 +185,7 @@
 - [x] SSE endpoint `/api/v1/admin/live/updates?election_id=...&token=...` (admin only, see CDN-ready live) streams Redis events to the Live Console
 - [x] 20s heartbeat ping to keep SSE connections alive; each connection's first frame carries `retry: 5000` (shared helper `backend/src/common/sse/shared-sse-stream.ts`; the live results stream is the only SSE endpoint)
 - [x] Streams end cleanly on shutdown (SIGTERM) before the HTTP server closes
-- [x] Admin `overrideResult()` auto-publishes `result-update` via `LiveService`
+- [x] Ingest and seat corrections publish `result-update` via `LiveService` (the old admin override endpoints are removed)
 - [x] Channel naming: `election:{electionId}:events`
 
 ### CDN-ready live (viewer polling + versioned snapshots) — docs/DEPLOYMENT.md §2.2
@@ -215,7 +215,7 @@
 - [x] `live.events.published.total` — Counter for events pushed to Redis
 - [x] `redis.publish.errors.total` — Counter for failed Redis publishes
 - [x] `live.parse.errors.total` — Counter for JSON parse failures in live stream
-- [x] `admin.result.overrides.total` — Counter for admin result overrides by election + status
+- [x] `admin.result.overrides.total` — Counter for admin result changes (seat corrections) by election + status
 - [x] `live.streams.active` — ObservableGauge for shared stream count
 - [x] OTel Collector config (`otel-collector-config.yaml`) exporting to SigNoz Cloud
 - [x] Docker Compose `otel-collector` service (ports 4317/4318)
@@ -230,7 +230,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Health probes: `GET /api/v1/health/live` (no I/O, always 200) and `GET /api/v1/health/ready` (DB + Redis, 2 s timeouts, 503 when degraded, no error text); `/health` = ready
 - [x] Graceful shutdown: SSE streams → HTTP server → Redis → Prisma → OTel
 - [x] Prisma errors mapped to 409 / 404 / 400 with safe messages; oversized bodies 413
-- [x] Body limit 100 kb, 5 MB only on `POST /admin/results/override-bulk` (requests without a Bearer header get 401 before the body is parsed); admin id arrays capped at 2000 so they fit 100 kb
+- [x] Body limit 100 kb, 5 MB only on the ingest seats route (requests without a Bearer header get 401 before the body is parsed); admin id arrays capped at 2000 so they fit 100 kb
 - [x] Query DTOs on list endpoints (bounded `page`/`limit` ≤ 200, enums, UUIDs, ISO dates) — bad input is 400, not 500. Unknown query keys are rejected (400) except the cache-buster `_` (`?_=<timestamp>`), which is accepted and ignored on every route; empty values count as not sent
 - [x] URL fields (`photo_url`, `website`, `wikipedia_url`) must be http(s) (validated in the request DTOs)
 - [x] Public self-registration (`/auth/register`) off unless `ALLOW_REGISTRATION=true`; the last SUPER_ADMIN cannot be demoted or deleted
@@ -276,7 +276,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Tabbed view: constituencies split into tabs of ~50 rows (auto-chunked by `const_no` or manifest `live_tabs`, falling back to the published manifest when the draft has none)
 - [x] Compact table per tab: `# | Constituency | Leader | Party | Votes | Margin | Status`
 - [x] Row colors: green=WON, blue=LEADING, amber=thin margin (<1K), red=stale/no data
-- [x] Click row to expand: shows all candidates with inline editable votes/margin/status (override inputs validated client-side before submit)
+- [x] Click row to expand: shows all candidates with inline editable votes/margin/status (inputs validated client-side before submit)
 - [x] Find input: searches by name/ID/number, jumps to correct tab + highlights row
 - [x] Stats bar: WON / Leading / Pending counts
 - [x] SSE integration: rows flash on live scraper updates, data auto-refreshes
@@ -425,13 +425,13 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Simulation config with shared constants (`scraper/src/simulation/config.ts`)
 - [x] Setup script: clones Bihar 2025 → fictional Bihar 2027 Live election (`scraper/src/simulation/setup.ts`)
 - [x] Mock ECI HTTP server with per-seat 16–24-round vote progression (staggered starts, every seat declared by global round 24), lead flips, S-curve easing (`scraper/src/simulation/mock-eci-server.ts`)
-- [x] Replay orchestrator: advances rounds, scrapes mock, pushes result overrides via admin API (`scraper/src/simulation/replay.ts`)
+- [x] Replay orchestrator: advances rounds, scrapes mock, advances the mock server's rounds; the live worker posts them through the ingest API (`scraper/src/simulation/replay.ts`)
 - [x] Cleanup script: tears down simulation data in FK order (`scraper/src/simulation/cleanup.ts`)
 - [x] ECI VS adapter `BASE_URL` made configurable via `ECI_VS_BASE_URL` env var
 - [x] Vote progression: `easeInOutCubic` S-curve with ±5% noise, monotonic enforcement, LEADING→WON transitions
 - [x] Close-race lead flips in rounds 6-12 for constituencies with < 5% margin
 - [x] Mock server generates HTML matching real ECI format (Cheerio-compatible)
-- [x] Replay pushes overrides through the admin bulk-override API (admin Live Console via SSE; viewers pick them up by polling the live version)
+- [x] Results reach the DB through the ingest API (admin Live Console via SSE; viewers pick them up by polling the live version)
 - [x] Reset script: zeroes results without deleting election structure (`scraper/src/simulation/reset.ts`)
 - [x] Round tracking: `round_no` in override API + SSE event, round progress badge in Dashboard header
 - [x] Pre-poll constituency modal: candidate list, seat history, dominance, incumbency, revision — all shown before counting
@@ -851,3 +851,19 @@ One set of screens for drilling into a seat, a party or a person, shared by ever
 - [x] Stats: contests, wins, win rate (wins over decided contests, i.e. finalized or already won; hidden when none are decided) and parties contested for, with the latest party switch ("RJD → BJP in 2014") under it.
 - [x] Contest timeline, newest first: one card per contest linking to the constituency page, with party mark, votes, vote share, margin, a Won / Leading / Trailing / Pending / Lost pill (Lost only once the election is finalized) and "First contest under <party>" on the first contest under each new party.
 - [x] Affidavit tile (hidden when no contest has affidavit values): latest assets and liabilities, criminal cases (amber chip only when above zero), a grouped bar chart of assets and liabilities by affidavit year (inline SVG) and the per-year list.
+
+
+### Live results ingest (2026-10-03, branch `feat/live-ingest`)
+Spec `docs/superpowers/specs/2026-10-03-live-ingest-design.md`; operations in `docs/LIVE_RUNBOOK.md`.
+- [x] Ingest API for the counting-day worker: `/api/v1/ingest/elections/:id/{roster,config,lease,seats,tally}` with Bearer machine keys; the worker is the only writer of live results (migration 020)
+- [x] Machine keys (`mpk_...`): SUPER_ADMIN creates and revokes them on Admin -> Ingest keys; stored as sha256, shown once
+- [x] Shards and leases: named seat sets plus an implicit `rest` shard; a worker holds a shard by a 90 s lease (renewed while running), so a backup worker takes over within 90 s
+- [x] One active source per election (null = paused), with per-shard source overrides; writes from any other source are refused
+- [x] Holds: a seat correction holds the seat for `hold_minutes` (default 10) or until a later round; Holds panel releases early
+- [x] Admin Live Console: Feed panel (source select / Paused / Other, hold minutes, confirmed switch, shard table: job, lag, recent counts, rejected list, tally badge), Shards... dialog, Holds panel, seat editor with Seat state and "On hold until ..."; Admin -> Ingest keys page; Elections -> Reopen for corrections (`POST /admin/elections/:id/reopen`, SUPER_ADMIN)
+- [x] Admin routes: `/admin/elections/:id/ingest` (GET/PUT), `/ingest/sources`, `/ingest/shards/:name` (PUT/DELETE), `/holds` (GET, DELETE `:constId`), `PUT /admin/elections/:id/seats/:constId`
+- [x] Alerts (lag, lapsed lease, rejected seats, tally mismatch) shown in the console and posted to `INGEST_ALERT_WEBHOOK_URL` (optional, `{ text }`; repeats at most every 15 min); `GET /api/v1/health/ingest`
+- [x] Snapshot carries per-seat `state` and `rounds`; live-results returns `seat_state`; the public seat chip shows Counting (Round N/M), Declared, Countermanded, Adjourned
+- [x] Worker `scraper/src/live/`: `npm run live -- --config live.config.json` (env `INGEST_KEY`, `INGEST_API_URL`, `LIVE_HOLDER`); `npm run live:check -- --election <id> --source eci-web [--shard rest]` prints READY / NOT READY; adapters `eci-web` (`baseUrl`, `stateCode`, `intervalMs`, `partyAliases`, `fetchTimeoutMs` default 15 s) and `mock-eci`; example `scraper/live.config.example.json`
+- [x] Simulation runs through ingest: `sim:mock-eci`, `sim:setup`, `sim:live`, `sim:replay`, `sim:smoke`, `sim:cleanup`
+- [x] Removed: `/admin/results/override` and `/admin/results/override-bulk`; the old scraper stubs (`scheduler/`, `normalizer/`, `eci-adapter.ts`, `cache/`)
