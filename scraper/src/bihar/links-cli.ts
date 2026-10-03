@@ -10,7 +10,7 @@ const all: Candidacy[] = [];
 for (const y of [2010, 2015, 2020, 2025] as Year[]) {
   const s = loadSeeded(y);
   for (const seat of s.json.seats) for (const c of seat.candidates) {
-    all.push({ candidateId: s.idOf(seat.constNo, c), year: y, constNo: seat.constNo, name: c.name, partyId: c.partyId });
+    all.push({ candidateId: s.idOf(seat.constNo, c), year: y, constNo: seat.constNo, name: c.name, partyId: c.partyId, age: c.age });
   }
 }
 const groups = groupCandidacies(all);

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { groupCandidacies, linkKey, emitLinksSeed, type Candidacy } from '../links';
 
-const c = (candidateId: string, year: number, constNo: number, name: string, partyId: string): Candidacy => ({ candidateId, year, constNo, name, partyId });
+const c = (candidateId: string, year: number, constNo: number, name: string, partyId: string, age: number | null = null): Candidacy => ({ candidateId, year, constNo, name, partyId, age });
 
 describe('linkKey', () => {
   it('drops alias parts, punctuation and case', () => {
@@ -12,7 +12,7 @@ describe('linkKey', () => {
 
 describe('groupCandidacies', () => {
   it('links the same name in the same seat across years; party switch is medium', () => {
-    const g = groupCandidacies([c('a', 2015, 9, 'Dhirendra Pratap Singh', 'IND'), c('b', 2020, 9, 'Dhirendra Pratap Singh', 'JDU'), c('x', 2020, 10, 'Dhirendra Pratap Singh', 'JDU')]);
+    const g = groupCandidacies([c('a', 2015, 9, 'Dhirendra Pratap Singh', 'IND', 35), c('b', 2020, 9, 'Dhirendra Pratap Singh', 'JDU', 40), c('x', 2020, 10, 'Dhirendra Pratap Singh', 'JDU', 40)]);
     expect(g).toEqual([{ key: 'DHIRENDRA PRATAP SINGH|9', confidence: 'medium', members: [expect.objectContaining({ candidateId: 'a' }), expect.objectContaining({ candidateId: 'b' })] }]);
   });
   it('same party every year is high', () => {
@@ -23,6 +23,18 @@ describe('groupCandidacies', () => {
     expect(groupCandidacies([c('a', 2010, 5, 'Anil Kumar', 'BSP'), c('b', 2020, 5, 'Anil Kumar', 'RJD')])[0].confidence).toBe('review');
     expect(groupCandidacies([c('a', 2010, 5, 'Anil Kumar', 'BJP'), c('b', 2020, 5, 'Anil Kumar', 'BJP')])[0].confidence).toBe('high');
     expect(groupCandidacies([c('a', 2020, 7, 'Ram Prasad', 'IND'), c('b', 2020, 7, 'Ram Prasad', 'BSP'), c('d', 2025, 7, 'Ram Prasad', 'BSP')])[0].confidence).toBe('review');
+  });
+  it('a party switch or an IND member needs every age to fit the years, else review', () => {
+    expect(groupCandidacies([c('a', 2010, 3, 'Om Shanti Baba', 'IND'), c('b', 2015, 3, 'Om Shanti Baba', 'BED')])[0].confidence).toBe('review'); // ages unknown
+    expect(groupCandidacies([c('a', 2010, 3, 'Om Shanti Baba', 'IND', 50), c('b', 2015, 3, 'Om Shanti Baba', 'IND', 55)])[0].confidence).toBe('medium');
+    expect(groupCandidacies([c('a', 2010, 46, 'Alok Kumar', 'BSP', 30), c('b', 2020, 46, 'Alok Kumar', 'IND', 55)])[0].confidence).toBe('review'); // 25 years older in 10
+  });
+  it('same party every year stays high unless the ages contradict', () => {
+    expect(groupCandidacies([c('a', 2010, 1, 'Rajesh Singh', 'JDU', null), c('b', 2015, 1, 'Rajesh Singh', 'JDU', 42)])[0].confidence).toBe('high');
+    expect(groupCandidacies([c('a', 2010, 1, 'Rajesh Singh', 'JDU', 30), c('b', 2015, 1, 'Rajesh Singh', 'JDU', 60)])[0].confidence).toBe('review');
+  });
+  it('single-word names are never linked', () => {
+    expect(groupCandidacies([c('a', 2020, 191, 'Siddharth', 'INC', 40), c('b', 2025, 191, 'Siddharth', 'INC', 45)])[0].confidence).toBe('review');
   });
   it('drops single-year groups', () => {
     expect(groupCandidacies([c('a', 2010, 1, 'X Y', 'BJP')])).toEqual([]);
@@ -41,5 +53,7 @@ describe('emitLinksSeed', () => {
     expect(sql).toContain('ORDER BY g, n DESC, cid');
     expect(sql).toContain('AND m.n = 1');
     expect(sql).toContain("pm.duplicate->>'id' = m.pid::text OR pm.keeper_ref = m.pid");
+    expect(sql).toContain("al.action = 'CANDIDATE_SPLIT' AND al.entity_type = 'candidate' AND al.entity_id = m.cid::text");
+    expect(sql).toContain('pp.photo_url IS NOT NULL OR pp.bio IS NOT NULL OR pp.wikipedia_url IS NOT NULL OR pp.date_of_birth IS NOT NULL');
   });
 });

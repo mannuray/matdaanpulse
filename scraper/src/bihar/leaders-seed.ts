@@ -8,6 +8,7 @@ import { runOnce } from '../seed-run-once';
 import type { LeadersFile, LeaderRole, LeaderYear } from './leaders-data';
 import type { Profile } from './profiles';
 import { q } from './sql';
+import { moveGuard } from './links';
 
 export interface ResolvedPerson { key: string; name: string; candidateIds: string[]; fixedId: string | null; profile: Profile | null }
 
@@ -16,7 +17,9 @@ const YEARS: LeaderYear[] = ['2010', '2015', '2020', '2025'];
 
 export function personExpr(p: ResolvedPerson): string {
   if (p.fixedId) return `${q(p.fixedId)}::uuid`;
-  return `(SELECT person_id FROM candidates WHERE id = ${q(p.candidateIds[0])})`;
+  // The leader's best-linked person (most candidacies, then lowest candidate id): the curated or linked person when one
+  // exists, not a one-off spelling of the earliest year. After the links below it is the person of every candidacy.
+  return `(SELECT c.person_id FROM candidates c WHERE c.id IN (${p.candidateIds.map(q).join(', ')}) ORDER BY (SELECT count(*) FROM candidates c2 WHERE c2.person_id = c.person_id) DESC, c.id LIMIT 1)`;
 }
 
 const joinYears = (ys: string[]) => (ys.length < 2 ? ys.join('') : `${ys.slice(0, -1).join(', ')} and ${ys[ys.length - 1]}`);
@@ -60,13 +63,19 @@ export function emitLeadersSeed(f: LeadersFile, people: ResolvedPerson[], electi
       'ON CONFLICT (url) DO NOTHING;');
   }
 
-  const body: string[] = ['-- Link each leader\'s candidacies to one person (only auto-created single-candidacy persons outside the merge log move)'];
+  const body: string[] = [
+    '-- Link each leader\'s candidacies to the best-linked person. A candidacy moves from a one-candidacy person or from a',
+    '-- person whose candidacies all belong to this leader (leaders.json is curated); never from a merge, a split or a',
+    '-- person with an admin-entered profile.',
+  ];
   for (const p of people.filter(x => x.candidateIds.length > 1)) {
     const expr = personExpr(p);
+    const ids = p.candidateIds.map(q).join(', ');
     body.push(`UPDATE candidates c SET person_id = ${expr}`,
-      `WHERE c.id IN (${p.candidateIds.slice(1).map(q).join(', ')}) AND c.person_id <> ${expr}`,
-      '  AND (SELECT count(*) FROM candidates c2 WHERE c2.person_id = c.person_id) = 1',
-      "  AND NOT EXISTS (SELECT 1 FROM person_merges pm WHERE pm.duplicate->>'id' = c.person_id::text OR pm.keeper_ref = c.person_id);");
+      `WHERE c.id IN (${ids}) AND c.person_id <> ${expr}`,
+      `  AND ((SELECT count(*) FROM candidates c2 WHERE c2.person_id = c.person_id) = 1`,
+      `       OR NOT EXISTS (SELECT 1 FROM candidates c3 WHERE c3.person_id = c.person_id AND c3.id NOT IN (${ids})))`,
+      ...moveGuard('c.person_id', 'c.id').map((l, i, all) => (i === all.length - 1 ? `${l};` : l)));
   }
 
   body.push('', '-- Profiles, fill-only (admin edits win)');
@@ -98,8 +107,14 @@ export function emitLeadersSeed(f: LeadersFile, people: ResolvedPerson[], electi
     };
     const lists = [list('leaders', 'Leaders', e.leaders), list('cabinet', 'Cabinet', e.cabinet)].filter(Boolean);
     if (!lists.length) continue;
-    body.push(`UPDATE elections SET manifest_url = (manifest_url::jsonb || jsonb_build_object('watchlists', jsonb_build_array(\n  ${lists.join(',\n  ')})))::text`,
-      `WHERE id = ${q(electionIds[y])} AND manifest_url IS NOT NULL;`);
+    const arr = `jsonb_build_array(\n  ${lists.join(',\n  ')})`;
+    const noEntries = (col: string) => `NOT EXISTS (SELECT 1 FROM jsonb_array_elements(COALESCE(${col}->'watchlists', '[]'::jsonb)) w WHERE jsonb_array_length(COALESCE(w->'entries', '[]'::jsonb)) > 0)`;
+    // Only a JSON manifest (not a URL) whose watchlists have no entries yet; admin-built lists are never replaced.
+    body.push(`UPDATE elections SET manifest_url = (manifest_url::jsonb || jsonb_build_object('watchlists', ${arr}))::text`,
+      `WHERE id = ${q(electionIds[y])} AND manifest_url LIKE '{%' AND CASE WHEN manifest_url LIKE '{%' THEN ${noEntries('manifest_url::jsonb')} ELSE false END;`);
+    // A draft open in the admin gets the same lists, so publishing it does not drop them.
+    body.push(`UPDATE elections SET manifest_draft = manifest_draft || jsonb_build_object('watchlists', ${arr})`,
+      `WHERE id = ${q(electionIds[y])} AND jsonb_typeof(manifest_draft) = 'object' AND ${noEntries('manifest_draft')};`);
   }
 
   return runOnce({

@@ -24,7 +24,8 @@ describe('leaders seed', () => {
   });
   it('addresses persons through a candidate, or a fixed id when seatless', () => {
     expect(personExpr(people[0])).toBe("'aaaaaaaa-aaaa-5aaa-8aaa-aaaaaaaaaaaa'::uuid");
-    expect(personExpr(people[1])).toBe("(SELECT person_id FROM candidates WHERE id = '11111111-1111-1111-1111-111111111111')");
+    // the leader's best-linked person: most candidacies, then the lowest candidate id
+    expect(personExpr(people[1])).toBe("(SELECT c.person_id FROM candidates c WHERE c.id IN ('11111111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222') ORDER BY (SELECT count(*) FROM candidates c2 WHERE c2.person_id = c.person_id) DESC, c.id LIMIT 1)");
   });
   it('emits always-idempotent inserts, a guarded link, fill-only updates and manifest watchlists', () => {
     const sql = emitLeadersSeed(f, people, ids);
@@ -32,13 +33,19 @@ describe('leaders seed', () => {
     expect(always).toContain("INSERT INTO persons (id, name) VALUES\n  ('aaaaaaaa-aaaa-5aaa-8aaa-aaaaaaaaaaaa', 'Nitish Kumar')\nON CONFLICT (id) DO NOTHING;");
     expect(always).toContain("('https://blob/persons/Q1/photo.jpg', 'https://commons/File:N.jpg', 'O''Brien', 'CC BY 4.0')");
     expect(sql).toContain("NOT EXISTS (SELECT 1 FROM seed_runs WHERE name = 'seed_bihar_leaders')");
-    expect(sql).toContain("WHERE c.id IN ('22222222-2222-2222-2222-222222222222')");
-    expect(sql).toContain('(SELECT count(*) FROM candidates c2 WHERE c2.person_id = c.person_id) = 1');
+    // every candidacy of the leader may move to the anchor: from a one-candidacy person, or from a person whose
+    // candidacies all belong to this leader (a curated duplicate), never from a merge, a split or an admin profile
+    expect(sql).toContain("WHERE c.id IN ('11111111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222')");
+    expect(sql).toContain("NOT EXISTS (SELECT 1 FROM candidates c3 WHERE c3.person_id = c.person_id AND c3.id NOT IN ('11111111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222'))");
+    expect(sql).toContain("al.action = 'CANDIDATE_SPLIT'");
     expect(sql).toContain("photo_url = COALESCE(photo_url, 'https://blob/persons/Q1/photo.jpg')");
     expect(sql).toContain("date_of_birth = COALESCE(date_of_birth, '1951-03-01'::date)");
-    expect(sql).toContain("'person_id', ((SELECT person_id FROM candidates WHERE id = '11111111-1111-1111-1111-111111111111'))::text");
+    expect(sql).toContain("'person_id', ((SELECT c.person_id FROM candidates c WHERE c.id IN (");
     expect(sql).toContain("'const_id', 'BR_VS20_128_RAGHOPUR'");
-    expect(sql).toContain("WHERE id = 'e20' AND manifest_url IS NOT NULL;");
+    // only a JSON manifest without watchlist entries is written; a draft gets the same lists
+    expect(sql).toContain("WHERE id = 'e20' AND manifest_url LIKE '{%' AND CASE WHEN manifest_url LIKE '{%' THEN NOT EXISTS (SELECT 1 FROM jsonb_array_elements(COALESCE(manifest_url::jsonb->'watchlists', '[]'::jsonb)) w WHERE jsonb_array_length(COALESCE(w->'entries', '[]'::jsonb)) > 0) ELSE false END;");
+    expect(sql).toContain("UPDATE elections SET manifest_draft = manifest_draft || jsonb_build_object('watchlists'");
+    expect(sql).toContain("WHERE id = 'e20' AND jsonb_typeof(manifest_draft) = 'object' AND NOT EXISTS (SELECT 1 FROM jsonb_array_elements(COALESCE(manifest_draft->'watchlists', '[]'::jsonb)) w WHERE jsonb_array_length(COALESCE(w->'entries', '[]'::jsonb)) > 0);");
     expect(sql).not.toMatch(/WHERE id = 'e25'/); // no entries that year
     expect(sql).not.toMatch(/metadata/);
   });
