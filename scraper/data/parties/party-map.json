@@ -111,6 +111,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "AJSUPARTY": {
+    "id": "AP1",
+    "name": "AJSU Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "AKHANDBHARATJANPRIYAPARTY": {
     "id": "ABJP",
     "name": "Akhand Bharat Janpriya Party",
@@ -181,6 +188,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "AKHILBHARATIYAGORKHALEAGUE": {
+    "id": "ABGL",
+    "name": "Akhil Bharatiya Gorkha League",
+    "abbreviation": "ABGL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "AKHILBHARATIYAHINDKRANTIPARTY": {
     "id": "ABHKP",
     "name": "Akhil Bharatiya Hind Kranti Party",
@@ -227,6 +241,13 @@
     "id": "ABAPSMP",
     "name": "AKHIL BHARTIYA ATYANT PICHARA SANGHARSH MORCHA PARTY",
     "abbreviation": "ABAPSMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARTIYAJHARKHANDPARTY": {
+    "id": "AKBJHP",
+    "name": "Akhil Bhartiya Jharkhand Party",
+    "abbreviation": "AKBJHP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -384,6 +405,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "ALLJHARKHANDSTUDENTSUNION": {
+    "id": "AJSU",
+    "name": "All Jharkhand Students Union",
+    "abbreviation": "AJSU",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ALLPENSIONERSPARTY": {
     "id": "APNP",
     "name": "ALL PENSIONER'S PARTY",
@@ -429,6 +457,13 @@
   "AMMAMAKKALMUNNETTRAKAZAGAM": {
     "id": "AMMK",
     "name": "Amma Makkal Munnettra Kazagam",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AMRABANGALEE": {
+    "id": "AMB",
+    "name": "Amra Bangalee",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
@@ -825,6 +860,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "BHARATIYANYAYADHIKARRAKSHAPARTY": {
+    "id": "BNARP",
+    "name": "Bharatiya Nyay-Adhikar Raksha Party",
+    "abbreviation": "BNARP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "BHARATIYASAMPURANKRANTIKARIPARTY": {
     "id": "BSKP",
     "name": "Bharatiya Sampuran Krantikari Party",
@@ -1210,6 +1252,20 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "DEMOCRATICSOCIALISTPARTYOFINDIA": {
+    "id": "DSPI",
+    "name": "Democratic Socialist Party of India",
+    "abbreviation": "DSPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "DEMOCRATICSOCIALISTPARTYPRABODHCHANDRA": {
+    "id": "DSPP",
+    "name": "Democratic Socialist Party (Prabodh Chandra)",
+    "abbreviation": null,
+    "color": "#CC0000",
+    "recognition": null
+  },
   "DESAMAKKALMUNNETRAKKAZHGAM": {
     "id": "DMMK",
     "name": "Desa Makkal Munnetrak Kazhgam",
@@ -1413,6 +1469,34 @@
     "color": "#808080",
     "recognition": null
   },
+  "GORAKHANATIONALLIBERATIONFRONT": {
+    "id": "GNLF_WB",
+    "name": "Gorakha National Liberation Front",
+    "abbreviation": "GNLF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GORKHAJANMUKTIMORCHA": {
+    "id": "GJM",
+    "name": "Gorkha Janmukti Morcha",
+    "abbreviation": null,
+    "color": "#006400",
+    "recognition": null
+  },
+  "GORKHARASHTRIYACONGRESS": {
+    "id": "GRAC",
+    "name": "Gorkha Rashtriya Congress",
+    "abbreviation": "grac",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GURUCHANDMUKTIMORCHA": {
+    "id": "GMM",
+    "name": "Guru Chand Mukti Morcha",
+    "abbreviation": "GMM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "HAMARASAHARAPARTY": {
     "id": "HMSP",
     "name": "Hamara Sahara Party",
@@ -1480,6 +1564,13 @@
     "id": "HND",
     "name": "Hindusthan Nirman Dal",
     "abbreviation": "HND",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "HUMANITYUNIVERSALMOTIONPARTY": {
+    "id": "HUMP",
+    "name": "Humanity Universal Motion Party",
+    "abbreviation": "HUMP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1574,12 +1665,26 @@
     "color": "#808080",
     "recognition": null
   },
+  "INDIANPEOPLESFORWARDBLOCK": {
+    "id": "IPFB",
+    "name": "Indian Peoples Forward Block",
+    "abbreviation": "IPFB",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "INDIANUNIONMUSLIMLEAGUE": {
     "id": "IUML",
     "name": "Indian Union Muslim League",
     "abbreviation": null,
     "color": "#006600",
     "recognition": null
+  },
+  "INDIANUNITYCENTRE": {
+    "id": "IUC",
+    "name": "Indian Unity Centre",
+    "abbreviation": "IUC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "INDIYAJANANAYAKAKATCHI": {
     "id": "IJK",
@@ -1613,6 +1718,13 @@
     "id": "JGHTP",
     "name": "Jago Hindustan Party",
     "abbreviation": "JGHTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAGOPARTY": {
+    "id": "JGP",
+    "name": "Jago Party",
+    "abbreviation": "JGP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1657,6 +1769,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "JAMATESERATULMUSTAKIM": {
+    "id": "JESM",
+    "name": "Jamat-E-Seratul Mustakim",
+    "abbreviation": "JeSM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "JAMMUKASHMIRNATIONALPANTHERSPARTY": {
     "id": "JKNPP",
@@ -1882,6 +2001,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "JHARKHANDANUSHILANPARTY": {
+    "id": "JHAP",
+    "name": "Jharkhand Anushilan Party",
+    "abbreviation": "JHAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "JHARKHANDDISOMPARTY": {
     "id": "JDP",
     "name": "Jharkhand Disom Party",
@@ -1903,12 +2029,26 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "JHARKHANDPARTYNAREN": {
+    "id": "JKPN",
+    "name": "Jharkhand Party (Naren)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "JHARKHANDVIKASMORCHAPRAJATANTRIK": {
     "id": "JVM",
     "name": "Jharkhand Vikas Morcha (Prajatantrik)",
     "abbreviation": "JVM",
     "color": "#9CA3AF",
     "recognition": "State"
+  },
+  "JUSTICEANDDEVELOPMENTPARTY": {
+    "id": "JSTDVPMTP",
+    "name": "Justice and Development Party,",
+    "abbreviation": "JSTDVPMTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "KALINGASENA": {
     "id": "KS",
@@ -1921,6 +2061,20 @@
     "id": "KDC",
     "name": "Kamarajar Deseeya Congress",
     "abbreviation": "KDC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KAMATAPURPEOPLESPARTYUNITED": {
+    "id": "KPPU",
+    "name": "Kamatapur Peoples Party (United)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "KAMTAPURPROGRESSIVEPARTY": {
+    "id": "KPP",
+    "name": "Kamtapur Progressive Party",
+    "abbreviation": "KPP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2190,6 +2344,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "LOKSAMYAPARTY": {
+    "id": "LKSAMYP",
+    "name": "Lok Samya Party",
+    "abbreviation": "LKSAMYP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "LOKSATTAPARTY": {
     "id": "LSP_TN",
     "name": "Lok Satta Party",
@@ -2285,6 +2446,13 @@
     "id": "MAHMMK",
     "name": "Mahathma Makkal Munnetra Kazhakam",
     "abbreviation": "MAHMMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAIHEEBHARAT": {
+    "id": "MHB",
+    "name": "Mai Hee Bharat",
+    "abbreviation": "MHB",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -2470,6 +2638,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "MULNIBASIPARTYOFINDIA": {
+    "id": "MPOI",
+    "name": "Mulnibasi Party of India",
+    "abbreviation": "MPOI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "MUSLIMLEAGUEKERALASTATECOMMITTEE": {
     "id": "MUL_BR",
     "name": "Muslim League Kerala State Committee",
@@ -2582,6 +2757,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "NATIONALREPUBLICPARTYOFINDIA": {
+    "id": "NRPI",
+    "name": "National Republic Party Of India",
+    "abbreviation": "NRPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "NATIONALSECULARCONFERENCE": {
     "id": "NSC_KL",
     "name": "National Secular Conference",
@@ -2638,6 +2820,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "NEWDEMOCRATICPARTYOFINDIA": {
+    "id": "NDPOI",
+    "name": "New Democratic Party of India",
+    "abbreviation": "NDPOI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "NEWGENERATIONPEOPLESPARTY": {
     "id": "NGPP",
     "name": "New Generation People’s Party",
@@ -2651,6 +2840,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "NIRJATITASAMAJBIPLABIPARTY": {
+    "id": "NSBP",
+    "name": "Nirjatita Samaj Biplabi Party",
+    "abbreviation": "NSBP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "OPENPEOPLESPARTY": {
     "id": "OPP",
@@ -2666,12 +2862,33 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "PARADISEPARTY": {
+    "id": "PRDSEP",
+    "name": "Paradise Party",
+    "abbreviation": "PRDSEP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "PARIVARTANPARTYOFINDIA": {
     "id": "PPOI",
     "name": "Parivartan Party of India",
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "PARTYFORDEMOCRATICSOCIALISM": {
+    "id": "PDS",
+    "name": "Party for Democratic Socialism",
+    "abbreviation": "PDS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PASCHIMBANGARAJYAMUSLIMLEAGUE": {
+    "id": "PBRML",
+    "name": "Paschim Banga Rajya Muslim League",
+    "abbreviation": "PBRML",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "PATTALIMAKKALKATCHI": {
     "id": "PMK",
@@ -2686,6 +2903,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "PEOPLESDEMOCRATICCONFERENCEOFINDIA": {
+    "id": "PDCI",
+    "name": "People's Democratic Conference of India",
+    "abbreviation": "PDCI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "PEOPLESDEMOCRATICPARTY": {
     "id": "PDP",
@@ -2770,6 +2994,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "PROGRESSIVEPEOPLESPARTY": {
+    "id": "PRPP",
+    "name": "Progressive People's Party",
+    "abbreviation": "PrPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "PROUTISTBLOCINDIA": {
     "id": "PBI",
@@ -2918,6 +3149,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "RASHTRIYADESHAJPARTY": {
+    "id": "RADP",
+    "name": "Rashtriya Deshaj Party",
+    "abbreviation": "RADP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "RASHTRIYAGARIBDAL": {
     "id": "RGD",
     "name": "Rashtriya Garib Dal",
@@ -2943,6 +3181,20 @@
     "id": "RTJHPR",
     "name": "Rashtriya Jaihind Party",
     "abbreviation": "RTJHPR",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJANADHIKARSURAKSHAPARTY": {
+    "id": "RAJSP",
+    "name": "Rashtriya Janadhikar Suraksha Party",
+    "abbreviation": "RaJSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJANASACHETANPARTY": {
+    "id": "RJNP",
+    "name": "RASHTRIYA JANASACHETAN PARTY",
+    "abbreviation": "RJNP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -3064,6 +3316,13 @@
     "abbreviation": "RKSP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
+  },
+  "RASHTRIYALOKDAL": {
+    "id": "RLD",
+    "name": "Rashtriya Lok Dal",
+    "abbreviation": null,
+    "color": "#33CC33",
+    "recognition": null
   },
   "RASHTRIYALOKJANSHAKTIPARTY": {
     "id": "RLJP",
@@ -3310,6 +3569,13 @@
     "color": "#DC143C",
     "recognition": null
   },
+  "REVOLUTIONARYSOCIALISTPARTYOFINDIAMARXIST": {
+    "id": "RSPI",
+    "name": "Revolutionary Socialist Party of India(Marxist)",
+    "abbreviation": "RSPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "RIGHTTORECALLPARTY": {
     "id": "RTRP",
     "name": "Right to Recall Party",
@@ -3331,6 +3597,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "SAJAGSAMAJPARTY": {
+    "id": "SJSMP",
+    "name": "Sajag Samaj Party",
+    "abbreviation": "SJSMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "SAMAJSATTADAL": {
     "id": "SSD",
     "name": "Samaj Satta Dal",
@@ -3344,6 +3617,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "SAMAJTANTRICPARTYOFINDIA": {
+    "id": "STPI",
+    "name": "Samajtantric Party of India",
+    "abbreviation": "STPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "SAMAJWADIJANATADALDEMOCRATIC": {
     "id": "SJDD",
@@ -3807,6 +4087,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "THERELIGIONOFMANREVOLVINGPOLITICALPARTYOFINDIA": {
+    "id": "TRMRPPI",
+    "name": "The Religion of Man Revolving Political Party of India",
+    "abbreviation": "TRMRPPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "THOZHILALARPARTY": {
     "id": "THP",
     "name": "Thozhilalar Party",
@@ -3855,6 +4142,13 @@
     "abbreviation": "UPPL",
     "color": "#00BCD4",
     "recognition": null
+  },
+  "UNITEDSOCIALISTPARTY": {
+    "id": "UTSAP",
+    "name": "United Socialist Party",
+    "abbreviation": "UTSAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "UNITEDSTATESOFINDIAPARTY": {
     "id": "USIP",
@@ -3947,6 +4241,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "VIKASINDIAPARTY": {
+    "id": "VINPA",
+    "name": "Vikas India Party",
+    "abbreviation": "VINPA",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "VIKASINSAFPARTY": {
     "id": "VIP1",
     "name": "Vikas Insaf Party",
@@ -4007,6 +4308,13 @@
     "id": "WPOI",
     "name": "Welfare Party Of India",
     "abbreviation": "WPOI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "WESTBENGALSOCIALISTPARTY": {
+    "id": "WBSP",
+    "name": "West Bengal Socialist Party",
+    "abbreviation": "WBSP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },

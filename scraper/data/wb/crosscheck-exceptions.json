@@ -1,0 +1,27 @@
+[
+ {
+  "year": 2011,
+  "key": "total-valid:11",
+  "reason": "ECI's Constituency Data Summary total valid votes (154565) differs from its own Detailed Results (154569), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2011,
+  "key": "total-valid:98",
+  "reason": "ECI's Constituency Data Summary total valid votes (170769) differs from its own Detailed Results (170899), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2011,
+  "key": "total-valid:206",
+  "reason": "ECI's Constituency Data Summary total valid votes (178682) differs from its own Detailed Results (178685), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2011,
+  "key": "total-valid:211",
+  "reason": "ECI's Constituency Data Summary total valid votes (173239) differs from its own Detailed Results (173240), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2011,
+  "key": "total-valid:215",
+  "reason": "ECI's Constituency Data Summary total valid votes (165366) differs from its own Detailed Results (165369), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+ }
+]

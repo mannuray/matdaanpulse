@@ -89,9 +89,11 @@ export const ELECTIONS: ElectionConfig[] = [
     parties: '2016/List_Of_Political_Parties_Participated.xlsx', performance: '2016/Performance_of_Poltical_Parties.xlsx' }), seats: 232, excludeSeats: [134, 174] },
   hist('TN', 2021, 'e5f6a7b8-c9d0-1234-ef01-456789012021', 13680, 1, { detailed: '2021/10-_Detailed_Results.xlsx', summary: '2021/8-_Constituency_Data_Summary.xlsx',
     parties: '2021/3-_List_of_Political_Parties_Participated.xlsx', performance: '2021/5-_Performance_of_Political_Parties.xlsx' }),
-  hist('WB', 2011, 'd4e5f6a7-b8c9-0123-def0-345678901011', 3195, 6),
-  hist('WB', 2016, 'd4e5f6a7-b8c9-0123-def0-345678901016', 3469, 7),
-  hist('WB', 2021, 'd4e5f6a7-b8c9-0123-def0-345678901021', 14106, 8),
+  hist('WB', 2011, 'd4e5f6a7-b8c9-0123-def0-345678901011', 3195, 6, { pdf: '2011/2011.pdf' }),
+  hist('WB', 2016, 'd4e5f6a7-b8c9-0123-def0-345678901016', 3469, 7, { detailed: '2016/Detailed_Results.xlsx', summary: '2016/Constituency_Data_Summry.pdf',
+    parties: '2016/List_Of_Political_Parties_Participated.xlsx', performance: '2016/Performance_of_Poltical_Parties.xlsx' }),
+  hist('WB', 2021, 'd4e5f6a7-b8c9-0123-def0-345678901021', 14106, 9, { detailed: '2021/10-Detailed_Results.xlsx', summary: '2021/8-Constituency_Data_Summary.xlsx',
+    parties: '2021/3-List_Of_Political_Parties_Participated.xlsx', performance: '2021/5-Performance_of_Political_Parties.xlsx' }),
 ];
 
 /** The registry entry of an election id. */
