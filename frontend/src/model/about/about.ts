@@ -39,16 +39,16 @@ export interface DataSource {
   notes: DataNote[];
 }
 
-const ELECTIONS_IN = 'elections.in';
 const ECI_ELECTIONS_IN = 'ECI / elections.in';
+const ECI_STAT_REPORT = 'ECI statistical report';
 
 export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'LS', state: null, year: 2024, source: 'ECI via OpenCity.in', quality: 'partial', notes: ['top5_nota', 'turnout_unreliable'] },
 
-  { house: 'VS', state: 'Bihar', year: 2025, source: 'ECI (results.eci.gov.in)', quality: 'real', notes: ['top5_nota'] },
-  { house: 'VS', state: 'Bihar', year: 2020, source: 'StatisticsTimes / ECI', quality: 'estimated', notes: ['votes_from_margin', 'two_candidates', 'reserved_wrong'] },
-  { house: 'VS', state: 'Bihar', year: 2015, source: ELECTIONS_IN, quality: 'estimated', notes: ['votes_from_margin', 'two_candidates', 'reserved_wrong'] },
-  { house: 'VS', state: 'Bihar', year: 2010, source: ELECTIONS_IN, quality: 'estimated', notes: ['votes_from_margin', 'two_candidates', 'reserved_wrong'] },
+  { house: 'VS', state: 'Bihar', year: 2025, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Bihar', year: 2020, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Bihar', year: 2015, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Bihar', year: 2010, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 
   { house: 'VS', state: 'West Bengal', year: 2021, source: ECI_ELECTIONS_IN, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'West Bengal', year: 2016, source: ECI_ELECTIONS_IN, quality: 'real', notes: ['two_candidates'] },

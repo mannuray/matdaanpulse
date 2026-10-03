@@ -114,7 +114,7 @@
 
 ### State Assembly Election Support (Bihar VS 2025)
 - [x] ECI scraper for Vidhan Sabha results (`scraper/src/adapters/eci-vs-adapter.ts`)
-- [x] Seed generator script (`scraper/src/generate-bihar-vs-seed.ts`)
+- [x] Seed generator script (replaced 2026-10-03 by the ECI statistical-report pipeline, see "Bihar results data")
 - [x] Bihar AC GeoJSON with 243 assembly constituencies (`frontend/public/geo/bihar_ac_2008.geojson`)
 - [x] Seed SQL with 243 constituencies, ~1458 candidates, alliance manifest (`database/seed_bihar_vs_2025.sql`)
 - [x] Dynamic GeoJSON loading: map URL from election manifest `geo.map_url`
@@ -144,9 +144,30 @@
 - [x] Party-wise reserved seats (SC/ST breakdown) table (collapsible)
 - [x] All data derived from existing `mapRegions` — no new API calls
 
+### Bihar results data (ECI statistical reports), 2026-10-03
+Bihar VS 2010 / 2015 / 2020 / 2025 carry every candidate + NOTA with real ECI votes, correct SC/ST, electors, turnout
+(voters ÷ electors) and polling phase. Spec `docs/superpowers/specs/2026-10-03-bihar-seeding-design.md`, plan
+`docs/superpowers/plans/2026-10-03-bihar-results-seeding.md`.
+- [x] Pipeline `scraper/src/bihar/`: `fetch-cli.ts` (ECI backend → `scraper/data/raw/bihar/`, gitignored) → `parse-cli.ts`
+  (XLS/XLSX via SheetJS for 2020/2025, `pdftotext -layout` for the 2010/2015 PDFs) → ECI-internal cross-check
+  (Detailed Results vs Constituency Data Summary per seat, vs Performance of Political Parties statewide) →
+  committed `scraper/data/bihar/vs-<year>.json` → `generate-cli.ts` → seeds.
+- [x] Committed data files (`scraper/data/bihar/`): `vs-<year>.json` (normalised results), `party-map.json` (ECI full
+  name → party row; space-insensitive key), `party-aliases.json` (duplicate party ids in the DB → the id used),
+  `supplement.json` (2015 seats 195/210/229, blank in the ECI report, from the archived official ECI results pages),
+  `crosscheck-exceptions.json` (ECI's own table errors, with reasons), `decisions.json` (old rows matched/deleted by hand),
+  `review-<year>.json` (generator review output).
+- [x] Seeds: `seed_bihar_parties.sql` (fill-only), `seed_bihar_corrections_v1.sql` (run-once, **frozen**: it brings an
+  old-seeded DB to the ECI values before the year seeds run; a later correction is a new `_v2` seed),
+  `seed_bihar_vs_<year>.sql` (existing candidate/result ids kept, new rows get stable ids; manifest only when none is published).
+- [x] `scraper/src/bihar/two-db-check.sh`: a fresh `setup.sh` DB and an upgraded copy of the local DB (setup run twice)
+  must hold identical Bihar constituencies, candidates and results.
+- [x] After the deploy that ships these seeds: recompute the seat analysis for the four Bihar elections (`docs/DEPLOYMENT.md` §5.0a).
+- Display names: all-caps names (2010/2015) become Title Case; ECI's "Father's Name :- …" suffix is dropped. The 2015
+  supplement seats have no general/postal split or candidate age/sex.
+
 ### Bihar VS 2020 Historical Data
-- [x] Seed generator (`scraper/src/generate-bihar-vs-2020-seed.ts`) with 243 constituencies
-- [x] Seed SQL (`database/seed_bihar_vs_2020.sql`) — winner + runner-up per constituency, synthetic votes
+- [x] Seed SQL (`database/seed_bihar_vs_2020.sql`): originally winner + runner-up with synthetic votes; since 2026-10-03 every candidate with real ECI votes (see "Bihar results data")
 - [x] Election ID: `b2c3d4e5-f6a7-8901-bcde-123456789020`
 - [x] 2020 NDA alliance: BJP, JDU, LJP, HAMS; MGB: RJD, INC, CPI, CPIM, CPIML
 - [x] Bihar 2025 manifest updated with `compare_with` pointing to 2020
@@ -490,11 +511,11 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
 - **Live ECI ingestion is built but untested against a real counting day.** The worker (`scraper/src/live`, adapter `eci-web`) matches ECI's results site as of 2026; the page format may change. Rehearse per `docs/LIVE_RUNBOOK.md`; the simulation exercises the same ingest path with the mock server.
 
 - **Estimated / incomplete seed data** (audit 2026-10-01; listed publicly on `/about`, source of truth `frontend/src/model/about/about.ts`, update it whenever a seed is corrected):
-  - Synthetic votes (runner-up 50,000, winner 50,000 + margin; only margin and names/parties real): Bihar VS 2010/2015/2020, AS/KL/TN VS 2021, PY VS 2021 (winners only, no runner-up).
+  - Synthetic votes (runner-up 50,000, winner 50,000 + margin; only margin and names/parties real): AS/KL/TN VS 2021, PY VS 2021 (winners only, no runner-up). Bihar was fixed on 2026-10-03.
   - Assam VS 2021: placeholder winner names (`"<PARTY> Candidate"`) and an invented IND "Runner-up".
   - LS 2024: `voter_turnout` / `total_electors` implausible (e.g. Lakshadweep 1,474,599 electors; in 294 seats the votes exceed electors × turnout).
-  - SC/ST type is `GEN` for every seat in Bihar VS 2010–2020 and all Assam years.
-  - Candidate coverage: all candidates only in WB 2021; top 5 + NOTA in LS 2024 and Bihar 2025; winner + runner-up elsewhere. TN 2016 has 232/234 seats (2 postponed polls). No source recorded for AS/KL/PY.
+  - SC/ST type is `GEN` for every seat in all Assam years.
+  - Candidate coverage: all candidates in WB 2021 and Bihar 2010–2025; top 5 + NOTA in LS 2024; winner + runner-up elsewhere. TN 2016 has 232/234 seats (2 postponed polls). No source recorded for AS/KL/PY.
 
 - **Detail screens:** affidavit columns (age, assets, liabilities, criminal cases) appear only where admins or seeds filled them; seat-history runner-up and share appear after the next analysis recompute; the counting round in the seat dialog can trail the vote numbers by up to a few minutes (CDN cache); turnout and vote-share change versus the previous election are not shown (no source yet).
 
@@ -528,7 +549,7 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Map overlay: highlight spoiler-affected seats (hatched SVG pattern)
 - [x] Summary: per-spoiler seat tables with margin and spoiler vote counts
 - [x] Seat classification: two-way (top 2 have 80%+ combined), three-way, multi-cornered
-- [x] Only available for elections with full candidate data (Bihar 2025 has ~6/seat; 2020 only has 2)
+- [x] Only available for elections with full candidate data (Bihar 2010–2025 have every candidate since 2026-10-03)
 
 #### 1.2 Vote Share vs Seats Disparity — DONE
 - [x] Bar chart: vote share % alongside seat share % per party/alliance

@@ -16,8 +16,7 @@ scraper/
     ├── live/                 # Counting-day worker (posts to the ingest API)
     ├── adapters/
     │   └── eci-vs-adapter.ts # Vidhan Sabha adapter (working)
-    ├── generate-bihar-vs-seed.ts       # Bihar 2025 (live scrape from ECI)
-    └── generate-bihar-vs-2020-seed.ts  # Bihar 2020 (hardcoded data)
+    └── bihar/                # Bihar VS 2010–2025 from ECI statistical reports (fetch → parse → cross-check → seeds)
 ```
 
 ---
@@ -96,20 +95,17 @@ table.table-striped tbody tr     → each row = one constituency
                                    and /[+-]\s*[\d,]+/ for margin
 ```
 
-### Running the 2025 Generator
+### Bihar results (ECI statistical reports)
+
+The Bihar VS seeds are generated from committed JSON (`scraper/data/bihar/`), see `docs/FEATURES.md` → "Bihar results data":
 
 ```bash
 cd scraper
-npx ts-node src/generate-bihar-vs-seed.ts
+npx ts-node src/bihar/fetch-cli.ts            # download the ECI reports (cached in data/raw/bihar/, gitignored)
+npx ts-node src/bihar/parse-cli.ts 2010 2015 2020 2025   # cross-checked data/bihar/vs-<year>.json
+npx ts-node src/bihar/generate-cli.ts         # database/seed_bihar_parties.sql + seed_bihar_vs_<year>.sql
+scraper/src/bihar/two-db-check.sh             # fresh vs upgraded DB must match (from the repo root)
 ```
-
-This will:
-1. Fetch all 13 list pages (300ms delay between pages)
-2. Fetch candidate details for all 243 constituencies (200ms delay each)
-3. Map party names to our IDs (see party mapping section below)
-4. Generate `database/seed_bihar_vs_2025.sql`
-
-**Total time:** ~2–3 minutes (network dependent)
 
 ### Adapting for a New ECI Scrape
 
@@ -123,7 +119,7 @@ To scrape a different Vidhan Sabha election from ECI:
    // Update the state code in fetchConstituencyList() and fetchConstituencyDetail()
    // Currently hardcoded as S04 (Bihar)
    ```
-4. **Create a new generator script** — copy `generate-bihar-vs-seed.ts` and update:
+4. **Create a new generator** — follow the `scraper/src/bihar/` pipeline (parse → cross-check → JSON → seeds) and set:
    - `ELECTION_ID` — new UUID
    - `STATE_ID` — from our `states` table
    - `PARTY_NAME_TO_ID` — add any new party name mappings
@@ -168,7 +164,7 @@ interface RawRow {
 ### Creating a New Historical Seed
 
 1. **Collect data** — scrape or copy from the source into the `RawRow` format
-2. **Copy the template** — use `generate-bihar-vs-2020-seed.ts` as a starting point
+2. **Start from the pipeline** — use `scraper/src/bihar/` as a starting point
 3. **Update these values:**
 
 ```typescript

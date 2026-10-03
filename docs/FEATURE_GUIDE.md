@@ -481,8 +481,7 @@ Election data is loaded via SQL seed files in `database/`:
 **Dir:** `scraper/src/`
 
 - `adapters/eci-vs-adapter.ts` — Scrapes Vidhan Sabha results from ECI website
-- `generate-bihar-vs-seed.ts` — Generates seed SQL from scraped data
-- `generate-bihar-vs-2020-seed.ts` — Generates historical seed with hardcoded data
+- `bihar/` — Bihar VS 2010–2025 seeds from ECI statistical reports (fetch → parse → cross-check → committed JSON → seeds)
 
 ---
 

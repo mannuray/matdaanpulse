@@ -149,6 +149,16 @@ Recommended alongside (not strictly blocking): 5 MB body limit only on the inges
 - Before deploying, check production for `persons.metadata.affidavit_history` (`SELECT count(*) FROM persons WHERE metadata ? 'affidavit_history'`). 018 archives it but does not migrate affidavit history into columns.
 - After a merge, a CDN-cached public profile or seat detail can link to the merged-away person for up to about 6 minutes (`s-maxage=60` + `stale-while-revalidate=300`); that link 404s until the cache refreshes.
 
+### 5.0a Bihar results data (seeds of 2026-10-03)
+
+`setup.sh` applies `seed_bihar_parties.sql` → `seed_bihar_corrections_v1.sql` (run-once) → the Bihar year seeds. On
+production the corrections seed rewrites the old estimated Bihar 2010–2020 rows (and the 2025 top-5 rows) to the real
+ECI values, then the year seeds insert the missing candidates. Afterwards:
+1. Recompute the seat analysis for the four Bihar elections (admin, or `POST /api/v1/admin/constituencies/analysis/compute/:electionId`
+   with an admin token) for `a1b2c3d4-e5f6-7890-abcd-111111111010` (2010), `a1b2c3d4-e5f6-7890-abcd-111111111015` (2015),
+   `b2c3d4e5-f6a7-8901-bcde-123456789020` (2020), `c3d4e5f6-a7b8-9012-cdef-234567890abc` (2025).
+2. Spot-check Bihar 2010 on the public site: the statewide vote share must read JD(U) 22.58 %, RJD 18.84 %, BJP 16.49 % (ECI's table).
+
 ### 5.1 Neon
 
 1. Create project in the region chosen in D1. Note both connection strings:

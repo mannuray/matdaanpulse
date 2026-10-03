@@ -13,8 +13,7 @@ is credible before 27 Feb 2027, with everything ready for that counting day (rec
 | Election | Seats | Candidates | Quality today (see `frontend/src/model/about/about.ts`) |
 |---|---|---|---|
 | LS 2024 | 543 | 3239 | Partly incomplete: top-5 + NOTA only; turnout/electors implausible (e.g. Lakshadweep 1,474,599) |
-| BR VS 2025 | 243 | 1458 | Real (top-5 + NOTA) |
-| BR VS 2010 / 2015 / 2020 | 243 | 486 each | **Estimated**: winner + runner-up only, votes synthetic (runner-up 50,000, winner 50,000 + margin), SC/ST all GEN |
+| BR VS 2010 / 2015 / 2020 / 2025 | 243 | 3523 / 3450 / 3733 / 2616 (+ NOTA) | **Done 2026-10-03**: every candidate, real votes, SC/ST, electors, turnout, phase, from the ECI statistical reports (`scraper/src/bihar/`). TCPD Lok Dhaba is unreachable; the ECI reports are cross-checked against their own tables instead |
 | WB VS 2011 / 2016 / 2021 | 294 | 588 / 588 / 1902 | Real; 2011/2016 two candidates per seat |
 | TN VS 2011 / 2016 / 2021 | 234 (2016: 232) | 468 each | 2011/2016 real (2 per seat); **2021 estimated** |
 | KL VS 2011 / 2016 / 2021 | 140 | 280 each | 2011/2016 real (2 per seat), no source recorded; **2021 estimated** |
