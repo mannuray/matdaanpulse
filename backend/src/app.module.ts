@@ -11,6 +11,7 @@ import { PartiesModule } from './modules/parties/parties.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { LiveModule } from './modules/live/live.module';
+import { IngestModule } from './modules/ingest/ingest.module';
 import { ConstituenciesModule } from './modules/constituencies/constituencies.module';
 import { SearchModule } from './modules/search/search.module';
 import { RedisModule } from './modules/redis/redis.module';
@@ -52,6 +53,7 @@ import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.se
     AuthModule,
     AdminModule,
     LiveModule,
+    IngestModule,
     SearchModule,
     HealthModule,
     FeedbackModule,
