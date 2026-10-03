@@ -1,0 +1,3856 @@
+{
+ "year": 2016,
+ "electionId": "b1c2d3e4-f5a6-7890-1234-567890ab2016",
+ "source": {
+  "title": "ECI Statistical Report, Puducherry Legislative Assembly 2016",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3474",
+  "retrieved": "2026-10-03"
+ },
+ "parties": [
+  {
+   "id": "AGIMK",
+   "name": "Agila India Makkal Kazhagam",
+   "abbreviation": "AgIMK",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AIADMK",
+   "name": "All India Anna Dravida Munnetra Kazhagam",
+   "abbreviation": null,
+   "color": "#006400",
+   "recognition": null
+  },
+  {
+   "id": "AINRC",
+   "name": "All India N.R. Congress",
+   "abbreviation": "AINRC",
+   "color": "#FF9933",
+   "recognition": null
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "BSP",
+   "name": "Bahujan Samaj Party",
+   "abbreviation": null,
+   "color": "#4B5BD6",
+   "recognition": "National"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "CPIML",
+   "name": "Communist Party of India (Marxist-Leninist) (Liberation)",
+   "abbreviation": "CPI(ML)(L)",
+   "color": "#E5484D",
+   "recognition": "State"
+  },
+  {
+   "id": "DMDK",
+   "name": "Desiya Murpokku Dravida Kazhagam",
+   "abbreviation": null,
+   "color": "#DAA520",
+   "recognition": null
+  },
+  {
+   "id": "DMK",
+   "name": "Dravida Munnetra Kazhagam",
+   "abbreviation": null,
+   "color": "#E30B0B",
+   "recognition": null
+  },
+  {
+   "id": "IJK",
+   "name": "Indiya Jananayaka Katchi",
+   "abbreviation": "IJK",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "MDMK",
+   "name": "Marumalarchi Dravida Munnetra Kazhagam",
+   "abbreviation": null,
+   "color": "#B22222",
+   "recognition": null
+  },
+  {
+   "id": "NTK",
+   "name": "Naam Tamilar Katchi",
+   "abbreviation": null,
+   "color": "#800020",
+   "recognition": null
+  },
+  {
+   "id": "PMK",
+   "name": "Pattali Makkal Katchi",
+   "abbreviation": null,
+   "color": "#FFD700",
+   "recognition": null
+  },
+  {
+   "id": "RSP",
+   "name": "Revolutionary Socialist Party",
+   "abbreviation": null,
+   "color": "#DC143C",
+   "recognition": null
+  },
+  {
+   "id": "SDPOI",
+   "name": "Social Democratic Party Of India",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "TAVK",
+   "name": "Tamizhaga Vaazhvurimai Katchi",
+   "abbreviation": "tavk",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "VCK",
+   "name": "Viduthalai Chiruthaigal Katchi",
+   "abbreviation": null,
+   "color": "#8B0000",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "type": "GEN",
+   "electors": 30709,
+   "voters": 27586,
+   "turnout": 89.83,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T.P.R. Selvame",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 44,
+     "votes": 7679,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A. Krishnan",
+     "partyId": "DMK",
+     "sex": "M",
+     "age": 53,
+     "votes": 7260,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mahadevi",
+     "partyId": "AIADMK",
+     "sex": "F",
+     "age": 36,
+     "votes": 5676,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K.P.K. Arul Murugan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 4913,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Candane Naarayanassaamy",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 784,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Venkatesan",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 51,
+     "votes": 260,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "M. Karthikeyan",
+     "partyId": "DMDK",
+     "sex": "M",
+     "age": 31,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sadhasivam @ Saravanan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Purushothaman",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 25,
+     "votes": 85,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "V. Muruganandham",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 56,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "P. Muthukumaran",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 40,
+     "votes": 53,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Boomilingam",
+     "partyId": "AGIMK",
+     "sex": "M",
+     "age": 29,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 316,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "type": "SC",
+   "electors": 30424,
+   "voters": 27172,
+   "turnout": 89.31,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "B. Kobiga",
+     "partyId": "AINRC",
+     "sex": "F",
+     "age": 34,
+     "votes": 12143,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P. Angalane",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 10711,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M. Sankar @ Vadivelan",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 49,
+     "votes": 1618,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "L. Kalivarathan",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 69,
+     "votes": 1484,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "S.T.Paramasivam Alias Cale",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 213,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sundaramoorthy",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 208,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "S. Komala",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 63,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Peru. P. Pandiyan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 37,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "A. Egambaram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 55,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "G. Boomilingam",
+     "partyId": "AGIMK",
+     "sex": "M",
+     "age": 29,
+     "votes": 21,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "E. Ananthavel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 19,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 496,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "type": "SC",
+   "electors": 28973,
+   "voters": 26284,
+   "turnout": 90.72,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "E. Theeppainthan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 8675,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sai J Saravanan Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 6345,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M. Vaithiyanathan",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 52,
+     "votes": 5687,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P. Karthikeyan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 3397,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M. Selvarassou",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 60,
+     "votes": 942,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "D. Angalan",
+     "partyId": "VCK",
+     "sex": "M",
+     "age": 56,
+     "votes": 479,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "P. Asaravel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 166,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "P. Madhivanan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 65,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "S. Sasikumar",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 41,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "K. Arunachalam",
+     "partyId": "AGIMK",
+     "sex": "M",
+     "age": 40,
+     "votes": 39,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "R. Jeyapriya",
+     "partyId": "IJK",
+     "sex": "F",
+     "age": 29,
+     "votes": 31,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 388,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "type": "GEN",
+   "electors": 34831,
+   "voters": 31294,
+   "turnout": 89.85,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "S.V. Sugumaran",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 50,
+     "votes": 13955,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "S. Kumaravel",
+     "partyId": "DMK",
+     "sex": "M",
+     "age": 45,
+     "votes": 8392,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K. Natarajan",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 66,
+     "votes": 7124,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "N. Elumalai",
+     "partyId": "MDMK",
+     "sex": "M",
+     "age": 40,
+     "votes": 314,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M. Latchoumy Dite Srivaramangue",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 46,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "R. Balamurugan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 181,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sugumaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 178,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "P. Murugesan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "P. Bakkiyaraj",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 33,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "D. Alangaravelu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "P. Murugan",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 49,
+     "votes": 95,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "J. Haridass",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Dr. K.A. Magadevan",
+     "partyId": "AGIMK",
+     "sex": "M",
+     "age": 34,
+     "votes": 33,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "N. Kasinathan",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 43,
+     "votes": 19,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 366,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "type": "GEN",
+   "electors": 36772,
+   "voters": 31545,
+   "turnout": 85.79,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A. Namassivayam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 18009,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jayakumar",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 63,
+     "votes": 9728,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "A. Mohamad Halid",
+     "partyId": "VCK",
+     "sex": "M",
+     "age": 36,
+     "votes": 1598,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V. Subramanian",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 53,
+     "votes": 704,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "S. Mohankumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 361,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "A. Rabick Mansure",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 35,
+     "votes": 195,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "R. Murugan",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 38,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "David Souresh De Remy",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 45,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "E.J. Ramachandrran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 90,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "A.G. Pathimaraj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 30,
+     "votes": 71,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "S. Masco",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "P. Kathiravan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 27,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "S. John Bosco",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 40,
+     "votes": 21,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 445,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "type": "GEN",
+   "electors": 37366,
+   "voters": 30851,
+   "turnout": 82.56,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mnr. Balan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 14703,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "N.G. Pannirselvam",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 54,
+     "votes": 7596,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M. Sivasankar",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 55,
+     "votes": 3958,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "T. Sampathkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1406,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "A. Devasagayam",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 49,
+     "votes": 1199,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K. Akilan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 629,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "A. Irudayanathan",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 64,
+     "votes": 193,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "R. Murugan",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 31,
+     "votes": 174,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "G. Shanmugam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 135,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "K. Sakthivel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 66,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "N. Balu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "A. Gowrisankar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "S. Sathiyavel",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 42,
+     "votes": 22,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "S. Senthilkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 20,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "V. Gandhimathisree",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 42,
+     "votes": 19,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "J. Ragupathi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 17,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "G. Gunaseelan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 14,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 579,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "type": "GEN",
+   "electors": 33083,
+   "voters": 27032,
+   "turnout": 81.71,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "N.S.J. Jayabal @ Ayyanar",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 52,
+     "votes": 11690,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "S. Ramesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 7888,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "A. Sivashanmugam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 2601,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V. Mourougayan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 1538,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.R. Govindan",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 50,
+     "votes": 1043,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "R. Somasundaram",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 71,
+     "votes": 673,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "D. Ramesh",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 41,
+     "votes": 265,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "S. Radhakrishnan",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 54,
+     "votes": 250,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "K. Ezhumalai",
+     "partyId": "DMDK",
+     "sex": "M",
+     "age": 35,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "S. Murugesan",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 43,
+     "votes": 39,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 897,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "type": "GEN",
+   "electors": 34534,
+   "voters": 29351,
+   "turnout": 84.99,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "N. Rangasamy",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 67,
+     "votes": 15463,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V. Aroumougam A.K.D.",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 12059,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "T. Gunasegaran",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 53,
+     "votes": 612,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V. Murugan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "E. Vadivel",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 59,
+     "votes": 224,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "C. Selvaraj",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 42,
+     "votes": 149,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K. Lenin",
+     "partyId": "RSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 63,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "I. Senthil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 48,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "R. Annadurai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 15,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "R. Shanmugam",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 40,
+     "votes": 14,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 470,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "type": "GEN",
+   "electors": 30551,
+   "voters": 23704,
+   "turnout": 77.59,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ashok Anand",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 42,
+     "votes": 12754,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K. Sethu @ Sethuselvam",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 45,
+     "votes": 5296,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "S. Cassinadin",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 62,
+     "votes": 1649,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "N. Kaliaperumal",
+     "partyId": "DMK",
+     "sex": "M",
+     "age": 64,
+     "votes": 1467,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P. Sivanandame",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 897,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "T. Kannadhasan",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 39,
+     "votes": 361,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "M. Murugasamy",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 62,
+     "votes": 227,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Jayabalan. R",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 56,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "R. Pasupathy",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 40,
+     "votes": 33,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 922,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "type": "GEN",
+   "electors": 33299,
+   "voters": 25774,
+   "turnout": 77.4,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ve. Vaithilingam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 11618,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P. Ganesan",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 61,
+     "votes": 6512,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "B. Thayalan",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 46,
+     "votes": 3642,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "L. Munisamy",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 1241,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "R Viswanathan",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 67,
+     "votes": 857,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "S. Ravichandran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 764,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "P. Sivakumar",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 35,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "K. Seetharaman",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 51,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "A. Kennady Kumaran",
+     "partyId": "AGIMK",
+     "sex": "M",
+     "age": 37,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "S. Sankar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 25,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "S. A. Mohamed Elias",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 54,
+     "votes": 16,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "M. Krishnamurthy",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 14,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 694,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "type": "GEN",
+   "electors": 30928,
+   "voters": 25898,
+   "turnout": 83.74,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V.P. Sivakolundhu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 12144,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M. Vaithianathan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 5695,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nandha T. Saravanan",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 46,
+     "votes": 4066,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V. Saminathan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 1509,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anbanandam. G",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 54,
+     "votes": 797,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "A. Anand",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 26,
+     "votes": 739,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "S. Mani Bharathi",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 26,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "R. Muralikrishnan",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 53,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ramesh. R",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 60,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Leo @ Rajasekaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 51,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Murugan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 43,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "G. Swaminathan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 19,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "S. Prabhakaran",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 49,
+     "votes": 8,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 538,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "type": "GEN",
+   "electors": 32009,
+   "voters": 28068,
+   "turnout": 87.69,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "M.O.H.F. Shahjahan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 9839,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P.M.L. Kalyanasundaram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 9205,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "N. Viswanathan",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 54,
+     "votes": 3841,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V.C. Ezhumalai@kasilingam",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 58,
+     "votes": 3694,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P. Selvarassou",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 50,
+     "votes": 271,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "S. Arunachalam",
+     "partyId": "DMDK",
+     "sex": "M",
+     "age": 45,
+     "votes": 219,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "I.M.S. Balaji",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 29,
+     "votes": 184,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Farook",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "V. Kumari",
+     "partyId": "NTK",
+     "sex": "F",
+     "age": 45,
+     "votes": 89,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "A. Mohanasundaram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dr. M. Hariharan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "N. Periyannan @ Thangavel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 67,
+     "votes": 36,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "L. Subbulakshmi",
+     "partyId": "IJK",
+     "sex": "F",
+     "age": 44,
+     "votes": 33,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Saravanan",
+     "partyId": "AGIMK",
+     "sex": "M",
+     "age": 39,
+     "votes": 21,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 377,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "type": "GEN",
+   "electors": 28862,
+   "voters": 23613,
+   "turnout": 81.81,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vaiyapuri Manikandan",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 35,
+     "votes": 9257,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "J. Pregash Kumar",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 34,
+     "votes": 7093,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "S.P. Sivakumar",
+     "partyId": "DMK",
+     "sex": "M",
+     "age": 56,
+     "votes": 5268,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "T. Sivakumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 496,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K. Murugan",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 49,
+     "votes": 339,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "I. Meera Mydheen",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 42,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "G. Ganapathy",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 40,
+     "votes": 135,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "K. Balamurugan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "P.K. Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "S. Krishnaraj",
+     "partyId": "AGIMK",
+     "sex": "M",
+     "age": 38,
+     "votes": 51,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "S. Abdul Hadi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "G. Magesh",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 43,
+     "votes": 13,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 549,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "type": "GEN",
+   "electors": 25713,
+   "voters": 20000,
+   "turnout": 77.78,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K. Lakshminarayanan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 9445,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P. Kannan",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 67,
+     "votes": 7220,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "A. Annibal Nehru",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 50,
+     "votes": 1517,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "N. Pougajendy",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 929,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "R. Velayutham",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 26,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "B. Pandiarajan",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 53,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K. Rajeswari",
+     "partyId": "MDMK",
+     "sex": "F",
+     "age": 47,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "S. Kavitha",
+     "partyId": "IJK",
+     "sex": "F",
+     "age": 38,
+     "votes": 39,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "P. Venkataramanan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 32,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "S. Pazhaniraj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 29,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "B.J. Wilson",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 76,
+     "votes": 23,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 487,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "type": "GEN",
+   "electors": 26895,
+   "voters": 23557,
+   "turnout": 87.59,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A. Anbalagan",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 58,
+     "votes": 9411,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Annibal Kennedy",
+     "partyId": "DMK",
+     "sex": "M",
+     "age": 51,
+     "votes": 8503,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "N. Anand",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 52,
+     "votes": 4725,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sivaraj",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "S. Kala",
+     "partyId": "NTK",
+     "sex": "F",
+     "age": 54,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Krishnamoorthy",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "A. Mohammed Yunus",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 63,
+     "votes": 65,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "R. Vijayakumar Baste",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 60,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "S. Sudharsnan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 32,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "T. Velmurugan @ Prakash",
+     "partyId": "DMDK",
+     "sex": "M",
+     "age": 42,
+     "votes": 28,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "B. Vallattan",
+     "partyId": "AGIMK",
+     "sex": "M",
+     "age": 43,
+     "votes": 17,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "P. Ganapathy",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 15,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Angappin @ Lopes Rousseau Angappin",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 57,
+     "votes": 9,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "R. Arumugam @ Saravanan",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 46,
+     "votes": 8,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 398,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "type": "GEN",
+   "electors": 24284,
+   "voters": 20647,
+   "turnout": 85.02,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "R. Siva",
+     "partyId": "DMK",
+     "sex": "M",
+     "age": 49,
+     "votes": 11110,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "G. Nehru @ Kuppusamy",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 51,
+     "votes": 8130,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "A. Ravindran",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 63,
+     "votes": 425,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "R. Rajendran",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "S. Jesiliya",
+     "partyId": "NTK",
+     "sex": "O",
+     "age": 37,
+     "votes": 98,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nehru @ Ayyanar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 78,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K. Supramanien",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 38,
+     "votes": 72,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "G. Manimaran",
+     "partyId": "MDMK",
+     "sex": "M",
+     "age": 44,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "M. Nehru",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "K. Ramalingam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 37,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "P. Kolanjiraj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 26,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "N. Loganathan",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 55,
+     "votes": 6,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "N. Sivaraj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 3,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 395,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "type": "GEN",
+   "electors": 31366,
+   "voters": 26795,
+   "turnout": 85.43,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A. Johnkumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 18506,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Omsakthi Sekar",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 56,
+     "votes": 6365,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Balaji. D",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 35,
+     "votes": 598,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Elangovan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 64,
+     "votes": 287,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "N. Mohan @ Veeraiyan",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 56,
+     "votes": 214,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "P. Ramarajan",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 28,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "K. Purushothaman",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 45,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "U. Chitra",
+     "partyId": "IJK",
+     "sex": "F",
+     "age": 34,
+     "votes": 51,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "B. Radhakrishnan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 50,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "F. John Paul",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 30,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "M. Manimaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 19,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "D. Arokiaraj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 15,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 394,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "type": "GEN",
+   "electors": 33317,
+   "voters": 28784,
+   "turnout": 86.39,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A. Baskar",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 44,
+     "votes": 14321,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V. Balan",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 64,
+     "votes": 8934,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh",
+     "partyId": "DMK",
+     "sex": "M",
+     "age": 40,
+     "votes": 2759,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "V. Selvam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 593,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gopalakrishnan",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 61,
+     "votes": 443,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "V.S.Abishegam",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 63,
+     "votes": 385,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "A. Haridass",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 45,
+     "votes": 288,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "R. Rajeshbabu",
+     "partyId": "TAVK",
+     "sex": "M",
+     "age": 33,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "S. Yogeswaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 39,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "S. Balaji",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 36,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "E. Jeganadhane",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 38,
+     "votes": 25,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 883,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "type": "GEN",
+   "electors": 35854,
+   "voters": 31036,
+   "turnout": 86.56,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T. Djeamourthy",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 14029,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. M.A.S.Subramanian",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 69,
+     "votes": 7458,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "V. Sabapathy @ Kothandaraman",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 72,
+     "votes": 7248,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "S. Kumaravelu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 501,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Lakshmanan. G",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 63,
+     "votes": 297,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "C. Deivassigamany",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "A. Chandirasegaran",
+     "partyId": "MDMK",
+     "sex": "M",
+     "age": 51,
+     "votes": 208,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "R. Ganesan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "G. Thamizhvendhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "G. Sathiyanandam",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 39,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "V. Angamuthu",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 61,
+     "votes": 58,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Kasilingam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 28,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Yagavelu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 23,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 478,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "type": "GEN",
+   "electors": 31279,
+   "voters": 27445,
+   "turnout": 87.74,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "R.K.R. Anantharaman",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 9326,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "G. Suresh",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 44,
+     "votes": 6611,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Embalam Selvam @ R. Selvam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 5831,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "P. Purushothaman",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 67,
+     "votes": 3350,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P. Rajakumar",
+     "partyId": "VCK",
+     "sex": "M",
+     "age": 40,
+     "votes": 833,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K. Pandurangan",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 28,
+     "votes": 258,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "N. Murugesan",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 47,
+     "votes": 246,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Thanga. Vikraman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 174,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "J. Veerasekaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Selvamani",
+     "partyId": "TAVK",
+     "sex": "M",
+     "age": 34,
+     "votes": 128,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "C. Outtoucattane",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 44,
+     "votes": 45,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 442,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "type": "SC",
+   "electors": 31386,
+   "voters": 28682,
+   "turnout": 91.38,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Candassamy, M.",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 18945,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lakshmikandhan, U.",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 46,
+     "votes": 7745,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Govindharasu, K.",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 48,
+     "votes": 1193,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Steeban, S.",
+     "partyId": "DMDK",
+     "sex": "M",
+     "age": 35,
+     "votes": 135,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ramadass, M.",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ellammal, R.",
+     "partyId": "CPIML",
+     "sex": "F",
+     "age": 50,
+     "votes": 82,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sandylian, S.",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 31,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ramadoss, K.",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 51,
+     "votes": 43,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Jayachandiran, A.",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 29,
+     "votes": 9,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 333,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "type": "SC",
+   "electors": 30665,
+   "voters": 27171,
+   "turnout": 88.61,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vizeaveny, V.",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 45,
+     "votes": 10577,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajavelu, P.",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 54,
+     "votes": 9109,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Periasamy, L.",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 61,
+     "votes": 4917,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vadivelu, R.",
+     "partyId": "VCK",
+     "sex": "M",
+     "age": 60,
+     "votes": 744,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Subramanian, K.",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 39,
+     "votes": 439,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Viswamohan, A.",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 381,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ayanar, R.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 274,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anandadurai, A.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ezhilarasan, S.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Veeramuthu, P.",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 31,
+     "votes": 99,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ramesh, M.",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 40,
+     "votes": 17,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 307,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "type": "GEN",
+   "electors": 27950,
+   "voters": 25297,
+   "turnout": 90.51,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Danavelou, N.",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 11278,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thiagarajan, T.",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 64,
+     "votes": 8471,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Velmurugan, P.",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 45,
+     "votes": 3732,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sivakami, P.",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 53,
+     "votes": 457,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Venugopal, P.",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 67,
+     "votes": 257,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Thamizhkkumaran, K.",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 35,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Padmanaban, G.",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajendiran, K.",
+     "partyId": "IJK",
+     "sex": "M",
+     "age": 49,
+     "votes": 78,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Thiyagu, A.",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 63,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 168,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "type": "SC",
+   "electors": 30653,
+   "voters": 25496,
+   "turnout": 83.18,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chandirapriyanga",
+     "partyId": "AINRC",
+     "sex": "F",
+     "age": 26,
+     "votes": 8789,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A. Marimottou",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 74,
+     "votes": 7695,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "G. Panneer Selvam",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 63,
+     "votes": 2957,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jayaseelan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 1806,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anandhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 1594,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "R. Mahendiran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 828,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "U. Kamaraj",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 711,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "P. Mathiazhagan",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 48,
+     "votes": 277,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Munisamy",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 65,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Dhanabal",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 43,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 444,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "type": "GEN",
+   "electors": 30169,
+   "voters": 25611,
+   "turnout": 84.89,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "R. Kamalakkannan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 13138,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P. R. Siva @ Sivasakthi",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 41,
+     "votes": 10263,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.Devamani",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 46,
+     "votes": 1261,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "G. Murugaiyan",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 47,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ambalavanan",
+     "partyId": "MDMK",
+     "sex": "M",
+     "age": 64,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Lourdumary. R",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 53,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "J. Senthil Murugan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 68,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "R. Mariappan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "K. Rajavelu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 52,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Seethapathi",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 61,
+     "votes": 38,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sabarikanth",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 35,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 233,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "type": "GEN",
+   "electors": 32666,
+   "voters": 26629,
+   "turnout": 81.52,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P.R.N. Thirumurugan",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 44,
+     "votes": 13139,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M.V.Omalingam",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 44,
+     "votes": 9841,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "R.P. Chandramohan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 2129,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M.Arul Murugan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 402,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "N.Selvasundaram",
+     "partyId": "VCK",
+     "sex": "M",
+     "age": 46,
+     "votes": 261,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "M.Sikkanthar Batsha",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 39,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "P.Manikandan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Thanga Devadoss",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 22,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 408,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "type": "GEN",
+   "electors": 31286,
+   "voters": 23808,
+   "turnout": 76.1,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K.A.U. Asana",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 61,
+     "votes": 11104,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A.M.H. Nazeem",
+     "partyId": "DMK",
+     "sex": "M",
+     "age": 54,
+     "votes": 11084,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "A.Suresh",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 37,
+     "votes": 393,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "G.Manikandan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 268,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "H. Mohamed Bilal Maricar",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 32,
+     "votes": 258,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Pranadartigareswaran @ Mouttouvel",
+     "partyId": "DMDK",
+     "sex": "M",
+     "age": 31,
+     "votes": 119,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "S.Marie Anthuvan",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 36,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Syed Masthan Oli",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 28,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "K.Selvamani",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 57,
+     "votes": 26,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohamed Tameem Kani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 22,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 349,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "type": "GEN",
+   "electors": 29373,
+   "voters": 24922,
+   "turnout": 84.85,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A.Geetha",
+     "partyId": "DMK",
+     "sex": "F",
+     "age": 43,
+     "votes": 14993,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vmc. Sivakumar",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 66,
+     "votes": 8057,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.R. Udayakumar",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 53,
+     "votes": 373,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "S. Mohamed Thameem Ansari",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 39,
+     "votes": 334,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.Kumaravelu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 237,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chelladurai",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 39,
+     "votes": 203,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Z. Sultan Ghouse Hameed Malim",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 39,
+     "votes": 187,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "H. Badouroudine",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 93,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "T.Suganth",
+     "partyId": "NTK",
+     "sex": "M",
+     "age": 29,
+     "votes": 60,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "S. Sentamilselvan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 52,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dhamotharan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 48,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "A. Singaravelu",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 54,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 231,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "type": "GEN",
+   "electors": 30181,
+   "voters": 23491,
+   "turnout": 77.83,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. V.Ramachandran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 10797,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "E. Valsaraj",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 8658,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdul Rahman.V.P",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 53,
+     "votes": 1653,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Devarajan.P.T.",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 1653,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "C.K. Ummer Master",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 67,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "K.E. Sulochana",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 41,
+     "votes": 182,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bhaskaran.C.K.",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 60,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Janaky Teacher",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 66,
+     "votes": 51,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shaj Kumar.V.V",
+     "partyId": "PMK",
+     "sex": "M",
+     "age": 40,
+     "votes": 49,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Thayalakath Kadarkutty",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 73,
+     "votes": 24,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 109,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "type": "GEN",
+   "electors": 36557,
+   "voters": 33899,
+   "turnout": 92.73,
+   "phase": 1,
+   "pollDate": "2016-05-16",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Malladi Krishna Rao",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 20801,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tirikoty Bairava Swamy",
+     "partyId": "AINRC",
+     "sex": "M",
+     "age": 59,
+     "votes": 12047,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manchala Satya Sai Kumar",
+     "partyId": "AIADMK",
+     "sex": "M",
+     "age": 50,
+     "votes": 343,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pemmadi Durga Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 250,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ramadas Kanakala",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mude Harichandra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 43,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nati Buriyya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 33,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Malladi Udayalakshmi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 48,
+     "votes": 32,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Surimilli Subbarao",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 27,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kollu Narasimha Babu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 19,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dhulipudi Madhava Venkanna",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 12,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 144,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

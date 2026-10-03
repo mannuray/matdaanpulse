@@ -27,8 +27,14 @@ export function parseDetailedRows(rows: Row[]): RawSeat[] {
     if (i < 0) throw new Error(`Detailed Results: missing column ${names[0]}`);
     return i;
   };
-  const C = { no: col('AC NO.'), ac: col('AC NAME'), name: col('CANDIDATE NAME'), sex: col('SEX', 'GENDER'), age: col('AGE'),
-    party: col('PARTY'), general: col('GENERAL'), postal: col('POSTAL'), total: col('TOTAL'), electors: col('TOTAL ELECTORS') };
+  // Header spellings differ by year/state: "AC NO." / "Constituency No.", "PARTY" / "Party Name", …
+  const C = { no: col('AC NO.', 'CONSTITUENCY NO.'), ac: col('AC NAME', 'CONSTITUENCY NAME'), name: col('CANDIDATE NAME'),
+    sex: col('SEX', 'GENDER', 'CANDIDATE SEX'), age: col('AGE', 'CANDIDATE AGE'), party: col('PARTY', 'PARTY NAME'),
+    general: col('GENERAL', 'VALID VOTES POLLED IN GENERAL'), postal: col('POSTAL', 'VALID VOTES POLLED IN POSTAL'),
+    total: col('TOTAL', 'TOTAL VALID VOTES'), electors: col('TOTAL ELECTORS') };
+  // Most reports close each seat with a TURNOUT row; flat ones (Puducherry 2016) don't, so seats end when the number changes.
+  const closesWithTurnout = rows.slice(hi + 1).some(r => text(r[0]).toUpperCase().replace(/\s/g, '').startsWith('TURNOUT'));
+  const close = (seat: RawSeat) => { seat.totalVotes = seat.candidates.reduce((a, c) => a + c.total, 0) + (seat.nota ?? 0); seats.push(seat); };
   const seats: RawSeat[] = [];
   let cur: RawSeat | null = null;
   for (const r of rows.slice(hi + 1)) {
@@ -41,6 +47,7 @@ export function parseDetailedRows(rows: Row[]): RawSeat[] {
     }
     if (blank(r[C.no])) continue;
     const constNo = num(r[C.no]);
+    if (cur && !closesWithTurnout && cur.constNo !== constNo) { close(cur); cur = null; }
     if (!cur) {
       const ac = splitAcName(text(r[C.ac]));
       cur = { constNo, acName: ac.name, type: ac.type, electors: num(r[C.electors]), candidates: [], nota: null, totalVotes: 0 };
@@ -54,7 +61,8 @@ export function parseDetailedRows(rows: Row[]): RawSeat[] {
     cur.candidates.push({ serial: serial ?? cur.candidates.length + 1, name, sex: sexOf(cell(r[C.sex])), age: blank(r[C.age]) ? null : num(r[C.age]),
       party, general: num(r[C.general]), postal: num(r[C.postal]), total });
   }
-  if (cur) throw new Error(`Detailed Results: seat ${cur.constNo} has no TURNOUT row`);
+  if (cur && !closesWithTurnout) close(cur);
+  else if (cur) throw new Error(`Detailed Results: seat ${cur.constNo} has no TURNOUT row`);
   return seats;
 }
 
@@ -95,7 +103,20 @@ export function recognitionOf(section: string): Recognition | null {
   return null;
 }
 
+const LETTER_TYPE: Record<string, Recognition> = { N: 'National', S: 'State' };
+/** The header row of a "Party Type | Party Name | Party Abbreviation" (letter-typed) table, or -1. */
+const letterHeader = (rows: Row[], second: string) =>
+  rows.findIndex(r => text(r[0]).toUpperCase() === 'PARTY TYPE' && text(r[1]).toUpperCase() === 'PARTY NAME' && text(r[2]).toUpperCase().startsWith(second));
+
 export function parsePartyListRows(rows: Row[]): PartyListEntry[] {
+  const lh = letterHeader(rows, 'PARTY ABBREVIATION');
+  if (lh >= 0) {
+    // Puducherry 2016: one letter per row (N national, S state, anything else unrecognised), full name, abbreviation.
+    const out = rows.slice(lh + 1).filter(r => !blank(r[1]) && !blank(r[2]))
+      .map(r => ({ abbr: text(r[2]), name: text(r[1]), recognition: LETTER_TYPE[text(r[0]).toUpperCase()] ?? 'Unrecognised' as Recognition }));
+    if (!out.length) throw new Error('Party list: no rows');
+    return out;
+  }
   const out: PartyListEntry[] = [];
   let rec: Recognition | null = null;
   for (const r of rows) {
@@ -109,6 +130,14 @@ export function parsePartyListRows(rows: Row[]): PartyListEntry[] {
 }
 
 export function parsePerformanceRows(rows: Row[]): PartyPerformance[] {
+  const lh = letterHeader(rows, 'CONTESTED');
+  if (lh >= 0) {
+    // Letter-typed layout keys parties by full name; performanceByAbbr maps them to abbreviations.
+    const out = rows.slice(lh + 1).filter(r => !blank(r[1]) && text(r[1]).toUpperCase() !== 'NOTA' && !/^none of the above$/i.test(text(r[1])))
+      .map(r => ({ abbr: text(r[1]), contested: num(r[2]), won: num(r[3]), votes: num(r[5]) }));
+    if (!out.length) throw new Error('Performance: no rows');
+    return out;
+  }
   const out: PartyPerformance[] = [];
   for (const r of rows) {
     if (!/^\d+$/.test(text(r[0])) || blank(r[1]) || text(r[1]).toUpperCase() === 'NOTA') continue;
@@ -116,4 +145,11 @@ export function parsePerformanceRows(rows: Row[]): PartyPerformance[] {
   }
   if (!out.length) throw new Error('Performance: no rows');
   return out;
+}
+
+/** Performance rows keyed by a full party name get that year's abbreviation (others are kept as they are). */
+export function performanceByAbbr(perf: PartyPerformance[], parties: PartyListEntry[]): PartyPerformance[] {
+  const key = (x: string) => x.replace(/\s+/g, ' ').trim().toUpperCase();
+  const byName = new Map(parties.map(p => [key(p.name), p.abbr]));
+  return perf.map(p => ({ ...p, abbr: byName.get(key(p.abbr)) ?? p.abbr }));
 }

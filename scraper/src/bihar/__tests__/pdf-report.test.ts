@@ -106,6 +106,13 @@ RUNNER-UP          RJD                           Narottam Ram                   
 MARGIN              31990                ( 22.26%     of Total Valid Votes)
 `;
 
+describe('parseSummaryText header variants', () => {
+  it('reads the "CONSTITUENCY :-  1 - Name" form (Puducherry 2016)', () => {
+    const block = SUMMARY_2015.replace('     CONSTITUENCY :                   1- Valmiki Nagar', '     CONSTITUENCY :-                    1 - Mannadipet');
+    expect(parseSummaryText(block)[0]).toMatchObject({ constNo: 1, name: 'Mannadipet' });
+  });
+});
+
 describe('parseSummaryText', () => {
   it('reads 2015 and 2010 style summary blocks', () => {
     const [a, b] = parseSummaryText(SUMMARY_2015);

@@ -1,6 +1,6 @@
 // scraper/src/bihar/__tests__/xls-report.test.ts
 import { describe, it, expect } from 'vitest';
-import { parseDetailedRows, parseSummaryRows, parsePartyListRows, parsePerformanceRows } from '../xls-report';
+import { parseDetailedRows, parseSummaryRows, parsePartyListRows, parsePerformanceRows, performanceByAbbr } from '../xls-report';
 
 const H2020 = [' STATE/UT NAME ', ' AC NO. ', ' AC NAME ', ' CANDIDATE NAME ', ' SEX ', ' AGE ', ' CATEGORY ', ' PARTY ', ' SYMBOL ', ' GENERAL ', ' POSTAL ', ' TOTAL ', ' % VOTES POLLED ', ' TOTAL ELECTORS ', null];
 const D2020 = [
@@ -20,6 +20,24 @@ const D2025 = [
   ['TURN OUT', null, null, null, null, null, 'TOTAL:', null, null, 121391, 223, 121614, '-', 70.49, null],
 ];
 
+describe('parseDetailedRows (flat layout, Puducherry 2016)', () => {
+  const H = ['Constituency No.', 'Constituency Name', 'Candidate Name', 'Candidate Sex', 'Candidate Age', 'Candidate Category', ' Party Name', ' VALID VOTES POLLED in General', ' VALID VOTES POLLED in Postal', ' Total Valid Votes', 'Total Electors', 'Total Votes'];
+  const rows = [['Detailed Results'], H,
+    [1, 'Mannadipet', 'T.P.R. SELVAME', 'M', 44, 'GEN', 'AINRC', 7549, 130, 7679, 30709, 27560],
+    [1, 'Mannadipet', 'A. KRISHNAN', 'M', 53, 'GEN', 'DMK', 7186, 74, 7260, 30709, 27560],
+    [1, 'Mannadipet', 'None of the Above', null, null, null, 'NOTA', 300, 1, 301, 30709, 27560],
+    [2, 'Thirubuvanai (SC)', 'B. KOBIGA', 'F', 30, 'SC', 'AINRC', 9000, 100, 9100, 31000, 25000],
+  ];
+  it('reads flat rows with alias headers, grouping seats by number when there are no TURNOUT rows', () => {
+    const seats = parseDetailedRows(rows);
+    expect(seats.map(s => [s.constNo, s.acName, s.type, s.electors, s.candidates.length, s.nota, s.totalVotes])).toEqual([
+      [1, 'Mannadipet', null, 30709, 2, 301, 7679 + 7260 + 301],
+      [2, 'Thirubuvanai', 'SC', 31000, 1, null, 9100],
+    ]);
+    expect(seats[0].candidates[0]).toEqual({ serial: 1, name: 'T.P.R. SELVAME', sex: 'M', age: 44, party: 'AINRC', general: 7549, postal: 130, total: 7679 });
+  });
+});
+
 describe('parseDetailedRows', () => {
   it('reads 2020 seats, trimming cells, keeping NOTA apart and treating blank postal as 0', () => {
     const seats = parseDetailedRows(D2020);
@@ -37,7 +55,8 @@ describe('parseDetailedRows', () => {
     expect(s.candidates).toHaveLength(1);
   });
   it('fails when a seat has no TURNOUT row', () => {
-    expect(() => parseDetailedRows(D2020.slice(0, 5))).toThrow(/no TURNOUT row/);
+    // a TURNOUT-style file (seat 1 closed) whose last seat has no closing row
+    expect(() => parseDetailedRows(D2020.slice(0, 8))).toThrow(/no TURNOUT row/);
   });
 });
 
@@ -66,6 +85,26 @@ describe('parseSummaryRows', () => {
   it('accepts the 2025 label form "2-RAMNAGAR-(SC)"', () => {
     const rows = S2020.map((r, i) => (i === 1 ? ['State/UT', 'S04-Bihar', 'Constituency Name', '2-RAMNAGAR-(SC)'] : r));
     expect(parseSummaryRows(rows)).toMatchObject({ constNo: 2, name: 'RAMNAGAR', type: 'SC' });
+  });
+});
+
+describe('party list and performance (letter-typed layout, Puducherry 2016)', () => {
+  it('reads "type letter, full name, abbreviation" party rows', () => {
+    const rows = [['List OF Participating Political Parties'], ['Party Type', 'Party Name', 'Party Abbreviation'],
+      ['N', 'Bharatiya Janata Party', 'BJP'], ['S', 'All India N.R. Congress', 'AINRC'], ['U', 'Naam Tamilar Katchi', 'NTK']];
+    expect(parsePartyListRows(rows)).toEqual([
+      { abbr: 'BJP', name: 'Bharatiya Janata Party', recognition: 'National' },
+      { abbr: 'AINRC', name: 'All India N.R. Congress', recognition: 'State' },
+      { abbr: 'NTK', name: 'Naam Tamilar Katchi', recognition: 'Unrecognised' },
+    ]);
+  });
+  it('reads performance rows keyed by full name and maps them to the list\'s abbreviations', () => {
+    const rows = [['Performance Of Political Parties'], ['Party Type', 'Party Name', 'Contested', 'Won', 'Forfitted', 'Votes', 'Total Valid Votes'],
+      ['N', 'Bharatiya Janata Party', 30, 0, 29, 19303, 800343], ['N', 'Indian National Congress', 21, 15, 2, 244886, 800343]];
+    const perf = parsePerformanceRows(rows);
+    expect(perf).toEqual([{ abbr: 'Bharatiya Janata Party', contested: 30, won: 0, votes: 19303 }, { abbr: 'Indian National Congress', contested: 21, won: 15, votes: 244886 }]);
+    const list = [{ abbr: 'BJP', name: 'Bharatiya Janata Party', recognition: 'National' as const }, { abbr: 'INC', name: 'Indian National  Congress', recognition: 'National' as const }];
+    expect(performanceByAbbr(perf, list).map(p => p.abbr)).toEqual(['BJP', 'INC']);
   });
 });
 

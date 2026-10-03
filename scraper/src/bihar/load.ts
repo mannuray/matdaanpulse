@@ -3,7 +3,7 @@ import { execFileSync } from 'child_process';
 import * as XLSX from 'xlsx';
 import type { PartyListEntry, RawElection, Year } from './types';
 import { STATES, electionOf, electionsOf, type StateCode } from './elections';
-import { parseDetailedRows, parsePartyListRows, parsePerformanceRows, parseSummaryRows, type Row } from './xls-report';
+import { parseDetailedRows, parsePartyListRows, parsePerformanceRows, parseSummaryRows, performanceByAbbr, type Row } from './xls-report';
 import { parseDetailedText, parsePartyListText, parsePerformanceText, parseSummaryText } from './pdf-report';
 import * as fs from 'fs';
 import { applySupplement, type Supplement } from './supplement';
@@ -36,12 +36,15 @@ function loadReport(s: StateCode, year: Year): RawElection {
     const t = pdfText(s, f.pdf);
     return { year, seats: parseDetailedText(t), summaries: parseSummaryText(t), parties: parsePartyListText(t), performance: parsePerformanceText(t) };
   }
+  // Each report is parsed by its file type: some years publish one report only as PDF (Puducherry 2016's summary).
+  const isPdf = (file: string) => /\.pdf$/i.test(file);
+  const parties = isPdf(f.parties) ? parsePartyListText(pdfText(s, f.parties)) : parsePartyListRows(sheets(s, f.parties)[0]);
   return {
     year,
-    seats: parseDetailedRows(sheets(s, f.detailed)[0]),
-    summaries: sheets(s, f.summary).map(parseSummaryRows),
-    parties: parsePartyListRows(sheets(s, f.parties)[0]),
-    performance: parsePerformanceRows(sheets(s, f.performance)[0]),
+    seats: isPdf(f.detailed) ? parseDetailedText(pdfText(s, f.detailed)) : parseDetailedRows(sheets(s, f.detailed)[0]),
+    summaries: isPdf(f.summary) ? parseSummaryText(pdfText(s, f.summary)) : sheets(s, f.summary).map(parseSummaryRows),
+    parties,
+    performance: performanceByAbbr(isPdf(f.performance) ? parsePerformanceText(pdfText(s, f.performance)) : parsePerformanceRows(sheets(s, f.performance)[0]), parties),
   };
 }
 

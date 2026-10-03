@@ -40,6 +40,12 @@ describe('crossCheck', () => {
     const e = election(); e.performance[0].abbr = 'bjp';
     expect(crossCheck(e, [])).toEqual([]);
   });
+  it('accepts a summary without a NOTA line whose valid total includes NOTA (Puducherry 2016)', () => {
+    const e = election(); e.summaries[0].nota = null; e.summaries[0].totalValid = 610;
+    expect(crossCheck(e, [])).toEqual([]);
+    e.summaries[0].totalValid = 611;
+    expect(crossCheck(e, []).map(x => x.split(' ')[0])).toContain('total-valid:2');
+  });
   it('sums a party listed in two performance sections', () => {
     const e = election();
     e.performance = [{ abbr: 'BJP', contested: 1, won: 1, votes: 400 }, { abbr: 'INC', contested: 0, won: 0, votes: 50 }, { abbr: 'INC', contested: 1, won: 0, votes: 150 }];

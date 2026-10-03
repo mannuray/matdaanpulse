@@ -92,7 +92,7 @@ export function parseSummaryText(text: string): SeatSummary[] {
   let block: string[] | null = null;
   const flush = () => { if (block) out.push(readSummaryBlock(block)); };
   for (const line of lines) {
-    if (/^\s*CONSTITUENCY\s*:\s*\d+-/.test(line)) { flush(); block = [line]; continue; }
+    if (/^\s*CONSTITUENCY\s*:-?\s*\d+\s*-/.test(line)) { flush(); block = [line]; continue; }
     if (block) block.push(line);
   }
   flush();
@@ -100,7 +100,7 @@ export function parseSummaryText(text: string): SeatSummary[] {
 }
 
 function readSummaryBlock(lines: string[]): SeatSummary {
-  const head = /^\s*CONSTITUENCY\s*:\s*(\d+)-\s*(.+?)\s*$/.exec(lines[0])!;
+  const head = /^\s*CONSTITUENCY\s*:-?\s*(\d+)\s*-\s*(.+?)\s*$/.exec(lines[0])!;
   const ac = splitAcName(head[2]);
   let section = '';
   const f: Record<string, number> = {};

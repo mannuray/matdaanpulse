@@ -21,8 +21,11 @@ export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): s
     if (seat.electors !== m.electors) add(k('electors'), `detailed ${seat.electors} vs summary ${m.electors}`);
     if (seat.candidates.length !== m.contested) add(k('contested'), `detailed ${seat.candidates.length} vs summary ${m.contested}`);
     const valid = seat.candidates.reduce((a, c) => a + c.total, 0);
-    if (valid !== m.totalValid) add(k('total-valid'), `detailed ${valid} vs summary ${m.totalValid}`);
-    if ((seat.nota ?? null) !== (m.nota ?? null)) add(k('nota'), `detailed ${seat.nota} vs summary ${m.nota}`);
+    // Some summaries (Puducherry 2016) have no NOTA line and count NOTA inside the valid total.
+    const notaInTotal = m.nota === null && seat.nota !== null;
+    const expectedValid = notaInTotal ? valid + (seat.nota ?? 0) : valid;
+    if (expectedValid !== m.totalValid) add(k('total-valid'), `detailed ${expectedValid} vs summary ${m.totalValid}`);
+    if (!notaInTotal && (seat.nota ?? null) !== (m.nota ?? null)) add(k('nota'), `detailed ${seat.nota} vs summary ${m.nota}`);
     if (valid + (seat.nota ?? 0) !== seat.totalVotes) add(k('turnout-row'), `candidates+NOTA ${valid + (seat.nota ?? 0)} vs TURNOUT row ${seat.totalVotes}`);
     const ranked = [...seat.candidates].sort((a, b) => b.total - a.total);
     const [w, r] = ranked;
