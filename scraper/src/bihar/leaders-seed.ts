@@ -1,0 +1,116 @@
+/**
+ * seed_bihar_leaders.sql: Tier A leaders (spec §7). Links each leader's Bihar candidacies to one person, fills profile
+ * fields only where empty, records photo credits, and writes the leaders/cabinet watchlists into each Bihar manifest.
+ * Persons are addressed through a candidate id (auto-created person ids differ per database); leaders without any Bihar
+ * VS candidacy get a fixed id.
+ */
+import { runOnce } from '../seed-run-once';
+import type { LeadersFile, LeaderRole, LeaderYear } from './leaders-data';
+import type { Profile } from './profiles';
+import { q } from './sql';
+
+export interface ResolvedPerson { key: string; name: string; candidateIds: string[]; fixedId: string | null; profile: Profile | null }
+
+const BIHAR_STATE_ID = 5;
+const YEARS: LeaderYear[] = ['2010', '2015', '2020', '2025'];
+
+export function personExpr(p: ResolvedPerson): string {
+  if (p.fixedId) return `${q(p.fixedId)}::uuid`;
+  return `(SELECT person_id FROM candidates WHERE id = ${q(p.candidateIds[0])})`;
+}
+
+const joinYears = (ys: string[]) => (ys.length < 2 ? ys.join('') : `${ys.slice(0, -1).join(', ')} and ${ys[ys.length - 1]}`);
+const plural = (word: string, n: number) => (n === 1 ? word : `${word}s`);
+
+/** One factual line from the curated roles, e.g. "Chief Minister of Bihar in the 2010, 2015 and 2020 governments." */
+export function bioFor(key: string, f: LeadersFile): string | null {
+  const groups: { role: string; kind: 'leader' | 'cabinet'; years: string[] }[] = [];
+  for (const y of YEARS) {
+    const e = f.elections[y];
+    const add = (r: LeaderRole, kind: 'leader' | 'cabinet') => {
+      if (r.key !== key) return;
+      const g = groups.find(x => x.role === r.role && x.kind === kind);
+      if (g) { if (!g.years.includes(y)) g.years.push(y); } else groups.push({ role: r.role, kind, years: [y] });
+    };
+    e.leaders.forEach(r => add(r, 'leader'));
+    e.cabinet.forEach(r => add(r, 'cabinet'));
+  }
+  if (!groups.length) return null;
+  const parts = groups.map(({ role, kind, years }) => {
+    const ys = joinYears(years);
+    if (/^leader of the opposition$/i.test(role)) return `${role} after the ${ys} ${plural('election', years.length)}`;
+    if (/candidate/i.test(role)) return `${role} in the ${ys} ${plural('election', years.length)}`;
+    if (kind === 'cabinet') return `${role} in the ${ys} ${plural('government', years.length)}`;
+    return `${role} of Bihar in the ${ys} ${plural('government', years.length)}`;
+  });
+  return `${parts.join('; ')}.`;
+}
+
+export function emitLeadersSeed(f: LeadersFile, people: ResolvedPerson[], electionIds: Record<string, string>): string {
+  const byKey = new Map(people.map(p => [p.key, p]));
+  const always: string[] = [];
+  const fixed = people.filter(p => p.fixedId);
+  if (fixed.length) {
+    always.push('INSERT INTO persons (id, name) VALUES', fixed.map(p => `  (${q(p.fixedId)}, ${q(p.name)})`).join(',\n'), 'ON CONFLICT (id) DO NOTHING;');
+  }
+  const credited = people.filter(p => p.profile?.photo_url && p.profile.credit);
+  if (credited.length) {
+    always.push('INSERT INTO image_credits (url, source_url, author, licence) VALUES',
+      credited.map(p => `  (${q(p.profile!.photo_url)}, ${q(p.profile!.credit!.source_url)}, ${q(p.profile!.credit!.author)}, ${q(p.profile!.credit!.licence)})`).join(',\n'),
+      'ON CONFLICT (url) DO NOTHING;');
+  }
+
+  const body: string[] = ['-- Link each leader\'s candidacies to one person (only auto-created single-candidacy persons outside the merge log move)'];
+  for (const p of people.filter(x => x.candidateIds.length > 1)) {
+    const expr = personExpr(p);
+    body.push(`UPDATE candidates c SET person_id = ${expr}`,
+      `WHERE c.id IN (${p.candidateIds.slice(1).map(q).join(', ')}) AND c.person_id <> ${expr}`,
+      '  AND (SELECT count(*) FROM candidates c2 WHERE c2.person_id = c.person_id) = 1',
+      "  AND NOT EXISTS (SELECT 1 FROM person_merges pm WHERE pm.duplicate->>'id' = c.person_id::text OR pm.keeper_ref = c.person_id);");
+  }
+
+  body.push('', '-- Profiles, fill-only (admin edits win)');
+  for (const p of people) {
+    const pr = p.profile;
+    const set = [
+      pr?.photo_url ? `photo_url = COALESCE(photo_url, ${q(pr.photo_url)})` : null,
+      pr?.date_of_birth ? `date_of_birth = COALESCE(date_of_birth, ${q(pr.date_of_birth)}::date)` : null,
+      pr?.gender ? `gender = COALESCE(gender, ${q(pr.gender)})` : null,
+      pr?.wikipedia_url ? `wikipedia_url = COALESCE(wikipedia_url, ${q(pr.wikipedia_url)})` : null,
+      bioFor(p.key, f) ? `bio = COALESCE(bio, ${q(bioFor(p.key, f))})` : null,
+      `state_id = COALESCE(state_id, ${BIHAR_STATE_ID})`,
+    ].filter(Boolean);
+    body.push(`UPDATE persons SET ${set.join(', ')} WHERE id = ${personExpr(p)};`);
+  }
+
+  body.push('', '-- Manifests: leaders and cabinet watchlists by person_id');
+  for (const y of YEARS) {
+    const e = f.elections[y];
+    const list = (id: string, name: string, roles: LeaderRole[]) => {
+      if (!roles.length) return null;
+      const entries = roles.map(r => {
+        const p = byKey.get(r.key);
+        if (!p) throw new Error(`${y}: unknown leader ${r.key}`);
+        const seat = f.people.find(x => x.key === r.key)?.candidacies.find(c => String(c.year) === y)?.const_id ?? '';
+        return `jsonb_build_object('name', ${q(p.name)}, 'party_id', ${q(r.party_id)}, 'const_id', ${q(seat)}, 'role', ${q(r.role)}, 'person_id', (${personExpr(p)})::text)`;
+      });
+      return `jsonb_build_object('id', ${q(id)}, 'name', ${q(name)}, 'entries', jsonb_build_array(\n    ${entries.join(',\n    ')}))`;
+    };
+    const lists = [list('leaders', 'Leaders', e.leaders), list('cabinet', 'Cabinet', e.cabinet)].filter(Boolean);
+    if (!lists.length) continue;
+    body.push(`UPDATE elections SET manifest_url = (manifest_url::jsonb || jsonb_build_object('watchlists', jsonb_build_array(\n  ${lists.join(',\n  ')})))::text`,
+      `WHERE id = ${q(electionIds[y])} AND manifest_url IS NOT NULL;`);
+  }
+
+  return runOnce({
+    name: 'seed_bihar_leaders',
+    comment: [
+      'Run once (seed_runs). Bihar Tier A leaders, generated by scraper/src/bihar/leaders-cli.ts from the curated',
+      'scraper/data/bihar/leaders.json and leader-profiles.json: candidacy links (never moving curated or merged',
+      'persons), fill-only profile fields, and the leaders/cabinet watchlists of each Bihar manifest (written once;',
+      'admins edit them afterwards). Persons and image credits above the guard are idempotent and run every time.',
+    ],
+    always,
+    body,
+  }).join('\n');
+}
