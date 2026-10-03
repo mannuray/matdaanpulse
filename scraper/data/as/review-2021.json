@@ -1,0 +1,2023 @@
+{
+ "unmatchedOld": [],
+ "lowSimilarity": [
+  {
+   "oldId": "e9e9a144-617b-4c10-afc7-c9a27fb07022",
+   "oldName": "BJP Candidate",
+   "newName": "Bijoy Malakar",
+   "party": "BJP",
+   "seat": "AS_VS21_1_RATABARI",
+   "similarity": 0
+  },
+  {
+   "oldId": "423da046-1f55-4911-b0c0-c00fccd06c90",
+   "oldName": "BJP Candidate",
+   "newName": "Krishnendu Paul",
+   "party": "BJP",
+   "seat": "AS_VS21_2_PATHARKANDI",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "6dc9d9a7-f8da-4e4f-9705-296f8b8fa60f",
+   "oldName": "INC Candidate",
+   "newName": "Kamalakhya Dey Purkayastha",
+   "party": "INC",
+   "seat": "AS_VS21_3_KARIMGANJ_NORTH",
+   "similarity": 0
+  },
+  {
+   "oldId": "fef1a416-fdbc-486d-b765-a9c4a5cb6f9c",
+   "oldName": "INC Candidate",
+   "newName": "Siddeque Ahmed",
+   "party": "INC",
+   "seat": "AS_VS21_4_KARIMGANJ_SOUTH",
+   "similarity": 0.09
+  },
+  {
+   "oldId": "d8d9e76e-d747-461d-a63b-b5c06be14efc",
+   "oldName": "AIUDF Candidate",
+   "newName": "Abdul Aziz",
+   "party": "AIUDF",
+   "seat": "AS_VS21_5_BADARPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "2985e589-ec7a-41e4-a80a-921737e2c0b7",
+   "oldName": "AIUDF Candidate",
+   "newName": "Zakir Hussain Laskar",
+   "party": "AIUDF",
+   "seat": "AS_VS21_6_HAILAKANDI",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "610ba9e5-d85e-4544-a164-51cd51bae114",
+   "oldName": "AIUDF Candidate",
+   "newName": "Suzam Uddin Laskar",
+   "party": "AIUDF",
+   "seat": "AS_VS21_7_KATLICHERRA",
+   "similarity": 0.14
+  },
+  {
+   "oldId": "41292431-882b-443a-b3e6-03a04ea9311c",
+   "oldName": "AIUDF Candidate",
+   "newName": "Nijam Uddin Choudhury",
+   "party": "AIUDF",
+   "seat": "AS_VS21_8_ALGAPUR",
+   "similarity": 0.13
+  },
+  {
+   "oldId": "f4d7e71d-2bb7-4e09-9f91-ef4171fea3f1",
+   "oldName": "BJP Candidate",
+   "newName": "Dipayan Chakraborty",
+   "party": "BJP",
+   "seat": "AS_VS21_9_SILCHAR",
+   "similarity": 0.14
+  },
+  {
+   "oldId": "1afabf76-1c28-4f5b-b909-449285f9ac22",
+   "oldName": "AIUDF Candidate",
+   "newName": "Karim Uddin Barbhuiya",
+   "party": "AIUDF",
+   "seat": "AS_VS21_10_SONAI",
+   "similarity": 0.13
+  },
+  {
+   "oldId": "6bbc8b9d-c154-4669-84e6-8f5cd4aa4450",
+   "oldName": "BJP Candidate",
+   "newName": "Parimal Sukla Baidya",
+   "party": "BJP",
+   "seat": "AS_VS21_11_DHOLAI",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "6161a8c1-dd70-454f-9a52-41f82e3eb656",
+   "oldName": "BJP Candidate",
+   "newName": "Mihir Kanti Shome",
+   "party": "BJP",
+   "seat": "AS_VS21_12_UDHARBOND",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "2334ceec-99ff-42a7-8f1d-34ec493169e5",
+   "oldName": "BJP Candidate",
+   "newName": "Kaushik Rai",
+   "party": "BJP",
+   "seat": "AS_VS21_13_LAKHIPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "69f26b8c-995e-48d3-873c-f193f25a2242",
+   "oldName": "INC Candidate",
+   "newName": "Misbahul Islam Laskar",
+   "party": "INC",
+   "seat": "AS_VS21_14_BARKHOLA",
+   "similarity": 0
+  },
+  {
+   "oldId": "735312ee-aac8-49b4-a979-16215a4e93ad",
+   "oldName": "INC Candidate",
+   "newName": "Khalil Uddin Mazumder",
+   "party": "INC",
+   "seat": "AS_VS21_15_KATIGORA",
+   "similarity": 0.14
+  },
+  {
+   "oldId": "fa5539c8-08f0-4378-99a9-c483601f3be9",
+   "oldName": "BJP Candidate",
+   "newName": "Nandita Gorlosa",
+   "party": "BJP",
+   "seat": "AS_VS21_16_HAFLONG",
+   "similarity": 0.25
+  },
+  {
+   "oldId": "8703a773-6280-4519-af2d-9fec365210c0",
+   "oldName": "BJP Candidate",
+   "newName": "Numal Momin",
+   "party": "BJP",
+   "seat": "AS_VS21_17_BOKAJAN",
+   "similarity": 0
+  },
+  {
+   "oldId": "9333ca7d-2a19-47d8-af7e-722c1dc59b68",
+   "oldName": "BJP Candidate",
+   "newName": "Darsing Ronghang",
+   "party": "BJP",
+   "seat": "AS_VS21_18_HOWRAGHAT",
+   "similarity": 0.16
+  },
+  {
+   "oldId": "43feb57b-01a2-4125-b4a4-297a465fc376",
+   "oldName": "BJP Candidate",
+   "newName": "Bidya Sing Engleng",
+   "party": "BJP",
+   "seat": "AS_VS21_19_DIPHU",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "0c709285-5189-428d-ae7b-a6abd249f80f",
+   "oldName": "BJP Candidate",
+   "newName": "Rupsing Teron",
+   "party": "BJP",
+   "seat": "AS_VS21_20_BAITHALANGSO",
+   "similarity": 0.09
+  },
+  {
+   "oldId": "e1816425-6f50-41be-8616-4def0dbe3a78",
+   "oldName": "AIUDF Candidate",
+   "newName": "Md. Aminul Islam",
+   "party": "AIUDF",
+   "seat": "AS_VS21_21_MANKACHAR",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "93cb56e8-4eeb-473d-9d44-bac51a7dfe2a",
+   "oldName": "INC Candidate",
+   "newName": "Wazed Ali Choudhury",
+   "party": "INC",
+   "seat": "AS_VS21_22_SALMARA_SOUTH",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "97912ce3-870f-4fb1-888f-539efe92ee22",
+   "oldName": "AIUDF Candidate",
+   "newName": "Nazrul Hoque",
+   "party": "AIUDF",
+   "seat": "AS_VS21_23_DHUBRI",
+   "similarity": 0
+  },
+  {
+   "oldId": "6fe1dd61-c5f9-44de-9d0a-f1df52438a9f",
+   "oldName": "AIUDF Candidate",
+   "newName": "Nizanur Rahman",
+   "party": "AIUDF",
+   "seat": "AS_VS21_24_GAURIPUR",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "c87f870e-f469-4984-bcc1-f088a06aa53a",
+   "oldName": "INC Candidate",
+   "newName": "Abdus Sobahan Ali Sarkar",
+   "party": "INC",
+   "seat": "AS_VS21_25_GOLAKGANJ",
+   "similarity": 0.06
+  },
+  {
+   "oldId": "0508a021-8152-4147-a9f8-1a45cc11c90a",
+   "oldName": "AIUDF Candidate",
+   "newName": "Hafiz Bashir Ahmed",
+   "party": "AIUDF",
+   "seat": "AS_VS21_26_BILASIPARA_WEST",
+   "similarity": 0
+  },
+  {
+   "oldId": "e1f348c5-82f8-4c40-8a14-7703f89e2e73",
+   "oldName": "AIUDF Candidate",
+   "newName": "Samsul Huda",
+   "party": "AIUDF",
+   "seat": "AS_VS21_27_BILASIPARA_EAST",
+   "similarity": 0.18
+  },
+  {
+   "oldId": "5dacadf7-fb0f-49a0-a00d-159c29f2dd19",
+   "oldName": "BOPF Candidate",
+   "newName": "Majendra Narzary",
+   "party": "BOPF",
+   "seat": "AS_VS21_28_GOSSAIGAON",
+   "similarity": 0.15
+  },
+  {
+   "oldId": "62edd085-e7e1-48c5-b6e3-ea30fc3b6efb",
+   "oldName": "BOPF Candidate",
+   "newName": "Rabiram Narzary",
+   "party": "BOPF",
+   "seat": "AS_VS21_29_KOKRAJHAR_WEST",
+   "similarity": 0
+  },
+  {
+   "oldId": "8dcd48fe-de9e-4731-a7df-560a5b7543dd",
+   "oldName": "UPPL Candidate",
+   "newName": "Lawrence Islary",
+   "party": "UPPL",
+   "seat": "AS_VS21_30_KOKRAJHAR_EAST",
+   "similarity": 0
+  },
+  {
+   "oldId": "af261b9e-59dc-4cb4-b8ce-fe5d635037e5",
+   "oldName": "UPPL Candidate",
+   "newName": "Joyanta Basumatary",
+   "party": "UPPL",
+   "seat": "AS_VS21_31_SIDLI",
+   "similarity": 0.14
+  },
+  {
+   "oldId": "be432a48-946b-4e20-a220-9eeaf985fee3",
+   "oldName": "AGP Candidate",
+   "newName": "Phani Bhusan Choudhury",
+   "party": "AGP",
+   "seat": "AS_VS21_32_BONGAIGAON",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "1a558e55-8537-405e-9551-4c1b62e761cd",
+   "oldName": "BJP Candidate",
+   "newName": "Ajoy Kumar Ray",
+   "party": "BJP",
+   "seat": "AS_VS21_33_BIJNI",
+   "similarity": 0
+  },
+  {
+   "oldId": "a251d95a-0f3b-46ae-88f7-5b3907eaa78c",
+   "oldName": "INC Candidate",
+   "newName": "Abdul Batin Khandakar",
+   "party": "INC",
+   "seat": "AS_VS21_34_ABHAYAPURI_NORTH",
+   "similarity": 0.34
+  },
+  {
+   "oldId": "79a2c3bb-0cfb-443b-8f3d-bcb48a18ddc2",
+   "oldName": "INC Candidate",
+   "newName": "Pradip Sarkar",
+   "party": "INC",
+   "seat": "AS_VS21_35_ABHAYAPURI_SOUTH",
+   "similarity": 0.09
+  },
+  {
+   "oldId": "4445b1d3-7598-40b7-9f3e-099c36bd0e46",
+   "oldName": "INC Candidate",
+   "newName": "Jadab Swargiary",
+   "party": "INC",
+   "seat": "AS_VS21_36_DUDHNAI",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "6b4e7314-544e-4d60-8e76-990b1837c055",
+   "oldName": "INC Candidate",
+   "newName": "Abul Kalam Rasheed Alam",
+   "party": "INC",
+   "seat": "AS_VS21_37_GOALPARA_EAST",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "5d431c0b-87f0-4f90-9fc0-16949b8b9d88",
+   "oldName": "INC Candidate",
+   "newName": "Abdur Rashid Mandal",
+   "party": "INC",
+   "seat": "AS_VS21_38_GOALPARA_WEST",
+   "similarity": 0.3
+  },
+  {
+   "oldId": "6930021e-40e1-40cd-b5cb-f6ba713d2c33",
+   "oldName": "INC Candidate",
+   "newName": "Aftab Uddin Mollah",
+   "party": "INC",
+   "seat": "AS_VS21_39_JALESWAR",
+   "similarity": 0.15
+  },
+  {
+   "oldId": "9ab28f3a-cace-4b46-bd42-faaf3f6b2f01",
+   "oldName": "CPIM Candidate",
+   "newName": "Manoranjan Talukdar",
+   "party": "CPIM",
+   "seat": "AS_VS21_40_SORBHOG",
+   "similarity": 0.14
+  },
+  {
+   "oldId": "148db07f-82b9-4cf2-9735-6c6281006cc1",
+   "oldName": "AIUDF Candidate",
+   "newName": "Phanidhar Talukdar",
+   "party": "AIUDF",
+   "seat": "AS_VS21_41_BHABANIPUR",
+   "similarity": 0.21
+  },
+  {
+   "oldId": "2515f820-363d-4b94-8fa7-a7dc581fc5e2",
+   "oldName": "BJP Candidate",
+   "newName": "Ranjeet Kumar Dass",
+   "party": "BJP",
+   "seat": "AS_VS21_42_PATACHARKUCHI",
+   "similarity": 0.15
+  },
+  {
+   "oldId": "6bc8361f-7843-49b9-a499-89149a6a0110",
+   "oldName": "INC Candidate",
+   "newName": "Abdur Rahim Ahmed",
+   "party": "INC",
+   "seat": "AS_VS21_43_BARPETA",
+   "similarity": 0
+  },
+  {
+   "oldId": "3d619d92-66e6-4ada-9ee1-efa3631fc7fb",
+   "oldName": "AIUDF Candidate",
+   "newName": "Rafiqul Islam",
+   "party": "AIUDF",
+   "seat": "AS_VS21_44_JANIA",
+   "similarity": 0
+  },
+  {
+   "oldId": "1f9fd2ee-3a96-4442-bd4e-a810432fff66",
+   "oldName": "INC Candidate",
+   "newName": "Sherman Ali Ahmed",
+   "party": "INC",
+   "seat": "AS_VS21_45_BAGHBAR",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "8509f7c6-2f1c-43ec-8794-34cd57d04f5f",
+   "oldName": "INC Candidate",
+   "newName": "Jakir Hussain Sikdar",
+   "party": "INC",
+   "seat": "AS_VS21_46_SARUKHETRI",
+   "similarity": 0.14
+  },
+  {
+   "oldId": "483dd90f-8ba0-4b16-9bff-80cd22bcd6db",
+   "oldName": "AIUDF Candidate",
+   "newName": "Ashraful Hussain",
+   "party": "AIUDF",
+   "seat": "AS_VS21_47_CHENGA",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "c1e5002f-58d1-4e63-8874-403ad5ed53a4",
+   "oldName": "INC Candidate",
+   "newName": "Nandita Das",
+   "party": "INC",
+   "seat": "AS_VS21_48_BOKO",
+   "similarity": 0.4
+  },
+  {
+   "oldId": "7d1fbd6b-ed81-480c-881a-12853c658138",
+   "oldName": "INC Candidate",
+   "newName": "Rekibuddin Ahmed",
+   "party": "INC",
+   "seat": "AS_VS21_49_CHAYGAON",
+   "similarity": 0.16
+  },
+  {
+   "oldId": "d9863f78-8619-444f-8f76-a4da518d55b1",
+   "oldName": "BJP Candidate",
+   "newName": "Hemanga Thakuria",
+   "party": "BJP",
+   "seat": "AS_VS21_50_PALASBARI",
+   "similarity": 0.16
+  },
+  {
+   "oldId": "6195990e-2c4f-4375-a6b7-1a4857857781",
+   "oldName": "BJP Candidate",
+   "newName": "Himanta Biswa Sarma",
+   "party": "BJP",
+   "seat": "AS_VS21_51_JALUKBARI",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "9182f789-921e-4bd3-aace-0cded902beac",
+   "oldName": "BJP Candidate",
+   "newName": "Atul Bora",
+   "party": "BJP",
+   "seat": "AS_VS21_52_DISPUR",
+   "similarity": 0.11
+  },
+  {
+   "oldId": "ec81716c-cd13-4ea6-ac26-92aa9e025de4",
+   "oldName": "BJP Candidate",
+   "newName": "Siddhartha Bhattacharya",
+   "party": "BJP",
+   "seat": "AS_VS21_53_GAUHATI_EAST",
+   "similarity": 0.13
+  },
+  {
+   "oldId": "d0b35370-09a9-459c-8f31-84c12108b083",
+   "oldName": "AGP Candidate",
+   "newName": "Ramendra Narayan Kalita",
+   "party": "AGP",
+   "seat": "AS_VS21_54_GAUHATI_WEST",
+   "similarity": 0.13
+  },
+  {
+   "oldId": "7ad4ed1e-1a0a-4c2e-ae0e-99180a181db1",
+   "oldName": "BJP Candidate",
+   "newName": "Sri Suman Haripriya",
+   "party": "BJP",
+   "seat": "AS_VS21_55_HAJO",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "65988055-c3da-4176-9579-b7348939bed8",
+   "oldName": "BJP Candidate",
+   "newName": "Diganta Kalita",
+   "party": "BJP",
+   "seat": "AS_VS21_56_KAMALPUR",
+   "similarity": 0.17
+  },
+  {
+   "oldId": "d9f0220b-bad4-4caf-b759-33e9dda2753d",
+   "oldName": "BJP Candidate",
+   "newName": "Bhabesh Kalita",
+   "party": "BJP",
+   "seat": "AS_VS21_57_RANGIYA",
+   "similarity": 0
+  },
+  {
+   "oldId": "b8d4f5b1-0c02-46e5-ad5b-283454cb4efc",
+   "oldName": "UPPL Candidate",
+   "newName": "Leho Ram Boro",
+   "party": "UPPL",
+   "seat": "AS_VS21_58_TAMULPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "ecd3f7c4-71d8-47b6-9df7-438f605f3cce",
+   "oldName": "BJP Candidate",
+   "newName": "Jayanta Malla Baruah",
+   "party": "BJP",
+   "seat": "AS_VS21_59_NALBARI",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "e34643d6-64df-445e-be9e-b6adccfeb24d",
+   "oldName": "INC Candidate",
+   "newName": "Diganta Barman",
+   "party": "INC",
+   "seat": "AS_VS21_60_BARKHETRY",
+   "similarity": 0.17
+  },
+  {
+   "oldId": "316c4e1d-c76f-4a5d-a459-1373566b3699",
+   "oldName": "BJP Candidate",
+   "newName": "Chandra Mohan Patowary",
+   "party": "BJP",
+   "seat": "AS_VS21_61_DHARMAPUR",
+   "similarity": 0.2
+  },
+  {
+   "oldId": "0c450e2c-46dc-4221-b7d5-1390a00c1573",
+   "oldName": "UPPL Candidate",
+   "newName": "Bhupen Baro",
+   "party": "UPPL",
+   "seat": "AS_VS21_62_BARAMA",
+   "similarity": 0.1
+  },
+  {
+   "oldId": "f7af4486-24f5-4c1e-85cf-e7b27aef3162",
+   "oldName": "UPPL Candidate",
+   "newName": "Urkhao Gwra Brahma",
+   "party": "UPPL",
+   "seat": "AS_VS21_63_CHAPAGURI",
+   "similarity": 0
+  },
+  {
+   "oldId": "5b2e9a2d-4ebb-4244-ab32-0f6b1323cb0a",
+   "oldName": "BJP Candidate",
+   "newName": "Biswajit Daimary",
+   "party": "BJP",
+   "seat": "AS_VS21_64_PANERY",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "ec508ac8-feea-418a-bf13-79065d992c64",
+   "oldName": "BOPF Candidate",
+   "newName": "Durga Das Boro",
+   "party": "BOPF",
+   "seat": "AS_VS21_65_KALAIGAON",
+   "similarity": 0.17
+  },
+  {
+   "oldId": "a5a82400-98d1-440b-9509-bfbbaf810edf",
+   "oldName": "BJP Candidate",
+   "newName": "Paramananda Rajbongshi",
+   "party": "BJP",
+   "seat": "AS_VS21_66_SIPAJHAR",
+   "similarity": 0.19
+  },
+  {
+   "oldId": "f04bab69-f95b-4c42-b1ce-59ec83b2e45e",
+   "oldName": "INC Candidate",
+   "newName": "Basanta Das",
+   "party": "INC",
+   "seat": "AS_VS21_67_MANGALDOI",
+   "similarity": 0.2
+  },
+  {
+   "oldId": "b58df06f-2efd-40aa-9618-9a84d3bf15ca",
+   "oldName": "AIUDF Candidate",
+   "newName": "Mazibur Rahman",
+   "party": "AIUDF",
+   "seat": "AS_VS21_68_DALGAON",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "2dbbb354-a3ce-45ca-afe5-4a695d2d33c3",
+   "oldName": "UPPL Candidate",
+   "newName": "Gobinda Chandra Basumatari",
+   "party": "UPPL",
+   "seat": "AS_VS21_69_UDALGURI",
+   "similarity": 0.23
+  },
+  {
+   "oldId": "83e0bd62-b404-4c41-86d1-66fef9215db8",
+   "oldName": "BOPF Candidate",
+   "newName": "Charan Boro",
+   "party": "BOPF",
+   "seat": "AS_VS21_70_MAJBAT",
+   "similarity": 0.19
+  },
+  {
+   "oldId": "02ca2876-524b-4e9c-9774-15714d214d4b",
+   "oldName": "BJP Candidate",
+   "newName": "Ashok Singhal",
+   "party": "BJP",
+   "seat": "AS_VS21_71_DHEKIAJULI",
+   "similarity": 0
+  },
+  {
+   "oldId": "83616a0b-2470-4a85-a665-d8ec2d946c37",
+   "oldName": "BJP Candidate",
+   "newName": "Ganesh Kumar Limbu",
+   "party": "BJP",
+   "seat": "AS_VS21_72_BARCHALLA",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "76b2e1a0-297a-415d-8af9-b2532165beff",
+   "oldName": "AGP Candidate",
+   "newName": "Prithiraj Rava",
+   "party": "AGP",
+   "seat": "AS_VS21_73_TEZPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "84662b26-a5e9-4d24-bd71-8bb386b8b897",
+   "oldName": "BJP Candidate",
+   "newName": "Krishna Kamal Tanti",
+   "party": "BJP",
+   "seat": "AS_VS21_74_RANGAPARA",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "c912b623-5537-4a4f-90c2-abf1c399acb4",
+   "oldName": "BJP Candidate",
+   "newName": "Padma Hazarika",
+   "party": "BJP",
+   "seat": "AS_VS21_75_SOOTEA",
+   "similarity": 0
+  },
+  {
+   "oldId": "3d7ecc4b-7223-40ab-81e9-b3c436f05c5c",
+   "oldName": "BJP Candidate",
+   "newName": "Promod Borthakur",
+   "party": "BJP",
+   "seat": "AS_VS21_76_BISWANATH",
+   "similarity": 0
+  },
+  {
+   "oldId": "2d5f2a2e-2ffb-4e90-b0f3-d6d384d3444f",
+   "oldName": "BJP Candidate",
+   "newName": "Ranjit Dutta",
+   "party": "BJP",
+   "seat": "AS_VS21_77_BEHALI",
+   "similarity": 0.1
+  },
+  {
+   "oldId": "b0e91446-05cb-482b-96c7-85fe3394ca68",
+   "oldName": "BJP Candidate",
+   "newName": "Sri Utpal Borah",
+   "party": "BJP",
+   "seat": "AS_VS21_78_GOHPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "cb19d019-4cdd-42cf-87b7-d4bbdead9f2f",
+   "oldName": "BJP Candidate",
+   "newName": "Pijush Hazarika",
+   "party": "BJP",
+   "seat": "AS_VS21_79_JAGIROAD",
+   "similarity": 0
+  },
+  {
+   "oldId": "36a0162a-0e44-4cdc-b121-2b288534639c",
+   "oldName": "BJP Candidate",
+   "newName": "Rama Kanta Dewri",
+   "party": "BJP",
+   "seat": "AS_VS21_80_MARIGAON",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "3b2afc55-b65d-4c91-8111-f4862d13fb1a",
+   "oldName": "INC Candidate",
+   "newName": "Dr. Asif Mohammad Nazar",
+   "party": "INC",
+   "seat": "AS_VS21_81_LAHARIGHAT",
+   "similarity": 0
+  },
+  {
+   "oldId": "cb8da993-8630-46ca-bb09-06d554fe5305",
+   "oldName": "INC Candidate",
+   "newName": "Sashi Kanta Das",
+   "party": "INC",
+   "seat": "AS_VS21_82_RAHA",
+   "similarity": 0.17
+  },
+  {
+   "oldId": "aa56199d-09e7-4d24-9267-f62d37dad7f1",
+   "oldName": "AIUDF Candidate",
+   "newName": "Aminul Islam",
+   "party": "AIUDF",
+   "seat": "AS_VS21_83_DHING",
+   "similarity": 0
+  },
+  {
+   "oldId": "de6f2c94-cca9-4a56-bd88-8af30e9692bd",
+   "oldName": "INC Candidate",
+   "newName": "Sibamoni Bora",
+   "party": "INC",
+   "seat": "AS_VS21_84_BATADROBA",
+   "similarity": 0
+  },
+  {
+   "oldId": "66eecb80-e684-4ee0-ace1-ea715cfcd3bb",
+   "oldName": "INC Candidate",
+   "newName": "Nurul Huda",
+   "party": "INC",
+   "seat": "AS_VS21_85_RUPOHIHAT",
+   "similarity": 0.11
+  },
+  {
+   "oldId": "7c37cfae-a82d-4d86-80ed-4715c3336f28",
+   "oldName": "BJP Candidate",
+   "newName": "Rupak Sarmah",
+   "party": "BJP",
+   "seat": "AS_VS21_86_NOWGONG",
+   "similarity": 0
+  },
+  {
+   "oldId": "09dd3322-5c9d-4cc1-9a16-6f890a8e69c9",
+   "oldName": "BJP Candidate",
+   "newName": "Jitu Goswami",
+   "party": "BJP",
+   "seat": "AS_VS21_87_BARHAMPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "ec4b72ce-4ce6-4c8d-847d-e7060c15dfc4",
+   "oldName": "INC Candidate",
+   "newName": "Rakibul Hussain",
+   "party": "INC",
+   "seat": "AS_VS21_88_SAMAGURI",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "20409669-3cfa-4576-99ee-d611edbf9b89",
+   "oldName": "AGP Candidate",
+   "newName": "Keshab Mahanta",
+   "party": "AGP",
+   "seat": "AS_VS21_89_KALIABOR",
+   "similarity": 0.09
+  },
+  {
+   "oldId": "c81088b2-d878-4308-8f47-b73cd9057be1",
+   "oldName": "AIUDF Candidate",
+   "newName": "Siraj Uddin Ajmal",
+   "party": "AIUDF",
+   "seat": "AS_VS21_90_JAMUNAMUKH",
+   "similarity": 0.15
+  },
+  {
+   "oldId": "d3fc1a24-4daa-4137-9684-b72df5062b0e",
+   "oldName": "BJP Candidate",
+   "newName": "Ramkrishna Ghosh",
+   "party": "BJP",
+   "seat": "AS_VS21_91_HOJAI",
+   "similarity": 0
+  },
+  {
+   "oldId": "83bd0056-0f3d-4752-a9b0-66e4f5545692",
+   "oldName": "BJP Candidate",
+   "newName": "Sibu Misra",
+   "party": "BJP",
+   "seat": "AS_VS21_92_LUMDING",
+   "similarity": 0
+  },
+  {
+   "oldId": "eee7cbf8-3dda-4946-a100-11915735665a",
+   "oldName": "AGP Candidate",
+   "newName": "Atul Bora",
+   "party": "AGP",
+   "seat": "AS_VS21_93_BOKAKHAT",
+   "similarity": 0.11
+  },
+  {
+   "oldId": "93ad4752-7ab1-44ac-88f2-e4488cda2945",
+   "oldName": "BJP Candidate",
+   "newName": "Biswajit Phukan",
+   "party": "BJP",
+   "seat": "AS_VS21_94_SARUPATHAR",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "28638eca-dafd-4616-b21b-4145ee8dc417",
+   "oldName": "BJP Candidate",
+   "newName": "Ajanta Neog",
+   "party": "BJP",
+   "seat": "AS_VS21_95_GOLAGHAT",
+   "similarity": 0.1
+  },
+  {
+   "oldId": "bb281d36-6c59-4f23-82dd-e3c60faa6864",
+   "oldName": "BJP Candidate",
+   "newName": "Mrinal Saikia",
+   "party": "BJP",
+   "seat": "AS_VS21_96_KHUMTAI",
+   "similarity": 0
+  },
+  {
+   "oldId": "3139c5d5-c563-499c-bb90-7d424d666590",
+   "oldName": "AGP Candidate",
+   "newName": "Bhabendra Nath Bharali",
+   "party": "AGP",
+   "seat": "AS_VS21_97_DERGAON",
+   "similarity": 0.2
+  },
+  {
+   "oldId": "20f9bd44-2b56-497d-96b7-8ab8b20fd9ee",
+   "oldName": "BJP Candidate",
+   "newName": "Hitendra Nath Goswami",
+   "party": "BJP",
+   "seat": "AS_VS21_98_JORHAT",
+   "similarity": 0.28
+  },
+  {
+   "oldId": "98513946-dd08-41fd-a147-2a1520b49691",
+   "oldName": "BJP Candidate",
+   "newName": "Sarbananda Sonowal",
+   "party": "BJP",
+   "seat": "AS_VS21_99_MAJULI",
+   "similarity": 0.22
+  },
+  {
+   "oldId": "29f04efb-0d96-407c-857b-f36b0299e3db",
+   "oldName": "INC Candidate",
+   "newName": "Bhaskar Jyoti Baruah",
+   "party": "INC",
+   "seat": "AS_VS21_100_TITABAR",
+   "similarity": 0
+  },
+  {
+   "oldId": "837d44cc-c9aa-4ee8-8e35-a75a8715cd10",
+   "oldName": "INC Candidate",
+   "newName": "Rupjyoti Kurmi",
+   "party": "INC",
+   "seat": "AS_VS21_101_MARIANI",
+   "similarity": 0
+  },
+  {
+   "oldId": "26b5d82b-da40-4af7-961b-a07a4741da49",
+   "oldName": "AGP Candidate",
+   "newName": "Renupoma Rajkhowa",
+   "party": "AGP",
+   "seat": "AS_VS21_102_TEOK",
+   "similarity": 0
+  },
+  {
+   "oldId": "be313630-c85b-40a0-a626-941aee9a5ff7",
+   "oldName": "AGP Candidate",
+   "newName": "Prodip Hazarika",
+   "party": "AGP",
+   "seat": "AS_VS21_103_AMGURI",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "8d425a7e-50e3-4e99-b24b-962d15141df6",
+   "oldName": "INC Candidate",
+   "newName": "Debabrata Saikia",
+   "party": "INC",
+   "seat": "AS_VS21_104_NAZIRA",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "f4c84832-9793-4233-b485-b301245b80cc",
+   "oldName": "BJP Candidate",
+   "newName": "Jogen Mohan",
+   "party": "BJP",
+   "seat": "AS_VS21_105_MAHMARA",
+   "similarity": 0.1
+  },
+  {
+   "oldId": "1cec0727-acf4-48fa-8040-4c718409197e",
+   "oldName": "BJP Candidate",
+   "newName": "Dharmeswar Konwar",
+   "party": "BJP",
+   "seat": "AS_VS21_106_SONARI",
+   "similarity": 0
+  },
+  {
+   "oldId": "43767d60-3002-4d99-8b7e-2aaa16a65785",
+   "oldName": "INC Candidate",
+   "newName": "Sushanta Borgohain",
+   "party": "INC",
+   "seat": "AS_VS21_107_THOWRA",
+   "similarity": 0.15
+  },
+  {
+   "oldId": "5421c92a-be0d-48fc-9e9d-a84850160427",
+   "oldName": "IND Candidate",
+   "newName": "Akhil Gogoi",
+   "party": "IND",
+   "seat": "AS_VS21_108_SIBSAGAR",
+   "similarity": 0
+  },
+  {
+   "oldId": "d7e111d2-c9bf-4a99-a451-51f6b9b687b9",
+   "oldName": "BJP Candidate",
+   "newName": "Dr. Amiya Kumar Bhuyan",
+   "party": "BJP",
+   "seat": "AS_VS21_109_BIHPURIA",
+   "similarity": 0.07
+  },
+  {
+   "oldId": "7b6a10d2-c4d7-4ebb-90be-60d26bb70e03",
+   "oldName": "INC Candidate",
+   "newName": "Bharat Chandra Narah",
+   "party": "INC",
+   "seat": "AS_VS21_110_NAOBOICHA",
+   "similarity": 0.21
+  },
+  {
+   "oldId": "b73b5b81-b557-4a1b-bb59-908f3400f83e",
+   "oldName": "BJP Candidate",
+   "newName": "Manab Deka",
+   "party": "BJP",
+   "seat": "AS_VS21_111_LAKHIMPUR",
+   "similarity": 0.11
+  },
+  {
+   "oldId": "50c836ed-3f76-43e2-8199-758d7efa2cf5",
+   "oldName": "BJP Candidate",
+   "newName": "Naba Kumar Doley",
+   "party": "BJP",
+   "seat": "AS_VS21_112_DHAKUAKHANA",
+   "similarity": 0
+  },
+  {
+   "oldId": "886862dc-e492-42d0-905a-6a693dc93648",
+   "oldName": "BJP Candidate",
+   "newName": "Ranoj Pegu",
+   "party": "BJP",
+   "seat": "AS_VS21_113_DHEMAJI",
+   "similarity": 0.21
+  },
+  {
+   "oldId": "ee9ee95e-e6cd-4d88-b4d2-1803baa88d31",
+   "oldName": "BJP Candidate",
+   "newName": "Bhuban Pegu",
+   "party": "BJP",
+   "seat": "AS_VS21_114_JONAI",
+   "similarity": 0.1
+  },
+  {
+   "oldId": "e6628a6d-bf56-492d-b597-c4999a24f043",
+   "oldName": "BJP Candidate",
+   "newName": "Chakradhar Gogoi",
+   "party": "BJP",
+   "seat": "AS_VS21_115_MORAN",
+   "similarity": 0
+  },
+  {
+   "oldId": "5cc6f1e8-bb4b-434e-a2c4-34f260f3ebd2",
+   "oldName": "BJP Candidate",
+   "newName": "Prasanta Phukan",
+   "party": "BJP",
+   "seat": "AS_VS21_116_DIBRUGARH",
+   "similarity": 0.08
+  },
+  {
+   "oldId": "30201f1e-a87e-4db7-8181-fdd9005f60f7",
+   "oldName": "BJP Candidate",
+   "newName": "Binod Hazarika",
+   "party": "BJP",
+   "seat": "AS_VS21_117_LAHOWAL",
+   "similarity": 0
+  },
+  {
+   "oldId": "7105d68a-cd52-4b32-9e0d-ee98dae91c1e",
+   "oldName": "BJP Candidate",
+   "newName": "Terash Gowala",
+   "party": "BJP",
+   "seat": "AS_VS21_118_DULIAJAN",
+   "similarity": 0.09
+  },
+  {
+   "oldId": "ed7a663f-65d8-43e6-867d-f2568bc52d14",
+   "oldName": "BJP Candidate",
+   "newName": "Bimal Borah",
+   "party": "BJP",
+   "seat": "AS_VS21_119_TINGKHONG",
+   "similarity": 0
+  },
+  {
+   "oldId": "091ea9f0-5183-441e-af19-0b20e2399ffb",
+   "oldName": "BJP Candidate",
+   "newName": "Taranga Gogoi",
+   "party": "BJP",
+   "seat": "AS_VS21_120_NAHARKATIA",
+   "similarity": 0.09
+  },
+  {
+   "oldId": "54465910-a8b3-4e90-b405-5224c39ad41f",
+   "oldName": "AGP Candidate",
+   "newName": "Ponakan Baruah",
+   "party": "AGP",
+   "seat": "AS_VS21_121_CHABUA",
+   "similarity": 0.09
+  },
+  {
+   "oldId": "92d94235-b719-4331-81e8-343432f20429",
+   "oldName": "BJP Candidate",
+   "newName": "Sanjoy Kishan",
+   "party": "BJP",
+   "seat": "AS_VS21_122_TINSUKIA",
+   "similarity": 0.09
+  },
+  {
+   "oldId": "c5f11d78-db08-4112-995c-4ddde577ff0a",
+   "oldName": "BJP Candidate",
+   "newName": "Suren Phukan",
+   "party": "BJP",
+   "seat": "AS_VS21_123_DIGBOI",
+   "similarity": 0.1
+  },
+  {
+   "oldId": "8fbb8e72-9403-445c-9897-933ad4897ef5",
+   "oldName": "BJP Candidate",
+   "newName": "Bhaskar Sharma",
+   "party": "BJP",
+   "seat": "AS_VS21_124_MARGHERITA",
+   "similarity": 0
+  },
+  {
+   "oldId": "0f885352-3877-474f-b0db-6e99dda3297f",
+   "oldName": "BJP Candidate",
+   "newName": "Rupesh Gowala",
+   "party": "BJP",
+   "seat": "AS_VS21_125_DOOM_DOOMA",
+   "similarity": 0
+  },
+  {
+   "oldId": "e79a76aa-baa6-4e58-8530-24b5fc062ac5",
+   "oldName": "BJP Candidate",
+   "newName": "Bolin Chetia",
+   "party": "BJP",
+   "seat": "AS_VS21_126_SADIYA",
+   "similarity": 0
+  }
+ ],
+ "deleted": [
+  {
+   "id": "8296c5b0-e798-4a03-8961-97d45bf2fcf1",
+   "constId": "AS_VS21_1_RATABARI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "f64524c7-026e-44cf-9cb7-1d87c5bbe4ad",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "ccc840f8-fdd0-41bd-b4e2-7026566588d5",
+   "constId": "AS_VS21_2_PATHARKANDI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "ee511e71-b50b-43d5-a0e5-2c5ce2e00788",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "4b591b4c-012c-4965-9690-298e198927d1",
+   "constId": "AS_VS21_3_KARIMGANJ_NORTH",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "7b398c2b-d24d-496b-b05a-6f4e9abb1157",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "656d9a86-a289-4177-b197-2ed65aac13d2",
+   "constId": "AS_VS21_4_KARIMGANJ_SOUTH",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "5fe2c6c0-88a0-4591-ad29-9a2121cde821",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "1fb43df7-c9b1-470f-b990-bd1e59a1739d",
+   "constId": "AS_VS21_5_BADARPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "1776b9e0-1c77-49f7-b175-7803c304165c",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "ef322095-91cb-4be4-b1fe-480339273928",
+   "constId": "AS_VS21_6_HAILAKANDI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "896b88c6-6944-4a07-ad78-ba4612e3d1be",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "a7e485e9-f443-4b5c-aff6-3dee7c464da6",
+   "constId": "AS_VS21_7_KATLICHERRA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "e26d276a-fc38-4122-9ab4-0d5986105f75",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "c4d7c457-824d-4ba1-988e-abdb8b975b40",
+   "constId": "AS_VS21_8_ALGAPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "5e066167-00ad-4f02-aa24-36c010247b97",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "6196273f-dd64-4813-9db5-a3f5289c88dc",
+   "constId": "AS_VS21_9_SILCHAR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "8b2a5490-ecf6-4825-bb8f-8e7cae26e82d",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "2979c47c-7bbc-46b5-b10c-5ab1bf29a0a7",
+   "constId": "AS_VS21_10_SONAI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "13fd5d96-2f64-45db-aaaa-2a4bdbf8e5ea",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "2eb62526-19dd-4164-847b-3dd086b11191",
+   "constId": "AS_VS21_11_DHOLAI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "a6746b4a-4b17-4331-870a-222371a6eb47",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "7e9ceb1d-eadc-4c8a-876c-ea94e421b3be",
+   "constId": "AS_VS21_12_UDHARBOND",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "d86831e5-9674-48b7-b98c-89fd64c46340",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "95989732-4383-4536-a82b-4e7a732b8273",
+   "constId": "AS_VS21_13_LAKHIPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "6ca657c6-2df7-4450-b359-f9f10f72231b",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "f570de00-459f-489a-bd14-92f61894bb80",
+   "constId": "AS_VS21_14_BARKHOLA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "f51bd5a9-c6b3-4f04-a274-94450cfc55a6",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "2c93d47c-9d28-422c-a78e-3b013dfb0205",
+   "constId": "AS_VS21_15_KATIGORA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "40d99da4-a8b6-4a12-9723-f9ea448f1cf5",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "958e5820-5d8a-4e08-9ac0-65812abf7975",
+   "constId": "AS_VS21_16_HAFLONG",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "23109b75-17f8-44ee-a5f9-bbdd6e1c5220",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "0e412f93-92bf-46f4-b24e-85ded9845269",
+   "constId": "AS_VS21_17_BOKAJAN",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "6a37cdc7-c036-4793-8f92-0854790835f6",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "97414e7f-67d9-4542-8c3b-15ca07a1fccc",
+   "constId": "AS_VS21_18_HOWRAGHAT",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "be576a65-8444-4fb3-945d-9df8dc01b43a",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "d611ba35-c1c6-4bd3-a205-6417d53653be",
+   "constId": "AS_VS21_19_DIPHU",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "55908060-3294-45a4-8d10-9f27ae6e1640",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "563d3897-1a52-494f-81f3-e97341f5c163",
+   "constId": "AS_VS21_20_BAITHALANGSO",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "2cdb207d-f91b-41bd-ae2e-2eef31bdc74c",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "ace8a5b5-2a00-4fc9-bac8-c4e12fd1c3ca",
+   "constId": "AS_VS21_21_MANKACHAR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "dbef4d09-3bbc-4d67-b8fb-749b9487a13a",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "426d0c61-1042-46da-a3f7-e010c2818060",
+   "constId": "AS_VS21_22_SALMARA_SOUTH",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "d4ae8158-132d-46da-bf33-c2bf71cf9e07",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "8f42d09c-950a-41f6-a9d0-09216fdb431b",
+   "constId": "AS_VS21_23_DHUBRI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "4da0dd25-4186-4087-a387-7a4ff8a422d7",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "25f7940a-a439-455a-8a91-18f029ca6446",
+   "constId": "AS_VS21_24_GAURIPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "5fd0de8b-8bff-40c1-915d-c3d591c2859d",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "6dc21407-b019-4ddf-aa44-8446c6982be1",
+   "constId": "AS_VS21_25_GOLAKGANJ",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "849f91cb-1d21-4b56-89b1-78f103e511fb",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "0c40e1e9-9879-4eba-84e1-3655b26534e7",
+   "constId": "AS_VS21_26_BILASIPARA_WEST",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "1a22b7ff-990d-4a18-aeda-5142591464ec",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "d170849e-d701-4199-b7a0-6df23a62b099",
+   "constId": "AS_VS21_27_BILASIPARA_EAST",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "e0c35147-6d6b-4882-9eb4-6a227ecc8d6a",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "d94d2d04-dc59-4257-9e16-324baa2eb942",
+   "constId": "AS_VS21_28_GOSSAIGAON",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "3efe6fdd-64c6-437e-a7e8-9176e045d3c0",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "62386b2e-3c0f-4c67-956c-52e0250db8c3",
+   "constId": "AS_VS21_29_KOKRAJHAR_WEST",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "043dd8b8-a6f5-4202-9f59-a7437161ed32",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "4c844874-54f1-4fd2-8750-33eeced2f9ba",
+   "constId": "AS_VS21_30_KOKRAJHAR_EAST",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "218b4282-73dc-4f67-b162-6cd6738734ad",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "61d21105-c82d-49e9-9e70-5240368d969f",
+   "constId": "AS_VS21_31_SIDLI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "c25e0703-748c-4fd2-94c4-03c8455bd827",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "b4af546d-2cf3-42d0-895c-b4125e44ecf4",
+   "constId": "AS_VS21_32_BONGAIGAON",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "7825bbd5-0443-45c8-83bb-ce122e36c51f",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "cfcd3597-a03e-4ad0-bd5e-d43133529694",
+   "constId": "AS_VS21_33_BIJNI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "8fb676bd-2512-4955-9f82-5a1f2a37dad5",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "2f263a86-2a77-409e-8d8c-a63aa4557344",
+   "constId": "AS_VS21_34_ABHAYAPURI_NORTH",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "fd559790-a826-4788-9675-8e5fe1b624aa",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "7b40e049-7f82-427b-ab84-4ee3b8080738",
+   "constId": "AS_VS21_35_ABHAYAPURI_SOUTH",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "5a5534a0-4401-432f-93e7-4a906bc0d74b",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "3545503b-766a-431c-8b28-c49b8de79a72",
+   "constId": "AS_VS21_36_DUDHNAI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "4df5c446-0070-4581-b3a6-fe5e80fc89a2",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "ba79e3c7-5064-4f01-8847-828eba17ce65",
+   "constId": "AS_VS21_37_GOALPARA_EAST",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "259f88dd-6f9c-4553-8c48-74428de326eb",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "031e3037-61e2-455a-b6f3-d9a666f0d310",
+   "constId": "AS_VS21_38_GOALPARA_WEST",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "74fb2792-25dc-4039-b639-6f543a69c491",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "c746cc0b-3e3b-4f18-a968-0cef79ff08c7",
+   "constId": "AS_VS21_39_JALESWAR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "7ff9f5a6-6f68-48ae-82c3-616e20b7e417",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "cbacf0fc-f95f-4e2f-98c4-f107b8aeebdf",
+   "constId": "AS_VS21_40_SORBHOG",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "8352d054-babb-4061-afce-27774a769cca",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "b94028ee-9ba2-4588-8648-76b84e4864d6",
+   "constId": "AS_VS21_41_BHABANIPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "dbb03e72-6fea-42ea-a071-0986a05e3cbf",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "f0e54978-6ecc-4a0f-a08f-4fde1fd7bc2d",
+   "constId": "AS_VS21_42_PATACHARKUCHI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "e1a50c3c-3a85-437b-aeaa-4cecdf1d92f0",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "dab42e7d-175d-4473-a46d-e7503d1be00d",
+   "constId": "AS_VS21_43_BARPETA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "05cf1c06-4568-4db7-b06c-595bd4c1aed8",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "5d4d78a1-39cf-415f-b27f-1d39038b545a",
+   "constId": "AS_VS21_44_JANIA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "3ba94e8b-569d-4332-a050-200e8a846aeb",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "d216a010-c432-4c40-803e-82535784945b",
+   "constId": "AS_VS21_45_BAGHBAR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "ebb2440d-9269-4c69-abc1-caf881db4a99",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "1ac4548e-87a8-42f6-b305-356df9297b3c",
+   "constId": "AS_VS21_46_SARUKHETRI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "372652ca-2db7-4d7a-980a-19991f4cc70e",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "dedab55d-2fca-4929-b384-ec68f62ac21b",
+   "constId": "AS_VS21_47_CHENGA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "a25433f8-1107-4e1f-b070-827026a92fed",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "67dee724-68e9-488c-827f-1924eaa013f8",
+   "constId": "AS_VS21_48_BOKO",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "4b07c5e4-af73-4405-9a08-3e8880df6587",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "0b47a3eb-e84f-45f0-acc3-553949d0dce3",
+   "constId": "AS_VS21_49_CHAYGAON",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "1e934dda-9e2c-47a4-b838-fc225c3449a5",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "249754b2-b0e7-42d8-be9f-a78931e2d964",
+   "constId": "AS_VS21_50_PALASBARI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "ef6be1d9-4978-4a3d-ba65-f105bc9606bf",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "efde6c55-5ac1-47c9-9339-d537f8fcffb6",
+   "constId": "AS_VS21_51_JALUKBARI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "f0427e0d-dd45-4816-924a-a16c0839d06b",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "7ea4fae9-bf45-40a8-9f5a-1ede26b221b3",
+   "constId": "AS_VS21_52_DISPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "b6946cc8-b423-445e-bb8d-dfffcdfef0bc",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "d00a94c0-0a56-4f63-bc6f-22ec8e70e0c2",
+   "constId": "AS_VS21_53_GAUHATI_EAST",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "c0c2ee2e-13b5-4797-8a1f-11070c5602d7",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "663df8a3-4230-4ccd-b59a-c8d263229a14",
+   "constId": "AS_VS21_54_GAUHATI_WEST",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "c533e546-9940-473f-b5ae-b078a12fab18",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "2ed51214-0cfc-496e-988a-64e4acbb1c81",
+   "constId": "AS_VS21_55_HAJO",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "167d6a5a-daba-4d1b-a21f-e8f7c1297486",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "97f74107-46b9-4cb1-9205-85537f9f0a4e",
+   "constId": "AS_VS21_56_KAMALPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "e9cce796-de85-4264-949d-2d26699517d9",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "1b654a2d-4e3d-4d3c-8c17-f0b5b7eb3c47",
+   "constId": "AS_VS21_57_RANGIYA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "64715210-439c-4dad-b7c4-4d4816863216",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "90480416-b840-4ab9-a9ab-7d38650d3a87",
+   "constId": "AS_VS21_58_TAMULPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "7d461c2d-24fe-4b28-849d-98d8895f3a2a",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "403519da-5754-4743-9565-c7cbf771ac68",
+   "constId": "AS_VS21_59_NALBARI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "7faf93a9-09a4-4428-9b2c-9be9a58cd755",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "dcb94916-03a6-4431-9d0b-bdcff2b750ca",
+   "constId": "AS_VS21_60_BARKHETRY",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "cc79bc75-0eee-4365-aa43-ba8db223b82d",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "b10d3ebb-7d6d-4be4-954b-665b025fb6e1",
+   "constId": "AS_VS21_61_DHARMAPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "34e23739-76a1-4b9d-aa8d-05b7dfd7e865",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "893be2bd-b8be-4490-922a-70d4f012c3b4",
+   "constId": "AS_VS21_62_BARAMA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "33ef1046-df00-44c6-830f-118502458a90",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "686e7f7e-e8bb-49e5-b479-2d9a6a54d679",
+   "constId": "AS_VS21_63_CHAPAGURI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "92861ac6-74ba-4543-9341-86a81262acd4",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "d6fcf797-f63b-4530-8482-2629eb2874ae",
+   "constId": "AS_VS21_64_PANERY",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "bca42b7a-1516-4092-9e3d-0965ae736bc9",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "f12ada9d-b0c3-47cb-a75d-bdf8461a33f2",
+   "constId": "AS_VS21_65_KALAIGAON",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "c5cc707d-db59-42cc-83a0-1fe58ef4f958",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "ba26826e-632e-4eb7-808e-2b29ccb326d3",
+   "constId": "AS_VS21_66_SIPAJHAR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "f87cc15e-1c2f-4505-8bd8-246d362fbdb7",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "bbd6389c-f814-4118-a0af-4c111d44409a",
+   "constId": "AS_VS21_67_MANGALDOI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "387df411-6e28-498a-ba9f-e4c489248270",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "c0670cd8-dc96-456c-aa86-86d98f993f40",
+   "constId": "AS_VS21_68_DALGAON",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "f192eee6-038e-4eca-adc9-623d563af2e4",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "635f251b-a3e4-45e1-a129-3469a7ba5f6b",
+   "constId": "AS_VS21_69_UDALGURI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "a8c2a4b3-d5db-4eee-b26e-f8da302f66d0",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "0912e6c0-9ad3-4eaa-97c1-7200366930a2",
+   "constId": "AS_VS21_70_MAJBAT",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "4e2917f7-fb65-428c-a7c5-80ac7bcf63fd",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "4c48bee5-d13f-4323-966e-9836b6b22bdd",
+   "constId": "AS_VS21_71_DHEKIAJULI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "2b620ae2-2bd6-4a01-bdf9-0d6a21083f43",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "611c00ed-8ea8-458c-a768-0ddf5b71997c",
+   "constId": "AS_VS21_72_BARCHALLA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "58c8739b-ded3-438c-8937-dd756e830738",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "2e2c4e52-76c7-40cd-a00e-21ba0a6857b1",
+   "constId": "AS_VS21_73_TEZPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "0e8a42c2-aa60-4fbc-a33d-50be08d5df01",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "bf2eb115-de12-4ff6-9433-053a2bc154b9",
+   "constId": "AS_VS21_74_RANGAPARA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "bc263777-3a99-4101-98a6-2d2c1d563c57",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "7d4d99a8-5050-45e5-9c5d-c63c27febf3b",
+   "constId": "AS_VS21_75_SOOTEA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "0ae703e1-c5b0-4dec-9514-29329b984588",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "e92bf364-c6ae-4b60-8890-884ea5c09f03",
+   "constId": "AS_VS21_76_BISWANATH",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "44578c30-18a4-482e-8760-ffd6d1c8d0cf",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "8d8d28ce-12ee-4585-ad9f-f73b3b593983",
+   "constId": "AS_VS21_77_BEHALI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "faaaf938-5bb3-44e8-a1f2-1dfbc5ca19c7",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "c5d3aaf2-eebd-4559-9a14-cbdf9078fd4b",
+   "constId": "AS_VS21_78_GOHPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "7bc20d27-d95f-4111-825c-7b7d1ed1ae7a",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "9e1d2a62-9a82-49af-bb8e-08921df694c5",
+   "constId": "AS_VS21_79_JAGIROAD",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "24c93e6b-8baf-4d88-8af6-4603f0432ac9",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "1ee3c6c7-d292-4c9d-ac2c-a859d177431e",
+   "constId": "AS_VS21_80_MARIGAON",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "efe10205-4874-4369-bcea-4a324461ed01",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "3b4d12ec-42f9-4fc2-a3e3-a4cf0fe7dd24",
+   "constId": "AS_VS21_81_LAHARIGHAT",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "8d67e148-b288-4670-96a0-4ec299004622",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "20f6401d-2134-4faf-9fa2-f988e180c621",
+   "constId": "AS_VS21_82_RAHA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "48720eaf-b3fc-4ec9-b337-db1157ef682d",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "36439340-c59c-46f8-baca-9cd8879f89fb",
+   "constId": "AS_VS21_83_DHING",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "bef74326-38df-450f-9d5d-d9a82ab2b254",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "aae54048-434e-4807-b573-c0a602a9e2b4",
+   "constId": "AS_VS21_84_BATADROBA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "7489a751-8a72-4cdb-a617-102c555fc50c",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "243edde8-00d2-4e7f-99f3-3eb6b30f4ddc",
+   "constId": "AS_VS21_85_RUPOHIHAT",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "a5322776-12db-4569-89a6-85322e4fd396",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "593e8205-6962-41b1-be5b-5279b820d81d",
+   "constId": "AS_VS21_86_NOWGONG",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "c57d5f50-dbb5-43af-a83f-7377c33281e6",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "17cf2caa-549c-4ff6-8148-a1d6b06a4868",
+   "constId": "AS_VS21_87_BARHAMPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "35260ecd-1329-4364-b45f-dcd7a20f9544",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "61bb1220-c9b0-44e5-a855-4eeb17bfde83",
+   "constId": "AS_VS21_88_SAMAGURI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "2fde6aac-65f7-4b0f-94db-f6398f14d858",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "70508b4b-e0c5-48fb-ad34-6ffbbb868631",
+   "constId": "AS_VS21_89_KALIABOR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "793ee807-4b51-4edb-9d90-b20d4b47b302",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "e8e5a914-175c-4cda-aa7a-1a41d8f8b5d1",
+   "constId": "AS_VS21_90_JAMUNAMUKH",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "95c2a0d0-0164-48f4-92c0-ac3f63378ca0",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "878b16be-a259-49bd-b7a3-f005223d0cf3",
+   "constId": "AS_VS21_91_HOJAI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "0edb22a4-d1c7-4394-92a5-b49376592140",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "f469bc94-cfcc-43ba-a92f-79f613b32aa6",
+   "constId": "AS_VS21_92_LUMDING",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "54b55e44-f915-4e5c-a9e4-df43ce745486",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "3d789f94-d90a-4af3-b2a3-588f14fc96f4",
+   "constId": "AS_VS21_93_BOKAKHAT",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "bc4ede57-7692-4476-96b0-083faf0acd14",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "78f102af-d536-49dd-b893-dc30359c9c13",
+   "constId": "AS_VS21_94_SARUPATHAR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "1ce3a523-1a70-4fcf-9df0-4fb7497a6663",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "ed5a1760-6926-4e5d-a801-2da5bd134803",
+   "constId": "AS_VS21_95_GOLAGHAT",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "630991be-5d7e-4879-8ae8-6577277c8b41",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "7cf0aa2b-25d1-4077-be44-c183969ccf87",
+   "constId": "AS_VS21_96_KHUMTAI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "6a28ad7a-444d-4e16-8767-7fcf35ceb25e",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "04db5075-a4da-45e2-88b1-458f3490685d",
+   "constId": "AS_VS21_97_DERGAON",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "050de2dd-2ce5-4696-9c1a-83c6f08dcfd5",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "04e660f9-c4e1-4e2c-9bcd-c9fa6eb230f5",
+   "constId": "AS_VS21_98_JORHAT",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "4e303211-04de-4ef0-a998-e6335ddaed4d",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "3062f328-16ba-4e59-a06e-14709e88073b",
+   "constId": "AS_VS21_99_MAJULI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "f5c4bee6-8aa7-4d19-9609-c74e0e4246a4",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "3e187340-3051-497d-b555-4610ad4d1077",
+   "constId": "AS_VS21_100_TITABAR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "4abef263-6cef-4ab6-badd-7f1623aa8d85",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "8b6c069a-e3ae-4447-9b07-cd3a2ed9c742",
+   "constId": "AS_VS21_101_MARIANI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "82727f46-ebbe-49c4-97be-b049eb9157b9",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "c648b5e7-dffb-4c9c-892d-52db0b24bd87",
+   "constId": "AS_VS21_102_TEOK",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "a140d5df-0eaf-402f-ab17-340eb2cbcc4f",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "6e0d1af3-d458-4b99-b55f-ca54da8ae188",
+   "constId": "AS_VS21_103_AMGURI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "4104302a-5a61-4239-90f3-55eeeb85e2fb",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "37566281-497c-4529-94b2-2aa44d1adcf6",
+   "constId": "AS_VS21_104_NAZIRA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "d5c41f53-f8b7-4f5a-8da0-20b29e8fa9ef",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "27dfb003-9173-40e2-9784-b0da2e5d9397",
+   "constId": "AS_VS21_105_MAHMARA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "082c93ea-ccbb-43f3-8f44-eb91c13bc03b",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "4b84a0d0-3c7e-4409-9d8d-e69c8be9ea59",
+   "constId": "AS_VS21_106_SONARI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "54ac144b-d119-4472-9190-ac745babac0b",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "ddadf932-a65c-45ac-a1a7-faf7a4f7d91e",
+   "constId": "AS_VS21_107_THOWRA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "8c5ab8f9-92d5-4f0b-9624-3604afc205bc",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "6e0dafa0-7a49-4dfc-968e-d798f982f1be",
+   "constId": "AS_VS21_108_SIBSAGAR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "f9d80d74-8537-4021-b13c-6885910f2cef",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "22915047-1a23-4b4d-b5f0-f80d453f890c",
+   "constId": "AS_VS21_109_BIHPURIA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "ec8c7cbc-7997-44b0-bf15-763267f4f703",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "b3634542-55de-4763-86c1-a0d7f53b189c",
+   "constId": "AS_VS21_110_NAOBOICHA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "0927147f-6951-4a91-a0a0-e0de7f45f40d",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "d55c9158-ae85-4baa-9dfb-7d0baa334efa",
+   "constId": "AS_VS21_111_LAKHIMPUR",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "dbed7b8f-2f7d-48b7-b273-05f4114c215d",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "887ca6ef-f0fa-45b5-804e-6606d428b91a",
+   "constId": "AS_VS21_112_DHAKUAKHANA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "c6bce63d-b24b-4389-b6c2-d02ea85ac778",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "226965ce-9ce9-4784-bd3a-07c94dcba0af",
+   "constId": "AS_VS21_113_DHEMAJI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "a91d487f-f7e7-43cb-93ce-95bf00aa4c0f",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "12688b69-7a27-4813-88df-d68a95f6c197",
+   "constId": "AS_VS21_114_JONAI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "cb50937c-d00b-466a-bd77-51af4036b749",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "d204a49e-f699-4734-80b2-27ecec4330bc",
+   "constId": "AS_VS21_115_MORAN",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "d7644601-3dbe-4d21-bfa8-c9c44045889f",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "87ae94e1-043c-4fb9-810b-e51ef4eaccc5",
+   "constId": "AS_VS21_116_DIBRUGARH",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "fd097a01-3903-401a-b6d3-48ad1e526eb7",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "51a89aa9-5fa8-4c13-9fec-dccb5ed8d361",
+   "constId": "AS_VS21_117_LAHOWAL",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "5be37700-a54a-46d8-8df2-b6722717c3ec",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "ea2fae22-86f7-4e64-b555-d2a8351963ca",
+   "constId": "AS_VS21_118_DULIAJAN",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "72522e11-e06d-46be-8580-94c84602f6c6",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "6e9eb832-abdd-4ac3-93da-7c9789a54fb0",
+   "constId": "AS_VS21_119_TINGKHONG",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "0b6fc0da-e875-4239-a13c-5cee25969645",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "b26db171-ed3b-4d8d-a45c-d433ea341576",
+   "constId": "AS_VS21_120_NAHARKATIA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "11137462-9ccb-4c4c-9010-45028116cc6b",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "b720c2da-700d-4244-893c-1fbc05579980",
+   "constId": "AS_VS21_121_CHABUA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "7f55f982-67d4-4f67-bb31-53e2cf86a4db",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "6f7b7ad4-cb5e-41af-a96f-4e85211a452b",
+   "constId": "AS_VS21_122_TINSUKIA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "70eb6568-a0c0-4e1f-a3e7-1bef7f9aad10",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "64fe4643-b17e-4460-a9a5-adc23f4b1029",
+   "constId": "AS_VS21_123_DIGBOI",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "c9febf8c-0f98-44c0-a63d-92053ca773f5",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "645c7b76-8482-4217-a81b-0f028fa0e644",
+   "constId": "AS_VS21_124_MARGHERITA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "a22f26a2-2b13-42d0-87dd-10c3ddda9df7",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "5982e6de-6913-468d-81d7-0bfc841ebade",
+   "constId": "AS_VS21_125_DOOM_DOOMA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "234608c9-07c9-4d2a-8e4e-63a03c03c50a",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  },
+  {
+   "id": "e74d34ff-87dd-4ae2-8983-6dfa1aa8feb8",
+   "constId": "AS_VS21_126_SADIYA",
+   "partyId": "IND",
+   "name": "Runner-up",
+   "resultId": "35c8a58c-6679-44df-b3c9-8f6fa0c10b3f",
+   "reason": "invented IND runner-up row in the old estimated Assam 2021 data; not an ECI candidate"
+  }
+ ]
+}

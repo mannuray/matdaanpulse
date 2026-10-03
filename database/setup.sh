@@ -86,7 +86,10 @@ echo "==> Seeds: Vidhan Sabha results"
 run seed_bihar_parties.sql
 run seed_bihar_corrections_v1.sql
 for y in 2025 2020 2015 2010; do run "seed_bihar_vs_${y}.sql"; done
+# Other states: their ECI parties, then the run-once corrections (old rows → ECI values, before the year files).
 for st in wb as kl tn py; do
+  run "seed_${st}_vs_parties.sql"
+  run "seed_${st}_corrections_v1.sql"
   for y in 2011 2016 2021; do run "seed_${st}_vs_${y}.sql"; done
 done
 

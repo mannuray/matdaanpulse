@@ -1,0 +1,111 @@
+{
+ "2ed61213-ce70-4d65-93bc-46802172fd1b": {
+  "action": "delete",
+  "reason": "not an ECI candidate in this seat (old data row: SUKUMAR HANSDA)"
+ },
+ "90883775-fef7-4a03-b792-fefb9d05a810": {
+  "action": "delete",
+  "reason": "not an ECI candidate in this seat (old data row: TARUN KANTI NASKAR)"
+ },
+ "ac3a42b8-88fa-4acc-b582-754c13d11676": {
+  "action": "match",
+  "serial": 2,
+  "reason": "same person: PROTIMA DUTTA = Protima Dutta W/o - Late Tapan Kumar Dutta"
+ },
+ "e07d24ad-bc68-4b5f-bda6-28c99c99fd25": {
+  "action": "match",
+  "serial": 9,
+  "reason": "same person: DINESH CHANDRA = Dinesh Chandra Singha"
+ },
+ "a819192d-8a0b-404c-ad77-adf76880a295": {
+  "action": "match",
+  "serial": 10,
+  "reason": "same person: SANTA = Santa Bhattacherjee"
+ },
+ "69bfbb3e-2d5c-4fac-86f5-ed1285f6f331": {
+  "action": "match",
+  "serial": 5,
+  "reason": "same person: SYED AZIZUR = Syed Azizur Hossain(Nashim)"
+ },
+ "1d41d828-dcdf-4a80-9250-de4c75ae2b13": {
+  "action": "match",
+  "serial": 8,
+  "reason": "same person: ALPANA = Alpana Bandyopadhyay"
+ },
+ "f0dbe671-fe1a-4035-89a4-3e48583d0e04": {
+  "action": "match",
+  "serial": 10,
+  "reason": "same person: SOURAV = Sourav Chakraborty"
+ },
+ "c1fa3bce-58fd-4626-a879-2cc9ca3938be": {
+  "action": "match",
+  "serial": 6,
+  "reason": "same person: AMAR KRISHNA = Amar Krishna Mandal"
+ },
+ "9d0936f7-f4da-4ec2-b0d2-1a27ca2d5aa7": {
+  "action": "match",
+  "serial": 11,
+  "reason": "same person: DEBASISH = Debasish Bhattacharjee"
+ },
+ "f323de1d-b523-47d6-97b7-501c45b7a23f": {
+  "action": "match",
+  "serial": 5,
+  "reason": "same person: Satya Brata = Satya Brata Bandyopadhyay"
+ },
+ "c0d391f0-66d6-4a00-a63a-80c360a14f30": {
+  "action": "delete",
+  "reason": "duplicate garbled row in the old West Bengal 2021 seed; the clean row of the same candidate is kept"
+ },
+ "1ba0028d-2fd2-4755-9c02-5c7ec135dccf": {
+  "action": "delete",
+  "reason": "not an ECI candidate in this seat (old data row: UNKNOWN)"
+ },
+ "128eea25-066f-453f-84bf-120a8f891f94": {
+  "action": "match",
+  "serial": 8,
+  "reason": "same person: AMIT KUMAR = Amit Kumar Chakraborty"
+ },
+ "20e91b5e-8ff4-4b8a-9f3d-d2252eadda4a": {
+  "action": "delete",
+  "reason": "duplicate garbled row in the old West Bengal 2021 seed; the clean row of the same candidate is kept"
+ },
+ "2c38b3c3-a66c-4bc3-b394-36a742c8c373": {
+  "action": "match",
+  "serial": 7,
+  "reason": "same person: SAMRAT = Samrat Chattopadhyay"
+ },
+ "fe8b6d6d-82b9-4b79-8646-c9a2e6c0ece5": {
+  "action": "delete",
+  "reason": "duplicate garbled row in the old West Bengal 2021 seed; the clean row of the same candidate is kept"
+ },
+ "fa3829d3-42e8-4725-9914-aac8cf55a619": {
+  "action": "match",
+  "serial": 5,
+  "reason": "same person: BISWANATH = Biswanath Bhattacherjee"
+ },
+ "e766738c-7a21-4ca9-9c85-c1ca14423137": {
+  "action": "match",
+  "serial": 5,
+  "reason": "same person: RATAN KUMAR = Ratan Kumar Chatterjee (R.K.C)"
+ },
+ "9dd004a6-6d85-4317-9d9b-c74f485bdcff": {
+  "action": "match",
+  "serial": 8,
+  "reason": "same person: TANDRA = Tandra Bhattacharjee (Tandradi)"
+ },
+ "8136ba15-f78e-406e-8e68-44481c11afa7": {
+  "action": "match",
+  "serial": 8,
+  "reason": "same person: SAMIR = Samir Bandyopadhyay"
+ },
+ "7b1a084f-f032-44aa-9030-da20a3bdc8e1": {
+  "action": "match",
+  "serial": 7,
+  "reason": "same person: SUBHASH CHANDRA = Subhash Chandra Sinha S/o: Buyasu Lal Singha"
+ },
+ "bb6abeec-f3a3-440a-94d3-c8b7ed92cae9": {
+  "action": "match",
+  "serial": 10,
+  "reason": "same person: TANMOY DAS = Tanmoy Das"
+ }
+}

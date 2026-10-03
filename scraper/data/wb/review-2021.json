@@ -1,0 +1,231 @@
+{
+ "unmatchedOld": [],
+ "lowSimilarity": [
+  {
+   "oldId": "797f112b-c56b-4f6c-b00c-67b77aea3bb0",
+   "oldName": "RANJIT KUMAR ROY            MALE   50     SC       BJP        Lotus         76650      734           77384     42.04",
+   "newName": "Narmada Chandra Roy",
+   "party": "RSP",
+   "seat": "WB_VS21_37_KUSHMANDI",
+   "similarity": 0.19
+  },
+  {
+   "oldId": "a819192d-8a0b-404c-ad77-adf76880a295",
+   "oldName": "SANTA",
+   "newName": "Santa Bhattacherjee",
+   "party": "IND",
+   "seat": "WB_VS21_60_SAGARDIGHI",
+   "similarity": 0.38
+  },
+  {
+   "oldId": "35f8274f-cf22-46ed-aae8-22994ab118d5",
+   "oldName": "KAMALESH",
+   "newName": "Kamalesh Chatterjee (Gopal)",
+   "party": "INC",
+   "seat": "WB_VS21_69_BHARATPUR",
+   "similarity": 0.48
+  },
+  {
+   "oldId": "1d41d828-dcdf-4a80-9250-de4c75ae2b13",
+   "oldName": "ALPANA",
+   "newName": "Alpana Bandyopadhyay",
+   "party": "IND",
+   "seat": "WB_VS21_87_RANAGHAT_UTTAR_PASCHIM",
+   "similarity": 0.43
+  },
+  {
+   "oldId": "f0dbe671-fe1a-4035-89a4-3e48583d0e04",
+   "oldName": "SOURAV",
+   "newName": "Sourav Chakraborty",
+   "party": "SP",
+   "seat": "WB_VS21_87_RANAGHAT_UTTAR_PASCHIM",
+   "similarity": 0.48
+  },
+  {
+   "oldId": "8269b163-dcb2-462e-9a12-22e2c7586e40",
+   "oldName": "PARTHA",
+   "newName": "Partha Bhattacharyya",
+   "party": "SUCI",
+   "seat": "WB_VS21_105_BHATPARA",
+   "similarity": 0.43
+  },
+  {
+   "oldId": "87209d02-d6ac-46d7-b790-fc38f46fb0e1",
+   "oldName": "TANMOY",
+   "newName": "Tanmoy Bhattacharya",
+   "party": "CPIM",
+   "seat": "WB_VS21_110_DUM_DUM_UTTAR",
+   "similarity": 0.45
+  },
+  {
+   "oldId": "dc33a3a1-d90b-46d5-82e9-c5555ac6924a",
+   "oldName": "SANMOY",
+   "newName": "Sanmoy Bandyopadhyay",
+   "party": "BJP",
+   "seat": "WB_VS21_111_PANIHATI",
+   "similarity": 0.43
+  },
+  {
+   "oldId": "87d8eac1-b68f-4e0f-a3cb-e9e9c646d3d4",
+   "oldName": "TAPASH CHATTERJEE         MALE      59   GENERAL   AITC                       126945      429       127374       54.22",
+   "newName": "Bhaskar Roy S/o - Dulal Roy",
+   "party": "BJP",
+   "seat": "WB_VS21_115_RAJARHAT_NEW_TOWN",
+   "similarity": 0.11
+  },
+  {
+   "oldId": "10fe038d-eaed-480c-9db1-03a4e86bfc15",
+   "oldName": "SUBHENDU GHOSH            MALE      26   GENERAL    IND       Fountain         1310        3         1313        0.56",
+   "newName": "Bhaskar Roy S/o - Krishna Kanta Roy",
+   "party": "BSP",
+   "seat": "WB_VS21_115_RAJARHAT_NEW_TOWN",
+   "similarity": 0.11
+  },
+  {
+   "oldId": "a31bece7-7a13-4b0e-91ee-10f80b70e525",
+   "oldName": "UNKNOWN",
+   "newName": "Sujit Bose S/o - Late Ajit Bose",
+   "party": "TMC",
+   "seat": "WB_VS21_116_BIDHANNAGAR",
+   "similarity": 0
+  },
+  {
+   "oldId": "932f1ef9-a579-43c9-ac91-6244eeef7765",
+   "oldName": "SANJIB",
+   "newName": "Sanjib Chattopadhyay",
+   "party": "AIFB",
+   "seat": "WB_VS21_119_BARASAT",
+   "similarity": 0.43
+  },
+  {
+   "oldId": "ee987b64-de64-489a-b176-ae57b712c45d",
+   "oldName": "BARUN PRAMANIK",
+   "newName": "Anil Chandra Mondal",
+   "party": "RSP",
+   "seat": "WB_VS21_127_GOSABA",
+   "similarity": 0.29
+  },
+  {
+   "oldId": "c6547f8e-7bfc-498d-bda5-c171e2c4c834",
+   "oldName": "DEBOPAM",
+   "newName": "Debopam Chattopadhyaya(Babu)",
+   "party": "BJP",
+   "seat": "WB_VS21_140_BARUIPUR_PASCHIM",
+   "similarity": 0.4
+  },
+  {
+   "oldId": "615c5b91-15aa-4d10-a303-f9f436e4e600",
+   "oldName": "UNKNOWN",
+   "newName": "Arup Roy, S/o Late Prabhat Roy",
+   "party": "TMC",
+   "seat": "WB_VS21_171_HOWRAH_MADHYA",
+   "similarity": 0
+  },
+  {
+   "oldId": "2c38b3c3-a66c-4bc3-b394-36a742c8c373",
+   "oldName": "SAMRAT",
+   "newName": "Samrat Chattopadhyay",
+   "party": "IND",
+   "seat": "WB_VS21_173_HOWRAH_DAKSHIN",
+   "similarity": 0.43
+  },
+  {
+   "oldId": "758a92c1-7502-4d36-a31b-5d636da39319",
+   "oldName": "KALYAN GHOSH                 MALE      60   GENERAL    AITC                      130278    221          130499      52",
+   "newName": "Rajib Banerjee S/o- Late Dhananjoy Banerjee",
+   "party": "BJP",
+   "seat": "WB_VS21_184_DOMJUR",
+   "similarity": 0.13
+  },
+  {
+   "oldId": "0a4969b0-5668-4967-99be-03da0b959edb",
+   "oldName": "SRIJAN",
+   "newName": "Srijan Bhattacharyya",
+   "party": "CPIM",
+   "seat": "WB_VS21_188_SINGUR",
+   "similarity": 0.43
+  },
+  {
+   "oldId": "9dd004a6-6d85-4317-9d9b-c74f485bdcff",
+   "oldName": "TANDRA",
+   "newName": "Tandra Bhattacharjee (Tandradi)",
+   "party": "IND",
+   "seat": "WB_VS21_189_CHANDANNAGAR",
+   "similarity": 0.32
+  },
+  {
+   "oldId": "0963549e-eb82-4bc7-b918-46611f6c8314",
+   "oldName": "DEBASHISH",
+   "newName": "Debashish Dasgupta(Yash D Guptaa)",
+   "party": "BJP",
+   "seat": "WB_VS21_194_CHANDITALA",
+   "similarity": 0.46
+  },
+  {
+   "oldId": "8136ba15-f78e-406e-8e68-44481c11afa7",
+   "oldName": "SAMIR",
+   "newName": "Samir Bandyopadhyay",
+   "party": "IND",
+   "seat": "WB_VS21_195_JANGIPARA",
+   "similarity": 0.38
+  },
+  {
+   "oldId": "ebfed000-c7a0-486b-8703-4dd5ba2f74ba",
+   "oldName": "ANTARA",
+   "newName": "Antara Bhattacharyya",
+   "party": "BJP",
+   "seat": "WB_VS21_227_PINGLA",
+   "similarity": 0.43
+  },
+  {
+   "oldId": "4501f9f3-de27-4621-90e4-70eb13a1eb9c",
+   "oldName": "ABHIJIT",
+   "newName": "Abhijit Bhattacharyya",
+   "party": "INC",
+   "seat": "WB_VS21_268_PURBASTHALI_DAKSHIN",
+   "similarity": 0.48
+  },
+  {
+   "oldId": "12d5c911-173d-42df-81d5-b1e8d3914a0d",
+   "oldName": "BIKASH",
+   "newName": "Bikash Roychoudhury",
+   "party": "TMC",
+   "seat": "WB_VS21_285_SURI",
+   "similarity": 0.45
+  }
+ ],
+ "deleted": [
+  {
+   "id": "c0d391f0-66d6-4a00-a63a-80c360a14f30",
+   "constId": "WB_VS21_116_BIDHANNAGAR",
+   "partyId": "IND",
+   "name": "SMRITI KANA",
+   "resultId": "6f123f34-95fe-465f-86e8-c9b84174a922",
+   "reason": "duplicate garbled row in the old West Bengal 2021 seed; the clean row of the same candidate is kept"
+  },
+  {
+   "id": "1ba0028d-2fd2-4755-9c02-5c7ec135dccf",
+   "constId": "WB_VS21_116_BIDHANNAGAR",
+   "partyId": "IND",
+   "name": "UNKNOWN",
+   "resultId": "58474dbe-4005-451b-b5d0-e175e1bb2bd4",
+   "reason": "not an ECI candidate in this seat (old data row: UNKNOWN)"
+  },
+  {
+   "id": "20e91b5e-8ff4-4b8a-9f3d-d2252eadda4a",
+   "constId": "WB_VS21_171_HOWRAH_MADHYA",
+   "partyId": "IND",
+   "name": "Shrirup Das                  MALE     60   GENERAL   SUCI",
+   "resultId": "4e6a41b9-2eb7-4b8e-a271-b421aaa44792",
+   "reason": "duplicate garbled row in the old West Bengal 2021 seed; the clean row of the same candidate is kept"
+  },
+  {
+   "id": "fe8b6d6d-82b9-4b79-8646-c9a2e6c0ece5",
+   "constId": "WB_VS21_184_DOMJUR",
+   "partyId": "IND",
+   "name": "TANMOY DAS                MALE     31     SC         IND         Gift Pack        236        0             236       0.09",
+   "resultId": "8b50a8e8-6e5b-44a9-a440-db8d85a28265",
+   "reason": "duplicate garbled row in the old West Bengal 2021 seed; the clean row of the same candidate is kept"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "unmatchedOld": [],
+ "lowSimilarity": [
+  {
+   "oldId": "77571fb2-9ffe-4b18-a080-36990fadaf97",
+   "oldName": "Dhanushkodi.S",
+   "newName": "Suresh@sureshkumar.T",
+   "party": "DMDK",
+   "seat": "TN_VS11_62_CHENGAM",
+   "similarity": 0.14
+  },
+  {
+   "oldId": "7e9445f7-dee7-4627-acae-ab70111ef541",
+   "oldName": "Manoharan R",
+   "newName": "N.Mariam Pitchai",
+   "party": "AIADMK",
+   "seat": "TN_VS11_140_TIRUCHIRAPPALLI",
+   "similarity": 0.27
+  },
+  {
+   "oldId": "6005cd41-993f-4eeb-977d-46f3cf783d92",
+   "oldName": "Anbil Periyasamy",
+   "newName": "K.N.Nehru",
+   "party": "DMK",
+   "seat": "TN_VS11_140_TIRUCHIRAPPALLI",
+   "similarity": 0
+  },
+  {
+   "oldId": "a14bb64d-0ca9-47a2-996f-3da481fd3e82",
+   "oldName": "N.Mariam Pitchai",
+   "newName": "Manoharan R",
+   "party": "AIADMK",
+   "seat": "TN_VS11_141_TIRUCHIRAPPALLI",
+   "similarity": 0.27
+  },
+  {
+   "oldId": "77116010-f517-4600-a164-33a218ac99a3",
+   "oldName": "K.N.Nehru",
+   "newName": "Anbil Periyasamy",
+   "party": "DMK",
+   "seat": "TN_VS11_141_TIRUCHIRAPPALLI",
+   "similarity": 0
+  }
+ ],
+ "deleted": []
+}

@@ -1,0 +1,87 @@
+{
+ "unmatchedOld": [],
+ "lowSimilarity": [
+  {
+   "oldId": "717857f0-4b6f-43d9-a5ea-70bf7ac2be61",
+   "oldName": "AMAR BASU",
+   "newName": "Shyamali Halder",
+   "party": "CPIM",
+   "seat": "WB_VS11_136_JAYNAGAR",
+   "similarity": 0.2
+  },
+  {
+   "oldId": "20e04faa-c6c2-4f47-bd8b-556aeb55c959",
+   "oldName": "SHYAMA PRASAD MUKHERJEE",
+   "newName": "Dilip Mondal",
+   "party": "TMC",
+   "seat": "WB_VS11_146_BISHNUPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "b9451c14-2511-45bf-8c92-86d44d8370e0",
+   "oldName": "GHOSH SWAPAN",
+   "newName": "Sudhin Sinha",
+   "party": "CPIM",
+   "seat": "WB_VS11_146_BISHNUPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "2fffe5f1-b7d7-4908-b72a-d805c724846b",
+   "oldName": "SHYAMALI HALDER",
+   "newName": "Janki Singh",
+   "party": "CPIM",
+   "seat": "WB_VS11_165_JORASANKO",
+   "similarity": 0
+  },
+  {
+   "oldId": "93314579-844f-480b-b8d4-3f150129573b",
+   "oldName": "SMITA BAKSHI",
+   "newName": "Sukumar Hansda",
+   "party": "TMC",
+   "seat": "WB_VS11_222_JHARGRAM",
+   "similarity": 0
+  },
+  {
+   "oldId": "f947ba09-ecfb-49fb-a09e-fba693712b3b",
+   "oldName": "JANKI SINGH",
+   "newName": "Amar Basu",
+   "party": "CPIM",
+   "seat": "WB_VS11_222_JHARGRAM",
+   "similarity": 0
+  },
+  {
+   "oldId": "fe699ab4-57f0-42f1-8bfb-63412c5bed44",
+   "oldName": "DILIP MONDAL",
+   "newName": "Shyama Prasad Mukherjee",
+   "party": "TMC",
+   "seat": "WB_VS11_255_BISHNUPUR",
+   "similarity": 0
+  },
+  {
+   "oldId": "b87e1ad8-5e68-4f60-b3de-c8837cc79f4a",
+   "oldName": "SUDHIN SINHA",
+   "newName": "Ghosh Swapan",
+   "party": "CPIM",
+   "seat": "WB_VS11_255_BISHNUPUR",
+   "similarity": 0
+  }
+ ],
+ "deleted": [
+  {
+   "id": "2ed61213-ce70-4d65-93bc-46802172fd1b",
+   "constId": "WB_VS11_136_JAYNAGAR",
+   "partyId": "TMC",
+   "name": "SUKUMAR HANSDA",
+   "resultId": "b1a74492-d14c-411f-abed-a5207c19b4ed",
+   "reason": "not an ECI candidate in this seat (old data row: SUKUMAR HANSDA)"
+  },
+  {
+   "id": "90883775-fef7-4a03-b792-fefb9d05a810",
+   "constId": "WB_VS11_165_JORASANKO",
+   "partyId": "SUCI",
+   "name": "TARUN KANTI NASKAR",
+   "resultId": "f749aa08-8a5e-4cf1-b511-5558f2725454",
+   "reason": "not an ECI candidate in this seat (old data row: TARUN KANTI NASKAR)"
+  }
+ ]
+}
