@@ -790,20 +790,22 @@ async function adminToken(request: import('@playwright/test').APIRequestContext)
   return ((await res.json()) as { data: { access_token: string } }).data.access_token;
 }
 
-test('live: an admin override reaches an open dashboard within 20 s without reload', async ({ page, request }) => {
+test('live: an admin seat correction reaches an open dashboard within 20 s without reload', async ({ page, request }) => {
   test.setTimeout(90_000);
   const token = await adminToken(request);
   test.skip(!token, 'no admin credentials (E2E_ADMIN_TOKEN or ADMIN_EMAIL/ADMIN_PASSWORD)');
   const auth = { Authorization: `Bearer ${token}` };
 
-  type Cand = { result_id: string; party_id: string; votes: number; status: string; margin: number };
+  type Cand = { candidate_id: string; party_id: string; votes: number; status: string };
   const live = await request.get(`${API}/admin/elections/${KERALA_2021}/live-results`, { headers: auth });
-  const seats = ((await live.json()) as { data: { const_id: string; candidates: Cand[] }[] }).data;
+  const seats = ((await live.json()) as { data: { const_id: string; seat_state?: string | null; candidates: Cand[] }[] }).data;
   const seat = seats.find(s => s.candidates.length >= 2 && s.candidates[0].status === 'WON' && s.candidates[1].party_id !== s.candidates[0].party_id)!;
   const [winner, runner] = seat.candidates;
-  const override = (items: Cand[]) => request.post(`${API}/admin/results/override-bulk`, {
+  const originalState = seat.seat_state ?? 'declared';
+  // Seat correction API: replaces the seat's votes; it also places a hold that must be released afterwards.
+  const correct = (state: string, votes: Record<string, number>) => request.put(`${API}/admin/elections/${KERALA_2021}/seats/${seat.const_id}`, {
     headers: auth,
-    data: { election_id: KERALA_2021, overrides: items.map(c => ({ result_id: c.result_id, votes: c.votes, status: c.status, margin: c.margin })) },
+    data: { state, votes },
   });
 
   expect((await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Live' } })).ok()).toBe(true);
@@ -817,17 +819,15 @@ test('live: an admin override reaches an open dashboard within 20 s without relo
     await page.waitForTimeout(500);
     const initial = snapshots.length; // 1 (2 under React StrictMode in dev)
 
-    const res = await override([
-      { ...runner, votes: winner.votes + 1000, status: 'WON', margin: 1000 },
-      { ...winner, status: 'LOST', margin: 0 },
-    ]);
+    const res = await correct('declared', { [winner.candidate_id]: winner.votes, [runner.candidate_id]: winner.votes + 1000 });
     expect(res.ok()).toBe(true);
 
     // Ticker is derived from the snapshot diff: the runner-up's party now wins the seat.
     await expect(page.getByText(`${runner.party_id} wins`).first()).toBeVisible({ timeout: 20_000 });
     expect(snapshots.length).toBeGreaterThan(initial);
   } finally {
-    await override([winner, runner]);
+    await correct(originalState, { [winner.candidate_id]: winner.votes, [runner.candidate_id]: runner.votes });
+    await request.delete(`${API}/admin/elections/${KERALA_2021}/holds/${seat.const_id}`, { headers: auth });
     await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Finalized' } });
   }
 });
