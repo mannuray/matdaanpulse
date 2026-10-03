@@ -803,6 +803,9 @@ test('live: an admin seat correction reaches an open dashboard within 20 s witho
   const [winner, runner] = seat.candidates;
   const originalState = seat.seat_state ?? 'declared';
   // Seat correction API: replaces the seat's votes; it also places a hold that must be released afterwards.
+  // The API requires every candidate of the seat (incl. NOTA), so always send the full roster.
+  const rosterVotes = (overrides: Record<string, number> = {}) =>
+    Object.fromEntries(seat.candidates.map(c => [c.candidate_id, overrides[c.candidate_id] ?? c.votes]));
   const correct = (state: string, votes: Record<string, number>) => request.put(`${API}/admin/elections/${KERALA_2021}/seats/${seat.const_id}`, {
     headers: auth,
     data: { state, votes },
@@ -819,15 +822,15 @@ test('live: an admin seat correction reaches an open dashboard within 20 s witho
     await page.waitForTimeout(500);
     const initial = snapshots.length; // 1 (2 under React StrictMode in dev)
 
-    const res = await correct('declared', { [winner.candidate_id]: winner.votes, [runner.candidate_id]: winner.votes + 1000 });
+    const res = await correct('declared', rosterVotes({ [runner.candidate_id]: winner.votes + 1000 }));
     expect(res.ok()).toBe(true);
 
     // Ticker is derived from the snapshot diff: the runner-up's party now wins the seat.
     await expect(page.getByText(`${runner.party_id} wins`).first()).toBeVisible({ timeout: 20_000 });
     expect(snapshots.length).toBeGreaterThan(initial);
   } finally {
-    await correct(originalState, { [winner.candidate_id]: winner.votes, [runner.candidate_id]: runner.votes });
-    await request.delete(`${API}/admin/elections/${KERALA_2021}/holds/${seat.const_id}`, { headers: auth });
-    await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Finalized' } });
+    await correct(originalState, rosterVotes()).catch(() => {});
+    await request.delete(`${API}/admin/elections/${KERALA_2021}/holds/${seat.const_id}`, { headers: auth }).catch(() => {});
+    await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Finalized' } }).catch(() => {});
   }
 });
