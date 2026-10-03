@@ -136,8 +136,9 @@ party-wise page). The server compares them with our tally for the same scope and
 Console / alerts; nothing is written to results.
 
 ### 4.6 `GET /api/v1/health/ingest`
-Public-safe summary per Live election and shard: `{ election_id, shard, source, lease_holder, lease_expires_at,
-last_applied_at, lag_s (now − latest observed_at), rejected_seats, tally_mismatch }`. For an uptime monitor.
+Public-safe summary per Live election and shard: `{ election_id, shard, source, lease_expires_at,
+last_applied_at, lag_s (now − latest observed_at), rejected_seats, refused_5m, tally_mismatch }`. For an uptime monitor.
+No lease holder (final review); memoised 10 s in-process since the route is unthrottled.
 
 ## 5. Admin (Live Console, per election)
 

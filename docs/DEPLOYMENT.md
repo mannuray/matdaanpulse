@@ -289,7 +289,7 @@ The counting-day worker posts ECI results to the ingest API (`docs/LIVE_RUNBOOK.
 
 1. Host: a Render background worker or a Fly.io machine in Singapore (same region as the API), root `scraper/`.
 2. Command: `npm run live -- --config live.config.json`.
-3. Env: `INGEST_API_URL` (the API base, `.../api/v1`), `INGEST_KEY` (a `worker-<host>` key from Admin -> Ingest keys), `LIVE_HOLDER` (a name for this worker, e.g. `cloud`).
+3. Env: `INGEST_API_URL` (the API base, `.../api/v1`), `INGEST_KEY` (a `worker-<host>` key from Admin -> Ingest keys), `LIVE_HOLDER` (a name for this worker, unique per host, e.g. `cloud`; always set it — two hosts with the same holder and key would share one lease).
 4. Start it before counting begins and stop it after finalizing (`Ctrl-C`/SIGTERM releases its leases); it can stay suspended off-season.
 5. The laptop runs the same command (`holder` `laptop`, key `laptop`) as backup; it takes over a shard within 90 s of the cloud worker stopping.
 6. Optional on the API: `INGEST_ALERT_WEBHOOK_URL` for alerts.
