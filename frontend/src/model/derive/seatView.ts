@@ -1,4 +1,4 @@
-import type { ResultRow, CandidateResult, AnalysisEntry, SeatHistoryEntry } from '../types';
+import type { ResultRow, CandidateResult, AnalysisEntry, SeatHistoryEntry, SeatLiveState } from '../types';
 import { isNota, type PartyMeta } from './partyMeta';
 
 export type SeatPill = 'LEADING' | 'WON' | null;
@@ -57,18 +57,23 @@ export function buildSeatView(rows: ResultRow[], o: { partyMeta: Map<string, Par
   };
 }
 
-/** Counting / Declared chip of a seat; null hides it (election not started, or status unknown). */
-export type LiveChipState = { kind: 'counting'; round: { current: number; total: number } | null } | { kind: 'declared' } | null;
+/** Counting / Declared / Countermanded / Adjourned chip of a seat; null hides it (election not started, or status unknown). */
+export type LiveChipState = { kind: 'counting'; round: { current: number; total: number } | null } | { kind: 'declared' } | { kind: 'countermanded' } | { kind: 'adjourned' } | null;
 
-/** One rule for the seat dialog and the constituency page: declared once the election is final or the seat has a winner. */
+/** One rule for the seat dialog and the constituency page: the snapshot's seat state (when ingested) wins, then declared once the election is final or the seat has a winner. */
 export function liveChipState(
   status: 'Upcoming' | 'Live' | 'Finalized' | null | undefined,
   rows: ResultRow[],
   detail: { current_round?: number | null; total_rounds?: number | null } | null,
+  seat?: SeatLiveState | null,
 ): LiveChipState {
   if (!status || status === 'Upcoming') return null;
-  if (status === 'Finalized' || rows.some(r => r.status === 'WON')) return { kind: 'declared' };
-  return { kind: 'counting', round: detail?.current_round && detail.total_rounds ? { current: detail.current_round, total: detail.total_rounds } : null };
+  if (status === 'Finalized') return { kind: 'declared' };
+  if (seat?.state === 'countermanded' || seat?.state === 'adjourned') return { kind: seat.state };
+  if (seat?.state === 'declared' || rows.some(r => r.status === 'WON')) return { kind: 'declared' };
+  const round = seat?.cr && seat.tr ? { current: seat.cr, total: seat.tr }
+    : detail?.current_round && detail.total_rounds ? { current: detail.current_round, total: detail.total_rounds } : null;
+  return { kind: 'counting', round };
 }
 
 export function seatHistory(analysis: AnalysisEntry | null, currentYear: number): SeatHistoryEntry[] {

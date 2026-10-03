@@ -297,12 +297,21 @@ export interface SwingEntry {
 }
 
 /** GET /elections/:id/results?v=<version>: every dashboard tile updates from one snapshot. */
+/** Ingest state of one seat (only seats with ingest state appear in a snapshot). */
+export interface SeatLiveState {
+  state: 'not_started' | 'counting' | 'declared' | 'countermanded' | 'adjourned';
+  cr: number | null;
+  tr: number | null;
+}
+
 export interface ResultsSnapshot {
   version: number;
   results: ResultRow[];
   /** Same shape as /alliances (seat tally per party). */
   summary: Alliance[];
   voteShare: VoteShare[];
+  /** Per-seat ingest state keyed by const_id. */
+  seats?: Record<string, SeatLiveState>;
 }
 
 export interface DominanceEntry {

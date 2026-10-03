@@ -365,6 +365,8 @@
   "seat_counting": "मतगणना जारी",
   "seat_round": "राउंड {{current}}/{{total}}",
   "seat_declared": "घोषित",
+  "live_countermanded": "मतगणना रद्द",
+  "live_adjourned": "मतगणना स्थगित",
   "seat_rank_candidate": "क्रम व उम्मीदवार",
   "seat_party": "दल",
   "seat_votes": "वोट",

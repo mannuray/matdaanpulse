@@ -103,7 +103,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
     electionName: e?.name ?? '', electionHref: `/election/${electionId}`,
     stateName: d?.state?.name ?? null, districtName: d?.district?.name ?? null,
     name: d?.name ?? '', constNo: d?.const_no ?? null, type: d?.type ?? null,
-    live: e ? liveChipState(electionStatus, rows, d) : null,
+    live: e ? liveChipState(electionStatus, rows, d, live.snapshot?.seats?.[constId] ?? null) : null,
     facts: {
       electors: d?.total_electors ?? null, votesPolled: view.totalVotes > 0 ? view.totalVotes : null,
       turnout: d?.voter_turnout != null ? Number(d.voter_turnout) : null, phase: d?.phase ?? null,

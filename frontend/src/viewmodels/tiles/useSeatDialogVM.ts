@@ -41,7 +41,7 @@ export function useSeatDialogVM(): SeatDialogVM | null {
   if (!id) return null;
   const tracked = src.watchlist.some(w => w.const_id === id);
   const name = d?.name ?? displayNameFromConstId(id);
-  const live = liveChipState(src.election.status, rows ?? [], d);
+  const live = liveChipState(src.election.status, rows ?? [], d, src.data.seats[id] ?? null);
   return {
     seatId: id,
     name,

@@ -21,6 +21,9 @@ export function LiveChip({ live }: { live: SeatDialogVM['live'] }) {
   const { t } = useTranslation();
   if (!live) return null;
   if (live.kind === 'declared') return <span className="rounded-full border border-line px-2.5 py-0.5 text-xs font-semibold text-muted">{t('seat_declared')}</span>;
+  if (live.kind === 'countermanded' || live.kind === 'adjourned') {
+    return <span className="rounded-full border border-warn-text/40 px-2.5 py-0.5 text-xs font-semibold text-warn-text">{t(live.kind === 'countermanded' ? 'live_countermanded' : 'live_adjourned')}</span>;
+  }
   const parts = [t('seat_counting')];
   if (live.round) parts.push(t('seat_round', live.round));
   return (

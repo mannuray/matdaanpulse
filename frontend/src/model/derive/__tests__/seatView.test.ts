@@ -102,3 +102,16 @@ describe('liveChipState', () => {
     expect(liveChipState('Live', [], { current_round: null, total_rounds: 18 })).toEqual({ kind: 'counting', round: null });
   });
 });
+
+describe('liveChipState with the snapshot seat state', () => {
+  const rows: ResultRow[] = [];
+  it('countermanded and adjourned win over everything but Finalized', () => {
+    expect(liveChipState('Live', rows, null, { state: 'countermanded', cr: null, tr: null })).toEqual({ kind: 'countermanded' });
+    expect(liveChipState('Live', rows, null, { state: 'adjourned', cr: 3, tr: 20 })).toEqual({ kind: 'adjourned' });
+    expect(liveChipState('Finalized', rows, null, { state: 'adjourned', cr: 3, tr: 20 })).toEqual({ kind: 'declared' });
+  });
+  it('rounds come from the snapshot first, then the detail', () => {
+    expect(liveChipState('Live', rows, { current_round: 2, total_rounds: 20 }, { state: 'counting', cr: 5, tr: 20 })).toEqual({ kind: 'counting', round: { current: 5, total: 20 } });
+    expect(liveChipState('Live', rows, { current_round: 2, total_rounds: 20 }, { state: 'counting', cr: null, tr: null })).toEqual({ kind: 'counting', round: { current: 2, total: 20 } });
+  });
+});

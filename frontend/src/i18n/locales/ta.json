@@ -365,6 +365,8 @@
   "seat_counting": "Counting",
   "seat_round": "Round {{current}}/{{total}}",
   "seat_declared": "Declared",
+  "live_countermanded": "Countermanded",
+  "live_adjourned": "Counting adjourned",
   "seat_rank_candidate": "Rank & candidate",
   "seat_party": "Party",
   "seat_votes": "Votes",
