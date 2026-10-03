@@ -22,7 +22,7 @@ is credible before 27 Feb 2027, with everything ready for that counting day (rec
 | LS 2029 | 0 | 0 | Upcoming placeholder, delimitation unset on purpose |
 | **AS, KL, TN, WB, PY VS 2026** | — | — | **Missing entirely** (counted May 2026; ECI archive `results.eci.gov.in/ResultAcGenMay2026`) |
 
-Persons: only Bihar has a person layer (`seed_bihar_persons.sql`); photos: essentially none (one sample).
+Persons: Bihar has a person layer, linked across 2010–2025 (Plan 3, 2026-10-03: 1,252 persons with 2+ contests), 41 Tier A leaders with 27 Blob-hosted credited photos, manifests' leaders/cabinet by `person_id`, winners' affidavits from MyNeta. Other states: none yet.
 Key leaders: stored in `elections.manifest_draft` JSON as name + `const_id` (no person id) — Bihar's have empty `const_id`.
 Known data bug: Assam 2021 manifest leader `AS_VS21_40_JALUKBARI` points at seat #40, which is Sorbhog in the data.
 

@@ -168,6 +168,13 @@ run in production). Afterwards:
    `b2c3d4e5-f6a7-8901-bcde-123456789020` (2020), `c3d4e5f6-a7b8-9012-cdef-234567890abc` (2025).
 2. Spot-check Bihar 2010 on the public site: the statewide vote share must read JD(U) 22.58 %, RJD 18.84 %, BJP 16.49 % (ECI's table).
 
+**Persons and leaders seeds (Plan 3).** After the Bihar person seeds, `setup.sh` runs three run-once seeds:
+`seed_bihar_person_links_v2.sql` (links only auto-created single-candidacy persons, never curated or merged ones),
+`seed_bihar_leaders.sql` (fill-only profile fields, Blob-hosted photos with `image_credits`, and the `leaders` / `cabinet`
+watchlists written once into each Bihar manifest's published `manifest_url`), and `seed_bihar_affidavits.sql` (fill-only).
+Publish or discard any Bihar manifest draft being edited before this deploy: the published manifest's `watchlists` is replaced once.
+Migration 022 adds `image_credits`; the backend serves `GET /credits`.
+
 ### 5.1 Neon
 
 1. Create project in the region chosen in D1. Note both connection strings:

@@ -213,19 +213,21 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
       <header className={cn(tile, 'relative overflow-hidden p-4 lg:p-5')}>
         <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full blur-3xl" style={{ background: tint(accent, 12) }} aria-hidden />
         <div className="relative z-10 flex flex-col items-start gap-4 md:flex-row md:items-center lg:gap-6">
-          <div className="relative shrink-0">
-            <div className="h-24 w-24 overflow-hidden rounded-2xl border-2 border-line bg-page shadow-md md:h-28 md:w-28">
-              <Avatar name={vm.name} photo={vm.photo} size="fill" className="h-full w-full rounded-none border-0 object-top text-3xl" />
+          <div className="shrink-0">
+            <div className="relative">
+              <div className="h-24 w-24 overflow-hidden rounded-2xl border-2 border-line bg-page shadow-md md:h-28 md:w-28">
+                <Avatar name={vm.name} photo={vm.photo} size="fill" className="h-full w-full rounded-none border-0 object-top text-3xl" />
+              </div>
+              {party && (
+                <span className="absolute -bottom-2 -right-2 grid h-8 w-8 place-items-center rounded-xl border-2 border-line bg-tile p-0.5 shadow-lg">
+                  <PartyMark mark={party.mark} color={party.color} label={party.label} size={24} />
+                </span>
+              )}
             </div>
             {vm.photoCredit && (
-              <a href={vm.photoCredit.source_url} target="_blank" rel="noopener noreferrer" className="mt-1 block w-24 break-words text-[11px] leading-tight text-muted hover:text-accent md:w-28">
+              <a href={vm.photoCredit.source_url} target="_blank" rel="noopener noreferrer" className="mt-3 block w-24 break-words text-[11px] leading-tight text-muted hover:text-accent md:w-28">
                 {t('person_photo_credit', { author: vm.photoCredit.author ?? t('person_photo_credit_unknown'), licence: vm.photoCredit.licence })}
               </a>
-            )}
-            {party && (
-              <span className="absolute -bottom-2 -right-2 grid h-8 w-8 place-items-center rounded-xl border-2 border-line bg-tile p-0.5 shadow-lg">
-                <PartyMark mark={party.mark} color={party.color} label={party.label} size={24} />
-              </span>
             )}
           </div>
           <div className="min-w-0 flex-1 space-y-2">
