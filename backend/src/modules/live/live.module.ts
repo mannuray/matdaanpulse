@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { LivePublisher, LiveService } from './live.service';
-import { ResultOverrideService } from './result-override.service';
 import { ResultChangeNotifier } from './result-change-notifier';
-import { BulkOverrideService } from './bulk-override.service';
 import { RedisModule } from '../redis/redis.module';
 import { AuditLogModule } from '../audit-log/audit-log.module';
 import { ResultsModule } from '../results/results.module';
@@ -18,13 +16,11 @@ import { AuthModule } from '../auth/auth.module';
   providers: [
     { provide: LivePublisher, useClass: LiveService },
     ResultChangeNotifier,
-    ResultOverrideService,
-    BulkOverrideService,
     LiveSseTokenService,
     SseConnections,
     SeatLockService,
     LiveSseAccessGuard,
   ],
-  exports: [LivePublisher, ResultChangeNotifier, ResultOverrideService, BulkOverrideService],
+  exports: [LivePublisher, ResultChangeNotifier],
 })
 export class LiveModule {}

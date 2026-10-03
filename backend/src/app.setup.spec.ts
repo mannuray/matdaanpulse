@@ -26,7 +26,7 @@ import { FeedbackController } from './modules/feedback/feedback.controller';
 import { FeedbackService } from './modules/feedback/feedback.service';
 
 // Stand-ins only where the real controller can't run without a DB/guards:
-// a plain public route, and the bulk-override path (real one needs JWT guards).
+// a plain public route, and the ingest path (real one needs key guards).
 @Controller('pub')
 class PublicController {
   @Get()
@@ -55,9 +55,9 @@ class ListController {
   }
 }
 
-@Controller('admin/results')
+@Controller('ingest')
 class BulkController {
-  @Post('override-bulk')
+  @Post('results')
   bulk(@Body() body: { blob: string }) {
     return { length: body.blob.length };
   }
@@ -209,14 +209,14 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
       expect(authService.login).toHaveBeenLastCalledWith('a@b.cd', 'password123');
     });
 
-    it('accepts a 1 MB body on the bulk override route (with a Bearer header)', async () => {
-      const res = await post('/admin/results/override-bulk', '10.0.4.3', { blob: 'x'.repeat(1024 * 1024) }, { Authorization: 'Bearer abc' });
+    it('accepts a 1 MB body on the ingest route (with a Bearer header)', async () => {
+      const res = await post('/ingest/results', '10.0.4.3', { blob: 'x'.repeat(1024 * 1024) }, { Authorization: 'Bearer abc' });
       expect(res.status).toBe(201);
       expect((await res.json()).data.length).toBe(1024 * 1024);
     });
 
-    it('rejects an anonymous bulk override with 401 before parsing the body', async () => {
-      const res = await post('/admin/results/override-bulk', '10.0.4.4', { blob: 'x'.repeat(1024 * 1024) });
+    it('rejects an anonymous ingest post with 401 before parsing the body', async () => {
+      const res = await post('/ingest/results', '10.0.4.4', { blob: 'x'.repeat(1024 * 1024) });
       expect(res.status).toBe(401);
       expect((await res.json()).error.code).toBe('AUTH_1003');
     });

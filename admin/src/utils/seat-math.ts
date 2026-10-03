@@ -18,13 +18,6 @@ export interface SeatRow {
   status: OverrideStatus;
 }
 
-export interface BulkOverrideItem {
-  result_id: string;
-  votes: number;
-  status: OverrideStatus;
-  margin: number;
-}
-
 export const isNota = (r: Pick<SeatRow, 'party_id'>) => r.party_id === 'NOTA';
 
 /** "61,204" / " 61204 " / "1 20 000" → number; anything not a whole number ≥ 0 → null. */
@@ -57,19 +50,6 @@ export function deriveStatuses(rows: SeatRow[], declared: boolean): SeatRow[] {
     const status: OverrideStatus = isLeader ? (declared ? 'WON' : 'LEADING') : declared && leader ? 'LOST' : 'TRAILING';
     return { ...r, status };
   });
-}
-
-/** One bulk-override item per candidate, with margins per the convention above. */
-export function buildSeatOverrides(rows: SeatRow[]): BulkOverrideItem[] {
-  const { leader } = rankSeat(rows);
-  const lead = seatMargin(rows);
-  return rows.map((r) => ({
-    result_id: r.result_id,
-    votes: r.votes,
-    status: r.status,
-    // Clamp: a NOTA row can out-poll the leader, and the bulk endpoint rejects negative margins.
-    margin: !leader ? 0 : r.result_id === leader.result_id ? lead : Math.max(0, leader.votes - r.votes),
-  }));
 }
 
 /** Seat-level status for the list and the filter chips. */

@@ -1,6 +1,5 @@
 import { apiFetch, API_BASE_URL } from './api-client';
 import type { Election, Manifest, LiveConstituency, SeatLock } from '../types';
-import type { BulkOverrideItem } from '../utils/seat-math';
 
 export async function getElections(filters?: { type?: string; status?: string }) {
   const params = new URLSearchParams();
@@ -43,21 +42,6 @@ export function publishManifest(electionId: string) {
 
 export async function getLiveResults(electionId: string) {
   return (await apiFetch<LiveConstituency[]>(`/admin/elections/${electionId}/live-results`)) || [];
-}
-
-export function overrideResult(data: { result_id: string; votes?: number; status?: string; margin?: number }) {
-  return apiFetch<void>('/admin/results/override', { method: 'PATCH', body: JSON.stringify(data) });
-}
-
-export function bulkOverride(
-  electionId: string,
-  overrides: BulkOverrideItem[],
-  rounds?: Record<string, { current_round?: number; total_rounds?: number }>,
-) {
-  return apiFetch<{ updated: number }>('/admin/results/override-bulk', {
-    method: 'POST',
-    body: JSON.stringify({ election_id: electionId, overrides, ...(rounds ? { rounds } : {}) }),
-  });
 }
 
 export async function getSeatLocks(electionId: string) {
