@@ -179,7 +179,9 @@ Migration 022 adds `image_credits`; the backend serves `GET /credits`.
 `seed_<st>_corrections_v1.sql` (run-once, with the same pre-flight as Bihar: it stops, changing nothing, if production
 holds candidates the old seeds didn't have or a changed party) → the year seeds; for Kerala and Assam then
 `seed_<st>_manifest_fixes_v1.sql` (run-once: points the published manifests' alliance/leader party ids at the ids the
-ECI data uses, e.g. Kerala 2011 `MUL` → `IUML`, Assam 2016 `BPF` → `BOPF`); then `seed_<st>_person_links_v1.sql`.
+ECI data uses, e.g. Kerala 2011 `MUL` → `IUML`, Assam 2016 `BPF` → `BOPF`); then `seed_manifest_alliances_v1.sql`
+(run-once: parties the old manifests put in the wrong alliance, Kerala 2011–21, Tamil Nadu 2011, West Bengal 2011;
+from `scraper/data/alliance-moves-v1.json`); then `seed_<st>_person_links_v1.sql`.
 If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds from the commit before Phase 2A
 (`git show 5dc0553:database/seed_<st>_vs_<year>.sql`). After the deploy:
 1. Recompute the seat analysis (`POST /api/v1/admin/constituencies/analysis/compute/:electionId`, admin token) for the 15 elections:

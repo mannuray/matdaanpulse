@@ -94,6 +94,8 @@ for st in wb as kl tn py; do
 done
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
 for st in kl as; do run "seed_${st}_manifest_fixes_v1.sql"; done
+# Run-once: parties the old manifests put in the wrong alliance (Kerala, Tamil Nadu 2011, West Bengal 2011)
+run seed_manifest_alliances_v1.sql
 
 echo "==> Seeds: districts & regions (must follow VS results — they UPDATE constituencies)"
 run seed_bihar_districts_regions.sql

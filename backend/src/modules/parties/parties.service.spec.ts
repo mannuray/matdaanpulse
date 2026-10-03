@@ -191,3 +191,11 @@ describe('PartiesService.usage', () => {
     expect(err.getStatus()).toBe(404);
   });
 });
+
+describe('PartiesService.findAll', () => {
+  it('returns every party, not a capped page (the public party lookup needs all of them; 788 after the 2011+ seeds)', async () => {
+    const { svc, prisma } = make();
+    await svc.findAll();
+    expect(prisma.parties.findMany.mock.calls[0][0]).not.toHaveProperty('take');
+  });
+});

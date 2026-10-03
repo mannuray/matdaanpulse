@@ -1,0 +1,16 @@
+[
+  { "state": "KL", "year": 2011, "party": "JDS", "from": "UDF", "to": "LDF" },
+  { "state": "KL", "year": 2011, "party": "RSP", "from": "UDF", "to": "LDF" },
+  { "state": "KL", "year": 2011, "party": "NCP", "from": "UDF", "to": "LDF" },
+  { "state": "KL", "year": 2011, "party": "KRSP", "from": "LDF", "to": "UDF" },
+  { "state": "KL", "year": 2011, "party": "JPSS", "from": "LDF", "to": "UDF" },
+  { "state": "KL", "year": 2011, "party": "CMPKSC", "from": "LDF", "to": "UDF" },
+  { "state": "KL", "year": 2016, "party": "INCS", "from": "UDF", "to": "LDF" },
+  { "state": "KL", "year": 2016, "party": "KECST", "from": "UDF", "to": "LDF" },
+  { "state": "KL", "year": 2021, "party": "KEC", "from": "LDF", "to": "UDF" },
+  { "state": "KL", "year": 2021, "party": "RMPI", "from": "LDF", "to": "UDF" },
+  { "state": "KL", "year": 2021, "party": "INCS", "from": "UDF", "to": "LDF" },
+  { "state": "TN", "year": 2011, "party": "PMK", "from": "ADMK", "to": "DMKALL" },
+  { "state": "TN", "year": 2011, "party": "AIFB", "from": "DMKALL", "to": "ADMK" },
+  { "state": "WB", "year": 2011, "party": "SUCI", "from": null, "to": "TMCALL" }
+]

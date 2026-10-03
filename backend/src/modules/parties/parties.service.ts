@@ -13,10 +13,10 @@ export class PartiesService {
     private readonly audit: AuditLogService,
   ) {}
 
+  /** Every party: the public lookup that colours and marks every result (no cap; there are ~800). */
   findAll() {
     return this.prisma.parties.findMany({
       orderBy: { name: 'asc' },
-      take: 500,
     });
   }
 
