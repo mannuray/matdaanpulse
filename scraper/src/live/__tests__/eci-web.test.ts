@@ -33,6 +33,18 @@ function fakeFetch() {
   return { fetchText, calls };
 }
 
+describe('parseCandidateDetailPage photo', () => {
+  it('reads each candidate\'s photo URL from the real page', () => {
+    const cands = parseCandidateDetailPage(cand);
+    expect(cands[0].photo).toBe('https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/S25/DEBDA-2026-20260404123809.jpg');
+    expect(cands.every(c => c.photo === null || /^https:\/\/results\.eci\.gov\.in\/.+\.jpe?g$/i.test(c.photo))).toBe(true);
+  });
+  it('gives null when a box has no photo', () => {
+    const html = "<div class='cand-box'><div class='cand-info'><div class='status lost'><div>lost</div><div>10 <span>(- 5)</span></div></div><div class='nme-prty'><h5>A</h5><h6>B</h6></div></div></div>";
+    expect(parseCandidateDetailPage(html)[0].photo).toBeNull();
+  });
+});
+
 describe('EciWebAdapter on real ECI pages', () => {
   it('the fixture list page lists seat 100', () => {
     expect(parseConstituencyListPage(list).some(r => r.constNo === 100)).toBe(true);

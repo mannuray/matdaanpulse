@@ -20,6 +20,8 @@ export interface CandidateDetail {
   votes: number;
   margin: number; // positive for winner, negative for others
   status: 'won' | 'lost' | '';
+  /** The candidate's photo on the ECI site (results.eci.gov.in/…/candprofile/…), or null. */
+  photo: string | null;
 }
 
 export interface EciVsAdapterOptions {
@@ -177,7 +179,11 @@ export function parseCandidateDetailPage(html: string): CandidateDetail[] {
       ? (marginMatch[1] === '+' ? 1 : -1) * parseInt(marginMatch[2].replace(/,/g, ''), 10)
       : 0;
 
-    candidates.push({ name, party, votes, margin, status: statusText });
+    // Only an absolute candidate photo; NOTA's box shows a relative placeholder (img/nota.jpg).
+    const src = $(box).find('figure img').attr('src')?.trim() ?? '';
+    const photo = /^https?:\/\//i.test(src) ? src : null;
+
+    candidates.push({ name, party, votes, margin, status: statusText, photo });
   });
 
   return candidates;
