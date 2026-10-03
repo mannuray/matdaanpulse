@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { parseWinners, matchWinners, emitAffidavitsSeed } from '../affidavits';
+import * as fs from 'fs';
+import * as path from 'path';
+import { parseWinners, matchWinners, emitAffidavitsSeed, decodeScriptedRows } from '../affidavits';
 
 const HTML = `<table><tr><th>Sno</th><th>Candidate</th><th>Constituency ∇</th><th>Party</th><th>Criminal Case</th><th>Education</th><th>Total Assets</th><th>Liabilities</th></tr>
 <tr><td>1</td><td><a href="candidate.php?candidate_id=9784">Manoj Manzil</a></td><td>AGIAON (SC)</td><td>CPI(ML)(L)</td><td>30</td><td>Graduate</td><td>Rs&nbsp;3,16,500 ~ 3&nbsp;Lacs+</td><td>Rs&nbsp;0 ~</td></tr>
@@ -58,5 +60,32 @@ describe('emitAffidavitsSeed for another state', () => {
     expect(sql).toContain("seed_runs WHERE name = 'seed_kl_affidavits'");
     expect(sql).toContain("Kerala VS 2026 winners'");
     expect(sql).not.toMatch(/Bihar/);
+  });
+});
+
+describe('MyNeta rows hidden in obfuscated scripts (2026 pages)', () => {
+  const html = fs.readFileSync(path.join(__dirname, 'fixtures/myneta-assam2026-winners.htm'), 'utf8');
+  it('reads the scripted rows too (Assam 2026: 112 plain + 14 scripted = 126 winners)', () => {
+    const rows = parseWinners(html, 'https://myneta.info/assam2026/');
+    expect(rows).toHaveLength(126);
+    expect(new Set(rows.map(r => r.constituency)).size).toBe(126);
+  });
+  it('leaves a page without scripts unchanged', () => {
+    expect(decodeScriptedRows('<table><tr><td>a</td></tr></table>')).toBe('<table><tr><td>a</td></tr></table>');
+  });
+});
+
+describe('matchWinners with spelling variants of the seat name', () => {
+  const row = (constituency: string, name: string) => ({ name, constituency, party: 'AITC', criminalCases: 0, education: null, assets: null, liabilities: null, sourceUrl: 'u' });
+  const seats = [{ constNo: 287, name: 'Labpur', winner: { candidateId: 'c287', name: 'Debasis Ojha' } }, { constNo: 1, name: 'Mekliganj', winner: { candidateId: 'c1', name: 'Paresh Adhikary' } }];
+  it('falls back to a close seat name whose winner has the same name (LABHPUR = Labpur)', () => {
+    expect(matchWinners([row('LABHPUR', 'Debasis Ojha (Haku Da)')], seats).matched.map(m => m.candidateId)).toEqual(['c287']);
+  });
+  it('ignores bracketed nicknames on both sides', () => {
+    const s2 = [{ ...seats[0], winner: { candidateId: 'c287', name: 'Debasis Ojha (haku Da)' } }];
+    expect(matchWinners([row('LABHPUR', 'Debasis Ojha')], s2).matched).toHaveLength(1);
+  });
+  it('still reports a variant whose winner name does not match', () => {
+    expect(matchWinners([row('LABHPUR', 'Somebody Else')], seats).unmatched).toHaveLength(1);
   });
 });

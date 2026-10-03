@@ -19,8 +19,40 @@ const MIN_NAME_MATCH = 0.5;
 const clean = (s: string) => s.replace(/\s+/g, ' ').trim();
 const money = (s: string): number | null => (!s || /^nil$/i.test(s) || !/\d/.test(s) ? null : parseRupeeAmount(s));
 
+const DIGITS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/';
+/** The "hunter" packer `eval(function(h,u,n,t,e,r){…}("…",u,"chars",t,e,r))`, decoded arithmetically (never executed). */
+function unpackHunter(code: string): string | null {
+  const m = /\}\("([^"]*)",\d+,"([^"]*)",(\d+),(\d+),\d+\)\)\s*;?\s*$/.exec(code);
+  if (!m) return null;
+  const [, h, n, offset, base] = m;
+  const e = Number(base), t = Number(offset);
+  let bytes = '';
+  for (let tok of h.split(n[e])) {
+    if (!tok) continue;
+    for (let j = 0; j < n.length; j++) tok = tok.split(n[j]).join(String(j));
+    let v = 0;
+    for (const ch of tok) v = v * e + DIGITS.indexOf(ch);
+    bytes += String.fromCharCode(v - t);
+  }
+  return Buffer.from(bytes, 'latin1').toString('utf8');
+}
+
+/**
+ * MyNeta hides some winners' rows (about 11 % in 2026) in packed `<script>` blocks that `document.write` the row. Each
+ * block is unpacked arithmetically (the page's JavaScript is never run) and replaced by the HTML it would write; a
+ * block that is not this packer is dropped. Such rows show assets and liabilities as images, so those stay empty.
+ */
+export function decodeScriptedRows(html: string): string {
+  return html.replace(/<script>([\s\S]*?)<\/script>/g, (whole, code: string) => {
+    if (!/eval\(function\(h,u,n,t,e,r\)/.test(code)) return whole;
+    const js = unpackHunter(code);
+    const w = js && /^\s*document\.write\('([\s\S]*)'\);?\s*$/.exec(js);
+    return w ? w[1].replace(/\\'/g, "'") : '';
+  });
+}
+
 export function parseWinners(html: string, sourceUrl: string): WinnerRow[] {
-  const $ = cheerio.load(html);
+  const $ = cheerio.load(decodeScriptedRows(html));
   const out: WinnerRow[] = [];
   $('table').each((_, table) => {
     const header = $(table).find('tr').first().children('th,td').map((__, c) => clean($(c).text())).get();
@@ -50,6 +82,10 @@ export function parseWinners(html: string, sourceUrl: string): WinnerRow[] {
 const seatKey = (s: string) => normName(s.replace(/\([^)]*\)/g, ' ')).replace(/\s/g, '');
 /** A seat name this close (Dice) to ours counts as the same seat ("KUMHRARH" = "Kumhrar"). */
 const SEAT_MATCH = 0.8;
+/** A seat name this loosely similar counts only when its winner's name matches too (WINNER_FOR_VARIANT). */
+const SEAT_VARIANT = 0.5;
+const unbracket = (s: string) => s.replace(/\(.*?\)/g, ' ').trim();
+const WINNER_FOR_VARIANT = 0.8;
 
 export function matchWinners(rows: WinnerRow[], seats: WinnerSeat[]): { matched: Affidavit[]; unmatched: string[] } {
   const matched: Affidavit[] = [];
@@ -59,6 +95,11 @@ export function matchWinners(rows: WinnerRow[], seats: WinnerSeat[]): { matched:
     const key = seatKey(r.constituency);
     let pool = seats.filter(s => seatKey(s.name) === key);
     if (!pool.length) pool = seats.filter(s => similarity(seatKey(s.name), key) >= SEAT_MATCH);
+    // Spelling variants (LABHPUR = Labpur, ERANAD = Ernad): a loosely similar seat name whose winner has this name, if unique.
+    if (!pool.length) {
+      const near = seats.filter(s => similarity(seatKey(s.name), key) >= SEAT_VARIANT && similarity(unbracket(r.name), unbracket(s.winner.name)) >= WINNER_FOR_VARIANT);
+      if (near.length === 1) pool = near;
+    }
     if (!pool.length) { unmatched.push(`${r.constituency}: ${r.name} (no such seat in our data)`); continue; }
     // Seats can share a name (two Pipras, two Kalyanpurs): the winner's name decides.
     const best = pool.map(s => ({ s, sim: similarity(r.name, s.winner.name) })).sort((a, b) => b.sim - a.sim)[0];
