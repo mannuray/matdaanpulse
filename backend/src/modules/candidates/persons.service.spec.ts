@@ -382,6 +382,7 @@ describe('PersonsService.findWithCandidates (public profile)', () => {
     const prisma: any = {
       persons: { findUnique: jest.fn().mockResolvedValue(full) },
       results: { groupBy: jest.fn().mockResolvedValue([{ const_id: 'BR_VS_1_A', _sum: { votes: 1000 } }]) },
+      image_credits: { findUnique: jest.fn().mockResolvedValue(null) },
     };
     return { svc: new PersonsService(prisma, new AuditLogService(prisma)), prisma };
   }
@@ -392,6 +393,15 @@ describe('PersonsService.findWithCandidates (public profile)', () => {
     expect(out.candidates[0]).toMatchObject({ age: 74, assets: 16400000, liabilities: null, criminal_cases: 0, vote_share: 60,
       party_abbreviation: 'JD(U)', party_symbol_url: '/symbols/logos/JDU.svg', party_eci_symbol_url: '/symbols/eci/JDU.jpg' });
     expect(out.candidates[1]).toMatchObject({ vote_share: null, party_abbreviation: null, party_symbol_url: null });
+  });
+
+  it('adds the photo credit when the photo has one, and null otherwise', async () => {
+    const { svc, prisma } = make2();
+    expect((await svc.findWithCandidates('p1') as any).photo_credit).toBeNull();
+    prisma.persons.findUnique.mockResolvedValue({ ...full, photo_url: 'https://blob.example/persons/Q1/photo.jpg' });
+    prisma.image_credits.findUnique.mockResolvedValue({ url: 'https://blob.example/persons/Q1/photo.jpg', source_url: 'https://commons.wikimedia.org/wiki/File:X.jpg', author: 'A. Photographer', licence: 'CC BY-SA 4.0', created_at: new Date() });
+    const json = JSON.parse(JSON.stringify(plainToInstance(PersonProfileDto, await svc.findWithCandidates('p1'), { excludeExtraneousValues: true })));
+    expect(json.photo_credit).toEqual({ source_url: 'https://commons.wikimedia.org/wiki/File:X.jpg', author: 'A. Photographer', licence: 'CC BY-SA 4.0' });
   });
 
   it('the public DTO exposes home state/district and never caste or religion', async () => {

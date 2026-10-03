@@ -7,6 +7,7 @@ import { ResultsModule } from './modules/results/results.module';
 import { StatesModule } from './modules/states/states.module';
 import { ManifestsModule } from './modules/manifests/manifests.module';
 import { CandidatesModule } from './modules/candidates/candidates.module';
+import { CreditsModule } from './modules/credits/credits.module';
 import { PartiesModule } from './modules/parties/parties.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AdminModule } from './modules/admin/admin.module';
@@ -48,6 +49,7 @@ import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.se
     StatesModule,
     ManifestsModule,
     CandidatesModule,
+    CreditsModule,
     ConstituenciesModule,
     PartiesModule,
     AuthModule,

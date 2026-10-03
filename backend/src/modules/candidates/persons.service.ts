@@ -155,10 +155,13 @@ export class PersonsService {
     // Newest first. The query orders by election id (a UUID), which says nothing about time.
     candidates.sort((a, b) => (b.election_year ?? 0) - (a.election_year ?? 0));
 
+    const credit = person.photo_url ? await this.prisma.image_credits.findUnique({ where: { url: person.photo_url } }) : null;
+
     return {
       ...person,
       state: person.states,
       district: person.districts,
+      photo_credit: credit ? { source_url: credit.source_url, author: credit.author, licence: credit.licence } : null,
       candidates
     };
   }

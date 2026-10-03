@@ -455,3 +455,11 @@ model ingest_log {
 
   @@index([election_id, received_at(sort: Desc)], map: "ingest_log_election_received")
 }
+
+model image_credits {
+  url        String   @id
+  source_url String
+  author     String?
+  licence    String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}

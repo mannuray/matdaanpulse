@@ -56,6 +56,8 @@ export class PersonProfileDto {
 
   @Expose() bio: string | null;
   @Expose() wikipedia_url: string | null;
+  /** Credit for photo_url when we host it (image_credits, migration 022). */
+  @Expose() photo_credit: { source_url: string; author: string | null; licence: string } | null;
   @Expose() @Type(() => PlaceMiniDto) state: PlaceMiniDto | null;
   @Expose() @Type(() => PlaceMiniDto) district: PlaceMiniDto | null;
   // caste and religion are admin-only (AdminPersonDto): never exposed on the public profile.
