@@ -232,9 +232,10 @@ describe('migration 018: every candidate has a person (DB)', () => {
     if (!prints) return;
     expect(prints[1]).toBe(prints[0]);
     expect(prints[2]).toBe(prints[0]);
-    const [, , withoutPerson, orphans] = prints[0].split('|');
+    // Re-running 018 creates no orphan (prints are identical). Persons without a candidacy can exist on purpose:
+    // seed_bihar_leaders adds Bihar leaders with no Bihar VS seat (Legislative Council members) so manifests link them.
+    const [, , withoutPerson] = prints[0].split('|');
     expect(withoutPerson).toBe('0');
-    expect(orphans).toBe('0');
   });
 
   it('copies metadata once (a value cleared later is not refilled), archives every non-empty object, keeps the columns', () => {
@@ -293,8 +294,8 @@ describe('migration 018: every candidate has a person (DB)', () => {
     if (!prints) return;
     // Person count, candidates without a person and orphans are unchanged after every file.
     const counts = prints.map((p) => p.split('|').slice(1, 4).join('|'));
-    expect(new Set(counts).size).toBe(1);
-    expect(counts[0].split('|').slice(1)).toEqual(['0', '0']);
+    expect(new Set(counts).size).toBe(1); // no file changes the person, without-person or orphan counts
+    expect(counts[0].split('|')[1]).toBe('0'); // every candidate has a person (seatless leaders are intended orphans)
   });
 
   it('the Bihar person seeds are run-once: a split, a merge and a state edit survive a re-run, with or without the markers', () => {
