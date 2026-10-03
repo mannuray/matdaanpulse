@@ -66,6 +66,10 @@ async function main() {
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
+      for (const t of ['seat_holds', 'seat_ingest_state', 'ingest_log', 'ingest_shards', 'election_ingest']) {
+        await client.query(`DELETE FROM ${t} WHERE election_id = $1`, [SIM_ELECTION_ID]);
+      }
+      await client.query("DELETE FROM ingest_keys WHERE name = 'simulation'");
       await client.query('DELETE FROM constituency_analysis WHERE election_id = $1', [SIM_ELECTION_ID]);
       await client.query('DELETE FROM results WHERE election_id = $1', [SIM_ELECTION_ID]);
       await client.query('DELETE FROM candidates WHERE election_id = $1', [SIM_ELECTION_ID]);

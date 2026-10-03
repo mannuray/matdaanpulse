@@ -10,6 +10,8 @@
     "sim:setup": "ts-node src/simulation/setup.ts",
     "sim:mock-eci": "ts-node src/simulation/mock-eci-server.ts",
     "sim:replay": "ts-node src/simulation/replay.ts",
+    "sim:live": "INGEST_KEY=$(cat .sim-ingest-key) ts-node src/live/run.ts --config src/live/sim.config.json",
+    "sim:smoke": "ts-node src/simulation/smoke.ts",
     "sim:reset": "ts-node src/simulation/reset.ts",
     "sim:cleanup": "ts-node src/simulation/cleanup.ts",
     "typecheck": "tsc --noEmit",
