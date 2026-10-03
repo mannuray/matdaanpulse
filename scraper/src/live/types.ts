@@ -5,7 +5,7 @@ export interface Roster { election: { id: string; type: string; state_id: number
 export interface SeatState { const_id: string; state: SeatStateName; round?: { current: number; total: number } | null; votes: Record<string, number> }
 export interface MappingReport { seats_total: number; seats_mapped: number; unmapped: { ref: string; reason: string }[] }
 export interface PartyTally { party_id: string; won: number; leading: number }
-export interface SourceAdapter { id: string; intervalMs: number; prepare(roster: Roster): Promise<MappingReport>; poll(): Promise<SeatState[]>; tally?(): Promise<PartyTally[] | null> }
+export interface SourceAdapter { id: string; intervalMs: number; prepare(roster: Roster): Promise<MappingReport>; poll(): Promise<SeatState[]>; tally?(): Promise<PartyTally[] | null>; /** Called after every seat of a poll() was delivered; an adapter keeps poll() bookkeeping pending until then. */ commit?(): void }
 export type AdapterFactory = (opts: Record<string, string>) => SourceAdapter;
 export interface IngestConfig { status: string; source: string | null; poll_hint_ms: number; shard: { name: string; seat_count: number }; lease: { holder: string | null; expires_at: string | null } }
 export interface SeatsResponse { counts: Record<'applied' | 'unchanged' | 'stale' | 'held' | 'rejected', number>; seats: { const_id: string; outcome: string; reason?: string; detail?: unknown }[] }

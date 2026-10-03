@@ -9,8 +9,9 @@ const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 const MAX_PAGES = 60;
 const RECHECK_DECLARED_MS = 10 * 60_000;
 
-const defaultFetch: FetchText = async (url, ims) => {
-  const res = await fetch(url, { headers: { 'User-Agent': UA, ...(ims ? { 'If-Modified-Since': ims } : {}) } });
+const DEFAULT_FETCH_TIMEOUT_MS = 15_000;
+const makeDefaultFetch = (timeoutMs: number): FetchText => async (url, ims) => {
+  const res = await fetch(url, { headers: { 'User-Agent': UA, ...(ims ? { 'If-Modified-Since': ims } : {}) }, signal: AbortSignal.timeout(timeoutMs) });
   return { status: res.status, text: res.status === 200 ? await res.text() : '', lastModified: res.headers.get('last-modified') };
 };
 
@@ -24,11 +25,13 @@ export class EciWebAdapter implements SourceAdapter {
   private signature = new Map<number, string>();
   private declaredAt = new Map<number, number>();
   private rechecked = new Set<number>();
+  /** Bookkeeping from the latest poll(); promoted by commit() once the loop has delivered the seats, discarded by the next poll(). */
+  private pending = { signature: new Map<number, string>(), declaredAt: new Map<number, number>(), rechecked: new Set<number>() };
 
-  constructor(private readonly opts: { id: string; baseUrl: string; stateCode: string; intervalMs?: number; concurrency?: number; partyAliases?: Record<string, string>; fetchText?: FetchText }) {
+  constructor(private readonly opts: { id: string; baseUrl: string; stateCode: string; intervalMs?: number; concurrency?: number; partyAliases?: Record<string, string>; fetchText?: FetchText; fetchTimeoutMs?: number }) {
     this.id = opts.id;
     this.intervalMs = opts.intervalMs ?? 45_000;
-    this.fetchText = opts.fetchText ?? defaultFetch;
+    this.fetchText = opts.fetchText ?? makeDefaultFetch(opts.fetchTimeoutMs ?? DEFAULT_FETCH_TIMEOUT_MS);
   }
 
   async prepare(roster: Roster): Promise<MappingReport> {
@@ -41,8 +44,16 @@ export class EciWebAdapter implements SourceAdapter {
     return { seats_total: roster.seats.length, seats_mapped: roster.seats.filter(s => s.candidates.length > 0).length, unmapped };
   }
 
+  commit(): void {
+    for (const [k, v] of this.pending.signature) this.signature.set(k, v);
+    for (const [k, v] of this.pending.declaredAt) this.declaredAt.set(k, v);
+    for (const k of this.pending.rechecked) this.rechecked.add(k);
+    this.pending = { signature: new Map(), declaredAt: new Map(), rechecked: new Set() };
+  }
+
   async poll(): Promise<SeatState[]> {
     if (!this.roster) throw new Error('prepare() first');
+    const pending = this.pending = { signature: new Map<number, string>(), declaredAt: new Map<number, number>(), rechecked: new Set<number>() };
     const rows = await this.listRows();
     const byNo = new Map(this.roster.seats.map(s => [s.const_no, s]));
     const now = Date.now();
@@ -56,18 +67,23 @@ export class EciWebAdapter implements SourceAdapter {
     const out: SeatState[] = [];
     await pool(due, this.opts.concurrency ?? 3, async r => {
       const seat = byNo.get(r.constNo)!;
-      const { state, round } = seatStateFrom(r.rounds, r.status);
-      if (state === 'not_started') { this.signature.set(r.constNo, `${r.winnerName}|${r.winnerParty}|${r.margin}|${r.rounds}|${r.status}`); return; }
-      const page = await this.fetchText(`${this.opts.baseUrl}/candidateswise-${this.opts.stateCode}${r.constNo}.htm`);
-      if (page.status !== 200) return;
-      const mapped = mapCandidates(seat, parseCandidateDetailPage(page.text), this.roster!.parties, this.opts.partyAliases ?? {});
-      if ('reason' in mapped) { console.warn(`[${this.id}] seat ${r.constNo} ${seat.name}: ${mapped.reason}`); return; }
-      this.signature.set(r.constNo, `${r.winnerName}|${r.winnerParty}|${r.margin}|${r.rounds}|${r.status}`);
-      if (state === 'declared') {
-        if (!this.declaredAt.has(r.constNo)) this.declaredAt.set(r.constNo, now);
-        else if (now - this.declaredAt.get(r.constNo)! > RECHECK_DECLARED_MS) this.rechecked.add(r.constNo);
+      try {
+        const sig = `${r.winnerName}|${r.winnerParty}|${r.margin}|${r.rounds}|${r.status}`;
+        const { state, round } = seatStateFrom(r.rounds, r.status);
+        if (state === 'not_started') { pending.signature.set(r.constNo, sig); return; }
+        const page = await this.fetchText(`${this.opts.baseUrl}/candidateswise-${this.opts.stateCode}${r.constNo}.htm`);
+        if (page.status !== 200) return;
+        const mapped = mapCandidates(seat, parseCandidateDetailPage(page.text), this.roster!.parties, this.opts.partyAliases ?? {});
+        if ('reason' in mapped) { console.warn(`[${this.id}] seat ${r.constNo} ${seat.name}: ${mapped.reason}`); return; }
+        pending.signature.set(r.constNo, sig);
+        if (state === 'declared') {
+          if (!this.declaredAt.has(r.constNo)) pending.declaredAt.set(r.constNo, now);
+          else if (now - this.declaredAt.get(r.constNo)! > RECHECK_DECLARED_MS) pending.rechecked.add(r.constNo);
+        }
+        out.push({ const_id: seat.const_id, state, round, votes: mapped.votes });
+      } catch (e) {
+        console.warn(`[${this.id}] seat ${r.constNo} ${seat.name}: fetch failed: ${(e as Error).message}`);
       }
-      out.push({ const_id: seat.const_id, state, round, votes: mapped.votes });
     });
     return out.sort((a, b) => a.const_id.localeCompare(b.const_id));
   }

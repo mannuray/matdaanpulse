@@ -50,6 +50,7 @@ export async function runCycle(electionId: string, shard: string, st: LoopState,
       const res = await d.client.seats(electionId, { shard, source: cfg.source, holder: d.holder, observed_at, seats: seats.slice(i, i + POST_CHUNK) });
       d.log(`${tag} posted ${Math.min(POST_CHUNK, seats.length - i)}: ${JSON.stringify(res.counts)}`, res.seats.filter(s => s.outcome === 'rejected'));
     }
+    st.adapter.commit?.();
     st.cycle++;
     if (st.adapter.tally && st.cycle % TALLY_EVERY === 0) {
       const parties = await st.adapter.tally();

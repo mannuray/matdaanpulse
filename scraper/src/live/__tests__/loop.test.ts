@@ -19,6 +19,23 @@ function deps(over: Partial<{ status: string; source: string | null; lease: 'ok'
   return { d, client, adapter, log };
 }
 
+describe('runCycle commit', () => {
+  it('commits after all chunks posted, not when a post rejects', async () => {
+    const { d, client, adapter } = deps({ seats: POST_CHUNK + 1 });
+    const commit = vi.fn(); (adapter as any).commit = commit;
+    await runCycle('e', 'rest', newLoopState(), d);
+    expect(commit).toHaveBeenCalledTimes(1);
+    commit.mockClear();
+    client.seats.mockRejectedValueOnce(new Error('5xx'));
+    await runCycle('e', 'rest', newLoopState(), d);
+    expect(commit).not.toHaveBeenCalled();
+    commit.mockClear();
+    client.seats.mockResolvedValueOnce({ counts: { applied: 0, unchanged: 0, stale: 0, held: 0, rejected: 0 }, seats: [] }).mockRejectedValueOnce(new Error('second chunk'));
+    await runCycle('e', 'rest', newLoopState(), d);
+    expect(commit).not.toHaveBeenCalled();
+  });
+});
+
 describe('runCycle', () => {
   it('prepares once, polls and posts in chunks with the poll start as observed_at', async () => {
     const { d, client, adapter } = deps({ seats: POST_CHUNK + 1 });
