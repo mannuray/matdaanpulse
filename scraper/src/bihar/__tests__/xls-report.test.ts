@@ -28,11 +28,15 @@ describe('parseDetailedRows (flat layout, Puducherry 2016)', () => {
     [1, 'Mannadipet', 'None of the Above', null, null, null, 'NOTA', 300, 1, 301, 30709, 27560],
     [2, 'Thirubuvanai (SC)', 'B. KOBIGA', 'F', 30, 'SC', 'AINRC', 9000, 100, 9100, 31000, 25000],
   ];
+  it('falls back to the sum of the parsed rows when a flat file has no Total Votes column', () => {
+    const seats = parseDetailedRows(rows.map(r => r.slice(0, 11)));
+    expect(seats.map(s => s.totalVotes)).toEqual([7679 + 7260 + 301, 9100]);
+  });
   it('reads flat rows with alias headers, grouping seats by number when there are no TURNOUT rows', () => {
     const seats = parseDetailedRows(rows);
     expect(seats.map(s => [s.constNo, s.acName, s.type, s.electors, s.candidates.length, s.nota, s.totalVotes])).toEqual([
-      [1, 'Mannadipet', null, 30709, 2, 301, 7679 + 7260 + 301],
-      [2, 'Thirubuvanai', 'SC', 31000, 1, null, 9100],
+      [1, 'Mannadipet', null, 30709, 2, 301, 27560],
+      [2, 'Thirubuvanai', 'SC', 31000, 1, null, 25000],
     ]);
     expect(seats[0].candidates[0]).toEqual({ serial: 1, name: 'T.P.R. SELVAME', sex: 'M', age: 44, party: 'AINRC', general: 7549, postal: 130, total: 7679 });
   });

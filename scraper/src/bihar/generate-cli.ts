@@ -11,6 +11,7 @@ import { readExistingSeed } from './existing-seed';
 import { matchYear, LOW_SIMILARITY, type Decision } from './match';
 import { changedRows, emitCorrections, emitParties, emitYear, type Plan } from './emit';
 import { validateElection } from './crosscheck';
+import { alliancePartyGaps, emitManifestFixes, type ManifestFixes } from './manifest-fixes';
 import type { ElectionJson, PartyEntry } from './types';
 
 const DB_DIR = path.resolve(__dirname, '../../../database');
@@ -20,6 +21,8 @@ const DATA_DIR = dataDir(ST);
 const decisionsFile = path.join(DATA_DIR, 'decisions.json');
 const decisions: Record<string, Decision> = fs.existsSync(decisionsFile) ? JSON.parse(fs.readFileSync(decisionsFile, 'utf8')) : {};
 const aliases: Record<string, string> = JSON.parse(fs.readFileSync(path.join(PARTY_DIR, 'party-aliases.json'), 'utf8'));
+const fixesFile = path.join(DATA_DIR, 'manifest-party-fixes.json');
+const manifestFixes: Record<string, ManifestFixes> = fs.existsSync(fixesFile) ? JSON.parse(fs.readFileSync(fixesFile, 'utf8')) : {};
 
 const plans: Plan[] = [];
 let blocked = 0;
@@ -29,6 +32,9 @@ for (const y of electionsOf(ST).map(e => e.year)) {
   if (errs.length) { console.error(`vs-${y}.json fails validation:\n  ${errs.join('\n  ')}`); process.exit(1); }
   const seed = readExistingSeed(fs.readFileSync(path.join(DB_DIR, state.yearSeed(y)), 'utf8'));
   const matches = matchYear(json, seed, decisions, aliases);
+  const gaps = alliancePartyGaps(seed.manifestJson, json, manifestFixes[y] ?? {});
+  if (gaps.length) console.error(`${y}: manifest alliance parties with no candidate: ${gaps.join(', ')} (map them in party-overrides.json or manifest-party-fixes.json)`);
+  blocked += gaps.length;
   const review = {
     unmatchedOld: matches.flatMap(m => m.unmatchedOld.map(o => ({ ...o, seat: m.constId, eci: json.seats.find(s => m.constId.includes(`_${s.constNo}_`))?.candidates.map(c => `${c.serial} ${c.name} (${c.partyId})`) }))),
     lowSimilarity: matches.flatMap((m, i) => m.matched.filter(x => x.similarity < LOW_SIMILARITY)
@@ -40,7 +46,7 @@ for (const y of electionsOf(ST).map(e => e.year)) {
   blocked += review.unmatchedOld.length;
   plans.push({ json, seed, matches });
 }
-if (blocked) { console.error(`${blocked} old rows need a decision in scraper/data/${state.slug}/decisions.json (see review-<year>.json). Nothing written.`); process.exit(1); }
+if (blocked) { console.error(`${blocked} problems (old rows need a decision in scraper/data/${state.slug}/decisions.json, see review-<year>.json; or alliance gaps above). Nothing written.`); process.exit(1); }
 
 const parties = new Map<string, PartyEntry>();
 for (const p of plans.flatMap(pl => pl.json.parties)) if (!['IND', 'NOTA'].includes(p.id)) parties.set(p.id, p);
@@ -59,4 +65,6 @@ if (fs.existsSync(corrections)) {
 if (!fs.existsSync(corrections)) fs.writeFileSync(corrections, emitCorrections(plans));
 else console.log(`${state.correctionsSeed} exists (frozen run-once seed); not rewritten`);
 for (const p of plans) fs.writeFileSync(path.join(DB_DIR, state.yearSeed(p.json.year)), emitYear(p));
+const fixed = plans.filter(p => manifestFixes[p.json.year]).map(p => ({ electionId: p.json.electionId, year: p.json.year, fixes: manifestFixes[p.json.year] }));
+if (fixed.length) fs.writeFileSync(path.join(DB_DIR, `seed_${state.slug}_manifest_fixes_v1.sql`), emitManifestFixes(`seed_${state.slug}_manifest_fixes_v1`, state.name, fixed));
 console.log(`Wrote ${state.partiesSeed} and ${plans.map(p => state.yearSeed(p.json.year)).join(', ')}`);

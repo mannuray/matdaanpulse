@@ -106,10 +106,10 @@
    "recognition": null
   },
   {
-   "id": "GNLF_WB",
+   "id": "GNLF",
    "name": "Gorakha National Liberation Front",
    "abbreviation": "GNLF",
-   "color": "#9CA3AF",
+   "color": "#228B22",
    "recognition": "Unrecognised"
   },
   {
@@ -1931,7 +1931,7 @@
     {
      "serial": 2,
      "name": "Prakash Dahal",
-     "partyId": "GNLF_WB",
+     "partyId": "GNLF",
      "sex": "M",
      "age": 48,
      "votes": 7427,
@@ -1987,7 +1987,7 @@
     {
      "serial": 2,
      "name": "Bim Subba",
-     "partyId": "GNLF_WB",
+     "partyId": "GNLF",
      "sex": "M",
      "age": 65,
      "votes": 13977,
@@ -2043,7 +2043,7 @@
     {
      "serial": 2,
      "name": "Pemu Chhetri",
-     "partyId": "GNLF_WB",
+     "partyId": "GNLF",
      "sex": "F",
      "age": 40,
      "votes": 21201,

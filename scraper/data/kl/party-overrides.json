@@ -1,1 +1,10 @@
-{ "MUSLIMLEAGUEKERALASTATECOMMITTEE": "IUML" }
+{
+  "MUSLIMLEAGUEKERALASTATECOMMITTEE": "IUML",
+  "CONGRESSSECULAR": {
+    "id": "INCS",
+    "name": "Congress (Secular)",
+    "abbreviation": "C(S)",
+    "color": "#00CED1",
+    "recognition": null
+  }
+}

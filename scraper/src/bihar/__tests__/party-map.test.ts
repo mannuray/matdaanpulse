@@ -78,6 +78,12 @@ describe('applyOverrides', () => {
     expect(eff.MUSLIMLEAGUEKERALASTATECOMMITTEE).toBe(iuml);
     expect(shared.MUSLIMLEAGUEKERALASTATECOMMITTEE).toBe(mul);
   });
+  it('accepts a full entry for an existing DB party the map does not know (Kerala C(S) is INCS)', () => {
+    const cs = { id: 'CS', name: 'Congress (Secular)', abbreviation: 'C(S)', color: '#9CA3AF', recognition: 'Unrecognised' as const };
+    const incs = { id: 'INCS', name: 'Congress (Secular)', abbreviation: 'C(S)', color: '#00CED1', recognition: null };
+    const eff = applyOverrides({ CONGRESSSECULAR: cs }, { CONGRESSSECULAR: incs });
+    expect(eff.CONGRESSSECULAR).toEqual(incs);
+  });
   it('fails on an override to an id the map does not know', () => {
     expect(() => applyOverrides({}, { X: 'NOPE' })).toThrow(/NOPE/);
   });

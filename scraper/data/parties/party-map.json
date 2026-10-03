@@ -1197,10 +1197,10 @@
     "recognition": "Unrecognised"
   },
   "COMMUNISTMARXISTPARTYKERALASTATECOMMITTEE": {
-    "id": "CMPKSC_KL",
+    "id": "CMPKSC",
     "name": "Communist Marxist Party Kerala State Committee",
     "abbreviation": "CMPKSC",
-    "color": "#9CA3AF",
+    "color": "#8B008B",
     "recognition": "Unrecognised"
   },
   "COMMUNISTPARTYOFINDIA": {
@@ -1491,10 +1491,10 @@
     "recognition": null
   },
   "GORAKHANATIONALLIBERATIONFRONT": {
-    "id": "GNLF_WB",
+    "id": "GNLF",
     "name": "Gorakha National Liberation Front",
     "abbreviation": "GNLF",
-    "color": "#9CA3AF",
+    "color": "#228B22",
     "recognition": "Unrecognised"
   },
   "GORKHAJANMUKTIMORCHA": {
@@ -1827,17 +1827,17 @@
     "recognition": "Unrecognised"
   },
   "JANADHIPATHIYAKERALACONGRESS": {
-    "id": "JKC_KL",
+    "id": "JKC",
     "name": "Janadhipathiya Kerala Congress",
     "abbreviation": "JKC",
-    "color": "#9CA3AF",
+    "color": "#CD853F",
     "recognition": "Unrecognised"
   },
   "JANADHIPATHYASAMRAKSHANASAMITHI": {
-    "id": "JPSS_KL",
+    "id": "JPSS",
     "name": "Janadhipathya Samrakshana Samithi",
     "abbreviation": "JPSS",
-    "color": "#9CA3AF",
+    "color": "#DAA520",
     "recognition": "State"
   },
   "JANATACONGRESS": {
@@ -2121,10 +2121,10 @@
     "recognition": null
   },
   "KERALACONGRESSANTIMERGERGROUP": {
-    "id": "KCAMG",
+    "id": "KECAMG",
     "name": "Kerala Congress (Anti-merger Group)",
     "abbreviation": "KC(AMG)",
-    "color": "#9CA3AF",
+    "color": "#800000",
     "recognition": "State"
   },
   "KERALACONGRESSB": {
@@ -2135,10 +2135,10 @@
     "recognition": null
   },
   "KERALACONGRESSJACOB": {
-    "id": "KECJ_KL",
+    "id": "KECJ",
     "name": "Kerala Congress (Jacob)",
     "abbreviation": "KEC(J)",
-    "color": "#9CA3AF",
+    "color": "#A52A2A",
     "recognition": "Unrecognised"
   },
   "KERALACONGRESSM": {
@@ -2156,10 +2156,10 @@
     "recognition": "Unrecognised"
   },
   "KERALACONGRESSSKARIAHTHOMAS": {
-    "id": "KCST",
+    "id": "KECST",
     "name": "Kerala Congress (Skariah Thomas)",
     "abbreviation": "KCST",
-    "color": "#9CA3AF",
+    "color": "#B22222",
     "recognition": "Unrecognised"
   },
   "KERALAJANAPAKSHAM": {
@@ -2184,10 +2184,10 @@
     "recognition": "Unrecognised"
   },
   "KERALAREVOLUTIONARYSOCIALISTPARTYBABYJOHN": {
-    "id": "KRSP_KL",
+    "id": "KRSP",
     "name": "Kerala Revolutionary Socialist Party(Baby John)",
     "abbreviation": "KRSP",
-    "color": "#9CA3AF",
+    "color": "#FF4500",
     "recognition": "Unrecognised"
   },
   "KISANPARTYOFINDIA": {
@@ -2814,10 +2814,10 @@
     "recognition": "Unrecognised"
   },
   "NATIONALSECULARCONFERENCE": {
-    "id": "NSC_KL",
+    "id": "NSC",
     "name": "National Secular Conference",
     "abbreviation": "NSC",
-    "color": "#9CA3AF",
+    "color": "#4169E1",
     "recognition": "Unrecognised"
   },
   "NATIONALTARGETPARTY": {
@@ -3941,10 +3941,10 @@
     "recognition": "Unrecognised"
   },
   "SOCIALISTJANTADEMOCRATIC": {
-    "id": "SJD_KL",
+    "id": "SJD",
     "name": "SOCIALIST JANTA (DEMOCRATIC)",
     "abbreviation": "SJD",
-    "color": "#9CA3AF",
+    "color": "#FF8C00",
     "recognition": "Unrecognised"
   },
   "SOCIALISTJANTAPARTY": {

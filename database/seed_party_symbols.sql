@@ -50,6 +50,7 @@ UPDATE parties SET symbol_url = '/symbols/logos/BMP.svg' WHERE id = 'BMP';
 UPDATE parties SET symbol_url = '/symbols/logos/BP1.svg' WHERE id = 'BP1';
 UPDATE parties SET symbol_url = '/symbols/logos/BPAP.svg' WHERE id = 'BPAP';
 UPDATE parties SET symbol_url = '/symbols/logos/BPF.svg' WHERE id = 'BPF';
+UPDATE parties SET symbol_url = '/symbols/logos/BPF.svg' WHERE id = 'BOPF';
 UPDATE parties SET symbol_url = '/symbols/logos/BPL.png' WHERE id = 'BPL';
 UPDATE parties SET symbol_url = '/symbols/logos/BRM.jpg' WHERE id = 'BRM';
 UPDATE parties SET symbol_url = '/symbols/logos/BRS.svg' WHERE id = 'BRS';

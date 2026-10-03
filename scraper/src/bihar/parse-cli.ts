@@ -10,7 +10,7 @@ import { STATES, electionOf, parseState } from './elections';
 import { normalize } from './normalize';
 import { applyOverrides } from './party-map';
 import { crossCheck, validateElection, type CrossCheckException } from './crosscheck';
-import type { PartyMap, Year } from './types';
+import type { PartyEntry, PartyMap, Year } from './types';
 
 const ST = parseState(process.argv[2]);
 const DATA_DIR = dataDir(ST);
@@ -24,7 +24,7 @@ for (const y of process.argv.slice(3).map(Number) as Year[]) {
   const cfg = electionOf(ST, y);
   const raw = loadRaw(ST, y);
   const xErrs = crossCheck(raw, readJson<CrossCheckException[]>('crosscheck-exceptions.json', []));
-  const { json, errors } = normalize(raw, cfg, applyOverrides(readJson<PartyMap>('party-map.json', {}, PARTY_DIR), readJson<Record<string, string>>('party-overrides.json', {})), new Date().toISOString().slice(0, 10));
+  const { json, errors } = normalize(raw, cfg, applyOverrides(readJson<PartyMap>('party-map.json', {}, PARTY_DIR), readJson<Record<string, string | PartyEntry>>('party-overrides.json', {})), new Date().toISOString().slice(0, 10));
   const all = [...xErrs, ...errors, ...(errors.length ? [] : validateElection(json, cfg))];
   console.log(`${STATES[ST].name} ${y}: ${raw.seats.length} seats, ${raw.seats.reduce((a, s) => a + s.candidates.length, 0)} candidates, ${all.length} problems`);
   for (const e of all) console.error(`  ${e}`);

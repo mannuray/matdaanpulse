@@ -154,6 +154,9 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | Stable ids colliding across states (same year/seat/serial) | namespace ids by state slug |
 | One ECI name meaning another party in a state | per-state `party-overrides.json` |
 | Old seeds with duplicate/garbled rows | decisions: delete the garbled twin, match the clean row |
+| The suggester suffixing (`KECJ_KL`) a party the DB already has under its old id, so manifest alliances lose its seats | `generate-cli` refuses while an alliance party has no candidate; point the ECI name at the old id (shared map or `party-overrides.json`, which also takes a full entry), or, for a real duplicate (`MUL`/`IUML`), `manifest-party-fixes.json` → run-once `seed_<st>_manifest_fixes_v1.sql` |
+| Regenerating a corrections seed after the year seeds were already regenerated | restore the old year seeds first (`git show <pre-branch commit>:database/…`); corrections are a diff against the old rows |
+| Flat 2016 sheets: summing the parsed rows as the seat total makes the turnout check compare a number with itself | read the sheet's own "Total Votes" column |
 
 ## 10. Running things
 

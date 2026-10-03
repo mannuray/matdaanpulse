@@ -29,10 +29,10 @@
    "recognition": "National"
   },
   {
-   "id": "CMPKSC_KL",
+   "id": "CMPKSC",
    "name": "Communist Marxist Party Kerala State Committee",
    "abbreviation": "CMPKSC",
-   "color": "#9CA3AF",
+   "color": "#8B008B",
    "recognition": "Unrecognised"
   },
   {
@@ -106,17 +106,17 @@
    "recognition": "State"
   },
   {
-   "id": "JPSS_KL",
+   "id": "JPSS",
    "name": "Janadhipathya Samrakshana Samithi",
    "abbreviation": "JPSS",
-   "color": "#9CA3AF",
+   "color": "#DAA520",
    "recognition": "State"
   },
   {
-   "id": "KCAMG",
+   "id": "KECAMG",
    "name": "Kerala Congress (Anti-merger Group)",
    "abbreviation": "KC(AMG)",
-   "color": "#9CA3AF",
+   "color": "#800000",
    "recognition": "State"
   },
   {
@@ -127,10 +127,10 @@
    "recognition": null
   },
   {
-   "id": "KECJ_KL",
+   "id": "KECJ",
    "name": "Kerala Congress (Jacob)",
    "abbreviation": "KEC(J)",
-   "color": "#9CA3AF",
+   "color": "#A52A2A",
    "recognition": "Unrecognised"
   },
   {
@@ -148,10 +148,10 @@
    "recognition": "Unrecognised"
   },
   {
-   "id": "KRSP_KL",
+   "id": "KRSP",
    "name": "Kerala Revolutionary Socialist Party(Baby John)",
    "abbreviation": "KRSP",
-   "color": "#9CA3AF",
+   "color": "#FF4500",
    "recognition": "Unrecognised"
   },
   {
@@ -197,10 +197,10 @@
    "recognition": null
   },
   {
-   "id": "SJD_KL",
+   "id": "SJD",
    "name": "SOCIALIST JANTA (DEMOCRATIC)",
    "abbreviation": "SJD",
-   "color": "#9CA3AF",
+   "color": "#FF8C00",
    "recognition": "Unrecognised"
   },
   {
@@ -1155,7 +1155,7 @@
     {
      "serial": 1,
      "name": "K.P.Mohanan S/o P R Kurup",
-     "partyId": "SJD_KL",
+     "partyId": "SJD",
      "sex": "M",
      "age": 61,
      "votes": 57164,
@@ -1238,7 +1238,7 @@
     {
      "serial": 2,
      "name": "Joseph Chaavara",
-     "partyId": "SJD_KL",
+     "partyId": "SJD",
      "sex": "M",
      "age": 50,
      "votes": 44665,
@@ -1489,7 +1489,7 @@
     {
      "serial": 1,
      "name": "M.V Sreyamskumar",
-     "partyId": "SJD_KL",
+     "partyId": "SJD",
      "sex": "M",
      "age": 44,
      "votes": 67018,
@@ -1572,7 +1572,7 @@
     {
      "serial": 2,
      "name": "Adv.M.K. Premnath",
-     "partyId": "SJD_KL",
+     "partyId": "SJD",
      "sex": "M",
      "age": 59,
      "votes": 46065,
@@ -2025,7 +2025,7 @@
     {
      "serial": 2,
      "name": "Shaik P Harriz",
-     "partyId": "SJD_KL",
+     "partyId": "SJD",
      "sex": "M",
      "age": 45,
      "votes": 52489,
@@ -4184,7 +4184,7 @@
     {
      "serial": 2,
      "name": "N. Vinesh",
-     "partyId": "KECJ_KL",
+     "partyId": "KECJ",
      "sex": "M",
      "age": 31,
      "votes": 38419,
@@ -4323,7 +4323,7 @@
     {
      "serial": 2,
      "name": "M.V.Raghavan",
-     "partyId": "CMPKSC_KL",
+     "partyId": "CMPKSC",
      "sex": "M",
      "age": 77,
      "votes": 55475,
@@ -4500,7 +4500,7 @@
     {
      "serial": 2,
      "name": "C.P.John",
-     "partyId": "CMPKSC_KL",
+     "partyId": "CMPKSC",
      "sex": "M",
      "age": 53,
      "votes": 57763,
@@ -4991,7 +4991,7 @@
     {
      "serial": 2,
      "name": "Umesh Challiyil",
-     "partyId": "JPSS_KL",
+     "partyId": "JPSS",
      "sex": "M",
      "age": 49,
      "votes": 45219,
@@ -5417,7 +5417,7 @@
     {
      "serial": 2,
      "name": "Advocate Johny Nelloor",
-     "partyId": "KECJ_KL",
+     "partyId": "KECJ",
      "sex": "M",
      "age": 60,
      "votes": 54330,
@@ -6229,7 +6229,7 @@
     {
      "serial": 1,
      "name": "T. M. Jacob",
-     "partyId": "KECJ_KL",
+     "partyId": "KECJ",
      "sex": "M",
      "age": 60,
      "votes": 66503,
@@ -6940,7 +6940,7 @@
     {
      "serial": 2,
      "name": "Stephen George",
-     "partyId": "KCAMG",
+     "partyId": "KECAMG",
      "sex": "M",
      "age": 47,
      "votes": 45730,
@@ -7597,7 +7597,7 @@
     {
      "serial": 2,
      "name": "K.R.Gouriamma",
-     "partyId": "JPSS_KL",
+     "partyId": "JPSS",
      "sex": "F",
      "age": 91,
      "votes": 67878,
@@ -8059,7 +8059,7 @@
     {
      "serial": 2,
      "name": "K.K Shaju",
-     "partyId": "JPSS_KL",
+     "partyId": "JPSS",
      "sex": "M",
      "age": 48,
      "votes": 60754,
@@ -8586,7 +8586,7 @@
     {
      "serial": 2,
      "name": "Adv. A. N. Rajanbabu",
-     "partyId": "JPSS_KL",
+     "partyId": "JPSS",
      "sex": "M",
      "age": 62,
      "votes": 54564,
@@ -8642,7 +8642,7 @@
     {
      "serial": 1,
      "name": "Shibu Baby John",
-     "partyId": "KRSP_KL",
+     "partyId": "KRSP",
      "sex": "M",
      "age": 47,
      "votes": 65002,
@@ -9954,7 +9954,7 @@
     {
      "serial": 2,
      "name": "V.Surendran Pillai",
-     "partyId": "KCAMG",
+     "partyId": "KECAMG",
      "sex": "M",
      "age": 55,
      "votes": 43770,
@@ -10073,7 +10073,7 @@
     {
      "serial": 3,
      "name": "Charupara Ravi",
-     "partyId": "SJD_KL",
+     "partyId": "SJD",
      "sex": "M",
      "age": 62,
      "votes": 20248,

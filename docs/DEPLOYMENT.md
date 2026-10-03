@@ -177,8 +177,16 @@ Migration 022 adds `image_credits`; the backend serves `GET /credits`.
 
 **Five states' history (Phase 2A).** For each of WB, AS, KL, TN, PY, `setup.sh` runs `seed_<st>_vs_parties.sql` →
 `seed_<st>_corrections_v1.sql` (run-once, with the same pre-flight as Bihar: it stops, changing nothing, if production
-holds candidates the old seeds didn't have or a changed party) → the year seeds; then `seed_<st>_person_links_v1.sql`.
-After the deploy, recompute the seat analysis for the 15 elections (ids in `scraper/src/bihar/elections.ts`).
+holds candidates the old seeds didn't have or a changed party) → the year seeds; for Kerala and Assam then
+`seed_<st>_manifest_fixes_v1.sql` (run-once: points the published manifests' alliance/leader party ids at the ids the
+ECI data uses, e.g. Kerala 2011 `MUL` → `IUML`, Assam 2016 `BPF` → `BOPF`); then `seed_<st>_person_links_v1.sql`.
+If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds from the commit before Phase 2A
+(`git show 5dc0553:database/seed_<st>_vs_<year>.sql`). After the deploy:
+1. Recompute the seat analysis (`POST /api/v1/admin/constituencies/analysis/compute/:electionId`, admin token) for the 15 elections:
+   AS `f6a7b8c9-d0e1-2345-f012-56789012{2011,2016,2021}`, KL `a7b8c9d0-e1f2-3456-0123-67890123{2011,2016,2021}`,
+   PY `b1c2d3e4-f5a6-7890-1234-567890ab{2011,2016,2021}`, TN `e5f6a7b8-c9d0-1234-ef01-45678901{2011,2016,2021}`,
+   WB `d4e5f6a7-b8c9-0123-def0-345678901011`, `…-345678901016`, `…-345678901021`.
+2. Spot-check an alliance tally: Assam 2016 NDA must read 86 seats (BJP 60, AGP 14, BPF 12).
 
 ### 5.1 Neon
 

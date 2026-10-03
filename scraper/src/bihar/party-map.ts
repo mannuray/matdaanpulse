@@ -49,11 +49,13 @@ export function suggestEntries(lists: PartyListEntry[], db: DbParty[], map: Part
 /**
  * Per-state overrides (scraper/data/<slug>/party-overrides.json: full-name key → existing party id). Used when one
  * ECI name means a different party in this state than the shared map says (Kerala's "Muslim League Kerala State
- * Committee" is IUML; Bihar's 2010 rows keep MUL_BR). The shared map is not changed.
+ * Committee" is IUML; Bihar's 2010 rows keep MUL_BR). The shared map is not changed. A value is a party id from the
+ * map, or a full entry for a party that is in the DB but not in the map (Kerala's "Congress (Secular)" is INCS).
  */
-export function applyOverrides(map: PartyMap, overrides: Record<string, string>): PartyMap {
+export function applyOverrides(map: PartyMap, overrides: Record<string, string | PartyEntry>): PartyMap {
   const out: PartyMap = { ...map };
   for (const [key, id] of Object.entries(overrides)) {
+    if (typeof id !== 'string') { out[key] = id; continue; }
     const target = Object.values(map).find(p => p.id === id);
     if (!target) throw new Error(`party override ${key} → ${id}: no party with id ${id} in the party map`);
     out[key] = target;

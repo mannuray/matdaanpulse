@@ -92,6 +92,8 @@ for st in wb as kl tn py; do
   run "seed_${st}_corrections_v1.sql"
   for y in 2011 2016 2021; do run "seed_${st}_vs_${y}.sql"; done
 done
+# Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
+for st in kl as; do run "seed_${st}_manifest_fixes_v1.sql"; done
 
 echo "==> Seeds: districts & regions (must follow VS results — they UPDATE constituencies)"
 run seed_bihar_districts_regions.sql

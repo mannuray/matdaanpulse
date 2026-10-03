@@ -64,10 +64,10 @@
    "recognition": "National"
   },
   {
-   "id": "CMPKSC_KL",
+   "id": "CMPKSC",
    "name": "Communist Marxist Party Kerala State Committee",
    "abbreviation": "CMPKSC",
-   "color": "#9CA3AF",
+   "color": "#8B008B",
    "recognition": "Unrecognised"
   },
   {
@@ -88,13 +88,6 @@
    "id": "CPIM_KL",
    "name": "Communist Party of India (Marxist-Leninist) Red Star",
    "abbreviation": "CPIM",
-   "color": "#9CA3AF",
-   "recognition": "Unrecognised"
-  },
-  {
-   "id": "CS",
-   "name": "Congress (Secular)",
-   "abbreviation": "C(S)",
    "color": "#9CA3AF",
    "recognition": "Unrecognised"
   },
@@ -134,6 +127,13 @@
    "recognition": "National"
   },
   {
+   "id": "INCS",
+   "name": "Congress (Secular)",
+   "abbreviation": "C(S)",
+   "color": "#00CED1",
+   "recognition": null
+  },
+  {
    "id": "IND",
    "name": "Independent",
    "abbreviation": "IND",
@@ -169,10 +169,10 @@
    "recognition": "State"
   },
   {
-   "id": "JKC_KL",
+   "id": "JKC",
    "name": "Janadhipathiya Kerala Congress",
    "abbreviation": "JKC",
-   "color": "#9CA3AF",
+   "color": "#CD853F",
    "recognition": "Unrecognised"
   },
   {
@@ -190,10 +190,10 @@
    "recognition": null
   },
   {
-   "id": "KECJ_KL",
+   "id": "KECJ",
    "name": "Kerala Congress (Jacob)",
    "abbreviation": "KEC(J)",
-   "color": "#9CA3AF",
+   "color": "#A52A2A",
    "recognition": "Unrecognised"
   },
   {
@@ -246,10 +246,10 @@
    "recognition": null
   },
   {
-   "id": "NSC_KL",
+   "id": "NSC",
    "name": "National Secular Conference",
    "abbreviation": "NSC",
-   "color": "#9CA3AF",
+   "color": "#4169E1",
    "recognition": "Unrecognised"
   },
   {
@@ -1185,7 +1185,7 @@
     {
      "serial": 1,
      "name": "Ramachandran Kadannappalli",
-     "partyId": "CS",
+     "partyId": "INCS",
      "sex": "M",
      "age": 76,
      "votes": 60313,
@@ -3870,7 +3870,7 @@
     {
      "serial": 1,
      "name": "V.abdurahiman",
-     "partyId": "NSC_KL",
+     "partyId": "NSC",
      "sex": "M",
      "age": 59,
      "votes": 70704,
@@ -5142,7 +5142,7 @@
     {
      "serial": 2,
      "name": "C.n.vijayakrishnan",
-     "partyId": "CMPKSC_KL",
+     "partyId": "CMPKSC",
      "sex": "M",
      "age": 61,
      "votes": 51441,
@@ -7156,7 +7156,7 @@
     {
      "serial": 1,
      "name": "Anoop Jacob",
-     "partyId": "KECJ_KL",
+     "partyId": "KECJ",
      "sex": "M",
      "age": 43,
      "votes": 85056,
@@ -11205,7 +11205,7 @@
     {
      "serial": 1,
      "name": "Adv.antony Raju",
-     "partyId": "JKC_KL",
+     "partyId": "JKC",
      "sex": "M",
      "age": 66,
      "votes": 48748,

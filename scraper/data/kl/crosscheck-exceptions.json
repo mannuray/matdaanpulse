@@ -2,61 +2,61 @@
  {
   "year": 2016,
   "key": "total-valid:23",
-  "reason": "ECI's Constituency Data Summary total valid votes (153670) differs from its own Detailed Results (153667), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (153670) differs from its own Detailed Results (153667), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:25",
-  "reason": "ECI's Constituency Data Summary total valid votes (174565) differs from its own Detailed Results (174568), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (174565) differs from its own Detailed Results (174568), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:33",
-  "reason": "ECI's Constituency Data Summary total valid votes (149556) differs from its own Detailed Results (149554), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (149556) differs from its own Detailed Results (149554), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:39",
-  "reason": "ECI's Constituency Data Summary total valid votes (150215) differs from its own Detailed Results (150099), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (150215) differs from its own Detailed Results (150099), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:40",
-  "reason": "ECI's Constituency Data Summary total valid votes (141850) differs from its own Detailed Results (141833), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (141850) differs from its own Detailed Results (141833), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:45",
-  "reason": "ECI's Constituency Data Summary total valid votes (156761) differs from its own Detailed Results (156754), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (156761) differs from its own Detailed Results (156754), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:63",
-  "reason": "ECI's Constituency Data Summary total valid votes (147654) differs from its own Detailed Results (147650), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (147654) differs from its own Detailed Results (147650), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:65",
-  "reason": "ECI's Constituency Data Summary total valid votes (159766) differs from its own Detailed Results (159781), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (159766) differs from its own Detailed Results (159781), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:70",
-  "reason": "ECI's Constituency Data Summary total valid votes (149326) differs from its own Detailed Results (149324), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (149326) differs from its own Detailed Results (149324), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:88",
-  "reason": "ECI's Constituency Data Summary total valid votes (117384) differs from its own Detailed Results (117382), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (117384) differs from its own Detailed Results (117382), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:98",
-  "reason": "ECI's Constituency Data Summary total valid votes (134036) differs from its own Detailed Results (134034), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (134036) differs from its own Detailed Results (134034), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  },
  {
   "year": 2016,
   "key": "total-valid:132",
-  "reason": "ECI's Constituency Data Summary total valid votes (133958) differs from its own Detailed Results (133959), which add up exactly to the seat's TURNOUT row; winner, runner-up, margin, electors and candidate count agree"
+  "reason": "ECI's Constituency Data Summary total valid votes (133958) differs from its own Detailed Results (133959), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
  }
 ]

@@ -32,9 +32,15 @@ export function parseDetailedRows(rows: Row[]): RawSeat[] {
     sex: col('SEX', 'GENDER', 'CANDIDATE SEX'), age: col('AGE', 'CANDIDATE AGE'), party: col('PARTY', 'PARTY NAME'),
     general: col('GENERAL', 'VALID VOTES POLLED IN GENERAL'), postal: col('POSTAL', 'VALID VOTES POLLED IN POSTAL'),
     total: col('TOTAL', 'TOTAL VALID VOTES'), electors: col('TOTAL ELECTORS') };
+  // Flat files carry the seat's total in a "Total Votes" column; summing the parsed rows instead would let the
+  // turnout-row cross-check compare a number with itself.
+  const seatTotal = h.indexOf('TOTAL VOTES');
   // Most reports close each seat with a TURNOUT row; flat ones (Puducherry 2016) don't, so seats end when the number changes.
   const closesWithTurnout = rows.slice(hi + 1).some(r => text(r[0]).toUpperCase().replace(/\s/g, '').startsWith('TURNOUT'));
-  const close = (seat: RawSeat) => { seat.totalVotes = seat.candidates.reduce((a, c) => a + c.total, 0) + (seat.nota ?? 0); seats.push(seat); };
+  const close = (seat: RawSeat) => {
+    if (seatTotal < 0) seat.totalVotes = seat.candidates.reduce((a, c) => a + c.total, 0) + (seat.nota ?? 0);
+    seats.push(seat);
+  };
   const seats: RawSeat[] = [];
   let cur: RawSeat | null = null;
   for (const r of rows.slice(hi + 1)) {
@@ -50,7 +56,8 @@ export function parseDetailedRows(rows: Row[]): RawSeat[] {
     if (cur && !closesWithTurnout && cur.constNo !== constNo) { close(cur); cur = null; }
     if (!cur) {
       const ac = splitAcName(text(r[C.ac]));
-      cur = { constNo, acName: ac.name, type: ac.type, electors: num(r[C.electors]), candidates: [], nota: null, totalVotes: 0 };
+      cur = { constNo, acName: ac.name, type: ac.type, electors: num(r[C.electors]), candidates: [], nota: null,
+        totalVotes: !closesWithTurnout && seatTotal >= 0 ? num(r[seatTotal]) : 0 };
     } else if (cur.constNo !== constNo) {
       throw new Error(`Detailed Results: seat ${cur.constNo} has no TURNOUT row before seat ${constNo}`);
     }

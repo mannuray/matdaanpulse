@@ -31,7 +31,7 @@ INSERT INTO parties (id, name, abbreviation, color, eci_recognition) VALUES
   ('FDLP', 'Forward Democratic Labour Party', 'FDLP', '#9CA3AF', 'Unrecognised'),
   ('GJM', 'Gorkha Janmukti Morcha', NULL, '#006400', NULL),
   ('GMM', 'Guru Chand Mukti Morcha', 'GMM', '#9CA3AF', 'Unrecognised'),
-  ('GNLF_WB', 'Gorakha National Liberation Front', 'GNLF', '#9CA3AF', 'Unrecognised'),
+  ('GNLF', 'Gorakha National Liberation Front', 'GNLF', '#228B22', 'Unrecognised'),
   ('GRAC', 'Gorkha Rashtriya Congress', 'grac', '#9CA3AF', 'Unrecognised'),
   ('HAMS', 'Hindustani Awam Morcha (Secular)', NULL, '#E8C547', NULL),
   ('HKRD', 'Hindustan Krantikari Dal', 'HKRD', '#9CA3AF', 'Unrecognised'),
