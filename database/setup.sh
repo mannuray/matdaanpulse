@@ -104,6 +104,8 @@ for st in as kl py tn wb; do run "seed_${st}_districts_regions.sql"; done
 run seed_as_2026_districts_regions.sql
 # Person links across 2011-2021 (run-once; must follow the VS results)
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
+# 2026 candidates → their 2011-2021 persons (run-once; same delimitation only, so none for Assam 2026)
+for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
 
 echo "==> Seeds: Bihar persons (must follow Bihar VS results + regions)"
 run seed_bihar_persons.sql

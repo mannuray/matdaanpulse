@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { groupCandidacies, linkKey, emitLinksSeed, type Candidacy } from '../links';
+import { groupCandidacies, linkKey, emitLinksSeed, onlyGroupsTouching, type Candidacy } from '../links';
 
 const c = (candidateId: string, year: number, constNo: number, name: string, partyId: string, age: number | null = null): Candidacy => ({ candidateId, year, constNo, name, partyId, age });
 
@@ -55,5 +55,22 @@ describe('emitLinksSeed', () => {
     expect(sql).toContain("pm.duplicate->>'id' = m.pid::text OR pm.keeper_ref = m.pid");
     expect(sql).toContain("al.action = 'CANDIDATE_SPLIT' AND al.entity_type = 'candidate' AND al.entity_id = m.cid::text");
     expect(sql).toContain('pp.photo_url IS NOT NULL OR pp.bio IS NOT NULL OR pp.wikipedia_url IS NOT NULL OR pp.date_of_birth IS NOT NULL');
+  });
+});
+
+describe('links across delimitations and the 2026 v2 seed', () => {
+  it('never links candidacies across delimitations (same seat number, different boundaries)', () => {
+    const a = { ...c('a', 2021, 33, 'Ram Das', 'BJP', 50), era: '2008' };
+    const b = { ...c('b', 2026, 33, 'Ram Das', 'BJP', 55), era: '2023' };
+    expect(groupCandidacies([a, b])).toEqual([]);
+    expect(groupCandidacies([a, { ...b, era: '2008' }])).toHaveLength(1);
+  });
+  it('keeps only the groups that include a candidacy of the given year (the v2 seed adds 2026 only)', () => {
+    const groups = groupCandidacies([c('a', 2016, 1, 'Ram Das', 'BJP', 40), c('b', 2021, 1, 'Ram Das', 'BJP', 45),
+      c('x', 2021, 2, 'Sita Devi', 'INC', 40), c('y', 2026, 2, 'Sita Devi', 'INC', 45)]);
+    expect(onlyGroupsTouching(groups, 2026).map(g => g.members.map(m => m.candidateId))).toEqual([['x', 'y']]);
+  });
+  it('names the state and years in the seed header', () => {
+    expect(emitLinksSeed([], 'seed_kl_person_links_v2', 'Kerala VS 2011-2026')).toContain('across Kerala VS 2011-2026');
   });
 });

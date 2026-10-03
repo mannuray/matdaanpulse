@@ -1,0 +1,279 @@
+[
+ {
+  "key": "ADVMLIJU|108",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "09f2601c-3286-40bc-b4c9-8c88aa23c18e",
+    "year": 2016,
+    "constNo": 108,
+    "name": "Adv.M.Liju",
+    "partyId": "INC",
+    "age": 36
+   },
+   {
+    "candidateId": "5a27bdef-f772-559e-a586-5083b5da1bf8",
+    "year": 2026,
+    "constNo": 108,
+    "name": "Adv.m.liju",
+    "partyId": "INC",
+    "age": 46,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ADVVDSATHEESAN|78",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "2f707434-0a70-4f01-98b9-f1f43317866c",
+    "year": 2011,
+    "constNo": 78,
+    "name": "Adv.V.D.Satheesan",
+    "partyId": "INC",
+    "age": 46
+   },
+   {
+    "candidateId": "309676f1-eea8-5a19-a26e-da8e6c50c046",
+    "year": 2026,
+    "constNo": 78,
+    "name": "Adv.v.d.satheesan",
+    "partyId": "INC",
+    "age": 61,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ASHOKAN|82",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a08c0109-04f8-5717-988b-a23d14033372",
+    "year": 2021,
+    "constNo": 82,
+    "name": "Ashokan",
+    "partyId": "IND",
+    "age": 64
+   },
+   {
+    "candidateId": "ce033e45-ec8d-5f7a-a25b-3f4d01afc935",
+    "year": 2026,
+    "constNo": 82,
+    "name": "Ashokan",
+    "partyId": "IND",
+    "age": 71,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "DALEEMA|102",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "2a4960c5-23c6-40df-9611-0cb1a2c96a6f",
+    "year": 2021,
+    "constNo": 102,
+    "name": "Daleema",
+    "partyId": "CPIM",
+    "age": 55
+   },
+   {
+    "candidateId": "b2414391-52ad-5b60-ac6b-c8a3af42dabb",
+    "year": 2026,
+    "constNo": 102,
+    "name": "Daleema",
+    "partyId": "CPIM",
+    "age": 60,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GSUDHAKARAN|105",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b2d9946a-7d1a-4829-9124-034064029261",
+    "year": 2011,
+    "constNo": 105,
+    "name": "G.Sudhakaran",
+    "partyId": "CPIM",
+    "age": 64
+   },
+   {
+    "candidateId": "5af6cccd-6b2e-43f9-804d-7ff1c3e41981",
+    "year": 2016,
+    "constNo": 105,
+    "name": "G.Sudhakaran",
+    "partyId": "CPIM",
+    "age": 68
+   },
+   {
+    "candidateId": "23ad56ee-b3b6-5e24-b552-77406e7bc8a6",
+    "year": 2026,
+    "constNo": 105,
+    "name": "G.sudhakaran",
+    "partyId": "IND",
+    "age": 78,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JOHN D SOUZA I|1",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4253851f-179f-56cc-bb7f-6bc2a79b2a69",
+    "year": 2021,
+    "constNo": 1,
+    "name": "John D Souza I",
+    "partyId": "IND",
+    "age": 58
+   },
+   {
+    "candidateId": "8e19fdc9-7cd9-58f7-9f93-e77e050164ac",
+    "year": 2026,
+    "constNo": 1,
+    "name": "John D' Souza I",
+    "partyId": "IND",
+    "age": 631,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KUNHIRAMAN|3",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6eae20ed-314b-5d56-8d3d-1346de66bc52",
+    "year": 2011,
+    "constNo": 3,
+    "name": "Kunhiraman",
+    "partyId": "IND",
+    "age": 49
+   },
+   {
+    "candidateId": "a1dd8d67-1421-5b43-a445-050e60ce8239",
+    "year": 2026,
+    "constNo": 3,
+    "name": "Kunhiraman",
+    "partyId": "IND",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "OMALLOOR RAMACHANDRAN|113",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ea8bdf26-910a-5f1f-a0c9-07277285f32b",
+    "year": 2021,
+    "constNo": 113,
+    "name": "Omalloor Ramachandran",
+    "partyId": "APOI",
+    "age": 53
+   },
+   {
+    "candidateId": "e949a3c6-cab3-5b8c-a322-300bbacca0e9",
+    "year": 2026,
+    "constNo": 113,
+    "name": "Omalloor Ramachandran",
+    "partyId": "APOI",
+    "age": 45,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "PKBASHEER|34",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6fdc0965-e6f3-4972-8df6-e2b56fd1cac1",
+    "year": 2011,
+    "constNo": 34,
+    "name": "P.K.Basheer",
+    "partyId": "IUML",
+    "age": 51
+   },
+   {
+    "candidateId": "b19b2b90-ee62-52a2-969b-00d8187d9751",
+    "year": 2026,
+    "constNo": 34,
+    "name": "P.k.basheer",
+    "partyId": "IUML",
+    "age": 66,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAMACHANDRAN KADANNAPPALLI|11",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "98104864-22a6-49c3-a80f-257096b4370a",
+    "year": 2011,
+    "constNo": 11,
+    "name": "Ramachandran Kadannappalli",
+    "partyId": "IND",
+    "age": 53
+   },
+   {
+    "candidateId": "38953681-efaa-42df-aee1-f4fe2f28d66e",
+    "year": 2016,
+    "constNo": 11,
+    "name": "Ramachandran Kadannappalli",
+    "partyId": "INCS",
+    "age": 71
+   },
+   {
+    "candidateId": "47093ba6-5509-48e0-8606-826d2364d244",
+    "year": 2021,
+    "constNo": 11,
+    "name": "Ramachandran Kadannappalli",
+    "partyId": "INCS",
+    "age": 76
+   },
+   {
+    "candidateId": "be9d2990-8cf3-5471-8334-0e17b030a483",
+    "year": 2026,
+    "constNo": 11,
+    "name": "Ramachandran Kadannappalli",
+    "partyId": "INCS",
+    "age": 81,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUNNY|16",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6f5801ff-b2f3-5886-b6a0-30f01b8c95ef",
+    "year": 2016,
+    "constNo": 16,
+    "name": "Sunny",
+    "partyId": "IND",
+    "age": 43
+   },
+   {
+    "candidateId": "2018741d-2b42-5d40-b8a4-ae7f6015b8e5",
+    "year": 2026,
+    "constNo": 16,
+    "name": "Sunny",
+    "partyId": "IND",
+    "age": 67,
+    "era": "2008"
+   }
+  ]
+ }
+]

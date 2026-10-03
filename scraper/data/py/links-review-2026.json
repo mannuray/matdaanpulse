@@ -1,0 +1,102 @@
+[
+ {
+  "key": "BALAMURUGAN|13",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c1b7edb1-a52c-594c-8529-7e27492da927",
+    "year": 2021,
+    "constNo": 13,
+    "name": "Balamurugan",
+    "partyId": "BSP",
+    "age": 38
+   },
+   {
+    "candidateId": "b73a7b80-ef43-5175-a3d3-cfc88469d0e3",
+    "year": 2026,
+    "constNo": 13,
+    "name": "Balamurugan",
+    "partyId": "IND",
+    "age": 44,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GOPALAKRISHNAN|18",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9b72665f-4a6d-508c-b3a4-f6d783115e54",
+    "year": 2016,
+    "constNo": 18,
+    "name": "Gopalakrishnan",
+    "partyId": "PMK",
+    "age": 61
+   },
+   {
+    "candidateId": "896ff9e7-b817-5206-a8f2-14519f001834",
+    "year": 2026,
+    "constNo": 18,
+    "name": "Gopalakrishnan",
+    "partyId": "PMK",
+    "age": 71,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KSP|7",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b26bd59e-6ae4-4526-b682-a6b907331310",
+    "year": 2021,
+    "constNo": 7,
+    "name": "K.S.P @ S. Ramesh",
+    "partyId": "AINRC",
+    "age": 41
+   },
+   {
+    "candidateId": "55267537-2787-5c15-86d3-382c08841647",
+    "year": 2026,
+    "constNo": 7,
+    "name": "K.s.p @ S. Ramesh",
+    "partyId": "AINRC",
+    "age": 47,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NATI BURIYYA|30",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "7d3a42d3-6b98-5331-a060-a33af1058e9a",
+    "year": 2016,
+    "constNo": 30,
+    "name": "Nati Buriyya",
+    "partyId": "IND",
+    "age": 61
+   },
+   {
+    "candidateId": "f4dc3590-c9ff-5210-a835-94856f7f44f8",
+    "year": 2021,
+    "constNo": 30,
+    "name": "Nati Buriyya",
+    "partyId": "IND",
+    "age": 66
+   },
+   {
+    "candidateId": "2ff7ed70-4d21-5714-aa94-d4e11150c1ac",
+    "year": 2026,
+    "constNo": 30,
+    "name": "Nati Buriyya",
+    "partyId": "IND",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ }
+]
