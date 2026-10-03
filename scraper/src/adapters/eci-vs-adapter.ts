@@ -51,7 +51,7 @@ export const BIHAR_2025_DEFAULTS: Required<EciVsAdapterOptions> = {
 const LIST_ROW_CELLS = 9;
 
 /** Fetch with retry and delay */
-async function fetchWithRetry(url: string, retries = 3, delayMs = 500): Promise<string> {
+export async function fetchWithRetry(url: string, retries = 3, delayMs = 500): Promise<string> {
   for (let i = 0; i < retries; i++) {
     try {
       const res = await fetch(url);
@@ -181,6 +181,20 @@ export function parseCandidateDetailPage(html: string): CandidateDetail[] {
   });
 
   return candidates;
+}
+
+/** Party-wise result page: "Full Name - ABBR", Won, Leading (review §4). */
+export function parsePartywisePage(html: string): { party: string; won: number; leading: number }[] {
+  const $ = cheerio.load(html);
+  const out: { party: string; won: number; leading: number }[] = [];
+  $('table.table tbody tr').each((_i, row) => {
+    const cells = $(row).children('td');
+    if (cells.length < 3) return;
+    const party = $(cells[0]).text().trim();
+    const won = parseInt($(cells[1]).text().trim(), 10), leading = parseInt($(cells[2]).text().trim(), 10);
+    if (party && !isNaN(won) && !isNaN(leading)) out.push({ party, won, leading });
+  });
+  return out;
 }
 
 // --- Backward-compatible function API (Bihar 2025 defaults; base URL from ECI_VS_BASE_URL) ---

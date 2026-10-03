@@ -1,0 +1,84 @@
+import { describe, it, expect, vi } from 'vitest';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { EciWebAdapter } from '../adapters/eci-web';
+import { parseCandidateDetailPage, parseConstituencyListPage, parsePartywisePage } from '../../adapters/eci-vs-adapter';
+
+const fx = (f: string) => readFileSync(join(__dirname, 'fixtures', f), 'utf8');
+// Real ECI list page 6 (the one that lists seat 100, HABRA); the fake serves it as page 1.
+const list = fx('eci-list-p6.htm'), cand = fx('eci-candidates-100.htm');
+
+/** Build a roster from the fixtures themselves, so the real page layout is what gets mapped. */
+function rosterFromFixtures() {
+  const rows = parseConstituencyListPage(list);
+  const habra = rows.find(r => r.constNo === 100)!;
+  const cands = parseCandidateDetailPage(cand);
+  const partyNames = [...new Set(cands.map(c => c.party))];
+  const parties = partyNames.map((n, i) => ({ id: /none of the above/i.test(n) ? 'NOTA' : /^independent$/i.test(n) ? 'IND' : `P${i}`, name: n, abbreviation: null }));
+  const pid = (n: string) => parties.find(p => p.name === n)!.id;
+  return { rows, habra, parties, roster: { election: { id: 'e', type: 'VS', state_id: 25, year: 2026, status: 'Live' }, parties,
+    seats: [{ const_id: 'WB_100', const_no: 100, name: habra?.name ?? 'HABRA', type: 'GEN', state_id: 25,
+      candidates: cands.map((c, i) => ({ candidate_id: `c${i}`, name: c.name, party_id: pid(c.party) })) }] } };
+}
+
+function fakeFetch() {
+  const calls: string[] = [];
+  const fetchText = vi.fn(async (url: string, _ims?: string) => {
+    calls.push(url);
+    if (url.endsWith('statewiseS251.htm')) return { status: 200, text: list, lastModified: 'Mon, 05 May 2026 10:48:00 GMT' };
+    if (url.includes('statewiseS25')) return { status: 404, text: '', lastModified: null };
+    if (url.endsWith('candidateswise-S25100.htm')) return { status: 200, text: cand, lastModified: null };
+    return { status: 404, text: '', lastModified: null };
+  });
+  return { fetchText, calls };
+}
+
+describe('EciWebAdapter on real ECI pages', () => {
+  it('the fixture list page lists seat 100', () => {
+    expect(parseConstituencyListPage(list).some(r => r.constNo === 100)).toBe(true);
+  });
+  it('maps the fixture seat completely and returns its full state once', async () => {
+    const { roster } = rosterFromFixtures();
+    const { fetchText } = fakeFetch();
+    const a = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText });
+    const report = await a.prepare(roster as any);
+    expect(report.seats_mapped).toBe(1);
+    const first = await a.poll();
+    expect(first).toHaveLength(1);
+    expect(first[0].const_id).toBe('WB_100');
+    expect(Object.keys(first[0].votes)).toHaveLength(roster.seats[0].candidates.length);
+    expect(first[0].state).toBe('declared');
+    expect(await a.poll()).toEqual([]);   // unchanged list signature: no refetch, nothing sent
+  });
+  it('sends If-Modified-Since on the second poll and reuses the page on 304', async () => {
+    const { roster } = rosterFromFixtures();
+    const { fetchText } = fakeFetch();
+    const a = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText });
+    await a.prepare(roster as any); await a.poll();
+    fetchText.mockImplementationOnce(async () => ({ status: 304, text: '', lastModified: null }));
+    await a.poll();
+    expect(fetchText.mock.calls.some(c => c[1] === 'Mon, 05 May 2026 10:48:00 GMT')).toBe(true);
+  });
+  it('a seat in the roster that the source does not list yet is not sent', async () => {
+    const { roster } = rosterFromFixtures();
+    roster.seats.push({ const_id: 'WB_999', const_no: 999, name: 'NOWHERE', type: 'GEN', state_id: 25, candidates: [] } as any);
+    const a = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText: fakeFetch().fetchText });
+    await a.prepare(roster as any);
+    expect((await a.poll()).map(s => s.const_id)).toEqual(['WB_100']);
+  });
+  it('parses the party-wise page', () => {
+    const rows = parsePartywisePage(fx('eci-partywise.htm'));
+    expect(rows.length).toBeGreaterThan(3);
+    expect(rows.every(r => r.party.includes(' - ') || /independent/i.test(r.party))).toBe(true);
+  });
+  it('tally maps party-wise rows; 404 gives null', async () => {
+    const { roster } = rosterFromFixtures();
+    const pw = fx('eci-partywise.htm');
+    const ok = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText: async () => ({ status: 200, text: pw, lastModified: null }) });
+    await ok.prepare(roster as any);
+    expect(Array.isArray(await ok.tally())).toBe(true);
+    const gone = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText: async () => ({ status: 404, text: '', lastModified: null }) });
+    await gone.prepare(roster as any);
+    expect(await gone.tally()).toBeNull();
+  });
+});

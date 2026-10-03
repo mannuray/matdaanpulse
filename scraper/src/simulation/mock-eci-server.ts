@@ -201,8 +201,8 @@ function generateConstituencyListPage(
   <td>${escHtml(s.runnerUpName)}</td>
   <td><table><tr><td>${escHtml(s.runnerUpParty)}</td></tr></table></td>
   <td>${s.margin}</td>
-  <td>${s.status}</td>
-  <td>${seatCurrent >= snap.length ? 'Result Declared' : 'LEADING'}</td>
+  <td>${seatCurrent}/${snap.length}</td>
+  <td>${seatCurrent >= snap.length ? 'Result Declared' : 'Counting In Progress'}</td>
 </tr>\n`;
   }
 
@@ -223,8 +223,9 @@ function generateCandidateDetailPage(
     return '<html><body><p>Counting not started</p></body></html>';
   }
 
-  const roundIdx = Math.min(currentRound, snapshots.length) - 1;
-  const snap = snapshots[roundIdx];
+  // The seat's own round, exactly as the list page computes it, so both pages agree
+  const seatCurrent = Math.min(currentRound - startRound + 1, snapshots.length);
+  const snap = snapshots[seatCurrent - 1];
 
   let boxes = '';
   for (const cand of snap.candidates) {
@@ -394,10 +395,8 @@ async function main() {
         res.end('Not found');
         return;
       }
-      const seatTotal = constTotalRounds.get(constNo) || TOTAL_ROUNDS;
       const startR = constStartRound.get(constNo) || 1;
-      const seatCurr = currentRound < startR ? 0 : Math.min(currentRound - startR + 1, seatTotal);
-      const html = generateCandidateDetailPage(constituency, snaps, seatCurr, 1);
+      const html = generateCandidateDetailPage(constituency, snaps, currentRound, startR);
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(html);
       return;
