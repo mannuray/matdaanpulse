@@ -121,6 +121,8 @@ run seed_party_recognition.sql
 
 echo "==> Seeds: Bihar 2025 party profiles (run-once, fill-only; must follow party symbols and recognition)"
 run seed_bihar_party_profiles.sql
+# Party colours the fill-only profile seeds could not set (each only while the old colour is unchanged)
+run seed_party_colors_v1.sql
 
 echo "==> Seeds: election result dates (must follow every election insert)"
 run seed_election_result_dates.sql
