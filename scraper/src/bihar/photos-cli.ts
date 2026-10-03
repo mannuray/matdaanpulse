@@ -20,14 +20,22 @@ const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 interface Entry { constNo: number; serial: number; candidateId: string; name: string; url: string; eciUrl: string; sourceUrl: string }
 
-async function get(url: string, attempts = 3): Promise<Response> {
+/** GET with retries; the body is read inside the retry (a server can mislabel gzip), the last tries without compression. */
+async function fetchBody(url: string, attempts = 4): Promise<Buffer> {
   for (let i = 1; ; i++) {
-    const r = await fetch(url, { headers: { 'User-Agent': UA } });
-    if (r.ok) return r;
-    if (i >= attempts || (r.status !== 429 && r.status < 500)) throw new Error(`${r.status} ${url}`);
-    await sleep(5000 * i);
+    try {
+      const headers: Record<string, string> = { 'User-Agent': UA, ...(i > 1 ? { 'Accept-Encoding': 'identity' } : {}) };
+      const r = await fetch(url, { headers });
+      if (!r.ok) throw Object.assign(new Error(`${r.status} ${url}`), { status: r.status });
+      return Buffer.from(await r.arrayBuffer());
+    } catch (e) {
+      const status = (e as { status?: number }).status;
+      if (i >= attempts || (status !== undefined && status !== 429 && status < 500)) throw e;
+      await sleep(5000 * i);
+    }
   }
 }
+const get = async (url: string) => ({ text: async () => (await fetchBody(url)).toString('utf8'), json: async () => JSON.parse((await fetchBody(url)).toString('utf8')) });
 
 (async () => {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
@@ -56,7 +64,8 @@ async function get(url: string, attempts = 3): Promise<Response> {
     const cache = path.join(RAW, `cand-${n}.htm`);
     if (!fs.existsSync(cache)) {
       const [ts, orig] = [snapshot.slice(0, snapshot.indexOf('/')), snapshot.slice(snapshot.indexOf('/') + 1)];
-      fs.writeFileSync(cache, await (await get(`https://web.archive.org/web/${ts}id_/${orig}`)).text());
+      try { fs.writeFileSync(cache, await (await get(`https://web.archive.org/web/${ts}id_/${orig}`)).text()); }
+      catch (e) { unmatched.push(`seat ${n}: archived page failed (${(e as Error).message})`); continue; }
       await sleep(2000);
     }
     const eci = parseCandidateDetailPage(fs.readFileSync(cache, 'utf8'));
@@ -64,8 +73,9 @@ async function get(url: string, attempts = 3): Promise<Response> {
     for (const c of top) {
       const eciUrl = matchPhoto(c, eci);
       if (!eciUrl) { unmatched.push(`seat ${n}: ${c.name} (${c.partyId}, ${c.votes})`); continue; }
-      const img = await get(eciUrl);
-      const jpeg = await sharp(Buffer.from(await img.arrayBuffer())).rotate().resize({ width: 240, height: 300, fit: 'cover', position: 'top' }).jpeg({ quality: 78, mozjpeg: true }).toBuffer();
+      let raw: Buffer;
+      try { raw = await fetchBody(eciUrl); } catch (e) { unmatched.push(`seat ${n}: ${c.name} photo download failed (${(e as Error).message})`); continue; }
+      const jpeg = await sharp(raw).rotate().resize({ width: 240, height: 300, fit: 'cover', position: 'top' }).jpeg({ quality: 78, mozjpeg: true }).toBuffer();
       const blob = await put(`persons/eci2025/${n}-${c.serial}.jpg`, jpeg, { access: 'public', addRandomSuffix: false, allowOverwrite: true, contentType: 'image/jpeg', token });
       done.push({ constNo: n, serial: c.serial, candidateId: s.idOf(n, c), name: c.name, url: blob.url, eciUrl, sourceUrl });
       have.add(`${n}:${c.serial}`);
