@@ -4,6 +4,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { ResultChangeNotifier, type ChangedRow } from '../live/result-change-notifier';
 import { ShardsService, REST } from './shards.service';
 import { LeaseService } from './lease.service';
+import { lockSeats } from './seat-lock';
 import { evaluateSeat, type IncomingSeat, type RosterCandidate, type SeatOutcome, type SeatState, type StoredRow, type StoredSeat } from './seat-rules';
 import { ElectionNotFoundException, IngestBadRequestException, IngestInactiveSourceException, IngestNoLeaseException, IngestNotLiveException } from '../../common/exceptions';
 import type { SeatsBody, TallyBody } from './dto/ingest.dto';
@@ -23,7 +24,38 @@ const FUTURE_SLACK_MS = 2 * 60_000;
 const POLL_HINT_MS = 30_000;
 const TX = { timeout: 60_000, maxWait: 10_000 };
 
-type Evaluated = { seat: IncomingSeat; outcome: SeatOutcome | { kind: 'rejected'; reason: string; detail?: Record<string, unknown> } };
+/** `track`: a rejection by the seat rules for a seat of this shard, kept on seat_ingest_state until the seat next goes through. */
+type Evaluated = { seat: IncomingSeat; outcome: SeatOutcome | { kind: 'rejected'; reason: string; detail?: Record<string, unknown> }; track?: boolean };
+type Loaded = { stateOf: Map<string, { state: string | null; round_current: number | null; round_total: number | null; last_source: string | null; last_observed_at: Date | null }>;
+  rowsOf: Map<string, StoredRow[]>; holdOf: Map<string, { round_at_hold: number | null; expires_at: Date }> };
+
+async function loadSeats(db: PrismaService, electionId: string, ids: string[]): Promise<Loaded> {
+  const [states, rows, holds] = await Promise.all([
+    db.seat_ingest_state.findMany({ where: { election_id: electionId, const_id: { in: ids } } }),
+    db.results.findMany({ where: { election_id: electionId, const_id: { in: ids } }, select: { candidate_id: true, const_id: true, votes: true, status: true, margin: true } }),
+    db.seat_holds.findMany({ where: { election_id: electionId, const_id: { in: ids } } }),
+  ]);
+  return {
+    stateOf: new Map(states.map(s => [s.const_id, s])),
+    rowsOf: group(rows, r => r.const_id, (r): StoredRow => ({ candidate_id: r.candidate_id, votes: r.votes, status: r.status as StoredRow['status'], margin: r.margin })),
+    holdOf: new Map(holds.map(h => [h.const_id, h])),
+  };
+}
+
+function evaluate(l: Loaded, c: { body: SeatsBody; inShard: Set<string>; rosterOf: Map<string, RosterCandidate[]>; observedAt: Date; now: Date }): Evaluated[] {
+  const seen = new Set<string>();
+  return c.body.seats.map((raw): Evaluated => {
+    const seat: IncomingSeat = { const_id: raw.const_id, state: raw.state, round: raw.round ?? null, votes: raw.votes };
+    if (!c.inShard.has(seat.const_id)) return { seat, outcome: { kind: 'rejected', reason: 'not_in_shard' } };
+    if (seen.has(seat.const_id)) return { seat, outcome: { kind: 'rejected', reason: 'duplicate_seat' } };
+    seen.add(seat.const_id);
+    const st = l.stateOf.get(seat.const_id);
+    const stored: StoredSeat | null = st ? { state: st.state as SeatState | null, round_current: st.round_current, round_total: st.round_total, last_source: st.last_source, last_observed_at: st.last_observed_at } : null;
+    const h = l.holdOf.get(seat.const_id);
+    const outcome = evaluateSeat({ seat, roster: c.rosterOf.get(seat.const_id) ?? [], stored, storedRows: l.rowsOf.get(seat.const_id) ?? [], hold: h ? { round_at_hold: h.round_at_hold, expires_at: h.expires_at } : null, source: c.body.source, observedAt: c.observedAt, now: c.now });
+    return { seat, outcome, track: outcome.kind === 'rejected' };
+  });
+}
 
 /** Spec §4: the machine-key API. Rules live in seat-rules.ts; this loads, writes and logs. */
 @Injectable()
@@ -79,51 +111,33 @@ export class IngestService {
     const dry = !!body.dry_run;
     const observedAt = new Date(body.observed_at);
     if (observedAt.getTime() > now.getTime() + FUTURE_SLACK_MS) throw new IngestBadRequestException('observed_at is in the future', { observed_at: body.observed_at });
-    if (!dry && election.status !== 'Live') throw new IngestNotLiveException(String(election.status));
     const shard = await this.shards.get(electionId, body.shard);
-    const source = await this.effectiveSource(electionId, shard);
-    if (!dry && body.source !== source) throw new IngestInactiveSourceException(source);
-    if (!dry && !(await this.leases.holds(electionId, shard.name, key.id, body.holder, now))) {
-      const cur = await this.leases.current(electionId, shard.name);
-      throw new IngestNoLeaseException(cur?.holder ?? null, cur?.expires ?? null);
-    }
+    if (!dry) await this.admit(electionId, String(election.status), shard, key, body.source, body.holder, 'seats', observedAt, now);
 
     const inShard = new Set(shard.seat_ids);
     const ids = [...new Set(body.seats.map(s => s.const_id).filter(id => inShard.has(id)))];
-    const [cands, states, rows, holds] = await Promise.all([
-      this.prisma.candidates.findMany({ where: { election_id: electionId, const_id: { in: ids } }, select: { id: true, const_id: true, party_id: true } }),
-      this.prisma.seat_ingest_state.findMany({ where: { election_id: electionId, const_id: { in: ids } } }),
-      this.prisma.results.findMany({ where: { election_id: electionId, const_id: { in: ids } }, select: { candidate_id: true, const_id: true, votes: true, status: true, margin: true } }),
-      this.prisma.seat_holds.findMany({ where: { election_id: electionId, const_id: { in: ids } } }),
-    ]);
+    const cands = await this.prisma.candidates.findMany({ where: { election_id: electionId, const_id: { in: ids } }, select: { id: true, const_id: true, party_id: true } });
     const rosterOf = group(cands, c => c.const_id, (c): RosterCandidate => ({ candidate_id: c.id, party_id: c.party_id }));
-    const rowsOf = group(rows, r => r.const_id, (r): StoredRow => ({ candidate_id: r.candidate_id, votes: r.votes, status: r.status as StoredRow['status'], margin: r.margin }));
-    const stateOf = new Map(states.map(s => [s.const_id, s]));
-    const holdOf = new Map(holds.map(h => [h.const_id, h]));
-
-    const seen = new Set<string>();
-    const evaluated: Evaluated[] = body.seats.map(raw => {
-      const seat: IncomingSeat = { const_id: raw.const_id, state: raw.state, round: raw.round ?? null, votes: raw.votes };
-      if (!inShard.has(seat.const_id)) return { seat, outcome: { kind: 'rejected', reason: 'not_in_shard' } };
-      if (seen.has(seat.const_id)) return { seat, outcome: { kind: 'rejected', reason: 'duplicate_seat' } };
-      seen.add(seat.const_id);
-      const st = stateOf.get(seat.const_id);
-      const stored: StoredSeat | null = st ? { state: st.state as SeatState, round_current: st.round_current, round_total: st.round_total, last_source: st.last_source, last_observed_at: st.last_observed_at } : null;
-      const h = holdOf.get(seat.const_id);
-      return { seat, outcome: evaluateSeat({ seat, roster: rosterOf.get(seat.const_id) ?? [], stored, storedRows: rowsOf.get(seat.const_id) ?? [], hold: h ? { round_at_hold: h.round_at_hold, expires_at: h.expires_at } : null, source: body.source, observedAt, now }) };
-    });
-
-    const response = summarise(evaluated);
-    const log = { election_id: electionId, shard: shard.name, key_id: key.id, source: body.source, dry_run: dry, observed_at: observedAt,
+    const ctx = { body, inShard, rosterOf, observedAt, now };
+    const logRow = (response: SeatsResponse) => ({ election_id: electionId, shard: shard.name, key_id: key.id, source: body.source, dry_run: dry, observed_at: observedAt,
       counts: response.counts as unknown as Prisma.InputJsonValue,
-      rejected: response.seats.filter(s => s.outcome === 'rejected').map(s => ({ const_id: s.const_id, reason: s.reason })) as unknown as Prisma.InputJsonValue };
+      rejected: response.seats.filter(s => s.outcome === 'rejected').map(s => ({ const_id: s.const_id, reason: s.reason })) as unknown as Prisma.InputJsonValue });
+
     if (dry) {
-      await this.prisma.ingest_log.create({ data: log });
+      const response = summarise(evaluate(await loadSeats(this.prisma, electionId, ids), ctx));
+      await this.prisma.ingest_log.create({ data: logRow(response) });
       return response;
     }
+    // Seat state, holds and results rows are read under the seat locks, so an admin correction committed after the
+    // request arrived is seen here (its hold makes the seat held) and one still running waits for this batch.
+    let evaluated: Evaluated[] = [];
+    let response!: SeatsResponse;
     await this.prisma.$transaction(async tx => {
+      await lockSeats(tx as any, electionId, ids);
+      evaluated = evaluate(await loadSeats(tx as any, electionId, ids), ctx);
+      response = summarise(evaluated);
       await this.write(tx as any, electionId, evaluated, body.source, observedAt, now);
-      await (tx as any).ingest_log.create({ data: log });
+      await (tx as any).ingest_log.create({ data: logRow(response) });
     }, TX);
 
     const changed = changedRows(evaluated, rosterOf);
@@ -134,16 +148,13 @@ export class IngestService {
   async tally(electionId: string, key: { id: string }, body: TallyBody, now = new Date()): Promise<{ mismatch: TallyMismatch[] }> {
     const election = await this.prisma.elections.findUnique({ where: { id: electionId }, select: { status: true } });
     if (!election) throw new ElectionNotFoundException(electionId);
-    if (election.status !== 'Live') throw new IngestNotLiveException(String(election.status));
     const shard = await this.shards.get(electionId, body.shard);
-    const source = await this.effectiveSource(electionId, shard);
-    if (body.source !== source) throw new IngestInactiveSourceException(source);
-    if (!(await this.leases.holds(electionId, shard.name, key.id, body.holder, now))) {
-      const cur = await this.leases.current(electionId, shard.name);
-      throw new IngestNoLeaseException(cur?.holder ?? null, cur?.expires ?? null);
-    }
+    const observedAt = new Date(body.observed_at);
+    await this.admit(electionId, String(election.status), shard, key, body.source, body.holder, 'tally', observedAt, now);
+    // A source's party-wise page covers the whole election, so the rest shard (or an explicit scope) compares every seat.
+    const wholeElection = shard.name === REST || body.scope === 'election';
     const rows = await this.prisma.results.findMany({
-      where: { election_id: electionId, const_id: { in: shard.seat_ids }, status: { in: ['WON', 'LEADING'] } },
+      where: { election_id: electionId, ...(wholeElection ? {} : { const_id: { in: shard.seat_ids } }), status: { in: ['WON', 'LEADING'] } },
       select: { status: true, candidates: { select: { party_id: true } } },
     });
     const ours = new Map<string, { won: number; leading: number }>();
@@ -158,15 +169,35 @@ export class IngestService {
       const o = ours.get(id) ?? { won: 0, leading: 0 }, t = theirs.get(id) ?? { won: 0, leading: 0 };
       if (o.won !== t.won || o.leading !== t.leading) mismatch.push({ party_id: id, ours: o, theirs: t });
     }
-    await this.prisma.ingest_log.create({ data: { election_id: electionId, shard: shard.name, key_id: key.id, source: body.source, kind: 'tally', observed_at: new Date(body.observed_at), tally_mismatch: (mismatch.length ? mismatch : null) as any } });
+    await this.prisma.ingest_log.create({ data: { election_id: electionId, shard: shard.name, key_id: key.id, source: body.source, kind: 'tally', observed_at: observedAt, tally_mismatch: (mismatch.length ? mismatch : null) as any } });
     return { mismatch };
   }
 
-  /** One transaction: results rows, rounds, seat state, released holds. Unchanged seats only advance their observation. */
+  /** Request-level checks for a real post. A refusal is logged (ingest_log.refused, counts {}) so the Live Console can alert on it, then thrown. */
+  private async admit(electionId: string, status: string, shard: { name: string; source_override: string | null }, key: { id: string }, source: string, holder: string,
+    kind: 'seats' | 'tally', observedAt: Date, now: Date): Promise<void> {
+    let refused: { reason: 'not_live' | 'inactive_source' | 'no_lease'; error: Error } | null = null;
+    if (status !== 'Live') refused = { reason: 'not_live', error: new IngestNotLiveException(status) };
+    else {
+      const active = await this.effectiveSource(electionId, shard);
+      if (source !== active) refused = { reason: 'inactive_source', error: new IngestInactiveSourceException(active) };
+      else if (!(await this.leases.holds(electionId, shard.name, key.id, holder, now))) {
+        const cur = await this.leases.current(electionId, shard.name);
+        refused = { reason: 'no_lease', error: new IngestNoLeaseException(cur?.holder ?? null, cur?.expires ?? null) };
+      }
+    }
+    if (!refused) return;
+    await this.prisma.ingest_log.create({ data: { election_id: electionId, shard: shard.name, key_id: key.id, source, kind, observed_at: observedAt, refused: refused.reason } })
+      .catch(e => this.logger.warn(`ingest_log refusal row failed: ${(e as Error).message}`));
+    throw refused.error;
+  }
+
+  /** One transaction: results rows, rounds, seat state, released holds, seat rejections. Unchanged seats only advance their observation. */
   async write(tx: PrismaService, electionId: string, evaluated: Evaluated[], source: string, observedAt: Date, now: Date): Promise<void> {
     const applied = evaluated.filter(e => e.outcome.kind === 'applied') as { seat: IncomingSeat; outcome: Extract<SeatOutcome, { kind: 'applied' }> }[];
     const touched = evaluated.filter(e => e.outcome.kind === 'applied' || e.outcome.kind === 'unchanged');
     const released = evaluated.filter(e => (e.outcome.kind === 'applied' || e.outcome.kind === 'unchanged') && (e.outcome as any).releaseHold).map(e => e.seat.const_id);
+    const rejected = evaluated.filter(e => e.outcome.kind === 'rejected' && e.track) as { seat: IncomingSeat; outcome: { kind: 'rejected'; reason: string } }[];
 
     const flat = applied.flatMap(a => a.outcome.rows.map(r => ({ ...r, round: a.seat.round?.current ?? null })));
     if (flat.length) {
@@ -192,9 +223,20 @@ export class IngestService {
                     ${touched.map(t => t.seat.round?.current ?? null)}::int[], ${touched.map(t => t.seat.round?.total ?? null)}::int[],
                     ${touched.map(t => t.outcome.kind === 'applied')}::bool[]) AS u(id, state, rc, rt, applied)
         ON CONFLICT (election_id, const_id) DO UPDATE SET
-          state = EXCLUDED.state, round_current = EXCLUDED.round_current, round_total = EXCLUDED.round_total,
+          state = EXCLUDED.state,
+          round_current = COALESCE(EXCLUDED.round_current, seat_ingest_state.round_current),
+          round_total = COALESCE(EXCLUDED.round_total, seat_ingest_state.round_total),
           last_source = EXCLUDED.last_source, last_observed_at = EXCLUDED.last_observed_at,
-          last_applied_at = COALESCE(EXCLUDED.last_applied_at, seat_ingest_state.last_applied_at)`;
+          last_applied_at = COALESCE(EXCLUDED.last_applied_at, seat_ingest_state.last_applied_at),
+          last_rejected_reason = NULL, last_rejected_at = NULL`;
+    }
+    if (rejected.length) {
+      // The seat's current rejection, kept until the seat is next applied or unchanged; a new row has no state (viewers do not see it).
+      await tx.$executeRaw`
+        INSERT INTO seat_ingest_state (election_id, const_id, last_rejected_reason, last_rejected_at)
+        SELECT ${electionId}::uuid, u.id, u.reason, ${now}::timestamptz
+        FROM UNNEST(${rejected.map(r => r.seat.const_id)}::varchar[], ${rejected.map(r => r.outcome.reason)}::text[]) AS u(id, reason)
+        ON CONFLICT (election_id, const_id) DO UPDATE SET last_rejected_reason = EXCLUDED.last_rejected_reason, last_rejected_at = EXCLUDED.last_rejected_at`;
     }
     if (released.length) {
       await tx.$executeRaw`DELETE FROM seat_holds WHERE election_id = ${electionId}::uuid AND const_id = ANY(${released}::varchar[])`;

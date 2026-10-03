@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { ArrayMaxSize, IsArray, IsIn, IsInt, IsObject, IsOptional, IsString, Matches, Max, MaxLength, Min, ValidateBy, ValidateNested } from 'class-validator';
+import { ArrayMaxSize, IsArray, IsIn, IsInt, IsObject, IsOptional, IsString, Matches, Max, MaxLength, Min, ValidateBy, ValidateIf, ValidateNested } from 'class-validator';
 import { SEAT_STATES, type SeatState } from '../seat-rules';
 import { RoundDto } from './ingest.dto';
 
@@ -13,7 +13,8 @@ const IsRangePairs = () => ValidateBy({
 });
 
 export class FeedSettingsBody {
-  @IsOptional() @IsString() @MaxLength(40) @Matches(/^[a-z0-9][a-z0-9_-]*$/) active_source: string | null;
+  /** Required: a source name, or an explicit null to pause the feed (omitting it is a 400, not a pause). */
+  @ValidateIf((_, v) => v !== null) @IsString() @MaxLength(40) @Matches(/^[a-z0-9][a-z0-9_-]*$/) active_source: string | null;
   @IsInt() @Min(1) @Max(240) hold_minutes: number;
 }
 export class ShardSelectorDto {

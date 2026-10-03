@@ -22,6 +22,12 @@ describe('checkRoster', () => {
     expect(checkRoster(seat({ votes: { a: 1.5, b: 1, c: 1, n: 1 } }), roster)?.reason).toBe('invalid_votes');
     expect(checkRoster(seat({ round: { current: 21, total: 20 } }), roster)?.reason).toBe('invalid_round');
   });
+  it('rejects values past the INT columns (votes, round) instead of failing the whole write', () => {
+    expect(checkRoster(seat({ votes: { a: 2_147_483_647, b: 1, c: 1, n: 1 } }), roster)).toBeNull();
+    expect(checkRoster(seat({ votes: { a: 2_147_483_648, b: 1, c: 1, n: 1 } }), roster)?.reason).toBe('invalid_votes');
+    expect(checkRoster(seat({ round: { current: 1, total: 2_147_483_648 } }), roster)?.reason).toBe('invalid_round');
+    expect(checkRoster(seat({ round: { current: 2_147_483_648, total: 2_147_483_648 } }), roster)?.reason).toBe('invalid_round');
+  });
 });
 
 describe('deriveRows', () => {
@@ -82,7 +88,8 @@ describe('holdDecision', () => {
 });
 
 describe('evaluateSeat', () => {
-  const base = { roster, storedRows: [], hold: null, source: 'eci-web', observedAt: t('09:05:00'), now: t('09:05:01') };
+  const zero = roster.map(c => ({ candidate_id: c.candidate_id, votes: 0, status: 'TRAILING' as const, margin: 0 }));
+  const base = { roster, storedRows: zero, hold: null, source: 'eci-web', observedAt: t('09:05:00'), now: t('09:05:01') };
   it('applies a new seat', () => {
     expect(evaluateSeat({ ...base, seat: seat(), stored: null })).toMatchObject({ kind: 'applied', releaseHold: false });
   });
@@ -102,5 +109,14 @@ describe('evaluateSeat', () => {
     const rows = deriveRows(seat(), roster) as any[];
     expect(sameAsStored(rows, seat(), rows, stored({ round_current: 4 }))).toBe(false);
     expect(sameAsStored(rows, seat(), rows, stored({ round_current: 5 }))).toBe(true);
+  });
+  it('a seat sent without a round keeps the stored round, so it is unchanged (not re-applied every cycle)', () => {
+    const rows = deriveRows(seat({ round: null }), roster) as any[];
+    expect(sameAsStored(rows, seat({ round: null }), rows, stored({ round_current: 5 }))).toBe(true);
+    expect(evaluateSeat({ ...base, seat: seat({ round: null }), stored: stored({ round_current: 5, last_observed_at: t('09:00:00') }), storedRows: rows })).toEqual({ kind: 'unchanged', releaseHold: false });
+  });
+  it('a roster candidate without a results row rejects the seat (missing_result_rows), after the roster check', () => {
+    expect(evaluateSeat({ ...base, seat: seat(), stored: null, storedRows: zero.filter(r => r.candidate_id !== 'c') })).toEqual({ kind: 'rejected', reason: 'missing_result_rows', detail: { missing: ['c'] } });
+    expect(evaluateSeat({ ...base, seat: seat({ votes: { a: 1 } }), stored: null, storedRows: [] })).toMatchObject({ kind: 'rejected', reason: 'roster_mismatch' });
   });
 });

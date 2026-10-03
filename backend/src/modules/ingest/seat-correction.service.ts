@@ -3,7 +3,8 @@ import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { ResultChangeNotifier } from '../live/result-change-notifier';
 import { HoldsService } from './holds.service';
-import { checkRoster, deriveRows, sameAsStored, type IncomingSeat, type SeatState, type StoredRow } from './seat-rules';
+import { lockSeats } from './seat-lock';
+import { checkRoster, deriveRows, missingResultRows, sameAsStored, type IncomingSeat, type SeatState, type StoredRow } from './seat-rules';
 import { ElectionNotFoundException, IngestBadRequestException, IngestNotLiveException } from '../../common/exceptions';
 
 export const ADMIN_SOURCE = 'admin';
@@ -23,15 +24,20 @@ export class SeatCorrectionService {
     if (bad) throw new IngestBadRequestException(bad.reason, bad.detail);
     const rows = deriveRows(seat, roster);
     if (!Array.isArray(rows)) throw new IngestBadRequestException(rows.reason);
-    const storedRows = (await this.prisma.results.findMany({ where: { election_id: electionId, const_id: constId }, select: { candidate_id: true, votes: true, status: true, margin: true } })) as StoredRow[];
-    const st = await this.prisma.seat_ingest_state.findUnique({ where: { election_id_const_id: { election_id: electionId, const_id: constId } } });
-    const stored = st ? { state: st.state as SeatState, round_current: st.round_current, round_total: st.round_total, last_source: st.last_source, last_observed_at: st.last_observed_at } : null;
-    const changed = !sameAsStored(rows, seat, storedRows, stored);
     const minutes = (await this.prisma.election_ingest.findUnique({ where: { election_id: electionId } }))?.hold_minutes ?? 10;
-    const roundAtHold = seat.round?.current ?? st?.round_current ?? null;
 
+    // Under the seat lock (shared with ingest), so an ingest batch for this seat either finished before this read or waits for the hold.
     let expires: Date = now;
+    let changed = false;
     await this.prisma.$transaction(async (tx: any) => {
+      await lockSeats(tx, electionId, [constId]);
+      const storedRows = (await tx.results.findMany({ where: { election_id: electionId, const_id: constId }, select: { candidate_id: true, votes: true, status: true, margin: true } })) as StoredRow[];
+      const missing = missingResultRows(roster, storedRows);
+      if (missing.length) throw new IngestBadRequestException('missing_result_rows', { missing });
+      const st = await tx.seat_ingest_state.findUnique({ where: { election_id_const_id: { election_id: electionId, const_id: constId } } });
+      const stored = st ? { state: st.state as SeatState | null, round_current: st.round_current, round_total: st.round_total, last_source: st.last_source, last_observed_at: st.last_observed_at } : null;
+      changed = !sameAsStored(rows, seat, storedRows, stored);
+      const roundAtHold = seat.round?.current ?? st?.round_current ?? null;
       if (changed) {
         await tx.$executeRaw`
           UPDATE results AS r SET votes = u.votes, status = u.status::result_status, margin = u.margin,

@@ -2,7 +2,8 @@ import { SeatCorrectionService } from './seat-correction.service';
 import { IngestBadRequestException, IngestNotLiveException } from '../../common/exceptions';
 
 const NOW = new Date('2027-02-27T04:12:00Z');
-function make(status = 'Live', stored: any[] = []) {
+const ZERO = [{ candidate_id: 'a', votes: 0, status: 'TRAILING', margin: 0 }, { candidate_id: 'b', votes: 0, status: 'TRAILING', margin: 0 }];
+function make(status = 'Live', stored: any[] = ZERO) {
   const executed: string[] = [];
   const prisma: any = {
     elections: { findUnique: jest.fn(async () => ({ status })) },
@@ -36,5 +37,20 @@ describe('SeatCorrectionService', () => {
   it('refuses a Finalized election and an incomplete roster', async () => {
     await expect(make('Finalized').svc.correct('e', 'S1', { state: 'counting', votes: { a: 1, b: 2 } }, 'u1', NOW)).rejects.toBeInstanceOf(IngestNotLiveException);
     await expect(make().svc.correct('e', 'S1', { state: 'counting', votes: { a: 1 } }, 'u1', NOW)).rejects.toBeInstanceOf(IngestBadRequestException);
+  });
+  it('takes the seat lock before reading the stored seat, inside the transaction', async () => {
+    const { svc, prisma, executed } = make();
+    const seen: string[][] = [];
+    prisma.results.findMany = jest.fn(async () => { seen.push([...executed]); return ZERO; });
+    await svc.correct('e', 'S1', { state: 'counting', votes: { a: 1, b: 2 } }, 'u1', NOW);
+    expect(seen).toHaveLength(1);
+    expect(seen[0]).toHaveLength(1);
+    expect(seen[0][0]).toContain('pg_advisory_xact_lock');
+  });
+  it('a roster candidate without a results row is a 400 missing_result_rows, nothing written', async () => {
+    const { svc, prisma, holds } = make('Live', [ZERO[0]]);
+    await expect(svc.correct('e', 'S1', { state: 'counting', votes: { a: 1, b: 2 } }, 'u1', NOW)).rejects.toMatchObject({ message: 'missing_result_rows' });
+    expect(holds.upsert).not.toHaveBeenCalled();
+    expect(prisma.audit_logs.create).not.toHaveBeenCalled();
   });
 });

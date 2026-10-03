@@ -9,6 +9,10 @@ describe('admin ingest DTOs', () => {
     expect(await validate(plainToInstance(FeedSettingsBody, { active_source: null, hold_minutes: 10 }))).toEqual([]);
     expect((await validate(plainToInstance(FeedSettingsBody, { active_source: 'ECI Web', hold_minutes: 0 }))).length).toBe(2);
   });
+  it('feed: active_source is required — omitting it is an error, not a pause', async () => {
+    const errs = await validate(plainToInstance(FeedSettingsBody, { hold_minutes: 10 }));
+    expect(errs.map(e => e.property)).toEqual(['active_source']);
+  });
   it('shard selector lists must be integers', async () => {
     expect((await validate(plainToInstance(ShardBody, { selector: { state_ids: ['x'] }, source_override: null }))).length).toBeGreaterThan(0);
   });

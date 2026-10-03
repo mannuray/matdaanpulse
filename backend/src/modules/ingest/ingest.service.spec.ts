@@ -13,7 +13,8 @@ function make(over: { status?: string; source?: string | null; lease?: boolean; 
     election_ingest: { findUnique: jest.fn(async () => (over.source === null ? null : { active_source: over.source ?? 'eci-web' })) },
     candidates: { findMany: jest.fn(async ({ where }) => roster.filter(r => where.const_id.in.includes(r.const_id))) },
     seat_ingest_state: { findMany: jest.fn(async () => []) },
-    results: { findMany: jest.fn(async () => []) },
+    // Every roster candidate has a results row (zero votes) unless a test says otherwise.
+    results: { findMany: jest.fn(async ({ where }) => roster.filter(r => where.const_id?.in?.includes(r.const_id)).map(r => ({ candidate_id: r.id, const_id: r.const_id, votes: 0, status: 'TRAILING', margin: 0 }))) },
     seat_holds: { findMany: jest.fn(async () => []) },
     ingest_log: { create: jest.fn(async () => ({})) },
     $transaction: jest.fn(async (fn: any) => fn(prisma)),
@@ -63,7 +64,61 @@ describe('IngestService.ingestSeats — per seat', () => {
   });
 });
 
+describe('IngestService.ingestSeats — refusals are logged for the alerts', () => {
+  it.each([
+    [{ status: 'Finalized' }, 'not_live'], [{ source: 'news' }, 'inactive_source'], [{ lease: false }, 'no_lease'],
+  ])('%o → ingest_log row refused=%s with no counts, then the 409', async (over, reason) => {
+    const { svc, prisma } = make(over as any);
+    await expect(svc.ingestSeats('e', { id: 'k' }, body([s1]), NOW)).rejects.toBeTruthy();
+    expect(prisma.ingest_log.create).toHaveBeenCalledWith({ data: expect.objectContaining({ shard: 'rest', kind: 'seats', refused: reason }) });
+    expect(prisma.ingest_log.create.mock.calls[0][0].data.counts).toBeUndefined();
+    expect(prisma.$transaction).not.toHaveBeenCalled();
+  });
+  it('a failing refusal log never hides the 409', async () => {
+    const { svc, prisma } = make({ lease: false });
+    prisma.ingest_log.create.mockRejectedValueOnce(new Error('db down'));
+    await expect(svc.ingestSeats('e', { id: 'k' }, body([s1]), NOW)).rejects.toBeInstanceOf(IngestNoLeaseException);
+  });
+  it('tally refusals are logged as kind tally', async () => {
+    const { svc, prisma } = make({ lease: false });
+    await expect(svc.tally('e', { id: 'k' }, { shard: 'rest', source: 'eci-web', holder: 'w1', observed_at: '2027-02-27T04:00:00Z', parties: [] } as any, NOW)).rejects.toBeInstanceOf(IngestNoLeaseException);
+    expect(prisma.ingest_log.create).toHaveBeenCalledWith({ data: expect.objectContaining({ kind: 'tally', refused: 'no_lease' }) });
+  });
+});
+
+describe('IngestService.ingestSeats — under the seat locks', () => {
+  it('locks the shard seats in sorted order inside the transaction, then reads and writes', async () => {
+    const { svc, prisma } = make();
+    const order: string[] = [];
+    prisma.$executeRaw = jest.fn(async (strings: TemplateStringsArray, ...vals: unknown[]) => { order.push(strings.join('?').includes('pg_advisory_xact_lock') ? `lock:${vals[1]}` : 'write'); return 1; });
+    prisma.seat_ingest_state.findMany = jest.fn(async () => { order.push('read'); return []; });
+    const s2 = { const_id: 'S2', state: 'counting', votes: { c: 3, d: 1 } };
+    await svc.ingestSeats('e', { id: 'k' }, body([s2, s1]), NOW);
+    expect(order.slice(0, 3)).toEqual(['lock:S1', 'lock:S2', 'read']);
+    expect(order).toContain('write');
+  });
+  it('a seat rejected by the seat rules is recorded on seat_ingest_state; not_in_shard / duplicate are not', async () => {
+    const { svc, prisma } = make();
+    const sql: { text: string; vals: unknown[] }[] = [];
+    prisma.$executeRaw = jest.fn(async (strings: TemplateStringsArray, ...vals: unknown[]) => { sql.push({ text: strings.join('?'), vals }); return 1; });
+    await svc.ingestSeats('e', { id: 'k' }, body([{ const_id: 'S2', state: 'counting', votes: { c: 1 } }, { const_id: 'S9', state: 'counting', votes: {} }]), NOW);
+    const ins = sql.find(q => q.text.includes('last_rejected_reason, last_rejected_at)'));
+    expect(ins?.vals).toEqual(expect.arrayContaining([['S2'], ['roster_mismatch']]));
+  });
+});
+
 describe('IngestService.tally', () => {
+  it('the rest shard compares the whole election; another shard only its seats unless scope=election', async () => {
+    const { svc, prisma } = make();
+    prisma.results.findMany = jest.fn(async () => []);
+    const t = (shard: string, scope?: string) => svc.tally('e', { id: 'k' }, { shard, source: 'eci-web', holder: 'w1', observed_at: '2027-02-27T04:00:00Z', parties: [], ...(scope ? { scope } : {}) } as any, NOW);
+    await t('rest');
+    expect(prisma.results.findMany.mock.calls[0][0].where.const_id).toBeUndefined();
+    await t('assam-upper');
+    expect(prisma.results.findMany.mock.calls[1][0].where.const_id).toEqual({ in: ['S1', 'S2'] });
+    await t('assam-upper', 'election');
+    expect(prisma.results.findMany.mock.calls[2][0].where.const_id).toBeUndefined();
+  });
   it('records the parties whose won/leading differ from ours for the shard', async () => {
     const { svc, prisma } = make();
     prisma.results.findMany = jest.fn(async () => [
