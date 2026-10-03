@@ -180,6 +180,11 @@ Plan `docs/superpowers/plans/2026-10-03-bihar-persons-leaders.md` (spec §6–§
 - [x] **Affidavits** (`affidavits.ts`, `affidavits-cli.ts` → `seed_bihar_affidavits.sql`): MyNeta (ADR) winners' tables (slugs `bih2010`,
   `bihar2015`, `bihar2020`, `Bihar2025`): criminal cases, assets, liabilities, education. Matched by seat name (district tags stripped, fuzzy,
   duplicate names resolved by winner) and winner name; by-election rows skipped; unmatched rows listed in `affidavits-<year>.json`.
+- [x] **2025 candidate photos** (`photos.ts`, `photos-cli.ts` → `seed_bihar_candidate_photos.sql`, run-once, fill-only): the top 4
+  candidates per seat get the photo ECI showed on its 2025 candidate-wise results page (pages archived on the Wayback Machine,
+  photo files still served by ECI); shrunk to 240px (~7 KB) and stored once in our Blob store (`persons/eci2025/<seat>-<serial>.jpg`),
+  credited to ECI ("no licence stated"). 970 of 972; 2 name mismatches listed in `photos-2025.json`. Older elections have no
+  ECI photos; a person who also ran in 2025 shows that photo. About collapses bulk credits into one counted line.
 - [x] **Image credits** (migration 022 `image_credits`, `GET /credits`): a credit line under a person's photo (`photo_credit` on the profile)
   and a Credits section on About.
 - [x] **Manifest `person_id`**: watchlist/leader/cabinet entries carry `person_id`; the admin picker stores it (candidates of the election, or a

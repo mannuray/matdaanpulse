@@ -101,6 +101,7 @@ run seed_bihar_person_regions.sql
 echo "==> Seeds: Bihar person links v2 / leaders / affidavits (run-once; must follow Bihar persons)"
 run seed_bihar_person_links_v2.sql
 run seed_bihar_leaders.sql
+run seed_bihar_candidate_photos.sql
 run seed_bihar_affidavits.sql
 
 echo "==> Seeds: party symbols (must follow all party inserts)"
