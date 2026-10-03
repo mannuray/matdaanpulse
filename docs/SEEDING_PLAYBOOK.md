@@ -23,6 +23,14 @@ Agree these before any research or code (the user prefers discussing first, then
   winners only, all seats GEN). As of 2026-10-03: TN, KL and AS 2021 are synthetic and PY 2021 is winners only. Seat
   history and swing compare with the previous election, so flag it.
 
+## Two tracks
+
+- **Historical track** (older elections, for analysis only): every candidate + NOTA with real ECI votes, SC/ST,
+  electors, turnout, phase (§2), corrections of existing rows (§2 "Existing rows"), party mapping, cross-election
+  linking (§3), About page. **No** photos, leaders, party profiles, affidavits or candidate details. Go back only to
+  the first election under the current delimitation (2008 delimitation: Bihar 2010, other states 2011).
+- **Current track** (the latest election of a state, and live elections): everything in §1–§8.
+
 ## 1. Election record
 
 - `elections` row: type VS, state, year, status, result date, **`delimitation`** ("2008"; Assam "2023" from 2026).
