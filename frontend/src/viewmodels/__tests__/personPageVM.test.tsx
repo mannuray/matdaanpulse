@@ -30,4 +30,16 @@ describe('usePersonPageVM', () => {
     await waitFor(() => expect(result.current.status).toBe('ready'));
     expect(result.current.facts.gender).toEqual(expected);
   });
+
+  it('exposes the photo credit, or null when there is none', async () => {
+    const credit = { source_url: 'https://commons.wikimedia.org/wiki/File:X.jpg', author: 'A', licence: 'CC BY-SA 4.0' };
+    api.getPerson.mockResolvedValue({ ...person, id: 'c1', photo_url: 'https://blob/x.jpg', photo_credit: credit });
+    const { result, rerender } = renderHook(({ id }) => usePersonPageVM(id), { initialProps: { id: 'c1' } });
+    await waitFor(() => expect(result.current.status).toBe('ready'));
+    expect(result.current.photoCredit).toEqual(credit);
+    api.getPerson.mockResolvedValue({ ...person, id: 'c2' });
+    rerender({ id: 'c2' });
+    await waitFor(() => expect(result.current.name).toBe('Real'));
+    await waitFor(() => expect(result.current.photoCredit).toBeNull());
+  });
 });

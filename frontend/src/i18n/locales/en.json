@@ -528,5 +528,9 @@
   "about_matrix_hint": "Select a cell to see its source and notes.",
   "about_matrix_none": "No data",
   "cp_redrawn": "Boundaries redrawn in {{year}}",
-  "cp_redrawn_hint": "Seats were redrawn: earlier results are for different areas and are not compared."
+  "cp_redrawn_hint": "Seats were redrawn: earlier results are for different areas and are not compared.",
+  "person_photo_credit": "Photo: {{author}}, {{licence}}",
+  "person_photo_credit_unknown": "unknown author",
+  "about_credits_title": "Credits",
+  "about_credits_intro": "Results and party symbols: Election Commission of India. Candidate affidavits: ADR / MyNeta. Photos: Wikimedia Commons contributors, credited below."
 }

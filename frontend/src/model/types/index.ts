@@ -134,7 +134,14 @@ export interface PersonSummary {
   district?: { id: number; name: string } | null;
   bio?: string | null;
   wikipedia_url?: string | null;
+  /** Credit for a photo we host (image_credits). */
+  photo_credit?: PhotoCredit | null;
 }
+
+export interface PhotoCredit { source_url: string; author: string | null; licence: string }
+
+/** GET /credits: every hosted image's credit and who shows it. */
+export interface ImageCredit extends PhotoCredit { url: string; used_by: string | null }
 
 export interface PersonCandidate extends Partial<Affidavit> {
   id: string;

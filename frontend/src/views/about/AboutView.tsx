@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { DataMatrix, DataNote, DataQuality, DataSource } from '../../model/about/about';
 import type { FeedbackFormVM } from '../../viewmodels/about/useFeedbackForm';
+import type { ImageCredit } from '../../model/types';
 import { cn } from '../ui/cn';
 import { Icon } from '../ui/Icon';
 import { PageShell } from '../page/PageShell';
@@ -157,13 +158,18 @@ function FeedbackForm({ vm }: { vm: FeedbackFormVM }) {
   );
 }
 
-export function AboutView({ matrix, elections, contactEmail, eciUrl, feedback }: {
+/** The link text for a credit's source: its host, or the raw value when it is not a URL. */
+const hostOf = (u: string) => { try { return new URL(u).hostname; } catch { return u; } };
+
+export function AboutView({ matrix, elections, contactEmail, eciUrl, feedback, credits = [] }: {
   matrix: DataMatrix;
   /** Number of elections with data. */
   elections: number;
   contactEmail: string;
   eciUrl: string;
   feedback: FeedbackFormVM;
+  /** Credits for the images we host (GET /credits); empty hides the list. */
+  credits?: ImageCredit[];
 }) {
   const { t } = useTranslation();
   const chip = 'rounded-md border border-line bg-tile-raised px-2.5 py-1 text-xs font-medium text-ink';
@@ -229,6 +235,25 @@ export function AboutView({ matrix, elections, contactEmail, eciUrl, feedback }:
             </ul>
           </div>
           <DataMatrixCard matrix={matrix} />
+        </section>
+
+        {/* Credits */}
+        <section aria-labelledby="about-credits" className={cn(CARD, 'space-y-3 p-4 sm:p-5')}>
+          <div className="border-b border-line pb-3">
+            <h2 id="about-credits" className={H2}>{t('about_credits_title')}</h2>
+            <p className="mt-0.5 max-w-2xl text-xs leading-relaxed text-muted">{t('about_credits_intro')}</p>
+          </div>
+          {credits.length > 0 && (
+            <ul className="grid gap-1.5 text-xs sm:grid-cols-2">
+              {credits.map(c => (
+                <li key={c.url} className="min-w-0 text-muted">
+                  <span className="font-semibold text-ink">{c.used_by ?? c.url}</span>
+                  {' · '}{c.author ?? t('person_photo_credit_unknown')}{' · '}{c.licence}{' · '}
+                  <a href={c.source_url} target="_blank" rel="noopener noreferrer" className="break-all text-accent hover:underline">{hostOf(c.source_url)}</a>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
 
         {/* Feedback + contact */}

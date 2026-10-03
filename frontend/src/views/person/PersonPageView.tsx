@@ -217,6 +217,11 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
             <div className="h-24 w-24 overflow-hidden rounded-2xl border-2 border-line bg-page shadow-md md:h-28 md:w-28">
               <Avatar name={vm.name} photo={vm.photo} size="fill" className="h-full w-full rounded-none border-0 object-top text-3xl" />
             </div>
+            {vm.photoCredit && (
+              <a href={vm.photoCredit.source_url} target="_blank" rel="noopener noreferrer" className="mt-1 block w-24 break-words text-[11px] leading-tight text-muted hover:text-accent md:w-28">
+                {t('person_photo_credit', { author: vm.photoCredit.author ?? t('person_photo_credit_unknown'), licence: vm.photoCredit.licence })}
+              </a>
+            )}
             {party && (
               <span className="absolute -bottom-2 -right-2 grid h-8 w-8 place-items-center rounded-xl border-2 border-line bg-tile p-0.5 shadow-lg">
                 <PartyMark mark={party.mark} color={party.color} label={party.label} size={24} />

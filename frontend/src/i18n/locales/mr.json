@@ -528,5 +528,9 @@
   "about_matrix_hint": "Select a cell to see its source and notes.",
   "about_matrix_none": "No data",
   "cp_redrawn": "Boundaries redrawn in {{year}}",
-  "cp_redrawn_hint": "Seats were redrawn: earlier results are for different areas and are not compared."
+  "cp_redrawn_hint": "Seats were redrawn: earlier results are for different areas and are not compared.",
+  "person_photo_credit": "फोटो: {{author}}, {{licence}}",
+  "person_photo_credit_unknown": "अज्ञात लेखक",
+  "about_credits_title": "श्रेय",
+  "about_credits_intro": "निकाल आणि पक्ष चिन्हे: भारत निवडणूक आयोग. उमेदवारांची प्रतिज्ञापत्रे: ADR / MyNeta. फोटो: विकिमीडिया कॉमन्सचे योगदानकर्ते, ज्यांचे श्रेय खाली दिले आहे."
 }

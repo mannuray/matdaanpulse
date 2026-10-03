@@ -8,7 +8,7 @@ import type { PersonPageVM } from '../../viewmodels/pages/usePersonPageVM';
 
 afterEach(cleanup);
 const base: PersonPageVM = {
-  status: 'ready', name: 'Ram Kripal Yadav', photo: null, currentParty: { label: 'BJP', name: 'Bharatiya Janata Party', mark: null, color: '#f80' },
+  status: 'ready', name: 'Ram Kripal Yadav', photo: null, photoCredit: null, currentParty: { label: 'BJP', name: 'Bharatiya Janata Party', mark: null, color: '#f80' },
   facts: { age: 67, gender: { labelKey: 'pp_gender_M', raw: 'M' }, education: 'Post Graduate', home: 'Patna, Bihar' }, wikipedia: 'https://en.wikipedia.org/wiki/R', bio: 'A long bio.',
   incumbent: true, stats: { contests: 2, wins: 1, decided: 2, winRate: 50, houses: ['LS'], parties: ['BJP', 'RJD'], switches: [{ from: 'JDU', to: 'BJP', fromLabel: 'JD(U)', toLabel: 'BJP', year: 2014 }] },
   contests: [{ key: 'a', year: 2014, electionName: 'Lok Sabha 2014', constituency: 'Patliputra', constHref: '/election/e/constituency/P', partyId: 'BJP', partyHref: '/election/e?party=BJP', partyLabel: 'BJP', partyName: 'Bharatiya Janata Party', house: 'LS', mark: null, color: '#f80', status: 'WON', votes: 383266, share: 39.1, margin: 40322, firstUnderParty: true }],
@@ -16,6 +16,15 @@ const base: PersonPageVM = {
 };
 
 describe('PersonPageView', () => {
+  it('shows the photo credit as a link to its source', () => {
+    render(<MemoryRouter><PersonPageView vm={{ ...base, photo: 'https://blob/x.jpg', photoCredit: { source_url: 'https://commons.wikimedia.org/wiki/File:X.jpg', author: 'A', licence: 'CC BY-SA 4.0' } }} /></MemoryRouter>);
+    expect(screen.getByRole('link', { name: 'Photo: A, CC BY-SA 4.0' }).getAttribute('href')).toBe('https://commons.wikimedia.org/wiki/File:X.jpg');
+  });
+  it('shows no credit line without a credit', () => {
+    render(<MemoryRouter><PersonPageView vm={base} /></MemoryRouter>);
+    expect(screen.queryByText(/^Photo:/)).toBeNull();
+  });
+
   it('renders profile, stats with the switch, timeline and affidavit', () => {
     render(<MemoryRouter><PersonPageView vm={base} /></MemoryRouter>);
     expect(screen.getByRole('heading', { level: 1, name: 'Ram Kripal Yadav' })).toBeTruthy();
