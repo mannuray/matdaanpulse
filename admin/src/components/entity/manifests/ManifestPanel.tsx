@@ -4,6 +4,7 @@ import { useToast } from '../../../context/ToastContext';
 import { useManifestEditor } from '../../../hooks/useManifestEditor';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { searchCandidates } from '../../../services/candidate.service';
+import { searchPersons } from '../../../services/person.api';
 import ErrorBoundary from '../../atoms/ErrorBoundary';
 import { AllianceEditor } from '../../manifest/AllianceEditor';
 import { WatchlistEditor } from '../../manifest/WatchlistEditor';
@@ -180,7 +181,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
           </ErrorBoundary>
           <ErrorBoundary>
             <WatchlistEditor watchlists={c.manifest.watchlists || []} contestingParties={c.contestingParties} constituencies={c.constituencies} partyMap={c.partyMap}
-              onUpdate={(val) => c.updateManifest('watchlists', val)} onSearchCandidates={searchCandidates} />
+              onUpdate={(val) => c.updateManifest('watchlists', val)} onSearchCandidates={(q) => searchCandidates(q, electionId)} onSearchPersons={searchPersons} />
           </ErrorBoundary>
           <ErrorBoundary>
             <MilestonesEditor milestones={c.manifest.milestones || []} onUpdate={(val) => c.updateManifest('milestones', val)} />

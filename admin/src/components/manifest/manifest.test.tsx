@@ -229,7 +229,7 @@ describe('WatchlistEditor', () => {
     await act(async () => { releaseOld([cand('c2', 'Old Result', 'INC', 'k1')]); });
     expect(screen.queryByRole('option', { name: /Old Result/ })).toBeNull();
     fireEvent.mouseDown(screen.getByRole('option', { name: /Ravi Prasad/ }));
-    expect(onUpdate).toHaveBeenLastCalledWith([{ ...WL[0], entries: [{ name: 'Ravi Prasad', party_id: 'BJP', const_id: 'k142' }] }]);
+    expect(onUpdate).toHaveBeenLastCalledWith([{ ...WL[0], entries: [{ name: 'Ravi Prasad', party_id: 'BJP', const_id: 'k142', person_id: 'p-c1' }] }]);
   });
 
   it('a failed candidate search shows a note and keeps the typed name', async () => {
@@ -242,6 +242,27 @@ describe('WatchlistEditor', () => {
     expect(screen.getByRole('table', { name: 'Leaders entries' })).toBeTruthy();
   });
 
+  it('stores the picked candidate\'s person_id, and clears it when the name is retyped', async () => {
+    const onUpdate = vi.fn();
+    const WL = [{ id: 'leaders', name: 'Leaders', entries: [{ name: '', party_id: '', const_id: '' }] }];
+    const cand = { id: 'c1', name: 'Tejashwi Prasad Yadav', party_id: 'RJD', const_id: 'BR_VS_179_RAGHOPUR', person_id: 'p-ty' } as unknown as Candidate;
+    render(<WatchlistEditor watchlists={WL} contestingParties={PARTIES} constituencies={SEATS} partyMap={partyMap} onSearchCandidates={vi.fn().mockResolvedValue([cand])} onUpdate={onUpdate} />);
+    const box = screen.getAllByRole('combobox')[0];
+    await act(async () => { fireEvent.change(box, { target: { value: 'Tej' } }); });
+    fireEvent.mouseDown(await screen.findByRole('option', { name: /Tejashwi Prasad Yadav/ }));
+    expect(onUpdate.mock.lastCall![0][0].entries[0]).toMatchObject({ name: 'Tejashwi Prasad Yadav', party_id: 'RJD', const_id: 'BR_VS_179_RAGHOPUR', person_id: 'p-ty' });
+    await act(async () => { fireEvent.change(box, { target: { value: 'Someone else' } }); });
+    expect(onUpdate.mock.lastCall![0][0].entries[0].person_id).toBeUndefined();
+  });
+  it('offers persons for leaders without a seat and stores person_id with an empty seat', async () => {
+    const onUpdate = vi.fn();
+    const WL = [{ id: 'leaders', name: 'Leaders', entries: [{ name: '', party_id: '', const_id: '' }] }];
+    render(<WatchlistEditor watchlists={WL} contestingParties={PARTIES} constituencies={SEATS} partyMap={partyMap} onSearchCandidates={vi.fn().mockResolvedValue([])}
+      onSearchPersons={vi.fn().mockResolvedValue([{ id: 'p-nk', name: 'Nitish Kumar' }])} onUpdate={onUpdate} />);
+    await act(async () => { fireEvent.change(screen.getAllByRole('combobox')[0], { target: { value: 'Nitish' } }); });
+    fireEvent.mouseDown(await screen.findByRole('option', { name: /Nitish Kumar/ }));
+    expect(onUpdate.mock.lastCall![0][0].entries[0]).toMatchObject({ name: 'Nitish Kumar', person_id: 'p-nk', const_id: '' });
+  });
   it('the role field and remove button act on their own entry', () => {
     const onUpdate = vi.fn();
     const WL = [{ id: 'leaders', name: 'Leaders', entries: [{ name: 'A', party_id: 'BJP', const_id: 'k1' }, { name: 'B', party_id: 'INC', const_id: 'k2' }] }];

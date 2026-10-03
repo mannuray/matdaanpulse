@@ -40,3 +40,8 @@ export function mergePersons(sourceId: string, targetId: string) {
 export function undoMerge(mergeId: string) {
   return apiFetch<{ undone: boolean; merge_id: string; person_id: string; keeper_id: string }>(`/admin/persons/merges/${mergeId}/undo`, { method: 'POST' });
 }
+
+/** Persons by name (manifest picker: leaders with no seat in the election). */
+export async function searchPersons(q: string): Promise<{ id: string; name: string }[]> {
+  return (await apiFetch<{ id: string; name: string }[]>(`/admin/persons/search?q=${encodeURIComponent(q)}`)) || [];
+}

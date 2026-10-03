@@ -201,6 +201,8 @@ export interface ManifestLeader {
   name: string;
   party_id: string;
   const_id: string;
+  /** The person this entry is (picker); seatless leaders link to their person page. */
+  person_id?: string;
 }
 
 export interface ManifestCabinet {
@@ -208,6 +210,8 @@ export interface ManifestCabinet {
   role: string;
   party_id: string;
   const_id: string;
+  /** The person this entry is (picker); seatless leaders link to their person page. */
+  person_id?: string;
 }
 
 export interface WatchlistEntry {
@@ -215,6 +219,8 @@ export interface WatchlistEntry {
   party_id: string;
   const_id: string;
   role?: string;
+  /** The person this entry is (picker); seatless leaders link to their person page. */
+  person_id?: string;
 }
 
 export interface Watchlist {

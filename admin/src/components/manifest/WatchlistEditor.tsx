@@ -7,6 +7,13 @@ import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import type { Watchlist, WatchlistEntry, Party, Constituency, Candidate } from '../../types';
 
+/** A person found by name (for leaders with no seat in this election, e.g. Legislative Council members). */
+export interface PersonHit { id: string; name: string }
+type SearchPersons = (query: string) => Promise<PersonHit[]>;
+
+/** At most this many person suggestions under the candidates. */
+const MAX_PERSONS = 8;
+
 /** Preset watchlists. The names are data: they become the watchlist's public name, so they are not re-cased. */
 export const WATCHLIST_PRESETS = [
   { id: 'leaders', name: 'Leaders' },
@@ -25,7 +32,8 @@ export function WatchlistRow({
   parties,
   constituencies,
   partyMap,
-  onSearchCandidates
+  onSearchCandidates,
+  onSearchPersons
 }: {
   entry: WatchlistEntry;
   eIdx: number;
@@ -35,10 +43,12 @@ export function WatchlistRow({
   constituencies: Constituency[];
   partyMap: Map<string, Party>;
   onSearchCandidates: (query: string) => Promise<Candidate[]>;
+  onSearchPersons?: SearchPersons;
 }) {
   const listId = useId();
   const [searchTerm, setSearchTerm] = useState(entry.name);
   const [results, setResults] = useState<Candidate[]>([]);
+  const [persons, setPersons] = useState<PersonHit[]>([]);
   const [loading, setLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -52,24 +62,29 @@ export function WatchlistRow({
 
   const handleSearch = async (query: string) => {
     setSearchTerm(query);
-    onUpdate({ name: query });
+    // A typed name no longer refers to the picked person.
+    onUpdate({ name: query, person_id: undefined });
     const request = ++latest.current;
     setFailed(false);
     if (query.length < 2) {
       setResults([]);
+      setPersons([]);
       setShowDropdown(false);
       setLoading(false);
       return;
     }
     setLoading(true);
     try {
-      const res = await onSearchCandidates(query);
+      const [res, people] = await Promise.all([onSearchCandidates(query), onSearchPersons ? onSearchPersons(query) : Promise.resolve([])]);
       if (request !== latest.current) return; // a newer query is on its way
-      setResults(res || []);
+      const cands = res || [];
+      const known = new Set(cands.map(c => c.person_id));
+      setResults(cands);
+      setPersons((people || []).filter(p => !known.has(p.id)).slice(0, MAX_PERSONS));
       setShowDropdown(true);
     } catch {
       // The typed name is kept; tell the user the suggestions did not load.
-      if (request === latest.current) { setResults([]); setShowDropdown(false); setFailed(true); }
+      if (request === latest.current) { setResults([]); setPersons([]); setShowDropdown(false); setFailed(true); }
     } finally {
       if (request === latest.current) setLoading(false);
     }
@@ -79,14 +94,21 @@ export function WatchlistRow({
     onUpdate({
       name: c.name,
       party_id: c.party_id || '',
-      const_id: c.const_id
+      const_id: c.const_id,
+      person_id: c.person_id
     });
     setSearchTerm(c.name);
     setShowDropdown(false);
   };
 
+  const handleSelectPerson = (p: PersonHit) => {
+    onUpdate({ name: p.name, person_id: p.id, const_id: '' });
+    setSearchTerm(p.name);
+    setShowDropdown(false);
+  };
+
   const p = partyMap.get(entry.party_id);
-  const open = showDropdown && results.length > 0;
+  const open = showDropdown && (results.length > 0 || persons.length > 0);
 
   return (
     <tr>
@@ -121,6 +143,21 @@ export function WatchlistRow({
               >
                 <div className="font-semibold text-ink">{r.name}</div>
                 <div className="text-[10px] text-muted">{r.party_id} · {r.const_id}</div>
+              </li>
+            ))}
+            {persons.length > 0 && (
+              <li role="presentation" className="px-2.5 pb-0.5 pt-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted">People (no seat in this election)</li>
+            )}
+            {persons.map(p => (
+              <li
+                key={`p-${p.id}`}
+                role="option"
+                aria-selected={false}
+                onMouseDown={(e) => { e.preventDefault(); handleSelectPerson(p); }}
+                className="cursor-pointer rounded-control px-2.5 py-1.5 text-xs hover:bg-accent-soft"
+              >
+                <div className="font-semibold text-ink">{p.name}</div>
+                <div className="text-[10px] text-muted">Person</div>
               </li>
             ))}
           </ul>
@@ -186,6 +223,7 @@ export function WatchlistEditor({
   constituencies,
   partyMap,
   onSearchCandidates,
+  onSearchPersons,
   onUpdate
 }: {
   watchlists: Watchlist[];
@@ -193,6 +231,7 @@ export function WatchlistEditor({
   constituencies: Constituency[];
   partyMap: Map<string, Party>;
   onSearchCandidates: (query: string) => Promise<Candidate[]>;
+  onSearchPersons?: SearchPersons;
   onUpdate: (watchlists: Watchlist[]) => void;
 }) {
   const items = watchlists || [];
@@ -266,6 +305,7 @@ export function WatchlistEditor({
                     constituencies={constituencies || []}
                     partyMap={partyMap}
                     onSearchCandidates={onSearchCandidates}
+                    onSearchPersons={onSearchPersons}
                   />
                 ))}
               </tbody>
