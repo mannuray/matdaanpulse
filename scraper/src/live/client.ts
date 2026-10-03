@@ -4,14 +4,16 @@ export class IngestApiError extends Error {
   constructor(message: string, public status: number, public code: string | null, public details: unknown) { super(message); }
 }
 
-/** Typed client for the ingest API (spec §4). Retries network errors and 5xx with backoff; 4xx are thrown at once. */
+/** Typed client for the ingest API (spec §4). Retries network errors, timeouts (per-request `timeoutMs`, default 30s) and 5xx with backoff; 4xx are thrown at once. */
 export class IngestClient {
   private readonly f: typeof fetch;
   private readonly retries: number;
+  private readonly timeoutMs: number;
   private readonly sleep: (ms: number) => Promise<void>;
-  constructor(private readonly opts: { baseUrl: string; key: string; fetch?: typeof fetch; retries?: number; sleep?: (ms: number) => Promise<void> }) {
+  constructor(private readonly opts: { baseUrl: string; key: string; fetch?: typeof fetch; retries?: number; sleep?: (ms: number) => Promise<void>; timeoutMs?: number }) {
     this.f = opts.fetch ?? fetch;
     this.retries = opts.retries ?? 3;
+    this.timeoutMs = opts.timeoutMs ?? 30_000;
     this.sleep = opts.sleep ?? (ms => new Promise(r => setTimeout(r, ms)));
   }
 
@@ -35,7 +37,7 @@ export class IngestClient {
       let res: Response;
       try {
         res = await this.f(`${this.opts.baseUrl}${path}`, {
-          method, headers: { Authorization: `Bearer ${this.opts.key}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
+          method, signal: AbortSignal.timeout(this.timeoutMs), headers: { Authorization: `Bearer ${this.opts.key}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
           ...(body ? { body: JSON.stringify(body) } : {}),
         });
       } catch (e) { last = e; continue; }

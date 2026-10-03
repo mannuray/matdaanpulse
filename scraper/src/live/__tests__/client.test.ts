@@ -23,4 +23,13 @@ describe('IngestClient', () => {
     const c = new IngestClient({ baseUrl: 'http://api', key: 'k', retries: 2, fetch: vi.fn(async () => err(502, 'GEN_0001')) as any, sleep: async () => {} });
     await expect(c.config('e', 'rest')).rejects.toBeInstanceOf(IngestApiError);
   });
+  it('aborts a hung request after timeoutMs and retries it', async () => {
+    const f = vi.fn((_url: string, init: RequestInit) => {
+      if (f.mock.calls.length === 1) return new Promise<Response>((_res, rej) => init.signal?.addEventListener('abort', () => rej(new Error('aborted'))));
+      return Promise.resolve(ok({ expires_at: 't' }));
+    });
+    const c = new IngestClient({ baseUrl: 'http://api', key: 'k', timeoutMs: 20, fetch: f as any, sleep: async () => {} });
+    expect(await c.lease('e', 'rest', 'w')).toEqual({ expires_at: 't' });
+    expect(f).toHaveBeenCalledTimes(2);
+  });
 });
