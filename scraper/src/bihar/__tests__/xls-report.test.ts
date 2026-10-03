@@ -83,10 +83,11 @@ describe('party list and performance', () => {
       { abbr: 'JAPL', name: 'Jan Adhikar Party (Loktantrik)', recognition: 'Unrecognised' },
     ]);
   });
-  it('reads party performance rows and skips subtotals', () => {
+  it('reads party performance rows and skips subtotals, NOTA and the grand total', () => {
     const rows = [
       ['5 - Performance of Political Parties'], [null, null, 'SEATS'], ['PARTY TYPE', 'ABBREVIATION', 'CONTESTED', 'WON', 'FD', 'VOTES', '%'],
       ['NATIONAL PARTIES'], [1, 'BJP', 110, 74, 3, 8202067, '19.46%', 42.56], [null, null, 841, 96, 698, 9382666, '32.29'],
+      [214, 'NOTA', '-', '-', '-', 706295, '1.68%', 1.68], ['Grand Total:', null, 2616, 243, 2107, 50207733, '-', 100],
     ];
     expect(parsePerformanceRows(rows)).toEqual([{ abbr: 'BJP', contested: 110, won: 74, votes: 8202067 }]);
   });

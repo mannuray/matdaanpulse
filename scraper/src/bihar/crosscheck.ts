@@ -8,7 +8,7 @@ export const EXPECTED_PHASES: Record<Year, number> = { 2010: 6, 2015: 5, 2020: 3
 export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): string[] {
   const errs: string[] = [];
   const add = (key: string, msg: string) => errs.push(`${key} ${msg}`);
-  const fullOf = (abbr: string) => e.parties.find(p => p.abbr === abbr)?.name ?? abbr;
+  const fullOf = (abbr: string) => (abbr === 'IND' ? 'Independent' : e.parties.find(p => p.abbr === abbr)?.name ?? abbr);
   const sameParty = (abbr: string, summaryParty: string) => summaryParty === abbr || normName(fullOf(abbr)) === normName(summaryParty);
 
   const summaries = new Map(e.summaries.map(s => [s.constNo, s]));
@@ -30,10 +30,16 @@ export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): s
     if (!r || !sameParty(r.party, m.runnerUp.party) || r.total !== m.runnerUp.votes) add(k('runner-up'), `detailed ${r?.party} ${r?.total} vs summary ${m.runnerUp.party} ${m.runnerUp.votes}`);
     if (w && r && w.total - r.total !== m.margin) add(k('margin'), `detailed ${w.total - r.total} vs summary ${m.margin}`);
   }
+  const ak = (a: string) => a.replace(/\s/g, '').toUpperCase();
+  const perf = new Map<string, { abbr: string; contested: number; won: number; votes: number }>();
   for (const p of e.performance) {
+    const t = perf.get(ak(p.abbr)) ?? { abbr: p.abbr, contested: 0, won: 0, votes: 0 };
+    perf.set(ak(p.abbr), { abbr: p.abbr, contested: t.contested + p.contested, won: t.won + p.won, votes: t.votes + p.votes });
+  }
+  for (const p of perf.values()) {
     if (p.abbr === 'IND') continue; // independents are reported as one pseudo-party in some years; checked through seats
-    const cands = e.seats.flatMap(s => s.candidates.filter(c => c.party === p.abbr));
-    const won = e.seats.filter(s => [...s.candidates].sort((a, b) => b.total - a.total)[0]?.party === p.abbr).length;
+    const cands = e.seats.flatMap(s => s.candidates.filter(c => ak(c.party) === ak(p.abbr)));
+    const won = e.seats.filter(s => ak([...s.candidates].sort((a, b) => b.total - a.total)[0]?.party ?? '') === ak(p.abbr)).length;
     const votes = cands.reduce((a, c) => a + c.total, 0);
     if (cands.length !== p.contested) add(`party-contested:${p.abbr}`, `detailed ${cands.length} vs performance ${p.contested}`);
     if (won !== p.won) add(`party-won:${p.abbr}`, `detailed ${won} vs performance ${p.won}`);

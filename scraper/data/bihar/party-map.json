@@ -1,0 +1,2788 @@
+{
+  "AADARSHMITHILAPARTY": {
+    "id": "AMP",
+    "name": "Aadarsh Mithila Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AAMAADMIPARTY": {
+    "id": "AAP",
+    "name": "Aam Aadmi Party",
+    "abbreviation": null,
+    "color": "#0066FF",
+    "recognition": "National"
+  },
+  "AAMADHIKARMORCHA": {
+    "id": "AAM",
+    "name": "Aam Adhikar Morcha",
+    "abbreviation": "AAM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AAMJANATAPARTY": {
+    "id": "AAMJP",
+    "name": "Aam Janata Party",
+    "abbreviation": "AAMJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AAMJANMATPARTY": {
+    "id": "AMJNMTP",
+    "name": "Aam Janmat Party,",
+    "abbreviation": "AMJNMTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AAMJANPARTYSECULAR": {
+    "id": "AJPS",
+    "name": "Aam Jan Party (Secular)",
+    "abbreviation": "AJPS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AAMJANTAPARTYRASHTRIYA": {
+    "id": "AJPR",
+    "name": "Aam Janta Party Rashtriya",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AAMJANTAPRAGATIPARTY": {
+    "id": "AJPP",
+    "name": "Aam Janta Pragati Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AAPAURHUMPARTY": {
+    "id": "AAHPTY",
+    "name": "Aap Aur Hum Party",
+    "abbreviation": "AAHPty",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AAPKIAPNIADHIKARPARTY": {
+    "id": "AAAP",
+    "name": "Aapki Apni Adhikar Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AARAKSHANVIRODHIPARTY": {
+    "id": "AVIRP",
+    "name": "AARAKSHAN VIRODHI PARTY",
+    "abbreviation": "AVIRP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AAZADSAMAJPARTYKANSHIRAM": {
+    "id": "ASPKR",
+    "name": "Aazad Samaj Party (Kanshi Ram)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "ADARSHJANKALYANDAL": {
+    "id": "AJD",
+    "name": "Adarsh Jankalyan Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AKHANDBHARATJANPRIYAPARTY": {
+    "id": "ABJP",
+    "name": "Akhand Bharat Janpriya Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AKHANDBHARATSAMAJPARTY": {
+    "id": "ABSP_BR",
+    "name": "Akhand Bharat Samaj Party",
+    "abbreviation": "ABSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHANDBHARATVIKASPARTY": {
+    "id": "ABVP",
+    "name": "Akhand Bharat Vikas Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AKHANDBHARTIYAYUVAPARTY": {
+    "id": "ABYP",
+    "name": "Akhand Bhartiya Yuva Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AKHILBHARATHINDUMAHASABHA": {
+    "id": "ABHM",
+    "name": "Akhil Bharat Hindu Mahasabha",
+    "abbreviation": "ABHM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARATIYAASHOKSENA": {
+    "id": "ABAS",
+    "name": "Akhil Bharatiya Ashok Sena",
+    "abbreviation": "ABAS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARATIYADESHBHAKTMORCHA": {
+    "id": "ABDBM",
+    "name": "Akhil Bharatiya Desh Bhakt Morcha",
+    "abbreviation": "ABDBM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARATIYAHINDKRANTIPARTY": {
+    "id": "ABHKP",
+    "name": "Akhil Bharatiya Hind Kranti Party",
+    "abbreviation": "ABHKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARATIYAJANSANGH": {
+    "id": "ABJS",
+    "name": "Akhil Bharatiya Jan Sangh",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AKHILBHARATIYARAJARYASABHA": {
+    "id": "ABRS",
+    "name": "Akhil Bharatiya Rajarya Sabha",
+    "abbreviation": "ABRS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARATIYASOCIALISTPARTY": {
+    "id": "ABSP",
+    "name": "Akhil Bharatiya Socialist Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AKHILBHARITYAMITHILAPARTY": {
+    "id": "AKBMP",
+    "name": "Akhil Bharitya Mithila Party",
+    "abbreviation": "AKBMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARTIYAAPNADAL": {
+    "id": "ABAD",
+    "name": "Akhil Bhartiya Apna Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AKHILBHARTIYAATYANTPICHARASANGHARSHMORCHAPARTY": {
+    "id": "ABAPSMP",
+    "name": "AKHIL BHARTIYA ATYANT PICHARA SANGHARSH MORCHA PARTY",
+    "abbreviation": "ABAPSMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARTIYAMANAVADHIKARVICHARMANCHPARTY": {
+    "id": "ABMVMP",
+    "name": "Akhil Bhartiya Manavadhikar Vichar Manch Party",
+    "abbreviation": "ABMVMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILBHARTIYAMITHILAPARTY": {
+    "id": "AKBMP",
+    "name": "Akhil Bhartiya Mithila Party",
+    "abbreviation": "AKBMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AKHILHINDFORWARDBLOCKRANTIKARI": {
+    "id": "AHFBK",
+    "name": "Akhil Hind Forward Bloc (Krantikari)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "ALLINDIABABUJAGJIVANRAMSAHEBNATIONALCONGRESS": {
+    "id": "AIBJRBSNC",
+    "name": "All India Babu Jagjivan Ram Saheb National Congress",
+    "abbreviation": "AIBJRBSNC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLINDIAFORWARDBLOC": {
+    "id": "AIFB",
+    "name": "All India Forward Bloc",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "ALLINDIAFORWARDBLOCSUBHASIST": {
+    "id": "AIFBS",
+    "name": "All India Forward Bloc (Subhasist)",
+    "abbreviation": "AIFB(S)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLINDIAMAJLISEINQUILABEMILLAT": {
+    "id": "AIM",
+    "name": "All India Majlis-E-Inquilab-E-Millat",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "ALLINDIAMAJLISEITTEHADULMUSLIMEEN": {
+    "id": "AIMIM",
+    "name": "All India Majlis-E-Ittehadul Muslimeen",
+    "abbreviation": null,
+    "color": "#2BB673",
+    "recognition": null
+  },
+  "ALLINDIAMINORITIESFRONT": {
+    "id": "AIMF",
+    "name": "All India Minorities Front",
+    "abbreviation": "AIMF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALPJANSAMAJPARTY": {
+    "id": "AJSP",
+    "name": "Alpjan Samaj Party",
+    "abbreviation": "AJSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AMBEDKARITEPARTYOFINDIA": {
+    "id": "APOI",
+    "name": "Ambedkarite Party of India",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AMBEDKARNATIONALCONGRESS": {
+    "id": "ANC",
+    "name": "Ambedkar National Congress",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "ANGIKASAMAJPARTY": {
+    "id": "ANGSP",
+    "name": "Angika Samaj Party",
+    "abbreviation": "AngSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ANTICORRUPTIONDYNAMICPARTY": {
+    "id": "ACDP",
+    "name": "Anti Corruption Dynamic Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "APNAADHIKARPARTY": {
+    "id": "AAP1",
+    "name": "Apna Adhikar Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "APNADAL": {
+    "id": "AD_BR",
+    "name": "Apna Dal",
+    "abbreviation": "AD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "APNAKISANPARTY": {
+    "id": "AKP",
+    "name": "Apna Kisan Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "APNIJANTAPARTY": {
+    "id": "APNJNTP",
+    "name": "Apni Janta Party",
+    "abbreviation": "APNJNTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ASANKHYASAMAJPARTY": {
+    "id": "ASP",
+    "name": "Asankhya Samaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "ASLIDESHIPARTY": {
+    "id": "ASDHP",
+    "name": "Asli Deshi Party",
+    "abbreviation": "ASDHP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ATULYABHARATPARTY": {
+    "id": "ABP1",
+    "name": "Atulya Bharat Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AWAMIPARTY": {
+    "id": "AP_BR",
+    "name": "Awami Party",
+    "abbreviation": "AP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AWAMISAMTAPARTY": {
+    "id": "ASP1",
+    "name": "Awami Samta Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "AZADSAMAJPARTY": {
+    "id": "ASP8",
+    "name": "Azad Samaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BAHUJANEKTAPARTYR": {
+    "id": "BEPR",
+    "name": "Bahujan Ekta Party ( R )",
+    "abbreviation": "BEP(R)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BAHUJANKRANTIPARTYMARXWADAMBEDKARWAD": {
+    "id": "BKP",
+    "name": "Bahujan Kranti Party (Marxwad-Ambedkarwad)",
+    "abbreviation": "BKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BAHUJANLOKDAL": {
+    "id": "BHULKD",
+    "name": "Bahujan Lok Dal",
+    "abbreviation": "BHULKD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BAHUJANMAHAPARTY": {
+    "id": "BMP",
+    "name": "Bahujan Maha Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BAHUJANMUKTIPARTY": {
+    "id": "BMP1",
+    "name": "Bahujan Mukti Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BAHUJANNYAYDAL": {
+    "id": "BNDL",
+    "name": "Bahujan Nyay Dal",
+    "abbreviation": "BNDl",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BAHUJANSAMAJPARTY": {
+    "id": "BSP",
+    "name": "Bahujan Samaj Party",
+    "abbreviation": null,
+    "color": "#4B5BD6",
+    "recognition": "National"
+  },
+  "BAHUJANSANGHARSHPARTYKANSHIRAM": {
+    "id": "BSPK",
+    "name": "Bahujan Sangharsh Party (Kanshiram)",
+    "abbreviation": "BSP(K)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BAHUJANSHAKTY": {
+    "id": "BSA",
+    "name": "Bahujan Shakty",
+    "abbreviation": "BSA",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BAJJIKANCHALVIKASPARTY": {
+    "id": "BVP",
+    "name": "Bajjikanchal Vikas Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHAGIDARIPARTYP": {
+    "id": "BP",
+    "name": "Bhagidari Party(P)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATBHRASHTACHARMITAOPARTY": {
+    "id": "BBMP",
+    "name": "Bharat Bhrashtachar Mitao Party",
+    "abbreviation": "BBMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATDESHBHAKTPARTY": {
+    "id": "BDEP",
+    "name": "Bharat Deshbhakt Party",
+    "abbreviation": "BDeP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATEEYAMANAVADHIKARPARTY": {
+    "id": "BHMP",
+    "name": "Bharateeya Manavadhikar Party",
+    "abbreviation": "BHMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATHEEYAJAWANKISANPARTY": {
+    "id": "BJKP",
+    "name": "Bharatheeya Jawan Kisan Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATIYAAAMAWAMPARTY": {
+    "id": "BHAMAP",
+    "name": "Bharatiya Aam Awam Party",
+    "abbreviation": "BhAmAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATIYABAHUJANCONGRESS": {
+    "id": "BBC",
+    "name": "Bharatiya Bahujan Congress",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATIYAEKTADAL": {
+    "id": "BED",
+    "name": "Bharatiya Ekta Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATIYAINQALABPARTY": {
+    "id": "BIP_BR",
+    "name": "Bharatiya Inqalab Party",
+    "abbreviation": "BIP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATIYAJAGARANPARTY": {
+    "id": "BHAJP",
+    "name": "Bharatiya Jagaran Party",
+    "abbreviation": "BHAJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATIYAJANATAPARTY": {
+    "id": "BJP",
+    "name": "Bharatiya Janata Party",
+    "abbreviation": null,
+    "color": "#FF7A1A",
+    "recognition": "National"
+  },
+  "BHARATIYAJANKRANTIDALDEMOCRATIC": {
+    "id": "BJKD",
+    "name": "Bharatiya Jan Kranti Dal (Democratic)",
+    "abbreviation": "BJKD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATIYAJANTANTRIKJANTADAL": {
+    "id": "BJJD_BR",
+    "name": "Bharatiya Jantantrik Janta Dal",
+    "abbreviation": "BJJD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATIYAMOMINFRONT": {
+    "id": "BMF",
+    "name": "Bharatiya Momin Front",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATIYASAMPURANKRANTIKARIPARTY": {
+    "id": "BSKP",
+    "name": "Bharatiya Sampuran Krantikari Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATIYASAMTASAMAJPARTY": {
+    "id": "BSSPA",
+    "name": "Bharatiya Samta Samaj Party",
+    "abbreviation": "BSSPA",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATIYAYUVAPARTYDEMOCRATIC": {
+    "id": "BYPD",
+    "name": "Bharatiya Yuva Party (Democratic)",
+    "abbreviation": "BYPD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATJAGOJANTAPARTY": {
+    "id": "BJJP",
+    "name": "Bharat Jago Janta Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATJANJAGRANDAL": {
+    "id": "BJJD",
+    "name": "Bharat Jan Jagran Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATKAKISANMAJDOORPARTY": {
+    "id": "BKKMP",
+    "name": "Bharat Ka Kisan Majdoor Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARATMANGALAMPARISHAD": {
+    "id": "BMP_BR",
+    "name": "Bharat Mangalam Parishad",
+    "abbreviation": "BMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATNIRMANPARTY": {
+    "id": "BHNP",
+    "name": "Bharat Nirman Party",
+    "abbreviation": "BhNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARATVIKASMORCHA": {
+    "id": "BVM",
+    "name": "Bharat Vikas Morcha",
+    "abbreviation": "BVM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTISAMUDAYAPARTY": {
+    "id": "BHASP",
+    "name": "Bharti Samudaya Party",
+    "abbreviation": "BhaSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAAAMJANTAVIKASPARTY": {
+    "id": "BAJVP",
+    "name": "Bhartiya Aam Janta Vikas Party",
+    "abbreviation": "BAJVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYACHETNAPARTY": {
+    "id": "BCP",
+    "name": "Bhartiya Chetna Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARTIYADALITPARTY": {
+    "id": "BDP",
+    "name": "Bhartiya Dalit Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARTIYADESHBHAKTPARTY": {
+    "id": "BDBP",
+    "name": "Bhartiya Deshbhakt Party",
+    "abbreviation": "BDBP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAGARIBMAZDOORPARTY": {
+    "id": "BGMP",
+    "name": "Bhartiya Garibmazdoor Party,",
+    "abbreviation": "BGMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAINSANPARTY": {
+    "id": "BIP",
+    "name": "Bhartiya Insan Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARTIYAJAGARANPARTY": {
+    "id": "BAJAP",
+    "name": "Bhartiya Jagaran Party",
+    "abbreviation": "BaJaP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAJANHITDAL": {
+    "id": "BJND",
+    "name": "Bhartiya Janhit Dal",
+    "abbreviation": "BJND",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAJANHITKARIPARTY": {
+    "id": "BJHP",
+    "name": "Bhartiya Jan Hitkari Party",
+    "abbreviation": "BJHP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAJANNAYAKPARTY": {
+    "id": "BJNP",
+    "name": "Bhartiya Jan Nayak Party",
+    "abbreviation": "BJNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAJANTANTRIKJANATADAL": {
+    "id": "BJJD_BR",
+    "name": "Bhartiya Jantantrik Janata Dal",
+    "abbreviation": "BJJD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAKRANTIVIRPARTY": {
+    "id": "BKVP",
+    "name": "Bhartiya Kranti Vir Party",
+    "abbreviation": "BKVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYALOKCHETNAPARTY": {
+    "id": "BLCP",
+    "name": "Bhartiya Lok Chetna Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARTIYALOKMATRASHTRWADIPARTY": {
+    "id": "BLRP",
+    "name": "Bhartiya Lokmat Rashtrwadi Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARTIYALOKNAYAKPARTY": {
+    "id": "BRTYLKNYKP",
+    "name": "Bhartiya Lok Nayak Party",
+    "abbreviation": "BRTYLKNYKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAMAHASANGHPARTY": {
+    "id": "BTMSP",
+    "name": "Bhartiya Mahasangh Party",
+    "abbreviation": "BTMSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAMANAVTAPARTY": {
+    "id": "BRMNP",
+    "name": "Bhartiya Manavta Party",
+    "abbreviation": "BRMNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAMITRAPARTY": {
+    "id": "BMTRP",
+    "name": "Bhartiya Mitra Party",
+    "abbreviation": "BMtrP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYANEWSANSKARKRANTIKARIPARTY": {
+    "id": "BNSKP",
+    "name": "Bhartiya New Sanskar Krantikari Party",
+    "abbreviation": "BNSKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAPANCHYATPARTY": {
+    "id": "BYPP",
+    "name": "Bhartiya Panchyat Party",
+    "abbreviation": "BYPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAPARTYLOKTANTRIK": {
+    "id": "BPL",
+    "name": "Bhartiya Party (Loktantrik)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARTIYARASHTRIYADAL": {
+    "id": "BRD",
+    "name": "Bhartiya Rashtriya Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARTIYASABLOGPARTY": {
+    "id": "BHRTSBLP",
+    "name": "Bhartiya Sablog Party",
+    "abbreviation": "BHRTSBLP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYASANYUKTKISANPARTY": {
+    "id": "BHRTSYTKP",
+    "name": "Bhartiya Sanyukt Kisan Party",
+    "abbreviation": "BHRTSYTKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYASARTHAKPARTY": {
+    "id": "BSP1",
+    "name": "Bhartiya Sarthak Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BHARTIYASARVODAYAPARTY": {
+    "id": "BASAPA",
+    "name": "Bhartiya Sarvodaya Party",
+    "abbreviation": "BaSaPa",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHARTIYAVIKASHDALUNITED": {
+    "id": "BVDU",
+    "name": "Bhartiya Vikash Dal United",
+    "abbreviation": "BVDU",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BHOJPURIAJANMORCHA": {
+    "id": "BJM",
+    "name": "Bhojpuria Jan Morcha",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BIHARJANTAPARTY": {
+    "id": "BJPARTY",
+    "name": "Bihar Janta Party",
+    "abbreviation": "BJPARTY",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "BIHARJUSTICEPARTY": {
+    "id": "BJP1",
+    "name": "Bihar Justice Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "BIHARLOKNIRMANDAL": {
+    "id": "BLND",
+    "name": "Bihar Lok Nirman Dal",
+    "abbreviation": "BLND",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "COMMUNISTPARTYOFINDIA": {
+    "id": "CPI",
+    "name": "Communist Party of India",
+    "abbreviation": null,
+    "color": "#FF0000",
+    "recognition": null
+  },
+  "COMMUNISTPARTYOFINDIAMARXIST": {
+    "id": "CPIM",
+    "name": "Communist Party of India  (Marxist)",
+    "abbreviation": null,
+    "color": "#B83A3E",
+    "recognition": "National"
+  },
+  "COMMUNISTPARTYOFINDIAMARXISTLENINISTLIBERATION": {
+    "id": "CPOI",
+    "name": "Communist Party of India  (Marxist-Leninist)  (Liberation)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "CONGRESSSECULAR": {
+    "id": "CS",
+    "name": "Congress (Secular)",
+    "abbreviation": "C(S)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "COUNTRYCITIZENPARTY": {
+    "id": "CCP",
+    "name": "Country Citizen Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "DALITSAMAJPARTY": {
+    "id": "DSP",
+    "name": "Dalit Samaj Party",
+    "abbreviation": "DSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "DESHIKISANPARTY": {
+    "id": "DKP",
+    "name": "Deshi Kisan Party",
+    "abbreviation": "DKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "DESHJANHITPARTY": {
+    "id": "DJP",
+    "name": "Desh Janhit Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "EKTADALUNITED": {
+    "id": "EDU",
+    "name": "Ekta Dal United",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "FAUJIJANTAPARTY": {
+    "id": "FJP",
+    "name": "Fauji Janta Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "FAUJIKISANPARTY": {
+    "id": "FJKSP",
+    "name": "Fauji Kisan Party",
+    "abbreviation": "FJKSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GANASURAKSHAPARTY": {
+    "id": "GSP",
+    "name": "Gana Suraksha Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "GANTANTRIKSAMAJPARTY": {
+    "id": "GNTKSP",
+    "name": "Gantantrik Samaj Party",
+    "abbreviation": "GNTKSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GAREEBAADMIPARTY": {
+    "id": "GAAP",
+    "name": "Gareeb Aadmi Party",
+    "abbreviation": "GaAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GAREEBJANKRANTIPARTY": {
+    "id": "GJKP",
+    "name": "Gareeb Jankranti Party",
+    "abbreviation": "GJKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GARIBJANSHAKTIPARTY": {
+    "id": "GJP",
+    "name": "Garib Janshakti Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "GARIBJANTADALSECULAR": {
+    "id": "GJDS",
+    "name": "Garib Janta Dal (Secular)",
+    "abbreviation": "GJDS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GARIBJANTAPARTYLOKTANTRIK": {
+    "id": "GPL",
+    "name": "GaribJanta Party Loktantrik",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "GARIBVIKASPARTY": {
+    "id": "GVIP",
+    "name": "Garib Vikas Party",
+    "abbreviation": "GVIP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GONDVANAGANTANTRAPARTY": {
+    "id": "GGP",
+    "name": "Gondvana Gantantra Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "HAMARASAHARAPARTY": {
+    "id": "HMSP",
+    "name": "Hamara Sahara Party",
+    "abbreviation": "HMSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "HINDCONGRESSPARTY": {
+    "id": "HCP",
+    "name": "Hind Congress Party",
+    "abbreviation": "HCP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "HINDUSAMAJPARTY": {
+    "id": "HSP",
+    "name": "Hindu Samaj Party",
+    "abbreviation": "HSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "HINDUSTANIAWAMMANCHUNITED": {
+    "id": "HAMU",
+    "name": "Hindustani Awam Manch (United)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "HINDUSTANIAWAMMORCHASECULAR": {
+    "id": "HAMS",
+    "name": "Hindustani Awam Morcha (Secular)",
+    "abbreviation": null,
+    "color": "#E8C547",
+    "recognition": null
+  },
+  "HINDUSTANKRANTIKARIDAL": {
+    "id": "HKRD",
+    "name": "Hindustan Krantikari Dal",
+    "abbreviation": "HKRD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "HINDUSTANSAMPOORNAAZADPARTY": {
+    "id": "HSAP",
+    "name": "Hindustan Sampoorna Azad Party",
+    "abbreviation": "HSAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "HINDUSTANVIKASDAL": {
+    "id": "HVD",
+    "name": "Hindustan Vikas Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "HINDUSTHANNIRMANDAL": {
+    "id": "HND",
+    "name": "Hindusthan Nirman Dal",
+    "abbreviation": "HND",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INDIANINCLUSIVEPARTY": {
+    "id": "IIP",
+    "name": "Indian Inclusive Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "INDIANJUSTICEPARTY": {
+    "id": "IJP",
+    "name": "Indian Justice Party",
+    "abbreviation": "IJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INDIANNATIONALCONGRESS": {
+    "id": "INC",
+    "name": "Indian National Congress",
+    "abbreviation": null,
+    "color": "#38C6F4",
+    "recognition": "National"
+  },
+  "INDIANNATIONALGREENPARTY": {
+    "id": "INGP",
+    "name": "Indian National Green Party",
+    "abbreviation": "INGP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INDIANNATIONALLEAGUE": {
+    "id": "INL",
+    "name": "Indian National League",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "INDIANNATIONALSOCIALISTICACTIONFORCES": {
+    "id": "INSAF",
+    "name": "Indian National Socialistic Action Forces",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "INDIANUNIONMUSLIMLEAGUE": {
+    "id": "IUML",
+    "name": "Indian Union Muslim League",
+    "abbreviation": null,
+    "color": "#006600",
+    "recognition": null
+  },
+  "INDIYAJANANAYAKAKATCHI": {
+    "id": "IJK",
+    "name": "Indiya Jananayaka Katchi",
+    "abbreviation": "IJK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "INSANIYATPARTY": {
+    "id": "IP",
+    "name": "Insaniyat Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "INTERNATIONALPARTY": {
+    "id": "IPTY",
+    "name": "International Party",
+    "abbreviation": "IPty",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ITTEHADEMILLAITCOUNCIL": {
+    "id": "IEMC",
+    "name": "Ittehad-E-Millait Council",
+    "abbreviation": "IEMC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAGOHINDUSTANPARTY": {
+    "id": "JGHTP",
+    "name": "Jago Hindustan Party",
+    "abbreviation": "JGHTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAGROOKJANTAPARTY": {
+    "id": "JJP",
+    "name": "Jagrook Janta Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JAIHINDFORCE": {
+    "id": "JHF",
+    "name": "Jai Hind Force",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JAIHINDPARTY": {
+    "id": "JHP",
+    "name": "Jai Hind Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JAIHINDSAMAJPARTY": {
+    "id": "JHSPT",
+    "name": "Jai Hind Samaj Party",
+    "abbreviation": "jhspt",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAIMAHABHARATHPARTY": {
+    "id": "JMBP",
+    "name": "Jai Maha Bharath Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JAIPRAKASHJANATADAL": {
+    "id": "JPJD",
+    "name": "Jai Prakash Janata Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JAMMUKASHMIRNATIONALPANTHERSPARTY": {
+    "id": "JKNPP",
+    "name": "Jammu & Kashmir National Panthers Party",
+    "abbreviation": "JKNPP",
+    "color": "#9CA3AF",
+    "recognition": "State"
+  },
+  "JANADHIKARPARTY": {
+    "id": "JANADIP",
+    "name": "Jan Adhikar Party",
+    "abbreviation": "JANADIP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANADHIKARPARTYLOKTANTRIK": {
+    "id": "JAPL",
+    "name": "Jan Adhikar Party (Loktantrik)",
+    "abbreviation": "JAPL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANATACONGRESS": {
+    "id": "JAC",
+    "name": "Janata Congress",
+    "abbreviation": "JAC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANATADALSECULAR": {
+    "id": "JDS",
+    "name": "Janata Dal  (Secular)",
+    "abbreviation": null,
+    "color": "#228B22",
+    "recognition": null
+  },
+  "JANATADALUNITED": {
+    "id": "JDU",
+    "name": "Janata Dal  (United)",
+    "abbreviation": "JD(U)",
+    "color": "#1FA37A",
+    "recognition": "State"
+  },
+  "JANATAPARTY": {
+    "id": "JP_BR",
+    "name": "Janata Party",
+    "abbreviation": "JP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANHITDAL": {
+    "id": "JHD",
+    "name": "Janhit Dal",
+    "abbreviation": "JHD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANHITKISANPARTY": {
+    "id": "JKIP",
+    "name": "Janhit Kisan Party",
+    "abbreviation": "JKiP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANMATPARTY": {
+    "id": "JMTP",
+    "name": "Janmat Party",
+    "abbreviation": "JmtP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANMITHILAVIKASPARTY": {
+    "id": "JMVP",
+    "name": "Jan Mithila Vikas Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANSAHMATIPARTY": {
+    "id": "JSHMP",
+    "name": "Jan Sahmati Party",
+    "abbreviation": "JSHMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANSANGHARSHDAL": {
+    "id": "JNSNGHDL",
+    "name": "Jan Sangharsh Dal,",
+    "abbreviation": "JNSNGHDL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANSANGHARSHVIRATPARTY": {
+    "id": "JSVP",
+    "name": "Jan Sangharsh Virat Party",
+    "abbreviation": "JSVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANSANGHPARTY": {
+    "id": "JASP",
+    "name": "Jan Sangh Party",
+    "abbreviation": "JASP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANSATTAPARTYOFINDIA": {
+    "id": "JPOI",
+    "name": "Jansatta Party of India",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANSHAKTIJANTADAL": {
+    "id": "JJD",
+    "name": "Janshakti Janta Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANSHAKTIVIKASPARTYDEMOCRATIC": {
+    "id": "JVPD",
+    "name": "Janshakti Vikas Party (Democratic)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANSURAAJPARTY": {
+    "id": "JSP",
+    "name": "Jan Suraaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANTADALRASHTRAVADI": {
+    "id": "JDR",
+    "name": "Janta Dal Rashtravadi",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANTAKRANTIPARTYRASHTRAVADI": {
+    "id": "JKP2",
+    "name": "Janta Kranti Party (Rashtravadi)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANTANTRAAWAJPARTY": {
+    "id": "JAP",
+    "name": "Jantantra Awaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANTANTRIKLOKHITPARTY": {
+    "id": "JLP",
+    "name": "Jantantrik Lokhit Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JANTANTRIKVIKASPARTY": {
+    "id": "JTVP_BR",
+    "name": "Jantantrik Vikas Party",
+    "abbreviation": "JTVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANTARAJVIKASPARTY": {
+    "id": "JRVP",
+    "name": "Janta Raj Vikas Party",
+    "abbreviation": "JRVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JANVADIPARTYSOCIALIST": {
+    "id": "JPS",
+    "name": "Janvadi Party(Socialist)",
+    "abbreviation": "JPS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAWANKISANMORCHA": {
+    "id": "JKM",
+    "name": "Jawan Kisan Morcha",
+    "abbreviation": "JKM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JHARKHANDDISOMPARTY": {
+    "id": "JDP",
+    "name": "Jharkhand Disom Party",
+    "abbreviation": "JDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JHARKHANDMUKTIMORCHA": {
+    "id": "JMM",
+    "name": "Jharkhand Mukti Morcha",
+    "abbreviation": null,
+    "color": "#2E8B57",
+    "recognition": null
+  },
+  "JHARKHANDVIKASMORCHAPRAJATANTRIK": {
+    "id": "JVM",
+    "name": "Jharkhand Vikas Morcha (Prajatantrik)",
+    "abbreviation": "JVM",
+    "color": "#9CA3AF",
+    "recognition": "State"
+  },
+  "KALINGASENA": {
+    "id": "KS",
+    "name": "Kalinga Sena",
+    "abbreviation": "KS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KISANPARTYOFINDIA": {
+    "id": "KPOI",
+    "name": "Kisan Party of India",
+    "abbreviation": "KPOI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KISANSAMAJPARTYS": {
+    "id": "KSPS",
+    "name": "Kisan Samaj Party (S)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "KISANSANGHARSHSAMITI": {
+    "id": "KSS",
+    "name": "Kisan Sangharsh Samiti",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "KISANSHAKTIJANTANTRIKPARTY": {
+    "id": "KSJP",
+    "name": "KIsan Shakti Jantantrik Party",
+    "abbreviation": "KSJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KISANSURAJDAL": {
+    "id": "KSD",
+    "name": "Kisan Suraj Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "KRANTIKARISAMYAVADIPARTY": {
+    "id": "KSVP",
+    "name": "Krantikari Samyavadi Party",
+    "abbreviation": "KSVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KRANTIKARIVIKASDAL": {
+    "id": "KVD",
+    "name": "Krantikari Vikas Dal",
+    "abbreviation": "KVD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KUSHALJANTAPARTY": {
+    "id": "KSLJNP",
+    "name": "Kushal Janta Party,",
+    "abbreviation": "KSLJNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LALMORCHA": {
+    "id": "LM",
+    "name": "Lal Morcha",
+    "abbreviation": "LM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOGJANPARTYSECULAR": {
+    "id": "LGJNPSCL",
+    "name": "Log Jan Party - Secular,",
+    "abbreviation": "LGJNPSCL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOHIYAJANTADAL": {
+    "id": "LJD",
+    "name": "Lohiya Janta Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "LOKAWAZDAL": {
+    "id": "LAD",
+    "name": "Lok Awaz Dal",
+    "abbreviation": "lad",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKCHETNADAL": {
+    "id": "LCD",
+    "name": "Lok Chetna Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "LOKDAL": {
+    "id": "LD",
+    "name": "Lok Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "LOKHITADHIKARPARTY": {
+    "id": "LAP",
+    "name": "Lokhit Adhikar Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "LOKJANSHAKTIPARTY": {
+    "id": "LJP",
+    "name": "Lok Janshakti Party",
+    "abbreviation": null,
+    "color": "#0000CD",
+    "recognition": null
+  },
+  "LOKJANSHAKTIPARTYRAMVILAS": {
+    "id": "LJPRV",
+    "name": "Lok Janshakti Party(Ram Vilas)",
+    "abbreviation": null,
+    "color": "#3B8BFF",
+    "recognition": null
+  },
+  "LOKJANVIKASMORCHA": {
+    "id": "LJVM",
+    "name": "Lok Jan Vikas Morcha",
+    "abbreviation": "LJVM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKPRIYASAMAJPARTY": {
+    "id": "LPSP",
+    "name": "Lokpriya Samaj Party",
+    "abbreviation": "LPSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKSAMAJPARTY": {
+    "id": "LSMP",
+    "name": "Lok Samaj Party",
+    "abbreviation": "LSMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKSENA": {
+    "id": "LKSE",
+    "name": "Loksena",
+    "abbreviation": "LKSE",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKSEWADAL": {
+    "id": "LSD",
+    "name": "Lok Sewa Dal",
+    "abbreviation": "LSD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKSHAKTI": {
+    "id": "LS",
+    "name": "Lok Shakti",
+    "abbreviation": "LS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKSHAKTIPARTYLOKTANTRIK": {
+    "id": "LSPL",
+    "name": "Lok Shakti Party (Loktantrik)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "LOKTANTRIKJANATAPARTYSECULAR": {
+    "id": "LKJP",
+    "name": "Loktantrik Janata Party (Secular)",
+    "abbreviation": "LKJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKTANTRIKJANSHAKTIPARTY": {
+    "id": "LOKJANP",
+    "name": "Loktantrik Janshakti Party",
+    "abbreviation": "LOKJANP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKTANTRIKJANSWARAJPARTY": {
+    "id": "LJSP",
+    "name": "Loktantrik Jan Swaraj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "LOKTANTRIKJANTADAL": {
+    "id": "LJD_BR",
+    "name": "Loktantrik Janta Dal",
+    "abbreviation": "LJD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKTANTRIKSAMAJWADIPARTY": {
+    "id": "LSP",
+    "name": "Loktantrik Samajwadi Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "LOKTANTRIKSAMATADAL": {
+    "id": "LTSD",
+    "name": "Loktantrik Samata Dal",
+    "abbreviation": "LTSD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "LOKTANTRIKSARVJANSAMAJPARTY": {
+    "id": "LSSP",
+    "name": "Loktantrik Sarvjan Samaj Party",
+    "abbreviation": "LSSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAANAVVAADIJANTAPARTY": {
+    "id": "MANJP",
+    "name": "Maanavvaadi Janta Party",
+    "abbreviation": "ManJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MANAVADHIKARJANSHAKTIPARTY": {
+    "id": "MAJP",
+    "name": "Manavadhikar Janshakti Party",
+    "abbreviation": "MaJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MARXISTCOMMUNISTPARTYOFINDIASSSRIVASTAVA": {
+    "id": "MCPIS",
+    "name": "Marxist Communist Party of India (S.S. Srivastava)",
+    "abbreviation": "MCPI(S)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MARXISTCOMMUNISTPARTYOFINDIAUNITED": {
+    "id": "MCPI",
+    "name": "Marxist Communist Party of India (United)",
+    "abbreviation": "MCPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MAZDOOREKTAPARTY": {
+    "id": "MEP",
+    "name": "Mazdoor Ekta Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "MAZDOORKIRAYEDARVIKASPARTY": {
+    "id": "MKDVP",
+    "name": "Mazdoor Kirayedar Vikas Party",
+    "abbreviation": "MKDVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MINORITIESDEMOCRATICPARTY": {
+    "id": "MDP",
+    "name": "Minorities Democratic Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "MITHILANCHALMUKTIMORCHA": {
+    "id": "MMM",
+    "name": "Mithilanchal Mukti Morcha",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "MITHILANCHALVIKASMORCHA": {
+    "id": "MVM",
+    "name": "Mithilanchal Vikas Morcha",
+    "abbreviation": "MVM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MITHILAWADIPARTY": {
+    "id": "MTLWDP",
+    "name": "Mithilawadi Party",
+    "abbreviation": "MTLWDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "MOOLNIWASISAMAJPARTY": {
+    "id": "MSP",
+    "name": "Moolniwasi Samaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "MOULIKADHIKARPARTY": {
+    "id": "MAP",
+    "name": "Moulik Adhikar Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "MUSLIMLEAGUEKERALASTATECOMMITTEE": {
+    "id": "MUL_BR",
+    "name": "Muslim League Kerala State Committee",
+    "abbreviation": "MUL",
+    "color": "#9CA3AF",
+    "recognition": "State"
+  },
+  "NATIONALISTCONGRESSPARTY": {
+    "id": "NCP",
+    "name": "Nationalist Congress Party",
+    "abbreviation": null,
+    "color": "#006699",
+    "recognition": null
+  },
+  "NATIONALISTJANSHAKTIPARTY": {
+    "id": "NJANP",
+    "name": "Nationalist Janshakti Party",
+    "abbreviation": "NJANP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALJAGARANPARTY": {
+    "id": "NJP",
+    "name": "National Jagaran Party",
+    "abbreviation": "NJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALJANTAPARTYINDIAN": {
+    "id": "NJPI",
+    "name": "National Janta Party (Indian)",
+    "abbreviation": "NJPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALLOKMATPARTY": {
+    "id": "NALP",
+    "name": "National Lokmat Party",
+    "abbreviation": "NaLP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALPEOPLESPARTY": {
+    "id": "NPP",
+    "name": "National People's Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": "National"
+  },
+  "NATIONALTARGETPARTY": {
+    "id": "NATP",
+    "name": "National Target Party",
+    "abbreviation": "natp",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALTIGERPARTY": {
+    "id": "NTP",
+    "name": "National Tiger Party",
+    "abbreviation": "NTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALYOUTHPARTY": {
+    "id": "NYP",
+    "name": "National Youth Party",
+    "abbreviation": "NYP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONFIRSTDEMOCRATICPARTY": {
+    "id": "NFDEP",
+    "name": "Nation First Democratic Party",
+    "abbreviation": "NFDEP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NAYADAURPARTY": {
+    "id": "NADP",
+    "name": "Naya Daur Party",
+    "abbreviation": "NADP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NAYAKYUVAKRANTIPARTY": {
+    "id": "NYKP",
+    "name": "Nayak Yuva Kranti Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "NEWALLINDIACONGRESSPARTY": {
+    "id": "AICP",
+    "name": "New All India Congress Party",
+    "abbreviation": "aicp",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NEWINDIAUNITEDPARTY": {
+    "id": "NIUP",
+    "name": "New India United Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "OPENPEOPLESPARTY": {
+    "id": "OPP",
+    "name": "Open people's Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PANCHPAUNIYASAMAJPARTY": {
+    "id": "PNCHPSP",
+    "name": "Panchpauniya Samaj Party",
+    "abbreviation": "PNCHPSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PARIVARTANPARTYOFINDIA": {
+    "id": "PPOI",
+    "name": "Parivartan Party of India",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PEACEPARTY": {
+    "id": "PP",
+    "name": "Peace Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PEOPLESPARTYOFINDIADEMOCRATIC": {
+    "id": "PPOI1",
+    "name": "Peoples Party of India (Democratic)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "POLITICALTEAMINDIA": {
+    "id": "PTI",
+    "name": "Political Team India",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PRABALBHARATPARTY": {
+    "id": "PBP",
+    "name": "Prabal Bharat Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PRAGATISHEELJANTAPARTY": {
+    "id": "PRAJAP",
+    "name": "Pragatisheel Janta Party",
+    "abbreviation": "PRAJAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PRAGATISHEELMAGAHISAMAJ": {
+    "id": "PMS",
+    "name": "Pragatisheel Magahi Samaj",
+    "abbreviation": "pms",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PRAGATISHEELMANAVSAMAJPARTY": {
+    "id": "PMSP",
+    "name": "Pragatisheel Manav Samaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PRAJARAJPARTY": {
+    "id": "PRRP",
+    "name": "Praja Raj Party",
+    "abbreviation": "prrp",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PRISM": {
+    "id": "PRIS",
+    "name": "Prism",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PROUTISTBLOCINDIA": {
+    "id": "PBI",
+    "name": "Proutist Bloc, India",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PROUTISTBOLCINDIA": {
+    "id": "PBI_BR",
+    "name": "Proutist Bolc, India",
+    "abbreviation": "PBI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PROUTISTSARVASAMAJ": {
+    "id": "PSS",
+    "name": "Proutist Sarva Samaj",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "PUBLICMISSIONPARTY": {
+    "id": "PMP",
+    "name": "Public Mission Party",
+    "abbreviation": "PMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PURVANCHALMAHAPANCHAYAT": {
+    "id": "PM",
+    "name": "Purvanchal Mahapanchayat",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RAJNAITIKCHETNADAL": {
+    "id": "RJCHD",
+    "name": "Rajnaitik Chetna Dal",
+    "abbreviation": "RJCHD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RAJNAITIKVIKALPPARTY": {
+    "id": "RAVP",
+    "name": "Rajnaitik Vikalp Party",
+    "abbreviation": "ravp",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRASEWADAL": {
+    "id": "RSD1",
+    "name": "Rashtra Sewa Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRAVADIJANATAPARTY": {
+    "id": "RVNP",
+    "name": "Rashtravadi Janata Party",
+    "abbreviation": "RVNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRAVYAPIJANTAPARTY": {
+    "id": "RSJNP",
+    "name": "Rashtravyapi Janta Party",
+    "abbreviation": "RsJnP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRAWADIJANLOKPARTYSATYA": {
+    "id": "RJP1",
+    "name": "Rashtrawadi Janlok Party (Satya)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRAWADIJANSANGH": {
+    "id": "RWJS",
+    "name": "Rashtrawadi Jansangh",
+    "abbreviation": "RWJS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRAWADIMINORITYPARTY": {
+    "id": "RSTWDMNRTP",
+    "name": "Rashtrawadi Minority Party",
+    "abbreviation": "RSTWDMNRTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRAWADISENA": {
+    "id": "RWS",
+    "name": "Rashtrawadi Sena",
+    "abbreviation": "RWS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRAWADIYUVAPARTY": {
+    "id": "RYP",
+    "name": "Rashtrawadi Yuva Party",
+    "abbreviation": "RYP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAAHINSAMANCH": {
+    "id": "RAHM",
+    "name": "Rashtriya Ahinsa Manch",
+    "abbreviation": "RAHM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYADALUNITED": {
+    "id": "RDU",
+    "name": "Rashtriya Dal United",
+    "abbreviation": "RDU",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAGARIBDAL": {
+    "id": "RGD",
+    "name": "Rashtriya Garib Dal",
+    "abbreviation": "RGD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAGENERALPARTY": {
+    "id": "RGPP",
+    "name": "Rashtriya General Party",
+    "abbreviation": "RGPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJAGRITIPARTY": {
+    "id": "RJPTY",
+    "name": "Rashtriya Jagriti Party",
+    "abbreviation": "RJPty",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJAIHINDPARTY": {
+    "id": "RTJHPR",
+    "name": "Rashtriya Jaihind Party",
+    "abbreviation": "RTJHPR",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJANATADAL": {
+    "id": "RJD",
+    "name": "Rashtriya Janata Dal",
+    "abbreviation": "RJD",
+    "color": "#7BD34A",
+    "recognition": "State"
+  },
+  "RASHTRIYAJANJAGRAMMORCHA": {
+    "id": "RJJM",
+    "name": "Rashtriya Jan-Jagram Morcha",
+    "abbreviation": "RJJM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJANJAGRANMORCHA": {
+    "id": "RJJM",
+    "name": "Rashtriya Jan-Jagran Morcha",
+    "abbreviation": "RJJM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJANJANPARTY": {
+    "id": "RJJP",
+    "name": "Rashtriya Jan Jan Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAJANKALYANPARTYSECULAR": {
+    "id": "RJKPS",
+    "name": "Rashtriya Jan Kalyan Party Secular",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAJANKRANTIPARTY": {
+    "id": "RAJPA",
+    "name": "Rashtriya Jankranti Party",
+    "abbreviation": "RaJPa",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJANSAMBHAVNAPARTY": {
+    "id": "RJP",
+    "name": "Rashtriya Jansambhavna Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAJANSANGHARSHSWARAJPARTY": {
+    "id": "RJSP2",
+    "name": "Rashtriya Jansangharsh Swaraj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAJANSHAKTIPARTYSECULAR": {
+    "id": "RJP5",
+    "name": "Rashtriya Janshakti Party (Secular)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAJANSHANTIPARTY": {
+    "id": "RSHJP",
+    "name": "Rashtriya Janshanti Party",
+    "abbreviation": "RshJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJANTANTRIKMORCHA": {
+    "id": "RJM",
+    "name": "Rashtriya Jantantrik Morcha",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAJANVIKASPARTY": {
+    "id": "RJVP",
+    "name": "Rashtriya Jan Vikas Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAJANVIKASPARTYDEMOCRATIC": {
+    "id": "RJPD",
+    "name": "Rashtriya Janvikas Party (Democratic)",
+    "abbreviation": "RJPD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAJANWADIPARTYSOCIALIST": {
+    "id": "RJPS1",
+    "name": "Rashtriya Janwadi Party (Socialist)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAKRANTIKARIJANATAPARTY": {
+    "id": "RKJP",
+    "name": "Rashtriya Krantikari Janata Party",
+    "abbreviation": "RKJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAKRANTIKARISAMAJWADIPARTY": {
+    "id": "RKSP",
+    "name": "Rashtriya Krantikari Samajwadi Party",
+    "abbreviation": "RKSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYALOKJANSHAKTIPARTY": {
+    "id": "RLJP",
+    "name": "Rashtriya Lok Janshakti Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYALOKMORCHA": {
+    "id": "RLM",
+    "name": "Rashtriya Lok Morcha",
+    "abbreviation": null,
+    "color": "#D06CB0",
+    "recognition": null
+  },
+  "RASHTRIYALOKSAMTAPARTY": {
+    "id": "RLSP",
+    "name": "Rashtriya Lok Samta Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAMAHANGANTANTRAPARTY": {
+    "id": "RMGP",
+    "name": "Rashtriya mahan Gantantra Party",
+    "abbreviation": "RMGP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAMANAVSEWAPARTY": {
+    "id": "RTMNSWP",
+    "name": "Rashtriya Manav Sewa Party",
+    "abbreviation": "RTMNSWP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAMAZDOOREKTAPARTY": {
+    "id": "RMEP",
+    "name": "Rashtriya Mazdoor Ekta Party",
+    "abbreviation": "RMEP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAPRAGATIPARTY": {
+    "id": "RPP",
+    "name": "Rashtriya Pragati Party",
+    "abbreviation": "RPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAREPUBLICANPARTY": {
+    "id": "RRP",
+    "name": "Rashtriya Republican Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYASABJANSHAKTIPARTY": {
+    "id": "RSJP",
+    "name": "Rashtriya Sab Janshakti Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYASAHYOGPARTY": {
+    "id": "RSTSAHP",
+    "name": "Rashtriya Sahyog Party",
+    "abbreviation": "RSTSAHP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYASAMAJDALR": {
+    "id": "RTSMJD",
+    "name": "Rashtriya Samaj Dal (R)",
+    "abbreviation": "RTSMJD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYASAMAJHITDAL": {
+    "id": "RTSHD",
+    "name": "Rashtriya Samajhit Dal",
+    "abbreviation": "RTSHD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYASAMAJPAKSHA": {
+    "id": "RSP1",
+    "name": "Rashtriya Samaj Paksha",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYASAMAJWADILOKADHIKARPARTY": {
+    "id": "RSLAP",
+    "name": "Rashtriya Samajwadi Lok Adhikar Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYASAMAJWADIPARTYSECULAR": {
+    "id": "RSPS",
+    "name": "Rashtriya Samajwadi Party (Secular)",
+    "abbreviation": "RSP(S)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYASAMANTADAL": {
+    "id": "RSD",
+    "name": "Rashtriya Samanta Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYASANATANPARTY": {
+    "id": "RSP2",
+    "name": "Rashtriya Sanatan Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYASARVODYAPARTY": {
+    "id": "RSPTY",
+    "name": "Rashtriya Sarvodya Party",
+    "abbreviation": "RSPTY",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYASECULARMAJLISPARTY": {
+    "id": "RSMP",
+    "name": "Rashtriya Secular Majlis Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYASURAKSHAPARTY": {
+    "id": "RSTRSURKP",
+    "name": "Rashtriya Suraksha Party",
+    "abbreviation": "RSTRSURKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYASWATANTRAPARTY": {
+    "id": "RSTSWNTP",
+    "name": "Rashtriya Swatantra Party,",
+    "abbreviation": "RSTSWNTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASHTRIYAULAMACOUNCIL": {
+    "id": "RUC",
+    "name": "Rashtriya Ulama Council",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "RASHTRIYAUNNATIPARTY": {
+    "id": "RAUNTP",
+    "name": "Rashtriya Unnati Party",
+    "abbreviation": "RAUNTP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASTRIYAINSAAFPARTY": {
+    "id": "RAIP",
+    "name": "Rastriya Insaaf Party",
+    "abbreviation": "RaIP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RASTRIYASADABAHARPARTY": {
+    "id": "RSADP",
+    "name": "Rastriya Sadabahar Party",
+    "abbreviation": "RSadP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "REPUBLICANPARTYOFINDIA": {
+    "id": "RPI",
+    "name": "Republican Party of India",
+    "abbreviation": "RPI",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "REPUBLICANPARTYOFINDIAA": {
+    "id": "RPOIA",
+    "name": "Republican Party of India (A)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "REPUBLICANPARTYOFINDIAATHAWALE": {
+    "id": "RPOI2",
+    "name": "Republican Party of India (Athawale)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "REPUBLICANPARTYOFINDIABHIMRAOAMBEDKAR": {
+    "id": "RPOIBA",
+    "name": "Republican Party of India (Bhimrao Ambedkar)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "REPUBLICANPARTYOFINDIARASHTRIYA": {
+    "id": "RPIRASH",
+    "name": "Republican Party of India (Rashtriya)",
+    "abbreviation": "RPIRASH",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "REVOLUTIONARYSOCIALISTPARTY": {
+    "id": "RSP",
+    "name": "Revolutionary Socialist Party",
+    "abbreviation": null,
+    "color": "#DC143C",
+    "recognition": null
+  },
+  "RIGHTTORECALLPARTY": {
+    "id": "RTRP",
+    "name": "Right to Recall Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SABJANPARTY": {
+    "id": "SABJAN",
+    "name": "Sabjan Party",
+    "abbreviation": "SABJAN",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAMAJSATTADAL": {
+    "id": "SSD",
+    "name": "Samaj Satta Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SAMAJSHAKTIPARTY": {
+    "id": "SSP",
+    "name": "Samaj Shakti Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SAMAJWADIJANATADALDEMOCRATIC": {
+    "id": "SJDD",
+    "name": "Samajwadi Janata Dal Democratic",
+    "abbreviation": "SJDD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAMAJWADIJANATAPARTYRASHTRIYA": {
+    "id": "SJPR",
+    "name": "Samajwadi Janata Party (Rashtriya)",
+    "abbreviation": "SJP(R)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAMAJWADIJANPARISHAD": {
+    "id": "SJP2",
+    "name": "Samajwadi Jan Parishad",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SAMAJWADILOKPARISHAD": {
+    "id": "SLP",
+    "name": "Samajwadi Lok Parishad",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SAMAJWADIPARTY": {
+    "id": "SP",
+    "name": "Samajwadi Party",
+    "abbreviation": null,
+    "color": "#E60000",
+    "recognition": null
+  },
+  "SAMATAPARTY": {
+    "id": "SP1",
+    "name": "Samata Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SAMPOORNABHARATKRANTIPARTY": {
+    "id": "SBKP",
+    "name": "Sampoorna Bharat Kranti Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SAMPOORNAKRANTIDAL": {
+    "id": "SAKD",
+    "name": "Sampoorna Kranti Dal",
+    "abbreviation": "SaKD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAMRASSAMAJPARTY": {
+    "id": "SASAPT",
+    "name": "Samras Samaj Party",
+    "abbreviation": "SASAPT",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAMTADALPRAGATISHEEL": {
+    "id": "SAMDAL",
+    "name": "Samta Dal (Pragatisheel)",
+    "abbreviation": "SAMDAL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SANKHYANUPATIBHAGIDARIPARTY": {
+    "id": "SABP",
+    "name": "Sankhyanupati Bhagidari Party",
+    "abbreviation": "SaBP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SANYUKTKISANVIKASPARTY": {
+    "id": "SKVP",
+    "name": "Sanyukt Kisan Vikas Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SANYUKTVIKASPARTY": {
+    "id": "SANVP",
+    "name": "Sanyukt Vikas Party",
+    "abbreviation": "SANVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SAPAKSPARTY": {
+    "id": "SPAKP",
+    "name": "Sapaks Party",
+    "abbreviation": "SPAKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SARVAJANHITAYPARTY": {
+    "id": "SHTP",
+    "name": "Sarvajan Hitay Party",
+    "abbreviation": "SHtP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SARVAJANKALYANLOKTANTRIKPARTY": {
+    "id": "SKLP",
+    "name": "Sarvajan Kalyan Loktantrik Party",
+    "abbreviation": "SKLP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SARVASAMAJJANATAPARTY": {
+    "id": "SRSMJNP",
+    "name": "Sarva Samaj Janata Party",
+    "abbreviation": "SRSMJNP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SARVHARADAL": {
+    "id": "SHD",
+    "name": "Sarvhara Dal",
+    "abbreviation": "SHD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SARVJANPARTYBHARAT": {
+    "id": "SJPB",
+    "name": "Sarv Jan Party (Bharat)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SARVJANSANATANPARTY": {
+    "id": "SSP2",
+    "name": "Sarvjan Sanatan Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SARVLOKHITSAMAJPARTY": {
+    "id": "SRVLKTSP",
+    "name": "Sarvlokhit Samaj Party",
+    "abbreviation": "SRVLKTSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SATHIAURAAPKAFAISALAPARTY": {
+    "id": "SAAFP",
+    "name": "Sathi Aur Aapka Faisala Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SATYABAHUMATPARTY": {
+    "id": "SATBP",
+    "name": "Satya Bahumat Party",
+    "abbreviation": "SatBP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SHIVSENA": {
+    "id": "SHS",
+    "name": "Shiv Sena",
+    "abbreviation": null,
+    "color": "#FF6600",
+    "recognition": null
+  },
+  "SHOSHITSAMAJDAL": {
+    "id": "SSD_BR",
+    "name": "Shoshit Samaj Dal",
+    "abbreviation": "SSD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SHOSHITSAMAJPARTY": {
+    "id": "SHSP",
+    "name": "Shoshit Samaj Party",
+    "abbreviation": "SHSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SMASTBHARTIYAPARTY": {
+    "id": "SMBHP",
+    "name": "Smast Bhartiya Party",
+    "abbreviation": "SMBHP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SOCIALDEMOCRATICPARTYOFINDIA": {
+    "id": "SDPOI",
+    "name": "Social Democratic Party Of India",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SOCIALISTJANATAPARTY": {
+    "id": "SOJP_BR",
+    "name": "Socialist Janata Party",
+    "abbreviation": "SoJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SOCIALISTJANTAPARTY": {
+    "id": "SOJP",
+    "name": "SOCIALIST JANTA PARTY",
+    "abbreviation": "SOJP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SOCIALISTPARTYINDIA": {
+    "id": "SP3",
+    "name": "Socialist Party (India)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SOCIALISTPARTYLOHIA": {
+    "id": "SLPL",
+    "name": "Socialist Party (Lohia)",
+    "abbreviation": "SLP(L)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SOCIALISTUNITYCENTREOFINDIACOMMUNIST": {
+    "id": "SUCI",
+    "name": "Socialist Unity Centre of India (Communist)",
+    "abbreviation": null,
+    "color": "#CC0000",
+    "recognition": null
+  },
+  "SUBHASHWADIBHARTIYASAMAJWADIPARTYSUBHASPARTY": {
+    "id": "SBSPSP",
+    "name": "Subhashwadi Bhartiya Samajwadi Party (Subhas Party)",
+    "abbreviation": "SBSPSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SUDHARWADIPARTY": {
+    "id": "SUDRWDP",
+    "name": "Sudharwadi Party",
+    "abbreviation": "SUDRWDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SUHELDEVBHARATIYASAMAJPARTY": {
+    "id": "SBSP",
+    "name": "Suheldev Bharatiya Samaj Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SUHELDEVBHARTIYASAMAJPARTY": {
+    "id": "SBSP_BR",
+    "name": "Suheldev Bhartiya Samaj Party",
+    "abbreviation": "SBSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SWABHIMANPARTY": {
+    "id": "SWAP",
+    "name": "Swabhiman Party",
+    "abbreviation": "SWAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SWADHINTAPARTY": {
+    "id": "SP2",
+    "name": "Swadhinta Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SWARAJINDIA": {
+    "id": "SWARAJ",
+    "name": "Swaraj India",
+    "abbreviation": "SWARAJ",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SWARAJPARTYLOKTANTRIK": {
+    "id": "SPL",
+    "name": "Swaraj Party (Loktantrik)",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SWATANTRASAMAJPARTY": {
+    "id": "SWSP",
+    "name": "Swatantra Samaj Party",
+    "abbreviation": "SWSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "THENATIONALROADMAPPARTYOFINDIA": {
+    "id": "TNRMPOI",
+    "name": "The National Road Map Party of India",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "THEPLURALSPARTY": {
+    "id": "TPP",
+    "name": "The Plurals Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "UDAYBHARATAMPARTY": {
+    "id": "UBP",
+    "name": "Uday Bharatam Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VANCHITADHIKARPARTY": {
+    "id": "VAP",
+    "name": "Vanchit Adhikar Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VANCHITBAHUJANAAGHADI": {
+    "id": "VBA",
+    "name": "Vanchit Bahujan  Aaghadi",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VANCHITSAMAJINSAAFPARTY": {
+    "id": "VIP3",
+    "name": "Vanchitsamaj Insaaf Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VANCHITSAMAJPARTY": {
+    "id": "VCSMP",
+    "name": "Vanchit Samaj Party",
+    "abbreviation": "VCSMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "VIKASINSAFPARTY": {
+    "id": "VIP1",
+    "name": "Vikas Insaf Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VIKASSHEELINSAANPARTY": {
+    "id": "VIP",
+    "name": "Vikassheel Insaan Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VIKASVANCHITINSANPARTY": {
+    "id": "VVIP",
+    "name": "Vikas Vanchit Insan Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VISHVASYOGYAPARTY": {
+    "id": "VYP",
+    "name": "Vishvas Yogya Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VOCALINDIAPARTY": {
+    "id": "VIP2",
+    "name": "Vocal India Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VOTERSPARTYINTERNATIONAL": {
+    "id": "VPI",
+    "name": "Voters Party  International",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "VYABASAYIKISANALPASANKHYAKMORCHA": {
+    "id": "VKAM",
+    "name": "Vyabasayi Kisan Alpasankhyak Morcha",
+    "abbreviation": "VKAM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "WAZIBADHIKARPARTY": {
+    "id": "WAP",
+    "name": "Wazib Adhikar Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "YUGKRANTIDAL": {
+    "id": "YGKRTDL",
+    "name": "Yug Kranti Dal,",
+    "abbreviation": "YGKRTDL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "YUVABIHARSENA": {
+    "id": "YBS",
+    "name": "Yuva Bihar Sena",
+    "abbreviation": "YBS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "YUVADEVLOPPARTY": {
+    "id": "YDP",
+    "name": "Yuva Devlop Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "YUVAKRANTIKARIPARTY": {
+    "id": "YKP",
+    "name": "Yuva Krantikari Party",
+    "abbreviation": "YKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "YUVASAMRIDDHIDAL": {
+    "id": "YSD",
+    "name": "Yuva Samriddhi Dal",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  }
+}

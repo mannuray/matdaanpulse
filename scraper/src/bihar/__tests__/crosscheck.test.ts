@@ -29,6 +29,21 @@ describe('crossCheck', () => {
     const errs = crossCheck(e, []);
     expect(errs.map(x => x.split(' ')[0])).toEqual(expect.arrayContaining(['electors:2', 'total-valid:2', 'runner-up:2', 'margin:2', 'party-won:BJP', 'party-votes:INC']));
   });
+  it('treats IND and "Independent" as the same party', () => {
+    const e = election();
+    e.seats[0].candidates[1].party = 'IND'; e.summaries[0].runnerUp.party = 'Independent';
+    e.performance = e.performance.filter(p => p.abbr !== 'INC');
+    expect(crossCheck(e, [])).toEqual([]);
+  });
+  it('compares performance abbreviations ignoring case and spaces', () => {
+    const e = election(); e.performance[0].abbr = 'bjp';
+    expect(crossCheck(e, [])).toEqual([]);
+  });
+  it('sums a party listed in two performance sections', () => {
+    const e = election();
+    e.performance = [{ abbr: 'BJP', contested: 1, won: 1, votes: 400 }, { abbr: 'INC', contested: 0, won: 0, votes: 50 }, { abbr: 'INC', contested: 1, won: 0, votes: 150 }];
+    expect(crossCheck(e, [])).toEqual([]);
+  });
   it('drops errors listed as exceptions for the year', () => {
     const e = election(); e.seats[0].electors = 999;
     expect(crossCheck(e, [{ year: 2020, key: 'electors:2', reason: 'ECI tables disagree' }])).toEqual([]);

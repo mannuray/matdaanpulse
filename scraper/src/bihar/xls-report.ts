@@ -111,7 +111,7 @@ export function parsePartyListRows(rows: Row[]): PartyListEntry[] {
 export function parsePerformanceRows(rows: Row[]): PartyPerformance[] {
   const out: PartyPerformance[] = [];
   for (const r of rows) {
-    if (!/^\d+$/.test(text(r[0])) || blank(r[1])) continue;
+    if (!/^\d+$/.test(text(r[0])) || blank(r[1]) || text(r[1]).toUpperCase() === 'NOTA') continue;
     out.push({ abbr: text(r[1]), contested: num(r[2]), won: num(r[3]), votes: num(r[5]) });
   }
   if (!out.length) throw new Error('Performance: no rows');

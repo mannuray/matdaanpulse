@@ -24,7 +24,9 @@ Constituency          1. Valmiki Nagar                                          
 Constituency          2. Ramnagar (SC) (SC)                                              TOTAL ELECTORS :              250000
 
      1 BHAGIRATHI DEVI                  F     60      SC            BJP        Lotus           70000          100     70100      60.00
- TURNOUT                                           TOTAL:                                      70000         100      70100      28.04
+     7 PRIYA RANJAN PRASAD              M     70      GEN        SASAPT Television              1175            0     1175       0.75
+       SRIVASTAVA
+ TURNOUT                                           TOTAL:                                      71175         100      71275      28.51
 `;
 
 const DETAILED_2010 = `
@@ -48,6 +50,7 @@ describe('parseDetailedText', () => {
     ]);
     expect(seats[0].candidates[0]).toMatchObject({ serial: 1, sex: 'M', age: 35, general: 66754, postal: 106 });
     expect(seats[1]).toMatchObject({ constNo: 2, acName: 'Ramnagar', type: 'SC' });
+    expect(seats[1].candidates[1]).toMatchObject({ name: 'PRIYA RANJAN PRASAD SRIVASTAVA', party: 'SASAPT', total: 1175 });
   });
   it('reads 2010 seats (no symbol column, no NOTA)', () => {
     const [s] = parseDetailedText(DETAILED_2010);
@@ -71,6 +74,10 @@ III. VOTERS
 III(A). POLLING PERCENTAGE                         62.63
 IV. VOTES
        3. TOTALVALID VOTES POLLED ON EVM                                                                                           177594
+       5. POSTAL VOTES DEDUCTED(REJECTED POSTAL
+       VOTES + POSTAL VOTES POLLED FOR 'NOTA')
+
+                                                                                                                                      127
        7.TOTAL VALID VOTES POLLED                                                                                                  178067
        9.VOTES POLLED FOR 'NOTA' (INCLUDING POSTAL)                                                                                  6767
 VI. DATES
@@ -91,7 +98,8 @@ IV. VOTES
         3. TOTAL VALID VOTES POLLED                                                                                               143698
 VI. DATES
                   POLLING                                          COUNTING                                 DECLARATION OF RESULT
-                  28-Oct-2010                                      24-Nov-2010                              24-Nov-2010
+
+                  28-Oct-2010                                     24-Nov-2010                              24-Nov-2010
 VII. RESULT
 WINNER             BJP                           Bhagirathi Devi                                                          51993
 RUNNER-UP          RJD                           Narottam Ram                                                             20003
@@ -116,7 +124,7 @@ NATIONAL PARTIES
 STATE PARTIES
           7.       JD(U)                    Janata Dal (United)
 REGISTERED(Unrecognised) PARTIES
-         20.       ABJS                     Akhil Bharatiya Jan Sangh
+        20 .       ABJS                     Akhil Bharatiya Jan Sangh
                                             (Rashtriya)
      OTHER ABBREVIATIONS AND DESCRIPTION
           1.       IND                      Independent
@@ -126,8 +134,9 @@ const PERFORMANCE_2010 = `
                          PERFORMANCE OF POLITICAL PARTIES
 NATIONAL PARTIES
    1.   BJP                            102              91           2            4790436              16.49%      39.56
-   2.   BSP                            239               0          236           933947                  3.21%    3.27
+   2 .  BSP                            239               0          236           933947                  3.21%    3.27
                                        841              96          698           9382666               32.29
+159.    NOTA           243           0     243       947279                  2.48%    2.49
                          CANDIDATE DATA SUMMARY
    1.   NOT                            1                1            1            1
 `;

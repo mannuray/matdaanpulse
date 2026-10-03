@@ -1,0 +1,232 @@
+{
+ "2015": [
+  {
+   "constNo": 195,
+   "source": "https://web.archive.org/web/20160511121350/http://eciresults.nic.in:80/ConstituencywiseS04195.htm?ac=195",
+   "candidates": [
+    {
+     "name": "PRABHUNATH PRASAD",
+     "party": "Janata Dal (United)",
+     "votes": 52276
+    },
+    {
+     "name": "SHIVESH KUMAR",
+     "party": "Bharatiya Janata Party",
+     "votes": 37572
+    },
+    {
+     "name": "MANOJ KUMAR",
+     "party": "Communist Party of India (Marxist-Leninist) (Liberation)",
+     "votes": 31789
+    },
+    {
+     "name": "UPENDRA KUMAR",
+     "party": "Independent",
+     "votes": 1493
+    },
+    {
+     "name": "BANDNA DEVI",
+     "party": "Samajwadi Party",
+     "votes": 1147
+    },
+    {
+     "name": "KASHINATH PRASAD",
+     "party": "Bahujan Mukti Party",
+     "votes": 1065
+    },
+    {
+     "name": "SHASHI SHEKHAR PRASAD",
+     "party": "Bahujan Samaj Party",
+     "votes": 1020
+    },
+    {
+     "name": "None of the Above",
+     "party": "None of the Above",
+     "votes": 4244
+    }
+   ]
+  },
+  {
+   "constNo": 210,
+   "source": "https://web.archive.org/web/20160309021929/http://eciresults.nic.in:80/ConstituencywiseS04210.htm?ac=210",
+   "candidates": [
+    {
+     "name": "JAI KUMAR SINGH",
+     "party": "Janata Dal (United)",
+     "votes": 64699
+    },
+    {
+     "name": "RAJENDRA PRASAD SINGH",
+     "party": "Bharatiya Janata Party",
+     "votes": 62008
+    },
+    {
+     "name": "BINOD KUMAR CHOUBEY",
+     "party": "Shivsena",
+     "votes": 4265
+    },
+    {
+     "name": "SUNIL KUMAR PASWAN",
+     "party": "Independent",
+     "votes": 3774
+    },
+    {
+     "name": "ACHCHE LAL RAM",
+     "party": "Communist Party of India (Marxist-Leninist) (Liberation)",
+     "votes": 2769
+    },
+    {
+     "name": "SEK HAMAHATAK ALAM",
+     "party": "Independent",
+     "votes": 2757
+    },
+    {
+     "name": "MANOJ KUMAR SINGH",
+     "party": "Independent",
+     "votes": 2234
+    },
+    {
+     "name": "JAWAHAR SINGH YADAV",
+     "party": "Bahujan Samaj Party",
+     "votes": 1874
+    },
+    {
+     "name": "RAGHUNATH SINGH",
+     "party": "Communist Party of India",
+     "votes": 1468
+    },
+    {
+     "name": "SANJEEV KUMAR",
+     "party": "Independent",
+     "votes": 854
+    },
+    {
+     "name": "LAL BABU SINGH",
+     "party": "Shoshit Samaj Dal",
+     "votes": 625
+    },
+    {
+     "name": "BHUPESH SINGH",
+     "party": "Independent",
+     "votes": 597
+    },
+    {
+     "name": "MITHLESH KUMAR",
+     "party": "Independent",
+     "votes": 574
+    },
+    {
+     "name": "DINESH PASWAN",
+     "party": "Independent",
+     "votes": 440
+    },
+    {
+     "name": "ARVIND KUMAR MISHRA",
+     "party": "Independent",
+     "votes": 271
+    },
+    {
+     "name": "AJAY KUMAR SINGH",
+     "party": "Swabhiman Party",
+     "votes": 269
+    },
+    {
+     "name": "KASHI NATH SINGH AMAI",
+     "party": "Samajwadi Party",
+     "votes": 263
+    },
+    {
+     "name": "None of the Above",
+     "party": "None of the Above",
+     "votes": 798
+    }
+   ]
+  },
+  {
+   "constNo": 229,
+   "source": "https://web.archive.org/web/20160409170515/http://eciresults.nic.in:80/ConstituencywiseS04229.htm?ac=229",
+   "candidates": [
+    {
+     "name": "KUMAR SARVJEET",
+     "party": "Rashtriya Janata Dal",
+     "votes": 82656
+    },
+    {
+     "name": "SHYAMDEO PASWAN",
+     "party": "Bharatiya Janata Party",
+     "votes": 52183
+    },
+    {
+     "name": "DEVENDRA MANJHI",
+     "party": "Independent",
+     "votes": 4265
+    },
+    {
+     "name": "JANKI PASWAN",
+     "party": "Communist Party of India",
+     "votes": 4057
+    },
+    {
+     "name": "NARESH KUMAR BHARTI",
+     "party": "Independent",
+     "votes": 2872
+    },
+    {
+     "name": "SIKANDAR CHOUDHARY",
+     "party": "Bharat Bhrashtachar Mitao Party",
+     "votes": 2439
+    },
+    {
+     "name": "SHARAWAN MANJHI",
+     "party": "Bahujan Samaj Party",
+     "votes": 1750
+    },
+    {
+     "name": "AMOD KUMAR PASWAN",
+     "party": "Shivsena",
+     "votes": 1742
+    },
+    {
+     "name": "DEEN DAYAL BHARATI OR KAPIL CHOUDHRY",
+     "party": "Nationalist Congress Party",
+     "votes": 1561
+    },
+    {
+     "name": "SATYENDRA KUMAR",
+     "party": "Garib Janta Dal (Secular)",
+     "votes": 1547
+    },
+    {
+     "name": "RAMBALI MANJHI",
+     "party": "Pragatisheel Magahi Samaj",
+     "votes": 1052
+    },
+    {
+     "name": "SANJAY PASWAN",
+     "party": "International Party",
+     "votes": 905
+    },
+    {
+     "name": "MINA DEVI",
+     "party": "Rashtriya Mazdoor Ekta Party",
+     "votes": 891
+    },
+    {
+     "name": "RAJKUMAR PASWAN",
+     "party": "Akhil Bharat Hindu Mahasabha",
+     "votes": 873
+    },
+    {
+     "name": "PRABHU PASWAN",
+     "party": "Republican Party of India (A)",
+     "votes": 820
+    },
+    {
+     "name": "None of the Above",
+     "party": "None of the Above",
+     "votes": 5772
+    }
+   ]
+  }
+ ]
+}

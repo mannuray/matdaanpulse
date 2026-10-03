@@ -1,0 +1,3 @@
+[
+ { "year": 2010, "key": "margin:172", "reason": "ECI summary prints margin 23713, but its own winner (77880) and runner-up (54168) votes, identical in both tables, give 23712: arithmetic slip in the summary" }
+]

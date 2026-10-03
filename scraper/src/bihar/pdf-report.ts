@@ -30,8 +30,13 @@ function readCandidate(line: string, m: RegExpExecArray): { cand: RawCandidate; 
   const flat = frags.flatMap(f => (/^(M|F|O|TG)\s+\d+$/.test(f.text) ? f.text.split(/\s+/).map((t, i) => ({ col: f.col + (i ? f.text.indexOf(t, 1) : 0), text: t })) : [f]));
   const si = flat.findIndex((f, i) => i > 0 && /^(M|F|O|TG)$/.test(f.text) && /^\d+$/.test(flat[i + 1]?.text ?? '') && /^(GEN|SC|ST)$/.test(flat[i + 2]?.text ?? ''));
   if (si < 1 || !flat[si + 3]) throw new Error(`Detailed Results: cannot read candidate line: ${line.trim()}`);
-  const party = flat[si + 3];
-  const symbol = flat[si + 4];
+  let party = flat[si + 3];
+  let symbol = flat[si + 4];
+  const sp = party.text.indexOf(' ');
+  if (sp > 0) { // a long abbreviation one space from its symbol ("SASAPT Television"): abbreviations have no spaces
+    symbol = { col: party.col + sp + 1, text: party.text.slice(sp + 1) };
+    party = { col: party.col, text: party.text.slice(0, sp) };
+  }
   return {
     cand: { serial: Number(m[1]), name: flat.slice(0, si).map(f => f.text).join(' '), sex: sexOf(flat[si].text), age: Number(flat[si + 1].text),
       party: party.text, general, postal, total },
@@ -110,9 +115,10 @@ function readSummaryBlock(lines: string[]): SeatSummary {
     if (section.startsWith('II.') && /\d\.\s*TOTAL\b/.test(l)) f.electors = lastNumber(l);
     if (section.startsWith('III. VOTERS') && /\d\.\s*TOTAL\b/.test(l)) f.voters = lastNumber(l);
     if (section.startsWith('IV.') && /TOTAL ?VALID VOTES POLLED\s+\d+\s*$/.test(l)) f.totalValid = lastNumber(l);
-    if (section.startsWith('IV.') && /VOTES POLLED FOR 'NOTA'/.test(l)) f.nota = lastNumber(l);
+    if (section.startsWith('IV.') && /VOTES POLLED FOR 'NOTA'\s*\(INCLUDING POSTAL\)/.test(l)) f.nota = lastNumber(l);
     if (section.startsWith('VI.') && /^\s*POLLING\s+COUNTING/.test(l)) {
-      const d = /(\d{1,2}-[A-Za-z]{3}-\d{4})/.exec(lines[i + 1] ?? '');
+      const next = lines.slice(i + 1).find(x => x.trim()) ?? '';
+      const d = /(\d{1,2}-[A-Za-z]{3}-\d{4})/.exec(next);
       if (d) pollDate = isoDate(d[1]);
     }
     const p = /^(WINNER|RUNNER-UP)\s+(\S+)\s+(.+?)\s+(\d+)\s*$/.exec(l);
@@ -138,7 +144,7 @@ export function parsePartyListText(text: string): PartyListEntry[] {
     if (/OTHER ABBREVIATIONS|HIGHLIGHTS|LIST OF SUCCESSFUL|PERFORMANCE OF POLITICAL/i.test(line)) break;
     const sec = recognitionOf(line.trim());
     if (sec) { rec = sec; continue; }
-    const m = /^\s*(\d+)\.\s+(\S+)\s{2,}(.+?)\s*$/.exec(line);
+    const m = /^\s*(\d+)\s*\.\s+(\S+)\s{2,}(.+?)\s*$/.exec(line);
     if (m && rec) { nameCol = line.indexOf(m[3], line.indexOf(m[2]) + m[2].length); out.push({ abbr: m[2], name: m[3], recognition: rec }); continue; }
     const cont = /^(\s*)(\S.*?)\s*$/.exec(line);
     if (cont && out.length && nameCol >= 0 && Math.abs(cont[1].length - nameCol) <= 2) out[out.length - 1].name += ` ${cont[2]}`;
@@ -154,8 +160,8 @@ export function parsePerformanceText(text: string): PartyPerformance[] {
     if (/^\s*PERFORMANCE OF POLITICAL PARTIES\s*$/.test(line)) { inTable = true; continue; }
     if (!inTable) continue;
     if (/^\s*[A-Z][A-Z ]+SUMMARY\s*$/.test(line) || /LIST OF SUCCESSFUL|WOMEN CANDIDATES/i.test(line)) break;
-    const m = /^\s*(\d+)\.\s+(\S+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s/.exec(line);
-    if (m) out.push({ abbr: m[2], contested: Number(m[3]), won: Number(m[4]), votes: Number(m[6]) });
+    const m = /^\s*(\d+)\s*\.\s+(\S+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s/.exec(line);
+    if (m && m[2].toUpperCase() !== 'NOTA') out.push({ abbr: m[2], contested: Number(m[3]), won: Number(m[4]), votes: Number(m[6]) });
   }
   if (!out.length) throw new Error('Performance: no rows');
   return out;
