@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import { confirmDiscardEdits } from '../context/ShellStatusContext';
 import { LiveHeader } from '../components/live/LiveHeader';
 import { FeedPanel } from '../components/live/FeedPanel';
+import { HoldsPanel } from '../components/live/HoldsPanel';
 import { SeatList } from '../components/live/SeatList';
 import { SeatEditor, type SeatEditorHandle } from '../components/live/SeatEditor';
 import Spinner from '../components/atoms/Spinner';
@@ -66,6 +67,7 @@ export default function LiveConsole() {
       <LiveHeader electionName={lc.electionName} reportingPct={lc.reportingPct} />
       {feed.error && <p role="status" className="mx-6 mb-2 rounded-control bg-warn-soft px-3 py-2 text-sm text-warn-text">Feed status could not be refreshed: {feed.error}</p>}
       {feed.status && <FeedPanel status={feed.status} sources={feed.sources} saving={feed.saving} onApply={feed.setFeed} />}
+      <HoldsPanel holds={lc.holds} onRelease={(id) => { void lc.releaseHold(id); }} />
       {lc.loading && lc.seats.length === 0 ? (
         <Spinner label="Loading seats…" />
       ) : (
@@ -86,6 +88,7 @@ export default function LiveConsole() {
                 seat={lc.selected}
                 saving={lc.saving}
                 lastSavedAt={lc.lastSavedAt[lc.selected.const_id]}
+                holdUntil={lc.holdUntil[lc.selected.const_id]}
                 lock={lock}
                 onSave={lc.saveSeat}
                 onDirtyChange={setEditorDirty}

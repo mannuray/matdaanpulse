@@ -3,8 +3,9 @@ import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { useState } from 'react';
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 
-const { move, saveSeat, lockState, page } = vi.hoisted(() => ({
-  page: { electionId: 'e1', electionsError: null as string | null, feedError: null as string | null },
+const { move, saveSeat, releaseHold, lockState, page } = vi.hoisted(() => ({
+  page: { electionId: 'e1', electionsError: null as string | null, feedError: null as string | null, holds: [] as any[], holdUntil: {} as Record<string, string> },
+  releaseHold: vi.fn(async () => undefined),
   move: vi.fn(),
   saveSeat: vi.fn(async () => true),
   lockState: { value: { state: 'held', holder: null as any, takeOver: vi.fn() } },
@@ -22,6 +23,7 @@ vi.mock('../hooks/useLiveConsole', () => ({
     seats: [seat], counts: { all: 1, PENDING: 0, LEADING: 1, WON: 0 }, filter: 'all', setFilter: vi.fn(),
     search: '', setSearch: vi.fn(), selectedId: 's2', selected: seat, select: vi.fn(), move,
     locks: {}, flashIds: new Set(), reportingPct: 100, saveSeat, lastSavedAt: {},
+    holds: page.holds, releaseHold, holdUntil: page.holdUntil,
   }),
 }));
 vi.mock('../hooks/useIngestFeed', () => ({
@@ -41,6 +43,8 @@ beforeEach(() => {
   page.electionId = 'e1';
   page.electionsError = null;
   page.feedError = null;
+  page.holds = [];
+  page.holdUntil = {};
 });
 afterEach(() => { cleanup(); move.mockClear(); saveSeat.mockClear(); vi.restoreAllMocks(); });
 
@@ -64,17 +68,14 @@ describe('LiveConsole page', () => {
     expect(move).not.toHaveBeenCalled();
   });
 
-  it('Save seat sends the whole seat with margins', async () => {
+  it('Save seat sends the seat state, rounds and votes by candidate id', async () => {
     renderPage();
     fireEvent.change(screen.getByLabelText('Votes for Anil Kumar'), { target: { value: '50,000' } });
     fireEvent.click(screen.getByRole('button', { name: 'Save seat' }));
     await Promise.resolve();
-    expect(saveSeat).toHaveBeenCalledWith('s2', expect.objectContaining({
-      overrides: [
-        { result_id: 'a', votes: 61204, status: 'LEADING', margin: 11204 },
-        { result_id: 'b', votes: 50000, status: 'TRAILING', margin: 11204 },
-      ],
-    }));
+    expect(saveSeat).toHaveBeenCalledWith('s2', {
+      state: 'counting', round: { current: 4, total: 24 }, votes: { ca: 61204, cb: 50000 },
+    });
   });
 
   it('Enter inside the editor saves; Enter on a button or outside does not', () => {
@@ -130,7 +131,7 @@ describe('LiveConsole page', () => {
   it('a locked seat is read only', () => {
     lockState.value = { state: 'locked', holder: { const_id: 's2', user_id: 'u2', user_name: 'Priya S', acquired_at: 't' }, takeOver: vi.fn() };
     renderPage();
-    for (const l of ['Votes for Ravi Prasad', 'Votes for Anil Kumar', 'Status for Ravi Prasad', 'Current round', 'Total rounds']) {
+    for (const l of ['Votes for Ravi Prasad', 'Votes for Anil Kumar', 'Seat state', 'Current round', 'Total rounds']) {
       expect((screen.getByLabelText(l) as HTMLInputElement).disabled).toBe(true);
     }
     expect((screen.getByRole('button', { name: 'Save seat' }) as HTMLButtonElement).disabled).toBe(true);
@@ -161,12 +162,7 @@ describe('LiveConsole page', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Declare won' }));
     fireEvent.click(screen.getByRole('button', { name: 'Yes, declare won' }));
     await waitFor(() => expect(saveSeat).toHaveBeenCalledTimes(1));
-    expect(saveSeat).toHaveBeenCalledWith('s2', expect.objectContaining({
-      overrides: [
-        { result_id: 'a', votes: 61204, status: 'WON', margin: 12214 },
-        { result_id: 'b', votes: 48990, status: 'LOST', margin: 12214 },
-      ],
-    }));
+    expect(saveSeat).toHaveBeenCalledWith('s2', expect.objectContaining({ state: 'declared', votes: { ca: 61204, cb: 48990 } }));
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
   });
 
@@ -202,6 +198,24 @@ describe('LiveConsole page', () => {
     expect(screen.getByTestId('dirty').textContent).toBe('false');
     expect(unload()).toBe(false);
     unmount();
+  });
+
+  it('seat state select sends the chosen state; rows have no status pickers', async () => {
+    renderPage();
+    expect(screen.queryByLabelText('Status for Ravi Prasad')).toBeNull();
+    fireEvent.change(screen.getByLabelText('Seat state'), { target: { value: 'countermanded' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save seat' }));
+    await Promise.resolve();
+    expect(saveSeat).toHaveBeenCalledWith('s2', expect.objectContaining({ state: 'countermanded' }));
+  });
+
+  it('shows the hold line for the selected seat and the holds panel releases', () => {
+    page.holdUntil = { s2: new Date(Date.now() + 600_000).toISOString() };
+    page.holds = [{ const_id: 's2', const_no: 142, name: 'Patna Sahib', round_at_hold: 4, expires_at: new Date(Date.now() + 600_000).toISOString(), created_by_name: 'Asha' }];
+    renderPage();
+    expect(screen.getByText(/On hold until .* \(IST\)/)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Release #142 Patna Sahib' }));
+    expect(releaseHold).toHaveBeenCalledWith('s2');
   });
 
   it('shows a feed refresh error without hiding the console', () => {

@@ -4,12 +4,13 @@ import { Button } from '../ui/Button';
 import { Kbd } from '../ui/Kbd';
 import { ConfirmDialog } from '../ui/ConfirmDialog';
 import { StatusPill } from '../ui/Badge';
+import { Select } from '../ui/Input';
 import { cn } from '../ui/cn';
 import { useSeatEditor } from '../../hooks/useSeatEditor';
 import { isNota, seatStatus } from '../../utils/seat-math';
-import { OVERRIDE_STATUSES, type OverrideStatus } from '../../utils/override-validation';
+import { clockIst } from '../../utils/time';
 import type { SeatLockState } from '../../hooks/useSeatLock';
-import type { SeatSave } from '../../hooks/useLiveConsole';
+import type { SeatSave, SeatStateName } from '../../hooks/useLiveConsole';
 import type { LiveConstituency, SeatLock } from '../../types';
 
 export interface SeatEditorHandle { save(): void; discard(): void; dirty: boolean }
@@ -18,16 +19,16 @@ interface Props {
   seat: LiveConstituency;
   saving: boolean;
   lastSavedAt?: string;
+  holdUntil?: string;
   lock: { state: SeatLockState; holder: SeatLock | null; takeOver(): Promise<void> };
   onSave(constId: string, payload: SeatSave): Promise<boolean>;
   onDirtyChange?(dirty: boolean): void;
 }
 
-const STATUS_LABEL: Record<OverrideStatus, string> = { LEADING: 'Leading', TRAILING: 'Trailing', WON: 'Won', LOST: 'Lost' };
 const fmt = (n: number) => n.toLocaleString('en-IN');
 const time = (iso?: string) => (iso ? new Date(iso).toLocaleTimeString('en-GB') : null);
 
-export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEditor({ seat, saving, lastSavedAt, lock, onSave, onDirtyChange }, ref) {
+export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEditor({ seat, saving, lastSavedAt, holdUntil, lock, onSave, onDirtyChange }, ref) {
   const ed = useSeatEditor(seat);
   const [error, setError] = useState<string | null>(null);
   const readOnly = lock.state === 'locked';
@@ -39,7 +40,7 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
     const out = ed.build(declare);
     if (!out.ok) { setError(out.error); return; }
     setError(null);
-    if (await onSave(seat.const_id, { overrides: out.overrides, rounds: out.rounds })) ed.markSaved();
+    if (await onSave(seat.const_id, out.save)) ed.markSaved();
   };
 
   useEffect(() => { onDirtyChange?.(ed.dirty); }, [ed.dirty, onDirtyChange]);
@@ -61,6 +62,12 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
           <StatusPill status={seatStatus(seat)} />
         </div>
         <div className="flex items-center gap-3 text-xs text-ink-2">
+          <label className="flex items-center gap-2 text-xs font-medium text-ink-2">Seat state
+            <Select aria-label="Seat state" value={ed.seatState} disabled={readOnly} onChange={(e) => ed.setSeatState(e.target.value as SeatStateName)}>
+              <option value="counting">Counting</option><option value="declared">Declared</option>
+              <option value="countermanded">Countermanded</option><option value="adjourned">Adjourned</option><option value="not_started">Not started</option>
+            </Select>
+          </label>
           <label className="flex items-center gap-1.5">
             Round
             <input aria-label="Current round" inputMode="numeric" value={ed.round.current} disabled={readOnly}
@@ -130,17 +137,7 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
                   {r.error && <div className="mt-1 text-[11px] text-bad-text">{r.error}</div>}
                 </td>
                 <td className="py-2.5 pr-3 text-right">
-                  {isNota(r) ? <span className="text-xs text-muted">—</span> : (
-                    <select
-                      aria-label={`Status for ${r.candidate_name}`}
-                      value={r.status}
-                      disabled={readOnly}
-                      onChange={(e) => ed.setStatus(r.result_id, e.target.value as OverrideStatus)}
-                      className="h-8 rounded-control border border-line bg-subtle px-2 text-xs font-medium text-ink-2 focus:border-accent focus:outline-none"
-                    >
-                      {OVERRIDE_STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABEL[s]}</option>)}
-                    </select>
-                  )}
+                  {isNota(r) ? <span className="text-xs text-muted">—</span> : <StatusPill status={r.status} />}
                 </td>
               </tr>
             ))}
@@ -154,6 +151,7 @@ export const SeatEditor = forwardRef<SeatEditorHandle, Props>(function SeatEdito
         <span>Total votes: <span className="text-sm font-semibold tabular-nums text-ink">{fmt(ed.totalVotes)}</span></span>
       </div>
 
+      {holdUntil && Date.parse(holdUntil) > Date.now() && <p className="text-xs text-warn-text">On hold until {clockIst(holdUntil)} (IST): the feed will not overwrite this seat until a later round or then.</p>}
       {error && <p role="alert" className="text-sm text-bad-text">{error}</p>}
 
       <footer className="flex flex-col gap-2 border-t border-line pt-3">
