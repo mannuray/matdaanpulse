@@ -1,0 +1,82 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election",
+  "https://theprint.in/india/left-front-to-contest-252-seats-isf-30-cpiml-liberation-eight-in-bengal-assembly-polls/2894367/"
+ ],
+ "alliances": [
+  {
+   "id": "TMC",
+   "name": "AITC+",
+   "color": "#00CC44",
+   "parties": [
+    "TMC",
+    "BGPM"
+   ]
+  },
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "LF",
+   "name": "Left Front+",
+   "color": "#CC0000",
+   "parties": [
+    "CPIM",
+    "AISF",
+    "AIFB",
+    "RSP",
+    "CPI",
+    "CPIML"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "TMC",
+  "NDA",
+  "LF"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 148
+  }
+ ],
+ "geo": {
+  "zoom": 7,
+  "center": [
+   87.5,
+   23
+  ],
+  "map_url": "/geo/wb_ac_2008.geojson"
+ },
+ "compare_with": [
+  "d4e5f6a7-b8c9-0123-def0-345678901021"
+ ],
+ "history": [
+  "d4e5f6a7-b8c9-0123-def0-345678901011",
+  "d4e5f6a7-b8c9-0123-def0-345678901016",
+  "d4e5f6a7-b8c9-0123-def0-345678901021"
+ ],
+ "history_years": [
+  2011,
+  2016,
+  2021
+ ],
+ "delimitation_era": "2008"
+}

@@ -1,0 +1,62 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+  "https://www.indiatvnews.com/north-east/assam/assam-assembly-elections-himanta-reveals-nda-s-seat-sharing-pact-bjp-to-contest-89-seats-agp-26-and-bpf-gets-11-2026-03-17-1034079",
+  "https://scroll.in/latest/1088512/assam-congress-seven-opposition-parties-form-alliance-ahead-of-assembly-polls"
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP",
+    "AGP",
+    "BOPF"
+   ]
+  },
+  {
+   "id": "ASM",
+   "name": "Asom Sonmilito Morcha",
+   "color": "#19AAED",
+   "parties": [
+    "INC",
+    "RJRD",
+    "AJP",
+    "CPIM",
+    "CPIML"
+   ]
+  },
+  {
+   "id": "AIUDF",
+   "name": "AIUDF",
+   "color": "#4CAF50",
+   "parties": [
+    "AIUDF"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "ASM",
+  "AIUDF"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 64
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   92.9,
+   26.2
+  ],
+  "map_url": "/geo/as_ac_2023.geojson"
+ },
+ "delimitation_era": "2023"
+}

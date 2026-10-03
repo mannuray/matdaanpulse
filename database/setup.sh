@@ -90,7 +90,7 @@ for y in 2025 2020 2015 2010; do run "seed_bihar_vs_${y}.sql"; done
 for st in wb as kl tn py; do
   run "seed_${st}_vs_parties.sql"
   run "seed_${st}_corrections_v1.sql"
-  for y in 2011 2016 2021; do run "seed_${st}_vs_${y}.sql"; done
+  for y in 2011 2016 2021 2026; do run "seed_${st}_vs_${y}.sql"; done
 done
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
 for st in kl as; do run "seed_${st}_manifest_fixes_v1.sql"; done

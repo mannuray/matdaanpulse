@@ -1,0 +1,86 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+  "https://www.freepressjournal.in/amp/india/tamil-nadu-polls-2026-nda-finalises-seat-sharing-aiadmk-to-contest-178-bjp-gets-27"
+ ],
+ "alliances": [
+  {
+   "id": "DMKALL",
+   "name": "DMK+ (SPA)",
+   "color": "#CC0000",
+   "parties": [
+    "DMK",
+    "INC",
+    "DMDK",
+    "VCK",
+    "CPIM",
+    "CPI",
+    "IUML"
+   ]
+  },
+  {
+   "id": "ADMK",
+   "name": "AIADMK+ (NDA)",
+   "color": "#00AA00",
+   "parties": [
+    "AIADMK",
+    "BJP",
+    "PMK",
+    "AMMK"
+   ]
+  },
+  {
+   "id": "TVK",
+   "name": "TVK",
+   "color": "#F2B705",
+   "parties": [
+    "TVK"
+   ]
+  },
+  {
+   "id": "AIPTMMK",
+   "name": "AIPTMMK front",
+   "color": "#7E57C2",
+   "parties": [
+    "AIPTMMK",
+    "AJPK"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "DMKALL",
+  "ADMK",
+  "TVK"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 118
+  }
+ ],
+ "geo": {
+  "zoom": 7,
+  "center": [
+   78.6,
+   11
+  ],
+  "map_url": "/geo/tn_ac_2008.geojson"
+ },
+ "compare_with": [
+  "e5f6a7b8-c9d0-1234-ef01-456789012021"
+ ],
+ "history": [
+  "e5f6a7b8-c9d0-1234-ef01-456789012011",
+  "e5f6a7b8-c9d0-1234-ef01-456789012016",
+  "e5f6a7b8-c9d0-1234-ef01-456789012021"
+ ],
+ "history_years": [
+  2011,
+  2016,
+  2021
+ ],
+ "delimitation_era": "2008"
+}

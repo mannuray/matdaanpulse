@@ -1,0 +1,74 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2026_Puducherry_Legislative_Assembly_election",
+  "https://www.theweek.in/news/india/2026/03/25/congress-vs-dmk-friendly-fight-to-take-place-in-5-6-seats-for-2026-puducherry-assembly-elections.amp.html"
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "AINRC",
+    "BJP",
+    "AIADMK",
+    "LJK"
+   ]
+  },
+  {
+   "id": "SDA",
+   "name": "Congress–DMK",
+   "color": "#CC0000",
+   "parties": [
+    "INC",
+    "DMK",
+    "VCK"
+   ]
+  },
+  {
+   "id": "TVK",
+   "name": "TVK",
+   "color": "#F2B705",
+   "parties": [
+    "TVK",
+    "NYMK"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "SDA",
+  "TVK"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 16
+  }
+ ],
+ "geo": {
+  "zoom": 11,
+  "center": [
+   79.8,
+   11.9
+  ],
+  "map_url": "/geo/py_ac_2008.geojson"
+ },
+ "compare_with": [
+  "b1c2d3e4-f5a6-7890-1234-567890ab2021"
+ ],
+ "history": [
+  "b1c2d3e4-f5a6-7890-1234-567890ab2011",
+  "b1c2d3e4-f5a6-7890-1234-567890ab2016",
+  "b1c2d3e4-f5a6-7890-1234-567890ab2021"
+ ],
+ "history_years": [
+  2011,
+  2016,
+  2021
+ ],
+ "delimitation_era": "2008"
+}

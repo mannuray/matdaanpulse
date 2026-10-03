@@ -1,0 +1,85 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+  "https://www.onmanorama.com/news/kerala/2026/01/22/twenty20-nda-alliance.html"
+ ],
+ "alliances": [
+  {
+   "id": "UDF",
+   "name": "UDF",
+   "color": "#19AAED",
+   "parties": [
+    "INC",
+    "IUML",
+    "KEC",
+    "RSP",
+    "KECJ",
+    "RMPI",
+    "CMPKSC"
+   ]
+  },
+  {
+   "id": "LDF",
+   "name": "LDF",
+   "color": "#CC0000",
+   "parties": [
+    "CPIM",
+    "CPI",
+    "KECM",
+    "ISJD",
+    "NCPSP",
+    "RJD",
+    "KECB",
+    "INL",
+    "INCS",
+    "KRSPLM"
+   ]
+  },
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP",
+    "BDJS",
+    "TP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "UDF",
+  "LDF",
+  "NDA"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 71
+  }
+ ],
+ "geo": {
+  "zoom": 10,
+  "center": [
+   76.3,
+   10.5
+  ],
+  "map_url": "/geo/kl_ac_2008.geojson"
+ },
+ "compare_with": [
+  "a7b8c9d0-e1f2-3456-0123-678901232021"
+ ],
+ "history": [
+  "a7b8c9d0-e1f2-3456-0123-678901232011",
+  "a7b8c9d0-e1f2-3456-0123-678901232016",
+  "a7b8c9d0-e1f2-3456-0123-678901232021"
+ ],
+ "history_years": [
+  2011,
+  2016,
+  2021
+ ],
+ "delimitation_era": "2008"
+}
