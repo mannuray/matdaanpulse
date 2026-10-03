@@ -58,5 +58,10 @@
   "year": 2016,
   "key": "total-valid:132",
   "reason": "ECI's Constituency Data Summary total valid votes (133958) differs from its own Detailed Results (133959), which add up exactly to the file's own Total Votes column; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2026,
+  "key": "runner-up:82",
+  "reason": "Ernakulam (82): ECI's Constituency Data Summary and results site list Sabu George (25,133 votes) as Independent; its Detailed Results and Performance of Political Parties (ISJD: 2 contested, 83,948 votes) list him as Indian Socialist Janata Dal. Votes, rank and margin agree; the party follows the Detailed Results"
  }
 ]
