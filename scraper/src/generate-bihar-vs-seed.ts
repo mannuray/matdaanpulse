@@ -267,7 +267,7 @@ async function main() {
       { spoiler: 'BSP', hurts: 'MGB', label: 'BSP split' },
     ],
     geo: {
-      map_url: '/geo/bihar_ac.geojson',
+      map_url: '/geo/bihar_ac_2008.geojson',
       center: [85.5, 25.6] as [number, number],
       zoom: 8,
     },

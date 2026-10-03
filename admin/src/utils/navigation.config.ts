@@ -1,5 +1,5 @@
 import {
-  LayoutDashboard, Radio, Vote, FileCog, Flag, Users, UserRound, Map, MessageSquare, UserCog, History, Activity,
+  LayoutDashboard, Radio, Vote, FileCog, Flag, Users, UserRound, Map, MessageSquare, UserCog, History, Activity, KeyRound,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -37,5 +37,6 @@ export const NAV_GROUPS: NavGroup[] = [
     { path: '/users', label: 'Users', icon: UserCog, roles: SUPER },
     { path: '/logs', label: 'Audit logs', icon: History, roles: SUPER },
     { path: '/status', label: 'System status', icon: Activity, roles: SUPER },
+    { path: '/ingest-keys', label: 'Ingest keys', icon: KeyRound, roles: SUPER },
   ] },
 ];

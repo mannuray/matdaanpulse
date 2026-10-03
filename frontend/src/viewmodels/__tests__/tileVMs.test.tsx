@@ -16,7 +16,7 @@ function wrap(sources = makeSources()) {
   return ({ children }: { children: ReactNode }) => (
     <MemoryRouter initialEntries={['/election/e1']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <DashboardSourcesProvider value={sources}>
-        <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={null}>{children}</DashboardStoreProvider>
+        <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={null} knownParties={null}>{children}</DashboardStoreProvider>
       </DashboardSourcesProvider>
     </MemoryRouter>
   );

@@ -2,6 +2,8 @@
 
 How we scrape, generate, and load election data into the tracker.
 
+> **Live counting day** is handled by the live worker (`scraper/src/live/`, `npm run live`), which posts to the ingest API. See `docs/LIVE_RUNBOOK.md`. This guide covers seed generation only.
+
 ---
 
 ## Directory Structure
@@ -11,9 +13,8 @@ scraper/
 ├── package.json              # cheerio, ioredis, pg, node-cron, ts-node
 ├── tsconfig.json
 └── src/
-    ├── index.ts              # Entry point (scheduler placeholder)
+    ├── live/                 # Counting-day worker (posts to the ingest API)
     ├── adapters/
-    │   ├── eci-adapter.ts    # Lok Sabha adapter (stub)
     │   └── eci-vs-adapter.ts # Vidhan Sabha adapter (working)
     ├── generate-bihar-vs-seed.ts       # Bihar 2025 (live scrape from ECI)
     └── generate-bihar-vs-2020-seed.ts  # Bihar 2020 (hardcoded data)
@@ -50,7 +51,7 @@ Base URL:  https://results.eci.gov.in/ResultAcGen{MONTH}{YEAR}
 
 Examples:
   Bihar VS 2025:  https://results.eci.gov.in/ResultAcGenNov2025
-  (Lok Sabha would be a different pattern — see eci-adapter.ts stub)
+  (Lok Sabha would be a different pattern — no adapter yet)
 ```
 
 **Constituency list pages** (paginated, ~20 per page):
@@ -310,7 +311,7 @@ The manifest JSON controls how the election appears in the UI. It's stored in `e
   "milestones": [{ "label": "Majority", "value": 122 }],
   "compare_with": ["previous-election-id"],
   "geo": {
-    "map_url": "/geo/bihar_ac.geojson",
+    "map_url": "/geo/bihar_ac_2008.geojson",
     "center": [85.5, 25.6],
     "zoom": 8
   }
@@ -333,9 +334,9 @@ Each election needs a GeoJSON file with constituency boundaries.
 **Location:** `frontend/public/geo/`
 
 **Existing files:**
-- `india_pc.geojson` — 543 Lok Sabha constituencies
+- `india_pc_2008.geojson` — 543 Lok Sabha constituencies
 - `india_states.geojson` — 36 state boundaries
-- `bihar_ac.geojson` — 243 Bihar assembly constituencies
+- `bihar_ac_2008.geojson` — 243 Bihar assembly constituencies
 
 **Required properties per feature:**
 

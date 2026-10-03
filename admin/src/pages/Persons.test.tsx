@@ -12,8 +12,8 @@ const api = vi.hoisted(() => ({
 }));
 vi.mock('../services/person.api', () => api);
 const ELECTIONS = vi.hoisted((): Election[] => [
-  { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, manifest_url: null },
-  { id: 'e2', name: 'Bihar Vidhan Sabha 2020', type: 'VS', state_id: 1, year: 2020, status: 'Finalized', tentative_next_date: null, manifest_url: null },
+  { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, delimitation: null, manifest_url: null },
+  { id: 'e2', name: 'Bihar Vidhan Sabha 2020', type: 'VS', state_id: 1, year: 2020, status: 'Finalized', tentative_next_date: null, delimitation: null, manifest_url: null },
 ]);
 vi.mock('../services/election.service', () => ({ getElections: vi.fn(async () => ELECTIONS) }));
 const auth = vi.hoisted(() => ({ role: 'EDITOR' }));

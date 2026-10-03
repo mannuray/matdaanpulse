@@ -1,15 +1,12 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup, within } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import '../../i18n';
 import { StandingsTile, WatchlistPreview } from '../dashboard/StandingsTile';
 import { LeadersStrip } from '../dashboard/LeadersStrip';
-import { SeatPanel } from '../map/SeatPanel';
 import { fitCount } from '../../viewmodels/tiles/fit';
 import type { StandingsVM } from '../../viewmodels/tiles/useStandingsVM';
 import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
-import type { SeatPanelVM } from '../../viewmodels/tiles/useSeatPanelVM';
 
 const noop = () => {};
 const origW = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
@@ -26,9 +23,9 @@ const card = (i: number, over: Partial<LeaderCard> = {}): LeaderCard => ({
 });
 const leadersVM = (over: Partial<LeadersVM> = {}): LeadersVM => ({
   leaders: [], watchlist: [], partyColor: new Map(), seatOptions: [{ id: 'C9', name: 'Nine' }],
-  onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, ...over,
+  onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop, ...over,
 });
-const standingsVM: StandingsVM = { rows: [{ id: 'BJP', name: 'Party', color: '#fff', seats: 3, votePct: null, allianceId: null }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop };
+const standingsVM: StandingsVM = { rows: [{ id: 'BJP', name: 'Party', color: '#fff', seats: 3, votePct: null, allianceId: null }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop, markOf: () => null, onOpenParty: noop };
 
 describe('LeadersStrip fits by width', () => {
   it('renders only the cards that fit and a "+N more" chip that opens the focus view', () => {
@@ -53,6 +50,32 @@ describe('LeadersStrip fits by width', () => {
     render(<LeadersStrip vm={leadersVM({ leaders: [0, 1, 2, 3, 4].map(i => card(i)) })} variant="focus" />);
     expect(screen.getAllByRole('button', { name: /Leader \d/ })).toHaveLength(5);
     expect(screen.queryByRole('button', { name: /Add/ })).toBeNull();
+  });
+});
+
+describe('party dialog entry points', () => {
+  it('a leader card opens the party dialog from its own button (no nested buttons); a party-less card has none', () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, get: () => 1600 });
+    const onOpenParty = vi.fn();
+    const onSelectSeat = vi.fn();
+    const { container } = render(<LeadersStrip vm={leadersVM({ leaders: [card(1), card(2, { partyId: '' })], onOpenParty, onSelectSeat })} variant="tile" />);
+    expect(container.querySelectorAll('button button')).toHaveLength(0);
+    const party = screen.getAllByRole('button', { name: 'Party details: BJP' });
+    expect(party).toHaveLength(1);
+    fireEvent.click(party[0]);
+    expect(onOpenParty).toHaveBeenCalledWith('BJP');
+    expect(onSelectSeat).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: /^Leader 1/ }));
+    expect(onSelectSeat).toHaveBeenCalledWith('C1');
+  });
+
+  it('a watchlist row opens the party dialog from its own button', () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientHeight', { configurable: true, get: () => 300 });
+    const onOpenParty = vi.fn();
+    const { container } = render(<StandingsTile vm={standingsVM} variant="focus" watchlist={leadersVM({ watchlist: [card(1, { custom: true })], onOpenParty })} initialTab="watchlist" />);
+    expect(container.querySelectorAll('button button')).toHaveLength(0);
+    fireEvent.click(screen.getByRole('button', { name: 'Party details: BJP' }));
+    expect(onOpenParty).toHaveBeenCalledWith('BJP');
   });
 });
 
@@ -135,23 +158,12 @@ describe('WatchlistPreview (rail)', () => {
   });
 });
 
-describe('SeatPanel track toggle', () => {
-  const vm = (tracked: boolean, onToggleTrack = noop): SeatPanelVM => ({
-    seatId: 'C1', name: 'Seat One', candidates: [], margin: null, history: null, fullPageHref: '/x', tracked, onToggleTrack, onClose: noop,
-  });
-  const show = (v: SeatPanelVM) => render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><SeatPanel vm={v} /></MemoryRouter>);
-
-  it('reflects tracked state via aria-pressed and calls onToggleTrack', () => {
-    const onToggleTrack = vi.fn();
-    show(vm(false, onToggleTrack));
-    const btn = screen.getByRole('button', { name: '☆ Track' });
-    expect(btn.getAttribute('aria-pressed')).toBe('false');
-    fireEvent.click(btn);
-    expect(onToggleTrack).toHaveBeenCalled();
-  });
-
-  it('shows Tracked when tracked', () => {
-    show(vm(true));
-    expect(screen.getByRole('button', { name: '★ Tracked' }).getAttribute('aria-pressed')).toBe('true');
+describe('party mark in standings', () => {
+  it('opens the party dialog from the mark button, the row still locks', () => {
+    const onOpenParty = vi.fn(), onLockParty = vi.fn();
+    render(<StandingsTile vm={{ ...standingsVM, onOpenParty, onLockParty, markOf: () => null }} variant="tile" watchlist={leadersVM()} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Party details: Party' }));
+    expect(onOpenParty).toHaveBeenCalledWith('BJP');
+    expect(onLockParty).not.toHaveBeenCalled();
   });
 });

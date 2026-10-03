@@ -10,7 +10,8 @@ export function FocusDialog({ open, title, onClose, children }: { open: boolean;
   return (
     <Dialog.Root open={open} onOpenChange={o => { if (!o) onClose(); }}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-scrim backdrop-blur-sm" />
+        {/* Same z as the content: a later-opened dialog (later in the body) then dims every earlier one. */}
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-scrim backdrop-blur-sm" />
         <Dialog.Content
           aria-describedby={undefined}
           onCloseAutoFocus={e => { e.preventDefault(); opener.current?.focus(); }}

@@ -5,6 +5,7 @@ import { ResultsService } from '../results/results.service';
 import { ConstituenciesService } from '../constituencies/constituencies.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
 import { ElectionSummaryDto, ElectionDetailDto } from './dto/election-response.dto';
+import { ConstituencyDetailDto } from '../results/dto/constituency-detail.dto';
 import { ElectionsQueryDto, ResultsQueryDto } from '../../common/dto/query.dto';
 import { CACHE_CONTROL, CacheControl, applyCacheControl } from '../../common/http/cache-control';
 import { successEnvelope } from '../../common/interceptors/transform.interceptor';
@@ -47,8 +48,7 @@ export class ElectionsController {
   async findOne(@Param('id', new ParseUUIDPipe()) id: string) {
     const election = await this.electionsService.findOne(id);
     const summary = await this.resultsService.getElectionSummary(id);
-    
-    const manifest = this.electionsService.parseManifest(election.manifest_url);
+    const manifest = await this.electionsService.comparableManifest(election, this.electionsService.parseManifest(election.manifest_url));
 
     return { ...election, manifest, summary };
   }
@@ -127,6 +127,7 @@ export class ElectionsController {
   }
 
   @Get(':id/constituencies/:constId')
+  @UseInterceptors(new MapToDtoInterceptor(ConstituencyDetailDto))
   getConstituencyDetail(
     @Param('id', ParseUUIDPipe) id: string,
     @Param('constId') constId: string,

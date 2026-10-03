@@ -2,12 +2,13 @@ import { paginated } from '../../common/paginated';
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
-import { AnalysisContext, AnalysisStrategy } from './strategies/analysis-strategy.interface';
+import { AnalysisContext, AnalysisStrategy, SeatStats } from './strategies/analysis-strategy.interface';
 import { Prisma } from '@prisma/client';
 import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFoundException } from '../../common/exceptions';
 import type { UpdateAnalysisDto } from './dto/constituency-input.dto';
 import { AuditLogService, type RecordAuditEntry } from '../audit-log/audit-log.service';
 import { changedFields } from '../audit-log/audit-diff';
+import { comparableElectionIds } from '../../common/comparable-elections';
 
 @Injectable()
 export class ConstituenciesService {
@@ -134,20 +135,23 @@ export class ConstituenciesService {
 
   /**
    * Seat history from results, newest first: the seats of every election of the same type with the same state
-   * and `const_no` (the columns, so an id that `extractConstNo` cannot parse still works). Independent of
-   * constituency_analysis. A seat with no state returns only itself. Volatility counts party changes between
+   * and `const_no` (the columns, so an id that `extractConstNo` cannot parse still works) and the same
+   * delimitation (migration 019). Independent of constituency_analysis. A seat with no state or no delimitation
+   * returns only itself. Volatility counts party changes between
    * consecutive elections that have a winner.
    */
   async history(id: string) {
     const seat = await this.prisma.constituencies.findUnique({
       where: { id },
-      select: { id: true, state_id: true, const_no: true, elections: { select: { type: true } } },
+      select: { id: true, state_id: true, const_no: true, elections: { select: { type: true, delimitation: true } } },
     });
     if (!seat) throw new ConstituencyNotFoundException(id);
+    // Same seat number only means the same place within one delimitation; no state or delimitation: only itself.
+    const { delimitation } = seat.elections;
     const matches = await this.prisma.constituencies.findMany({
-      where: seat.state_id === null
+      where: seat.state_id === null || !delimitation
         ? { id }
-        : { state_id: seat.state_id, const_no: seat.const_no, elections: { type: seat.elections.type } },
+        : { state_id: seat.state_id, const_no: seat.const_no, elections: { type: seat.elections.type, delimitation } },
       select: {
         id: true,
         election_id: true,
@@ -260,6 +264,9 @@ export class ConstituenciesService {
     const election = await this.prisma.elections.findUnique({ where: { id: electionId } });
     if (!election) throw new ElectionNotFoundException(electionId);
 
+    // Only elections of the same type, state and delimitation: seat numbers mean other places across a redraw.
+    historyElectionIds = await comparableElectionIds(this.prisma, election, historyElectionIds);
+
     const constituencies = await this.prisma.constituencies.findMany({ where: { election_id: electionId } });
     const allElectionIds = [...historyElectionIds, electionId];
 
@@ -282,7 +289,29 @@ export class ConstituenciesService {
         party_id: w.candidates.party_id,
         candidate_name: w.candidates.name,
         margin: w.margin || 0,
+        votes: w.votes || 0,
       });
+    }
+
+    // Every result of these elections, highest votes first: per seat the total and the runner-up (seat history).
+    const allResults = await this.prisma.results.findMany({
+      where: { election_id: { in: allElectionIds } },
+      select: { election_id: true, const_id: true, votes: true, candidates: { select: { name: true, party_id: true } } },
+      orderBy: { votes: 'desc' },
+    });
+    const seatStatsByElection = new Map<string, Map<string, SeatStats>>();
+    const seen = new Map<string, number>();
+    for (const r of allResults) {
+      const constNo = this.extractConstNo(r.const_id);
+      if (!seatStatsByElection.has(r.election_id)) seatStatsByElection.set(r.election_id, new Map());
+      const byConst = seatStatsByElection.get(r.election_id)!;
+      const s = byConst.get(constNo) ?? { total: 0, runnerUp: null };
+      s.total += r.votes || 0;
+      const key = `${r.election_id}|${constNo}`;
+      const rank = (seen.get(key) ?? 0) + 1;
+      seen.set(key, rank);
+      if (rank === 2) s.runnerUp = { name: r.candidates.name, party_id: r.candidates.party_id };
+      byConst.set(constNo, s);
     }
 
     // Results by constituency for current election
@@ -321,6 +350,7 @@ export class ConstituenciesService {
         winnersByElection,
         resultsByConst,
         candidatesByElectionConst,
+        seatStatsByElection,
         manifest,
       };
 

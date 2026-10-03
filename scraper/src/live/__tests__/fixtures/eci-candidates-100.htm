@@ -1,0 +1,515 @@
+<style> 
+/* =========================
+   Trend Result Final Style
+========================= */
+
+.cand-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #f3f3f3;
+    border-radius: 0;
+    padding: 22px 18px 18px 18px;
+    margin-bottom: 24px;
+    min-height: 150px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: visible;
+}
+
+/* Backgrounds */
+.cand-box.won-card {
+    background: #dff0d2;
+}
+
+.cand-box.lost-card {
+    background: #f7dfe3;
+}
+
+.cand-box.default-card {
+    background: #e8edf7;
+}
+
+/* Candidate Image */
+.cand-box figure {
+    width: 110px;
+    min-width: 110px;
+    height: 110px;
+    margin: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #f2a900;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -72px;
+    position: relative;
+    z-index: 2;
+}
+
+.cand-box figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Right Content */
+.cand-info {
+    flex: 1;
+    position: relative;
+    padding-top: 28px;
+}
+
+/* Top Right Curved Status */
+.status {
+    position: absolute;
+    top: -22px;
+    right: -18px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0 5px 0 20px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: lowercase;
+    z-index: 3;
+    padding:0 !important; 
+}
+
+.status div {
+    padding: 10px 16px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.status div:first-child {
+    border-right: 1px solid rgba(255,255,255,0.35);
+}
+
+/* Status Colors */
+.status.won {
+     background: #2d4f6a;
+     color: #3ef23e !important;
+
+     
+}
+
+.status.lost {
+     background: #4f86ff;
+     color: #fff !important;
+      
+}
+
+.status.leading {
+    background: #2d4f6a;
+}
+
+.status.trailing {
+    background: #4f86ff;
+}
+
+.status.default {
+    background: #4f86ff;
+}
+
+/* Name + Party */
+.nme-prty h5 {
+    margin: 0 0 8px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #003b73;
+    text-transform: uppercase;
+    line-height: 1.2;
+    border-bottom: 1px solid #cfcfcf;
+    padding-bottom: 8px;
+}
+
+.nme-prty h6 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #0072ff;
+    line-height: 1.4;
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+    .cand-box {
+        padding: 20px 14px 14px;
+        min-height: auto;
+    }
+
+    .cand-box figure {
+        width: 85px;
+        min-width: 85px;
+        height: 85px;
+        margin-left: -45px;
+    }
+
+    .cand-info {
+        padding-top: 24px;
+    }
+
+    .status {
+        font-size: 14px;
+        top: -20px;
+        right: -14px;
+    }
+
+    .status div {
+        padding: 8px 12px;
+    }
+
+    .nme-prty h5 {
+        font-size: 16px;
+    }
+
+    .nme-prty h6 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cand-box {
+        margin-left: 40px;
+    }
+
+    .cand-box figure {
+        width: 70px;
+        min-width: 70px;
+        height: 70px;
+        margin-left: -50px;
+    }
+
+    .status {
+        font-size: 13px;
+    }
+
+    .nme-prty h5 {
+        font-size: 14px;
+    }
+
+    .nme-prty h6 {
+        font-size: 13px;
+    }
+}
+
+</style>
+ 
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=7'>
+    <meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate'>
+    <meta http-equiv='Pragma' content='no-cache'>
+    <meta http-equiv='Expires' content='0'>
+    <meta http-equiv='refresh' content='300'>
+    <!-- Bootstrap CSS -->
+    <link href='css/bootstrap.min.css' rel='stylesheet'>
+    <link href='css/custom.css' rel='stylesheet'>
+    <link href='css/responsive.css' rel='stylesheet'>
+    <link href='css/font.css' rel='stylesheet'>
+    <link rel='shortcut icon' href='img/icons/favicon.ico' type='image/x-icon'>
+    <title>Election Commission of India</title>
+</head>
+
+<body>
+    <header class='header'>
+        <div class='logo-search'>
+             <div class="mob-btn"><img src="img/icons/menu.png" alt=""></div> 
+            <div class='logo'><a href='index.htm'><img src='img/eci-ecinet-logo.png' alt=''></a></div>
+            <div class="lft-menu">
+                <div class="menu-close">X</div>
+                <div class="menu-logo"><a href="index.htm"><img src="img/eci-logo.png" alt=""></a></div>
+                
+                <ul>
+                    <li><a href='index.htm'><span><img src='img/icons/home.png' alt=''></span> Home</a></li>
+                    <li><a href='./hi/candidateswise-S25100.htm'>Hindi <span><img src='img/icons/language.png' alt=''></span></a></li>
+                    <!-- <li><a href='search.htm'>Search <span><img src='img/icons/search.png' alt=''></span></a></li>
+                     -->
+                    <li><a href='#' onClick='window.location.href=window.location.href'>Refresh <span><img src='img/icons/refresh.png' alt=''></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class='dis-info'>
+        <div class='container-fluid'>
+            <div class="d-flex align-items-center justify-content-center">
+                <h6 class="mb-0 mx-2"><img src="img/icons/warning.svg" alt=""><strong>Disclaimer:</strong></h6>
+                <p class='mb-0'> ECI is displaying the information as being filled in the system by the Returning Officers from their respective Counting Centres.The final data for each AC/PC will be shared in Form-20.</p>
+            </div>
+        </div>
+    </div>
+    <main class='inner-content'>
+        <div class='container-fluid'>
+            <div class='page-title'>
+                <h1>
+                    <div>General Election to Assembly Constituencies: Trends & Results May-2026</div>
+                </h1>
+                <h2>Assembly Constituency <span>100 - HABRA <strong> (West Bengal)</strong></span></h2>
+
+            </div>
+            <div class='middle-head'>
+    <div class="roundBtn">&nbsp;</div>
+    <div class='round-status'> Status of EVM Round: <span>19</span>/19</div>
+    <div class='switch-list'>
+        <ul>
+            <li><a href="RoundwiseS25100.htm?ac=100"><img src='img/icons/roundwise-35.png' alt='' title="Round Wise EVM Votes"></a></li>
+            <li><a href='#'><img src='img/icons/user-ifo.png' alt='' title="Constituency Wise Candidate View"></a></li>
+            <li><a href='ConstituencywiseS25100.htm'><img src='img/icons/tab-info.png' alt='' title="Constituency Wise Table View"></a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- End of middle-head Div -->
+<div class='box-wraper box-boarder'>
+    <div class='container-fluid'>
+        <div class='row'>
+
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/S25/DEBDA-2026-20260404123809.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status won'>
+                            <div style='text-transform: capitalize'>won</div>
+                            <div>104645 <span>(+ 31462)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>DEBDAS MONDAL</h5>
+                            <h6>Bharatiya Janata Party</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/JYOTI-2026-20260406053815.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>73183 <span>( -31462)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>JYOTI PRIYA MALLICK</h5>
+                            <h6>All India Trinamool Congress</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/RIJIN-2026-20260407052308.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>15237 <span>( -89408)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>RIJINANDAN BISWAS</h5>
+                            <h6>Communist Party of India (Marxist)</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/PRONO-2026-20260409031050.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>1145 <span>( -103500)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>PRONOB BHATTACHARYYA</h5>
+                            <h6>Indian National Congress</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/S25/DEBAB-2026-20260404053112.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>885 <span>( -103760)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>DEBABRATA DAS</h5>
+                            <h6>Independent</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/SAFIQ-2026-20260409055558.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>716 <span>( -103929)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>SHAFIQUE ALI</h5>
+                            <h6>Independent</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/KAMAL-2026-20260406060709.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>540 <span>( -104105)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>KAMALENDU BALA</h5>
+                            <h6>Bahujan Samaj Party</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/SARIF-2026-20260407053603.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>369 <span>( -104276)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>SARIFUL MOLLA</h5>
+                            <h6>Independent</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/ASIKR-2026-20260408052643.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>306 <span>( -104339)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>ASIK RAJ MONDAL</h5>
+                            <h6>All India Majlis-E-Ittehadul Muslimeen</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/DEBDA-2026-20260406060018.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>282 <span>( -104363)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>DEBDAS MONDAL</h5>
+                            <h6>Independent</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/S25/PROBO-2026-20260404123850.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>261 <span>( -104384)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>PROBODH KUMAR SARKAR</h5>
+                            <h6>Socialist Unity Centre Of India (COMMUNIST)</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/S25/APUMA-2026-20260407051315.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>109 <span>( -104536)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>APU MALLICK</h5>
+                            <h6>Independent</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='https://results.eci.gov.in/uploads2/candprofile/E32/2026/AC/s25/KABIR-2026-20260409054830.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status lost'>
+                            <div style='text-transform: capitalize'>lost</div>
+                            <div>71 <span>( -104574)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>KABIR RANA</h5>
+                            <h6>Aam Janata Unnayan party</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                        <div class='col-md-4 col-12'>
+                <div class='cand-box'>
+                    <figure><img src='img/nota.jpg' alt=''></figure>
+                    <div class='cand-info'>
+                        <div class='status default'>
+                            <div style='text-transform: capitalize'></div>
+                            <div>988 <span>( -103657)</span></div>
+                        </div>
+                        <div class='nme-prty'>
+                            <h5>NOTA</h5>
+                            <h6>None of the Above</h6>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                    </div>
+    </div>
+</div><!-- End of box-wraper-->
+    </main>
+ <footer class="footer">
+        <div class="foot-info">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="foot-content">
+                            Last Updated at <span>04:18 PM On 05/05/2026</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src='js/jquery-min.js' type='text/javascript'></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src='js/bootstrap.bundle.min.js' type='text/javascript'></script>
+    <!-- Option 3: Custom jQuery Lab -->
+    <script src='js/custom-jQuery.js' type='text/javascript'></script>
+    </body>
+
+</html>

@@ -53,7 +53,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       vip_seats: {},
       milestones: [{ label: 'Majority', value: 71 }],
       geo: {
-        map_url: '/geo/kl_ac.geojson',
+        map_url: '/geo/kl_ac_2008.geojson',
         center: [76.3, 10.5],
         zoom: 10,
       },
@@ -96,7 +96,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       milestones: [{ label: 'Majority', value: 71 }],
       compare_with: ['a7b8c9d0-e1f2-3456-0123-678901232011'],
       geo: {
-        map_url: '/geo/kl_ac.geojson',
+        map_url: '/geo/kl_ac_2008.geojson',
         center: [76.3, 10.5],
         zoom: 10,
       },
@@ -144,7 +144,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       ],
       history_years: [2011, 2016],
       geo: {
-        map_url: '/geo/kl_ac.geojson',
+        map_url: '/geo/kl_ac_2008.geojson',
         center: [76.3, 10.5],
         zoom: 10,
       },
@@ -211,7 +211,7 @@ interface GeoEntry { name: string; category: string; }
 function main() {
   console.log('=== Kerala Vidhan Sabha Seed Generator ===\n');
 
-  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/kl_ac.geojson');
+  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/kl_ac_2008.geojson');
   const geoData = JSON.parse(fs.readFileSync(geoPath, 'utf8'));
   const geoMap: Record<number, GeoEntry> = {};
   for (const feat of geoData.features) {

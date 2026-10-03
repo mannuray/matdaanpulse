@@ -68,7 +68,7 @@ describe('CORS for CDN-cached public reads', () => {
     const pick = (req: object) => new Promise<any>((r) => delegate(req, (_e, o) => r(o)));
     return Promise.all([
       pick({ method: 'GET', originalUrl: '/api/v1/elections' }).then((o) => expect(o.origin).toBe('*')),
-      pick({ method: 'PATCH', originalUrl: '/api/v1/admin/results/override' }).then((o) => expect(o.origin).toEqual(['https://app.x'])),
+      pick({ method: 'PATCH', originalUrl: '/api/v1/admin/elections' }).then((o) => expect(o.origin).toEqual(['https://app.x'])),
     ]);
   });
 });

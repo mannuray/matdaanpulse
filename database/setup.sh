@@ -104,4 +104,7 @@ run seed_party_recognition.sql
 echo "==> Seeds: election result dates (must follow every election insert)"
 run seed_election_result_dates.sql
 
+echo "==> Seeds: election delimitations (must follow every election insert)"
+run seed_election_delimitation.sql
+
 echo "==> Done. Create an admin user with: cd backend && npm run create-admin"

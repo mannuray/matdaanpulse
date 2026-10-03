@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getElections, createElection, updateElection, finalizeElection } from '../services/election.service';
 import { getStates } from '../services/geo.service';
+import { reopenElection } from '../services/ingest.service';
 import { useResourceList } from './useResourceList';
 import { useToast } from '../context/ToastContext';
 import { fieldErrorMap } from '../services/api-client';
@@ -19,6 +20,8 @@ export interface ElectionFormState {
   year: string;
   state_id: string;
   tentative_next_date: string;
+  /** Delimitation order year the seats follow ("2008"); empty = not known, compared with no other election. */
+  delimitation: string;
 }
 
 export const INITIAL_ELECTION_FORM: ElectionFormState = {
@@ -26,11 +29,15 @@ export const INITIAL_ELECTION_FORM: ElectionFormState = {
   type: 'LS',
   year: String(new Date().getFullYear()),
   state_id: '',
-  tentative_next_date: ''
+  tentative_next_date: '',
+  delimitation: ''
 };
 
 /** A year is required: exactly 4 digits. */
 export const isValidElectionYear = (v: string) => /^\d{4}$/.test(v.trim());
+
+/** Delimitation: empty, or a 4-digit year. */
+export const isValidDelimitation = (v: string) => v.trim() === '' || /^\d{4}$/.test(v.trim());
 
 /** `<input type="date">` needs YYYY-MM-DD; the API may return a full ISO timestamp. */
 const toForm = (el: Election): ElectionFormState => ({
@@ -38,7 +45,8 @@ const toForm = (el: Election): ElectionFormState => ({
   type: el.type,
   year: String(el.year),
   state_id: el.state_id?.toString() || '',
-  tentative_next_date: el.tentative_next_date ? el.tentative_next_date.slice(0, 10) : ''
+  tentative_next_date: el.tentative_next_date ? el.tentative_next_date.slice(0, 10) : '',
+  delimitation: el.delimitation ?? ''
 });
 
 interface Options {
@@ -109,7 +117,7 @@ export function useElectionManager({ onChanged }: Options = {}) {
   /** Saves the form; resolves to the saved election's id (the new id on create) or null on failure. */
   const handleSave = async (e?: { preventDefault(): void }): Promise<string | null> => {
     e?.preventDefault();
-    if (!form.name.trim() || !isValidElectionYear(form.year)) return null;
+    if (!form.name.trim() || !isValidElectionYear(form.year) || !isValidDelimitation(form.delimitation)) return null;
     const submitted = form;
     setSaving(true);
     setFieldErrors({});
@@ -123,11 +131,12 @@ export function useElectionManager({ onChanged }: Options = {}) {
     try {
       let savedId: string;
       if (editId) {
-        // Edit always sends both fields so clearing them (VS to LS, no date) reaches the server as null.
+        // Edit always sends these fields so clearing them (VS to LS, no date, no delimitation) reaches the server as null.
         await updateElection(editId, {
           ...base,
           state_id: submitted.state_id ? Number(submitted.state_id) : null,
           tentative_next_date: submitted.tentative_next_date || null,
+          delimitation: submitted.delimitation.trim() || null,
         });
         savedId = editId;
         // The submitted values are the saved baseline; edits typed while saving stay dirty.
@@ -138,6 +147,7 @@ export function useElectionManager({ onChanged }: Options = {}) {
           ...base,
           ...(submitted.state_id ? { state_id: Number(submitted.state_id) } : {}),
           ...(submitted.tentative_next_date ? { tentative_next_date: submitted.tentative_next_date } : {}),
+          ...(submitted.delimitation.trim() ? { delimitation: submitted.delimitation.trim() } : {}),
         });
         savedId = created.id;
         setForm(INITIAL_ELECTION_FORM);
@@ -164,6 +174,17 @@ export function useElectionManager({ onChanged }: Options = {}) {
       await onChanged?.();
     } catch (err) {
       toastError(err, 'Finalization failed');
+    }
+  };
+
+  const handleReopen = async (id: string) => {
+    try {
+      await reopenElection(id);
+      toast('Election reopened: it is Live again');
+      list.refresh();
+      await onChanged?.();
+    } catch (err) {
+      toastError(err, 'Could not reopen the election');
     }
   };
 
@@ -198,6 +219,7 @@ export function useElectionManager({ onChanged }: Options = {}) {
     startEdit,
     handleSave,
     handleFinalize,
+    handleReopen,
     goLive,
     resetForm
   };

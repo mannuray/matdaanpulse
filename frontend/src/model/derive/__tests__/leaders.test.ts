@@ -1,3 +1,4 @@
+import { resolveLeaderSeats } from '../leaders';
 import { describe, it, expect } from 'vitest';
 import { collectLeaderEntries, deriveLeaderCards } from '../leaders';
 import type { ResultRow } from '../../types';
@@ -37,5 +38,28 @@ describe('deriveLeaderCards', () => {
     expect(cards.map(c => [c.status, c.margin])).toEqual([['WON', 14532], ['TRAILING', 200], ['PENDING', null], ['LEADING', 200]]);
     expect(cards[3].name).toBe('SAMRAT CHOUDHARY');
     expect(cards[0].constName).toBe('Raghopur');
+  });
+});
+
+describe('resolveLeaderSeats', () => {
+  const rows = [
+    { const_id: 'BR_VS_128_RAGHOPUR', party_id: 'RJD', candidate_name: 'TEJASHWI PRASAD YADAV', votes: 1, status: 'WON', margin: 1 },
+    { const_id: 'BR_VS_1_X', party_id: 'RJD', candidate_name: 'TEJ PRATAP YADAV', votes: 1, status: 'LOST', margin: 0 },
+    { const_id: 'BR_VS_2_Y', party_id: 'BJP', candidate_name: 'TEJASHWI YADAV', votes: 1, status: 'LOST', margin: 0 },
+  ];
+  it('fills a missing seat from a same-party candidate whose name contains every token', () => {
+    const out = resolveLeaderSeats([{ name: 'Tejashwi Yadav', partyId: 'RJD', constId: '', custom: false }], rows);
+    expect(out[0].constId).toBe('BR_VS_128_RAGHOPUR');
+  });
+  it('keeps a seat that is already set, and leaves an unmatched leader seatless', () => {
+    const out = resolveLeaderSeats([
+      { name: 'Tejashwi Yadav', partyId: 'RJD', constId: 'BR_VS_9_Z', custom: false },
+      { name: 'Nitish Kumar', partyId: 'JDU', constId: '', custom: false },
+    ], rows);
+    expect(out.map(e => e.constId)).toEqual(['BR_VS_9_Z', '']);
+  });
+  it('does not guess when two same-party candidates match', () => {
+    const two = [...rows, { const_id: 'BR_VS_3_W', party_id: 'RJD', candidate_name: 'TEJASHWI YADAV', votes: 1, status: 'LOST', margin: 0 }];
+    expect(resolveLeaderSeats([{ name: 'Tejashwi Yadav', partyId: 'RJD', constId: '', custom: false }], two)[0].constId).toBe('');
   });
 });

@@ -155,7 +155,9 @@ export class ResultsService {
           },
           orderBy: { const_id: 'asc' },
         });
-        return buildSnapshot(Number(state?.version ?? 0), rows);
+        const seatStates = await tx.seat_ingest_state.findMany({ where: { election_id: id, state: { not: null } }, select: { const_id: true, state: true, round_current: true, round_total: true } });
+        // A row without a state only records a rejection (migration 021); viewers never see it.
+        return buildSnapshot(Number(state?.version ?? 0), rows, seatStates as { const_id: string; state: string; round_current: number | null; round_total: number | null }[]);
       },
       { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead },
     );
@@ -197,25 +199,24 @@ export class ResultsService {
       include: {
         districts: true,
         states: true,
+        regions: { select: { id: true, name: true } },
         candidates: {
           include: {
-            parties: true,
-            persons: {
-              select: { id: true, photo_url: true }
-            },
-            results: {
-              where: { const_id: constId }
-            }
-          }
-        }
-      }
+            parties: { select: { id: true, name: true, abbreviation: true, color: true, symbol_url: true, eci_symbol_url: true } },
+            persons: { select: { id: true, photo_url: true, wikipedia_url: true } },
+            results: { where: { const_id: constId } },
+          },
+        },
+      },
     });
 
     if (!constituency) throw new ConstituencyNotFoundException(constId);
 
+    let lastUpdated: Date | null = null;
     const candidateResults = constituency.candidates
       .map(c => {
         const r = c.results[0];
+        if (r?.last_updated && (!lastUpdated || r.last_updated > lastUpdated)) lastUpdated = r.last_updated;
         return {
           id: c.id,
           name: c.name,
@@ -226,15 +227,23 @@ export class ResultsService {
           margin: r?.margin || 0,
           person_id: c.person_id,
           person: c.persons,
+          age: c.age,
+          assets: c.assets,
+          liabilities: c.liabilities,
+          criminal_cases: c.criminal_cases,
         };
       })
       .sort((a, b) => b.votes - a.votes);
 
     return {
       ...constituency,
+      // Prisma Decimal is a class instance: class-transformer would try to rebuild it (DecimalError), so send a number.
+      voter_turnout: constituency.voter_turnout == null ? null : Number(constituency.voter_turnout),
       district: constituency.districts,
       state: constituency.states,
-      candidates: candidateResults
+      region: constituency.regions,
+      last_updated: lastUpdated,
+      candidates: candidateResults,
     };
   }
 
@@ -276,6 +285,9 @@ export class ResultsService {
       orderBy: { const_no: 'asc' }
     });
 
+    const seatStates = await this.prisma.seat_ingest_state.findMany({ where: { election_id: id, state: { not: null } }, select: { const_id: true, state: true } });
+    const stateOf = new Map(seatStates.map(s => [s.const_id, s.state as string]));
+
     return constituencies.map(co => ({
       const_id: co.id,
       const_name: co.name,
@@ -283,6 +295,7 @@ export class ResultsService {
       const_type: co.type,
       current_round: co.current_round ?? null,
       total_rounds: co.total_rounds ?? null,
+      seat_state: stateOf.get(co.id) ?? null,
       candidates: co.results.map(r => ({
         result_id: r.id,
         candidate_id: r.candidate_id,
@@ -356,6 +369,8 @@ export interface ResultsSnapshot {
   summary: { party_id: string; party_name: string; color: string | null; won: number; leading: number }[];
   /** Same shape as GET /elections/:id/vote-share. */
   voteShare: { party_id: string; party_name: string; color: string | null; total_votes: number; percentage: number }[];
+  /** Per-seat ingest state and counting rounds; only seats that have ingest state. */
+  seats: Record<string, { state: string; cr: number | null; tr: number | null }>;
 }
 
 interface SnapshotSourceRow {
@@ -368,7 +383,11 @@ interface SnapshotSourceRow {
 }
 
 /** Pure: mirrors the SQL of getElectionSummary / loadVoteShare (rows without a party are left out of both). */
-export function buildSnapshot(version: number, rows: SnapshotSourceRow[]): ResultsSnapshot {
+export function buildSnapshot(
+  version: number,
+  rows: SnapshotSourceRow[],
+  seatStates: { const_id: string; state: string; round_current: number | null; round_total: number | null }[] = [],
+): ResultsSnapshot {
   const results = rows.map((r) => ({
     const_id: r.const_id,
     party_id: r.candidates.party_id,
@@ -411,7 +430,9 @@ export function buildSnapshot(version: number, rows: SnapshotSourceRow[]): Resul
       percentage: grandTotal > 0 ? parseFloat(((total_votes / grandTotal) * 100).toFixed(2)) : 0,
     }));
 
-  return { version, results, summary, voteShare };
+  const seats = Object.fromEntries(seatStates.map((s) => [s.const_id, { state: s.state, cr: s.round_current, tr: s.round_total }]));
+
+  return { version, results, summary, voteShare, seats };
 }
 
 /** Thrown inside the snapshot loader so a snapshot of another version is never cached under the requested key. */

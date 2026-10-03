@@ -18,9 +18,9 @@ type Env = Record<string, string | undefined>;
 export const API_PREFIX = 'api/v1';
 /** Default JSON/urlencoded body limit for every route (Express default). */
 export const DEFAULT_BODY_LIMIT = '100kb';
-/** The one route that needs large bodies: MAX_BULK_OVERRIDES (10k) × ~150 B ≈ 1.5 MB. */
-export const BULK_OVERRIDE_PATH = `/${API_PREFIX}/admin/results/override-bulk`;
-export const BULK_OVERRIDE_BODY_LIMIT = '5mb';
+/** Ingest seat batches: MAX_SEATS_PER_REQUEST (500) × ~20 candidates × ~60 B ≈ 0.6 MB. */
+export const INGEST_PATH = `/${API_PREFIX}/ingest`;
+export const INGEST_BODY_LIMIT = '5mb';
 
 /** Query key tolerated on every route as a cache-buster (`?_=<timestamp>`); removed before validation. */
 export const CACHE_BUSTER_QUERY_KEY = '_';
@@ -98,9 +98,9 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
   app.use(clientIpProbe(logger, hops, cf));
   app.use(dropCacheBuster);
 
-  // Body limits (review S-M3): 5 MB only for the bulk override route, registered
+  // Body limits (review S-M3): 5 MB only for the ingest route, registered
   // first; the global parsers then skip the already-parsed body.
-  app.use(BULK_OVERRIDE_PATH, requireBearerHeader, json({ limit: BULK_OVERRIDE_BODY_LIMIT }));
+  app.use(INGEST_PATH, requireBearerHeader, json({ limit: INGEST_BODY_LIMIT }));
   app.use(json({ limit: DEFAULT_BODY_LIMIT }));
   app.use(urlencoded({ extended: true, limit: DEFAULT_BODY_LIMIT }));
 

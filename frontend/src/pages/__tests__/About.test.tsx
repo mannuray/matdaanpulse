@@ -22,18 +22,32 @@ const message = () => screen.getByRole('textbox', { name: /message/i });
 const send = () => screen.getByRole('button', { name: 'Send feedback' });
 
 describe('About page', () => {
-  it('lists every dataset with its quality, and shows no raw i18n keys', () => {
+  it('shows every dataset as a matrix cell with its quality, and no raw i18n keys', () => {
     const { container } = renderAbout();
-    expect(container.querySelectorAll('[data-source-row]')).toHaveLength(DATA_SOURCES.length);
-    expect(container.querySelectorAll('[data-source-group]')).toHaveLength(7);
-    expect(screen.getByText('Bihar · Vidhan Sabha')).toBeTruthy();
-    expect(screen.getAllByText(/only the winning margin is real/).length).toBe(DATA_SOURCES.filter(s => s.notes.includes('votes_from_margin')).length);
+    expect(container.querySelectorAll('[data-matrix-cell]')).toHaveLength(DATA_SOURCES.length);
+    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Lok Sabha', 'Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry']);
+    expect(screen.getByRole('button', { name: 'Kerala · Vidhan Sabha 2021: Votes estimated' })).toBeTruthy();
+    expect(screen.getByText(`${DATA_SOURCES.length} elections covered`)).toBeTruthy();
+    expect(screen.getByText('Lok Sabha + 6 states')).toBeTruthy();
     expect(container.textContent).not.toMatch(/about_[a-z_]+/);
+  });
+
+  it('the detail panel starts on the newest dataset and follows the picked cell', () => {
+    const { container } = renderAbout();
+    const panel = () => container.querySelector('[data-matrix-detail]')!.textContent!;
+    expect(panel()).toMatch(/Bihar · Vidhan Sabha 2025/);
+    const cell = screen.getByRole('button', { name: 'Bihar · Vidhan Sabha 2020: Votes estimated' });
+    fireEvent.click(cell);
+    expect(cell.getAttribute('aria-pressed')).toBe('true');
+    expect(panel()).toMatch(/Bihar · Vidhan Sabha 2020/);
+    expect(panel()).toMatch(/only the winning margin is real/);
+    expect(panel()).toMatch(/StatisticsTimes/);
   });
 
   it('links to the official ECI results and the contact address', () => {
     renderAbout();
-    expect(screen.getByRole('link', { name: /Official ECI results/ }).getAttribute('href')).toBe('https://results.eci.gov.in/');
+    // The disclaimer band and the page footer both link to the ECI.
+    expect(screen.getAllByRole('link', { name: /Official ECI results/ }).map(a => a.getAttribute('href'))).toEqual(['https://results.eci.gov.in/', 'https://results.eci.gov.in/']);
     expect(screen.getByRole('link', { name: 'mannu.ray@gmail.com' }).getAttribute('href')).toBe('mailto:mannu.ray@gmail.com');
   });
 

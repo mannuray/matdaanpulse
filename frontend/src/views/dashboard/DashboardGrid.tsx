@@ -8,7 +8,7 @@ import type { LayerInsightVM } from '../../viewmodels/tiles/useLayerInsightVM';
 import type { LeadersVM } from '../../viewmodels/tiles/useLeadersVM';
 import type { StatsVM } from '../../viewmodels/tiles/useStatsVM';
 import type { MapVM } from '../../viewmodels/tiles/useMapVM';
-import type { SeatPanelVM } from '../../viewmodels/tiles/useSeatPanelVM';
+import type { SeatDialogVM } from '../../viewmodels/tiles/useSeatDialogVM';
 import type { FocusTile } from '../../viewmodels/store/dashboardStore';
 import { useState } from 'react';
 import { useMediaQuery } from '../hooks/useMediaQuery';
@@ -23,11 +23,13 @@ import { StatsStrip } from './StatsStrip';
 import { FocusOverlay } from './FocusOverlay';
 import { MobileCardRail } from './MobileCardRail';
 import { MapTile } from '../map/MapTile';
-import { SeatPanel } from '../map/SeatPanel';
+import { SeatDialog } from '../seat/SeatDialog';
+import { PartyDialog } from '../party/PartyDialog';
+import type { PartyDialogVM } from '../../viewmodels/tiles/usePartyDialogVM';
 
 export interface DashboardViewProps {
   topBar: TopBarVM; search: SearchVM; scoreboard: ScoreboardVM; standings: StandingsVM; insight: LayerInsightVM; summary?: SummaryVM;
-  leaders: LeadersVM; stats: StatsVM; map: MapVM; seatPanel: SeatPanelVM | null;
+  leaders: LeadersVM; stats: StatsVM; map: MapVM; seatDialog: SeatDialogVM | null; partyDialog: PartyDialogVM | null;
   focus: FocusTile | null; onCloseFocus(): void;
 }
 
@@ -42,7 +44,7 @@ export function DashboardGrid(p: DashboardViewProps) {
   const overlay = (
     <FocusOverlay tile={p.focus} titles={titles} onClose={p.onCloseFocus} render={tile => {
       switch (tile) {
-        case 'map': return <MapTile vm={p.map} variant="focus" seatPanel={<SeatPanel vm={p.seatPanel} />} />;
+        case 'map': return <MapTile vm={p.map} variant="focus" />;
         case 'scoreboard': return <ScoreboardTile vm={p.scoreboard} variant="focus" />;
         case 'standings': return <StandingsTile vm={p.standings} variant="focus" watchlist={p.leaders} initialTab={standingsTab} onTabChange={setStandingsTab} />;
         case 'insight': return p.summary ? <SummaryFocus vm={p.summary} /> : null;
@@ -66,6 +68,8 @@ export function DashboardGrid(p: DashboardViewProps) {
           { id: 'stats', title: titles.stats, node: <StatsStrip vm={p.stats} variant="tile" />, onOpen: p.stats.onFocus },
         ]} />
         {overlay}
+        <SeatDialog vm={p.seatDialog} />
+        <PartyDialog vm={p.partyDialog} />
       </div>
     );
   }
@@ -81,6 +85,8 @@ export function DashboardGrid(p: DashboardViewProps) {
       <div className="col-span-2 grid min-h-0"><LeadersStrip vm={p.leaders} variant="tile" /></div>
       <div className="col-span-2 grid min-h-0"><StatsStrip vm={p.stats} variant="tile" /></div>
       {overlay}
+      <SeatDialog vm={p.seatDialog} />
+      <PartyDialog vm={p.partyDialog} />
     </div>
   );
 }

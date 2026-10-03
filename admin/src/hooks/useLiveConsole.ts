@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { bulkOverride, getLiveResults, getSeatLocks, subscribeLiveUpdates } from '../services/election.service';
+import { getLiveResults, getSeatLocks, subscribeLiveUpdates } from '../services/election.service';
+import { correctSeat, getHolds, releaseHold as releaseHoldRequest } from '../services/ingest.service';
 import { useElection } from '../context/ElectionContext';
 import { useShellStatus } from '../context/ShellStatusContext';
 import { useToast } from '../context/ToastContext';
-import { countSeats, isLockLapsed, reportingPercent, seatStatus, SEAT_LOCK_TTL_MS, type BulkOverrideItem } from '../utils/seat-math';
-import type { LiveConstituency, SeatLock } from '../types';
+import { countSeats, isLockLapsed, reportingPercent, seatStatus, SEAT_LOCK_TTL_MS } from '../utils/seat-math';
+import type { HoldRow, LiveConstituency, SeatLock, SeatStateName } from '../types';
 
 const FLASH_MS = 1500;
 const RELOAD_DEBOUNCE_MS = 500;
@@ -13,10 +14,8 @@ export { SEAT_LOCK_TTL_MS };
 const LOCK_SWEEP_MS = 15_000;
 
 export type SeatFilter = 'all' | 'PENDING' | 'LEADING' | 'WON';
-export interface SeatSave {
-  overrides: BulkOverrideItem[];
-  rounds?: { current_round?: number; total_rounds?: number };
-}
+export type { SeatStateName };
+export interface SeatSave { state: SeatStateName; round: { current: number; total: number } | null; votes: Record<string, number> }
 
 /** CONTROLLER: Live Console — seats, filters, selection, live stream, seat locks, save. */
 export function useLiveConsole(opts?: { holdSelection?: boolean }) {
@@ -41,6 +40,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
   const [now, setNow] = useState(() => Date.now());
   const [flashIds, setFlashIds] = useState<Set<string>>(new Set());
   const [lastSavedAt, setLastSavedAt] = useState<Record<string, string>>({});
+  const [holds, setHolds] = useState<HoldRow[]>([]);
 
   const load = useCallback(async (silent = false) => {
     if (!electionId) return;
@@ -66,17 +66,27 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     }
   }, [electionId]);
 
+  const loadHolds = useCallback(async () => {
+    if (!electionId) return;
+    try {
+      const list = await getHolds(electionId);
+      if (electionRef.current === electionId) setHolds(list);
+    } catch {
+      // keep the last list: a failed refresh must not hide holds that still exist
+    }
+  }, [electionId]);
+
   // Re-check lock ages periodically so a lapsed lock disappears even when no event arrives.
   useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), LOCK_SWEEP_MS);
+    const t = setInterval(() => { setNow(Date.now()); void loadHolds(); }, LOCK_SWEEP_MS);
     return () => clearInterval(t);
-  }, []);
+  }, [loadHolds]);
   const locks = useMemo(() => {
     const entries = Object.entries(rawLocks).filter(([, l]) => !isLockLapsed(l, now));
     return entries.length === Object.keys(rawLocks).length ? rawLocks : Object.fromEntries(entries);
   }, [rawLocks, now]);
 
-  useEffect(() => { setSelectedId(null); void load(); void loadLocks(); }, [load, loadLocks]);
+  useEffect(() => { setSelectedId(null); setHolds([]); void load(); void loadLocks(); void loadHolds(); }, [load, loadLocks, loadHolds]);
 
   useEffect(() => {
     if (!electionId) return;
@@ -97,7 +107,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     };
     const unsubscribe = subscribeLiveUpdates(electionId, {
       onStatus: setLive,
-      onReconnect: () => { scheduleReload(); void loadLocks(); },
+      onReconnect: () => { scheduleReload(); void loadLocks(); void loadHolds(); },
       onResultUpdate: (u) => { flash([u.const_id]); scheduleReload(); },
       onBatchUpdate: (us) => { flash(us.map((u) => u.const_id)); scheduleReload(); },
       onSeatLock: ({ const_id, lock }) => setLocks((prev) => {
@@ -112,7 +122,7 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
       if (reloadTimer) clearTimeout(reloadTimer);
       flashTimers.forEach(clearTimeout);
     };
-  }, [electionId, load, loadLocks, setLive]);
+  }, [electionId, load, loadLocks, loadHolds, setLive]);
 
   const counts = useMemo(() => countSeats(all), [all]);
 
@@ -142,10 +152,11 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
   const saveSeat = useCallback(async (constId: string, payload: SeatSave) => {
     setSaving(true);
     try {
-      await bulkOverride(electionId, payload.overrides, payload.rounds ? { [constId]: payload.rounds } : undefined);
+      await correctSeat(electionId, constId, payload);
       setLastSavedAt((prev) => ({ ...prev, [constId]: new Date().toISOString() }));
       toastRef.current.toast('Seat saved');
       await load(true);
+      await loadHolds();
       return true;
     } catch (err) {
       toastRef.current.toastError(err, 'Failed to save seat');
@@ -153,7 +164,17 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     } finally {
       setSaving(false);
     }
-  }, [electionId, load]);
+  }, [electionId, load, loadHolds]);
+
+  const releaseHold = useCallback(async (constId: string) => {
+    try {
+      await releaseHoldRequest(electionId, constId);
+      toastRef.current.toast('Hold released');
+    } catch (err) {
+      toastRef.current.toastError(err, 'Failed to release hold');
+    }
+    await loadHolds();
+  }, [electionId, loadHolds]);
 
   const reportingPct = reportingPercent(counts);
 
@@ -161,6 +182,6 @@ export function useLiveConsole(opts?: { holdSelection?: boolean }) {
     electionId, electionName: election?.name ?? '', electionsError, loading, saving,
     seats, counts, filter, setFilter, search, setSearch,
     selectedId, selected: all.find((s) => s.const_id === selectedId) ?? null, select: setSelectedId, move,
-    locks, flashIds, reportingPct, saveSeat, lastSavedAt,
+    locks, flashIds, reportingPct, saveSeat, lastSavedAt, holds, releaseHold,
   };
 }

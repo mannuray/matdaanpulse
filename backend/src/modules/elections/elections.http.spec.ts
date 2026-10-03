@@ -27,6 +27,7 @@ const ELECTION_ROW = {
   year: 2029,
   state_id: null,
   tentative_next_date: new Date('2029-05-01T00:00:00.000Z'),
+  delimitation: '2008',
   manifest_url: null,
   states: null,
   secret_internal: 'x',
@@ -51,6 +52,7 @@ async function makeApp(env: Record<string, string>) {
           findAll: jest.fn(async () => [ELECTION_ROW]),
           findOne: jest.fn(async () => ELECTION_ROW),
           parseManifest: jest.fn(() => null),
+          comparableManifest: jest.fn(async (_e: unknown, m: unknown) => m),
         },
       },
       { provide: ResultsService, useValue: resultsService },
@@ -90,6 +92,7 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect(list[0].tentative_next_date).toBe('2029-05-01T00:00:00.000Z');
     expect(list[0]).not.toHaveProperty('secret_internal');
     const one = (await (await get(`/elections/${EID}`)).json()).data;
+    expect(one.delimitation).toBe('2008');
     expect(one.tentative_next_date).toBe('2029-05-01T00:00:00.000Z');
   });
 

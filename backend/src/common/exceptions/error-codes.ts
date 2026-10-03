@@ -17,6 +17,8 @@ export const ErrorCodes = {
   ELECTION_ALREADY_FINALIZED: 'ELECTION_2002',
   /** The election is Finalized (archived): no new candidates. */
   ELECTION_FINALIZED: 'ELECTION_2003',
+  /** Reopen was asked for an election that is not Finalized. */
+  ELECTION_NOT_FINALIZED: 'ELECTION_2004',
 
   // Constituency (3xxx)
   CONSTITUENCY_NOT_FOUND: 'CONST_3001',
@@ -51,6 +53,16 @@ export const ErrorCodes = {
   // Media
   MEDIA_UPLOAD_NOT_CONFIGURED: 'MEDIA_0001',
   MEDIA_STORAGE_FAILED: 'MEDIA_0002',
+
+  // Ingest
+  INGEST_UNAUTHORIZED: 'INGEST_0001',
+  INGEST_NOT_LIVE: 'INGEST_0002',
+  INGEST_INACTIVE_SOURCE: 'INGEST_0003',
+  INGEST_NO_LEASE: 'INGEST_0004',
+  INGEST_BAD_REQUEST: 'INGEST_0005',
+  INGEST_SHARD_NOT_FOUND: 'INGEST_0006',
+  INGEST_SHARD_OVERLAP: 'INGEST_0007',
+  INGEST_KEY_NOT_FOUND: 'INGEST_0008',
 
   // Validation (9xxx)
   VALIDATION_FAILED: 'VALIDATION_9001',

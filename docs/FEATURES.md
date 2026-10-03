@@ -115,7 +115,7 @@
 ### State Assembly Election Support (Bihar VS 2025)
 - [x] ECI scraper for Vidhan Sabha results (`scraper/src/adapters/eci-vs-adapter.ts`)
 - [x] Seed generator script (`scraper/src/generate-bihar-vs-seed.ts`)
-- [x] Bihar AC GeoJSON with 243 assembly constituencies (`frontend/public/geo/bihar_ac.geojson`)
+- [x] Bihar AC GeoJSON with 243 assembly constituencies (`frontend/public/geo/bihar_ac_2008.geojson`)
 - [x] Seed SQL with 243 constituencies, ~1458 candidates, alliance manifest (`database/seed_bihar_vs_2025.sql`)
 - [x] Dynamic GeoJSON loading: map URL from election manifest `geo.map_url`
 - [x] Dynamic projection: `fitSize()` for state-level maps, India defaults for LS
@@ -153,7 +153,7 @@
 
 ### West Bengal VS Historical Data (2011, 2016, 2021)
 - [x] Seed generator (`scraper/src/generate-wb-vs-seeds.ts`) — single script for all 3 years, reads JSON + GeoJSON
-- [x] GeoJSON: `frontend/public/geo/wb_ac.geojson` (294 ACs with `ac_name`, `ac_no`, `ac_category`)
+- [x] GeoJSON: `frontend/public/geo/wb_ac_2008.geojson` (294 ACs with `ac_name`, `ac_no`, `ac_category`)
 - [x] Party SQL (`database/seed_wb_parties.sql`) — 8 new parties: SUCI, GJM, GNLF, JKP, JKPN, DSPP, RSMP, RCPIR
 - [x] **WB VS 2011** (`database/seed_wb_vs_2011.sql`) — 294 seats, real vote counts
   - Election ID: `d4e5f6a7-b8c9-0123-def0-345678901011`
@@ -185,7 +185,7 @@
 - [x] SSE endpoint `/api/v1/admin/live/updates?election_id=...&token=...` (admin only, see CDN-ready live) streams Redis events to the Live Console
 - [x] 20s heartbeat ping to keep SSE connections alive; each connection's first frame carries `retry: 5000` (shared helper `backend/src/common/sse/shared-sse-stream.ts`; the live results stream is the only SSE endpoint)
 - [x] Streams end cleanly on shutdown (SIGTERM) before the HTTP server closes
-- [x] Admin `overrideResult()` auto-publishes `result-update` via `LiveService`
+- [x] Ingest and seat corrections publish `result-update` via `LiveService` (the old admin override endpoints are removed)
 - [x] Channel naming: `election:{electionId}:events`
 
 ### CDN-ready live (viewer polling + versioned snapshots) — docs/DEPLOYMENT.md §2.2
@@ -215,7 +215,7 @@
 - [x] `live.events.published.total` — Counter for events pushed to Redis
 - [x] `redis.publish.errors.total` — Counter for failed Redis publishes
 - [x] `live.parse.errors.total` — Counter for JSON parse failures in live stream
-- [x] `admin.result.overrides.total` — Counter for admin result overrides by election + status
+- [x] `admin.result.overrides.total` — Counter for admin result changes (seat corrections) by election + status
 - [x] `live.streams.active` — ObservableGauge for shared stream count
 - [x] OTel Collector config (`otel-collector-config.yaml`) exporting to SigNoz Cloud
 - [x] Docker Compose `otel-collector` service (ports 4317/4318)
@@ -230,7 +230,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Health probes: `GET /api/v1/health/live` (no I/O, always 200) and `GET /api/v1/health/ready` (DB + Redis, 2 s timeouts, 503 when degraded, no error text); `/health` = ready
 - [x] Graceful shutdown: SSE streams → HTTP server → Redis → Prisma → OTel
 - [x] Prisma errors mapped to 409 / 404 / 400 with safe messages; oversized bodies 413
-- [x] Body limit 100 kb, 5 MB only on `POST /admin/results/override-bulk` (requests without a Bearer header get 401 before the body is parsed); admin id arrays capped at 2000 so they fit 100 kb
+- [x] Body limit 100 kb, 5 MB only on the ingest seats route (requests without a Bearer header get 401 before the body is parsed); admin id arrays capped at 2000 so they fit 100 kb
 - [x] Query DTOs on list endpoints (bounded `page`/`limit` ≤ 200, enums, UUIDs, ISO dates) — bad input is 400, not 500. Unknown query keys are rejected (400) except the cache-buster `_` (`?_=<timestamp>`), which is accepted and ignored on every route; empty values count as not sent
 - [x] URL fields (`photo_url`, `website`, `wikipedia_url`) must be http(s) (validated in the request DTOs)
 - [x] Public self-registration (`/auth/register`) off unless `ALLOW_REGISTRATION=true`; the last SUPER_ADMIN cannot be demoted or deleted
@@ -276,7 +276,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Tabbed view: constituencies split into tabs of ~50 rows (auto-chunked by `const_no` or manifest `live_tabs`, falling back to the published manifest when the draft has none)
 - [x] Compact table per tab: `# | Constituency | Leader | Party | Votes | Margin | Status`
 - [x] Row colors: green=WON, blue=LEADING, amber=thin margin (<1K), red=stale/no data
-- [x] Click row to expand: shows all candidates with inline editable votes/margin/status (override inputs validated client-side before submit)
+- [x] Click row to expand: shows all candidates with inline editable votes/margin/status (inputs validated client-side before submit)
 - [x] Find input: searches by name/ID/number, jumps to correct tab + highlights row
 - [x] Stats bar: WON / Leading / Pending counts
 - [x] SSE integration: rows flash on live scraper updates, data auto-refreshes
@@ -425,13 +425,13 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Simulation config with shared constants (`scraper/src/simulation/config.ts`)
 - [x] Setup script: clones Bihar 2025 → fictional Bihar 2027 Live election (`scraper/src/simulation/setup.ts`)
 - [x] Mock ECI HTTP server with per-seat 16–24-round vote progression (staggered starts, every seat declared by global round 24), lead flips, S-curve easing (`scraper/src/simulation/mock-eci-server.ts`)
-- [x] Replay orchestrator: advances rounds, scrapes mock, pushes result overrides via admin API (`scraper/src/simulation/replay.ts`)
+- [x] Replay orchestrator: advances rounds, scrapes mock, advances the mock server's rounds; the live worker posts them through the ingest API (`scraper/src/simulation/replay.ts`)
 - [x] Cleanup script: tears down simulation data in FK order (`scraper/src/simulation/cleanup.ts`)
 - [x] ECI VS adapter `BASE_URL` made configurable via `ECI_VS_BASE_URL` env var
 - [x] Vote progression: `easeInOutCubic` S-curve with ±5% noise, monotonic enforcement, LEADING→WON transitions
 - [x] Close-race lead flips in rounds 6-12 for constituencies with < 5% margin
 - [x] Mock server generates HTML matching real ECI format (Cheerio-compatible)
-- [x] Replay pushes overrides through the admin bulk-override API (admin Live Console via SSE; viewers pick them up by polling the live version)
+- [x] Results reach the DB through the ingest API (admin Live Console via SSE; viewers pick them up by polling the live version)
 - [x] Reset script: zeroes results without deleting election structure (`scraper/src/simulation/reset.ts`)
 - [x] Round tracking: `round_no` in override API + SSE event, round progress badge in Dashboard header
 - [x] Pre-poll constituency modal: candidate list, seat history, dominance, incumbency, revision — all shown before counting
@@ -479,7 +479,7 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
 - Tiles: top bar, map (layers, Map|Hex when `geo.hex_url` is set), scoreboard (compact ~148px tile), party standings, key leaders, stats + live ticker. Any tile expands to a focus overlay; `?layer=`, `?seat=`, `?focus=` make every view linkable.
 - Layer insight lives in a footer bar inside the map tile (chips + expand; headline shown on non-Overview layers, chips double as the map legend on Overview). Map focus view is height-bound (no scroll; seat panel scrolls internally).
 - Key leaders strip shows only the manifest leaders that fit its width (as many as fit, no fixed cap) plus a "+N more" chip opening the leaders focus view. The user's own tracked seats live in a Parties / Watchlist tab of the Party standings card (and its focus view); seats are tracked with the `☆ Track` toggle in the seat panel. One shared `watchlist_<electionId>` localStorage list (baseline-compatible key). On mobile the rail has a Watchlist card that opens the standings focus on the Watchlist tab.
-- **Summary tab (default) in the side card** (tabs: Summary · <layer> | Parties | Watchlist; the card title follows the tab: Election summary / Party standings / Watchlist). It replaces the old "Election Summary" panel and mirrors it per map layer, in the old order: key stats (Declared, Avg margin, Median) on every layer; Overview: margin distribution, closest battles (10), biggest mandates (5), reserved seats (SC/ST, "–" for 0), vote share vs seats (alliances and parties sections: difference, vote %, seat %), wasted votes (lakh) with the efficiency gap; Battle: margin distribution, seat summary (Seats, Close, Avg), closest contests; Swing: flipped seats (closest 15, total in the header), net swing by alliance; History: seat dominance, dominance by party, swing seats, anti-incumbency, incumbent win rate by party, notable defeats, party switchers, switch directions, notable switchers, margin trend, per-party trend; Reserved: category breakdown, wins by category, average margin by category; Insights: vote split analysis, one table per split, seat classification; States (LS): state leaderboard, sweep states, most competitive states. Margins use the old compact format (950, 21.1K, 1.2L). The card lists every section with every row inside a scroll area (see "Scrollable side-card tabs"); section headers stick to the top while their rows scroll. Rows highlight on the map on hover and lock on click (a single-seat row selects the seat); see "Precise Map Highlighting".
+- **Summary tab (default) in the side card** (tabs: Summary · <layer> | Parties | Watchlist; the card title follows the tab: Election summary / Party standings / Watchlist). It replaces the old "Election Summary" panel and mirrors it per map layer, in the old order: key stats (Declared, Avg margin, Median) on every layer; Overview: margin distribution, closest battles (10), biggest mandates (5), reserved seats (SC/ST, "–" for 0), vote share vs seats (alliances and parties sections: difference, vote %, seat %), wasted votes (lakh) with the efficiency gap; Battle: margin distribution, closest contests (the seat summary was removed 2026-10-02 as redundant); Swing: flipped seats (closest 15, total in the header), net swing by alliance; History: seat dominance, dominance by party, swing seats, anti-incumbency, incumbent win rate by party, notable defeats, party switchers, switch directions, notable switchers, margin trend, per-party trend; Reserved: category breakdown, wins by category, average margin by category; Insights: vote split analysis, one table per split, seat classification; States (LS): state leaderboard, sweep states, most competitive states. Margins use the old compact format (950, 21.1K, 1.2L). The card lists every section with every row inside a scroll area (see "Scrollable side-card tabs"); section headers stick to the top while their rows scroll. **Collapsible sections (2026-10-02):** the key stats always show; of the other sections only the first (e.g. Margin distribution on Overview) starts open, the rest are collapsed headers with their row count and a ▸; a click on a header opens/closes it (several can be open); switching layer starts over. The expanded ⤢ Summary view stays fully open. Rows highlight on the map on hover and lock on click (a single-seat row selects the seat); see "Precise Map Highlighting".
 - MVVM: `src/model` (pure), `src/viewmodels` (hooks), `src/views` (Tailwind + Radix); boundaries enforced by `npm run lint`.
 - **Summary focus view** (side-card expand, the map footer's expand button, or the mobile "insight" card): every section of the active layer with all its rows (cells in `[value, ...extra]` order under column headers, same number formats as the compact card), key stats as three large numbers, and the charts (margin distribution bar / grouped-by-alliance bar, margin trend and per-party seats line charts, Reserved wins / average margin by category grouped bars per alliance, Overview vote % vs seat % bars per alliance with the seat-minus-vote gap above each pair and an Alliances | Parties toggle; plain SVG with a visually hidden data table and `role="img"`). Layer pills inside the view switch the layer (kept on close). Sections sit in a 2-column grid (1 column below 1024px); only the dialog scrolls. Sections that have a chart also carry plain rows so the compact card can show them.
 - **Mobile layout (<1024px, checked at 390x844 and 360x740)**: a single column of top bar, scoreboard, map (takes the remaining height, `flex-1 min-h-0`) and the card rail (fixed height, never shrinks), so nothing overlaps and the page never scrolls. The top bar is one row of at most 56px: app title (truncates), an election chip ("VS · Bihar 2025", built by `useTopBarVM.electionLabel`) that opens a bottom sheet with the LS/VS toggle and state / year (or LS election) pickers, a search icon that opens a top sheet with the focused search box, and a more button that opens a sheet with WhatsApp / X share and the language picker (44px touch targets). The scoreboard uses the short bloc labels (NDA / MGB, full name in `title`/`aria-label`). Rail cards are read-only glances: the Party standings card shows the top four parties (dot, short id, thin bar, seats) plus "+N more parties"; the summary card shows key stats as plain text. Rail card titles are fixed (Party Standings is always "Party Standings"; only the standings focus dialog title follows the Parties / Watchlist tab). Desktop is unchanged.
@@ -487,7 +487,7 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
 
 ## Known Limitations
 
-- **Live ECI ingestion is not implemented.** The scraper's live pipeline (`scraper/src/index.ts`, `scheduler/`, `adapters/eci-adapter.ts`, `normalizer/`) is placeholder code only. Counting-day flows are exercised end-to-end via the Live Election Simulation System (mock ECI server + replay through the admin bulk-override API); real results today come from the historical seed files.
+- **Live ECI ingestion is built but untested against a real counting day.** The worker (`scraper/src/live`, adapter `eci-web`) matches ECI's results site as of 2026; the page format may change. Rehearse per `docs/LIVE_RUNBOOK.md`; the simulation exercises the same ingest path with the mock server.
 
 - **Estimated / incomplete seed data** (audit 2026-10-01; listed publicly on `/about`, source of truth `frontend/src/model/about/about.ts`, update it whenever a seed is corrected):
   - Synthetic votes (runner-up 50,000, winner 50,000 + margin; only margin and names/parties real): Bihar VS 2010/2015/2020, AS/KL/TN VS 2021, PY VS 2021 (winners only, no runner-up).
@@ -495,6 +495,8 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
   - LS 2024: `voter_turnout` / `total_electors` implausible (e.g. Lakshadweep 1,474,599 electors; in 294 seats the votes exceed electors × turnout).
   - SC/ST type is `GEN` for every seat in Bihar VS 2010–2020 and all Assam years.
   - Candidate coverage: all candidates only in WB 2021; top 5 + NOTA in LS 2024 and Bihar 2025; winner + runner-up elsewhere. TN 2016 has 232/234 seats (2 postponed polls). No source recorded for AS/KL/PY.
+
+- **Detail screens:** affidavit columns (age, assets, liabilities, criminal cases) appear only where admins or seeds filled them; seat-history runner-up and share appear after the next analysis recompute; the counting round in the seat dialog can trail the vote numbers by up to a few minutes (CDN cache); turnout and vote-share change versus the previous election are not shown (no source yet).
 
 ## Planned
 
@@ -572,7 +574,7 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 #### 2.0 Seed Bihar VS 2015 + 2010 — DONE
 - [x] Seed **Bihar VS 2015** (`database/seed_bihar_vs_2015.sql`)
 - [x] Seed **Bihar VS 2010** (`database/seed_bihar_vs_2010.sql`)
-- [x] All use same `bihar_ac.geojson` (post-2008 boundaries)
+- [x] All use same `bihar_ac_2008.geojson` (post-2008 boundaries)
 - [x] `BR_VS{YY}_` constituency ID prefixes (`BR_VS10_`, `BR_VS15_`)
 
 #### 2.1 Historical Dominance — DONE
@@ -793,8 +795,16 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Error body: `{ success:false, error:{ code, message, requestId, timestamp, path, fields?, details? } }`; `fields` from class-validator via the global ValidationPipe `exceptionFactory`; `details` only for business exception data; `validationErrors` removed. See `docs/API_SPEC.md`.
 - [x] Admin: `ApiError` (code, fields, details, requestId); error toasts list field errors; field messages show under inputs on the user, election, party and person forms. Frontend: `ApiError` parsing. Scraper replay prints the new error message.
 
+### Delimitation-aware history and maps (2026-10-03)
+- [x] `elections.delimitation` (migration 019, filled by `seed_election_delimitation.sql`; Lok Sabha 2029 left empty until its boundaries are known), editable in the admin election dialog (4-digit year or empty).
+- [x] Seat history (`ConstituenciesService.history`), the seat analysis (`computeAnalysis` filters `history_election_ids`) and the public manifest (`history` + `history_years`, `compare_with`, filtered on read; the stored manifest is unchanged) compare only elections of the same type, state and delimitation. NULL compares with nothing. A seat with no comparable past result is classified `new` (it used to come out `stronghold` from its one win).
+- [x] Seat page header shows "Boundaries redrawn in YYYY" when earlier elections of the state used other boundaries (`model/derive/delimitation.ts`).
+- [x] Map files are versioned per delimitation (`/geo/<code>_ac_2008.geojson`, `/geo/india_pc_2008.geojson`; the Lok Sabha default is `LS_MAP_URL` in `model/geo/maps.ts`). Migration 019 rewrites old paths in stored manifests; old paths redirect. A redraw (e.g. Assam 2023) adds `as_ac_2023.geojson` and that election's manifest points at it.
+- Not planned: notional results (old votes recomputed onto new boundaries) — needs booth-level data.
+
 ### About page and feedback (2026-10-01)
 - [x] Public `/about` (`src/pages/About.tsx` → `views/about/AboutView.tsx`, form VM `viewmodels/about/useFeedbackForm.ts`): what MatdaanPulse is, "not an official source" disclaimer with a link to results.eci.gov.in, per-dataset data quality (Real votes / Partly incomplete / Votes estimated, with notes) from `model/about/about.ts`, how live counting works, feedback form, contact email (`CONTACT_EMAIL` in the same file). en/hi/mr/ta.
+- [x] About page redesign (2026-10-03, Stitch `docs/design/frontend/about-page*.html`): built on `PageShell` (header, footer). Hero with counts derived from `DATA_SOURCES` (elections covered, Lok Sabha + N states), an amber disclaimer band, three "how live counting works" steps, and the data quality as an election × year matrix (`dataMatrix` in `model/about/about.ts`): each cell is a dot in its quality colour; picking one shows its source, quality and notes in the panel beside it (starts on the newest dataset). On phones the matrix scrolls inside its card with the state column pinned. Feedback and contact (with the fix-it-fast tips) sit side by side.
 - [x] Linked from the desktop top bar ("About") and the mobile More sheet; the link passes the current path so feedback records which screen it came from.
 - [x] Feedback form: type (bug / wrong data / suggestion / other), message 5–2000 chars, optional email, hidden honeypot field; 429 shows a "try again in a minute" message.
 - [x] Backend `POST /api/v1/feedback` (stricter per-IP rate limit, honeypot posts dropped, salted IP hash instead of raw IP), table `feedback` (migration `016_feedback.sql`); admin `GET /admin/feedback`, `PATCH /admin/feedback/:id`, and an admin "Feedback" page with status filter (new / read / resolved).
@@ -807,4 +817,58 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
 - [x] Admin: party Symbols card (`components/ui/ImageUpload`: Party logo + ECI symbol tiles) and a 72 px round header photo (`components/record/PhotoButton`) on person and candidate pages. Click the image (dashed "Upload" box / initial when empty) to open the file chooser; hover/focus dims it with a camera hint ("Replace" on tiles). A small round ⓧ at the top-right corner removes it (only when set, no confirm). Tiles also accept a dropped file. While uploading a spinner covers the image and the button is `aria-disabled` (keeps focus, ignores clicks/drops). Errors show as one line under the image. On the candidate page the note "Updates the photo on ‹name›'s record — every contest shows it." is the photo's `title` tooltip and `aria-describedby`. No URL text inputs for images. The file uploads on pick; the record changes only on Save, Cancel restores. `hooks/useImageUpload`: latest request wins, ignored after unmount/owner change.
 - [x] Photo lives on the person only. The candidate header photo edits the person's photo (shared by every contest), saved on Save via `PUT /admin/persons/:id` with only `photo_url` after the candidate fields; if that fails the photo stays unsaved with an inline error and Save retries just the photo.
 - [x] `utils/asset-url.ts` `assetUrl()` resolves site-relative `/symbols/...` paths against `VITE_PUBLIC_SITE_URL`; every symbol/photo URL in the admin renders through it. `VITE_PUBLIC_SITE_URL` is mandatory in the admin production build (see `docs/DEPLOYMENT.md`).
-- [ ] Rule for future live ECI ingestion (D7): ECI may be a photo source but only fills `persons.photo_url` when empty; it never overwrites an admin-set photo. Not implemented (ingestion is stubs only).
+- [ ] Rule for ECI photos (D7): ECI may be a photo source but only fills `persons.photo_url` when empty; it never overwrites an admin-set photo. Not implemented: live ingest (below) writes results only, never photos.
+
+### Detail screens (2026-10-02, branch `feat/detail-screens`)
+
+One set of screens for drilling into a seat, a party or a person, shared by every dashboard entry point: the seat dialog (`?seat=`), the party dialog (`?party=`), the constituency page and the person page. Constituency and person pages are studio MVVM pages (`src/viewmodels/pages`, `src/views/constituency`, `src/views/person`); party marks render through `views/ui/PartyMark`. The legacy detail components (candidate table/card, party icon and symbol cache, old detail hooks) and the legacy header with its search bar are removed; every route is a studio screen and the detail pages scroll themselves. Stacked dialogs (seat over the map focus, party over the seat) dim the ones beneath. While the constituency detail loads, the seat dialog shows skeletons for the stats, the number/place chips and past winners; the live rows show at once. The party dialog's key candidates are the party's manifest leaders (matched to this election's candidates by name when the manifest has no seat), then its biggest wins: up to 8 cards in a snap-scrolling strip (`views/ui/ScrollStrip`) with Netflix-style edge arrows on hover and ←/→ keys. Each card shows the photo (from the seat's constituency detail, the party's candidate there), seat name, a Party leader badge, "Seat #N" and the status pill; a hover ☆ button tracks the seat on the dashboard watchlist. The party and seat dialogs end with a compact site footer (`views/ui/SiteFooter`). The "MatdaanPulse" wordmark is two-colour (`views/ui/Wordmark`: ink + saffron `--color-brand`) in every header and footer. e2e: `frontend/e2e/detail.spec.ts` and `dashboard.spec.ts`.
+
+#### Seat dialog
+
+- [x] Any seat click (map, search, leaders, stats, summary, watchlist) opens a seat dialog instead of focusing the map; the map focus view now uses the full width (the old side seat panel is removed). Desktop ≥1024 px is a centred Radix dialog, narrower screens a bottom sheet.
+- [x] Contents: constituency number and reservation type, district · state, a Counting (with round N/M) or Declared chip, a Track toggle, stat tiles (electors, turnout, margin, phase; hidden when unknown), the top 5 candidates with photo, party mark, votes, share bar and Leading/Won pill (+N others row), past winners with party marks, "3-way contest" / spoiler notes, and a link to the full constituency page. Candidate names link to the person page; the party cell opens the party dialog.
+- [x] Live numbers (votes, status, margin) come from the dashboard's versioned snapshot, so rows appear at once; the facts (electors, turnout, phase, round) come from the CDN-cached constituency detail endpoint and refetch on every new live version while counting. A failed detail keeps the rows and shows "Details unavailable". No "updated X ago" is shown, as the detail can be older than the snapshot.
+- [x] Party marks use the party logo, then the ECI symbol, then a colour dot. New `--color-warn` / `--color-warn-text` theme tokens style the notes.
+
+#### Party dialog and party marks
+
+- [x] Party dialog, URL `?party=<id>`: opened from the party mark button in each standings row, the party button on each key-leader card and watchlist row (a separate button beside the seat button; party-less rows have none), and the party cell in the seat dialog (it stacks over the seat dialog, which it dims; closing it leaves the seat dialog open). On the constituency and person pages the party name links to `/election/<id>?party=<party>` (on the person page the link sits outside the contest card's link). The mobile rail's watchlist glance stays non-interactive. Desktop is a centred dialog, narrower screens a bottom sheet. An id that is neither in the party list nor in this election's results opens nothing.
+- [x] Contents: party mark, short name and recognition (National / State / Unrecognised party), "This election" Won / Leading / Contested / Vote share tiles with a seats bar against the majority line, a profile card (leader, founded year, headquarters, alliance from this election's alliance groups, website and Wikipedia links, description; empty fields are hidden), and the party's key candidates, each opening that seat. The profile comes from the party endpoint; if it fails the dialog still shows the election numbers.
+- [x] Party marks (logo, then ECI symbol, then colour dot) now appear in the standings rows, the watchlist rows, the key-leader cards and the map hover tooltip (which also shows the SC/ST type and the seat's state: the PC map state for Lok Sabha, the election's state for Vidhan Sabha). The standings row keeps its lock/highlight button; the mark is a separate details button.
+
+#### Studio constituency page
+
+- [x] `/election/:electionId/constituency/:constId` rebuilt in the studio style on a shared page shell (slim top bar with logo and back link, scrolling column). Not-found (404), error and loading states are shown in the shell.
+- [x] Header: breadcrumb (election, state, district), seat name, "No. N · SC/ST" chip, Declared / Counting chip, Track (shares the dashboard watchlist for that election) and Share.
+- [x] Tiles: head-to-head for the top two candidates (votes, share, margin), seat facts (electors, votes polled, turnout, phase, region, district, counting progress from round/total rounds; empty facts are hidden), and a locator map of the seat (the seat's state for Lok Sabha).
+- [x] All candidates table (no cap, NOTA last): rank, candidate (links to the person page), party mark, votes, share bar, Won/Leading pill, age, assets, liabilities and criminal cases (amber chip only when above zero). Below 1024 px the table becomes stacked candidate rows (rank, photo, name, party, votes, share bar, pill and a one-line affidavit summary such as "Age 64 · Assets ₹4.8 Cr · Liabilities ₹32 L · Criminal cases 1", parts without data left out). Live votes come from the versioned snapshot while the election is upcoming or live (it follows the /live status), and the counting round refetches on every new live version.
+- [x] Seat history (past winners with margin, vote share and runner-up) and insights (three-way contest, spoiler) appear only when there is data. No ECI/ADR sourcing claims, AI copy or adjacent seats.
+
+#### Studio person page
+
+- [x] `/person/:id` rebuilt in the studio style on the shared page shell (scrolling column; not-found (404), error and loading states shown in the shell).
+- [x] Header: photo (initials when none) with the current party's mark as a badge (party of the most recent contest), name, party, an "Incumbent" chip when the latest contest is an incumbency, a facts line (age from date of birth, gender, education, district and state; each hidden when unknown), a Wikipedia link and the full biography. Gender `M`/`F`/`O` (or Male/Female/Other) is translated; any other stored value is shown as is. Caste and religion are never shown.
+- [x] Stats: contests, wins, win rate (wins over decided contests, i.e. finalized or already won; hidden when none are decided) and parties contested for, with the latest party switch ("RJD → BJP in 2014") under it.
+- [x] Contest timeline, newest first: one card per contest linking to the constituency page, with party mark, votes, vote share, margin, a Won / Leading / Trailing / Pending / Lost pill (Lost only once the election is finalized) and "First contest under <party>" on the first contest under each new party.
+- [x] Affidavit tile (hidden when no contest has affidavit values): latest assets and liabilities, criminal cases (amber chip only when above zero), a grouped bar chart of assets and liabilities by affidavit year (inline SVG) and the per-year list.
+
+
+### Live results ingest (2026-10-03, branch `feat/live-ingest`)
+Spec `docs/superpowers/specs/2026-10-03-live-ingest-design.md`; operations in `docs/LIVE_RUNBOOK.md`.
+- [x] Ingest API for the counting-day worker: `/api/v1/ingest/elections/:id/{roster,config,lease,seats,tally}` with Bearer machine keys; the worker is the only writer of live results (migration 020)
+- [x] Machine keys (`mpk_...`): SUPER_ADMIN creates and revokes them on Admin -> Ingest keys; stored as sha256, shown once
+- [x] Shards and leases: named seat sets plus an implicit `rest` shard; a worker holds a shard by a 90 s lease, renewed by a 30 s heartbeat while a cycle runs and re-claimed before every posted chunk (a 409 ends the cycle cleanly), so a backup worker takes over within 90 s
+- [x] One active source per election (null = paused), with per-shard source overrides; writes from any other source are refused
+- [x] Holds: a seat correction holds the seat for `hold_minutes` (default 10) or until a later round; Holds panel releases early
+- [x] Admin Live Console: Feed panel (source select / Paused / Other, hold minutes, confirmed switch, shard table: job, lag, recent counts, rejected list, tally badge), Shards... dialog, Holds panel, seat editor with Seat state and "On hold until ..."; Admin -> Ingest keys page; Elections -> Reopen for corrections (`POST /admin/elections/:id/reopen`, SUPER_ADMIN)
+- [x] Admin routes: `/admin/elections/:id/ingest` (GET/PUT), `/ingest/sources`, `/ingest/shards/:name` (PUT/DELETE), `/holds` (GET, DELETE `:constId`), `PUT /admin/elections/:id/seats/:constId`
+- [x] Alerts (lag, lapsed lease, rejected seats, refused requests, tally mismatch) shown in the console and posted to `INGEST_ALERT_WEBHOOK_URL` (optional, `{ text }`; repeats at most every 15 min; marked sent only after the webhook returned 2xx, so a failed post is retried next minute); `GET /api/v1/health/ingest` (memoised 10 s, no lease holder, counts only)
+- [x] Rejected seats persist (`seat_ingest_state.last_rejected_reason` / `last_rejected_at`, migration 021) until the seat is next applied or unchanged; a rejected seat that was never applied has a row with no `state`, invisible to viewers
+- [x] Refused requests (`no_lease`, `inactive_source`, `not_live`) are logged to `ingest_log.refused` (migration 021) and alert as "refused: no_lease ×N in last 5 min"; a Live shard with a source that never posted lags from the feed settings' `updated_at`, so the lag alert fires
+- [x] Ingest and admin seat corrections serialise per seat (`pg_advisory_xact_lock`, sorted); ingest reads seat state, holds and results rows under the lock, so a correction made during a batch keeps the seat held
+- [x] Seat rules also reject `missing_result_rows` (a roster candidate without a results row), votes or rounds past INT (`invalid_votes` / `invalid_round`); a seat sent without a round keeps its stored round
+- [x] Tally: the `rest` shard (or `scope: "election"`) compares every seat of the election; only the worker's `rest` loop posts it by default (`tasks[].tally` overrides); unmapped party-wise rows are logged
+- [x] Snapshot carries per-seat `state` and `rounds`; live-results returns `seat_state`; the public seat chip shows Counting (Round N/M), Declared, Countermanded, Adjourned
+- [x] Worker `scraper/src/live/`: `npm run live -- --config live.config.json` (env `INGEST_KEY`, `INGEST_API_URL`, `LIVE_HOLDER`); `npm run live:check -- --election <id> --source eci-web [--shard rest]` prints READY / NOT READY; adapters `eci-web` (`baseUrl`, `stateCode`, `intervalMs`, `partyAliases`, `fetchTimeoutMs` default 15 s) and `mock-eci`; example `scraper/live.config.example.json`. The adapter's per-seat bookkeeping is committed per delivered chunk, only for seats the server took (held / rejected seats are sent again); each cycle logs its duration (WARN over 60 s); the client retries 5xx, 408 and 429 (honouring `Retry-After`)
+- [x] Simulation runs through ingest: `sim:mock-eci`, `sim:setup`, `sim:live`, `sim:replay`, `sim:smoke`, `sim:cleanup`
+- [x] Removed: `/admin/results/override` and `/admin/results/override-bulk`; the old scraper stubs (`scheduler/`, `normalizer/`, `eci-adapter.ts`, `cache/`)

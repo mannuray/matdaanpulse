@@ -23,7 +23,7 @@ import Elections from './Elections';
 import { renderEntityPage } from '../test-utils/entity-harness';
 
 const E = (id: string, name: string, type: 'LS' | 'VS', status: Election['status']): Election => ({
-  id, name, type, state_id: type === 'VS' ? 1 : null, year: 2025, status, tentative_next_date: null, manifest_url: null,
+  id, name, type, state_id: type === 'VS' ? 1 : null, year: 2025, status, tentative_next_date: null, delimitation: null, manifest_url: null,
 });
 const ELECTIONS = [E('e1', 'Bihar Vidhan Sabha 2025', 'VS', 'Upcoming'), E('e2', 'Lok Sabha 2024', 'LS', 'Live'), E('e3', 'Kerala Vidhan Sabha 2026', 'VS', 'Upcoming')];
 

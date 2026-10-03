@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLiveConsole } from '../hooks/useLiveConsole';
+import { useIngestFeed } from '../hooks/useIngestFeed';
 import { useSeatLock } from '../hooks/useSeatLock';
 import { useUnsavedGuard } from '../hooks/useUnsavedGuard';
 import { useAuth } from '../context/AuthContext';
 import { confirmDiscardEdits } from '../context/ShellStatusContext';
 import { LiveHeader } from '../components/live/LiveHeader';
+import { FeedPanel } from '../components/live/FeedPanel';
+import { HoldsPanel } from '../components/live/HoldsPanel';
 import { SeatList } from '../components/live/SeatList';
 import { SeatEditor, type SeatEditorHandle } from '../components/live/SeatEditor';
 import Spinner from '../components/atoms/Spinner';
@@ -19,6 +22,7 @@ export default function LiveConsole() {
   const [editorDirty, setEditorDirty] = useState(false);
   useUnsavedGuard(editorDirty);
   const lc = useLiveConsole({ holdSelection: editorDirty });
+  const feed = useIngestFeed(lc.electionId || null);
   const { user } = useAuth();
   const myId = user?.id ?? '';
   const lock = useSeatLock(lc.electionId, lc.selectedId, myId, lc.selectedId ? lc.locks[lc.selectedId] : undefined);
@@ -61,6 +65,9 @@ export default function LiveConsole() {
   return (
     <div className="flex h-full flex-col">
       <LiveHeader electionName={lc.electionName} reportingPct={lc.reportingPct} />
+      {feed.error && <p role="status" className="mx-6 mb-2 rounded-control bg-warn-soft px-3 py-2 text-sm text-warn-text">Feed status could not be refreshed: {feed.error}</p>}
+      {feed.status && <FeedPanel status={feed.status} sources={feed.sources} saving={feed.saving} onApply={feed.setFeed} onShardsChanged={() => { void feed.reload(); }} />}
+      <HoldsPanel holds={lc.holds} onRelease={(id) => { void lc.releaseHold(id); }} />
       {lc.loading && lc.seats.length === 0 ? (
         <Spinner label="Loading seats…" />
       ) : (
@@ -81,6 +88,7 @@ export default function LiveConsole() {
                 seat={lc.selected}
                 saving={lc.saving}
                 lastSavedAt={lc.lastSavedAt[lc.selected.const_id]}
+                holdUntil={lc.holds.find((h) => h.const_id === lc.selected!.const_id)?.expires_at}
                 lock={lock}
                 onSave={lc.saveSeat}
                 onDirtyChange={setEditorDirty}

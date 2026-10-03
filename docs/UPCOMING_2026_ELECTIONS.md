@@ -75,7 +75,7 @@ Seed each past election in chronological order. This powers swing, dominance, an
 ## West Bengal — Progress
 
 ### Step 1 — GeoJSON
-- [x] `wb_ac.geojson` exists — 294 features
+- [x] `wb_ac_2008.geojson` exists — 294 features
 - [x] Properties: `ac_name`, `ac_no`, `ac_category`, `st_name` ✓
 - [x] Seat count: 294 ✓
 
@@ -100,7 +100,7 @@ Seed each past election in chronological order. This powers swing, dominance, an
 ## Kerala — Progress
 
 ### Step 1 — GeoJSON
-- [x] `kl_ac.geojson` exists — 141 features (140 seats + 1 duplicate: ac_no 87 KOTHAMANGALAM appears twice)
+- [x] `kl_ac_2008.geojson` exists — 141 features (140 seats + 1 duplicate: ac_no 87 KOTHAMANGALAM appears twice)
 - [x] Properties: `ac_name`, `ac_no`, `ac_category`, `st_name` ✓
 - [ ] Fix duplicate ac_no 87 (remove one copy)
 - [ ] Fix 3 broken GeoJSON names: #1 "MA NJESHWAR" (space), #18 "SULTHANBATHERY (S" (truncated), #134 "THIRUVANANTHAPURA" (truncated)
@@ -126,7 +126,7 @@ Seed each past election in chronological order. This powers swing, dominance, an
 ## Tamil Nadu — Progress
 
 ### Step 1 — GeoJSON
-- [x] `tn_ac.geojson` exists — 235 features (234 seats + 1 duplicate: ac_no 169 NANNILAM appears twice)
+- [x] `tn_ac_2008.geojson` exists — 235 features (234 seats + 1 duplicate: ac_no 169 NANNILAM appears twice)
 - [x] Properties: `ac_name`, `ac_no`, `ac_category` (GEN/SC/ST), `st_name` ✓
 - [ ] Fix duplicate ac_no 169 (remove one copy)
 - [ ] Fix #69 & #70 both named VANDAVASI (#70 should be GINGEE)
@@ -154,7 +154,7 @@ Seed each past election in chronological order. This powers swing, dominance, an
 ## Assam — Progress
 
 ### Step 1 — GeoJSON
-- [x] `as_ac.geojson` exists — 133 features (126 seats + 7 duplicates: ac_nos 8, 31, 33, 42, 63, 121)
+- [x] `as_ac_2008.geojson` exists — 133 features (126 seats + 7 duplicates: ac_nos 8, 31, 33, 42, 63, 121)
 - [x] Properties: `ac_name`, `ac_no`, `ac_category`, `st_name` ✓
 - [ ] Fix 7 duplicate ac_nos (remove extra copies)
 - [ ] Only GEN category shown — SC/ST data may be missing
@@ -185,7 +185,7 @@ Seed each past election in chronological order. This powers swing, dominance, an
 ## Puducherry — Progress
 
 ### Step 1 — GeoJSON
-- [x] `py_ac.geojson` exists — 30 features, no duplicates
+- [x] `py_ac_2008.geojson` exists — 30 features, no duplicates
 - [x] Properties: `ac_name`, `ac_no`, `ac_category` (GEN/SC), `st_name` ✓
 - [x] Seat count: 30 ✓
 - [ ] Fix #10: GeoJSON "KAMRAJ NAGAR" should be "KAMARAJ NAGAR" (missing A)

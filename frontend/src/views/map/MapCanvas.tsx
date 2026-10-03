@@ -5,6 +5,7 @@ import { select } from 'd3';
 import type { MapVM } from '../../viewmodels/tiles/useMapVM';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import { useMapRendering } from './useMapRendering';
+import { PartyMark } from '../ui/PartyMark';
 
 const W = 560;
 const H = 680;
@@ -16,7 +17,7 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
   geoRef.current = vm.features.length ? { type: 'FeatureCollection', features: vm.features } : null;
   stateGeoRef.current = vm.stateFeatures ? { type: 'FeatureCollection', features: vm.stateFeatures } : null;
   const loaded = vm.status === 'ready' && vm.features.length > 0;
-  const { svgRef, gRef, handleResetZoom } = useMapRendering({ loaded, geoRef, stateGeoRef, isVS: vm.isVS, geoConfig: vm.geoConfig, MAP_WIDTH: W, MAP_HEIGHT: H, showLabels: true });
+  const { svgRef, gRef, handleResetZoom } = useMapRendering({ loaded, geoRef, stateGeoRef, isVS: vm.isVS, geoConfig: vm.geoConfig, MAP_WIDTH: W, MAP_HEIGHT: H, showLabels: true, geometry: [vm.features, vm.stateFeatures] });
   const [tip, setTip] = useState<{ id: string; x: number; y: number } | null>(null);
   // Hover only outlines the seat and shows the tooltip; it never dims the map.
   const hoveredId = tip?.id ?? null;
@@ -81,9 +82,10 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
       </div>
       {info && tip && createPortal(
         <div className="studio-root pointer-events-none fixed z-30 rounded-xl border border-l-[3px] border-line border-l-[var(--seat-color)] bg-page/95 px-3 py-2 text-xs shadow-xl" style={{ left: tip.x + 14, top: tip.y - 12, '--seat-color': info.color } as CSSProperties}>
-          <div className="font-display text-sm font-bold uppercase text-ink">{info.name}</div>
+          <div className="flex items-center gap-2 font-display text-sm font-bold uppercase text-ink">{info.name}{info.type && info.type !== 'GEN' && <span className="rounded border border-line px-1 text-[10px]">{info.type}</span>}</div>
+          {info.state && <div data-tip-state className="text-[11px] text-muted">{info.state}</div>}
           {info.candidate && <div className="text-ink">{info.candidate}</div>}
-          <div className="text-muted">{info.party} · {info.status}{info.margin ? ` · +${info.margin.toLocaleString()}` : ''}</div>
+          <div className="flex items-center gap-1.5 text-muted">{info.party && <PartyMark mark={info.mark} color={info.color} label={info.party} />}{info.party} · {info.status}{info.margin ? ` · +${info.margin.toLocaleString('en-IN')}` : ''}</div>
         </div>,
         document.body,
       )}

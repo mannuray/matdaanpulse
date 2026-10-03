@@ -333,7 +333,7 @@ The compute endpoint: `POST /api/v1/admin/constituency-analysis/compute/:electio
 
 ### West Bengal (WB)
 - State ID: 36
-- GeoJSON: `frontend/public/geo/wb_ac.geojson` (294 ACs)
+- GeoJSON: `frontend/public/geo/wb_ac_2008.geojson` (294 ACs)
 - Elections: 2011, 2016, 2021
 - 2021 has full candidate data from ECI PDF; 2011/2016 have winner+runner-up only
 - Party quirks: GOJAM = GJM, NIC = INC (data error), DCP(PC) = DSP(P) = DSPP
@@ -344,7 +344,7 @@ The compute endpoint: `POST /api/v1/admin/constituency-analysis/compute/:electio
 
 ### Bihar (BR)
 - State ID: 5
-- GeoJSON: `frontend/public/geo/bihar_ac.geojson` (243 ACs)
+- GeoJSON: `frontend/public/geo/bihar_ac_2008.geojson` (243 ACs)
 - Elections: 2010, 2015, 2020, 2025
 - Party quirks: HAMS = Hindustani Awam Morcha, CPIML = CPI(ML)(L)
 - Districts: 38 (`database/seed_bihar_districts_regions.sql`)

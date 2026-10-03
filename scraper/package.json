@@ -1,31 +1,31 @@
 {
   "name": "matdaanpulse-scraper",
   "version": "1.0.0",
-  "description": "Seed generators and live-counting simulation for MatdaanPulse (live ECI ingestion not implemented)",
-  "main": "dist/index.js",
+  "description": "Seed generators, the counting-day live worker (posts to the ingest API) and the live-counting simulation for MatdaanPulse",
   "scripts": {
-    "start": "ts-node src/index.ts",
     "build": "tsc",
-    "dev": "ts-node src/index.ts",
     "sim:setup": "ts-node src/simulation/setup.ts",
     "sim:mock-eci": "ts-node src/simulation/mock-eci-server.ts",
     "sim:replay": "ts-node src/simulation/replay.ts",
+    "sim:live": "INGEST_KEY=$(cat .sim-ingest-key) ts-node src/live/run.ts --config src/live/sim.config.json",
+    "sim:smoke": "ts-node src/simulation/smoke.ts",
     "sim:reset": "ts-node src/simulation/reset.ts",
     "sim:cleanup": "ts-node src/simulation/cleanup.ts",
     "typecheck": "tsc --noEmit",
-    "loadtest:viewers": "ts-node src/loadtest/viewers.ts"
+    "loadtest:viewers": "ts-node src/loadtest/viewers.ts",
+    "test": "vitest run",
+    "live": "ts-node src/live/run.ts",
+    "live:check": "ts-node src/live/check.ts"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "ioredis": "^5.3.2",
-    "node-cron": "^3.0.3",
     "pg": "^8.11.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
-    "@types/node-cron": "^3.0.11",
     "@types/pg": "^8.16.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^2.1.9"
   }
 }

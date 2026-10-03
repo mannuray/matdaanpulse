@@ -1,6 +1,11 @@
 import { Expose, Type, Transform } from 'class-transformer';
 import { bigintTransform } from '../../../common/util/json-safe';
 
+export class PlaceMiniDto {
+  @Expose() id: number;
+  @Expose() name: string;
+}
+
 export class PartyMiniDto {
   @Expose() id: string;
   @Expose() name: string;
@@ -44,13 +49,15 @@ export class PersonProfileDto {
   @Expose() photo_url: string | null;
   @Expose() gender: string | null;
   @Expose() education: string | null;
-  
-  @Expose() 
+
+  @Expose()
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
   date_of_birth: Date | null;
-  
+
   @Expose() bio: string | null;
   @Expose() wikipedia_url: string | null;
+  @Expose() @Type(() => PlaceMiniDto) state: PlaceMiniDto | null;
+  @Expose() @Type(() => PlaceMiniDto) district: PlaceMiniDto | null;
   // caste and religion are admin-only (AdminPersonDto): never exposed on the public profile.
 
   @Expose() candidates?: any[];

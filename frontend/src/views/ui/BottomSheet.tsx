@@ -14,7 +14,8 @@ export function BottomSheet({ open, onOpenChange, title, side = 'bottom', initia
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-scrim backdrop-blur-sm" />
+        {/* Same z as the content: a later-opened dialog (later in the body) then dims every earlier one. */}
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-scrim backdrop-blur-sm" />
         <Dialog.Content ref={content} aria-describedby={undefined}
           onOpenAutoFocus={initialFocus ? e => { e.preventDefault(); content.current?.querySelector<HTMLElement>(initialFocus)?.focus(); } : undefined}
           className={cn('studio-root fixed inset-x-0 z-50 flex max-h-[85dvh] flex-col border-line bg-tile outline-none',

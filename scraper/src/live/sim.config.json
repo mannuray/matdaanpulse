@@ -1,0 +1,2 @@
+{ "holder": "sim", "tasks": [{ "election": "e1e1e1e1-2027-4000-a000-000000000027", "shards": ["rest"] }],
+  "adapters": { "mock-eci": { "baseUrl": "http://localhost:4444", "stateCode": "S04", "intervalMs": "3000" } } }

@@ -41,3 +41,7 @@ scraper/src/cache/myneta/
 
 # Playwright MCP screenshots/snapshots (local scratch)
 .playwright-mcp/
+
+# Live ingest worker (local config and sim key)
+scraper/live.config.json
+scraper/.sim-ingest-key

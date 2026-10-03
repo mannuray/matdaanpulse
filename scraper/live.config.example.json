@@ -1,0 +1,6 @@
+{
+  "apiBaseUrl": "http://localhost:3082/api/v1",
+  "holder": "laptop",
+  "tasks": [{ "election": "<election uuid>", "shards": ["rest"] }],
+  "adapters": { "eci-web": { "baseUrl": "https://results.eci.gov.in/ResultAcGenMay2026", "stateCode": "S25" } }
+}

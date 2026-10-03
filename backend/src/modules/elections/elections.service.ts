@@ -1,8 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma, election_status, election_type } from '@prisma/client';
-import { ElectionNotFoundException } from '../../common/exceptions';
+import { ElectionNotFinalizedException, ElectionNotFoundException } from '../../common/exceptions';
 import type { CreateElectionDto, UpdateElectionDto } from './dto/election-input.dto';
+import { comparableElectionIds } from '../../common/comparable-elections';
 
 @Injectable()
 export class ElectionsService {
@@ -39,8 +40,33 @@ export class ElectionsService {
 
   async getManifest(id: string) {
     const election = await this.findOne(id);
-    const draft = this.parseManifest(election.manifest_url);
+    const draft = await this.comparableManifest(election, this.parseManifest(election.manifest_url));
     return { election_id: id, manifest_url: election.manifest_url, draft };
+  }
+
+  /**
+   * The public manifest with `history` (and its parallel `history_years`) and `compare_with` limited to
+   * comparable elections (comparableElectionIds), so the dashboard's history layers never join another
+   * delimitation's seat numbers. The stored manifest is unchanged.
+   */
+  async comparableManifest(
+    election: { id: string; type: string; state_id: number | null; delimitation: string | null },
+    manifest: Record<string, unknown> | null,
+  ): Promise<Record<string, unknown> | null> {
+    if (!manifest) return manifest;
+    const ids = (v: unknown) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : null);
+    const history = ids(manifest.history), compare = ids(manifest.compare_with);
+    if (!history && !compare) return manifest;
+    const keep = new Set(await comparableElectionIds(this.prisma, election, [...(history ?? []), ...(compare ?? [])]));
+    const out: Record<string, unknown> = { ...manifest };
+    if (history) {
+      const years = Array.isArray(manifest.history_years) ? manifest.history_years : null;
+      const kept = history.map((h, i) => ({ h, y: years?.[i] })).filter(x => keep.has(x.h));
+      out.history = kept.map(x => x.h);
+      if (years) out.history_years = kept.map(x => x.y);
+    }
+    if (compare) out.compare_with = compare.filter(c => keep.has(c));
+    return out;
   }
 
   /**
@@ -92,5 +118,14 @@ export class ElectionsService {
       where: { id },
       data: { status: 'Finalized' },
     });
+  }
+
+  /** A late correction after Finalize (spec §6): SUPER_ADMIN only, audited; Live again until re-finalized. */
+  async reopen(id: string, userId: string | null) {
+    const election = await this.findOne(id);
+    if (election.status !== 'Finalized') throw new ElectionNotFinalizedException(id);
+    const updated = await this.prisma.elections.update({ where: { id }, data: { status: 'Live' } });
+    await this.prisma.audit_logs.create({ data: { user_id: userId, action: 'ELECTION_REOPEN', entity_type: 'election', entity_id: id } });
+    return updated;
   }
 }

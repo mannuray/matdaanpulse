@@ -13,7 +13,7 @@
 import { featureName, normName } from './geoHelpers';
 import type { FeatureProperties } from './geoHelpers';
 
-/** State code → `st_name` exactly as it appears in public/geo/india_pc.geojson. */
+/** State code → `st_name` exactly as it appears in public/geo/india_pc_2008.geojson. */
 export const STATE_CODE_TO_ST_NAME: Record<string, string> = {
   AN: 'Andaman & Nicobar', AP: 'Andhra Pradesh', AR: 'Arunachal Pradesh',
   AS: 'Assam', BR: 'Bihar', CH: 'Chandigarh', CG: 'Chhattisgarh',

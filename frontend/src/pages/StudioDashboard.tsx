@@ -13,7 +13,8 @@ import { useSummaryVM } from '../viewmodels/tiles/useSummaryVM';
 import { useLeadersVM } from '../viewmodels/tiles/useLeadersVM';
 import { useStatsVM } from '../viewmodels/tiles/useStatsVM';
 import { useMapVM } from '../viewmodels/tiles/useMapVM';
-import { useSeatPanelVM } from '../viewmodels/tiles/useSeatPanelVM';
+import { useSeatDialogVM } from '../viewmodels/tiles/useSeatDialogVM';
+import { usePartyDialogVM } from '../viewmodels/tiles/usePartyDialogVM';
 import { DashboardGrid } from '../views/dashboard/DashboardGrid';
 import type { Election } from '../model/types';
 
@@ -25,7 +26,7 @@ function Wall() {
     <DashboardGrid
       topBar={topBar} search={search}
       scoreboard={useScoreboardVM()} standings={useStandingsVM()} insight={useLayerInsightVM()} summary={useSummaryVM()}
-      leaders={useLeadersVM()} stats={useStatsVM()} map={useMapVM()} seatPanel={useSeatPanelVM()}
+      leaders={useLeadersVM()} stats={useStatsVM()} map={useMapVM()} seatDialog={useSeatDialogVM()} partyDialog={usePartyDialogVM()}
       focus={state.focus} onCloseFocus={() => dispatch({ type: 'focus', tile: null })}
     />
   );
@@ -34,6 +35,7 @@ function Wall() {
 function Loaded({ election }: { election: Election }) {
   const sources = useDashboardSources(election);
   const { t } = useTranslation();
+  const knownParties = useMemo(() => (sources.partyMeta.size ? new Set(sources.partyMeta.keys()) : null), [sources.partyMeta]);
   const knownSeats = useMemo(() => (sources.data.mapRegions.length ? new Set(sources.data.mapRegions.map(r => r.id)) : null), [sources.data.mapRegions]);
   if (sources.data.error && sources.data.mapRegions.length === 0) {
     return (
@@ -45,7 +47,7 @@ function Loaded({ election }: { election: Election }) {
   }
   return (
     <DashboardSourcesProvider value={sources}>
-      <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={knownSeats}>
+      <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={knownSeats} knownParties={knownParties}>
         <Wall />
       </DashboardStoreProvider>
     </DashboardSourcesProvider>

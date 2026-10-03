@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=7'>
+    <meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate'>
+    <meta http-equiv='Pragma' content='no-cache'>
+    <meta http-equiv='Expires' content='0'>
+    <meta http-equiv='refresh' content='300'>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/font.css" rel="stylesheet">
+    <link rel='shortcut icon' href='img/icons/favicon.ico' type="image/x-icon">
+    <link rel='stylesheet' href='css/leaflet.css' integrity='sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=' crossorigin='' />
+    <script src='js/leaflet.js' integrity='sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=' crossorigin=''></script>
+    <style>
+        #elector_geotagging {
+            background-color: #fff;
+        }
+.leaflet-bottom { display: none; }
+        /*.leaflet-control {
+            display: none;
+        }*/
+    </style>
+    <title>Election</title>
+</head>
+
+<body>
+
+
+    <header class="header">
+        <div class="logo-search">
+            <div class="mob-btn"><img src="img/icons/menu.png" alt=""></div>
+            <div class="logo"><a href='index.htm'><img src="img/eci-ecinet-logo.png" alt=""></a></div>
+            <div class="lft-menu">
+                <div class="menu-close">X</div>
+                <div class="menu-logo"><a href="index.htm"><img src="img/eci-ecinet-logo.png" alt=""></a></div>
+                <ul>
+                    <li><a href="index.htm"><span><img src="img/icons/home.png" alt=""></span> Home</a></li>
+                    <li><a href="./hi/index.htm"><span><img src="img/icons/language.png" alt=""></span> Hindi</a></li>
+                    <li><a href='#' onClick='window.location.href=window.location.href'><span><img src="img/icons/refresh.png" alt=""></span> Refresh</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="dis-info">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center justify-content-center">
+                <h6 class="mb-0 mx-2"><img src="img/icons/warning.svg" alt=""><strong>Disclaimer:</strong></h6>
+                <p class="mb-0"> ECI is displaying the information as being filled in the system by the Returning Officers from their respective Counting Centres.The final data for each AC/PC will be shared in Form-20.</p>
+            </div>
+        </div>
+    </div><!-- End of dis-info Div -->
+    <main class="inner-content">
+        <div class="page-title">
+            <h1>General Election to Assembly Constituencies: Trends & Results May-2026</h1>
+            <h2><span> <strong> West Bengal</strong>   (Total AC : 294)</span></h2>
+        </div>
+        <div class="container-fluid">
+    <div class="row justify-content-center">
+                  
+                  
+                    <div class="col">
+                        <div class="grid-box gen inc-pty-bg" style="background-color: #ff944d">
+                            <h4>BJP</h4>
+                            <h2>207</h2>
+                        </div><!-- End of grid-box div -->
+                    </div>
+               
+         
+              
+                  
+                    <div class="col">
+                        <div class="grid-box gen inc-pty-bg" style="background-color: #aebedf">
+                            <h4>AITC</h4>
+                            <h2>80</h2>
+                        </div><!-- End of grid-box div -->
+                    </div>
+               
+         
+              
+                  
+                    <div class="col">
+                        <div class="grid-box gen inc-pty-bg" style="background-color: #19AAED">
+                            <h4>INC</h4>
+                            <h2>2</h2>
+                        </div><!-- End of grid-box div -->
+                    </div>
+               
+         
+              
+                  
+                    <div class="col">
+                        <div class="grid-box gen inc-pty-bg" style="background-color: #244ffa">
+                            <h4>AJUP</h4>
+                            <h2>2</h2>
+                        </div><!-- End of grid-box div -->
+                    </div>
+               
+         
+              
+                  
+                    <div class="col">
+                        <div class="grid-box gen inc-pty-bg" style="background-color: #FF1D15">
+                            <h4>CPI(M)</h4>
+                            <h2>1</h2>
+                        </div><!-- End of grid-box div -->
+                    </div>
+               
+         
+              
+                  
+                    <div class="col">
+                        <div class="grid-box gen inc-pty-bg" style="background-color: #7bfb79">
+                            <h4>AISF</h4>
+                            <h2>1</h2>
+                        </div><!-- End of grid-box div -->
+                    </div>
+               
+         
+       
+              
+            
+            
+            
+            
+            
+    
+    
+                  
+         
+      
+                  
+         
+      
+                  
+         
+      
+                  
+         
+      
+                  
+         
+      
+                  
+         
+    
+
+</div>
+<section class="my-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <div class="card custom-card shadow-sm card-hght">
+                    <div class="card-header">Party Wise Results</div>
+                    <div class="card-body parent-wrap">
+                        <div class="scroll-child">
+                        <div class="rslt-table teble-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: left;">Party</th>
+                                        <th style="text-align:right">Won</th>
+                                        <th style="text-align:right">Leading</th>
+                                        <th style="text-align:right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                                                                                                                                <tr class="tr"> 
+                                        <td style="text-align:left">Bharatiya Janata Party - BJP</td>
+                                        <td style="text-align:right">
+                                                                                        <a href="partywisewinresult-369S25.htm">207</a>
+                                                                                    </td>
+                                        <td style="text-align:right">
+                                                                                        0
+                                                                                    </td>
+                                        <td style="text-align:right">207</td>
+                                    </tr>
+                                                                                                            <tr class="tr"> 
+                                        <td style="text-align:left">All India Trinamool Congress - AITC</td>
+                                        <td style="text-align:right">
+                                                                                        <a href="partywisewinresult-140S25.htm">80</a>
+                                                                                    </td>
+                                        <td style="text-align:right">
+                                                                                        0
+                                                                                    </td>
+                                        <td style="text-align:right">80</td>
+                                    </tr>
+                                                                                                            <tr class="tr"> 
+                                        <td style="text-align:left">Indian National Congress - INC</td>
+                                        <td style="text-align:right">
+                                                                                        <a href="partywisewinresult-742S25.htm">2</a>
+                                                                                    </td>
+                                        <td style="text-align:right">
+                                                                                        0
+                                                                                    </td>
+                                        <td style="text-align:right">2</td>
+                                    </tr>
+                                                                                                            <tr class="tr"> 
+                                        <td style="text-align:left">Aam Janata Unnayan party - AJUP</td>
+                                        <td style="text-align:right">
+                                                                                        <a href="partywisewinresult-3735S25.htm">2</a>
+                                                                                    </td>
+                                        <td style="text-align:right">
+                                                                                        0
+                                                                                    </td>
+                                        <td style="text-align:right">2</td>
+                                    </tr>
+                                                                                                            <tr class="tr"> 
+                                        <td style="text-align:left">Communist Party of India (Marxist) - CPI(M)</td>
+                                        <td style="text-align:right">
+                                                                                        <a href="partywisewinresult-547S25.htm">1</a>
+                                                                                    </td>
+                                        <td style="text-align:right">
+                                                                                        0
+                                                                                    </td>
+                                        <td style="text-align:right">1</td>
+                                    </tr>
+                                                                                                            <tr class="tr"> 
+                                        <td style="text-align:left">All India Secular Front - AISF</td>
+                                        <td style="text-align:right">
+                                                                                        <a href="partywisewinresult-3075S25.htm">1</a>
+                                                                                    </td>
+                                        <td style="text-align:right">
+                                                                                        0
+                                                                                    </td>
+                                        <td style="text-align:right">1</td>
+                                    </tr>
+                                                                    </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th style="text-align:right">293</th>
+                                        <th style="text-align:right">0</th>
+                                        <th style="text-align:right">293</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div><!-- End rslt-table Div -->
+                        </div><!-- End of scroll-child Div -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="card custom-card shadow-sm"> 
+                    <div class="card-header">Constituency Wise Results <select class='custom-select' id='ctl00_ContentPlaceHolder1_Result1_ddlState' onchange='return GetResult(this)' name='state' style='float: right;'> <option value=''> Select Constituency </option><option value="S2512">ALIPURDUARS - 12</option><option value="S25102">AMDANGA - 102</option><option value="S25181">AMTA - 181</option><option value="S25200">ARAMBAG - 200</option><option value="S25280">ASANSOL DAKSHIN - 280</option><option value="S25281">ASANSOL UTTAR - 281</option><option value="S25101">ASHOKNAGAR - 101</option><option value="S25273">AUSGRAM - 273</option><option value="S2599">BADURIA - 99</option><option value="S2594">BAGDA - 94</option><option value="S25240">BAGHMUNDI - 240</option><option value="S25180">BAGNAN - 180</option><option value="S2572">BAHARAMPUR - 72</option><option value="S2554">BAISNABNAGAR - 54</option><option value="S25191">BALAGARH - 191</option><option value="S25239">BALARAMPUR - 239</option><option value="S25169">BALLY - 169</option><option value="S25161">BALLYGUNGE - 161</option><option value="S2539">BALURGHAT - 39</option><option value="S25238">BANDWAN - 238</option><option value="S2596">BANGAON DAKSHIN - 96</option><option value="S2595">BANGAON UTTAR - 95</option><option value="S25252">BANKURA - 252</option><option value="S25283">BARABANI - 283</option><option value="S25113">BARANAGAR - 113</option><option value="S25119">BARASAT - 119</option><option value="S25260">BARDHAMAN DAKSHIN - 260</option><option value="S25266">BARDHAMAN UTTAR - 266</option><option value="S25253">BARJORA - 253</option><option value="S25108">BARRACKPUR - 108</option><option value="S25140">BARUIPUR PASCHIM - 140</option><option value="S25137">BARUIPUR PURBA - 137</option><option value="S25128">BASANTI - 128</option><option value="S25124">BASIRHAT DAKSHIN - 124</option><option value="S25125">BASIRHAT UTTAR - 125</option><option value="S25154">BEHALA PASCHIM - 154</option><option value="S25153">BEHALA PURBA - 153</option><option value="S2571">BELDANGA - 71</option><option value="S25164">BELEGHATA - 164</option><option value="S25159">BHABANIPUR - 159</option><option value="S25214">BHAGABANPUR - 214</option><option value="S2562">BHAGAWANGOLA - 62</option><option value="S25148">BHANGAR - 148</option><option value="S2569">BHARATPUR - 69</option><option value="S25267">BHATAR - 267</option><option value="S25105">BHATPARA - 105</option><option value="S25116">BIDHANNAGAR - 116</option><option value="S25103">BIJPUR - 103</option><option value="S25237">BINPUR - 237</option><option value="S25146">BISHNUPUR - 146</option><option value="S25255">BISHNUPUR - 255</option><option value="S25286">BOLPUR - 286</option><option value="S25156">BUDGE BUDGE - 156</option><option value="S2567">BURWAN - 67</option><option value="S25138">CANNING PASCHIM - 138</option><option value="S25139">CANNING PURBA - 139</option><option value="S2591">CHAKDAHA - 91</option><option value="S2531">CHAKULIA - 31</option><option value="S25187">CHAMPDANI - 187</option><option value="S2545">CHANCHAL - 45</option><option value="S25189">CHANDANNAGAR - 189</option><option value="S25211">CHANDIPUR - 211</option><option value="S25194">CHANDITALA - 194</option><option value="S25232">CHANDRAKONA - 232</option><option value="S2582">CHAPRA - 82</option><option value="S25248">CHHATNA - 248</option><option value="S2528">CHOPRA - 28</option><option value="S25162">CHOWRANGEE - 162</option><option value="S25190">CHUNCHURA - 190</option><option value="S254">COOCHBEHAR DAKSHIN - 4</option><option value="S253">COOCHBEHAR UTTAR - 3</option><option value="S2519">DABGRAM-FULBARI - 19</option><option value="S25219">DANTAN - 219</option><option value="S2523">DARJEELING - 23</option><option value="S25230">DASPUR - 230</option><option value="S25229">DEBRA - 229</option><option value="S25120">DEGANGA - 120</option><option value="S25197">DHANEKHALI - 197</option><option value="S2515">DHUPGURI - 15</option><option value="S25143">DIAMOND HARBOUR - 143</option><option value="S257">DINHATA - 7</option><option value="S25184">DOMJUR - 184</option><option value="S2575">DOMKAL - 75</option><option value="S25284">DUBRAJPUR - 284</option><option value="S25114">DUM DUM - 114</option><option value="S25110">DUM DUM UTTAR - 110</option><option value="S25277">DURGAPUR PASCHIM - 277</option><option value="S25276">DURGAPUR PURBA - 276</option><option value="S25218">EGRA - 218</option><option value="S2551">ENGLISH BAZAR - 51</option><option value="S25163">ENTALLY - 163</option><option value="S2513">FALAKATA - 13</option><option value="S25144">FALTA - 144</option><option value="S2555">FARAKKA - 55</option><option value="S2597">GAIGHATA - 97</option><option value="S25274">GALSI - 274</option><option value="S2541">GANGARAMPUR - 41</option><option value="S25233">GARBETA - 233</option><option value="S2544">GAZOLE - 44</option><option value="S25231">GHATAL - 231</option><option value="S2530">GOALPOKHAR - 30</option><option value="S25201">GOGHAT - 201</option><option value="S25221">GOPIBALLAVPUR - 221</option><option value="S25127">GOSABA - 127</option><option value="S2543">HABIBPUR - 43</option><option value="S25100">HABRA - 100</option><option value="S25209">HALDIA - 209</option><option value="S25292">HANSAN - 292</option><option value="S2573">HARIHARPARA - 73</option><option value="S2593">HARINGHATA - 93</option><option value="S25196">HARIPAL - 196</option><option value="S2542">HARIRAMPUR - 42</option><option value="S2546">HARISCHANDRAPUR - 46</option><option value="S25121">HAROA - 121</option><option value="S2533">HEMTABAD - 33</option><option value="S25126">HINGALGANJ - 126</option><option value="S25173">HOWRAH DAKSHIN - 173</option><option value="S25171">HOWRAH MADHYA - 171</option><option value="S25170">HOWRAH UTTAR - 170</option><option value="S25257">INDUS - 257</option><option value="S2529">ISLAMPUR - 29</option><option value="S2536">ITAHAR - 36</option><option value="S25150">JADAVPUR - 150</option><option value="S25183">JAGATBALLAVPUR - 183</option><option value="S25106">JAGATDAL - 106</option><option value="S2576">JALANGI - 76</option><option value="S2517">JALPAIGURI - 17</option><option value="S25262">JAMALPUR - 262</option><option value="S25279">JAMURIA - 279</option><option value="S25195">JANGIPARA - 195</option><option value="S2558">JANGIPUR - 58</option><option value="S25136">JAYNAGAR - 136</option><option value="S25222">JHARGRAM - 222</option><option value="S25165">JORASANKO - 165</option><option value="S25241">JOYPUR - 241</option><option value="S25131">KAKDWIP - 131</option><option value="S2511">KALCHINI - 11</option><option value="S2534">KALIAGANJ - 34</option><option value="S2580">KALIGANJ - 80</option><option value="S2522">KALIMPONG - 22</option><option value="S25264">KALNA - 264</option><option value="S2592">KALYANI - 92</option><option value="S25112">KAMARHATI - 112</option><option value="S2568">KANDI - 68</option><option value="S25216">KANTHI DAKSHIN - 216</option><option value="S25213">KANTHI UTTAR - 213</option><option value="S2532">KARANDIGHI - 32</option><option value="S2577">KARIMPUR - 77</option><option value="S25149">KASBA - 149</option><option value="S25244">KASHIPUR - 244</option><option value="S25168">KASHIPUR-BELGACHHIA - 168</option><option value="S25256">KATULPUR - 256</option><option value="S25270">KATWA - 270</option><option value="S25223">KESHIARY - 223</option><option value="S25235">KESHPUR - 235</option><option value="S25271">KETUGRAM - 271</option><option value="S25202">KHANAKUL - 202</option><option value="S25259">KHANDAGHOSH - 259</option><option value="S25228">KHARAGPUR - 228</option><option value="S25224">KHARAGPUR SADAR - 224</option><option value="S25109">KHARDAHA - 109</option><option value="S2566">KHARGRAM - 66</option><option value="S25215">KHEJURI - 215</option><option value="S25158">KOLKATA PORT - 158</option><option value="S2588">KRISHNAGANJ - 88</option><option value="S2585">KRISHNANAGAR DAKSHIN - 85</option><option value="S2583">KRISHNANAGAR UTTAR - 83</option><option value="S25133">KULPI - 133</option><option value="S25129">KULTALI - 129</option><option value="S25282">KULTI - 282</option><option value="S2538">KUMARGANJ - 38</option><option value="S2510">KUMARGRAM - 10</option><option value="S2524">KURSEONG - 24</option><option value="S2537">KUSHMANDI - 37</option><option value="S25288">LABPUR - 288</option><option value="S2561">LALGOLA - 61</option><option value="S2514">MADARIHAT - 14</option><option value="S25118">MADHYAMGRAM - 118</option><option value="S25142">MAGRAHAT PASCHIM - 142</option><option value="S25141">MAGRAHAT PURBA - 141</option><option value="S25155">MAHESHTALA - 155</option><option value="S25208">MAHISADAL - 208</option><option value="S2520">MAL - 20</option><option value="S2547">MALATIPUR - 47</option><option value="S2550">MALDAHA - 50</option><option value="S25243">MANBAZAR - 243</option><option value="S25135">MANDIRBAZAR - 135</option><option value="S25272">MANGALKOT - 272</option><option value="S2549">MANIKCHAK - 49</option><option value="S25167">MANIKTALA - 167</option><option value="S252">MATHABHANGA - 2</option><option value="S2525">MATIGARA-NAXALBARI - 25</option><option value="S2516">MAYNAGURI - 16</option><option value="S25290">MAYURESWAR - 290</option><option value="S25236">MEDINIPUR - 236</option><option value="S251">MEKLIGANJ - 1</option><option value="S25265">MEMARI - 265</option><option value="S25157">METIABURUZ - 157</option><option value="S25122">MINAKHAN - 122</option><option value="S25263">MONTESWAR - 263</option><option value="S2552">MOTHABARI - 52</option><option value="S25206">MOYNA - 206</option><option value="S25294">MURARAI - 294</option><option value="S2564">MURSHIDABAD - 64</option><option value="S2584">NABADWIP - 84</option><option value="S2565">NABAGRAM - 65</option><option value="S2521">NAGRAKATA - 21</option><option value="S25104">NAIHATI - 104</option><option value="S2581">NAKASHIPARA - 81</option><option value="S25293">NALHATI - 293</option><option value="S25207">NANDAKUMAR - 207</option><option value="S25210">NANDIGRAM - 210</option><option value="S25287">NANOOR - 287</option><option value="S25225">NARAYANGARH - 225</option><option value="S258">NATABARI - 8</option><option value="S25220">NAYAGRAM - 220</option><option value="S25107">NOAPARA - 107</option><option value="S2574">NOWDA - 74</option><option value="S25254">ONDA - 254</option><option value="S2579">PALASHIPARA - 79</option><option value="S25175">PANCHLA - 175</option><option value="S25275">PANDABESWAR - 275</option><option value="S25192">PANDUA - 192</option><option value="S25111">PANIHATI - 111</option><option value="S25205">PANSKURA PASCHIM - 205</option><option value="S25204">PANSKURA PURBA - 204</option><option value="S25245">PARA - 245</option><option value="S25212">PATASHPUR - 212</option><option value="S25130">PATHARPRATIMA - 130</option><option value="S2527">PHANSIDEWA - 27</option><option value="S25227">PINGLA - 227</option><option value="S25268">PURBASTHALI DAKSHIN - 268</option><option value="S25269">PURBASTHALI UTTAR - 269</option><option value="S25199">PURSURAH - 199</option><option value="S25242">PURULIA - 242</option><option value="S2559">RAGHUNATHGANJ - 59</option><option value="S25246">RAGHUNATHPUR - 246</option><option value="S25134">RAIDIGHI - 134</option><option value="S2535">RAIGANJ - 35</option><option value="S25261">RAINA - 261</option><option value="S25250">RAIPUR - 250</option><option value="S25117">RAJARHAT  GOPALPUR - 117</option><option value="S25115">RAJARHAT NEW TOWN - 115</option><option value="S2518">RAJGANJ - 18</option><option value="S25217">RAMNAGAR - 217</option><option value="S25291">RAMPURHAT - 291</option><option value="S2590">RANAGHAT DAKSHIN - 90</option><option value="S2587">RANAGHAT UTTAR PASCHIM - 87</option><option value="S2589">RANAGHAT UTTAR PURBA - 89</option><option value="S25249">RANIBANDH - 249</option><option value="S25278">RANIGANJ - 278</option><option value="S2563">RANINAGAR - 63</option><option value="S25160">RASHBEHARI - 160</option><option value="S2548">RATUA - 48</option><option value="S2570">REJINAGAR - 70</option><option value="S25226">SABANG - 226</option><option value="S25132">SAGAR - 132</option><option value="S2560">SAGARDIGHI - 60</option><option value="S25289">SAINTHIA - 289</option><option value="S25234">SALBONI - 234</option><option value="S25247">SALTORA - 247</option><option value="S2556">SAMSERGANJ - 56</option><option value="S25123">SANDESHKHALI - 123</option><option value="S25174">SANKRAIL - 174</option><option value="S2586">SANTIPUR - 86</option><option value="S25193">SAPTAGRAM - 193</option><option value="S25145">SATGACHHIA - 145</option><option value="S25172">SHIBPUR - 172</option><option value="S25166">SHYAMPUKUR - 166</option><option value="S25179">SHYAMPUR - 179</option><option value="S2526">SILIGURI - 26</option><option value="S25188">SINGUR - 188</option><option value="S256">SITAI - 6</option><option value="S255">SITALKUCHI - 5</option><option value="S25258">SONAMUKHI - 258</option><option value="S25147">SONARPUR DAKSHIN - 147</option><option value="S25151">SONARPUR UTTAR - 151</option><option value="S25186">SREERAMPUR - 186</option><option value="S2553">SUJAPUR - 53</option><option value="S25285">SURI - 285</option><option value="S2557">SUTI - 57</option><option value="S2598">SWARUPNAGAR - 98</option><option value="S25251">TALDANGRA - 251</option><option value="S25203">TAMLUK - 203</option><option value="S2540">TAPAN - 40</option><option value="S25198">TARAKESWAR - 198</option><option value="S2578">TEHATTA - 78</option><option value="S25152">TOLLYGANJ - 152</option><option value="S259">TUFANGANJ - 9</option><option value="S25182">UDAYNARAYANPUR - 182</option><option value="S25178">ULUBERIA DAKSHIN - 178</option><option value="S25176">ULUBERIA PURBA - 176</option><option value="S25177">ULUBERIA UTTAR - 177</option><option value="S25185">UTTARPARA - 185</option></select></div>
+                    <div class="card-body">
+                        <div class="map" id='elector_geotagging' style='width:100%;height:586px;'></div>
+                        <p style="float: right;font-size: 11px;margin-bottom: -10px;font-weight: 500;">Not to Scale</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="card custom-card shadow-sm">
+                    <div class="card-header"><a href="chartwiseresult-S25.htm" title="View Full Party Wise Results" style="color: blue;" target="_blank">
+        Party Wise Results – View Full Details
+    </a></div>
+                    <div class="card-body">
+                        <div class="chart-wrap">
+                            <canvas id="donutChart" style="max-width: 545px; width: 100%; max-height: 545px; height: 100%;"></canvas>
+                        </div><!-- End of chart wrap Div-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="card custom-card shadow-sm">
+                    <div class="card-header"><a href="voteshareresult-S25.htm" title="View Full Vote Share Results" style="color: blue;" target="_blank">
+        Party Wise Vote Share – View Full Details
+    </a></div>
+                    <div class="card-body">
+                        <div class="chart-wrap">
+                            <canvas id="piChart" style="max-width: 545px; width: 100%; max-height: 545px; height: 100%;"></canvas>
+                        </div><!-- End of chart wrap Div-->
+                    </div>
+                </div>
+            </div>
+ 
+        </div><!-- End of row Div -->
+
+        <h3 class="foot-title"><a href="statewiseS251.htm" class="btn btn-primary">All Constituencies at a glance <i>&gt;</i></a></h3>
+    </div>
+</section>
+    </main>
+   <footer class="footer">
+        <div class="foot-info">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="foot-content">
+                            Last Updated at <span>04:18 PM On 05/05/2026</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src='js/jquery-1-min.js' type='text/javascript'></script>
+    <script src='js/jquery-2-min.js' type='text/javascript'></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <!-- Option 3: Custom jQuery Lab -->
+    <script src="js/custom-jQuery.js" type="text/javascript"></script>
+
+    <!-- Chart jQuery Lab -->
+    <script src="js/chart.js" type="text/javascript"></script>
+    
+<script type='text/javascript'>
+            function GetResult(ddstate) {
+                var statecode = ddstate.value;
+                if (statecode != 'Select State')
+                    location.href = 'candidateswise-' + statecode + '.htm';
+                else
+                    location.href = 'candidateswise' + ddstate.options[1].value + '.htm';
+            } 
+            function SetSelectedSate() {
+                var ddlState = document.getElementById('ctl00_ContentPlaceHolder1_Result1_ddlState');
+                var stateCode = '';
+                var queryString = location.search.substring(1);
+                if (queryString != null && queryString != '') {
+                    stateCode = queryString.split('=')[1];
+                }
+                if (ddlState != null)
+                    for (var index = 0; index < ddlState.options.length; index++) {
+                        if (ddlState.options[index].value == stateCode) {
+                            ddlState.options[index].selected = true;
+                        }
+                    }
+            }
+            onload = SetSelectedSate;
+
+        </script>
+
+
+<script src='ac/S25.js' type='text/javascript'></script>
+
+<script type='text/javascript'>
+    var lead_can_party;
+    var colorArr;
+    var mapstcode;
+    var count;
+    const SVGAPIURL = 'election-json-S25-live.json';
+    var colorsss = {};
+    var tableData = '';
+    var geoJson = '';
+    var lead_cand_party = '';
+    var lead_cand_name = '';
+
+    $(document).ready(function() {
+
+        fetch(SVGAPIURL)
+            .then(res => res.json())
+            .then(sdata => {
+                try {
+                    const data = sdata;
+                    colorsss = data.S25.chartData;
+                    tableData = data.S25.tableData;
+                    //console.log(colorsss);
+                } catch (e) {}
+
+            });
+
+        var map = L.map('elector_geotagging', {
+            center: [24.2109, 87.9777],
+            zoom: 7,
+            scrollWheelZoom: false,
+            doubleClickZoom: false, 
+            cursor: true
+        });
+         
+
+        var bounds_group = new L.featureGroup([]);
+        map.createPane('pane_All_AC');
+        map.getPane('pane_All_AC').style.zIndex = 400;
+        map.getPane('pane_All_AC').style['mix-blend-mode'] = 'normal';
+
+        setTimeout(function() {
+            var layer_All_AC = new L.geoJson(json_All_AC, {
+                attribution: '',
+                interactive: true,
+                dataVar: 'json_All_AC',
+                layerName: 'layer_All_AC',
+                pane: 'pane_All_AC',
+                onEachFeature: pop_All_AC,
+                style: style_All_AC,
+            });
+            bounds_group.addLayer(layer_All_AC);
+            map.addLayer(layer_All_AC);
+
+
+
+
+            function style_All_AC(feature, layer) {
+                var color = '#DDDDDD';
+                var ac_no = feature.properties.AC_NO;
+                var state_code = feature.properties.ST_CODE;
+                var new_combination = state_code + '_' + ac_no;
+                //S29_11
+
+                $.each(colorsss, function(index, value) {
+                    var new_sate = value[1];
+                    var new_ac = value[2];
+                    var combination = new_sate + '_' + new_ac;
+                    //console.log(combination);
+                    if (new_combination == combination) {
+
+                        color = value[4];
+                        lead_cand_party = value[0];
+                        lead_cand_name = value[3];
+                        //console.log(color);
+                    }
+                    if(new_combination == 'U08_0'){
+                        color = '#ffeb99';
+                    }
+
+
+                });
+
+
+                return {
+                    pane: 'pane_All_AC',
+                    opacity: 1,
+                    color: '#fff',
+                    dashArray: '',
+                    lineCap: 'butt',
+                    lineJoin: 'miter',
+                    weight: 1.0,
+                    fill: true,
+                    fillOpacity: 1,
+                    fillColor: color,
+                    interactive: true,
+                }
+            }
+        }, 1000);
+
+        function pop_All_AC(feature, layer) {
+
+
+            var ac_no = feature.properties.AC_NO;
+            var state_code = feature.properties.ST_CODE;
+            var new_combination = 'S' + state_code + '_' + ac_no;
+
+ if (feature.properties.AC_NAME != 'NA') {
+            var popup = '';
+
+            popup = '<div class="el-cons-tooltip" id="tooltip2" style="z-index: 999999999; display: block; top: 380px; left: 200px;" svgid="2"><div class="el-tip-cons" id="tl_cons_name2">AC Name : '+feature.properties.AC_NAME+' - '+feature.properties.AC_NO+'</div><div id="tooltipdata2"><div class="el-tip"><div class="el-con-detail"><div class="el-con-name"> Party Name: '+lead_cand_party+'</div></div><div class="el-candidate-status won">Candidate Name: '+lead_cand_name+'</div></div></div></div>'
+
+            layer.bindPopup(popup, {
+                maxHeight: 400,
+            });
+            layer.openTooltip(popup, {
+                maxHeight: 400,
+            });
+            layer.on('mouseover', function() {
+                layer.openPopup();
+            });
+            layer.on('mouseout', function() {
+                layer.closePopup();
+            });
+ }
+       if(state_code == 'U08'){
+             
+             if(state_code == 'U08' && feature.properties.AC_NAME != 'NA'){
+                    ac_no=feature.properties.AC_NO;
+
+                     layer.addEventListener('click', function(event) {
+                layer.preventDefault(window.location = 'candidateswise-' + state_code + ac_no + '.htm');
+
+            });
+             }
+             else{
+                    ac_no=1;
+             }
+
+               // ac_no = (state_code == 'U08' && feature.properties.AC_NAME != 'NA') ? 1 : ac_no;
+            }
+             
+            else{
+                ac_no = ac_no;
+
+                 layer.addEventListener('click', function(event) {
+                layer.preventDefault(window.location = 'candidateswise-' + state_code + ac_no + '.htm');
+
+            });
+            }
+
+           
+        }
+    });
+</script>
+<script type="text/javascript">
+    // Doughnut Charts Starts Here
+    var xValues = ['AISF','AITC','AJUP','BJP','CPI(M)','INC',];
+    var yValues = [1,80,2,207,1,2,];
+    var barColors = ['#7bfb79','#aebedf','#244ffa','#ff944d','#FF1D15','#19AAED',];
+
+    new Chart("donutChart", {
+        type: "doughnut",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    display: true,
+                    text: ''
+                }
+            }
+        },
+    });
+
+    
+    // Pi Charts Starts Here
+    var xValues = ['AIFB{0.28%}','AIMIM{0.09%}','AITC{40.80%}','BJP{45.84%}','BSP{0.18%}','CPI{0.16%}','CPI(M){4.45%}','CPI(ML)(L){0.07%}','INC{2.97%}','IUML{0.01%}','NOTA{0.78%}','RASLJP{0.01%}','RSP{0.10%}','Other{4.26%}',];
+    var yValues = [176980,57253,26013377,29224804,117166,99223,2839067,46399,1890858,4013,494932,6906,64209,2717883,];
+    var barColors = ['#ff3333','#00664d','#aebedf','#ff944d','#000078','#e70d21','#FF1D15','#BC08A4','#19AAED','#006600','#ff6384','#778899','#4C2A87','#b3b3b3',];
+    new Chart("piChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'left',
+                },
+                title: {
+                    display: true,
+                    text: ''
+                }
+            }
+        },
+    });
+</script>
+</body>
+
+</html>

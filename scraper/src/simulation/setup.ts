@@ -4,7 +4,9 @@
  * Usage: npx ts-node src/simulation/setup.ts
  */
 import { Pool } from 'pg';
-import { randomUUID } from 'crypto';
+import { createHash, randomBytes, randomUUID } from 'crypto';
+import { writeFileSync } from 'fs';
+import { join } from 'path';
 import { SIM_ELECTION_ID, SOURCE_ELECTION_ID, STATE_ID, DB_CONFIG } from './config';
 
 async function main() {
@@ -132,6 +134,15 @@ async function main() {
     }
     console.log(`  ${candIdMap.size} result rows created`);
 
+    // 6. Ingest feed + key (the sim is a dev tool that writes SQL directly; production keys come from the admin)
+    const simKey = `mpk_${randomBytes(32).toString('base64url')}`;
+    await pool.query(`DELETE FROM ingest_keys WHERE name = 'simulation'`);
+    await pool.query(`INSERT INTO ingest_keys (name, key_hash) VALUES ('simulation', $1)`, [createHash('sha256').update(simKey).digest('hex')]);
+    await pool.query(`INSERT INTO election_ingest (election_id, active_source) VALUES ($1, 'mock-eci')
+                      ON CONFLICT (election_id) DO UPDATE SET active_source = 'mock-eci'`, [SIM_ELECTION_ID]);
+    writeFileSync(join(__dirname, '../../.sim-ingest-key'), simKey);
+    console.log(`SIM_INGEST_KEY=${simKey}  (also in scraper/.sim-ingest-key)`);
+
     // Summary
     console.log('\n=== Setup Complete ===');
     console.log(`Election ID: ${SIM_ELECTION_ID}`);
@@ -139,7 +150,7 @@ async function main() {
     console.log(`Status: Live`);
     console.log(`Constituencies: ${constIdMap.size}`);
     console.log(`Candidates: ${candIdMap.size}`);
-    console.log('\nNext: start the mock ECI server and run replay.ts');
+    console.log('\nNext: start the mock ECI server, then `npm run sim:live` (worker) and `npm run sim:replay`');
 
   } finally {
     await pool.end();

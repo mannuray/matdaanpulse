@@ -26,7 +26,7 @@ describe('dashboard tiles', () => {
 
   it('standings rows lock a party on click', () => {
     const onLockParty = vi.fn();
-    const vm: StandingsVM = { rows: [{ id: 'BJP', name: 'Bharatiya Janata Party', color: '#FF7A1A', seats: 89, votePct: null, allianceId: 'NDA' }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty };
+    const vm: StandingsVM = { rows: [{ id: 'BJP', name: 'Bharatiya Janata Party', color: '#FF7A1A', seats: 89, votePct: null, allianceId: 'NDA' }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty, markOf: () => null, onOpenParty: noop };
     render(<StandingsTile vm={vm} variant="tile" />);
     fireEvent.click(screen.getByRole('button', { name: /BJP/ }));
     expect(onLockParty).toHaveBeenCalledWith('BJP');

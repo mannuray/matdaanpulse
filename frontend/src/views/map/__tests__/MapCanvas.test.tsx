@@ -18,12 +18,25 @@ function makeVM(): MapVM {
     seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: false }]]), outline: true,
     recentSeats: new Set(), selectedSeat: null, layer: 'overview', layers: ['overview'], mapMode: 'map',
     hexAvailable: false, lockedLabel: null,
-    seatInfo: () => ({ name: 'Sandesh', candidate: 'A', party: 'JDU', status: 'Won', color: '#1FA37A' }),
+    seatInfo: () => ({ name: 'Sandesh', state: 'Bihar', candidate: 'A', party: 'JDU', status: 'Won', color: '#1FA37A', mark: null, type: null }),
     onLayer: vi.fn(), onMapMode: vi.fn(), onSelect: vi.fn(), onClearLock: vi.fn(), onFocus: vi.fn(),
   };
 }
 
 describe('MapCanvas', () => {
+  it('redraws when the features change while the map stays loaded (cached geojson on return)', () => {
+    const vm = makeVM();
+    const { container, rerender } = render(<MapCanvas vm={vm} />);
+    expect(container.querySelectorAll('path.pc')).toHaveLength(1);
+    const other = (name: string, x: number) => ({
+      type: 'Feature',
+      properties: { pc_name: name, st_name: 'Bihar' },
+      geometry: { type: 'Polygon', coordinates: [[[x, 25], [x + 1, 25], [x + 1, 26], [x, 26], [x, 25]]] },
+    }) as unknown as GeoFeature;
+    rerender(<MapCanvas vm={{ ...vm, features: [other('A', 84), other('B', 86)] }} />);
+    expect(container.querySelectorAll('path.pc')).toHaveLength(2);
+  });
+
   it('portals the tooltip to document.body and outlines the hovered seat', () => {
     const { container } = render(<MapCanvas vm={makeVM()} />);
     const path = container.querySelector('path.pc') as SVGPathElement;
@@ -34,6 +47,7 @@ describe('MapCanvas', () => {
     expect(tip).toBeTruthy();
     expect(container.contains(tip)).toBe(false);
     expect(tip.parentElement).toBe(document.body);
+    expect(tip.querySelector('[data-tip-state]')?.textContent).toBe('Bihar');
     expect(path.style.stroke).toBe('var(--color-ink)');
     expect(path.style.fillOpacity).toBe('1');
     fireEvent.mouseLeave(path);

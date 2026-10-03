@@ -8,8 +8,8 @@ import { seatFills, showOutline, type SeatFill } from '../../model/derive/mapFil
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import type { LayerId } from '../../model/types/dashboard';
+import { LS_MAP_URL } from '../../model/geo/maps';
 
-const LS_PC = '/geo/india_pc.geojson';
 const LS_STATES = '/geo/india_states.geojson';
 
 export interface MapVM {
@@ -29,7 +29,8 @@ export interface MapVM {
   mapMode: MapMode;
   hexAvailable: boolean;
   lockedLabel: string | null;
-  seatInfo(id: string): { name: string; candidate: string; party: string; status: string; margin?: number; color: string } | null;
+  /** Tooltip facts; state is the seat's state (LS: from the PC map, VS: the election's state) when known. */
+  seatInfo(id: string): { name: string; state: string | null; candidate: string; party: string; status: string; margin?: number; color: string; mark: string | null; type: 'GEN' | 'SC' | 'ST' | null } | null;
   onLayer(l: LayerId): void;
   onMapMode(m: MapMode): void;
   onSelect(id: string): void;
@@ -43,7 +44,7 @@ export function useMapVM(): MapVM {
   const { state, dispatch } = useDashboardStore();
   const geo = src.data.manifestData?.geo;
   const isVS = src.election.type === 'VS';
-  const url = geo?.map_url || LS_PC;
+  const url = geo?.map_url || LS_MAP_URL;
   const [status, setStatus] = useState<MapVM['status']>('loading');
   const [features, setFeatures] = useState<GeoFeature[]>([]);
   const [stateFeatures, setStateFeatures] = useState<GeoFeature[] | null>(null);
@@ -91,7 +92,7 @@ export function useMapVM(): MapVM {
     seatInfo: id => {
       const s = byId.get(id);
       if (!s) return null;
-      return { name: s.name, candidate: s.candidate, party: s.party, status: s.party ? t(s.status.toLowerCase(), s.status) : t('results_pending'), margin: s.margin, color: s.partyColor };
+      return { name: s.name, state: (isVS ? src.election.state?.name : s.state) || null, candidate: s.candidate, party: s.party, status: s.party ? t(s.status.toLowerCase(), s.status) : t('results_pending'), margin: s.margin, color: s.partyColor, mark: s.party ? src.partyMeta.get(s.party)?.mark ?? null : null, type: s.type ?? null };
     },
     onLayer: l => dispatch({ type: 'setLayer', layer: l }),
     onMapMode: m => dispatch({ type: 'setMapMode', mode: m }),

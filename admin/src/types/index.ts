@@ -14,6 +14,8 @@ export interface Election {
   year: number;
   status: 'Upcoming' | 'Live' | 'Finalized';
   tentative_next_date: string | null;
+  /** Delimitation order year the seats follow, e.g. "2008"; null = not known. */
+  delimitation: string | null;
   manifest_url: string | null;
 }
 
@@ -240,6 +242,7 @@ export interface LiveCandidate {
   last_updated: string;
 }
 
+export type SeatStateName = 'not_started' | 'counting' | 'declared' | 'countermanded' | 'adjourned';
 export interface LiveConstituency {
   const_id: string;
   const_name: string;
@@ -247,6 +250,7 @@ export interface LiveConstituency {
   const_type: string;
   current_round: number | null;
   total_rounds: number | null;
+  seat_state?: SeatStateName | null;
   candidates: LiveCandidate[];
 }
 
@@ -368,11 +372,9 @@ export interface ConstituencyAnalysis {
   updated_at?: string | null;
 }
 
-export interface ResultOverride {
-  const_id: string;
-  candidate_id: string;
-  votes: number;
-  margin: number;
-  status: 'LEADING' | 'WON' | 'TRAILING' | 'LOST';
-  reason: string;
-}
+export interface ShardSelector { state_ids?: number[]; region_ids?: number[]; district_ids?: number[]; const_no_ranges?: [number, number][] }
+export interface IngestShardStatus { name: string; seat_count: number; source: string | null; lease_holder: string | null; lease_expires_at: string | null; last_post_at: string | null; last_applied_at: string | null; lag_s: number | null; recent: Record<string, number>; rejected: { const_id: string; reason: string }[]; tally_mismatch: { party_id: string }[] | null }
+export interface IngestAlert { key: string; level: 'warn' | 'error'; shard: string; message: string }
+export interface IngestStatus { election_id: string; status: string; active_source: string | null; hold_minutes: number; shards: IngestShardStatus[]; alerts: IngestAlert[] }
+export interface HoldRow { const_id: string; const_no: number; name: string; round_at_hold: number | null; expires_at: string; created_by_name: string | null }
+export interface IngestKeyRow { id: string; name: string; created_at: string; last_used_at: string | null; revoked_at: string | null }

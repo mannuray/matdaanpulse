@@ -98,12 +98,12 @@ test('baseline screenshot for side-by-side comparison', async ({ page }) => {
   await page.screenshot({ path: 'e2e/__shots__/baseline-1440x900.png' });
 });
 
-test('track a seat in the map focus and see it in the Watchlist tab', async ({ page }) => {
+test('track a seat from the seat dialog and see it in the Watchlist tab', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/election/${BIHAR}`);
   await page.evaluate(id => localStorage.removeItem(`watchlist_${id}`), BIHAR);
-  await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
-  const dialog = page.getByRole('dialog');
+  await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
+  const dialog = page.getByRole('dialog', { name: /Barauli/i });
   await expect(dialog).toBeVisible();
   const track = dialog.getByRole('button', { name: '☆ Track' });
   await expect(track).toBeVisible();
@@ -474,29 +474,34 @@ test.describe('theme selector', () => {
     await expectExpandTargets(page);
   });
 
-  test('legacy ConstituencyDetail (reached from the seat panel) in dark and light', async ({ page }) => {
+  test('constituency page (reached from the seat dialog) in dark and light', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
-    await page.getByRole('link', { name: /View full page/ }).click();
+    await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
+    await page.getByRole('dialog').getByRole('link', { name: /Full constituency page/ }).click();
     await expect(page).toHaveURL(/constituency\//);
+    await expect(page.getByRole('heading', { level: 1, name: /Barauli/i })).toBeVisible();
+    await expect(page.getByText('All candidates')).toBeVisible();
     await page.waitForTimeout(1500);
     expect(await themeOf(page)).toBe('dark');
     await page.screenshot({ path: `${SHOTS}/t25-legacy-dark.png` });
     await page.evaluate(() => localStorage.setItem('studio_theme', 'light'));
     await page.goto(page.url());
+    await expect(page.getByRole('heading', { level: 1, name: /Barauli/i })).toBeVisible();
     await page.waitForTimeout(1500);
     expect(await themeOf(page)).toBe('light');
     await page.screenshot({ path: `${SHOTS}/t25-legacy-light.png` });
   });
 
-  test('map focus seat list: rank numbers stay inside the panel', async ({ page }) => {
+  test('seat dialog: rank numbers stay inside the dialog', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(`/election/${BIHAR}?focus=map&seat=BR_VS_100_BARAULI`);
-    const aside = page.getByRole('dialog').locator('aside');
-    await expect(aside.locator('ol > li').first()).toBeVisible();
-    const ab = (await aside.boundingBox())!;
-    const lb = (await aside.locator('ol > li').first().boundingBox())!;
-    expect(lb.x).toBeGreaterThan(ab.x + 16);
+    await page.goto(`/election/${BIHAR}?seat=BR_VS_100_BARAULI`);
+    const dialog = page.getByRole('dialog', { name: /Barauli/i });
+    const rank = dialog.getByText('#1', { exact: true });
+    await expect(rank).toBeVisible();
+    const db = (await dialog.boundingBox())!;
+    const rb = (await rank.boundingBox())!;
+    expect(rb.x).toBeGreaterThan(db.x + 16);
+    expect(rb.x + rb.width).toBeLessThan(db.x + db.width);
     await page.waitForTimeout(400);
     await page.screenshot({ path: `${SHOTS}/t25-mapfocus-1440.png` });
   });
@@ -514,6 +519,9 @@ test.describe('scrollable side card and restored charts', () => {
       const summary = region(page, /^Summary/);
       await expect(summary).toBeVisible();
       await expect(page.getByText('Avg Margin')).toBeVisible();
+      // sections after the first start collapsed: open them all so the card overflows
+      const collapsed = summary.locator('h3 button[aria-expanded="false"]');
+      while (await collapsed.count()) await collapsed.first().click();
       const m = await summary.evaluate(el => ({ sh: el.scrollHeight, ch: el.clientHeight }));
       expect(m.sh).toBeGreaterThan(m.ch);
       await expect(page.getByText(/\+\d+ more/)).toHaveCount(0);
@@ -628,12 +636,18 @@ test.describe('scrollable side card and restored charts', () => {
 test.describe('task 27: map highlight from the summary', () => {
   const SHOTS27 = '../.playwright-mcp';
   const hlCount = (page: Page) => page.locator('path.pc[data-highlighted="true"]').count();
-  const section = (page: Page, title: string) => page.locator('h3', { hasText: title }).locator('xpath=..');
+  // A card section's rows (sections after the first start collapsed: open it first).
+  const section = (page: Page, title: string) => page.locator('h3', { hasText: title }).locator('xpath=..').locator('[data-section-body]');
+  const openSection = async (page: Page, title: string) => {
+    const head = page.locator('h3', { hasText: title }).getByRole('button');
+    if ((await head.getAttribute('aria-expanded')) === 'false') await head.click();
+  };
   const dimmed = (page: Page) => page.evaluate(() => [...document.querySelectorAll('path.pc')].filter(p => !p.hasAttribute('data-highlighted') && (p as SVGPathElement).style.fillOpacity === '0.12').length);
 
   test('hovering a closest-battles row highlights exactly that seat; the rest is dimmed; the outline survives in both themes', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
+    await openSection(page, 'Closest battles');
     const rows = section(page, 'Closest battles').getByRole('button');
     await expect(rows.first()).toBeVisible();
     await rows.first().hover();
@@ -654,6 +668,7 @@ test.describe('task 27: map highlight from the summary', () => {
   test('hovering the first margin bucket highlights as many seats as its value', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
+    await openSection(page, 'Margin distribution');
     const first = section(page, 'Margin distribution').getByRole('button').first();
     await expect(first).toBeVisible();
     const value = Number((await first.innerText()).match(/(\d+)\s*$/)![1]);
@@ -667,6 +682,7 @@ test.describe('task 27: map highlight from the summary', () => {
   test('moving straight from one row to the next never drops the highlight in between', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
+    await openSection(page, 'Closest battles');
     const rows = section(page, 'Closest battles').getByRole('button');
     await expect(rows.nth(1)).toBeVisible();
     const litPath = () => page.locator('path.pc[data-highlighted="true"]').first().getAttribute('d');
@@ -701,6 +717,7 @@ test.describe('task 27: map highlight from the summary', () => {
   test('a locked row is previewed over by hovering another, and returns when the hover ends', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}`);
+    await openSection(page, 'Margin distribution');
     const buckets = section(page, 'Margin distribution').getByRole('button');
     await expect(buckets.nth(1)).toBeVisible();
     const v0 = Number((await buckets.nth(0).innerText()).match(/(\d+)\s*$/)![1]);
@@ -718,6 +735,7 @@ test.describe('task 27: map highlight from the summary', () => {
   test('battle layer: the hovered close seat is drawn at full opacity', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/election/${BIHAR}?layer=battle`);
+    await openSection(page, 'Closest contests');
     const rows = section(page, 'Closest contests').getByRole('button');
     await expect(rows.first()).toBeVisible();
     await expect.poll(() => page.locator('path.pc').evaluateAll(ps => ps.some(p => (p as SVGPathElement).style.fillOpacity === '0.25'))).toBe(true);
@@ -739,6 +757,7 @@ test.describe('task 27: map highlight from the summary', () => {
     await page.screenshot({ path: `${SHOTS27}/t27-ls-nda-1440.png` });
     await page.mouse.move(0, 0);
     await expect.poll(() => hlCount(page)).toBe(0);
+    await openSection(page, 'Closest battles');
     await section(page, 'Closest battles').getByRole('button').first().hover();
     await expect.poll(() => hlCount(page)).toBe(1);
     await expect(page.locator('g.pc-highlight path')).toHaveCount(1);
@@ -771,20 +790,25 @@ async function adminToken(request: import('@playwright/test').APIRequestContext)
   return ((await res.json()) as { data: { access_token: string } }).data.access_token;
 }
 
-test('live: an admin override reaches an open dashboard within 20 s without reload', async ({ page, request }) => {
+test('live: an admin seat correction reaches an open dashboard within 20 s without reload', async ({ page, request }) => {
   test.setTimeout(90_000);
   const token = await adminToken(request);
   test.skip(!token, 'no admin credentials (E2E_ADMIN_TOKEN or ADMIN_EMAIL/ADMIN_PASSWORD)');
   const auth = { Authorization: `Bearer ${token}` };
 
-  type Cand = { result_id: string; party_id: string; votes: number; status: string; margin: number };
+  type Cand = { candidate_id: string; party_id: string; votes: number; status: string };
   const live = await request.get(`${API}/admin/elections/${KERALA_2021}/live-results`, { headers: auth });
-  const seats = ((await live.json()) as { data: { const_id: string; candidates: Cand[] }[] }).data;
+  const seats = ((await live.json()) as { data: { const_id: string; seat_state?: string | null; candidates: Cand[] }[] }).data;
   const seat = seats.find(s => s.candidates.length >= 2 && s.candidates[0].status === 'WON' && s.candidates[1].party_id !== s.candidates[0].party_id)!;
   const [winner, runner] = seat.candidates;
-  const override = (items: Cand[]) => request.post(`${API}/admin/results/override-bulk`, {
+  const originalState = seat.seat_state ?? 'declared';
+  // Seat correction API: replaces the seat's votes; it also places a hold that must be released afterwards.
+  // The API requires every candidate of the seat (incl. NOTA), so always send the full roster.
+  const rosterVotes = (overrides: Record<string, number> = {}) =>
+    Object.fromEntries(seat.candidates.map(c => [c.candidate_id, overrides[c.candidate_id] ?? c.votes]));
+  const correct = (state: string, votes: Record<string, number>) => request.put(`${API}/admin/elections/${KERALA_2021}/seats/${seat.const_id}`, {
     headers: auth,
-    data: { election_id: KERALA_2021, overrides: items.map(c => ({ result_id: c.result_id, votes: c.votes, status: c.status, margin: c.margin })) },
+    data: { state, votes },
   });
 
   expect((await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Live' } })).ok()).toBe(true);
@@ -798,17 +822,15 @@ test('live: an admin override reaches an open dashboard within 20 s without relo
     await page.waitForTimeout(500);
     const initial = snapshots.length; // 1 (2 under React StrictMode in dev)
 
-    const res = await override([
-      { ...runner, votes: winner.votes + 1000, status: 'WON', margin: 1000 },
-      { ...winner, status: 'LOST', margin: 0 },
-    ]);
+    const res = await correct('declared', rosterVotes({ [runner.candidate_id]: winner.votes + 1000 }));
     expect(res.ok()).toBe(true);
 
     // Ticker is derived from the snapshot diff: the runner-up's party now wins the seat.
     await expect(page.getByText(`${runner.party_id} wins`).first()).toBeVisible({ timeout: 20_000 });
     expect(snapshots.length).toBeGreaterThan(initial);
   } finally {
-    await override([winner, runner]);
-    await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Finalized' } });
+    await correct(originalState, rosterVotes()).catch(() => {});
+    await request.delete(`${API}/admin/elections/${KERALA_2021}/holds/${seat.const_id}`, { headers: auth }).catch(() => {});
+    await request.patch(`${API}/admin/elections/${KERALA_2021}`, { headers: auth, data: { status: 'Finalized' } }).catch(() => {});
   }
 });

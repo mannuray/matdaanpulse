@@ -88,3 +88,19 @@ export function groupDataSources(sources: readonly DataSource[]): DataSourceGrou
   }
   return [...groups.values()];
 }
+
+export interface DataMatrix {
+  /** Every year that has a dataset, oldest first. */
+  years: number[];
+  /** One row per house + state (DATA_SOURCES order); `cells[year]` is that election's dataset, if any. */
+  rows: { house: 'LS' | 'VS'; state: string | null; cells: Map<number, DataSource> }[];
+  /** Number of states with a Vidhan Sabha dataset. */
+  states: number;
+}
+
+/** The About page's election × year matrix. */
+export function dataMatrix(sources: readonly DataSource[]): DataMatrix {
+  const years = [...new Set(sources.map(s => s.year))].sort((a, b) => a - b);
+  const rows = groupDataSources(sources).map(g => ({ house: g.house, state: g.state, cells: new Map(g.rows.map(r => [r.year, r])) }));
+  return { years, rows, states: rows.filter(r => r.house === 'VS').length };
+}

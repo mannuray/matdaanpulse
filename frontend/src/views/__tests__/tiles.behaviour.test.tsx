@@ -22,7 +22,7 @@ afterEach(() => {
 describe('tile behaviour', () => {
   it('standings tile lists every party in a scroll region and has no "+N more" footer', () => {
     const rows = Array.from({ length: 12 }, (_, i) => ({ id: `P${i}`, name: `Party ${i}`, color: '#fff', seats: 12 - i, votePct: null, allianceId: null }));
-    const vm: StandingsVM = { rows, allRows: rows, pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop };
+    const vm: StandingsVM = { rows, allRows: rows, pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop, markOf: () => null, onOpenParty: noop };
     render(<StandingsTile vm={vm} variant="tile" />);
     expect(screen.getAllByRole('button', { name: /^P\d+ Party/ })).toHaveLength(12);
     expect(screen.getByRole('region', { name: 'Parties' }).getAttribute('tabindex')).toBe('0');
@@ -52,7 +52,7 @@ describe('tile behaviour', () => {
     const onHoverSeat = vi.fn();
     const vm: LeadersVM = {
       leaders: [{ key: 'k', name: 'Test Leader', constId: 'C7', constName: 'Seat', partyId: 'BJP', status: 'LEADING', margin: 100, custom: false }], watchlist: [],
-      partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat, onHoverSeat, onAddCustom: noop, onRemoveCustom: noop,
+      partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat, onHoverSeat, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop,
     };
     render(<LeadersStrip vm={vm} variant="tile" />);
     const card = screen.getByRole('button', { name: /Test Leader/ });
@@ -68,7 +68,7 @@ describe('tile behaviour', () => {
     // 3 cards + 3 gaps (incl. the one before the chip) + 96px chip = 3*248 + 96; 92px wide is 4px short.
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, get: () => 3 * 248 + 92 });
     const leaders = Array.from({ length: 6 }, (_, i) => ({ key: `k${i}`, name: `Leader ${i}`, constId: `C${i}`, constName: 'Seat', partyId: 'BJP', status: 'LEADING' as const, margin: 10, custom: false }));
-    const vm: LeadersVM = { leaders, watchlist: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop };
+    const vm: LeadersVM = { leaders, watchlist: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop };
     render(<LeadersStrip vm={vm} variant="tile" />);
     expect(screen.getAllByRole('button', { name: /Leader \d/ })).toHaveLength(2);
     expect(screen.getByText('+4 more')).toBeTruthy();

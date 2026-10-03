@@ -2,7 +2,7 @@
  * Generate West Bengal Vidhan Sabha seed SQL files for 2011, 2016, 2021.
  *
  * Reads JSON data from database/data/wb_vs_{year}.json and GeoJSON from
- * frontend/public/geo/wb_ac.geojson for canonical names + categories.
+ * frontend/public/geo/wb_ac_2008.geojson for canonical names + categories.
  *
  * Usage: npx ts-node src/generate-wb-vs-seeds.ts
  */
@@ -52,7 +52,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       vip_seats: {},
       milestones: [{ label: 'Majority', value: 148 }],
       geo: {
-        map_url: '/geo/wb_ac.geojson',
+        map_url: '/geo/wb_ac_2008.geojson',
         center: [87.5, 23.0],
         zoom: 7,
       },
@@ -95,7 +95,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       milestones: [{ label: 'Majority', value: 148 }],
       compare_with: ['d4e5f6a7-b8c9-0123-def0-345678901011'],
       geo: {
-        map_url: '/geo/wb_ac.geojson',
+        map_url: '/geo/wb_ac_2008.geojson',
         center: [87.5, 23.0],
         zoom: 7,
       },
@@ -143,7 +143,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       ],
       history_years: [2011, 2016],
       geo: {
-        map_url: '/geo/wb_ac.geojson',
+        map_url: '/geo/wb_ac_2008.geojson',
         center: [87.5, 23.0],
         zoom: 7,
       },
@@ -233,7 +233,7 @@ function main() {
   console.log('=== West Bengal Vidhan Sabha Seed Generator ===\n');
 
   // Load GeoJSON
-  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/wb_ac.geojson');
+  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/wb_ac_2008.geojson');
   const geoData = JSON.parse(fs.readFileSync(geoPath, 'utf8'));
   const geoMap: Record<number, GeoEntry> = {};
   for (const feat of geoData.features) {

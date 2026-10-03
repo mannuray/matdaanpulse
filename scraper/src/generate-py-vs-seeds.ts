@@ -46,7 +46,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       vip_seats: {},
       milestones: [{ label: 'Majority', value: 16 }],
       geo: {
-        map_url: '/geo/py_ac.geojson',
+        map_url: '/geo/py_ac_2008.geojson',
         center: [79.8, 11.9],
         zoom: 11,
       },
@@ -83,7 +83,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       milestones: [{ label: 'Majority', value: 16 }],
       compare_with: ['b1c2d3e4-f5a6-7890-1234-567890ab2011'],
       geo: {
-        map_url: '/geo/py_ac.geojson',
+        map_url: '/geo/py_ac_2008.geojson',
         center: [79.8, 11.9],
         zoom: 11,
       },
@@ -124,7 +124,7 @@ const YEAR_CONFIGS: YearConfig[] = [
       ],
       history_years: [2011, 2016],
       geo: {
-        map_url: '/geo/py_ac.geojson',
+        map_url: '/geo/py_ac_2008.geojson',
         center: [79.8, 11.9],
         zoom: 11,
       },
@@ -168,7 +168,7 @@ interface GeoEntry { name: string; category: string; }
 function main() {
   console.log('=== Puducherry Vidhan Sabha Seed Generator ===\n');
 
-  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/py_ac.geojson');
+  const geoPath = path.resolve(__dirname, '../../frontend/public/geo/py_ac_2008.geojson');
   const geoData = JSON.parse(fs.readFileSync(geoPath, 'utf8'));
   const geoMap: Record<number, GeoEntry> = {};
   for (const feat of geoData.features) {

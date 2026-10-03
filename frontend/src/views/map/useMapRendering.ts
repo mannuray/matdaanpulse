@@ -20,6 +20,11 @@ interface UseMapRenderingProps {
   MAP_HEIGHT: number;
   /** Whether constituency labels may be shown (e.g. only on the overview tab). */
   showLabels: boolean;
+  /**
+   * Identity of the current geometry (the feature arrays behind geoRef / stateGeoRef). The refs are stable, so
+   * without this a geometry swap that keeps `loaded` true (both geojson files already cached) is never redrawn.
+   */
+  geometry: readonly unknown[];
 }
 
 /** On-screen area (px²) a constituency must reach before its label is shown. */
@@ -59,6 +64,7 @@ export function useMapRendering({
   MAP_WIDTH,
   MAP_HEIGHT,
   showLabels,
+  geometry,
 }: UseMapRenderingProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const gRef = useRef<Selection<SVGGElement, unknown, null, undefined> | null>(null);
@@ -217,7 +223,8 @@ export function useMapRendering({
     updateLabels(zoomTransform(svgRef.current).k);
 
     return () => { if (rafId) cancelAnimationFrame(rafId); };
-  }, [loaded, isVS, geoConfig, MAP_WIDTH, MAP_HEIGHT, geoRef, stateGeoRef, updateLabels]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- `geometry` holds the identities the refs hide
+  }, [loaded, isVS, geoConfig, MAP_WIDTH, MAP_HEIGHT, geoRef, stateGeoRef, updateLabels, ...geometry]);
 
   return { svgRef, gRef, zoomRef, pathGenRef, handleResetZoom };
 }

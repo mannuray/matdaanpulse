@@ -34,7 +34,7 @@ The centerpiece of the dashboard — a zoomable, pannable SVG map rendered with 
 
 ### How it renders
 
-1. **GeoJSON loading**: On mount (or election switch), fetches the GeoJSON file specified by `manifest.geo.map_url` (default: `/geo/india_pc.geojson` for Lok Sabha). For VS elections, also calls `fitSize()` to auto-zoom to the state boundary.
+1. **GeoJSON loading**: On mount (or election switch), fetches the GeoJSON file specified by `manifest.geo.map_url` (default: `/geo/india_pc_2008.geojson` for Lok Sabha). For VS elections, also calls `fitSize()` to auto-zoom to the state boundary.
 2. **Projection**: Uses `d3.geoMercator()`. LS uses fixed India center `[82, 23]`. VS uses the manifest's `geo.center` and `geo.zoom`, then `fitSize()` for tight fit.
 3. **Path rendering**: Each GeoJSON feature becomes a `<path class="pc">` element inside a `<g>` group. State boundaries (`india_states.geojson`) are drawn as `<path class="state">` on top (LS only).
 4. **Zoom/pan**: `d3.zoom()` with scale extent `[1, 80]`. Transforms the `<g>` group. Stroke width adjusts inversely with zoom level so borders don't thicken.
@@ -390,7 +390,7 @@ The system supports both Lok Sabha (national, 543 seats) and Vidhan Sabha (state
 
 | Aspect | Lok Sabha | Vidhan Sabha |
 |--------|-----------|-------------|
-| GeoJSON | `india_pc.geojson` (543 PCs) | Per-state, e.g. `bihar_ac.geojson` (243 ACs) |
+| GeoJSON | `india_pc_2008.geojson` (543 PCs) | Per-state, e.g. `bihar_ac_2008.geojson` (243 ACs) |
 | Projection | Fixed India center | `fitSize()` on state bounds |
 | Feature props | `pc_name`, `pc_category` | `ac_name`, `ac_category` |
 | ID format | `BR_PATNA_SAHIB` | `BR_VS_131_KALYANPUR` |
@@ -433,7 +433,7 @@ The manifest is a JSON blob stored in the `elections.manifest_url` column. It dr
     { spoiler: "AIMIM", hurts: "MGB", label: "AIMIM split" }
   ],
   geo: {                                // Map configuration
-    map_url: "/geo/bihar_ac.geojson",
+    map_url: "/geo/bihar_ac_2008.geojson",
     center: [85.5, 25.6],
     zoom: 8
   }

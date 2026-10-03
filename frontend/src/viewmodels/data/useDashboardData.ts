@@ -10,8 +10,9 @@ import { useLiveSnapshot } from './useLiveSnapshot';
 import { shouldPoll, type LiveElectionStatus } from '../../model/live/poller';
 import { buildStateByConstId, displayNameFromConstId } from '../../model/geo/regionMatching';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
-import type { Election, MapTab, ResultRow, ManifestData, StandingsData, VoteShare } from '../../model/types';
+import type { Election, MapTab, ResultRow, ManifestData, StandingsData, VoteShare, SeatLiveState } from '../../model/types';
 import type { PartySeats, SeatResult } from '../../model/types/dashboard';
+import { LS_MAP_URL } from '../../model/geo/maps';
 
 export interface MapRegionViewModel extends SeatResult {
   color: string;
@@ -37,6 +38,8 @@ export interface AddableItem {
 
 export interface DashboardViewModel {
   results: ResultRow[];
+  /** Per-seat ingest state of the live snapshot (empty without one). */
+  seats: Record<string, SeatLiveState>;
   manifestData: ManifestData | null;
   standings: StandingsData;
   constCandidates: Map<string, ResultRow[]>;
@@ -69,8 +72,8 @@ export interface DashboardViewModel {
   liveVersion: number | null;
 }
 
+const NO_SEATS: Record<string, SeatLiveState> = {};
 const PENDING_FILL = 'var(--map-default-fill)';
-const LS_GEO_URL = '/geo/india_pc.geojson';
 
 function recolor<R extends { color: string }[] | null | undefined>(rows: R, theme: ThemeName): R {
   if (!rows || theme === 'dark') return rows;
@@ -142,7 +145,7 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
   useEffect(() => {
     if (!isLS) return;
     let active = true;
-    ElectionService.getGeoJSON(LS_GEO_URL)
+    ElectionService.getGeoJSON(LS_MAP_URL)
       .then(fc => { if (active) setLsFeatures(fc.features as GeoFeature[]); })
       .catch(() => { /* map shows its own error; states just stay unresolved */ });
     return () => { active = false; };
@@ -309,6 +312,7 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
 
   return {
     results: results || [],
+    seats: snap?.seats ?? NO_SEATS,
     manifestData,
     standings,
     constCandidates,

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseVotes, rankSeat, seatMargin, deriveStatuses, buildSeatOverrides, seatStatus, countSeats, reportingPercent, isLockLapsed, SEAT_LOCK_TTL_MS, type SeatRow } from './seat-math';
+import { parseVotes, rankSeat, seatMargin, deriveStatuses, seatStatus, countSeats, reportingPercent, isLockLapsed, SEAT_LOCK_TTL_MS, type SeatRow } from './seat-math';
 
 const row = (id: string, votes: number, party = id.toUpperCase(), status: SeatRow['status'] = 'TRAILING'): SeatRow => ({
   result_id: id, candidate_id: `c-${id}`, candidate_name: id, party_id: party, party_abbr: party, party_color: null, votes, status,
@@ -51,20 +51,6 @@ describe('deriveStatuses', () => {
   });
   it('tie: everyone TRAILING even if declared requested', () => {
     expect(deriveStatuses([row('a', 5), row('b', 5)], true).map((r) => r.status)).toEqual(['TRAILING', 'TRAILING']);
-  });
-});
-
-describe('buildSeatOverrides', () => {
-  it('margin convention: leader lead over runner-up, others gap to leader', () => {
-    const items = buildSeatOverrides([row('a', 61204, 'BJP', 'LEADING'), row('b', 48990), row('n', 1120, 'NOTA')]);
-    expect(items).toEqual([
-      { result_id: 'a', votes: 61204, status: 'LEADING', margin: 12214 },
-      { result_id: 'b', votes: 48990, status: 'TRAILING', margin: 12214 },
-      { result_id: 'n', votes: 1120, status: 'TRAILING', margin: 60084 },
-    ]);
-  });
-  it('no leader → every margin 0', () => {
-    expect(buildSeatOverrides([row('a', 0), row('b', 0)]).map((i) => i.margin)).toEqual([0, 0]);
   });
 });
 

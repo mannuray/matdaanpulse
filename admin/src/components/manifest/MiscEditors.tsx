@@ -182,7 +182,7 @@ export function GeoConfigEditor({
     <ManifestSection title="Geo config" description="Map GeoJSON source and projection settings">
       <div className="grid grid-cols-[1fr_1fr_auto] items-start gap-3">
         <Field label="Map URL">
-          <Input placeholder="/geo/india_pc.geojson" value={g.map_url || ''}
+          <Input placeholder="/geo/india_pc_2008.geojson" value={g.map_url || ''}
             onChange={e => onUpdate({ ...g, map_url: e.target.value || undefined })} />
         </Field>
         <Field label="Centre (lat, lng)" hint="Two numbers, e.g. 22.5, 82.5">

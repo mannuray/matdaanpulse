@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { intentFor } from '../store/hoverIntent';
-import { collectLeaderEntries, deriveLeaderCards, type LeaderCard } from '../../model/derive/leaders';
+import { collectLeaderEntries, deriveLeaderCards, resolveLeaderSeats, type LeaderCard } from '../../model/derive/leaders';
 
 export type { LeaderCard };
 
@@ -18,15 +18,18 @@ export interface LeadersVM {
   onHoverSeat(id: string | null): void;
   onAddCustom(constId: string): void;
   onRemoveCustom(constId: string): void;
+  markOf(partyId: string): string | null;
+  onOpenParty(partyId: string): void;
 }
 
 export function useLeadersVM(): LeadersVM {
   const src = useSources();
   const { dispatch } = useDashboardStore();
-  const { manifestData, currentWinnerMap, mapRegions } = src.data;
+  const { manifestData, currentWinnerMap, mapRegions, results } = src.data;
+  // Manifest leaders without a seat get it from this election's results (name match within the party).
   const leaders = useMemo(
-    () => deriveLeaderCards(collectLeaderEntries(manifestData, []), currentWinnerMap),
-    [manifestData, currentWinnerMap],
+    () => deriveLeaderCards(resolveLeaderSeats(collectLeaderEntries(manifestData, []), results), currentWinnerMap),
+    [manifestData, currentWinnerMap, results],
   );
   const watchlist = useMemo(
     () => deriveLeaderCards(collectLeaderEntries(null, src.watchlist), currentWinnerMap),
@@ -43,5 +46,7 @@ export function useLeadersVM(): LeadersVM {
     onHoverSeat: id => intentFor(dispatch)(id ? { parties: [], seats: [id] } : null),
     onAddCustom: constId => src.addWatch(constId, seatOptions.find(s => s.id === constId)?.name ?? constId),
     onRemoveCustom: src.removeWatch,
+    markOf: id => src.partyMeta.get(id)?.mark ?? null,
+    onOpenParty: id => dispatch({ type: 'selectParty', party: id }),
   };
 }

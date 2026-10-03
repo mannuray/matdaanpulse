@@ -49,6 +49,23 @@ export function collectLeaderEntries(manifest: ManifestData | null, custom: Cust
   return out;
 }
 
+const tokens = (name: string) => name.toUpperCase().replace(/[^\p{L}\p{M}\s]/gu, ' ').split(/\s+/).filter(Boolean);
+
+/**
+ * Manifest leaders often come without a seat (const_id ""). Find it from this election's results: the one candidate of
+ * the leader's party whose name contains every token of the leader's name ("Tejashwi Yadav" → "TEJASHWI PRASAD YADAV").
+ * No match, or more than one, leaves the leader seatless (no guessing).
+ */
+export function resolveLeaderSeats<E extends LeaderEntry>(entries: E[], results: ResultRow[]): E[] {
+  return entries.map(e => {
+    if (e.constId || !e.partyId) return e;
+    const want = tokens(e.name);
+    if (!want.length) return e;
+    const hits = new Set(results.filter(r => r.party_id === e.partyId && want.every(t => tokens(r.candidate_name).includes(t))).map(r => r.const_id));
+    return hits.size === 1 ? { ...e, constId: [...hits][0] } : e;
+  });
+}
+
 export function deriveLeaderCards(entries: Entry[], winners: Map<string, ResultRow>): LeaderCard[] {
   return entries.map(e => {
     const w = winners.get(e.constId);

@@ -16,13 +16,13 @@ vi.mock('../map/MapTile', () => ({ MapTile: () => <div data-testid="map" /> }));
 vi.mock('../dashboard/StatsStrip', () => ({ StatsStrip: () => null }));
 vi.mock('../dashboard/LeadersStrip', () => ({ LeadersStrip: () => null }));
 vi.mock('../dashboard/LayerInsightStrip', () => ({ LayerInsightStrip: () => null }));
-vi.mock('../map/SeatPanel', () => ({ SeatPanel: () => null }));
+vi.mock('../seat/SeatDialog', () => ({ SeatDialog: () => null }));
 
 afterEach(cleanup);
 const noop = () => {};
 
 const row = (id: string, seats: number): StandingRow => ({ id, name: `${id} party`, color: '#f70', seats, votePct: null, allianceId: null });
-const standings = (rows: StandingRow[]): StandingsVM => ({ rows, allRows: rows, pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop });
+const standings = (rows: StandingRow[]): StandingsVM => ({ rows, allRows: rows, pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop, markOf: () => null, onOpenParty: noop });
 
 describe('StandingsPreview', () => {
   it('shows the top four parties (dot, short id, bar, seats) and +N more, with no buttons', () => {
@@ -95,7 +95,7 @@ describe('mobile rail titles', () => {
     scoreboard: { blocs: [], others: { seats: 0, votePct: null }, totalSeats: 1, majority: 1, countedSeats: 0, winnerId: null, marginOverMajority: null, status: 'final', pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop },
     standings: { ...standings([row('BJP', 5)]), onFocus },
     insight: { onFocus: noop }, leaders: { watchlist: [], leaders: [], partyColor: new Map(), seatOptions: [], onFocus: noop }, stats: { onFocus: noop },
-    map: {}, seatPanel: null, focus, onCloseFocus: noop,
+    map: {}, seatDialog: null, focus, onCloseFocus: noop,
   }) as unknown as DashboardViewProps;
   const grid = (p: DashboardViewProps) => <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><DashboardGrid {...p} /></MemoryRouter>;
 

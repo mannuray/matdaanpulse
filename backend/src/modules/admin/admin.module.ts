@@ -4,7 +4,6 @@ import { AdminElectionsController } from './controllers/admin-elections.controll
 import { AdminPartiesController } from './controllers/admin-parties.controller';
 import { AdminCandidatesController } from './controllers/admin-candidates.controller';
 import { AdminPersonsController } from './controllers/admin-persons.controller';
-import { AdminResultsController } from './controllers/admin-results.controller';
 import { AdminUsersController } from './controllers/admin-users.controller';
 import { AdminAuditLogsController } from './controllers/admin-audit-logs.controller';
 import { AdminConstituenciesController } from './controllers/admin-constituencies.controller';
@@ -41,7 +40,6 @@ import { MediaModule } from '../media/media.module';
     AdminPartiesController,
     AdminCandidatesController,
     AdminPersonsController,
-    AdminResultsController,
     AdminUsersController,
     AdminAuditLogsController,
     AdminConstituenciesController,
