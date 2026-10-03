@@ -10,6 +10,12 @@ describe('readEntity', () => {
     }, sitelinks: { enwiki: { title: 'Tejashwi Yadav' } } };
     expect(readEntity(e)).toEqual({ image: 'Tejaswi Yadav 2023.jpg', dob: '1988-11-09', gender: 'M', enwiki: 'https://en.wikipedia.org/wiki/Tejashwi_Yadav' });
   });
+  it('drops a birth date that Wikidata holds only to the year or month (precision below 11)', () => {
+    const e = { claims: { P569: [{ mainsnak: { datavalue: { value: { time: '+1944-01-01T00:00:00Z', precision: 9 } } } }] } };
+    expect(readEntity(e).dob).toBeNull();
+    const d = { claims: { P569: [{ mainsnak: { datavalue: { value: { time: '+1944-01-01T00:00:00Z', precision: 11 } } } }] } };
+    expect(readEntity(d).dob).toBe('1944-01-01');
+  });
   it('tolerates missing claims and year-only dates', () => {
     expect(readEntity({ claims: { P569: [{ mainsnak: { datavalue: { value: { time: '+1951-00-00T00:00:00Z' } } } }] } }))
       .toEqual({ image: null, dob: null, gender: null, enwiki: null });

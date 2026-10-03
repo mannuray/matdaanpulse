@@ -9,7 +9,9 @@ export const stripHtml = (s: string) => s.replace(/<[^>]*>/g, '').replace(/&nbsp
 
 export function readEntity(entity: unknown) {
   const e = entity as Any;
-  const time: string | undefined = first(e.claims, 'P569')?.time;
+  const birth = first(e.claims, 'P569') as { time?: string; precision?: number } | undefined;
+  // precision 11 = day; a year- or month-precise value (9/10) is stored as -01-01 and must not read as a birth date.
+  const time = birth && (birth.precision === undefined || birth.precision >= 11) ? birth.time : undefined;
   const m = time ? /^\+(\d{4})-(\d{2})-(\d{2})T/.exec(time) : null;
   const dob = m && m[2] !== '00' && m[3] !== '00' ? `${m[1]}-${m[2]}-${m[3]}` : null;
   const title: string | undefined = e.sitelinks?.enwiki?.title;

@@ -20,10 +20,12 @@ const json = async (url: string) => { const r = await fetch(url, { headers: { 'U
   const file = path.join(DATA_DIR, 'leader-profiles.json');
   const out: Record<string, Profile> = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
   for (const p of leaders.people) {
-    if (!p.wikidata || out[p.key]?.photo_url) continue;
+    if (!p.wikidata) continue;
+    const prev = out[p.key];
     const ent = readEntity(Object.values((await json(`https://www.wikidata.org/wiki/Special:EntityData/${p.wikidata}.json`)).entities)[0]);
-    let photo_url: string | null = null, credit = null;
-    if (ent.image) {
+    // Facts are refreshed every run; a photo is downloaded and uploaded only once.
+    let photo_url: string | null = prev?.photo_url ?? null, credit = prev?.credit ?? null;
+    if (ent.image && !photo_url) {
       await sleep(1000);
       const pages = (await json(`https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=480&titles=${encodeURIComponent(`File:${ent.image}`)}`)).query.pages;
       const info = readImageInfo(Object.values(pages)[0]);
