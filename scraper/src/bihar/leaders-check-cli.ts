@@ -4,7 +4,7 @@ import * as path from 'path';
 import { parseState } from './elections';
 import { trackOf } from './current-track';
 import { loadSeeded } from './seeded';
-import { similarity } from './names';
+import { pickCandidacy } from './leaders-seed';
 import type { LeadersFile } from './leaders-data';
 import type { Year } from './types';
 
@@ -15,9 +15,10 @@ const rows = f.people.filter(p => p.candidacies.length > 1).map(p => {
   const ids = p.candidacies.map(c => {
     const y = s.get(c.year as Year)!;
     const seat = y.json.seats.find(x => y.seat(x.constNo).id === c.const_id)!;
-    const best = seat.candidates.filter(x => x.partyId !== 'NOTA').sort((a, b) => similarity(b.name, p.name) - similarity(a.name, p.name))[0];
+    const best = pickCandidacy(seat.candidates, p.name)!;
     return `'${y.idOf(seat.constNo, best)}'`;
   });
   return `SELECT '${p.key}' AS leader, count(DISTINCT person_id) AS persons FROM candidates WHERE id IN (${ids.join(', ')})`;
 });
-console.log(`SELECT * FROM (${rows.join('\nUNION ALL ')}) t WHERE persons > 1;`);
+// No leader with several candidacies: nothing can be split (an empty query that returns no rows).
+console.log(rows.length ? `SELECT * FROM (${rows.join('\nUNION ALL ')}) t WHERE persons > 1;` : 'SELECT NULL AS leader WHERE false;');

@@ -1,0 +1,258 @@
+{
+  "people": [
+    {
+      "key": "v-d-satheesan",
+      "name": "V. D. Satheesan",
+      "wikidata": "Q6956446",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_78_PARAVUR"
+        }
+      ]
+    },
+    {
+      "key": "pinarayi-vijayan",
+      "name": "Pinarayi Vijayan",
+      "wikidata": "Q3595385",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_12_DHARMADAM"
+        }
+      ]
+    },
+    {
+      "key": "rajeev-chandrasekhar",
+      "name": "Rajeev Chandrasekhar",
+      "wikidata": "Q7285934",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_135_NEMOM"
+        }
+      ]
+    },
+    {
+      "key": "ramesh-chennithala",
+      "name": "Ramesh Chennithala",
+      "wikidata": "Q7289391",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_107_HARIPAD"
+        }
+      ]
+    },
+    {
+      "key": "k-muraleedharan",
+      "name": "K. Muraleedharan",
+      "wikidata": "Q13564486",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_133_VATTIYOORKAVU"
+        }
+      ]
+    },
+    {
+      "key": "sunny-joseph",
+      "name": "Sunny Joseph",
+      "wikidata": "Q20564838",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_16_PERAVOOR"
+        }
+      ]
+    },
+    {
+      "key": "p-k-kunhalikutty",
+      "name": "P. K. Kunhalikutty",
+      "wikidata": "Q7117360",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_40_MALAPPURAM"
+        }
+      ]
+    },
+    {
+      "key": "shibu-baby-john",
+      "name": "Shibu Baby John",
+      "wikidata": "Q7496081",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_117_CHAVARA"
+        }
+      ]
+    },
+    {
+      "key": "mons-joseph",
+      "name": "Mons Joseph",
+      "wikidata": "Q6898473",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_94_KADUTHURUTHY"
+        }
+      ]
+    },
+    {
+      "key": "anoop-jacob",
+      "name": "Anoop Jacob",
+      "wikidata": "Q4770056",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_85_PIRAVOM"
+        }
+      ]
+    },
+    {
+      "key": "c-p-john",
+      "name": "C. P. John",
+      "wikidata": "Q23887860",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_134_THIRUVANANTHAPURAM"
+        }
+      ]
+    },
+    {
+      "key": "a-p-anil-kumar",
+      "name": "A. P. Anil Kumar",
+      "wikidata": "Q4647269",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_36_WANDOOR"
+        }
+      ]
+    },
+    {
+      "key": "n-samsudheen",
+      "name": "N. Samsudheen",
+      "wikidata": "Q24055597",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_54_MANNARKKAD"
+        }
+      ]
+    },
+    {
+      "key": "k-m-shaji",
+      "name": "K. M. Shaji",
+      "wikidata": "Q16213770",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_41_VENGARA"
+        }
+      ]
+    },
+    {
+      "key": "p-k-basheer",
+      "name": "P. K. Basheer",
+      "wikidata": "Q7121263",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "KL_VS26_34_ERNAD"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2026": {
+      "leaders": [
+        {
+          "key": "v-d-satheesan",
+          "role": "Chief Minister",
+          "party_id": "INC"
+        },
+        {
+          "key": "pinarayi-vijayan",
+          "role": "Leader of the Opposition",
+          "party_id": "CPIM"
+        },
+        {
+          "key": "rajeev-chandrasekhar",
+          "role": "NDA chief ministerial face",
+          "party_id": "BJP"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "ramesh-chennithala",
+          "role": "Minister of Home and Vigilance",
+          "party_id": "INC"
+        },
+        {
+          "key": "k-muraleedharan",
+          "role": "Minister of Health and Devaswom",
+          "party_id": "INC"
+        },
+        {
+          "key": "sunny-joseph",
+          "role": "Minister of Electricity and Parliamentary Affairs",
+          "party_id": "INC"
+        },
+        {
+          "key": "p-k-kunhalikutty",
+          "role": "Minister of Industries and Information Technology",
+          "party_id": "IUML"
+        },
+        {
+          "key": "a-p-anil-kumar",
+          "role": "Minister of Revenue",
+          "party_id": "INC"
+        },
+        {
+          "key": "k-m-shaji",
+          "role": "Minister of Local Self Governments",
+          "party_id": "IUML"
+        },
+        {
+          "key": "n-samsudheen",
+          "role": "Minister of General Education",
+          "party_id": "IUML"
+        },
+        {
+          "key": "p-k-basheer",
+          "role": "Minister of Public Works",
+          "party_id": "IUML"
+        },
+        {
+          "key": "mons-joseph",
+          "role": "Minister of Water Resources",
+          "party_id": "KEC"
+        },
+        {
+          "key": "shibu-baby-john",
+          "role": "Minister of Forests and Skill Development",
+          "party_id": "RSP"
+        },
+        {
+          "key": "anoop-jacob",
+          "role": "Minister of Food and Civil Supplies",
+          "party_id": "KECJ"
+        },
+        {
+          "key": "c-p-john",
+          "role": "Minister of Transport",
+          "party_id": "CMPKSC"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Satheesan_ministry",
+        "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election",
+        "https://en.wikipedia.org/wiki/List_of_leaders_of_the_opposition_in_the_Kerala_Legislative_Assembly",
+        "https://keralakaumudi.com/en/news/kerala/general/pinarayi-vijayan-named-opposition-leader-decision-taken-at-cpm-state-committee-1747113"
+      ]
+    }
+  }
+}

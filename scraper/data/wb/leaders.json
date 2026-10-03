@@ -1,0 +1,295 @@
+{
+  "people": [
+    {
+      "key": "suvendu-adhikari",
+      "name": "Suvendu Adhikari",
+      "wikidata": "Q7650495",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_159_BHABANIPUR"
+        },
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_210_NANDIGRAM"
+        }
+      ]
+    },
+    {
+      "key": "ritabrata-banerjee",
+      "name": "Ritabrata Banerjee",
+      "wikidata": "Q15724694",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_176_ULUBERIA_PURBA"
+        }
+      ]
+    },
+    {
+      "key": "mamata-banerjee",
+      "name": "Mamata Banerjee",
+      "wikidata": "Q465041",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_159_BHABANIPUR"
+        }
+      ]
+    },
+    {
+      "key": "subhankar-sarkar",
+      "name": "Subhankar Sarkar",
+      "wikidata": "Q128784635",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_186_SREERAMPUR"
+        }
+      ]
+    },
+    {
+      "key": "humayun-kabir",
+      "name": "Humayun Kabir",
+      "wikidata": "Q124060850",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_74_NOWDA"
+        }
+      ]
+    },
+    {
+      "key": "nisith-pramanik",
+      "name": "Nisith Pramanik",
+      "wikidata": "Q64011110",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_2_MATHABHANGA"
+        }
+      ]
+    },
+    {
+      "key": "swapan-dasgupta",
+      "name": "Swapan Dasgupta",
+      "wikidata": "Q7653792",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_160_RASHBEHARI"
+        }
+      ]
+    },
+    {
+      "key": "dilip-ghosh",
+      "name": "Dilip Ghosh",
+      "wikidata": "Q22004534",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_224_KHARAGPUR_SADAR"
+        }
+      ]
+    },
+    {
+      "key": "agnimitra-paul",
+      "name": "Agnimitra Paul",
+      "wikidata": "Q4693256",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_280_ASANSOL_DAKSHIN"
+        }
+      ]
+    },
+    {
+      "key": "sharadwat-mukherjee",
+      "name": "Sharadwat Mukherjee",
+      "wikidata": "Q139705817",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_116_BIDHANNAGAR"
+        }
+      ]
+    },
+    {
+      "key": "tapas-roy",
+      "name": "Tapas Roy",
+      "wikidata": "Q64858876",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_167_MANIKTALA"
+        }
+      ]
+    },
+    {
+      "key": "dipak-barman",
+      "name": "Dipak Barman",
+      "wikidata": "Q106833299",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_13_FALAKATA"
+        }
+      ]
+    },
+    {
+      "key": "arjun-singh",
+      "name": "Arjun Singh",
+      "wikidata": "Q58010181",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_107_NOAPARA"
+        }
+      ]
+    },
+    {
+      "key": "jagannath-chattopadhyay",
+      "name": "Jagannath Chattopadhyay",
+      "wikidata": "Q139763627",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_285_SURI"
+        }
+      ]
+    },
+    {
+      "key": "shankar-ghosh",
+      "name": "Shankar Ghosh",
+      "wikidata": "Q106975838",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_26_SILIGURI"
+        }
+      ]
+    },
+    {
+      "key": "ashok-kirtania",
+      "name": "Ashok Kirtania",
+      "wikidata": "Q106860418",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_95_BANGAON_UTTAR"
+        }
+      ]
+    },
+    {
+      "key": "kshudiram-tudu",
+      "name": "Kshudiram Tudu",
+      "wikidata": "Q139678937",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "WB_VS26_249_RANIBANDH"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2026": {
+      "leaders": [
+        {
+          "key": "suvendu-adhikari",
+          "role": "Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ritabrata-banerjee",
+          "role": "Leader of the Opposition",
+          "party_id": "TMC"
+        },
+        {
+          "key": "mamata-banerjee",
+          "role": "Trinamool Congress chief ministerial candidate",
+          "party_id": "TMC"
+        },
+        {
+          "key": "subhankar-sarkar",
+          "role": "West Bengal Congress president, candidate",
+          "party_id": "INC"
+        },
+        {
+          "key": "humayun-kabir",
+          "role": "AJUP president, candidate",
+          "party_id": "AJUP"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "nisith-pramanik",
+          "role": "Minister of North Bengal Development and Water Resources",
+          "party_id": "BJP"
+        },
+        {
+          "key": "swapan-dasgupta",
+          "role": "Minister of Finance",
+          "party_id": "BJP"
+        },
+        {
+          "key": "dilip-ghosh",
+          "role": "Minister of Panchayats and Rural Development",
+          "party_id": "BJP"
+        },
+        {
+          "key": "agnimitra-paul",
+          "role": "Minister of Urban Development and Municipal Affairs",
+          "party_id": "BJP"
+        },
+        {
+          "key": "sharadwat-mukherjee",
+          "role": "Minister of Health and Family Welfare",
+          "party_id": "BJP"
+        },
+        {
+          "key": "tapas-roy",
+          "role": "Minister of Industry and Commerce",
+          "party_id": "BJP"
+        },
+        {
+          "key": "dipak-barman",
+          "role": "Minister of School Education",
+          "party_id": "BJP"
+        },
+        {
+          "key": "arjun-singh",
+          "role": "Minister of Transport and Labour",
+          "party_id": "BJP"
+        },
+        {
+          "key": "jagannath-chattopadhyay",
+          "role": "Minister of Higher Education",
+          "party_id": "BJP"
+        },
+        {
+          "key": "shankar-ghosh",
+          "role": "Minister of Parliamentary Affairs and Tourism",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ashok-kirtania",
+          "role": "Minister of Food and Supplies",
+          "party_id": "BJP"
+        },
+        {
+          "key": "kshudiram-tudu",
+          "role": "Minister of Tribal Development",
+          "party_id": "BJP"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Suvendu_Adhikari_ministry",
+        "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election",
+        "https://www.etvbharat.com/en/state/west-bengal-government-portfolios-allocation-enn26061003496",
+        "https://www.indiatvnews.com/west-bengal/news-bengal-cabinet-cm-suvendu-retains-home-swapan-dasgupta-gets-finance-full-portfolio-list-2026-06-10-1044322",
+        "https://newsonair.gov.in/ritabrata-banerjee-appointed-leader-of-opposition-in-west-bengal-assembly-amid-tmc-split/"
+      ]
+    }
+  }
+}

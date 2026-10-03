@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { bioFor, emitLeadersSeed, personExpr, type ResolvedPerson } from '../leaders-seed';
+import { bioFor, emitLeadersSeed, personExpr, pickCandidacy, type ResolvedPerson } from '../leaders-seed';
 import type { LeadersFile } from '../leaders-data';
 
 const f: LeadersFile = {
@@ -63,5 +63,15 @@ describe('emitLeadersSeed for another state', () => {
     expect(sql).toContain('Chief Minister of Tamil Nadu in the 2026 government.');
     expect(sql).toContain("WHERE id = 'e5f6a7b8-c9d0-1234-ef01-456789012026'");
     expect(sql).not.toMatch(/Bihar/);
+  });
+});
+
+describe('pickCandidacy', () => {
+  const c = (name: string, status: 'WON' | 'LOST', serial: number) => ({ serial, name, partyId: 'X', sex: null, age: null, votes: 1, status });
+  it('prefers the winner when two candidates share the leader\'s name (Maniktala: two "Tapas Roy")', () => {
+    expect(pickCandidacy([c('Tapas Roy', 'LOST', 1), c('Tapas Roy', 'WON', 2)], 'Tapas Roy')!.serial).toBe(2);
+  });
+  it('ignores NOTA and returns null below the name threshold', () => {
+    expect(pickCandidacy([c('NOTA', 'LOST', 3)], 'Tapas Roy')).toBeNull();
   });
 });

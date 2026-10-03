@@ -1,0 +1,99 @@
+{
+ "n-rangasamy": {
+  "key": "n-rangasamy",
+  "wikidata": "Q599267",
+  "date_of_birth": "1950-08-04",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/N._Rangaswamy",
+  "photo_url": "https://ont9tlwrlxhj4iwf.public.blob.vercel-storage.com/persons/Q599267/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:N_Rangaswamy.jpg",
+   "author": "Prime Minister's Office",
+   "licence": "GODL-India"
+  }
+ },
+ "a-m-h-nazeem": {
+  "key": "a-m-h-nazeem",
+  "wikidata": "Q27062970",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/A._M._H._Nazeem",
+  "photo_url": null,
+  "credit": null
+ },
+ "r-siva": {
+  "key": "r-siva",
+  "wikidata": "Q107463129",
+  "date_of_birth": "1967-01-01",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/R._Siva",
+  "photo_url": null,
+  "credit": null
+ },
+ "v-vaithilingam": {
+  "key": "v-vaithilingam",
+  "wikidata": "Q7906295",
+  "date_of_birth": "1950-10-05",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/V._Vaithilingam",
+  "photo_url": "https://ont9tlwrlxhj4iwf.public.blob.vercel-storage.com/persons/Q7906295/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Vaithilingam.jpg",
+   "author": "Vsenthil",
+   "licence": "Public domain"
+  }
+ },
+ "a-namassivayam": {
+  "key": "a-namassivayam",
+  "wikidata": "Q105452337",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/A._Namassivayam",
+  "photo_url": "https://ont9tlwrlxhj4iwf.public.blob.vercel-storage.com/persons/Q105452337/photo.png",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:A._Namassivayam.png",
+   "author": "Puthiyathalaimurai TV",
+   "licence": "CC BY 3.0"
+  }
+ },
+ "malladi-krishna-rao": {
+  "key": "malladi-krishna-rao",
+  "wikidata": "Q21064273",
+  "date_of_birth": "1964-06-06",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Malladi_Krishna_Rao",
+  "photo_url": "https://ont9tlwrlxhj4iwf.public.blob.vercel-storage.com/persons/Q21064273/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Malladi_Krishna_Rao_receiving_Best_Civic_Management_Award.jpg",
+   "author": "Malladi Krishna Rao",
+   "licence": "CC BY-SA 2.0"
+  }
+ },
+ "p-rajavelu": {
+  "key": "p-rajavelu",
+  "wikidata": "Q106946838",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/P._Rajavelu",
+  "photo_url": null,
+  "credit": null
+ },
+ "v-p-sivakolundhu": {
+  "key": "v-p-sivakolundhu",
+  "wikidata": "Q105627909",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/V._P._Sivakolundhu",
+  "photo_url": null,
+  "credit": null
+ },
+ "g-n-s-rajasekaran": {
+  "key": "g-n-s-rajasekaran",
+  "wikidata": "Q139691320",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/G._N._S._Rajasekaran",
+  "photo_url": null,
+  "credit": null
+ }
+}

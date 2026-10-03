@@ -1,0 +1,310 @@
+{
+  "people": [
+    {
+      "key": "c-joseph-vijay",
+      "name": "C. Joseph Vijay",
+      "wikidata": "Q528496",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_12_PERAMBUR"
+        },
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_141_TIRUCHIRAPPALLI_EAST"
+        }
+      ]
+    },
+    {
+      "key": "udhayanidhi-stalin",
+      "name": "Udhayanidhi Stalin",
+      "wikidata": "Q3524779",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_19_CHEPAUKTHIRUVALLIKENI"
+        }
+      ]
+    },
+    {
+      "key": "m-k-stalin",
+      "name": "M. K. Stalin",
+      "wikidata": "Q983475",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_13_KOLATHUR"
+        }
+      ]
+    },
+    {
+      "key": "edappadi-k-palaniswami",
+      "name": "Edappadi K. Palaniswami",
+      "wikidata": "Q6323772",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_86_EDAPPADI"
+        }
+      ]
+    },
+    {
+      "key": "seeman",
+      "name": "Seeman",
+      "wikidata": "Q7445882",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_184_KARAIKUDI"
+        }
+      ]
+    },
+    {
+      "key": "nainar-nagendran",
+      "name": "Nainar Nagendran",
+      "wikidata": "Q16733126",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_204_SATTUR"
+        }
+      ]
+    },
+    {
+      "key": "n-marie-wilson",
+      "name": "N. Marie Wilson",
+      "wikidata": "Q139666584",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_11_DRRADHAKRISHNAN_NAGAR"
+        }
+      ]
+    },
+    {
+      "key": "n-anand",
+      "name": "N. Anand",
+      "wikidata": "Q130249058",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_24_THIYAGARAYANAGAR"
+        }
+      ]
+    },
+    {
+      "key": "aadhav-arjuna",
+      "name": "Aadhav Arjuna",
+      "wikidata": "Q137218643",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_14_VILLIVAKKAM"
+        }
+      ]
+    },
+    {
+      "key": "k-g-arunraj",
+      "name": "K. G. Arunraj",
+      "wikidata": "Q139676926",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_96_TIRUCHENGODU"
+        }
+      ]
+    },
+    {
+      "key": "k-a-sengottaiyan",
+      "name": "K. A. Sengottaiyan",
+      "wikidata": "Q6323054",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_106_GOBICHETTIPALAYAM"
+        }
+      ]
+    },
+    {
+      "key": "p-venkataramanan",
+      "name": "P. Venkataramanan",
+      "wikidata": "Q139681821",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_25_MYLAPORE"
+        }
+      ]
+    },
+    {
+      "key": "c-t-r-nirmal-kumar",
+      "name": "C. T. R. Nirmal Kumar",
+      "wikidata": "Q139731285",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_195_THIRUPARANKUNDRAM"
+        }
+      ]
+    },
+    {
+      "key": "rajmohan-arumugam",
+      "name": "Rajmohan Arumugam",
+      "wikidata": "Q130741315",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_16_EGMORE"
+        }
+      ]
+    },
+    {
+      "key": "r-kumar",
+      "name": "R. Kumar",
+      "wikidata": "Q140070764",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_26_VELACHERY"
+        }
+      ]
+    },
+    {
+      "key": "p-viswanathan",
+      "name": "P. Viswanathan",
+      "wikidata": "Q7117608",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_188_MELUR"
+        }
+      ]
+    },
+    {
+      "key": "a-m-shahjahan",
+      "name": "A. M. Shahjahan",
+      "wikidata": "Q139695521",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_172_PAPANASAM"
+        }
+      ]
+    },
+    {
+      "key": "vanni-arasu",
+      "name": "Vanni Arasu",
+      "wikidata": "Q139695180",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "TN_VS26_72_TINDIVANAM"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2026": {
+      "leaders": [
+        {
+          "key": "c-joseph-vijay",
+          "role": "Chief Minister",
+          "party_id": "TVK"
+        },
+        {
+          "key": "udhayanidhi-stalin",
+          "role": "Leader of the Opposition",
+          "party_id": "DMK"
+        },
+        {
+          "key": "m-k-stalin",
+          "role": "DMK President (former Chief Minister)",
+          "party_id": "DMK"
+        },
+        {
+          "key": "edappadi-k-palaniswami",
+          "role": "AIADMK General Secretary",
+          "party_id": "AIADMK"
+        },
+        {
+          "key": "seeman",
+          "role": "NTK Chief Coordinator",
+          "party_id": "NTK"
+        },
+        {
+          "key": "nainar-nagendran",
+          "role": "BJP State President",
+          "party_id": "BJP"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "n-marie-wilson",
+          "role": "Minister of Finance and Planning",
+          "party_id": "TVK"
+        },
+        {
+          "key": "n-anand",
+          "role": "Minister of Rural Development and Irrigation",
+          "party_id": "TVK"
+        },
+        {
+          "key": "aadhav-arjuna",
+          "role": "Minister of Public Works, Highways and Sports",
+          "party_id": "TVK"
+        },
+        {
+          "key": "k-g-arunraj",
+          "role": "Minister of Health and Medical Education",
+          "party_id": "TVK"
+        },
+        {
+          "key": "k-a-sengottaiyan",
+          "role": "Minister of Revenue and Disaster Management",
+          "party_id": "TVK"
+        },
+        {
+          "key": "p-venkataramanan",
+          "role": "Minister of Food and Civil Supplies",
+          "party_id": "TVK"
+        },
+        {
+          "key": "c-t-r-nirmal-kumar",
+          "role": "Minister of Electricity and Law",
+          "party_id": "TVK"
+        },
+        {
+          "key": "rajmohan-arumugam",
+          "role": "Minister of School Education and Tamil Development",
+          "party_id": "TVK"
+        },
+        {
+          "key": "r-kumar",
+          "role": "Minister of AI and Information Technology",
+          "party_id": "TVK"
+        },
+        {
+          "key": "p-viswanathan",
+          "role": "Minister of Higher Education",
+          "party_id": "INC"
+        },
+        {
+          "key": "a-m-shahjahan",
+          "role": "Minister of Minorities Welfare",
+          "party_id": "IUML"
+        },
+        {
+          "key": "vanni-arasu",
+          "role": "Minister of Adi Dravidar Welfare",
+          "party_id": "VCK"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/C._Joseph_Vijay_ministry",
+        "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+        "https://en.wikipedia.org/wiki/List_of_leaders_of_the_opposition_in_the_Tamil_Nadu_Legislative_Assembly",
+        "https://uniindia.com/udhayanidhi-elected-dmk-lp-leader-becomes-lop-in-tn-assembly/south/news/3839174.html"
+      ]
+    }
+  }
+}

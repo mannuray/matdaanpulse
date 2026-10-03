@@ -106,6 +106,8 @@ run seed_as_2026_districts_regions.sql
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 # 2026 candidates → their 2011-2021 persons (run-once; same delimitation only, so none for Assam 2026)
 for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
+# 2026 leaders (curated, user-approved; run-once: candidacy links, fill-only profiles, manifest watchlists)
+for st in as kl py tn wb; do run "seed_${st}_leaders.sql"; done
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_affidavits.sql"; done
 

@@ -6,6 +6,8 @@
  */
 import { runOnce } from '../seed-run-once';
 import type { LeadersFile, LeaderRole, LeaderYear } from './leaders-data';
+import type { CandidateJson } from './types';
+import { similarity } from './names';
 import type { Profile } from './profiles';
 import { q } from './sql';
 import { moveGuard } from './links';
@@ -15,6 +17,16 @@ export interface ResolvedPerson { key: string; name: string; candidateIds: strin
 /** The state a leaders seed is for (Bihar's defaults keep seed_bihar_leaders.sql unchanged). */
 export interface LeadersSeedOpts { stateId: number; stateName: string; slug: string; seedName: string; years: string[] }
 export const BIHAR_LEADERS: LeadersSeedOpts = { stateId: 5, stateName: 'Bihar', slug: 'bihar', seedName: 'seed_bihar_leaders', years: ['2010', '2015', '2020', '2025'] };
+
+/** A leader's name this close to the ballot name in the given seat identifies the candidacy. */
+export const MIN_NAME_MATCH = 0.5;
+
+/** The candidate in a seat that is this leader: closest name, the winner on a tie (two "Tapas Roy" in Maniktala 2026). */
+export function pickCandidacy(candidates: CandidateJson[], leaderName: string): CandidateJson | null {
+  const best = candidates.filter(x => x.partyId !== 'NOTA').map(x => ({ x, sim: similarity(x.name, leaderName) }))
+    .sort((a, b) => b.sim - a.sim || Number(b.x.status === 'WON') - Number(a.x.status === 'WON'))[0];
+  return best && best.sim >= MIN_NAME_MATCH ? best.x : null;
+}
 
 export function personExpr(p: ResolvedPerson): string {
   if (p.fixedId) return `${q(p.fixedId)}::uuid`;

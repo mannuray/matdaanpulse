@@ -1,0 +1,166 @@
+{
+  "people": [
+    {
+      "key": "n-rangasamy",
+      "name": "N. Rangasamy",
+      "wikidata": "Q599267",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_4_MANGALAM"
+        },
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_9_THATTANCHAVADY"
+        }
+      ]
+    },
+    {
+      "key": "a-m-h-nazeem",
+      "name": "A. M. H. Nazeem",
+      "wikidata": "Q27062970",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_27_KARAIKAL_SOUTH"
+        }
+      ]
+    },
+    {
+      "key": "r-siva",
+      "name": "R. Siva",
+      "wikidata": "Q107463129",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_5_VILLIANUR"
+        }
+      ]
+    },
+    {
+      "key": "v-vaithilingam",
+      "name": "V. Vaithilingam",
+      "wikidata": "Q7906295",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_9_THATTANCHAVADY"
+        }
+      ]
+    },
+    {
+      "key": "a-namassivayam",
+      "name": "A. Namassivayam",
+      "wikidata": "Q105452337",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_1_MANNADIPET"
+        }
+      ]
+    },
+    {
+      "key": "malladi-krishna-rao",
+      "name": "Malladi Krishna Rao",
+      "wikidata": "Q21064273",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_30_YANAM"
+        }
+      ]
+    },
+    {
+      "key": "p-rajavelu",
+      "name": "P. Rajavelu",
+      "wikidata": "Q106946838",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_22_NETTAPAKKAM"
+        }
+      ]
+    },
+    {
+      "key": "v-p-sivakolundhu",
+      "name": "V. P. Sivakolundhu",
+      "wikidata": "Q105627909",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_11_LAWSPET"
+        }
+      ]
+    },
+    {
+      "key": "g-n-s-rajasekaran",
+      "name": "G. N. S. Rajasekaran",
+      "wikidata": "Q139691320",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "PY_VS26_25_THIRUNALLAR"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2026": {
+      "leaders": [
+        {
+          "key": "n-rangasamy",
+          "role": "Chief Minister",
+          "party_id": "AINRC"
+        },
+        {
+          "key": "a-m-h-nazeem",
+          "role": "Leader of the Opposition",
+          "party_id": "DMK"
+        },
+        {
+          "key": "r-siva",
+          "role": "Outgoing Leader of the Opposition, candidate",
+          "party_id": "DMK"
+        },
+        {
+          "key": "v-vaithilingam",
+          "role": "Congress candidate against the Chief Minister",
+          "party_id": "INC"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "a-namassivayam",
+          "role": "Minister of Home, Education and Electricity",
+          "party_id": "BJP"
+        },
+        {
+          "key": "malladi-krishna-rao",
+          "role": "Minister of Public Works, Tourism and Industries",
+          "party_id": "AINRC"
+        },
+        {
+          "key": "p-rajavelu",
+          "role": "Minister of Adi Dravidar Welfare, Housing and Information Technology",
+          "party_id": "AINRC"
+        },
+        {
+          "key": "v-p-sivakolundhu",
+          "role": "Minister of Civil Supplies and Social Welfare",
+          "party_id": "AINRC"
+        },
+        {
+          "key": "g-n-s-rajasekaran",
+          "role": "Minister of Agriculture, Rural Development and Sports",
+          "party_id": "BJP"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Fifth_Rangaswamy_ministry",
+        "https://en.wikipedia.org/wiki/2026_Puducherry_Legislative_Assembly_election",
+        "https://www.deccanherald.com/india/puducherry/puducherry-government-notifies-allocation-of-portfolios-to-cm-ministers-4100839",
+        "https://en.wikipedia.org/wiki/A._M._H._Nazeem"
+      ]
+    }
+  }
+}

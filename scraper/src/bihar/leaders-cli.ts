@@ -5,18 +5,15 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { DB_DIR, loadSeeded, type Seeded } from './seeded';
-import { emitLeadersSeed, type ResolvedPerson } from './leaders-seed';
+import { emitLeadersSeed, pickCandidacy, type ResolvedPerson } from './leaders-seed';
 import { validateLeaders, type LeadersFile } from './leaders-data';
 import { stableUuid } from './match';
-import { similarity } from './names';
 import { electionOf, parseState } from './elections';
 import { trackOf } from './current-track';
 import { BIHAR_LEADERS } from './leaders-seed';
 import type { Profile } from './profiles';
 import type { Year } from './types';
 
-/** A leader's name this close to the ballot name in the given seat identifies the candidacy. */
-const MIN_NAME_MATCH = 0.5;
 
 const ST = parseState(process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : 'BR');
 const track = trackOf(ST);
@@ -34,9 +31,9 @@ const people: ResolvedPerson[] = leaders.people.map(p => {
   const candidateIds = [...p.candidacies].sort((a, b) => a.year - b.year).map(c => {
     const s = seeded.get(c.year)!;
     const seat = s.json.seats.find(x => s.seat(x.constNo).id === c.const_id)!;
-    const best = seat.candidates.filter(x => x.partyId !== 'NOTA').map(x => ({ x, sim: similarity(x.name, p.name) })).sort((a, b) => b.sim - a.sim)[0];
-    if (!best || best.sim < MIN_NAME_MATCH) throw new Error(`${p.key}: no candidate like "${p.name}" in ${c.year} ${c.const_id} (best: ${best?.x.name})`);
-    return s.idOf(seat.constNo, best.x);
+    const best = pickCandidacy(seat.candidates, p.name);
+    if (!best) throw new Error(`${p.key}: no candidate like "${p.name}" in ${c.year} ${c.const_id}`);
+    return s.idOf(seat.constNo, best);
   });
   return { key: p.key, name: p.name, candidateIds, fixedId: candidateIds.length ? null : stableUuid(track.leaderNs, p.key), profile: profiles[p.key] ?? null };
 });

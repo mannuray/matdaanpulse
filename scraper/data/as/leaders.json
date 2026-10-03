@@ -1,0 +1,307 @@
+{
+  "people": [
+    {
+      "key": "himanta-biswa-sarma",
+      "name": "Himanta Biswa Sarma",
+      "wikidata": "Q5765114",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_37_JALUKBARI"
+        }
+      ]
+    },
+    {
+      "key": "wazed-ali-choudhury",
+      "name": "Wazed Ali Choudhury",
+      "wikidata": "Q107143814",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_9_BIRSING_JARUA"
+        }
+      ]
+    },
+    {
+      "key": "gaurav-gogoi",
+      "name": "Gaurav Gogoi",
+      "wikidata": "Q16221747",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_100_JORHAT"
+        }
+      ]
+    },
+    {
+      "key": "badruddin-ajmal",
+      "name": "Badruddin Ajmal",
+      "wikidata": "Q799689",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_62_BINNAKANDI"
+        }
+      ]
+    },
+    {
+      "key": "akhil-gogoi",
+      "name": "Akhil Gogoi",
+      "wikidata": "Q4700735",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_96_SIBSAGAR"
+        }
+      ]
+    },
+    {
+      "key": "lurinjyoti-gogoi",
+      "name": "Lurinjyoti Gogoi",
+      "wikidata": "Q112116575",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_89_KHOWANG"
+        }
+      ]
+    },
+    {
+      "key": "rameswar-teli",
+      "name": "Rameswar Teli",
+      "wikidata": "Q16886057",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_90_DULIAJAN"
+        }
+      ]
+    },
+    {
+      "key": "atul-bora",
+      "name": "Atul Bora",
+      "wikidata": "Q17388163",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_105_BOKAKHAT"
+        }
+      ]
+    },
+    {
+      "key": "charan-boro",
+      "name": "Charan Boro",
+      "wikidata": "Q27916284",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_47_MAZBAT"
+        }
+      ]
+    },
+    {
+      "key": "ajanta-neog",
+      "name": "Ajanta Neog",
+      "wikidata": "Q20036673",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_103_GOLAGHAT"
+        }
+      ]
+    },
+    {
+      "key": "jayanta-malla-baruah",
+      "name": "Jayanta Malla Baruah",
+      "wikidata": "Q28086317",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_39_NALBARI"
+        }
+      ]
+    },
+    {
+      "key": "pijush-hazarika",
+      "name": "Pijush Hazarika",
+      "wikidata": "Q27734847",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_52_JAGIROAD"
+        }
+      ]
+    },
+    {
+      "key": "ashok-singhal",
+      "name": "Ashok Singhal",
+      "wikidata": "Q27838080",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_65_DHEKIAJULI"
+        }
+      ]
+    },
+    {
+      "key": "ranoj-pegu",
+      "name": "Ranoj Pegu",
+      "wikidata": "Q107222599",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_78_DHEMAJI"
+        }
+      ]
+    },
+    {
+      "key": "keshab-mahanta",
+      "name": "Keshab Mahanta",
+      "wikidata": "Q21229194",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_57_KALIABOR"
+        }
+      ]
+    },
+    {
+      "key": "bimal-bora",
+      "name": "Bimal Bora",
+      "wikidata": "Q27947579",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_91_TINGKHONG"
+        }
+      ]
+    },
+    {
+      "key": "biswajit-daimary",
+      "name": "Biswajit Daimary",
+      "wikidata": "Q16728337",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_43_TAMULPUR"
+        }
+      ]
+    },
+    {
+      "key": "sushanta-borgohain",
+      "name": "Sushanta Borgohain",
+      "wikidata": "Q107299734",
+      "candidacies": [
+        {
+          "year": 2026,
+          "const_id": "AS_VS26_95_DEMOW"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2026": {
+      "leaders": [
+        {
+          "key": "himanta-biswa-sarma",
+          "role": "Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "wazed-ali-choudhury",
+          "role": "Leader of the Opposition",
+          "party_id": "INC"
+        },
+        {
+          "key": "gaurav-gogoi",
+          "role": "Assam Congress president, candidate",
+          "party_id": "INC"
+        },
+        {
+          "key": "badruddin-ajmal",
+          "role": "AIUDF president, candidate",
+          "party_id": "AIUDF"
+        },
+        {
+          "key": "akhil-gogoi",
+          "role": "Raijor Dal president, candidate",
+          "party_id": "RJRD"
+        },
+        {
+          "key": "lurinjyoti-gogoi",
+          "role": "Assam Jatiya Parishad president, candidate",
+          "party_id": "AJP"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "rameswar-teli",
+          "role": "Minister of Labour Welfare and Tea Tribes Welfare",
+          "party_id": "BJP"
+        },
+        {
+          "key": "atul-bora",
+          "role": "Minister of Panchayat and Rural Development",
+          "party_id": "AGP"
+        },
+        {
+          "key": "charan-boro",
+          "role": "Minister of Transport",
+          "party_id": "BOPF"
+        },
+        {
+          "key": "ajanta-neog",
+          "role": "Minister of Women and Child Development and Tourism",
+          "party_id": "BJP"
+        },
+        {
+          "key": "jayanta-malla-baruah",
+          "role": "Minister of Finance",
+          "party_id": "BJP"
+        },
+        {
+          "key": "pijush-hazarika",
+          "role": "Minister of Agriculture and Parliamentary Affairs",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ashok-singhal",
+          "role": "Minister of Health and Medical Education",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ranoj-pegu",
+          "role": "Minister of Education",
+          "party_id": "BJP"
+        },
+        {
+          "key": "keshab-mahanta",
+          "role": "Minister of Revenue",
+          "party_id": "AGP"
+        },
+        {
+          "key": "bimal-bora",
+          "role": "Minister of Industries and Commerce",
+          "party_id": "BJP"
+        },
+        {
+          "key": "biswajit-daimary",
+          "role": "Minister of Handloom, Sports and Skill Development",
+          "party_id": "BJP"
+        },
+        {
+          "key": "sushanta-borgohain",
+          "role": "Minister of Water Resources",
+          "party_id": "BJP"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Second_Sarma_ministry",
+        "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election",
+        "https://newsonair.gov.in/assam-governor-approves-allocation-of-portfolios-to-newly-inducted-council-of-ministers-headed-by-cm-himanta-biswa-sarma/",
+        "https://www.etvbharat.com/en/state/assam-cabinet-himanta-biswa-sarma-allocates-key-portfolios-to-four-ministers-enn26051403144",
+        "https://en.wikipedia.org/wiki/Wazed_Ali_Choudhury"
+      ]
+    }
+  }
+}
