@@ -13,7 +13,10 @@
     "sim:reset": "ts-node src/simulation/reset.ts",
     "sim:cleanup": "ts-node src/simulation/cleanup.ts",
     "typecheck": "tsc --noEmit",
-    "loadtest:viewers": "ts-node src/loadtest/viewers.ts"
+    "loadtest:viewers": "ts-node src/loadtest/viewers.ts",
+    "test": "vitest run",
+    "live": "ts-node src/live/run.ts",
+    "live:check": "ts-node src/live/check.ts"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
@@ -26,6 +29,7 @@
     "@types/node-cron": "^3.0.11",
     "@types/pg": "^8.16.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^2.1.9"
   }
 }
