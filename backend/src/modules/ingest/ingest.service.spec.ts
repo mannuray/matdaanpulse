@@ -62,3 +62,16 @@ describe('IngestService.ingestSeats — per seat', () => {
     expect(notifier.afterCommit).toHaveBeenCalledWith('e', [{ const_id: 'S1', p: 'BJP', m: 10, s: 'LEADING', r: 3, cr: 3, tr: 20 }], { kind: 'batch' });
   });
 });
+
+describe('IngestService.tally', () => {
+  it('records the parties whose won/leading differ from ours for the shard', async () => {
+    const { svc, prisma } = make();
+    prisma.results.findMany = jest.fn(async () => [
+      { status: 'WON', candidates: { party_id: 'BJP' } }, { status: 'LEADING', candidates: { party_id: 'INC' } },
+    ]);
+    const out = await svc.tally('e', { id: 'k' }, { shard: 'rest', source: 'eci-web', holder: 'w1', observed_at: '2027-02-27T09:41:05+05:30',
+      parties: [{ party_id: 'BJP', won: 1, leading: 0 }, { party_id: 'INC', won: 0, leading: 2 }] } as any, NOW);
+    expect(out.mismatch).toEqual([{ party_id: 'INC', ours: { won: 0, leading: 1 }, theirs: { won: 0, leading: 2 } }]);
+    expect(prisma.ingest_log.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ kind: 'tally' }) }));
+  });
+});

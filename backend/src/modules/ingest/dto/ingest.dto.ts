@@ -28,3 +28,16 @@ export class LeaseBody {
   @Matches(SHARD) shard: string;
   @IsString() @MaxLength(80) holder: string;
 }
+
+export class TallyPartyDto {
+  @IsString() @MaxLength(20) party_id: string;
+  @IsInt() @Min(0) won: number;
+  @IsInt() @Min(0) leading: number;
+}
+export class TallyBody {
+  @Matches(SHARD) shard: string;
+  @IsString() @MaxLength(40) source: string;
+  @IsString() @MaxLength(80) holder: string;
+  @IsISO8601({ strict: true }) observed_at: string;
+  @IsArray() @ArrayMaxSize(200) @ValidateNested({ each: true }) @Type(() => TallyPartyDto) parties: TallyPartyDto[];
+}

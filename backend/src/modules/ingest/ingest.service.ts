@@ -6,7 +6,7 @@ import { ShardsService, REST } from './shards.service';
 import { LeaseService } from './lease.service';
 import { evaluateSeat, type IncomingSeat, type RosterCandidate, type SeatOutcome, type SeatState, type StoredRow, type StoredSeat } from './seat-rules';
 import { ElectionNotFoundException, IngestBadRequestException, IngestInactiveSourceException, IngestNoLeaseException, IngestNotLiveException } from '../../common/exceptions';
-import type { SeatsBody } from './dto/ingest.dto';
+import type { SeatsBody, TallyBody } from './dto/ingest.dto';
 
 export interface Roster {
   election: { id: string; type: string; state_id: number | null; year: number; status: string };
@@ -16,6 +16,8 @@ export interface Roster {
 export interface IngestConfig { status: string; source: string | null; poll_hint_ms: number; shard: { name: string; seat_count: number }; lease: { holder: string | null; expires_at: Date | null } }
 export type SeatOutcomeName = 'applied' | 'unchanged' | 'stale' | 'held' | 'rejected';
 export interface SeatsResponse { counts: Record<SeatOutcomeName, number>; seats: { const_id: string; outcome: SeatOutcomeName; reason?: string; detail?: Record<string, unknown> }[] }
+
+export interface TallyMismatch { party_id: string; ours: { won: number; leading: number }; theirs: { won: number; leading: number } }
 
 const FUTURE_SLACK_MS = 2 * 60_000;
 const POLL_HINT_MS = 30_000;
@@ -127,6 +129,37 @@ export class IngestService {
     const changed = changedRows(evaluated, rosterOf);
     if (changed.length) await this.notifier.afterCommit(electionId, changed, { kind: 'batch' });
     return response;
+  }
+
+  async tally(electionId: string, key: { id: string }, body: TallyBody, now = new Date()): Promise<{ mismatch: TallyMismatch[] }> {
+    const election = await this.prisma.elections.findUnique({ where: { id: electionId }, select: { status: true } });
+    if (!election) throw new ElectionNotFoundException(electionId);
+    if (election.status !== 'Live') throw new IngestNotLiveException(String(election.status));
+    const shard = await this.shards.get(electionId, body.shard);
+    const source = await this.effectiveSource(electionId, shard);
+    if (body.source !== source) throw new IngestInactiveSourceException(source);
+    if (!(await this.leases.holds(electionId, shard.name, key.id, body.holder, now))) {
+      const cur = await this.leases.current(electionId, shard.name);
+      throw new IngestNoLeaseException(cur?.holder ?? null, cur?.expires ?? null);
+    }
+    const rows = await this.prisma.results.findMany({
+      where: { election_id: electionId, const_id: { in: shard.seat_ids }, status: { in: ['WON', 'LEADING'] } },
+      select: { status: true, candidates: { select: { party_id: true } } },
+    });
+    const ours = new Map<string, { won: number; leading: number }>();
+    for (const r of rows) {
+      const p = r.candidates.party_id; if (!p) continue;
+      const e = ours.get(p) ?? ours.set(p, { won: 0, leading: 0 }).get(p)!;
+      if (r.status === 'WON') e.won++; else e.leading++;
+    }
+    const theirs = new Map(body.parties.map(p => [p.party_id, { won: p.won, leading: p.leading }]));
+    const mismatch: TallyMismatch[] = [];
+    for (const id of new Set([...ours.keys(), ...theirs.keys()])) {
+      const o = ours.get(id) ?? { won: 0, leading: 0 }, t = theirs.get(id) ?? { won: 0, leading: 0 };
+      if (o.won !== t.won || o.leading !== t.leading) mismatch.push({ party_id: id, ours: o, theirs: t });
+    }
+    await this.prisma.ingest_log.create({ data: { election_id: electionId, shard: shard.name, key_id: key.id, source: body.source, kind: 'tally', observed_at: new Date(body.observed_at), tally_mismatch: (mismatch.length ? mismatch : null) as any } });
+    return { mismatch };
   }
 
   /** One transaction: results rows, rounds, seat state, released holds. Unchanged seats only advance their observation. */

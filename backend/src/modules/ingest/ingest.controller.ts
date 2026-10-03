@@ -3,7 +3,7 @@ import { SkipThrottle } from '@nestjs/throttler';
 import { IngestKeyGuard } from './ingest-key.guard';
 import { IngestService } from './ingest.service';
 import { LeaseService } from './lease.service';
-import { LeaseBody, SeatsBody } from './dto/ingest.dto';
+import { LeaseBody, SeatsBody, TallyBody } from './dto/ingest.dto';
 import { REST, ShardsService } from './shards.service';
 import { IngestNoLeaseException } from '../../common/exceptions';
 
@@ -43,5 +43,11 @@ export class IngestController {
   @HttpCode(200)
   seats(@Param('electionId', ParseUUIDPipe) id: string, @Body() body: SeatsBody, @Req() req: any) {
     return this.ingest.ingestSeats(id, req.ingestKey, body);
+  }
+
+  @Post('tally')
+  @HttpCode(200)
+  tally(@Param('electionId', ParseUUIDPipe) id: string, @Body() body: TallyBody, @Req() req: any) {
+    return this.ingest.tally(id, req.ingestKey, body);
   }
 }
