@@ -8,7 +8,7 @@ import type { LeadersFile } from './leaders-data';
 import type { Year } from './types';
 
 const f: LeadersFile = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'leaders.json'), 'utf8'));
-const s = new Map(([2010, 2015, 2020, 2025] as Year[]).map(y => [y, loadSeeded(y)]));
+const s = new Map(([2010, 2015, 2020, 2025] as Year[]).map(y => [y, loadSeeded('BR', y)]));
 const rows = f.people.filter(p => p.candidacies.length > 1).map(p => {
   const ids = p.candidacies.map(c => {
     const y = s.get(c.year as Year)!;

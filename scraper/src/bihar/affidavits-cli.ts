@@ -28,7 +28,7 @@ async function page(slug: string): Promise<string> {
 (async () => {
   const byYear: Record<string, Affidavit[]> = {};
   for (const y of [2010, 2015, 2020, 2025] as Year[]) {
-    const s = loadSeeded(y);
+    const s = loadSeeded('BR', y);
     const seats: WinnerSeat[] = s.json.seats.map(seat => {
       const w = seat.candidates.find(c => c.status === 'WON')!;
       return { constNo: seat.constNo, name: s.seat(seat.constNo).name, winner: { candidateId: s.idOf(seat.constNo, w), name: w.name } };

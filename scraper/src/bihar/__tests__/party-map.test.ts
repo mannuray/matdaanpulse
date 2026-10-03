@@ -55,6 +55,10 @@ describe('suggestEntries', () => {
     expect(suggestEntries([{ abbr: 'JJP', name: 'Jagrook Janta Party', recognition: 'Unrecognised' }], taken, {}).problems)
       .toEqual(['collision: ids JJP and JJP_BR for "Jagrook Janta Party" are taken; add the entry by hand']);
   });
+  it('suffixes a colliding new id with the given state code', () => {
+    const db2 = [{ id: 'JJP', name: 'Jannayak Janta Party', abbreviation: 'JJP', color: '#808080', recognition: null }];
+    expect(suggestEntries([{ abbr: 'JJP', name: 'Jharkhand Jan Party', recognition: 'Unrecognised' }], db2, {}, 'WB').add.JHARKHANDJANPARTY.id).toBe('JJP_WB');
+  });
   it('reports each problem once even when the party appears in several years', () => {
     const taken = [...db, { id: 'JJP_BR', name: 'Other', abbreviation: null, color: '#808080', recognition: null }];
     const e = { abbr: 'JJP', name: 'Jagrook Janta Party', recognition: 'Unrecognised' as const };

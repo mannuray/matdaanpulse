@@ -22,6 +22,15 @@ const plan = (): Plan => ({
     unmatchedOld: [], deleted: [{ id: '33333333-3333-3333-3333-333333333333', constId: 'BR_VS10_1_VALMIKI_NAGAR', partyId: 'LJP', name: 'Gone Person', resultId: '44444444-4444-4444-4444-444444444444' }] }],
 });
 
+describe('stable ids per state', () => {
+  it('never collide between two states with the same year, seat and serial', () => {
+    const p = plan();
+    const wb = { ...p, json: { ...p.json, year: 2016, electionId: 'd4e5f6a7-b8c9-0123-def0-345678901016' }, matches: [{ ...p.matches[0], matched: [] }] };
+    const tn = { ...wb, json: { ...wb.json, electionId: 'e5f6a7b8-c9d0-1234-ef01-456789012016' } };
+    expect(candidateIds(wb).get('1:1')!.candidateId).not.toBe(candidateIds(tn).get('1:1')!.candidateId);
+  });
+});
+
 describe('emit', () => {
   it('computes the seat margin without NOTA', () => { expect(seatMargin(json.seats[0])).toBe(14671); });
   it('reuses old ids for matched candidates and stable ids for new ones', () => {

@@ -1,30 +1,31 @@
 /**
- * Parse one or more Bihar years from the raw ECI files into scraper/data/bihar/vs-<year>.json.
+ * Parse one or more years of a state from the raw ECI files into scraper/data/<slug>/vs-<year>.json.
  * Fails (exit 1, nothing written for that year) on any cross-check or validation error.
- * Usage: npx ts-node src/bihar/parse-cli.ts 2020 [2010 2015 2025]
+ * Usage: npx ts-node src/bihar/parse-cli.ts <STATE> 2020 [2010 2015 2025]
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { DATA_DIR, loadRaw } from './load';
-import { YEARS } from './years';
+import { PARTY_DIR, dataDir, loadRaw } from './load';
+import { STATES, electionOf, parseState } from './elections';
 import { normalize } from './normalize';
 import { crossCheck, validateElection, type CrossCheckException } from './crosscheck';
 import type { PartyMap, Year } from './types';
 
-const readJson = <T>(name: string, fallback: T): T => {
-  const f = path.join(DATA_DIR, name);
+const ST = parseState(process.argv[2]);
+const DATA_DIR = dataDir(ST);
+const readJson = <T>(name: string, fallback: T, dir = DATA_DIR): T => {
+  const f = path.join(dir, name);
   return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) as T : fallback;
 };
 
 let failed = false;
-for (const y of process.argv.slice(2).map(Number) as Year[]) {
-  const cfg = YEARS[y];
-  if (!cfg) { console.error(`unknown year ${y}`); failed = true; continue; }
-  const raw = loadRaw(y);
+for (const y of process.argv.slice(3).map(Number) as Year[]) {
+  const cfg = electionOf(ST, y);
+  const raw = loadRaw(ST, y);
   const xErrs = crossCheck(raw, readJson<CrossCheckException[]>('crosscheck-exceptions.json', []));
-  const { json, errors } = normalize(raw, cfg, readJson<PartyMap>('party-map.json', {}), new Date().toISOString().slice(0, 10));
-  const all = [...xErrs, ...errors, ...(errors.length ? [] : validateElection(json))];
-  console.log(`Bihar ${y}: ${raw.seats.length} seats, ${raw.seats.reduce((a, s) => a + s.candidates.length, 0)} candidates, ${all.length} problems`);
+  const { json, errors } = normalize(raw, cfg, readJson<PartyMap>('party-map.json', {}, PARTY_DIR), new Date().toISOString().slice(0, 10));
+  const all = [...xErrs, ...errors, ...(errors.length ? [] : validateElection(json, cfg))];
+  console.log(`${STATES[ST].name} ${y}: ${raw.seats.length} seats, ${raw.seats.reduce((a, s) => a + s.candidates.length, 0)} candidates, ${all.length} problems`);
   for (const e of all) console.error(`  ${e}`);
   if (all.length) { failed = true; continue; }
   const prev = readJson<{ source?: { retrieved?: string } } | null>(`vs-${y}.json`, null);

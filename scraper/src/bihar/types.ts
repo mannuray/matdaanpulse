@@ -1,4 +1,5 @@
-export type Year = 2010 | 2015 | 2020 | 2025;
+/** An election year; valid years are listed in elections.ts. */
+export type Year = number;
 export type SeatType = 'GEN' | 'SC' | 'ST';
 export type Sex = 'M' | 'F' | 'O';
 export type Recognition = 'National' | 'State' | 'Unrecognised';

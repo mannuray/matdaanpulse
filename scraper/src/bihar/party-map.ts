@@ -21,7 +21,8 @@ export function resolveParty(abbr: string, list: PartyListEntry[], map: PartyMap
 /** A DB party with how many candidates use it (to choose between duplicate ids). */
 export type DbParty = PartyEntry & { candidates?: number };
 
-export function suggestEntries(lists: PartyListEntry[], db: DbParty[], map: PartyMap): { add: PartyMap; problems: string[]; notes: string[]; aliases: Record<string, string> } {
+/** `suffix` (a state code) makes a colliding new id unique: JJP → JJP_WB. */
+export function suggestEntries(lists: PartyListEntry[], db: DbParty[], map: PartyMap, suffix = 'BR'): { add: PartyMap; problems: string[]; notes: string[]; aliases: Record<string, string> } {
   const add: PartyMap = {};
   const aliases: Record<string, string> = {};
   const problems = new Set<string>();
@@ -37,8 +38,9 @@ export function suggestEntries(lists: PartyListEntry[], db: DbParty[], map: Part
     if (same.length) { add[key] = strip(same[0]); continue; }
     const base = abbrKey(p.abbr).replace(/[^A-Z0-9]/g, '').slice(0, 17);
     const taken = (id: string) => db.some(d => d.id === id) || Object.values(add).some(d => d.id === id);
-    const id = !taken(base) ? base : !taken(`${base}_BR`) ? `${base}_BR` : null;
-    if (!id) { problems.add(`collision: ids ${base} and ${base}_BR for "${name}" are taken; add the entry by hand`); continue; }
+    const alt = `${base}_${suffix}`;
+    const id = !taken(base) ? base : !taken(alt) ? alt : null;
+    if (!id) { problems.add(`collision: ids ${base} and ${alt} for "${name}" are taken; add the entry by hand`); continue; }
     add[key] = { id, name, abbreviation: p.abbr.trim(), color: NEW_PARTY_COLOR, recognition: p.recognition };
   }
   return { add, problems: [...problems], notes: [...notes], aliases };

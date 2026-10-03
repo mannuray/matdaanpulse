@@ -1,6 +1,7 @@
 // scraper/src/bihar/__tests__/crosscheck.test.ts
 import { describe, it, expect } from 'vitest';
 import { crossCheck, validateElection } from '../crosscheck';
+import { electionOf } from '../elections';
 import type { ElectionJson, RawElection } from '../types';
 
 function election(): RawElection {
@@ -68,14 +69,14 @@ function json(): ElectionJson {
 describe('validateElection', () => {
   it('accepts a well-formed election (phase count per year)', () => {
     const e = json(); e.seats.forEach((s, i) => { s.phase = (i % 3) + 1; });
-    expect(validateElection(e)).toEqual([]);
+    expect(validateElection(e, electionOf('BR', 2020))).toEqual([]);
   });
   it('rejects two winners, wrong reservation counts, turnout out of range and wrong phase count', () => {
     const e = json();
     e.seats[0].candidates[1].status = 'WON';
     e.seats[50].type = 'SC';
     e.seats[60].turnout = 101;
-    const errs = validateElection(e);
+    const errs = validateElection(e, electionOf('BR', 2020));
     expect(errs).toEqual(expect.arrayContaining([
       expect.stringMatching(/^winners:1/), expect.stringMatching(/^reserved:/), expect.stringMatching(/^turnout:61/), expect.stringMatching(/^phases:/),
     ]));

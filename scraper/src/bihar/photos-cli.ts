@@ -56,7 +56,7 @@ const get = async (url: string) => ({ text: async () => (await fetchBody(url)).t
   }
   for (const list of snaps.values()) list.sort().reverse();
 
-  const s = loadSeeded(2025);
+  const s = loadSeeded('BR', 2025);
   for (const seat of s.json.seats) {
     const n = seat.constNo;
     const top = topCandidates(seat).filter(c => !have.has(`${n}:${c.serial}`));

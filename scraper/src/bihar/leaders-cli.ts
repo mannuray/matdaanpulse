@@ -17,7 +17,7 @@ const MIN_NAME_MATCH = 0.5;
 const leaders: LeadersFile = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'leaders.json'), 'utf8'));
 const profilesFile = path.join(DATA_DIR, 'leader-profiles.json');
 const profiles: Record<string, Profile> = fs.existsSync(profilesFile) ? JSON.parse(fs.readFileSync(profilesFile, 'utf8')) : {};
-const seeded = new Map<number, Seeded>(([2010, 2015, 2020, 2025] as Year[]).map(y => [y, loadSeeded(y)]));
+const seeded = new Map<number, Seeded>(([2010, 2015, 2020, 2025] as Year[]).map(y => [y, loadSeeded('BR', y)]));
 
 const errs = validateLeaders(leaders, Object.fromEntries([...seeded].map(([y, s]) => [String(y), new Set(s.seed.constituencies.map(k => k.id))])));
 if (errs.length) { console.error(`leaders.json is invalid:\n  ${errs.join('\n  ')}`); process.exit(1); }

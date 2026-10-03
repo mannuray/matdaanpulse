@@ -1,9 +1,9 @@
-import type { ElectionJson, RawElection, Year } from './types';
+import type { ElectionJson, RawElection } from './types';
+import { STATES, type ElectionConfig } from './elections';
 import { normName } from './names';
 
 export interface CrossCheckException { year: number; key: string; reason: string }
 
-export const EXPECTED_PHASES: Record<Year, number> = { 2010: 6, 2015: 5, 2020: 3, 2025: 2 };
 
 export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): string[] {
   const errs: string[] = [];
@@ -49,13 +49,16 @@ export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): s
   return errs.filter(x => !skip.has(x.split(' ')[0]));
 }
 
-export function validateElection(e: ElectionJson): string[] {
+/** The seat, reservation and poll-date expectations come from the election registry. */
+export function validateElection(e: ElectionJson, cfg: ElectionConfig): string[] {
   const errs: string[] = [];
-  if (e.seats.length !== 243) errs.push(`seats: ${e.seats.length} seats, expected 243`);
+  const st = STATES[cfg.state];
+  const seats = cfg.seats ?? st.seats;
+  if (e.seats.length !== seats) errs.push(`seats: ${e.seats.length} seats, expected ${seats}`);
   const count = (t: string) => e.seats.filter(s => s.type === t).length;
-  if (count('SC') !== 38 || count('ST') !== 2) errs.push(`reserved: SC ${count('SC')} / ST ${count('ST')}, expected 38 / 2`);
+  if (count('SC') !== st.reserved.sc || count('ST') !== st.reserved.st) errs.push(`reserved: SC ${count('SC')} / ST ${count('ST')}, expected ${st.reserved.sc} / ${st.reserved.st}`);
   const phases = new Set(e.seats.map(s => s.phase)).size;
-  if (phases !== EXPECTED_PHASES[e.year]) errs.push(`phases: ${phases} distinct phases, expected ${EXPECTED_PHASES[e.year]}`);
+  if (phases !== cfg.expectedPhases) errs.push(`phases: ${phases} distinct phases, expected ${cfg.expectedPhases}`);
   for (const s of e.seats) {
     const real = s.candidates.filter(c => c.partyId !== 'NOTA');
     const winners = s.candidates.filter(c => c.status === 'WON');
