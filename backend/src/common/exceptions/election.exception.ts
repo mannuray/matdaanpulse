@@ -14,3 +14,10 @@ export class ElectionFinalizedException extends BusinessException {
     super(ErrorCodes.ELECTION_FINALIZED, `Election ${id} is finalized; archived elections can't get new candidates`, HttpStatus.CONFLICT, { id });
   }
 }
+
+/** 409: reopen only applies to a Finalized election. */
+export class ElectionNotFinalizedException extends BusinessException {
+  constructor(id: string) {
+    super(ErrorCodes.ELECTION_NOT_FINALIZED, `Election ${id} is not finalized; only a finalized election can be reopened`, HttpStatus.CONFLICT, { id });
+  }
+}

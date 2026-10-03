@@ -155,7 +155,8 @@ export class ResultsService {
           },
           orderBy: { const_id: 'asc' },
         });
-        return buildSnapshot(Number(state?.version ?? 0), rows);
+        const seatStates = await tx.seat_ingest_state.findMany({ where: { election_id: id }, select: { const_id: true, state: true, round_current: true, round_total: true } });
+        return buildSnapshot(Number(state?.version ?? 0), rows, seatStates);
       },
       { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead },
     );
@@ -363,6 +364,8 @@ export interface ResultsSnapshot {
   summary: { party_id: string; party_name: string; color: string | null; won: number; leading: number }[];
   /** Same shape as GET /elections/:id/vote-share. */
   voteShare: { party_id: string; party_name: string; color: string | null; total_votes: number; percentage: number }[];
+  /** Per-seat ingest state and counting rounds; only seats that have ingest state. */
+  seats: Record<string, { state: string; cr: number | null; tr: number | null }>;
 }
 
 interface SnapshotSourceRow {
@@ -375,7 +378,11 @@ interface SnapshotSourceRow {
 }
 
 /** Pure: mirrors the SQL of getElectionSummary / loadVoteShare (rows without a party are left out of both). */
-export function buildSnapshot(version: number, rows: SnapshotSourceRow[]): ResultsSnapshot {
+export function buildSnapshot(
+  version: number,
+  rows: SnapshotSourceRow[],
+  seatStates: { const_id: string; state: string; round_current: number | null; round_total: number | null }[] = [],
+): ResultsSnapshot {
   const results = rows.map((r) => ({
     const_id: r.const_id,
     party_id: r.candidates.party_id,
@@ -418,7 +425,9 @@ export function buildSnapshot(version: number, rows: SnapshotSourceRow[]): Resul
       percentage: grandTotal > 0 ? parseFloat(((total_votes / grandTotal) * 100).toFixed(2)) : 0,
     }));
 
-  return { version, results, summary, voteShare };
+  const seats = Object.fromEntries(seatStates.map((s) => [s.const_id, { state: s.state, cr: s.round_current, tr: s.round_total }]));
+
+  return { version, results, summary, voteShare, seats };
 }
 
 /** Thrown inside the snapshot loader so a snapshot of another version is never cached under the requested key. */

@@ -1,4 +1,4 @@
-import { Controller, Post, Patch, Get, Put, Body, Param, UseGuards, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Post, Patch, Get, Put, Body, Param, UseGuards, ParseUUIDPipe, Req } from '@nestjs/common';
 import { ElectionsService } from '../../elections/elections.service';
 import { ManifestsService } from '../../manifests/manifests.service';
 import { ResultsService } from '../../results/results.service';
@@ -41,6 +41,12 @@ export class AdminElectionsController {
   @Roles('SUPER_ADMIN')
   async finalizeElection(@Param('id', ParseUUIDPipe) id: string) {
     return this.afterElectionChange(id, await this.electionsService.finalize(id));
+  }
+
+  @Post('elections/:id/reopen')
+  @Roles('SUPER_ADMIN')
+  async reopenElection(@Param('id', ParseUUIDPipe) id: string, @Req() req: any) {
+    return this.afterElectionChange(id, await this.electionsService.reopen(id, req.user?.id ?? null));
   }
 
   @Get('elections/:id/manifest')

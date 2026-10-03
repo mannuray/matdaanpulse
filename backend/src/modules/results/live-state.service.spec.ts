@@ -76,6 +76,12 @@ describe('buildSnapshot', () => {
     constituencies: { type: 'GEN' },
   });
 
+  it('carries per-seat state and rounds when given', () => {
+    const snap = buildSnapshot(7, [], [{ const_id: 'S1', state: 'countermanded', round_current: null, round_total: null }, { const_id: 'S2', state: 'counting', round_current: 4, round_total: 20 }]);
+    expect(snap.seats).toEqual({ S1: { state: 'countermanded', cr: null, tr: null }, S2: { state: 'counting', cr: 4, tr: 20 } });
+    expect(buildSnapshot(7, []).seats).toEqual({});
+  });
+
   it('derives the seat tally and vote share from the same rows as the results list', () => {
     const snap = buildSnapshot(9, [
       row('A', 'P1', 60, 'WON'),
@@ -110,6 +116,7 @@ describe('ResultsService (version-keyed caches, consistent snapshot)', () => {
     const tx = {
       $queryRaw: jest.fn(async () => [{ version: BigInt(dbVersion) }]),
       results: { findMany: jest.fn(async () => []) },
+      seat_ingest_state: { findMany: jest.fn(async () => []) },
     };
     const prisma = {
       $queryRaw: jest.fn(async () => []),
