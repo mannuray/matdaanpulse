@@ -7,15 +7,20 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { DATA_DIR } from './load';
+import { parseState } from './elections';
+import { trackOf } from './current-track';
 import { DB_DIR } from './seeded';
-import { currentPath, emitPartyProfilesSeed, symbolsSeedLine, type ApprovedImages, type PartyProfile, type RemovedImages } from './party-profiles';
+import { BIHAR_PARTIES, currentPath, emitPartyProfilesSeed, symbolsSeedLine, type ApprovedImages, type PartyProfile, type RemovedImages } from './party-profiles';
 
 const RAW = path.resolve(__dirname, '../../data/raw/party-images');
 const PUBLIC = path.resolve(__dirname, '../../../frontend/public');
 const SYMBOLS_SEED = path.join(DB_DIR, 'seed_party_symbols.sql');
 
-const profiles: PartyProfile[] = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'parties-2025.json'), 'utf8'));
+const ST = parseState(process.argv[2] ?? 'BR');
+const track = trackOf(ST);
+const year = track.years[track.years.length - 1];
+const dataFile = path.join(track.dir, `parties-${year}.json`);
+const profiles: PartyProfile[] = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
 let seed = fs.readFileSync(SYMBOLS_SEED, 'utf8');
 const current = (id: string, col: 'symbol_url' | 'eci_symbol_url') => currentPath(seed, id, col);
 
@@ -43,4 +48,5 @@ for (const p of profiles) {
   console.log(`${p.id.padEnd(6)} logo ${out.logo ? 'NEW' : removed[p.id]?.logo ? 'REMOVED' : logo ? 'kept' : 'none'}, eci ${out.eci ? 'NEW' : eci ? 'kept' : 'none'}`);
 }
 fs.writeFileSync(SYMBOLS_SEED, seed);
-fs.writeFileSync(path.join(DB_DIR, 'seed_bihar_party_profiles.sql'), emitPartyProfilesSeed(profiles, approved, removed) + '\n');
+const opts = ST === 'BR' ? BIHAR_PARTIES : { seedName: track.partyProfilesSeed, label: `${track.state.name} ${year}`, dataFile: `scraper/data/${track.state.slug}/parties-${year}.json` };
+fs.writeFileSync(path.join(DB_DIR, `${track.partyProfilesSeed}.sql`), emitPartyProfilesSeed(profiles, approved, removed, opts) + '\n');

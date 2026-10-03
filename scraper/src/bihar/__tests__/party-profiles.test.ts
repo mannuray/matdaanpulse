@@ -51,3 +51,14 @@ describe('party profiles seed', () => {
     expect(symbolsSeedLine('X', null, null)).toBeNull();
   });
 });
+
+describe('emitPartyProfilesSeed for another state', () => {
+  it('names the seed and the data file', () => {
+    const sql = emitPartyProfilesSeed([], {}, {}, { seedName: 'seed_wb_party_profiles', label: 'West Bengal 2026', dataFile: 'scraper/data/wb/parties-2026.json' });
+    expect(sql).toContain("seed_runs WHERE name = 'seed_wb_party_profiles'");
+    expect(sql).toContain('West Bengal 2026 top parties');
+    expect(sql).toContain('(scraper/data/wb/');
+    expect(sql).toContain('parties-2026.json, user-reviewed');
+    expect(sql).not.toMatch(/Bihar/);
+  });
+});

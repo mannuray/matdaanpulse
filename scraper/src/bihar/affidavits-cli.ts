@@ -1,10 +1,12 @@
 /**
- * Winners' affidavits from MyNeta → affidavits-<year>.json + database/seed_bihar_affidavits.sql.
- * Usage: npx ts-node src/bihar/affidavits-cli.ts   (pages cached in data/raw/myneta/)
+ * Winners' affidavits from MyNeta → affidavits-<year>.json + the state's affidavits seed (seed_bihar_affidavits.sql /
+ * seed_<slug>_affidavits.sql). Usage: npx ts-node src/bihar/affidavits-cli.ts [STATE]   (default BR; pages cached in data/raw/myneta/)
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { DATA_DIR } from './load';
+import { electionOf, parseState } from './elections';
+import { trackOf } from './current-track';
+import { BIHAR_AFFIDAVITS } from './affidavits';
 import { DB_DIR, loadSeeded } from './seeded';
 import { MYNETA_SLUGS, emitAffidavitsSeed, matchWinners, parseWinners, winnersUrl, type Affidavit, type WinnerSeat } from './affidavits';
 import type { Year } from './types';
@@ -26,19 +28,23 @@ async function page(slug: string): Promise<string> {
 }
 
 (async () => {
+  const ST = parseState(process.argv[2] ?? 'BR');
+  const track = trackOf(ST);
+  const slugOf = (y: number) => (ST === 'BR' ? MYNETA_SLUGS[y] : electionOf(ST, y).myneta!);
   const byYear: Record<string, Affidavit[]> = {};
-  for (const y of [2010, 2015, 2020, 2025] as Year[]) {
-    const s = loadSeeded('BR', y);
+  for (const y of track.years as Year[]) {
+    const s = loadSeeded(ST, y);
     const seats: WinnerSeat[] = s.json.seats.map(seat => {
       const w = seat.candidates.find(c => c.status === 'WON')!;
       return { constNo: seat.constNo, name: s.seat(seat.constNo).name, winner: { candidateId: s.idOf(seat.constNo, w), name: w.name } };
     });
-    const rows = parseWinners(await page(MYNETA_SLUGS[y]), winnersUrl(MYNETA_SLUGS[y]));
+    const rows = parseWinners(await page(slugOf(y)), winnersUrl(slugOf(y)));
     const { matched, unmatched } = matchWinners(rows, seats);
     byYear[y] = matched;
-    fs.writeFileSync(path.join(DATA_DIR, `affidavits-${y}.json`), JSON.stringify({ source: winnersUrl(MYNETA_SLUGS[y]), matched, unmatched }, null, 1) + '\n');
+    fs.writeFileSync(path.join(track.dir, `affidavits-${y}.json`), JSON.stringify({ source: winnersUrl(slugOf(y)), matched, unmatched }, null, 1) + '\n');
     console.log(`${y}: ${rows.length} MyNeta winners, ${matched.length} matched, ${unmatched.length} unmatched`);
     for (const u of unmatched) console.log(`    ${u}`);
   }
-  fs.writeFileSync(path.join(DB_DIR, 'seed_bihar_affidavits.sql'), emitAffidavitsSeed(byYear) + '\n');
+  const opts = ST === 'BR' ? BIHAR_AFFIDAVITS : { seedName: track.affidavitsSeed, label: `${track.state.name} VS ${track.years.join(', ')}` };
+  fs.writeFileSync(path.join(DB_DIR, `${track.affidavitsSeed}.sql`), emitAffidavitsSeed(byYear, opts) + '\n');
 })().catch(e => { console.error(e); process.exit(1); });

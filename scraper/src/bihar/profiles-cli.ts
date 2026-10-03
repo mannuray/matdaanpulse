@@ -5,7 +5,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { put } from '@vercel/blob';
-import { DATA_DIR } from './load';
+import { parseState } from './elections';
+import { trackOf } from './current-track';
 import { readEntity, readImageInfo, type Profile } from './profiles';
 import type { LeadersFile } from './leaders-data';
 
@@ -16,8 +17,9 @@ const json = async (url: string) => { const r = await fetch(url, { headers: { 'U
 (async () => {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
   if (!token) throw new Error('BLOB_READ_WRITE_TOKEN is not set');
-  const leaders: LeadersFile = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'leaders.json'), 'utf8'));
-  const file = path.join(DATA_DIR, 'leader-profiles.json');
+  const dir = trackOf(parseState(process.argv[2] ?? 'BR')).dir;
+  const leaders: LeadersFile = JSON.parse(fs.readFileSync(path.join(dir, 'leaders.json'), 'utf8'));
+  const file = path.join(dir, 'leader-profiles.json');
   const out: Record<string, Profile> = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
   for (const p of leaders.people) {
     if (!p.wikidata) continue;

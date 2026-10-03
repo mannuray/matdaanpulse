@@ -10,7 +10,8 @@ export interface LeaderPerson {
   candidacies: { year: number; const_id: string }[];
 }
 export interface LeaderRole { key: string; role: string; party_id: string }
-export type LeaderYear = '2010' | '2015' | '2020' | '2025';
+/** An election year with curated leaders (Bihar 2010-2025; the 2026 states). */
+export type LeaderYear = string;
 export interface LeadersFile {
   people: LeaderPerson[];
   elections: Record<LeaderYear, { leaders: LeaderRole[]; cabinet: LeaderRole[]; sources: string[] }>;

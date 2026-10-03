@@ -35,3 +35,12 @@ describe('photos', () => {
     expect(sql).toContain("('11111111-1111-1111-1111-111111111111', 'https://blob/persons/eci2025/1-1.jpg')");
   });
 });
+
+describe('emitPhotosSeed for another state', () => {
+  it('names the seed and the election', () => {
+    const sql = emitPhotosSeed([{ candidateId: 'c1', url: 'https://blob/x.jpg', sourceUrl: 'https://eci/x.jpg' }], { seedName: 'seed_as_candidate_photos', label: 'Assam 2026' });
+    expect(sql).toContain("seed_runs WHERE name = 'seed_as_candidate_photos'");
+    expect(sql).toContain('Assam 2026 top-4');
+    expect(sql).not.toMatch(/Bihar/);
+  });
+});

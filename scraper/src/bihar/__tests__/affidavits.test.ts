@@ -51,3 +51,12 @@ describe('affidavits', () => {
     expect(r).toEqual({ matched: [], unmatched: [] });
   });
 });
+
+describe('emitAffidavitsSeed for another state', () => {
+  it('names the seed and the elections', () => {
+    const sql = emitAffidavitsSeed({}, { seedName: 'seed_kl_affidavits', label: 'Kerala VS 2026' });
+    expect(sql).toContain("seed_runs WHERE name = 'seed_kl_affidavits'");
+    expect(sql).toContain("Kerala VS 2026 winners'");
+    expect(sql).not.toMatch(/Bihar/);
+  });
+});

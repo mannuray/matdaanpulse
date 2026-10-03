@@ -1,14 +1,16 @@
 /** Print one SQL query that lists every leader whose candidacies sit on more than one person (expect no rows). */
 import * as fs from 'fs';
 import * as path from 'path';
-import { DATA_DIR } from './load';
+import { parseState } from './elections';
+import { trackOf } from './current-track';
 import { loadSeeded } from './seeded';
 import { similarity } from './names';
 import type { LeadersFile } from './leaders-data';
 import type { Year } from './types';
 
-const f: LeadersFile = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'leaders.json'), 'utf8'));
-const s = new Map(([2010, 2015, 2020, 2025] as Year[]).map(y => [y, loadSeeded('BR', y)]));
+const ST = parseState(process.argv[2] ?? 'BR');
+const f: LeadersFile = JSON.parse(fs.readFileSync(path.join(trackOf(ST).dir, 'leaders.json'), 'utf8'));
+const s = new Map((Object.keys(f.elections).map(Number) as Year[]).map(y => [y, loadSeeded(ST, y)]));
 const rows = f.people.filter(p => p.candidacies.length > 1).map(p => {
   const ids = p.candidacies.map(c => {
     const y = s.get(c.year as Year)!;

@@ -50,3 +50,18 @@ describe('leaders seed', () => {
     expect(sql).not.toMatch(/metadata/);
   });
 });
+
+describe('emitLeadersSeed for another state', () => {
+  const file: LeadersFile = { people: [{ key: 'vijay', name: 'Vijay', wikidata: null, candidacies: [] }] as unknown as LeadersFile['people'],
+    elections: { '2026': { leaders: [{ key: 'vijay', role: 'Chief Minister', party_id: 'TVK' }], cabinet: [], sources: ['s'] } } };
+  const people: ResolvedPerson[] = [{ key: 'vijay', name: 'Vijay', candidateIds: [], fixedId: '00000000-0000-0000-0000-000000000001', profile: null }];
+  const sql = emitLeadersSeed(file, people, { '2026': 'e5f6a7b8-c9d0-1234-ef01-456789012026' },
+    { stateId: 31, stateName: 'Tamil Nadu', slug: 'tn', seedName: 'seed_tn_leaders', years: ['2026'] });
+  it('names the state, its seed and its years', () => {
+    expect(sql).toContain("seed_runs WHERE name = 'seed_tn_leaders'");
+    expect(sql).toContain('state_id = COALESCE(state_id, 31)');
+    expect(sql).toContain('Chief Minister of Tamil Nadu in the 2026 government.');
+    expect(sql).toContain("WHERE id = 'e5f6a7b8-c9d0-1234-ef01-456789012026'");
+    expect(sql).not.toMatch(/Bihar/);
+  });
+});
