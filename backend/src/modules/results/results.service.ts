@@ -78,6 +78,32 @@ export class ResultsService {
     return results;
   }
 
+  /** Per region: seats and each party's votes and seats won (the region comparison after a redraw). */
+  async getRegionShares(id: string) {
+    return this.cache.getOrSet(await this.versionedKey(id, 'region-shares'), CACHE_TTL.VOTE_SHARE, () => this.loadRegionShares(id));
+  }
+
+  private async loadRegionShares(id: string) {
+    const rows: { region_id: number; region_name: string; seats: bigint; party_id: string; votes: bigint; won: bigint }[] = await this.prisma.$queryRaw`
+      SELECT g.id AS region_id, g.name AS region_name,
+             (SELECT count(*) FROM constituencies k2 WHERE k2.election_id = ${id}::uuid AND k2.region_id = g.id)::bigint AS seats,
+             c.party_id, SUM(r.votes)::bigint AS votes, COUNT(*) FILTER (WHERE r.status = 'WON')::bigint AS won
+      FROM results r
+      JOIN candidates c ON c.id = r.candidate_id
+      JOIN constituencies k ON k.id = r.const_id
+      JOIN regions g ON g.id = k.region_id
+      WHERE r.election_id = ${id}::uuid
+      GROUP BY g.id, g.name, c.party_id
+      ORDER BY g.name, votes DESC`;
+    const byRegion = new Map<number, { id: number; name: string; seats: number; parties: { party_id: string; votes: number; won: number }[] }>();
+    for (const r of rows) {
+      const g = byRegion.get(r.region_id) ?? { id: r.region_id, name: r.region_name, seats: Number(r.seats), parties: [] };
+      g.parties.push({ party_id: r.party_id, votes: Number(r.votes), won: Number(r.won) });
+      byRegion.set(r.region_id, g);
+    }
+    return { regions: [...byRegion.values()] };
+  }
+
   async getResults(id: string) {
     return this.cache.getOrSet(await this.versionedKey(id, 'full-results'), CACHE_TTL.FULL_RESULTS, () => this.loadResults(id));
   }

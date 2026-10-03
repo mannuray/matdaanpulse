@@ -105,6 +105,12 @@ export class ElectionsController {
     return this.resultsService.getVoteShare(id);
   }
 
+  /** Per-region party votes and seats (the region comparison shown after a redraw). */
+  @Get(':id/region-shares')
+  getRegionShares(@Param('id', ParseUUIDPipe) id: string) {
+    return this.resultsService.getRegionShares(id);
+  }
+
   @Get(':id/analysis')
   getAnalysis(@Param('id', ParseUUIDPipe) id: string) {
     return this.constituenciesService.getPublicAnalysis(id);

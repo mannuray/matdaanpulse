@@ -533,5 +533,9 @@
   "person_photo_credit_unknown": "unknown author",
   "about_credits_title": "Credits",
   "about_credits_intro": "Results and party symbols: Election Commission of India. Candidate affidavits: ADR / MyNeta. Photos: Wikimedia Commons contributors and the Election Commission of India, credited below.",
-  "about_credits_group": "{{count}} photos"
+  "about_credits_group": "{{count}} photos",
+  "regions_tab": "Regions",
+  "regions_title": "Regions vs {{year}}",
+  "regions_approx_note": "Seats were redrawn, so regions are compared as a whole: vote share and seats, {{prev}} → {{cur}}. A few seats straddle regions, so this is approximate.",
+  "regions_seats": "{{prev}} → {{cur}} seats"
 }

@@ -4,6 +4,8 @@ import type { StandingsVM, StandingRow } from '../../viewmodels/tiles/useStandin
 import type { LeadersVM, LeaderCard } from '../../viewmodels/tiles/useLeadersVM';
 import type { SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
 import { SummaryTab } from './SummaryTab';
+import { RegionsTab } from './RegionsTab';
+import type { RegionComparisonVM } from '../../viewmodels/tiles/useRegionComparisonVM';
 import { Tile } from './Tile';
 import { STATUS_STYLE } from './statusStyle';
 import { useMediaQuery } from '../hooks/useMediaQuery';
@@ -16,7 +18,7 @@ import { onKbdFocus } from '../ui/kbdFocus';
 import { PartyButton } from '../ui/PartyButton';
 
 export type StandingsTab = 'parties' | 'watchlist';
-type TileTab = StandingsTab | 'summary';
+type TileTab = StandingsTab | 'summary' | 'regions';
 
 function Row({ r, max, vm, wide }: { r: StandingRow; max: number; vm: StandingsVM; wide?: boolean }) {
   const { t } = useTranslation();
@@ -133,8 +135,10 @@ export function WatchlistPreview({ vm }: { vm: LeadersVM }) {
   return <div className="flex flex-col gap-1">{vm.watchlist.slice(0, 2).map(c => <WatchPreviewRow key={c.key} c={c} vm={vm} />)}</div>;
 }
 
-export function StandingsTile({ vm, variant, watchlist, summary, initialTab, onTabChange }: {
+export function StandingsTile({ vm, variant, watchlist, summary, regions, initialTab, onTabChange }: {
   vm: StandingsVM; variant: 'tile' | 'focus'; watchlist?: LeadersVM; summary?: SummaryVM; initialTab?: StandingsTab;
+  /** Region comparison, only for an election whose boundaries were redrawn (grid tile only). */
+  regions?: RegionComparisonVM | null;
   /** Reports the active Parties / Watchlist tab when it is picked and again right before the tile opens its focus view. */
   onTabChange?(tab: StandingsTab): void;
 }) {
@@ -144,14 +148,16 @@ export function StandingsTile({ vm, variant, watchlist, summary, initialTab, onT
   const withSummary = variant === 'tile' && summary != null;
   const [picked, setTab] = useState<TileTab | null>(null);
   const tab: TileTab = picked ?? initialTab ?? (withSummary ? 'summary' : 'parties');
-  const shown: TileTab = tab === 'summary' && !withSummary ? 'parties' : tab === 'watchlist' && !watchlist ? 'parties' : tab;
-  const pick = (v: TileTab) => { setTab(v); if (v !== 'summary') onTabChange?.(v); };
+  const withRegions = variant === 'tile' && regions != null;
+  const shown: TileTab = tab === 'summary' && !withSummary ? 'parties' : tab === 'watchlist' && !watchlist ? 'parties' : tab === 'regions' && !withRegions ? 'parties' : tab;
+  const pick = (v: TileTab) => { setTab(v); if (v === 'parties' || v === 'watchlist') onTabChange?.(v); };
   // Opening the focus view from the Parties / Watchlist tab lands on that same tab.
-  const expandStandings = () => { if (shown !== 'summary') onTabChange?.(shown); vm.onFocus(); };
+  const expandStandings = () => { if (shown === 'parties' || shown === 'watchlist') onTabChange?.(shown); vm.onFocus(); };
   const options: { value: TileTab; label: string }[] = [];
   if (withSummary) options.push({ value: 'summary', label: wide ? t('studio_tab_summary', { layer: t(`map_tab_${summary.layer}`) }) : t('studio_tab_summary_short') });
   options.push({ value: 'parties', label: t('studio_tab_parties') });
   if (watchlist) options.push({ value: 'watchlist', label: t('studio_tab_watchlist', { count: watchlist.watchlist.length }) });
+  if (withRegions) options.push({ value: 'regions', label: t('regions_tab', 'Regions') });
   const toggle = options.length > 1 && (
     <PillToggle<TileTab> size="sm" value={shown} onChange={pick} ariaLabel={t('party_standings')} options={options} />
   );
@@ -175,10 +181,12 @@ export function StandingsTile({ vm, variant, watchlist, summary, initialTab, onT
   const max = Math.max(1, ...vm.rows.map(r => r.seats));
   const label = options.find(o => o.value === shown)?.label ?? t('party_standings');
   return (
-    <Tile title={t(shown === 'summary' ? 'studio_title_summary' : shown === 'watchlist' ? 'studio_title_watchlist' : 'party_standings')}
+    <Tile title={shown === 'regions' ? t('regions_title', 'Regions vs {{year}}', { year: regions?.prevYear }) : t(shown === 'summary' ? 'studio_title_summary' : shown === 'watchlist' ? 'studio_title_watchlist' : 'party_standings')}
       onExpand={shown === 'summary' && summary ? summary.onFocus : expandStandings} pulse={vm.pulse} actions={toggle} stackActions={!wide && options.length > 1} bodyClassName="flex flex-col">
       {shown === 'summary' && summary ? (
         <ScrollArea label={label} resetKey={`summary:${summary.electionId}:${summary.layer}`}><SummaryTab vm={summary} /></ScrollArea>
+      ) : shown === 'regions' && regions ? (
+        <ScrollArea label={label} resetKey="regions"><RegionsTab vm={regions} /></ScrollArea>
       ) : shown === 'watchlist' && watchlist ? <WatchlistBody vm={watchlist} label={label} /> : (
         <ScrollArea label={label} resetKey="parties">
           <div className="flex flex-col gap-1">

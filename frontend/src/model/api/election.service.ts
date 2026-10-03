@@ -4,6 +4,7 @@ import type {
   Constituency, AnalysisEntry, ConstituencyAnalysisDetail, ResultsSnapshot
 } from '../types';
 import type { LiveState } from '../live/poller';
+import type { RegionShares } from '../derive/regionComparison';
 
 /**
  * Election & Constituency Services (SOLID: SRP)
@@ -75,6 +76,11 @@ export function getAlliances(electionId: string) {
 
 export function getVoteShare(electionId: string) {
   return apiFetch<VoteShare[]>(`/elections/${electionId}/vote-share`);
+}
+
+/** Per-region party votes and seats (the region comparison after a redraw). */
+export function getRegionShares(electionId: string) {
+  return apiFetch<RegionShares>(`/elections/${electionId}/region-shares`);
 }
 
 export function getManifest(electionId: string) {
