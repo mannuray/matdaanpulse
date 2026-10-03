@@ -155,8 +155,9 @@ export class ResultsService {
           },
           orderBy: { const_id: 'asc' },
         });
-        const seatStates = await tx.seat_ingest_state.findMany({ where: { election_id: id }, select: { const_id: true, state: true, round_current: true, round_total: true } });
-        return buildSnapshot(Number(state?.version ?? 0), rows, seatStates);
+        const seatStates = await tx.seat_ingest_state.findMany({ where: { election_id: id, state: { not: null } }, select: { const_id: true, state: true, round_current: true, round_total: true } });
+        // A row without a state only records a rejection (migration 021); viewers never see it.
+        return buildSnapshot(Number(state?.version ?? 0), rows, seatStates as { const_id: string; state: string; round_current: number | null; round_total: number | null }[]);
       },
       { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead },
     );
@@ -284,7 +285,7 @@ export class ResultsService {
       orderBy: { const_no: 'asc' }
     });
 
-    const seatStates = await this.prisma.seat_ingest_state.findMany({ where: { election_id: id }, select: { const_id: true, state: true } });
+    const seatStates = await this.prisma.seat_ingest_state.findMany({ where: { election_id: id, state: { not: null } }, select: { const_id: true, state: true } });
     const stateOf = new Map(seatStates.map(s => [s.const_id, s.state as string]));
 
     return constituencies.map(co => ({
