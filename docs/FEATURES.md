@@ -189,8 +189,13 @@ Plan `docs/superpowers/plans/2026-10-03-phase2b-2026-elections.md` (current trac
 - [x] Assam follows the 2023 delimitation (126 seats, 9 SC, 19 ST): map `frontend/public/geo/as_ac_2023.geojson` built
   from ECI's boundary file (`geo-cli.ts`: our seat names, d3 winding, mapshaper); seats tagged by district/region one by
   one (`seed_as_2026_districts_regions.sql`); no seat history, no links to 2008-era candidacies.
-- [x] Region comparison for redrawn elections: `GET /elections/:id/region-shares` + a "Regions" tab in the standings tile
-  (statewide and per region, each year's own alliances, labelled approximate).
+- [x] Regions tab (2026-10-05: every Vidhan Sabha election whose seats carry regions): `GET /elections/:id/region-shares`
+  (seats won or leading, vote share per party per region; 404 for an unknown election) + a "Regions" tab in the standings
+  tile: statewide and per region, by Party (default: top 6 by current vote, the rest as Others) or Alliance (each year's own
+  manifest alliances), vs the state's previous election, with the change in points; "approximate" only when the boundaries
+  differ (Assam 2026); a state's first election shows its own figures only.
+- [x] Lok Sabha hidden from the site (2026-10-05; data kept): `frontend/src/model/config/houses.ts` (`SHOWN_HOUSES`) filters
+  elections, the LS/VS toggle, About rows and person contests; direct LS links redirect home.
 - [x] 2026 candidates linked to their 2011-2021 persons (`seed_<slug>_person_links_v2.sql`, same delimitation only).
 - [x] Leaders (CM, LoP, opposition chiefs, cabinet; user-approved) with Blob photos; 40 top-party profiles (user-approved);
   top-4 candidate photos from the live ECI results site; winners' affidavits from MyNeta (packed rows decoded, never run).

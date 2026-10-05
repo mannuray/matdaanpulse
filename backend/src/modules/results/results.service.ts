@@ -1,3 +1,4 @@
+import { ElectionNotFoundException } from '../../common/exceptions';
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -78,8 +79,9 @@ export class ResultsService {
     return results;
   }
 
-  /** Per region: seats and each party's votes and seats won (the region comparison after a redraw). */
+  /** Per region: seats and each party's votes and seats won or leading (the Regions tab). 404 for an unknown election. */
   async getRegionShares(id: string) {
+    if (!(await this.prisma.elections.findUnique({ where: { id }, select: { id: true } }))) throw new ElectionNotFoundException(id);
     return this.cache.getOrSet(await this.versionedKey(id, 'region-shares'), CACHE_TTL.VOTE_SHARE, () => this.loadRegionShares(id));
   }
 
@@ -87,7 +89,7 @@ export class ResultsService {
     const rows: { region_id: number; region_name: string; seats: bigint; party_id: string; votes: bigint; won: bigint }[] = await this.prisma.$queryRaw`
       SELECT g.id AS region_id, g.name AS region_name,
              (SELECT count(*) FROM constituencies k2 WHERE k2.election_id = ${id}::uuid AND k2.region_id = g.id)::bigint AS seats,
-             c.party_id, SUM(r.votes)::bigint AS votes, COUNT(*) FILTER (WHERE r.status = 'WON')::bigint AS won
+             c.party_id, SUM(r.votes)::bigint AS votes, COUNT(*) FILTER (WHERE r.status IN ('WON', 'LEADING'))::bigint AS won
       FROM results r
       JOIN candidates c ON c.id = r.candidate_id
       JOIN constituencies k ON k.id = r.const_id

@@ -181,7 +181,7 @@ export function StandingsTile({ vm, variant, watchlist, summary, regions, initia
   const max = Math.max(1, ...vm.rows.map(r => r.seats));
   const label = options.find(o => o.value === shown)?.label ?? t('party_standings');
   return (
-    <Tile title={shown === 'regions' ? t('regions_title', 'Regions vs {{year}}', { year: regions?.prevYear }) : t(shown === 'summary' ? 'studio_title_summary' : shown === 'watchlist' ? 'studio_title_watchlist' : 'party_standings')}
+    <Tile title={shown === 'regions' ? (regions?.prevYear ? t('regions_title', 'Regions vs {{year}}', { year: regions.prevYear }) : t('regions_tab', 'Regions')) : t(shown === 'summary' ? 'studio_title_summary' : shown === 'watchlist' ? 'studio_title_watchlist' : 'party_standings')}
       onExpand={shown === 'summary' && summary ? summary.onFocus : expandStandings} pulse={vm.pulse} actions={toggle} stackActions={!wide && options.length > 1} bodyClassName="flex flex-col">
       {shown === 'summary' && summary ? (
         <ScrollArea label={label} resetKey={`summary:${summary.electionId}:${summary.layer}`}><SummaryTab vm={summary} /></ScrollArea>

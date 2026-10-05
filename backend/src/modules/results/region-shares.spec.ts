@@ -1,8 +1,9 @@
 import { ResultsService } from './results.service';
+import { ElectionNotFoundException } from '../../common/exceptions';
 
 describe('ResultsService.getRegionShares', () => {
-  function make(rows: unknown[]) {
-    const prisma = { $queryRaw: jest.fn().mockResolvedValue(rows) };
+  function make(rows: unknown[], exists = true) {
+    const prisma = { $queryRaw: jest.fn().mockResolvedValue(rows), elections: { findUnique: jest.fn().mockResolvedValue(exists ? { id: 'e1' } : null) } };
     const keys: string[] = [];
     const cache = { getOrSet: jest.fn(async (key: string, _ttl: number, loader: () => Promise<unknown>) => { keys.push(key); return loader(); }) };
     const liveState = { get: jest.fn().mockResolvedValue({ version: 7 }) };
@@ -24,5 +25,16 @@ describe('ResultsService.getRegionShares', () => {
 
   it('returns no regions for an election whose seats carry none', async () => {
     expect(await make([]).svc.getRegionShares('e1')).toEqual({ regions: [] });
+  });
+
+  it('404 for an unknown election', async () => {
+    await expect(make([], false).svc.getRegionShares('nope')).rejects.toThrow(ElectionNotFoundException);
+  });
+
+  it('counts leading seats with won ones (counting day)', async () => {
+    const { svc } = make([]);
+    await svc.getRegionShares('e1');
+    const sql = ((svc as any).prisma.$queryRaw.mock.calls[0][0] as string[]).join('?');
+    expect(sql).toMatch(/r\.status IN \('WON', 'LEADING'\)/);
   });
 });

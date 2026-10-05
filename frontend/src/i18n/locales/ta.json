@@ -539,5 +539,13 @@
   "regions_approx_note": "தொகுதி எல்லைகள் மாற்றப்பட்டதால், பகுதிகள் முழுமையாக ஒப்பிடப்படுகின்றன: வாக்கு சதவீதம் மற்றும் இடங்கள், {{prev}} → {{cur}}. சில தொகுதிகள் இரண்டு பகுதிகளில் பரவியுள்ளதால், இது தோராயமானது.",
   "regions_seats": "{{prev}} → {{cur}} இடங்கள்",
   "about_chip_states_one": "{{count}} மாநிலம்",
-  "about_chip_states_other": "{{count}} மாநிலங்கள்"
+  "about_chip_states_other": "{{count}} மாநிலங்கள்",
+  "regions_statewide": "மாநிலம் முழுவதும்",
+  "regions_others": "மற்றவை",
+  "regions_mode": "வகைப்படுத்து",
+  "regions_by_party": "கட்சி",
+  "regions_by_alliance": "கூட்டணி",
+  "regions_compare": "{{prev}} → {{cur}}",
+  "regions_no_prev": "ஒப்பிட இந்த மாநிலத்தின் முந்தைய தேர்தல் இல்லை: {{cur}} மட்டும்.",
+  "regions_seats_now": "{{cur}} இடங்கள்"
 }

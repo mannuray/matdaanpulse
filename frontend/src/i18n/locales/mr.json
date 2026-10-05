@@ -539,5 +539,13 @@
   "regions_approx_note": "मतदारसंघांच्या सीमा बदलल्या आहेत, म्हणून प्रदेशांची तुलना संपूर्ण प्रदेश म्हणून केली आहे: मतांचा वाटा आणि जागा, {{prev}} → {{cur}}. काही मतदारसंघ दोन प्रदेशांत पसरलेले आहेत, म्हणून हे अंदाजे आहे.",
   "regions_seats": "{{prev}} → {{cur}} जागा",
   "about_chip_states_one": "{{count}} राज्य",
-  "about_chip_states_other": "{{count}} राज्ये"
+  "about_chip_states_other": "{{count}} राज्ये",
+  "regions_statewide": "संपूर्ण राज्य",
+  "regions_others": "इतर",
+  "regions_mode": "गट",
+  "regions_by_party": "पक्ष",
+  "regions_by_alliance": "आघाडी",
+  "regions_compare": "{{prev}} → {{cur}}",
+  "regions_no_prev": "तुलनेसाठी या राज्याची आधीची निवडणूक नाही: फक्त {{cur}}.",
+  "regions_seats_now": "{{cur}} जागा"
 }

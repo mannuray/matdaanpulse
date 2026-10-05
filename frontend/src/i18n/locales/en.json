@@ -539,5 +539,13 @@
   "regions_approx_note": "Seats were redrawn, so regions are compared as a whole: vote share and seats, {{prev}} → {{cur}}. A few seats straddle regions, so this is approximate.",
   "regions_seats": "{{prev}} → {{cur}} seats",
   "about_chip_states_one": "{{count}} state",
-  "about_chip_states_other": "{{count}} states"
+  "about_chip_states_other": "{{count}} states",
+  "regions_statewide": "Statewide",
+  "regions_others": "Others",
+  "regions_mode": "Group by",
+  "regions_by_party": "Party",
+  "regions_by_alliance": "Alliance",
+  "regions_compare": "{{prev}} → {{cur}}",
+  "regions_no_prev": "No earlier election of this state to compare with: {{cur}} only.",
+  "regions_seats_now": "{{cur}} seats"
 }
