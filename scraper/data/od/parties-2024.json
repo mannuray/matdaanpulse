@@ -1,0 +1,40 @@
+[
+ {
+  "id": "BJD",
+  "name": "Biju Janata Dal",
+  "abbreviation": "BJD",
+  "eci_recognition": "State",
+  "founded_year": 1997,
+  "leader_name": "Naveen Patnaik",
+  "headquarters": "Sankha Bhawan, Bhubaneswar 751001, Odisha",
+  "website": "https://bjdodisha.org.in/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Biju_Janata_Dal",
+  "color": "#70A548",
+  "description": "An Odisha regional party founded in 1997 by Naveen Patnaik, named after his father Biju Patnaik, which governed the state from 2000 to 2024. In 2024 it lost power to the BJP, winning 51 of 147 seats with about 40.2% of the vote; Patnaik won Hinjili but lost Kantabanji.",
+  "eci_symbol": "Conch",
+  "logo": {
+   "file": "BJD-logo.svg",
+   "commons": "File:Biju Janata Dal logo.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Biju_Janata_Dal_logo.svg",
+   "author": "VNC200",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "BJD-eci.svg",
+   "commons": "File:Indian Election Symbol Conch.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Conch.svg",
+   "author": "Furfur (after Abilngeorge)",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Biju_Janata_Dal",
+   "https://en.wikipedia.org/wiki/2024_Odisha_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=4",
+   "https://commons.wikimedia.org/wiki/File:Biju_Janata_Dal_logo.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Conch.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ }
+]

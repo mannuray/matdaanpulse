@@ -1,0 +1,41 @@
+[
+ {
+  "id": "AAP",
+  "name": "Aam Aadmi Party",
+  "abbreviation": "AAP",
+  "eci_recognition": "National",
+  "founded_year": 2012,
+  "leader_name": "Arvind Kejriwal",
+  "headquarters": "206, Rouse Avenue, Deen Dayal Upadhyaya Marg, New Delhi 110002",
+  "website": "https://aamaadmiparty.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Aam_Aadmi_Party",
+  "color": "#0072B0",
+  "description": "A party that grew out of the 2011 anti-corruption movement, founded in 2012 by Arvind Kejriwal and recognised as a national party in 2023. After governing Delhi since 2015 it lost the 2025 election to the BJP, winning 22 of 70 seats with about 43.6% of the vote; Kejriwal lost New Delhi.",
+  "eci_symbol": "Broom",
+  "logo": {
+   "file": "AAP-logo.svg",
+   "commons": "File:Aam Aadmi Party logo (English).svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Aam_Aadmi_Party_logo_(English).svg",
+   "author": "Aam Aadmi Party",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "AAP-eci.svg",
+   "commons": "File:AAP symbol.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AAP_symbol.svg",
+   "author": "Bajaj",
+   "licence": "CC BY-SA 3.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": true,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Aam_Aadmi_Party",
+   "https://en.wikipedia.org/wiki/2025_Delhi_Legislative_Assembly_election",
+   "https://www.thehindu.com/news/national/election-commission-grants-national-party-status-to-aap-withdraws-status-of-trinamool-congress-cpi/article66721271.ece",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=10",
+   "https://commons.wikimedia.org/wiki/File:Aam_Aadmi_Party_logo_(English).svg",
+   "https://commons.wikimedia.org/wiki/File:AAP_symbol.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ }
+]

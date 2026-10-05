@@ -151,6 +151,7 @@ run seed_bihar_party_profiles.sql
 # Party colours the fill-only profile seeds could not set (each only while the old colour is unchanged)
 # 2026 top parties of the five states (researched, user-approved; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_party_profiles.sql"; done
+for st in dl hr jh od; do run "seed_${st}_party_profiles.sql"; done
 run seed_party_colors_v1.sql
 # Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
 run seed_media_s3_v1.sql
