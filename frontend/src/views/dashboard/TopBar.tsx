@@ -9,6 +9,7 @@ import { BottomSheet } from '../ui/BottomSheet';
 import { SearchBox } from './SearchBox';
 import { ShareMenu } from './ShareMenu';
 import { Wordmark } from '../ui/Wordmark';
+import { ElectionChoicesList, ElectionPickerPopover } from './ElectionPicker';
 
 const ICON_BTN = 'grid h-11 w-11 shrink-0 place-items-center rounded-full text-muted hover:bg-tile-raised hover:text-ink focus-visible:ring-2 focus-visible:ring-accent';
 
@@ -38,10 +39,7 @@ function ElectionPickers({ vm, onDone }: { vm: TopBarVM; onDone(): void }) {
     <div className="flex flex-col gap-3 pt-2">
       {vm.houses.length > 1 && <PillToggle value={vm.electionType} onChange={ty => { vm.onType(ty); onDone(); }} ariaLabel={t('studio_election_type')} size="lg" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />}
       {vm.electionType === 'VS' ? (
-        <div className="flex flex-wrap gap-2">
-          <PickerSelect size="lg" value={String(vm.stateId ?? '')} onChange={v => { vm.onState(Number(v)); onDone(); }} ariaLabel={t('select_state')} placeholder={t('select_state')} options={vm.states.map(x => ({ value: String(x.id), label: x.name }))} />
-          <PickerSelect size="lg" value={vm.electionId} onChange={id => { vm.onElection(id); onDone(); }} ariaLabel={t('studio_year')} options={vm.years.map(y => ({ value: y.id, label: String(y.year) }))} />
-        </div>
+        <ElectionChoicesList vm={vm} onPicked={onDone} />
       ) : (
         <PickerSelect size="lg" value={vm.electionId} onChange={id => { vm.onElection(id); onDone(); }} ariaLabel={t('select_election')} options={vm.lsElections.map(e => ({ value: e.id, label: e.name }))} />
       )}
@@ -72,7 +70,7 @@ function CompactTopBar({ vm, search }: { vm: TopBarVM; search: SearchVM }) {
         <svg viewBox="0 0 20 20" className="h-5 w-5" fill="currentColor" aria-hidden><circle cx="4" cy="10" r="1.6" /><circle cx="10" cy="10" r="1.6" /><circle cx="16" cy="10" r="1.6" /></svg>
       </button>
 
-      <BottomSheet open={sheet === 'election'} onOpenChange={onOpenChange('election')} title={t('studio_election_picker')}>
+      <BottomSheet open={sheet === 'election'} onOpenChange={onOpenChange('election')} title={t('studio_election_picker')} initialFocus="[data-current-election]">
         <ElectionPickers vm={vm} onDone={() => setSheet(null)} />
       </BottomSheet>
       <BottomSheet open={sheet === 'search'} onOpenChange={onOpenChange('search')} title={t('studio_search_open')} side="top" initialFocus="input[type=search]">
@@ -102,10 +100,7 @@ export function TopBar({ vm, search, compact = false }: { vm: TopBarVM; search: 
       <Link to="/" className="flex shrink-0 items-center gap-2 font-display text-lg font-bold text-ink"><img src="/logo-mark.png" alt="" aria-hidden className="h-7 w-7 object-contain" /><Wordmark /></Link>
       {vm.houses.length > 1 && <PillToggle value={vm.electionType} onChange={vm.onType} ariaLabel={t('studio_election_type')} size="sm" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />}
       {vm.electionType === 'VS' ? (
-        <>
-          <PickerSelect value={String(vm.stateId ?? '')} onChange={v => vm.onState(Number(v))} ariaLabel={t('select_state')} placeholder={t('select_state')} options={vm.states.map(x => ({ value: String(x.id), label: x.name }))} />
-          <PickerSelect value={vm.electionId} onChange={vm.onElection} ariaLabel={t('studio_year')} options={vm.years.map(y => ({ value: y.id, label: String(y.year) }))} />
-        </>
+        <ElectionPickerPopover vm={vm} />
       ) : (
         <PickerSelect value={vm.electionId} onChange={vm.onElection} ariaLabel={t('select_election')} options={vm.lsElections.map(e => ({ value: e.id, label: e.name }))} />
       )}

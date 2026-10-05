@@ -180,6 +180,13 @@ Plan `docs/superpowers/plans/2026-10-03-phase2a-historical-results.md` (historic
 - Per-state party overrides (`scraper/data/<slug>/party-overrides.json`) where an ECI name means another party here
   (Kerala 2011's "Muslim League Kerala State Committee" = IUML).
 
+### Election picker: one list instead of state + year dropdowns, 2026-10-05
+- [x] The dashboard's election button opens one list (like the admin's): a search box ("bih", "2025", "bih 20"), live
+  and upcoming elections pinned on top, then one row per state (alphabetical) with its years as chips; one tap picks.
+  Desktop: a popover (search focused). Phone: the existing bottom sheet, focused on the current year (no keyboard
+  pop-up), 40 px chips. Logic in `model/derive/electionChoices.ts` (`TopBarVM.choices(query)`), view
+  `views/dashboard/ElectionPicker.tsx`. No keyboard shortcut on the public site.
+
 ### Delhi, Haryana, Jharkhand, Odisha since the 2008 delimitation (Phase 4A), 2026-10-05
 Plan `docs/superpowers/plans/2026-10-05-phase4a-dl-hr-jh-od.md`. The 2024/25 states, for completeness (the other states
 get their history only as their own election approaches).
