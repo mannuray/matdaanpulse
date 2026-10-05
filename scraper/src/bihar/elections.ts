@@ -4,8 +4,8 @@
  * historical seed names so its output never changes.
  */
 
-export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP';
-export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP'];
+export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD';
+export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD'];
 
 export interface YearConfig {
   year: number; electionId: string; constPrefix: string;
@@ -59,6 +59,10 @@ export const STATES: Record<StateCode, StateConfig> = {
   PB: state('PB', 'pb', 'Punjab', 28, 117, 34, 0),
   UK: state('UK', 'uk', 'Uttarakhand', 35, 70, 13, 2),
   UP: state('UP', 'up', 'Uttar Pradesh', 34, 403, 84, 2),
+  DL: state('DL', 'dl', 'Delhi', 24, 70, 12, 0),
+  HR: state('HR', 'hr', 'Haryana', 11, 90, 17, 0),
+  JH: state('JH', 'jh', 'Jharkhand', 14, 81, 9, 28),
+  OD: state('OD', 'od', 'Odisha', 26, 147, 24, 33),
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */
@@ -85,6 +89,21 @@ const p3 = (code: StateCode, stateHex: string, year: number, docid: number, expe
   ...hist(code, year, `a0${stateHex}0000-0000-4000-8000-00000000${year}`, docid, expectedPhases, files),
   newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate: COUNTING[year], reserved },
 });
+/** A Phase 4A election (2008-2025): old-site docid or new-site category, no old seed, its own counting date. */
+const p4 = (code: StateCode, year: number, src: { docid: number } | { category: number }, expectedPhases: number, resultDate: string,
+  files: YearConfig['files'], latest?: { base: string; eciCode: string; myneta: string }, extra: Partial<ElectionConfig> = {}): ElectionConfig => {
+  const id = `a0${String(STATES[code].stateId).padStart(2, '0')}0000-0000-4000-8000-00000000${year}`;
+  const base: ElectionConfig = 'docid' in src ? hist(code, year, id, src.docid, expectedPhases, files)
+    : { state: code, year, electionId: id, constPrefix: `${code}_VS${String(year).slice(2)}_`, expectedPhases, category: src.category, files,
+        source: { title: `ECI Statistical Report, ${STATES[code].name} Legislative Assembly ${year}`, url: `https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=${src.category}` } };
+  return { ...base, ...extra, newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate, reserved: STATES[code].reserved },
+    ...(latest ? { resultsSite: { base: latest.base, eciCode: latest.eciCode }, myneta: latest.myneta } : {}) };
+};
+const pdf = (y: number) => ({ pdf: `${y}/${y}.pdf` });
+/** ECI's report file names per set (they differ by state and year). */
+const xs = (y: number, ext: 'xls' | 'xlsx', sep: '_' | '-', pre: '' | '0', summary: string) => ({
+  detailed: `${y}/10-Detailed${sep}Results.${ext}`, summary: `${y}/${pre}8-${summary}.${ext}`,
+  parties: `${y}/${pre}3-List${sep}Of${sep}Political${sep}Parties${sep}Participated.${ext}`, performance: `${y}/${pre}5-Performance${sep}of${sep}Political${sep}Parties.${ext}` });
 const PDF12 = { pdf: '2012/2012.pdf' };
 const x17 = { detailed: '2017/Detailed_Results.xlsx', summary: '2017/Constituency_Data_Summry.pdf', parties: '2017/List_Of_Political_Parties_Participated.xlsx', performance: '2017/Performance_of_Poltical_Parties.xlsx' };
 /** 2022 report file names as ECI saved them (they differ by state). */
@@ -148,6 +167,23 @@ export const ELECTIONS: ElectionConfig[] = [
   p3('PB', '28', 2012, 3455, 1, { sc: 34, st: 0 }, PDF12), p3('PB', '28', 2017, 3614, 1, { sc: 34, st: 0 }, x17), p3('PB', '28', 2022, 14165, 1, { sc: 34, st: 0 }, X22_DOT),
   p3('UK', '35', 2012, 3231, 1, { sc: 13, st: 2 }, PDF12), p3('UK', '35', 2017, 3470, 2, { sc: 13, st: 2 }, x17), p3('UK', '35', 2022, 14169, 1, { sc: 13, st: 2 }, X22_DASH),
   p3('UP', '34', 2012, 3262, 7, { sc: 85, st: 0 }, PDF12), p3('UP', '34', 2017, 3471, 8, { sc: 84, st: 2 }, x17), p3('UP', '34', 2022, 14185, 7, { sc: 84, st: 2 }, X22_DASH),
+  // Phase 4A (since the 2008 delimitation; latest year = current track). OD 2019: AC 96 Patkura countermanded (polled later).
+  p4('DL', 2008, { docid: 3876 }, 2, '2008-12-08', pdf(2008)), p4('DL', 2013, { docid: 3877 }, 1, '2013-12-08', pdf(2013)),
+  p4('DL', 2015, { docid: 3878 }, 1, '2015-02-10', pdf(2015)), p4('DL', 2020, { docid: 12027 }, 1, '2020-02-11', xs(2020, 'xls', '_', '', 'Constituency_Data_Summery')),
+  p4('DL', 2025, { category: 10 }, 1, '2025-02-08', xs(2025, 'xlsx', '_', '', 'Constituency_Data_Summery_Report'),
+    { base: 'https://results.eci.gov.in/ResultAcGenFeb2025/', eciCode: 'U05', myneta: 'delhi2025' }),
+  p4('HR', 2009, { docid: 3826 }, 1, '2009-10-22', pdf(2009)), p4('HR', 2014, { docid: 3827 }, 1, '2014-10-19', pdf(2014)),
+  p4('HR', 2019, { docid: 11697 }, 1, '2019-10-24', xs(2019, 'xls', '_', '0', 'Constituency_Data_Summery_Report')),
+  p4('HR', 2024, { category: 6 }, 1, '2024-10-08', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
+    { base: 'https://results.eci.gov.in/AcResultGenOct2024/', eciCode: 'S07', myneta: 'haryana2024' }),
+  p4('JH', 2009, { docid: 3786 }, 5, '2009-12-23', pdf(2009)), p4('JH', 2014, { docid: 3787 }, 5, '2014-12-23', pdf(2014)),
+  p4('JH', 2019, { docid: 11813 }, 5, '2019-12-23', xs(2019, 'xls', '_', '0', 'Constituency_Data_Summery')),
+  p4('JH', 2024, { category: 9 }, 2, '2024-11-23', xs(2024, 'xlsx', '_', '', 'Constituency_Data_Summery_Report'),
+    { base: 'https://results.eci.gov.in/ResultAcGenNov2024/', eciCode: 'S27', myneta: 'jharkhand2024' }),
+  p4('OD', 2009, { docid: 3630 }, 2, '2009-05-16', pdf(2009)), p4('OD', 2014, { docid: 3631 }, 2, '2014-05-16', pdf(2014)),
+  p4('OD', 2019, { docid: 11679 }, 4, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_'), undefined, { seats: 146, excludeSeats: [96] }),
+  p4('OD', 2024, { category: 4 }, 4, '2024-06-04', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
+    { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S18', myneta: 'odisha2024' }),
 ];
 
 /** The registry entry of an election id. */
