@@ -23,8 +23,13 @@ export const MIN_NAME_MATCH = 0.5;
 
 /** The candidate in a seat that is this leader: closest name, the winner on a tie (two "Tapas Roy" in Maniktala 2026). */
 export function pickCandidacy(candidates: CandidateJson[], leaderName: string): CandidateJson | null {
-  const best = candidates.filter(x => x.partyId !== 'NOTA').map(x => ({ x, sim: similarity(x.name, leaderName) }))
-    .sort((a, b) => b.sim - a.sim || Number(b.x.status === 'WON') - Number(a.x.status === 'WON'))[0];
+  // A ballot name holding every word of the leader's name ("Sudesh Kumar Mahto" for "Sudesh Mahto") beats a closer-spelled
+  // other person ("Umesh Mahto", Silli 2019).
+  const words = (n: string) => n.toUpperCase().replace(/[^A-Z ]/g, ' ').split(/\s+/).filter(Boolean);
+  const want = words(leaderName);
+  const holds = (n: string) => { const w = new Set(words(n)); return want.every(t => w.has(t)); };
+  const best = candidates.filter(x => x.partyId !== 'NOTA').map(x => ({ x, sim: similarity(x.name, leaderName), all: holds(x.name) }))
+    .sort((a, b) => Number(b.all) - Number(a.all) || b.sim - a.sim || Number(b.x.status === 'WON') - Number(a.x.status === 'WON'))[0];
   return best && best.sim >= MIN_NAME_MATCH ? best.x : null;
 }
 

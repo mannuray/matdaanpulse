@@ -132,3 +132,10 @@ describe('candidacyOf', () => {
     expect(candidacyOf(seat, 'Parvesh Verma', { year: 2013, const_id: 'X', ballot_name: 'Parvesh Sahib Singh' })!.serial).toBe(1);
   });
 });
+
+describe('pickCandidacy prefers a candidate whose name holds every part of the leader\'s name', () => {
+  const c = (name: string, serial: number) => ({ serial, name, partyId: 'X', sex: null, age: null, votes: 1, status: 'LOST' as const });
+  it('Silli 2019: "Sudesh Mahto" is "Sudesh Kumar Mahto", not the closer-spelled "Umesh Mahto"', () => {
+    expect(pickCandidacy([c('Umesh Mahto', 1), c('Sudesh Kumar Mahto', 2)], 'Sudesh Mahto')!.serial).toBe(2);
+  });
+});

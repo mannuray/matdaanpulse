@@ -1,4 +1,5 @@
-/** Print one SQL query that lists every leader whose candidacies sit on more than one person (expect no rows). */
+/** Print one SQL query that lists every leader whose candidacies sit on more than one person, and every person with two
+ * candidacies in one seat (expect no rows). */
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseState } from './elections';
@@ -22,4 +23,6 @@ const rows = f.people.filter(p => p.candidacies.length > 1).map(p => {
   return `SELECT '${p.key}' AS leader, count(DISTINCT person_id) AS persons FROM candidates WHERE id IN (${ids.join(', ')})`;
 });
 // No leader with several candidacies: nothing can be split (an empty query that returns no rows).
-console.log(rows.length ? `SELECT * FROM (${rows.join('\nUNION ALL ')}) t WHERE persons > 1;` : 'SELECT NULL AS leader WHERE false;');
+// A person holding two candidacies in the same seat is two people merged by a wrong name match (Sudesh/Umesh Mahto, Silli 2019).
+const sameSeat = `SELECT 'same seat twice: ' || c.const_id AS leader, count(*) AS persons FROM candidates c WHERE c.const_id LIKE '${ST}\\_%' GROUP BY c.person_id, c.const_id HAVING count(*) > 1`;
+console.log(rows.length ? `SELECT * FROM (${rows.join('\nUNION ALL ')}) t WHERE persons > 1\nUNION ALL ${sameSeat};` : `${sameSeat};`);
