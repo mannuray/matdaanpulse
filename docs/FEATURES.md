@@ -180,6 +180,22 @@ Plan `docs/superpowers/plans/2026-10-03-phase2a-historical-results.md` (historic
 - Per-state party overrides (`scraper/data/<slug>/party-overrides.json`) where an ECI name means another party here
   (Kerala 2011's "Muslim League Kerala State Committee" = IUML).
 
+### Goa, Manipur, Punjab, Uttarakhand, Uttar Pradesh 2012-2022 (history), 2026-10-05
+Plan `docs/superpowers/plans/2026-10-05-phase3a-five-states-history.md` (historical track; results only, including 2022).
+- [x] 15 new elections from the ECI statistical reports (2012 one PDF per state, 2017 XLSX/PDF set, 2022 numbered XLSX set):
+  every candidate + NOTA, real votes, SC/ST per election (UP 2012 SC 85 / ST 0, 2017 and 2022 SC 84 / ST 2), electors,
+  turnout, poll-date phases; winners match ECI's party totals. Sourced fixes for ECI slips: `summary-fixes.json` (a broken
+  summary page, wrong seat types), `missing-summaries.json` (UP 2017: 11 seats missing from the summary), `candidate-fixes.json`
+  (UP 2012 seat 72: two candidates of one party, the second recorded as IND). Manifests with pre-poll alliances.
+- [x] Districts and regions (`scraper/data/<slug>/districts.json`, sourced; `regions-cli.ts` → `seed_<slug>_districts_regions.sql`):
+  Goa North/South by seat number (1-20 / 21-40); Manipur Valley 40 / Hills 20 (current 16 districts); Punjab Majha 25 /
+  Doaba 23 / Malwa 69; Uttarakhand Garhwal 41 / Kumaon 29; UP's seven Lokniti-CSDS regions (Paschim 44, Rohilkhand 52,
+  Doab 73, Awadh 73, Bundelkhand 19, Purvanchal 81, North-East 61).
+- [x] Maps: the existing 2008 files; a Vidhan Sabha map feature takes the seat with its number when the names differ
+  (`matchFeaturesToSeats(…, { byNumber })`), and maps wound the planar way are rewound on load (`model/geo/winding.ts`).
+- [x] Person links across 2012-2022 (`seed_<slug>_person_links_v1.sql`, run-once). About lists the 15 datasets.
+- Not yet: leaders, photos, party profiles, affidavits (with the 2027 elections, for every candidate); seat analysis recompute.
+
 ### The five 2026 elections (AS, KL, PY, TN, WB), 2026-10-04
 Plan `docs/superpowers/plans/2026-10-03-phase2b-2026-elections.md` (current track).
 - [x] Results from the ECI statistical reports (May 2026; West Bengal's set includes the AC 144 Falta re-poll): every
