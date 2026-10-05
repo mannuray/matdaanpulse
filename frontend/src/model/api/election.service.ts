@@ -5,6 +5,7 @@ import type {
 } from '../types';
 import type { LiveState } from '../live/poller';
 import type { RegionShares } from '../derive/regionComparison';
+import { fixWinding } from '../geo/winding';
 import { visibleElections } from '../config/houses';
 
 /**
@@ -33,7 +34,7 @@ export const ElectionService = {
     const promise = fetch(url).then((response) => {
       if (!response.ok) throw new Error(`Failed to load map asset: ${url}`);
       return response.json() as Promise<GeoJSON.FeatureCollection>;
-    });
+    }).then(fixWinding);
     // Basic cache management: clear if too large
     if (geoCache.size > 15) geoCache.clear();
     geoCache.set(url, promise);
