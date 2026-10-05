@@ -30,7 +30,7 @@ const sections: SummarySection[] = [
 ];
 const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
   electionId: 'E1', layer: 'history', layers: ['overview', 'battle', 'swing', 'history'], summary: { layer: 'history', sections: secs }, lockedRowId: null,
-  onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, ...over,
+  onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, regions: null, lockedRegion: null, onHoverRegion: noop, onLockRegion: noop, ...over,
 });
 
 describe('SummaryFocus', () => {

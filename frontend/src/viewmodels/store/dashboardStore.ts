@@ -52,7 +52,7 @@ export function activeHighlight(s: DashboardUiState): { parties: Set<string>; se
   return { parties: new Set(h?.parties ?? []), seats: new Set(h?.seats ?? []) };
 }
 
-export const ALL_LAYERS: LayerId[] = ['overview', 'battle', 'swing', 'history', 'demographics', 'insights', 'states'];
+export const ALL_LAYERS: LayerId[] = ['overview', 'battle', 'swing', 'history', 'regions', 'demographics', 'insights', 'states'];
 
 export function parseUiParams(params: URLSearchParams, knownSeats: Set<string> | null, knownParties: Set<string> | null = null): Partial<DashboardUiState> {
   const layer = params.get('layer') as LayerId | null;

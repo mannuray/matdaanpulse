@@ -194,5 +194,7 @@ export function deriveLayerInsight(layer: LayerId, ctx: InsightContext): LayerIn
     case 'demographics': return reserved(ctx);
     case 'insights': return insights(ctx);
     case 'states': return states(ctx);
+    // Regions keep the seat colours of Overview, so the strip shows the same party chips.
+    case 'regions': return overview(ctx);
   }
 }

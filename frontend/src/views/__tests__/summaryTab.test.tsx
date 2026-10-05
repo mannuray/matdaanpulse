@@ -28,7 +28,7 @@ const sections: SummarySection[] = [
 ];
 const mk = (over: Partial<SummaryVM> = {}, secs = sections): SummaryVM => ({
   electionId: 'E1', layer: 'swing', layers: ['overview', 'swing'], summary: { layer: 'swing', sections: secs }, lockedRowId: null,
-  onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, ...over,
+  onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, regions: null, lockedRegion: null, onHoverRegion: noop, onLockRegion: noop, ...over,
 });
 
 /** Cases that read every section open the collapsed headers first. */

@@ -547,5 +547,6 @@
   "regions_by_alliance": "கூட்டணி",
   "regions_compare": "{{prev}} → {{cur}}",
   "regions_no_prev": "ஒப்பிட இந்த மாநிலத்தின் முந்தைய தேர்தல் இல்லை: {{cur}} மட்டும்.",
-  "regions_seats_now": "{{cur}} இடங்கள்"
+  "regions_seats_now": "{{cur}} இடங்கள்",
+  "map_tab_regions": "பகுதிகள்"
 }

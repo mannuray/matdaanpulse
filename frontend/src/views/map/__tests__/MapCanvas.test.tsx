@@ -15,7 +15,7 @@ const feature = {
 function makeVM(): MapVM {
   return {
     status: 'ready', features: [feature], stateFeatures: null, isVS: true, geoConfig: undefined,
-    seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: false }]]), outline: true,
+    seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: false }]]), outline: true, regionOutlines: [],
     recentSeats: new Set(), selectedSeat: null, layer: 'overview', layers: ['overview'], mapMode: 'map',
     hexAvailable: false, lockedLabel: null,
     seatInfo: () => ({ name: 'Sandesh', state: 'Bihar', candidate: 'A', party: 'JDU', status: 'Won', color: '#1FA37A', mark: null, type: null }),

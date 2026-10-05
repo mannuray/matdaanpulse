@@ -82,13 +82,14 @@ export class ResultsService {
   /** Per region: seats and each party's votes and seats won or leading (the Regions tab). 404 for an unknown election. */
   async getRegionShares(id: string) {
     if (!(await this.prisma.elections.findUnique({ where: { id }, select: { id: true } }))) throw new ElectionNotFoundException(id);
-    return this.cache.getOrSet(await this.versionedKey(id, 'region-shares'), CACHE_TTL.VOTE_SHARE, () => this.loadRegionShares(id));
+    return this.cache.getOrSet(await this.versionedKey(id, 'region-shares-v2'), CACHE_TTL.VOTE_SHARE, () => this.loadRegionShares(id));
   }
 
   private async loadRegionShares(id: string) {
-    const rows: { region_id: number; region_name: string; seats: bigint; party_id: string; votes: bigint; won: bigint }[] = await this.prisma.$queryRaw`
+    const rows: { region_id: number; region_name: string; seats: bigint; const_ids: string[]; party_id: string; votes: bigint; won: bigint }[] = await this.prisma.$queryRaw`
       SELECT g.id AS region_id, g.name AS region_name,
              (SELECT count(*) FROM constituencies k2 WHERE k2.election_id = ${id}::uuid AND k2.region_id = g.id)::bigint AS seats,
+             (SELECT array_agg(k3.id ORDER BY k3.const_no) FROM constituencies k3 WHERE k3.election_id = ${id}::uuid AND k3.region_id = g.id) AS const_ids,
              c.party_id, SUM(r.votes)::bigint AS votes, COUNT(*) FILTER (WHERE r.status IN ('WON', 'LEADING'))::bigint AS won
       FROM results r
       JOIN candidates c ON c.id = r.candidate_id
@@ -97,9 +98,9 @@ export class ResultsService {
       WHERE r.election_id = ${id}::uuid
       GROUP BY g.id, g.name, c.party_id
       ORDER BY g.name, votes DESC`;
-    const byRegion = new Map<number, { id: number; name: string; seats: number; parties: { party_id: string; votes: number; won: number }[] }>();
+    const byRegion = new Map<number, { id: number; name: string; seats: number; const_ids: string[]; parties: { party_id: string; votes: number; won: number }[] }>();
     for (const r of rows) {
-      const g = byRegion.get(r.region_id) ?? { id: r.region_id, name: r.region_name, seats: Number(r.seats), parties: [] };
+      const g = byRegion.get(r.region_id) ?? { id: r.region_id, name: r.region_name, seats: Number(r.seats), const_ids: r.const_ids ?? [], parties: [] };
       g.parties.push({ party_id: r.party_id, votes: Number(r.votes), won: Number(r.won) });
       byRegion.set(r.region_id, g);
     }

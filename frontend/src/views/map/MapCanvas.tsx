@@ -53,6 +53,34 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
     });
   }, [loaded, gRef, vm.fills, vm.seatOf, vm.selectedSeat, hoveredId, vm.recentSeats, vm.geoConfig, vm.stateFeatures]);
 
+  // Regions layer: each region's outline from its own seats (no region shapes). Per region: the seats' shapes with a thick
+  // stroke, their fills on top (hiding the stroke inside the region, so only the outer edge shows), then thin seat
+  // borders. The highlighted region's outline is strong. Rebuilt when the regions, fills or geometry change.
+  useEffect(() => {
+    if (!loaded || !gRef.current) return;
+    const g = gRef.current;
+    g.select('g.region-outlines').remove();
+    if (!vm.regionOutlines.length) return;
+    const pathOf = new Map<string, string>();
+    g.selectAll<SVGPathElement, GeoFeature>('path.pc').each(function (d) {
+      const id = vm.seatOf.get(d);
+      const p = this.getAttribute('d');
+      if (id && p) pathOf.set(id, p);
+    });
+    const layer = g.insert('g', 'g.pc-highlight, path.state, text.pc-label').attr('class', 'region-outlines').attr('pointer-events', 'none');
+    // Strong (highlighted) region last, so its outline sits on top of its neighbours'.
+    for (const r of [...vm.regionOutlines].sort((a, b) => Number(a.strong) - Number(b.strong))) {
+      const grp = layer.append('g').attr('data-region', r.name);
+      const ids = r.seatIds.filter(id => pathOf.has(id));
+      grp.selectAll('path.edge').data(ids).join('path').attr('class', 'edge').attr('d', id => pathOf.get(id)!)
+        .style('fill', 'none').style('stroke', 'var(--color-ink)').style('stroke-opacity', r.strong ? '1' : '0.55')
+        .style('stroke-width', r.strong ? '3px' : '1.6px').style('stroke-linejoin', 'round').style('vector-effect', 'non-scaling-stroke');
+      grp.selectAll('path.cover').data(ids).join('path').attr('class', 'cover').attr('d', id => pathOf.get(id)!)
+        .style('fill', id => vm.fills.get(id)?.color ?? 'var(--color-map-pending)').style('fill-opacity', id => String(vm.fills.get(id)?.opacity ?? 1))
+        .style('stroke', 'var(--color-map-stroke)').style('stroke-width', '0.4px').style('vector-effect', 'non-scaling-stroke');
+    }
+  }, [loaded, gRef, vm.regionOutlines, vm.fills, vm.seatOf, vm.geoConfig, vm.features]);
+
   // The highlight outline: copies of the highlighted seats' shapes on a layer above the seats but below state borders and labels.
   // Keyed by seat id, so a seat that stays highlighted keeps its outline untouched (no path re-parsing on tooltip hovers).
   useEffect(() => {

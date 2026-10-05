@@ -4,12 +4,13 @@
  * manifest alliances, matched by id). With no earlier election the previous figures are null. Pure: no React.
  */
 
-export interface RegionShares { regions: { id: number; name: string; seats: number; parties: { party_id: string; votes: number; won: number }[] }[] }
+export interface RegionShares { regions: { id: number; name: string; seats: number; const_ids?: string[]; parties: { party_id: string; votes: number; won: number }[] }[] }
 export interface Alliance { id: string; name: string; color: string; parties: string[] }
 export type Pair = [number | null, number | null];
 export interface RegionGroup { id: string; label: string; color: string; share: Pair; won: Pair }
 /** Previous election first, current second in every pair. */
-export interface RegionRow { name: string; seats: Pair; groups: RegionGroup[] }
+/** `seatIds`: the region's current seats (Statewide: all), for the map highlight. */
+export interface RegionRow { name: string; seats: Pair; seatIds: string[]; groups: RegionGroup[] }
 
 export interface Labels { statewide: string; others: string }
 export type CompareOpts =
@@ -52,8 +53,8 @@ export function compareRegions(cur: RegionShares, prev: RegionShares | null, o: 
     const of = (alliances: Alliance[]) => (p: string) => alliances.find(a => a.parties.includes(p))?.id ?? OTHERS;
     curGroup = of(o.curAlliances); prevGroup = of(o.prevAlliances);
   }
-  const statewide = (s: RegionShares) => ({ name: o.labels.statewide, seats: s.regions.reduce((n, r) => n + r.seats, 0), parties: s.regions.flatMap(r => r.parties) });
-  const pairs: [{ seats: number; parties: Parties } | null, { name: string; seats: number; parties: Parties }][] = [
+  const statewide = (s: RegionShares) => ({ name: o.labels.statewide, seats: s.regions.reduce((n, r) => n + r.seats, 0), const_ids: s.regions.flatMap(r => r.const_ids ?? []), parties: s.regions.flatMap(r => r.parties) });
+  const pairs: [{ seats: number; parties: Parties } | null, { name: string; seats: number; const_ids?: string[]; parties: Parties }][] = [
     [prev ? statewide(prev) : null, statewide(cur)],
     ...cur.regions.map(c => [prev ? prev.regions.find(p => p.name === c.name) ?? { seats: 0, parties: [] } : null, c] as [{ seats: number; parties: Parties } | null, typeof c]),
   ];
@@ -64,6 +65,7 @@ export function compareRegions(cur: RegionShares, prev: RegionShares | null, o: 
     return {
       name: c.name,
       seats: [p ? p.seats : null, c.seats] as Pair,
+      seatIds: c.const_ids ?? [],
       groups: ids.map(id => ({
         id, ...meta.get(id)!,
         share: [a ? pct(a.t.get(id)?.votes, a.total) : null, pct(b.t.get(id)?.votes, b.total)] as Pair,

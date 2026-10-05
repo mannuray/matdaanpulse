@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { RegionsSummary } from './SummaryTab';
 import { useTranslation } from 'react-i18next';
 import type { ChartSpec, LayerId, SummarySection, SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
 import { PillToggle } from '../ui/PillToggle';
@@ -74,10 +75,12 @@ export function SummaryFocus({ vm }: { vm: SummaryVM }) {
         <PillToggle<LayerId> value={vm.layer} onChange={vm.onLayer} ariaLabel={t('studio_map_layers')} size="sm"
           options={vm.layers.map(l => ({ value: l, label: t(`map_tab_${l}`) }))} />
       </div>
-      {sections.length === 0 && <p className="py-10 text-center text-sm text-muted">{t('studio_no_layer_data')}</p>}
-      <div className="grid grid-cols-1 items-start gap-3 lg:grid-cols-2">
-        {sections.map(s => <Section key={s.id} s={s} vm={vm} />)}
-      </div>
+      {vm.layer === 'regions' ? <RegionsSummary vm={vm} /> : <>
+        {sections.length === 0 && <p className="py-10 text-center text-sm text-muted">{t('studio_no_layer_data')}</p>}
+        <div className="grid grid-cols-1 items-start gap-3 lg:grid-cols-2">
+          {sections.map(s => <Section key={s.id} s={s} vm={vm} />)}
+        </div>
+      </>}
     </div>
   );
 }

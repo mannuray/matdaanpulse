@@ -547,5 +547,6 @@
   "regions_by_alliance": "Alliance",
   "regions_compare": "{{prev}} → {{cur}}",
   "regions_no_prev": "No earlier election of this state to compare with: {{cur}} only.",
-  "regions_seats_now": "{{cur}} seats"
+  "regions_seats_now": "{{cur}} seats",
+  "map_tab_regions": "Regions"
 }

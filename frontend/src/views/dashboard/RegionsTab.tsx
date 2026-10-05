@@ -1,13 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import type { RegionComparisonVM, RegionMode } from '../../viewmodels/tiles/useRegionComparisonVM';
+import type { RegionRow } from '../../viewmodels/tiles/useRegionComparisonVM';
 import { PillToggle } from '../ui/PillToggle';
 import { cn } from '../ui/cn';
 
 const pct = (v: number | null) => (v === null ? '—' : `${v}%`);
 const delta = (a: number | null, b: number | null) => (a === null || b === null ? null : Math.round((b - a) * 10) / 10);
 
-/** Statewide and per-region vote share (with its change in points) and seats, previous → current election. */
-export function RegionsTab({ vm }: { vm: RegionComparisonVM }) {
+/**
+ * The Regions layer's summary: statewide and per-region vote share (with its change in points) and seats, previous →
+ * current. Hovering a region previews it on the map, clicking locks it (the map outlines it and dims the rest).
+ */
+export function RegionsTab({ vm, onHoverRow, onLockRow, lockedName }: {
+  vm: RegionComparisonVM; onHoverRow?(r: RegionRow | null): void; onLockRow?(r: RegionRow): void; lockedName?: string | null;
+}) {
   const { t } = useTranslation();
   const hasPrev = vm.prevYear !== null;
   return (
@@ -20,7 +26,10 @@ export function RegionsTab({ vm }: { vm: RegionComparisonVM }) {
       {!hasPrev && <p className="text-xs text-muted">{t('regions_no_prev', 'No earlier election of this state to compare with: {{cur}} only.', { cur: vm.curYear })}</p>}
       {vm.approximate && <p className="text-xs text-muted">{t('regions_approx_note', 'Seats were redrawn, so regions are compared as a whole: vote share and seats, {{prev}} → {{cur}}. A few seats straddle regions, so this is approximate.', { prev: vm.prevYear, cur: vm.curYear })}</p>}
       {vm.rows.map(r => (
-        <section key={r.name} className="rounded-lg border border-line p-2">
+        <section key={r.name} role="button" tabIndex={0} aria-pressed={lockedName === r.name} aria-label={r.name}
+          onMouseEnter={() => onHoverRow?.(r)} onMouseLeave={() => onHoverRow?.(null)} onFocus={() => onHoverRow?.(r)} onBlur={() => onHoverRow?.(null)}
+          onClick={() => onLockRow?.(r)} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onLockRow?.(r); } }}
+          className={cn('cursor-pointer rounded-lg border p-2 hover:border-accent', lockedName === r.name ? 'border-accent bg-tile-raised' : 'border-line')}>
           <header className="mb-1 flex items-baseline justify-between gap-2">
             <h4 className="font-semibold text-ink">{r.name}</h4>
             <span className="tabular text-xs text-muted">{hasPrev ? t('regions_seats', '{{prev}} → {{cur}} seats', { prev: r.seats[0], cur: r.seats[1] }) : t('regions_seats_now', '{{cur}} seats', { cur: r.seats[1] })}</span>

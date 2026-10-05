@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { LayerId, SummarySection, SummaryVM } from '../../viewmodels/tiles/useSummaryVM';
 import { planSummaryFit } from '../../viewmodels/tiles/fit';
 import { Row, Stats, useClearHoverOnChange } from './SummaryRows';
+import { RegionsTab } from './RegionsTab';
 
 /** Content height of a rail card (150px card minus border, padding and the card title line). */
 const PREVIEW_H = 100;
@@ -62,6 +63,18 @@ function CardSection({ s, vm, open, onToggle }: { s: SummarySection; vm: Summary
  * sticks to the top while its rows scroll under it. Chart-only sections (no rows) are skipped.
  */
 export function SummaryTab({ vm }: { vm: SummaryVM }) {
+  if (vm.layer === 'regions') return <RegionsSummary vm={vm} />;
+  return <LayerSections vm={vm} />;
+}
+
+/** The Regions layer: the region comparison, whose rows drive the map highlight. */
+export function RegionsSummary({ vm }: { vm: SummaryVM }) {
+  const { t } = useTranslation();
+  if (!vm.regions) return <p className="py-6 text-center text-sm text-muted">{t('studio_no_layer_data')}</p>;
+  return <RegionsTab vm={vm.regions} onHoverRow={vm.onHoverRegion} onLockRow={vm.onLockRegion} lockedName={vm.lockedRegion} />;
+}
+
+function LayerSections({ vm }: { vm: SummaryVM }) {
   const { t } = useTranslation();
   const sections = vm.summary.sections.filter(s => s.rows.length > 0);
   useClearHoverOnChange(vm, vm.summary.sections);

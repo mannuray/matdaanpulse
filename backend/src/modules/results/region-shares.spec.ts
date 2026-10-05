@@ -12,15 +12,15 @@ describe('ResultsService.getRegionShares', () => {
 
   it('groups each region\'s party votes and seats won, cached under the live version', async () => {
     const { svc, keys } = make([
-      { region_id: 1, region_name: 'Upper Assam', seats: 2n, party_id: 'BJP', votes: 100n, won: 2n },
-      { region_id: 1, region_name: 'Upper Assam', seats: 2n, party_id: 'INC', votes: 50n, won: 0n },
-      { region_id: 2, region_name: 'Hills', seats: 1n, party_id: 'BJP', votes: 30n, won: 1n },
+      { region_id: 1, region_name: 'Upper Assam', seats: 2n, const_ids: ['AS_1', 'AS_2'], party_id: 'BJP', votes: 100n, won: 2n },
+      { region_id: 1, region_name: 'Upper Assam', seats: 2n, const_ids: ['AS_1', 'AS_2'], party_id: 'INC', votes: 50n, won: 0n },
+      { region_id: 2, region_name: 'Hills', seats: 1n, const_ids: ['AS_3'], party_id: 'BJP', votes: 30n, won: 1n },
     ]);
     expect(await svc.getRegionShares('e1')).toEqual({ regions: [
-      { id: 1, name: 'Upper Assam', seats: 2, parties: [{ party_id: 'BJP', votes: 100, won: 2 }, { party_id: 'INC', votes: 50, won: 0 }] },
-      { id: 2, name: 'Hills', seats: 1, parties: [{ party_id: 'BJP', votes: 30, won: 1 }] },
+      { id: 1, name: 'Upper Assam', seats: 2, const_ids: ['AS_1', 'AS_2'], parties: [{ party_id: 'BJP', votes: 100, won: 2 }, { party_id: 'INC', votes: 50, won: 0 }] },
+      { id: 2, name: 'Hills', seats: 1, const_ids: ['AS_3'], parties: [{ party_id: 'BJP', votes: 30, won: 1 }] },
     ] });
-    expect(keys).toEqual(['election:e1:region-shares:v7']);
+    expect(keys).toEqual(['election:e1:region-shares-v2:v7']);
   });
 
   it('returns no regions for an election whose seats carry none', async () => {

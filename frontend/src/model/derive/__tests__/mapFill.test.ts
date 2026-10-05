@@ -12,6 +12,9 @@ describe('seatFill', () => {
   it('pending seats use the pending colour on every layer', () => {
     expect(seatFill(seat({ party: '', margin: undefined, status: 'PENDING' }), ctx({ layer: 'battle' }))).toEqual({ color: MAP_FILL.pending, opacity: 1, highlighted: false });
   });
+  it('regions: seats keep their winner colour (regions are only outlined and highlighted)', () => {
+    expect(seatFill(seat(), ctx({ layer: 'regions' }))).toEqual({ color: '#FF7A1A', opacity: 1, highlighted: false });
+  });
   it('overview: solid party colour', () => {
     expect(seatFill(seat(), ctx())).toEqual({ color: '#FF7A1A', opacity: 1, highlighted: false });
   });

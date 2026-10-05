@@ -292,7 +292,7 @@ export interface ManifestAlliance {
   parties: string[];
 }
 
-export type MapTab = 'overview' | 'battle' | 'demographics' | 'states' | 'swing' | 'insights' | 'history';
+export type MapTab = 'overview' | 'battle' | 'demographics' | 'states' | 'swing' | 'insights' | 'history' | 'regions';
 
 export interface VoteSplitConfig {
   spoiler: string;   // Party ID (e.g., "AIMIM")

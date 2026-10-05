@@ -9,6 +9,8 @@ import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import type { LayerId } from '../../model/types/dashboard';
 import { LS_MAP_URL } from '../../model/geo/maps';
+import { regionOutlines, type RegionOutline } from '../../model/derive/regionOutlines';
+import { useRegionShares } from '../data/useRegionShares';
 
 const LS_STATES = '/geo/india_states.geojson';
 
@@ -22,6 +24,8 @@ export interface MapVM {
   fills: Map<string, SeatFill>;
   /** Draw the highlight outline (small highlights only). */
   outline: boolean;
+  /** Regions layer: each region's outline, built from its seats (strong for the highlighted region). Empty elsewhere. */
+  regionOutlines: RegionOutline[];
   recentSeats: Set<string>;
   selectedSeat: string | null;
   layer: LayerId;
@@ -82,10 +86,14 @@ export function useMapVM(): MapVM {
   const fills = useMemo(() => seatFills(seats, fillCtx), [seats, state.layer, src.election.type, src.data.partyColorMap, src.swing, src.dominance, src.data.spoilerData, hlKey]);
 
   const outline = useMemo(() => showOutline([...fills.values()].filter(f => f.highlighted).length), [fills]);
+  const onRegions = state.layer === 'regions';
+  const shares = useRegionShares(src.election.id, onRegions && isVS);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const regionLines = useMemo(() => (onRegions && shares ? regionOutlines(shares.regions.map(r => ({ name: r.name, seatIds: r.const_ids ?? [] })), highlight.seats) : []), [onRegions, shares, hlKey]);
   const byId = useMemo(() => new Map(seats.map(s => [s.id, s])), [seats]);
 
   return {
-    status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills, outline,
+    status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills, outline: outline && !onRegions, regionOutlines: regionLines,
     recentSeats: src.recentSeats, selectedSeat: state.selectedSeat,
     layer: state.layer, layers: src.availableLayers, mapMode: state.mapMode, hexAvailable: Boolean(geo?.hex_url),
     lockedLabel: state.locked?.label ?? null,

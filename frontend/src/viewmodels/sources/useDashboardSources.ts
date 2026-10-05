@@ -120,6 +120,8 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
     const l: LayerId[] = ['overview', 'battle'];
     if (swing.size > 0) l.push('swing');
     if (dominance.size > 0) l.push('history');
+    // Regions: every Vidhan Sabha election (its seats carry regions; the layer shows an empty summary otherwise).
+    if (election.type === 'VS') l.push('regions');
     l.push('demographics', 'insights');
     if (election.type === 'LS') l.push('states');
     return l;

@@ -5,6 +5,8 @@ import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { intentFor } from '../store/hoverIntent';
 import { deriveLayerSummary, type LayerSummary, type SummaryRow } from '../../model/derive/summary';
 import type { LayerId } from '../../model/types/dashboard';
+import { useRegionComparisonVM, type RegionComparisonVM } from './useRegionComparisonVM';
+import type { RegionRow } from '../../model/derive/regionComparison';
 
 export type { ChartAnnotation, ChartSeries, ChartSpec, ChartValueFormat, LayerSummary, SummaryCell, SummaryRow, SummarySection, ValueFormat } from '../../model/derive/summary';
 export type { LayerId };
@@ -24,9 +26,16 @@ export interface SummaryVM {
   onHoverRow(r: SummaryRow | null): void;
   onLockRow(r: SummaryRow): void;
   onSelectSeat(id: string): void;
+  /** Regions layer: the region comparison (null on other layers, while loading, or without regions). */
+  regions: RegionComparisonVM | null;
+  /** Name of the locked region row, if any. */
+  lockedRegion: string | null;
+  onHoverRegion(r: RegionRow | null): void;
+  onLockRegion(r: RegionRow): void;
 }
 
 const PREFIX = 'sum:';
+const REGION = 'reg:';
 
 export function useSummaryVM(): SummaryVM {
   const { t } = useTranslation();
@@ -69,6 +78,7 @@ export function useSummaryVM(): SummaryVM {
   }, [summary, locked, dispatch]);
 
   const highlightOf = (r: SummaryRow) => ({ parties: [], seats: r.seatIds ?? [] });
+  const regions = useRegionComparisonVM(state.layer === 'regions');
   return {
     electionId: src.election.id,
     layer: state.layer,
@@ -83,5 +93,9 @@ export function useSummaryVM(): SummaryVM {
       dispatch({ type: 'toggleLock', chipId: `${PREFIX}${section?.id ?? ''}:${r.id}`, highlight: highlightOf(r), label: r.labelKey ? t(r.labelKey) : r.label });
     },
     onSelectSeat: id => dispatch({ type: 'selectSeat', seat: id }),
+    regions,
+    lockedRegion: state.locked?.chipId.startsWith(REGION) ? state.locked.chipId.slice(REGION.length) : null,
+    onHoverRegion: r => intentFor(dispatch)(r ? { parties: [], seats: r.seatIds } : null),
+    onLockRegion: r => dispatch({ type: 'toggleLock', chipId: `${REGION}${r.name}`, highlight: { parties: [], seats: r.seatIds }, label: r.name }),
   };
 }

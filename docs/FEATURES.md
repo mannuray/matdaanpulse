@@ -190,8 +190,10 @@ Plan `docs/superpowers/plans/2026-10-03-phase2b-2026-elections.md` (current trac
   from ECI's boundary file (`geo-cli.ts`: our seat names, d3 winding, mapshaper); seats tagged by district/region one by
   one (`seed_as_2026_districts_regions.sql`); no seat history, no links to 2008-era candidacies.
 - [x] Regions tab (2026-10-05: every Vidhan Sabha election whose seats carry regions): `GET /elections/:id/region-shares`
-  (seats won or leading, vote share per party per region; 404 for an unknown election) + a "Regions" tab in the standings
-  tile: statewide and per region, by Party (default: top 6 by current vote, the rest as Others) or Alliance (each year's own
+  (seats won or leading, vote share per party per region, the region's seat ids; 404 for an unknown election) + a
+  **Regions map layer** (next to Overview/Battle/Swing): seats keep their winner colours, each region is outlined from its
+  own seats (no region shapes; `model/derive/regionOutlines.ts`), and hovering/clicking a region in Summary highlights it
+  (strong outline, the rest dimmed; the lock can later drive an auto-zoom). Summary on that layer: statewide and per region, by Party (default: top 6 by current vote, the rest as Others) or Alliance (each year's own
   manifest alliances), vs the state's previous election, with the change in points; "approximate" only when the boundaries
   differ (Assam 2026); a state's first election shows its own figures only.
 - [x] Lok Sabha hidden from the site (2026-10-05; data kept): `frontend/src/model/config/houses.ts` (`SHOWN_HOUSES`) filters

@@ -15,7 +15,6 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { TopBar } from './TopBar';
 import { ScoreboardTile } from './ScoreboardTile';
 import { StandingsTile, StandingsPreview, WatchlistPreview, type StandingsTab } from './StandingsTile';
-import type { RegionComparisonVM } from '../../viewmodels/tiles/useRegionComparisonVM';
 import { LayerInsightStrip } from './LayerInsightStrip';
 import { SummaryFocus } from './SummaryFocus';
 import { SummaryPreview } from './SummaryTab';
@@ -29,7 +28,7 @@ import { PartyDialog } from '../party/PartyDialog';
 import type { PartyDialogVM } from '../../viewmodels/tiles/usePartyDialogVM';
 
 export interface DashboardViewProps {
-  topBar: TopBarVM; search: SearchVM; scoreboard: ScoreboardVM; standings: StandingsVM; insight: LayerInsightVM; summary?: SummaryVM; regions?: RegionComparisonVM | null;
+  topBar: TopBarVM; search: SearchVM; scoreboard: ScoreboardVM; standings: StandingsVM; insight: LayerInsightVM; summary?: SummaryVM;
   leaders: LeadersVM; stats: StatsVM; map: MapVM; seatDialog: SeatDialogVM | null; partyDialog: PartyDialogVM | null;
   focus: FocusTile | null; onCloseFocus(): void;
 }
@@ -81,7 +80,7 @@ export function DashboardGrid(p: DashboardViewProps) {
       <MapTile vm={p.map} variant="tile" footer={<LayerInsightStrip vm={p.insight} variant="footer" />} />
       <div className="grid min-h-0 grid-rows-[148px_minmax(0,1fr)] gap-3">
         <ScoreboardTile vm={p.scoreboard} variant="tile" />
-        <StandingsTile vm={p.standings} variant="tile" watchlist={p.leaders} summary={p.summary} regions={p.regions} onTabChange={setStandingsTab} />
+        <StandingsTile vm={p.standings} variant="tile" watchlist={p.leaders} summary={p.summary} onTabChange={setStandingsTab} />
       </div>
       <div className="col-span-2 grid min-h-0"><LeadersStrip vm={p.leaders} variant="tile" /></div>
       <div className="col-span-2 grid min-h-0"><StatsStrip vm={p.stats} variant="tile" /></div>

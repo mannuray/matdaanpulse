@@ -10,7 +10,6 @@ import { useScoreboardVM } from '../viewmodels/tiles/useScoreboardVM';
 import { useStandingsVM } from '../viewmodels/tiles/useStandingsVM';
 import { useLayerInsightVM } from '../viewmodels/tiles/useLayerInsightVM';
 import { useSummaryVM } from '../viewmodels/tiles/useSummaryVM';
-import { useRegionComparisonVM } from '../viewmodels/tiles/useRegionComparisonVM';
 import { useLeadersVM } from '../viewmodels/tiles/useLeadersVM';
 import { useStatsVM } from '../viewmodels/tiles/useStatsVM';
 import { useMapVM } from '../viewmodels/tiles/useMapVM';
@@ -26,7 +25,7 @@ function Wall() {
   return (
     <DashboardGrid
       topBar={topBar} search={search}
-      scoreboard={useScoreboardVM()} standings={useStandingsVM()} insight={useLayerInsightVM()} summary={useSummaryVM()} regions={useRegionComparisonVM()}
+      scoreboard={useScoreboardVM()} standings={useStandingsVM()} insight={useLayerInsightVM()} summary={useSummaryVM()}
       leaders={useLeadersVM()} stats={useStatsVM()} map={useMapVM()} seatDialog={useSeatDialogVM()} partyDialog={usePartyDialogVM()}
       focus={state.focus} onCloseFocus={() => dispatch({ type: 'focus', tile: null })}
     />

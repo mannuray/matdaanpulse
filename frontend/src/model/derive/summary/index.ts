@@ -19,6 +19,8 @@ const SECTIONS: Record<LayerId, (ctx: SummaryContext) => SummarySection[]> = {
   demographics: demographicsSummary,
   insights: insightsSummary,
   states: statesSummary,
+  // The Regions summary is the region comparison (views/dashboard/RegionsTab), loaded per election, not derived here.
+  regions: () => [],
 };
 
 /**
