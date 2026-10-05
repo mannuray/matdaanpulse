@@ -1,0 +1,68 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2024_Odisha_Legislative_Assembly_election",
+  "note: BJD, BJP and Congress contested alone."
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "BJD",
+   "name": "BJD",
+   "color": "#2E7D32",
+   "parties": [
+    "BJD"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "BJD",
+  "INC"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 74
+  }
+ ],
+ "geo": {
+  "zoom": 7,
+  "center": [
+   84.4,
+   20.5
+  ],
+  "map_url": "/geo/od_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0260000-0000-4000-8000-000000002009",
+  "a0260000-0000-4000-8000-000000002014",
+  "a0260000-0000-4000-8000-000000002019"
+ ],
+ "history_years": [
+  2009,
+  2014,
+  2019
+ ],
+ "compare_with": [
+  "a0260000-0000-4000-8000-000000002019"
+ ]
+}
