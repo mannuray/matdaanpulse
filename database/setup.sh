@@ -127,8 +127,10 @@ for st in as kl py tn wb; do run "seed_${st}_leaders.sql"; done
 for st in dl hr jh od; do run "seed_${st}_leaders.sql"; done
 # 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
 for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
+for st in dl hr jh od; do run "seed_${st}_candidate_photos.sql"; done
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_affidavits.sql"; done
+for st in dl hr jh od; do run "seed_${st}_affidavits.sql"; done
 
 echo "==> Seeds: Bihar persons (must follow Bihar VS results + regions)"
 run seed_bihar_persons.sql
