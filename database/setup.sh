@@ -112,6 +112,7 @@ for st in as kl py tn wb; do run "seed_${st}_districts_regions.sql"; done
 run seed_as_2026_districts_regions.sql
 # Phase 3A states (2008 delimitation; seat → district sourced in scraper/data/<slug>/districts.json)
 for st in ga mn uk pb up; do run "seed_${st}_districts_regions.sql"; done
+for st in dl hr jh od; do run "seed_${st}_districts_regions.sql"; done
 # Person links across 2011-2021 (run-once; must follow the VS results)
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 for st in ga mn uk pb up; do run "seed_${st}_person_links_v1.sql"; done

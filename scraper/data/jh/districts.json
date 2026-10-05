@@ -1,0 +1,247 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Jharkhand_Legislative_Assembly (district column; raw wikitext read 2026-10-05)",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Jharkhand (24 districts, 5 divisions)",
+  "https://en.wikipedia.org/wiki/Barkagaon_Assembly_constituency (\"under Hazaribagh district\", citing CEO Jharkhand)",
+  "https://en.wikipedia.org/wiki/Hazaribagh_district (ACs Sadar, Barhi, Barkagaon, Barkatha, Mandu)",
+  "https://www.indiastatpublications.com/pdf_Samples/assembly_factbook/Jharkhand/Hazaribagh/Barkagaon-Assembly-Factbook.pdf (filed under Hazaribagh)"
+ ],
+ "notes": "Current 24 districts. Override: Barkagaon (22), which Wikipedia's AC list puts under Ramgarh (the seat includes Patratu block of Ramgarh), is put under Hazaribagh: two of its three blocks (Barkagaon, Keredari) are in Hazaribagh district, the AC article text says \"under Hazaribagh district\" (citing CEO Jharkhand) and Indiastat files it under Hazaribagh; uncertain, since the AC article infobox and both district pages (Ramgarh and Hazaribagh) claim it. Mandu (24) also straddles Hazaribagh and Ramgarh; kept under Hazaribagh as on Wikipedia and the Hazaribagh district page (uncertain). Names: Kodarma district shown as Koderma; Sahibganj (also spelt Sahebganj); Seraikela Kharsawan. Regions are the 5 revenue divisions.",
+ "districts": [
+  {
+   "code": "JH_SAHIBGANJ",
+   "name": "Sahibganj"
+  },
+  {
+   "code": "JH_PAKUR",
+   "name": "Pakur"
+  },
+  {
+   "code": "JH_DUMKA",
+   "name": "Dumka"
+  },
+  {
+   "code": "JH_JAMTARA",
+   "name": "Jamtara"
+  },
+  {
+   "code": "JH_DEOGHAR",
+   "name": "Deoghar"
+  },
+  {
+   "code": "JH_GODDA",
+   "name": "Godda"
+  },
+  {
+   "code": "JH_KODERMA",
+   "name": "Koderma"
+  },
+  {
+   "code": "JH_HAZARIBAGH",
+   "name": "Hazaribagh"
+  },
+  {
+   "code": "JH_RAMGARH",
+   "name": "Ramgarh"
+  },
+  {
+   "code": "JH_CHATRA",
+   "name": "Chatra"
+  },
+  {
+   "code": "JH_GIRIDIH",
+   "name": "Giridih"
+  },
+  {
+   "code": "JH_BOKARO",
+   "name": "Bokaro"
+  },
+  {
+   "code": "JH_DHANBAD",
+   "name": "Dhanbad"
+  },
+  {
+   "code": "JH_EASTSINGHBHUM",
+   "name": "East Singhbhum"
+  },
+  {
+   "code": "JH_SERAIKELAKHARSAWAN",
+   "name": "Seraikela Kharsawan"
+  },
+  {
+   "code": "JH_WESTSINGHBHUM",
+   "name": "West Singhbhum"
+  },
+  {
+   "code": "JH_RANCHI",
+   "name": "Ranchi"
+  },
+  {
+   "code": "JH_KHUNTI",
+   "name": "Khunti"
+  },
+  {
+   "code": "JH_GUMLA",
+   "name": "Gumla"
+  },
+  {
+   "code": "JH_SIMDEGA",
+   "name": "Simdega"
+  },
+  {
+   "code": "JH_LOHARDAGA",
+   "name": "Lohardaga"
+  },
+  {
+   "code": "JH_LATEHAR",
+   "name": "Latehar"
+  },
+  {
+   "code": "JH_PALAMU",
+   "name": "Palamu"
+  },
+  {
+   "code": "JH_GARHWA",
+   "name": "Garhwa"
+  }
+ ],
+ "regions": [
+  {
+   "code": "JH_SANTHALPARGANA",
+   "name": "Santhal Pargana",
+   "districts": [
+    "JH_SAHIBGANJ",
+    "JH_PAKUR",
+    "JH_DUMKA",
+    "JH_JAMTARA",
+    "JH_DEOGHAR",
+    "JH_GODDA"
+   ]
+  },
+  {
+   "code": "JH_NORTHCHOTANAGPUR",
+   "name": "North Chotanagpur",
+   "districts": [
+    "JH_KODERMA",
+    "JH_HAZARIBAGH",
+    "JH_RAMGARH",
+    "JH_CHATRA",
+    "JH_GIRIDIH",
+    "JH_BOKARO",
+    "JH_DHANBAD"
+   ]
+  },
+  {
+   "code": "JH_SOUTHCHOTANAGPUR",
+   "name": "South Chotanagpur",
+   "districts": [
+    "JH_RANCHI",
+    "JH_KHUNTI",
+    "JH_GUMLA",
+    "JH_SIMDEGA",
+    "JH_LOHARDAGA"
+   ]
+  },
+  {
+   "code": "JH_KOLHAN",
+   "name": "Kolhan",
+   "districts": [
+    "JH_EASTSINGHBHUM",
+    "JH_SERAIKELAKHARSAWAN",
+    "JH_WESTSINGHBHUM"
+   ]
+  },
+  {
+   "code": "JH_PALAMU",
+   "name": "Palamu",
+   "districts": [
+    "JH_LATEHAR",
+    "JH_PALAMU",
+    "JH_GARHWA"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "JH_SAHIBGANJ",
+  "2": "JH_SAHIBGANJ",
+  "3": "JH_SAHIBGANJ",
+  "4": "JH_PAKUR",
+  "5": "JH_PAKUR",
+  "6": "JH_PAKUR",
+  "7": "JH_DUMKA",
+  "8": "JH_JAMTARA",
+  "9": "JH_JAMTARA",
+  "10": "JH_DUMKA",
+  "11": "JH_DUMKA",
+  "12": "JH_DUMKA",
+  "13": "JH_DEOGHAR",
+  "14": "JH_DEOGHAR",
+  "15": "JH_DEOGHAR",
+  "16": "JH_GODDA",
+  "17": "JH_GODDA",
+  "18": "JH_GODDA",
+  "19": "JH_KODERMA",
+  "20": "JH_HAZARIBAGH",
+  "21": "JH_HAZARIBAGH",
+  "22": "JH_HAZARIBAGH",
+  "23": "JH_RAMGARH",
+  "24": "JH_HAZARIBAGH",
+  "25": "JH_HAZARIBAGH",
+  "26": "JH_CHATRA",
+  "27": "JH_CHATRA",
+  "28": "JH_GIRIDIH",
+  "29": "JH_GIRIDIH",
+  "30": "JH_GIRIDIH",
+  "31": "JH_GIRIDIH",
+  "32": "JH_GIRIDIH",
+  "33": "JH_GIRIDIH",
+  "34": "JH_BOKARO",
+  "35": "JH_BOKARO",
+  "36": "JH_BOKARO",
+  "37": "JH_BOKARO",
+  "38": "JH_DHANBAD",
+  "39": "JH_DHANBAD",
+  "40": "JH_DHANBAD",
+  "41": "JH_DHANBAD",
+  "42": "JH_DHANBAD",
+  "43": "JH_DHANBAD",
+  "44": "JH_EASTSINGHBHUM",
+  "45": "JH_EASTSINGHBHUM",
+  "46": "JH_EASTSINGHBHUM",
+  "47": "JH_EASTSINGHBHUM",
+  "48": "JH_EASTSINGHBHUM",
+  "49": "JH_EASTSINGHBHUM",
+  "50": "JH_SERAIKELAKHARSAWAN",
+  "51": "JH_SERAIKELAKHARSAWAN",
+  "52": "JH_WESTSINGHBHUM",
+  "53": "JH_WESTSINGHBHUM",
+  "54": "JH_WESTSINGHBHUM",
+  "55": "JH_WESTSINGHBHUM",
+  "56": "JH_WESTSINGHBHUM",
+  "57": "JH_SERAIKELAKHARSAWAN",
+  "58": "JH_RANCHI",
+  "59": "JH_KHUNTI",
+  "60": "JH_KHUNTI",
+  "61": "JH_RANCHI",
+  "62": "JH_RANCHI",
+  "63": "JH_RANCHI",
+  "64": "JH_RANCHI",
+  "65": "JH_RANCHI",
+  "66": "JH_RANCHI",
+  "67": "JH_GUMLA",
+  "68": "JH_GUMLA",
+  "69": "JH_GUMLA",
+  "70": "JH_SIMDEGA",
+  "71": "JH_SIMDEGA",
+  "72": "JH_LOHARDAGA",
+  "73": "JH_LATEHAR",
+  "74": "JH_LATEHAR",
+  "75": "JH_PALAMU",
+  "76": "JH_PALAMU",
+  "77": "JH_PALAMU",
+  "78": "JH_PALAMU",
+  "79": "JH_PALAMU",
+  "80": "JH_GARHWA",
+  "81": "JH_GARHWA"
+ }
+}

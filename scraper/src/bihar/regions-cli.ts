@@ -13,11 +13,12 @@ for (const code of process.argv.slice(2) as StateCode[]) {
   const st = STATES[code];
   if (!st) throw new Error(`unknown state ${code}`);
   const file = JSON.parse(fs.readFileSync(path.resolve(__dirname, `../../data/${st.slug}/districts.json`), 'utf8')) as {
-    districts: { code: string; name: string }[]; regions: { code: string; name: string; districts: string[] }[]; seats: Record<string, string>;
+    districts: { code: string; name: string }[]; regions: { code: string; name: string; districts: string[] }[]; seats: Record<string, string>; seatRegions?: Record<string, string>;
   };
   const electionIds = electionsOf(code).filter(e => e.newElection?.delimitation === '2008').map(e => e.electionId);
   const seats = Object.fromEntries(Object.entries(file.seats).map(([no, d]) => [Number(no), d]));
-  const sql = emitStateRegions({ stateId: st.stateId, stateName: st.name, seatCount: st.seats, districts: file.districts, regions: file.regions, seats, electionIds });
+  const seatRegions = file.seatRegions ? Object.fromEntries(Object.entries(file.seatRegions).map(([no, r]) => [Number(no), r])) : undefined;
+  const sql = emitStateRegions({ stateId: st.stateId, stateName: st.name, seatCount: st.seats, districts: file.districts, regions: file.regions, seats, seatRegions, electionIds });
   const out = `seed_${st.slug}_districts_regions.sql`;
   fs.writeFileSync(path.join(DB, out), sql.replace('<slug>', st.slug));
   console.log(`Wrote ${out} (${st.seats} seats, ${file.districts.length} districts, ${file.regions.length} regions, ${electionIds.length} elections)`);
