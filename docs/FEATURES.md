@@ -182,7 +182,7 @@ Plan `docs/superpowers/plans/2026-10-03-phase2a-historical-results.md` (historic
 
 ### Election picker: one list instead of state + year dropdowns, 2026-10-05
 - [x] The dashboard's election button opens one list (like the admin's): a search box ("bih", "2025", "bih 20"), live
-  and upcoming elections pinned on top, then one row per state (alphabetical) with its years as chips; one tap picks.
+  and upcoming elections pinned on top, then one row per state (alphabetical) with its years as chips, newest first; one tap picks.
   Desktop: a popover (search focused). Phone: the existing bottom sheet, focused on the current year (no keyboard
   pop-up), 40 px chips. Logic in `model/derive/electionChoices.ts` (`TopBarVM.choices(query)`), view
   `views/dashboard/ElectionPicker.tsx`. No keyboard shortcut on the public site.

@@ -1,5 +1,5 @@
 /**
- * The election picker's content: Vidhan Sabha elections as one row per state (alphabetical, years oldest first), live
+ * The election picker's content: Vidhan Sabha elections as one row per state (alphabetical, newest year first), live
  * and upcoming ones pinned on top, filtered by a typed query ("bih", "2025", "bih 20": every word must match the state
  * name or the year). Pure: no React.
  */
@@ -22,7 +22,7 @@ export function electionChoices(elections: ElectionLike[], states: { id: number;
     rows.set(e.state_id, row);
   }
   const list = [...rows.values()].sort((a, b) => a.name.localeCompare(b.name));
-  for (const r of list) r.elections.sort((a, b) => a.year - b.year);
+  for (const r of list) r.elections.sort((a, b) => b.year - a.year);
   const pinned = list.flatMap(r => r.elections.filter(x => x.status !== 'Finalized').map(x => ({ ...x, stateName: r.name })))
     .sort((a, b) => Number(b.status === 'Live') - Number(a.status === 'Live') || a.year - b.year || a.stateName.localeCompare(b.stateName));
   return { pinned, rows: list };
