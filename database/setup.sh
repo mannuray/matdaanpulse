@@ -133,6 +133,8 @@ run seed_bihar_party_profiles.sql
 # 2026 top parties of the five states (researched, user-approved; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_party_profiles.sql"; done
 run seed_party_colors_v1.sql
+# Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
+run seed_media_s3_v1.sql
 
 echo "==> Seeds: election result dates (must follow every election insert)"
 run seed_election_result_dates.sql

@@ -84,7 +84,7 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
   articles, with `sources` per election. A research agent can do it; validate with `validateLeaders`.
   **Show the list to the user and wait for approval.**
 - Profiles (`profiles-cli.ts`): Wikidata (photo P18, birth date at **day precision only**, sex, enwiki) → Commons
-  licence → photo downloaded once → **our Vercel Blob store** (`persons/<QID>/photo.<ext>`, `BLOB_READ_WRITE_TOKEN` in
+  licence → photo downloaded once → **our S3 bucket** (`src/media-store.ts`; `persons/<QID>/photo.<ext>`, `S3_*` + AWS keys in
   `scraper/.env`) → `image_credits`. Never hotlink. Bios are generated from the curated roles.
 - Leaders seed: anchor on each leader's best-linked person; leaders/cabinet watchlists (with `person_id`) written into
   the manifest only if it has no watchlist entries yet, and into an open draft the same way.
@@ -96,7 +96,7 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
   photo files stay online after the pages are gone. Pages via Wayback; fall back to older snapshots when the newest is
   truncated.
 - `photos-cli.ts`: match by exact votes + name check (else a close unique name), shrink to 240 px JPEG (~7 KB) with
-  `sharp`, upload to Blob (`persons/eci<year>/<seat>-<serial>.jpg`), credit ECI ("no licence stated"), run-once
+  `sharp`, upload to S3 (`persons/eci<year>/<slug>-<seat>-<serial>.jpg`; a local copy is kept in `scraper/data/media/`), credit ECI ("no licence stated"), run-once
   fill-only seed after the leaders seed. Resumable; run long jobs detached (`nohup`), see §10.
 - Results pages from before ~2025 have no photos.
 
@@ -147,6 +147,7 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | The local DB has sample/preview data | revert only fields the seeds don't own; take a backup first |
 | Background tasks stop after 2 hours | run servers and long jobs detached with `nohup` |
 | A check that can't fail (grouped by the field it tests) | verify a check by running it on data known to be wrong |
+| Vercel Blob's free plan suspended the store mid-run (all images 403, production too) | images on S3 (no operation limits); every upload keeps a local copy; check a host's limits before a bulk job |
 | ECI download links failing (HTTP 500) for one report | the user downloads the four XLSX files by hand; register them |
 | Report layouts differ by year/state (flat sheet without TURNOUT rows, letter-typed party tables, "CONSTITUENCY :- N - Name") | parser aliases and layout detection, each with a fixture test |
 | A summary whose valid total includes NOTA (no NOTA line) | cross-check accepts candidates + NOTA there |

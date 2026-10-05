@@ -1,10 +1,10 @@
 /**
- * Fetch Tier A leader profiles (Wikidata + Commons), upload photos once to our Vercel Blob store, write leader-profiles.json.
- * Usage: BLOB_READ_WRITE_TOKEN=… npx ts-node src/bihar/profiles-cli.ts
+ * Fetch Tier A leader profiles (Wikidata + Commons), upload photos once to our S3 bucket (src/media-store.ts), write
+ * leader-profiles.json. Usage: npx ts-node src/bihar/profiles-cli.ts [STATE]   (default BR; S3_* and AWS keys from scraper/.env)
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { put } from '@vercel/blob';
+import { mediaStoreFromEnv } from '../media-store';
 import { parseState } from './elections';
 import { trackOf } from './current-track';
 import { readEntity, readImageInfo, type Profile } from './profiles';
@@ -15,8 +15,7 @@ const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 const json = async (url: string) => { const r = await fetch(url, { headers: { 'User-Agent': UA } }); if (!r.ok) throw new Error(`${r.status} ${url}`); return r.json() as Promise<any>; };
 
 (async () => {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) throw new Error('BLOB_READ_WRITE_TOKEN is not set');
+  const store = mediaStoreFromEnv();
   const dir = trackOf(parseState(process.argv[2] ?? 'BR')).dir;
   const leaders: LeadersFile = JSON.parse(fs.readFileSync(path.join(dir, 'leaders.json'), 'utf8'));
   const file = path.join(dir, 'leader-profiles.json');
@@ -36,8 +35,7 @@ const json = async (url: string) => { const r = await fetch(url, { headers: { 'U
         if (!img.ok) throw new Error(`${img.status} ${info.thumbUrl}`);
         const type = img.headers.get('content-type') ?? 'image/jpeg';
         const ext = type.includes('png') ? 'png' : type.includes('webp') ? 'webp' : 'jpg';
-        const blob = await put(`persons/${p.wikidata}/photo.${ext}`, Buffer.from(await img.arrayBuffer()), { access: 'public', addRandomSuffix: false, allowOverwrite: true, contentType: type, token });
-        photo_url = blob.url; credit = info.credit;
+        photo_url = await store.put(`persons/${p.wikidata}/photo.${ext}`, Buffer.from(await img.arrayBuffer()), type); credit = info.credit;
       } else console.warn(`  ${p.key}: image has no licence metadata; skipped`);
     }
     out[p.key] = { key: p.key, wikidata: p.wikidata, date_of_birth: ent.dob, gender: ent.gender, wikipedia_url: ent.enwiki, photo_url, credit };

@@ -1,19 +1,18 @@
 /**
  * Top-4 candidate photos of a state's latest election: ECI candidate-wise pages (the live results site, else Wayback)
- * → ECI photo → 240px JPEG in our Blob store → scraper/data/<slug>/photos-<year>.json (resumable) → the state's photos
+ * → ECI photo → 240px JPEG in our S3 bucket (src/media-store.ts) → scraper/data/<slug>/photos-<year>.json (resumable) → the state's photos
  * seed (seed_bihar_candidate_photos.sql / seed_<slug>_candidate_photos.sql).
- * Usage: BLOB_READ_WRITE_TOKEN=… npx ts-node src/bihar/photos-cli.ts [STATE]   (default BR)
+ * Usage: npx ts-node src/bihar/photos-cli.ts [STATE]   (default BR; S3_* and AWS keys from scraper/.env)
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import sharp from 'sharp';
-import { put } from '@vercel/blob';
+import { mediaStoreFromEnv } from '../media-store';
 import { parseCandidateDetailPage } from '../adapters/eci-vs-adapter';
 import { electionOf, parseState } from './elections';
 import { trackOf } from './current-track';
 import { rawDir } from './load';
 import { DB_DIR, loadSeeded } from './seeded';
-import { BIHAR_PHOTOS, emitPhotosSeed, matchPhoto, topCandidates } from './photos';
+import { BIHAR_PHOTOS, emitPhotosSeed, matchPhoto, shrinkPhoto, topCandidates } from './photos';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126 Safari/537.36';
 const ST = parseState(process.argv[2] ?? 'BR');
@@ -24,7 +23,7 @@ const site = electionOf(ST, YEAR).resultsSite!;
 const RAW = ST === 'BR' ? path.resolve(__dirname, '../../data/raw/eci2025') : path.join(rawDir(ST), String(YEAR), 'cand');
 const OUT = path.join(track.dir, `photos-${YEAR}.json`);
 const PAGE = (n: number) => `${site.base}candidateswise-${site.eciCode}${n}.htm`;
-const BLOB_PATH = (n: number, serial: number) => (ST === 'BR' ? `persons/eci2025/${n}-${serial}.jpg` : `persons/eci${YEAR}/${track.state.slug}-${n}-${serial}.jpg`);
+const KEY_PATH = (n: number, serial: number) => (ST === 'BR' ? `persons/eci2025/${n}-${serial}.jpg` : `persons/eci${YEAR}/${track.state.slug}-${n}-${serial}.jpg`);
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 interface Entry { constNo: number; serial: number; candidateId: string; name: string; url: string; eciUrl: string; sourceUrl: string }
@@ -47,8 +46,7 @@ async function fetchBody(url: string, attempts = 4): Promise<Buffer> {
 const get = async (url: string) => ({ text: async () => (await fetchBody(url)).toString('utf8'), json: async () => JSON.parse((await fetchBody(url)).toString('utf8')) });
 
 (async () => {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) throw new Error('BLOB_READ_WRITE_TOKEN is not set');
+  const store = mediaStoreFromEnv();
   fs.mkdirSync(RAW, { recursive: true });
   const done: Entry[] = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')).entries : [];
   const have = new Set(done.map(e => `${e.constNo}:${e.serial}`));
@@ -107,9 +105,9 @@ const get = async (url: string) => ({ text: async () => (await fetchBody(url)).t
       if (!eciUrl) { unmatched.push(`seat ${n}: ${c.name} (${c.partyId}, ${c.votes})`); continue; }
       let raw: Buffer;
       try { raw = await fetchBody(eciUrl); } catch (e) { unmatched.push(`seat ${n}: ${c.name} photo download failed (${(e as Error).message})`); continue; }
-      const jpeg = await sharp(raw).rotate().resize({ width: 240, height: 300, fit: 'cover', position: 'top' }).jpeg({ quality: 78, mozjpeg: true }).toBuffer();
-      const blob = await put(BLOB_PATH(n, c.serial), jpeg, { access: 'public', addRandomSuffix: false, allowOverwrite: true, contentType: 'image/jpeg', token });
-      done.push({ constNo: n, serial: c.serial, candidateId: s.idOf(n, c), name: c.name, url: blob.url, eciUrl, sourceUrl });
+      const jpeg = await shrinkPhoto(raw);
+      const url = await store.put(KEY_PATH(n, c.serial), jpeg, 'image/jpeg');
+      done.push({ constNo: n, serial: c.serial, candidateId: s.idOf(n, c), name: c.name, url, eciUrl, sourceUrl });
       have.add(`${n}:${c.serial}`);
       save();
       await sleep(1500);

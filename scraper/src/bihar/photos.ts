@@ -11,6 +11,12 @@ import type { CandidateJson, SeatJson } from './types';
 
 /** Candidates per seat that get a photo (winner, runner-up, 3rd, 4th). */
 export const TOP_PER_SEAT = 4;
+
+/** ECI photo → 240×300 JPEG (~7 KB), the size every candidate photo is hosted at. */
+export async function shrinkPhoto(raw: Buffer): Promise<Buffer> {
+  const sharp = (await import('sharp')).default;
+  return sharp(raw).rotate().resize({ width: 240, height: 300, fit: 'cover', position: 'top' }).jpeg({ quality: 78, mozjpeg: true }).toBuffer();
+}
 /** ECI publishes these photos without a stated licence; the credit says so. */
 export const ECI_CREDIT = { author: 'Election Commission of India', licence: 'ECI results website (no licence stated)' };
 

@@ -239,7 +239,9 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
   FEEDBACK_IP_SALT=<openssl rand -hex 32>
   OTEL_SDK_DISABLED=true
   NODE_OPTIONS=--max-old-space-size=384
-  BLOB_READ_WRITE_TOKEN=<Vercel Blob store read-write token>   # admin image uploads; unset = upload returns 503
+  AWS_ACCESS_KEY_ID=… AWS_SECRET_ACCESS_KEY=…                 # IAM user matdaan-pulse-media-user (Put/Get on the bucket's objects, List)
+  S3_BUCKET=matdaanpulse-media S3_REGION=ap-south-1             # admin image uploads; unset bucket = upload returns 503
+  S3_PUBLIC_BASE_URL=https://matdaanpulse-media.s3.ap-south-1.amazonaws.com
   # Defaults, set only to change them:
   # TRUST_PROXY_HOPS=1  THROTTLE_PUBLIC_PER_MIN=600  THROTTLE_AUTH_PER_MIN=5  THROTTLE_FEEDBACK_PER_MIN=5  SSE_MAX_CONNECTIONS=200
   # LOG_LEVEL=info  ALLOW_REGISTRATION=false  CORS_ORIGIN_REGEX=
@@ -272,7 +274,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 
    **Admin extra build env (mandatory):** `VITE_PUBLIC_SITE_URL=<public site origin>` (currently `https://www.matdaanpulse.in`; later `https://app.<domain>`). Seeded party symbols are site-relative `/symbols/...` paths; `assetUrl()` resolves them against this. The default (`localhost:3080`) would break every symbol image in production. Deploy step: set it on the Vercel admin project (`matdaanpulse-admin`, later the Cloudflare Pages admin project) to the public site origin, then redeploy — Vite bakes it in at build time, so changing it has no effect until the next build.
 
-   **Image storage:** create a public Vercel Blob store (Vercel → Storage → Blob) and copy its read-write token into the Render env `BLOB_READ_WRITE_TOKEN` (§5.3). Uploaded party symbols and person photos live there; the DB stores the blob URL. Orphaned blobs are not cleaned up.
+   **Image storage:** S3 bucket `matdaanpulse-media` (ap-south-1): Block Public Access allows bucket policies, ACLs off; bucket policy grants public `s3:GetObject` on `arn:aws:s3:::matdaanpulse-media/*`; the IAM user has `s3:PutObject`/`s3:GetObject` on the objects and `s3:ListBucket` on the bucket. Seed photos and admin uploads (party symbols, person photos) live there; the DB stores the S3 URL. Moved from Vercel Blob on 2026-10-05 (that store was suspended at its free-plan limit): `seed_media_s3_v1.sql` (run-once) rewrites stored Blob URLs to the same keys on S3. Orphaned objects are not cleaned up.
 
    SPA fallback: each app ships `public/_redirects` (`/*  /index.html  200`), already committed in `frontend/` and `admin/`. The admin needs no copy of the seeded `/symbols/…` files: `assetUrl()` loads them from the public site via `VITE_PUBLIC_SITE_URL` (above).
 3. **API hostname:** DNS `CNAME api → <service>.onrender.com`, **proxied** (orange cloud); add `api.<domain>` as a custom domain in Render so TLS validates. SSL mode **Full (strict)**.

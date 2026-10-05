@@ -1,4 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import * as fs from 'fs';
+import * as path from 'path';
+import { parseCandidateDetailPage } from '../../adapters/eci-vs-adapter';
 import { topCandidates, matchPhoto, emitPhotosSeed, ECI_CREDIT } from '../photos';
 import type { SeatJson } from '../types';
 
@@ -42,5 +45,21 @@ describe('emitPhotosSeed for another state', () => {
     expect(sql).toContain("seed_runs WHERE name = 'seed_as_candidate_photos'");
     expect(sql).toContain('Assam 2026 top-4');
     expect(sql).not.toMatch(/Bihar/);
+  });
+});
+
+describe('2026 candidate-wise pages (results.eci.gov.in/ResultAcGenMay2026)', () => {
+  const html = fs.readFileSync(path.resolve(__dirname, '../../live/__tests__/fixtures/eci-2026-candidateswise-S0333.htm'), 'utf8');
+  const eci = parseCandidateDetailPage(html);
+  const cand = (name: string, votes: number) => ({ serial: 1, name, partyId: 'IND', sex: null, age: null, votes, status: 'LOST' as const });
+  it('reads every card with votes and photo', () => {
+    expect(eci.find(e => e.name === 'PRADYUT BORDOLOI')).toMatchObject({ votes: 103337, status: 'won' });
+    expect(eci.find(e => e.name === 'PRADYUT BORDOLOI')!.photo).toMatch(/PRADY-2026-20260323102154\.jpg$/);
+  });
+  it('matches by the card\'s votes and name, never by the photo file name', () => {
+    expect(matchPhoto(cand('Jayanta Kumar Das', 22802), eci)).toMatch(/SRIJA-2026-20260323091916\.jpg$/);
+  });
+  it('gives no photo when no card has the votes and the name is not clearly on the page', () => {
+    expect(matchPhoto(cand('Someone Else', 12345), eci)).toBeNull();
   });
 });
