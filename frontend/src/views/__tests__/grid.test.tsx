@@ -28,6 +28,10 @@ describe('MobileCardRail', () => {
 const vm: TopBarVM = {
   electionType: 'VS', electionId: 'e1', states: [{ id: 4, name: 'Bihar' }], stateId: 4, years: [{ id: 'e1', year: 2025 }, { id: 'e0', year: 2020 }], lsElections: [{ id: 'l1', name: 'LS 2024' }], houses: ['LS', 'VS'],
   electionLabel: 'VS · Bihar 2025',
+  choices: (q: string) => (q && !'bihar'.includes(q.toLowerCase()) ? { pinned: [], rows: [] } : {
+    pinned: q ? [] : [{ id: 'g27', year: 2027, status: 'Upcoming' as const, stateName: 'Goa' }],
+    rows: [{ stateId: 4, name: 'Bihar', elections: [{ id: 'e0', year: 2020, status: 'Finalized' as const }, { id: 'e1', year: 2025, status: 'Finalized' as const }] }],
+  }),
   statusLabel: { kind: 'final', declared: 1, total: 1 }, shareText: 'Share me', lang: 'en', langs: ['en', 'hi'],
   onType: vi.fn(), onState: vi.fn(), onElection: vi.fn(), onLang: vi.fn(), onSearchSeat: vi.fn(),
   theme: 'dark', onTheme: vi.fn(), onToggleTheme: vi.fn(),
@@ -66,16 +70,35 @@ describe('TopBar compact (one row)', () => {
     fireEvent.click(within(screen.getByRole('dialog')).getByRole('radio', { name: /Lok Sabha/i }));
     expect(screen.queryByRole('dialog')).toBeNull();
   });
-  it('the election chip opens a sheet with the LS/VS toggle and the state and year pickers', () => {
+  it('the election chip opens a sheet with the LS/VS toggle, a search box, live/upcoming pins and one row of year chips per state', () => {
     bar();
     fireEvent.click(screen.getByRole('button', { name: /Choose election/ }));
     const dialog = screen.getByRole('dialog');
     expect(within(dialog).getByRole('radio', { name: /Lok Sabha/i })).toBeTruthy();
-    expect(within(dialog).getByRole('radio', { name: /Vidhan Sabha/i })).toBeTruthy();
-    expect(within(dialog).getByRole('combobox', { name: 'Select State' })).toBeTruthy();
-    expect(within(dialog).getByRole('combobox', { name: 'Year' })).toBeTruthy();
+    expect(within(dialog).getByRole('searchbox', { name: 'Search state or year' })).toBeTruthy();
+    expect(within(dialog).getByRole('button', { name: /Goa 2027/ })).toBeTruthy();
+    const row = within(dialog).getByRole('group', { name: 'Bihar' });
+    expect(within(row).getAllByRole('button').map(b => b.textContent)).toEqual(['2020', '2025']);
+    expect(within(row).getByRole('button', { name: 'Bihar 2025' }).getAttribute('aria-current')).toBe('true');
     fireEvent.click(within(dialog).getByRole('radio', { name: /Lok Sabha/i }));
     expect(vm.onType).toHaveBeenCalledWith('LS');
+  });
+  it('on a phone the sheet focuses the current year, not the search box (no keyboard pop-up); a year picks and closes', () => {
+    bar();
+    fireEvent.click(screen.getByRole('button', { name: /Choose election/ }));
+    const dialog = screen.getByRole('dialog');
+    expect(document.activeElement).toBe(within(dialog).getByRole('button', { name: 'Bihar 2025' }));
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Bihar 2020' }));
+    expect(vm.onElection).toHaveBeenCalledWith('e0');
+    expect(screen.queryByRole('dialog')).toBeNull();
+  });
+  it('typing filters the rows; no match says so', () => {
+    bar();
+    fireEvent.click(screen.getByRole('button', { name: /Choose election/ }));
+    const dialog = screen.getByRole('dialog');
+    fireEvent.change(within(dialog).getByRole('searchbox'), { target: { value: 'kerala' } });
+    expect(within(dialog).queryByRole('group', { name: 'Bihar' })).toBeNull();
+    expect(within(dialog).getByText(/No election matches/)).toBeTruthy();
   });
   it('shows no Lok Sabha / Vidhan Sabha toggle when only one house is shown', () => {
     bar({ houses: ['VS'] });
@@ -128,5 +151,20 @@ describe('theme controls', () => {
     const mark = container.querySelector('a[data-logo-mark]')!;
     expect(mark.getAttribute('href')).toBe('/');
     expect(mark.getAttribute('aria-label')).toBe('MatdaanPulse');
+  });
+});
+
+describe('TopBar desktop election picker', () => {
+  afterEach(cleanup);
+  const wide = () => render(<MemoryRouter future={future}><TopBar vm={vm} search={search} /></MemoryRouter>);
+  it('one button instead of the state and year dropdowns; it opens the same list with the search box focused', () => {
+    wide();
+    expect(screen.queryByRole('combobox', { name: 'Select State' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: /Choose election/ }));
+    const panel = screen.getByRole('dialog', { name: 'Choose election' });
+    expect(document.activeElement).toBe(within(panel).getByRole('searchbox'));
+    fireEvent.click(within(panel).getByRole('button', { name: 'Bihar 2020' }));
+    expect(vm.onElection).toHaveBeenCalledWith('e0');
+    expect(screen.queryByRole('dialog', { name: 'Choose election' })).toBeNull();
   });
 });

@@ -12,6 +12,7 @@ import { useTheme, type Theme } from '../theme/useTheme';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { pickLatestElection } from '../../model/derive/electionPick';
 import { countDeclared } from '../../model/derive/marginStats';
+import { electionChoices, type ElectionChoices } from '../../model/derive/electionChoices';
 
 const LANGS = ['en', 'hi', 'ta', 'mr'];
 
@@ -33,6 +34,8 @@ export interface TopBarVM {
   stateId: number | null;
   years: { id: string; year: number }[];
   lsElections: { id: string; name: string }[];
+  /** The election picker's rows for a typed query (one row per state, years as chips; live/upcoming pinned). */
+  choices(query: string): ElectionChoices;
   /** Type, state and year in one short string, e.g. "VS · Bihar 2025" (LS has no state). */
   electionLabel: string;
   statusLabel: { kind: 'final' | 'live' | 'upcoming'; declared: number; total: number };
@@ -103,6 +106,7 @@ export function useTopBarVM(): TopBarVM {
     stateId: current.state_id,
     years,
     lsElections,
+    choices: query => electionChoices(all, vsStates, query),
     houses: SHOWN_HOUSES,
     electionLabel: [`${t(current.type === 'VS' ? 'studio_type_vs_short' : 'studio_type_ls_short')} ·`, current.type === 'VS' ? (vsStates.find(s => s.id === current.state_id)?.name ?? current.state?.name) : null, current.year].filter(Boolean).join(' '),
     statusLabel: {
