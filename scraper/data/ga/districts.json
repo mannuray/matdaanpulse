@@ -1,0 +1,75 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Goa_Legislative_Assembly (district column; raw wikitext read 2026-10-05)",
+  "https://ceogoa.nic.in/ (constituencies by district)"
+ ],
+ "notes": "Regions follow the seat numbers: seats 1-20 are North Goa and 21-40 South Goa (the two Lok Sabha seats / the revenue districts as used in election terms). Two pseudo-districts are used, GA_NORTHGOA and GA_SOUTHGOA. Ponda taluka's seats are South Goa in election terms although the taluka was moved to North Goa as a revenue district; Kushavati district (created Dec 2025 from South Goa's Dharbandora, Sanguem, Quepem and Canacona talukas) lies inside South Goa and is not split out.",
+ "districts": [
+  {
+   "code": "GA_NORTHGOA",
+   "name": "North Goa"
+  },
+  {
+   "code": "GA_SOUTHGOA",
+   "name": "South Goa"
+  }
+ ],
+ "regions": [
+  {
+   "code": "GA_NORTH",
+   "name": "North Goa",
+   "districts": [
+    "GA_NORTHGOA"
+   ]
+  },
+  {
+   "code": "GA_SOUTH",
+   "name": "South Goa",
+   "districts": [
+    "GA_SOUTHGOA"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "GA_NORTHGOA",
+  "2": "GA_NORTHGOA",
+  "3": "GA_NORTHGOA",
+  "4": "GA_NORTHGOA",
+  "5": "GA_NORTHGOA",
+  "6": "GA_NORTHGOA",
+  "7": "GA_NORTHGOA",
+  "8": "GA_NORTHGOA",
+  "9": "GA_NORTHGOA",
+  "10": "GA_NORTHGOA",
+  "11": "GA_NORTHGOA",
+  "12": "GA_NORTHGOA",
+  "13": "GA_NORTHGOA",
+  "14": "GA_NORTHGOA",
+  "15": "GA_NORTHGOA",
+  "16": "GA_NORTHGOA",
+  "17": "GA_NORTHGOA",
+  "18": "GA_NORTHGOA",
+  "19": "GA_NORTHGOA",
+  "20": "GA_NORTHGOA",
+  "21": "GA_SOUTHGOA",
+  "22": "GA_SOUTHGOA",
+  "23": "GA_SOUTHGOA",
+  "24": "GA_SOUTHGOA",
+  "25": "GA_SOUTHGOA",
+  "26": "GA_SOUTHGOA",
+  "27": "GA_SOUTHGOA",
+  "28": "GA_SOUTHGOA",
+  "29": "GA_SOUTHGOA",
+  "30": "GA_SOUTHGOA",
+  "31": "GA_SOUTHGOA",
+  "32": "GA_SOUTHGOA",
+  "33": "GA_SOUTHGOA",
+  "34": "GA_SOUTHGOA",
+  "35": "GA_SOUTHGOA",
+  "36": "GA_SOUTHGOA",
+  "37": "GA_SOUTHGOA",
+  "38": "GA_SOUTHGOA",
+  "39": "GA_SOUTHGOA",
+  "40": "GA_SOUTHGOA"
+ }
+}

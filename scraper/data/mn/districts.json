@@ -1,0 +1,166 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Manipur_Legislative_Assembly (district column; raw wikitext read 2026-10-05)",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Manipur",
+  "https://ceomanipur.nic.in/"
+ ],
+ "notes": "Wikipedia's district column follows the 2011 census (9 districts); seats are moved to the 2016 districts that now contain them: Wabgai, Kakching, Hiyanglam, Sugnu -> Kakching; Jiribam -> Jiribam; Tengnoupal -> Tengnoupal; Phungyar -> Kamjong; Saikul, Kangpokpi, Saitu -> Kangpokpi; Nungba -> Noney; Tipaimukh, Thanlon -> Pherzawl. Some constituencies straddle the Imphal East/West boundary; the district given is the one Wikipedia lists.",
+ "districts": [
+  {
+   "code": "MN_IMPHALEAST",
+   "name": "Imphal East"
+  },
+  {
+   "code": "MN_IMPHALWEST",
+   "name": "Imphal West"
+  },
+  {
+   "code": "MN_BISHNUPUR",
+   "name": "Bishnupur"
+  },
+  {
+   "code": "MN_THOUBAL",
+   "name": "Thoubal"
+  },
+  {
+   "code": "MN_KAKCHING",
+   "name": "Kakching"
+  },
+  {
+   "code": "MN_JIRIBAM",
+   "name": "Jiribam"
+  },
+  {
+   "code": "MN_CHANDEL",
+   "name": "Chandel"
+  },
+  {
+   "code": "MN_TENGNOUPAL",
+   "name": "Tengnoupal"
+  },
+  {
+   "code": "MN_KAMJONG",
+   "name": "Kamjong"
+  },
+  {
+   "code": "MN_UKHRUL",
+   "name": "Ukhrul"
+  },
+  {
+   "code": "MN_KANGPOKPI",
+   "name": "Kangpokpi"
+  },
+  {
+   "code": "MN_SENAPATI",
+   "name": "Senapati"
+  },
+  {
+   "code": "MN_TAMENGLONG",
+   "name": "Tamenglong"
+  },
+  {
+   "code": "MN_NONEY",
+   "name": "Noney"
+  },
+  {
+   "code": "MN_PHERZAWL",
+   "name": "Pherzawl"
+  },
+  {
+   "code": "MN_CHURACHANDPUR",
+   "name": "Churachandpur"
+  }
+ ],
+ "regions": [
+  {
+   "code": "MN_VALLEY",
+   "name": "Valley",
+   "districts": [
+    "MN_IMPHALEAST",
+    "MN_IMPHALWEST",
+    "MN_THOUBAL",
+    "MN_BISHNUPUR",
+    "MN_KAKCHING",
+    "MN_JIRIBAM"
+   ]
+  },
+  {
+   "code": "MN_HILLS",
+   "name": "Hills",
+   "districts": [
+    "MN_CHANDEL",
+    "MN_TENGNOUPAL",
+    "MN_KAMJONG",
+    "MN_UKHRUL",
+    "MN_SENAPATI",
+    "MN_KANGPOKPI",
+    "MN_TAMENGLONG",
+    "MN_NONEY",
+    "MN_CHURACHANDPUR",
+    "MN_PHERZAWL"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "MN_IMPHALEAST",
+  "2": "MN_IMPHALEAST",
+  "3": "MN_IMPHALEAST",
+  "4": "MN_IMPHALEAST",
+  "5": "MN_IMPHALEAST",
+  "6": "MN_IMPHALEAST",
+  "7": "MN_IMPHALEAST",
+  "8": "MN_IMPHALEAST",
+  "9": "MN_IMPHALWEST",
+  "10": "MN_IMPHALWEST",
+  "11": "MN_IMPHALWEST",
+  "12": "MN_IMPHALWEST",
+  "13": "MN_IMPHALWEST",
+  "14": "MN_IMPHALEAST",
+  "15": "MN_IMPHALEAST",
+  "16": "MN_IMPHALWEST",
+  "17": "MN_IMPHALWEST",
+  "18": "MN_IMPHALWEST",
+  "19": "MN_IMPHALWEST",
+  "20": "MN_IMPHALWEST",
+  "21": "MN_IMPHALWEST",
+  "22": "MN_IMPHALWEST",
+  "23": "MN_IMPHALWEST",
+  "24": "MN_BISHNUPUR",
+  "25": "MN_BISHNUPUR",
+  "26": "MN_BISHNUPUR",
+  "27": "MN_BISHNUPUR",
+  "28": "MN_BISHNUPUR",
+  "29": "MN_BISHNUPUR",
+  "30": "MN_THOUBAL",
+  "31": "MN_THOUBAL",
+  "32": "MN_THOUBAL",
+  "33": "MN_THOUBAL",
+  "34": "MN_THOUBAL",
+  "35": "MN_THOUBAL",
+  "36": "MN_KAKCHING",
+  "37": "MN_KAKCHING",
+  "38": "MN_KAKCHING",
+  "39": "MN_KAKCHING",
+  "40": "MN_JIRIBAM",
+  "41": "MN_CHANDEL",
+  "42": "MN_TENGNOUPAL",
+  "43": "MN_KAMJONG",
+  "44": "MN_UKHRUL",
+  "45": "MN_UKHRUL",
+  "46": "MN_KANGPOKPI",
+  "47": "MN_SENAPATI",
+  "48": "MN_SENAPATI",
+  "49": "MN_SENAPATI",
+  "50": "MN_KANGPOKPI",
+  "51": "MN_KANGPOKPI",
+  "52": "MN_TAMENGLONG",
+  "53": "MN_TAMENGLONG",
+  "54": "MN_NONEY",
+  "55": "MN_PHERZAWL",
+  "56": "MN_PHERZAWL",
+  "57": "MN_CHURACHANDPUR",
+  "58": "MN_CHURACHANDPUR",
+  "59": "MN_CHURACHANDPUR",
+  "60": "MN_CHURACHANDPUR"
+ }
+}

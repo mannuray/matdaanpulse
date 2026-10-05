@@ -1,0 +1,159 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Uttarakhand_Legislative_Assembly (district column; raw wikitext read 2026-10-05)"
+ ],
+ "notes": "Districts as listed on Wikipedia (13 districts, unchanged since 2000).",
+ "districts": [
+  {
+   "code": "UK_UTTARKASHI",
+   "name": "Uttarkashi"
+  },
+  {
+   "code": "UK_CHAMOLI",
+   "name": "Chamoli"
+  },
+  {
+   "code": "UK_RUDRAPRAYAG",
+   "name": "Rudraprayag"
+  },
+  {
+   "code": "UK_TEHRIGARHWAL",
+   "name": "Tehri Garhwal"
+  },
+  {
+   "code": "UK_DEHRADUN",
+   "name": "Dehradun"
+  },
+  {
+   "code": "UK_HARIDWAR",
+   "name": "Haridwar"
+  },
+  {
+   "code": "UK_PAURIGARHWAL",
+   "name": "Pauri Garhwal"
+  },
+  {
+   "code": "UK_PITHORAGARH",
+   "name": "Pithoragarh"
+  },
+  {
+   "code": "UK_BAGESHWAR",
+   "name": "Bageshwar"
+  },
+  {
+   "code": "UK_ALMORA",
+   "name": "Almora"
+  },
+  {
+   "code": "UK_CHAMPAWAT",
+   "name": "Champawat"
+  },
+  {
+   "code": "UK_NAINITAL",
+   "name": "Nainital"
+  },
+  {
+   "code": "UK_UDHAMSINGHNAGAR",
+   "name": "Udham Singh Nagar"
+  }
+ ],
+ "regions": [
+  {
+   "code": "UK_GARHWAL",
+   "name": "Garhwal",
+   "districts": [
+    "UK_UTTARKASHI",
+    "UK_CHAMOLI",
+    "UK_RUDRAPRAYAG",
+    "UK_TEHRIGARHWAL",
+    "UK_DEHRADUN",
+    "UK_PAURIGARHWAL",
+    "UK_HARIDWAR"
+   ]
+  },
+  {
+   "code": "UK_KUMAON",
+   "name": "Kumaon",
+   "districts": [
+    "UK_ALMORA",
+    "UK_BAGESHWAR",
+    "UK_CHAMPAWAT",
+    "UK_NAINITAL",
+    "UK_PITHORAGARH",
+    "UK_UDHAMSINGHNAGAR"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "UK_UTTARKASHI",
+  "2": "UK_UTTARKASHI",
+  "3": "UK_UTTARKASHI",
+  "4": "UK_CHAMOLI",
+  "5": "UK_CHAMOLI",
+  "6": "UK_CHAMOLI",
+  "7": "UK_RUDRAPRAYAG",
+  "8": "UK_RUDRAPRAYAG",
+  "9": "UK_TEHRIGARHWAL",
+  "10": "UK_TEHRIGARHWAL",
+  "11": "UK_TEHRIGARHWAL",
+  "12": "UK_TEHRIGARHWAL",
+  "13": "UK_TEHRIGARHWAL",
+  "14": "UK_TEHRIGARHWAL",
+  "15": "UK_DEHRADUN",
+  "16": "UK_DEHRADUN",
+  "17": "UK_DEHRADUN",
+  "18": "UK_DEHRADUN",
+  "19": "UK_DEHRADUN",
+  "20": "UK_DEHRADUN",
+  "21": "UK_DEHRADUN",
+  "22": "UK_DEHRADUN",
+  "23": "UK_DEHRADUN",
+  "24": "UK_DEHRADUN",
+  "25": "UK_HARIDWAR",
+  "26": "UK_HARIDWAR",
+  "27": "UK_HARIDWAR",
+  "28": "UK_HARIDWAR",
+  "29": "UK_HARIDWAR",
+  "30": "UK_HARIDWAR",
+  "31": "UK_HARIDWAR",
+  "32": "UK_HARIDWAR",
+  "33": "UK_HARIDWAR",
+  "34": "UK_HARIDWAR",
+  "35": "UK_HARIDWAR",
+  "36": "UK_PAURIGARHWAL",
+  "37": "UK_PAURIGARHWAL",
+  "38": "UK_PAURIGARHWAL",
+  "39": "UK_PAURIGARHWAL",
+  "40": "UK_PAURIGARHWAL",
+  "41": "UK_PAURIGARHWAL",
+  "42": "UK_PITHORAGARH",
+  "43": "UK_PITHORAGARH",
+  "44": "UK_PITHORAGARH",
+  "45": "UK_PITHORAGARH",
+  "46": "UK_BAGESHWAR",
+  "47": "UK_BAGESHWAR",
+  "48": "UK_ALMORA",
+  "49": "UK_ALMORA",
+  "50": "UK_ALMORA",
+  "51": "UK_ALMORA",
+  "52": "UK_ALMORA",
+  "53": "UK_ALMORA",
+  "54": "UK_CHAMPAWAT",
+  "55": "UK_CHAMPAWAT",
+  "56": "UK_NAINITAL",
+  "57": "UK_NAINITAL",
+  "58": "UK_NAINITAL",
+  "59": "UK_NAINITAL",
+  "60": "UK_NAINITAL",
+  "61": "UK_NAINITAL",
+  "62": "UK_UDHAMSINGHNAGAR",
+  "63": "UK_UDHAMSINGHNAGAR",
+  "64": "UK_UDHAMSINGHNAGAR",
+  "65": "UK_UDHAMSINGHNAGAR",
+  "66": "UK_UDHAMSINGHNAGAR",
+  "67": "UK_UDHAMSINGHNAGAR",
+  "68": "UK_UDHAMSINGHNAGAR",
+  "69": "UK_UDHAMSINGHNAGAR",
+  "70": "UK_UDHAMSINGHNAGAR"
+ }
+}
