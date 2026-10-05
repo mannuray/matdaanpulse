@@ -29,3 +29,12 @@ describe('matchFeaturesToSeats byNumber (Vidhan Sabha maps)', () => {
     expect(matchFeaturesToSeats(feats, seats).has(feats[0])).toBe(false);
   });
 });
+
+describe('matchFeaturesToSeats byNumber: the number wins over a name that belongs to another seat', () => {
+  it('a feature numbered 70 but named like seat 69 goes to seat 70 (tn_ac_2008: Gingee labelled VANDAVASI)', () => {
+    const feats = [f({ ac_no: 69, ac_name: 'VANDAVASI', st_name: 'Tamil Nadu' }), f({ ac_no: 70, ac_name: 'VANDAVASI', st_name: 'Tamil Nadu' })];
+    const seats = [{ id: 'TN_VS26_69_VANDAVASI', name: 'Vandavasi' }, { id: 'TN_VS26_70_GINGEE', name: 'Gingee' }];
+    const m = matchFeaturesToSeats(feats, seats, { byNumber: true });
+    expect([m.get(feats[0]), m.get(feats[1])]).toEqual(['TN_VS26_69_VANDAVASI', 'TN_VS26_70_GINGEE']);
+  });
+});
