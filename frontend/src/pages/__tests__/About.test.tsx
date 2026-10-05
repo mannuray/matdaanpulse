@@ -45,6 +45,9 @@ describe('About page', () => {
     expect(cell.getAttribute('aria-pressed')).toBe('true');
     expect(panel()).toMatch(/Tamil Nadu · Vidhan Sabha 2016/);
     expect(panel()).toMatch(/ECI statistical report/);
+    fireEvent.click(screen.getByRole('button', { name: /Odisha · Vidhan Sabha 2019/ }));
+    expect(panel()).toMatch(/146 of 147 seats: the Patkura poll was countermanded/);
+    expect(panel()).not.toMatch(/Aravakurichi/);
   });
 
   it('links to the official ECI results and the contact address', () => {
