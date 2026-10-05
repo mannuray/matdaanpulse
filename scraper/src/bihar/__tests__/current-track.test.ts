@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { trackOf } from '../current-track';
+import { latestYear, trackOf } from '../current-track';
 
 describe('trackOf', () => {
   it('current-track years are the elections with a results site or MyNeta page (the latest assembly), not every new election', () => {
@@ -8,5 +8,12 @@ describe('trackOf', () => {
     expect(trackOf('WB').years).toEqual([2026]);
     expect(trackOf('UP').years).toEqual([]);
     expect(trackOf('BR').years).toEqual([2010, 2015, 2020, 2025]);
+  });
+});
+
+describe('latestYear', () => {
+  it('is the newest current-track election, and a clear error for a state without one (Phase 3A states until 2027)', () => {
+    expect(latestYear(trackOf('DL'))).toBe(2025);
+    expect(() => latestYear(trackOf('UP'))).toThrow(/Uttar Pradesh has no current-track election/);
   });
 });

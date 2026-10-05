@@ -47,8 +47,7 @@ function readCandidate(line: string, m: RegExpExecArray): { cand: RawCandidate; 
     party = { col: party.col, text: party.text.slice(0, sp) };
   }
   return {
-    // 2008/2009 rows give the Form-7 serial, then the rank ("3    1 JASWANT SINGH"): the rank is not part of the name.
-    cand: { serial: Number(m[1]), name: flat.slice(0, si).map(f => f.text).join(' ').replace(/^\d+\s+/, ''), sex: sexOf(flat[si].text), age: Number(flat[si + 1].text),
+    cand: { serial: Number(m[1]), name: flat.slice(0, si).map(f => f.text).join(' '), sex: sexOf(flat[si].text), age: Number(flat[si + 1].text),
       party: party.text, general, postal, total },
     cols: { sex: flat[si].col, party: party.col, partyEnd: party.col + party.text.length, symbol: symbol ? symbol.col : Number.POSITIVE_INFINITY },
   };
@@ -61,7 +60,11 @@ export function parseDetailedText(text: string): RawSeat[] {
   // A table headed like the detailed results but without a SEX column (JH 2014's "Women Candidates") is skipped.
   let skipping = false;
   for (const line of text.split('\n')) {
-    if (/CANDIDATE NAME/.test(line)) { skipping = !/\bSEX\b/.test(line); if (skipping) { cur = null; last = null; } continue; }
+    if (/CANDIDATE NAME/.test(line)) {
+      skipping = !/\bSEX\b/.test(line);
+      if (skipping && cur) throw new Error(`Detailed Results: a table without a SEX column starts inside seat ${cur.constNo}`);
+      continue;
+    }
     if (skipping) continue;
     const s = SEAT_RE.exec(line);
     if (s) {
@@ -79,6 +82,10 @@ export function parseDetailedText(text: string): RawSeat[] {
     const c = CAND_RE.exec(line);
     if (c) {
       const { cand, cols } = readCandidate(line, c);
+      // 2008/2009 rows give the Form-7 serial, then the rank ("3    1 JASWANT SINGH"): a leading number equal to the row's
+      // rank in the seat is not part of the name.
+      const rank = /^(\d+)\s+(.+)$/.exec(cand.name);
+      if (rank && Number(rank[1]) === cur.candidates.length + 1) cand.name = rank[2];
       if (cand.party === 'NOTA') { cur.nota = cand.total; last = null; continue; }
       cur.candidates.push(cand);
       last = cols ? { cand, cols } : null;
