@@ -548,5 +548,6 @@
   "regions_compare": "{{prev}} → {{cur}}",
   "regions_no_prev": "इस राज्य का तुलना के लिए कोई पिछला चुनाव नहीं: केवल {{cur}}।",
   "regions_seats_now": "{{cur}} सीटें",
-  "map_tab_regions": "क्षेत्र"
+  "map_tab_regions": "क्षेत्र",
+  "regions_pin": "{{name}} नक्शे पर दिखाएँ"
 }

@@ -548,5 +548,6 @@
   "regions_compare": "{{prev}} → {{cur}}",
   "regions_no_prev": "तुलनेसाठी या राज्याची आधीची निवडणूक नाही: फक्त {{cur}}.",
   "regions_seats_now": "{{cur}} जागा",
-  "map_tab_regions": "प्रदेश"
+  "map_tab_regions": "प्रदेश",
+  "regions_pin": "{{name}} नकाशावर दाखवा"
 }

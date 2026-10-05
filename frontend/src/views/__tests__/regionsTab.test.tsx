@@ -42,20 +42,27 @@ describe('RegionsTab', () => {
   });
 });
 
-describe('region rows drive the map highlight', () => {
-  it('hovering a region previews it, clicking locks it, the locked one is pressed', () => {
+describe('region sections are collapsible and drive the map highlight', () => {
+  it('starts with Statewide open and the regions collapsed; a header toggles its region', () => {
+    render(<RegionsTab vm={vm()} />);
+    expect(screen.getByText('37.8%')).toBeTruthy();
+    expect(screen.queryByText('20.5%')).toBeNull();
+    const hills = screen.getByRole('button', { name: /^Hills/ });
+    expect(hills.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(hills);
+    expect(hills.getAttribute('aria-expanded')).toBe('true');
+    expect(screen.getByText('20.5%')).toBeTruthy();
+  });
+  it('hovering a header previews the region; its pin locks it on the map', () => {
     const onHoverRow = vi.fn(), onLockRow = vi.fn();
     const v = vm();
     render(<RegionsTab vm={v} onHoverRow={onHoverRow} onLockRow={onLockRow} lockedName="Hills" />);
-    const hills = screen.getByRole('button', { name: /Hills/ });
-    fireEvent.mouseEnter(hills);
+    fireEvent.mouseEnter(screen.getByRole('button', { name: /^Hills/ }));
     expect(onHoverRow).toHaveBeenCalledWith(v.rows[1]);
-    fireEvent.mouseLeave(hills);
-    expect(onHoverRow).toHaveBeenLastCalledWith(null);
-    fireEvent.click(hills);
+    const pin = screen.getByRole('button', { name: 'Show Hills on the map' });
+    expect(pin.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(pin);
     expect(onLockRow).toHaveBeenCalledWith(v.rows[1]);
-    expect(hills.getAttribute('aria-pressed')).toBe('true');
-    expect(screen.getByRole('button', { name: /Statewide/ }).getAttribute('aria-pressed')).toBe('false');
   });
 });
 
@@ -64,7 +71,7 @@ describe('Summary on the Regions layer', () => {
     const summary = { electionId: 'e', layer: 'regions' as const, layers: ['overview', 'regions'] as ('overview' | 'regions')[], summary: { layer: 'regions' as const, sections: [] }, lockedRowId: null,
       onFocus: noop, onLayer: noop, onHoverRow: noop, onLockRow: noop, onSelectSeat: noop, regions: vm(), lockedRegion: null, onHoverRegion: vi.fn(), onLockRegion: vi.fn() };
     render(<SummaryTab vm={summary} />);
-    expect(screen.getByRole('button', { name: /Hills/ })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /^Hills/ })).toBeTruthy();
   });
 });
 
