@@ -25,11 +25,12 @@ describe('About page', () => {
   it('shows every dataset as a matrix cell with its quality, and no raw i18n keys', () => {
     const { container } = renderAbout();
     expect(container.querySelectorAll('[data-matrix-cell]')).toHaveLength(DATA_SOURCES.filter(s => s.house === 'VS').length);
-    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry']);
+    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry', 'Uttar Pradesh', 'Punjab', 'Uttarakhand', 'Goa', 'Manipur']);
+    for (const st of ['Goa', 'Manipur', 'Punjab', 'Uttar Pradesh', 'Uttarakhand']) for (const y of [2012, 2017, 2022]) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha ${y}: Real votes` })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Kerala · Vidhan Sabha 2021: Real votes' })).toBeTruthy();
     for (const st of ['Assam', 'Kerala', 'Puducherry', 'Tamil Nadu', 'West Bengal']) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha 2026: Real votes` })).toBeTruthy();
     expect(screen.getByText(`${DATA_SOURCES.filter(s => s.house === 'VS').length} elections covered`)).toBeTruthy();
-    expect(screen.getByText('6 states')).toBeTruthy();
+    expect(screen.getByText('11 states')).toBeTruthy();
     expect(container.textContent).not.toMatch(/Lok Sabha/);
     expect(container.textContent).not.toMatch(/about_[a-z_]+/);
   });
