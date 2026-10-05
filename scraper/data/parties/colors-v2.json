@@ -1,0 +1,204 @@
+[
+ {
+  "id": "JVM",
+  "name": "Jharkhand Vikas Morcha (Prajatantrik)",
+  "color": "#EDFB06",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/J"
+ },
+ {
+  "id": "NPP",
+  "name": "National People's Party",
+  "color": "#F5AD00",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/N",
+  "note": "Template:National People's Party (India)/meta/color no longer exists; colours moved to Module:Political party. Kept as-is: amber, darker green channel than BJP #FF7A1A."
+ },
+ {
+  "id": "SBSP",
+  "name": "Suheldev Bharatiya Samaj Party",
+  "color": "#C9A800",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/S",
+  "note": "Adjusted: Wikipedia #F5D50A (flag yellow) is almost identical to our ADSL #FFD700 (UP ally); darker mustard shade of the same yellow."
+ },
+ {
+  "id": "MAG",
+  "name": "Maharashtrawadi Gomantak (Party)",
+  "color": "#AF7050",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/M"
+ },
+ {
+  "id": "HJCBL",
+  "name": "Haryana Janhit Congress (BL)",
+  "color": "#FFFF00",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/H"
+ },
+ {
+  "id": "NINSHAD",
+  "name": "Nirbal Indian Shoshit Hamara Aam Dal (NISHAD Party)",
+  "color": "#7B1E3A",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/N",
+  "note": "Adjusted: Wikipedia #BA0005 too close to SP #E60000 in UP; deep maroon-crimson."
+ },
+ {
+  "id": "MSCP",
+  "name": "Manipur State Congress Party",
+  "color": "#99CC99",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/M"
+ },
+ {
+  "id": "PP",
+  "name": "Peace Party (of India)",
+  "color": "#8E7CC3",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/P",
+  "note": "Adjusted: Wikipedia #E0E0F8 (pale lavender) is near-grey/near-white; saturated lavender of the same hue."
+ },
+ {
+  "id": "GFP",
+  "name": "Goa Forward Party",
+  "color": "#353982",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/G"
+ },
+ {
+  "id": "JBSP",
+  "name": "Jai Bharat Samanta Party",
+  "color": "#FFC000",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/J"
+ },
+ {
+  "id": "GVP",
+  "name": "Goa Vikas Party",
+  "color": "#FFD54F",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/G",
+  "note": "Adjusted: Wikipedia 'orange' (#FFA500) too close to BJP #FF7A1A in Goa; amber-yellow."
+ },
+ {
+  "id": "KPA",
+  "name": "Kuki People's Alliance",
+  "color": "#5E7C99",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/K",
+  "note": "lightened from #1E2E3D: too dark to read on the dark map"
+ },
+ {
+  "id": "LIP",
+  "name": "Lok Insaaf Party",
+  "color": "#800000",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/L",
+  "note": "Wikipedia 'Maroon'."
+ },
+ {
+  "id": "JP2",
+  "name": "Jharkhand Party",
+  "color": "#4DB6AC",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/J",
+  "note": "Adjusted: Wikipedia 'green' (#008000) next to JMM #2E8B57 / RJD; teal-mint shade, also distinct from JLKM #7CB342."
+ },
+ {
+  "id": "RLSP",
+  "name": "Rashtriya Lok Samta Party",
+  "color": "#A8A030",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/R",
+  "note": "Adjusted: Wikipedia #999966 is a low-saturation khaki (near-grey); more saturated olive of the same hue."
+ },
+ {
+  "id": "MCO",
+  "name": "Marxist Co-ordination (Committee)",
+  "color": "#E57373",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/M",
+  "note": "Adjusted: Wikipedia #C24E4E ('Marxist Co-ordination Committee'; 'Marxist Co-Ordination' #B22222) too close to CPIM #B83A3E; lighter red."
+ },
+ {
+  "id": "JDL",
+  "name": "Jansatta Dal (Loktantrik)",
+  "color": "#FFF27A",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/J",
+  "note": "Adjusted: Wikipedia 'Yellow' (#FFFF00) close to ADSL #FFD700 and SBSP; pale lemon. Three yellow-family parties in UP remain the weakest separation."
+ },
+ {
+  "id": "QED",
+  "name": "Quami Ekta Dal",
+  "color": "#1B5E20",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/Q",
+  "note": "Adjusted: Wikipedia 'green' (#008000); darkened to separate from RLD #33CC33, AIMIM #2BB673 and IEMC."
+ },
+ {
+  "id": "UKDP",
+  "name": "Uttarakhand Kranti Dal (P)",
+  "color": "#336666",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/U",
+  "note": "No entry for the (P) faction; uses parent Uttarakhand Kranti Dal colour. Note UKD itself is still #808080 in the DB."
+ },
+ {
+  "id": "HALP",
+  "name": "Haryana Lokhit Party",
+  "color": "#8D4A1C",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/H",
+  "note": "Adjusted: Wikipedia #C4702A too close to BJP #FF7A1A; darker brown of the same hue."
+ },
+ {
+  "id": "IEMC",
+  "name": "Ittehad-e-Millat Council",
+  "color": "#26A69A",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/I",
+  "note": "Adjusted: Wikipedia 'green' would duplicate QED/RLD/AIMIM in UP; teal-green."
+ },
+ {
+  "id": "JHJAM",
+  "name": "Jharkhand Janadhikar Manch",
+  "color": "#A0522D",
+  "source": "https://en.wikipedia.org/wiki/2009_Jharkhand_Legislative_Assembly_election",
+  "note": "No Wikipedia colour (article uses {{party color|Jharkhand Janadhikar Manch}}, which has no entry) and no flag source found; chosen sienna, distinct on the JH map."
+ },
+ {
+  "id": "LJD_BR",
+  "name": "Loktantrik Janata Dal",
+  "color": "#9CCC65",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/L",
+  "note": "Adjusted: Wikipedia #2E8B57 equals JMM and sits among RJD/JDU greens in BR; light green."
+ },
+ {
+  "id": "NSAM",
+  "name": "Navjawan Sangharsh Morcha",
+  "color": "#F61BDF",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/N"
+ },
+ {
+  "id": "NYMK",
+  "name": "Neyam Makkal Kazhagam",
+  "color": "#FFFF00",
+  "source": "https://en.wikipedia.org/wiki/2026_Puducherry_Legislative_Assembly_election",
+  "note": "Not in the module; the 2026 Puducherry election article sets color=#FFFF00 inline. Distinct from ally TVK #F2B705 and AINRC #FF9933."
+ },
+ {
+  "id": "RAKAP",
+  "name": "Rashtriya Kalyan Paksha",
+  "color": "#3F51B5",
+  "source": "https://en.wikipedia.org/wiki/2009_Jharkhand_Legislative_Assembly_election",
+  "note": "No Wikipedia colour and no flag source found; chosen indigo-navy, distinct on the JH map.; lightened from #283593: too dark to read on the dark map"
+ },
+ {
+  "id": "RGP",
+  "name": "Revolutionary Goans Party",
+  "color": "#E3C773",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/R"
+ },
+ {
+  "id": "RSMP",
+  "name": "Rashtriya Secular Majlis Party",
+  "color": "#6B8E23",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/R",
+  "note": "Adjusted: Wikipedia 'Green' too close to TMC #00CC44 / GNLF #228B22 in WB; olive green."
+ },
+ {
+  "id": "SKD",
+  "name": "Samata Kranti Dal",
+  "color": "#0F7C9E",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/S",
+  "note": "Adjusted: Wikipedia #008080 teal too close to BJD #009933; teal-blue."
+ },
+ {
+  "id": "AD_BR",
+  "name": "Apna Dal (the original, pre-split; Apna Dal (K))",
+  "color": "#5B4BB0",
+  "source": "https://en.wikipedia.org/wiki/Module:Political_party/A",
+  "note": "Wikipedia 'Apna Dal' and 'Apna Dal (Kamerawadi)' both #27176D; distinct from BSP #4B5BD6 (darker indigo) and from our ADSL gold.; lightened from #27176D: too dark to read on the dark map"
+ }
+]

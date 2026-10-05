@@ -8,7 +8,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseState } from './elections';
-import { trackOf } from './current-track';
+import { latestYear, trackOf } from './current-track';
 import { DB_DIR } from './seeded';
 import { BIHAR_PARTIES, currentPath, emitPartyProfilesSeed, symbolsSeedLine, type ApprovedImages, type PartyProfile, type RemovedImages } from './party-profiles';
 
@@ -18,7 +18,7 @@ const SYMBOLS_SEED = path.join(DB_DIR, 'seed_party_symbols.sql');
 
 const ST = parseState(process.argv[2] ?? 'BR');
 const track = trackOf(ST);
-const year = track.years[track.years.length - 1];
+const year = latestYear(track);
 const dataFile = path.join(track.dir, `parties-${year}.json`);
 const profiles: PartyProfile[] = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
 let seed = fs.readFileSync(SYMBOLS_SEED, 'utf8');

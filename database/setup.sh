@@ -138,6 +138,8 @@ run seed_bihar_person_regions.sql
 
 echo "==> Seeds: Bihar person links v2 / leaders / affidavits (run-once; must follow Bihar persons)"
 run seed_bihar_person_links_v2.sql
+# Run-once: a curated Bihar merge corrected (Pipra 2025: two different Rajmangal Prasads)
+run seed_bihar_person_fixes_v1.sql
 run seed_bihar_leaders.sql
 run seed_bihar_candidate_photos.sql
 run seed_bihar_affidavits.sql
@@ -155,6 +157,8 @@ run seed_bihar_party_profiles.sql
 for st in as kl py tn wb; do run "seed_${st}_party_profiles.sql"; done
 for st in dl hr jh od; do run "seed_${st}_party_profiles.sql"; done
 run seed_party_colors_v1.sql
+# Colours for seat-winning parties still on a grey placeholder (fill-only, sourced in scraper/data/parties/colors-v2.json)
+run seed_party_colors_v2.sql
 # Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
 run seed_media_s3_v1.sql
 
@@ -163,5 +167,8 @@ run seed_election_result_dates.sql
 
 echo "==> Seeds: election delimitations (must follow every election insert)"
 run seed_election_delimitation.sql
+
+echo "==> Seeds: display names (fill-only)"
+run seed_state_names_v1.sql
 
 echo "==> Done. Create an admin user with: cd backend && npm run create-admin"

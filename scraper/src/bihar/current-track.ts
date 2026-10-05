@@ -18,3 +18,9 @@ export function trackOf(st: StateCode) {
     leaderNs: bihar ? 'bihar-leader' : `${s.slug}-leader`,
   };
 }
+
+/** The newest current-track election year (photos, party profiles); a clear error when the state has none yet. */
+export function latestYear(track: ReturnType<typeof trackOf>): number {
+  if (!track.years.length) throw new Error(`${track.state.name} has no current-track election (no results site / MyNeta in the registry)`);
+  return track.years[track.years.length - 1];
+}

@@ -9,7 +9,7 @@ import * as path from 'path';
 import { mediaStoreFromEnv } from '../media-store';
 import { parseCandidateDetailPage } from '../adapters/eci-vs-adapter';
 import { electionOf, parseState } from './elections';
-import { trackOf } from './current-track';
+import { latestYear, trackOf } from './current-track';
 import { rawDir } from './load';
 import { DB_DIR, loadSeeded } from './seeded';
 import { BIHAR_PHOTOS, emitPhotosSeed, matchPhoto, shrinkPhoto, topCandidates } from './photos';
@@ -17,7 +17,7 @@ import { BIHAR_PHOTOS, emitPhotosSeed, matchPhoto, shrinkPhoto, topCandidates } 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126 Safari/537.36';
 const ST = parseState(process.argv[2] ?? 'BR');
 const track = trackOf(ST);
-const YEAR = track.years[track.years.length - 1];
+const YEAR = latestYear(track);
 const site = electionOf(ST, YEAR).resultsSite!;
 // Bihar keeps its original cache and Blob paths.
 const RAW = ST === 'BR' ? path.resolve(__dirname, '../../data/raw/eci2025') : path.join(rawDir(ST), String(YEAR), 'cand');

@@ -209,7 +209,7 @@ Constituency              1. Nerela                                             
 
     3    1 JASWANT SINGH                      M      55        GEN         INC                   34662            0         34662      31.66
     4    2 SHARAD KUMAR                       M      33        GEN         BSP                   33827            3         33830      30.90
-    6 10 VISHAL                               M      52        GEN         RWS                      437           0           437       0.40
+    6    3 VISHAL                             M      52        GEN         RWS                      437           0           437       0.40
 
                                                      TOTAL:                                     109489            5         109494       56.84
            Turn Out
@@ -291,5 +291,16 @@ describe('parseDetailedText, a wrapped party next to a wrapped symbol (JH 2014)'
     const text = JH2014_REAL.replace('    1 ANANT KUMAR OJHA            M     48       GEN         BJP          Lotus             70303     69     70372     37.89',
       '   10 MANI ORAON                   M    44      ST       CPI(ML) Auto-             70303          69       70372      0.75\n                                                           (L)  Rickshaw');
     expect(parseDetailedText(text)[0].candidates.map(c => [c.name, c.party])).toEqual([['MANI ORAON', 'CPI(ML)(L)']]);
+  });
+});
+
+describe('parseDetailedText fails loudly on layouts it does not know', () => {
+  it('a header without SEX in the middle of a seat throws (instead of dropping the seat)', () => {
+    const text = JH2014_REAL.replace('TURNOUT ', '        CANDIDATE NAME                AGE CATEGORY PARTY\nTURNOUT ');
+    expect(() => parseDetailedText(text)).toThrow(/table without a SEX column starts inside seat 1/);
+  });
+  it('keeps a candidate name that starts with digits on a layout without ranks', () => {
+    const text = JH2014_REAL.replace('ANANT KUMAR OJHA          ', '420 ANANT KUMAR OJHA      ');
+    expect(parseDetailedText(text)[0].candidates[0].name).toBe('420 ANANT KUMAR OJHA');
   });
 });
