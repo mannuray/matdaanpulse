@@ -1,0 +1,1400 @@
+[
+ {
+  "key": "AMIT SHARMA|1",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "84f15f71-7dfc-506e-a2ce-8062468991ae",
+    "year": 2014,
+    "constNo": 1,
+    "name": "Amit Sharma",
+    "partyId": "RASLP",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f9afbf96-1f62-5070-8d21-6de9734a8140",
+    "year": 2024,
+    "constNo": 1,
+    "name": "Amit Sharma",
+    "partyId": "IND",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "AMIT|47",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c6c4fa6c-317f-50e6-9d14-b3539f420bf0",
+    "year": 2019,
+    "constNo": 47,
+    "name": "Amit",
+    "partyId": "IND",
+    "age": 26,
+    "era": "2008"
+   },
+   {
+    "candidateId": "15c0b5d6-3901-517d-a0dd-96ed4468231b",
+    "year": 2024,
+    "constNo": 47,
+    "name": "Amit",
+    "partyId": "IND",
+    "age": 30,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ANIL KUMAR|56",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "eaa8051a-5d61-50cc-a649-5168359244a2",
+    "year": 2014,
+    "constNo": 56,
+    "name": "Anil Kumar",
+    "partyId": "IND",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d8996053-d1d8-5ac3-b4db-1f9fb7c19027",
+    "year": 2024,
+    "constNo": 56,
+    "name": "Anil Kumar",
+    "partyId": "IND",
+    "age": 51,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ANWAR|79",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "2449d578-c734-59a8-b967-f14d219156b3",
+    "year": 2019,
+    "constNo": 79,
+    "name": "Anwar",
+    "partyId": "LTSP",
+    "age": 28,
+    "era": "2008"
+   },
+   {
+    "candidateId": "64d5aa1b-d38c-5026-9a09-738e543266d6",
+    "year": 2024,
+    "constNo": 79,
+    "name": "Anwar",
+    "partyId": "BHRTJDOP",
+    "age": 34,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ASHOK KUMAR ARORA|13",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f42477bd-3644-53a3-b541-24dea2b8549b",
+    "year": 2009,
+    "constNo": 13,
+    "name": "Ashok Kumar Arora",
+    "partyId": "INLD",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "1f57df72-8812-5f2f-812f-382a524675c3",
+    "year": 2014,
+    "constNo": 13,
+    "name": "Ashok Kumar Arora",
+    "partyId": "INLD",
+    "age": 55,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b167bf91-2d75-52b2-8e1e-d0190ba97b70",
+    "year": 2019,
+    "constNo": 13,
+    "name": "Ashok Kumar Arora",
+    "partyId": "INC",
+    "age": 60,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d88f6a38-16e9-5fa5-b67c-cc27b367f0ec",
+    "year": 2024,
+    "constNo": 13,
+    "name": "Ashok Kumar Arora",
+    "partyId": "INC",
+    "age": 71,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ASHOK KUMAR|13",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "dd77cdfa-587e-5d64-8211-69991c60b394",
+    "year": 2014,
+    "constNo": 13,
+    "name": "Ashok Kumar",
+    "partyId": "IND",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d2dad915-cdf7-5633-aaa3-7f713efa1d0e",
+    "year": 2024,
+    "constNo": 13,
+    "name": "Ashok Kumar",
+    "partyId": "IND",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ASHOK|55",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b3ffbedc-99ea-5e71-8712-b06af8a5613a",
+    "year": 2009,
+    "constNo": 55,
+    "name": "Ashok",
+    "partyId": "IND",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "641e174a-4a93-5f60-9a6d-baf107e430ec",
+    "year": 2024,
+    "constNo": 55,
+    "name": "Ashok",
+    "partyId": "IND",
+    "age": 26,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ATUL|88",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a9051078-6564-5162-abf0-3afd0f10f581",
+    "year": 2019,
+    "constNo": 88,
+    "name": "Atul",
+    "partyId": "IND",
+    "age": 37,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c6c8dc1c-696b-5684-977e-0a4ec400eeae",
+    "year": 2024,
+    "constNo": 88,
+    "name": "Atul",
+    "partyId": "ABKMP",
+    "age": 42,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "BALJIT SINGH|23",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "79d66ff9-e763-5509-b27d-a628932703da",
+    "year": 2009,
+    "constNo": 23,
+    "name": "Baljit Singh",
+    "partyId": "CPIM",
+    "age": 66,
+    "era": "2008"
+   },
+   {
+    "candidateId": "76c2f1d2-02ae-566e-ac38-990bd37a757d",
+    "year": 2024,
+    "constNo": 23,
+    "name": "Baljit Singh",
+    "partyId": "IND",
+    "age": 56,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "BHARAT SINGH BENIWAL|46",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "fe1af711-e92a-5b52-bc9c-172fbca6b24e",
+    "year": 2009,
+    "constNo": 46,
+    "name": "Bharat Singh Beniwal",
+    "partyId": "INC",
+    "age": 55,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cf012e42-d506-5de8-b063-b2c9862ce487",
+    "year": 2019,
+    "constNo": 46,
+    "name": "Bharat Singh Beniwal",
+    "partyId": "INC",
+    "age": 61,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d833d912-fb7a-5bb0-9e5d-75edbdb70eec",
+    "year": 2024,
+    "constNo": 46,
+    "name": "Bharat Singh Beniwal",
+    "partyId": "INC",
+    "age": 67,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "BHUPINDER SINGH|15",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6e59cae0-91d3-5d96-839a-16a6e43c492a",
+    "year": 2014,
+    "constNo": 15,
+    "name": "Bhupinder Singh",
+    "partyId": "SADSM",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "fbbb61f2-ea10-561f-9ddb-be8f8c874959",
+    "year": 2019,
+    "constNo": 15,
+    "name": "Bhupinder Singh",
+    "partyId": "SADSM",
+    "age": 64,
+    "era": "2008"
+   },
+   {
+    "candidateId": "79920ffc-8b10-5ab7-ab46-886b6fda3460",
+    "year": 2024,
+    "constNo": 15,
+    "name": "Bhupinder Singh",
+    "partyId": "SADSM",
+    "age": 69,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "COMRADE RAJ KUMAR|57",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "17d3ebfb-d34b-5905-89f5-5016e19debc8",
+    "year": 2009,
+    "constNo": 57,
+    "name": "Comrade Raj Kumar",
+    "partyId": "IND",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "aa1cc7d6-3afc-5008-8683-ab241d98a1cb",
+    "year": 2024,
+    "constNo": 57,
+    "name": "Comrade Raj Kumar",
+    "partyId": "SUCI",
+    "age": 61,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "DAYARAM|78",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "8d363018-633e-5b84-a28f-b471f470f399",
+    "year": 2019,
+    "constNo": 78,
+    "name": "Dayaram",
+    "partyId": "LTSP",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4b3a8c4c-15b8-5fd4-b886-b0dc75a272e7",
+    "year": 2024,
+    "constNo": 78,
+    "name": "Dayaram",
+    "partyId": "IND",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GURJANT SINGH|42",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "61452126-26b3-559e-9f88-d9e08d7bede2",
+    "year": 2014,
+    "constNo": 42,
+    "name": "Gurjant Singh",
+    "partyId": "BSP",
+    "age": 49,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e7f8771d-9b5e-5b60-8996-b7cddd7f6f51",
+    "year": 2024,
+    "constNo": 42,
+    "name": "Gurjant Singh",
+    "partyId": "JJP2",
+    "age": 46,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "INDERJEET|34",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "26fd9705-011e-556c-92f6-48ecac756df1",
+    "year": 2009,
+    "constNo": 34,
+    "name": "Inderjeet",
+    "partyId": "IND",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "8242ba4d-382a-5585-95c2-fe2988ca2371",
+    "year": 2014,
+    "constNo": 34,
+    "name": "Inderjeet",
+    "partyId": "IND",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0b7831ba-9aca-5d7a-89c5-3d827e2d8206",
+    "year": 2024,
+    "constNo": 34,
+    "name": "Inderjeet",
+    "partyId": "IND",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JARNAIL SINGH|41",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "27967cc6-de3f-50e9-9354-fcb380ae7954",
+    "year": 2014,
+    "constNo": 41,
+    "name": "Jarnail Singh",
+    "partyId": "INC",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "dc06dbef-caea-5513-b5ee-4bc0b93b1f15",
+    "year": 2019,
+    "constNo": 41,
+    "name": "Jarnail Singh",
+    "partyId": "INC",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "641d29b9-439d-5515-9863-8185caaf21df",
+    "year": 2024,
+    "constNo": 41,
+    "name": "Jarnail Singh",
+    "partyId": "INC",
+    "age": 63,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KITABA|38",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "28ff2603-b84a-5932-9cc0-196b9815ac53",
+    "year": 2009,
+    "constNo": 38,
+    "name": "Kitaba",
+    "partyId": "SMBHP",
+    "age": 33,
+    "era": "2008"
+   },
+   {
+    "candidateId": "5c9ff306-1351-5a8a-9ff9-06d4856d9dab",
+    "year": 2024,
+    "constNo": 38,
+    "name": "Kitaba",
+    "partyId": "IND",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KRISHAN KUMAR|54",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "36b7a8e8-fa83-52d9-9961-0b41605932dd",
+    "year": 2014,
+    "constNo": 54,
+    "name": "Krishan Kumar",
+    "partyId": "IND",
+    "age": 30,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b8bdc2f4-b7ab-5c5f-bcab-7d10766608ac",
+    "year": 2024,
+    "constNo": 54,
+    "name": "Krishan Kumar",
+    "partyId": "IND",
+    "age": 50,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KRISHAN KUMAR|58",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6ff5ddf5-8a72-5308-b30d-41e4bcd085bf",
+    "year": 2009,
+    "constNo": 58,
+    "name": "Krishan Kumar",
+    "partyId": "IND",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d2f1bf06-6a44-5b7f-8a5e-55d602b1485e",
+    "year": 2014,
+    "constNo": 58,
+    "name": "Krishan Kumar",
+    "partyId": "RBC",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "5bed688c-863a-591b-8d69-a76209a84cfe",
+    "year": 2024,
+    "constNo": 58,
+    "name": "Krishan Kumar",
+    "partyId": "IND",
+    "age": 39,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KRISHAN|61",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "d9d11036-d302-5792-9ebe-b0f1984d7935",
+    "year": 2009,
+    "constNo": 61,
+    "name": "Krishan",
+    "partyId": "IND",
+    "age": 43,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a7e2cf4d-f1c2-5ec4-a40b-576a96cdddce",
+    "year": 2014,
+    "constNo": 61,
+    "name": "Krishan",
+    "partyId": "IND",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cc4f5fd1-a9bd-5343-8e85-3b0317127a12",
+    "year": 2019,
+    "constNo": 61,
+    "name": "Krishan",
+    "partyId": "INLD",
+    "age": 52,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e1f9dd41-8bf5-56c1-9100-ab6e3758f778",
+    "year": 2019,
+    "constNo": 61,
+    "name": "Krishan",
+    "partyId": "IND",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "6812f6c4-16dd-59ca-905f-6b402c9c606e",
+    "year": 2024,
+    "constNo": 61,
+    "name": "Krishan",
+    "partyId": "INLD",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MANOHAR|83",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "1cbf6360-62b3-5321-afa7-430486df7113",
+    "year": 2009,
+    "constNo": 83,
+    "name": "Manohar",
+    "partyId": "RND",
+    "age": 35,
+    "era": "2008"
+   },
+   {
+    "candidateId": "66b84a84-3892-5d76-a93e-d24b2a1ec9fa",
+    "year": 2024,
+    "constNo": 83,
+    "name": "Manohar",
+    "partyId": "AAP",
+    "age": 51,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MARATHA VIRENDER VERMA|23",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "0776d858-ff16-5ae1-a48d-755a74a73e7a",
+    "year": 2009,
+    "constNo": 23,
+    "name": "Maratha Virender Verma",
+    "partyId": "ES",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9b4b6d6a-5abc-5855-bbd4-930b528255d1",
+    "year": 2014,
+    "constNo": 23,
+    "name": "Maratha Virender Verma",
+    "partyId": "BSP",
+    "age": 59,
+    "era": "2008"
+   },
+   {
+    "candidateId": "fa069df3-bb33-5d06-a47e-09f22418db84",
+    "year": 2024,
+    "constNo": 23,
+    "name": "Maratha Virender Verma",
+    "partyId": "NCPSP",
+    "age": 74,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MUKESH KUMAR|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "886d0aa2-07c5-5638-8fcd-278cf8a809bb",
+    "year": 2019,
+    "constNo": 60,
+    "name": "Mukesh Kumar",
+    "partyId": "IND",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "2b660d5a-a04b-504e-a509-37b7083e34e3",
+    "year": 2024,
+    "constNo": 60,
+    "name": "Mukesh Kumar",
+    "partyId": "IND",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NARENDER SHARMA|18",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "81a74455-e7aa-53dc-b6f9-b7bbc719e7a4",
+    "year": 2009,
+    "constNo": 18,
+    "name": "Narender Sharma",
+    "partyId": "BSP",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c4db294c-8ed0-5653-81f8-1a92604f788c",
+    "year": 2014,
+    "constNo": 18,
+    "name": "Narender Sharma",
+    "partyId": "IND",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0097d187-d37e-5372-ab56-b1d2232e5d5d",
+    "year": 2019,
+    "constNo": 18,
+    "name": "Narender Sharma",
+    "partyId": "IND",
+    "age": 56,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4df442fc-997f-5b4e-82e9-4befb42e50b9",
+    "year": 2024,
+    "constNo": 18,
+    "name": "Narender Sharma",
+    "partyId": "AAP",
+    "age": 62,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NARESH|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "56d536ee-dce7-5663-b31d-54351c087710",
+    "year": 2019,
+    "constNo": 60,
+    "name": "Naresh",
+    "partyId": "IND",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "3c21fb4f-bdd5-5ae3-83ff-28fb5d71edb9",
+    "year": 2024,
+    "constNo": 60,
+    "name": "Naresh",
+    "partyId": "IND",
+    "age": 50,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJ KUMAR|53",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "15179ff3-68cb-50c4-aac8-a331e2cb7ec8",
+    "year": 2014,
+    "constNo": 53,
+    "name": "Raj Kumar",
+    "partyId": "IND",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a62c8961-8f34-5eba-89c5-299e518cc481",
+    "year": 2024,
+    "constNo": 53,
+    "name": "Raj Kumar",
+    "partyId": "RSTWDIBHRT",
+    "age": 44,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJAL|66",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e3821b2d-8215-5c05-bc5f-74c3bec48e80",
+    "year": 2009,
+    "constNo": 66,
+    "name": "Rajal",
+    "partyId": "IND",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9d4b20a4-c777-512c-a418-7ada592e4b20",
+    "year": 2024,
+    "constNo": 66,
+    "name": "Rajal",
+    "partyId": "IND",
+    "age": 49,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJENDER SINGH|53",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f69ad230-0689-5831-8e4d-655d5d840f98",
+    "year": 2009,
+    "constNo": 53,
+    "name": "Rajender Singh",
+    "partyId": "IND",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "31e467c9-248b-5c9b-bf48-4ecdab224949",
+    "year": 2014,
+    "constNo": 53,
+    "name": "Rajender Singh",
+    "partyId": "IND",
+    "age": 49,
+    "era": "2008"
+   },
+   {
+    "candidateId": "84c71a7e-4d60-5d8a-b685-c93bd2e8f3d1",
+    "year": 2024,
+    "constNo": 53,
+    "name": "Rajender Singh",
+    "partyId": "IND",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJENDER|52",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e033a413-c765-54a5-9e5b-794792e243e9",
+    "year": 2014,
+    "constNo": 52,
+    "name": "Rajender",
+    "partyId": "IND",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d8fafe2f-24dc-5b28-b268-143ba4ecfeed",
+    "year": 2024,
+    "constNo": 52,
+    "name": "Rajender",
+    "partyId": "IND",
+    "age": 49,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJESH JOON|64",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4f17a794-cc5d-5ffa-98f0-d437672f9554",
+    "year": 2014,
+    "constNo": 64,
+    "name": "Rajesh Joon",
+    "partyId": "IND",
+    "age": 62,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cdc93aaf-b644-5758-94fa-58a2226f7a96",
+    "year": 2024,
+    "constNo": 64,
+    "name": "Rajesh Joon",
+    "partyId": "IND",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJESH KUMAR|47",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ef9183b8-91d5-56fa-b16e-c726758627fe",
+    "year": 2009,
+    "constNo": 47,
+    "name": "Rajesh Kumar",
+    "partyId": "BSP",
+    "age": 29,
+    "era": "2008"
+   },
+   {
+    "candidateId": "394d7798-66f2-55a0-a929-bc6e52595930",
+    "year": 2024,
+    "constNo": 47,
+    "name": "Rajesh Kumar",
+    "partyId": "IND",
+    "age": 42,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJESH NAGAR|90",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "18be54cf-c480-5764-bcdc-f989e9470b9c",
+    "year": 2014,
+    "constNo": 90,
+    "name": "Rajesh Nagar",
+    "partyId": "BJP",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c4bc21ed-8edb-5df9-a339-4c0b1949605f",
+    "year": 2014,
+    "constNo": 90,
+    "name": "Rajesh Nagar",
+    "partyId": "IND",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4a6db547-a728-5bff-a855-e5d52c7e1ced",
+    "year": 2019,
+    "constNo": 90,
+    "name": "Rajesh Nagar",
+    "partyId": "BJP",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4e975876-73b3-527f-8cc6-8bb6dc24ea7c",
+    "year": 2024,
+    "constNo": 90,
+    "name": "Rajesh Nagar",
+    "partyId": "BJP",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAMNIWAS GHORELA|51",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "455d6ea0-faf6-506b-8a06-2db6cf5a5a6b",
+    "year": 2014,
+    "constNo": 51,
+    "name": "Ramniwas Ghorela",
+    "partyId": "INC",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "1cc59f1f-81ba-55ce-8f3a-c479fc570076",
+    "year": 2019,
+    "constNo": 51,
+    "name": "Ramniwas Ghorela",
+    "partyId": "IND",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e53fca5d-f5f7-5d38-92c1-cf3b07d84c34",
+    "year": 2024,
+    "constNo": 51,
+    "name": "Ramniwas Ghorela",
+    "partyId": "INC",
+    "age": 58,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RANBIR SINGH|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "57a6082d-c20e-5435-b559-a294d5e019bf",
+    "year": 2019,
+    "constNo": 60,
+    "name": "Ranbir Singh",
+    "partyId": "IND",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "ebcc6b0b-3ed5-598f-a62e-52790bafb6ea",
+    "year": 2024,
+    "constNo": 60,
+    "name": "Ranbir Singh",
+    "partyId": "IND",
+    "age": 53,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ROHTAS SINGH|78",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a12c4c6b-f83f-51df-b0f6-ba6ae59f97ff",
+    "year": 2019,
+    "constNo": 78,
+    "name": "Rohtas Singh",
+    "partyId": "JJP2",
+    "age": 67,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d84ba96c-35ea-5c25-807c-f2a983c90f18",
+    "year": 2024,
+    "constNo": 78,
+    "name": "Rohtas Singh",
+    "partyId": "INC",
+    "age": 67,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SADHNA|68",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3b601e97-6e4b-5751-bc0e-0076cb0c08bb",
+    "year": 2019,
+    "constNo": 68,
+    "name": "Sadhna",
+    "partyId": "IND",
+    "age": 30,
+    "era": "2008"
+   },
+   {
+    "candidateId": "70711df3-e1ad-5fe9-b64e-ddfdbe817f16",
+    "year": 2024,
+    "constNo": 68,
+    "name": "Sadhna",
+    "partyId": "IND",
+    "age": 34,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SAJID|81",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a4e90649-cee6-5c68-9e97-ae59d147d052",
+    "year": 2014,
+    "constNo": 81,
+    "name": "Sajid",
+    "partyId": "SP",
+    "age": 27,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e10aa26a-a4a1-587f-8ea2-70188fb8f22f",
+    "year": 2024,
+    "constNo": 81,
+    "name": "Sajid",
+    "partyId": "IND",
+    "age": 33,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SANJAY|61",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "69777f3c-a0c0-52d2-8879-a121dcead733",
+    "year": 2019,
+    "constNo": 61,
+    "name": "Sanjay",
+    "partyId": "IND",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d068b603-118b-5c18-9470-86fcb2323c78",
+    "year": 2024,
+    "constNo": 61,
+    "name": "Sanjay",
+    "partyId": "IND",
+    "age": 48,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SANJAY|66",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f10a1f08-882a-5285-b459-baef12b7317c",
+    "year": 2009,
+    "constNo": 66,
+    "name": "Sanjay",
+    "partyId": "IND",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4a0291ac-e771-56ae-a50d-34ba15ff433c",
+    "year": 2024,
+    "constNo": 66,
+    "name": "Sanjay",
+    "partyId": "IND",
+    "age": 48,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SATVEER|83",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3e4dcb4f-68fb-54a9-b563-c72d05d9d4ff",
+    "year": 2019,
+    "constNo": 83,
+    "name": "Satveer",
+    "partyId": "IND",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9c003f41-3c72-5daa-be8e-819bed27a0c9",
+    "year": 2024,
+    "constNo": 83,
+    "name": "Satveer",
+    "partyId": "JJP2",
+    "age": 43,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|66",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c78e8099-e9b4-5dfd-9d67-64d52b6128b1",
+    "year": 2014,
+    "constNo": 66,
+    "name": "Sunil Kumar",
+    "partyId": "IND",
+    "age": 27,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f0987fb0-a871-5242-8737-6ed2fcd15fd5",
+    "year": 2019,
+    "constNo": 66,
+    "name": "Sunil Kumar",
+    "partyId": "IND",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "49b6c84d-a704-54e8-b83b-2de9f25b125c",
+    "year": 2024,
+    "constNo": 66,
+    "name": "Sunil Kumar",
+    "partyId": "IND",
+    "age": 37,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUNIL KUMAR|84",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "cfc5f1f4-ee8b-5463-9e88-3e6ef5c411dd",
+    "year": 2019,
+    "constNo": 84,
+    "name": "Sunil Kumar",
+    "partyId": "BMP1",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "334fdb0f-a7d1-58bd-a352-37ef29105cf3",
+    "year": 2024,
+    "constNo": 84,
+    "name": "Sunil Kumar",
+    "partyId": "IND",
+    "age": 36,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TAYUB HUSAIN|82",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "1508360e-84e5-599e-858e-d33a797ff298",
+    "year": 2014,
+    "constNo": 82,
+    "name": "Tayub Husain",
+    "partyId": "BSP",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "11824074-2a21-53d3-9e2c-b5fb05e07749",
+    "year": 2019,
+    "constNo": 82,
+    "name": "Tayub Husain Urf Nazir Ahmed",
+    "partyId": "BSP",
+    "age": 49,
+    "era": "2008"
+   },
+   {
+    "candidateId": "90cafb1c-a803-54af-bb77-aac9fa3430ee",
+    "year": 2024,
+    "constNo": 82,
+    "name": "Tayub Husain Urf Nazir Ahmed",
+    "partyId": "INLD",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "UMAKANT|70",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "36551323-ef33-591c-a091-655b2679bdc8",
+    "year": 2009,
+    "constNo": 70,
+    "name": "Umakant",
+    "partyId": "IND",
+    "age": 46,
+    "era": "2008"
+   },
+   {
+    "candidateId": "8ec22463-0185-5e38-9ff1-7ee49f69daa9",
+    "year": 2014,
+    "constNo": 70,
+    "name": "Umakant",
+    "partyId": "IND",
+    "age": 51,
+    "era": "2008"
+   },
+   {
+    "candidateId": "1715743f-642c-57de-a0b7-18d3b812ab3a",
+    "year": 2024,
+    "constNo": 70,
+    "name": "Umakant",
+    "partyId": "IND",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "VARINDER SINGH RATHORE|22",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "5fb58bfa-f854-5b04-a4f0-ec11d2de2542",
+    "year": 2009,
+    "constNo": 22,
+    "name": "Varinder Singh Rathore",
+    "partyId": "INC",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0c38603d-b1ff-5e14-a749-c642d2f62aaf",
+    "year": 2024,
+    "constNo": 22,
+    "name": "Varinder Singh Rathore",
+    "partyId": "INC",
+    "age": 48,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "VIJAY KUMAR|55",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "95931e5f-1009-588e-8d63-e96c82d68bac",
+    "year": 2019,
+    "constNo": 55,
+    "name": "Vijay Kumar",
+    "partyId": "INLD",
+    "age": 49,
+    "era": "2008"
+   },
+   {
+    "candidateId": "69566ca8-9a54-5489-bac4-1f5c3690f07a",
+    "year": 2019,
+    "constNo": 55,
+    "name": "Vijay Kumar",
+    "partyId": "SHPP",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "85f1d475-57e0-561d-add7-c319c3d61c09",
+    "year": 2024,
+    "constNo": 55,
+    "name": "Vijay Kumar",
+    "partyId": "INLD",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "VIKAS|59",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6a79cbdc-9fd0-50b2-ade7-3ea119a7c033",
+    "year": 2019,
+    "constNo": 59,
+    "name": "Vikas",
+    "partyId": "RTRJP",
+    "age": 43,
+    "era": "2008"
+   },
+   {
+    "candidateId": "22621d7b-ae77-5b70-a87a-fc7f418bf933",
+    "year": 2024,
+    "constNo": 59,
+    "name": "Vikas",
+    "partyId": "RJP1",
+    "age": 33,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "VINOD KUMAR|40",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9b1a971f-d140-595e-ac1e-5eef1c2ab8f9",
+    "year": 2014,
+    "constNo": 40,
+    "name": "Vinod Kumar",
+    "partyId": "IND",
+    "age": 33,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9269248c-520c-5555-b980-3bb272857342",
+    "year": 2019,
+    "constNo": 40,
+    "name": "Vinod Kumar",
+    "partyId": "IND",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b5efa064-cb1f-5932-9416-33b065300494",
+    "year": 2024,
+    "constNo": 40,
+    "name": "Vinod Kumar",
+    "partyId": "IND",
+    "age": 39,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "VIPUL|35",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "811f0a1b-24c9-5171-9b3a-e0fd5d448c34",
+    "year": 2014,
+    "constNo": 35,
+    "name": "Vipul",
+    "partyId": "IND",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "910f0f48-adf8-56f6-ab82-ee309fcf4d22",
+    "year": 2024,
+    "constNo": 35,
+    "name": "Vipul",
+    "partyId": "IND",
+    "age": 46,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "YASHVEER|83",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "1f40672d-7a81-5c7f-9b0b-31716f6ef463",
+    "year": 2019,
+    "constNo": 83,
+    "name": "Yashveer",
+    "partyId": "JJP2",
+    "age": 27,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e68e115c-9e0e-5baa-a973-2d659fd852d9",
+    "year": 2024,
+    "constNo": 83,
+    "name": "Yashveer",
+    "partyId": "IND",
+    "age": 32,
+    "era": "2008"
+   }
+  ]
+ }
+]

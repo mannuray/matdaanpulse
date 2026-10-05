@@ -115,8 +115,11 @@ for st in ga mn uk pb up; do run "seed_${st}_districts_regions.sql"; done
 # Person links across 2011-2021 (run-once; must follow the VS results)
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 for st in ga mn uk pb up; do run "seed_${st}_person_links_v1.sql"; done
+for st in dl hr jh od; do run "seed_${st}_person_links_v1.sql"; done
 # 2026 candidates → their 2011-2021 persons (run-once; same delimitation only, so none for Assam 2026)
 for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
+# Latest DL/HR/JH/OD candidates → their earlier persons (run-once)
+for st in dl hr jh od; do run "seed_${st}_person_links_v2.sql"; done
 # 2026 leaders (curated, user-approved; run-once: candidacy links, fill-only profiles, manifest watchlists)
 for st in as kl py tn wb; do run "seed_${st}_leaders.sql"; done
 # 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
