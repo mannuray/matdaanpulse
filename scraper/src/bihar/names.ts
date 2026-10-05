@@ -5,10 +5,12 @@ export { normName };
 
 /** "RAMNAGAR (SC)" / "Ramnagar (SC) (SC)" → name + type; no marker → type null. */
 export function splitAcName(raw: string): { name: string; type: SeatType | null } {
-  let s = raw.replace(/\s+/g, ' ').trim();
+  // A leading seat number ("175-Lucknow Cantt.") is dropped; "(S.C.)" counts as "(SC)".
+  let s = raw.replace(/\s+/g, ' ').trim().replace(/^\d+\s*-\s*/, '');
   let type: SeatType | null = null;
-  for (let m = /\s*\((GEN|SC|ST)\)\s*$/i.exec(s); m; m = /\s*\((GEN|SC|ST)\)\s*$/i.exec(s)) {
-    type = m[1].toUpperCase() as SeatType;
+  const marker = /\s*\((GEN|S\.?C\.?|S\.?T\.?)\)\s*$/i;
+  for (let m = marker.exec(s); m; m = marker.exec(s)) {
+    type = m[1].replace(/\./g, '').toUpperCase() as SeatType;
     s = s.slice(0, m.index).trim();
   }
   // Some reports write the reservation without brackets: "Mahadewa S.C", "Machhlishahr S.C.".

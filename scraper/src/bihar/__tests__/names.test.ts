@@ -47,3 +47,15 @@ describe('splitAcName with a dotted reservation suffix', () => {
     expect(splitAcName('Sasaram')).toEqual({ name: 'Sasaram', type: null });
   });
 });
+
+describe('splitAcName with dotted brackets and a seat-number prefix (UP/UK 2017 summaries)', () => {
+  it('reads "(S.C.)" / "(s.c.)" / "(S.T.)" as the seat type', () => {
+    expect(splitAcName('Balha (S.C.)')).toEqual({ name: 'Balha', type: 'SC' });
+    expect(splitAcName('Someshwar (s.c.)')).toEqual({ name: 'Someshwar', type: 'SC' });
+    expect(splitAcName('Duddhi (S.T.)')).toEqual({ name: 'Duddhi', type: 'ST' });
+  });
+  it('drops a leading "175-" seat number', () => {
+    expect(splitAcName('175-Lucknow Cantt.')).toEqual({ name: 'Lucknow Cantt.', type: null });
+    expect(splitAcName('12 - Pernem')).toEqual({ name: 'Pernem', type: null });
+  });
+});
