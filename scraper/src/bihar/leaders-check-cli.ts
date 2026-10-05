@@ -10,7 +10,8 @@ import type { Year } from './types';
 
 const ST = parseState(process.argv[2] ?? 'BR');
 const f: LeadersFile = JSON.parse(fs.readFileSync(path.join(trackOf(ST).dir, 'leaders.json'), 'utf8'));
-const s = new Map((Object.keys(f.elections).map(Number) as Year[]).map(y => [y, loadSeeded(ST, y)]));
+const years = new Set([...Object.keys(f.elections).map(Number), ...f.people.flatMap(p => p.candidacies.map(c => c.year))]);
+const s = new Map(([...years] as Year[]).map(y => [y, loadSeeded(ST, y)]));
 const rows = f.people.filter(p => p.candidacies.length > 1).map(p => {
   const ids = p.candidacies.map(c => {
     const y = s.get(c.year as Year)!;

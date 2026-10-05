@@ -28,6 +28,32 @@ export function pickCandidacy(candidates: CandidateJson[], leaderName: string): 
   return best && best.sim >= MIN_NAME_MATCH ? best.x : null;
 }
 
+/** A candidacy of an earlier election of the state, any seat (for joining a leader to their own history). */
+export interface EarlierCandidacy { year: number; constId: string; name: string; partyId: string; age: number | null }
+
+/**
+ * A 2026 leader's own earlier candidacies, one per year at most: a close name (≥ 0.8) in one of the leader's parties, or —
+ * for a party switch — a near-exact name (≥ 0.95) that is unique in that year. Declared ages must fit the years (±2).
+ * Ambiguous years are skipped, never guessed; nothing is linked when the latest election has a namesake (`namesakes`).
+ */
+export function priorCandidacies(name: string, parties: Set<string>, now: { year: number; age: number | null; namesakes?: number }, earlier: EarlierCandidacy[]): { year: number; const_id: string }[] {
+  // Another candidate of the latest election shares the name: an earlier namesake could be either of them.
+  if ((now.namesakes ?? 0) > 0) return [];
+  // ECI ballot names carry honorifics ("Adv.Mons Joseph", "Dr. …"); compare without them.
+  const bare = (s: string) => s.replace(/^\s*((adv|dr|prof|shri|smt|sri)\.?\s*)+/i, '').trim();
+  const sim = (a: string) => similarity(bare(a), bare(name));
+  const agesFit = (c: EarlierCandidacy) => now.age === null || c.age === null || Math.abs((now.age - c.age) - (now.year - c.year)) <= 2;
+  const out: { year: number; const_id: string }[] = [];
+  for (const year of [...new Set(earlier.map(c => c.year))].sort()) {
+    const close = earlier.filter(c => c.year === year && c.partyId !== 'NOTA' && sim(c.name) >= 0.8);
+    const inParty = close.filter(c => parties.has(c.partyId) && agesFit(c));
+    const exact = close.filter(c => sim(c.name) >= 0.95);
+    const pick = inParty.length === 1 ? inParty[0] : inParty.length === 0 && exact.length === 1 && agesFit(exact[0]) ? exact[0] : null;
+    if (pick) out.push({ year, const_id: pick.constId });
+  }
+  return out;
+}
+
 export function personExpr(p: ResolvedPerson): string {
   if (p.fixedId) return `${q(p.fixedId)}::uuid`;
   // The leader's best-linked person (most candidacies, then lowest candidate id): the curated or linked person when one
@@ -57,7 +83,9 @@ export function bioFor(key: string, f: LeadersFile, opts: Pick<LeadersSeedOpts, 
     if (/^leader of the opposition$/i.test(role)) return `${role} after the ${ys} ${plural('election', years.length)}`;
     if (/candidate/i.test(role)) return `${role} in the ${ys} ${plural('election', years.length)}`;
     if (kind === 'cabinet') return `${role} in the ${ys} ${plural('government', years.length)}`;
-    return `${role} of ${opts.stateName} in the ${ys} ${plural('government', years.length)}`;
+    // Only a head-of-government title is "of <State> in the … government"; a party post or a CM face is not in government.
+    if (/^(deputy )?chief minister$/i.test(role)) return `${role} of ${opts.stateName} in the ${ys} ${plural('government', years.length)}`;
+    return `${role} at the ${ys} ${plural('election', years.length)}`;
   });
   return `${parts.join('; ')}.`;
 }

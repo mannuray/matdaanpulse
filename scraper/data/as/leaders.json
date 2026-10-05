@@ -6,6 +6,18 @@
       "wikidata": "Q5765114",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "AS_VS11_51_JALUKBARI"
+        },
+        {
+          "year": 2016,
+          "const_id": "AS_VS16_51_JALUKBARI"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_51_JALUKBARI"
+        },
+        {
           "year": 2026,
           "const_id": "AS_VS26_37_JALUKBARI"
         }
@@ -16,6 +28,18 @@
       "name": "Wazed Ali Choudhury",
       "wikidata": "Q107143814",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "AS_VS11_22_SALMARA_SOUTH"
+        },
+        {
+          "year": 2016,
+          "const_id": "AS_VS16_22_SALMARA_SOUTH"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_22_SALMARA_SOUTH"
+        },
         {
           "year": 2026,
           "const_id": "AS_VS26_9_BIRSING_JARUA"
@@ -39,6 +63,10 @@
       "wikidata": "Q799689",
       "candidacies": [
         {
+          "year": 2016,
+          "const_id": "AS_VS16_22_SALMARA_SOUTH"
+        },
+        {
           "year": 2026,
           "const_id": "AS_VS26_62_BINNAKANDI"
         }
@@ -49,6 +77,10 @@
       "name": "Akhil Gogoi",
       "wikidata": "Q4700735",
       "candidacies": [
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_108_SIBSAGAR"
+        },
         {
           "year": 2026,
           "const_id": "AS_VS26_96_SIBSAGAR"
@@ -72,6 +104,10 @@
       "wikidata": "Q16886057",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "AS_VS11_118_DULIAJAN"
+        },
+        {
           "year": 2026,
           "const_id": "AS_VS26_90_DULIAJAN"
         }
@@ -82,6 +118,18 @@
       "name": "Atul Bora",
       "wikidata": "Q17388163",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "AS_VS11_93_BOKAKHAT"
+        },
+        {
+          "year": 2016,
+          "const_id": "AS_VS16_93_BOKAKHAT"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_93_BOKAKHAT"
+        },
         {
           "year": 2026,
           "const_id": "AS_VS26_105_BOKAKHAT"
@@ -94,6 +142,14 @@
       "wikidata": "Q27916284",
       "candidacies": [
         {
+          "year": 2016,
+          "const_id": "AS_VS16_70_MAJBAT"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_70_MAJBAT"
+        },
+        {
           "year": 2026,
           "const_id": "AS_VS26_47_MAZBAT"
         }
@@ -104,6 +160,18 @@
       "name": "Ajanta Neog",
       "wikidata": "Q20036673",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "AS_VS11_95_GOLAGHAT"
+        },
+        {
+          "year": 2016,
+          "const_id": "AS_VS16_95_GOLAGHAT"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_95_GOLAGHAT"
+        },
         {
           "year": 2026,
           "const_id": "AS_VS26_103_GOLAGHAT"
@@ -116,6 +184,14 @@
       "wikidata": "Q28086317",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "AS_VS11_59_NALBARI"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_59_NALBARI"
+        },
+        {
           "year": 2026,
           "const_id": "AS_VS26_39_NALBARI"
         }
@@ -126,6 +202,18 @@
       "name": "Pijush Hazarika",
       "wikidata": "Q27734847",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "AS_VS11_82_RAHA"
+        },
+        {
+          "year": 2016,
+          "const_id": "AS_VS16_79_JAGIROAD"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_79_JAGIROAD"
+        },
         {
           "year": 2026,
           "const_id": "AS_VS26_52_JAGIROAD"
@@ -138,6 +226,14 @@
       "wikidata": "Q27838080",
       "candidacies": [
         {
+          "year": 2016,
+          "const_id": "AS_VS16_71_DHEKIAJULI"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_71_DHEKIAJULI"
+        },
+        {
           "year": 2026,
           "const_id": "AS_VS26_65_DHEKIAJULI"
         }
@@ -148,6 +244,10 @@
       "name": "Ranoj Pegu",
       "wikidata": "Q107222599",
       "candidacies": [
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_113_DHEMAJI"
+        },
         {
           "year": 2026,
           "const_id": "AS_VS26_78_DHEMAJI"
@@ -160,6 +260,18 @@
       "wikidata": "Q21229194",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "AS_VS11_89_KALIABOR"
+        },
+        {
+          "year": 2016,
+          "const_id": "AS_VS16_89_KALIABOR"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_89_KALIABOR"
+        },
+        {
           "year": 2026,
           "const_id": "AS_VS26_57_KALIABOR"
         }
@@ -170,6 +282,14 @@
       "name": "Bimal Bora",
       "wikidata": "Q27947579",
       "candidacies": [
+        {
+          "year": 2016,
+          "const_id": "AS_VS16_119_TINGKHONG"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_119_TINGKHONG"
+        },
         {
           "year": 2026,
           "const_id": "AS_VS26_91_TINGKHONG"
@@ -182,6 +302,10 @@
       "wikidata": "Q16728337",
       "candidacies": [
         {
+          "year": 2021,
+          "const_id": "AS_VS21_64_PANERY"
+        },
+        {
           "year": 2026,
           "const_id": "AS_VS26_43_TAMULPUR"
         }
@@ -192,6 +316,18 @@
       "name": "Sushanta Borgohain",
       "wikidata": "Q107299734",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "AS_VS11_107_THOWRA"
+        },
+        {
+          "year": 2016,
+          "const_id": "AS_VS16_107_THOWRA"
+        },
+        {
+          "year": 2021,
+          "const_id": "AS_VS21_107_THOWRA"
+        },
         {
           "year": 2026,
           "const_id": "AS_VS26_95_DEMOW"

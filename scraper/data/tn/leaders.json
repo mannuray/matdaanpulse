@@ -21,6 +21,10 @@
       "wikidata": "Q3524779",
       "candidacies": [
         {
+          "year": 2021,
+          "const_id": "TN_VS21_19_CHEPAUKTHIRUVALLIKEN"
+        },
+        {
           "year": 2026,
           "const_id": "TN_VS26_19_CHEPAUKTHIRUVALLIKENI"
         }
@@ -31,6 +35,18 @@
       "name": "M. K. Stalin",
       "wikidata": "Q983475",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "TN_VS11_13_KOLATHUR"
+        },
+        {
+          "year": 2016,
+          "const_id": "TN_VS16_13_KOLATHUR"
+        },
+        {
+          "year": 2021,
+          "const_id": "TN_VS21_13_KOLATHUR"
+        },
         {
           "year": 2026,
           "const_id": "TN_VS26_13_KOLATHUR"
@@ -43,6 +59,10 @@
       "wikidata": "Q6323772",
       "candidacies": [
         {
+          "year": 2021,
+          "const_id": "TN_VS21_86_EDAPPADI"
+        },
+        {
           "year": 2026,
           "const_id": "TN_VS26_86_EDAPPADI"
         }
@@ -54,6 +74,14 @@
       "wikidata": "Q7445882",
       "candidacies": [
         {
+          "year": 2016,
+          "const_id": "TN_VS16_155_CUDDALORE"
+        },
+        {
+          "year": 2021,
+          "const_id": "TN_VS21_10_TIRUVOTTIYUR"
+        },
+        {
           "year": 2026,
           "const_id": "TN_VS26_184_KARAIKUDI"
         }
@@ -64,6 +92,10 @@
       "name": "Nainar Nagendran",
       "wikidata": "Q16733126",
       "candidacies": [
+        {
+          "year": 2021,
+          "const_id": "TN_VS21_224_TIRUNELVELI"
+        },
         {
           "year": 2026,
           "const_id": "TN_VS26_204_SATTUR"
@@ -196,6 +228,10 @@
       "name": "Vanni Arasu",
       "wikidata": "Q139695180",
       "candidacies": [
+        {
+          "year": 2021,
+          "const_id": "TN_VS21_73_VANUR"
+        },
         {
           "year": 2026,
           "const_id": "TN_VS26_72_TINDIVANAM"

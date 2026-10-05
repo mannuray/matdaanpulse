@@ -21,6 +21,14 @@
       "wikidata": "Q27062970",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "PY_VS11_27_KARAIKAL_SOUTH"
+        },
+        {
+          "year": 2016,
+          "const_id": "PY_VS16_27_KARAIKAL_SOUTH"
+        },
+        {
           "year": 2026,
           "const_id": "PY_VS26_27_KARAIKAL_SOUTH"
         }
@@ -31,6 +39,18 @@
       "name": "R. Siva",
       "wikidata": "Q107463129",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "PY_VS11_16_ORLEAMPETH"
+        },
+        {
+          "year": 2016,
+          "const_id": "PY_VS16_16_ORLEAMPETH"
+        },
+        {
+          "year": 2021,
+          "const_id": "PY_VS21_5_VILLIANUR"
+        },
         {
           "year": 2026,
           "const_id": "PY_VS26_5_VILLIANUR"
@@ -43,6 +63,14 @@
       "wikidata": "Q7906295",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "PY_VS11_10_KAMARAJ_NAGAR"
+        },
+        {
+          "year": 2016,
+          "const_id": "PY_VS16_10_KAMARAJ_NAGAR"
+        },
+        {
           "year": 2026,
           "const_id": "PY_VS26_9_THATTANCHAVADY"
         }
@@ -53,6 +81,18 @@
       "name": "A. Namassivayam",
       "wikidata": "Q105452337",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "PY_VS11_5_VILLIANUR"
+        },
+        {
+          "year": 2016,
+          "const_id": "PY_VS16_5_VILLIANUR"
+        },
+        {
+          "year": 2021,
+          "const_id": "PY_VS21_1_MANNADIPET"
+        },
         {
           "year": 2026,
           "const_id": "PY_VS26_1_MANNADIPET"
@@ -65,6 +105,14 @@
       "wikidata": "Q21064273",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "PY_VS11_30_YANAM"
+        },
+        {
+          "year": 2016,
+          "const_id": "PY_VS16_30_YANAM"
+        },
+        {
           "year": 2026,
           "const_id": "PY_VS26_30_YANAM"
         }
@@ -76,6 +124,18 @@
       "wikidata": "Q106946838",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "PY_VS11_21_EMBALAM"
+        },
+        {
+          "year": 2016,
+          "const_id": "PY_VS16_22_NETTAPAKKAM"
+        },
+        {
+          "year": 2021,
+          "const_id": "PY_VS21_22_NETTAPAKKAM"
+        },
+        {
           "year": 2026,
           "const_id": "PY_VS26_22_NETTAPAKKAM"
         }
@@ -86,6 +146,10 @@
       "name": "V. P. Sivakolundhu",
       "wikidata": "Q105627909",
       "candidacies": [
+        {
+          "year": 2016,
+          "const_id": "PY_VS16_11_LAWSPET"
+        },
         {
           "year": 2026,
           "const_id": "PY_VS26_11_LAWSPET"

@@ -17,6 +17,14 @@
       "wikidata": "Q3595385",
       "candidacies": [
         {
+          "year": 2016,
+          "const_id": "KL_VS16_12_DHARMADAM"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_12_DHARMADAM"
+        },
+        {
           "year": 2026,
           "const_id": "KL_VS26_12_DHARMADAM"
         }
@@ -38,6 +46,18 @@
       "name": "Ramesh Chennithala",
       "wikidata": "Q7289391",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "KL_VS11_107_HARIPAD"
+        },
+        {
+          "year": 2016,
+          "const_id": "KL_VS16_107_HARIPAD"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_107_HARIPAD"
+        },
         {
           "year": 2026,
           "const_id": "KL_VS26_107_HARIPAD"
@@ -72,6 +92,18 @@
       "wikidata": "Q7117360",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "KL_VS11_41_VENGARA"
+        },
+        {
+          "year": 2016,
+          "const_id": "KL_VS16_41_VENGARA"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_41_VENGARA"
+        },
+        {
           "year": 2026,
           "const_id": "KL_VS26_40_MALAPPURAM"
         }
@@ -82,6 +114,18 @@
       "name": "Shibu Baby John",
       "wikidata": "Q7496081",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "KL_VS11_117_CHAVARA"
+        },
+        {
+          "year": 2016,
+          "const_id": "KL_VS16_117_CHAVARA"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_117_CHAVARA"
+        },
         {
           "year": 2026,
           "const_id": "KL_VS26_117_CHAVARA"
@@ -94,6 +138,18 @@
       "wikidata": "Q6898473",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "KL_VS11_94_KADUTHURUTHY"
+        },
+        {
+          "year": 2016,
+          "const_id": "KL_VS16_94_KADUTHURUTHY"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_94_KADUTHURUTHY"
+        },
+        {
           "year": 2026,
           "const_id": "KL_VS26_94_KADUTHURUTHY"
         }
@@ -105,6 +161,14 @@
       "wikidata": "Q4770056",
       "candidacies": [
         {
+          "year": 2016,
+          "const_id": "KL_VS16_85_PIRAVOM"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_85_PIRAVOM"
+        },
+        {
           "year": 2026,
           "const_id": "KL_VS26_85_PIRAVOM"
         }
@@ -115,6 +179,14 @@
       "name": "C. P. John",
       "wikidata": "Q23887860",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "KL_VS11_62_KUNNAMKULAM"
+        },
+        {
+          "year": 2016,
+          "const_id": "KL_VS16_62_KUNNAMKULAM"
+        },
         {
           "year": 2026,
           "const_id": "KL_VS26_134_THIRUVANANTHAPURAM"
@@ -138,6 +210,18 @@
       "wikidata": "Q24055597",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "KL_VS11_54_MANNARKKAD"
+        },
+        {
+          "year": 2016,
+          "const_id": "KL_VS16_54_MANNARKKAD"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_54_MANNARKKAD"
+        },
+        {
           "year": 2026,
           "const_id": "KL_VS26_54_MANNARKKAD"
         }
@@ -149,6 +233,18 @@
       "wikidata": "Q16213770",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "KL_VS11_10_AZHIKODE"
+        },
+        {
+          "year": 2016,
+          "const_id": "KL_VS16_10_AZHIKODE"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_10_AZHIKODE"
+        },
+        {
           "year": 2026,
           "const_id": "KL_VS26_41_VENGARA"
         }
@@ -159,6 +255,18 @@
       "name": "P. K. Basheer",
       "wikidata": "Q7121263",
       "candidacies": [
+        {
+          "year": 2011,
+          "const_id": "KL_VS11_34_ERNAD"
+        },
+        {
+          "year": 2016,
+          "const_id": "KL_VS16_34_ERNAD"
+        },
+        {
+          "year": 2021,
+          "const_id": "KL_VS21_34_ERNAD"
+        },
         {
           "year": 2026,
           "const_id": "KL_VS26_34_ERNAD"

@@ -32,6 +32,14 @@
       "wikidata": "Q465041",
       "candidacies": [
         {
+          "year": 2016,
+          "const_id": "WB_VS16_159_BHABANIPUR"
+        },
+        {
+          "year": 2021,
+          "const_id": "WB_VS21_210_NANDIGRAM"
+        },
+        {
           "year": 2026,
           "const_id": "WB_VS26_159_BHABANIPUR"
         }
@@ -65,6 +73,10 @@
       "wikidata": "Q64011110",
       "candidacies": [
         {
+          "year": 2021,
+          "const_id": "WB_VS21_7_DINHATA"
+        },
+        {
           "year": 2026,
           "const_id": "WB_VS26_2_MATHABHANGA"
         }
@@ -75,6 +87,10 @@
       "name": "Swapan Dasgupta",
       "wikidata": "Q7653792",
       "candidacies": [
+        {
+          "year": 2021,
+          "const_id": "WB_VS21_198_TARAKESWAR"
+        },
         {
           "year": 2026,
           "const_id": "WB_VS26_160_RASHBEHARI"
@@ -97,6 +113,10 @@
       "name": "Agnimitra Paul",
       "wikidata": "Q4693256",
       "candidacies": [
+        {
+          "year": 2021,
+          "const_id": "WB_VS21_280_ASANSOL_DAKSHIN"
+        },
         {
           "year": 2026,
           "const_id": "WB_VS26_280_ASANSOL_DAKSHIN"
@@ -142,6 +162,14 @@
       "wikidata": "Q58010181",
       "candidacies": [
         {
+          "year": 2011,
+          "const_id": "WB_VS11_105_BHATPARA"
+        },
+        {
+          "year": 2016,
+          "const_id": "WB_VS16_105_BHATPARA"
+        },
+        {
           "year": 2026,
           "const_id": "WB_VS26_107_NOAPARA"
         }
@@ -152,6 +180,10 @@
       "name": "Jagannath Chattopadhyay",
       "wikidata": "Q139763627",
       "candidacies": [
+        {
+          "year": 2021,
+          "const_id": "WB_VS21_285_SURI"
+        },
         {
           "year": 2026,
           "const_id": "WB_VS26_285_SURI"
@@ -175,6 +207,10 @@
       "wikidata": "Q106860418",
       "candidacies": [
         {
+          "year": 2021,
+          "const_id": "WB_VS21_95_BANGAON_UTTAR"
+        },
+        {
           "year": 2026,
           "const_id": "WB_VS26_95_BANGAON_UTTAR"
         }
@@ -185,6 +221,14 @@
       "name": "Kshudiram Tudu",
       "wikidata": "Q139678937",
       "candidacies": [
+        {
+          "year": 2016,
+          "const_id": "WB_VS16_249_RANIBANDH"
+        },
+        {
+          "year": 2021,
+          "const_id": "WB_VS21_249_RANIBANDH"
+        },
         {
           "year": 2026,
           "const_id": "WB_VS26_249_RANIBANDH"

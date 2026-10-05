@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { bioFor, emitLeadersSeed, personExpr, pickCandidacy, type ResolvedPerson } from '../leaders-seed';
+import { bioFor, emitLeadersSeed, personExpr, pickCandidacy, priorCandidacies, type ResolvedPerson } from '../leaders-seed';
 import type { LeadersFile } from '../leaders-data';
 
 const f: LeadersFile = {
@@ -73,5 +73,53 @@ describe('pickCandidacy', () => {
   });
   it('ignores NOTA and returns null below the name threshold', () => {
     expect(pickCandidacy([c('NOTA', 'LOST', 3)], 'Tapas Roy')).toBeNull();
+  });
+});
+
+describe('bioFor party posts and opposition chiefs', () => {
+  const f = { people: [], elections: { '2026': { leaders: [
+    { key: 'stalin', role: 'DMK President (former Chief Minister)', party_id: 'DMK' },
+    { key: 'vijay', role: 'Chief Minister', party_id: 'TVK' },
+    { key: 'rc', role: 'NDA chief ministerial face', party_id: 'BJP' }], cabinet: [], sources: ['s'] } } } as unknown as LeadersFile;
+  const opts = { stateName: 'Tamil Nadu', years: ['2026'] };
+  it('never places a party post in the government', () => {
+    expect(bioFor('stalin', f, opts)).toBe('DMK President (former Chief Minister) at the 2026 election.');
+    expect(bioFor('rc', f, opts)).toBe('NDA chief ministerial face at the 2026 election.');
+  });
+  it('keeps the government form for the Chief Minister', () => {
+    expect(bioFor('vijay', f, opts)).toBe('Chief Minister of Tamil Nadu in the 2026 government.');
+  });
+});
+
+describe('priorCandidacies (a 2026 leader\'s own 2011-2021 candidacies, any seat)', () => {
+  const c = (year: number, constId: string, name: string, partyId: string, age: number | null) => ({ year, constId, name, partyId, age });
+  const now = { year: 2026, age: 57 };
+  it('finds the same name in the leader\'s party in each earlier year', () => {
+    const got = priorCandidacies('M. K. Stalin', new Set(['DMK']), now, [c(2021, 'TN_VS21_13_KOLATHUR', 'M.K. Stalin', 'DMK', 52), c(2021, 'X', 'Stalin', 'IND', 40)]);
+    expect(got).toEqual([{ year: 2021, const_id: 'TN_VS21_13_KOLATHUR' }]);
+  });
+  it('accepts a party switch only for a near-exact name unique in that year (Himanta: INC 2011, BJP since)', () => {
+    expect(priorCandidacies('Himanta Biswa Sarma', new Set(['BJP']), now, [c(2011, 'AS_VS11_51_JALUKBARI', 'Himanta Biswa Sarma', 'INC', 42)]))
+      .toEqual([{ year: 2011, const_id: 'AS_VS11_51_JALUKBARI' }]);
+    expect(priorCandidacies('R. Kumar', new Set(['TVK']), now, [c(2021, 'A', 'R. Kumar', 'DMK', 52), c(2021, 'B', 'R. Kumar', 'IND', 33)])).toEqual([]);
+  });
+  it('rejects a match whose declared age contradicts the years', () => {
+    expect(priorCandidacies('Ram Das', new Set(['BJP']), now, [c(2021, 'A', 'Ram Das', 'BJP', 30)])).toEqual([]);
+  });
+});
+
+describe('priorCandidacies when the name is shared in the latest election', () => {
+  it('links nothing (two BJP "Dilip Ghosh" in West Bengal 2026: Kharagpur Sadar and Bolpur)', () => {
+    const c2011 = { year: 2011, constId: 'WB_VS11_286_BOLPUR', name: 'Ghosh Dilip', partyId: 'BJP', age: 48 };
+    expect(priorCandidacies('Dilip Ghosh', new Set(['BJP']), { year: 2026, age: 61, namesakes: 1 }, [c2011])).toEqual([]);
+  });
+});
+
+describe('priorCandidacies ignores honorifics in ECI names', () => {
+  it('matches "Adv.Mons Joseph" (KECM, 2011) to Mons Joseph (KEC, 2026) as a near-exact unique name', () => {
+    const c = (year: number, name: string, partyId: string, age: number) => ({ year, constId: `KL_${year}`, name, partyId, age });
+    expect(priorCandidacies('Mons Joseph', new Set(['KEC']), { year: 2026, age: 61 },
+      [c(2011, 'Adv.Mons Joseph', 'KECM', 46), c(2016, 'Adv. Mons Joseph', 'KECM', 51), c(2021, 'Adv. Mons Joseph', 'KEC', 56)]).map(x => x.year))
+      .toEqual([2011, 2016, 2021]);
   });
 });
