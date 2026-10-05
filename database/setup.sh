@@ -123,6 +123,8 @@ for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
 for st in dl hr jh od; do run "seed_${st}_person_links_v2.sql"; done
 # 2026 leaders (curated, user-approved; run-once: candidacy links, fill-only profiles, manifest watchlists)
 for st in as kl py tn wb; do run "seed_${st}_leaders.sql"; done
+# Delhi 2025, Haryana/Jharkhand/Odisha 2024 leaders (curated, user-approved 2026-10-05; run-once)
+for st in dl hr jh od; do run "seed_${st}_leaders.sql"; done
 # 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
 for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)

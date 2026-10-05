@@ -1,0 +1,151 @@
+{
+ "rekha-gupta": {
+  "key": "rekha-gupta",
+  "wikidata": "Q19560653",
+  "date_of_birth": "1974-07-19",
+  "gender": "F",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Rekha_Gupta",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q19560653/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rekha_Gupta,_9th_Chief_Minister_of_Delhi.jpg",
+   "author": "Prime Minister's Office",
+   "licence": "GODL-India"
+  }
+ },
+ "atishi": {
+  "key": "atishi",
+  "wikidata": "Q19559992",
+  "date_of_birth": "1981-06-08",
+  "gender": "F",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Atishi_Marlena",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q19559992/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Atishi_Marlena.jpg",
+   "author": "Akshaymarathe",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "arvind-kejriwal": {
+  "key": "arvind-kejriwal",
+  "wikidata": "Q59155",
+  "date_of_birth": "1968-08-16",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Arvind_Kejriwal",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q59155/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Arvind_Kejriwal_September_02,_2017_crop.jpg",
+   "author": "Vice President's Secretariat",
+   "licence": "GODL-India"
+  }
+ },
+ "manish-sisodia": {
+  "key": "manish-sisodia",
+  "wikidata": "Q6749900",
+  "date_of_birth": "1972-01-05",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Manish_Sisodia",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q6749900/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Manish_Sisodia.JPG",
+   "author": "DelhiiteRock",
+   "licence": "CC BY-SA 3.0"
+  }
+ },
+ "vijender-gupta": {
+  "key": "vijender-gupta",
+  "wikidata": "Q7929331",
+  "date_of_birth": "1963-08-14",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Vijender_Gupta",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q7929331/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Shri_Vijender_Gupta,_Speaker_of_the_Delhi_Legislative_Assembly.jpg",
+   "author": "Ministry of Parliamentary Affairs",
+   "licence": "GODL-India"
+  }
+ },
+ "devender-yadav": {
+  "key": "devender-yadav",
+  "wikidata": "Q16728525",
+  "date_of_birth": "1972-09-13",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Devender_Yadav",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q16728525/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Devender_Yadav_INC.jpg",
+   "author": "TechyPolitico",
+   "licence": "CC0"
+  }
+ },
+ "saurabh-bharadwaj": {
+  "key": "saurabh-bharadwaj",
+  "wikidata": "Q15410449",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Saurabh_Bhardwaj",
+  "photo_url": null,
+  "credit": null
+ },
+ "parvesh-verma": {
+  "key": "parvesh-verma",
+  "wikidata": "Q15216956",
+  "date_of_birth": "1977-11-07",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Parvesh_Verma",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q15216956/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Parvesh_Verma_(cropped).jpg",
+   "author": "Vice President's Secretariat",
+   "licence": "GODL-India"
+  }
+ },
+ "ashish-sood": {
+  "key": "ashish-sood",
+  "wikidata": "Q132319970",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Ashish_Sood",
+  "photo_url": null,
+  "credit": null
+ },
+ "manjinder-singh-sirsa": {
+  "key": "manjinder-singh-sirsa",
+  "wikidata": "Q28474547",
+  "date_of_birth": "1972-02-28",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Manjinder_Singh_Sirsa",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q28474547/photo.png",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:M._S._Sirsa_speech.png",
+   "author": "Chardikla Time TV Official",
+   "licence": "CC BY 3.0"
+  }
+ },
+ "ravinder-indraj-singh": {
+  "key": "ravinder-indraj-singh",
+  "wikidata": "Q132174822",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Ravinder_Indraj_Singh",
+  "photo_url": null,
+  "credit": null
+ },
+ "kapil-mishra": {
+  "key": "kapil-mishra",
+  "wikidata": "Q6366610",
+  "date_of_birth": "1980-11-13",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kapil_Mishra",
+  "photo_url": null,
+  "credit": null
+ },
+ "pankaj-kumar-singh": {
+  "key": "pankaj-kumar-singh",
+  "wikidata": "Q132562053",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Pankaj_Kumar_Singh_(politician)",
+  "photo_url": null,
+  "credit": null
+ }
+}

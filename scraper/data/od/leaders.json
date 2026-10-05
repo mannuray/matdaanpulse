@@ -1,0 +1,483 @@
+{
+  "people": [
+    {
+      "key": "mohan-charan-majhi",
+      "name": "Mohan Charan Majhi",
+      "wikidata": "Q23762152",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "OD_VS09_24_KEONJHAR"
+        },
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_24_KEONJHAR"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_24_KEONJHAR"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_24_KEONJHAR"
+        }
+      ]
+    },
+    {
+      "key": "kanak-vardhan-singh-deo",
+      "name": "Kanak Vardhan Singh Deo",
+      "wikidata": "Q39142625",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "OD_VS09_67_PATNAGARH"
+        },
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_67_PATNAGARH"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_67_PATNAGARH"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_67_PATNAGARH"
+        }
+      ]
+    },
+    {
+      "key": "pravati-parida",
+      "name": "Pravati Parida",
+      "wikidata": "Q126380215",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_106_NIMAPARA"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_106_NIMAPARA"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_106_NIMAPARA"
+        }
+      ]
+    },
+    {
+      "key": "naveen-patnaik",
+      "name": "Naveen Patnaik",
+      "wikidata": "Q1190856",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "OD_VS09_131_HINJILI"
+        },
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_131_HINJILI"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_131_HINJILI"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_2_BIJEPUR"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_131_HINJILI"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_70_KANTABANJI"
+        }
+      ]
+    },
+    {
+      "key": "rama-chandra-kadam",
+      "name": "Rama Chandra Kadam",
+      "wikidata": "Q61488853",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_145_POTTANGI"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_145_POTTANGI"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_145_POTTANGI"
+        }
+      ]
+    },
+    {
+      "key": "surama-padhy",
+      "name": "Surama Padhy",
+      "wikidata": "Q61556137",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "OD_VS09_119_RANPUR"
+        },
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_119_RANPUR"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_119_RANPUR"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_119_RANPUR"
+        }
+      ]
+    },
+    {
+      "key": "suresh-pujari",
+      "name": "Suresh Pujari",
+      "wikidata": "Q63999107",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "OD_VS09_6_BRAJARAJNAGAR"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_6_BRAJARAJNAGAR"
+        }
+      ]
+    },
+    {
+      "key": "rabi-narayan-naik",
+      "name": "Rabi Narayan Naik",
+      "wikidata": "Q61510144",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "OD_VS09_15_KUCHINDA"
+        },
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_15_KUCHINDA"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_15_KUCHINDA"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_15_KUCHINDA"
+        }
+      ]
+    },
+    {
+      "key": "nityananda-gond",
+      "name": "Nityananda Gond",
+      "wikidata": "Q64590237",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_73_UMARKOTE"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_73_UMARKOTE"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_73_UMERKOTE"
+        }
+      ]
+    },
+    {
+      "key": "krushna-chandra-patra",
+      "name": "Krushna Chandra Patra",
+      "wikidata": "Q61575090",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "OD_VS09_55_DHENKANAL"
+        },
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_55_DHENKANAL"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_55_DHENKANAL"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_55_DHENKANAL"
+        }
+      ]
+    },
+    {
+      "key": "prithviraj-harichandan",
+      "name": "Prithviraj Harichandan",
+      "wikidata": "Q62567945",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_118_CHILIKA"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_118_CHILIKA"
+        }
+      ]
+    },
+    {
+      "key": "mukesh-mahaling",
+      "name": "Mukesh Mahaling",
+      "wikidata": "Q64590431",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_66_LOISINGHA"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_66_LOISINGHA"
+        }
+      ]
+    },
+    {
+      "key": "bibhuti-bhusan-jena",
+      "name": "Bibhuti Bhusan Jena",
+      "wikidata": "Q126683370",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "OD_VS09_132_GOPALPUR"
+        },
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_132_GOPALPUR"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_132_GOPALPUR"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_132_GOPALPUR"
+        }
+      ]
+    },
+    {
+      "key": "krushna-chandra-mahapatra",
+      "name": "Krushna Chandra Mahapatra",
+      "wikidata": "Q126414467",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_34_MORADA"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_34_MORADA"
+        }
+      ]
+    },
+    {
+      "key": "ganesh-ram-singkhuntia",
+      "name": "Ganesh Ram Singkhuntia",
+      "wikidata": "Q64590455",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_26_JASHIPUR"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_26_JASHIPUR"
+        }
+      ]
+    },
+    {
+      "key": "suryabanshi-suraj",
+      "name": "Suryabanshi Suraj",
+      "wikidata": "Q115101104",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_46_DHAMNAGAR"
+        }
+      ]
+    },
+    {
+      "key": "pradeep-bal-samanta",
+      "name": "Pradeep Bal Samanta",
+      "wikidata": "Q126414644",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_54_SUKINDA"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_54_SUKINDA"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_54_SUKINDA"
+        }
+      ]
+    },
+    {
+      "key": "gokulananda-mallik",
+      "name": "Gokulananda Mallik",
+      "wikidata": "Q126414912",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "OD_VS14_124_POLASARA"
+        },
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_124_POLASARA"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_124_POLASARA"
+        }
+      ]
+    },
+    {
+      "key": "sampad-chandra-swain",
+      "name": "Sampad Chandra Swain",
+      "wikidata": "Q126414809",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "OD_VS19_101_PARADEEP"
+        },
+        {
+          "year": 2024,
+          "const_id": "OD_VS24_101_PARADEEP"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2024": {
+      "leaders": [
+        {
+          "key": "mohan-charan-majhi",
+          "role": "Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "kanak-vardhan-singh-deo",
+          "role": "Deputy Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "pravati-parida",
+          "role": "Deputy Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "naveen-patnaik",
+          "role": "Leader of the Opposition",
+          "party_id": "BJD"
+        },
+        {
+          "key": "rama-chandra-kadam",
+          "role": "Congress Legislature Party leader",
+          "party_id": "INC"
+        },
+        {
+          "key": "surama-padhy",
+          "role": "Speaker",
+          "party_id": "BJP"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "suresh-pujari",
+          "role": "Minister of Revenue & Disaster Management",
+          "party_id": "BJP"
+        },
+        {
+          "key": "rabi-narayan-naik",
+          "role": "Minister of Rural Development, Panchayati Raj and Drinking Water",
+          "party_id": "BJP"
+        },
+        {
+          "key": "nityananda-gond",
+          "role": "Minister of School & Mass Education, ST & SC Development, Minorities & Backward Classes Welfare",
+          "party_id": "BJP"
+        },
+        {
+          "key": "krushna-chandra-patra",
+          "role": "Minister of Food Supplies & Consumer Welfare and Science & Technology",
+          "party_id": "BJP"
+        },
+        {
+          "key": "prithviraj-harichandan",
+          "role": "Minister of Law, Works and Excise",
+          "party_id": "BJP"
+        },
+        {
+          "key": "mukesh-mahaling",
+          "role": "Minister of Health & Family Welfare, Parliamentary Affairs and Electronics & IT",
+          "party_id": "BJP"
+        },
+        {
+          "key": "bibhuti-bhusan-jena",
+          "role": "Minister of Commerce & Transport and Steel & Mines",
+          "party_id": "BJP"
+        },
+        {
+          "key": "krushna-chandra-mahapatra",
+          "role": "Minister of Housing & Urban Development and Public Enterprises",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ganesh-ram-singkhuntia",
+          "role": "Minister of State (IC) for Forest, Environment & Climate Change and Labour & ESI",
+          "party_id": "BJP"
+        },
+        {
+          "key": "suryabanshi-suraj",
+          "role": "Minister of State (IC) for Higher Education, Sports & Youth Services and Odia Language, Literature & Culture",
+          "party_id": "BJP"
+        },
+        {
+          "key": "pradeep-bal-samanta",
+          "role": "Minister of State (IC) for Co-operation and Handlooms, Textiles & Handicrafts",
+          "party_id": "BJP"
+        },
+        {
+          "key": "gokulananda-mallik",
+          "role": "Minister of State (IC) for Fisheries & Animal Resources Development and MSME",
+          "party_id": "BJP"
+        },
+        {
+          "key": "sampad-chandra-swain",
+          "role": "Minister of State (IC) for Industries and Skill Development & Technical Education",
+          "party_id": "BJP"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mohan_Charan_Majhi_ministry",
+        "https://en.wikipedia.org/wiki/2024_Odisha_Legislative_Assembly_election",
+        "https://en.wikipedia.org/wiki/17th_Odisha_Legislative_Assembly",
+        "https://www.indiatvnews.com/news/india/odisha-cabinet-portfolios-cm-mohan-charan-majhi-keeps-home-ministry-kanak-vardhan-singh-agriculture-pravati-parida-women-child-development-finance-2024-06-15-937131",
+        "https://www.newsonair.gov.in/odisha-cm-mohan-charan-majhi-allocates-portfolios-to-his-council-of-ministers",
+        "https://odishabytes.com/odisha-cm-meets-bjp-chief-nitin-nabin-in-delhi-amid-cabinet-reshuffle-buzz/",
+        "https://en.wikipedia.org/wiki/Naveen_Patnaik",
+        "https://odishabytes.com/odisha-pradesh-congress-committee-dissolved-rama-kadam-appointed-clp-leader/",
+        "https://en.wikipedia.org/wiki/Surama_Padhy"
+      ]
+    }
+  }
+}

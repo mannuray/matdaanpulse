@@ -28,6 +28,11 @@ export function pickCandidacy(candidates: CandidateJson[], leaderName: string): 
   return best && best.sim >= MIN_NAME_MATCH ? best.x : null;
 }
 
+/** A leader's candidacy in a seat: by the ballot name when leaders.json gives one (a different name on the ballot), else the leader's name. */
+export function candidacyOf(candidates: CandidateJson[], leaderName: string, c: { year: number; const_id: string; ballot_name?: string }): CandidateJson | null {
+  return pickCandidacy(candidates, c.ballot_name ?? leaderName);
+}
+
 /** A candidacy of an earlier election of the state, any seat (for joining a leader to their own history). */
 export interface EarlierCandidacy { year: number; constId: string; name: string; partyId: string; age: number | null }
 

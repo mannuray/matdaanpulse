@@ -5,7 +5,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { DB_DIR, loadSeeded, type Seeded } from './seeded';
-import { emitLeadersSeed, pickCandidacy, priorCandidacies, type EarlierCandidacy, type ResolvedPerson } from './leaders-seed';
+import { emitLeadersSeed, candidacyOf, pickCandidacy, priorCandidacies, type EarlierCandidacy, type ResolvedPerson } from './leaders-seed';
 import { validateLeaders, type LeadersFile } from './leaders-data';
 import { stableUuid } from './match';
 import { similarity } from './names';
@@ -61,7 +61,7 @@ const people: ResolvedPerson[] = leaders.people.map(p => {
   const candidateIds = [...p.candidacies].sort((a, b) => a.year - b.year).map(c => {
     const s = seeded.get(c.year)!;
     const seat = s.json.seats.find(x => s.seat(x.constNo).id === c.const_id)!;
-    const best = pickCandidacy(seat.candidates, p.name);
+    const best = candidacyOf(seat.candidates, p.name, c);
     if (!best) throw new Error(`${p.key}: no candidate like "${p.name}" in ${c.year} ${c.const_id}`);
     return s.idOf(seat.constNo, best);
   });

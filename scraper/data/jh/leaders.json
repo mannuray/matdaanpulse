@@ -1,0 +1,451 @@
+{
+  "people": [
+    {
+      "key": "hemant-soren",
+      "name": "Hemant Soren",
+      "wikidata": "Q13619621",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_10_DUMKA"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_3_BARHAIT"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_10_DUMKA"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_3_BARHAIT"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_10_DUMKA"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_3_BARHAIT"
+        }
+      ]
+    },
+    {
+      "key": "kalpana-soren",
+      "name": "Kalpana Soren",
+      "wikidata": "Q111666083",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_31_GANDEY"
+        }
+      ]
+    },
+    {
+      "key": "babulal-marandi",
+      "name": "Babulal Marandi",
+      "wikidata": "Q4838091",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_28_DHANWAR"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_32_GIRIDIH"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_28_DHANWAR"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_28_DHANWAR"
+        }
+      ]
+    },
+    {
+      "key": "champai-soren",
+      "name": "Champai Soren",
+      "wikidata": "Q84411448",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_51_SARAIKELLA"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_51_SARAIKELLA"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_51_SARAIKELLA"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_51_SERAIKELLA"
+        }
+      ]
+    },
+    {
+      "key": "sudesh-mahto",
+      "name": "Sudesh Mahto",
+      "wikidata": "Q7633711",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_61_SILLI"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_61_SILLI"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_61_SILLI"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_61_SILLI"
+        }
+      ]
+    },
+    {
+      "key": "jairam-mahato",
+      "name": "Jairam Kumar Mahato",
+      "wikidata": "Q130707119",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_33_DUMRI"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_35_BERMO"
+        }
+      ]
+    },
+    {
+      "key": "pradeep-yadav",
+      "name": "Pradeep Yadav",
+      "wikidata": "Q42311487",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_16_POREYAHAT"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_16_POREYAHAT"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_16_POREYAHAT"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_16_POREYAHAT"
+        }
+      ]
+    },
+    {
+      "key": "rabindra-nath-mahato",
+      "name": "Rabindra Nath Mahato",
+      "wikidata": "Q81266533",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_8_NALA"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_8_NALA"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_8_NALA"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_8_NALA"
+        }
+      ]
+    },
+    {
+      "key": "radha-krishna-kishore",
+      "name": "Radha Krishna Kishore",
+      "wikidata": "Q30800922",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_78_CHATTARPUR"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_78_CHATTARPUR"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_78_CHATTARPUR"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_78_CHHATARPUR"
+        }
+      ]
+    },
+    {
+      "key": "deepak-birua",
+      "name": "Deepak Birua",
+      "wikidata": "Q113547139",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_52_CHAIBASA"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_52_CHAIBASA"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_52_CHAIBASA"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_52_CHAIBASA"
+        }
+      ]
+    },
+    {
+      "key": "chamra-linda",
+      "name": "Chamra Linda",
+      "wikidata": "Q64003734",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_66_MANDAR"
+        },
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_69_BISHUNPUR"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_69_BISHUNPUR"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_69_BISHUNPUR"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_69_BISHUNPUR"
+        }
+      ]
+    },
+    {
+      "key": "sanjay-prasad-yadav",
+      "name": "Sanjay Prasad Yadav",
+      "wikidata": "Q95975436",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "JH_VS09_17_GODDA"
+        },
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_17_GODDA"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_17_GODDA"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_17_GODDA"
+        }
+      ]
+    },
+    {
+      "key": "irfan-ansari",
+      "name": "Irfan Ansari",
+      "wikidata": "Q112980264",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_9_JAMTARA"
+        },
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_9_JAMTARA"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_9_JAMTARA"
+        }
+      ]
+    },
+    {
+      "key": "hafizul-hassan",
+      "name": "Hafizul Hassan",
+      "wikidata": "Q106934834",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_13_MADHUPUR"
+        }
+      ]
+    },
+    {
+      "key": "dipika-pandey-singh",
+      "name": "Dipika Pandey Singh",
+      "wikidata": "Q79613396",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "JH_VS19_18_MAHAGAMA"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_18_MAHAGAMA"
+        }
+      ]
+    },
+    {
+      "key": "yogendra-prasad",
+      "name": "Yogendra Prasad",
+      "wikidata": "Q131418951",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "JH_VS14_34_GOMIA"
+        },
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_34_GOMIA"
+        }
+      ]
+    },
+    {
+      "key": "shilpi-neha-tirkey",
+      "name": "Shilpi Neha Tirkey",
+      "wikidata": "Q112729944",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "JH_VS24_66_MANDAR"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2024": {
+      "leaders": [
+        {
+          "key": "hemant-soren",
+          "role": "Chief Minister",
+          "party_id": "JMM"
+        },
+        {
+          "key": "babulal-marandi",
+          "role": "Leader of the Opposition",
+          "party_id": "BJP"
+        },
+        {
+          "key": "rabindra-nath-mahato",
+          "role": "Speaker of the Legislative Assembly",
+          "party_id": "JMM"
+        },
+        {
+          "key": "kalpana-soren",
+          "role": "JMM star campaigner, candidate",
+          "party_id": "JMM"
+        },
+        {
+          "key": "champai-soren",
+          "role": "Former Chief Minister, BJP candidate",
+          "party_id": "BJP"
+        },
+        {
+          "key": "sudesh-mahto",
+          "role": "AJSU Party president, candidate",
+          "party_id": "AP1"
+        },
+        {
+          "key": "jairam-mahato",
+          "role": "JLKM president, candidate",
+          "party_id": "JLKM"
+        },
+        {
+          "key": "pradeep-yadav",
+          "role": "Congress Legislature Party leader",
+          "party_id": "INC"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "radha-krishna-kishore",
+          "role": "Minister of Finance, Commercial Tax, Planning and Development, and Parliamentary Affairs",
+          "party_id": "INC"
+        },
+        {
+          "key": "deepak-birua",
+          "role": "Minister of Revenue, Registration and Land Reforms, and Transport",
+          "party_id": "JMM"
+        },
+        {
+          "key": "chamra-linda",
+          "role": "Minister of Scheduled Tribe, Scheduled Caste and Backward Class Welfare",
+          "party_id": "JMM"
+        },
+        {
+          "key": "sanjay-prasad-yadav",
+          "role": "Minister of Industries, and Labour, Planning, Training and Skill Development",
+          "party_id": "RJD"
+        },
+        {
+          "key": "irfan-ansari",
+          "role": "Minister of Health, Medical Education and Family Welfare; Food, Public Distribution and Consumer Affairs; Disaster Management",
+          "party_id": "INC"
+        },
+        {
+          "key": "hafizul-hassan",
+          "role": "Minister of Water Resources and Minority Welfare",
+          "party_id": "JMM"
+        },
+        {
+          "key": "dipika-pandey-singh",
+          "role": "Minister of Rural Development, Rural Works and Panchayati Raj",
+          "party_id": "INC"
+        },
+        {
+          "key": "yogendra-prasad",
+          "role": "Minister of Drinking Water and Sanitation, and Excise and Prohibition",
+          "party_id": "JMM"
+        },
+        {
+          "key": "shilpi-neha-tirkey",
+          "role": "Minister of Agriculture, Animal Husbandry and Cooperative",
+          "party_id": "INC"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Fourth_Hemant_Soren_ministry",
+        "https://en.wikipedia.org/wiki/2024_Jharkhand_Legislative_Assembly_election",
+        "https://www.etvbharat.com/en/!bharat/jharkhand-cm-soren-distributes-portfolios-to-ministers-keeps-home-enn24120604333",
+        "https://www.business-standard.com/politics/cm-soren-distributes-portfolios-to-ministers-keeps-home-to-himself-124120600651_1.html",
+        "https://www.theweek.in/wire-updates/national/2025/08/18/cal37-jh-cm-departments.html",
+        "https://newsonair.gov.in/jharkhand-minister-sudivya-kumar-sonu-passes-away/",
+        "https://en.wikipedia.org/wiki/Babulal_Marandi",
+        "https://en.wikipedia.org/wiki/Rabindra_Nath_Mahato",
+        "https://en.wikipedia.org/wiki/Pradeep_Yadav_(Indian_politician)",
+        "https://en.wikipedia.org/wiki/Champai_Soren",
+        "https://en.wikipedia.org/wiki/Kalpana_Soren",
+        "https://en.wikipedia.org/wiki/Sudesh_Mahto",
+        "https://en.wikipedia.org/wiki/Jairam_Kumar_Mahato"
+      ]
+    }
+  }
+}
