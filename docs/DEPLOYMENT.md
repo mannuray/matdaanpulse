@@ -2,7 +2,7 @@
 
 Status: **draft.** The backend blockers in [§4](#4-blockers-before-first-deploy) are fixed on branch `fix/backend-hardening` (2026-09-30). Hosting decisions are made (§6); the domain name is still to be chosen. The pre-deploy task **CDN-ready live** (§2.2) is implemented on the same branch. Source reviews: [`docs/reviews/2026-09-30-backend-review.md`](reviews/2026-09-30-backend-review.md), [`docs/reviews/2026-09-30-election-day-pipeline-review.md`](reviews/2026-09-30-election-day-pipeline-review.md).
 
-**Current deployment (2026-10-01, interim, no domain yet):** API on Render `matdaanpulse-api` (Singapore, Free, auto-deploy off) → `https://matdaanpulse-api.onrender.com`, origin shield off, Redis via `REDIS_URL`; Neon project `matdaanpulse` (ap-southeast-1, built with `setup.sh`); Upstash Redis "Matdaan Pulse" (ap-southeast-1). Frontend and admin on **Vercel** projects `matdaanpulse` → `https://matdaanpulse.vercel.app` and `matdaanpulse-admin` → `https://matdaanpulse-admin.vercel.app` (Git-connected to `mannuray/matdaanpulse`, root `frontend` / `admin`, auto-deploy on push to `main`, build env `VITE_API_BASE_URL=https://matdaanpulse-api.onrender.com/api/v1`; `vercel.json` gives the SPA fallback). Render `CORS_ORIGINS` = both Vercel URLs. Vercel is for testing only — move to Cloudflare Pages (§5.4) once the domain (`matdaanpulse.in`) is bought, before any real traffic (D13).
+**Current deployment (2026-10-01, interim, no domain yet):** API on Render `matdaanpulse-api` (Singapore, Free, auto-deploy on `main` since 2026-10-05; no backend pushes during counting — LIVE_RUNBOOK) → `https://matdaanpulse-api.onrender.com`, origin shield off, Redis via `REDIS_URL`; Neon project `matdaanpulse` (ap-southeast-1, built with `setup.sh`); Upstash Redis "Matdaan Pulse" (ap-southeast-1). Frontend and admin on **Vercel** projects `matdaanpulse` → `https://matdaanpulse.vercel.app` and `matdaanpulse-admin` → `https://matdaanpulse-admin.vercel.app` (Git-connected to `mannuray/matdaanpulse`, root `frontend` / `admin`, auto-deploy on push to `main`, build env `VITE_API_BASE_URL=https://matdaanpulse-api.onrender.com/api/v1`; `vercel.json` gives the SPA fallback). Render `CORS_ORIGINS` = both Vercel URLs. Vercel is for testing only — move to Cloudflare Pages (§5.4) once the domain (`matdaanpulse.in`) is bought, before any real traffic (D13).
 
 Roadmap: fix code → **deploy** → data (2026 results backfill, curation) → live pipeline. Next live counting day: **27 Feb 2027**.
 
@@ -194,7 +194,7 @@ If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds f
 `seed_{hr,jh,od}_vs_{parties,2009…2024}.sql` (new elections), their `seed_<st>_districts_regions.sql`, person links v1 and
 v2 (run-once), and for the latest elections the run-once `seed_<st>_leaders.sql`, `seed_<st>_candidate_photos.sql`,
 `seed_<st>_affidavits.sql` and `seed_<st>_party_profiles.sql`; `seed_party_symbols.sql` gains the new symbol files.
-Back up production (Neon branch) first; Render has auto-deploy off, so deploy `main` there by hand (`render deploys create`).
+Back up production (Neon branch) first; Render deploys `main` automatically (auto-deploy on since 2026-10-05).
 
 **Five more states' history (Phase 3A).** `setup.sh` now also runs, for ga, mn, uk, pb, up: `seed_<st>_vs_parties.sql` →
 `seed_<st>_vs_{2012,2017,2022}.sql` (new elections, after the 2026 year seeds), `seed_<st>_districts_regions.sql` (after the
