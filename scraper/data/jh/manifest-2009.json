@@ -1,0 +1,75 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2009_Jharkhand_Legislative_Assembly_election",
+  "note: NDA (BJP + JD(U)); Congress allied with JVM(P)."
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP",
+    "JDU"
+   ]
+  },
+  {
+   "id": "UPA",
+   "name": "Congress+",
+   "color": "#19AAED",
+   "parties": [
+    "INC",
+    "JVM"
+   ]
+  },
+  {
+   "id": "JMM",
+   "name": "JMM",
+   "color": "#215B30",
+   "parties": [
+    "JMM"
+   ]
+  },
+  {
+   "id": "AP1",
+   "name": "AJSU",
+   "color": "#E65100",
+   "parties": [
+    "AP1"
+   ]
+  },
+  {
+   "id": "RJD",
+   "name": "RJD",
+   "color": "#2E7D32",
+   "parties": [
+    "RJD"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "UPA",
+  "JMM",
+  "AP1",
+  "RJD"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 41
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   85.5,
+   23.6
+  ],
+  "map_url": "/geo/jh_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}

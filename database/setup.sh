@@ -99,7 +99,7 @@ for st in ga mn uk pb up; do
 done
 # Phase 4A states (new elections since the 2008 delimitation), their ECI parties first
 run seed_dl_vs_parties.sql; for y in 2008 2013 2015 2020 2025; do run "seed_dl_vs_${y}.sql"; done
-for st in hr; do run "seed_${st}_vs_parties.sql"; for y in 2009 2014 2019 2024; do run "seed_${st}_vs_${y}.sql"; done; done
+for st in hr jh; do run "seed_${st}_vs_parties.sql"; for y in 2009 2014 2019 2024; do run "seed_${st}_vs_${y}.sql"; done; done
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
 for st in kl as; do run "seed_${st}_manifest_fixes_v1.sql"; done
 # Run-once: parties the old manifests put in the wrong alliance (Kerala, Tamil Nadu 2011, West Bengal 2011)
