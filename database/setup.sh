@@ -108,6 +108,8 @@ for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
 # 2026 leaders (curated, user-approved; run-once: candidacy links, fill-only profiles, manifest watchlists)
 for st in as kl py tn wb; do run "seed_${st}_leaders.sql"; done
+# 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
+for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_affidavits.sql"; done
 

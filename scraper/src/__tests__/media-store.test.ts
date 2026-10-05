@@ -33,6 +33,9 @@ describe('emitMediaRewriteSeed', () => {
   it('moves image credits without colliding with a credit already on S3', () => {
     expect(sql).toMatch(/UPDATE image_credits c SET url = .* WHERE c\.url LIKE '[^']+%'\s+AND NOT EXISTS \(SELECT 1 FROM image_credits d WHERE d\.url = /);
   });
+  it('drops a Blob credit whose S3 twin already exists (the always-run seed inserts add the S3 rows first)', () => {
+    expect(sql).toMatch(/DELETE FROM image_credits c WHERE c\.url LIKE '[^']+%'\s+AND EXISTS \(SELECT 1 FROM image_credits d WHERE d\.url = /);
+  });
   it('runs once (seed_runs)', () => {
     expect(sql).toContain("seed_runs WHERE name = 'seed_media_s3_v1'");
   });

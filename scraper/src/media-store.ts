@@ -64,6 +64,8 @@ export function emitMediaRewriteSeed(blobBase: string, s3Base: string): string {
     col('parties', 'eci_symbol_url'),
     `UPDATE image_credits c SET url = '${to}' || substr(c.url, ${at}) WHERE c.url LIKE ${like}`,
     `  AND NOT EXISTS (SELECT 1 FROM image_credits d WHERE d.url = '${to}' || substr(c.url, ${at}));`,
+    `DELETE FROM image_credits c WHERE c.url LIKE ${like}`,
+    `  AND EXISTS (SELECT 1 FROM image_credits d WHERE d.url = '${to}' || substr(c.url, ${at}));`,
     '', '\\endif',
     "INSERT INTO seed_runs (name) VALUES ('seed_media_s3_v1') ON CONFLICT (name) DO NOTHING;", '',
     'COMMIT;', '',

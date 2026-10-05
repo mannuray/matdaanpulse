@@ -11,6 +11,8 @@ UPDATE parties SET symbol_url = 'https://matdaanpulse-media.s3.ap-south-1.amazon
 UPDATE parties SET eci_symbol_url = 'https://matdaanpulse-media.s3.ap-south-1.amazonaws.com' || substr(eci_symbol_url, 56) WHERE eci_symbol_url LIKE 'https://ont9tlwrlxhj4iwf.public.blob.vercel-storage.com/%';
 UPDATE image_credits c SET url = 'https://matdaanpulse-media.s3.ap-south-1.amazonaws.com' || substr(c.url, 56) WHERE c.url LIKE 'https://ont9tlwrlxhj4iwf.public.blob.vercel-storage.com/%'
   AND NOT EXISTS (SELECT 1 FROM image_credits d WHERE d.url = 'https://matdaanpulse-media.s3.ap-south-1.amazonaws.com' || substr(c.url, 56));
+DELETE FROM image_credits c WHERE c.url LIKE 'https://ont9tlwrlxhj4iwf.public.blob.vercel-storage.com/%'
+  AND EXISTS (SELECT 1 FROM image_credits d WHERE d.url = 'https://matdaanpulse-media.s3.ap-south-1.amazonaws.com' || substr(c.url, 56));
 
 \endif
 INSERT INTO seed_runs (name) VALUES ('seed_media_s3_v1') ON CONFLICT (name) DO NOTHING;
