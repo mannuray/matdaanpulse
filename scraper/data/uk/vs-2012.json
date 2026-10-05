@@ -1,0 +1,8253 @@
+{
+ "year": 2012,
+ "electionId": "a0350000-0000-4000-8000-000000002012",
+ "source": {
+  "title": "ECI Statistical Report, Uttarakhand Legislative Assembly 2012",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3231",
+  "retrieved": "2026-10-05"
+ },
+ "parties": [
+  {
+   "id": "ABHM",
+   "name": "Akhil Bharat Hindu Mahasabha",
+   "abbreviation": "ABHM",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "ARVP",
+   "name": "Adarsh Rashtriya Vikas Party",
+   "abbreviation": "ARVP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BCP_UK",
+   "name": "Bhartiya Chaitanya Party",
+   "abbreviation": "BCP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "BSP",
+   "name": "Bahujan Samaj Party",
+   "abbreviation": null,
+   "color": "#4B5BD6",
+   "recognition": "National"
+  },
+  {
+   "id": "BSPK",
+   "name": "Bahujan Sangharsh Party (Kanshiram)",
+   "abbreviation": "BSP(K)",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "CPIML",
+   "name": "Communist Party of India (Marxist-Leninist) (Liberation)",
+   "abbreviation": "CPI(ML)(L)",
+   "color": "#E5484D",
+   "recognition": "State"
+  },
+  {
+   "id": "GDP",
+   "name": "Gorkha Democratic Front",
+   "abbreviation": "GDP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "HND",
+   "name": "Hindusthan Nirman Dal",
+   "abbreviation": "HND",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "IJP",
+   "name": "Indian Justice Party",
+   "abbreviation": "IJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "IVD",
+   "name": "Inqalab Vikas Dal",
+   "abbreviation": "IVD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JDS",
+   "name": "Janata Dal  (Secular)",
+   "abbreviation": null,
+   "color": "#228B22",
+   "recognition": null
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "JKNPP",
+   "name": "Jammu & Kashmir National Panthers Party",
+   "abbreviation": "JKNPP",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "JLKP",
+   "name": "Jan Lok Kalyan Party",
+   "abbreviation": "JLKP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JMBP",
+   "name": "Jai Maha Bharath Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "LJP",
+   "name": "Lok Janshakti Party",
+   "abbreviation": null,
+   "color": "#0000CD",
+   "recognition": null
+  },
+  {
+   "id": "MAJP",
+   "name": "Manavadhikar Janshakti Party",
+   "abbreviation": "MaJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MD",
+   "name": "Mahan Dal",
+   "abbreviation": "MD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MKD",
+   "name": "Maidani Kranti Dal",
+   "abbreviation": "MKD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MSP",
+   "name": "Moolniwasi Samaj Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "MUL_BR",
+   "name": "Muslim League Kerala State Committee",
+   "abbreviation": "MUL",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "NAP_UK",
+   "name": "Naitik Party",
+   "abbreviation": "NAP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "PP",
+   "name": "Peace Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RJKP",
+   "name": "Rashtriya Jan Kalyan Party",
+   "abbreviation": "RJKP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RJSD",
+   "name": "Rashtriya Jan Sahay Dal",
+   "abbreviation": "RJSD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RKSP",
+   "name": "Rashtriya Krantikari Samajwadi Party",
+   "abbreviation": "RKSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RLD",
+   "name": "Rashtriya Lok Dal",
+   "abbreviation": null,
+   "color": "#33CC33",
+   "recognition": null
+  },
+  {
+   "id": "RLNP",
+   "name": "Rashtriya Lok Nirman Party",
+   "abbreviation": "RLNP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SBSP_BR",
+   "name": "Suheldev Bhartiya Samaj Party",
+   "abbreviation": "SBSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "abbreviation": null,
+   "color": "#FF6600",
+   "recognition": null
+  },
+  {
+   "id": "SP",
+   "name": "Samajwadi Party",
+   "abbreviation": null,
+   "color": "#E60000",
+   "recognition": null
+  },
+  {
+   "id": "SSP5",
+   "name": "Sainik Samaj Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "TMC",
+   "name": "All India Trinamool Congress",
+   "abbreviation": null,
+   "color": "#00CC44",
+   "recognition": null
+  },
+  {
+   "id": "UJP",
+   "name": "Uttarkhand Janwadi Party",
+   "abbreviation": "UJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "UKDP",
+   "name": "Uttarakhand Kranti Dal(P)",
+   "abbreviation": "UKDP",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "UPP1",
+   "name": "Uttarakhand Parivartan Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "UTPP",
+   "name": "Uttarakhand Pragatisheel Party",
+   "abbreviation": "UtPP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "UTRM",
+   "name": "Uttarakhand Raksha Morcha",
+   "abbreviation": "UtRM",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Purola",
+   "type": "SC",
+   "electors": 58640,
+   "voters": 45536,
+   "turnout": 77.65,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Malchand",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 18098,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 14266,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajesh Juwantha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 10804,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kishan Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 1659,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Prakash Devnata",
+     "partyId": "UTPP",
+     "sex": "M",
+     "age": 32,
+     "votes": 706,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Yamunotri",
+   "type": "GEN",
+   "electors": 61863,
+   "voters": 44004,
+   "turnout": 71.13,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pritam Singh Panwar",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 47,
+     "votes": 15909,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kedar Singh Rawat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 13313,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jagveer Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 11961,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mahaveer Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 1058,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Vijendra Prasad",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 867,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jeet Singh Bhadkoti",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 39,
+     "votes": 454,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Murari Lal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 43,
+     "votes": 374,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Gangotri",
+   "type": "GEN",
+   "electors": 71433,
+   "voters": 50560,
+   "turnout": 70.78,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vijaipal Singh Sajwan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 20246,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gopal Singh Rawat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 13223,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 6436,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kishan Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 5595,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Hari Shankar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 1417,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dinesh Nautiyal",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 53,
+     "votes": 1356,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Hukam Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 1080,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bhagwati Prasad Bahuguna",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 584,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ravindra",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 52,
+     "votes": 287,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Narayani",
+     "partyId": "LJP",
+     "sex": "F",
+     "age": 47,
+     "votes": 222,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Badrinath",
+   "type": "GEN",
+   "electors": 85758,
+   "voters": 55225,
+   "turnout": 64.4,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajendra Singh Bhandri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 21492,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prem Ballabh Bhatt",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 11291,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kedar Singh Fonia",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 80,
+     "votes": 7511,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nandan Singh Bisht",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 5803,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anand Singh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 40,
+     "votes": 4681,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sabar Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 51,
+     "votes": 1671,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pankaj Vyas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 1267,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohan Lal Bharti",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 699,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Alok Meherwal",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 28,
+     "votes": 579,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Tharali",
+   "type": "SC",
+   "electors": 90407,
+   "voters": 53380,
+   "turnout": 59.04,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr Jeet Ram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 17404,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Magan Lal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 16731,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajpal Kanyal",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 57,
+     "votes": 4256,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sundra Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 3473,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mahes Shankar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 3151,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Govind Lal Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 2027,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Radhaballbh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 1723,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Narendra Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 30,
+     "votes": 1060,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Manjeet Ram",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 630,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rakesh Lal Khanada",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 36,
+     "votes": 598,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vinod Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 27,
+     "votes": 566,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Balak Ram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 76,
+     "votes": 485,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Bali Ram",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 43,
+     "votes": 459,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Prem Ram",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 48,
+     "votes": 397,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Karnprayag",
+   "type": "GEN",
+   "electors": 83807,
+   "voters": 49411,
+   "turnout": 58.96,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ansuya Prasad Maikhuri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 11147,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Surendra Singh Negi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 10920,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Harish Pujari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 8343,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anil Nautiyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 6631,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Awatar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 3576,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Neelam Chandra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 3093,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Arun Maithani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 1802,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vijayesh Nawani",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 49,
+     "votes": 1543,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Chatur Singh Negi",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 738,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Indresh Maikhuri",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 33,
+     "votes": 632,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dhumi Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 516,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Kedarnath",
+   "type": "GEN",
+   "electors": 75489,
+   "voters": 49329,
+   "turnout": 65.35,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shaila Rani Rawat",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 55,
+     "votes": 19960,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Asha",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 43,
+     "votes": 17632,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gangadhar Nautiyal",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 57,
+     "votes": 2395,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ramesh Prasad Chamola",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 62,
+     "votes": 1918,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dinesh Chandra Semwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 1859,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Durgpal Chauhan",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 34,
+     "votes": 1501,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Laxmi Jaggi",
+     "partyId": "CPI",
+     "sex": "F",
+     "age": 31,
+     "votes": 1492,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Om Prakash Vashisth",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 435,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shambhu Prasad",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 289,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Rudraprayag",
+   "type": "GEN",
+   "electors": 85984,
+   "voters": 53326,
+   "turnout": 62.02,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Harak Singh Rawat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 15469,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Matbar Singh Kandari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 71,
+     "votes": 14143,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bharat Singh Chaudhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 7988,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Arjun Singh",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 41,
+     "votes": 6331,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Virendra Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 3354,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dheer Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 1355,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kishori Nandan Dobhal",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 47,
+     "votes": 910,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kuldip Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 31,
+     "votes": 720,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bhagwati Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 717,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kundan Lal",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 716,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vijendra Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 477,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Ghanshali",
+   "type": "SC",
+   "electors": 77119,
+   "voters": 41438,
+   "turnout": 53.73,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bheem Lal Arya",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 24254,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dhani Lal Shah",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 10560,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shoorveer Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 2439,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Achla Khandewal",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 38,
+     "votes": 1452,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Makan Lal",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 30,
+     "votes": 930,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nagendra Lal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 28,
+     "votes": 808,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bhagwan Das",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 32,
+     "votes": 536,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ramesh Naithwal",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 377,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Deoprayag",
+   "type": "GEN",
+   "electors": 71105,
+   "voters": 40276,
+   "turnout": 56.64,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mantri Prasad Naithani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 12294,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Diwakar Bhatt",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 65,
+     "votes": 10753,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mahipal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 6706,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shoorveer Singh Sajwan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 6358,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jai Krishan (Pummy) Jansewak",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 37,
+     "votes": 1001,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Puran Singh Bhandari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 611,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ved Prakash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 456,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Raghunandan Pandey",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 70,
+     "votes": 423,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Jabar Singh Urf Krantikari Pawel",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 47,
+     "votes": 418,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bilashwar Jhaldiyal",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 43,
+     "votes": 411,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mukesh Chamoli",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 36,
+     "votes": 370,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Jai Prakash Upadhyay",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 37,
+     "votes": 365,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Narendranagar",
+   "type": "GEN",
+   "electors": 75506,
+   "voters": 49005,
+   "turnout": 64.9,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Subodh Uniyal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 21220,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Om Gopal Rawat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 36,
+     "votes": 20819,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sardar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 3445,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Aditya Kothari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 1600,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rukam Singh Pokhriyal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 584,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjay Kothiyal",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 575,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Soban Singh Negi",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 59,
+     "votes": 573,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Pratapnagar",
+   "type": "GEN",
+   "electors": 73031,
+   "voters": 38766,
+   "turnout": 53.08,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vikram Singh Negi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 12135,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vijay Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 11593,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajeshwar Prasad Painuly,",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 7927,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ramchandra Singh Bisht",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 68,
+     "votes": 3282,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Devi Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 56,
+     "votes": 3007,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Madan Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 729,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Tehri",
+   "type": "GEN",
+   "electors": 71981,
+   "voters": 40586,
+   "turnout": 56.38,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dinesh Dhanai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 12026,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kishore Upadhyaya",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 11649,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dhan Singh Negi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 9828,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Virendar Mohan Uttarakhandi",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 57,
+     "votes": 2237,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Er. Ratan Singh Gunsola",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 76,
+     "votes": 1978,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dr. Pramod Uniyal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 914,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sundar Lal Bailwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 593,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shivdayal Bahuguna",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 559,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bhagwan Singh Rana",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 55,
+     "votes": 308,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Asha",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 36,
+     "votes": 307,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Dhanolti",
+   "type": "GEN",
+   "electors": 67079,
+   "voters": 45814,
+   "turnout": 68.3,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mahaveer Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 12081,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Manmohan Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 10933,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jot Singh Bisht",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 10261,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 6049,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Somvari Lal Uniyal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 69,
+     "votes": 2127,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gulab Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 1499,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Devendra Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 636,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Yeshveer Arya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 515,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Chintamani",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 49,
+     "votes": 503,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohan Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 417,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Chait Ram Alias Chaitu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 315,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Usha Panwar",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 28,
+     "votes": 260,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Suraj Mani",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 66,
+     "votes": 173,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Chakrata",
+   "type": "ST",
+   "electors": 86876,
+   "voters": 65673,
+   "turnout": 75.59,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pritam Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 33187,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Munna Singh Chauhan",
+     "partyId": "UJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 26533,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kamla Chauhan",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 49,
+     "votes": 1943,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ghansyam Kunwar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 29,
+     "votes": 1017,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Naresh Chauhan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 32,
+     "votes": 768,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bheem Dutt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 610,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shamsher Singh Rathour",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 26,
+     "votes": 538,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Arjuni Rana",
+     "partyId": "UTRM",
+     "sex": "F",
+     "age": 42,
+     "votes": 277,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Vikasnagar",
+   "type": "GEN",
+   "electors": 93524,
+   "voters": 67806,
+   "turnout": 72.5,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nav Prabhat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 32742,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kuldeep Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 22885,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gurumel Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 28,
+     "votes": 2877,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Surat Singh",
+     "partyId": "UJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2695,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suhail Pasha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 1447,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Babita Pundir",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 32,
+     "votes": 829,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vinay Raj Singh (Pappu Bhai)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 532,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Haridass Kataria",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 527,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Arvind Sharma",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 45,
+     "votes": 458,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Gopal Singh Dogra",
+     "partyId": "SSP5",
+     "sex": "M",
+     "age": 59,
+     "votes": 454,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Liyakat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 434,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Chander Mohan Singh Patwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 360,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Jasbeer Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 346,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Ramesh Chandra Azad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 345,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "M. Islam",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 44,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Jamshed Ali",
+     "partyId": "MKD",
+     "sex": "M",
+     "age": 28,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Satish Kumar",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 43,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Inam Babu",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 53,
+     "votes": 109,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Sahaspur",
+   "type": "GEN",
+   "electors": 111900,
+   "voters": 83437,
+   "turnout": 74.56,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sahdev Singh Pundir",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 26064,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aryendra Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 20574,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gulzar Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 9699,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Laxmi Agarwal",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 30,
+     "votes": 5650,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rakesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 5181,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sahab Singh Pundir",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 4775,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shiv Prasad Devali",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 59,
+     "votes": 3070,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Prakash Joshi",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 46,
+     "votes": 1509,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gulfam Ali",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 44,
+     "votes": 1272,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bhoop Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 953,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ram Bahadur Tamang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 874,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Riyaz Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 521,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Pooja Subba",
+     "partyId": "GDP",
+     "sex": "F",
+     "age": 36,
+     "votes": 474,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Inam Babu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 455,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Vinod Singh Negi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 447,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Amit",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 30,
+     "votes": 414,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Babulal Gupta",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 55,
+     "votes": 347,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Sansar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 280,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Satish Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Shiv Raj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 184,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Santosh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Irfan Khan",
+     "partyId": "JLKP",
+     "sex": "M",
+     "age": 33,
+     "votes": 133,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Zamil Hasan",
+     "partyId": "MUL_BR",
+     "sex": "M",
+     "age": 61,
+     "votes": 106,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Dharampur",
+   "type": "GEN",
+   "electors": 120998,
+   "voters": 75255,
+   "turnout": 62.2,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dinesh Agarwal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 37884,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prakash Suman Dhyani",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 28464,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Saleem Ahmed",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 53,
+     "votes": 3805,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mo. Tahir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 976,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bahadur Singh Rawat",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 46,
+     "votes": 948,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mahesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 593,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ramsukh",
+     "partyId": "BSPK",
+     "sex": "M",
+     "age": 68,
+     "votes": 379,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Suresh Singh Rana",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 338,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sushma",
+     "partyId": "JMBP",
+     "sex": "F",
+     "age": 48,
+     "votes": 330,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Manjoor Hasan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 49,
+     "votes": 323,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Gopal Puri",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 33,
+     "votes": 178,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Shailesh Kumar Verma",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Tarun Ahuja",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 32,
+     "votes": 154,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Shambhu Saran",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 60,
+     "votes": 146,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Ajijur Rehaman",
+     "partyId": "MUL_BR",
+     "sex": "M",
+     "age": 80,
+     "votes": 142,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Jagveer Singh",
+     "partyId": "JLKP",
+     "sex": "M",
+     "age": 62,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Sardar Khan(Pappu)",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 50,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Sanjeevan Ram",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 89,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Raipur",
+   "type": "GEN",
+   "electors": 120008,
+   "voters": 76613,
+   "turnout": 63.84,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Umesh Sharma (Kau)",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 29900,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Trivendra Singh Rawat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 29426,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ajay Sood",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 5142,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vinod Bharthwal",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 58,
+     "votes": 4128,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajani Rawat",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 43,
+     "votes": 3144,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Pankaj Chetri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 705,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohan Singh Rawat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 639,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajendra Prasad Bhattkoti",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 45,
+     "votes": 536,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Roop Chand",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 36,
+     "votes": 441,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Manoj Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 409,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Anil Pant",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 273,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Shanti Prasad Bijalwan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Naseem",
+     "partyId": "UTPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Anuradha",
+     "partyId": "MKD",
+     "sex": "F",
+     "age": 36,
+     "votes": 224,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Maya Mohan Lakhera",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 197,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Vinod Kumar Maletha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Mahesh Kaushal",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 43,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Shusheel Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Mohammad Sattar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Bhupendra Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 25,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Shiv Sagar Thapa",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 28,
+     "votes": 98,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Rajkumar Urf Rajkumar Tyagi",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 42,
+     "votes": 83,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Rajpur Road",
+   "type": "SC",
+   "electors": 98988,
+   "voters": 60246,
+   "turnout": 60.86,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajkumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 28291,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravinder Singh Kataria",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 25221,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tanveer Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 5011,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sanjeev Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 449,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sapna Sonkar",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 43,
+     "votes": 304,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Balesh Bawania",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 278,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Naresh Vaid",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 249,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vijay Kumar",
+     "partyId": "RJKP",
+     "sex": "M",
+     "age": 41,
+     "votes": 235,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Brij Mohan",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 26,
+     "votes": 184,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Dehradun Cantt.",
+   "type": "GEN",
+   "electors": 102402,
+   "voters": 63025,
+   "turnout": 61.55,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Harbans Kapoor",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 29719,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Devendra Singh Sethi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 24624,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajendra Pant",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 51,
+     "votes": 3391,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Noopur Gupta",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 42,
+     "votes": 1570,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adesh Garg",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 1118,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jyotsna",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 46,
+     "votes": 567,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bijendar Singh Thapa",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 43,
+     "votes": 367,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sanjay Bhatt",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 25,
+     "votes": 315,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Subhash Chand Jasoria",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 43,
+     "votes": 295,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rahul Chauhan",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 37,
+     "votes": 260,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Indradev Shukla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rajeev Gupta",
+     "partyId": "RJSD",
+     "sex": "M",
+     "age": 49,
+     "votes": 111,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Beer Singh Rawat",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 51,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Pt. Madan Gopal Chove",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 62,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Mussoorie",
+   "type": "GEN",
+   "electors": 102702,
+   "voters": 63402,
+   "turnout": 61.73,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ganesh Joshi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 28097,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jot Singh Gunsola",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 18321,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Godavari Thapa Thapli",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 49,
+     "votes": 9248,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bhupendra Singh Chhetri",
+     "partyId": "GDP",
+     "sex": "M",
+     "age": 67,
+     "votes": 2628,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Pt. Manoj Sharma",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 1854,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohan Lal Bangwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 68,
+     "votes": 593,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pramila Rawat",
+     "partyId": "UKDP",
+     "sex": "F",
+     "age": 36,
+     "votes": 570,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Jagdish Chauhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 444,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bhagwan Singh Panwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 257,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kailash Singh Chaudhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 252,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Amit Singh",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 32,
+     "votes": 229,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Manoj Dhyani",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 216,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Gyanveer Tyagi",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 41,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Shiv Singh Rawat",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 67,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Sanjay Goyal",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 40,
+     "votes": 113,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Doiwala",
+   "type": "GEN",
+   "electors": 107015,
+   "voters": 76541,
+   "turnout": 71.52,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ramesh Pokhriyal Nishank",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 23448,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Heera Singh Bisht",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 22176,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "S.P. Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 11241,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jaideep Singh Negi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 8589,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Phool Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 5872,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jitendra Mohan Sharma",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 674,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dinesh Chandra",
+     "partyId": "MSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 594,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bhargav Chandola",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 36,
+     "votes": 506,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Surendra Dutt Petwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 445,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Heema Bora",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 49,
+     "votes": 382,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vijendra Singh Chauhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 368,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Shamsher Singh Bisht",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 312,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sarvanand",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 54,
+     "votes": 289,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Anuj Dimri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 286,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Rishi Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Sawan Chand Ramola",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 38,
+     "votes": 244,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Ramesh Kothiyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 242,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Kamini Gairola",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 39,
+     "votes": 219,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Prem Prakash",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 52,
+     "votes": 177,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Jaswant Singh Randhava",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 51,
+     "votes": 100,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Rishikesh",
+   "type": "GEN",
+   "electors": 119646,
+   "voters": 81166,
+   "turnout": 67.84,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Premchand Aggarwal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 29090,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajpal Kharola",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 21819,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Deep Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 17669,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Lallan Bharadwaj Rajbhar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 5047,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Surandra Singh Kaintura",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 48,
+     "votes": 1429,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shobha Ram Raturi",
+     "partyId": "SSP5",
+     "sex": "M",
+     "age": 52,
+     "votes": 1360,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anil Kalura",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 29,
+     "votes": 1191,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sanjay Pokhriyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 624,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gopal Purohit",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 592,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Yogesh Kumar Uniyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 583,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Suresh Chandra Dabral",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 318,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Kripal Singh Rawat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 274,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ramsharan Bhatt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 193,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Virender Bhardwaj",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 179,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Vishwanath Raturi (Babloo)",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 34,
+     "votes": 173,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Arti",
+     "partyId": "JDU",
+     "sex": "F",
+     "age": 25,
+     "votes": 169,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Naresh Chandra Baloni",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 41,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Ashish",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 123,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Ajay Kathuria",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 100,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Hardwar",
+   "type": "GEN",
+   "electors": 121669,
+   "voters": 82519,
+   "turnout": 67.82,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Madan Kaushik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 42297,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Satpal Brahamchari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 33677,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gulshan Arora",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 3225,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ashok Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 748,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Beer Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 336,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanju",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 288,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gajinder Singh Sidhu",
+     "partyId": "RKSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 243,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Harinder Tiwari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Pankaj Dubey",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 37,
+     "votes": 201,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Tripta Sharma",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 34,
+     "votes": 199,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Muhammad Mursalin Qureshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Noshad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Yashpal Singh Rawat",
+     "partyId": "MAJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Mukesh Sharma",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 41,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Sonia Kinnar",
+     "partyId": "JKNPP",
+     "sex": "O",
+     "age": 42,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Dhiraj Bhardwaj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Swami Nitanand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 104,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "B.H.E.L. ranipur",
+   "type": "GEN",
+   "electors": 113343,
+   "voters": 78098,
+   "turnout": 68.9,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Adesh Chauhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 26402,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ambris Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 19791,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vishal Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 39,
+     "votes": 14195,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Balvant Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 74,
+     "votes": 10281,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ataur Rahman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 1503,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Munarika Yadav",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 61,
+     "votes": 582,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pitambar Baloni",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 59,
+     "votes": 559,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Arjun Nagyan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 534,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Janak Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 420,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ex. Capt. Alok Kumar Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 416,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohan Singh Rawat",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 63,
+     "votes": 411,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Shreeram Ahuja",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 409,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Arun Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 301,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Kajichaand",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 33,
+     "votes": 298,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Sarita Purohit",
+     "partyId": "UKDP",
+     "sex": "F",
+     "age": 41,
+     "votes": 247,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Pankaj Gupta",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 41,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Shalu Gahalavat",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 28,
+     "votes": 199,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Nayeem Ahamed",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 41,
+     "votes": 199,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Mukesh Kumar Upadhyay",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 32,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Vasisth Pasvan",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 183,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Murshaleen Quresi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 116,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Sushil Chand Thapliyal",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 65,
+     "votes": 98,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Rati Bhan Saini",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 39,
+     "votes": 84,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Jwalapur",
+   "type": "SC",
+   "electors": 90228,
+   "voters": 70440,
+   "turnout": 78.07,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chander Shakhar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 70,
+     "votes": 21303,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Madan Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 20745,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Braj Rani",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 56,
+     "votes": 20649,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kavita",
+     "partyId": "RLNP",
+     "sex": "F",
+     "age": 36,
+     "votes": 2926,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Subhash Chanchal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 2792,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Raju Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 33,
+     "votes": 479,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Babu Ram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 387,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajan Rathore",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 33,
+     "votes": 348,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Pradeep Kumar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 26,
+     "votes": 269,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Jag Jeevan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 263,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Rekha Balmiki",
+     "partyId": "UTRM",
+     "sex": "F",
+     "age": 47,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Seema",
+     "partyId": "MUL_BR",
+     "sex": "F",
+     "age": 29,
+     "votes": 117,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Bhagwanpur",
+   "type": "SC",
+   "electors": 98545,
+   "voters": 78559,
+   "turnout": 79.72,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surendra Rakesh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 36828,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Satyapal Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 30047,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh Rathor",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 10650,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Menpal",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 545,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bishamber Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 46,
+     "votes": 472,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Jhabrera",
+   "type": "SC",
+   "electors": 95231,
+   "voters": 69346,
+   "turnout": 72.82,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hari Dass",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 22781,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajpal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 18972,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vaiyajanti Mala",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 39,
+     "votes": 16173,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Budh Singh",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 39,
+     "votes": 3981,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajendra Kumar Badi",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 54,
+     "votes": 3031,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bimla",
+     "partyId": "RLNP",
+     "sex": "F",
+     "age": 34,
+     "votes": 1373,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Madan Singh Khalsa",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 60,
+     "votes": 881,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Nauratu Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 612,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sanjay Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 496,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Jaiprakash",
+     "partyId": "MKD",
+     "sex": "M",
+     "age": 57,
+     "votes": 407,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Satyapal",
+     "partyId": "IVD",
+     "sex": "M",
+     "age": 38,
+     "votes": 336,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Vinod Kumar",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 27,
+     "votes": 269,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Pirankaliyar",
+   "type": "GEN",
+   "electors": 91933,
+   "voters": 73867,
+   "turnout": 80.35,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Furkan Ahmad",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 25870,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shahzad",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 23926,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shyambeer",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 21648,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rao Irshad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 442,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sulekh Chand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 368,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mahak Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 301,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd. Iqbal",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 48,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Yogesh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 44,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Lalit Kumar",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 34,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Anuj Verma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 127,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Rekha Devi",
+     "partyId": "MD",
+     "sex": "F",
+     "age": 31,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Devanand",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 40,
+     "votes": 116,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohd. Furkan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Charan Singh",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 41,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Wazid Ali",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 33,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Brahmanand",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 74,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Roorkee",
+   "type": "GEN",
+   "electors": 96239,
+   "voters": 61372,
+   "turnout": 63.77,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pardeep Batra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 23164,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Suresh Chand Jain",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 22363,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nayyer Azam",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 9772,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Manohar Lal Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 68,
+     "votes": 3228,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bharat Bhushan Kalra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 1200,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Satish Rohela Advocate",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 855,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Munesh Tyagi",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 48,
+     "votes": 257,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajendra Singh Pundir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 102,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Manisha",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 38,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sunil Kumar Saini",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 28,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Balvir Siingh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 81,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Prema",
+     "partyId": "JDU",
+     "sex": "F",
+     "age": 39,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Naveen Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 54,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Khanpur",
+   "type": "GEN",
+   "electors": 111521,
+   "voters": 87891,
+   "turnout": 78.81,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kunwar Pranav Singh Champion",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 23072,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ch. Kulveer Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 57,
+     "votes": 20241,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ravinder Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 19596,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Riyasat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 18730,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Mannan",
+     "partyId": "MD",
+     "sex": "M",
+     "age": 39,
+     "votes": 2408,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjay Pal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 42,
+     "votes": 2172,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sadat Masood",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 36,
+     "votes": 467,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Yakoob",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 340,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Jagpal Singh",
+     "partyId": "MAJP",
+     "sex": "M",
+     "age": 69,
+     "votes": 268,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Tasin",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 25,
+     "votes": 193,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Nar Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sayeed Hassan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 52,
+     "votes": 145,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Saddam Hussain",
+     "partyId": "MUL_BR",
+     "sex": "M",
+     "age": 30,
+     "votes": 80,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Manglore",
+   "type": "GEN",
+   "electors": 91769,
+   "voters": 72602,
+   "turnout": 79.11,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sarwat Kareem Ansari",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 55,
+     "votes": 24706,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Qazi Md. Nizamuddin",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 24008,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gaurav Chaudhary",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 36,
+     "votes": 19354,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kaleem",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 2061,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sanjeev Tomar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 732,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Naresh Kumar",
+     "partyId": "MKD",
+     "sex": "M",
+     "age": 55,
+     "votes": 545,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anuj",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 37,
+     "votes": 447,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Pradeep Kumar (Dhiman)",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 40,
+     "votes": 310,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Anil Kumar",
+     "partyId": "IVD",
+     "sex": "M",
+     "age": 30,
+     "votes": 242,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Braj Bhushan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Junaid Akbar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 74,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Laksar",
+   "type": "GEN",
+   "electors": 80150,
+   "voters": 65900,
+   "turnout": 82.22,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sanjay Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 25945,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Haji Taslim Ahmed",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 59,
+     "votes": 15551,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tahir Hasan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 13042,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ram Singh Saini",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 80,
+     "votes": 8001,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Prem Singh",
+     "partyId": "MD",
+     "sex": "M",
+     "age": 45,
+     "votes": 1301,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Surendra Kumar Namdev",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 391,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Padam Singh Gujjar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 36,
+     "votes": 284,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajkumar",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 37,
+     "votes": 264,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Asrar",
+     "partyId": "MUL_BR",
+     "sex": "M",
+     "age": 38,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rajkumar Saini",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 27,
+     "votes": 202,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Abdul Sattar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 173,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rajbeer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 161,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Gulam Rasool",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 35,
+     "votes": 154,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Satendra Kumar Saini",
+     "partyId": "UTPP",
+     "sex": "M",
+     "age": 32,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Machhala Devi",
+     "partyId": "NAP_UK",
+     "sex": "F",
+     "age": 35,
+     "votes": 74,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Hardwar Rural",
+   "type": "GEN",
+   "electors": 96902,
+   "voters": 77672,
+   "turnout": 80.16,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yatishvaranand",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 25159,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Irshad Ali",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 21284,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sheshraj Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 19158,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shrikant Verma",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 51,
+     "votes": 6452,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mahaveer Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 1721,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jitendra Kumar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 33,
+     "votes": 467,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ranveer Singh Rana",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 63,
+     "votes": 460,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Dharampal Sahgal",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 55,
+     "votes": 411,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Hitanshu Chopra",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 31,
+     "votes": 361,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ramesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 335,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Aladdin",
+     "partyId": "MAJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 319,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Arjun Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 25,
+     "votes": 303,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Kuldeep",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 277,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Ravidutt Bakshi",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 41,
+     "votes": 263,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Sayyad Ali",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 247,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Ha. Rao Mo. Asgar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 68,
+     "votes": 174,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Javed Aalam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 172,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Ghalib",
+     "partyId": "MUL_BR",
+     "sex": "M",
+     "age": 56,
+     "votes": 93,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Yamkeshwar",
+   "type": "GEN",
+   "electors": 78147,
+   "voters": 43326,
+   "turnout": 55.44,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vijay Brathwal",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 58,
+     "votes": 13842,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sarojani Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 54,
+     "votes": 10301,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Renu Bisht",
+     "partyId": "UTRM",
+     "sex": "F",
+     "age": 43,
+     "votes": 8541,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr Shakti Shail Kaparawan",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 54,
+     "votes": 3539,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Manoj Kulashri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 2149,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shurbir Singh Bisht",
+     "partyId": "SSP5",
+     "sex": "M",
+     "age": 55,
+     "votes": 1212,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Chandra Prakash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 859,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Col. Harpal Singh Bist (Ret)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 853,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Kuldeep Singh Rawat",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 545,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shatrughan Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 542,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ashok Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 378,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 233,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Pauri",
+   "type": "SC",
+   "electors": 85182,
+   "voters": 45549,
+   "turnout": 53.47,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sunder Lal Mandrawal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 74,
+     "votes": 19389,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghananand",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 16483,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manohar Lal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 48,
+     "votes": 6685,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bhagwan Singh Tamta",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 1102,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajesh Singh Raja",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 816,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ganesh Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 486,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Manoj Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 322,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Srinagar",
+   "type": "GEN",
+   "electors": 92823,
+   "voters": 54927,
+   "turnout": 59.17,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ganesh Godiyal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 27993,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr Dhan Singh Rawat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 22930,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shiv Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 833,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Devendra Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 695,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Arvind",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 33,
+     "votes": 672,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sarvender Singh Panwar (Saheb)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 631,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bikram Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 577,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajeswer Prasad",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 76,
+     "votes": 272,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Chaubattakhal",
+   "type": "GEN",
+   "electors": 86551,
+   "voters": 44078,
+   "turnout": 50.93,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Teerath Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 14741,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajpal Singh Bisht",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 12777,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Yashpal Benam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 6253,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajesh Kandari",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 4725,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dr Harender Singh Rawat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 2915,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Brig. (Retd) Surender Singh Patwal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 65,
+     "votes": 894,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ramesh Chandra Juyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 534,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bharat Bhushan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 422,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Jaspal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 379,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Lansdowne",
+   "type": "GEN",
+   "electors": 76445,
+   "voters": 40012,
+   "turnout": 52.34,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Daleep Singh Rawat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 15324,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lt Gen (Retd) Tejpal Singh Rawat Pvsm Vsm",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 71,
+     "votes": 9886,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Km Jyoti Rautela",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 34,
+     "votes": 8849,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shishupal Singh Rawat",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 2733,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anand Prakash",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 675,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Madhu Bisht",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 42,
+     "votes": 672,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Manoj Kumar Kuksal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 632,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Deepak Singh Bisht",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 432,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Manish Sundriyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 396,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Kotdwar",
+   "type": "GEN",
+   "electors": 87222,
+   "voters": 62315,
+   "turnout": 71.44,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surendra Singh Negi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 31797,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Maj Gen (Retd) Bhuwan Chandra Khanduri Avsm",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 77,
+     "votes": 27174,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Raje Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 1486,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sur Singh Gusain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 583,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gita Ram Sundriyal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 53,
+     "votes": 337,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajendra Singh Arya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 310,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mahesh Chandra Negi",
+     "partyId": "UTPP",
+     "sex": "M",
+     "age": 36,
+     "votes": 287,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Manish Bhatt",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 38,
+     "votes": 139,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Dharchula",
+   "type": "GEN",
+   "electors": 72755,
+   "voters": 47757,
+   "turnout": 65.64,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Harish Dhami",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 15739,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khushal Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 10433,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kashi Singh Airy",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 6685,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajendara Singh Kutiyal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 4389,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gagan Singh Rajwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 2990,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Virendra Singh Pal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 44,
+     "votes": 2347,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jagat Martolia",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 43,
+     "votes": 1864,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shankar Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1131,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Laxmi Datt Pant",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 627,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Jewan Singh Danu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 479,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Govind Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 374,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Dinesh Singh",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 25,
+     "votes": 361,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Didihat",
+   "type": "GEN",
+   "electors": 75458,
+   "voters": 45410,
+   "turnout": 60.18,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bishan Singh Chuphal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 21089,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rewati Joshi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 53,
+     "votes": 10472,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jagjiwan Kanyal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 10183,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Diwan Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 44,
+     "votes": 1273,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Krishnanand",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 43,
+     "votes": 839,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jagdish Chand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 817,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Moti Ram Sagar",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 56,
+     "votes": 408,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "Pithoragarh",
+   "type": "GEN",
+   "electors": 87580,
+   "voters": 57138,
+   "turnout": 65.24,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mayukh Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 33976,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prakash Pant",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 20779,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ram Datt Joshi",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 78,
+     "votes": 918,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Guljar Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 686,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Santosh Rawat",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 34,
+     "votes": 542,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Gangolihat",
+   "type": "SC",
+   "electors": 88073,
+   "voters": 48849,
+   "turnout": 55.46,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Narayanram Arya",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 24648,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Geeta Thakur Gowal",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 46,
+     "votes": 16768,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Narayan Ram Sanguri",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 3120,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dinesh Arya",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 27,
+     "votes": 1576,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Harish Prashad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 1186,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jyoti Rani",
+     "partyId": "LJP",
+     "sex": "F",
+     "age": 30,
+     "votes": 788,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bachi Ram Koli",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 69,
+     "votes": 493,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Kapkote",
+   "type": "GEN",
+   "electors": 85489,
+   "voters": 51637,
+   "turnout": 60.4,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Lalit Farswan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 22335,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Balwant Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 20966,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Karam Singh Danu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 1934,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Govind Singh Bhandari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 1493,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Harish Chandra Pathak (Er.)",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 46,
+     "votes": 1318,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Himmat Singh Aithani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 1218,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ram Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 997,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sundar Singh Mehara",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 39,
+     "votes": 449,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Anand Singh Kapkoti",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 396,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Har Govind Joshi",
+     "partyId": "HND",
+     "sex": "M",
+     "age": 42,
+     "votes": 240,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Bageshwar",
+   "type": "SC",
+   "electors": 99035,
+   "voters": 60150,
+   "turnout": 60.74,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chandan Ram Dass",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 23396,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ram Prasad Tamta",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 21485,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bahadur Ram Dhauni",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 53,
+     "votes": 9877,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kamaljeet Narayan Das",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 36,
+     "votes": 1883,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jagdish Prasad Tamta",
+     "partyId": "SSP5",
+     "sex": "M",
+     "age": 71,
+     "votes": 1212,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Deep Chandra Arya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 996,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Deep Chandra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 738,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Hari Ram Shastry",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 70,
+     "votes": 544,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Dwarahat",
+   "type": "GEN",
+   "electors": 84170,
+   "voters": 43666,
+   "turnout": 51.88,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Madan Singh Bisht",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 14798,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pushpesh Tripathi",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 32,
+     "votes": 11472,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Narendra Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 11096,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pramod Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 2004,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajendra Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 1152,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "P.C.Tewari",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 55,
+     "votes": 1066,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Birendra Singh Bajetha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 675,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Devi Dutt Joshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 76,
+     "votes": 458,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Pawan Chandra Pandey",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 430,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Vipin Chandra",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 45,
+     "votes": 425,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Salt",
+   "type": "GEN",
+   "electors": 90303,
+   "voters": 46942,
+   "turnout": 51.98,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surendra Singh Jeena",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 23956,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ranjeet Rawat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 18512,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhuwan Joshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 822,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dinesh Chandra Singh",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 28,
+     "votes": 784,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Purushottam Sharma",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 52,
+     "votes": 741,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Narayan Singh",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 32,
+     "votes": 681,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anoop Ram Kohali",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 635,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Pan Singh",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 53,
+     "votes": 485,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bhupendar",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 31,
+     "votes": 285,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Ranikhet",
+   "type": "GEN",
+   "electors": 74031,
+   "voters": 39512,
+   "turnout": 53.37,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajay Bhatt",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 14089,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Karan Mahara",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 14011,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Puran Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 66,
+     "votes": 9346,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mahendra Singh Bisht",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 765,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kishan Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 67,
+     "votes": 476,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Puran Chandra Joshi",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 36,
+     "votes": 315,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pratibha Negi",
+     "partyId": "UKDP",
+     "sex": "F",
+     "age": 31,
+     "votes": 269,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Someshwar",
+   "type": "SC",
+   "electors": 75643,
+   "voters": 43842,
+   "turnout": 57.96,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajay Tamta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 17288,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rekha Arya",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 33,
+     "votes": 14597,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajendra Barakoti",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 9716,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Smt. Shudha Nand",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 46,
+     "votes": 1120,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "(Captain) Amar Ram",
+     "partyId": "SSP5",
+     "sex": "M",
+     "age": 65,
+     "votes": 888,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Almora",
+   "type": "GEN",
+   "electors": 78503,
+   "voters": 47589,
+   "turnout": 60.62,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Manoj Tiwari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 16211,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Raghunath Singh Chauhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 15030,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shekhar Lakhchaura",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 6781,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kailash Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 6582,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bala Devi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 49,
+     "votes": 977,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nandan Ram Tamta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 543,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jaswant Singh Adhikari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 507,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shobha Joshi",
+     "partyId": "UTRM",
+     "sex": "F",
+     "age": 35,
+     "votes": 421,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Arjun Bhakuni",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 49,
+     "votes": 274,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ad. Govind Lal Verma",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 68,
+     "votes": 251,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Jageshwar",
+   "type": "GEN",
+   "electors": 81998,
+   "voters": 46674,
+   "turnout": 56.92,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Govind Singh Kunjwal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 67,
+     "votes": 18175,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bachi Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 14310,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Subhash Pandey",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 41,
+     "votes": 9270,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tara Datt",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 2830,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Surendra Sahay Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 1288,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kiran Arya",
+     "partyId": "UPP1",
+     "sex": "F",
+     "age": 33,
+     "votes": 720,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Lohaghat",
+   "type": "GEN",
+   "electors": 93567,
+   "voters": 51559,
+   "turnout": 55.1,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sri Puran Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 30429,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sri Mahendra Singh Mahra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 18894,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sri Govind Pandey",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 2187,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Champawat",
+   "type": "GEN",
+   "electors": 76311,
+   "voters": 50187,
+   "turnout": 65.77,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sri Hemesh Kharkwal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 20330,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sri Madan Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 13377,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Smt Haripriya Joshi Alias Hema Joshi",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 51,
+     "votes": 8610,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sri Pan Dev",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 2661,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sri Harshvardhan Singh",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 39,
+     "votes": 2042,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Smt Lila Wati Gahtori",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 40,
+     "votes": 867,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sri Rakesh Agarwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 824,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sri Manoj Kumar Bhatt",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 40,
+     "votes": 430,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sri Tahir Husen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 382,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sri Kailash Chandra Ray",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sri Anand Prakash Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sri Shyam Sundar Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 49,
+     "votes": 207,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Lalkuwa",
+   "type": "GEN",
+   "electors": 90260,
+   "voters": 67494,
+   "turnout": 74.78,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Harish Chandra Durgapal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 25189,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nawin Chandra Dumka",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 16341,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Harendra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 13863,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Devki Nandan Suyal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 55,
+     "votes": 3719,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Basant Joshi",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 38,
+     "votes": 1849,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bhuwan Chandra Pokhariya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 1803,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kamal Joshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1218,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Man Singh Pal",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 49,
+     "votes": 945,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Prakash Joshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 654,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sanjay Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 39,
+     "votes": 627,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Verenderpuri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 569,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mahesh Chandra",
+     "partyId": "BCP_UK",
+     "sex": "M",
+     "age": 32,
+     "votes": 251,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sunder Singh Khanka",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 57,
+     "votes": 195,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Mukesh Chandola",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 35,
+     "votes": 180,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Bhimtal",
+   "type": "GEN",
+   "electors": 86901,
+   "voters": 56892,
+   "turnout": 65.47,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dan Singh Bhandari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 21494,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohan Pal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 15051,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ram Singh Kera",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 14452,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr. Suresh Singh Negi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 1733,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kailash Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 920,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Puran Singh Mehra",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 829,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Naveen Chandra Bahuguna",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 39,
+     "votes": 605,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ganesh Chandra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 485,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Nirmala Joshi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 38,
+     "votes": 472,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rajendra Kumar Pant",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 369,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Virendra Danai",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 29,
+     "votes": 232,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sudershan Shah",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 55,
+     "votes": 145,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Nainital",
+   "type": "SC",
+   "electors": 94360,
+   "voters": 51444,
+   "turnout": 54.52,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sarita Arya",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 52,
+     "votes": 25563,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hem Chandra Arya",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 19255,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Snjay Kumar Alias Sanju",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 4460,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Padma Arya",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 50,
+     "votes": 878,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Vinod Kumar",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 41,
+     "votes": 763,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Devanand Alias Deva",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 42,
+     "votes": 503,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Haldwani",
+   "type": "GEN",
+   "electors": 114739,
+   "voters": 80664,
+   "turnout": 70.3,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Indira Hridyesh",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 70,
+     "votes": 42627,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Renu Adhikari",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 37,
+     "votes": 19044,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdul Matin Siddiqi",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 50,
+     "votes": 13453,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Raisul Hasan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 37,
+     "votes": 3043,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohmmad Asad Raza",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 617,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rupendra Nagar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 36,
+     "votes": 376,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bhuwan Chandra Joshi",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 365,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Dr. Narayan Singh Pangtey",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 68,
+     "votes": 286,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 178,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Samir Ulla Khan",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 33,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Kevlanand",
+     "partyId": "BCP_UK",
+     "sex": "M",
+     "age": 36,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Nisar Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Krishna Avatar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 122,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Bhuwan Chandra Joshi",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 65,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Kaladhungi",
+   "type": "GEN",
+   "electors": 113325,
+   "voters": 78730,
+   "turnout": 69.47,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Banshidhar Bhagat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 22744,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prakash Joshi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 20374,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mahesh Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 11809,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Diwan Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 9636,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bhoopendra Singh \"bhai Ji\"",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 8925,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Narayan Singh Jantawal",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2843,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Veer Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 746,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Surendra Singh Nigaltiya",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 54,
+     "votes": 625,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Janardan Pant",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 395,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Umesh Sharma",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 32,
+     "votes": 371,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Fidhaurrehman",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 26,
+     "votes": 261,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 61,
+   "name": "Ramnagar",
+   "type": "GEN",
+   "electors": 90668,
+   "voters": 64472,
+   "turnout": 71.11,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Amrita Rawat",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 53,
+     "votes": 23851,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Diwan Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 20122,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kishori Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 53,
+     "votes": 11406,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Hem Chandra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 4438,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Gaffar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1493,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Prabhat Dhyani",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 47,
+     "votes": 592,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Md. Sami",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 555,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Prem Chandra Joshi",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 67,
+     "votes": 484,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Havivurahaman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 462,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kamlesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 359,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Manohar Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 244,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Liladhar",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 56,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mehboob Ali",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 50,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Ajay Arya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 123,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 62,
+   "name": "Jaspur",
+   "type": "GEN",
+   "electors": 98839,
+   "voters": 76584,
+   "turnout": 77.48,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Shailendra Mohan Singhal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 25533,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohammad Umar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 65,
+     "votes": 22753,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adesh Singh Chauhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 21604,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sultan Bharti",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 43,
+     "votes": 4021,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shahnawaz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 615,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chandrapal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 75,
+     "votes": 576,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Navneet Kumar",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 27,
+     "votes": 348,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anand Singh",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 55,
+     "votes": 290,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd. Akram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 269,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd. Anees",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 204,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Faryad Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohd. Iqbal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 177,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 63,
+   "name": "Kashipur",
+   "type": "GEN",
+   "electors": 117999,
+   "voters": 81965,
+   "turnout": 69.46,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Harbhajan Singh Cheema",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 65,
+     "votes": 31734,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Manoj Joshi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 29352,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Haseen Khan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 13211,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd. Yamin Siddiqui",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 61,
+     "votes": 3667,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Aziz Qureshi",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 57,
+     "votes": 1216,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ram Vilas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 1074,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd. Anas Ansari",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 38,
+     "votes": 439,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Krishna Gopal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 389,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd. Naeem",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 60,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Aale Nabi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vikas Agrawal",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 37,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mathuri Lal Gautam Ambedkar",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 127,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Amarjeet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 99,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Shahzad Hussaon",
+     "partyId": "MUL_BR",
+     "sex": "M",
+     "age": 32,
+     "votes": 77,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 64,
+   "name": "Bajpur",
+   "type": "SC",
+   "electors": 109343,
+   "voters": 83901,
+   "turnout": 76.73,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yashpal Arya",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 38524,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajesh Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 23393,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Maheelal Gautam",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 13002,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajkumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 7436,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gavindra Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 28,
+     "votes": 567,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anita",
+     "partyId": "LJP",
+     "sex": "F",
+     "age": 26,
+     "votes": 490,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jagdish Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 449,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 65,
+   "name": "Gadarpur",
+   "type": "GEN",
+   "electors": 103062,
+   "voters": 84797,
+   "turnout": 82.28,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arvind Pande",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 27976,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jarnail Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 22843,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tarak Bachhar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 14396,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Manishi Chandra Tiwari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 10042,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shaherum",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 26,
+     "votes": 7519,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Vijay Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 1213,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dulal Mandal",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 534,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ramkaran",
+     "partyId": "SBSP_BR",
+     "sex": "M",
+     "age": 45,
+     "votes": 245,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 66,
+   "name": "Rudrapur",
+   "type": "GEN",
+   "electors": 119500,
+   "voters": 93836,
+   "turnout": 78.52,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raj Kumar Thukral",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 37291,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tilak Raj Behar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 33337,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Premananad Mahajan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 18681,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tajindra Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 38,
+     "votes": 1785,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sanjay Sahni",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 843,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kailash Chandra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 442,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bhupal Singh Dangwal",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 41,
+     "votes": 316,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vijay Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 300,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 287,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shakeel Ahmmad",
+     "partyId": "PP",
+     "sex": "M",
+     "age": 38,
+     "votes": 157,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "K.K. Bora",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 34,
+     "votes": 131,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Somnath",
+     "partyId": "BCP_UK",
+     "sex": "M",
+     "age": 35,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Rani Devi",
+     "partyId": "LJP",
+     "sex": "F",
+     "age": 42,
+     "votes": 76,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 67,
+   "name": "Kichha",
+   "type": "GEN",
+   "electors": 95287,
+   "voters": 72960,
+   "turnout": 76.57,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajesh Shukla",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 33388,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sarwar Yar Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 25162,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajesh Pratap Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 8072,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Suresh Agarwal",
+     "partyId": "UTRM",
+     "sex": "M",
+     "age": 45,
+     "votes": 3287,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Iqbal Qureshi",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 45,
+     "votes": 743,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mahendra Singh Rawat",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 30,
+     "votes": 559,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohmmad Yasin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 520,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Harish Chander Joshi",
+     "partyId": "BCP_UK",
+     "sex": "M",
+     "age": 38,
+     "votes": 480,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Artaim Kathaayat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 462,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Keshar Lal",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 192,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 68,
+   "name": "Sitarganj",
+   "type": "GEN",
+   "electors": 91480,
+   "voters": 73813,
+   "turnout": 80.69,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kiran Chand Mandal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 29280,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Narayan Pal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 16668,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 15508,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anwar Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 7085,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Vinay Krishna Mondal",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 53,
+     "votes": 1456,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ishwari Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 1338,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Harcharan Singh",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 29,
+     "votes": 841,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sartaj Ali",
+     "partyId": "PP",
+     "sex": "M",
+     "age": 25,
+     "votes": 667,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shaheen Khan",
+     "partyId": "UKDP",
+     "sex": "F",
+     "age": 43,
+     "votes": 393,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bachan Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 294,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ram Chandra",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 66,
+     "votes": 238,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 69,
+   "name": "Nanak matta",
+   "type": "ST",
+   "electors": 90386,
+   "voters": 67398,
+   "turnout": 74.57,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Prem Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 26652,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gopal Singh Rana",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 21021,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhim Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 9521,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ansuiya Rana",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 40,
+     "votes": 4213,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jasveer Singh",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 36,
+     "votes": 1529,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ramesh Chandra Rana",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 67,
+     "votes": 1432,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mahendra Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 1303,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Hari Singh",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 54,
+     "votes": 1014,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Beer Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 678,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 70,
+   "name": "Khatima",
+   "type": "GEN",
+   "electors": 91104,
+   "voters": 68835,
+   "turnout": 75.56,
+   "phase": 1,
+   "pollDate": "2012-01-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pushkar Singh Dhami",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 36,
+     "votes": 20586,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Davendra Chand",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 15192,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ramesh Singh Rana",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 13845,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr.G.C.Pandey",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 9475,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kunwar Jaivardhan Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 50,
+     "votes": 4056,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ramesh Chandar Joshi Urf Ramu Bhaya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 1804,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Chaudhary Sudeshpal Singh",
+     "partyId": "MKD",
+     "sex": "M",
+     "age": 50,
+     "votes": 640,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vinod Chand",
+     "partyId": "UKDP",
+     "sex": "M",
+     "age": 30,
+     "votes": 564,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Manvinder Singh Khaira",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 543,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Chetram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 469,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Daya Krishna Joshi Urf Dayalu Guru",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 467,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ramesh Chandra Gahtori",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 44,
+     "votes": 370,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Vimal E-Tyagi",
+     "partyId": "ARVP",
+     "sex": "M",
+     "age": 48,
+     "votes": 319,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Ram Vriksha",
+     "partyId": "PP",
+     "sex": "M",
+     "age": 50,
+     "votes": 268,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Jagdish Chand Rajwar",
+     "partyId": "UPP1",
+     "sex": "M",
+     "age": 27,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Rakesh Shukla",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 33,
+     "votes": 111,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

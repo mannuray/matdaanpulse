@@ -1,0 +1,47 @@
+[
+ {
+  "year": 2012,
+  "key": "total-valid:4",
+  "reason": "ECI's Constituency Data Summary total valid votes (54973) differs from its own Detailed Results (54994) by 21; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2012,
+  "key": "total-valid:6",
+  "reason": "ECI's Constituency Data Summary total valid votes (48937) differs from its own Detailed Results (48941) by 4; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2012,
+  "key": "total-valid:67",
+  "reason": "ECI's Constituency Data Summary total valid votes (72863) differs from its own Detailed Results (72865) by 2; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "margin:5",
+  "reason": "ECI's Constituency Data Summary prints margin 4921, but its own winner (25931) and runner-up (21073) votes, which agree with the Detailed Results, give 4858: an arithmetic slip in ECI's summary"
+ },
+ {
+  "year": 2017,
+  "key": "total-valid:42",
+  "reason": "ECI's Constituency Data Summary total valid votes (53809) differs from its own Detailed Results (53825) by 16; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "total-valid:43",
+  "reason": "ECI's Constituency Data Summary total valid votes (51669) differs from its own Detailed Results (51670) by 1; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "total-valid:46",
+  "reason": "ECI's Constituency Data Summary total valid votes (59770) differs from its own Detailed Results (59774) by 4; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "total-valid:47",
+  "reason": "ECI's Constituency Data Summary total valid votes (67477) differs from its own Detailed Results (67479) by 2; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "party-won:BJP",
+  "reason": "ECI's Performance of Political Parties gives BJP 56 seats; its Detailed Results and the declared result give 57 (the adjourned poll at Karnaprayag, held 9 Mar 2017, is the likely seat the performance table misses)"
+ }
+]

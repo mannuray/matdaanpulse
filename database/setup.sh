@@ -92,6 +92,11 @@ for st in wb as kl tn py; do
   run "seed_${st}_corrections_v1.sql"
   for y in 2011 2016 2021 2026; do run "seed_${st}_vs_${y}.sql"; done
 done
+# Phase 3A states (Goa, Manipur, Uttarakhand, Punjab, Uttar Pradesh 2012-2022): new elections, their ECI parties first
+for st in ga mn uk pb up; do
+  run "seed_${st}_vs_parties.sql"
+  for y in 2012 2017 2022; do run "seed_${st}_vs_${y}.sql"; done
+done
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
 for st in kl as; do run "seed_${st}_manifest_fixes_v1.sql"; done
 # Run-once: parties the old manifests put in the wrong alliance (Kerala, Tamil Nadu 2011, West Bengal 2011)

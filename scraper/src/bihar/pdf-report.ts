@@ -33,7 +33,9 @@ function readCandidate(line: string, m: RegExpExecArray): { cand: RawCandidate; 
   let party = flat[si + 3];
   let symbol = flat[si + 4];
   const sp = party.text.indexOf(' ');
-  if (sp > 0) { // a long abbreviation one space from its symbol ("SASAPT Television"): abbreviations have no spaces
+  // An abbreviation written letter-spaced ("Aa S P") stays whole: only short tokens, one space apart.
+  const spaced = /^[A-Za-z]{1,3}( [A-Za-z]{1,2})+$/.test(party.text);
+  if (sp > 0 && !spaced) { // a long abbreviation one space from its symbol ("SASAPT Television"): abbreviations have no spaces
     symbol = { col: party.col + sp + 1, text: party.text.slice(sp + 1) };
     party = { col: party.col, text: party.text.slice(0, sp) };
   }
@@ -86,11 +88,14 @@ const lastNumber = (line: string): number => {
   return Number(m[1]);
 };
 
-export function parseSummaryText(text: string): SeatSummary[] {
+/** `fixes`: sourced figures for seats whose ECI summary page is broken (summary-fixes.json); they replace what the page shows. */
+export type SummaryFixes = Record<number, { voters?: number; totalValid?: number; type?: SeatType }>;
+
+export function parseSummaryText(text: string, fixes: SummaryFixes = {}): SeatSummary[] {
   const lines = text.split('\n');
   const out: SeatSummary[] = [];
   let block: string[] | null = null;
-  const flush = () => { if (block) out.push(readSummaryBlock(block)); };
+  const flush = () => { if (block) out.push(readSummaryBlock(block, fixes)); };
   for (const line of lines) {
     if (/^\s*CONSTITUENCY\s*:-?\s*\d+\s*-/.test(line)) { flush(); block = [line]; continue; }
     if (block) block.push(line);
@@ -99,7 +104,7 @@ export function parseSummaryText(text: string): SeatSummary[] {
   return out;
 }
 
-function readSummaryBlock(lines: string[]): SeatSummary {
+function readSummaryBlock(lines: string[], fixes: SummaryFixes = {}): SeatSummary {
   const head = /^\s*CONSTITUENCY\s*:-?\s*(\d+)\s*-\s*(.+?)\s*$/.exec(lines[0])!;
   const ac = splitAcName(head[2]);
   let section = '';
@@ -127,9 +132,11 @@ function readSummaryBlock(lines: string[]): SeatSummary {
     if (mg) margin = Number(mg[1]);
   }
   const label = `${head[1]}-${head[2]}`;
+  const fix = fixes[Number(head[1])] ?? {};
+  for (const k of ['voters', 'totalValid'] as const) if (fix[k] !== undefined) f[k] = fix[k]!;
   for (const k of ['contested', 'electors', 'voters', 'totalValid']) if (f[k] === undefined) throw new Error(`Summary ${label}: ${k} not found`);
   if (!pollDate || !picks.WINNER || !picks['RUNNER-UP'] || margin === null) throw new Error(`Summary ${label}: dates/result not found`);
-  return { constNo: Number(head[1]), name: ac.name, type: (ac.type ?? 'GEN') as SeatType, electors: f.electors, voters: f.voters, contested: f.contested,
+  return { constNo: Number(head[1]), name: ac.name, type: fix.type ?? ((ac.type ?? 'GEN') as SeatType), electors: f.electors, voters: f.voters, contested: f.contested,
     totalValid: f.totalValid, nota: f.nota ?? null, pollDate, winner: picks.WINNER, runnerUp: picks['RUNNER-UP'], margin };
 }
 
@@ -144,7 +151,7 @@ export function parsePartyListText(text: string): PartyListEntry[] {
     if (/OTHER ABBREVIATIONS|HIGHLIGHTS|LIST OF SUCCESSFUL|PERFORMANCE OF POLITICAL/i.test(line)) break;
     const sec = recognitionOf(line.trim());
     if (sec) { rec = sec; continue; }
-    const m = /^\s*(\d+)\s*\.\s+(\S+)\s{2,}(.+?)\s*$/.exec(line);
+    const m = /^\s*(\d+)\s*\.\s+(\S+(?: [A-Za-z]{1,2})*)\s{2,}(.+?)\s*$/.exec(line);
     if (m && rec) { nameCol = line.indexOf(m[3], line.indexOf(m[2]) + m[2].length); out.push({ abbr: m[2], name: m[3], recognition: rec }); continue; }
     const cont = /^(\s*)(\S.*?)\s*$/.exec(line);
     if (cont && out.length && nameCol >= 0 && Math.abs(cont[1].length - nameCol) <= 2) out[out.length - 1].name += ` ${cont[2]}`;

@@ -38,3 +38,12 @@ describe('names', () => {
     expect(similarity('Rajesh Singh', 'Bhagirathi Devi')).toBeLessThan(0.3);
   });
 });
+
+describe('splitAcName with a dotted reservation suffix', () => {
+  it('reads "S.C" / "S.C." / "S.T." as the seat type (UP 2017: "Mahadewa S.C", "Machhlishahr S.C.")', () => {
+    expect(splitAcName('Mahadewa S.C')).toEqual({ name: 'Mahadewa', type: 'SC' });
+    expect(splitAcName('Machhlishahr S.C.')).toEqual({ name: 'Machhlishahr', type: 'SC' });
+    expect(splitAcName('Obra S.T.')).toEqual({ name: 'Obra', type: 'ST' });
+    expect(splitAcName('Sasaram')).toEqual({ name: 'Sasaram', type: null });
+  });
+});

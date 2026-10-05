@@ -1,0 +1,45 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2012_Uttarakhand_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "INC"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 36
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   79.2,
+   30.1
+  ],
+  "map_url": "/geo/uk_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}

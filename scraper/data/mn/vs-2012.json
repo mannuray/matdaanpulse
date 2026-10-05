@@ -1,0 +1,3377 @@
+{
+ "year": 2012,
+ "electionId": "a0210000-0000-4000-8000-000000002012",
+ "source": {
+  "title": "ECI Statistical Report, Manipur Legislative Assembly 2012",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3712",
+  "retrieved": "2026-10-05"
+ },
+ "parties": [
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "IVD",
+   "name": "Inqalab Vikas Dal",
+   "abbreviation": "IVD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JDS",
+   "name": "Janata Dal  (Secular)",
+   "abbreviation": null,
+   "color": "#228B22",
+   "recognition": null
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "JMBP",
+   "name": "Jai Maha Bharath Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "LJP",
+   "name": "Lok Janshakti Party",
+   "abbreviation": null,
+   "color": "#0000CD",
+   "recognition": null
+  },
+  {
+   "id": "MDPF",
+   "name": "Manipur Democratic Peoples's Front",
+   "abbreviation": "MDPF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MPP",
+   "name": "Manipur Peoples Party",
+   "abbreviation": "MPP",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "MSCP",
+   "name": "Manipur State Congress Party",
+   "abbreviation": "MSCP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NPF",
+   "name": "Naga Peoples Front",
+   "abbreviation": null,
+   "color": "#556B2F",
+   "recognition": null
+  },
+  {
+   "id": "NPP",
+   "name": "National People's Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": "National"
+  },
+  {
+   "id": "SDPOI",
+   "name": "Social Democratic Party Of India",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "abbreviation": null,
+   "color": "#FF6600",
+   "recognition": null
+  },
+  {
+   "id": "TMC",
+   "name": "All India Trinamool Congress",
+   "abbreviation": null,
+   "color": "#00CC44",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Khundrakpam",
+   "type": "GEN",
+   "electors": 22312,
+   "voters": 18598,
+   "turnout": 83.35,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thokchom Lokeshwar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 9182,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "I. Mangiton",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 3678,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "L. Premchandra",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 40,
+     "votes": 2096,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Konsam Tomba",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 69,
+     "votes": 1577,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Namoijam Singhajit Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 1435,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "R. Michael Koireng",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 30,
+     "votes": 419,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "L. Lala Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 71,
+     "votes": 211,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Heingang",
+   "type": "GEN",
+   "electors": 26694,
+   "voters": 23057,
+   "turnout": 86.38,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "N. Biren",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 11872,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Naoroibam Ratan (Kapu) Meetei",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 32,
+     "votes": 9790,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Y. Mangi",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 61,
+     "votes": 604,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "L. Brojendro",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 44,
+     "votes": 415,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dr. G. Tonsana Sharma",
+     "partyId": "MDPF",
+     "sex": "M",
+     "age": 61,
+     "votes": 373,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Khurai",
+   "type": "GEN",
+   "electors": 28973,
+   "voters": 25895,
+   "turnout": 89.38,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Ng. Bijoy Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 11618,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Leishangthem Shusindro Meitei @yaima",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 28,
+     "votes": 6529,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ningthoujam Bihari Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 63,
+     "votes": 5917,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Amusana R.K.",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 51,
+     "votes": 1801,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Kshetrigao",
+   "type": "GEN",
+   "electors": 28675,
+   "voters": 25494,
+   "turnout": 88.91,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Md. Amin Shah",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 7981,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thangjam Nandakishor Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 54,
+     "votes": 4987,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Athokpam Lala",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 68,
+     "votes": 4439,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A. R. Khan",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 59,
+     "votes": 3278,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Pangambam Premananda",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 39,
+     "votes": 2814,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sheikh Noorul Hassan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 1274,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vivek Raj Wangkhem",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 37,
+     "votes": 577,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Thingbaijam Ibosana Meitei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 143,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Thongju",
+   "type": "GEN",
+   "electors": 27476,
+   "voters": 24630,
+   "turnout": 89.64,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thongam Biswajit Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 36,
+     "votes": 10299,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bijoy Koijam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 9696,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kangujam Mangi Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 59,
+     "votes": 2641,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mangkhom Jayantakumar",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 40,
+     "votes": 1833,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tenshubam Bheigyachandra Shamuphaba",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 37,
+     "votes": 161,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Keirao",
+   "type": "GEN",
+   "electors": 25179,
+   "voters": 22899,
+   "turnout": 90.94,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karam Thamarjit Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 8865,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Md. Alauddin Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 7415,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Md. Islamuddin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 3391,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thongam Gopen",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 37,
+     "votes": 2111,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thongram Tony",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 647,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ningthoujam Itomba",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 320,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ngangbam Robindro Singh",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 44,
+     "votes": 98,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Takhellambam Nepolean Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 31,
+     "votes": 52,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Andro",
+   "type": "GEN",
+   "electors": 28289,
+   "voters": 25009,
+   "turnout": 88.41,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thounaojam Shyamkumar",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 41,
+     "votes": 16989,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Alhaj Md. Ahamed Ali",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 6557,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Yumkhaibam Dr. Mani Singh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 60,
+     "votes": 903,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mongjam Jiten Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 327,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Md Jalaluddin Shah",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 45,
+     "votes": 187,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Zanamuddin",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 41,
+     "votes": 43,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Lamlai",
+   "type": "GEN",
+   "electors": 24833,
+   "voters": 23062,
+   "turnout": 92.87,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kshetrimayum Biren Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 9923,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pheiroijam Parijat Singh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 68,
+     "votes": 8139,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kh. Ibomcha",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 57,
+     "votes": 4973,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Thangmeiband",
+   "type": "GEN",
+   "electors": 27215,
+   "voters": 21303,
+   "turnout": 78.28,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khumukcham Joykisan Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 46,
+     "votes": 7670,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jyotin Waikhom",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 6686,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Radhabinod Koijam",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 68,
+     "votes": 3872,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Indrajit",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 2713,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Meinam Bhorot Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 360,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Uripok",
+   "type": "GEN",
+   "electors": 21458,
+   "voters": 17480,
+   "turnout": 81.46,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "L. Nandakumar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 76,
+     "votes": 4864,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "N. Dwijamani Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 3779,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "N. Shyamananda Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 62,
+     "votes": 3712,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Santosh Nameirakpam",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 34,
+     "votes": 1734,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Doctor Nando Ningthoukhongjam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 1623,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Naorem Ibema Devi",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 57,
+     "votes": 1357,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Achou Singh Paonam",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 72,
+     "votes": 401,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Sagolband",
+   "type": "GEN",
+   "electors": 22557,
+   "voters": 18096,
+   "turnout": 80.22,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajkumar Imo Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 9150,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Khwairakpam Loken Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 8731,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kshetrimayum Shantakumar Singh",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 53,
+     "votes": 83,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Laishram Gyaneshwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "L. Kshetrani Devi",
+     "partyId": "IVD",
+     "sex": "F",
+     "age": 51,
+     "votes": 55,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Keishamthong",
+   "type": "GEN",
+   "electors": 25440,
+   "voters": 20953,
+   "turnout": 82.36,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "L. Ibomcha Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 62,
+     "votes": 9795,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Langpoklakpam Jayantakumar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 8336,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajkumar Shivchandra",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 2530,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Yumnam Romola Devi",
+     "partyId": "CPIM",
+     "sex": "F",
+     "age": 42,
+     "votes": 178,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Changamayum Ganeshlal Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 50,
+     "votes": 81,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Khundongbam Ojit",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 34,
+     "votes": 30,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Singjamei",
+   "type": "GEN",
+   "electors": 19259,
+   "voters": 16076,
+   "turnout": 83.47,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Irengbam Hemochandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 7975,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yumnam Khemchand Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 51,
+     "votes": 7818,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Heigrujam Nabashyam Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 281,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Yaiskul",
+   "type": "GEN",
+   "electors": 23579,
+   "voters": 19770,
+   "turnout": 83.85,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Elangbam Chand Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 6650,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hanjabam Jayadeva Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 6325,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Hareshwar Goshwami",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 52,
+     "votes": 4662,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thokchom Satyabrata Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 2133,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Wangkhei",
+   "type": "GEN",
+   "electors": 30860,
+   "voters": 24555,
+   "turnout": 79.57,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yumkham Erabot Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 72,
+     "votes": 10981,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Henry Okram",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 27,
+     "votes": 9405,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Moirangthem Praphullo Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 3594,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr. Haobam Borobabu Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 575,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Sekmai",
+   "type": "SC",
+   "electors": 23534,
+   "voters": 20739,
+   "turnout": 88.12,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khwairakpam Devendro Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 5897,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Heikham Dingo Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 33,
+     "votes": 5242,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ayangbam Oken Singh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 43,
+     "votes": 4983,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ningthoujam Biren",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 51,
+     "votes": 4611,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Lamsang",
+   "type": "GEN",
+   "electors": 27347,
+   "voters": 24986,
+   "turnout": 91.37,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wangkheimayum Brajabidhu Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 10053,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sorokhaibam Rajen Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 6909,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pakchao Phijam",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 61,
+     "votes": 6500,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khundrakpam Kanba Meitei",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 736,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Khoirom Raghumani Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 51,
+     "votes": 418,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Priyokumar Phijam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 280,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Konthoujam",
+   "type": "GEN",
+   "electors": 26249,
+   "voters": 23560,
+   "turnout": 89.76,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Konthoujam Sharat Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 48,
+     "votes": 10807,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Sapam Ranjan Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 10293,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nongmaithem Herojit",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 1637,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Maisnam Shakhi Leima",
+     "partyId": "CPI",
+     "sex": "F",
+     "age": 55,
+     "votes": 823,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Patsoi",
+   "type": "GEN",
+   "electors": 31235,
+   "voters": 27088,
+   "turnout": 86.72,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Akoijam Mirabai Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 51,
+     "votes": 14257,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sapam Kunjakeswor Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 54,
+     "votes": 8710,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Leishangthem Chandramani Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 74,
+     "votes": 2515,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pheiroijam Irabot Singh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 64,
+     "votes": 1482,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sapam Samungou Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 56,
+     "votes": 113,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Langthabal",
+   "type": "GEN",
+   "electors": 24381,
+   "voters": 21174,
+   "turnout": 86.85,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karam Shyam",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 7575,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Okram Joy Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 71,
+     "votes": 6540,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nongthombam Singhajit",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 58,
+     "votes": 4107,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thongam Bishwanath Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 49,
+     "votes": 1254,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Waikhom Shyama Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 57,
+     "votes": 1091,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Arambam Birendra Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 49,
+     "votes": 607,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Naoriya pakhanglakpa",
+   "type": "GEN",
+   "electors": 31157,
+   "voters": 26620,
+   "turnout": 85.44,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "R.K. Anand",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 8750,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Keisham Rojenkumar Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 6735,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Soibam Subhachandra Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 45,
+     "votes": 6324,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Oinam Malesh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 44,
+     "votes": 4571,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sanasam Mangi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 237,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Wangoi",
+   "type": "GEN",
+   "electors": 25719,
+   "voters": 23657,
+   "turnout": 91.98,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Oinam Lukhoi Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 36,
+     "votes": 9154,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Salam Joy Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 8972,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sagolsem Achouba Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 5312,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Yumnam Mani Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 68,
+     "votes": 218,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Mayang imphal",
+   "type": "GEN",
+   "electors": 25575,
+   "voters": 23584,
+   "turnout": 92.22,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khumujam Ratankumar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 10353,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kongkham Manglem Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 55,
+     "votes": 9562,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Meinam Khagemba",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 2377,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bogimayum Moulana Abdus Salam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 1292,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Nambol",
+   "type": "GEN",
+   "electors": 29094,
+   "voters": 26724,
+   "turnout": 91.85,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shri Nameirakpam Loken Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 13708,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shri Chaoba",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 75,
+     "votes": 12902,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Khaidem Premchand Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 62,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shri Borajao",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 44,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Oinam",
+   "type": "GEN",
+   "electors": 25174,
+   "voters": 23073,
+   "turnout": 91.65,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Irengbam Ibohalbi Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 57,
+     "votes": 7074,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "L. Radhakishore Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 55,
+     "votes": 6118,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Yumnam Jitendra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 5958,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Romio",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 3765,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Bishnupur",
+   "type": "GEN",
+   "electors": 27826,
+   "voters": 24085,
+   "turnout": 86.56,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Konthoujam Govindas",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 13308,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thiyam Yaima",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 61,
+     "votes": 6655,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khundrakpam Jibon",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 56,
+     "votes": 2189,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ningthoujam Sanajaoba",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 65,
+     "votes": 1291,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Pukhrambam Kumarjeet",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 467,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Maisnam Ibopishak",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 68,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Thokchom Bindhasakhi Devi",
+     "partyId": "SHS",
+     "sex": "F",
+     "age": 51,
+     "votes": 63,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Moirang",
+   "type": "GEN",
+   "electors": 33603,
+   "voters": 27900,
+   "turnout": 83.03,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mairembam Prithviraj Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 14521,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pukhrem Sharatchandra Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 61,
+     "votes": 13363,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Thanga",
+   "type": "GEN",
+   "electors": 20271,
+   "voters": 18254,
+   "turnout": 90.05,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tongbram Mangibabu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 4881,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tongbram Robindro Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 41,
+     "votes": 4710,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Moirangthem Asnikumar Singh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 41,
+     "votes": 3492,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Haobijam Manisana Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 57,
+     "votes": 3066,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Heisnam Kulachandra Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 58,
+     "votes": 1796,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Salam Ibohal Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 308,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Kumbi",
+   "type": "GEN",
+   "electors": 24928,
+   "voters": 21395,
+   "turnout": 85.83,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sanasam Bira Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 8572,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ningthoujam Mangi",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 61,
+     "votes": 7557,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Khangembam Menjor Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 60,
+     "votes": 4296,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khagembam Nabakumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 862,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Aheibam Angousana",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 58,
+     "votes": 108,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Lilong",
+   "type": "GEN",
+   "electors": 27849,
+   "voters": 25236,
+   "turnout": 90.62,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Md. Abdul Nasir",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 10668,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Md. Azizul Haque Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 6711,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Md. Alauddin",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 63,
+     "votes": 6332,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd. Khalid",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 34,
+     "votes": 604,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Md. Azizur Rahman Shah",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 62,
+     "votes": 582,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Burhanuddin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 282,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Md. Dilawar Ali",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 64,
+     "votes": 54,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Thoubal",
+   "type": "GEN",
+   "electors": 27236,
+   "voters": 23054,
+   "turnout": 84.65,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Okram Ibobi Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 19121,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Oinam Indira",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 39,
+     "votes": 3668,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Ak Manglemjao Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 61,
+     "votes": 257,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Wangkhem",
+   "type": "GEN",
+   "electors": 26866,
+   "voters": 23901,
+   "turnout": 88.96,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Keisham Meghachandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 9418,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Nimaichand Luwang",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 61,
+     "votes": 6462,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Md. Abdul Kadir",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 57,
+     "votes": 6321,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Laishram Kadamjit Singh",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 57,
+     "votes": 1699,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Heirok",
+   "type": "GEN",
+   "electors": 26503,
+   "voters": 25447,
+   "turnout": 96.02,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Moirangthem Okendro",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 13535,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nongmeikapam Sovakiran Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 7764,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sumatibala Ningthoujam",
+     "partyId": "MSCP",
+     "sex": "F",
+     "age": 44,
+     "votes": 4136,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Wangjing tentha",
+   "type": "GEN",
+   "electors": 29094,
+   "voters": 26829,
+   "turnout": 92.21,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Paonam Brojen",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 46,
+     "votes": 12207,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moirangthem Hemanta Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 8454,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Moirangthem Nara",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 61,
+     "votes": 5950,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sagolsem Ibochoubi Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 57,
+     "votes": 218,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Khangabok",
+   "type": "GEN",
+   "electors": 30641,
+   "voters": 26964,
+   "turnout": 88,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Okram Landhoni Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 49,
+     "votes": 18339,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laishram Jatra Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 66,
+     "votes": 8468,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Haji Ashrab",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 152,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Wabgai",
+   "type": "GEN",
+   "electors": 24837,
+   "voters": 22905,
+   "turnout": 92.22,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Md. Fajur Rahim",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 10021,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Usham Deben Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 46,
+     "votes": 6673,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mayengbam Manihar Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 74,
+     "votes": 6085,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khomdram Tamphajao",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 125,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Kakching",
+   "type": "GEN",
+   "electors": 23746,
+   "voters": 20178,
+   "turnout": 84.97,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yengkhom Surchandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 12543,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Naorem Achouba",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 62,
+     "votes": 7634,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Hiyanglam",
+   "type": "GEN",
+   "electors": 22825,
+   "voters": 21099,
+   "turnout": 92.44,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Maibam Kunjo",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 58,
+     "votes": 6574,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Elangbam Dwijamani Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 6557,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Yumnam Radheshyam",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 58,
+     "votes": 6489,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mayengbam Amutombi Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 54,
+     "votes": 1116,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ashokumar Laiphrakpam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 363,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Sugnu",
+   "type": "GEN",
+   "electors": 22940,
+   "voters": 19885,
+   "turnout": 86.68,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kangujam Ranjit Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 11534,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yumnam Jiban (Shangba)",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 29,
+     "votes": 3579,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mayanglambam Binod (Chaoba)",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 3221,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khaidem Sharat Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 1549,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Jiribam",
+   "type": "GEN",
+   "electors": 24825,
+   "voters": 19256,
+   "turnout": 77.57,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thoudam Debendra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 8424,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "A. Biren",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 59,
+     "votes": 7346,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "E. Dipti",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 1862,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mhod. Jalaluddin",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 996,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Leetkhongam",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 47,
+     "votes": 627,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Chandel",
+   "type": "ST",
+   "electors": 44762,
+   "voters": 35650,
+   "turnout": 79.64,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "St. Nunghlung Victor",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 55,
+     "votes": 13324,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thangkholun Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 13158,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ss Olish",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 34,
+     "votes": 5512,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Chungjalen Haokip",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 42,
+     "votes": 1658,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ws Kanral",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 1548,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "D. N. Haokip",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 59,
+     "votes": 284,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Solankee Chothe",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 70,
+     "votes": 116,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "K.L. Kapoor",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 41,
+     "votes": 50,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Tengnoupal",
+   "type": "ST",
+   "electors": 49457,
+   "voters": 30423,
+   "turnout": 61.51,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "D. Korungthang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 13434,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kh. David Charanga",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 51,
+     "votes": 6807,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "H. Shokhopao Mate",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 29,
+     "votes": 4908,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jangkholet",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 4586,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "T. Zangkhomang Haokip",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 37,
+     "votes": 458,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Onjamang Haokip",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 229,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Phungyar",
+   "type": "ST",
+   "electors": 26797,
+   "voters": 16384,
+   "turnout": 61.14,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Victor Keishing",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 8525,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Honreikhui Kashung",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 44,
+     "votes": 6830,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bountia Keishing",
+     "partyId": "MSCP",
+     "sex": "F",
+     "age": 41,
+     "votes": 967,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Teresa Rimai",
+     "partyId": "SHS",
+     "sex": "F",
+     "age": 30,
+     "votes": 55,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "Ukhrul",
+   "type": "ST",
+   "electors": 35987,
+   "voters": 22218,
+   "turnout": 61.74,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Samuel Risom",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 51,
+     "votes": 4831,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Alfred Kan-Ngam Arthur",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 4761,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Danny Shaiza",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 3995,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "S. Somatai",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 42,
+     "votes": 3516,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Aleng Shimrah",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 65,
+     "votes": 2751,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Aleng As Shimray",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 61,
+     "votes": 2360,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Chingai",
+   "type": "ST",
+   "electors": 38018,
+   "voters": 26688,
+   "turnout": 70.2,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "M.K. Preshow",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 9865,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khashim Vashum",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 9050,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Paul Muinao",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 53,
+     "votes": 7659,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "N. K. Shimray",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 113,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Saikul",
+   "type": "ST",
+   "electors": 35629,
+   "voters": 20989,
+   "turnout": 58.91,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yamthong Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 8700,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chungkhokai Doungel",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 74,
+     "votes": 7211,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Doukhomang Khongsai",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 52,
+     "votes": 5069,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Karong",
+   "type": "ST",
+   "electors": 50786,
+   "voters": 37647,
+   "turnout": 74.13,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. V. Alexander Pao",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 50,
+     "votes": 21891,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "D. D. Thaisii",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 15755,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Mao",
+   "type": "ST",
+   "electors": 52360,
+   "voters": 44847,
+   "turnout": 85.65,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dikho",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 48,
+     "votes": 21634,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P. T. Arhai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 12704,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Woba Joram",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 49,
+     "votes": 10508,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Tadubi",
+   "type": "ST",
+   "electors": 43075,
+   "voters": 32486,
+   "turnout": 75.42,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Francis Ngajokpa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 18006,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K. Raina",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 46,
+     "votes": 11951,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Athikho Solomon Enah",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 47,
+     "votes": 2529,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Kangpokpi",
+   "type": "GEN",
+   "electors": 27934,
+   "voters": 17025,
+   "turnout": 60.95,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mrs. Nemcha Kipgen",
+     "partyId": "MSCP",
+     "sex": "F",
+     "age": 42,
+     "votes": 6639,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khadga Bahadur",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 44,
+     "votes": 6196,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Haokholal Hangshing",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 3420,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Padam Kharel",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 66,
+     "votes": 547,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bhumi Prasad Basnet",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 222,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Saitu",
+   "type": "ST",
+   "electors": 38795,
+   "voters": 28037,
+   "turnout": 72.27,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ngamthang Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 15695,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Haokholet Kipgen",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 57,
+     "votes": 9509,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mairikiu John",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 50,
+     "votes": 2456,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Semkholal Haokip",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 46,
+     "votes": 373,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Tamei",
+   "type": "ST",
+   "electors": 31149,
+   "voters": 22973,
+   "turnout": 73.75,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Z.Kikhonbou Newmai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 10977,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Awangbow Newmai",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 9579,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Athuan Abonmei",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 46,
+     "votes": 1530,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "D.P. Panmei",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 60,
+     "votes": 884,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Tamenglong",
+   "type": "ST",
+   "electors": 25103,
+   "voters": 18604,
+   "turnout": 74.11,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Janghemlung Panmei",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 34,
+     "votes": 7675,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khangthuanang Panmei",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 7009,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Samuel Jendai",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 58,
+     "votes": 3918,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Nungba",
+   "type": "ST",
+   "electors": 22586,
+   "voters": 16844,
+   "turnout": 74.58,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gaikhangam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 9040,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adim Pamei",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 36,
+     "votes": 6710,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "G.Gaingam",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 72,
+     "votes": 1092,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Tipaimukh",
+   "type": "ST",
+   "electors": 17409,
+   "voters": 11192,
+   "turnout": 64.29,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr.Chaltonlien Amo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 4551,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr . Lalumkhum Fimate",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 61,
+     "votes": 3639,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ngursanglur",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 2894,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ngurrivung",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 99,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Thanlon",
+   "type": "ST",
+   "electors": 18452,
+   "voters": 8050,
+   "turnout": 43.63,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vungzagin Valte",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 3486,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V.Hangkhanlian",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 54,
+     "votes": 3195,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tuanzalian",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 50,
+     "votes": 962,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K.Chinkhansuan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 233,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thangkholal Thangsing",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 59,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "T.Nengzakham",
+     "partyId": "JMBP",
+     "sex": "M",
+     "age": 60,
+     "votes": 71,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Henglep",
+   "type": "ST",
+   "electors": 27288,
+   "voters": 17410,
+   "turnout": 63.8,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T.Manga Vaiphei",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 4793,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "T.Thangzalam Haokip",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 57,
+     "votes": 4428,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sehpu Haokip",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 53,
+     "votes": 3326,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr. Jainson Haokip",
+     "partyId": "MSCP",
+     "sex": "M",
+     "age": 64,
+     "votes": 2867,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gelunthang",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 62,
+     "votes": 1815,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Thangliansang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 181,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Churachandpur",
+   "type": "ST",
+   "electors": 46933,
+   "voters": 30098,
+   "turnout": 64.13,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Phungzathang Tonsing",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 18093,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "P.Songlianlal",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 49,
+     "votes": 10342,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K.Vungzalian",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 64,
+     "votes": 1408,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Chintuahlian Guite",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thangngam Lhungdim",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 43,
+     "votes": 85,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Saikot",
+   "type": "ST",
+   "electors": 45739,
+   "voters": 30010,
+   "turnout": 65.61,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T.N.Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 13684,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lunkholal",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 34,
+     "votes": 5527,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M.Chungkhosei Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 4905,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Lalthalien",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 48,
+     "votes": 4864,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K.William Vaiphei",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 61,
+     "votes": 900,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Holkholun Lhungdim",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 58,
+     "votes": 130,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Singhat",
+   "type": "ST",
+   "electors": 23886,
+   "voters": 15383,
+   "turnout": 64.4,
+   "phase": 1,
+   "pollDate": "2012-01-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ginsuanhau",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 12875,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "T.Hangkhanpau",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 47,
+     "votes": 2185,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Lunkhomang",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 31,
+     "votes": 274,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ngaineikim",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 43,
+     "votes": 49,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2022_Punjab_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "AAP",
+   "name": "AAP",
+   "color": "#00897B",
+   "parties": [
+    "AAP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "SADBSP",
+   "name": "SAD–BSP",
+   "color": "#F2B705",
+   "parties": [
+    "SAD",
+    "BSP"
+   ]
+  },
+  {
+   "id": "NDA",
+   "name": "BJP+",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP",
+    "PLCP",
+    "SADS"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "AAP",
+  "INC",
+  "SADBSP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 59
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   75.4,
+   30.9
+  ],
+  "map_url": "/geo/pb_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0280000-0000-4000-8000-000000002012",
+  "a0280000-0000-4000-8000-000000002017"
+ ],
+ "history_years": [
+  2012,
+  2017
+ ],
+ "compare_with": [
+  "a0280000-0000-4000-8000-000000002017"
+ ]
+}

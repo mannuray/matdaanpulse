@@ -4,9 +4,9 @@ import * as XLSX from 'xlsx';
 import type { PartyListEntry, RawElection, Year } from './types';
 import { STATES, electionOf, electionsOf, type StateCode } from './elections';
 import { parseDetailedRows, parsePartyListRows, parsePerformanceRows, parseSummaryRows, performanceByAbbr, type Row } from './xls-report';
-import { parseDetailedText, parsePartyListText, parsePerformanceText, parseSummaryText } from './pdf-report';
+import { parseDetailedText, parsePartyListText, parsePerformanceText, parseSummaryText, type SummaryFixes } from './pdf-report';
 import * as fs from 'fs';
-import { applySupplement, withoutSeats, type Supplement } from './supplement';
+import { applySupplement, withMissingSummaries, withoutSeats, type MissingSummary, type Supplement } from './supplement';
 
 export const dataDir = (s: StateCode) => path.resolve(__dirname, '../../data', STATES[s].slug);
 export const rawDir = (s: StateCode) => path.resolve(__dirname, '../../data/raw', STATES[s].slug);
@@ -27,14 +27,24 @@ const pdfText = (s: StateCode, file: string): string =>
 export function loadRaw(s: StateCode, year: Year): RawElection {
   const file = path.join(dataDir(s), 'supplement.json');
   const sup: Supplement = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
-  return withoutSeats(applySupplement(loadReport(s, year), sup[year] ?? []), electionOf(s, year).excludeSeats ?? []);
+  const mf = path.join(dataDir(s), 'missing-summaries.json');
+  const missing: Record<string, Record<number, MissingSummary>> = fs.existsSync(mf) ? JSON.parse(fs.readFileSync(mf, 'utf8')) : {};
+  return withoutSeats(applySupplement(withMissingSummaries(loadReport(s, year), missing[year] ?? {}), sup[year] ?? []), electionOf(s, year).excludeSeats ?? []);
+}
+
+/** summary-fixes.json: year → seat → sourced voters / total valid votes, for ECI summary pages with broken figures. */
+function summaryFixes(s: StateCode, year: Year): SummaryFixes {
+  const file = path.join(dataDir(s), 'summary-fixes.json');
+  const all: Record<string, SummaryFixes> = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
+  return all[year] ?? {};
 }
 
 function loadReport(s: StateCode, year: Year): RawElection {
   const f = electionOf(s, year).files;
+  const fixes = summaryFixes(s, year);
   if ('pdf' in f) {
     const t = pdfText(s, f.pdf);
-    return { year, seats: parseDetailedText(t), summaries: parseSummaryText(t), parties: parsePartyListText(t), performance: parsePerformanceText(t) };
+    return { year, seats: parseDetailedText(t), summaries: parseSummaryText(t, fixes), parties: parsePartyListText(t), performance: parsePerformanceText(t) };
   }
   // Each report is parsed by its file type: some years publish one report only as PDF (Puducherry 2016's summary).
   const isPdf = (file: string) => /\.pdf$/i.test(file);
@@ -42,7 +52,7 @@ function loadReport(s: StateCode, year: Year): RawElection {
   return {
     year,
     seats: isPdf(f.detailed) ? parseDetailedText(pdfText(s, f.detailed)) : parseDetailedRows(sheets(s, f.detailed)[0]),
-    summaries: isPdf(f.summary) ? parseSummaryText(pdfText(s, f.summary)) : sheets(s, f.summary).map(parseSummaryRows),
+    summaries: isPdf(f.summary) ? parseSummaryText(pdfText(s, f.summary), fixes) : sheets(s, f.summary).map(parseSummaryRows),
     parties,
     performance: performanceByAbbr(isPdf(f.performance) ? parsePerformanceText(pdfText(s, f.performance)) : parsePerformanceRows(sheets(s, f.performance)[0]), parties),
   };

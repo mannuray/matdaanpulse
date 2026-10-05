@@ -1,0 +1,73 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2017_Goa_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "MGPFRONT",
+   "name": "MGP–GSM–Shiv Sena",
+   "color": "#7E57C2",
+   "parties": [
+    "MAG",
+    "GSM",
+    "SHS"
+   ]
+  },
+  {
+   "id": "AAP",
+   "name": "AAP",
+   "color": "#00897B",
+   "parties": [
+    "AAP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "INC",
+  "MGPFRONT"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 21
+  }
+ ],
+ "geo": {
+  "zoom": 10,
+  "center": [
+   74.0,
+   15.35
+  ],
+  "map_url": "/geo/ga_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0090000-0000-4000-8000-000000002012"
+ ],
+ "history_years": [
+  2012
+ ],
+ "compare_with": [
+  "a0090000-0000-4000-8000-000000002012"
+ ]
+}

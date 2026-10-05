@@ -86,7 +86,7 @@ const p3 = (code: StateCode, stateHex: string, year: number, docid: number, expe
   newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate: COUNTING[year], reserved },
 });
 const PDF12 = { pdf: '2012/2012.pdf' };
-const x17 = { detailed: '2017/Detailed_Results.xlsx', summary: '2017/Constituency_Data_Summry.xlsx', parties: '2017/List_Of_Political_Parties_Participated.xlsx', performance: '2017/Performance_of_Poltical_Parties.xlsx' };
+const x17 = { detailed: '2017/Detailed_Results.xlsx', summary: '2017/Constituency_Data_Summry.pdf', parties: '2017/List_Of_Political_Parties_Participated.xlsx', performance: '2017/Performance_of_Poltical_Parties.xlsx' };
 /** 2022 report file names as ECI saved them (they differ by state). */
 const x22 = (sep: '.' | '-', detailed: string, summary: string) => ({ detailed: `2022/${detailed}`, summary: `2022/${summary}`,
   parties: `2022/3${sep}List_Of_Political_Parties_Participated.xlsx`, performance: `2022/5${sep}Performance_of_Political_Parties.xlsx` });

@@ -1,0 +1,54 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2017_Manipur_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "INC",
+  "BJP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 31
+  }
+ ],
+ "geo": {
+  "zoom": 9,
+  "center": [
+   93.9,
+   24.7
+  ],
+  "map_url": "/geo/mn_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0210000-0000-4000-8000-000000002012"
+ ],
+ "history_years": [
+  2012
+ ],
+ "compare_with": [
+  "a0210000-0000-4000-8000-000000002012"
+ ]
+}

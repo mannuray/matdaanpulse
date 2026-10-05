@@ -1,0 +1,2554 @@
+{
+ "year": 2012,
+ "electionId": "a0090000-0000-4000-8000-000000002012",
+ "source": {
+  "title": "ECI Statistical Report, Goa Legislative Assembly 2012",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3856",
+  "retrieved": "2026-10-05"
+ },
+ "parties": [
+  {
+   "id": "AIMF",
+   "name": "All India Minorities Front",
+   "abbreviation": "AIMF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "GSRP",
+   "name": "Goa Su-Raj Party",
+   "abbreviation": "GSRP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "GVP",
+   "name": "Goa Vikas Party",
+   "abbreviation": "GVP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "JMBP",
+   "name": "Jai Maha Bharath Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "MAG",
+   "name": "Maharashtrawadi Gomantak",
+   "abbreviation": "MAG",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "RPOIA",
+   "name": "Republican Party of India (A)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "abbreviation": null,
+   "color": "#FF6600",
+   "recognition": null
+  },
+  {
+   "id": "SJPR",
+   "name": "Samajwadi Janata Party (Rashtriya)",
+   "abbreviation": "SJP(R)",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SP",
+   "name": "Samajwadi Party",
+   "abbreviation": null,
+   "color": "#E60000",
+   "recognition": null
+  },
+  {
+   "id": "TMC",
+   "name": "All India Trinamool Congress",
+   "abbreviation": null,
+   "color": "#00CC44",
+   "recognition": null
+  },
+  {
+   "id": "UGDP",
+   "name": "United Goans Democratic Party",
+   "abbreviation": "UGDP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Mandrem",
+   "type": "GEN",
+   "electors": 29364,
+   "voters": 25966,
+   "turnout": 88.43,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Laxmikant Parsekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 11955,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dayanand Raghunath Sopte",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 8520,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sameer Salgaocar",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 42,
+     "votes": 4591,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Menino Francis Monteiro",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 51,
+     "votes": 295,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sanjay Prabhu Dessai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 292,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjay Damu Kole",
+     "partyId": "SJPR",
+     "sex": "M",
+     "age": 38,
+     "votes": 275,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Pernem",
+   "type": "SC",
+   "electors": 29515,
+   "voters": 25940,
+   "turnout": 87.89,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajendra Arlekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 16406,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Manohar Trimbak Ajgaoankar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 8053,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Subhash Barkelo Kerkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 824,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sakharam Vishram Korgaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kanta Sabaji Jadhav",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 37,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Manohar Rajaram Pednekar",
+     "partyId": "SJPR",
+     "sex": "M",
+     "age": 68,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rajan Kambli",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shyam Bablo Amonkar",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 35,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Santosh Shankar Mandrekar",
+     "partyId": "UGDP",
+     "sex": "M",
+     "age": 38,
+     "votes": 50,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Bicholim",
+   "type": "GEN",
+   "electors": 23894,
+   "voters": 21037,
+   "turnout": 88.04,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Naresh Rajaram Sawal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 8331,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajesh T. Patnekar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 6532,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manohar Pandurang Shirodkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 5411,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pandurang Dattaram Raut",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 65,
+     "votes": 720,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Tivim",
+   "type": "GEN",
+   "electors": 23607,
+   "voters": 20315,
+   "turnout": 86.05,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kiran Mohan Kandolkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 10473,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nilkanth Ramnath Halarnkar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 48,
+     "votes": 9361,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Deelip Datta Chodankar",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 62,
+     "votes": 204,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Indrakant Dattaram Korgaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dattaram Govind Sawant",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 64,
+     "votes": 109,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Mapusa",
+   "type": "GEN",
+   "electors": 25659,
+   "voters": 20256,
+   "turnout": 78.94,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Francis D'Souza",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 14955,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ashish Tulshidas Shirodkar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 4786,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Francisca De Souza",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 33,
+     "votes": 280,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mittu Mujavar",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 37,
+     "votes": 188,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Siolim",
+   "type": "GEN",
+   "electors": 26344,
+   "voters": 21665,
+   "turnout": 82.24,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dayanand Mandrekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 11430,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Uday Dattaram Paliemkar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 9259,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajan Savlo Ghate",
+     "partyId": "SJPR",
+     "sex": "M",
+     "age": 43,
+     "votes": 352,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abhijit Dhargalkar",
+     "partyId": "JMBP",
+     "sex": "M",
+     "age": 28,
+     "votes": 274,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ratikant Shankar Korgaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 254,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mukesh Madhukar Sawant",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 32,
+     "votes": 66,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Saligao",
+   "type": "GEN",
+   "electors": 23782,
+   "voters": 19443,
+   "turnout": 81.76,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dilip Parulekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 10084,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "D'Souza Tulio",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 4276,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh V. Parulekar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 69,
+     "votes": 1729,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Francisco Colaco",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 1192,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Paul Fernandes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 1135,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Trajano D'Mello",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 625,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gajanan Rama Naik",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 47,
+     "votes": 166,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Osbert Manuel D'Cunha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 74,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Alex Camil Rodrigues",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 65,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Manoj Anand Sangodkar",
+     "partyId": "AIMF",
+     "sex": "M",
+     "age": 34,
+     "votes": 63,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Calangute",
+   "type": "GEN",
+   "electors": 22178,
+   "voters": 18350,
+   "turnout": 82.74,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Michael Vincent Lobo",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 9891,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Agnelo Nicholas Fernandes",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 8022,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jose Paul Menino Silveira",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 240,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ashley Francisco Gomes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 195,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Porvorim",
+   "type": "GEN",
+   "electors": 21209,
+   "voters": 17234,
+   "turnout": 81.26,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rohan Khaunte",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 7972,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Govind Parvatkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 7071,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Fermeena P. Khaunte",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 61,
+     "votes": 1217,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Umesh Sukha Narvekar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 232,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Raju D'Souza",
+     "partyId": "SJPR",
+     "sex": "M",
+     "age": 43,
+     "votes": 139,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Aldona",
+   "type": "GEN",
+   "electors": 25112,
+   "voters": 20314,
+   "turnout": 80.89,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ticlo Glenn J V A E Souza",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 11315,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dayanand G. Narvekar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 7839,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Wilfred D'Souza",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 84,
+     "votes": 643,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ravindra Vasudev Panjikar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 256,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Julius Pereira",
+     "partyId": "GSRP",
+     "sex": "M",
+     "age": 60,
+     "votes": 236,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Panaji",
+   "type": "GEN",
+   "electors": 21355,
+   "voters": 16839,
+   "turnout": 78.85,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Manohar Parrikar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 11086,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yatin Parekh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 5018,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Christopher Fonseca",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 58,
+     "votes": 383,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dominic Savio A. E.Fernandes",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 45,
+     "votes": 172,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Balaram Karishetty",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 104,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Taleigao",
+   "type": "GEN",
+   "electors": 25916,
+   "voters": 21036,
+   "turnout": 81.17,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jennifer A. Monserrate",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 40,
+     "votes": 10682,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dattaprasad Madhukar Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 9531,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Annabelle Maria Pereira",
+     "partyId": "GSRP",
+     "sex": "F",
+     "age": 64,
+     "votes": 333,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Natty Po",
+     "partyId": "SJPR",
+     "sex": "F",
+     "age": 34,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Vasudev Narayan Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjay C. Korgaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 81,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "St. Cruz",
+   "type": "GEN",
+   "electors": 25524,
+   "voters": 21421,
+   "turnout": 83.92,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Atanasio J. Monserrate",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 8644,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rodolfo Louis Fernandes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 6308,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dinar Purshottam Kamat Tarcar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 43,
+     "votes": 5824,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pedro Caitano Pires",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 48,
+     "votes": 221,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Xavier Cardo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dinesh Nair",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jose Lopes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 74,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Heney Lobo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 42,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "St. Andre",
+   "type": "GEN",
+   "electors": 21338,
+   "voters": 17228,
+   "turnout": 80.74,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vishnu Surya Naik Wagh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 8818,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Francisco Silveira",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 7599,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pradip Kumar Sangodkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 440,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Milton S. Marshal",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 352,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Cumbarjua",
+   "type": "GEN",
+   "electors": 23757,
+   "voters": 19846,
+   "turnout": 83.54,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pandurang A. Madkaikar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 9556,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nirmala P. Sawant",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 65,
+     "votes": 7981,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jose Bismarque Desidorio Dias",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 1996,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pramod Naik",
+     "partyId": "JMBP",
+     "sex": "M",
+     "age": 45,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gaurish M. Dessai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 129,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Maem",
+   "type": "GEN",
+   "electors": 25080,
+   "voters": 22467,
+   "turnout": 89.58,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Anant Shet",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 12054,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pravin Zantye",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 6335,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rudresh Chodankar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 3585,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kamlakant Gadekar",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 66,
+     "votes": 225,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Deepkumar Mapari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 212,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Sanquelim",
+   "type": "GEN",
+   "electors": 24068,
+   "voters": 21623,
+   "turnout": 89.84,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pramod Sawant",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 14255,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pratap Gauns",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 7337,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Poriem",
+   "type": "GEN",
+   "electors": 27820,
+   "voters": 25120,
+   "turnout": 90.29,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pratapsingh Raoji Rane",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 73,
+     "votes": 13772,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vishwajit Krishnarao Rane",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 11225,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Valpoi",
+   "type": "GEN",
+   "electors": 26094,
+   "voters": 23223,
+   "turnout": 89,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vishwajit Pratapsingh Rane",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 12412,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Satyavijay Subrai Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 9473,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Venkatesh Atmaram Dessai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 805,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ravindra Talaulikar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 255,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gajendranath Ramkrishna Usgaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 184,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Priol",
+   "type": "GEN",
+   "electors": 27595,
+   "voters": 24732,
+   "turnout": 89.62,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pandurang Alias Deepak Dhavalikar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 53,
+     "votes": 12264,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Govind Gaude",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 10164,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dhaku A. Madkaikar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 1625,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shashi Panjikar",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 63,
+     "votes": 414,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rama Krishna Borkar",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 54,
+     "votes": 201,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Ponda",
+   "type": "GEN",
+   "electors": 28594,
+   "voters": 23234,
+   "turnout": 81.25,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Lavoo Mamledar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 55,
+     "votes": 12662,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravi Naik",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 9472,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sayad Imtiyaz",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 27,
+     "votes": 502,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gitesh Gokuldas Naik",
+     "partyId": "UGDP",
+     "sex": "M",
+     "age": 31,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohan Govind Naik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Vaibhav P Marathe",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 27,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "John Mascarenhas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 91,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Siroda",
+   "type": "GEN",
+   "electors": 26030,
+   "voters": 22985,
+   "turnout": 88.3,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mahadev Narayan Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 12216,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Subhash Ankush Shirodkar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 9954,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vishwas Prabhudesai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 422,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shaila Shenvi Borkar",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 52,
+     "votes": 230,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Savio Fernandes",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 29,
+     "votes": 162,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Marcaim",
+   "type": "GEN",
+   "electors": 25149,
+   "voters": 22750,
+   "turnout": 90.46,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ramkrishna Alias Sudin Dhavalikar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 55,
+     "votes": 14952,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ritesh Naik",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 7722,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Mormugao",
+   "type": "GEN",
+   "electors": 20348,
+   "voters": 16260,
+   "turnout": 79.91,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Milind Sagun Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 7419,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sankalp Padmanabh Amonkar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 6506,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nazir Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 1710,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jerry Fernandes",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 28,
+     "votes": 346,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Narayan Ramchandra Kandu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 154,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gopal Dattaram Chodankar",
+     "partyId": "JMBP",
+     "sex": "M",
+     "age": 46,
+     "votes": 64,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shantaram Vasudev Paradkar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 51,
+     "votes": 37,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Vasco-da-gama",
+   "type": "GEN",
+   "electors": 28411,
+   "voters": 21765,
+   "turnout": 76.61,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jose Luis Carlos Almeida",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 11468,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jose Filepe D'Souza",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 6978,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "G. Karl Vaz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 1394,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammed Iqbal Shaikh",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 50,
+     "votes": 600,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Adam Abdulla Jumma",
+     "partyId": "UGDP",
+     "sex": "M",
+     "age": 45,
+     "votes": 489,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Amindin Mulla",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 30,
+     "votes": 328,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Stanley C.Almeida",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Hamza Issak Khan",
+     "partyId": "AIMF",
+     "sex": "M",
+     "age": 60,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gluck D'Souza",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 58,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Prashant Mahadev Vastha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Jagdish Yadu Durbhatkar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 42,
+     "votes": 64,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Dabolim",
+   "type": "GEN",
+   "electors": 19801,
+   "voters": 15293,
+   "turnout": 77.23,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mauvin Heliodoro Godinho",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 7468,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Premanand Nanoskar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 35,
+     "votes": 6524,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pratap Mardolkar",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 52,
+     "votes": 849,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Simon D'Souza",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 72,
+     "votes": 433,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Cortalim",
+   "type": "GEN",
+   "electors": 26652,
+   "voters": 21007,
+   "turnout": 78.82,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Matanhy Saldanha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 7427,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nelly Rodrigues",
+     "partyId": "GVP",
+     "sex": "F",
+     "age": 52,
+     "votes": 5158,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ramakant Borkar",
+     "partyId": "UGDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 3716,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Caitan Xavier",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 3393,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tolentino D'Souza",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 47,
+     "votes": 728,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Nuvem",
+   "type": "GEN",
+   "electors": 27557,
+   "voters": 21612,
+   "turnout": 78.43,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Francisco Xavier Pacheco (Mickky)",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 47,
+     "votes": 12288,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aleixo Sequeira",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 8092,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdul Aziz Hassansha Sayed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 482,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Marcos Menino D'Souza",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 279,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Prabhakar Rupo Gaude",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 54,
+     "votes": 250,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Peter Francisco Dourado",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 206,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Curtorim",
+   "type": "GEN",
+   "electors": 26271,
+   "voters": 19656,
+   "turnout": 74.82,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Aleixo Reginaldo Lourenco",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 11221,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Domnic Gaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 7152,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Raju Krishnamurthy Iyer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 603,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Conceicao Santano Dias",
+     "partyId": "UGDP",
+     "sex": "M",
+     "age": 45,
+     "votes": 515,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "William D'Cruz",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 36,
+     "votes": 156,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Fatorda",
+   "type": "GEN",
+   "electors": 26925,
+   "voters": 21475,
+   "turnout": 79.76,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vijai Sardesai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 10375,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Damodar (Damu) G. Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 8436,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arthur D'Silva",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 1126,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Piedade Noronha E Silva",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 45,
+     "votes": 695,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M. K. Shaikh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 660,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ashok Tukaram Korgaoker",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 52,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dias Jawahar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anwar Sayed",
+     "partyId": "AIMF",
+     "sex": "M",
+     "age": 44,
+     "votes": 45,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Margao",
+   "type": "GEN",
+   "electors": 28103,
+   "voters": 22172,
+   "turnout": 78.9,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Digambar Kamat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 12041,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mahatme Rupesh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 7589,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Coutinho Savio Hugo",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 42,
+     "votes": 1873,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ivo Almeida Coutinho",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 396,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Cedric Isidorio D'Costa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 250,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Benaulim",
+   "type": "GEN",
+   "electors": 28176,
+   "voters": 21106,
+   "turnout": 74.91,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Caetano R. Silva",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 52,
+     "votes": 9695,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Valanka Alemao",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 32,
+     "votes": 7694,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Humberto Gomes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 1775,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "John Fernandes",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 36,
+     "votes": 1277,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ashley Francis Dias",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 289,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "P. Xavier George",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Subhash Shivnath Chodankar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 122,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Navelim",
+   "type": "GEN",
+   "electors": 23903,
+   "voters": 18784,
+   "turnout": 78.58,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Avertano Furtado",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 10231,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Churchill Alemao",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 8086,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Iliyas Shaikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 261,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jose Paul Coutinho",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 57,
+     "votes": 202,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Cuncolim",
+   "type": "GEN",
+   "electors": 26764,
+   "voters": 20751,
+   "turnout": 77.53,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Subhash Alias Rajan Kashinath Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 7738,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Alemao Joaquim",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 6425,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "John Inacio Monteiro",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 4830,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Milagres Gonsalves",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 603,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jose Alias Brany Fernandes",
+     "partyId": "UGDP",
+     "sex": "M",
+     "age": 54,
+     "votes": 543,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mario Morais",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 49,
+     "votes": 325,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rony Rodrigues",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Derick Dias",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 44,
+     "votes": 85,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Velim",
+   "type": "GEN",
+   "electors": 29336,
+   "voters": 22142,
+   "turnout": 75.48,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Benjamin Silva",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 13164,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Filipe Nery Rodrigues",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 8238,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Cliffton Desouza",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 386,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Michael Beny Da Costa",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 44,
+     "votes": 340,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Quepem",
+   "type": "GEN",
+   "electors": 28898,
+   "voters": 24885,
+   "turnout": 86.11,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chandrakant Kavalekar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 10994,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prakash Shankar Velip",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 4621,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Prakash Arjun Velip",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 35,
+     "votes": 4536,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Colaco Manuel",
+     "partyId": "UGDP",
+     "sex": "M",
+     "age": 57,
+     "votes": 4356,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Joseph Gonsalves",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 47,
+     "votes": 354,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Curchorem",
+   "type": "GEN",
+   "electors": 23581,
+   "voters": 19836,
+   "turnout": 84.12,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nilesh Cabral",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 14299,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shyam Gopinath Satardekar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 5507,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Sanvordem",
+   "type": "GEN",
+   "electors": 26305,
+   "voters": 23361,
+   "turnout": 88.81,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ganesh Chandru Gaonkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 10585,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Arjun Anil Salgaocar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 8294,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ramnath Alias Deepak Prabhu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 2828,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Govind Sawant",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 1328,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Prashant Budho Gaonkar",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 34,
+     "votes": 309,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Sanguem",
+   "type": "GEN",
+   "electors": 24467,
+   "voters": 21511,
+   "turnout": 87.92,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Subhash U. Phal Dessai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 7454,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Alemao Yuri",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 28,
+     "votes": 6971,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Prasad Shashikant Gaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 5737,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "D'Costa Minguelino",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 69,
+     "votes": 880,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Eddie De Souza Tavares",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 227,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Arun Krishna Raikar",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 56,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sudesh N. Gaonkar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 35,
+     "votes": 98,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Canacona",
+   "type": "GEN",
+   "electors": 31822,
+   "voters": 26590,
+   "turnout": 83.56,
+   "phase": 1,
+   "pollDate": "2012-03-03",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ramesh Bombo Tawadkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 14328,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Isidore Aleixinho Fernandes",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 11624,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sapnesh Desai",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 35,
+     "votes": 637,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

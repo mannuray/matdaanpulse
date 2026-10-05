@@ -1,0 +1,47 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2012_Goa_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP",
+    "MAG"
+   ]
+  },
+  {
+   "id": "UPA",
+   "name": "Congress+",
+   "color": "#19AAED",
+   "parties": [
+    "INC",
+    "NCP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "UPA"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 21
+  }
+ ],
+ "geo": {
+  "zoom": 10,
+  "center": [
+   74.0,
+   15.35
+  ],
+  "map_url": "/geo/ga_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}

@@ -1,0 +1,48 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2012_Manipur_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "PDF",
+   "name": "People's Democratic Front",
+   "color": "#7E57C2",
+   "parties": [
+    "MPP",
+    "NCP",
+    "JDU",
+    "CPIM"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "INC",
+  "PDF"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 31
+  }
+ ],
+ "geo": {
+  "zoom": 9,
+  "center": [
+   93.9,
+   24.7
+  ],
+  "map_url": "/geo/mn_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}

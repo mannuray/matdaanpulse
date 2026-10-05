@@ -1,0 +1,57 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2012_Punjab_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "SAD–BJP",
+   "color": "#F2B705",
+   "parties": [
+    "SAD",
+    "BJP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "SANJHA",
+   "name": "Sanjha Morcha",
+   "color": "#CC0000",
+   "parties": [
+    "PPOP",
+    "CPI",
+    "CPIM"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "INC",
+  "SANJHA"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 59
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   75.4,
+   30.9
+  ],
+  "map_url": "/geo/pb_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}

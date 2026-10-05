@@ -1,0 +1,3793 @@
+{
+ "year": 2017,
+ "electionId": "a0210000-0000-4000-8000-000000002017",
+ "source": {
+  "title": "ECI Statistical Report, Manipur Legislative Assembly 2017",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3713",
+  "retrieved": "2026-10-05"
+ },
+ "parties": [
+  {
+   "id": "AIFB",
+   "name": "All India Forward Bloc",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "LJP",
+   "name": "Lok Janshakti Party",
+   "abbreviation": null,
+   "color": "#0000CD",
+   "recognition": null
+  },
+  {
+   "id": "MDPF",
+   "name": "Manipur Democratic Peoples's Front",
+   "abbreviation": "MDPF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MNDF",
+   "name": "Manipur National Democratic Front",
+   "abbreviation": "MNDF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MPP",
+   "name": "Manipur Peoples Party",
+   "abbreviation": "MPP",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NEINDP",
+   "name": "North East India Development Party",
+   "abbreviation": "NEINDP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NPF",
+   "name": "Naga Peoples Front",
+   "abbreviation": null,
+   "color": "#556B2F",
+   "recognition": null
+  },
+  {
+   "id": "NPP",
+   "name": "National People's Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": "National"
+  },
+  {
+   "id": "PDA",
+   "name": "People's Democratic Alliance",
+   "abbreviation": "PDA",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "PRJA",
+   "name": "Peoples Resurgence and Justice Alliance",
+   "abbreviation": "PRJA",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RPOIA",
+   "name": "Republican Party of India (A)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "TMC",
+   "name": "All India Trinamool Congress",
+   "abbreviation": null,
+   "color": "#00CC44",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Khundrakpam",
+   "type": "GEN",
+   "electors": 25500,
+   "voters": 22900,
+   "turnout": 89.8,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thokchom Lokeshwar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 12849,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thangjam Mohendro Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 9790,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Yumlembam Jogendro",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 56,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Lairenlakpam Lala Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 78,
+     "votes": 36,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 92,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Heingang",
+   "type": "GEN",
+   "electors": 30459,
+   "voters": 27512,
+   "turnout": 90.32,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nongthombam Biren Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 10439,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pangeijam Saratchandra Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 52,
+     "votes": 9233,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Naoroibam Ratan Meetei (Kapu)",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 7329,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr. Gurumayum Tonsana Sharma",
+     "partyId": "MDPF",
+     "sex": "M",
+     "age": 66,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thokchom Romeo Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Yengkokpam Priyokumar Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 58,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 130,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Khurai",
+   "type": "GEN",
+   "electors": 31958,
+   "voters": 29189,
+   "turnout": 91.34,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Leishangthem Susindro Meitei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 15005,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Ngairangbam Bijoy Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 13061,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "R.K.Amusana",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 54,
+     "votes": 800,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 322,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Kshetrigao",
+   "type": "GEN",
+   "electors": 33096,
+   "voters": 30305,
+   "turnout": 91.57,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nahakpam Indrajit Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 10411,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Md. Amin Shah",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 10031,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Th. Nandakishor Singh",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 60,
+     "votes": 9190,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vivekraj Wangkhem",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 42,
+     "votes": 281,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Md. Azizul Hague Khan",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 65,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Md. Abir Khan",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 48,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Md. Zameer Ahmed",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 48,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 174,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Thongju",
+   "type": "GEN",
+   "electors": 30135,
+   "voters": 26847,
+   "turnout": 89.09,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thongam Biswajit Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 16809,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thokchom Ajit Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 9508,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "L. Geetaranjan Sharma",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 31,
+     "votes": 131,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 398,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Keirao",
+   "type": "GEN",
+   "electors": 27732,
+   "voters": 26139,
+   "turnout": 94.26,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Lourembam Rameshwor Meetei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 5959,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Md. Nasiruddin Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 5421,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Karam Thamarjit Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 4715,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thongram Gopen",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 41,
+     "votes": 4477,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Md. Islamuddin Khan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 3241,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Takhellambam Samananda Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 1446,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ningthoujam Itomba Meetei",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 45,
+     "votes": 685,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Md. Wahidur Rahman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 80,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Andro",
+   "type": "GEN",
+   "electors": 33075,
+   "voters": 30052,
+   "turnout": 90.86,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thounaojam Shyamkumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 18948,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Nimaichand Luwang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 69,
+     "votes": 10787,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Keisham Ningthemjao Singh",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 54,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 152,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Lamlai",
+   "type": "GEN",
+   "electors": 27210,
+   "voters": 25713,
+   "turnout": 94.5,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ksh. Biren Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 12339,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khongbantabam Ibomcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 11487,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Huirem Bimol",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 46,
+     "votes": 1712,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 158,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Thangmeiband",
+   "type": "GEN",
+   "electors": 28482,
+   "voters": 23751,
+   "turnout": 83.39,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khumukcham Joykisan Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 11596,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jyotin Waikhom",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 11439,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Erendro Leichombam",
+     "partyId": "PRJA",
+     "sex": "M",
+     "age": 33,
+     "votes": 573,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 137,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Uripok",
+   "type": "GEN",
+   "electors": 23762,
+   "voters": 20202,
+   "turnout": 85.02,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yumnam Joykumar Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 63,
+     "votes": 6469,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laishram Nandakumar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 79,
+     "votes": 6124,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Nameirakpam Dwijamani Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 5986,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nameirakpam Santosh Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 1332,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 284,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Sagolband",
+   "type": "GEN",
+   "electors": 23064,
+   "voters": 19581,
+   "turnout": 84.9,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajkumar Imo Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 9211,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Khwairakpam Loken Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 9192,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "G. Satyabati Devi",
+     "partyId": "NPP",
+     "sex": "F",
+     "age": 62,
+     "votes": 982,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Laishram Gyaneshwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 31,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 151,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Keishamthong",
+   "type": "GEN",
+   "electors": 26494,
+   "voters": 23111,
+   "turnout": 87.23,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Langpoklakpam Jayantakumar Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 10000,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laisom Ibomcha Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 6739,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajkumar Shivachandra Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 5003,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Potsangbam Dhanakumar Singh",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 611,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Khaba Paonam",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 204,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Heishnam Lokeshwar Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Yumnam Romola Devi",
+     "partyId": "MNDF",
+     "sex": "F",
+     "age": 47,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Changamayum Ganeshlal Singh",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 52,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 206,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Singjamei",
+   "type": "GEN",
+   "electors": 19929,
+   "voters": 17570,
+   "turnout": 88.16,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yumnam Khemchand Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 9459,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Irengbam Hemochandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 7625,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Heigrujam Nabashyam",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 60,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thokchom Sarchil Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 206,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Yaiskul",
+   "type": "GEN",
+   "electors": 25363,
+   "voters": 21897,
+   "turnout": 86.33,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thokchom Satyabrata Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 8014,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Elangbam Chand Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 7444,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "N. Helendro Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 5621,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Athokpam Keshor Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 397,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Yumlembam Nogen",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 57,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 278,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Wangkhei",
+   "type": "GEN",
+   "electors": 34914,
+   "voters": 29661,
+   "turnout": 84.95,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Okram Henry Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 32,
+     "votes": 16753,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yumkham Erabot Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 77,
+     "votes": 12417,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajkumar Priyobarta Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 42,
+     "votes": 149,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 341,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Sekmai",
+   "type": "SC",
+   "electors": 26982,
+   "voters": 24024,
+   "turnout": 89.04,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Heikham Dingo Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 13163,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khwairakpam Devendro Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 10631,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 219,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Lamsang",
+   "type": "GEN",
+   "electors": 30267,
+   "voters": 28043,
+   "turnout": 92.65,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sorokhaibam Rajen Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 12593,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Wangkheimayum Brajabidhu Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 11313,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Phijam Pakchao Singh",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 65,
+     "votes": 3956,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 166,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Konthoujam",
+   "type": "GEN",
+   "electors": 27943,
+   "voters": 26056,
+   "turnout": 93.25,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Sapam Ranjan Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 14313,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Konthoujam Sharat Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 11541,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nongmaithem Santa Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 83,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 92,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Patsoi",
+   "type": "GEN",
+   "electors": 34916,
+   "voters": 31485,
+   "turnout": 90.17,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Km. Ak. Mirabai Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 52,
+     "votes": 13405,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sapam Kunjakeswor (Keba) Singh",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 13291,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "S. Premananda Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 3173,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Chungkham Thoiba (Bijoy) Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 48,
+     "votes": 1236,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thounaojam Sharat Singh",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 54,
+     "votes": 85,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 270,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Langthabal",
+   "type": "GEN",
+   "electors": 27012,
+   "voters": 24681,
+   "turnout": 91.37,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karam Shyam",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 9625,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "O. Joy Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 75,
+     "votes": 7294,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ningombam Nilakumar Singh",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 46,
+     "votes": 2806,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mutum Dinesh Singh",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 40,
+     "votes": 2035,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nongthombam Singhajit",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 63,
+     "votes": 1819,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Loitongbam Tilotama Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 46,
+     "votes": 983,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 119,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Naoriya pakhanglakpa",
+   "type": "GEN",
+   "electors": 32603,
+   "voters": 30335,
+   "turnout": 93.04,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Soibam Subhaschandra Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 8609,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "R.K. Anand",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 6994,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Soraisham Manaoton Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 48,
+     "votes": 6121,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Konthoujam Manoranjan Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 4777,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Oinam Malesh Singh",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 50,
+     "votes": 3610,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Thokchom Dhanabir Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 58,
+     "votes": 70,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 153,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Wangoi",
+   "type": "GEN",
+   "electors": 27714,
+   "voters": 26236,
+   "turnout": 94.67,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Oinam Lukhoi Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 7443,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khuraijam Loken Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 46,
+     "votes": 7407,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Salam Joy Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 6590,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sagolsem Achouba Singh",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 59,
+     "votes": 3983,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Moirangmayum Thoiba Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 719,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 83,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Mayang imphal",
+   "type": "GEN",
+   "electors": 28932,
+   "voters": 27481,
+   "turnout": 94.98,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kongkham Robindro Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 29,
+     "votes": 15221,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Khumujam Ratankumar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 12127,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 125,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Nambol",
+   "type": "GEN",
+   "electors": 31092,
+   "voters": 29320,
+   "turnout": 94.3,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nameirakpam Loken Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 14736,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thounaojam Chaoba",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 78,
+     "votes": 14456,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 115,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Oinam",
+   "type": "GEN",
+   "electors": 26415,
+   "voters": 24533,
+   "turnout": 92.88,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Laishram Radhakishore Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 12029,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Irengbam Ibohalbi Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 11186,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khundrakpam Romio",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 50,
+     "votes": 1030,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Laitonjam Thoiba Singh",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 59,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 81,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Bishnupur",
+   "type": "GEN",
+   "electors": 29560,
+   "voters": 26642,
+   "turnout": 90.13,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Konthoujam Govindas",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 14150,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Konthoujam Krishna Kumar Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 8872,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khundrakpam Bhabeshwor Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 3333,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thokchom Bindasakhi Devi",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 56,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 181,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Moirang",
+   "type": "GEN",
+   "electors": 35364,
+   "voters": 31617,
+   "turnout": 89.4,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pukhrem Sharatchandra Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 11708,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mairembam Prithviraj Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 11333,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thongam Shanti Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 8369,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 203,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Thanga",
+   "type": "GEN",
+   "electors": 20921,
+   "voters": 19567,
+   "turnout": 93.53,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tongbram Robindro Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 6462,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moirangthem Asnikumar Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 5457,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tongbram Mangibabu Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 5070,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Heisnam Kulachandra Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 63,
+     "votes": 2461,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 97,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Kumbi",
+   "type": "GEN",
+   "electors": 26032,
+   "voters": 23808,
+   "turnout": 91.46,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sanasam Bira Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 70,
+     "votes": 11881,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ningthoujam Mangi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 10570,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ningombam Ibohal Meitei",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 1057,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Wahengbam Bobbyjames Singh",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 36,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 117,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Lilong",
+   "type": "GEN",
+   "electors": 31182,
+   "voters": 29338,
+   "turnout": 94.09,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Muhammad Abdul Nasir",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 10765,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Y. Antas Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 9497,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Md. Anwar Hussain",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 8456,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sheikh Kheiruddin",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 59,
+     "votes": 369,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Md. Abdul Zabar",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 59,
+     "votes": 83,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nasir Ahmad Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 100,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Thoubal",
+   "type": "GEN",
+   "electors": 30002,
+   "voters": 27279,
+   "turnout": 90.92,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Okram Ibobi Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 18649,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Leitanthem Basanta Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 8179,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Leishangthem Suresh Singh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 43,
+     "votes": 144,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Irom Sharmila Chanu",
+     "partyId": "PRJA",
+     "sex": "F",
+     "age": 44,
+     "votes": 90,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dr. Akoijam Manglemjao Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 66,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 143,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Wangkhem",
+   "type": "GEN",
+   "electors": 31247,
+   "voters": 28622,
+   "turnout": 91.6,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Keisham Meghachandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 11293,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yumnam Nabachandra Singh",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 8413,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Oinam Haridas Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 4573,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kangabam Jadu Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 3986,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Laishram Thanil Meitei",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 27,
+     "votes": 136,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 177,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Heirok",
+   "type": "GEN",
+   "electors": 30297,
+   "voters": 28715,
+   "turnout": 94.78,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thokchom Radheshyam Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 13389,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moirangthem Okendro",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 11742,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ningthoujam Diten",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 46,
+     "votes": 3321,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Moirangthem Totomsana",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 85,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nongmeikapam Sovakiran Singh",
+     "partyId": "MPP",
+     "sex": "M",
+     "age": 45,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 94,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Wangjing tentha",
+   "type": "GEN",
+   "electors": 32097,
+   "voters": 29585,
+   "turnout": 92.17,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Paonam Brojen Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 12830,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moirangthem Hemanta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 10967,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Haobam Robindro Singh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 51,
+     "votes": 5562,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sagolsem Ibochoubi Singh",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 58,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 105,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Khangabok",
+   "type": "GEN",
+   "electors": 34887,
+   "voters": 32433,
+   "turnout": 92.97,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surjakumar Okram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 29,
+     "votes": 20781,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thokchom Jadumani Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 11329,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Haji Asraf Ali",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 67,
+     "votes": 116,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 133,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Wabgai",
+   "type": "GEN",
+   "electors": 29634,
+   "voters": 27624,
+   "turnout": 93.22,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Md. Fajur Rahim",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 12474,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Usham Deben Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 7713,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mayengbam Ranjit Singh",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 43,
+     "votes": 5264,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Md. Abdul Samad",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 41,
+     "votes": 1695,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohammad Habibur Rahman",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 46,
+     "votes": 326,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Najima Bibi",
+     "partyId": "PRJA",
+     "sex": "F",
+     "age": 44,
+     "votes": 33,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 117,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Kakching",
+   "type": "GEN",
+   "electors": 27879,
+   "voters": 24100,
+   "turnout": 86.44,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yengkhom Surchandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 11133,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M. Rameshwar Singh (Ramay)",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 10503,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Naorem Achouba",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 63,
+     "votes": 2215,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 249,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Hiyanglam",
+   "type": "GEN",
+   "electors": 26450,
+   "voters": 25192,
+   "turnout": 95.24,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Radheshyam Yumnam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 13394,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Elangbam Dwijamani Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 11669,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 127,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Sugnu",
+   "type": "GEN",
+   "electors": 26775,
+   "voters": 23728,
+   "turnout": 88.62,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kangujam Ranjit Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 13331,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yumnam Jiban Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 36,
+     "votes": 10198,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 196,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Jiribam",
+   "type": "GEN",
+   "electors": 28232,
+   "voters": 22940,
+   "turnout": 81.26,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ashab Uddin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 8189,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thoudam Debendra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 74,
+     "votes": 6539,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thounaojam Ranabir Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 3199,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A. Biren Singh",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 62,
+     "votes": 2812,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mathiudin Kamei",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 36,
+     "votes": 1163,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Habib Ali",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 64,
+     "votes": 649,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 389,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Chandel",
+   "type": "ST",
+   "electors": 47545,
+   "voters": 42338,
+   "turnout": 89.05,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Letpao Haokip",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 14216,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ts Warngam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 12091,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "S.S. Olish",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 40,
+     "votes": 9842,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bd. Behring Anal",
+     "partyId": "PDA",
+     "sex": "M",
+     "age": 63,
+     "votes": 3044,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "St. Victor Nunghlung",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 59,
+     "votes": 1574,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chungjalen Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 1185,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Thangkholun Haokip",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 221,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 163,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Tengnoupal",
+   "type": "ST",
+   "electors": 46242,
+   "voters": 41697,
+   "turnout": 90.17,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "D. Korungthang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 16940,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yangkholet Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 12284,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khulpuwa Armstrong Charang",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 46,
+     "votes": 11015,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kh David Maring",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 54,
+     "votes": 1300,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 150,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Phungyar",
+   "type": "ST",
+   "electors": 30167,
+   "voters": 24958,
+   "turnout": 82.73,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "K. Leishiyo",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 42,
+     "votes": 11900,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Somi Awungshi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 7122,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Victor Keishing",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 5313,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A.S. Hopingson",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 452,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "M.K. Phungreiyo",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 56,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 72,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "Ukhrul",
+   "type": "ST",
+   "electors": 41673,
+   "voters": 32079,
+   "turnout": 76.98,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Alfred Kanngam Arthur",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 11510,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Somatai Shaiza",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 11214,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Samuel Risom",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 56,
+     "votes": 8883,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Worthington Mahung",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 310,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Letsei Haokip",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 29,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 46,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Chingai",
+   "type": "ST",
+   "electors": 41200,
+   "voters": 32072,
+   "turnout": 77.84,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khashim Vashum",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 53,
+     "votes": 16582,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sword Vashum",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 8932,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Preshow M.K Shimray",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 6370,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "N.K. Shimray",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 70,
+     "votes": 157,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 30,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Saikul",
+   "type": "ST",
+   "electors": 36301,
+   "voters": 29322,
+   "turnout": 80.77,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yamthong Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 8677,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chungkhokai Doungel",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 76,
+     "votes": 5416,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Paojalet Touthang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 4439,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Doukhomang Khongsai",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 57,
+     "votes": 4008,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ch. Ajang Khongsai",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 57,
+     "votes": 2993,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Thangjamang Haokip",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 2803,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "L. Samuel Kom",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 52,
+     "votes": 464,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mangvung Thangboi Haokip",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 43,
+     "votes": 304,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Letjam Singson",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 68,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Horngam Keishing",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 53,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Kenn Raikhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 45,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 45,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Karong",
+   "type": "ST",
+   "electors": 52295,
+   "voters": 44096,
+   "turnout": 84.32,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "D.D. Thaisii",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 14038,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "R. Yuh Jonathan Tao",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 9745,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thaiba Sanii",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 7322,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Solomon Vieno",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 6553,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dr. V. Alexander Pao",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 56,
+     "votes": 5342,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "T.K. Savanai",
+     "partyId": "LJP",
+     "sex": "F",
+     "age": 33,
+     "votes": 951,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 145,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Mao",
+   "type": "ST",
+   "electors": 53841,
+   "voters": 49216,
+   "turnout": 91.41,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Losii Dikho",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 50,
+     "votes": 25933,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Woba Joram",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 10519,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "P.T. Arhai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 7604,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "R. Haba Pao",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 5101,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 59,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Tadubi",
+   "type": "ST",
+   "electors": 46584,
+   "voters": 40758,
+   "turnout": 87.49,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "N. Kayisii",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 51,
+     "votes": 17115,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M. Francis Ngajokpa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 15816,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "K. Raina",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 52,
+     "votes": 6614,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dilungheing",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 354,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "L. Hingba Thomas",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 49,
+     "votes": 330,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "R.S. Henry Hiilii",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 305,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 223,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Kangpokpi",
+   "type": "GEN",
+   "electors": 30088,
+   "voters": 26066,
+   "turnout": 86.63,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nemcha Kipgen",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 47,
+     "votes": 13485,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kharga Tamang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 11188,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Athikho Solomon Enah",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 52,
+     "votes": 875,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Soshim Keishing",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 289,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Saitu",
+   "type": "ST",
+   "electors": 42141,
+   "voters": 36394,
+   "turnout": 86.36,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ngamthang Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 19467,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Haokholet Kipgen",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 15650,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sehpu Haokip",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 59,
+     "votes": 1166,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 110,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Tamei",
+   "type": "ST",
+   "electors": 36427,
+   "voters": 32315,
+   "turnout": 88.71,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Awangbow Newmai",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 49,
+     "votes": 15933,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Z. Kikhonbou Newmai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 15186,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "G.N. Kumuiteung (Dr. Aku)",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 1136,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 40,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Tamenglong",
+   "type": "ST",
+   "electors": 31970,
+   "voters": 24446,
+   "turnout": 76.47,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Samuel Jendai Kamei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 13023,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Janghemlung Panmei",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 39,
+     "votes": 11019,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jangamlung Panmei",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 114,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Nungba",
+   "type": "ST",
+   "electors": 25392,
+   "voters": 19713,
+   "turnout": 77.63,
+   "phase": 2,
+   "pollDate": "2017-03-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gaikhangam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 10255,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Adim Pamei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 5108,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pou Mathiupuang Gonmei",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 4111,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kamei William Kabui",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 34,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 75,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Tipaimukh",
+   "type": "ST",
+   "electors": 17862,
+   "voters": 11804,
+   "turnout": 66.08,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Chaltonlien Amo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 4997,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Lallukhum Fimate",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 4371,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ngursanglur Sanate",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 42,
+     "votes": 2167,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ngurrivung",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thangthatling Sinate",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 59,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 25,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Thanlon",
+   "type": "ST",
+   "electors": 18076,
+   "voters": 13713,
+   "turnout": 75.86,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vungzagin Valte",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 9752,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chinkholal Thangsing",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 2583,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thangkhangin",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 795,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "T. Nengzakham Tombing",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 64,
+     "votes": 413,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "P. Khamsanglian",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 37,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Henglep",
+   "type": "ST",
+   "electors": 29449,
+   "voters": 23782,
+   "turnout": 80.76,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T. Thangzalam Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 8438,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "T. Manga Vaiphei",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 8170,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Letzamang Haokip",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 42,
+     "votes": 5146,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mangcha Gangte",
+     "partyId": "MNDF",
+     "sex": "M",
+     "age": 50,
+     "votes": 1303,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thongzamlien",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 30,
+     "votes": 547,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dr. Jainson Haokip",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 68,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 71,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Churachandpur",
+   "type": "ST",
+   "electors": 54113,
+   "voters": 33854,
+   "turnout": 62.56,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "V. Hangkhanlian",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 10246,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Phungzathang Tonsing",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 71,
+     "votes": 9632,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Paukhansuan Khuptong",
+     "partyId": "NEINDP",
+     "sex": "M",
+     "age": 40,
+     "votes": 6411,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thangbiaklian Hangzo",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 36,
+     "votes": 3712,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Chintwahlian @ C.T. Lian Guite",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 3040,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Haukhanthang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 535,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dr. D.K. Mang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 156,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 108,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Saikot",
+   "type": "ST",
+   "electors": 50889,
+   "voters": 33894,
+   "turnout": 66.6,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "T. N. Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 16354,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Paokholal Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 11253,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Holkholun Lhungdim",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 6096,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 189,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Singhat",
+   "type": "ST",
+   "electors": 26684,
+   "voters": 18335,
+   "turnout": 68.71,
+   "phase": 1,
+   "pollDate": "2017-03-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ginsuanhau",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 8131,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chinlunthang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 6969,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Henlianthang Thanglet",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 56,
+     "votes": 3124,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 111,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

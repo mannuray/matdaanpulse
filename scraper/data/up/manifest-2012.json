@@ -1,0 +1,63 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2012_Uttar_Pradesh_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "SP",
+   "name": "SP",
+   "color": "#CC0000",
+   "parties": [
+    "SP"
+   ]
+  },
+  {
+   "id": "BSP",
+   "name": "BSP",
+   "color": "#1E40AF",
+   "parties": [
+    "BSP"
+   ]
+  },
+  {
+   "id": "NDA",
+   "name": "BJP+",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "INCRLD",
+   "name": "Congress–RLD",
+   "color": "#19AAED",
+   "parties": [
+    "INC",
+    "RLD"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "SP",
+  "BSP",
+  "NDA"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 202
+  }
+ ],
+ "geo": {
+  "zoom": 7,
+  "center": [
+   80.9,
+   26.9
+  ],
+  "map_url": "/geo/up_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}
