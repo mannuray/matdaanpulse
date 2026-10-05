@@ -1,0 +1,89 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2024_Haryana_Legislative_Assembly_election",
+  "note: Congress left Bhiwani to the CPI(M); INLD with BSP; JJP with Azad Samaj Party (Kanshi Ram)."
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress+",
+   "color": "#19AAED",
+   "parties": [
+    "INC",
+    "CPIM"
+   ]
+  },
+  {
+   "id": "INLD",
+   "name": "INLD+",
+   "color": "#2E7D32",
+   "parties": [
+    "INLD",
+    "BSP"
+   ]
+  },
+  {
+   "id": "JJP",
+   "name": "JJP+",
+   "color": "#FBC02D",
+   "parties": [
+    "JJP2",
+    "ASPKR"
+   ]
+  },
+  {
+   "id": "AAP",
+   "name": "AAP",
+   "color": "#00897B",
+   "parties": [
+    "AAP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "INC",
+  "INLD",
+  "JJP",
+  "AAP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 46
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   76.1,
+   29.1
+  ],
+  "map_url": "/geo/hr_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0110000-0000-4000-8000-000000002009",
+  "a0110000-0000-4000-8000-000000002014",
+  "a0110000-0000-4000-8000-000000002019"
+ ],
+ "history_years": [
+  2009,
+  2014,
+  2019
+ ],
+ "compare_with": [
+  "a0110000-0000-4000-8000-000000002019"
+ ]
+}
