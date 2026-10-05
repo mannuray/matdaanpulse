@@ -4,8 +4,8 @@
  * historical seed names so its output never changes.
  */
 
-export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY';
-export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY'];
+export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP';
+export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP'];
 
 export interface YearConfig {
   year: number; electionId: string; constPrefix: string;
@@ -54,6 +54,11 @@ export const STATES: Record<StateCode, StateConfig> = {
   KL: state('KL', 'kl', 'Kerala', 16, 140, 14, 2),
   AS: state('AS', 'as', 'Assam', 4, 126, 8, 16),
   PY: state('PY', 'py', 'Puducherry', 27, 30, 5, 0),
+  GA: state('GA', 'ga', 'Goa', 9, 40, 1, 0),
+  MN: state('MN', 'mn', 'Manipur', 21, 60, 1, 19),
+  PB: state('PB', 'pb', 'Punjab', 28, 117, 34, 0),
+  UK: state('UK', 'uk', 'Uttarakhand', 35, 70, 13, 2),
+  UP: state('UP', 'up', 'Uttar Pradesh', 34, 403, 84, 2),
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */
@@ -73,6 +78,20 @@ const y2026 = (code: StateCode, electionId: string, category: number, eciCode: s
   newElection: { name: `${STATES[code].name} Vidhan Sabha 2026`, delimitation, resultDate: '2026-05-04', ...(reserved ? { reserved } : {}) },
   resultsSite: { base: ECI_RESULTS_2026, eciCode }, myneta,
 });
+
+/** A 2012-2022 election of a Phase 3A state: old-site report, no old seed (new-election path), its own reserved counts. */
+const COUNTING: Record<number, string> = { 2012: '2012-03-06', 2017: '2017-03-11', 2022: '2022-03-10' };
+const p3 = (code: StateCode, stateHex: string, year: number, docid: number, expectedPhases: number, reserved: { sc: number; st: number }, files: YearConfig['files']): ElectionConfig => ({
+  ...hist(code, year, `a0${stateHex}0000-0000-4000-8000-00000000${year}`, docid, expectedPhases, files),
+  newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate: COUNTING[year], reserved },
+});
+const PDF12 = { pdf: '2012/2012.pdf' };
+const x17 = { detailed: '2017/Detailed_Results.xlsx', summary: '2017/Constituency_Data_Summry.xlsx', parties: '2017/List_Of_Political_Parties_Participated.xlsx', performance: '2017/Performance_of_Poltical_Parties.xlsx' };
+/** 2022 report file names as ECI saved them (they differ by state). */
+const x22 = (sep: '.' | '-', detailed: string, summary: string) => ({ detailed: `2022/${detailed}`, summary: `2022/${summary}`,
+  parties: `2022/3${sep}List_Of_Political_Parties_Participated.xlsx`, performance: `2022/5${sep}Performance_of_Political_Parties.xlsx` });
+const X22_DOT = x22('.', '10.Detailed_Results.xlsx', '8.Constituency_Data_Summary.xlsx');
+const X22_DASH = x22('-', '10-Detailed_Results.xlsx', '8-Constituency_Data_Summery_Report.xlsx');
 
 export const ELECTIONS: ElectionConfig[] = [
   { state: 'BR', year: 2010, electionId: 'a1b2c3d4-e5f6-7890-abcd-111111111010', constPrefix: 'BR_VS10_', expectedPhases: 6, docid: 3903,
@@ -123,6 +142,12 @@ export const ELECTIONS: ElectionConfig[] = [
   y2026('PY', 'b1c2d3e4-f5a6-7890-1234-567890ab2026', 25, 'U07', 'puducherry2026', 1, '2008'),
   y2026('TN', 'e5f6a7b8-c9d0-1234-ef01-456789012026', 26, 'S22', 'tamilnadu2026', 1, '2008'),
   y2026('WB', 'd4e5f6a7-b8c9-0123-def0-345678901026', 28, 'S25', 'westbengal2026', 3, '2008'),
+  // Phase 3A (2012-2022). UP's reserved seats changed in 2017 (85 SC / 0 ST → 84 SC / 2 ST) within the 2008 delimitation.
+  p3('GA', '09', 2012, 3856, 1, { sc: 1, st: 0 }, PDF12), p3('GA', '09', 2017, 3862, 1, { sc: 1, st: 0 }, x17), p3('GA', '09', 2022, 14168, 1, { sc: 1, st: 0 }, x22('.', '10-Detailed_Results_(9).xlsx', '8.Constituency_Data_Summary.xlsx')),
+  p3('MN', '21', 2012, 3712, 1, { sc: 1, st: 19 }, PDF12), p3('MN', '21', 2017, 3713, 2, { sc: 1, st: 19 }, x17), p3('MN', '21', 2022, 14166, 2, { sc: 1, st: 19 }, X22_DOT),
+  p3('PB', '28', 2012, 3455, 1, { sc: 34, st: 0 }, PDF12), p3('PB', '28', 2017, 3614, 1, { sc: 34, st: 0 }, x17), p3('PB', '28', 2022, 14165, 1, { sc: 34, st: 0 }, X22_DOT),
+  p3('UK', '35', 2012, 3231, 1, { sc: 13, st: 2 }, PDF12), p3('UK', '35', 2017, 3470, 2, { sc: 13, st: 2 }, x17), p3('UK', '35', 2022, 14169, 1, { sc: 13, st: 2 }, X22_DASH),
+  p3('UP', '34', 2012, 3262, 7, { sc: 85, st: 0 }, PDF12), p3('UP', '34', 2017, 3471, 8, { sc: 84, st: 2 }, x17), p3('UP', '34', 2022, 14185, 7, { sc: 84, st: 2 }, X22_DASH),
 ];
 
 /** The registry entry of an election id. */
