@@ -1,0 +1,35 @@
+     CONSTITUENCY :                1- Rajmahal
+                                                                     MEN                           WOMEN                      TOTAL
+I.     CANDIDATES
+       1. NOMINATION FILED                                              17                                0                        17
+       2. NOMINATION REJECTED                                               4                             0                         4
+       3. WITHDRAWN                                                         1                             0                         1
+       4. CONTESTED                                                     12                                0                        12
+       5. FORFEITED DEPOSIT                                             10                                0                        10
+II.    ELECTORS
+       1. GENERAL                                                 121906                            111410                   233316
+       2. SERVICE                                                     163                                68                     231
+       3. TOTAL                                                   122069                            111478                   233547
+III. VOTERS
+       1. GENERAL                                                   74649                            61469                   136118
+       2. PROXY (Already Included in III.1 General)                                                                                 0
+       3. POSTAL                                                                                                                   1
+       4. TOTAL                                                                                                              136119
+III(A). POLLING PERCENTAGE                        58.28
+IV. VOTES
+        1. REJECTED VOTES (POSTAL)                                                                                                 1
+        2. VOTES NOT RETREIVED FROM EVM                                                                                            0
+        3. TOTAL VALID VOTES POLLED                                                                                          136118
+        4. TENDERED VOTES                                                                                                          0
+V. POLLING STATIONS
+      NUMBER        300                                             AVERAGE ELECTORS PER POLLING STATION                     778
+      DATE(s) OF RE-POLL, IF ANY :                                                                                                      NIL
+      NUMBER OF POLLING STATIONS WHERE RE-POLL WAS ORDERED                                                                              NIL
+VI. DATES
+                  POLLING                                      COUNTING                                  DECLARATION OF RESULT
+                  25-Nov-2009                                  23-Dec-2009                               23-Dec-2009
+VII. RESULT
+                   PARTY                        CANDIDATE                                                          VOTES
+     WINNER        BJP                          Arun Mandal                                                          51277
+RUNNER-UP          JMM                          Md. Tajuddin                                                         40874
+     MARGIN         10403               ( 7.64%     of Total Valid Votes)

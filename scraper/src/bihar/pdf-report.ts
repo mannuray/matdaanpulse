@@ -4,9 +4,11 @@ import { recognitionOf } from './xls-report';
 
 const SEAT_RE = /^\s*Constituency\s+(\d+)\.\s+(.+?)\s{2,}TOTAL ELECTORS\s*:\s*(\d+)/;
 const TURNOUT_RE = /^\s*TURNOUT\s+TOTAL:\s+(\d+)\s+(\d+)\s+(\d+)/;
+/** 2008/2009 (pre-NOTA): "TOTAL: general postal total %" on its own line, "Turn Out" on the next. */
+const TOTAL_ONLY_RE = /^\s*TOTAL:\s+(\d+)\s+(\d+)\s+(\d+)(?:\s+\d+\.\d+)?\s*$/;
 /** serial, middle (name … party [symbol]), general, postal, total, % */
 const CAND_RE = /^\s*(\d+)\s+(.*?)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+\.\d+)\s*$/;
-const NOISE_RE = /Election Commission of India|DETAILED RESULTS|VALID VOTES POLLED|^\s*% VOTES|CANDIDATE NAME|^\s*POLLED\s*$|Page \d+ of \d+/i;
+const NOISE_RE = /Election Commission of India|DETAILED RESULTS|VALID VOTES POLLED|^\s*% VOTES|CANDIDATE NAME|^\s*POLLED\s*$|Page \d+ of \d+|^\s*Turn Out\s*$|^\s*CAND SL\.\s*$|^\s*as per form 7\s*$/i;
 
 interface Fragment { col: number; text: string }
 /** Split a line into fragments separated by 2+ spaces, with their start columns. */
@@ -27,7 +29,12 @@ function readCandidate(line: string, m: RegExpExecArray): { cand: RawCandidate; 
     return { cand: { serial: Number(m[1]), name: 'NOTA', sex: null, age: null, party: 'NOTA', general, postal, total }, cols: null };
   }
   // name … sex age category party [symbol]: the sex fragment may be glued to the age ("M 37" when spaced by one).
-  const flat = frags.flatMap(f => (/^(M|F|O|TG)\s+\d+$/.test(f.text) ? f.text.split(/\s+/).map((t, i) => ({ col: f.col + (i ? f.text.indexOf(t, 1) : 0), text: t })) : [f]));
+  const flat = frags.flatMap(f => (/^(M|F|O|TG)\s+\d+$/.test(f.text) ? f.text.split(/\s+/).map((t, i) => ({ col: f.col + (i ? f.text.indexOf(t, 1) : 0), text: t })) : [f]))
+    // …or glued to the name ("BAJRANGI PRASAD YADAV M", JH 2014).
+    .flatMap((f, i, all) => {
+      const g = /^(.+\S) (M|F|O|TG)$/.exec(f.text);
+      return g && /^\d+$/.test(all[i + 1]?.text ?? '') ? [{ col: f.col, text: g[1] }, { col: f.col + g[1].length + 1, text: g[2] }] : [f];
+    });
   const si = flat.findIndex((f, i) => i > 0 && /^(M|F|O|TG)$/.test(f.text) && /^\d+$/.test(flat[i + 1]?.text ?? '') && /^(GEN|SC|ST)$/.test(flat[i + 2]?.text ?? ''));
   if (si < 1 || !flat[si + 3]) throw new Error(`Detailed Results: cannot read candidate line: ${line.trim()}`);
   let party = flat[si + 3];
@@ -40,7 +47,8 @@ function readCandidate(line: string, m: RegExpExecArray): { cand: RawCandidate; 
     party = { col: party.col, text: party.text.slice(0, sp) };
   }
   return {
-    cand: { serial: Number(m[1]), name: flat.slice(0, si).map(f => f.text).join(' '), sex: sexOf(flat[si].text), age: Number(flat[si + 1].text),
+    // 2008/2009 rows give the Form-7 serial, then the rank ("3    1 JASWANT SINGH"): the rank is not part of the name.
+    cand: { serial: Number(m[1]), name: flat.slice(0, si).map(f => f.text).join(' ').replace(/^\d+\s+/, ''), sex: sexOf(flat[si].text), age: Number(flat[si + 1].text),
       party: party.text, general, postal, total },
     cols: { sex: flat[si].col, party: party.col, partyEnd: party.col + party.text.length, symbol: symbol ? symbol.col : Number.POSITIVE_INFINITY },
   };
@@ -50,17 +58,22 @@ export function parseDetailedText(text: string): RawSeat[] {
   const seats: RawSeat[] = [];
   let cur: RawSeat | null = null;
   let last: { cand: RawCandidate; cols: Cols } | null = null;
+  // A table headed like the detailed results but without a SEX column (JH 2014's "Women Candidates") is skipped.
+  let skipping = false;
   for (const line of text.split('\n')) {
+    if (/CANDIDATE NAME/.test(line)) { skipping = !/\bSEX\b/.test(line); if (skipping) { cur = null; last = null; } continue; }
+    if (skipping) continue;
     const s = SEAT_RE.exec(line);
     if (s) {
       if (cur) throw new Error(`Detailed Results: seat ${cur.constNo} has no TURNOUT row before seat ${s[1]}`);
+      if (seats.some(x => x.constNo === Number(s[1]))) throw new Error(`Detailed Results: seat ${s[1]} appears twice`);
       const ac = splitAcName(s[2]);
       cur = { constNo: Number(s[1]), acName: ac.name, type: ac.type, electors: Number(s[3]), candidates: [], nota: null, totalVotes: 0 };
       last = null;
       continue;
     }
     if (!cur) continue;
-    const t = TURNOUT_RE.exec(line);
+    const t = TURNOUT_RE.exec(line) ?? TOTAL_ONLY_RE.exec(line);
     if (t) { cur.totalVotes = Number(t[3]); seats.push(cur); cur = null; last = null; continue; }
     if (!line.trim() || NOISE_RE.test(line)) continue;
     const c = CAND_RE.exec(line);
@@ -74,7 +87,7 @@ export function parseDetailedText(text: string): RawSeat[] {
     if (!last) throw new Error(`Detailed Results: unexpected line in seat ${cur.constNo}: ${line.trim()}`);
     for (const f of fragments(line)) {
       if (f.col < last.cols.sex - 1) last.cand.name += ` ${f.text}`;
-      else if (f.col >= last.cols.party - 3 && f.col < Math.min(last.cols.symbol, last.cols.partyEnd + 3)) last.cand.party += f.text;
+      else if (f.col >= last.cols.party - 3 && f.col < Math.min(last.cols.symbol - 1, last.cols.partyEnd + 3)) last.cand.party += f.text; // a wrapped symbol may start one column left of its first line
     }
   }
   if (cur) throw new Error(`Detailed Results: seat ${cur.constNo} has no TURNOUT row`);
@@ -126,9 +139,9 @@ function readSummaryBlock(lines: string[], fixes: SummaryFixes = {}): SeatSummar
       const d = /(\d{1,2}-[A-Za-z]{3}-\d{4})/.exec(next);
       if (d) pollDate = isoDate(d[1]);
     }
-    const p = /^(WINNER|RUNNER-UP)\s+(\S+)\s+(.+?)\s+(\d+)\s*$/.exec(l);
-    if (p) picks[p[1]] = { party: p[2], name: p[3].trim(), votes: Number(p[4]) };
-    const mg = /^MARGIN\s+(\d+)/.exec(l);
+    const p = /^\s*(WINNER|RUNN?ER-UP)\s+(\S+)\s+(.+?)\s+(\d+)\s*$/.exec(l); // indented in the 2009 reports; Odisha 2009 writes "RUNER-UP"
+    if (p) picks[p[1] === 'WINNER' ? 'WINNER' : 'RUNNER-UP'] = { party: p[2], name: p[3].trim(), votes: Number(p[4]) };
+    const mg = /^\s*MARGIN\s+(\d+)/.exec(l);
     if (mg) margin = Number(mg[1]);
   }
   const label = `${head[1]}-${head[2]}`;

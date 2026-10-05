@@ -1,0 +1,53 @@
+{
+ "2014": {
+  "8": {
+   "name": "Nala",
+   "type": "GEN",
+   "voters": 166578,
+   "pollDate": "2014-12-20",
+   "reason": "Absent from ECI's 2014 Jharkhand Constituency Data Summary (it holds 74 of 81 seats). Name and type from the Detailed Results; voters = the Detailed Results' total valid votes + NOTA (rejected postal ballots not included); poll date = the neighbouring seats' date in the same district."
+  },
+  "22": {
+   "name": "Barkagaon",
+   "type": "GEN",
+   "voters": 211410,
+   "pollDate": "2014-12-09",
+   "reason": "Absent from ECI's 2014 Jharkhand Constituency Data Summary (it holds 74 of 81 seats). Name and type from the Detailed Results; voters = the Detailed Results' total valid votes + NOTA (rejected postal ballots not included); poll date = the neighbouring seats' date in the same district."
+  },
+  "43": {
+   "name": "Baghmara",
+   "type": "GEN",
+   "voters": 167662,
+   "pollDate": "2014-12-14",
+   "reason": "Absent from ECI's 2014 Jharkhand Constituency Data Summary (it holds 74 of 81 seats). Name and type from the Detailed Results; voters = the Detailed Results' total valid votes + NOTA (rejected postal ballots not included); poll date = the neighbouring seats' date in the same district (Dhanbad district: seats 38-42 polled 14 Dec)."
+  },
+  "55": {
+   "name": "Manoharpur",
+   "type": "ST",
+   "voters": 127460,
+   "pollDate": "2014-12-02",
+   "reason": "Absent from ECI's 2014 Jharkhand Constituency Data Summary (it holds 74 of 81 seats). Name and type from the Detailed Results; voters = the Detailed Results' total valid votes + NOTA (rejected postal ballots not included); poll date = the neighbouring seats' date in the same district."
+  },
+  "75": {
+   "name": "Panki",
+   "type": "GEN",
+   "voters": 156962,
+   "pollDate": "2014-11-25",
+   "reason": "Absent from ECI's 2014 Jharkhand Constituency Data Summary (it holds 74 of 81 seats). Name and type from the Detailed Results; voters = the Detailed Results' total valid votes + NOTA (rejected postal ballots not included); poll date = the neighbouring seats' date in the same district."
+  },
+  "77": {
+   "name": "Bishrampur",
+   "type": "GEN",
+   "voters": 167269,
+   "pollDate": "2014-11-25",
+   "reason": "Absent from ECI's 2014 Jharkhand Constituency Data Summary (it holds 74 of 81 seats). Name and type from the Detailed Results; voters = the Detailed Results' total valid votes + NOTA (rejected postal ballots not included); poll date = the neighbouring seats' date in the same district."
+  },
+  "79": {
+   "name": "Hussainabad",
+   "type": "GEN",
+   "voters": 154800,
+   "pollDate": "2014-11-25",
+   "reason": "Absent from ECI's 2014 Jharkhand Constituency Data Summary (it holds 74 of 81 seats). Name and type from the Detailed Results; voters = the Detailed Results' total valid votes + NOTA (rejected postal ballots not included); poll date = the neighbouring seats' date in the same district."
+  }
+ }
+}

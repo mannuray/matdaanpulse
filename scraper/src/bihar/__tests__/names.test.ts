@@ -29,6 +29,7 @@ describe('names', () => {
   it('normalises poll dates', () => {
     expect(isoDate('2020-11-07')).toBe('2020-11-07');
     expect(isoDate('28-Oct-2010')).toBe('2010-10-28');
+    expect(isoDate('08/02/2020')).toBe('2020-02-08');
     expect(isoDate('1-Nov-2015')).toBe('2015-11-01');
     expect(() => isoDate('soon')).toThrow();
   });

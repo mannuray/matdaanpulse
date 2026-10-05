@@ -1,0 +1,17 @@
+[
+ {
+  "year": 2014,
+  "key": "margin:10",
+  "reason": "ECI's Constituency Data Summary margin (5262) is an arithmetic slip: its own winner (69760) and runner-up (64846) votes agree with the Detailed Results and give 4914"
+ },
+ {
+  "year": 2014,
+  "key": "margin:78",
+  "reason": "ECI's Constituency Data Summary margin (5881) is an arithmetic slip: its own winner (43805) and runner-up (37943) votes agree with the Detailed Results and give 5862"
+ },
+ {
+  "year": 2014,
+  "key": "margin:80",
+  "reason": "ECI's Constituency Data Summary margin (21510) is an arithmetic slip: its own winner (75196) and runner-up (53441) votes agree with the Detailed Results and give 21755"
+ }
+]
