@@ -159,6 +159,14 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | Regenerating a corrections seed after the year seeds were already regenerated | restore the old year seeds first (`git show <pre-branch commit>:database/…`); corrections are a diff against the old rows |
 | Flat 2016 sheets: summing the parsed rows as the seat total makes the turnout check compare a number with itself | read the sheet's own "Total Votes" column |
 
+| Pre-NOTA PDFs (2008/2009): rows "serial rank NAME", "TOTAL:" then a bare "Turn Out" line, indented WINNER/MARGIN, "RUNER-UP" | parser variants, each with a fixture test |
+| A table headed "DETAILED RESULTS" that is not (JH 2014 Women Candidates: no SEX column) | skip blocks whose header lacks SEX; a seat appearing twice throws |
+| 2019/2020 summary sheets: label "NARELA-GEN", the seat number only in the sheet name ("U05-1"), plain headings, dd/mm/yyyy | `parseSummaryRows(rows, sheetName)` |
+| A candidate's party wraps under a wrapped symbol ("CPI(ML) Auto-" / "(L)  Rickshaw") | a continuation joins the party only left of the symbol column |
+| Results sites of 2024/25 offline | photos-cli falls back to Wayback snapshots (CDX); photo JPEGs still served live |
+| A leader's ballot name differs (Parvesh Verma = "Parvesh Sahib Singh") | `ballot_name` on that candidacy in leaders.json |
+| Current-track CLIs reaching for old MyNeta pages of an all-new state | `trackOf` = elections with a results site / MyNeta (the latest assembly) |
+| Counting dates differ per state and year | each registry entry carries its own `resultDate` |
 | A summary page broken or a seat's type wrong in ECI's summary (Manipur 2017 Sagolband; 9 UP 2017 seats) | `summary-fixes.json` per year (`voters`, `totalValid`, `type`), each with its source |
 | Seats missing from ECI's summary (UP 2017: 11) | `missing-summaries.json`: name, type, electors, poll date; totals from the detailed sheet (candidates only, NOTA separate) |
 | Two candidates of one party in a seat (UP 2012 seat 72); the DB keeps one per party per seat | `candidate-fixes.json` (the other as IND); parse/generate refuse such seats without a decision |

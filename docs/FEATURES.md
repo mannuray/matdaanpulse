@@ -180,6 +180,23 @@ Plan `docs/superpowers/plans/2026-10-03-phase2a-historical-results.md` (historic
 - Per-state party overrides (`scraper/data/<slug>/party-overrides.json`) where an ECI name means another party here
   (Kerala 2011's "Muslim League Kerala State Committee" = IUML).
 
+### Delhi, Haryana, Jharkhand, Odisha since the 2008 delimitation (Phase 4A), 2026-10-05
+Plan `docs/superpowers/plans/2026-10-05-phase4a-dl-hr-jh-od.md`. The 2024/25 states, for completeness (the other states
+get their history only as their own election approaches).
+- [x] 17 new elections from the ECI statistical reports: Delhi 2008, 2013, 2015, 2020, 2025; Haryana, Jharkhand,
+  Odisha 2009, 2014, 2019, 2024 — every candidate (+ NOTA from 2013), real votes, SC/ST, electors, turnout, poll-date
+  phases; winners match ECI's party totals. Parser: the pre-NOTA PDFs (Form-7 serial + rank, separate TOTAL / "Turn Out"
+  lines, indented WINNER, Odisha's "RUNER-UP"), the 2019/2020 summary sheets (seat number only in the sheet name, plain
+  section headings, dd/mm/yyyy dates), Jharkhand 2014 (its Women Candidates table headed "DETAILED RESULTS" is skipped;
+  7 seats missing from the summary → `missing-summaries.json`). Odisha 2019 has 146 seats: AC 96 Patkura was
+  countermanded and polled later (no ECI report of it; About says so).
+- [x] Districts and regions (current districts, incl. Delhi's 13 of 2026 and Haryana's Hansi): Delhi by its 7 Lok Sabha
+  seats (`seatRegions`), Haryana 6 divisions, Jharkhand 5 divisions, Odisha 3 revenue divisions.
+- [x] Person links (v1 history, v2 latest year); the latest election of each state at current-track depth: leaders
+  (user-approved; a candidacy may carry `ballot_name`), 7 new top-party profiles (user-approved), top-4 candidate photos
+  from the archived results pages (Wayback), winners' affidavits from MyNeta (Jharkhand 80/81: Bermo missing on MyNeta).
+- Current-track CLIs work on each state's latest assembly only (`trackOf`: elections with a results site / MyNeta).
+
 ### Goa, Manipur, Punjab, Uttarakhand, Uttar Pradesh 2012-2022 (history), 2026-10-05
 Plan `docs/superpowers/plans/2026-10-05-phase3a-five-states-history.md` (historical track; results only, including 2022).
 - [x] 15 new elections from the ECI statistical reports (2012 one PDF per state, 2017 XLSX/PDF set, 2022 numbered XLSX set):
