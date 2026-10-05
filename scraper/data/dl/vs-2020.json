@@ -1,0 +1,8203 @@
+{
+ "year": 2020,
+ "electionId": "a0240000-0000-4000-8000-000000002020",
+ "source": {
+  "title": "ECI Statistical Report, Delhi Legislative Assembly 2020",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=12027",
+  "retrieved": "2026-10-05"
+ },
+ "parties": [
+  {
+   "id": "AAP",
+   "name": "Aam Aadmi Party",
+   "abbreviation": null,
+   "color": "#0066FF",
+   "recognition": "National"
+  },
+  {
+   "id": "AAPP",
+   "name": "Aapki Apni Party (Peoples)",
+   "abbreviation": "AAPP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AASPS",
+   "name": "Aam Aadmi Sangharsh Party (S)",
+   "abbreviation": "AASPS",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "ABHM",
+   "name": "Akhil Bharat Hindu Mahasabha",
+   "abbreviation": "ABHM",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AHNP",
+   "name": "Aihra National Party",
+   "abbreviation": "AHNP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AIFB",
+   "name": "All India Forward Bloc",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "AJPI",
+   "name": "Aam Janta Party (India)",
+   "abbreviation": "AJPI",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AJPSH",
+   "name": "Aam Janata Party (Sarvajana Hitaya)",
+   "abbreviation": "AJPSH",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AKBHJSP",
+   "name": "Akhil Bharatiya Jan Shakti Party",
+   "abbreviation": "AKBHJSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "ANAP",
+   "name": "Anjaan Aadmi Party",
+   "abbreviation": "AnAP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "ANC",
+   "name": "Ambedkar National Congress",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "AP_BR",
+   "name": "Awami Party",
+   "abbreviation": "AP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "APOI",
+   "name": "Ambedkarite Party of India",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "ASP",
+   "name": "Asankhya Samaj Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BDP1",
+   "name": "Bahujan Dravida Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BHARP",
+   "name": "Bhartiya Rashtrawadi Party",
+   "abbreviation": "BhaRP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJDI",
+   "name": "Bhartiya Janta Dal (Integrated)",
+   "abbreviation": "bjdi",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "BLOKSP",
+   "name": "Bharat Lok Sewak Party",
+   "abbreviation": "BLokSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BLPGL",
+   "name": "Bharatiya Loktantrik Party(Gandhi-Lohiawadi)",
+   "abbreviation": "BLPGL",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BMP",
+   "name": "Bahujan Maha Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BP1",
+   "name": "Baliraja Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BPC",
+   "name": "Bhartiya Pragatisheel Congress",
+   "abbreviation": "BPC",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BRD",
+   "name": "Bhartiya Rashtriya Dal",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BSKP",
+   "name": "Bharatiya Sampuran Krantikari Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BSKP_UP",
+   "name": "Bharatiya Sarvodaya Kranti Party",
+   "abbreviation": "BSKP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BSNP",
+   "name": "Bhartiya Samajik Nyay Party",
+   "abbreviation": "BSNP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BSP",
+   "name": "Bahujan Samaj Party",
+   "abbreviation": null,
+   "color": "#4B5BD6",
+   "recognition": "National"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "DJP_DL",
+   "name": "Delhi Janta Party",
+   "abbreviation": "DJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "HAMS",
+   "name": "Hindustani Awam Morcha (Secular)",
+   "abbreviation": null,
+   "color": "#E8C547",
+   "recognition": null
+  },
+  {
+   "id": "HND",
+   "name": "Hindusthan Nirman Dal",
+   "abbreviation": "HND",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "INDPJC",
+   "name": "Indian Praja Congress",
+   "abbreviation": "INDPJC",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JANADIP",
+   "name": "Jan Adhikar Party",
+   "abbreviation": "JANADIP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JASSP",
+   "name": "Jan Seva Sahayak Party",
+   "abbreviation": "JaSSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JAVP",
+   "name": "Jan Awaz Vikas Party",
+   "abbreviation": "JAVP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JDNTP",
+   "name": "Janadhar National Party",
+   "abbreviation": "JDNTP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "JJP",
+   "name": "Jagrook Janta Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JKIP",
+   "name": "Janhit Kisan Party",
+   "abbreviation": "JKiP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JKP3",
+   "name": "Jindabad Kranti Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JMTP",
+   "name": "Janmat Party",
+   "abbreviation": "JmtP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JSPR",
+   "name": "Janshakti Party (Rashtriya)",
+   "abbreviation": "JSPR",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "LJP",
+   "name": "Lok Janshakti Party",
+   "abbreviation": null,
+   "color": "#0000CD",
+   "recognition": null
+  },
+  {
+   "id": "LPOI",
+   "name": "Liberal Party of India",
+   "abbreviation": "LPOI",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "LSPL",
+   "name": "Lok Shakti Party (Loktantrik)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "LTSP",
+   "name": "Loktanter Suraksha Party",
+   "abbreviation": "LTSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MANPA",
+   "name": "Manvadhikar National Party",
+   "abbreviation": "MaNPa",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MEP",
+   "name": "Mazdoor Ekta Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "MKDVP",
+   "name": "Mazdoor Kirayedar Vikas Party",
+   "abbreviation": "MKDVP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NYAYPR",
+   "name": "Nyay Party",
+   "abbreviation": "NYAYPR",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NYP",
+   "name": "National Youth Party",
+   "abbreviation": "NYP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "PBI",
+   "name": "Proutist Bloc, India",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "PHRC",
+   "name": "Poorvanchal Rashtriya Congress",
+   "abbreviation": "PHRC",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "PM",
+   "name": "Purvanchal Mahapanchayat",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "PPOI1",
+   "name": "Peoples Party of India (Democratic)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "PSP1",
+   "name": "Parivartan Samaj Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "PUJP",
+   "name": "Purvanchal Janta Party (Secular)",
+   "abbreviation": "PUJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RAJSPTY",
+   "name": "Rastriya Aam Jan Seva Party",
+   "abbreviation": "RAJSPty",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RAM",
+   "name": "Rashtriya Aikta Manch",
+   "abbreviation": "RAM",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RJ",
+   "name": "Rashtriya Janmorcha",
+   "abbreviation": "RJ",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RJAP_UP",
+   "name": "Rashtriya Janadhikar Party",
+   "abbreviation": "RJAP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RJD",
+   "name": "Rashtriya Janata Dal",
+   "abbreviation": "RJD",
+   "color": "#7BD34A",
+   "recognition": "State"
+  },
+  {
+   "id": "RJP",
+   "name": "Rashtriya Jansambhavna Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RJP5",
+   "name": "Rashtriya Janshakti Party (Secular)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RLD",
+   "name": "Rashtriya Lok Dal",
+   "abbreviation": null,
+   "color": "#33CC33",
+   "recognition": null
+  },
+  {
+   "id": "RMEP",
+   "name": "Rashtriya Mazdoor Ekta Party",
+   "abbreviation": "RMEP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RNP",
+   "name": "Rashtra Nirman Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RPOI2",
+   "name": "Republican Party of India (Athawale)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RPOIA",
+   "name": "Republican Party of India (A)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RRP",
+   "name": "Rashtriya Republican Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RRP_UP",
+   "name": "Rashtriya Rashtrawadi Party",
+   "abbreviation": "RRP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RSP1",
+   "name": "Rashtriya Samaj Paksha",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RTRP",
+   "name": "Right to Recall Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RVNP",
+   "name": "Rashtravadi Janata Party",
+   "abbreviation": "RVNP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SATBP",
+   "name": "Satya Bahumat Party",
+   "abbreviation": "SatBP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SDPOI",
+   "name": "Social Democratic Party Of India",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "abbreviation": null,
+   "color": "#FF6600",
+   "recognition": null
+  },
+  {
+   "id": "SHTP",
+   "name": "Sarvajan Hitay Party",
+   "abbreviation": "SHtP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SJSMP",
+   "name": "Sajag Samaj Party",
+   "abbreviation": "SJSMP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SP3",
+   "name": "Socialist Party (India)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SPRP",
+   "name": "Sarvodaya Prabhat Party",
+   "abbreviation": "SPRP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SSBDP",
+   "name": "Sabse Badi Party",
+   "abbreviation": "SSBDP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SUCI",
+   "name": "Socialist Unity Centre of India (Communist)",
+   "abbreviation": null,
+   "color": "#CC0000",
+   "recognition": null
+  },
+  {
+   "id": "SVJN",
+   "name": "Sarvjan Lok Shakti Party",
+   "abbreviation": "svjn",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SWAP",
+   "name": "Swabhiman Party",
+   "abbreviation": "SWAP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SWARAJ",
+   "name": "Swaraj India",
+   "abbreviation": "SWARAJ",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "TPSTP",
+   "name": "Tipu Sultan Party",
+   "abbreviation": "TPSTP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "UKD",
+   "name": "Uttarakhand Kranti Dal",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "VIJAYBHA",
+   "name": "Vijay Bharat Party",
+   "abbreviation": "VIJAYBHA",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "VPI",
+   "name": "Voters Party  International",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "VSP",
+   "name": "Vishva Shakti Party",
+   "abbreviation": "vsp",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Narela",
+   "type": "GEN",
+   "electors": 253982,
+   "voters": 165963,
+   "turnout": 65.34,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sharad Kumar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 44,
+     "votes": 86262,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Neel Daman Khatri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 68833,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Siddharth Kundu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 6270,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajbala Saini",
+     "partyId": "LTSP",
+     "sex": "F",
+     "age": 44,
+     "votes": 1082,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mahender Chaudhary",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 821,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nar Singh",
+     "partyId": "SHTP",
+     "sex": "M",
+     "age": 39,
+     "votes": 604,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sulesh Kumar",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 50,
+     "votes": 495,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Suresh Kumar",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 61,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Aditi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 26,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Chand Ram",
+     "partyId": "RAJSPTY",
+     "sex": "M",
+     "age": 57,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ramesh Kumar",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 54,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 753,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Burari",
+   "type": "GEN",
+   "electors": 361703,
+   "voters": 222391,
+   "turnout": 61.48,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sanjeev Jha",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 40,
+     "votes": 139598,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shailendra Kumar",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 60,
+     "votes": 51440,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dharam Veer",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 70,
+     "votes": 18044,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pramod Tyagi",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 56,
+     "votes": 2278,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ganga Ram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 56,
+     "votes": 1869,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ranjeet Singh",
+     "partyId": "UKD",
+     "sex": "M",
+     "age": 42,
+     "votes": 1244,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anil Kumar Yadav",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 28,
+     "votes": 1210,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Manoj Rai",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 806,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Deepak Gupta",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 41,
+     "votes": 676,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Amarjeet Kumar",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 39,
+     "votes": 654,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ram Sushil Mishra",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 29,
+     "votes": 456,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Shiv Narayan Singh",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 57,
+     "votes": 382,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Monu",
+     "partyId": "BHARP",
+     "sex": "M",
+     "age": 29,
+     "votes": 347,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Shailendra Singh Parihar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 291,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Pankaj Kumar Agrawal",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 43,
+     "votes": 287,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Arvind Mishra",
+     "partyId": "HND",
+     "sex": "M",
+     "age": 45,
+     "votes": 285,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Awdesh Verma Alias Avdhesh Verma",
+     "partyId": "JANADIP",
+     "sex": "M",
+     "age": 40,
+     "votes": 282,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Aazad Nafe Singh Rajput",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 227,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Krishna Mohan Jha",
+     "partyId": "AASPS",
+     "sex": "M",
+     "age": 46,
+     "votes": 183,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Usha Gautam",
+     "partyId": "RAM",
+     "sex": "F",
+     "age": 64,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Dinesh Kumar Mishra",
+     "partyId": "RSP1",
+     "sex": "M",
+     "age": 42,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Gulab Singhal",
+     "partyId": "RJP5",
+     "sex": "M",
+     "age": 44,
+     "votes": 146,
+     "status": "LOST"
+    },
+    {
+     "serial": 24,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1206,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Timarpur",
+   "type": "GEN",
+   "electors": 203599,
+   "voters": 124052,
+   "turnout": 60.93,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dilip Pandey",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 39,
+     "votes": 71432,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Surinder Pal Singh (Bittoo)",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 47288,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Amar Lata Sangwan",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 51,
+     "votes": 3102,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sonu Kaushik",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 495,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Advocate Uma Shanker Gautam",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 306,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sanjeev Kumar Rana",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 51,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vishal Ghansham Ghobale",
+     "partyId": "TPSTP",
+     "sex": "M",
+     "age": 36,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Hemraj",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 34,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Amita Malik",
+     "partyId": "AKBHJSP",
+     "sex": "F",
+     "age": 32,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Parashu Ram Maurya",
+     "partyId": "JANADIP",
+     "sex": "M",
+     "age": 50,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Kavita",
+     "partyId": "BSNP",
+     "sex": "F",
+     "age": 38,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Raj Kumar Malik",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 27,
+     "votes": 62,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Jagannath",
+     "partyId": "BJDI",
+     "sex": "M",
+     "age": 70,
+     "votes": 53,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Yugal Kishor Poddar",
+     "partyId": "RVNP",
+     "sex": "M",
+     "age": 52,
+     "votes": 34,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 508,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Adarsh Nagar",
+   "type": "GEN",
+   "electors": 173416,
+   "voters": 103800,
+   "turnout": 59.86,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Sharma",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 53,
+     "votes": 46892,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Raj Kumar Bhatia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 45303,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mukesh Kumar Goel",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 10014,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Chander Pal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 532,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kailash",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 302,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vijay Kr Aggarwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shashi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 34,
+     "votes": 126,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 419,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Badli",
+   "type": "GEN",
+   "electors": 219941,
+   "voters": 139913,
+   "turnout": 63.61,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajesh Yadav",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 52,
+     "votes": 69427,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vijay Kumar Bhagat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 40333,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Devender Yadav",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 27483,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Laxman Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 27,
+     "votes": 579,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Siddharth Nair",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 277,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vijay Kumar",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 246,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Uma Dutt Sharma",
+     "partyId": "RAM",
+     "sex": "M",
+     "age": 58,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Vikash Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mulayam Singh",
+     "partyId": "AKBHJSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Devender Singh Yadav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Narendra Pal Singh",
+     "partyId": "RSP1",
+     "sex": "M",
+     "age": 29,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Jai Pal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 83,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Pradeep Kumar",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 36,
+     "votes": 46,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 609,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Rithala",
+   "type": "GEN",
+   "electors": 279653,
+   "voters": 167235,
+   "turnout": 59.8,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohinder Goyal",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 55,
+     "votes": 87940,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Manish Chaudhary",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 74067,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pradeep Kumar Pandey",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 2651,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajesh Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 491,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Alok Dixit",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vidya Pati",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 232,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shiv Nandan Singh",
+     "partyId": "BSKP",
+     "sex": "M",
+     "age": 45,
+     "votes": 188,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Tribeni Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 67,
+     "votes": 172,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Suraj Singh",
+     "partyId": "AKBHJSP",
+     "sex": "M",
+     "age": 27,
+     "votes": 82,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vijay Kumar",
+     "partyId": "RNP",
+     "sex": "M",
+     "age": 47,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Waheed Khan",
+     "partyId": "TPSTP",
+     "sex": "M",
+     "age": 34,
+     "votes": 53,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Janab Mulla",
+     "partyId": "ASP",
+     "sex": "M",
+     "age": 41,
+     "votes": 50,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 824,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Bawana",
+   "type": "SC",
+   "electors": 319559,
+   "voters": 198040,
+   "turnout": 61.97,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jai Bhagwan",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 38,
+     "votes": 95715,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravinder Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 84189,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Surender Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 12803,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ranjit Ram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 1941,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abhipsa Chauhan",
+     "partyId": "CPI",
+     "sex": "F",
+     "age": 25,
+     "votes": 1227,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pradeep",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 46,
+     "votes": 921,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1046,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Mundka",
+   "type": "GEN",
+   "electors": 282984,
+   "voters": 168208,
+   "turnout": 59.44,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dharampal Lakra",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 61,
+     "votes": 90293,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Azad Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 71135,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Naresh Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 5082,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Chetram",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 71,
+     "votes": 273,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Karam Chand Lathwal",
+     "partyId": "BPC",
+     "sex": "M",
+     "age": 53,
+     "votes": 219,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 903,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Kirari",
+   "type": "GEN",
+   "electors": 273856,
+   "voters": 173502,
+   "turnout": 63.36,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rituraj Govind",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 31,
+     "votes": 86312,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Anil Jha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 80658,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kaushal Mishra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 1830,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rabindra Kumar Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 1557,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ravinder Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 721,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rekha Bharti",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 58,
+     "votes": 512,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Md Riyazuddin Khan",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 40,
+     "votes": 256,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Prahlad Maurya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ajit Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shawkat Ali Ansari",
+     "partyId": "ASP",
+     "sex": "M",
+     "age": 48,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rakesh Kumar",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 43,
+     "votes": 85,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1071,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Sultanpur Majra",
+   "type": "SC",
+   "electors": 175622,
+   "voters": 112184,
+   "turnout": 63.88,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mukesh Kumar Ahlawat",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 44,
+     "votes": 74573,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ram Chander Chawriya",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 26521,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jai Kishan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 9033,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Neelam",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 35,
+     "votes": 671,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mahender Kumar",
+     "partyId": "SVJN",
+     "sex": "M",
+     "age": 47,
+     "votes": 351,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gayatri",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 31,
+     "votes": 283,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bharti",
+     "partyId": "RVNP",
+     "sex": "F",
+     "age": 31,
+     "votes": 233,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 460,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Nangloi Jat",
+   "type": "GEN",
+   "electors": 266339,
+   "voters": 151272,
+   "turnout": 56.8,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raghuvinder Shokeen",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 53,
+     "votes": 74444,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Suman Lata",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 53,
+     "votes": 62820,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mandeep Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 9761,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sandeep",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 30,
+     "votes": 1438,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rakesh Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 615,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Digamber",
+     "partyId": "SWAP",
+     "sex": "M",
+     "age": 25,
+     "votes": 358,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Chander Shekhar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 332,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sanjeev Joshi",
+     "partyId": "DJP_DL",
+     "sex": "M",
+     "age": 45,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ajeet Kumar",
+     "partyId": "BPC",
+     "sex": "M",
+     "age": 26,
+     "votes": 187,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Saroj Bala",
+     "partyId": "PPOI1",
+     "sex": "F",
+     "age": 49,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Tarun Kumar Kothari",
+     "partyId": "VSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 108,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 862,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Mangol Puri",
+   "type": "SC",
+   "electors": 190728,
+   "voters": 126798,
+   "turnout": 66.48,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rakhi Birla",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 32,
+     "votes": 74154,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Karam Singh Karma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 44038,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajesh Lilothia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 4073,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Murari Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 2491,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Virender Ray",
+     "partyId": "SWARAJ",
+     "sex": "M",
+     "age": 40,
+     "votes": 893,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Deepak Kumar",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 36,
+     "votes": 379,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 657,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Rohini",
+   "type": "GEN",
+   "electors": 183092,
+   "voters": 115907,
+   "turnout": 63.31,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vijender Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 62174,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajesh Nama Bansiwala",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 41,
+     "votes": 49526,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sumesh Gupta",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 1963,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajesh Garg",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 977,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Arun Kumar Chadha",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 237,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sheela Rani",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 60,
+     "votes": 117,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajbir",
+     "partyId": "BDP1",
+     "sex": "M",
+     "age": 63,
+     "votes": 64,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 782,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Shalimar Bagh",
+   "type": "GEN",
+   "electors": 189373,
+   "voters": 117030,
+   "turnout": 61.8,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bandana Kumari",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 45,
+     "votes": 57707,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rekha Gupta",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 45,
+     "votes": 54267,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "J S Nayol",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 2491,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohit",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 581,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Suresh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 303,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vandana",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 45,
+     "votes": 173,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sharvan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shehnaz",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 35,
+     "votes": 119,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shyam Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dr. Ashwani Kumar",
+     "partyId": "BLOKSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Poonam Kaushik",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 49,
+     "votes": 55,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Saurabh Gupta",
+     "partyId": "JKIP",
+     "sex": "M",
+     "age": 30,
+     "votes": 43,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 735,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Shakur Basti",
+   "type": "GEN",
+   "electors": 146226,
+   "voters": 99245,
+   "turnout": 67.87,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Satyendar Jain",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 55,
+     "votes": 51165,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. S. C. Vats",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 74,
+     "votes": 43573,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dev Raj Arora",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 3382,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Asha Ram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 289,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Praveen Yadav",
+     "partyId": "AKBHJSP",
+     "sex": "M",
+     "age": 28,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 641,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Tri Nagar",
+   "type": "GEN",
+   "electors": 167978,
+   "voters": 111793,
+   "turnout": 66.55,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Preeti Tomar",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 50,
+     "votes": 58504,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tilak Ram Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 47794,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kamal Kant Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 4075,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Aruna",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 43,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Subhash",
+     "partyId": "ASP",
+     "sex": "M",
+     "age": 60,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Devanand Ram",
+     "partyId": "PM",
+     "sex": "M",
+     "age": 48,
+     "votes": 156,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Baljeet",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sudhir Kumar",
+     "partyId": "VPI",
+     "sex": "M",
+     "age": 39,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 516,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Wazirpur",
+   "type": "GEN",
+   "electors": 181241,
+   "voters": 109654,
+   "turnout": 60.5,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajesh Gupta",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 41,
+     "votes": 57331,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Mahender Nagpal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 45641,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Harikishan Jindal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 3501,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mustqim Ahmed",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 889,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajesh Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 255,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Surendra Kumar",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 36,
+     "votes": 207,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Balwant Kumar Parjapati",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Nathu Ram",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 72,
+     "votes": 139,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Suraj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Naresh Kumar Nagpal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 70,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Kamal Kishore",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 67,
+     "votes": 62,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Vijay Kumar",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 49,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Jugal Kishor Chawla",
+     "partyId": "RVNP",
+     "sex": "M",
+     "age": 47,
+     "votes": 38,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Madan Sah",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 44,
+     "votes": 28,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 477,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Model Town",
+   "type": "GEN",
+   "electors": 168355,
+   "voters": 100242,
+   "turnout": 59.54,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Akhilesh Pati Tripathi",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 35,
+     "votes": 52665,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kapil Mishra",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 41532,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Akanksha Ola",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 41,
+     "votes": 4085,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Parmod Kumar Sahani",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 30,
+     "votes": 492,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajesh Kumar Tiwari",
+     "partyId": "PHRC",
+     "sex": "M",
+     "age": 62,
+     "votes": 242,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vikas",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 38,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Babu Ram Pal",
+     "partyId": "BSKP_UP",
+     "sex": "M",
+     "age": 51,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ambika Prasad Verma",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 49,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 841,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Sadar Bazar",
+   "type": "GEN",
+   "electors": 184903,
+   "voters": 123524,
+   "turnout": 66.8,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Som Dutt",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 44,
+     "votes": 68790,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jai Parkash (J.P)",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 43146,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Satbir Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 9857,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Asad",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 574,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Virender Kumar",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 52,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rajeev Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "SOM DUTT s/o DAYA CHANDER SHARMA",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "SOMDUTT s/o KRISHAN KUMAR RASTOGI",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 108,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Pratap Aamzare",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Jai Prakash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 408,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Chandni Chowk",
+   "type": "GEN",
+   "electors": 125717,
+   "voters": 77224,
+   "turnout": 61.43,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Parlad Singh Sawhney",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 69,
+     "votes": 50891,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Suman Kumar Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 21307,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Alka Lamba",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 44,
+     "votes": 3881,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anil Singh Jadon",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 35,
+     "votes": 242,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sudesh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 218,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sandeep Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vipin Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Vijay Kumar Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 62,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Satpal",
+     "partyId": "ASP",
+     "sex": "M",
+     "age": 30,
+     "votes": 36,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Krishna Avtar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 29,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ramesh Chand Goyal",
+     "partyId": "RVNP",
+     "sex": "M",
+     "age": 70,
+     "votes": 28,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sadeque Muniroddin Shaikh",
+     "partyId": "TPSTP",
+     "sex": "M",
+     "age": 32,
+     "votes": 27,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 263,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Matia Mahal",
+   "type": "GEN",
+   "electors": 125793,
+   "voters": 88590,
+   "turnout": 70.43,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shoaib Iqbal",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 61,
+     "votes": 67282,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravinder Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 17041,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mirza Javed Ali",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 3409,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tej Ram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Israr Ahmed",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 36,
+     "votes": 173,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Suhail Mirza",
+     "partyId": "RRP",
+     "sex": "M",
+     "age": 26,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shoaibuddin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd. Suhail",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 49,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 216,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Ballimaran",
+   "type": "GEN",
+   "electors": 141744,
+   "voters": 101548,
+   "turnout": 71.64,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Imran Hussain",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 38,
+     "votes": 65644,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lata",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 43,
+     "votes": 29472,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Haroon Yusuf",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 4802,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Krishan Kumar",
+     "partyId": "BRD",
+     "sex": "M",
+     "age": 49,
+     "votes": 827,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Deep Chand",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Hansa",
+     "partyId": "PPOI1",
+     "sex": "F",
+     "age": 42,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Arif Nabi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sajid Ali",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 62,
+     "votes": 56,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Zafar Mirza",
+     "partyId": "RRP",
+     "sex": "M",
+     "age": 56,
+     "votes": 41,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 340,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Karol Bagh",
+   "type": "SC",
+   "electors": 177413,
+   "voters": 108514,
+   "turnout": 61.16,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vishesh Ravi",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 36,
+     "votes": 67494,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yogender Chandoliya",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 35734,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gourav Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 3365,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Lekhraj Jatav",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 65,
+     "votes": 783,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gaurav",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 31,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dharmender Kanwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rahul Bharti",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sunil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 102,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Deepak Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 447,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Patel Nagar",
+   "type": "SC",
+   "electors": 198185,
+   "voters": 120890,
+   "turnout": 61,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raaj Kumar Anand",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 53,
+     "votes": 73463,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pravesh Ratn",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 36,
+     "votes": 42528,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Krishna Tirath",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 64,
+     "votes": 3382,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Pradeep Kumar Rawal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 674,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 767,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Moti Nagar",
+   "type": "GEN",
+   "electors": 181883,
+   "voters": 112665,
+   "turnout": 61.94,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shiv Charan Goel",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 57,
+     "votes": 60622,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Subhash Sachdeva",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 46550,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ramesh Popli",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 3152,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Md Faizan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 617,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nitya Nand Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 581,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Md Amjad",
+     "partyId": "RVNP",
+     "sex": "M",
+     "age": 29,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shiv Charan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 147,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Narender Goel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 116,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ajit Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 68,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 569,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Madipur",
+   "type": "SC",
+   "electors": 175048,
+   "voters": 115157,
+   "turnout": 65.79,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Girish Soni",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 56,
+     "votes": 64440,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kailash Sankla",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 41721,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jai Prakash Panwar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 6788,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Hansraj Jaluthria",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 851,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Girish Prakash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 221,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Manoj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 221,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Randhir Kumar",
+     "partyId": "ASP",
+     "sex": "M",
+     "age": 43,
+     "votes": 126,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sunil Meghwal",
+     "partyId": "APOI",
+     "sex": "M",
+     "age": 33,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ramesh Kumar",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 48,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 517,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Rajouri Garden",
+   "type": "GEN",
+   "electors": 180248,
+   "voters": 111771,
+   "turnout": 62.01,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A Dhanwati Chandela A",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 60,
+     "votes": 62212,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ramesh Khanna",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 39240,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sukhpal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 5218,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Amandeep Singh Sudan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 3398,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ram Bharosa Gautam",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 70,
+     "votes": 341,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Harchint Singh Arora",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 270,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Iqbal Singh (Sonu)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Manish Chandila",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Nand Kishore Goel",
+     "partyId": "SWAP",
+     "sex": "M",
+     "age": 62,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Devender Singh",
+     "partyId": "RVNP",
+     "sex": "M",
+     "age": 64,
+     "votes": 45,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 694,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Hari Nagar",
+   "type": "GEN",
+   "electors": 175191,
+   "voters": 108375,
+   "turnout": 61.86,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raj Kumari Dhillon",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 57,
+     "votes": 58087,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tajinder Pal Singh Bagga",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 37956,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Surinder Kumar Setia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 10394,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "May Singh Shayam",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 499,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Santosh",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 59,
+     "votes": 224,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rajeev Taneja",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sumit",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 66,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Dilip Jaiswal",
+     "partyId": "NYP",
+     "sex": "M",
+     "age": 35,
+     "votes": 63,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Harpreet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 58,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sabir Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 48,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Vikas Ahuja",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 33,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Naveen Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 29,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Rakesh Kumar Narang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 29,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Kapil Arora",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 25,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 592,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Tilak Nagar",
+   "type": "GEN",
+   "electors": 156949,
+   "voters": 100392,
+   "turnout": 63.96,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jarnail Singh",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 38,
+     "votes": 62436,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajiv Babbar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 34407,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Raminder Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 1807,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jarnail Singh",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 54,
+     "votes": 527,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jarnail Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 305,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sanjay Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 172,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajiv Babbar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajiv Arora",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 85,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 522,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Janakpuri",
+   "type": "GEN",
+   "electors": 189818,
+   "voters": 124989,
+   "turnout": 65.85,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajesh Rishi",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 55,
+     "votes": 67968,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ashish Sood",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 53051,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Radhika Khera",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 37,
+     "votes": 2084,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Raj Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 505,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ramesh Chand Verma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 381,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mahipal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 201,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 691,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Vikaspuri",
+   "type": "GEN",
+   "electors": 402599,
+   "voters": 239494,
+   "turnout": 59.49,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mahinder Yadav",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 56,
+     "votes": 133898,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sanjay Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 91840,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mukesh Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 8319,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Krishna Thakur",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 2074,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sharda Dixit",
+     "partyId": "SUCI",
+     "sex": "F",
+     "age": 62,
+     "votes": 531,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sanjay Gupta",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 49,
+     "votes": 422,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Umesh Chauhan",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 30,
+     "votes": 375,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gopal Ranjan",
+     "partyId": "AJPI",
+     "sex": "M",
+     "age": 51,
+     "votes": 327,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bharat Bhushan Gautam",
+     "partyId": "AJPSH",
+     "sex": "M",
+     "age": 44,
+     "votes": 326,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Jai Krishan Gaur",
+     "partyId": "RJP5",
+     "sex": "M",
+     "age": 72,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1034,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Uttam Nagar",
+   "type": "GEN",
+   "electors": 284770,
+   "voters": 182606,
+   "turnout": 64.12,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Naresh Balyan",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 43,
+     "votes": 99622,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Krishan Gahlot",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 79863,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Deepak Rajput",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 878,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ganga Ram Chandravanshi",
+     "partyId": "PBI",
+     "sex": "M",
+     "age": 65,
+     "votes": 433,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shakti Kumar Bishnoi",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 45,
+     "votes": 377,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shikha Sharma",
+     "partyId": "AJPSH",
+     "sex": "F",
+     "age": 50,
+     "votes": 224,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mukh Ram Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 196,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajiv Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 116,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 838,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Dwarka",
+   "type": "GEN",
+   "electors": 220001,
+   "voters": 136853,
+   "turnout": 62.21,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vinay Mishra",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 37,
+     "votes": 71003,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Parduymn Rajput",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 56616,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Adarsh Shastri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 6757,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ashok Pahalwan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 31,
+     "votes": 500,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gautam Singh Bihari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Deepak Kumar",
+     "partyId": "RJAP_UP",
+     "sex": "M",
+     "age": 36,
+     "votes": 214,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vinay Kumar Sah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajnish Jha",
+     "partyId": "NYP",
+     "sex": "M",
+     "age": 37,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Harsh Vardhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Baljeet Yadav",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 38,
+     "votes": 55,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 578,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Matiala",
+   "type": "GEN",
+   "electors": 424924,
+   "voters": 261598,
+   "turnout": 61.56,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gulab Singh",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 41,
+     "votes": 139010,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajesh Gahlot",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 110935,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sumesh Shokeen",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 7317,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sandhya Singh",
+     "partyId": "JDNTP",
+     "sex": "F",
+     "age": 40,
+     "votes": 887,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sher Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 774,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Surender Kumar",
+     "partyId": "MEP",
+     "sex": "M",
+     "age": 45,
+     "votes": 329,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anil Lohchub",
+     "partyId": "RMEP",
+     "sex": "M",
+     "age": 48,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohinder Singh",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 30,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Akash Shrivastava",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 44,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1602,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Najafgarh",
+   "type": "GEN",
+   "electors": 251833,
+   "voters": 163517,
+   "turnout": 64.93,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kailash Gahlot",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 45,
+     "votes": 81507,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ajeet Singh Kharkhari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 64,
+     "votes": 75276,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sahab Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 2379,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Lalit Goel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 1898,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Manoj Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 840,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohammad Kasim",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 339,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Parveen Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Baidyanath Sah",
+     "partyId": "PBI",
+     "sex": "M",
+     "age": 54,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ajit Yadav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 78,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 736,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Bijwasan",
+   "type": "GEN",
+   "electors": 201630,
+   "voters": 125097,
+   "turnout": 62.04,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bhupinder Singh Joon",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 66,
+     "votes": 57271,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sat Prakash Rana",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 56518,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Parveen Rana",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 5937,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Lokender Kapashera",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 2544,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Deepak",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 39,
+     "votes": 631,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ram Niwas",
+     "partyId": "HND",
+     "sex": "M",
+     "age": 58,
+     "votes": 582,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Manju Yadav",
+     "partyId": "SWARAJ",
+     "sex": "F",
+     "age": 43,
+     "votes": 325,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Kameshwar Thakur",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Anil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 193,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dhanji Sharma",
+     "partyId": "RAM",
+     "sex": "M",
+     "age": 41,
+     "votes": 131,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Nitu Yadav",
+     "partyId": "ANC",
+     "sex": "F",
+     "age": 42,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Manoj Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 45,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Pardeep Maurya",
+     "partyId": "NYP",
+     "sex": "M",
+     "age": 39,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 448,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Palam",
+   "type": "GEN",
+   "electors": 247721,
+   "voters": 156982,
+   "turnout": 63.37,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bhavna Gaur",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 49,
+     "votes": 92775,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vijay Pandit",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 60010,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Geeta",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 34,
+     "votes": 786,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nirmal Kumar Singh",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 57,
+     "votes": 552,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dalip Kumar",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 40,
+     "votes": 484,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Satdev Jain",
+     "partyId": "PBI",
+     "sex": "M",
+     "age": 54,
+     "votes": 324,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ram Singh Bisht",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 314,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Nagender Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 217,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Hari Rattan Solanki",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Santosh Choudhary",
+     "partyId": "NYP",
+     "sex": "M",
+     "age": 38,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Jitendar Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Rajesh Kumar",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 35,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 848,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Delhi Cantt",
+   "type": "GEN",
+   "electors": 129703,
+   "voters": 58994,
+   "turnout": 45.48,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Virender Singh Kadian",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 44,
+     "votes": 28971,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Manish Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 18381,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sandeep Tanwar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 7954,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nand Kishore Beniwal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 51,
+     "votes": 1823,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Surender Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 908,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sachin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 161,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sachin Kumar",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 30,
+     "votes": 127,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bir Singh Chauhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Nagendra Kumar Tiwari",
+     "partyId": "NYP",
+     "sex": "M",
+     "age": 43,
+     "votes": 81,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sanjeev Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ishwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Manoj Bawan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 36,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 280,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Rajinder Nagar",
+   "type": "GEN",
+   "electors": 177222,
+   "voters": 103675,
+   "turnout": 58.5,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raghav Chadha",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 31,
+     "votes": 59135,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sardar R P Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 39077,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rocky Tuseed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 25,
+     "votes": 3941,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Satendra Narayan Singh",
+     "partyId": "PUJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 486,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jagdish",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 51,
+     "votes": 382,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shashi Raj",
+     "partyId": "BSNP",
+     "sex": "F",
+     "age": 48,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 467,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "New Delhi",
+   "type": "GEN",
+   "electors": 146122,
+   "voters": 76645,
+   "turnout": 52.45,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arvind Kejriwal",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 51,
+     "votes": 46758,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sunil Kumar Yadav",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 25061,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Romesh Sabharwal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 3220,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sampurna Nand Uniyal",
+     "partyId": "JAVP",
+     "sex": "M",
+     "age": 45,
+     "votes": 202,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ram Gulam",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 136,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shealendera Singh",
+     "partyId": "ANAP",
+     "sex": "M",
+     "age": 38,
+     "votes": 99,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Yogender Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Vikas Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sanni Kaushik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 66,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ajay Tiwari",
+     "partyId": "RTRP",
+     "sex": "M",
+     "age": 36,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Daya Shankar Agrawal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 41,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ashok Agyani",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 50,
+     "votes": 37,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Sandeep Srivastava",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 35,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Mahender Singh",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 61,
+     "votes": 28,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Rahul Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 25,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Meena Suryawanshi",
+     "partyId": "RPOI2",
+     "sex": "F",
+     "age": 46,
+     "votes": 24,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "M U Dua",
+     "partyId": "AHNP",
+     "sex": "M",
+     "age": 55,
+     "votes": 24,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Aditi Sharma",
+     "partyId": "HAMS",
+     "sex": "F",
+     "age": 29,
+     "votes": 22,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Kirti Singh Panwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 21,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Rahul Beniwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 21,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Ramesh Narain Singh",
+     "partyId": "VSP",
+     "sex": "M",
+     "age": 62,
+     "votes": 19,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Rajbir",
+     "partyId": "BDP1",
+     "sex": "M",
+     "age": 63,
+     "votes": 16,
+     "status": "LOST"
+    },
+    {
+     "serial": 24,
+     "name": "Pratap Chandra",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 50,
+     "votes": 15,
+     "status": "LOST"
+    },
+    {
+     "serial": 25,
+     "name": "Sant Dharmveer Chotiwala",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 14,
+     "status": "LOST"
+    },
+    {
+     "serial": 26,
+     "name": "Ramesh Kumar Khatri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 12,
+     "status": "LOST"
+    },
+    {
+     "serial": 27,
+     "name": "Narender Kumar Bansal",
+     "partyId": "BLPGL",
+     "sex": "M",
+     "age": 68,
+     "votes": 10,
+     "status": "LOST"
+    },
+    {
+     "serial": 28,
+     "name": "Amit Sharma",
+     "partyId": "VIJAYBHA",
+     "sex": "M",
+     "age": 35,
+     "votes": 9,
+     "status": "LOST"
+    },
+    {
+     "serial": 29,
+     "name": "Shiv Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 9,
+     "status": "LOST"
+    },
+    {
+     "serial": 30,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 395,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Jangpura",
+   "type": "GEN",
+   "electors": 146383,
+   "voters": 88794,
+   "turnout": 60.66,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Praveen Kumar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 35,
+     "votes": 45133,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Impreet Singh Bakshi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 29070,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tarvinder Singh Marwah",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 13565,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Subhash",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 56,
+     "votes": 247,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chandrashekhar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 156,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd. Aslam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 419,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Kasturba Nagar",
+   "type": "GEN",
+   "electors": 153485,
+   "voters": 91895,
+   "turnout": 59.87,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Madan Lal",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 63,
+     "votes": 37100,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravinder Choudhry",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 33935,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abhishek Dutt",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 19648,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Khem Chand",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 56,
+     "votes": 283,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Suman Lata Katiyar",
+     "partyId": "AJPI",
+     "sex": "F",
+     "age": 55,
+     "votes": 281,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 463,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Malviya Nagar",
+   "type": "GEN",
+   "electors": 152442,
+   "voters": 89825,
+   "turnout": 58.92,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Somnath Bharti",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 45,
+     "votes": 52043,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shailender Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 33899,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Neetu Verma Soin",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 41,
+     "votes": 2856,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gyan Chand Gautam",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 56,
+     "votes": 229,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mobin Ali",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 44,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kamal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 549,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "R K Puram",
+   "type": "GEN",
+   "electors": 157876,
+   "voters": 90023,
+   "turnout": 57.02,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pramila Tokas",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 42,
+     "votes": 47208,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Anil Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 36839,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Priyanka Singh",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 41,
+     "votes": 3237,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mahipal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 1551,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nageshwar Das",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 301,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mukesh",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 50,
+     "votes": 181,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kumar Sheodhvj Ratna",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 527,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Mehrauli",
+   "type": "GEN",
+   "electors": 203804,
+   "voters": 115508,
+   "turnout": 56.68,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Naresh Yadav",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 47,
+     "votes": 62417,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kusum Khatri",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 51,
+     "votes": 44256,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "A A Mahender Chaudhary",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 6952,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kamal Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 470,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "D K Chopra",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 66,
+     "votes": 163,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jai Singh Ujjain",
+     "partyId": "SWARAJ",
+     "sex": "M",
+     "age": 35,
+     "votes": 156,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 593,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Chhatarpur",
+   "type": "GEN",
+   "electors": 218736,
+   "voters": 141283,
+   "turnout": 64.59,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kartar Singh Tanwar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 57,
+     "votes": 69411,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Brahm Singh Tanwar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 65691,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Satish Lohia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 3874,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ram Khelavan",
+     "partyId": "PBI",
+     "sex": "M",
+     "age": 52,
+     "votes": 408,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Suraj Bharti",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 37,
+     "votes": 369,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Harsh Nath Verma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 216,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rana Sujeet Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 177,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rohit",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sangeeta Singh",
+     "partyId": "RRP_UP",
+     "sex": "F",
+     "age": 44,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dinesh Tanwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ram Priye Thakur",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 55,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Seema Verma",
+     "partyId": "INDPJC",
+     "sex": "F",
+     "age": 41,
+     "votes": 75,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 709,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Deoli",
+   "type": "SC",
+   "electors": 236728,
+   "voters": 150388,
+   "turnout": 63.53,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Prakash @ Prakash Jarwal",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 31,
+     "votes": 92575,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Arvind Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 52402,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arvinder Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 2711,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ravi Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 1032,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dal Chand Kapil",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 58,
+     "votes": 474,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Radhy Shyam",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 49,
+     "votes": 419,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 703,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Ambedkar Nagar",
+   "type": "SC",
+   "electors": 157223,
+   "voters": 101079,
+   "turnout": 64.29,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajay Dutt",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 44,
+     "votes": 62871,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khushiram Chunar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 34544,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Yaduraj Choudhary",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 2138,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Satish",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 620,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rashmi Raikwar",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 29,
+     "votes": 250,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Naresh Kumar Chandaliya",
+     "partyId": "RJAP_UP",
+     "sex": "M",
+     "age": 55,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 496,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Sangam Vihar",
+   "type": "GEN",
+   "electors": 189041,
+   "voters": 117577,
+   "turnout": 62.2,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dinesh Mohaniya",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 42,
+     "votes": 75345,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shiv Charan Lal Gupta",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 66,
+     "votes": 32823,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh Choudhary",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2930,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Poonam Azad",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 53,
+     "votes": 2604,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rambhavan Ojha",
+     "partyId": "MANPA",
+     "sex": "M",
+     "age": 44,
+     "votes": 615,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Maya",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 44,
+     "votes": 540,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kali Paswan",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 60,
+     "votes": 500,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sachin Choudhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 293,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Harit Kumar",
+     "partyId": "SSBDP",
+     "sex": "M",
+     "age": 25,
+     "votes": 144,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 872,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Greater Kailash",
+   "type": "GEN",
+   "electors": 180653,
+   "voters": 108604,
+   "turnout": 60.12,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Saurabh Bharadwaj",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 40,
+     "votes": 60372,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shikha Roy",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 55,
+     "votes": 43563,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sukhbir Singh Panwar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 3339,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shobha Dhar",
+     "partyId": "PBI",
+     "sex": "F",
+     "age": 46,
+     "votes": 282,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajbir Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 214,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Lukman Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajiv Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 86,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 586,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Kalkaji",
+   "type": "GEN",
+   "electors": 185910,
+   "voters": 106910,
+   "turnout": 57.51,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Atishi",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 38,
+     "votes": 55897,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dharambir Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 44504,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shivani Chopra",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 40,
+     "votes": 4965,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jay Prakash Sharma",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 473,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Parvesh Kumar",
+     "partyId": "SWARAJ",
+     "sex": "M",
+     "age": 55,
+     "votes": 301,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dr. Suman Yadav",
+     "partyId": "PSP1",
+     "sex": "F",
+     "age": 43,
+     "votes": 219,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 551,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Tughlakabad",
+   "type": "GEN",
+   "electors": 177672,
+   "voters": 108098,
+   "turnout": 60.84,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sahiram",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 59,
+     "votes": 58905,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vikram Bidhuri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 45147,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shubham Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 29,
+     "votes": 1342,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Manoj Kumar Ray",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 1316,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anita Kumari",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 38,
+     "votes": 268,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Hansraj Nagar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Arun Kumar",
+     "partyId": "RNP",
+     "sex": "M",
+     "age": 40,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shyam Kumar",
+     "partyId": "SJSMP",
+     "sex": "M",
+     "age": 31,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rekha Singh",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 50,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Chaman Lal",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 65,
+     "votes": 55,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 384,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Badarpur",
+   "type": "GEN",
+   "electors": 321556,
+   "voters": 191540,
+   "turnout": 59.57,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ramvir Singh Bidhuri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 90082,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ram Singh Netaji",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 64,
+     "votes": 86363,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Narayan Dutt Sharma",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 10436,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pramod Kumar Yadav",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 1615,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jagdish Chand",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 78,
+     "votes": 683,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Chhote Lal Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 370,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Yadubansh Singh",
+     "partyId": "PBI",
+     "sex": "M",
+     "age": 80,
+     "votes": 361,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Brijnarayan Mishra",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 35,
+     "votes": 318,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Om Prakash Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 67,
+     "votes": 260,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sanjeev Kumar",
+     "partyId": "JANADIP",
+     "sex": "M",
+     "age": 34,
+     "votes": 222,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 750,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Okhla",
+   "type": "GEN",
+   "electors": 335147,
+   "voters": 197652,
+   "turnout": 58.97,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Amanatullah Khan",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 46,
+     "votes": 130367,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Braham Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 58540,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Parvez Hashmi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 5123,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dharam Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 830,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jamaluddin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 613,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "M.I. Ansari",
+     "partyId": "JJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 340,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Awanindra Kumar Choubey",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Musarrat Ali Khan",
+     "partyId": "RAJSPTY",
+     "sex": "M",
+     "age": 45,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Abhay Raj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 166,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Tasleem Ahmed Rehmani",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 57,
+     "votes": 149,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Babar Riyaz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 85,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Devnarayan Thakur",
+     "partyId": "RVNP",
+     "sex": "M",
+     "age": 54,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Shazia Faizan",
+     "partyId": "ANC",
+     "sex": "F",
+     "age": 33,
+     "votes": 55,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Dr. Chandra Rajan Arora",
+     "partyId": "LPOI",
+     "sex": "F",
+     "age": 57,
+     "votes": 46,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Ved Prakash",
+     "partyId": "AP_BR",
+     "sex": "M",
+     "age": 53,
+     "votes": 36,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 637,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Trilokpuri",
+   "type": "SC",
+   "electors": 200540,
+   "voters": 133694,
+   "turnout": 66.67,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rohit Kumar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 43,
+     "votes": 69947,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kiran",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 45,
+     "votes": 57461,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vijay Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 3262,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Raghu Raj Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 1224,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Vikram",
+     "partyId": "JSPR",
+     "sex": "M",
+     "age": 38,
+     "votes": 259,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ajay Chauhan",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 47,
+     "votes": 198,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Akshtiz Birmani",
+     "partyId": "RSP1",
+     "sex": "M",
+     "age": 40,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajesh Kumar",
+     "partyId": "AJPI",
+     "sex": "M",
+     "age": 45,
+     "votes": 182,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kavita Rani Singh",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 48,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mayank Kumar",
+     "partyId": "SSBDP",
+     "sex": "M",
+     "age": 29,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 590,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Kondli",
+   "type": "SC",
+   "electors": 191383,
+   "voters": 128810,
+   "turnout": 67.3,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kuldeep Kumar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 30,
+     "votes": 68348,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Raj Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 50441,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Amrish Singh Gautam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 5861,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Karmvir",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 2714,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Akshay Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 375,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dinesh Kumar Kashyap",
+     "partyId": "SSBDP",
+     "sex": "M",
+     "age": 31,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Amar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 172,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 557,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Patparganj",
+   "type": "GEN",
+   "electors": 231461,
+   "voters": 142397,
+   "turnout": 61.52,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Manish Sisodia",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 47,
+     "votes": 70163,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravinder Singh Negi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 66956,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Laxman Rawat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 2802,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rakesh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 676,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Surender Gupta",
+     "partyId": "JMTP",
+     "sex": "M",
+     "age": 35,
+     "votes": 321,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Surjeet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sanjeev Bhati",
+     "partyId": "HND",
+     "sex": "M",
+     "age": 33,
+     "votes": 184,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Pratap Chandra",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 50,
+     "votes": 95,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Manoj Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Gopal Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rakesh Suri",
+     "partyId": "RTRP",
+     "sex": "M",
+     "age": 43,
+     "votes": 60,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Shatrughan Kumar Singh",
+     "partyId": "HAMS",
+     "sex": "M",
+     "age": 39,
+     "votes": 46,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Vinay Kumar Singh",
+     "partyId": "JSPR",
+     "sex": "M",
+     "age": 35,
+     "votes": 43,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 529,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Laxmi Nagar",
+   "type": "GEN",
+   "electors": 221792,
+   "voters": 136944,
+   "turnout": 61.74,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abhay Verma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 65735,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nitin Tyagi",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 46,
+     "votes": 64855,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Hari Dutt Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 4872,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jai Ram Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 55,
+     "votes": 446,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Deep Kumar",
+     "partyId": "LPOI",
+     "sex": "M",
+     "age": 46,
+     "votes": 135,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anima Ojha",
+     "partyId": "RTRP",
+     "sex": "F",
+     "age": 32,
+     "votes": 78,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Namaha",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "R D Tiwari",
+     "partyId": "LSPL",
+     "sex": "M",
+     "age": 56,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 550,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Vishwas Nagar",
+   "type": "GEN",
+   "electors": 200047,
+   "voters": 125335,
+   "turnout": 62.65,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Om Prakash Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 65830,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Deepak Singla",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 34,
+     "votes": 49373,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gurcharan Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 7881,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dileep Gautam",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 29,
+     "votes": 739,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Neesha",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 32,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anil Kumar",
+     "partyId": "NYP",
+     "sex": "M",
+     "age": 28,
+     "votes": 135,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sadhna",
+     "partyId": "JKP3",
+     "sex": "F",
+     "age": 25,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ashok Surana",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Babu Ram",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 62,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 854,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Krishna Nagar",
+   "type": "GEN",
+   "electors": 217431,
+   "voters": 146981,
+   "turnout": 67.6,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "S. K. Bagga (Advocate)",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 65,
+     "votes": 72111,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Anil Goyal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 68116,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Ashok Kumar Walia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 5079,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Advocate Manjeet Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 362,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Charanjeet",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 306,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Munish Bagga",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 48,
+     "votes": 235,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Suresh Kumar",
+     "partyId": "BP1",
+     "sex": "M",
+     "age": 38,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 532,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 61,
+   "name": "Gandhi Nagar",
+   "type": "GEN",
+   "electors": 182831,
+   "voters": 114622,
+   "turnout": 62.69,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Anil Kumar Bajpai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 48824,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Naveen Chaudhary",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 54,
+     "votes": 42745,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arvinder Singh Lovely",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 21913,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tikraj Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 357,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mukesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Md. Haroon",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 90,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ravindra Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 326,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 62,
+   "name": "Shahdara",
+   "type": "GEN",
+   "electors": 189407,
+   "voters": 125430,
+   "turnout": 66.22,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ram Niwas Goel",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 72,
+     "votes": 62103,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sanjay Goyal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 56809,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Narender Nath",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 75,
+     "votes": 4474,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Indu",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 35,
+     "votes": 702,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nishant Sharma",
+     "partyId": "PBI",
+     "sex": "M",
+     "age": 36,
+     "votes": 375,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Allah Bakash",
+     "partyId": "RJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ranjana Munesh Chauhan",
+     "partyId": "BSNP",
+     "sex": "F",
+     "age": 40,
+     "votes": 195,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Vimla",
+     "partyId": "SSBDP",
+     "sex": "F",
+     "age": 39,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 411,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 63,
+   "name": "Seema Puri",
+   "type": "SC",
+   "electors": 196306,
+   "voters": 134437,
+   "turnout": 68.48,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajendra Pal Gautam",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 51,
+     "votes": 88392,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sant Lal",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 32284,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Veer Singh Dhingan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 7661,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kamal Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 58,
+     "votes": 1565,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Badan Singh",
+     "partyId": "SVJN",
+     "sex": "M",
+     "age": 54,
+     "votes": 1104,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Manoj Kumar",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 38,
+     "votes": 720,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kanishk Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 515,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Lalit Kumar",
+     "partyId": "MEP",
+     "sex": "M",
+     "age": 35,
+     "votes": 419,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Vijay",
+     "partyId": "JASSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 358,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Rajesh Kumar Lohiya",
+     "partyId": "BSNP",
+     "sex": "M",
+     "age": 47,
+     "votes": 271,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1002,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 64,
+   "name": "Rohtas Nagar",
+   "type": "GEN",
+   "electors": 210943,
+   "voters": 143083,
+   "turnout": 67.83,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jitender Mahajan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 73873,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sarita Singh",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 33,
+     "votes": 60632,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vipin Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 5572,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Trivender",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 619,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anupam Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 376,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sanjeev Kumar",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Pankaj Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mukesh Babu Saxena",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Manish Kumar",
+     "partyId": "NYAYPR",
+     "sex": "M",
+     "age": 31,
+     "votes": 92,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 513,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 65,
+   "name": "Seelampur",
+   "type": "GEN",
+   "electors": 181756,
+   "voters": 129805,
+   "turnout": 71.42,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Rehman",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 53,
+     "votes": 72694,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kaushal Kumar Mishra",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 35774,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chaudhary Mateen Ahmad",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 20247,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd. Afzal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 352,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rahisuddin Ahmad",
+     "partyId": "BMP",
+     "sex": "M",
+     "age": 54,
+     "votes": 175,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sukhdeb Singh Singh",
+     "partyId": "RJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 311,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 66,
+   "name": "Ghonda",
+   "type": "GEN",
+   "electors": 222398,
+   "voters": 142191,
+   "turnout": 63.94,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajay Mahawar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 81797,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shridutt Sharma",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 59,
+     "votes": 53427,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhisham Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 5484,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "K. P. Rangari",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 62,
+     "votes": 163,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anil Singh",
+     "partyId": "SVJN",
+     "sex": "M",
+     "age": 39,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Manish Kumar",
+     "partyId": "MKDVP",
+     "sex": "M",
+     "age": 26,
+     "votes": 131,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Harish",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Man Singh",
+     "partyId": "JKP3",
+     "sex": "M",
+     "age": 60,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Dr. TEJPAL",
+     "partyId": "RTRP",
+     "sex": "M",
+     "age": 32,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Reema",
+     "partyId": "RVNP",
+     "sex": "F",
+     "age": 37,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Avni Dhilwal",
+     "partyId": "NYAYPR",
+     "sex": "F",
+     "age": 28,
+     "votes": 62,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Bimlesh Kumar Sharma",
+     "partyId": "SATBP",
+     "sex": "M",
+     "age": 38,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 512,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 67,
+   "name": "Babarpur",
+   "type": "GEN",
+   "electors": 217243,
+   "voters": 142872,
+   "turnout": 65.77,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gopal Rai",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 44,
+     "votes": 84776,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Naresh Gaur",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 51714,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Anveeksha Jain",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 35,
+     "votes": 5131,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dharm Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 52,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shivani Gaur",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 36,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Zahid Ali",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kali Ram",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 71,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Prince Kumar",
+     "partyId": "MEP",
+     "sex": "M",
+     "age": 33,
+     "votes": 55,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Jakir Chaudhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 54,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sadeque Muniroddin Shaikh",
+     "partyId": "TPSTP",
+     "sex": "M",
+     "age": 32,
+     "votes": 37,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 330,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 68,
+   "name": "Gokalpur",
+   "type": "SC",
+   "electors": 234779,
+   "voters": 166510,
+   "turnout": 70.92,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surendra Kumar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 52,
+     "votes": 88452,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ranjeet Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 68964,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Praveen Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 4599,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "S P Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 2233,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shanu Kumar",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 593,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Fateh Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 56,
+     "votes": 420,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ravi Kumar",
+     "partyId": "PPOI1",
+     "sex": "M",
+     "age": 29,
+     "votes": 342,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sunita Devi",
+     "partyId": "NYAYPR",
+     "sex": "F",
+     "age": 45,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 456,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 69,
+   "name": "Mustafabad",
+   "type": "GEN",
+   "electors": 262750,
+   "voters": 185885,
+   "turnout": 70.75,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Haji Yunus",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 58,
+     "votes": 98850,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jagdish Pradhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 78146,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ali Mehdi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 5363,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Suresh Kumar Malkani",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 1204,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mayur Bhan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 25,
+     "votes": 288,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Murari Lal",
+     "partyId": "AAPP",
+     "sex": "M",
+     "age": 54,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vivek Tomar",
+     "partyId": "NYP",
+     "sex": "M",
+     "age": 26,
+     "votes": 263,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shiv Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Anil Kumar Gupta",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 234,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Manish Kumar",
+     "partyId": "MKDVP",
+     "sex": "M",
+     "age": 33,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Shama Parveen",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 39,
+     "votes": 94,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Poonam",
+     "partyId": "NYAYPR",
+     "sex": "F",
+     "age": 49,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Subhash",
+     "partyId": "RJ",
+     "sex": "M",
+     "age": 45,
+     "votes": 78,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Kamal",
+     "partyId": "HND",
+     "sex": "M",
+     "age": 37,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Imran Matlub Khan",
+     "partyId": "TPSTP",
+     "sex": "M",
+     "age": 32,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 462,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 70,
+   "name": "Karawal Nagar",
+   "type": "GEN",
+   "electors": 283203,
+   "voters": 191291,
+   "turnout": 67.55,
+   "phase": 1,
+   "pollDate": "2020-02-08",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohan Singh Bisht",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 96721,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Durgesh Pathak",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 31,
+     "votes": 88498,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arbind Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 2242,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nathu Ram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 68,
+     "votes": 824,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ranjit Tiwari",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 48,
+     "votes": 414,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "S.N. Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 72,
+     "votes": 371,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sunita N. Kumar",
+     "partyId": "PPOI1",
+     "sex": "F",
+     "age": 48,
+     "votes": 257,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohan Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ajay Singh Rathor",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Bhaskaranand Mundepi",
+     "partyId": "SUCI",
+     "sex": "M",
+     "age": 43,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohd. Ilias",
+     "partyId": "SDPOI",
+     "sex": "M",
+     "age": 39,
+     "votes": 169,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Bandana Pandey",
+     "partyId": "SP3",
+     "sex": "F",
+     "age": 28,
+     "votes": 168,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Yogesh Swamy",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 131,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Vipin Kumar Tiwari",
+     "partyId": "RRP_UP",
+     "sex": "M",
+     "age": 27,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Harish",
+     "partyId": "MKDVP",
+     "sex": "M",
+     "age": 40,
+     "votes": 81,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Mohd. Mehbob Alam",
+     "partyId": "RRP",
+     "sex": "M",
+     "age": 32,
+     "votes": 66,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Pradesh Kumar Raghav",
+     "partyId": "SPRP",
+     "sex": "M",
+     "age": 37,
+     "votes": 63,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Imran Khan",
+     "partyId": "TPSTP",
+     "sex": "M",
+     "age": 32,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 373,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

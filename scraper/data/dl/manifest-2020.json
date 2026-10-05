@@ -1,0 +1,71 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2020_Delhi_Legislative_Assembly_election",
+  "note: BJP allied with JD(U) (2 seats) and LJP (1); Congress with RJD (4 seats)."
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP",
+    "JDU",
+    "LJP"
+   ]
+  },
+  {
+   "id": "AAP",
+   "name": "AAP",
+   "color": "#00897B",
+   "parties": [
+    "AAP"
+   ]
+  },
+  {
+   "id": "UPA",
+   "name": "Congress+",
+   "color": "#19AAED",
+   "parties": [
+    "INC",
+    "RJD"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "AAP",
+  "UPA"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 36
+  }
+ ],
+ "geo": {
+  "zoom": 10,
+  "center": [
+   77.1,
+   28.65
+  ],
+  "map_url": "/geo/dl_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0240000-0000-4000-8000-000000002008",
+  "a0240000-0000-4000-8000-000000002013",
+  "a0240000-0000-4000-8000-000000002015"
+ ],
+ "history_years": [
+  2008,
+  2013,
+  2015
+ ],
+ "compare_with": [
+  "a0240000-0000-4000-8000-000000002015"
+ ]
+}

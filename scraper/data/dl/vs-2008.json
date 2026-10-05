@@ -1,0 +1,9211 @@
+{
+ "year": 2008,
+ "electionId": "a0240000-0000-4000-8000-000000002008",
+ "source": {
+  "title": "ECI Statistical Report, Delhi Legislative Assembly 2008",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3876",
+  "retrieved": "2026-10-05"
+ },
+ "parties": [
+  {
+   "id": "ABHM",
+   "name": "Akhil Bharat Hindu Mahasabha",
+   "abbreviation": "ABHM",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "ABSP_BR",
+   "name": "Akhand Bharat Samaj Party",
+   "abbreviation": "ABSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AGRJP",
+   "name": "Agar Jan Party",
+   "abbreviation": "AGRJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AIFB",
+   "name": "All India Forward Bloc",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "AIMF",
+   "name": "All India Minorities Front",
+   "abbreviation": "AIMF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AMSP",
+   "name": "Ambedkar Samaj Party",
+   "abbreviation": "ASP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "BJSH",
+   "name": "Bharatiya Jan Shakti",
+   "abbreviation": "BJSH",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJSSP",
+   "name": "Bhartiya Jan Sahyog Samanvaya Party",
+   "abbreviation": "BJSSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BPC",
+   "name": "Bhartiya Pragatisheel Congress",
+   "abbreviation": "BPC",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BPD",
+   "name": "Bharat Punarnirman Dal",
+   "abbreviation": "BPD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BRSP",
+   "name": "Bharatiya Rashtravadi Samanta Party",
+   "abbreviation": "BRSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BSKP_UP",
+   "name": "Bharatiya Sarvodaya Kranti Party",
+   "abbreviation": "BSKP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BSP",
+   "name": "Bahujan Samaj Party",
+   "abbreviation": null,
+   "color": "#4B5BD6",
+   "recognition": "National"
+  },
+  {
+   "id": "BSPK",
+   "name": "Bahujan Sangharsh Party (Kanshiram)",
+   "abbreviation": "BSP(K)",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BVP_DL",
+   "name": "Bahujan Vikas Party",
+   "abbreviation": "BVP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "CPIML",
+   "name": "Communist Party of India (Marxist-Leninist) (Liberation)",
+   "abbreviation": "CPI(ML)(L)",
+   "color": "#E5484D",
+   "recognition": "State"
+  },
+  {
+   "id": "DBP",
+   "name": "Desh Bhakt Party",
+   "abbreviation": "DBP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "HRS",
+   "name": "Hind Raksha Sena",
+   "abbreviation": "HRS",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "IDP",
+   "name": "Indian Democratic Party",
+   "abbreviation": "IDP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "IJP",
+   "name": "Indian Justice Party",
+   "abbreviation": "IJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JDS",
+   "name": "Janata Dal  (Secular)",
+   "abbreviation": null,
+   "color": "#228B22",
+   "recognition": null
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "JKNPP",
+   "name": "Jammu & Kashmir National Panthers Party",
+   "abbreviation": "JKNPP",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "LD",
+   "name": "Lok Dal",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "LJP",
+   "name": "Lok Janshakti Party",
+   "abbreviation": null,
+   "color": "#0000CD",
+   "recognition": null
+  },
+  {
+   "id": "LKPT",
+   "name": "Lok Paritran",
+   "abbreviation": "LKPT",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "LPIV",
+   "name": "Labour Party of India (V.V. Prasad)",
+   "abbreviation": "LPI(V)",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "LPSP",
+   "name": "Lokpriya Samaj Party",
+   "abbreviation": "LPSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "LSP",
+   "name": "Loktantrik Samajwadi Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "MBP",
+   "name": "Matra Bhakta Party",
+   "abbreviation": "MBP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "MKUP",
+   "name": "Majdoor Kisan Union Party",
+   "abbreviation": "MKUP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NADP",
+   "name": "Naya Daur Party",
+   "abbreviation": "NADP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NJD_DL",
+   "name": "National Jankranti Dal",
+   "abbreviation": "NJD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NLHP",
+   "name": "National Lokhind Party",
+   "abbreviation": "NLHP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NNP",
+   "name": "Navbharat Nirman Party",
+   "abbreviation": "NNP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NSCP",
+   "name": "National Secular Party",
+   "abbreviation": "NSCP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "PSP1",
+   "name": "Parivartan Samaj Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RALP",
+   "name": "Rashtrawadi Labour Party",
+   "abbreviation": "RALP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RAM",
+   "name": "Rashtriya Aikta Manch",
+   "abbreviation": "RAM",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RBCP",
+   "name": "Rashtriya Bahujan Congress Party",
+   "abbreviation": "RBCP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RHC",
+   "name": "Rashtriya Hith Congress",
+   "abbreviation": "RHC",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RJAP_UP",
+   "name": "Rashtriya Janadhikar Party",
+   "abbreviation": "RJAP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RJD",
+   "name": "Rashtriya Janata Dal",
+   "abbreviation": "RJD",
+   "color": "#7BD34A",
+   "recognition": "State"
+  },
+  {
+   "id": "RKAP",
+   "name": "Rashtriya Kamgar Party",
+   "abbreviation": "RKAP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RKJP",
+   "name": "Rashtriya Krantikari Janata Party",
+   "abbreviation": "RKJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RLD",
+   "name": "Rashtriya Lok Dal",
+   "abbreviation": null,
+   "color": "#33CC33",
+   "recognition": null
+  },
+  {
+   "id": "RMEP",
+   "name": "Rashtriya Mazdoor Ekta Party",
+   "abbreviation": "RMEP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RPOIA",
+   "name": "Republican Party of India (A)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RRD",
+   "name": "Rashtriya Raksha Dal",
+   "abbreviation": "RRD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RSBP",
+   "name": "Rashtriya Swabhimaan Party",
+   "abbreviation": "RSBP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RSD",
+   "name": "Rashtriya Samanta Dal",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RSSHP",
+   "name": "Rashtriya Sawarn Shakti Party",
+   "abbreviation": "RSSHP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RTKP",
+   "name": "Rashtriya Kranti Party",
+   "abbreviation": "RTKP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RVNP",
+   "name": "Rashtravadi Janata Party",
+   "abbreviation": "RVNP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RWS",
+   "name": "Rashtrawadi Sena",
+   "abbreviation": "RWS",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SADM",
+   "name": "Shiromani Akali Dal (Simranjit Singh Mann)",
+   "abbreviation": "SAD(M)",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "abbreviation": null,
+   "color": "#FF6600",
+   "recognition": null
+  },
+  {
+   "id": "SP",
+   "name": "Samajwadi Party",
+   "abbreviation": null,
+   "color": "#E60000",
+   "recognition": null
+  },
+  {
+   "id": "SP1",
+   "name": "Samata Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "UNLP",
+   "name": "United National Loktantrik Party",
+   "abbreviation": "UNLP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "UPUDF",
+   "name": "Uttar Pradesh United Democratic Front",
+   "abbreviation": "UPUDF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "UWF",
+   "name": "United Women Front",
+   "abbreviation": "UWF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "VAJP",
+   "name": "Vanchit Jamat Party",
+   "abbreviation": "VAJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Nerela",
+   "type": "GEN",
+   "electors": 192649,
+   "voters": 109494,
+   "turnout": 56.84,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Jaswant Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 34662,
+     "status": "WON"
+    },
+    {
+     "serial": 4,
+     "name": "Sharad Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 33830,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Ajit Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 29754,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Raj Singh Khatri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 5041,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Amit Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 26,
+     "votes": 1704,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Kuldeep",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 31,
+     "votes": 1078,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Risha",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 35,
+     "votes": 925,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shyam Lal",
+     "partyId": "CPIML",
+     "sex": "M",
+     "age": 57,
+     "votes": 882,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Hariom Sharma",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 25,
+     "votes": 484,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Vishal",
+     "partyId": "RWS",
+     "sex": "M",
+     "age": 52,
+     "votes": 437,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 377,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Raghbir Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 320,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Burari",
+   "type": "GEN",
+   "electors": 190130,
+   "voters": 106372,
+   "turnout": 55.95,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 5,
+     "name": "Shri Krishan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 32006,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Deepak Tyagi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 27016,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Vinod Nagar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 17777,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Anand Mohan Joshi",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 29,
+     "votes": 12753,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ram Kishore Tyagi",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 56,
+     "votes": 4695,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manoj Kumar",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 25,
+     "votes": 2583,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Inder Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 38,
+     "votes": 1397,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Sandeep Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 1020,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Dharmender Singhal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 889,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ganesh Pal",
+     "partyId": "BSKP_UP",
+     "sex": "M",
+     "age": 51,
+     "votes": 771,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Munna Rawat",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 716,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Kamla Rani",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 50,
+     "votes": 579,
+     "status": "LOST"
+    },
+    {
+     "serial": 24,
+     "name": "Sadhna Sharma",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 35,
+     "votes": 519,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bhagwan Singh",
+     "partyId": "RWS",
+     "sex": "M",
+     "age": 34,
+     "votes": 441,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Ragini Sharma",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 36,
+     "votes": 437,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Deen Dayal Singh",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 37,
+     "votes": 414,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Lal Bahadur Singh",
+     "partyId": "RMEP",
+     "sex": "M",
+     "age": 50,
+     "votes": 414,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Babli",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 26,
+     "votes": 367,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Hari Kishan",
+     "partyId": "NLHP",
+     "sex": "M",
+     "age": 41,
+     "votes": 324,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Jai Ram Maurya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 318,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Nafe Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Suraj Pal Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 40,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Shivji Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 221,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Rakesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 151,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Timarpur",
+   "type": "GEN",
+   "electors": 152679,
+   "voters": 90628,
+   "turnout": 59.36,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Surinder Pal Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 39997,
+     "status": "WON"
+    },
+    {
+     "serial": 4,
+     "name": "Surya Prakash Khatri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 37584,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Sanjeev Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 9491,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Apramay Mishra",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 28,
+     "votes": 775,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shyam Gopal",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 39,
+     "votes": 706,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Kamil",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 343,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Raju Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 293,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ranjit Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Mahfooz Ali",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 48,
+     "votes": 240,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Rajesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Raziur Rehman",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Rajesh Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 154,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Kripal Singh Bittoo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohd Yameen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 128,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dropti",
+     "partyId": "RVNP",
+     "sex": "F",
+     "age": 36,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ajay Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 67,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Adarsh Nagar",
+   "type": "GEN",
+   "electors": 137442,
+   "voters": 81278,
+   "turnout": 59.14,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mangat Ram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 36445,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravinder Singh (Khurana)",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 31933,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sanjay Nagpal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 39,
+     "votes": 9990,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sudhir Pathak",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 753,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ram Saran Ram",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 64,
+     "votes": 654,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Vijay Singh Sisodia",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 520,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Shekh Zahid",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 259,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Lal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vinod Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ajay Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Vijender Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajeev",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 93,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sunil Kumar Gupta",
+     "partyId": "MBP",
+     "sex": "M",
+     "age": 40,
+     "votes": 79,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Badli",
+   "type": "GEN",
+   "electors": 172304,
+   "voters": 98382,
+   "turnout": 57.1,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Devender Yadav",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 39215,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Ajesh Yadav",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 25611,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajesh Yadav",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 18745,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Jitender Kumar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 61,
+     "votes": 11242,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Parwinder Singh",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 37,
+     "votes": 1165,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Sunder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 840,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Paras Yadav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 299,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Suresh Tomar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 37,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kapil Dev Singh",
+     "partyId": "LD",
+     "sex": "M",
+     "age": 37,
+     "votes": 229,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sat Pal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 227,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Devender Yadav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Pankaj Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Zahid Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 74,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sushil Kumar Kashyap",
+     "partyId": "MKUP",
+     "sex": "M",
+     "age": 40,
+     "votes": 87,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Rithala",
+   "type": "GEN",
+   "electors": 182944,
+   "voters": 116052,
+   "turnout": 63.44,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kulwant Rana",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 64474,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Shambhu Dayal Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 38128,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Ranbir Singh Saroha",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 11203,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Vidya Patti",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 697,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rajesh Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 365,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Om Prakash",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 46,
+     "votes": 347,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Narender Pal Kashyap",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dharambir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bharat Nath",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 42,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kamlesh Goswami",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ashok Matta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Rahim Saifi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajhans Bansal",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 74,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Bawana",
+   "type": "SC",
+   "electors": 237944,
+   "voters": 125286,
+   "turnout": 52.65,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Surender Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 60544,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Chand Ram",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 43402,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Ramchander",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 17848,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Phool Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 1597,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Harbir Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 1363,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rekha Devi",
+     "partyId": "BPC",
+     "sex": "F",
+     "age": 30,
+     "votes": 516,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Mundka",
+   "type": "GEN",
+   "electors": 187622,
+   "voters": 103344,
+   "turnout": 55.08,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Manoj Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 47355,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Prem Chander Kaushik",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 32458,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Jasbir",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 12382,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Chandi Ram",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 55,
+     "votes": 6909,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Bhagwan Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 858,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sharafat Ali",
+     "partyId": "ABSP_BR",
+     "sex": "M",
+     "age": 44,
+     "votes": 768,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Vijay Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 555,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jaideep Singh",
+     "partyId": "MKUP",
+     "sex": "M",
+     "age": 32,
+     "votes": 350,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nagendra Sharma",
+     "partyId": "RAM",
+     "sex": "M",
+     "age": 42,
+     "votes": 297,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Md. Yasin Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 251,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Prem Narayan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Lal Chand",
+     "partyId": "LPSP",
+     "sex": "M",
+     "age": 75,
+     "votes": 198,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Raj Kumar Parihar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mahavir",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 50,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Vikrant Kapoor",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 32,
+     "votes": 179,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Md. Mehraj",
+     "partyId": "UPUDF",
+     "sex": "M",
+     "age": 30,
+     "votes": 178,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Kirari",
+   "type": "GEN",
+   "electors": 158219,
+   "voters": 91670,
+   "turnout": 57.94,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Anil Jha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 30005,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pushpraj",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 40,
+     "votes": 20481,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shabnam",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 34,
+     "votes": 15472,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ram Pal Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 10633,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Raj Pal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 4981,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shrikant Singh Yadav",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 44,
+     "votes": 2092,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Jugbir Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 1907,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Vijay Kumar",
+     "partyId": "LPSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 813,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kaptan Singh",
+     "partyId": "RSD",
+     "sex": "M",
+     "age": 35,
+     "votes": 674,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Shubh Karan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 43,
+     "votes": 589,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Hoti Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 563,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Rakesh Kumar Pandey",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 29,
+     "votes": 510,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Jasim",
+     "partyId": "AMSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 495,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Maharaj Singh",
+     "partyId": "BVP_DL",
+     "sex": "M",
+     "age": 38,
+     "votes": 417,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Meera Gautam",
+     "partyId": "BSKP_UP",
+     "sex": "F",
+     "age": 31,
+     "votes": 296,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Md Rahamat",
+     "partyId": "UPUDF",
+     "sex": "M",
+     "age": 29,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Awdesh Singh",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 39,
+     "votes": 259,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Naushad Ansari",
+     "partyId": "RVNP",
+     "sex": "M",
+     "age": 32,
+     "votes": 253,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Sujat Hussain",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 34,
+     "votes": 251,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Shiva Kant",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 239,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Sharwan Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 52,
+     "votes": 210,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Dharamvir",
+     "partyId": "UNLP",
+     "sex": "M",
+     "age": 28,
+     "votes": 147,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mahabir Sah",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 41,
+     "votes": 110,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Sultan Pur Majra",
+   "type": "SC",
+   "electors": 132436,
+   "voters": 82048,
+   "turnout": 61.95,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jai Kishan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 39542,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nand Ram Bagri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 20867,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Satya Pal Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 18559,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mehar Singh",
+     "partyId": "ABSP_BR",
+     "sex": "M",
+     "age": 60,
+     "votes": 737,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sonu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 729,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajesh",
+     "partyId": "AMSP",
+     "sex": "M",
+     "age": 28,
+     "votes": 494,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Geeta",
+     "partyId": "RPOIA",
+     "sex": "F",
+     "age": 33,
+     "votes": 256,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 256,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Zile Singh Ranga",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 66,
+     "votes": 253,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Pappu Sagar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rajender Khatik",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 131,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Nangloi Jat",
+   "type": "GEN",
+   "electors": 171798,
+   "voters": 94800,
+   "turnout": 55.18,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Bijender Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 48009,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Raj Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 70,
+     "votes": 30449,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Naresh Goel",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 13568,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sunil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 657,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Uday Veer Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 608,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kuldeep Singh Yadav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 445,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chhater Pal Rathore",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 50,
+     "votes": 284,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Manish Gupta",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 33,
+     "votes": 235,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Kamal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 187,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anuj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 172,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Om Krishan",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 53,
+     "votes": 170,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Mangol Puri",
+   "type": "SC",
+   "electors": 143112,
+   "voters": 92726,
+   "turnout": 64.79,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Raj Kumar Chauhan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 50448,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yogesh Aatray",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 36,
+     "votes": 20585,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Mukesh Kumar Ahlawat",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 19971,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjay Bharti",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 818,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nand Kumar Paswan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 622,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sheesh Pal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 268,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Rohini",
+   "type": "GEN",
+   "electors": 151701,
+   "voters": 89192,
+   "turnout": 58.79,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jai Bhagwan Aggarwal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 55793,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Vijender Jindal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 30019,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "O.P.Malhotra",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 2293,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Labhu Ram Garg",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 402,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jhankar Priye Chaturvedi",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 38,
+     "votes": 332,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sanjay Singh",
+     "partyId": "BJSH",
+     "sex": "M",
+     "age": 37,
+     "votes": 243,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Naresh Kumar Goyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 107,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Shalimar Bagh",
+   "type": "GEN",
+   "electors": 147744,
+   "voters": 86728,
+   "turnout": 58.7,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Ravinder Nath Bansal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 49976,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Ram Kailash Gupta",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 30044,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Mukesh Rajore",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 5102,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Savita",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 24,
+     "votes": 456,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vinod Dukhiya",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 53,
+     "votes": 309,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Vinod Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jagbir Singh Bhalla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 173,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ved Prakash Singhal",
+     "partyId": "RWS",
+     "sex": "M",
+     "age": 54,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Basant Saini",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 163,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pancham",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 118,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Shakur Basti",
+   "type": "GEN",
+   "electors": 138181,
+   "voters": 80582,
+   "turnout": 58.32,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Shyam Lal Garg",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 40444,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "S. C. Vats",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 36444,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Jaideep Dass Gupta",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 2683,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Smarti Goel",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 30,
+     "votes": 497,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sansar Chand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 275,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sushil Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 224,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Tri Nagar",
+   "type": "GEN",
+   "electors": 142862,
+   "voters": 90563,
+   "turnout": 63.39,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Anil Bhardwaj",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 41891,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nand Kishore Garg",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 39922,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Puran Mal Goel",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 65,
+     "votes": 5075,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Lalit Kumar Sharma",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 42,
+     "votes": 1547,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Sunder Singh Khari",
+     "partyId": "BJSH",
+     "sex": "M",
+     "age": 34,
+     "votes": 461,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sanjay Kumar Gautam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 299,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Jai Bhagwan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 291,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Raj Kumar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 40,
+     "votes": 254,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sheela Devi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 55,
+     "votes": 239,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anuj Kumar Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 235,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Babu Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 78,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 71,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Om Parkash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 46,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Wazirpur",
+   "type": "GEN",
+   "electors": 156477,
+   "voters": 88711,
+   "turnout": 56.69,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Hari Shanker Gupta",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 39977,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Mange Ram Garg",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 71,
+     "votes": 36837,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Janesh Kumar Bhadana",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 9199,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Inderjeet Yadav",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 59,
+     "votes": 860,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sunil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 668,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ram Avadh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 437,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Yogesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 183,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Yoginder",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ravi Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Munna Ram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dharam Pal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 95,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Model Town",
+   "type": "GEN",
+   "electors": 145552,
+   "voters": 85197,
+   "turnout": 58.53,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kanwar Karan Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 39935,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bhola Nath Vij",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 36938,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Solomon George",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 6388,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sahansar Pal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 586,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Satya Narayain Yadav",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 34,
+     "votes": 333,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Javed Aalam Khan",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 26,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jai Veer",
+     "partyId": "RALP",
+     "sex": "M",
+     "age": 39,
+     "votes": 222,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sunil Tiwari",
+     "partyId": "MBP",
+     "sex": "M",
+     "age": 37,
+     "votes": 222,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Vinod Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 201,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Manoj Kaushik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 75,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Baij Nath Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 74,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Sadar Bazar",
+   "type": "GEN",
+   "electors": 147779,
+   "voters": 88897,
+   "turnout": 60.16,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Rajesh Jain",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 47508,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Jai Prakash",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 33419,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajendra Kumar Prajapti",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 5004,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ganga Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 31,
+     "votes": 776,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Raj Kumar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 46,
+     "votes": 454,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Shakil Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 446,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Prahlad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 295,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd.Gulab",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 278,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ramesh Kumar",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 36,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Asif Ali",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Vipin Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 99,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Brij Mohan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 95,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Avinash Puri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 83,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Kamal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Naveen Kumar Jain",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 76,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Chandni Chowk",
+   "type": "GEN",
+   "electors": 107953,
+   "voters": 61845,
+   "turnout": 57.29,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Parlad Singh Sawhney",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 28207,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Praveen Khandelwal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 20188,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Khurrum Iqbal",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 27,
+     "votes": 9966,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Mushtaq Khan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2054,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Sunil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Rais",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 34,
+     "votes": 210,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chetan Taank",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 25,
+     "votes": 184,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Harjeet Singh Lamba",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 50,
+     "votes": 139,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Balram Bari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 133,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ajay Mittal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Salim Sahraji",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Dev Raj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 83,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nasreen Isaq Malik",
+     "partyId": "AIMF",
+     "sex": "F",
+     "age": 36,
+     "votes": 82,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Mohd Sami",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 68,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Khurshed Bano Khan",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 49,
+     "votes": 58,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Anil Anand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 39,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Matia Mahal",
+   "type": "GEN",
+   "electors": 114178,
+   "voters": 64390,
+   "turnout": 56.39,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 12,
+     "name": "Shoaib Iqbal",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 25474,
+     "status": "WON"
+    },
+    {
+     "serial": 4,
+     "name": "Mehmood Zia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 17870,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Abhey Singh Yadav",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 11714,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Talat Sultana",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 37,
+     "votes": 6015,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Mohd. Shafiq",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 814,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Puran Chand",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 50,
+     "votes": 436,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Nasiruddin",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 33,
+     "votes": 334,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Rukhsana",
+     "partyId": "AIMF",
+     "sex": "F",
+     "age": 36,
+     "votes": 322,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ikramuddin",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 49,
+     "votes": 273,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Smt. Chander Kanta Bharti",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 46,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Satish Kumar Dhawan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Jaini Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Hafizul Haque",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Sibghat Ullah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 117,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Tariq Mirza",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 25,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ganga Ram",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mahendra",
+     "partyId": "RHC",
+     "sex": "M",
+     "age": 41,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gurdeep Singh Chawla",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 54,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Vikram Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 57,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Ballimaran",
+   "type": "GEN",
+   "electors": 138182,
+   "voters": 82365,
+   "turnout": 59.61,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Haroon Yasuf",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 34660,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moti Lal Sodhi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 28423,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Mushrafin",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 10331,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ubead Iqbal",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 6490,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Md.Sabauddin",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 47,
+     "votes": 810,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Waseem Qureshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 408,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ajay Kumar",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 39,
+     "votes": 373,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Noor Jahan",
+     "partyId": "AIMF",
+     "sex": "F",
+     "age": 48,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajender Kumar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 49,
+     "votes": 156,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rakesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohd. Abdullah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 140,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shafiq Khan",
+     "partyId": "MBP",
+     "sex": "M",
+     "age": 42,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Faiemuddin",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 25,
+     "votes": 126,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Karol Bagh",
+   "type": "SC",
+   "electors": 142098,
+   "voters": 84760,
+   "turnout": 59.65,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 5,
+     "name": "Surender Pal Ratawal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 38746,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Madan Khorwal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 35338,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Veena Singh",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 56,
+     "votes": 7555,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Nathu Prasad",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 61,
+     "votes": 1496,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ram Babu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 429,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajesh Kumar Gihara",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 36,
+     "votes": 375,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gyan Chand",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 312,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vijay Kumar",
+     "partyId": "AIMF",
+     "sex": "M",
+     "age": 32,
+     "votes": 208,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Yogesh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Madan Lal Suryawanshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 130,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Patel Nagar",
+   "type": "SC",
+   "electors": 154314,
+   "voters": 87291,
+   "turnout": 56.57,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Rajesh Lilothia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 44022,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Anita Arya",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 45,
+     "votes": 34516,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Madan Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 55,
+     "votes": 6846,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sunil Pawar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 665,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ghanshyam Morwal",
+     "partyId": "DBP",
+     "sex": "M",
+     "age": 49,
+     "votes": 487,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Dr.Banarsi Dass",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Madan Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 166,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rita",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 35,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Puran Chand Gautam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dayanand",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kiran Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 84,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Moti Nagar",
+   "type": "GEN",
+   "electors": 138913,
+   "voters": 85551,
+   "turnout": 61.59,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Subhash Sachdeva",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 46616,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Anjali Rai",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 52,
+     "votes": 31619,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Virender Kumar Mahajan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 4823,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Lal Babu Pandey",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 30,
+     "votes": 512,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Waheed",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 36,
+     "votes": 460,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Sanjeev Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 381,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mathuresh Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Manish Kumar Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 203,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sunita Devi",
+     "partyId": "DBP",
+     "sex": "F",
+     "age": 27,
+     "votes": 181,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mumtaj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Feku Ram",
+     "partyId": "RSD",
+     "sex": "M",
+     "age": 42,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Rakesh Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Charanjeev Mehta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Amit Dutt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 59,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Madipur",
+   "type": "SC",
+   "electors": 142787,
+   "voters": 83491,
+   "turnout": 58.47,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Mala Ram Gangwal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 40698,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Kailash Sankla",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 32166,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohan Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 37,
+     "votes": 9337,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mala Ram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 649,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nirmala",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 28,
+     "votes": 392,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Deepak Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 241,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Rajouri Garden",
+   "type": "GEN",
+   "electors": 133482,
+   "voters": 82842,
+   "turnout": 62.06,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "A Daya Nand Chandela A",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 31130,
+     "status": "WON"
+    },
+    {
+     "serial": 5,
+     "name": "Avtar Singh Hit",
+     "partyId": "SADM",
+     "sex": "M",
+     "age": 64,
+     "votes": 31084,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Duli Chand",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 48,
+     "votes": 15434,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shamsher Singh Mehendi",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 1563,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Vinod Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 1469,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Balbir Singh Bir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 74,
+     "votes": 240,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Nawab Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 227,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bahar Miya",
+     "partyId": "RAM",
+     "sex": "M",
+     "age": 40,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Rajindar Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Sarabjeet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 203,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Amarjeet Kaur",
+     "partyId": "BPC",
+     "sex": "F",
+     "age": 43,
+     "votes": 169,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Amit Chandela",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Daljeet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Kuldeep Singh Anand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bhagwan Dass",
+     "partyId": "HRS",
+     "sex": "M",
+     "age": 43,
+     "votes": 98,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Avtar Singh Diwan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 86,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Jai Prakash Dhiman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Jai Prakash Lohia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Gajendra Yadav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Om Prakash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 54,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Vijender",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 50,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Rasid Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 45,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Hari Nagar",
+   "type": "GEN",
+   "electors": 143104,
+   "voters": 81979,
+   "turnout": 57.29,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Harsharan Singh Balli",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 51364,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ramesh Lamba",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 22606,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Prem Sharma",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 6464,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sumit Chugh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 401,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Feroz Khan",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 44,
+     "votes": 287,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 78,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jasvinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 198,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Satish Kapoor",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 175,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gurpreet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 133,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chandra Prakash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 114,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Tilak Nagar",
+   "type": "GEN",
+   "electors": 136870,
+   "voters": 73245,
+   "turnout": 53.51,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "O P Babbar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 70,
+     "votes": 38320,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Dr. Anita Babbar",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 44,
+     "votes": 26202,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ajit Singh Chadha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 4031,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Arvinder Singh Maken",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 2580,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Herry Gulati",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 486,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Surender Yadav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 380,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jai Bhagwan",
+     "partyId": "MBP",
+     "sex": "M",
+     "age": 50,
+     "votes": 274,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anita Babbar",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 43,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shiv Kumar Tyagi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 196,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sudha Popli",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 46,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Dinesh Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kuldeep Singh Anand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Gurvinder Kaur",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 33,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Deepak Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 61,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Janakpuri",
+   "type": "GEN",
+   "electors": 144614,
+   "voters": 88774,
+   "turnout": 61.39,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Prof Jagdish Mukhi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 65,
+     "votes": 50655,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Deepak Arora",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 33203,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Prem Chand Deswal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2857,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shiv Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 522,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bharat Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 454,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Aamir Anjum",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 34,
+     "votes": 441,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Baljit Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 163,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Deepak Arora",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Harish Chandra Joshi",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 47,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sirajuddin Khan",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 99,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Vikaspuri",
+   "type": "GEN",
+   "electors": 245769,
+   "voters": 136790,
+   "turnout": 55.66,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Nand Kishore",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 47819,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Krishan Gahlot",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 46876,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Ashok Kumar Lakra",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 16765,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Sanjay Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 9634,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ravinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 7158,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Brij Bhushan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 2687,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Shiv Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 1045,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Itwari",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 42,
+     "votes": 1035,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Sunil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 780,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Prem Verma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 537,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Shushil Kumar Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 385,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Virender Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 383,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Satish Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 291,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Vinod Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 271,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Bishan Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 238,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mahender Kumar",
+     "partyId": "BJSH",
+     "sex": "M",
+     "age": 43,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Dilbag Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Inderjeet Verma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 184,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bhopal Singh",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 33,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jitender Singh",
+     "partyId": "RSD",
+     "sex": "M",
+     "age": 27,
+     "votes": 147,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Uttam Nagar",
+   "type": "GEN",
+   "electors": 162590,
+   "voters": 101606,
+   "turnout": 62.49,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Mukesh Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 46765,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pawan Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 39582,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajender Bhardwaj",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 56,
+     "votes": 8064,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Om Prakash Jain",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 5071,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Raj Bala",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 52,
+     "votes": 524,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ramesh Kumar Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 386,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Naveen Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 243,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "M R Sharma",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 54,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Prem Chand Prajapati",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 27,
+     "votes": 194,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ziley Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 145,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kishan Lal Verma",
+     "partyId": "RTKP",
+     "sex": "M",
+     "age": 34,
+     "votes": 142,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sita Sharma",
+     "partyId": "LJP",
+     "sex": "F",
+     "age": 43,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Om Bir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 94,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shobha Kaushik",
+     "partyId": "BPC",
+     "sex": "F",
+     "age": 43,
+     "votes": 78,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Dwarka",
+   "type": "GEN",
+   "electors": 133515,
+   "voters": 83336,
+   "turnout": 62.42,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Mahabal Mishra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 43608,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Parduymn Rajput",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 29627,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Babu Ram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 7806,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mukesh Kumar Chaudhary",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 42,
+     "votes": 553,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Subhash Kumar Chaudhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 400,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Jogendra Singh",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 40,
+     "votes": 350,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kapil Kumar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 40,
+     "votes": 225,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Rajesh Sinha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mukesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Om Prakash Indora",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ramesh Kumar Hotla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bishnu Pathak",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mukesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anil Kumar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 57,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Matiala",
+   "type": "GEN",
+   "electors": 222997,
+   "voters": 130637,
+   "turnout": 58.58,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Sumesh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 52411,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Kamal Jeet",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 35,
+     "votes": 45782,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Manoj Bhardwaj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 28,
+     "votes": 19442,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Rao Satvir Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 8883,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nidhi Mahajan",
+     "partyId": "BRSP",
+     "sex": "F",
+     "age": 38,
+     "votes": 1224,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anita",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 39,
+     "votes": 911,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ranjeet Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 350,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Rao Ramanand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 270,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Randhir Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 269,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "O P Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohamad Manjoor",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajesh Kumar Dubey",
+     "partyId": "VAJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anil Jindal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mans Raj Tyagi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Pooran Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 107,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Najafgarh",
+   "type": "GEN",
+   "electors": 173022,
+   "voters": 102359,
+   "turnout": 59.16,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 8,
+     "name": "Bharat Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 34028,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Kanwal Singh Yadav",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 22575,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Bijander Dutt",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 18164,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajesh Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 13576,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ranbir Singh Kharb",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 11620,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Shyam Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 585,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ramphal Shaokin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 541,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dinesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 255,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Raghunandan Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 252,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Om Prakash Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 55,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Vedpal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 210,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Raj Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Krishan Kumar",
+     "partyId": "ABSP_BR",
+     "sex": "M",
+     "age": 57,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jitender Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 65,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Bijwasan",
+   "type": "GEN",
+   "electors": 112205,
+   "voters": 66367,
+   "turnout": 59.15,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Sat Prakash Rana",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 27427,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Vijay Singh Lochav",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 25422,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Vinod Kumar Yadav",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 12506,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Harvinder Rana",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 642,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Suresh Chand",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 370,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Palam",
+   "type": "GEN",
+   "electors": 156896,
+   "voters": 92283,
+   "turnout": 58.82,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dharam Dev Solanki",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 40712,
+     "status": "WON"
+    },
+    {
+     "serial": 4,
+     "name": "Mahender Yadav",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 28119,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Madan Mohan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 21014,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Bhairav Dutt Dhyani",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 65,
+     "votes": 659,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mahesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 600,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Chanchal Sharma",
+     "partyId": "SP1",
+     "sex": "F",
+     "age": 36,
+     "votes": 349,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohar Pal Sankhla",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 28,
+     "votes": 307,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Pawan Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 259,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Deepak Kumar",
+     "partyId": "RJAP_UP",
+     "sex": "M",
+     "age": 25,
+     "votes": 258,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Delhi Cantt",
+   "type": "GEN",
+   "electors": 75259,
+   "voters": 42683,
+   "turnout": 56.71,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Karan Singh Tanwar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 23696,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Ashok Ahuja",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 16435,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shrichand Chauhan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 1492,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Sandeep",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 278,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Sanjay Mangal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 136,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bal Kumar Singh",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ishwar Singh Jakhar",
+     "partyId": "RRD",
+     "sex": "M",
+     "age": 60,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Vinod Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anita Raj Sharma",
+     "partyId": "NSCP",
+     "sex": "F",
+     "age": 42,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Prem Ravi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ramesh Lohia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Naresh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 37,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ravinder Kumar Tanwar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 35,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bhupender Rohila",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 31,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Yoginder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 24,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Tanvir Singh Dhama",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 20,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Rajinder Nagar",
+   "type": "GEN",
+   "electors": 137859,
+   "voters": 72077,
+   "turnout": 52.28,
+   "phase": 2,
+   "pollDate": "2008-12-13",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Rama Kant Goswami",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 29394,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Asha Yogi",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 66,
+     "votes": 23988,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Trilok Chand Sharma",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 15871,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhagwan Das",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 57,
+     "votes": 1344,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sanjay Sehrawat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 540,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Chhote Lal",
+     "partyId": "RSBP",
+     "sex": "M",
+     "age": 41,
+     "votes": 261,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mahender Ram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sanjeev Kumar",
+     "partyId": "IDP",
+     "sex": "M",
+     "age": 39,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sanjay Kumar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 37,
+     "votes": 123,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "August Dagar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bhoj Kumar",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 57,
+     "votes": 68,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jitender Singh",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 29,
+     "votes": 52,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "New Delhi",
+   "type": "GEN",
+   "electors": 135691,
+   "voters": 76255,
+   "turnout": 56.2,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Sheila Dikshit",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 70,
+     "votes": 39778,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vijay Jolly",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 25796,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Rajiv Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 6179,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Brij Mohan Upreti",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 879,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Ramanand Madhwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 666,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Om Prakash",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 52,
+     "votes": 498,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Harsh Malhotra",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 38,
+     "votes": 355,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anita Singh",
+     "partyId": "RKJP",
+     "sex": "F",
+     "age": 54,
+     "votes": 298,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Prithvi Chandra Baitha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 188,
+     "status": "LOST"
+    },
+    {
+     "serial": 25,
+     "name": "Hariom Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 179,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Nirupma Sharma",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 41,
+     "votes": 178,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mukesh Kumar Saxena",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 48,
+     "votes": 174,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Kusum Bahl",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 51,
+     "votes": 133,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Pradeep Kumar Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 122,
+     "status": "LOST"
+    },
+    {
+     "serial": 24,
+     "name": "Ved Pal Shastri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 98,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Lila Devi",
+     "partyId": "JDU",
+     "sex": "F",
+     "age": 48,
+     "votes": 95,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Shakeel Ahmed",
+     "partyId": "RBCP",
+     "sex": "M",
+     "age": 26,
+     "votes": 89,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abhishek Kumar Rao",
+     "partyId": "LKPT",
+     "sex": "M",
+     "age": 31,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohamad Tahir",
+     "partyId": "AIMF",
+     "sex": "M",
+     "age": 32,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Niraja Jha",
+     "partyId": "RVNP",
+     "sex": "F",
+     "age": 31,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Priti Vadera",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 28,
+     "votes": 63,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Lakshmi Bhardwaj",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 35,
+     "votes": 60,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kalpana Gupta",
+     "partyId": "RPOIA",
+     "sex": "F",
+     "age": 25,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Karam Chand Lathwal",
+     "partyId": "BPC",
+     "sex": "M",
+     "age": 42,
+     "votes": 53,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Nimmi Sayyed",
+     "partyId": "NJD_DL",
+     "sex": "F",
+     "age": 31,
+     "votes": 45,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Jangpura",
+   "type": "GEN",
+   "electors": 109526,
+   "voters": 65375,
+   "turnout": 59.69,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Tarvinder Singh Marwah",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 37261,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Manjinder Singh Sirsa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 23310,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Gaje Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 3192,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Haseen Ahmed Siddiqi",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 559,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Praveen Kumar Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 394,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vijay Kumar Sharma",
+     "partyId": "BPD",
+     "sex": "M",
+     "age": 42,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Md.Kaleem",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 46,
+     "votes": 157,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Laxmi",
+     "partyId": "UWF",
+     "sex": "F",
+     "age": 42,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Pushpa Devi",
+     "partyId": "LPSP",
+     "sex": "F",
+     "age": 37,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Suresh Gupta",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 101,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Kasturba Nagar",
+   "type": "GEN",
+   "electors": 142978,
+   "voters": 76161,
+   "turnout": 53.27,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Neeraj Basoya",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 32,
+     "votes": 33807,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Sushil Choudhary",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 31323,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Satish Basoya",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 34,
+     "votes": 9775,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Prem Babbar",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 56,
+     "votes": 339,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Suresh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 337,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jameel Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 197,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Manish Kathuria",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Amit Mishra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dinesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 105,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Malviya Nagar",
+   "type": "GEN",
+   "electors": 120171,
+   "voters": 67209,
+   "turnout": 55.93,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kiran Walia",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 64,
+     "votes": 31283,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ram Bhaj",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 69,
+     "votes": 27551,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Pal Saini",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 6832,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Javed Farooqui",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 352,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rafik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 309,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rajiv Malhotra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 244,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ajit John",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 231,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Hanif Mohammad Khan",
+     "partyId": "NJD_DL",
+     "sex": "M",
+     "age": 38,
+     "votes": 218,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajeev Khosla",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 43,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tulsi Prasad Yadav",
+     "partyId": "NSCP",
+     "sex": "M",
+     "age": 28,
+     "votes": 75,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "R.K. Puram",
+   "type": "GEN",
+   "electors": 127177,
+   "voters": 67079,
+   "turnout": 52.74,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Barkha Singh",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 46,
+     "votes": 35878,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Radhey Shyam Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 26561,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Kulbir Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 29,
+     "votes": 3298,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Raja Ram",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 364,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "G Sivasankaran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 334,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Satish",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 292,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Yamuna Chand",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 43,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suraj Bhan",
+     "partyId": "RJAP_UP",
+     "sex": "M",
+     "age": 63,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jaswant Rai Nim",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 64,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Mehrauli",
+   "type": "GEN",
+   "electors": 144263,
+   "voters": 66243,
+   "turnout": 45.92,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Dr. Yoganand Shastri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 21740,
+     "status": "WON"
+    },
+    {
+     "serial": 4,
+     "name": "Sher Singh Dagar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 20632,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Satbir Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 14954,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ved Parkash",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 5697,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Jagdish Singh Lohia",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 59,
+     "votes": 1892,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Arvind Gupta",
+     "partyId": "RKJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 355,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Abdul Saleem",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 253,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sandeep Pnawar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kunwar Pal Singh",
+     "partyId": "NJD_DL",
+     "sex": "M",
+     "age": 47,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Raghunath Chauhan",
+     "partyId": "RJAP_UP",
+     "sex": "M",
+     "age": 29,
+     "votes": 119,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Anju Singh",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 38,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shaheeda Parwin",
+     "partyId": "LJP",
+     "sex": "F",
+     "age": 49,
+     "votes": 102,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Tribhuvan Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 87,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Chhatarpur",
+   "type": "GEN",
+   "electors": 155484,
+   "voters": 87103,
+   "turnout": 56.02,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Balram Tanwar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 32406,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Brahm Singh Tanwar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 27376,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Kanwar Singh Tanwar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 25492,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Hira Lal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 481,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Prem Raj",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 49,
+     "votes": 440,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kiran Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 47,
+     "votes": 241,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rafik Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 203,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bir Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ch.Partap Singh Tanwar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ram Sirjan Bhagat",
+     "partyId": "LPSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sanjay Singh",
+     "partyId": "NJD_DL",
+     "sex": "M",
+     "age": 33,
+     "votes": 86,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Deoli",
+   "type": "SC",
+   "electors": 169220,
+   "voters": 95596,
+   "turnout": 56.49,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arvinder Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 41497,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 24869,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Bhim Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 22661,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dal Chand Kapil",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 4758,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rakesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 1244,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Chinki Devi",
+     "partyId": "RBCP",
+     "sex": "F",
+     "age": 37,
+     "votes": 558,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Ambedkar Nagar",
+   "type": "SC",
+   "electors": 122869,
+   "voters": 70553,
+   "turnout": 57.42,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Ch.Prem Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 75,
+     "votes": 30467,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh Chand",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 25630,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Prahlad Kumar Malviya",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 39,
+     "votes": 12362,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dalip Valmiki",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 1264,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Trilok",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 515,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Praveen Parcha",
+     "partyId": "RJAP_UP",
+     "sex": "M",
+     "age": 29,
+     "votes": 300,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Sangam Vihar",
+   "type": "GEN",
+   "electors": 144463,
+   "voters": 74289,
+   "turnout": 51.42,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Dr. S.C.L.Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 20332,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Amod Kumar Kanth",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 16743,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ranjit Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 11687,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vir Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 54,
+     "votes": 10577,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "A.K.Gupta",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 48,
+     "votes": 9665,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Suresh Choudhary",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 2975,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Vijay Dua",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 424,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Rekha",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 30,
+     "votes": 360,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Karan Singh Kadam",
+     "partyId": "RBCP",
+     "sex": "M",
+     "age": 57,
+     "votes": 269,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Md.Nasir Khan",
+     "partyId": "NLHP",
+     "sex": "M",
+     "age": 36,
+     "votes": 219,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Kailash Giri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 219,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohd.Anwar Alam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Jag Prasad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Bimal Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Brahm Pal Singh",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 152,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mahesh Chandra Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 47,
+     "votes": 104,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Greater Kailash",
+   "type": "GEN",
+   "electors": 146465,
+   "voters": 79727,
+   "turnout": 54.43,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Vijay Kumar Malhotra",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 76,
+     "votes": 42206,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Jitender Kumar Kocher",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 30987,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Rajendra Kumar Gupta",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 72,
+     "votes": 4486,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Raju",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 47,
+     "votes": 676,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jitendar Kumar Gupta",
+     "partyId": "BPC",
+     "sex": "M",
+     "age": 57,
+     "votes": 322,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Harish Bhardwaj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 317,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Neelam Saxena",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 44,
+     "votes": 219,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Surya Prakash Loonker",
+     "partyId": "BPD",
+     "sex": "M",
+     "age": 33,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Chander Kala",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 64,
+     "votes": 173,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rai Anoop Prasad",
+     "partyId": "NSCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sunita Chaudhary",
+     "partyId": "JKNPP",
+     "sex": "F",
+     "age": 30,
+     "votes": 76,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Kalkaji",
+   "type": "GEN",
+   "electors": 143886,
+   "voters": 73912,
+   "turnout": 51.37,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Subhash Chopra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 38360,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jai Gopal Abrol",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 64,
+     "votes": 24971,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Avinash Kaur",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 42,
+     "votes": 9455,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sushil Kumar Agarwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 432,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Om Prakash Abrol",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 353,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Lavesh Kumar Gautam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 172,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohd. Alam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 161,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Tughlakabad",
+   "type": "GEN",
+   "electors": 143204,
+   "voters": 79729,
+   "turnout": 55.68,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ramesh Bidhuri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 32633,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Sahi Ram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 24399,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Shish Pal Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 20692,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Hans Raj Nagar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 519,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Munna",
+     "partyId": "RBCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 265,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Birju Nayak",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Rajeshwari Meena",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 36,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rekha Singh",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 40,
+     "votes": 154,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Amit Bidhuri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 146,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sudesh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Naresh Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Atibal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Prakash Chand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 62,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Badarpur",
+   "type": "GEN",
+   "electors": 199209,
+   "voters": 112953,
+   "turnout": 56.7,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Ram Singh Netaji",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 53,
+     "votes": 53416,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rambir Singh Bidhuri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 40111,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Khem Chand",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 15621,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Binod Raj Jha",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 1262,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Om Prakash Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 1050,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "M.S.Khan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 56,
+     "votes": 744,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ram Nath Sharma",
+     "partyId": "RBCP",
+     "sex": "M",
+     "age": 46,
+     "votes": 478,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Virender Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 40,
+     "votes": 247,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Okhla",
+   "type": "GEN",
+   "electors": 209643,
+   "voters": 102731,
+   "turnout": 49,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Parvez Hashmi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 29303,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Asif Mohd.Khan",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 45,
+     "votes": 28762,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Braham Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 22064,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Surender Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 14049,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Wasim Ahmed Ghazi",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 52,
+     "votes": 4499,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Amanat Ullah Khan",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 699,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd.Kamran Siddiqui",
+     "partyId": "NLHP",
+     "sex": "M",
+     "age": 37,
+     "votes": 696,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Raza Haider",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 37,
+     "votes": 525,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Amiruddin",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 48,
+     "votes": 477,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Chander Pal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 364,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Santosh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 323,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Mohammad Ayub",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 178,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Anand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 177,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Syed Mohammad Mohsin",
+     "partyId": "NADP",
+     "sex": "M",
+     "age": 39,
+     "votes": 156,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "M R Islam",
+     "partyId": "AIMF",
+     "sex": "M",
+     "age": 40,
+     "votes": 108,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohd.Shahid",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 43,
+     "votes": 108,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Jamaluddin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Fakhar Alam",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 33,
+     "votes": 72,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Aleem",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 69,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Trilokpuri",
+   "type": "SC",
+   "electors": 137655,
+   "voters": 82579,
+   "turnout": 59.99,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Sunil Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 30781,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Anjana",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 29,
+     "votes": 30147,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Ganga Ram",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 65,
+     "votes": 19417,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Lovekush Sagar",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 30,
+     "votes": 665,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ajay",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 435,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Prem Chand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 393,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Charan Dass",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 390,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Fateh Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 334,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Kondli",
+   "type": "SC",
+   "electors": 135606,
+   "voters": 80827,
+   "turnout": 59.6,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Amrish Singh Gautam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 36580,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Dushyant Gautam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 21594,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Chander Pal Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 19903,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Shiv Dutt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 916,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Madan Pal Singh",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 475,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 311,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kanta",
+     "partyId": "JKNPP",
+     "sex": "F",
+     "age": 25,
+     "votes": 268,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vijay Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 224,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Madan Lal",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 149,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Narender Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Parveen Kumar Kaim",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 136,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rajender Kumar",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 40,
+     "votes": 117,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Patparganj",
+   "type": "GEN",
+   "electors": 159909,
+   "voters": 87279,
+   "turnout": 54.58,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Anil Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 32,
+     "votes": 36999,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Nakul Bhardwaj",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 28,
+     "votes": 36336,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Madan Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 12032,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shashi Kumar",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 32,
+     "votes": 613,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Parmod",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 462,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Krishan Kamal",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 310,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jaiveer Chaudhary",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 33,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shyamji Rai",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 36,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gopal Lal Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 92,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sher Mohammed",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 41,
+     "votes": 74,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Laxmi Nagar",
+   "type": "GEN",
+   "electors": 161136,
+   "voters": 91060,
+   "turnout": 56.51,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Dr. Ashok Kumar Walia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 54252,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Murari Singh Panwar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 31855,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Avinash Sharma",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 3527,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Yashoda Rani",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 48,
+     "votes": 374,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Omvir Singh Yadav",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 36,
+     "votes": 305,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Raju Prasad Gupta",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 41,
+     "votes": 257,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gulzar Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 168,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kanta",
+     "partyId": "UPUDF",
+     "sex": "F",
+     "age": 51,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Om Prakash Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vinay Kumar Sharma",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 32,
+     "votes": 91,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Vishwas Nagar",
+   "type": "GEN",
+   "electors": 162644,
+   "voters": 95539,
+   "turnout": 58.74,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Naseeb Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 48805,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Om Prakash Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 39176,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Narendra Kumar Pandey",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 5823,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Deepak Gupta",
+     "partyId": "DBP",
+     "sex": "M",
+     "age": 42,
+     "votes": 528,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sudesh Kumar Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 350,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ram Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 172,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kamar Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 144,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ram Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohd Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 92,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjay Sharma",
+     "partyId": "RSSHP",
+     "sex": "M",
+     "age": 38,
+     "votes": 89,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mahender Kumar Verma,advocate",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 61,
+     "votes": 86,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Brahmjit",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 83,
+     "votes": 68,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Girjesh Bahadur Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 51,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Krishna Nagar",
+   "type": "GEN",
+   "electors": 170590,
+   "voters": 105323,
+   "turnout": 61.74,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Harsh Vardhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 47852,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Deepika Khullar",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 38,
+     "votes": 44648,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Kamruddin",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 10018,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Chandan Lal Premi",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 68,
+     "votes": 703,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Radha Yadav, Advocate",
+     "partyId": "BJSH",
+     "sex": "F",
+     "age": 42,
+     "votes": 359,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Monika Mahajan",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 27,
+     "votes": 337,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Sanjay Kumar Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 294,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Suraj Prakash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ved Prakash Gupta",
+     "partyId": "RWS",
+     "sex": "M",
+     "age": 42,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Balwant Singh Parwana",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Prafulla Chander Mohan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Mahender Kumar Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 89,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Prithvi Pal Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 81,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shiv Prakash Tiwari",
+     "partyId": "RSSHP",
+     "sex": "M",
+     "age": 50,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kunjesh Passi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 52,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Irshad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 48,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Govind Sahni",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 40,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Islam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 34,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 61,
+   "name": "Gandhi Nagar",
+   "type": "GEN",
+   "electors": 146577,
+   "voters": 93078,
+   "turnout": 63.5,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arvinder Singh Lovely",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 59795,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kamal Kumar Jain",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 27870,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sanjay Gaur",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 4024,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sunil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 555,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Lekh Raj",
+     "partyId": "BJSH",
+     "sex": "M",
+     "age": 34,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sapan Kumar Arora",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 188,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ajay Tomar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 166,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anjum Bharti",
+     "partyId": "BSPK",
+     "sex": "M",
+     "age": 34,
+     "votes": 135,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Qadir",
+     "partyId": "LPIV",
+     "sex": "M",
+     "age": 64,
+     "votes": 135,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 62,
+   "name": "Shahdara",
+   "type": "GEN",
+   "electors": 152797,
+   "voters": 87332,
+   "turnout": 57.16,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Dr. Narender Nath",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 39194,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Jitender Singh Shunty",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 37658,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vijay Pal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 8104,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Neelam Kumari",
+     "partyId": "RJD",
+     "sex": "F",
+     "age": 49,
+     "votes": 669,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Suresh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 427,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Tahira Mirza",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 48,
+     "votes": 207,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mahandra Manchanda",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 34,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Subhash Gahlot",
+     "partyId": "VAJP",
+     "sex": "M",
+     "age": 36,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sanjay Lohia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Subhash Mishra",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 46,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Naveen Parkash Goyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rangi Lal Yadav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 117,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Manish Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 90,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Asgar Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 64,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 63,
+   "name": "Seemapuri",
+   "type": "SC",
+   "electors": 143184,
+   "voters": 89309,
+   "turnout": 62.37,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Veer Singh Dhingan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 43864,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Chandra Pal Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 24604,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Lallan Prasad",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 14823,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Raj Dulari",
+     "partyId": "NLHP",
+     "sex": "F",
+     "age": 41,
+     "votes": 1714,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mange Ram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 979,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Santosh Kumar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 940,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Devender Kumar",
+     "partyId": "IDP",
+     "sex": "M",
+     "age": 38,
+     "votes": 686,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sukkan Lal",
+     "partyId": "RWS",
+     "sex": "M",
+     "age": 34,
+     "votes": 675,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dhani Ram",
+     "partyId": "UNLP",
+     "sex": "M",
+     "age": 45,
+     "votes": 436,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Amardeep",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 217,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bhagwan Sahai",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 65,
+     "votes": 202,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vijay Kumar",
+     "partyId": "VAJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 141,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 64,
+   "name": "Rohtas Nagar",
+   "type": "GEN",
+   "electors": 161333,
+   "voters": 98736,
+   "turnout": 61.2,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Ram Babu Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 45802,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Alok Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 32559,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Lokesh Dixit",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 16823,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Laxman Dass",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 1651,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jitendra Panchal",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 35,
+     "votes": 482,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Raju Soni",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 365,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gulshan Kumar Ratra",
+     "partyId": "RWS",
+     "sex": "M",
+     "age": 66,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "R. L. Verma",
+     "partyId": "RKAP",
+     "sex": "M",
+     "age": 62,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajeev Kumar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 37,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dhayan Pal Singh",
+     "partyId": "AGRJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Parveen Kumar",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 25,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pardeep Jain",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 116,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 65,
+   "name": "Seelam Pur",
+   "type": "GEN",
+   "electors": 147481,
+   "voters": 87499,
+   "turnout": 59.33,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Chaudhary Mateen Ahmad",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 47820,
+     "status": "WON"
+    },
+    {
+     "serial": 4,
+     "name": "Sita Ram Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 21546,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Hazi Afzzal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 13445,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Masood Ali Khan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 52,
+     "votes": 1062,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd. Badrul Haq",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 38,
+     "votes": 904,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd. Yusuf",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 40,
+     "votes": 777,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Hafiz Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 467,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ayyub Ali",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 314,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Saleem Khan",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 40,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Md. Sabir Siddiqi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Aftab Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 198,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nasim Ahmad Hashmi",
+     "partyId": "BSPK",
+     "sex": "M",
+     "age": 52,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shakir Husain",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 169,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Viqar Ahmad Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Shakila Begum",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 37,
+     "votes": 83,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 66,
+   "name": "Ghonda",
+   "type": "GEN",
+   "electors": 159175,
+   "voters": 91596,
+   "turnout": 57.54,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Sahab Singh Chauhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 35226,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Bheeshma Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 34646,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Rohtash Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 53,
+     "votes": 21724,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 67,
+   "name": "Babarpur",
+   "type": "GEN",
+   "electors": 152258,
+   "voters": 91057,
+   "turnout": 59.8,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Naresh Gaur",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 31954,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hazi Dilshad Ali",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 28128,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Anil Kuamr Vashishth",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 21632,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Kailash Chand Jain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 7247,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohd. Sher Nabi Chaman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 534,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohd Ahmed",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 52,
+     "votes": 324,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "A K Aggarwal",
+     "partyId": "AGRJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 274,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Raj Kumar Bhati",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "S. A. Betab",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 244,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Irfan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 161,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abid Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 98,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Inamuddin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Viqar Hashmi",
+     "partyId": "UNLP",
+     "sex": "M",
+     "age": 51,
+     "votes": 76,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 68,
+   "name": "Gokalpur",
+   "type": "SC",
+   "electors": 154438,
+   "voters": 95186,
+   "turnout": 61.63,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Surendra Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 27499,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Balzor Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 70,
+     "votes": 24442,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Ranjeet Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 23364,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ch. Fateh Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 10262,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Choudhary Balraj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 4920,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Roop Chand",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 64,
+     "votes": 2095,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rup Kishor",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 972,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Hari Babu",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 589,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Surander Singh",
+     "partyId": "BSKP_UP",
+     "sex": "M",
+     "age": 38,
+     "votes": 548,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jai Pal Singh",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 61,
+     "votes": 482,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 69,
+   "name": "Mustafabad",
+   "type": "GEN",
+   "electors": 168508,
+   "voters": 97901,
+   "turnout": 58.1,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Hasan Ahmed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 39838,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Yogender Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 38859,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Sher Khan Malik",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 14108,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Md. Rahis",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 989,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Sunil Dhyani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 778,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Sageer Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 616,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Lakshman Singh",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 581,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Rajesh Kumar Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 470,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ahmad Saeed",
+     "partyId": "UNLP",
+     "sex": "M",
+     "age": 39,
+     "votes": 454,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Krishan Pal",
+     "partyId": "BSKP_UP",
+     "sex": "M",
+     "age": 33,
+     "votes": 347,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sharafat Ali",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 37,
+     "votes": 161,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Meena Begum",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 39,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Krishan Pal",
+     "partyId": "BJSSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Salimuddin",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 47,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Umesh Kapoor",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Prem Pal",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 34,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mehmood Hasan",
+     "partyId": "NLHP",
+     "sex": "M",
+     "age": 48,
+     "votes": 79,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 70,
+   "name": "Karawal Nagar",
+   "type": "GEN",
+   "electors": 192851,
+   "voters": 102753,
+   "turnout": 53.28,
+   "phase": 1,
+   "pollDate": "2008-11-29",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Mohan Singh Bisht",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 43980,
+     "status": "WON"
+    },
+    {
+     "serial": 21,
+     "name": "Satan Pal Dayma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 22852,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Diwan Singh Nayal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 15182,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Harender Kumar Sharma",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 9233,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Anmol Choudhari",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 39,
+     "votes": 2198,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Haseeb",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1318,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jugal Kishor",
+     "partyId": "IJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 1022,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sanjay Sharma",
+     "partyId": "SP1",
+     "sex": "M",
+     "age": 35,
+     "votes": 977,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Desh Raj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 808,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd Nafis",
+     "partyId": "NNP",
+     "sex": "M",
+     "age": 45,
+     "votes": 687,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shiv Kumar Sahu",
+     "partyId": "PSP1",
+     "sex": "M",
+     "age": 41,
+     "votes": 555,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Harish Tyagi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 514,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Parvez",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 30,
+     "votes": 456,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Afzal Ahmed",
+     "partyId": "RJD",
+     "sex": "M",
+     "age": 26,
+     "votes": 440,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Lata Sharma",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 42,
+     "votes": 429,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Kavita Tyagi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 25,
+     "votes": 422,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Sabir Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 339,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd. Abrar",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 28,
+     "votes": 334,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "R. C. Ragav",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 315,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Vipin Sandilya",
+     "partyId": "LSP",
+     "sex": "M",
+     "age": 33,
+     "votes": 208,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sandhya Agarwal",
+     "partyId": "UNLP",
+     "sex": "F",
+     "age": 29,
+     "votes": 175,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Kamla Devi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 42,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Neelam Saifi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 32,
+     "votes": 133,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

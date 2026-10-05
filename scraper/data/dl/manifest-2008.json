@@ -1,0 +1,54 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2008_Delhi_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "BSP",
+   "name": "BSP",
+   "color": "#1E40AF",
+   "parties": [
+    "BSP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "INC",
+  "BSP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 36
+  }
+ ],
+ "geo": {
+  "zoom": 10,
+  "center": [
+   77.1,
+   28.65
+  ],
+  "map_url": "/geo/dl_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}
