@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
+import { houseShown } from '../model/config/houses';
 import { useElection } from '../hooks/useElection';
 import { useApi } from '../hooks/useApi';
 import { getElection } from '../services/api';
@@ -22,6 +23,8 @@ export default function ElectionView() {
     }
   }, [data, election?.id, setElection, setElectionType, setSelectedStateId]);
 
+  // A direct link to an election of a hidden house (Lok Sabha, for now) goes home.
+  if (data && !houseShown(data.type)) return <Navigate to="/" replace />;
   if (loading) return <div className="studio-root h-screen" />;
   if (error) {
     return (

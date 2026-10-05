@@ -537,5 +537,7 @@
   "regions_tab": "Regions",
   "regions_title": "Regions vs {{year}}",
   "regions_approx_note": "Seats were redrawn, so regions are compared as a whole: vote share and seats, {{prev}} → {{cur}}. A few seats straddle regions, so this is approximate.",
-  "regions_seats": "{{prev}} → {{cur}} seats"
+  "regions_seats": "{{prev}} → {{cur}} seats",
+  "about_chip_states_one": "{{count}} state",
+  "about_chip_states_other": "{{count}} states"
 }

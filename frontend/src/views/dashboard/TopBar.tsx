@@ -36,7 +36,7 @@ function ElectionPickers({ vm, onDone }: { vm: TopBarVM; onDone(): void }) {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-3 pt-2">
-      <PillToggle value={vm.electionType} onChange={ty => { vm.onType(ty); onDone(); }} ariaLabel={t('studio_election_type')} size="lg" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />
+      {vm.houses.length > 1 && <PillToggle value={vm.electionType} onChange={ty => { vm.onType(ty); onDone(); }} ariaLabel={t('studio_election_type')} size="lg" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />}
       {vm.electionType === 'VS' ? (
         <div className="flex flex-wrap gap-2">
           <PickerSelect size="lg" value={String(vm.stateId ?? '')} onChange={v => { vm.onState(Number(v)); onDone(); }} ariaLabel={t('select_state')} placeholder={t('select_state')} options={vm.states.map(x => ({ value: String(x.id), label: x.name }))} />
@@ -100,7 +100,7 @@ export function TopBar({ vm, search, compact = false }: { vm: TopBarVM; search: 
   return (
     <header className="flex h-12 min-w-0 items-center gap-3 rounded-tile border border-line bg-tile px-4">
       <Link to="/" className="flex shrink-0 items-center gap-2 font-display text-lg font-bold text-ink"><img src="/logo-mark.png" alt="" aria-hidden className="h-7 w-7 object-contain" /><Wordmark /></Link>
-      <PillToggle value={vm.electionType} onChange={vm.onType} ariaLabel={t('studio_election_type')} size="sm" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />
+      {vm.houses.length > 1 && <PillToggle value={vm.electionType} onChange={vm.onType} ariaLabel={t('studio_election_type')} size="sm" options={[{ value: 'LS', label: t('lok_sabha') }, { value: 'VS', label: t('vidhan_sabha') }]} />}
       {vm.electionType === 'VS' ? (
         <>
           <PickerSelect value={String(vm.stateId ?? '')} onChange={v => vm.onState(Number(v))} ariaLabel={t('select_state')} placeholder={t('select_state')} options={vm.states.map(x => ({ value: String(x.id), label: x.name }))} />

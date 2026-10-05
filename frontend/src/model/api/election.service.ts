@@ -5,6 +5,7 @@ import type {
 } from '../types';
 import type { LiveState } from '../live/poller';
 import type { RegionShares } from '../derive/regionComparison';
+import { visibleElections } from '../config/houses';
 
 /**
  * Election & Constituency Services (SOLID: SRP)
@@ -49,7 +50,8 @@ export function getElections(filters?: { type?: string; status?: string; state_i
   if (filters?.state_id) params.set('state_id', String(filters.state_id));
   if (filters?.year) params.set('year', String(filters.year));
   const qs = params.toString();
-  return apiFetch<Election[]>(`/elections${qs ? `?${qs}` : ''}`);
+  // Elections of hidden houses (Lok Sabha, for now) never reach a list or picker.
+  return apiFetch<Election[]>(`/elections${qs ? `?${qs}` : ''}`).then(visibleElections);
 }
 
 export function getElection(id: string) {

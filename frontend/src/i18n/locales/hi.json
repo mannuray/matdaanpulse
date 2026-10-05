@@ -537,5 +537,7 @@
   "regions_tab": "क्षेत्र",
   "regions_title": "{{year}} से तुलना: क्षेत्र",
   "regions_approx_note": "सीटों की सीमाएँ बदली हैं, इसलिए क्षेत्रों की तुलना पूरे क्षेत्र के रूप में की गई है: वोट शेयर और सीटें, {{prev}} → {{cur}}। कुछ सीटें दो क्षेत्रों में फैली हैं, इसलिए यह अनुमानित है।",
-  "regions_seats": "{{prev}} → {{cur}} सीटें"
+  "regions_seats": "{{prev}} → {{cur}} सीटें",
+  "about_chip_states_one": "{{count}} राज्य",
+  "about_chip_states_other": "{{count}} राज्य"
 }

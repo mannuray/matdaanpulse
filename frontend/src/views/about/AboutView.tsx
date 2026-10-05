@@ -189,7 +189,7 @@ export function AboutView({ matrix, elections, contactEmail, eciUrl, feedback, c
             <p className="text-sm leading-relaxed text-muted md:text-base">{t('about_tagline')}</p>
             <div className="flex flex-wrap items-center gap-2 pt-1">
               <span className={chip}>{t('about_chip_elections', { count: elections })}</span>{dot}
-              <span className={chip}>{t('about_chip_scope', { count: matrix.states })}</span>{dot}
+              <span className={chip}>{t(matrix.rows.some(r => r.house === 'LS') ? 'about_chip_scope' : 'about_chip_states', { count: matrix.states })}</span>{dot}
               <span className={cn(chip, 'flex items-center gap-2')}><span aria-hidden className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />{t('about_chip_refresh')}</span>
             </div>
           </div>

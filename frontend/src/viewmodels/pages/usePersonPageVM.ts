@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { houseShown } from '../../model/config/houses';
 import { useApi } from '../data/useApi';
 import { getPerson } from '../../model/api/person.service';
 import { ApiError } from '../../model/api/api-client';
@@ -26,7 +27,8 @@ export function usePersonPageVM(id: string): PersonPageVM {
     const mine = raw && raw.id === id ? raw : null;
     const notFound = !!mine && 'notFound' in mine;
     const p = mine && !('notFound' in mine) ? mine : null;
-    const cands = p?.candidates ?? [];
+    // Contests in hidden houses (Lok Sabha, for now) are not shown.
+    const cands = (p?.candidates ?? []).filter(c => !c.election_type || houseShown(c.election_type));
     const contests = contestViews(cands);
     const affidavit = affidavitSeries(cands);
     const latestContest = contests[0];

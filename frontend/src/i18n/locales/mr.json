@@ -537,5 +537,7 @@
   "regions_tab": "प्रदेश",
   "regions_title": "{{year}} शी तुलना: प्रदेश",
   "regions_approx_note": "मतदारसंघांच्या सीमा बदलल्या आहेत, म्हणून प्रदेशांची तुलना संपूर्ण प्रदेश म्हणून केली आहे: मतांचा वाटा आणि जागा, {{prev}} → {{cur}}. काही मतदारसंघ दोन प्रदेशांत पसरलेले आहेत, म्हणून हे अंदाजे आहे.",
-  "regions_seats": "{{prev}} → {{cur}} जागा"
+  "regions_seats": "{{prev}} → {{cur}} जागा",
+  "about_chip_states_one": "{{count}} राज्य",
+  "about_chip_states_other": "{{count}} राज्ये"
 }

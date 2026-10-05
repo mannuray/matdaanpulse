@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { SHOWN_HOUSES } from '../../model/config/houses';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useApi } from '../data/useApi';
@@ -24,6 +25,8 @@ function recall(type: 'LS' | 'VS', elections: Election[]): Election | null {
 }
 
 export interface TopBarVM {
+  /** Houses the site shows; the LS/VS toggle appears only when there are two. */
+  houses: readonly ('LS' | 'VS')[];
   electionType: 'LS' | 'VS';
   electionId: string;
   states: { id: number; name: string }[];
@@ -100,6 +103,7 @@ export function useTopBarVM(): TopBarVM {
     stateId: current.state_id,
     years,
     lsElections,
+    houses: SHOWN_HOUSES,
     electionLabel: [`${t(current.type === 'VS' ? 'studio_type_vs_short' : 'studio_type_ls_short')} ·`, current.type === 'VS' ? (vsStates.find(s => s.id === current.state_id)?.name ?? current.state?.name) : null, current.year].filter(Boolean).join(' '),
     statusLabel: {
       kind: current.status === 'Live' ? 'live' : current.status === 'Finalized' ? 'final' : 'upcoming',

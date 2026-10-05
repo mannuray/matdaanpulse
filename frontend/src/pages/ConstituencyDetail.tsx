@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
+import { houseShown } from '../model/config/houses';
 import { useConstituencyPageVM } from '../viewmodels/pages/useConstituencyPageVM';
 import { useElection } from '../viewmodels/data/useElection';
 import { ConstituencyPageView } from '../views/constituency/ConstituencyPageView';
@@ -19,5 +20,7 @@ export default function ConstituencyDetail() {
     }
   }, [routeElection, electionId, election?.id, setElection, setElectionType, setSelectedStateId]);
 
+  // A seat of a hidden house (Lok Sabha, for now) goes home.
+  if (routeElection && !houseShown(routeElection.type)) return <Navigate to="/" replace />;
   return <ConstituencyPageView vm={vm} />;
 }

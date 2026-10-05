@@ -26,7 +26,7 @@ describe('MobileCardRail', () => {
 });
 
 const vm: TopBarVM = {
-  electionType: 'VS', electionId: 'e1', states: [{ id: 4, name: 'Bihar' }], stateId: 4, years: [{ id: 'e1', year: 2025 }, { id: 'e0', year: 2020 }], lsElections: [{ id: 'l1', name: 'LS 2024' }],
+  electionType: 'VS', electionId: 'e1', states: [{ id: 4, name: 'Bihar' }], stateId: 4, years: [{ id: 'e1', year: 2025 }, { id: 'e0', year: 2020 }], lsElections: [{ id: 'l1', name: 'LS 2024' }], houses: ['LS', 'VS'],
   electionLabel: 'VS · Bihar 2025',
   statusLabel: { kind: 'final', declared: 1, total: 1 }, shareText: 'Share me', lang: 'en', langs: ['en', 'hi'],
   onType: vi.fn(), onState: vi.fn(), onElection: vi.fn(), onLang: vi.fn(), onSearchSeat: vi.fn(),
@@ -34,7 +34,7 @@ const vm: TopBarVM = {
 };
 const search: SearchVM = { query: '', open: false, seats: [], candidates: [], onQuery: () => {}, onOpen: () => {}, onPick: () => {} };
 const future = { v7_startTransition: true, v7_relativeSplatPath: true } as const;
-const bar = () => render(<MemoryRouter future={future}><TopBar vm={vm} search={search} compact /></MemoryRouter>);
+const bar = (over: Partial<typeof vm> = {}) => render(<MemoryRouter future={future}><TopBar vm={{ ...vm, ...over }} search={search} compact /></MemoryRouter>);
 
 describe('TopBar compact (one row)', () => {
   afterEach(cleanup);
@@ -76,6 +76,11 @@ describe('TopBar compact (one row)', () => {
     expect(within(dialog).getByRole('combobox', { name: 'Year' })).toBeTruthy();
     fireEvent.click(within(dialog).getByRole('radio', { name: /Lok Sabha/i }));
     expect(vm.onType).toHaveBeenCalledWith('LS');
+  });
+  it('shows no Lok Sabha / Vidhan Sabha toggle when only one house is shown', () => {
+    bar({ houses: ['VS'] });
+    fireEvent.click(screen.getByRole('button', { name: /Choose election/ }));
+    expect(within(screen.getByRole('dialog')).queryByRole('radio', { name: /Lok Sabha/i })).toBeNull();
   });
   it('the search button opens a sheet with a focused search box', () => {
     bar();

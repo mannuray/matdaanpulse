@@ -24,12 +24,13 @@ const send = () => screen.getByRole('button', { name: 'Send feedback' });
 describe('About page', () => {
   it('shows every dataset as a matrix cell with its quality, and no raw i18n keys', () => {
     const { container } = renderAbout();
-    expect(container.querySelectorAll('[data-matrix-cell]')).toHaveLength(DATA_SOURCES.length);
-    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Lok Sabha', 'Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry']);
+    expect(container.querySelectorAll('[data-matrix-cell]')).toHaveLength(DATA_SOURCES.filter(s => s.house === 'VS').length);
+    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry']);
     expect(screen.getByRole('button', { name: 'Kerala · Vidhan Sabha 2021: Real votes' })).toBeTruthy();
     for (const st of ['Assam', 'Kerala', 'Puducherry', 'Tamil Nadu', 'West Bengal']) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha 2026: Real votes` })).toBeTruthy();
-    expect(screen.getByText(`${DATA_SOURCES.length} elections covered`)).toBeTruthy();
-    expect(screen.getByText('Lok Sabha + 6 states')).toBeTruthy();
+    expect(screen.getByText(`${DATA_SOURCES.filter(s => s.house === 'VS').length} elections covered`)).toBeTruthy();
+    expect(screen.getByText('6 states')).toBeTruthy();
+    expect(container.textContent).not.toMatch(/Lok Sabha/);
     expect(container.textContent).not.toMatch(/about_[a-z_]+/);
   });
 
@@ -37,12 +38,11 @@ describe('About page', () => {
     const { container } = renderAbout();
     const panel = () => container.querySelector('[data-matrix-detail]')!.textContent!;
     expect(panel()).toMatch(/West Bengal · Vidhan Sabha 2026/);
-    const cell = screen.getByRole('button', { name: /Lok Sabha.*2024: Partly incomplete/ });
+    const cell = screen.getByRole('button', { name: /Tamil Nadu · Vidhan Sabha 2016/ });
     fireEvent.click(cell);
     expect(cell.getAttribute('aria-pressed')).toBe('true');
-    expect(panel()).toMatch(/2024/);
-    expect(panel()).toMatch(/Top 5 candidates and NOTA/);
-    expect(panel()).toMatch(/OpenCity/);
+    expect(panel()).toMatch(/Tamil Nadu · Vidhan Sabha 2016/);
+    expect(panel()).toMatch(/ECI statistical report/);
   });
 
   it('links to the official ECI results and the contact address', () => {
