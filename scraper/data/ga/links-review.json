@@ -1,0 +1,149 @@
+[
+ {
+  "key": "PANDURANG|20",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "46cb83c7-51e1-5769-8f23-fc728abf2ee8",
+    "year": 2012,
+    "constNo": 20,
+    "name": "Pandurang Alias Deepak Dhavalikar",
+    "partyId": "MAG",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "28f1336c-3a8a-53db-9523-5b746b7c35d3",
+    "year": 2017,
+    "constNo": 20,
+    "name": "Pandurang Alias Deepak Madhav Dhavalikar",
+    "partyId": "MAG",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9b0ed523-d938-5766-a93c-527ca2cc5254",
+    "year": 2022,
+    "constNo": 20,
+    "name": "Pandurang Alias Deepak Dhavalikar",
+    "partyId": "MAG",
+    "age": 63,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAMKRISHNA|23",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c4e16faf-e5e9-5148-bc95-9a8a2a44a4cd",
+    "year": 2012,
+    "constNo": 23,
+    "name": "Ramkrishna Alias Sudin Dhavalikar",
+    "partyId": "MAG",
+    "age": 55,
+    "era": "2008"
+   },
+   {
+    "candidateId": "2591e1d3-f7eb-54b9-89d4-f3301bb9a642",
+    "year": 2017,
+    "constNo": 23,
+    "name": "Ramkrishna Alias Sudin Dhavalikar",
+    "partyId": "MAG",
+    "age": 60,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0d8751eb-5c02-53fa-b51f-badb589d113c",
+    "year": 2022,
+    "constNo": 23,
+    "name": "Ramkrishna Alias Sudin Dhavalikar",
+    "partyId": "MAG",
+    "age": 65,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RODOLFO LOUIS FERNANDES|13",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "307573e0-bebb-52b8-9662-264cc30bc80f",
+    "year": 2012,
+    "constNo": 13,
+    "name": "Rodolfo Louis Fernandes",
+    "partyId": "IND",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f2a52a53-386e-5edb-a3b2-eb2ee1472c2a",
+    "year": 2017,
+    "constNo": 13,
+    "name": "Rodolfo Louis Fernandes",
+    "partyId": "IND",
+    "age": 55,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e1d5f3b9-d49b-518e-b993-3c2701a8f4bd",
+    "year": 2022,
+    "constNo": 13,
+    "name": "Rodolfo Louis Fernandes",
+    "partyId": "INC",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUBHASH BARKELO KERKAR|2",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c8f83259-86c1-5362-84f4-a30aaaf43b9f",
+    "year": 2012,
+    "constNo": 2,
+    "name": "Subhash Barkelo Kerkar",
+    "partyId": "IND",
+    "age": 37,
+    "era": "2008"
+   },
+   {
+    "candidateId": "dd1d4cf3-8f94-58fa-97e6-53ceedba4b94",
+    "year": 2022,
+    "constNo": 2,
+    "name": "Subhash Barkelo Kerkar",
+    "partyId": "SHS",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUBHASH|34",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e6ecd53c-35eb-5895-862e-80734725b91f",
+    "year": 2012,
+    "constNo": 34,
+    "name": "Subhash Alias Rajan Kashinath Naik",
+    "partyId": "BJP",
+    "age": 59,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f56a1109-9163-565d-ad32-013dfeac7aa6",
+    "year": 2017,
+    "constNo": 34,
+    "name": "Subhash Alias Rajan K. Naik",
+    "partyId": "BJP",
+    "age": 63,
+    "era": "2008"
+   }
+  ]
+ }
+]

@@ -1,0 +1,818 @@
+[
+ {
+  "key": "AKOIJAM MIRABAI DEVI|19",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b1e13277-6b64-5219-9d62-2eb67bed609a",
+    "year": 2012,
+    "constNo": 19,
+    "name": "Akoijam Mirabai Devi",
+    "partyId": "INC",
+    "age": 51,
+    "era": "2008"
+   },
+   {
+    "candidateId": "aee1918d-d100-573e-a35d-0397e7addbb1",
+    "year": 2022,
+    "constNo": 19,
+    "name": "Akoijam Mirabai Devi",
+    "partyId": "INC",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "CH AJANG KHONGSAI|46",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "729631ed-f6fb-5e55-bf9f-969aedfd29ee",
+    "year": 2017,
+    "constNo": 46,
+    "name": "Ch. Ajang Khongsai",
+    "partyId": "NPP",
+    "age": 57,
+    "era": "2008"
+   },
+   {
+    "candidateId": "20b74f54-a05b-593f-b629-e93690a8638f",
+    "year": 2022,
+    "constNo": 46,
+    "name": "Ch. Ajang Khongsai",
+    "partyId": "JDU",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "CHANGAMAYUM GANESHLAL SINGH|12",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a2f9fac9-ccb2-595e-8a21-e2689405c19e",
+    "year": 2012,
+    "constNo": 12,
+    "name": "Changamayum Ganeshlal Singh",
+    "partyId": "MSCP",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "904f018e-99ba-5ed6-bebc-345b22b3be59",
+    "year": 2017,
+    "constNo": 12,
+    "name": "Changamayum Ganeshlal Singh",
+    "partyId": "AIFB",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "CHINLUNTHANG|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "65af357e-6521-5c5c-b1da-23f74ba3a26f",
+    "year": 2017,
+    "constNo": 60,
+    "name": "Chinlunthang",
+    "partyId": "BJP",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "8dea9506-c167-557b-bf18-b6233dbf1ff5",
+    "year": 2022,
+    "constNo": 60,
+    "name": "Chinlunthang",
+    "partyId": "KPA",
+    "age": 46,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "CHUNGKHOKAI DOUNGEL|46",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b7c1318d-0123-5e91-b268-6b5384dfc9b4",
+    "year": 2012,
+    "constNo": 46,
+    "name": "Chungkhokai Doungel",
+    "partyId": "TMC",
+    "age": 74,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9ea38c3f-c0a4-5c92-b4eb-e4ac13556102",
+    "year": 2017,
+    "constNo": 46,
+    "name": "Chungkhokai Doungel",
+    "partyId": "NCP",
+    "age": 76,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9372f606-9245-5abd-afe7-23c06d6502ae",
+    "year": 2022,
+    "constNo": 46,
+    "name": "Chungkhokai Doungel",
+    "partyId": "IND",
+    "age": 81,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "DR USHAM DEBEN SINGH|36",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3afee5a2-0edf-568f-ad66-1bf5c71eaff5",
+    "year": 2012,
+    "constNo": 36,
+    "name": "Dr. Usham Deben Singh",
+    "partyId": "TMC",
+    "age": 46,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0017ad1b-c9a8-54cb-bcd5-5fc240938166",
+    "year": 2017,
+    "constNo": 36,
+    "name": "Dr. Usham Deben Singh",
+    "partyId": "BJP",
+    "age": 48,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ELANGBAM DWIJAMANI SINGH|38",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "679aae5d-a5e5-53ac-9d7b-49ad743c7804",
+    "year": 2012,
+    "constNo": 38,
+    "name": "Elangbam Dwijamani Singh",
+    "partyId": "INC",
+    "age": 56,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d720d388-7a81-5ddd-bde0-d3fc75fa0a60",
+    "year": 2017,
+    "constNo": 38,
+    "name": "Elangbam Dwijamani Singh",
+    "partyId": "INC",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "064d1e8a-f815-5749-9211-81bb74128393",
+    "year": 2022,
+    "constNo": 38,
+    "name": "Elangbam Dwijamani Singh",
+    "partyId": "JDU",
+    "age": 62,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GAIKHANGAM|54",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c02a2096-8e00-5d57-a03f-d8a12c938117",
+    "year": 2012,
+    "constNo": 54,
+    "name": "Gaikhangam",
+    "partyId": "INC",
+    "age": 65,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b2d919c1-8115-5e43-a4e8-8c9cbee21d35",
+    "year": 2017,
+    "constNo": 54,
+    "name": "Gaikhangam",
+    "partyId": "INC",
+    "age": 66,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0bcdb619-1ec9-5434-9b4d-3365556e91b6",
+    "year": 2022,
+    "constNo": 54,
+    "name": "Gaikhangam",
+    "partyId": "INC",
+    "age": 71,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GINSUANHAU|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b2b09ed8-b579-5f28-a10b-a515e1426128",
+    "year": 2012,
+    "constNo": 60,
+    "name": "Ginsuanhau",
+    "partyId": "INC",
+    "age": 52,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d556cd7a-3166-5c9e-ba95-5385fab25f0e",
+    "year": 2017,
+    "constNo": 60,
+    "name": "Ginsuanhau",
+    "partyId": "INC",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "HOLKHOLUN LHUNGDIM|59",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "2b553b6d-cf9f-5d19-9452-7f43cb584043",
+    "year": 2012,
+    "constNo": 59,
+    "name": "Holkholun Lhungdim",
+    "partyId": "SHS",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "6c4e8238-ff45-5869-9713-10ee3a7680e2",
+    "year": 2017,
+    "constNo": 59,
+    "name": "Holkholun Lhungdim",
+    "partyId": "LJP",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KH DAVID MARING|42",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "481e8f35-7fef-5bd6-8d5a-7620e572865d",
+    "year": 2017,
+    "constNo": 42,
+    "name": "Kh David Maring",
+    "partyId": "NPP",
+    "age": 54,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0d4137a4-d835-5fc7-8376-42363ab4bf6c",
+    "year": 2022,
+    "constNo": 42,
+    "name": "Kh. David Maring",
+    "partyId": "RPOI2",
+    "age": 56,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KHUNDRAKPAM KANBA MEITEI|17",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c9000281-0d6f-5d9f-ae34-eef499379182",
+    "year": 2012,
+    "constNo": 17,
+    "name": "Khundrakpam Kanba Meitei",
+    "partyId": "MSCP",
+    "age": 43,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cab10ee6-87c7-5364-990c-0f1e43034f1f",
+    "year": 2022,
+    "constNo": 17,
+    "name": "Khundrakpam Kanba Meitei",
+    "partyId": "JDU",
+    "age": 46,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "LANGPOKLAKPAM JAYANTAKUMAR SINGH|12",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "2e42eea7-c800-5b0f-8155-ec95970b301f",
+    "year": 2012,
+    "constNo": 12,
+    "name": "Langpoklakpam Jayantakumar Singh",
+    "partyId": "INC",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e948cb79-0a2b-5242-b14a-9acf4f5da39a",
+    "year": 2017,
+    "constNo": 12,
+    "name": "Langpoklakpam Jayantakumar Singh",
+    "partyId": "NPP",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MAIREMBAM PRITHVIRAJ SINGH|27",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "d83b5eea-054a-5db3-bcb0-209dddc514e2",
+    "year": 2012,
+    "constNo": 27,
+    "name": "Mairembam Prithviraj Singh",
+    "partyId": "INC",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cb3f45e4-dd2c-58b7-9443-2eae874b9b3c",
+    "year": 2017,
+    "constNo": 27,
+    "name": "Mairembam Prithviraj Singh",
+    "partyId": "INC",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "545aabed-9347-5268-b453-cb93d57dca50",
+    "year": 2022,
+    "constNo": 27,
+    "name": "Mairembam Prithviraj Singh",
+    "partyId": "BJP",
+    "age": 41,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MOIRANGTHEM HEMANTA SINGH|34",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "46f219c4-edc9-5b45-a181-ea255ccc3b19",
+    "year": 2012,
+    "constNo": 34,
+    "name": "Moirangthem Hemanta Singh",
+    "partyId": "INC",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a74a4693-5e84-5bf3-a1f1-aa1aefae4dd7",
+    "year": 2022,
+    "constNo": 34,
+    "name": "Moirangthem Hemanta Singh",
+    "partyId": "INC",
+    "age": 60,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NAHAKPAM INDRAJIT SINGH|4",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "30511c24-bd3e-54cc-88cd-f67d85677667",
+    "year": 2017,
+    "constNo": 4,
+    "name": "Nahakpam Indrajit Singh",
+    "partyId": "BJP",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cb039321-b14c-54b8-9706-14098d013174",
+    "year": 2022,
+    "constNo": 4,
+    "name": "Nahakpam Indrajit Singh",
+    "partyId": "BJP",
+    "age": 45,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NAOREM ACHOUBA|37",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e82a57c6-2124-5c70-a160-0d76a86696de",
+    "year": 2012,
+    "constNo": 37,
+    "name": "Naorem Achouba",
+    "partyId": "CPI",
+    "age": 62,
+    "era": "2008"
+   },
+   {
+    "candidateId": "db125e1e-f497-56dd-81e5-37d765c39da1",
+    "year": 2017,
+    "constNo": 37,
+    "name": "Naorem Achouba",
+    "partyId": "CPI",
+    "age": 63,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NEMCHA KIPGEN|50",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3fbeea30-3033-5310-8685-437498a585a7",
+    "year": 2017,
+    "constNo": 50,
+    "name": "Nemcha Kipgen",
+    "partyId": "BJP",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d4db15a3-e0db-504a-8990-9fcfd7b497bb",
+    "year": 2022,
+    "constNo": 50,
+    "name": "Nemcha Kipgen",
+    "partyId": "BJP",
+    "age": 56,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NGAMTHANG HAOKIP|51",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "93002fd9-af72-5c08-a6fb-f31427ab4620",
+    "year": 2012,
+    "constNo": 51,
+    "name": "Ngamthang Haokip",
+    "partyId": "INC",
+    "age": 64,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f243716d-207f-5ab9-99a6-a5165cef2464",
+    "year": 2017,
+    "constNo": 51,
+    "name": "Ngamthang Haokip",
+    "partyId": "INC",
+    "age": 68,
+    "era": "2008"
+   },
+   {
+    "candidateId": "fdea654d-3de9-5263-a0b5-7219939264c3",
+    "year": 2022,
+    "constNo": 51,
+    "name": "Ngamthang Haokip",
+    "partyId": "BJP",
+    "age": 69,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NGURRIVUNG|55",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "523332c7-78a6-5ac5-912c-5299c722d10d",
+    "year": 2012,
+    "constNo": 55,
+    "name": "Ngurrivung",
+    "partyId": "IND",
+    "age": 28,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cde02b02-32bf-5885-a3b5-190d0fd23703",
+    "year": 2017,
+    "constNo": 55,
+    "name": "Ngurrivung",
+    "partyId": "IND",
+    "age": 33,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NONGMEIKAPAM SOVAKIRAN SINGH|33",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9de31b2f-d600-530f-9be4-65e9996a3801",
+    "year": 2012,
+    "constNo": 33,
+    "name": "Nongmeikapam Sovakiran Singh",
+    "partyId": "MPP",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4b883984-a0ce-55e5-8f9b-2b866f4cfdd3",
+    "year": 2017,
+    "constNo": 33,
+    "name": "Nongmeikapam Sovakiran Singh",
+    "partyId": "MPP",
+    "age": 45,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "PHUNGZATHANG TONSING|58",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "62283498-298a-516a-9e07-f10c815b7bc1",
+    "year": 2012,
+    "constNo": 58,
+    "name": "Phungzathang Tonsing",
+    "partyId": "INC",
+    "age": 60,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d96b464b-9f0d-5dd0-83a5-c709278c7935",
+    "year": 2017,
+    "constNo": 58,
+    "name": "Phungzathang Tonsing",
+    "partyId": "NPP",
+    "age": 71,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SAGOLSEM ACHOUBA SINGH|22",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c4a8a418-80cf-5294-8eed-61545da4c9cc",
+    "year": 2012,
+    "constNo": 22,
+    "name": "Sagolsem Achouba Singh",
+    "partyId": "INC",
+    "age": 57,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a6d72061-57b5-56c6-9648-7512eb181401",
+    "year": 2017,
+    "constNo": 22,
+    "name": "Sagolsem Achouba Singh",
+    "partyId": "MNDF",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SAGOLSEM IBOCHOUBI SINGH|34",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f5b54acf-230e-5edb-8927-f135f246ec79",
+    "year": 2012,
+    "constNo": 34,
+    "name": "Sagolsem Ibochoubi Singh",
+    "partyId": "TMC",
+    "age": 57,
+    "era": "2008"
+   },
+   {
+    "candidateId": "6fd4cc77-04ee-58d7-afb4-7e2622661888",
+    "year": 2017,
+    "constNo": 34,
+    "name": "Sagolsem Ibochoubi Singh",
+    "partyId": "MNDF",
+    "age": 58,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SAMUEL JENDAI|53",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c4989e68-78a3-5c14-bf9e-127b86ee5d3c",
+    "year": 2012,
+    "constNo": 53,
+    "name": "Samuel Jendai",
+    "partyId": "NPF",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "54c3d6be-6338-5693-a432-880ce5c0ce92",
+    "year": 2022,
+    "constNo": 53,
+    "name": "Samuel Jendai",
+    "partyId": "JDU",
+    "age": 62,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SOROKHAIBAM RAJEN SINGH|17",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "80a7d6d4-b64b-562c-8f48-fa188ec5a477",
+    "year": 2012,
+    "constNo": 17,
+    "name": "Sorokhaibam Rajen Singh",
+    "partyId": "NCP",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f2e4d548-cdec-5079-bb19-19e0c7f6be6b",
+    "year": 2017,
+    "constNo": 17,
+    "name": "Sorokhaibam Rajen Singh",
+    "partyId": "BJP",
+    "age": 52,
+    "era": "2008"
+   },
+   {
+    "candidateId": "03187e44-7ece-5ed5-8e23-7bc5d67df98e",
+    "year": 2022,
+    "constNo": 17,
+    "name": "Sorokhaibam Rajen Singh",
+    "partyId": "BJP",
+    "age": 56,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "THANGKHANGIN|56",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "5db01ca4-8e3f-584a-bf11-3b0bfb69fa43",
+    "year": 2017,
+    "constNo": 56,
+    "name": "Thangkhangin",
+    "partyId": "LJP",
+    "age": 61,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4af52895-e922-5fc7-8de6-24371777fa7f",
+    "year": 2022,
+    "constNo": 56,
+    "name": "Thangkhangin",
+    "partyId": "LJPRV",
+    "age": 66,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "THANGKHOLUN HAOKIP|41",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9a7e2f24-2fa5-579d-bd14-86dd57d8d389",
+    "year": 2012,
+    "constNo": 41,
+    "name": "Thangkholun Haokip",
+    "partyId": "INC",
+    "age": 55,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7a6bc6a4-8ef3-5890-930b-0713ab5515f4",
+    "year": 2017,
+    "constNo": 41,
+    "name": "Thangkholun Haokip",
+    "partyId": "TMC",
+    "age": 45,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "THOKCHOM SATYABRATA SINGH|14",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "8858acd0-50eb-50ad-9fb5-601b134a59e9",
+    "year": 2012,
+    "constNo": 14,
+    "name": "Thokchom Satyabrata Singh",
+    "partyId": "IND",
+    "age": 34,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b60a1988-82e1-55e0-8328-c6ab2e35315a",
+    "year": 2017,
+    "constNo": 14,
+    "name": "Thokchom Satyabrata Singh",
+    "partyId": "BJP",
+    "age": 43,
+    "era": "2008"
+   },
+   {
+    "candidateId": "175fe006-e8ed-59f7-8a35-c443e7c27930",
+    "year": 2022,
+    "constNo": 14,
+    "name": "Thokchom Satyabrata Singh",
+    "partyId": "BJP",
+    "age": 47,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "THONGAM SHANTI SINGH|27",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4bfb3db3-104e-595c-b485-a1d2e687150b",
+    "year": 2017,
+    "constNo": 27,
+    "name": "Thongam Shanti Singh",
+    "partyId": "IND",
+    "age": 52,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b1ae76cc-9581-5ddd-ae56-bc0b497c976d",
+    "year": 2022,
+    "constNo": 27,
+    "name": "Thongam Shanti Singh",
+    "partyId": "NPP",
+    "age": 61,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "YAMTHONG HAOKIP|46",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a6d0e2da-bbad-5a69-9226-80f1a25757ee",
+    "year": 2012,
+    "constNo": 46,
+    "name": "Yamthong Haokip",
+    "partyId": "INC",
+    "age": 66,
+    "era": "2008"
+   },
+   {
+    "candidateId": "573e7337-2851-5c6b-b128-229359b6bb82",
+    "year": 2017,
+    "constNo": 46,
+    "name": "Yamthong Haokip",
+    "partyId": "INC",
+    "age": 71,
+    "era": "2008"
+   },
+   {
+    "candidateId": "1129812e-66e4-5eb9-a9d1-0ed9634e905d",
+    "year": 2022,
+    "constNo": 46,
+    "name": "Yamthong Haokip",
+    "partyId": "BJP",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ }
+]
