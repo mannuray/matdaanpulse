@@ -78,12 +78,39 @@ const S2020 = [
   [null, 'Margin', null, 15796, '( 8.48 % of Total Votes)', null],
 ];
 
+// DL 2020 "8-Constituency_Data_Summery.xls", sheet U05-1 (2019/2020 layout: plain section headings, labels in column A or B).
+const S2020PLAIN = [
+  ['CONSTITUENCY DATA  SUMMARY', '', '', '', '', '', ''],
+  [' State/UT & Code ', 'U05', ' Constituency Name & Code ', 'NARELA-GEN', '', '', ''],
+  [' CANDIDATES ', '', '', 'Men', 'Women', 'Others', 'Total'],
+  ['', ' Nominated ', '', 15, 4, 0, 19], ['', ' Contested ', '', 9, 2, 0, 11], ['', ' Forfeited Deposit ', '', 7, 2, 0, 9],
+  [' ELECTORS '], [' General ', 139968, 113734, 7, 253709], [' Service ', 256, 17, 0, 273], [' Total ', 140224, 113751, 7, 253982],
+  [' VOTERS '], [' General ', 90936, 73920, 3, 164859], [' Postal ', 1104], [' Total', 165963],
+  [' POLLING PERCENTAGE ', 65.34439448464852], [' VOTES '], [' Total Votes Polled On EVM ', 164859], [' Total Valid Votes polled on EVM ', 164113],
+  [' Total Valid Votes Polled ', 164941], [" Votes Polled for 'NOTA'(Including Postal) ", 753],
+  [' POLLING STATION '], [' Number ', 296, ' Average Electors Per Polling ', 858], [' DATES  ', '08/02/2020', '11/02/2020', '11/02/2020'], [],
+  [' RESULT  ', ' Party  ', ' Candidates  ', ' Votes  '], [' Winner ', 'Aam Aadmi Party', 'SHARAD KUMAR', 86262],
+  [' Runner-Up ', 'Bharatiya Janata Party', 'NEEL DAMAN KHATRI', 68833], [' Margin  ', 17429],
+];
+
 describe('parseSummaryRows', () => {
   it('reads the 2020 summary sheet', () => {
     expect(parseSummaryRows(S2020)).toEqual({
       constNo: 2, name: 'Ramnagar', type: 'SC', electors: 331874, voters: 195791, contested: 12, totalValid: 187399, nota: 8090,
       pollDate: '2020-11-07', winner: { party: 'Bharatiya Janata Party', name: 'Bhagirathi Devi', votes: 75423 },
       runnerUp: { party: 'Indian National Congress', name: 'Rajesh Ram', votes: 59627 }, margin: 15796,
+    });
+  });
+  it('takes the seat number from the sheet name when the label has none (2019/2020 sets: sheet "U05-1", label "NARELA-GEN")', () => {
+    const rows = S2020.map((r, i) => (i === 1 ? [r[0], r[1], r[2], 'NARELA-GEN', ...r.slice(4)] : r));
+    expect(parseSummaryRows(rows, 'U05-1')).toMatchObject({ constNo: 1, name: 'NARELA', type: 'GEN' });
+    expect(() => parseSummaryRows(rows)).toThrow(/unrecognised constituency label "NARELA-GEN"/);
+  });
+  it('reads the 2019/2020 plain layout (no roman section numbers)', () => {
+    expect(parseSummaryRows(S2020PLAIN, 'U05-1')).toEqual({
+      constNo: 1, name: 'NARELA', type: 'GEN', electors: 253982, voters: 165963, contested: 11, totalValid: 164941, nota: 753,
+      pollDate: '2020-02-08', winner: { party: 'Aam Aadmi Party', name: 'SHARAD KUMAR', votes: 86262 },
+      runnerUp: { party: 'Bharatiya Janata Party', name: 'NEEL DAMAN KHATRI', votes: 68833 }, margin: 17429,
     });
   });
   it('accepts the 2025 label form "2-RAMNAGAR-(SC)"', () => {

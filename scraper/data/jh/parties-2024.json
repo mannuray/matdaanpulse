@@ -1,0 +1,73 @@
+[
+ {
+  "id": "AP1",
+  "name": "AJSU Party",
+  "abbreviation": "AJSU",
+  "eci_recognition": "State",
+  "founded_year": 1986,
+  "leader_name": "Sudesh Mahto",
+  "headquarters": "Harmu Road, Ranchi 834001, Jharkhand",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All_Jharkhand_Students_Union",
+  "color": "#6827B5",
+  "description": "The All Jharkhand Students Union, founded in 1986 during the Jharkhand statehood movement and an NDA ally since 2014. In 2024 it contested 10 seats with the BJP and won only Mandu, with about 3.5% of the vote; party chief Sudesh Mahto lost Silli.",
+  "eci_symbol": "Banana",
+  "logo": {
+   "file": "AP1-logo.jpg",
+   "commons": "File:ANSU Party flag.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ANSU_Party_flag.jpg",
+   "author": "Unrecognized",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "AP1-eci.svg",
+   "commons": "File:Indian Election Symbol Banana.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Banana.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/All_Jharkhand_Students_Union",
+   "https://en.wikipedia.org/wiki/2024_Jharkhand_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=9",
+   "https://commons.wikimedia.org/wiki/File:ANSU_Party_flag.jpg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Banana.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "JLKM",
+  "name": "Jharkhand Loktantrik Krantikari Morcha",
+  "abbreviation": "JLKM",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2024,
+  "leader_name": "Jairam Kumar Mahato",
+  "headquarters": "Indrapuri Colony, Badhraibera, Sector 12, Bokaro, Jharkhand",
+  "website": "https://jlkmparty.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jharkhand_Loktantrik_Krantikari_Morcha",
+  "color": "#7CB342",
+  "description": "A Jharkhand regional party led by language and domicile activist Jairam Kumar Mahato, grown out of the Jharkhandi Bhasha Khatiyan Sangharsh Samiti and registered in 2024. In its first assembly election it contested 68 seats and won one, Dumri (Mahato himself), with about 6.1% of the vote.",
+  "eci_symbol": "Scissors",
+  "logo": null,
+  "eci_image": {
+   "file": "JLKM-eci.png",
+   "commons": "File:Scissors - Indian Election Symbol.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Scissors_-_Indian_Election_Symbol.png",
+   "author": "Atharvgairola692004",
+   "licence": "CC0"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Jharkhand_Loktantrik_Krantikari_Morcha",
+   "https://timesofindia.indiatimes.com/city/ranchi/regional-outfit-gets-party-status-in-jharkhand/articleshow/112388115.cms",
+   "https://en.wikipedia.org/wiki/2024_Jharkhand_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=9",
+   "https://commons.wikimedia.org/wiki/File:Scissors_-_Indian_Election_Symbol.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party",
+   "note: colour deepened from Wikipedia’s very pale #E3F899 so the party shows on the map"
+  ]
+ }
+]

@@ -97,6 +97,9 @@ for st in ga mn uk pb up; do
   run "seed_${st}_vs_parties.sql"
   for y in 2012 2017 2022; do run "seed_${st}_vs_${y}.sql"; done
 done
+# Phase 4A states (new elections since the 2008 delimitation), their ECI parties first
+run seed_dl_vs_parties.sql; for y in 2008 2013 2015 2020 2025; do run "seed_dl_vs_${y}.sql"; done
+for st in hr jh od; do run "seed_${st}_vs_parties.sql"; for y in 2009 2014 2019 2024; do run "seed_${st}_vs_${y}.sql"; done; done
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
 for st in kl as; do run "seed_${st}_manifest_fixes_v1.sql"; done
 # Run-once: parties the old manifests put in the wrong alliance (Kerala, Tamil Nadu 2011, West Bengal 2011)
@@ -109,17 +112,25 @@ for st in as kl py tn wb; do run "seed_${st}_districts_regions.sql"; done
 run seed_as_2026_districts_regions.sql
 # Phase 3A states (2008 delimitation; seat → district sourced in scraper/data/<slug>/districts.json)
 for st in ga mn uk pb up; do run "seed_${st}_districts_regions.sql"; done
+for st in dl hr jh od; do run "seed_${st}_districts_regions.sql"; done
 # Person links across 2011-2021 (run-once; must follow the VS results)
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 for st in ga mn uk pb up; do run "seed_${st}_person_links_v1.sql"; done
+for st in dl hr jh od; do run "seed_${st}_person_links_v1.sql"; done
 # 2026 candidates → their 2011-2021 persons (run-once; same delimitation only, so none for Assam 2026)
 for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
+# Latest DL/HR/JH/OD candidates → their earlier persons (run-once)
+for st in dl hr jh od; do run "seed_${st}_person_links_v2.sql"; done
 # 2026 leaders (curated, user-approved; run-once: candidacy links, fill-only profiles, manifest watchlists)
 for st in as kl py tn wb; do run "seed_${st}_leaders.sql"; done
+# Delhi 2025, Haryana/Jharkhand/Odisha 2024 leaders (curated, user-approved 2026-10-05; run-once)
+for st in dl hr jh od; do run "seed_${st}_leaders.sql"; done
 # 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
 for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
+for st in dl hr jh od; do run "seed_${st}_candidate_photos.sql"; done
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_affidavits.sql"; done
+for st in dl hr jh od; do run "seed_${st}_affidavits.sql"; done
 
 echo "==> Seeds: Bihar persons (must follow Bihar VS results + regions)"
 run seed_bihar_persons.sql
@@ -142,6 +153,7 @@ run seed_bihar_party_profiles.sql
 # Party colours the fill-only profile seeds could not set (each only while the old colour is unchanged)
 # 2026 top parties of the five states (researched, user-approved; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_party_profiles.sql"; done
+for st in dl hr jh od; do run "seed_${st}_party_profiles.sql"; done
 run seed_party_colors_v1.sql
 # Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
 run seed_media_s3_v1.sql

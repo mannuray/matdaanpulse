@@ -1,0 +1,27 @@
+[
+ {
+  "year": 2009,
+  "key": "margin:89",
+  "reason": "ECI's Constituency Data Summary margin (25590) is an arithmetic slip: its own winner (68881) and runner-up (43371) votes agree with the Detailed Results and give 25510"
+ },
+ {
+  "year": 2014,
+  "key": "type:69",
+  "reason": "ECI's 2014 Detailed Results label 69 Titlagarh \"(SC)\"; its Constituency Data Summary (GEN) is right: 24 SC / 33 ST seats (ECI's 2009, 2019 and 2024 reports, the summary's own count); the 2014 Highlights' 25/34 count the same slips"
+ },
+ {
+  "year": 2014,
+  "key": "type:107",
+  "reason": "ECI's 2014 Detailed Results label 107 Puri \"(ST)\"; its Constituency Data Summary (GEN) is right (as above)"
+ },
+ {
+  "year": 2019,
+  "key": "party-contested:MVD",
+  "reason": "ECI's 2019 Performance of Political Parties counts 2 MVD candidates / 436 votes; its Detailed Results hold one (AC 98 Aul, 223 votes). The other is not in the report's seats (AC 96 Patkura was countermanded and polled later); all other parties agree"
+ },
+ {
+  "year": 2019,
+  "key": "party-votes:MVD",
+  "reason": "See party-contested:MVD (2019)."
+ }
+]

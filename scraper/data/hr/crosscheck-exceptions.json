@@ -1,0 +1,17 @@
+[
+ {
+  "year": 2014,
+  "key": "total-valid:47",
+  "reason": "ECI's Constituency Data Summary total valid votes (119982) differs from its own Detailed Results (119985) by 3; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2014,
+  "key": "total-valid:48",
+  "reason": "ECI's Constituency Data Summary total valid votes (140021) differs from its own Detailed Results (140040) by 19; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2014,
+  "key": "total-valid:53",
+  "reason": "ECI's Constituency Data Summary total valid votes (116593) differs from its own Detailed Results (116595) by 2; winner, runner-up, margin, electors and candidate count agree"
+ }
+]

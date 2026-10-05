@@ -1,0 +1,328 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Odisha_Legislative_Assembly (district column; raw wikitext read 2026-10-05)",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Odisha (30 districts; revenue divisions Northern/Sambalpur, Central/Cuttack, Southern/Berhampur, 10 districts each)"
+ ],
+ "notes": "Current 30 districts, as on Wikipedia, no overrides. Khurda shown as Khordha (official spelling); Balasore = Baleswar, Kendrapara = Kendrapada, Nayagarh = Nayagada. Regions are the 3 Revenue Divisional Commissioner divisions.",
+ "districts": [
+  {
+   "code": "OD_BARGARH",
+   "name": "Bargarh"
+  },
+  {
+   "code": "OD_JHARSUGUDA",
+   "name": "Jharsuguda"
+  },
+  {
+   "code": "OD_SUNDARGARH",
+   "name": "Sundargarh"
+  },
+  {
+   "code": "OD_SAMBALPUR",
+   "name": "Sambalpur"
+  },
+  {
+   "code": "OD_DEOGARH",
+   "name": "Deogarh"
+  },
+  {
+   "code": "OD_KEONJHAR",
+   "name": "Keonjhar"
+  },
+  {
+   "code": "OD_MAYURBHANJ",
+   "name": "Mayurbhanj"
+  },
+  {
+   "code": "OD_BALASORE",
+   "name": "Balasore"
+  },
+  {
+   "code": "OD_BHADRAK",
+   "name": "Bhadrak"
+  },
+  {
+   "code": "OD_JAJPUR",
+   "name": "Jajpur"
+  },
+  {
+   "code": "OD_DHENKANAL",
+   "name": "Dhenkanal"
+  },
+  {
+   "code": "OD_ANGUL",
+   "name": "Angul"
+  },
+  {
+   "code": "OD_SUBARNAPUR",
+   "name": "Subarnapur"
+  },
+  {
+   "code": "OD_BALANGIR",
+   "name": "Balangir"
+  },
+  {
+   "code": "OD_NUAPADA",
+   "name": "Nuapada"
+  },
+  {
+   "code": "OD_NABARANGPUR",
+   "name": "Nabarangpur"
+  },
+  {
+   "code": "OD_KALAHANDI",
+   "name": "Kalahandi"
+  },
+  {
+   "code": "OD_KANDHAMAL",
+   "name": "Kandhamal"
+  },
+  {
+   "code": "OD_BOUDH",
+   "name": "Boudh"
+  },
+  {
+   "code": "OD_CUTTACK",
+   "name": "Cuttack"
+  },
+  {
+   "code": "OD_KENDRAPARA",
+   "name": "Kendrapara"
+  },
+  {
+   "code": "OD_JAGATSINGHPUR",
+   "name": "Jagatsinghpur"
+  },
+  {
+   "code": "OD_PURI",
+   "name": "Puri"
+  },
+  {
+   "code": "OD_KHORDHA",
+   "name": "Khordha"
+  },
+  {
+   "code": "OD_NAYAGARH",
+   "name": "Nayagarh"
+  },
+  {
+   "code": "OD_GANJAM",
+   "name": "Ganjam"
+  },
+  {
+   "code": "OD_GAJAPATI",
+   "name": "Gajapati"
+  },
+  {
+   "code": "OD_RAYAGADA",
+   "name": "Rayagada"
+  },
+  {
+   "code": "OD_KORAPUT",
+   "name": "Koraput"
+  },
+  {
+   "code": "OD_MALKANGIRI",
+   "name": "Malkangiri"
+  }
+ ],
+ "regions": [
+  {
+   "code": "OD_NORTHERN",
+   "name": "Northern",
+   "districts": [
+    "OD_ANGUL",
+    "OD_BALANGIR",
+    "OD_BARGARH",
+    "OD_DEOGARH",
+    "OD_DHENKANAL",
+    "OD_JHARSUGUDA",
+    "OD_KEONJHAR",
+    "OD_SAMBALPUR",
+    "OD_SUBARNAPUR",
+    "OD_SUNDARGARH"
+   ]
+  },
+  {
+   "code": "OD_CENTRAL",
+   "name": "Central",
+   "districts": [
+    "OD_BALASORE",
+    "OD_BHADRAK",
+    "OD_CUTTACK",
+    "OD_JAGATSINGHPUR",
+    "OD_JAJPUR",
+    "OD_KENDRAPARA",
+    "OD_KHORDHA",
+    "OD_MAYURBHANJ",
+    "OD_NAYAGARH",
+    "OD_PURI"
+   ]
+  },
+  {
+   "code": "OD_SOUTHERN",
+   "name": "Southern",
+   "districts": [
+    "OD_BOUDH",
+    "OD_GAJAPATI",
+    "OD_GANJAM",
+    "OD_KALAHANDI",
+    "OD_KANDHAMAL",
+    "OD_KORAPUT",
+    "OD_MALKANGIRI",
+    "OD_NABARANGPUR",
+    "OD_NUAPADA",
+    "OD_RAYAGADA"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "OD_BARGARH",
+  "2": "OD_BARGARH",
+  "3": "OD_BARGARH",
+  "4": "OD_BARGARH",
+  "5": "OD_BARGARH",
+  "6": "OD_JHARSUGUDA",
+  "7": "OD_JHARSUGUDA",
+  "8": "OD_SUNDARGARH",
+  "9": "OD_SUNDARGARH",
+  "10": "OD_SUNDARGARH",
+  "11": "OD_SUNDARGARH",
+  "12": "OD_SUNDARGARH",
+  "13": "OD_SUNDARGARH",
+  "14": "OD_SUNDARGARH",
+  "15": "OD_SAMBALPUR",
+  "16": "OD_SAMBALPUR",
+  "17": "OD_SAMBALPUR",
+  "18": "OD_SAMBALPUR",
+  "19": "OD_DEOGARH",
+  "20": "OD_KEONJHAR",
+  "21": "OD_KEONJHAR",
+  "22": "OD_KEONJHAR",
+  "23": "OD_KEONJHAR",
+  "24": "OD_KEONJHAR",
+  "25": "OD_KEONJHAR",
+  "26": "OD_MAYURBHANJ",
+  "27": "OD_MAYURBHANJ",
+  "28": "OD_MAYURBHANJ",
+  "29": "OD_MAYURBHANJ",
+  "30": "OD_MAYURBHANJ",
+  "31": "OD_MAYURBHANJ",
+  "32": "OD_MAYURBHANJ",
+  "33": "OD_MAYURBHANJ",
+  "34": "OD_MAYURBHANJ",
+  "35": "OD_BALASORE",
+  "36": "OD_BALASORE",
+  "37": "OD_BALASORE",
+  "38": "OD_BALASORE",
+  "39": "OD_BALASORE",
+  "40": "OD_BALASORE",
+  "41": "OD_BALASORE",
+  "42": "OD_BALASORE",
+  "43": "OD_BHADRAK",
+  "44": "OD_BHADRAK",
+  "45": "OD_BHADRAK",
+  "46": "OD_BHADRAK",
+  "47": "OD_BHADRAK",
+  "48": "OD_JAJPUR",
+  "49": "OD_JAJPUR",
+  "50": "OD_JAJPUR",
+  "51": "OD_JAJPUR",
+  "52": "OD_JAJPUR",
+  "53": "OD_JAJPUR",
+  "54": "OD_JAJPUR",
+  "55": "OD_DHENKANAL",
+  "56": "OD_DHENKANAL",
+  "57": "OD_DHENKANAL",
+  "58": "OD_DHENKANAL",
+  "59": "OD_ANGUL",
+  "60": "OD_ANGUL",
+  "61": "OD_ANGUL",
+  "62": "OD_ANGUL",
+  "63": "OD_ANGUL",
+  "64": "OD_SUBARNAPUR",
+  "65": "OD_SUBARNAPUR",
+  "66": "OD_BALANGIR",
+  "67": "OD_BALANGIR",
+  "68": "OD_BALANGIR",
+  "69": "OD_BALANGIR",
+  "70": "OD_BALANGIR",
+  "71": "OD_NUAPADA",
+  "72": "OD_NUAPADA",
+  "73": "OD_NABARANGPUR",
+  "74": "OD_NABARANGPUR",
+  "75": "OD_NABARANGPUR",
+  "76": "OD_NABARANGPUR",
+  "77": "OD_KALAHANDI",
+  "78": "OD_KALAHANDI",
+  "79": "OD_KALAHANDI",
+  "80": "OD_KALAHANDI",
+  "81": "OD_KALAHANDI",
+  "82": "OD_KANDHAMAL",
+  "83": "OD_KANDHAMAL",
+  "84": "OD_KANDHAMAL",
+  "85": "OD_BOUDH",
+  "86": "OD_BOUDH",
+  "87": "OD_CUTTACK",
+  "88": "OD_CUTTACK",
+  "89": "OD_CUTTACK",
+  "90": "OD_CUTTACK",
+  "91": "OD_CUTTACK",
+  "92": "OD_CUTTACK",
+  "93": "OD_CUTTACK",
+  "94": "OD_CUTTACK",
+  "95": "OD_CUTTACK",
+  "96": "OD_KENDRAPARA",
+  "97": "OD_KENDRAPARA",
+  "98": "OD_KENDRAPARA",
+  "99": "OD_KENDRAPARA",
+  "100": "OD_KENDRAPARA",
+  "101": "OD_JAGATSINGHPUR",
+  "102": "OD_JAGATSINGHPUR",
+  "103": "OD_JAGATSINGHPUR",
+  "104": "OD_JAGATSINGHPUR",
+  "105": "OD_PURI",
+  "106": "OD_PURI",
+  "107": "OD_PURI",
+  "108": "OD_PURI",
+  "109": "OD_PURI",
+  "110": "OD_PURI",
+  "111": "OD_KHORDHA",
+  "112": "OD_KHORDHA",
+  "113": "OD_KHORDHA",
+  "114": "OD_KHORDHA",
+  "115": "OD_KHORDHA",
+  "116": "OD_KHORDHA",
+  "117": "OD_KHORDHA",
+  "118": "OD_KHORDHA",
+  "119": "OD_NAYAGARH",
+  "120": "OD_NAYAGARH",
+  "121": "OD_NAYAGARH",
+  "122": "OD_NAYAGARH",
+  "123": "OD_GANJAM",
+  "124": "OD_GANJAM",
+  "125": "OD_GANJAM",
+  "126": "OD_GANJAM",
+  "127": "OD_GANJAM",
+  "128": "OD_GANJAM",
+  "129": "OD_GANJAM",
+  "130": "OD_GANJAM",
+  "131": "OD_GANJAM",
+  "132": "OD_GANJAM",
+  "133": "OD_GANJAM",
+  "134": "OD_GANJAM",
+  "135": "OD_GANJAM",
+  "136": "OD_GAJAPATI",
+  "137": "OD_GAJAPATI",
+  "138": "OD_RAYAGADA",
+  "139": "OD_RAYAGADA",
+  "140": "OD_RAYAGADA",
+  "141": "OD_KORAPUT",
+  "142": "OD_KORAPUT",
+  "143": "OD_KORAPUT",
+  "144": "OD_KORAPUT",
+  "145": "OD_KORAPUT",
+  "146": "OD_MALKANGIRI",
+  "147": "OD_MALKANGIRI"
+ }
+}

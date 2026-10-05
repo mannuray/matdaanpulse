@@ -1,0 +1,58 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2009_Odisha_Legislative_Assembly_election",
+  "note: The BJD ended its alliance with the BJP in March 2009 and shared seats with the NCP, CPI and CPI(M)."
+ ],
+ "alliances": [
+  {
+   "id": "BJD",
+   "name": "BJD+",
+   "color": "#2E7D32",
+   "parties": [
+    "BJD",
+    "NCP",
+    "CPI",
+    "CPIM"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJD",
+  "INC",
+  "BJP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 74
+  }
+ ],
+ "geo": {
+  "zoom": 7,
+  "center": [
+   84.4,
+   20.5
+  ],
+  "map_url": "/geo/od_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}

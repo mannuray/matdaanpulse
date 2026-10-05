@@ -3,7 +3,7 @@ import { ELECTIONS, STATES, electionOf, electionsOf, parseState } from '../elect
 
 describe('election registry', () => {
   it('lists every state election once, with unique ids and prefixes', () => {
-    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15);
+    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17);
     expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
     expect(new Set(ELECTIONS.map(e => e.constPrefix)).size).toBe(ELECTIONS.length);
   });
@@ -49,5 +49,17 @@ describe('Phase 3A states', () => {
       newElection: { delimitation: '2008', resultDate: '2012-03-06' } });
     expect((['GA', 'MN', 'PB', 'UK'] as const).map(s => electionsOf(s).map(e => e.docid))).toEqual([
       [3856, 3862, 14168], [3712, 3713, 14166], [3455, 3614, 14165], [3231, 3470, 14169]]);
+  });
+});
+
+describe('Phase 4A states', () => {
+  it('registers 17 new elections with their own counting dates and sources', () => {
+    expect(electionsOf('DL').map(e => [e.year, e.docid ?? e.category, e.newElection?.resultDate])).toEqual([
+      [2008, 3876, '2008-12-08'], [2013, 3877, '2013-12-08'], [2015, 3878, '2015-02-10'], [2020, 12027, '2020-02-11'], [2025, 10, '2025-02-08']]);
+    expect((['HR', 'JH', 'OD'] as const).map(s => electionsOf(s).map(e => e.docid ?? e.category))).toEqual([
+      [3826, 3827, 11697, 6], [3786, 3787, 11813, 9], [3630, 3631, 11679, 4]]);
+    expect(electionOf('OD', 2019)).toMatchObject({ electionId: 'a0260000-0000-4000-8000-000000002019', constPrefix: 'OD_VS19_', expectedPhases: 4 });
+    expect(electionOf('JH', 2024)).toMatchObject({ resultsSite: { base: 'https://results.eci.gov.in/ResultAcGenNov2024/', eciCode: 'S27' }, myneta: 'jharkhand2024',
+      newElection: { reserved: { sc: 9, st: 28 } } });
   });
 });

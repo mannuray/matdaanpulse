@@ -1,0 +1,74 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2009_Haryana_Legislative_Assembly_election",
+  "note: INLD gave the Shiromani Akali Dal one seat (Kalanwali)."
+ ],
+ "alliances": [
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "INLD",
+   "name": "INLD+",
+   "color": "#2E7D32",
+   "parties": [
+    "INLD",
+    "SAD"
+   ]
+  },
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "HJCBL",
+   "name": "HJC(BL)",
+   "color": "#8E24AA",
+   "parties": [
+    "HJCBL"
+   ]
+  },
+  {
+   "id": "BSP",
+   "name": "BSP",
+   "color": "#1E40AF",
+   "parties": [
+    "BSP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "INC",
+  "INLD",
+  "BJP",
+  "HJCBL",
+  "BSP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 46
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   76.1,
+   29.1
+  ],
+  "map_url": "/geo/hr_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}

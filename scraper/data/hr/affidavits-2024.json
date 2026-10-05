@@ -1,0 +1,816 @@
+{
+ "source": "https://myneta.info/haryana2024/index.php?action=show_winners&sort=default",
+ "matched": [
+  {
+   "candidateId": "133a1864-5c30-54a4-a74f-08e97807cb2c",
+   "constNo": 47,
+   "criminalCases": 0,
+   "assets": 338107355,
+   "liabilities": 13650983,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=306"
+  },
+  {
+   "candidateId": "a0c67b27-28ad-5a3a-907f-2aa4a21277d5",
+   "constNo": 4,
+   "criminalCases": 0,
+   "assets": 14951989,
+   "liabilities": 0,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=169"
+  },
+  {
+   "candidateId": "938695b5-c056-5ce3-bedf-3de0b42fc4d7",
+   "constNo": 5,
+   "criminalCases": 0,
+   "assets": 275747454,
+   "liabilities": 7180000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=301"
+  },
+  {
+   "candidateId": "789186cb-bc66-5de4-ba6b-29cb55bd8bba",
+   "constNo": 23,
+   "criminalCases": 0,
+   "assets": 388915318,
+   "liabilities": 6500000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=376"
+  },
+  {
+   "candidateId": "b4f45f6b-0277-5762-841e-69a6a726ed0c",
+   "constNo": 68,
+   "criminalCases": 0,
+   "assets": 682753454,
+   "liabilities": 25500000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=172"
+  },
+  {
+   "candidateId": "3a9229f8-379f-5451-84c9-c9441f9b329c",
+   "constNo": 55,
+   "criminalCases": 0,
+   "assets": 125611159,
+   "liabilities": 7415000,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=116"
+  },
+  {
+   "candidateId": "71fc4c9a-9469-5de7-b224-89f8b5196a03",
+   "constNo": 87,
+   "criminalCases": 2,
+   "assets": 255168571,
+   "liabilities": 103429422,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=291"
+  },
+  {
+   "candidateId": "abaebd15-2606-50b1-9d77-96e973b20c58",
+   "constNo": 65,
+   "criminalCases": 1,
+   "assets": 96030239,
+   "liabilities": 13150000,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=55"
+  },
+  {
+   "candidateId": "ad51f545-f846-54c4-a6b8-4cf3233ab785",
+   "constNo": 76,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=118"
+  },
+  {
+   "candidateId": "cdc93aaf-b644-5758-94fa-58a2226f7a96",
+   "constNo": 64,
+   "criminalCases": 1,
+   "assets": 610304000,
+   "liabilities": 193700000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=957"
+  },
+  {
+   "candidateId": "5bc9e37b-94d4-53ad-ac72-e4d23625c1be",
+   "constNo": 88,
+   "criminalCases": 0,
+   "assets": 335069620,
+   "liabilities": 63085375,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=2"
+  },
+  {
+   "candidateId": "307d44a8-eb3a-563f-974f-7c905ecc1249",
+   "constNo": 33,
+   "criminalCases": 0,
+   "assets": 24391350,
+   "liabilities": 8450000,
+   "education": "Others",
+   "source": "https://myneta.info/candidate.php?candidate_id=122"
+  },
+  {
+   "candidateId": "e4d2d2cf-f069-508a-b4b5-60698bfe36ca",
+   "constNo": 51,
+   "criminalCases": 0,
+   "assets": 116219986,
+   "liabilities": 5215738,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=276"
+  },
+  {
+   "candidateId": "0189cdc3-1546-5583-85db-2a381f8857d8",
+   "constNo": 72,
+   "criminalCases": 0,
+   "assets": 32659037,
+   "liabilities": 3317807,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=274"
+  },
+  {
+   "candidateId": "3a25a09b-d9b4-5fee-ba40-05dd130b6618",
+   "constNo": 59,
+   "criminalCases": 0,
+   "assets": 720000,
+   "liabilities": 754232,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=272"
+  },
+  {
+   "candidateId": "c84fd377-4752-5c70-8952-82424261ae75",
+   "constNo": 67,
+   "criminalCases": 0,
+   "assets": 205103781,
+   "liabilities": 3850200,
+   "education": "Doctorate",
+   "source": "https://myneta.info/candidate.php?candidate_id=127"
+  },
+  {
+   "candidateId": "ee5b08e0-d8a4-58d4-bdad-7a0210bbac4a",
+   "constNo": 57,
+   "criminalCases": 0,
+   "assets": 143254423,
+   "liabilities": 21651986,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=128"
+  },
+  {
+   "candidateId": "be41e6fc-f7a3-5360-a26b-53ce1665a6ca",
+   "constNo": 43,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=71"
+  },
+  {
+   "candidateId": "1ba9ed5d-019b-52c4-98f0-9c87e0bf16ff",
+   "constNo": 56,
+   "criminalCases": 0,
+   "assets": 25595670,
+   "liabilities": 2000000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=131"
+  },
+  {
+   "candidateId": "d833d912-fb7a-5bb0-9e5d-75edbdb70eec",
+   "constNo": 46,
+   "criminalCases": 0,
+   "assets": 89020000,
+   "liabilities": 6394731,
+   "education": "Literate",
+   "source": "https://myneta.info/candidate.php?candidate_id=257"
+  },
+  {
+   "candidateId": "acdc6121-7c24-53a6-b360-f14fb7e12110",
+   "constNo": 89,
+   "criminalCases": 0,
+   "assets": 1018192055,
+   "liabilities": 52896808,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=72"
+  },
+  {
+   "candidateId": "56cc54ff-0a2a-5a79-b1cc-b1c918f30491",
+   "constNo": 86,
+   "criminalCases": 0,
+   "assets": 50144974,
+   "liabilities": 9900000,
+   "education": "Others",
+   "source": "https://myneta.info/candidate.php?candidate_id=567"
+  },
+  {
+   "candidateId": "5cba1646-3a95-5481-a6e0-e4aa3fc3027c",
+   "constNo": 40,
+   "criminalCases": 0,
+   "assets": 174555878,
+   "liabilities": 21588098,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=435"
+  },
+  {
+   "candidateId": "781bb247-1591-5e56-b8b1-b931f8e10089",
+   "constNo": 80,
+   "criminalCases": 4,
+   "assets": 88182808,
+   "liabilities": 2535328,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=139"
+  },
+  {
+   "candidateId": "83ebf776-38fc-527a-842b-8561c7487512",
+   "constNo": 28,
+   "criminalCases": 2,
+   "assets": 98418401,
+   "liabilities": 19434276,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=663"
+  },
+  {
+   "candidateId": "f0911633-2947-5a21-b2c2-bff5702510ba",
+   "constNo": 61,
+   "criminalCases": 8,
+   "assets": 264924276,
+   "liabilities": 1500000,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=254"
+  },
+  {
+   "candidateId": "59b649d8-6be8-5d57-8416-52ed7cef6fde",
+   "constNo": 22,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=252"
+  },
+  {
+   "candidateId": "bb337bf0-c10d-527f-9152-c255ebe907f8",
+   "constNo": 32,
+   "criminalCases": 0,
+   "assets": 69042671,
+   "liabilities": 35673255,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=78"
+  },
+  {
+   "candidateId": "7df6afff-b0ed-5f9b-84a8-1b808ef8077f",
+   "constNo": 15,
+   "criminalCases": 0,
+   "assets": 977000,
+   "liabilities": 0,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=345"
+  },
+  {
+   "candidateId": "f17f6c5c-8263-5774-a3f3-be992fee492f",
+   "constNo": 77,
+   "criminalCases": 0,
+   "assets": 12946455,
+   "liabilities": 0,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=145"
+  },
+  {
+   "candidateId": "bfe59d88-a8e6-5a7b-9d2c-e8946222e976",
+   "constNo": 50,
+   "criminalCases": 1,
+   "assets": 72982412,
+   "liabilities": 15474259,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=147"
+  },
+  {
+   "candidateId": "57fd6be3-f0e9-5ac8-8814-9c583f07d0e9",
+   "constNo": 82,
+   "criminalCases": 0,
+   "assets": 10282500,
+   "liabilities": 1684000,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=556"
+  },
+  {
+   "candidateId": "e3bdca03-19bf-5c7c-bf2d-ad9e3a6d1720",
+   "constNo": 52,
+   "criminalCases": 0,
+   "assets": 2706607000,
+   "liabilities": 0,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=934"
+  },
+  {
+   "candidateId": "dfa1ce67-b38f-581d-aea7-142d7c73dadf",
+   "constNo": 83,
+   "criminalCases": 0,
+   "assets": 243898072,
+   "liabilities": 2410900,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=248"
+  },
+  {
+   "candidateId": "bb1abee1-f00c-55e9-b708-c319e215e7ba",
+   "constNo": 20,
+   "criminalCases": 0,
+   "assets": 33324711,
+   "liabilities": 1820000,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=153"
+  },
+  {
+   "candidateId": "65b2356d-9557-582a-b8b5-88ce250ef06a",
+   "constNo": 26,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=246"
+  },
+  {
+   "candidateId": "fe820049-109d-52a4-b471-17fdff675cc0",
+   "constNo": 8,
+   "criminalCases": 0,
+   "assets": 194405028,
+   "liabilities": 344812,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=320"
+  },
+  {
+   "candidateId": "026d077a-4703-5c20-9135-d8d135780907",
+   "constNo": 66,
+   "criminalCases": 0,
+   "assets": 88615808,
+   "liabilities": 1490000,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=156"
+  },
+  {
+   "candidateId": "a2fc0568-65f3-5792-9d65-5e5a4081ec21",
+   "constNo": 36,
+   "criminalCases": 0,
+   "assets": 30457253,
+   "liabilities": 1666400,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=419"
+  },
+  {
+   "candidateId": "ffb1e5ed-c0e8-551f-aec6-3018433b8b7d",
+   "constNo": 34,
+   "criminalCases": 0,
+   "assets": 36739400,
+   "liabilities": 3294401,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=241"
+  },
+  {
+   "candidateId": "c91c73df-8577-5f71-8430-e4ce79489a05",
+   "constNo": 17,
+   "criminalCases": 0,
+   "assets": 291142837,
+   "liabilities": 0,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=350"
+  },
+  {
+   "candidateId": "0e6e53cf-3dc3-54ff-9898-4eb85da8145a",
+   "constNo": 63,
+   "criminalCases": 0,
+   "assets": 85486630,
+   "liabilities": 30573255,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=237"
+  },
+  {
+   "candidateId": "56644faf-d426-57b2-8e4f-44f4eef16894",
+   "constNo": 42,
+   "criminalCases": 0,
+   "assets": 24983311,
+   "liabilities": 4380000,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=236"
+  },
+  {
+   "candidateId": "748c298d-a048-5ad3-829b-1d4f5c10c263",
+   "constNo": 16,
+   "criminalCases": 0,
+   "assets": 88652309,
+   "liabilities": 13942843,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=235"
+  },
+  {
+   "candidateId": "e3f7956b-2753-51d1-ae91-31d5a256a0fe",
+   "constNo": 1,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=232"
+  },
+  {
+   "candidateId": "7e093b48-b7e8-541a-a76b-d622411e08a7",
+   "constNo": 21,
+   "criminalCases": 0,
+   "assets": 157081435,
+   "liabilities": 41724405,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=230"
+  },
+  {
+   "candidateId": "5a1c682d-1305-59f3-939d-68541e8a9b8e",
+   "constNo": 30,
+   "criminalCases": 0,
+   "assets": 37255700,
+   "liabilities": 0,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=164"
+  },
+  {
+   "candidateId": "3219a1a9-2a81-56fc-9602-89cac3d1fe96",
+   "constNo": 73,
+   "criminalCases": 2,
+   "assets": 682362605,
+   "liabilities": 85434652,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=527"
+  },
+  {
+   "candidateId": "8fe231d7-1abe-5fb7-9403-2ae75f7e6ea1",
+   "constNo": 11,
+   "criminalCases": 0,
+   "assets": 58052714,
+   "liabilities": 7482619,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=166"
+  },
+  {
+   "candidateId": "4b2f0d2f-7a6f-59b4-994d-adffa1354e0d",
+   "constNo": 54,
+   "criminalCases": 0,
+   "assets": 598894116,
+   "liabilities": 441817894,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=480"
+  },
+  {
+   "candidateId": "c99d20a9-a89c-5b40-b32c-2c838aa65182",
+   "constNo": 69,
+   "criminalCases": 0,
+   "assets": 26353695,
+   "liabilities": 19970646,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=515"
+  },
+  {
+   "candidateId": "f5cc7b8a-05a1-5391-b240-df7b17996a00",
+   "constNo": 60,
+   "criminalCases": 0,
+   "assets": 341255237,
+   "liabilities": 1287000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=224"
+  },
+  {
+   "candidateId": "16d924c4-4708-54e7-87be-c097b8f40959",
+   "constNo": 6,
+   "criminalCases": 0,
+   "assets": 254845805,
+   "liabilities": 5861348,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=317"
+  },
+  {
+   "candidateId": "869c78d7-5fea-5f62-9994-fcf517fc3f2b",
+   "constNo": 53,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=221"
+  },
+  {
+   "candidateId": "d9fd253a-6998-5525-bac1-704278ed0258",
+   "constNo": 71,
+   "criminalCases": 0,
+   "assets": 206361198,
+   "liabilities": 1500000,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=521"
+  },
+  {
+   "candidateId": "1b14aca8-9cb7-524e-9c42-688232825f05",
+   "constNo": 3,
+   "criminalCases": 0,
+   "assets": 759665950,
+   "liabilities": 3420000,
+   "education": "8th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=95"
+  },
+  {
+   "candidateId": "4b14d855-5611-536a-b572-d2f64626b5f3",
+   "constNo": 70,
+   "criminalCases": 0,
+   "assets": 47276712,
+   "liabilities": 1020000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=218"
+  },
+  {
+   "candidateId": "274d93a7-cf20-5d42-acf9-6abe4e190fa8",
+   "constNo": 49,
+   "criminalCases": 0,
+   "assets": 21693622,
+   "liabilities": 0,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=463"
+  },
+  {
+   "candidateId": "000a2cea-242c-5aeb-a157-1601ec1a5d13",
+   "constNo": 38,
+   "criminalCases": 0,
+   "assets": 48035404,
+   "liabilities": 229850,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=423"
+  },
+  {
+   "candidateId": "b65ff872-9cab-5c03-92e8-5f41ce3bf2ef",
+   "constNo": 19,
+   "criminalCases": 0,
+   "assets": 7433843,
+   "liabilities": 2942521,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=359"
+  },
+  {
+   "candidateId": "fb4451ff-353f-5c10-ac55-f41326db3f76",
+   "constNo": 79,
+   "criminalCases": 0,
+   "assets": 267784512,
+   "liabilities": 1255622,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=214"
+  },
+  {
+   "candidateId": "fa60c6ad-b6d5-524b-8f73-172757cb2080",
+   "constNo": 84,
+   "criminalCases": 0,
+   "assets": 45266757,
+   "liabilities": 0,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=99"
+  },
+  {
+   "candidateId": "4534b5e1-82a6-5e75-8aef-3127653ffd5d",
+   "constNo": 2,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=313"
+  },
+  {
+   "candidateId": "1a531f2e-0780-5c16-abee-9d47788c46e3",
+   "constNo": 25,
+   "criminalCases": 0,
+   "assets": 725608684,
+   "liabilities": 21752313,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=211"
+  },
+  {
+   "candidateId": "7169479d-ed59-531e-a765-76cd00553432",
+   "constNo": 24,
+   "criminalCases": 0,
+   "assets": 142918920,
+   "liabilities": 16052210,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=381"
+  },
+  {
+   "candidateId": "18bb2d8a-a3ad-5925-8599-b6a939d882f2",
+   "constNo": 75,
+   "criminalCases": 0,
+   "assets": 20449905,
+   "liabilities": 85733,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=210"
+  },
+  {
+   "candidateId": "05697d81-c58a-5d0d-9532-2f98beb8ee10",
+   "constNo": 14,
+   "criminalCases": 0,
+   "assets": 196441384,
+   "liabilities": 44951,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=341"
+  },
+  {
+   "candidateId": "ab350fde-ca65-5f28-b884-e6a7ed24657a",
+   "constNo": 85,
+   "criminalCases": 0,
+   "assets": 130317871,
+   "liabilities": 9167128,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=206"
+  },
+  {
+   "candidateId": "13f7c52c-3049-5568-a347-396a1b3a96fa",
+   "constNo": 81,
+   "criminalCases": 0,
+   "assets": 36082636,
+   "liabilities": 2888490,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=204"
+  },
+  {
+   "candidateId": "8d8ad6f5-23bb-51d8-8fd7-7fa7688743ad",
+   "constNo": 18,
+   "criminalCases": 0,
+   "assets": 162337303,
+   "liabilities": 9758577,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=354"
+  },
+  {
+   "candidateId": "60304dbb-dfd9-5c12-8fca-28de65f60782",
+   "constNo": 10,
+   "criminalCases": 0,
+   "assets": 11642600,
+   "liabilities": 0,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=201"
+  },
+  {
+   "candidateId": "45150d55-b287-58f4-8fc1-0b448f6a42e9",
+   "constNo": 29,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=198"
+  },
+  {
+   "candidateId": "19ec3b87-f256-515e-a123-55fd586a7e22",
+   "constNo": 44,
+   "criminalCases": 0,
+   "assets": 459947176,
+   "liabilities": 13436000,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=3"
+  },
+  {
+   "candidateId": "641d29b9-439d-5515-9863-8185caaf21df",
+   "constNo": 41,
+   "criminalCases": 1,
+   "assets": 5335573,
+   "liabilities": 1445000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=442"
+  },
+  {
+   "candidateId": "e6107358-044d-587c-a930-b32eafe40bad",
+   "constNo": 74,
+   "criminalCases": 0,
+   "assets": 58407975,
+   "liabilities": 4000000,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=39"
+  },
+  {
+   "candidateId": "6152f784-9fac-5862-b621-b211443f8a50",
+   "constNo": 62,
+   "criminalCases": 0,
+   "assets": 137660906,
+   "liabilities": 21617747,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=195"
+  },
+  {
+   "candidateId": "f8404ddb-5437-52b5-a2c0-05c44f7b9742",
+   "constNo": 7,
+   "criminalCases": 0,
+   "assets": 46776194,
+   "liabilities": 5182576,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=189"
+  },
+  {
+   "candidateId": "306cc1f0-3010-58f7-994e-4633ceda5388",
+   "constNo": 35,
+   "criminalCases": 0,
+   "assets": 80926624,
+   "liabilities": 3790784,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=109"
+  },
+  {
+   "candidateId": "4d5a2501-fc48-55dc-a3f0-f37798cbc693",
+   "constNo": 27,
+   "criminalCases": 0,
+   "assets": 1098339077,
+   "liabilities": 44817616,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=391"
+  },
+  {
+   "candidateId": "2400c66b-8028-5947-831f-921fc68cda7d",
+   "constNo": 12,
+   "criminalCases": 1,
+   "assets": 55342057,
+   "liabilities": 3900000,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=334"
+  },
+  {
+   "candidateId": "be0875a2-c34e-5379-a868-5ec9498ff392",
+   "constNo": 45,
+   "criminalCases": 2,
+   "assets": null,
+   "liabilities": null,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=449"
+  },
+  {
+   "candidateId": "9c6e04db-03d5-5d28-841b-4d7b1f3e1ff7",
+   "constNo": 78,
+   "criminalCases": 0,
+   "assets": 95058743,
+   "liabilities": 0,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=182"
+  },
+  {
+   "candidateId": "6fb0f89d-0bc7-5f45-9bfc-d732c24261e7",
+   "constNo": 31,
+   "criminalCases": 0,
+   "assets": 112388253,
+   "liabilities": 46476481,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=181"
+  },
+  {
+   "candidateId": "d88f6a38-16e9-5fa5-b67c-cc27b367f0ec",
+   "constNo": 13,
+   "criminalCases": 0,
+   "assets": 65665593,
+   "liabilities": 2000000,
+   "education": "10th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=337"
+  },
+  {
+   "candidateId": "4e975876-73b3-527f-8cc6-8bb6dc24ea7c",
+   "constNo": 90,
+   "criminalCases": 0,
+   "assets": 121173386,
+   "liabilities": 3482686,
+   "education": "12th Pass",
+   "source": "https://myneta.info/candidate.php?candidate_id=45"
+  },
+  {
+   "candidateId": "a2723e97-2902-5a2a-a353-1c34b7733ffc",
+   "constNo": 39,
+   "criminalCases": 0,
+   "assets": 198845917,
+   "liabilities": 0,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=431"
+  },
+  {
+   "candidateId": "b8064577-a88f-5456-bd1d-1364e381707f",
+   "constNo": 58,
+   "criminalCases": 0,
+   "assets": 1345699000,
+   "liabilities": 133798000,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=491"
+  },
+  {
+   "candidateId": "f3d830d3-99ae-5eca-8e16-3278bd9a8783",
+   "constNo": 37,
+   "criminalCases": 0,
+   "assets": 48789673,
+   "liabilities": 17300000,
+   "education": "Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=51"
+  },
+  {
+   "candidateId": "c2a38e3b-199f-52e9-9502-21fa40f1468d",
+   "constNo": 48,
+   "criminalCases": 1,
+   "assets": 40534839,
+   "liabilities": 4011117,
+   "education": "Post Graduate",
+   "source": "https://myneta.info/candidate.php?candidate_id=459"
+  },
+  {
+   "candidateId": "319d59cb-51b8-5434-84a1-f84e5884330c",
+   "constNo": 9,
+   "criminalCases": 0,
+   "assets": null,
+   "liabilities": null,
+   "education": "Graduate Professional",
+   "source": "https://myneta.info/candidate.php?candidate_id=174"
+  }
+ ],
+ "unmatched": []
+}

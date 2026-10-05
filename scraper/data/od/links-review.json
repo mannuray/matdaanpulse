@@ -1,0 +1,974 @@
+[
+ {
+  "key": "AJAY KUMAR DAS|70",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "0ab81f2e-71e4-5e86-9142-16f2bf61e4f0",
+    "year": 2009,
+    "constNo": 70,
+    "name": "Ajay Kumar Das",
+    "partyId": "BJP",
+    "age": 40,
+    "era": "2008"
+   },
+   {
+    "candidateId": "2410dda6-b38a-5dac-af8b-2a1e7414bfc4",
+    "year": 2014,
+    "constNo": 70,
+    "name": "Ajay Kumar Das",
+    "partyId": "AAP",
+    "age": 49,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "AMAR PRASAD SATPATHY|50",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "bc3bc787-970b-5d25-b3ec-f69380ce883b",
+    "year": 2009,
+    "constNo": 50,
+    "name": "Amar Prasad Satpathy",
+    "partyId": "NCP",
+    "age": 54,
+    "era": "2008"
+   },
+   {
+    "candidateId": "203b3656-1608-5a70-b2d1-e9163e2d45a2",
+    "year": 2014,
+    "constNo": 50,
+    "name": "Amar Prasad Satpathy",
+    "partyId": "BJD",
+    "age": 62,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b3cf63c9-eaf4-5ff6-9e25-7d329309f9e2",
+    "year": 2019,
+    "constNo": 50,
+    "name": "Amar Prasad Satpathy",
+    "partyId": "BJD",
+    "age": 63,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "BASUDEV JENA|22",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "044f6560-2f20-5e8e-a9f6-e1eeccea3010",
+    "year": 2009,
+    "constNo": 22,
+    "name": "Basudev Jena",
+    "partyId": "IND",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "41f95baa-41fb-5609-b340-532559937c73",
+    "year": 2019,
+    "constNo": 22,
+    "name": "Basudev Jena",
+    "partyId": "IND",
+    "age": 43,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "BHASKAR MADHEI|31",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c03a35dc-d748-598d-83e3-72907691edef",
+    "year": 2014,
+    "constNo": 31,
+    "name": "Bhaskar Madhei",
+    "partyId": "BJP",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "2a420e62-12da-548d-8779-7fc3cf64f5f7",
+    "year": 2019,
+    "constNo": 31,
+    "name": "Bhaskar Madhei",
+    "partyId": "BJP",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "BISWARANJAN MALLICK|49",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6bd2fd88-f85a-5c6d-a645-1dab6093cbfd",
+    "year": 2014,
+    "constNo": 49,
+    "name": "Biswaranjan Mallick",
+    "partyId": "IND",
+    "age": 31,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c9f595ff-9b30-585a-a7ad-4606ea02385c",
+    "year": 2019,
+    "constNo": 49,
+    "name": "Biswaranjan Mallick",
+    "partyId": "BJP",
+    "age": 39,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "DHANURJAYA HANTAL|144",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "268aec78-b5bf-5cee-85e4-feeb65f5114e",
+    "year": 2014,
+    "constNo": 144,
+    "name": "Dhanurjaya Hantal",
+    "partyId": "ICPA",
+    "age": 40,
+    "era": "2008"
+   },
+   {
+    "candidateId": "1a7d7321-76f2-5a88-96b7-b4e60b02581d",
+    "year": 2019,
+    "constNo": 144,
+    "name": "Dhanurjaya Hantal",
+    "partyId": "AIFB",
+    "age": 51,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "DILIP KUMAR MALLICK|93",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "fc903df9-9e4b-5071-975a-56b7dacdaa21",
+    "year": 2009,
+    "constNo": 93,
+    "name": "Dilip Kumar Mallick",
+    "partyId": "BJP",
+    "age": 30,
+    "era": "2008"
+   },
+   {
+    "candidateId": "761c6f6e-1c70-5201-96db-22918daab9e6",
+    "year": 2014,
+    "constNo": 93,
+    "name": "Dilip Kumar Mallick",
+    "partyId": "BJP",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "19e1bf02-278e-5d63-82b4-8a8ddbf01bdf",
+    "year": 2019,
+    "constNo": 93,
+    "name": "Dilip Kumar Mallick",
+    "partyId": "BJP",
+    "age": 50,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GHASI RAM MAJHI|71",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "796b9bd2-d36b-5813-b6a3-85aef17bc2e0",
+    "year": 2009,
+    "constNo": 71,
+    "name": "Ghasi Ram Majhi",
+    "partyId": "BSP",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "6fe3d5d9-98b9-561d-9dd5-1c238509fa24",
+    "year": 2014,
+    "constNo": 71,
+    "name": "Ghasi Ram Majhi",
+    "partyId": "INC",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "333de72c-e54b-5671-90b4-3dc79b0141bf",
+    "year": 2019,
+    "constNo": 71,
+    "name": "Ghasi Ram Majhi",
+    "partyId": "INC",
+    "age": 58,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "HRUSHIKESH NAIK|23",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "de33ae70-8149-5907-932e-5705615273c5",
+    "year": 2014,
+    "constNo": 23,
+    "name": "Hrushikesh Naik",
+    "partyId": "BJD",
+    "age": 73,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cf517287-35c6-5c2b-a0b6-68298b91def9",
+    "year": 2019,
+    "constNo": 23,
+    "name": "Hrushikesh Naik",
+    "partyId": "HND",
+    "age": 36,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JABAMANI TUDU|30",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "28e4cff9-9467-5142-8661-d3fb791ee588",
+    "year": 2009,
+    "constNo": 30,
+    "name": "Jabamani Tudu",
+    "partyId": "INC",
+    "age": 35,
+    "era": "2008"
+   },
+   {
+    "candidateId": "2f88b2b2-1ad3-5bb4-976d-56e1efdc55a4",
+    "year": 2019,
+    "constNo": 30,
+    "name": "Jabamani Tudu",
+    "partyId": "TMC",
+    "age": 50,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JALANDHAR MAJHI|74",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a43bad94-3cf6-55cb-8d7f-86399f8adf3b",
+    "year": 2009,
+    "constNo": 74,
+    "name": "Jalandhar Majhi",
+    "partyId": "INC",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b3405fdc-0dc1-5f7c-8452-a00f00af8a35",
+    "year": 2014,
+    "constNo": 74,
+    "name": "Jalandhar Majhi",
+    "partyId": "OJM",
+    "age": 53,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JANARDAN DEHURY|14",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "19bee107-ea64-5238-a643-2bf627826e13",
+    "year": 2014,
+    "constNo": 14,
+    "name": "Janardan Dehury",
+    "partyId": "IND",
+    "age": 56,
+    "era": "2008"
+   },
+   {
+    "candidateId": "db62b45a-383e-5897-98d5-a4600ad28554",
+    "year": 2019,
+    "constNo": 14,
+    "name": "Janardan Dehury",
+    "partyId": "IND",
+    "age": 64,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JAYADEV JENA|22",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "2611d781-8941-5d3d-a4e6-1645f7461796",
+    "year": 2009,
+    "constNo": 22,
+    "name": "Jayadev Jena",
+    "partyId": "INC",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c6366b26-d112-5860-b505-4f66ca9f972b",
+    "year": 2014,
+    "constNo": 22,
+    "name": "Jayadev Jena",
+    "partyId": "INC",
+    "age": 63,
+    "era": "2008"
+   },
+   {
+    "candidateId": "2a8c4ac7-c50d-595f-8ceb-73974b04d3a4",
+    "year": 2019,
+    "constNo": 22,
+    "name": "Jayadev Jena",
+    "partyId": "INC",
+    "age": 63,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JOGESH KUMAR SINGH|9",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "d8298694-8750-5ea2-89b4-061017ae609b",
+    "year": 2009,
+    "constNo": 9,
+    "name": "Jogesh Kumar Singh",
+    "partyId": "INC",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cb8f8876-3de4-58c2-928e-5fa214a6fdb4",
+    "year": 2014,
+    "constNo": 9,
+    "name": "Jogesh Kumar Singh",
+    "partyId": "INC",
+    "age": 40,
+    "era": "2008"
+   },
+   {
+    "candidateId": "656e41ac-6aa0-5455-b6f1-f0a5d3f618c6",
+    "year": 2019,
+    "constNo": 9,
+    "name": "Jogesh Kumar Singh",
+    "partyId": "BJD",
+    "age": 45,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KHAGAPATI KHOSLA|144",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4ca915ca-6b17-515b-9368-fed5627e0593",
+    "year": 2014,
+    "constNo": 144,
+    "name": "Khagapati Khosla",
+    "partyId": "IND",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f9a04000-d792-558e-802e-32e73467d1c9",
+    "year": 2019,
+    "constNo": 144,
+    "name": "Khagapati Khosla",
+    "partyId": "IND",
+    "age": 58,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "LALMAN NAG|66",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3aa39e0c-9fbe-5725-b83c-67ce3132d47f",
+    "year": 2014,
+    "constNo": 66,
+    "name": "Lalman Nag",
+    "partyId": "LGGP",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "2c73e16a-404f-5a2e-98b8-8441ca283e15",
+    "year": 2019,
+    "constNo": 66,
+    "name": "Lalman Nag",
+    "partyId": "APOI",
+    "age": 40,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "LAXMAN MUNDA|14",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "8ce4485c-f24b-5090-b440-9224f8a09f94",
+    "year": 2009,
+    "constNo": 14,
+    "name": "Laxman Munda",
+    "partyId": "CPIM",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "fcc8c423-27fa-54cb-8b57-bdfa0b08d693",
+    "year": 2014,
+    "constNo": 14,
+    "name": "Laxman Munda",
+    "partyId": "CPIM",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a6a2ed10-becc-5585-ac76-ff0a0e6c150b",
+    "year": 2019,
+    "constNo": 14,
+    "name": "Laxman Munda",
+    "partyId": "CPIM",
+    "age": 56,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "LOCHAN SINGH MAJHI|71",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "7129376d-074f-587e-8e43-7117911819db",
+    "year": 2014,
+    "constNo": 71,
+    "name": "Lochan Singh Majhi",
+    "partyId": "SP",
+    "age": 40,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b1ee5887-3e52-52ab-b84e-ffda2d0eca8b",
+    "year": 2019,
+    "constNo": 71,
+    "name": "Lochan Singh Majhi",
+    "partyId": "IND",
+    "age": 41,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MADHABANANDA MALLICK|45",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "87ece3e7-141a-5c26-ac69-020b9380f217",
+    "year": 2009,
+    "constNo": 45,
+    "name": "Madhabananda Mallick",
+    "partyId": "INC",
+    "age": 55,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b49d0c37-9e41-5559-a207-8515e5f7d959",
+    "year": 2014,
+    "constNo": 45,
+    "name": "Madhabananda Mallick",
+    "partyId": "INC",
+    "age": 57,
+    "era": "2008"
+   },
+   {
+    "candidateId": "3e1b9f1d-b2a2-50ba-99f2-3e4ca2dce965",
+    "year": 2019,
+    "constNo": 45,
+    "name": "Madhabananda Mallick",
+    "partyId": "BJP",
+    "age": 62,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MAHENDRA KUMAR PARIDA|113",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "cdfced6c-6fbb-5d7b-adc4-ab78fffcd887",
+    "year": 2014,
+    "constNo": 113,
+    "name": "Mahendra Kumar Parida",
+    "partyId": "CPIML",
+    "age": 61,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4c8b18fd-e0d1-53b2-8137-1c35b9ec68ad",
+    "year": 2019,
+    "constNo": 113,
+    "name": "Mahendra Kumar Parida",
+    "partyId": "CPIML",
+    "age": 54,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MENAKA PRADHAN|83",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "d68972b8-4758-5374-b4f1-648451763cc9",
+    "year": 2009,
+    "constNo": 83,
+    "name": "Menaka Pradhan",
+    "partyId": "IND",
+    "age": 26,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f11b77de-7980-5dc8-a817-f7f9e93993f6",
+    "year": 2014,
+    "constNo": 83,
+    "name": "Menaka Pradhan",
+    "partyId": "NCP",
+    "age": 36,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MINAKHI DAS|93",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e093cd73-464c-5b64-b2da-24bf0e475861",
+    "year": 2009,
+    "constNo": 93,
+    "name": "Minakhi Das",
+    "partyId": "BSP",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "3d79ac0f-8df8-5f43-8913-e458c2e16c7d",
+    "year": 2014,
+    "constNo": 93,
+    "name": "Minakhi Das",
+    "partyId": "BSP",
+    "age": 54,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MUKUNDA PADIAMI|147",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "34d96a03-2069-52a1-970a-bec56cfb44e4",
+    "year": 2009,
+    "constNo": 147,
+    "name": "Mukunda Padiami",
+    "partyId": "IND",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "910e48bb-b105-56cf-baba-23b3d77fbac4",
+    "year": 2014,
+    "constNo": 147,
+    "name": "Mukunda Padiami",
+    "partyId": "OJM",
+    "age": 34,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NATABARA BEHERA|127",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "de45ead5-3929-53a6-9f88-93c8a089b0f9",
+    "year": 2009,
+    "constNo": 127,
+    "name": "Natabara Behera",
+    "partyId": "SAMO",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f0bec66a-a4b4-52e8-9ea2-23acd1c9ef60",
+    "year": 2014,
+    "constNo": 127,
+    "name": "Natabara Behera",
+    "partyId": "TMC",
+    "age": 56,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4d63f90e-055c-571a-99a9-8b6640b6a233",
+    "year": 2019,
+    "constNo": 127,
+    "name": "Natabara Behera",
+    "partyId": "RAIM",
+    "age": 61,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NITYANANDA KHATUA|87",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c19d09fd-d8a9-5a08-b562-993b60498aed",
+    "year": 2014,
+    "constNo": 87,
+    "name": "Nityananda Khatua",
+    "partyId": "IND",
+    "age": 83,
+    "era": "2008"
+   },
+   {
+    "candidateId": "093729c2-7a1b-51a3-aa35-c169b621f655",
+    "year": 2019,
+    "constNo": 87,
+    "name": "Nityananda Khatua",
+    "partyId": "IND",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RADHABALLAV MALIK|48",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "79397a1d-4fb4-5eff-a520-beaed1087119",
+    "year": 2014,
+    "constNo": 48,
+    "name": "Radhaballav Malik",
+    "partyId": "SUCI",
+    "age": 40,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a0c3cb59-eb62-5ea9-bfc3-9dc4f4e24b00",
+    "year": 2019,
+    "constNo": 48,
+    "name": "Radhaballav Malik",
+    "partyId": "SUCI",
+    "age": 49,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAGHUNATH ORAM|14",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "88337ca4-9848-5fd4-a321-6e56317e1dd2",
+    "year": 2009,
+    "constNo": 14,
+    "name": "Raghunath Oram",
+    "partyId": "BSP",
+    "age": 28,
+    "era": "2008"
+   },
+   {
+    "candidateId": "5e0b038e-39d6-5659-afbe-d09cea96d1bf",
+    "year": 2014,
+    "constNo": 14,
+    "name": "Raghunath Oram",
+    "partyId": "BSP",
+    "age": 41,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAMA CHANDRA KADAM|145",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "bdc14c6d-bd88-51b1-9243-faf2feccbd17",
+    "year": 2009,
+    "constNo": 145,
+    "name": "Rama Chandra Kadam",
+    "partyId": "INC",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7e06a4e7-a1bd-537b-a45d-23d55433d550",
+    "year": 2014,
+    "constNo": 145,
+    "name": "Rama Chandra Kadam",
+    "partyId": "INC",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "86259d5f-30b4-520f-9ab8-83648bda6ee3",
+    "year": 2019,
+    "constNo": 145,
+    "name": "Rama Chandra Kadam",
+    "partyId": "INC",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAMESH CHANDRA PARIDA|51",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b8093067-1c89-5cd8-bb52-a5b5a349b795",
+    "year": 2009,
+    "constNo": 51,
+    "name": "Ramesh Chandra Parida",
+    "partyId": "BJP",
+    "age": 51,
+    "era": "2008"
+   },
+   {
+    "candidateId": "ac23c46d-1cfd-5b4b-a8e8-4ddabacb5836",
+    "year": 2014,
+    "constNo": 51,
+    "name": "Ramesh Chandra Parida",
+    "partyId": "BJP",
+    "age": 35,
+    "era": "2008"
+   },
+   {
+    "candidateId": "6b926cc8-a50e-550f-a164-a0f7c9826bf5",
+    "year": 2019,
+    "constNo": 51,
+    "name": "Ramesh Chandra Parida",
+    "partyId": "BJP",
+    "age": 62,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RANJAN DANGUA|126",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4b602451-be69-5376-a9ce-4035f62cef41",
+    "year": 2009,
+    "constNo": 126,
+    "name": "Ranjan Dangua",
+    "partyId": "SAMO",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "215d3cf6-a2a9-5bed-8133-83745eda2320",
+    "year": 2014,
+    "constNo": 126,
+    "name": "Ranjan Dangua",
+    "partyId": "KS",
+    "age": 40,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RASHMI MOHAPATRA|114",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "cfca587b-f8ab-5001-b7ef-0275585b6437",
+    "year": 2009,
+    "constNo": 114,
+    "name": "Rashmi Mohapatra",
+    "partyId": "IND",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9dc37488-4959-5388-af7a-22743dff0734",
+    "year": 2014,
+    "constNo": 114,
+    "name": "Rashmi Mohapatra",
+    "partyId": "IND",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "2e70b56e-f0b1-5406-8f53-10dd7c2ad89f",
+    "year": 2019,
+    "constNo": 114,
+    "name": "Rashmi Mohapatra",
+    "partyId": "INC",
+    "age": 49,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SANTOSH KUMAR NANDA|52",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f8c97833-9f40-57f0-96c1-51d78de91610",
+    "year": 2014,
+    "constNo": 52,
+    "name": "Santosh Kumar Nanda",
+    "partyId": "INC",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b995070e-e432-5039-b371-7335bc728b37",
+    "year": 2019,
+    "constNo": 52,
+    "name": "Santosh Kumar Nanda",
+    "partyId": "INC",
+    "age": 47,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SIDHESWAR NAIK|24",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f97e9d10-b466-55aa-82e6-b85984d5383c",
+    "year": 2009,
+    "constNo": 24,
+    "name": "Sidheswar Naik",
+    "partyId": "IND",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c034f37b-e4f0-51ed-980c-94cd3ae7f561",
+    "year": 2014,
+    "constNo": 24,
+    "name": "Sidheswar Naik",
+    "partyId": "INC",
+    "age": 50,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUBAL SINGH|16",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c901e8de-358a-59bc-8ce3-7ecc6e617f5f",
+    "year": 2009,
+    "constNo": 16,
+    "name": "Subal Singh",
+    "partyId": "IND",
+    "age": 46,
+    "era": "2008"
+   },
+   {
+    "candidateId": "5b65ef4c-4899-5e3d-b839-2c5cd3855a61",
+    "year": 2014,
+    "constNo": 16,
+    "name": "Subal Singh",
+    "partyId": "LGGP",
+    "age": 54,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a1e0dd3a-b755-52c6-ba83-53bca1b652d2",
+    "year": 2019,
+    "constNo": 16,
+    "name": "Subal Singh",
+    "partyId": "IND",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUDARSHAN JENA|39",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c47157cd-a95f-5d19-9850-6869a7701765",
+    "year": 2009,
+    "constNo": 39,
+    "name": "Sudarshan Jena",
+    "partyId": "BJD",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e5f5a84f-9916-5581-bce1-9b271557c8ab",
+    "year": 2014,
+    "constNo": 39,
+    "name": "Sudarshan Jena",
+    "partyId": "BJD",
+    "age": 48,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SURESH MAJHI|77",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "69637ca0-ca23-5b16-bea1-59f2dbc173ff",
+    "year": 2014,
+    "constNo": 77,
+    "name": "Suresh Majhi",
+    "partyId": "SP",
+    "age": 37,
+    "era": "2008"
+   },
+   {
+    "candidateId": "824a6e87-1337-57ff-b3b8-dad407faff7c",
+    "year": 2019,
+    "constNo": 77,
+    "name": "Suresh Majhi",
+    "partyId": "BSP",
+    "age": 36,
+    "era": "2008"
+   }
+  ]
+ }
+]

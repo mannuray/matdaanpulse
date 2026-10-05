@@ -24,3 +24,13 @@ describe('emitStateRegions', () => {
     expect(() => emitStateRegions({ ...base, regions: [base.regions[0]] })).toThrow(/GA_SOUTHGOA is in no region/);
   });
 });
+
+describe('emitStateRegions with seatRegions (Delhi: regions are Lok Sabha seats)', () => {
+  it('takes a seat\'s region from seatRegions when given', () => {
+    const sql = emitStateRegions({ ...base, regions: [{ code: 'GA_NORTH', name: 'North Goa', districts: [] }, { code: 'GA_SOUTH', name: 'South Goa', districts: [] }],
+      seatRegions: { 1: 'GA_SOUTH', 2: 'GA_NORTH' } });
+    expect(sql).toContain("region_id = (SELECT id FROM regions WHERE state_id = 9 AND code = 'GA_SOUTH') WHERE election_id IN ('a', 'b') AND const_no = 1;");
+    expect(() => emitStateRegions({ ...base, regions: [], seatRegions: { 1: 'GA_X', 2: 'GA_X' } })).toThrow(/GA_X is not a region/);
+    expect(() => emitStateRegions({ ...base, regions: [{ code: 'GA_NORTH', name: 'North Goa', districts: [] }], seatRegions: { 1: 'GA_NORTH' } })).toThrow(/seat 2 has no region/);
+  });
+});

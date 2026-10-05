@@ -326,6 +326,7 @@
   "about_note_turnout_unreliable": "Turnout and elector counts are unreliable and do not match the vote totals.",
   "about_note_reserved_wrong": "SC/ST reserved seats are not marked; every seat shows as General.",
   "about_note_seats_postponed": "232 of 234 seats: polls in Aravakurichi and Thanjavur were postponed and are not included.",
+  "about_note_seat_countermanded": "146 of 147 seats: the Patkura poll was countermanded and held later; it is not in ECI's report and not included.",
   "about_note_source_unrecorded": "The original source was not recorded.",
   "about_data_other": "Districts and regions (such as Mithila or Seemanchal) are our own groupings, not official units. Links between one person's contests across Bihar elections are matched by name and may contain mistakes.",
   "about_live_title": "How live counting works",

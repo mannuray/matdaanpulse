@@ -1,0 +1,342 @@
+{
+  "people": [
+    {
+      "key": "rekha-gupta",
+      "name": "Rekha Gupta",
+      "wikidata": "Q19560653",
+      "candidacies": [
+        {
+          "year": 2015,
+          "const_id": "DL_VS15_14_SHALIMAR_BAGH"
+        },
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_14_SHALIMAR_BAGH"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_14_SHALIMAR_BAGH"
+        }
+      ]
+    },
+    {
+      "key": "atishi",
+      "name": "Atishi",
+      "wikidata": "Q19559992",
+      "candidacies": [
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_51_KALKAJI"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_51_KALKAJI"
+        }
+      ]
+    },
+    {
+      "key": "arvind-kejriwal",
+      "name": "Arvind Kejriwal",
+      "wikidata": "Q59155",
+      "candidacies": [
+        {
+          "year": 2013,
+          "const_id": "DL_VS13_40_NEW_DELHI"
+        },
+        {
+          "year": 2015,
+          "const_id": "DL_VS15_40_NEW_DELHI"
+        },
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_40_NEW_DELHI"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_40_NEW_DELHI"
+        }
+      ]
+    },
+    {
+      "key": "manish-sisodia",
+      "name": "Manish Sisodia",
+      "wikidata": "Q6749900",
+      "candidacies": [
+        {
+          "year": 2013,
+          "const_id": "DL_VS13_57_PATPARGANJ"
+        },
+        {
+          "year": 2015,
+          "const_id": "DL_VS15_57_PATPARGANJ"
+        },
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_57_PATPARGANJ"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_41_JANGPURA"
+        }
+      ]
+    },
+    {
+      "key": "vijender-gupta",
+      "name": "Vijender Gupta",
+      "wikidata": "Q7929331",
+      "candidacies": [
+        {
+          "year": 2013,
+          "const_id": "DL_VS13_40_NEW_DELHI"
+        },
+        {
+          "year": 2015,
+          "const_id": "DL_VS15_13_ROHINI"
+        },
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_13_ROHINI"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_13_ROHINI"
+        }
+      ]
+    },
+    {
+      "key": "devender-yadav",
+      "name": "Devender Yadav",
+      "wikidata": "Q16728525",
+      "candidacies": [
+        {
+          "year": 2008,
+          "const_id": "DL_VS08_5_BADLI"
+        },
+        {
+          "year": 2013,
+          "const_id": "DL_VS13_5_BADLI"
+        },
+        {
+          "year": 2015,
+          "const_id": "DL_VS15_5_BADLI"
+        },
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_5_BADLI"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_5_BADLI"
+        }
+      ]
+    },
+    {
+      "key": "saurabh-bharadwaj",
+      "name": "Saurabh Bharadwaj",
+      "wikidata": "Q15410449",
+      "candidacies": [
+        {
+          "year": 2013,
+          "const_id": "DL_VS13_50_GREATER_KAILASH"
+        },
+        {
+          "year": 2015,
+          "const_id": "DL_VS15_50_GREATER_KAILASH"
+        },
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_50_GREATER_KAILASH"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_50_GREATER_KAILASH"
+        }
+      ]
+    },
+    {
+      "key": "parvesh-verma",
+      "name": "Parvesh Verma",
+      "wikidata": "Q15216956",
+      "candidacies": [
+        {
+          "year": 2013,
+          "const_id": "DL_VS13_45_MEHRAULI",
+          "ballot_name": "Parvesh Sahib Singh"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_40_NEW_DELHI",
+          "ballot_name": "Parvesh Sahib Singh"
+        }
+      ]
+    },
+    {
+      "key": "ashish-sood",
+      "name": "Ashish Sood",
+      "wikidata": "Q132319970",
+      "candidacies": [
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_30_JANAKPURI"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_30_JANAKPURI"
+        }
+      ]
+    },
+    {
+      "key": "manjinder-singh-sirsa",
+      "name": "Manjinder Singh Sirsa",
+      "wikidata": "Q28474547",
+      "candidacies": [
+        {
+          "year": 2008,
+          "const_id": "DL_VS08_41_JANGPURA"
+        },
+        {
+          "year": 2013,
+          "const_id": "DL_VS13_27_RAJOURI_GARDEN"
+        },
+        {
+          "year": 2015,
+          "const_id": "DL_VS15_27_RAJOURI_GARDEN"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_27_RAJOURI_GARDEN"
+        }
+      ]
+    },
+    {
+      "key": "ravinder-indraj-singh",
+      "name": "Ravinder Indraj Singh",
+      "wikidata": "Q132174822",
+      "candidacies": [
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_7_BAWANA"
+        }
+      ]
+    },
+    {
+      "key": "kapil-mishra",
+      "name": "Kapil Mishra",
+      "wikidata": "Q6366610",
+      "candidacies": [
+        {
+          "year": 2013,
+          "const_id": "DL_VS13_70_KARAWAL_NAGAR"
+        },
+        {
+          "year": 2015,
+          "const_id": "DL_VS15_70_KARAWAL_NAGAR"
+        },
+        {
+          "year": 2020,
+          "const_id": "DL_VS20_18_MODEL_TOWN"
+        },
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_70_KARAWAL_NAGAR"
+        }
+      ]
+    },
+    {
+      "key": "pankaj-kumar-singh",
+      "name": "Pankaj Kumar Singh",
+      "wikidata": "Q132562053",
+      "candidacies": [
+        {
+          "year": 2025,
+          "const_id": "DL_VS25_31_VIKASPURI"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2025": {
+      "leaders": [
+        {
+          "key": "rekha-gupta",
+          "role": "Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "atishi",
+          "role": "Leader of the Opposition",
+          "party_id": "AAP"
+        },
+        {
+          "key": "arvind-kejriwal",
+          "role": "AAP national convenor, former Chief Minister",
+          "party_id": "AAP"
+        },
+        {
+          "key": "manish-sisodia",
+          "role": "Former Deputy Chief Minister",
+          "party_id": "AAP"
+        },
+        {
+          "key": "vijender-gupta",
+          "role": "Speaker",
+          "party_id": "BJP"
+        },
+        {
+          "key": "devender-yadav",
+          "role": "Delhi Congress president, candidate",
+          "party_id": "INC"
+        },
+        {
+          "key": "saurabh-bharadwaj",
+          "role": "AAP Delhi convenor",
+          "party_id": "AAP"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "parvesh-verma",
+          "role": "Minister of Public Works, Water, Irrigation and Flood Control, and Legislative Affairs",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ashish-sood",
+          "role": "Minister of Home, Power, Urban Development and Education",
+          "party_id": "BJP"
+        },
+        {
+          "key": "manjinder-singh-sirsa",
+          "role": "Minister of Industries, Food and Supplies, and Environment and Forest",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ravinder-indraj-singh",
+          "role": "Minister of Social Welfare, SC and ST Welfare, Cooperative and Elections",
+          "party_id": "BJP"
+        },
+        {
+          "key": "kapil-mishra",
+          "role": "Minister of Law and Justice, Labour, Tourism, and Art and Culture",
+          "party_id": "BJP"
+        },
+        {
+          "key": "pankaj-kumar-singh",
+          "role": "Minister of Health and Family Welfare, Transport and Information Technology",
+          "party_id": "BJP"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Rekha_Gupta_ministry",
+        "https://en.wikipedia.org/wiki/2025_Delhi_Legislative_Assembly_election",
+        "https://www.deccanherald.com/india/delhi/delhi-cm-rekha-gupta-keeps-finance-parvesh-verma-gets-pwd-cabinet-decides-to-implement-ayushman-yojana-table-14-cag-reports-3414828",
+        "https://www.theweek.in/news/india/2025/02/20/maharashtra-congress-demands-removal-of-manikrao-kokate-from-cabinet0.amp.html",
+        "https://en.wikipedia.org/wiki/Vijender_Gupta",
+        "https://en.wikipedia.org/wiki/Atishi_Marlena",
+        "https://test.uniindia.com/delhi-cong-claims-organisational-revival-over-two-years-cites-grassroots-expansion/india/news/3827947.html",
+        "https://www.newsonair.gov.in/senior-aap-leader-saurabh-bhardwaj-appointed-as-partys-delhi-convenor",
+        "https://onmanorama.com/news/india/2025/03/21/saurabh-bharadwaj-appointed-delhi-aap-chief-sisodia-to-lead-punjab-unit.amp.html",
+        "https://www.indiavotes.com/vidhan-sabha/delhi/2008/jangpura/"
+      ]
+    }
+  }
+}

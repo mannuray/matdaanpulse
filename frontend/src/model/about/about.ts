@@ -21,11 +21,12 @@ export type DataNote =
   | 'turnout_unreliable'
   | 'reserved_wrong'
   | 'seats_postponed'
+  | 'seat_countermanded'
   | 'source_unrecorded';
 
 export const DATA_NOTES: readonly DataNote[] = [
   'all_candidates', 'top5_nota', 'two_candidates', 'winner_only', 'votes_from_margin',
-  'placeholder_names', 'turnout_unreliable', 'reserved_wrong', 'seats_postponed', 'source_unrecorded',
+  'placeholder_names', 'turnout_unreliable', 'reserved_wrong', 'seats_postponed', 'seat_countermanded', 'source_unrecorded',
 ];
 
 export interface DataSource {
@@ -93,6 +94,27 @@ export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'VS', state: 'Manipur', year: 2022, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Manipur', year: 2017, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Manipur', year: 2012, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Delhi', year: 2025, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Delhi', year: 2020, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Delhi', year: 2015, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Delhi', year: 2013, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Delhi', year: 2008, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Haryana', year: 2024, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Haryana', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Haryana', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Haryana', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Jharkhand', year: 2024, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Jharkhand', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Jharkhand', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Jharkhand', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Odisha', year: 2024, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Odisha', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'seat_countermanded'] },
+  { house: 'VS', state: 'Odisha', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Odisha', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 ];
 
 export interface DataSourceGroup {

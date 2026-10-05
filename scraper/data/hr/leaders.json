@@ -1,0 +1,465 @@
+{
+  "people": [
+    {
+      "key": "nayab-singh-saini",
+      "name": "Nayab Singh Saini",
+      "wikidata": "Q28408160",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "HR_VS09_3_NARAINGARH"
+        },
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_3_NARAINGARH"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_11_LADWA"
+        }
+      ]
+    },
+    {
+      "key": "bhupinder-singh-hooda",
+      "name": "Bhupinder Singh Hooda",
+      "wikidata": "Q3523063",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "HR_VS09_61_GARHI_SAMPLAKILOI"
+        },
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_61_GARHI_SAMPLAKILOI"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_61_GARHI_SAMPLAKILOI"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_61_GARHI_SAMPLA_KILOI"
+        }
+      ]
+    },
+    {
+      "key": "rao-narender-singh",
+      "name": "Rao Narender Singh",
+      "wikidata": "Q7293685",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "HR_VS09_70_NARNAUL"
+        },
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_70_NARNAUL"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_70_NARNAUL"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_70_NARNAUL"
+        }
+      ]
+    },
+    {
+      "key": "abhay-singh-chautala",
+      "name": "Abhay Singh Chautala",
+      "wikidata": "Q16194996",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_46_ELLENABAD"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_46_ELLENABAD"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_46_ELLENABAD"
+        }
+      ]
+    },
+    {
+      "key": "dushyant-chautala",
+      "name": "Dushyant Chautala",
+      "wikidata": "Q16890553",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_37_UCHANA_KALAN"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_37_UCHANA_KALAN"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_37_UCHANA_KALAN"
+        }
+      ]
+    },
+    {
+      "key": "vinesh-phogat",
+      "name": "Vinesh Phogat",
+      "wikidata": "Q17466644",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_34_JULANA"
+        }
+      ]
+    },
+    {
+      "key": "savitri-jindal",
+      "name": "Savitri Jindal",
+      "wikidata": "Q541662",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "HR_VS09_52_HISAR"
+        },
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_52_HISAR"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_52_HISAR"
+        }
+      ]
+    },
+    {
+      "key": "anil-vij",
+      "name": "Anil Vij",
+      "wikidata": "Q18352385",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "HR_VS09_4_AMBALA_CANTT"
+        },
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_4_AMBALA_CANTT"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_4_AMBALA_CANTT"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_4_AMBALA_CANTT"
+        }
+      ]
+    },
+    {
+      "key": "krishan-lal-panwar",
+      "name": "Krishan Lal Panwar",
+      "wikidata": "Q28408046",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "HR_VS09_26_ISRANA"
+        },
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_26_ISRANA"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_26_ISRANA"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_26_ISRANA"
+        }
+      ]
+    },
+    {
+      "key": "rao-narbir-singh",
+      "name": "Rao Narbir Singh",
+      "wikidata": "Q7293683",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_76_BADSHAHPUR"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_76_BADSHAHPUR"
+        }
+      ]
+    },
+    {
+      "key": "mahipal-dhanda",
+      "name": "Mahipal Dhanda",
+      "wikidata": "Q28408068",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_24_PANIPAT_RURAL"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_24_PANIPAT_RURAL"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_24_PANIPAT_RURAL"
+        }
+      ]
+    },
+    {
+      "key": "vipul-goel",
+      "name": "Vipul Goel",
+      "wikidata": "Q23416249",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_89_FARIDABAD"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_89_FARIDABAD"
+        }
+      ]
+    },
+    {
+      "key": "arvind-sharma",
+      "name": "Arvind Sharma",
+      "wikidata": "Q4802483",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_32_GOHANA"
+        }
+      ]
+    },
+    {
+      "key": "shyam-singh-rana",
+      "name": "Shyam Singh Rana",
+      "wikidata": "Q130473022",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_10_RADAUR"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_10_RADAUR"
+        }
+      ]
+    },
+    {
+      "key": "ranbir-gangwa",
+      "name": "Ranbir Gangwa",
+      "wikidata": "Q19520031",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_53_NALWA"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_53_NALWA"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_51_BARWALA"
+        }
+      ]
+    },
+    {
+      "key": "krishan-kumar-bedi",
+      "name": "Krishan Kumar Bedi",
+      "wikidata": null,
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_12_SHAHBAD"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_12_SHAHBAD"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_38_NARWANA"
+        }
+      ]
+    },
+    {
+      "key": "shruti-choudhry",
+      "name": "Shruti Choudhry",
+      "wikidata": "Q16215207",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_58_TOSHAM"
+        }
+      ]
+    },
+    {
+      "key": "arti-singh-rao",
+      "name": "Arti Singh Rao",
+      "wikidata": "Q130474773",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_68_ATELI"
+        }
+      ]
+    },
+    {
+      "key": "rajesh-nagar",
+      "name": "Rajesh Nagar",
+      "wikidata": "Q73385391",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "HR_VS14_90_TIGAON"
+        },
+        {
+          "year": 2019,
+          "const_id": "HR_VS19_90_TIGAON"
+        },
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_90_TIGAON"
+        }
+      ]
+    },
+    {
+      "key": "gaurav-gautam",
+      "name": "Gaurav Gautam",
+      "wikidata": "Q130477462",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "HR_VS24_84_PALWAL"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2024": {
+      "leaders": [
+        {
+          "key": "nayab-singh-saini",
+          "role": "Chief Minister",
+          "party_id": "BJP"
+        },
+        {
+          "key": "bhupinder-singh-hooda",
+          "role": "Leader of the Opposition",
+          "party_id": "INC"
+        },
+        {
+          "key": "rao-narender-singh",
+          "role": "Haryana Congress president, candidate",
+          "party_id": "INC"
+        },
+        {
+          "key": "abhay-singh-chautala",
+          "role": "INLD national general secretary, candidate",
+          "party_id": "INLD"
+        },
+        {
+          "key": "dushyant-chautala",
+          "role": "JJP leader, former Deputy Chief Minister, candidate",
+          "party_id": "JJP2"
+        },
+        {
+          "key": "vinesh-phogat",
+          "role": "Olympic wrestler, Congress candidate",
+          "party_id": "INC"
+        },
+        {
+          "key": "savitri-jindal",
+          "role": "Independent candidate, industrialist",
+          "party_id": "IND"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "anil-vij",
+          "role": "Minister of Energy, Transport and Labour",
+          "party_id": "BJP"
+        },
+        {
+          "key": "krishan-lal-panwar",
+          "role": "Minister of Development and Panchayats, Mines and Geology",
+          "party_id": "BJP"
+        },
+        {
+          "key": "rao-narbir-singh",
+          "role": "Minister of Industries and Commerce, Environment, Forests and Wildlife, Foreign Cooperation, Sainik and Ardh Sainik Welfare",
+          "party_id": "BJP"
+        },
+        {
+          "key": "mahipal-dhanda",
+          "role": "Minister of School Education, Higher Education and Parliamentary Affairs",
+          "party_id": "BJP"
+        },
+        {
+          "key": "vipul-goel",
+          "role": "Minister of Revenue and Disaster Management, Urban Local Bodies and Civil Aviation",
+          "party_id": "BJP"
+        },
+        {
+          "key": "arvind-sharma",
+          "role": "Minister of Cooperation, Jails, Elections, Heritage and Tourism",
+          "party_id": "BJP"
+        },
+        {
+          "key": "shyam-singh-rana",
+          "role": "Minister of Agriculture and Farmers Welfare, Animal Husbandry, Dairying and Fisheries",
+          "party_id": "BJP"
+        },
+        {
+          "key": "ranbir-gangwa",
+          "role": "Minister of Public Health Engineering and Public Works (Buildings and Roads)",
+          "party_id": "BJP"
+        },
+        {
+          "key": "krishan-kumar-bedi",
+          "role": "Minister of Social Justice, Empowerment, SCs and BCs Welfare, Hospitality and Architecture",
+          "party_id": "BJP"
+        },
+        {
+          "key": "shruti-choudhry",
+          "role": "Minister of Women and Child Development, Irrigation and Water Resources",
+          "party_id": "BJP"
+        },
+        {
+          "key": "arti-singh-rao",
+          "role": "Minister of Health, Medical Education and Research, AYUSH",
+          "party_id": "BJP"
+        },
+        {
+          "key": "rajesh-nagar",
+          "role": "Minister of State (Independent Charge) for Food, Civil Supplies and Consumer Affairs, Printing and Stationery",
+          "party_id": "BJP"
+        },
+        {
+          "key": "gaurav-gautam",
+          "role": "Minister of State (Independent Charge) for Sports, Youth Empowerment and Entrepreneurship; MoS Law and Legislative",
+          "party_id": "BJP"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/2024_Haryana_Legislative_Assembly_election",
+        "https://www.outlookindia.com/elections/haryana-cabinet-portfolios-allocated-cm-saini-keeps-finance-home-details-inside",
+        "https://www.tribuneindia.com/news/haryana-portfolios-allocated-cm-saini-keeps-home-finance",
+        "https://www.etvbharat.com/en/!state/haryana-portfolios-allocation-enn24102100209",
+        "https://www.deccanherald.com/india/congress-appoints-rao-narender-singh-as-haryana-unit-chief-bhupinder-hooda-as-clp-leader-3747284",
+        "https://www.theweek.in/wire-updates/national/2025/09/29/del86-cong-ld-haryana.html",
+        "https://en.wikipedia.org/wiki/Rao_Narendra_Singh"
+      ]
+    }
+  }
+}

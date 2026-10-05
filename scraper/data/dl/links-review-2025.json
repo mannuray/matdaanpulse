@@ -1,0 +1,782 @@
+[
+ {
+  "key": "ANIL KUMAR|41",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "5368c780-e9a1-5a64-9814-492abfd5236a",
+    "year": 2015,
+    "constNo": 41,
+    "name": "Anil Kumar",
+    "partyId": "IND",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7919554a-a508-5def-a400-c5a3adf6589a",
+    "year": 2025,
+    "constNo": 41,
+    "name": "Anil Kumar",
+    "partyId": "BHARP",
+    "age": 48,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ANITA|40",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b6bfdb46-1119-53a1-bd60-638756010de4",
+    "year": 2013,
+    "constNo": 40,
+    "name": "Anita",
+    "partyId": "SP3",
+    "age": 43,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b144c602-07b9-5af0-af44-31e3944afaeb",
+    "year": 2025,
+    "constNo": 40,
+    "name": "Anita",
+    "partyId": "IND",
+    "age": 34,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ASHISH SOOD|30",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "83e4e5fc-b866-5d76-a83c-ae11e07c54f9",
+    "year": 2020,
+    "constNo": 30,
+    "name": "Ashish Sood",
+    "partyId": "BJP",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "bb0f9005-449f-5918-bd3c-ae77e85ca5c7",
+    "year": 2025,
+    "constNo": 30,
+    "name": "Ashish Sood",
+    "partyId": "BJP",
+    "age": 58,
+    "era": "2008"
+   },
+   {
+    "candidateId": "43ff0b99-2653-5a78-b874-4624993d8a09",
+    "year": 2025,
+    "constNo": 30,
+    "name": "Ashish Sood",
+    "partyId": "IND",
+    "age": 37,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ASHOK KUMAR|48",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "80bd9899-2738-5451-ab89-f9ef48a0ade0",
+    "year": 2013,
+    "constNo": 48,
+    "name": "Ashok Kumar",
+    "partyId": "AAP",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "e2f89407-b88c-5dc4-b224-1fc4725ad441",
+    "year": 2015,
+    "constNo": 48,
+    "name": "Ashok Kumar",
+    "partyId": "BJP",
+    "age": 54,
+    "era": "2008"
+   },
+   {
+    "candidateId": "6672f78f-1c1f-5cd5-a67d-1b9d909fcf8b",
+    "year": 2025,
+    "constNo": 48,
+    "name": "Ashok Kumar",
+    "partyId": "IND",
+    "age": 64,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ATISHI|51",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f9e773d9-b2cf-5b38-9f0c-e25076dc3794",
+    "year": 2020,
+    "constNo": 51,
+    "name": "Atishi",
+    "partyId": "AAP",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "6c1b071d-27bd-5774-8c71-02dd6fbe3894",
+    "year": 2025,
+    "constNo": 51,
+    "name": "Atishi",
+    "partyId": "AAP",
+    "age": 43,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "BHARAT SINGH|35",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "953f013b-fecb-5e4e-9377-2ad6a02487b1",
+    "year": 2008,
+    "constNo": 35,
+    "name": "Bharat Singh",
+    "partyId": "IND",
+    "age": 31,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a27093a9-f39b-52ff-a2fc-39dda206a0a0",
+    "year": 2013,
+    "constNo": 35,
+    "name": "Bharat Singh",
+    "partyId": "INLD",
+    "age": 35,
+    "era": "2008"
+   },
+   {
+    "candidateId": "29ea4e86-d502-5bc9-a830-2a156082dc66",
+    "year": 2015,
+    "constNo": 35,
+    "name": "Bharat Singh",
+    "partyId": "INLD",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4bbf5184-f1cb-5e7e-919d-341779f79500",
+    "year": 2015,
+    "constNo": 35,
+    "name": "Bharat Singh",
+    "partyId": "IND",
+    "age": 61,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d91f0729-859c-5dc6-bf66-233715891958",
+    "year": 2025,
+    "constNo": 35,
+    "name": "Bharat Singh",
+    "partyId": "PPOI1",
+    "age": 53,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "CHANDER PAL|18",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "0c909a7f-871d-52a4-ad57-4e053bc8f6bc",
+    "year": 2013,
+    "constNo": 18,
+    "name": "Chander Pal",
+    "partyId": "BSP",
+    "age": 46,
+    "era": "2008"
+   },
+   {
+    "candidateId": "3b49c282-bacf-5994-8dbf-58049804832e",
+    "year": 2025,
+    "constNo": 18,
+    "name": "Chander Pal",
+    "partyId": "IND",
+    "age": 42,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "DEVENDER YADAV|5",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "03764b09-d693-5828-874e-4f69b81b2ac8",
+    "year": 2008,
+    "constNo": 5,
+    "name": "Devender Yadav",
+    "partyId": "INC",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "91de7aa3-0ab3-58ee-b378-1e0d6027bdbb",
+    "year": 2008,
+    "constNo": 5,
+    "name": "Devender Yadav",
+    "partyId": "IND",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "127316d6-d5e7-5ac5-b281-c26f4f212e98",
+    "year": 2013,
+    "constNo": 5,
+    "name": "Devender Yadav",
+    "partyId": "INC",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "52e0c537-9dd5-56a5-bce0-a5725e714cdb",
+    "year": 2015,
+    "constNo": 5,
+    "name": "Devender Yadav",
+    "partyId": "INC",
+    "age": 43,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d535f96f-68ab-5589-abc7-f88f501d4d50",
+    "year": 2015,
+    "constNo": 5,
+    "name": "Devender Yadav",
+    "partyId": "IND",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4bd178c9-de0c-5cde-8bbe-5f3f273c1914",
+    "year": 2020,
+    "constNo": 5,
+    "name": "Devender Yadav",
+    "partyId": "INC",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7be98b23-6022-51de-8814-2427887547cf",
+    "year": 2025,
+    "constNo": 5,
+    "name": "Devender Yadav",
+    "partyId": "INC",
+    "age": 50,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GEETA|37",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9d686f53-6893-58b7-9bce-5d43c22e00cc",
+    "year": 2020,
+    "constNo": 37,
+    "name": "Geeta",
+    "partyId": "BSP",
+    "age": 34,
+    "era": "2008"
+   },
+   {
+    "candidateId": "53b86155-cbcd-508b-a7ac-c443d837fe74",
+    "year": 2025,
+    "constNo": 37,
+    "name": "Geeta",
+    "partyId": "BSP",
+    "age": 39,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GULAB SINGHAL|2",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "859bf5c7-24a8-564e-8214-9fcc3e31797f",
+    "year": 2013,
+    "constNo": 2,
+    "name": "Gulab Singhal",
+    "partyId": "BNIP",
+    "age": 40,
+    "era": "2008"
+   },
+   {
+    "candidateId": "de5c37d0-46e0-5cd7-bf0f-5013c1f5e6af",
+    "year": 2015,
+    "constNo": 2,
+    "name": "Gulab Singhal",
+    "partyId": "RAJP",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "82634ae2-04c2-5802-bdb1-fa99e280f92f",
+    "year": 2020,
+    "constNo": 2,
+    "name": "Gulab Singhal",
+    "partyId": "RJP5",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "df5c0344-64f9-5975-bc6e-7611c4e0ddd5",
+    "year": 2025,
+    "constNo": 2,
+    "name": "Gulab Singhal",
+    "partyId": "BS",
+    "age": 50,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "HANSA|22",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "15b477d1-2b24-5c50-9c1c-247f38be1d3e",
+    "year": 2020,
+    "constNo": 22,
+    "name": "Hansa",
+    "partyId": "PPOI1",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b4374cd1-bb6b-58ab-a8a6-56479748262c",
+    "year": 2025,
+    "constNo": 22,
+    "name": "Hansa",
+    "partyId": "IND",
+    "age": 46,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JAMALUDDIN|54",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f101972e-7cb6-5ea9-aaf6-4530b21377ef",
+    "year": 2008,
+    "constNo": 54,
+    "name": "Jamaluddin",
+    "partyId": "IND",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "5a8ef7e9-acf2-5889-9a63-1cb2daf7dd6f",
+    "year": 2020,
+    "constNo": 54,
+    "name": "Jamaluddin",
+    "partyId": "IND",
+    "age": 55,
+    "era": "2008"
+   },
+   {
+    "candidateId": "054baa92-e16e-575e-b5cc-1e3a578ec064",
+    "year": 2025,
+    "constNo": 54,
+    "name": "Jamaluddin",
+    "partyId": "BLNDBHRTP",
+    "age": 61,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JARNAIL SINGH|29",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "97b9d1af-7cc5-5816-b25f-378a28323cc4",
+    "year": 2013,
+    "constNo": 29,
+    "name": "Jarnail Singh",
+    "partyId": "AAP",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "8afa9d77-ae4b-578f-955a-f41b476663cd",
+    "year": 2015,
+    "constNo": 29,
+    "name": "Jarnail Singh",
+    "partyId": "AAP",
+    "age": 33,
+    "era": "2008"
+   },
+   {
+    "candidateId": "5001b937-c0f2-5587-8f4e-0363afe25836",
+    "year": 2015,
+    "constNo": 29,
+    "name": "Jarnail Singh",
+    "partyId": "IND",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "49f46765-2a16-5471-85d2-e8d56cb663f5",
+    "year": 2020,
+    "constNo": 29,
+    "name": "Jarnail Singh",
+    "partyId": "AAP",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0d3986e1-b8a0-56d3-9d0e-4f9efaf51697",
+    "year": 2020,
+    "constNo": 29,
+    "name": "Jarnail Singh",
+    "partyId": "AAPP",
+    "age": 54,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7f33bd01-72ec-5ff2-bda5-4f8591aff39b",
+    "year": 2020,
+    "constNo": 29,
+    "name": "Jarnail Singh",
+    "partyId": "IND",
+    "age": 64,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0c691e32-76cd-5aff-adb1-4231a6bf24b8",
+    "year": 2025,
+    "constNo": 29,
+    "name": "Jarnail Singh",
+    "partyId": "AAP",
+    "age": 43,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MAHAVIR|8",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "467669fb-084b-5633-aeda-c16ad121c84f",
+    "year": 2008,
+    "constNo": 8,
+    "name": "Mahavir",
+    "partyId": "AIFB",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "17b4c214-42f5-50d0-8dd7-ef0bfc13587c",
+    "year": 2025,
+    "constNo": 8,
+    "name": "Mahavir",
+    "partyId": "AIFB",
+    "age": 67,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MANOJ KUMAR|35",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f0e76b23-d9be-51b7-8d75-cc95a5ef623f",
+    "year": 2020,
+    "constNo": 35,
+    "name": "Manoj Kumar",
+    "partyId": "BSP",
+    "age": 34,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cbcb0c3d-d2b3-5bfb-a16b-8dbcb0ca3a9b",
+    "year": 2025,
+    "constNo": 35,
+    "name": "Manoj Kumar",
+    "partyId": "IND",
+    "age": 38,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NAMAHA|58",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6a6108c1-7d56-5c5e-8418-6ea81f146935",
+    "year": 2020,
+    "constNo": 58,
+    "name": "Namaha",
+    "partyId": "LJP",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "82bdb5ec-b19c-55e6-9aff-7d538f3d2eea",
+    "year": 2025,
+    "constNo": 58,
+    "name": "Namaha",
+    "partyId": "NCP",
+    "age": 37,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJBIR|13",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c6eb4bb5-db46-56b3-a6e8-6b123884cca4",
+    "year": 2020,
+    "constNo": 13,
+    "name": "Rajbir",
+    "partyId": "BDP1",
+    "age": 63,
+    "era": "2008"
+   },
+   {
+    "candidateId": "84515241-a7a1-5592-981a-bfeb547941bf",
+    "year": 2025,
+    "constNo": 13,
+    "name": "Rajbir",
+    "partyId": "IND",
+    "age": 68,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJESH GUPTA|17",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "22b13756-d249-5a84-a301-86c8dfbb8979",
+    "year": 2015,
+    "constNo": 17,
+    "name": "Rajesh Gupta",
+    "partyId": "AAP",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a75011f1-fb26-5b03-92b3-774db4e67e47",
+    "year": 2020,
+    "constNo": 17,
+    "name": "Rajesh Gupta",
+    "partyId": "AAP",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "278f6da3-c005-5c08-80fd-90657912229b",
+    "year": 2020,
+    "constNo": 17,
+    "name": "Rajesh Gupta",
+    "partyId": "IND",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "612c8f20-5edc-5743-8d51-8b6a133ef79f",
+    "year": 2025,
+    "constNo": 17,
+    "name": "Rajesh Gupta",
+    "partyId": "AAP",
+    "age": 46,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SACHIN|38",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4f1acbb7-da5e-5fac-9013-8d858c24b169",
+    "year": 2020,
+    "constNo": 38,
+    "name": "Sachin",
+    "partyId": "IND",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "21092d8a-4e22-5e1e-9648-40dc7fa89d59",
+    "year": 2025,
+    "constNo": 38,
+    "name": "Sachin",
+    "partyId": "BSKP",
+    "age": 31,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SHARDA DIXIT|31",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "58c02113-aa4f-5490-8be8-3d653f51e3bf",
+    "year": 2020,
+    "constNo": 31,
+    "name": "Sharda Dixit",
+    "partyId": "SUCI",
+    "age": 62,
+    "era": "2008"
+   },
+   {
+    "candidateId": "fb9d9614-9e6f-5850-92d1-e1a67c34eb72",
+    "year": 2025,
+    "constNo": 31,
+    "name": "Sharda Dixit",
+    "partyId": "SUCI",
+    "age": 64,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SHYAM KUMAR|14",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "f92250d4-d915-5044-b030-de0fc18559ec",
+    "year": 2020,
+    "constNo": 14,
+    "name": "Shyam Kumar",
+    "partyId": "IND",
+    "age": 32,
+    "era": "2008"
+   },
+   {
+    "candidateId": "ed1cb813-bd4f-5244-a463-3eea7be2f7c8",
+    "year": 2025,
+    "constNo": 14,
+    "name": "Shyam Kumar",
+    "partyId": "BSP",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUBHASH|16",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "663fbe3d-bf76-535b-a842-51664fd6ca04",
+    "year": 2020,
+    "constNo": 16,
+    "name": "Subhash",
+    "partyId": "ASP",
+    "age": 60,
+    "era": "2008"
+   },
+   {
+    "candidateId": "3fb77309-6d0f-5c83-99d8-81ea42359bc6",
+    "year": 2025,
+    "constNo": 16,
+    "name": "Subhash",
+    "partyId": "ASP",
+    "age": 66,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SURENDER BHARDWAJ|36",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "104d872a-c56d-5e1c-b0d7-9931298d9fe2",
+    "year": 2013,
+    "constNo": 36,
+    "name": "Surender Bhardwaj",
+    "partyId": "SP",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a9c0a42e-507e-536d-987e-74b766a20cc3",
+    "year": 2025,
+    "constNo": 36,
+    "name": "Surender Bhardwaj",
+    "partyId": "AAP",
+    "age": 47,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SURENDER KUMAR|38",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "942de92e-1e78-56d6-ad13-98ce634c3b38",
+    "year": 2013,
+    "constNo": 38,
+    "name": "Surender Kumar",
+    "partyId": "IND",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4b6624fa-4d9d-5f82-8c67-57fb239e2d81",
+    "year": 2025,
+    "constNo": 38,
+    "name": "Surender Kumar",
+    "partyId": "PPOI1",
+    "age": 51,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "VIDYA PATTI|6",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6bd7e309-99e2-5c76-8e1f-48bcc8039e2e",
+    "year": 2008,
+    "constNo": 6,
+    "name": "Vidya Patti",
+    "partyId": "IND",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "01d9ff94-c4d0-5b4b-b528-01db790822c3",
+    "year": 2025,
+    "constNo": 6,
+    "name": "Vidya Patti",
+    "partyId": "IND",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ }
+]

@@ -1,0 +1,243 @@
+{
+ "sources": [
+  "ECI notification No. 508/DEL/2026 (3 Mar 2026), published in Delhi Gazette Extraordinary 5 Mar 2026, CEO Delhi No. CEO/COE/102(65)/2025/768: District Election Officers and their AC jurisdiction for the 13 districts — https://egazette.gov.in/WriteReadData/2026/270691.pdf",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Delhi (11 → 13 districts from 1 Jan 2026; Shahdara dissolved; Old Delhi, Central North Delhi, Outer North Delhi created)",
+  "Delimitation of Parliamentary and Assembly Constituencies Order, 2008 via the Wikipedia articles of the 7 Delhi Lok Sabha constituencies (assembly segments; raw wikitext read 2026-10-05)"
+ ],
+ "notes": "Districts are the current 13 revenue districts (reorganisation in force 1 Jan 2026), mapped per AC from the ECI DEO notification of 3 Mar 2026 — not Wikipedia's AC list, whose district column is stale/inconsistent (no South West Delhi, mixes districts). Regions are the 7 Lok Sabha seats (10 ACs each, 2008 delimitation) and are assigned per seat via seatRegions; their district lists are empty.",
+ "districts": [
+  {
+   "code": "DL_OUTERNORTHDELHI",
+   "name": "Outer North Delhi"
+  },
+  {
+   "code": "DL_NORTHDELHI",
+   "name": "North Delhi"
+  },
+  {
+   "code": "DL_NORTHWESTDELHI",
+   "name": "North West Delhi"
+  },
+  {
+   "code": "DL_CENTRALNORTHDELHI",
+   "name": "Central North Delhi"
+  },
+  {
+   "code": "DL_OLDDELHI",
+   "name": "Old Delhi"
+  },
+  {
+   "code": "DL_CENTRALDELHI",
+   "name": "Central Delhi"
+  },
+  {
+   "code": "DL_WESTDELHI",
+   "name": "West Delhi"
+  },
+  {
+   "code": "DL_SOUTHWESTDELHI",
+   "name": "South West Delhi"
+  },
+  {
+   "code": "DL_NEWDELHI",
+   "name": "New Delhi"
+  },
+  {
+   "code": "DL_SOUTHEASTDELHI",
+   "name": "South East Delhi"
+  },
+  {
+   "code": "DL_SOUTHDELHI",
+   "name": "South Delhi"
+  },
+  {
+   "code": "DL_EASTDELHI",
+   "name": "East Delhi"
+  },
+  {
+   "code": "DL_NORTHEASTDELHI",
+   "name": "North East Delhi"
+  }
+ ],
+ "regions": [
+  {
+   "code": "DL_CHANDNICHOWK",
+   "name": "Chandni Chowk",
+   "districts": []
+  },
+  {
+   "code": "DL_NORTHEASTDELHI",
+   "name": "North East Delhi",
+   "districts": []
+  },
+  {
+   "code": "DL_EASTDELHI",
+   "name": "East Delhi",
+   "districts": []
+  },
+  {
+   "code": "DL_NEWDELHI",
+   "name": "New Delhi",
+   "districts": []
+  },
+  {
+   "code": "DL_NORTHWESTDELHI",
+   "name": "North West Delhi",
+   "districts": []
+  },
+  {
+   "code": "DL_WESTDELHI",
+   "name": "West Delhi",
+   "districts": []
+  },
+  {
+   "code": "DL_SOUTHDELHI",
+   "name": "South Delhi",
+   "districts": []
+  }
+ ],
+ "seatRegions": {
+  "1": "DL_NORTHWESTDELHI",
+  "2": "DL_NORTHEASTDELHI",
+  "3": "DL_NORTHEASTDELHI",
+  "4": "DL_CHANDNICHOWK",
+  "5": "DL_NORTHWESTDELHI",
+  "6": "DL_NORTHWESTDELHI",
+  "7": "DL_NORTHWESTDELHI",
+  "8": "DL_NORTHWESTDELHI",
+  "9": "DL_NORTHWESTDELHI",
+  "10": "DL_NORTHWESTDELHI",
+  "11": "DL_NORTHWESTDELHI",
+  "12": "DL_NORTHWESTDELHI",
+  "13": "DL_NORTHWESTDELHI",
+  "14": "DL_CHANDNICHOWK",
+  "15": "DL_CHANDNICHOWK",
+  "16": "DL_CHANDNICHOWK",
+  "17": "DL_CHANDNICHOWK",
+  "18": "DL_CHANDNICHOWK",
+  "19": "DL_CHANDNICHOWK",
+  "20": "DL_CHANDNICHOWK",
+  "21": "DL_CHANDNICHOWK",
+  "22": "DL_CHANDNICHOWK",
+  "23": "DL_NEWDELHI",
+  "24": "DL_NEWDELHI",
+  "25": "DL_NEWDELHI",
+  "26": "DL_WESTDELHI",
+  "27": "DL_WESTDELHI",
+  "28": "DL_WESTDELHI",
+  "29": "DL_WESTDELHI",
+  "30": "DL_WESTDELHI",
+  "31": "DL_WESTDELHI",
+  "32": "DL_WESTDELHI",
+  "33": "DL_WESTDELHI",
+  "34": "DL_WESTDELHI",
+  "35": "DL_WESTDELHI",
+  "36": "DL_SOUTHDELHI",
+  "37": "DL_SOUTHDELHI",
+  "38": "DL_NEWDELHI",
+  "39": "DL_NEWDELHI",
+  "40": "DL_NEWDELHI",
+  "41": "DL_EASTDELHI",
+  "42": "DL_NEWDELHI",
+  "43": "DL_NEWDELHI",
+  "44": "DL_NEWDELHI",
+  "45": "DL_SOUTHDELHI",
+  "46": "DL_SOUTHDELHI",
+  "47": "DL_SOUTHDELHI",
+  "48": "DL_SOUTHDELHI",
+  "49": "DL_SOUTHDELHI",
+  "50": "DL_NEWDELHI",
+  "51": "DL_SOUTHDELHI",
+  "52": "DL_SOUTHDELHI",
+  "53": "DL_SOUTHDELHI",
+  "54": "DL_EASTDELHI",
+  "55": "DL_EASTDELHI",
+  "56": "DL_EASTDELHI",
+  "57": "DL_EASTDELHI",
+  "58": "DL_EASTDELHI",
+  "59": "DL_EASTDELHI",
+  "60": "DL_EASTDELHI",
+  "61": "DL_EASTDELHI",
+  "62": "DL_EASTDELHI",
+  "63": "DL_NORTHEASTDELHI",
+  "64": "DL_NORTHEASTDELHI",
+  "65": "DL_NORTHEASTDELHI",
+  "66": "DL_NORTHEASTDELHI",
+  "67": "DL_NORTHEASTDELHI",
+  "68": "DL_NORTHEASTDELHI",
+  "69": "DL_NORTHEASTDELHI",
+  "70": "DL_NORTHEASTDELHI"
+ },
+ "seats": {
+  "1": "DL_OUTERNORTHDELHI",
+  "2": "DL_NORTHDELHI",
+  "3": "DL_NORTHDELHI",
+  "4": "DL_NORTHDELHI",
+  "5": "DL_NORTHDELHI",
+  "6": "DL_NORTHWESTDELHI",
+  "7": "DL_OUTERNORTHDELHI",
+  "8": "DL_OUTERNORTHDELHI",
+  "9": "DL_NORTHWESTDELHI",
+  "10": "DL_NORTHWESTDELHI",
+  "11": "DL_NORTHWESTDELHI",
+  "12": "DL_NORTHWESTDELHI",
+  "13": "DL_NORTHWESTDELHI",
+  "14": "DL_CENTRALNORTHDELHI",
+  "15": "DL_CENTRALNORTHDELHI",
+  "16": "DL_CENTRALNORTHDELHI",
+  "17": "DL_CENTRALNORTHDELHI",
+  "18": "DL_CENTRALNORTHDELHI",
+  "19": "DL_OLDDELHI",
+  "20": "DL_OLDDELHI",
+  "21": "DL_OLDDELHI",
+  "22": "DL_OLDDELHI",
+  "23": "DL_CENTRALDELHI",
+  "24": "DL_CENTRALDELHI",
+  "25": "DL_CENTRALDELHI",
+  "26": "DL_WESTDELHI",
+  "27": "DL_WESTDELHI",
+  "28": "DL_WESTDELHI",
+  "29": "DL_WESTDELHI",
+  "30": "DL_WESTDELHI",
+  "31": "DL_WESTDELHI",
+  "32": "DL_WESTDELHI",
+  "33": "DL_SOUTHWESTDELHI",
+  "34": "DL_SOUTHWESTDELHI",
+  "35": "DL_SOUTHWESTDELHI",
+  "36": "DL_SOUTHWESTDELHI",
+  "37": "DL_SOUTHWESTDELHI",
+  "38": "DL_NEWDELHI",
+  "39": "DL_CENTRALDELHI",
+  "40": "DL_NEWDELHI",
+  "41": "DL_SOUTHEASTDELHI",
+  "42": "DL_SOUTHEASTDELHI",
+  "43": "DL_SOUTHDELHI",
+  "44": "DL_SOUTHDELHI",
+  "45": "DL_SOUTHDELHI",
+  "46": "DL_SOUTHDELHI",
+  "47": "DL_SOUTHDELHI",
+  "48": "DL_SOUTHDELHI",
+  "49": "DL_SOUTHEASTDELHI",
+  "50": "DL_SOUTHDELHI",
+  "51": "DL_SOUTHEASTDELHI",
+  "52": "DL_SOUTHEASTDELHI",
+  "53": "DL_SOUTHEASTDELHI",
+  "54": "DL_SOUTHEASTDELHI",
+  "55": "DL_EASTDELHI",
+  "56": "DL_EASTDELHI",
+  "57": "DL_EASTDELHI",
+  "58": "DL_EASTDELHI",
+  "59": "DL_EASTDELHI",
+  "60": "DL_EASTDELHI",
+  "61": "DL_EASTDELHI",
+  "62": "DL_EASTDELHI",
+  "63": "DL_NORTHEASTDELHI",
+  "64": "DL_NORTHEASTDELHI",
+  "65": "DL_NORTHEASTDELHI",
+  "66": "DL_NORTHEASTDELHI",
+  "67": "DL_NORTHEASTDELHI",
+  "68": "DL_NORTHEASTDELHI",
+  "69": "DL_NORTHEASTDELHI",
+  "70": "DL_NORTHEASTDELHI"
+ }
+}

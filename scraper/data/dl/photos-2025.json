@@ -1,0 +1,2525 @@
+{
+ "entries": [
+  {
+   "constNo": 1,
+   "serial": 1,
+   "candidateId": "34dae4b0-93cb-5b0f-95c5-454bff9a7bed",
+   "name": "Raj Karan Khatri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-1-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAJKA-2025-20250120060535.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250805171820/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U051.htm"
+  },
+  {
+   "constNo": 1,
+   "serial": 2,
+   "candidateId": "3b3d4b72-9b68-55ce-b141-82c48049f96a",
+   "name": "Sharad Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-1-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SHARA-2025-20250116045014.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250805171820/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U051.htm"
+  },
+  {
+   "constNo": 1,
+   "serial": 3,
+   "candidateId": "35b3abcd-c680-5e32-90f9-08aed8e9e1c2",
+   "name": "Aruna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-1-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ARUNA-2025-20250116035151.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250805171820/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U051.htm"
+  },
+  {
+   "constNo": 1,
+   "serial": 5,
+   "candidateId": "861bfe8c-d6f9-514c-b297-6b8d6a43bc27",
+   "name": "Anil Kumar Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-1-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ANILK-2025-20250116042607.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250805171820/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U051.htm"
+  },
+  {
+   "constNo": 2,
+   "serial": 1,
+   "candidateId": "a8fef216-3c38-55d4-a81e-f705d92ec191",
+   "name": "Sanjeev Jha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-2-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SANJE-2025-20250118074655.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208143135/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U052.htm"
+  },
+  {
+   "constNo": 2,
+   "serial": 2,
+   "candidateId": "47f9037b-e577-5058-82dd-c6f4d3ed4827",
+   "name": "Shailendra Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-2-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SHAIL-2025-20250118074800.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208143135/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U052.htm"
+  },
+  {
+   "constNo": 2,
+   "serial": 3,
+   "candidateId": "e32f80a1-0f2e-5bd2-8668-ebf0b3cbc450",
+   "name": "Mangesh Tyagi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-2-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MANGE-2025-20250118075025.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208143135/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U052.htm"
+  },
+  {
+   "constNo": 2,
+   "serial": 4,
+   "candidateId": "edfaa387-8f86-5881-aa2e-8e5cb480e4dd",
+   "name": "Ratan Tyagi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-2-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RATAN-2025-20250118075300.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208143135/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U052.htm"
+  },
+  {
+   "constNo": 3,
+   "serial": 1,
+   "candidateId": "93245f2f-2b57-5fdc-86f5-765ca733fd4a",
+   "name": "Surya Prakash Khatri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-3-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SURYA-2025-20250115050021.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250913071332/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U053.htm"
+  },
+  {
+   "constNo": 3,
+   "serial": 2,
+   "candidateId": "bc3fff33-3d7b-57f5-a40d-6f4c7ffbf171",
+   "name": "Surinder Pal Singh (Bittoo)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-3-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SURIN-2025-20250115061021.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250913071332/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U053.htm"
+  },
+  {
+   "constNo": 3,
+   "serial": 3,
+   "candidateId": "7ea001ab-2662-55e5-a2a6-9f878277448c",
+   "name": "Lokendra Kalyan Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-3-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/LOKEN-2025-20250117023947.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250913071332/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U053.htm"
+  },
+  {
+   "constNo": 3,
+   "serial": 4,
+   "candidateId": "80710d2d-bb81-560d-b7e0-6889796729af",
+   "name": "Surender Pal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-3-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SUREN-2025-20250116124628.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250913071332/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U053.htm"
+  },
+  {
+   "constNo": 4,
+   "serial": 1,
+   "candidateId": "e937e9c3-41b8-517d-b4ef-3854e52d8694",
+   "name": "Raj Kumar Bhatia",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-4-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAJKU-2025-20250115023449.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250209173318/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U054.htm"
+  },
+  {
+   "constNo": 4,
+   "serial": 2,
+   "candidateId": "827ab657-a88e-567b-8cb9-fab58f969855",
+   "name": "Mukesh Kumar Goel",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-4-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MUKES-2025-20250116012238.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250209173318/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U054.htm"
+  },
+  {
+   "constNo": 4,
+   "serial": 3,
+   "candidateId": "b5126903-1f2e-5c93-aecc-9a3c0bb894b2",
+   "name": "Shivank Singal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-4-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SHIVA-2025-20250115044822.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250209173318/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U054.htm"
+  },
+  {
+   "constNo": 4,
+   "serial": 5,
+   "candidateId": "a0ea6e8a-e0cc-54a2-a06c-0f60c4d527ee",
+   "name": "Abdul Zabbar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-4-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ABDUL-2025-20250117021237.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250209173318/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U054.htm"
+  },
+  {
+   "constNo": 5,
+   "serial": 1,
+   "candidateId": "25b2453f-a74f-526b-bfa7-c452b76c56d0",
+   "name": "Aahir Deepak Chaudharyy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-5-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/AAHIR-2025-20250116040408.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250221145953/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U055.htm"
+  },
+  {
+   "constNo": 5,
+   "serial": 2,
+   "candidateId": "f130c286-6ca6-5a55-bff6-d8a0b41875b8",
+   "name": "Ajesh Yadav",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-5-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/AJESH-2025-20250115030248.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250221145953/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U055.htm"
+  },
+  {
+   "constNo": 5,
+   "serial": 3,
+   "candidateId": "7be98b23-6022-51de-8814-2427887547cf",
+   "name": "Devender Yadav",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-5-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/DEVEN-2025-20250115012124.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250221145953/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U055.htm"
+  },
+  {
+   "constNo": 5,
+   "serial": 4,
+   "candidateId": "f53475a3-fef1-5035-904f-e0647abe260f",
+   "name": "Ravinder Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-5-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAVIN-2025-20250114042956.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250221145953/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U055.htm"
+  },
+  {
+   "constNo": 6,
+   "serial": 1,
+   "candidateId": "78027d02-9e43-5927-bf5d-f518b6786abd",
+   "name": "Kulwant Rana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-6-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KULWA-2025-20250115025645.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250209192319/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U056.htm"
+  },
+  {
+   "constNo": 6,
+   "serial": 2,
+   "candidateId": "2d8ded5a-64e9-506d-91a3-54c88f8caf65",
+   "name": "Mohinder Goyal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-6-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MOHIN-2025-20250120123511.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250209192319/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U056.htm"
+  },
+  {
+   "constNo": 6,
+   "serial": 3,
+   "candidateId": "63dd3c4c-3813-56aa-be1b-5db9a7f575c4",
+   "name": "Sushant Mishra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-6-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SUSHA-2025-20250120123357.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250209192319/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U056.htm"
+  },
+  {
+   "constNo": 6,
+   "serial": 5,
+   "candidateId": "f381e9e5-13dc-5f0b-8d3b-13221e564cf4",
+   "name": "Neyaz Khan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-6-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/NEYAZ-2025-20250120123557.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250209192319/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U056.htm"
+  },
+  {
+   "constNo": 7,
+   "serial": 1,
+   "candidateId": "f8c2c214-1daa-507e-a8f7-57f2ed96aeef",
+   "name": "Ravinder Indraj Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-7-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAVIN-2025-20250117071920.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012001429/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U057.htm"
+  },
+  {
+   "constNo": 7,
+   "serial": 2,
+   "candidateId": "192a9983-955f-5277-bfd6-966d5c09e0fb",
+   "name": "Jai Bhagwan Upkar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-7-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JAIBH-2025-20250115045307.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012001429/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U057.htm"
+  },
+  {
+   "constNo": 7,
+   "serial": 3,
+   "candidateId": "a2dd21e5-836a-50cb-9d16-4773f43e55e9",
+   "name": "Surender Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-7-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SUREN-2025-20250116062054.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012001429/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U057.htm"
+  },
+  {
+   "constNo": 7,
+   "serial": 4,
+   "candidateId": "b93c63fd-4a8a-5c5c-81ad-7885a1a79e95",
+   "name": "Heera Lal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-7-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/HEERA-2025-20250116070037.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012001429/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U057.htm"
+  },
+  {
+   "constNo": 8,
+   "serial": 1,
+   "candidateId": "ff6a9281-1650-57d5-8414-667770e9217d",
+   "name": "Gajender Drall",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-8-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/GAJEN-2025-20250116044022.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011164308/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U058.htm"
+  },
+  {
+   "constNo": 8,
+   "serial": 2,
+   "candidateId": "6e390eab-362c-5e5f-a8cb-aaa990342c59",
+   "name": "Jasbir Karala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-8-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JASBI-2025-20250114054250.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011164308/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U058.htm"
+  },
+  {
+   "constNo": 8,
+   "serial": 3,
+   "candidateId": "07286e69-23e2-52d1-872a-3b5e26084947",
+   "name": "Dharampal Lakra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-8-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DHARA-2025-20250117072153.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011164308/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U058.htm"
+  },
+  {
+   "constNo": 8,
+   "serial": 4,
+   "candidateId": "6b562e20-b497-5c27-b4c4-5275cfa89e86",
+   "name": "Rambir Shokeen",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-8-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAMBI-2025-20250115051743.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011164308/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U058.htm"
+  },
+  {
+   "constNo": 9,
+   "serial": 1,
+   "candidateId": "332e5ccc-d688-5952-b911-a127b7418951",
+   "name": "Anil Jha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-9-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ANILJ-2025-20250116045819.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012055924/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U059.htm"
+  },
+  {
+   "constNo": 9,
+   "serial": 2,
+   "candidateId": "a4ddfe5a-b0e5-5a29-88f0-9b274a864a5d",
+   "name": "Bajrang Shukla",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-9-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/BAJRA-2025-20250115051825.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012055924/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U059.htm"
+  },
+  {
+   "constNo": 9,
+   "serial": 3,
+   "candidateId": "1eae18da-8089-5020-b1c3-9128a643c403",
+   "name": "Rajesh Kumar Gupta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-9-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAJES-2025-20250117045109.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012055924/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U059.htm"
+  },
+  {
+   "constNo": 9,
+   "serial": 4,
+   "candidateId": "40267079-f9ae-5217-92a2-4b147a4bd411",
+   "name": "Jugbir Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-9-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JUGBI-2025-20250117042939.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012055924/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U059.htm"
+  },
+  {
+   "constNo": 10,
+   "serial": 1,
+   "candidateId": "489d70db-a60d-5382-9498-e86cb0856bb1",
+   "name": "Mukesh Kumar Ahlawat",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-10-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MUKES-2025-20250116065852.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312172840/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0510.htm"
+  },
+  {
+   "constNo": 10,
+   "serial": 2,
+   "candidateId": "79a0290b-75e0-573a-9ca1-dae14a9cf671",
+   "name": "Karam Singh Karma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-10-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KARAM-2025-20250115072148.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312172840/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0510.htm"
+  },
+  {
+   "constNo": 10,
+   "serial": 3,
+   "candidateId": "d6295132-4f6c-54ff-ab00-22c81634bf4f",
+   "name": "Jai Kishan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-10-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JAIKI-2025-20250115082808.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312172840/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0510.htm"
+  },
+  {
+   "constNo": 10,
+   "serial": 4,
+   "candidateId": "19864b9d-52e7-5804-b35b-2b27b87fac2e",
+   "name": "Kulwant Rana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-10-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KULWA-2025-20250116074405.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312172840/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0510.htm"
+  },
+  {
+   "constNo": 11,
+   "serial": 1,
+   "candidateId": "b12de92c-14cc-540c-b533-bb87b60a8ad8",
+   "name": "Manoj Kumar Shokeen",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-11-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MANOJ-2025-20250115062046.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250807124823/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0511.htm"
+  },
+  {
+   "constNo": 11,
+   "serial": 2,
+   "candidateId": "ef88b588-2168-5d87-8539-77b1c3806ab8",
+   "name": "Raghuvinder Shokeen",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-11-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAGHU-2025-20250117043314.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250807124823/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0511.htm"
+  },
+  {
+   "constNo": 11,
+   "serial": 3,
+   "candidateId": "8aabee4c-1a66-5fb7-b96e-1af253df62ff",
+   "name": "Rohit Choudhary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-11-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ROHIT-2025-20250115052547.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250807124823/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0511.htm"
+  },
+  {
+   "constNo": 11,
+   "serial": 5,
+   "candidateId": "f97f6bc3-4924-5837-9a8c-7f0869dbf92e",
+   "name": "Mukesh Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-11-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MUKES-2025-20250117045917.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250807124823/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0511.htm"
+  },
+  {
+   "constNo": 12,
+   "serial": 1,
+   "candidateId": "139ab29b-4536-5253-bcf6-1e5a945964be",
+   "name": "Raj Kumar Chauhan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-12-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAJKU-2025-20250115070153.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250809154646/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0512.htm"
+  },
+  {
+   "constNo": 12,
+   "serial": 2,
+   "candidateId": "318ba49d-b966-5d4d-bfef-653945a9a4a9",
+   "name": "Dharam Rakshak Alias Rakesh Jatav",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-12-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DHARA-2025-20250115081620.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250809154646/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0512.htm"
+  },
+  {
+   "constNo": 12,
+   "serial": 3,
+   "candidateId": "9445b51f-e969-5d86-9a9f-e4ee9c226844",
+   "name": "Hanuman Sahay Alias Hanuman Chauhan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-12-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/HANUM-2025-20250120122354.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250809154646/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0512.htm"
+  },
+  {
+   "constNo": 12,
+   "serial": 5,
+   "candidateId": "7d95bc2a-6a20-5949-92ca-1d154cd1d6bd",
+   "name": "Mukesh Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-12-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/2025/ac/E28/U05/12/1737017869PHOTO.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250809154646/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0512.htm"
+  },
+  {
+   "constNo": 13,
+   "serial": 1,
+   "candidateId": "54bf31eb-636a-5ecf-b636-5dafbac0e01d",
+   "name": "Vijender Gupta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-13-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/VIJEN-2025-20250115034928.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250224142828/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0513.htm"
+  },
+  {
+   "constNo": 13,
+   "serial": 2,
+   "candidateId": "dc48e7d1-71ab-5da9-b62a-609954857a97",
+   "name": "Pardeep Mittal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-13-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PARDE-2025-20250116054115.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250224142828/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0513.htm"
+  },
+  {
+   "constNo": 13,
+   "serial": 3,
+   "candidateId": "c023a5ce-7c86-5b1c-aa39-09a65086ea02",
+   "name": "Sumesh Gupta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-13-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SUMES-2025-20250117054350.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250224142828/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0513.htm"
+  },
+  {
+   "constNo": 13,
+   "serial": 5,
+   "candidateId": "38255acb-45d4-575e-bfb0-27f538656938",
+   "name": "Harshad Chadha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-13-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/HARSH-2025-20250116060111.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250224142828/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0513.htm"
+  },
+  {
+   "constNo": 14,
+   "serial": 1,
+   "candidateId": "8c8e05ec-efc8-5a81-8b4c-ac08f64abb0e",
+   "name": "Rekha Gupta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-14-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/REKHA-2025-20250120122552.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220080324/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0514.htm"
+  },
+  {
+   "constNo": 14,
+   "serial": 2,
+   "candidateId": "eff920e7-7eff-50d5-af98-8c8a42a560ac",
+   "name": "Bandana Kumari",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-14-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/BANDA-2025-20250116060012.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220080324/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0514.htm"
+  },
+  {
+   "constNo": 14,
+   "serial": 3,
+   "candidateId": "9c7ac1e6-896b-5771-92ad-a045e5de5702",
+   "name": "Parveen Kumar Jain",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-14-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PARVE-2025-20250115044030.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220080324/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0514.htm"
+  },
+  {
+   "constNo": 14,
+   "serial": 5,
+   "candidateId": "ed1cb813-bd4f-5244-a463-3eea7be2f7c8",
+   "name": "Shyam Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-14-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SHYAM-2025-20250120124154.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220080324/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0514.htm"
+  },
+  {
+   "constNo": 15,
+   "serial": 1,
+   "candidateId": "30114fd8-8aea-5df3-a762-374a2eb8903d",
+   "name": "Karnail Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-15-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KARNA-2025-20250116040312.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012035705/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0515.htm"
+  },
+  {
+   "constNo": 15,
+   "serial": 2,
+   "candidateId": "f4f178c2-06d7-5a12-b466-d1da0212a580",
+   "name": "Satyendar Jain",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-15-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SATYE-2025-20250115045440.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012035705/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0515.htm"
+  },
+  {
+   "constNo": 15,
+   "serial": 3,
+   "candidateId": "5ec3eb15-d639-5afc-8295-53b5f0f1463e",
+   "name": "Satish Kumar Luthra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-15-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SATIS-2025-20250116043143.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012035705/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0515.htm"
+  },
+  {
+   "constNo": 15,
+   "serial": 5,
+   "candidateId": "67ed1cdf-3fe6-5cdc-8a23-b74636e181a2",
+   "name": "Vijay Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-15-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VIJAY-2025-20250117065932.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012035705/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0515.htm"
+  },
+  {
+   "constNo": 16,
+   "serial": 1,
+   "candidateId": "99da4dc0-30f7-51f0-93f0-e47d6dbdbef9",
+   "name": "Tilak Ram Gupta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-16-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/TILAK-2025-20250116025518.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012120647/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0516.htm"
+  },
+  {
+   "constNo": 16,
+   "serial": 2,
+   "candidateId": "320079c3-7355-553b-acb1-4655eaef46aa",
+   "name": "Preeti Jitender Tomar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-16-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PREET-2025-20250116015636.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012120647/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0516.htm"
+  },
+  {
+   "constNo": 16,
+   "serial": 3,
+   "candidateId": "8c1cd2b8-ca89-55ce-93e7-52cb794e8644",
+   "name": "Satender Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-16-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SATEN-2025-20250115043726.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012120647/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0516.htm"
+  },
+  {
+   "constNo": 16,
+   "serial": 5,
+   "candidateId": "b268106f-4255-5c18-a53a-a6c95ffb5355",
+   "name": "Pawan Garg",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-16-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PAWAN-2025-20250116034311.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012120647/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0516.htm"
+  },
+  {
+   "constNo": 17,
+   "serial": 1,
+   "candidateId": "f2bed4a5-ede9-56b2-aea5-99a83c676f0f",
+   "name": "Poonam Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-17-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/POONA-2025-20250120014421.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810130649/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0517.htm"
+  },
+  {
+   "constNo": 17,
+   "serial": 2,
+   "candidateId": "612c8f20-5edc-5743-8d51-8b6a133ef79f",
+   "name": "Rajesh Gupta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-17-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAJES-2025-20250120014403.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810130649/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0517.htm"
+  },
+  {
+   "constNo": 17,
+   "serial": 3,
+   "candidateId": "9846a4e3-6dd2-5bc8-b30d-d804e368e804",
+   "name": "Ragini Nayak",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-17-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAGIN-2025-20250120014445.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810130649/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0517.htm"
+  },
+  {
+   "constNo": 17,
+   "serial": 4,
+   "candidateId": "6bea8db1-9948-5e5b-affd-cdc47bada26f",
+   "name": "Hira Lal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-17-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/HIRAL-2025-20250117074224.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810130649/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0517.htm"
+  },
+  {
+   "constNo": 18,
+   "serial": 1,
+   "candidateId": "b15a7873-c236-5c05-8b30-165545a9d18d",
+   "name": "Ashok Goel",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-18-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/ASHOK-2025-20250116012358.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011215326/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0518.htm"
+  },
+  {
+   "constNo": 18,
+   "serial": 2,
+   "candidateId": "79f9aa64-6752-5bce-ba7f-6b1285c9d9e1",
+   "name": "Akhilesh Pati Tripathi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-18-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/AKHIL-2025-20250117091913.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011215326/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0518.htm"
+  },
+  {
+   "constNo": 18,
+   "serial": 3,
+   "candidateId": "690fd6ef-67a5-50c0-83fe-ed85410f34dc",
+   "name": "Kanwar Karan Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-18-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KANWA-2025-20250117091440.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011215326/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0518.htm"
+  },
+  {
+   "constNo": 18,
+   "serial": 5,
+   "candidateId": "0b5d242a-c291-5038-8944-3b61b92da805",
+   "name": "Chunni Lal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-18-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/CHUNN-2025-20250116065718.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011215326/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0518.htm"
+  },
+  {
+   "constNo": 19,
+   "serial": 1,
+   "candidateId": "9009a83e-b105-5118-97b3-48c3b45e89e5",
+   "name": "Som Dutt",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-19-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SOMDU-2025-20250116020857.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011172027/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0519.htm"
+  },
+  {
+   "constNo": 19,
+   "serial": 2,
+   "candidateId": "75b1f866-7331-58f8-ae44-779dbcf949f0",
+   "name": "Manoj Kumar Jindal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-19-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MANOJ-2025-20250120052522.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011172027/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0519.htm"
+  },
+  {
+   "constNo": 19,
+   "serial": 3,
+   "candidateId": "a117ab06-bb6d-5377-b5f1-62e5817915db",
+   "name": "Anil Bhardwaj",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-19-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/ANILB-2025-20250117065906.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011172027/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0519.htm"
+  },
+  {
+   "constNo": 19,
+   "serial": 4,
+   "candidateId": "bf0cbef7-92c1-5a4b-bb11-c3dbf941f5cc",
+   "name": "Shail Kumari",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-19-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SHAIL-2025-20250117074913.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011172027/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0519.htm"
+  },
+  {
+   "constNo": 20,
+   "serial": 1,
+   "candidateId": "bf274dea-22ab-5ce6-866c-7eb3a24a9a7a",
+   "name": "Punardeep Singh Sawhney (Sabby)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-20-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PUNAR-2025-20250116030233.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012032922/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0520.htm"
+  },
+  {
+   "constNo": 20,
+   "serial": 2,
+   "candidateId": "2857d48e-91e5-52b2-817f-d86f35b55588",
+   "name": "Satish Jain",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-20-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SATIS-2025-20250115022519.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012032922/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0520.htm"
+  },
+  {
+   "constNo": 20,
+   "serial": 3,
+   "candidateId": "037c6f74-da52-5d7c-9405-3b869d23579e",
+   "name": "Mudit Agarwal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-20-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MUDIT-2025-20250116052229.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012032922/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0520.htm"
+  },
+  {
+   "constNo": 20,
+   "serial": 5,
+   "candidateId": "c8ca829b-9dd5-5b6c-8bf2-45c5ecfccb5a",
+   "name": "Kali Charan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-20-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KALIC-2025-20250117123053.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012032922/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0520.htm"
+  },
+  {
+   "constNo": 21,
+   "serial": 1,
+   "candidateId": "f5c31730-6296-5ed9-9efe-bd3c5830bba8",
+   "name": "Aaley Mohammed Iqbal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-21-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/AALEY-2025-20250117094746.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251025082110/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0521.htm"
+  },
+  {
+   "constNo": 21,
+   "serial": 2,
+   "candidateId": "9dc36aed-5fec-5c35-b0bc-bd3df939c80c",
+   "name": "Deepti Indora",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-21-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/DEEPT-2025-20250120025319.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251025082110/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0521.htm"
+  },
+  {
+   "constNo": 21,
+   "serial": 3,
+   "candidateId": "bf23a170-e52b-5948-a295-f21602828d7e",
+   "name": "Asim Ahmed Khan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-21-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ASIMA-2025-20250117085507.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251025082110/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0521.htm"
+  },
+  {
+   "constNo": 21,
+   "serial": 5,
+   "candidateId": "c3ab5a94-680b-5252-98b9-0384734759a8",
+   "name": "Tej Ram",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-21-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/TEJRA-2025-20250117093244.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251025082110/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0521.htm"
+  },
+  {
+   "constNo": 22,
+   "serial": 1,
+   "candidateId": "7a91f7ba-1913-59f5-b99b-490bd427c197",
+   "name": "Imran Hussain",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-22-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/IMRAN-2025-20250115052436.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250311105420/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0522.htm"
+  },
+  {
+   "constNo": 22,
+   "serial": 2,
+   "candidateId": "a54f2285-1b3a-5277-8379-e1d6ebb5cc3b",
+   "name": "Kamal Bagri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-22-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KAMAL-2025-20250116050855.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250311105420/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0522.htm"
+  },
+  {
+   "constNo": 22,
+   "serial": 3,
+   "candidateId": "b897307f-bd08-5ea4-8e76-cbb9898e3274",
+   "name": "Haroon Yusuf",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-22-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/HAROO-2025-20250116034350.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250311105420/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0522.htm"
+  },
+  {
+   "constNo": 22,
+   "serial": 5,
+   "candidateId": "b3f375e4-c379-5b7e-acc0-c4809f6137e0",
+   "name": "Abrar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-22-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ABRAR-2025-20250117022018.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250311105420/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0522.htm"
+  },
+  {
+   "constNo": 23,
+   "serial": 1,
+   "candidateId": "52286e0a-ed1d-5dd2-9a12-d7b983c00de4",
+   "name": "Vishesh Ravi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-23-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VISHE-2025-20250115070532.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810035240/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0523.htm"
+  },
+  {
+   "constNo": 23,
+   "serial": 2,
+   "candidateId": "d8ed623b-3a73-5b20-b8cc-3f8f0989cd85",
+   "name": "Dushyant Gautam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-23-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DUSHY-2025-20250115022132.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810035240/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0523.htm"
+  },
+  {
+   "constNo": 23,
+   "serial": 3,
+   "candidateId": "49dfb4c6-c7a6-5c7b-a5ed-c010dd783bda",
+   "name": "Rahul Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-23-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAHUL-2025-20250117040430.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810035240/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0523.htm"
+  },
+  {
+   "constNo": 23,
+   "serial": 4,
+   "candidateId": "d65c9e54-97da-5865-8a9c-ea354d9b011f",
+   "name": "Ranjeet",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-23-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RANJE-2025-20250116022540.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810035240/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0523.htm"
+  },
+  {
+   "constNo": 24,
+   "serial": 1,
+   "candidateId": "b7b7271d-1bbe-5796-ad71-7bdfc1d04bbe",
+   "name": "Pravesh Ratn",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-24-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PRAVE-2025-20250115050309.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312065916/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0524.htm"
+  },
+  {
+   "constNo": 24,
+   "serial": 2,
+   "candidateId": "6ea5e720-a6ab-53e8-9725-0ff4fdab7575",
+   "name": "Raaj Kumar Anand",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-24-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAAJK-2025-20250116041945.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312065916/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0524.htm"
+  },
+  {
+   "constNo": 24,
+   "serial": 3,
+   "candidateId": "d7d0b826-e76e-5354-a424-8011e0f26486",
+   "name": "Krishna Tirath",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-24-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KRISH-2025-20250117061757.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312065916/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0524.htm"
+  },
+  {
+   "constNo": 24,
+   "serial": 5,
+   "candidateId": "2b722524-e929-56ad-a2a3-69e2532022bd",
+   "name": "Ram Avtar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-24-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAMAV-2025-20250115043916.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312065916/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0524.htm"
+  },
+  {
+   "constNo": 25,
+   "serial": 1,
+   "candidateId": "cee2ef37-0927-5d49-a8b4-882be4b4a389",
+   "name": "Harish Khurana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-25-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/HARIS-2025-20250116021545.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312094331/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0525.htm"
+  },
+  {
+   "constNo": 25,
+   "serial": 2,
+   "candidateId": "4e00009c-2edf-5fa8-b23c-d79803a48642",
+   "name": "Shivcharan Goel",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-25-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SHIVC-2025-20250116024815.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312094331/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0525.htm"
+  },
+  {
+   "constNo": 25,
+   "serial": 3,
+   "candidateId": "da4ff9ed-d081-5761-82d2-b822fe847118",
+   "name": "Rajender Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-25-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAJEN-2025-20250115011604.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312094331/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0525.htm"
+  },
+  {
+   "constNo": 25,
+   "serial": 4,
+   "candidateId": "43b2e67f-107b-589f-aad8-50fc2db3dd2d",
+   "name": "Avinash Gupta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-25-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/AVINA-2025-20250115042451.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250312094331/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0525.htm"
+  },
+  {
+   "constNo": 26,
+   "serial": 1,
+   "candidateId": "0e23a407-5ff0-5e07-bc93-7c905910274f",
+   "name": "Kailash Gangwal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-26-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KAILA-2025-20250116062241.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250426015159/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0526.htm"
+  },
+  {
+   "constNo": 26,
+   "serial": 2,
+   "candidateId": "9199e479-0a3c-5e01-ae6b-83791ec037b3",
+   "name": "Rakhi Birla",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-26-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAKHI-2025-20250116060203.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250426015159/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0526.htm"
+  },
+  {
+   "constNo": 26,
+   "serial": 3,
+   "candidateId": "3242967b-8fb1-5c3a-93c0-0d92218ade62",
+   "name": "J. P. Panwar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-26-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JAIPR-2025-20250115030229.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250426015159/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0526.htm"
+  },
+  {
+   "constNo": 26,
+   "serial": 5,
+   "candidateId": "ecab867b-07c6-5db9-8fdd-44c615a95041",
+   "name": "Roop Singh Ahirwar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-26-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ROOPS-2025-20250113035326.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250426015159/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0526.htm"
+  },
+  {
+   "constNo": 27,
+   "serial": 1,
+   "candidateId": "042ab0f6-92f0-5292-a8f8-1efa13ad28b4",
+   "name": "Manjinder Singh Sirsa",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-27-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MANJI-2025-20250118050019.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220045024/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0527.htm"
+  },
+  {
+   "constNo": 27,
+   "serial": 2,
+   "candidateId": "86cd1501-baa6-56d9-b93e-3850dbf9bcd1",
+   "name": "A Dhanwati Chandela A",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-27-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/ADHAN-2025-20250118050113.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220045024/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0527.htm"
+  },
+  {
+   "constNo": 27,
+   "serial": 3,
+   "candidateId": "4073a085-d46d-542a-86a3-1a3a4f3f7911",
+   "name": "Dharam Pal Chandela",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-27-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/DHARA-2025-20250118045938.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220045024/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0527.htm"
+  },
+  {
+   "constNo": 27,
+   "serial": 5,
+   "candidateId": "bdffe757-0d5b-535e-8e38-1fe00455d2a1",
+   "name": "Shashi Pabha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-27-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SHASH-2025-20250118045959.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220045024/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0527.htm"
+  },
+  {
+   "constNo": 28,
+   "serial": 1,
+   "candidateId": "48850d5f-a9aa-5ba1-83c8-e4f82d2dd22f",
+   "name": "Shyam Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-28-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SHYAM-2025-20250118060358.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250313080304/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0528.htm"
+  },
+  {
+   "constNo": 28,
+   "serial": 2,
+   "candidateId": "21c5dfe1-4ba6-578f-b1e7-64c8b2b07a6b",
+   "name": "Surinder Kumar Setia",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-28-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SURIN-2025-20250118060650.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250313080304/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0528.htm"
+  },
+  {
+   "constNo": 28,
+   "serial": 3,
+   "candidateId": "71582e37-3982-52ec-bdfc-79735db26fb2",
+   "name": "Prem Ballabh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-28-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PREMB-2025-20250118055002.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250313080304/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0528.htm"
+  },
+  {
+   "constNo": 28,
+   "serial": 4,
+   "candidateId": "a68ec939-70b3-5ed6-ac0b-3021da838ba6",
+   "name": "Raj Kumari Dhillon",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-28-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAJKU-2025-20250118062852.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250313080304/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0528.htm"
+  },
+  {
+   "constNo": 29,
+   "serial": 1,
+   "candidateId": "0c691e32-76cd-5aff-adb1-4231a6bf24b8",
+   "name": "Jarnail Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-29-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/JARNA-2025-20250115064945.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250314152511/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0529.htm"
+  },
+  {
+   "constNo": 29,
+   "serial": 2,
+   "candidateId": "5f7aba30-f142-5c56-970d-f618f276d7e3",
+   "name": "Shveta Saini",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-29-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SHVET-2025-20250116040247.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250314152511/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0529.htm"
+  },
+  {
+   "constNo": 29,
+   "serial": 3,
+   "candidateId": "ce08fab9-2618-58b4-876b-eeb813974120",
+   "name": "Parvinder Singh Alias P S Bawa",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-29-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PARVI-2025-20250115065032.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250314152511/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0529.htm"
+  },
+  {
+   "constNo": 29,
+   "serial": 5,
+   "candidateId": "b7af1438-3bca-58a8-9766-08622221ccdb",
+   "name": "Ashok Kumar Gautam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-29-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ASHOK-2025-20250116041830.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250314152511/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0529.htm"
+  },
+  {
+   "constNo": 30,
+   "serial": 1,
+   "candidateId": "bb0f9005-449f-5918-bd3c-ae77e85ca5c7",
+   "name": "Ashish Sood",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-30-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ASHIS-2025-20250114075006.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250426024015/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0530.htm"
+  },
+  {
+   "constNo": 30,
+   "serial": 2,
+   "candidateId": "07c2da46-5601-532a-b9b4-357789c02bd4",
+   "name": "Parveen Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-30-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PARVE-2025-20250114081903.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250426024015/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0530.htm"
+  },
+  {
+   "constNo": 30,
+   "serial": 3,
+   "candidateId": "2f9cd73f-fa12-5908-b6e5-46634d18ecb6",
+   "name": "Harbani Kaur",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-30-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/HARBA-2025-20250116081042.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250426024015/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0530.htm"
+  },
+  {
+   "constNo": 30,
+   "serial": 5,
+   "candidateId": "59834b17-5a02-5653-a034-b8c5a02379bf",
+   "name": "Ravi Partap Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-30-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAVIP-2025-20250117094640.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250426024015/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0530.htm"
+  },
+  {
+   "constNo": 31,
+   "serial": 1,
+   "candidateId": "4389da55-bef2-58e9-943a-8461c834e22d",
+   "name": "Pankaj Kumar Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-31-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PANKA-2025-20250120035902.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220094804/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0531.htm"
+  },
+  {
+   "constNo": 31,
+   "serial": 2,
+   "candidateId": "27a235a0-22b6-5ed3-8a3e-78f1ebd5d8b0",
+   "name": "Mahinder Yadav",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-31-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MAHIN-2025-20250120040017.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220094804/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0531.htm"
+  },
+  {
+   "constNo": 31,
+   "serial": 3,
+   "candidateId": "c1fe66e9-6bd8-5f92-8fcb-d30c8b92823a",
+   "name": "Jitender Solanki",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-31-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/JITEN-2025-20250120035940.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220094804/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0531.htm"
+  },
+  {
+   "constNo": 31,
+   "serial": 4,
+   "candidateId": "47f70e90-f5ce-5bf1-82d9-3a0b5e65aa42",
+   "name": "Krishna Thakur",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-31-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/KRISH-2025-20250120035835.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250220094804/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0531.htm"
+  },
+  {
+   "constNo": 32,
+   "serial": 1,
+   "candidateId": "68f2a3e6-dc52-5615-9493-258736281879",
+   "name": "Pawan Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-32-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PAWAN-2025-20250120013157.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250314165938/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0532.htm"
+  },
+  {
+   "constNo": 32,
+   "serial": 2,
+   "candidateId": "1085fada-7c47-5ac9-a140-003144a7d4c3",
+   "name": "Posh Balyan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-32-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/POSHB-2025-20250120013228.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250314165938/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0532.htm"
+  },
+  {
+   "constNo": 32,
+   "serial": 3,
+   "candidateId": "dcaa3ef2-648b-5cb4-8482-aa2f3fd739e1",
+   "name": "Mukesh Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-32-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MUKES-2025-20250117084057.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250314165938/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0532.htm"
+  },
+  {
+   "constNo": 32,
+   "serial": 5,
+   "candidateId": "c371b2ff-dcfd-5c91-b327-0492f9a284d8",
+   "name": "Mani Ram",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-32-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MANIR-2025-20250120012552.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250314165938/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0532.htm"
+  },
+  {
+   "constNo": 33,
+   "serial": 1,
+   "candidateId": "7be06802-9f93-5bc6-978d-7882bf49d0c0",
+   "name": "Parduymn Singh Rajput",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-33-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PARDU-2025-20250115085232.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250919142822/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0533.htm"
+  },
+  {
+   "constNo": 33,
+   "serial": 2,
+   "candidateId": "b8abbb55-a86a-5860-9185-70c43edc319a",
+   "name": "Vinay Mishra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-33-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VINAY-2025-20250116073738.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250919142822/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0533.htm"
+  },
+  {
+   "constNo": 33,
+   "serial": 3,
+   "candidateId": "1da793d2-6829-5c68-a585-5042b656aa07",
+   "name": "Adarsh Shastri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-33-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ADARS-2025-20250116075910.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250919142822/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0533.htm"
+  },
+  {
+   "constNo": 33,
+   "serial": 5,
+   "candidateId": "5fdc9b49-952b-59e5-88e3-e92d7256c7a5",
+   "name": "Pardeep Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-33-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PARDE-2025-20250117075900.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250919142822/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0533.htm"
+  },
+  {
+   "constNo": 34,
+   "serial": 1,
+   "candidateId": "05383d2d-d9e7-5796-987c-6973ca9098df",
+   "name": "Sandeep Sehrawat",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-34-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SANDE-2025-20250116071128.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250316115849/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0534.htm"
+  },
+  {
+   "constNo": 34,
+   "serial": 2,
+   "candidateId": "8cae1adf-7cef-5b9c-a9b1-ef070249609a",
+   "name": "Sumesh Shokeen",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-34-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SUMES-2025-20250117060440.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250316115849/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0534.htm"
+  },
+  {
+   "constNo": 34,
+   "serial": 3,
+   "candidateId": "ecd6cb6c-3546-5102-8d29-ea10bf2dac30",
+   "name": "Raghvinder Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-34-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAGHV-2025-20250115064426.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250316115849/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0534.htm"
+  },
+  {
+   "constNo": 34,
+   "serial": 5,
+   "candidateId": "a74cd7df-4384-54fc-bdb8-60b7bb9189ae",
+   "name": "Kamlesh Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-34-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KAMLE-2025-20250117072113.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250316115849/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0534.htm"
+  },
+  {
+   "constNo": 35,
+   "serial": 1,
+   "candidateId": "7a70f78c-400d-5123-993d-43f0b9836554",
+   "name": "Neelam Pahalwan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-35-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/NEELA-2025-20250114061746.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012091257/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0535.htm"
+  },
+  {
+   "constNo": 35,
+   "serial": 2,
+   "candidateId": "82b46963-874f-53e2-90c5-96c8027c4ea0",
+   "name": "Tarun Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-35-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/TARUN-2025-20250116045823.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012091257/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0535.htm"
+  },
+  {
+   "constNo": 35,
+   "serial": 3,
+   "candidateId": "3fe92dc1-5474-5713-affc-bd0a8baf2840",
+   "name": "Sushma Devi Yadav",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-35-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SUSHM-2025-20250116053532.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012091257/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0535.htm"
+  },
+  {
+   "constNo": 35,
+   "serial": 5,
+   "candidateId": "da33b86a-a50a-52af-aed6-fede0e66b6d4",
+   "name": "Rohit",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-35-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ROHIT-2025-20250116052627.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012091257/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0535.htm"
+  },
+  {
+   "constNo": 36,
+   "serial": 1,
+   "candidateId": "2e61733e-71c2-5b70-89e9-be9d6d8f90b9",
+   "name": "Kailash Gahlot",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-36-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KAILA-2025-20250115052016.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250528012327/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0536.htm"
+  },
+  {
+   "constNo": 36,
+   "serial": 2,
+   "candidateId": "a9c0a42e-507e-536d-987e-74b766a20cc3",
+   "name": "Surender Bhardwaj",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-36-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SUREN-2025-20250115043432.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250528012327/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0536.htm"
+  },
+  {
+   "constNo": 36,
+   "serial": 3,
+   "candidateId": "c90a2513-47b8-5279-87e7-7919a57a6d9e",
+   "name": "Col Devinder Kumar Sehrawat",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-36-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/COLON-2025-20250115040732.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250528012327/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0536.htm"
+  },
+  {
+   "constNo": 36,
+   "serial": 5,
+   "candidateId": "1c1e76fc-2821-5491-a1f5-d67a9205ca6f",
+   "name": "Kamal Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-36-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/KAMAL-2025-20250117064603.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250528012327/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0536.htm"
+  },
+  {
+   "constNo": 37,
+   "serial": 1,
+   "candidateId": "c8351e4a-eac0-5c56-ad12-a19f6d5b44e8",
+   "name": "Kuldeep Solanki",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-37-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/KULDE-2025-20250116065154.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250318072109/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0537.htm"
+  },
+  {
+   "constNo": 37,
+   "serial": 2,
+   "candidateId": "57bb5138-bb99-5f15-ab4d-56d22059bd8c",
+   "name": "Joginder Solanki",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-37-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JOGIN-2025-20250116062447.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250318072109/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0537.htm"
+  },
+  {
+   "constNo": 37,
+   "serial": 3,
+   "candidateId": "73330ce3-7128-54a6-9530-3c0cfa268f50",
+   "name": "Mange Ram",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-37-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MANGE-2025-20250117042028.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250318072109/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0537.htm"
+  },
+  {
+   "constNo": 37,
+   "serial": 5,
+   "candidateId": "53b86155-cbcd-508b-a7ac-c443d837fe74",
+   "name": "Geeta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-37-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/GEETA-2025-20250115045816.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250318072109/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0537.htm"
+  },
+  {
+   "constNo": 38,
+   "serial": 1,
+   "candidateId": "49431ffc-b767-54df-83f7-6214ee9d6f7e",
+   "name": "Virender Singh Kadian",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-38-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VIREN-2025-20250116062233.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250806140515/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0538.htm"
+  },
+  {
+   "constNo": 38,
+   "serial": 2,
+   "candidateId": "2f4f84be-cc9a-51d5-890c-bb991341cc62",
+   "name": "Bhuvan Tanwar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-38-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/BHUVA-2025-20250117051600.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250806140515/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0538.htm"
+  },
+  {
+   "constNo": 38,
+   "serial": 3,
+   "candidateId": "574f641c-b9a7-57a5-a15c-150e1de7a78a",
+   "name": "Pradeep Kumar Upmanyu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-38-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PRADE-2025-20250117020644.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250806140515/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0538.htm"
+  },
+  {
+   "constNo": 38,
+   "serial": 5,
+   "candidateId": "c1aef253-5846-56ef-93bb-8406d9659b65",
+   "name": "Namit Kumar Gautam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-38-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/2025/ac/E28/U05/38/1736795790Screenshot20240516155553Drive.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250806140515/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0538.htm"
+  },
+  {
+   "constNo": 39,
+   "serial": 1,
+   "candidateId": "39ecce62-fdc1-552f-a751-b3d5b1d2b8fa",
+   "name": "Umang Bajaj",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-39-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/UMANG-2025-20250116094158.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012152701/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0539.htm"
+  },
+  {
+   "constNo": 39,
+   "serial": 2,
+   "candidateId": "0924bd28-09f0-5ea1-901e-68cfa7a6e0b8",
+   "name": "Durgesh Pathak",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-39-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/DURGE-2025-20250116091341.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012152701/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0539.htm"
+  },
+  {
+   "constNo": 39,
+   "serial": 3,
+   "candidateId": "c1c03c10-71a9-579a-8de4-a98a84294ba3",
+   "name": "Vineet Yadav",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-39-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/VINEE-2025-20250116092626.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012152701/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0539.htm"
+  },
+  {
+   "constNo": 39,
+   "serial": 5,
+   "candidateId": "d4c80dc0-6d76-554f-919f-2c588bde4df9",
+   "name": "Praveen Kumar Bharti",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-39-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PRAVE-2025-20250114070947.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012152701/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0539.htm"
+  },
+  {
+   "constNo": 40,
+   "serial": 1,
+   "candidateId": "1aea5bc2-cc73-5300-b136-5574ec2f146c",
+   "name": "Parvesh Sahib Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-40-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PARVE-2025-20250115054344.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251025120530/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0540.htm?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts"
+  },
+  {
+   "constNo": 40,
+   "serial": 2,
+   "candidateId": "6413c341-266b-5b17-b900-863d440cf48a",
+   "name": "Arvind Kejriwal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-40-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/ARVIN-2025-20250116111839.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251025120530/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0540.htm?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts"
+  },
+  {
+   "constNo": 40,
+   "serial": 3,
+   "candidateId": "8801f25e-26cf-5adf-8ab9-87cc3c32e5a3",
+   "name": "Sandeep Dikshit",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-40-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SANDE-2025-20250116054828.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251025120530/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0540.htm?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts"
+  },
+  {
+   "constNo": 40,
+   "serial": 5,
+   "candidateId": "a329b032-e609-5233-9a46-4424062af288",
+   "name": "Virender",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-40-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VIREN-2025-20250117121210.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251025120530/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0540.htm?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts"
+  },
+  {
+   "constNo": 41,
+   "serial": 1,
+   "candidateId": "2306156f-2bab-58ba-9189-40e8b142f3fd",
+   "name": "Tarvinder Singh Marwah",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-41-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/TARVI-2025-20250117121316.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208135848/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0541.htm"
+  },
+  {
+   "constNo": 41,
+   "serial": 2,
+   "candidateId": "26c2b8d0-c711-5315-be5d-3d1004063313",
+   "name": "Manish Sisodia",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-41-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MANIS-2025-20250116085757.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208135848/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0541.htm"
+  },
+  {
+   "constNo": 41,
+   "serial": 3,
+   "candidateId": "fc138a54-baff-526d-848b-5cb0b0d3f108",
+   "name": "Farhad Suri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-41-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/FARHA-2025-20250116094648.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208135848/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0541.htm"
+  },
+  {
+   "constNo": 41,
+   "serial": 5,
+   "candidateId": "9a9fcf33-b56e-5734-a596-d6c207069898",
+   "name": "Ashok Bambani",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-41-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ASHOK-2025-20250117085523.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208135848/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0541.htm"
+  },
+  {
+   "constNo": 42,
+   "serial": 1,
+   "candidateId": "d2f51198-e2be-57e4-9cde-ecf26f202ada",
+   "name": "Neeraj Basoya",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-42-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/NEERA-2025-20250116032822.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502090246/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0542.htm"
+  },
+  {
+   "constNo": 42,
+   "serial": 2,
+   "candidateId": "5bf8b03e-dc46-5a49-8983-81b9313babdd",
+   "name": "Abhishek Dutt",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-42-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ABHIS-2025-20250117050831.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502090246/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0542.htm"
+  },
+  {
+   "constNo": 42,
+   "serial": 3,
+   "candidateId": "b3bd06dd-014a-5946-8148-47b750fe5191",
+   "name": "Ramesh Pahelwan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-42-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAMES-2025-20250115050307.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502090246/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0542.htm"
+  },
+  {
+   "constNo": 42,
+   "serial": 5,
+   "candidateId": "f6b5b3e6-8b40-5316-bcd6-306df471a6b1",
+   "name": "Parteek Gupta",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-42-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PARTE-2025-20250117030319.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502090246/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0542.htm"
+  },
+  {
+   "constNo": 43,
+   "serial": 1,
+   "candidateId": "60f7e541-b69b-5f21-bb1b-3970df569d39",
+   "name": "Satish Upadhyay",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-43-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SATIS-2025-20250120011051.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250319062936/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0543.htm"
+  },
+  {
+   "constNo": 43,
+   "serial": 2,
+   "candidateId": "d1e8792a-7c85-50f4-8dfb-c7f9ba62f334",
+   "name": "Somnath Bharti",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-43-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SOMNA-2025-20250120124925.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250319062936/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0543.htm"
+  },
+  {
+   "constNo": 43,
+   "serial": 3,
+   "candidateId": "6d163568-b4f0-57d2-8292-fea8a3f96008",
+   "name": "Jitender Kumar Kochar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-43-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/JITEN-2025-20250120011113.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250319062936/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0543.htm"
+  },
+  {
+   "constNo": 43,
+   "serial": 5,
+   "candidateId": "f46e7e4a-b3f3-5ace-960f-e9813d6ce433",
+   "name": "Charanjeet Kaur",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-43-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/CHARA-2025-20250120124940.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250319062936/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0543.htm"
+  },
+  {
+   "constNo": 44,
+   "serial": 1,
+   "candidateId": "40c7a7a8-9836-54e4-9315-9851468e534c",
+   "name": "Anil Kumar Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-44-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/ANILK-2025-20250118043517.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208102727/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0544.htm"
+  },
+  {
+   "constNo": 44,
+   "serial": 2,
+   "candidateId": "b6db4c64-e0ce-5676-9bc3-57834abb1b21",
+   "name": "Pramila Tokas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-44-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PRAMI-2025-20250115043357.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208102727/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0544.htm"
+  },
+  {
+   "constNo": 44,
+   "serial": 3,
+   "candidateId": "54733af8-6fab-5575-ac2b-28cfd0478147",
+   "name": "Vishesh Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-44-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VISHE-2025-20250117073305.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208102727/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0544.htm"
+  },
+  {
+   "constNo": 44,
+   "serial": 5,
+   "candidateId": "04a4ee34-6290-53a0-a726-d9f273d4a4a1",
+   "name": "Sunil Kain",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-44-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SUNIL-2025-20250116061945.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208102727/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0544.htm"
+  },
+  {
+   "constNo": 45,
+   "serial": 1,
+   "candidateId": "48e8b501-0560-5948-aea1-c7bd33681d21",
+   "name": "Gajender Singh Yadav",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-45-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/GAJEN-2025-20250114053243.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011154122/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0545.htm"
+  },
+  {
+   "constNo": 45,
+   "serial": 2,
+   "candidateId": "ad1f9eef-fc88-5fe5-bb6b-0edad53c68e7",
+   "name": "Mahender Chaudhary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-45-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MAHEN-2025-20250114063211.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011154122/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0545.htm"
+  },
+  {
+   "constNo": 45,
+   "serial": 3,
+   "candidateId": "889a41f3-12ea-5ca8-a29c-5b0ef3468aa9",
+   "name": "Balyogi Baba Balaknath",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-45-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/BALYO-2025-20250116055756.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011154122/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0545.htm"
+  },
+  {
+   "constNo": 45,
+   "serial": 4,
+   "candidateId": "824a1d84-e855-5f2d-91f0-6b7d756f3e61",
+   "name": "Pushpa Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-45-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PUSHP-2025-20250115023043.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011154122/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0545.htm"
+  },
+  {
+   "constNo": 46,
+   "serial": 1,
+   "candidateId": "a232c8c9-4f3f-5e4d-b709-69634c4f3a8c",
+   "name": "Kartar Singh Tanwar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-46-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KARTA-2025-20250115075115.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250424041055/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0546.htm"
+  },
+  {
+   "constNo": 46,
+   "serial": 2,
+   "candidateId": "566f6920-6d53-597f-8c3e-b2b678caa2dc",
+   "name": "Brahm Singh Tanwar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-46-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/BRAHM-2025-20250117061733.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250424041055/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0546.htm"
+  },
+  {
+   "constNo": 46,
+   "serial": 3,
+   "candidateId": "152e259e-8cd7-59fd-98dd-252fa1e25e54",
+   "name": "Rajender Singh Tanwar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-46-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAJEN-2025-20250116081845.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250424041055/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0546.htm"
+  },
+  {
+   "constNo": 46,
+   "serial": 5,
+   "candidateId": "ed06f7a9-04f7-5e60-bfed-8e58101db830",
+   "name": "Brij Lal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-46-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/BRIJL-2025-20250117063209.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250424041055/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0546.htm"
+  },
+  {
+   "constNo": 47,
+   "serial": 1,
+   "candidateId": "1454f52f-00e3-5626-9f8c-6546d7572a68",
+   "name": "Prem Chauhan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-47-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PREMC-2025-20250116051437.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250529082827/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0547.htm"
+  },
+  {
+   "constNo": 47,
+   "serial": 2,
+   "candidateId": "a32f7ed6-9d66-5bf4-ab81-42f85a0915ba",
+   "name": "Deepak Tanwar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-47-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/DEEPA-2025-20250117092007.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250529082827/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0547.htm"
+  },
+  {
+   "constNo": 47,
+   "serial": 3,
+   "candidateId": "deeea34c-0229-5fa2-8754-f0ac3ee74791",
+   "name": "Rajesh Chauhan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-47-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAJES-2025-20250115044624.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250529082827/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0547.htm"
+  },
+  {
+   "constNo": 47,
+   "serial": 4,
+   "candidateId": "67b09f86-880a-5642-a0c4-d5842a54a534",
+   "name": "Asmita",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-47-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ASMIT-2025-20250116054653.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250529082827/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0547.htm"
+  },
+  {
+   "constNo": 48,
+   "serial": 1,
+   "candidateId": "fbc89107-45f0-50d8-aa3d-af5d80a2bb02",
+   "name": "Dr. Ajay Dutt",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-48-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DRAJ-2025-20250115044220.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250320084847/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0548.htm"
+  },
+  {
+   "constNo": 48,
+   "serial": 2,
+   "candidateId": "f592d707-9f01-5283-a84d-51c441c2ea89",
+   "name": "Khushi Ram Chunar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-48-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KHUSH-2025-20250115042539.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250320084847/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0548.htm"
+  },
+  {
+   "constNo": 48,
+   "serial": 3,
+   "candidateId": "04b074a6-3d6b-5351-bba1-1b2641960cbe",
+   "name": "Jai Prakash",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-48-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JAIPR-2025-20250115050536.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250320084847/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0548.htm"
+  },
+  {
+   "constNo": 48,
+   "serial": 5,
+   "candidateId": "5bf81abf-6753-5028-aa97-3779a1187cca",
+   "name": "Sewa Dass",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-48-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SEWAD-2025-20250117061720.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250320084847/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0548.htm"
+  },
+  {
+   "constNo": 49,
+   "serial": 1,
+   "candidateId": "694c2573-42da-5e31-94a4-a3c85c76b497",
+   "name": "Chandan Kumar Choudhary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-49-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/CHAND-2025-20250117024526.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502061955/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0549.htm"
+  },
+  {
+   "constNo": 49,
+   "serial": 2,
+   "candidateId": "41632c0a-c695-568e-b52d-ea62af61624b",
+   "name": "Dinesh Mohaniya",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-49-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/DINES-2025-20250115050003.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502061955/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0549.htm"
+  },
+  {
+   "constNo": 49,
+   "serial": 3,
+   "candidateId": "44c2fbab-ff3b-5ce3-a1ad-18705d1f3f93",
+   "name": "Harsh Choudhary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-49-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/HARSH-2025-20250116044315.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502061955/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0549.htm"
+  },
+  {
+   "constNo": 49,
+   "serial": 4,
+   "candidateId": "fd342e4e-71c4-5dce-9400-e9b19ce6202c",
+   "name": "Mohd Zakiullah",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-49-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MOHDZ-2025-20250118023319.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502061955/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0549.htm"
+  },
+  {
+   "constNo": 50,
+   "serial": 1,
+   "candidateId": "751ec595-5bb0-5907-b2c9-30d8479d7b3b",
+   "name": "Shikha Roy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-50-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SHIKH-2025-20250117023104.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250809111740/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0550.htm"
+  },
+  {
+   "constNo": 50,
+   "serial": 2,
+   "candidateId": "d8e6de69-01d2-5b0f-9466-6298c9951201",
+   "name": "Saurabh Bharadwaj",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-50-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SAURA-2025-20250116045358.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250809111740/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0550.htm"
+  },
+  {
+   "constNo": 50,
+   "serial": 3,
+   "candidateId": "0c19b868-c0f6-585c-a60e-22e0a4bf3b3d",
+   "name": "Garvit Singhvi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-50-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/GARVI-2025-20250118043213.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250809111740/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0550.htm"
+  },
+  {
+   "constNo": 50,
+   "serial": 5,
+   "candidateId": "f4c789c9-275c-5ca2-b21f-8f8738ac1a3e",
+   "name": "Niyati Choudhary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-50-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/NIYAT-2025-20250118043152.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250809111740/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0550.htm"
+  },
+  {
+   "constNo": 51,
+   "serial": 1,
+   "candidateId": "6c1b071d-27bd-5774-8c71-02dd6fbe3894",
+   "name": "Atishi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-51-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/ATISH-2025-20250114032556.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208132016/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0551.htm"
+  },
+  {
+   "constNo": 51,
+   "serial": 2,
+   "candidateId": "f17a31aa-cdb6-5ce6-863c-9d8353b925a9",
+   "name": "Ramesh Bidhuri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-51-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAMES-2025-20250115034245.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208132016/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0551.htm"
+  },
+  {
+   "constNo": 51,
+   "serial": 3,
+   "candidateId": "4ebd56a1-7033-5347-9b12-19291e8bc434",
+   "name": "Alka Lamba",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-51-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ALKAL-2025-20250114050403.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208132016/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0551.htm"
+  },
+  {
+   "constNo": 51,
+   "serial": 5,
+   "candidateId": "22533fc2-2c15-5d11-9f44-c3698f76d923",
+   "name": "Pritam Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-51-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PRITA-2025-20250116075525.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208132016/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0551.htm"
+  },
+  {
+   "constNo": 52,
+   "serial": 1,
+   "candidateId": "b5c7666d-933e-50c8-8a14-a8089801a37f",
+   "name": "Sahi Ram",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-52-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/SAHIR-2025-20250115045712.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502043521/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0552.htm"
+  },
+  {
+   "constNo": 52,
+   "serial": 2,
+   "candidateId": "c6c03bc1-9f9c-53f3-8de1-032677fb124e",
+   "name": "Rohtash Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-52-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/ROHTA-2025-20250117095855.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502043521/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0552.htm"
+  },
+  {
+   "constNo": 52,
+   "serial": 3,
+   "candidateId": "738fa013-4f22-53c1-8977-c6dc4f0a8ab9",
+   "name": "Virender Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-52-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/VIREN-2025-20250117065115.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502043521/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0552.htm"
+  },
+  {
+   "constNo": 52,
+   "serial": 4,
+   "candidateId": "bfbf341d-e7a0-5a3e-badd-7f29157261c4",
+   "name": "Amjad Hasan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-52-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/AMJAD-2025-20250117095952.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250502043521/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0552.htm"
+  },
+  {
+   "constNo": 53,
+   "serial": 1,
+   "candidateId": "ce010717-ef43-5208-a8fa-2a8c3ccb76c9",
+   "name": "Ram Singh Netaji",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-53-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAMSI-2025-20250116072651.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250811004558/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0553.htm"
+  },
+  {
+   "constNo": 53,
+   "serial": 2,
+   "candidateId": "0cf541fe-49e8-5693-8e0d-5798744d5cab",
+   "name": "Narayan Dutt Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-53-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/NARAY-2025-20250116072449.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250811004558/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0553.htm"
+  },
+  {
+   "constNo": 53,
+   "serial": 3,
+   "candidateId": "4462352b-0abb-5710-8d86-0007b35d9c6a",
+   "name": "Arjun Singh Bhadana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-53-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/ARJUN-2025-20250117045254.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250811004558/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0553.htm"
+  },
+  {
+   "constNo": 53,
+   "serial": 4,
+   "candidateId": "b8b59fd2-86b5-5383-b707-ec7676451737",
+   "name": "Pardeep",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-53-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PARDE-2025-20250116072559.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250811004558/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0553.htm"
+  },
+  {
+   "constNo": 54,
+   "serial": 1,
+   "candidateId": "7863655a-7ef4-52a7-905f-b6c9ac0ba03d",
+   "name": "Amanatullah Khan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-54-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/AMANA-2025-20250116054228.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250320164026/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0554.htm"
+  },
+  {
+   "constNo": 54,
+   "serial": 2,
+   "candidateId": "9b63fc03-c477-581d-8bc5-036a1bd0083c",
+   "name": "Manish Chaudhary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-54-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MANIS-2025-20250115041055.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250320164026/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0554.htm"
+  },
+  {
+   "constNo": 54,
+   "serial": 3,
+   "candidateId": "21580bf5-3a4c-5e60-b7e2-2492322fab80",
+   "name": "Shifa Ur Rehman Khan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-54-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SHIFA-2025-20250117033403.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250320164026/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0554.htm"
+  },
+  {
+   "constNo": 54,
+   "serial": 4,
+   "candidateId": "ec0fd38f-d8b2-5489-abdb-28ad0462c0e7",
+   "name": "Ariba Khan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-54-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ARIBA-2025-20250116022653.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250320164026/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0554.htm"
+  },
+  {
+   "constNo": 55,
+   "serial": 1,
+   "candidateId": "3c1ba9e2-dbd1-539f-baa8-6898d28c68f9",
+   "name": "Ravi Kant",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-55-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAVIK-2025-20250117063210.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250807163635/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0555.htm"
+  },
+  {
+   "constNo": 55,
+   "serial": 2,
+   "candidateId": "58b508b0-177a-5d26-9d94-e42567cddf9d",
+   "name": "Anjana Parcha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-55-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ANJAN-2025-20250116072947.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250807163635/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0555.htm"
+  },
+  {
+   "constNo": 55,
+   "serial": 3,
+   "candidateId": "b7e579b6-b312-521c-8938-ac5c80b6e3d5",
+   "name": "Amardeep",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-55-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/AMARD-2025-20250117043436.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250807163635/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0555.htm"
+  },
+  {
+   "constNo": 55,
+   "serial": 4,
+   "candidateId": "2844c3f9-47b1-5a69-8a2d-e04b32528421",
+   "name": "Vicky",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-55-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VICKY-2025-20250114044908.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250807163635/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0555.htm"
+  },
+  {
+   "constNo": 56,
+   "serial": 1,
+   "candidateId": "bc5dec49-1ba2-59b4-ac58-13753b8b0e9b",
+   "name": "Kuldeep Kumar (Monu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-56-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/KULDE-2025-20250116064243.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208132040/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0556.htm"
+  },
+  {
+   "constNo": 56,
+   "serial": 2,
+   "candidateId": "d850151d-a4e8-5a46-ab28-9bd1baf8cdff",
+   "name": "Priyanka Gautam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-56-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PRIYA-2025-20250117052119.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208132040/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0556.htm"
+  },
+  {
+   "constNo": 56,
+   "serial": 3,
+   "candidateId": "fb4c161f-c16c-58ee-9751-98678354d1ac",
+   "name": "Akshay Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-56-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/AKSHA-2025-20250117040543.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208132040/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0556.htm"
+  },
+  {
+   "constNo": 56,
+   "serial": 4,
+   "candidateId": "ea9ff428-a654-57df-9908-1d3798336775",
+   "name": "Mukesh Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-56-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/MUKES-2025-20250116063831.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208132040/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0556.htm"
+  },
+  {
+   "constNo": 57,
+   "serial": 1,
+   "candidateId": "9020defe-6b93-5956-81e8-22fdd5439ffa",
+   "name": "Ravinder Singh Negi (Ravi Negi)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-57-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAVIN-2025-20250116090800.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208115841/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0557.htm"
+  },
+  {
+   "constNo": 57,
+   "serial": 2,
+   "candidateId": "4c5e1c8f-c603-5470-9712-d77e4800517b",
+   "name": "Avadh Ojha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-57-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/AVADH-2025-20250116101407.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208115841/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0557.htm"
+  },
+  {
+   "constNo": 57,
+   "serial": 3,
+   "candidateId": "5a619766-a14e-5ed8-adf6-7ec103f6298d",
+   "name": "Anil Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-57-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ANILK-2025-20250116093212.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208115841/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0557.htm"
+  },
+  {
+   "constNo": 57,
+   "serial": 4,
+   "candidateId": "69bb25ec-0fad-5e57-bf5e-c9c52fbed144",
+   "name": "Om Shankar Pandey",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-57-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/2025/ac/E28/U05/57/1736839588Picom8Jan2025jpg.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208115841/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0557.htm"
+  },
+  {
+   "constNo": 58,
+   "serial": 1,
+   "candidateId": "640ed630-f87a-545b-838f-ce718e04108b",
+   "name": "Abhay Verma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-58-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ABHAY-2025-20250115033037.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011145412/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0558.htm"
+  },
+  {
+   "constNo": 58,
+   "serial": 2,
+   "candidateId": "f4547670-a3ca-57b5-b0f6-f2079843c8af",
+   "name": "B B Tyagi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-58-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/BBTYA-2025-20250116115500.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011145412/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0558.htm"
+  },
+  {
+   "constNo": 58,
+   "serial": 3,
+   "candidateId": "efe848f2-c7ac-51b2-8d8f-bc43c27cfe71",
+   "name": "Sumit Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-58-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SUMIT-2025-20250116011430.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011145412/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0558.htm"
+  },
+  {
+   "constNo": 58,
+   "serial": 5,
+   "candidateId": "9e50614a-aadb-5d55-a512-5679d691049c",
+   "name": "Mohd Waqar Choudhary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-58-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MOHDW-2025-20250116024727.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011145412/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0558.htm"
+  },
+  {
+   "constNo": 59,
+   "serial": 1,
+   "candidateId": "d7974416-9617-520b-a8ab-821eaa24cc35",
+   "name": "Om Prakash Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-59-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/OMPRA-2025-20250115015851.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250301191709/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0559.htm"
+  },
+  {
+   "constNo": 59,
+   "serial": 2,
+   "candidateId": "50fa5304-efda-5af1-b762-e635c4e4ac33",
+   "name": "Deepak Singhal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-59-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DEEPA-2025-20250117020428.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250301191709/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0559.htm"
+  },
+  {
+   "constNo": 59,
+   "serial": 3,
+   "candidateId": "bb01c11e-412d-5175-8ecf-3fb6ef4dcc5a",
+   "name": "Rajiv Chaudhary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-59-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAJIV-2025-20250116012408.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250301191709/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0559.htm"
+  },
+  {
+   "constNo": 59,
+   "serial": 5,
+   "candidateId": "ec457190-3420-5acc-a02b-5935387cb2b3",
+   "name": "Rajesh Kumar Yadav",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-59-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/RAJES-2025-20250117052039.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250301191709/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0559.htm"
+  },
+  {
+   "constNo": 60,
+   "serial": 1,
+   "candidateId": "8cb2bcb0-8396-5601-872d-83186c741ce4",
+   "name": "Dr Anil Goyal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-60-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DRAN-2025-20250116035657.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011234707/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0560.htm"
+  },
+  {
+   "constNo": 60,
+   "serial": 2,
+   "candidateId": "26a0dc15-a329-5593-bd8f-375ee1b3fd3a",
+   "name": "Vikas Bagga Ca",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-60-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VIKAS-2025-20250115062157.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011234707/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0560.htm"
+  },
+  {
+   "constNo": 60,
+   "serial": 3,
+   "candidateId": "9faafac3-cf81-5f7a-9736-50227e542170",
+   "name": "Gurcharan Singh (Raju)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-60-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/GURCH-2025-20250115051922.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011234707/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0560.htm"
+  },
+  {
+   "constNo": 60,
+   "serial": 5,
+   "candidateId": "db0a3598-7f56-5374-9ef9-abe1d393e86a",
+   "name": "Amar Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-60-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/AMARS-2025-20250116044648.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251011234707/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0560.htm"
+  },
+  {
+   "constNo": 61,
+   "serial": 1,
+   "candidateId": "3126c369-2e97-5268-9954-d2b764179cb1",
+   "name": "Arvinder Singh Lovely",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-61-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ARVIN-2025-20250116062739.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250301054731/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0561.htm"
+  },
+  {
+   "constNo": 61,
+   "serial": 2,
+   "candidateId": "9f1f58a0-fce8-5d60-8349-05b8d4a882e4",
+   "name": "Naveen Chaudhary (Deepu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-61-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/NAVEE-2025-20250116061127.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250301054731/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0561.htm"
+  },
+  {
+   "constNo": 61,
+   "serial": 3,
+   "candidateId": "a07dfd5f-d352-5559-a7db-4e2d8d4ac046",
+   "name": "Kamal Arora (Dabbu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-61-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KAMAL-2025-20250116070154.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250301054731/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0561.htm"
+  },
+  {
+   "constNo": 61,
+   "serial": 5,
+   "candidateId": "1a4f7436-0179-50e3-898a-7fc87fc7f621",
+   "name": "Tikraj Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-61-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/TIKRA-2025-20250117075526.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250301054731/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0561.htm"
+  },
+  {
+   "constNo": 62,
+   "serial": 1,
+   "candidateId": "426d4831-c31a-50e7-a86b-c3909078927f",
+   "name": "Sanjay Goyal",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-62-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SANJA-2025-20250117040131.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250423210046/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0562.htm"
+  },
+  {
+   "constNo": 62,
+   "serial": 2,
+   "candidateId": "be1a65b6-d745-5aa5-83d4-4132e96b2bcc",
+   "name": "Jitender Singh Shunty",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-62-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/JITEN-2025-20250114062919.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250423210046/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0562.htm"
+  },
+  {
+   "constNo": 62,
+   "serial": 3,
+   "candidateId": "fe1a0ac2-8820-5ab0-8153-d39ec49cd36b",
+   "name": "Jagat Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-62-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JAGAT-2025-20250117011035.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250423210046/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0562.htm"
+  },
+  {
+   "constNo": 62,
+   "serial": 4,
+   "candidateId": "e5930e34-16f6-5a05-b11c-9ce8b2886d48",
+   "name": "Dharmindra Kumar Kaim",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-62-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DHARM-2025-20250117015204.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250423210046/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0562.htm"
+  },
+  {
+   "constNo": 63,
+   "serial": 1,
+   "candidateId": "7c287423-aa22-51fa-bd3f-c46ea29fce4d",
+   "name": "Veer Singh Dhingan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-63-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/VEERS-2025-20250116104128.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810180850/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0563.htm"
+  },
+  {
+   "constNo": 63,
+   "serial": 2,
+   "candidateId": "e3105219-f975-59eb-b34b-6d55ca275c87",
+   "name": "Ku. Rinku",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-63-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/KURI-2025-20250116113106.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810180850/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0563.htm"
+  },
+  {
+   "constNo": 63,
+   "serial": 3,
+   "candidateId": "65c9a919-b865-54cf-8fd9-cf2f49d01172",
+   "name": "Rajesh Lilothia",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-63-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/RAJES-2025-20250116103342.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810180850/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0563.htm"
+  },
+  {
+   "constNo": 63,
+   "serial": 4,
+   "candidateId": "b89ee764-c192-573c-98bf-1f4af4a89a78",
+   "name": "Manoj",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-63-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MANOJ-2025-20250118011942.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250810180850/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0563.htm"
+  },
+  {
+   "constNo": 64,
+   "serial": 1,
+   "candidateId": "314cf74e-782f-5051-a57b-6b0f99190918",
+   "name": "Jitender Mahajan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-64-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/JITEN-2025-20250115041134.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208102741/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0564.htm"
+  },
+  {
+   "constNo": 64,
+   "serial": 2,
+   "candidateId": "32942d5d-a9f4-5790-a961-e2c561da0f0a",
+   "name": "Sarita Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-64-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SARIT-2025-20250116021408.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208102741/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0564.htm"
+  },
+  {
+   "constNo": 64,
+   "serial": 3,
+   "candidateId": "753c4dc0-8312-51f6-a9ac-3cf016114c14",
+   "name": "Sureshvati",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-64-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SURES-2025-20250117024131.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208102741/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0564.htm"
+  },
+  {
+   "constNo": 64,
+   "serial": 4,
+   "candidateId": "dbca643c-9fed-553c-8955-b9f20eecc7fe",
+   "name": "Ashok Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-64-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ASHOK-2025-20250117055524.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250208102741/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0564.htm"
+  },
+  {
+   "constNo": 65,
+   "serial": 1,
+   "candidateId": "2779da75-474a-5586-a66c-11fb1c018645",
+   "name": "Chaudhary Zubair Ahmad",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-65-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/CHAUD-2025-20250113055418.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012093811/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0565.htm"
+  },
+  {
+   "constNo": 65,
+   "serial": 2,
+   "candidateId": "28c8c88f-374f-5e9c-a4d7-fa8ee4f40605",
+   "name": "Anil Kumar Sharma (Gaur)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-65-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ANILK-2025-20250115075740.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012093811/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0565.htm"
+  },
+  {
+   "constNo": 65,
+   "serial": 3,
+   "candidateId": "45ea6e3a-4bfc-5946-9f95-38921ed11059",
+   "name": "Abdul Rehman",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-65-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ABDUL-2025-20250116085557.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012093811/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0565.htm"
+  },
+  {
+   "constNo": 65,
+   "serial": 4,
+   "candidateId": "d012fc49-04fe-5871-a506-0f65f2182638",
+   "name": "Deepak Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-65-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DEEPA-2025-20250117111404.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012093811/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0565.htm"
+  },
+  {
+   "constNo": 66,
+   "serial": 1,
+   "candidateId": "1b07115a-3771-5ffa-aab1-239b4bce642b",
+   "name": "Ajay Mahawar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-66-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/AJAYM-2025-20250115051347.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012014229/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0566.htm"
+  },
+  {
+   "constNo": 66,
+   "serial": 2,
+   "candidateId": "e8a45060-7fb6-5c4a-adf3-7a66dcef8090",
+   "name": "Gaurav Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-66-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/GAURA-2025-20250116063614.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012014229/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0566.htm"
+  },
+  {
+   "constNo": 66,
+   "serial": 3,
+   "candidateId": "1f1146c6-d5dd-5d8d-b3cd-0404e52bf5cf",
+   "name": "Bhisham Sharma",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-66-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/BHISH-2025-20250117093020.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012014229/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0566.htm"
+  },
+  {
+   "constNo": 66,
+   "serial": 5,
+   "candidateId": "da255160-90c8-54f9-9baf-caf4b3e7d472",
+   "name": "Sunder Lohiya",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-66-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SUNDE-2025-20250117094938.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251012014229/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0566.htm"
+  },
+  {
+   "constNo": 67,
+   "serial": 1,
+   "candidateId": "c052d83a-1b6a-558f-a437-d70fbe8697ef",
+   "name": "Gopal Rai",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-67-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/GOPAL-2025-20250116055029.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250223055558/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0567.htm"
+  },
+  {
+   "constNo": 67,
+   "serial": 2,
+   "candidateId": "588f0670-63f8-5f0b-9ed5-dd340c067d28",
+   "name": "Anil Kumar Vashisht",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-67-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ANILK-2025-20250117023049.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250223055558/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0567.htm"
+  },
+  {
+   "constNo": 67,
+   "serial": 3,
+   "candidateId": "eee79460-7b4e-5c07-9d60-772aa3e7fef6",
+   "name": "Mohd Ishraq Khan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-67-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MOHDI-2025-20250116042818.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250223055558/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0567.htm"
+  },
+  {
+   "constNo": 67,
+   "serial": 5,
+   "candidateId": "833d3a01-2d15-5a5c-b76d-26ef61af8b79",
+   "name": "Md Nazir",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-67-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MDNA-2025-20250116071344.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250223055558/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0567.htm"
+  },
+  {
+   "constNo": 68,
+   "serial": 1,
+   "candidateId": "872203ca-eadf-5c79-9d61-d54fc0613c2d",
+   "name": "Surendra Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-68-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/SUREN-2025-20250116055741.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250214062238/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0568.htm"
+  },
+  {
+   "constNo": 68,
+   "serial": 2,
+   "candidateId": "3b62e891-bc7c-5bc5-a95b-fbbfdb45312d",
+   "name": "Praveen Nimesh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-68-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/PRAVE-2025-20250117051644.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250214062238/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0568.htm"
+  },
+  {
+   "constNo": 68,
+   "serial": 3,
+   "candidateId": "635f8262-a0f8-5dc7-b58f-a5c02dea440e",
+   "name": "Ishwar Singh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-68-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ISHWA-2025-20250117023704.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250214062238/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0568.htm"
+  },
+  {
+   "constNo": 68,
+   "serial": 4,
+   "candidateId": "acc48e28-ada1-5fc4-841a-9828b16aa850",
+   "name": "Arvind Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-68-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ARVIN-2025-20250116023253.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250214062238/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0568.htm"
+  },
+  {
+   "constNo": 69,
+   "serial": 1,
+   "candidateId": "e4a7f87f-a6f3-5097-9575-9b7ff9a28ac3",
+   "name": "Mohan Singh Bisht",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-69-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MOHAN-2025-20250116060944.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250212104440/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0569.htm"
+  },
+  {
+   "constNo": 69,
+   "serial": 2,
+   "candidateId": "6fa1a4b4-37e7-51a4-9d18-fe29d752e741",
+   "name": "Adeel Ahmad Khan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-69-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ADEEL-2025-20250116064955.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250212104440/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0569.htm"
+  },
+  {
+   "constNo": 69,
+   "serial": 3,
+   "candidateId": "350d3450-a83b-510c-946b-8a60022c770c",
+   "name": "Mohd. Tahir Hussain",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-69-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MOHD-2025-20250116063743.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250212104440/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0569.htm"
+  },
+  {
+   "constNo": 69,
+   "serial": 4,
+   "candidateId": "877a7201-b43e-5d12-bfc0-f9b82161c43d",
+   "name": "Ali Mehdi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-69-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/ALIME-2025-20250116072929.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250212104440/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0569.htm"
+  },
+  {
+   "constNo": 70,
+   "serial": 1,
+   "candidateId": "6494fa83-aec6-548d-bf26-399cecae232e",
+   "name": "Kapil Mishra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-70-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/KAPIL-2025-20250116071948.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250211043606/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0570.htm"
+  },
+  {
+   "constNo": 70,
+   "serial": 2,
+   "candidateId": "be309ca4-7b30-5ca7-8b75-0970c261340a",
+   "name": "Manoj Kumar Tyagi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-70-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/MANOJ-2025-20250116035354.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250211043606/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0570.htm"
+  },
+  {
+   "constNo": 70,
+   "serial": 3,
+   "candidateId": "e12a18fd-a831-5281-9160-99543c8df060",
+   "name": "Dr. P.K. Mishra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-70-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/U05/PHOOL-2025-20250117020845.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250211043606/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0570.htm"
+  },
+  {
+   "constNo": 70,
+   "serial": 4,
+   "candidateId": "6616309f-ae30-5e83-890c-afe8cdc89c3e",
+   "name": "Devendra Bhaiya",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2025/dl-70-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E28/2025/AC/u05/DEVEN-2025-20250117010229.jpg",
+   "sourceUrl": "https://web.archive.org/web/20250211043606/https://results.eci.gov.in/ResultAcGenFeb2025/candidateswise-U0570.htm"
+  }
+ ],
+ "unmatched": []
+}

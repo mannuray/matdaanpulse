@@ -1,0 +1,257 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Haryana_Legislative_Assembly (district column; raw wikitext read 2026-10-05)",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Haryana (23 districts incl. Hansi, 16 Dec 2025; division column)",
+  "https://en.wikipedia.org/wiki/Administrative_divisions_of_Haryana (6 revenue divisions)",
+  "https://en.wikipedia.org/wiki/Hansi_district (sub-divisions Hansi and Narnaund; ACs Hansi and Narnaund)",
+  "https://www.theweek.in/wire-updates/national/2025/12/17/des102-hr-new-district-cabinet.html (PTI: Hansi district = villages of the Hansi and Narnaund assembly constituencies, carved from Hisar)"
+ ],
+ "notes": "Current 23 districts. Hansi district (carved from Hisar, 16 Dec 2025; Hisar division) takes Narnaund (49) and Hansi (50); Wikipedia's AC list still shows them under Hisar. Gurgaon is shown as Gurugram (renamed 2016). Charkhi Dadri (2016, from Bhiwani) takes Badhra (55) and Dadri (56). Prithla (85) spans Faridabad and Palwal; kept under Faridabad as on Wikipedia. Regions are the 6 revenue divisions (Charkhi Dadri in Rohtak division; Mahendragarh and Rewari in Gurugram division; Nuh in Faridabad division).",
+ "districts": [
+  {
+   "code": "HR_PANCHKULA",
+   "name": "Panchkula"
+  },
+  {
+   "code": "HR_AMBALA",
+   "name": "Ambala"
+  },
+  {
+   "code": "HR_YAMUNANAGAR",
+   "name": "Yamunanagar"
+  },
+  {
+   "code": "HR_KURUKSHETRA",
+   "name": "Kurukshetra"
+  },
+  {
+   "code": "HR_KAITHAL",
+   "name": "Kaithal"
+  },
+  {
+   "code": "HR_KARNAL",
+   "name": "Karnal"
+  },
+  {
+   "code": "HR_PANIPAT",
+   "name": "Panipat"
+  },
+  {
+   "code": "HR_SONIPAT",
+   "name": "Sonipat"
+  },
+  {
+   "code": "HR_JIND",
+   "name": "Jind"
+  },
+  {
+   "code": "HR_FATEHABAD",
+   "name": "Fatehabad"
+  },
+  {
+   "code": "HR_SIRSA",
+   "name": "Sirsa"
+  },
+  {
+   "code": "HR_HISAR",
+   "name": "Hisar"
+  },
+  {
+   "code": "HR_HANSI",
+   "name": "Hansi"
+  },
+  {
+   "code": "HR_BHIWANI",
+   "name": "Bhiwani"
+  },
+  {
+   "code": "HR_CHARKHIDADRI",
+   "name": "Charkhi Dadri"
+  },
+  {
+   "code": "HR_ROHTAK",
+   "name": "Rohtak"
+  },
+  {
+   "code": "HR_JHAJJAR",
+   "name": "Jhajjar"
+  },
+  {
+   "code": "HR_MAHENDRAGARH",
+   "name": "Mahendragarh"
+  },
+  {
+   "code": "HR_REWARI",
+   "name": "Rewari"
+  },
+  {
+   "code": "HR_GURUGRAM",
+   "name": "Gurugram"
+  },
+  {
+   "code": "HR_NUH",
+   "name": "Nuh"
+  },
+  {
+   "code": "HR_PALWAL",
+   "name": "Palwal"
+  },
+  {
+   "code": "HR_FARIDABAD",
+   "name": "Faridabad"
+  }
+ ],
+ "regions": [
+  {
+   "code": "HR_AMBALA",
+   "name": "Ambala",
+   "districts": [
+    "HR_AMBALA",
+    "HR_KURUKSHETRA",
+    "HR_PANCHKULA",
+    "HR_YAMUNANAGAR"
+   ]
+  },
+  {
+   "code": "HR_FARIDABAD",
+   "name": "Faridabad",
+   "districts": [
+    "HR_FARIDABAD",
+    "HR_PALWAL",
+    "HR_NUH"
+   ]
+  },
+  {
+   "code": "HR_GURUGRAM",
+   "name": "Gurugram",
+   "districts": [
+    "HR_GURUGRAM",
+    "HR_MAHENDRAGARH",
+    "HR_REWARI"
+   ]
+  },
+  {
+   "code": "HR_HISAR",
+   "name": "Hisar",
+   "districts": [
+    "HR_HISAR",
+    "HR_HANSI",
+    "HR_FATEHABAD",
+    "HR_JIND",
+    "HR_SIRSA"
+   ]
+  },
+  {
+   "code": "HR_KARNAL",
+   "name": "Karnal",
+   "districts": [
+    "HR_KARNAL",
+    "HR_KAITHAL",
+    "HR_PANIPAT"
+   ]
+  },
+  {
+   "code": "HR_ROHTAK",
+   "name": "Rohtak",
+   "districts": [
+    "HR_ROHTAK",
+    "HR_BHIWANI",
+    "HR_CHARKHIDADRI",
+    "HR_JHAJJAR",
+    "HR_SONIPAT"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "HR_PANCHKULA",
+  "2": "HR_PANCHKULA",
+  "3": "HR_AMBALA",
+  "4": "HR_AMBALA",
+  "5": "HR_AMBALA",
+  "6": "HR_AMBALA",
+  "7": "HR_YAMUNANAGAR",
+  "8": "HR_YAMUNANAGAR",
+  "9": "HR_YAMUNANAGAR",
+  "10": "HR_YAMUNANAGAR",
+  "11": "HR_KURUKSHETRA",
+  "12": "HR_KURUKSHETRA",
+  "13": "HR_KURUKSHETRA",
+  "14": "HR_KURUKSHETRA",
+  "15": "HR_KAITHAL",
+  "16": "HR_KAITHAL",
+  "17": "HR_KAITHAL",
+  "18": "HR_KAITHAL",
+  "19": "HR_KARNAL",
+  "20": "HR_KARNAL",
+  "21": "HR_KARNAL",
+  "22": "HR_KARNAL",
+  "23": "HR_KARNAL",
+  "24": "HR_PANIPAT",
+  "25": "HR_PANIPAT",
+  "26": "HR_PANIPAT",
+  "27": "HR_PANIPAT",
+  "28": "HR_SONIPAT",
+  "29": "HR_SONIPAT",
+  "30": "HR_SONIPAT",
+  "31": "HR_SONIPAT",
+  "32": "HR_SONIPAT",
+  "33": "HR_SONIPAT",
+  "34": "HR_JIND",
+  "35": "HR_JIND",
+  "36": "HR_JIND",
+  "37": "HR_JIND",
+  "38": "HR_JIND",
+  "39": "HR_FATEHABAD",
+  "40": "HR_FATEHABAD",
+  "41": "HR_FATEHABAD",
+  "42": "HR_SIRSA",
+  "43": "HR_SIRSA",
+  "44": "HR_SIRSA",
+  "45": "HR_SIRSA",
+  "46": "HR_SIRSA",
+  "47": "HR_HISAR",
+  "48": "HR_HISAR",
+  "49": "HR_HANSI",
+  "50": "HR_HANSI",
+  "51": "HR_HISAR",
+  "52": "HR_HISAR",
+  "53": "HR_HISAR",
+  "54": "HR_BHIWANI",
+  "55": "HR_CHARKHIDADRI",
+  "56": "HR_CHARKHIDADRI",
+  "57": "HR_BHIWANI",
+  "58": "HR_BHIWANI",
+  "59": "HR_BHIWANI",
+  "60": "HR_ROHTAK",
+  "61": "HR_ROHTAK",
+  "62": "HR_ROHTAK",
+  "63": "HR_ROHTAK",
+  "64": "HR_JHAJJAR",
+  "65": "HR_JHAJJAR",
+  "66": "HR_JHAJJAR",
+  "67": "HR_JHAJJAR",
+  "68": "HR_MAHENDRAGARH",
+  "69": "HR_MAHENDRAGARH",
+  "70": "HR_MAHENDRAGARH",
+  "71": "HR_MAHENDRAGARH",
+  "72": "HR_REWARI",
+  "73": "HR_REWARI",
+  "74": "HR_REWARI",
+  "75": "HR_GURUGRAM",
+  "76": "HR_GURUGRAM",
+  "77": "HR_GURUGRAM",
+  "78": "HR_GURUGRAM",
+  "79": "HR_NUH",
+  "80": "HR_NUH",
+  "81": "HR_NUH",
+  "82": "HR_PALWAL",
+  "83": "HR_PALWAL",
+  "84": "HR_PALWAL",
+  "85": "HR_FARIDABAD",
+  "86": "HR_FARIDABAD",
+  "87": "HR_FARIDABAD",
+  "88": "HR_FARIDABAD",
+  "89": "HR_FARIDABAD",
+  "90": "HR_FARIDABAD"
+ }
+}

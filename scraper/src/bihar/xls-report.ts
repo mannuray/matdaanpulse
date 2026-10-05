@@ -73,15 +73,18 @@ export function parseDetailedRows(rows: Row[]): RawSeat[] {
   return seats;
 }
 
-export function parseSummaryRows(rows: Row[]): SeatSummary {
+/** `sheetName` ("U05-1"): the 2019/2020 sets label a seat "NARELA-GEN" and carry its number only in the sheet name. */
+export function parseSummaryRows(rows: Row[], sheetName?: string): SeatSummary {
   const label = text(rows[1]?.[3]);
-  const m = /^(\d+)-(.+)-\(?(GEN|SC|ST)\)?$/i.exec(label);
+  const sheetNo = sheetName ? /-(\d+)$/.exec(sheetName.trim())?.[1] : undefined;
+  const m = /^(\d+)-(.+)-\(?(GEN|SC|ST)\)?$/i.exec(label) ?? (sheetNo ? /^()(.+)-\(?(GEN|SC|ST)\)?$/i.exec(label)?.map((x, i) => (i === 1 ? sheetNo : x)) as RegExpExecArray | undefined : null);
   if (!m) throw new Error(`Summary: unrecognised constituency label "${label}"`);
   let section = '';
   const found: Record<string, number> = {};
   let pollDate = '';
   const picks: Record<string, SummaryPick> = {};
   let margin: number | null = null;
+  let plain = '';
   for (let i = 0; i < rows.length; i++) {
     const r = rows[i];
     const head = text(r[0]);
@@ -95,6 +98,19 @@ export function parseSummaryRows(rows: Row[]): SeatSummary {
     if (section.startsWith('VI.') && /^polling$/i.test(lbl)) pollDate = isoDate(text(rows[i + 1]?.[1]));
     if (section.startsWith('VII.') && /^(winner|runner-up)$/i.test(lbl)) picks[lbl.toLowerCase()] = { party: text(r[3]), name: text(r[4]), votes: num(r[5]) };
     if (section.startsWith('VII.') && /^margin$/i.test(lbl)) margin = num(r[3]);
+    // 2019/2020 plain layout: bare section headings (no roman numbers), each label in column A or B.
+    const cells = r.filter(c => c !== null && c !== undefined && String(c).trim() !== '');
+    const first = text(cells[0]);
+    if (/^(CANDIDATES|ELECTORS|VOTERS|VOTES|POLLING STATION|RESULT)$/i.test(first)) plain = first.toUpperCase();
+    if (plain && !section) {
+      if (plain === 'CANDIDATES' && /^contested$/i.test(first)) found.contested = lastNum(r);
+      if ((plain === 'ELECTORS' || plain === 'VOTERS') && /^total$/i.test(first)) found[plain === 'ELECTORS' ? 'electors' : 'voters'] = lastNum(r);
+      if (plain === 'VOTES' && /^total valid votes polled$/i.test(first)) found.totalValid = lastNum(r);
+      if (plain === 'VOTES' && /'NOTA'/i.test(first)) found.nota = lastNum(r);
+      if (/^date\(?s\)?$/i.test(first) && !pollDate) pollDate = isoDate(text(cells[1]));
+      if (plain === 'RESULT' && /^(winner|runner-up)$/i.test(first)) picks[first.toLowerCase()] = { party: text(cells[1]), name: text(cells[2]), votes: num(cells[3]) };
+      if (plain === 'RESULT' && /^margin$/i.test(first)) margin = num(cells[1]);
+    }
   }
   for (const k of ['contested', 'electors', 'voters', 'totalValid']) if (found[k] === undefined) throw new Error(`Summary ${label}: ${k} not found`);
   if (!pollDate || !picks.winner || !picks['runner-up'] || margin === null) throw new Error(`Summary ${label}: dates/result not found`);

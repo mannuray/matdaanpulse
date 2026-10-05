@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { bioFor, emitLeadersSeed, personExpr, pickCandidacy, priorCandidacies, type ResolvedPerson } from '../leaders-seed';
+import { bioFor, candidacyOf, emitLeadersSeed, personExpr, pickCandidacy, priorCandidacies, type ResolvedPerson } from '../leaders-seed';
 import type { LeadersFile } from '../leaders-data';
 
 const f: LeadersFile = {
@@ -121,5 +121,21 @@ describe('priorCandidacies ignores honorifics in ECI names', () => {
     expect(priorCandidacies('Mons Joseph', new Set(['KEC']), { year: 2026, age: 61 },
       [c(2011, 'Adv.Mons Joseph', 'KECM', 46), c(2016, 'Adv. Mons Joseph', 'KECM', 51), c(2021, 'Adv. Mons Joseph', 'KEC', 56)]).map(x => x.year))
       .toEqual([2011, 2016, 2021]);
+  });
+});
+
+describe('candidacyOf', () => {
+  const c = (name: string, serial: number) => ({ serial, name, partyId: 'BJP', sex: null, age: null, votes: 1, status: 'WON' as const });
+  it('matches on the ballot name when the candidacy gives one (Delhi 2013: Parvesh Verma ran as "Parvesh Sahib Singh")', () => {
+    const seat = [c('Parvesh Sahib Singh', 1), c('Narinder Singh Sejwal', 2)];
+    expect(candidacyOf(seat, 'Parvesh Verma', { year: 2013, const_id: 'X' })).toBeNull();
+    expect(candidacyOf(seat, 'Parvesh Verma', { year: 2013, const_id: 'X', ballot_name: 'Parvesh Sahib Singh' })!.serial).toBe(1);
+  });
+});
+
+describe('pickCandidacy prefers a candidate whose name holds every part of the leader\'s name', () => {
+  const c = (name: string, serial: number) => ({ serial, name, partyId: 'X', sex: null, age: null, votes: 1, status: 'LOST' as const });
+  it('Silli 2019: "Sudesh Mahto" is "Sudesh Kumar Mahto", not the closer-spelled "Umesh Mahto"', () => {
+    expect(pickCandidacy([c('Umesh Mahto', 1), c('Sudesh Kumar Mahto', 2)], 'Sudesh Mahto')!.serial).toBe(2);
   });
 });

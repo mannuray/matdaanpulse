@@ -1,0 +1,77 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2019_Jharkhand_Legislative_Assembly_election",
+  "note: Mahagathbandhan: JMM, Congress and RJD; the BJP and AJSU contested separately."
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "JMM",
+   "name": "JMM+",
+   "color": "#215B30",
+   "parties": [
+    "JMM",
+    "INC",
+    "RJD"
+   ]
+  },
+  {
+   "id": "AP1",
+   "name": "AJSU",
+   "color": "#E65100",
+   "parties": [
+    "AP1"
+   ]
+  },
+  {
+   "id": "JVM",
+   "name": "JVM(P)",
+   "color": "#FBC02D",
+   "parties": [
+    "JVM"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "JMM",
+  "AP1",
+  "JVM"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 41
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   85.5,
+   23.6
+  ],
+  "map_url": "/geo/jh_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0140000-0000-4000-8000-000000002009",
+  "a0140000-0000-4000-8000-000000002014"
+ ],
+ "history_years": [
+  2009,
+  2014
+ ],
+ "compare_with": [
+  "a0140000-0000-4000-8000-000000002014"
+ ]
+}

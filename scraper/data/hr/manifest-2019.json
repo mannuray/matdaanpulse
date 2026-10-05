@@ -1,0 +1,84 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2019_Haryana_Legislative_Assembly_election",
+  "note: No pre-poll alliance held: the BSP's tie-ups with LSP and then JJP ended before the poll."
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "JJP",
+   "name": "JJP",
+   "color": "#FBC02D",
+   "parties": [
+    "JJP2"
+   ]
+  },
+  {
+   "id": "INLD",
+   "name": "INLD",
+   "color": "#2E7D32",
+   "parties": [
+    "INLD"
+   ]
+  },
+  {
+   "id": "BSP",
+   "name": "BSP",
+   "color": "#1E40AF",
+   "parties": [
+    "BSP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "INC",
+  "JJP",
+  "INLD",
+  "BSP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 46
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   76.1,
+   29.1
+  ],
+  "map_url": "/geo/hr_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0110000-0000-4000-8000-000000002009",
+  "a0110000-0000-4000-8000-000000002014"
+ ],
+ "history_years": [
+  2009,
+  2014
+ ],
+ "compare_with": [
+  "a0110000-0000-4000-8000-000000002014"
+ ]
+}

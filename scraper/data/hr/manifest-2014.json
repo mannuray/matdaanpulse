@@ -1,0 +1,84 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2014_Haryana_Legislative_Assembly_election",
+  "note: INLD\u2013SAD as in 2009; HJC(BL) allied with Venod Sharma's Haryana Jan Chetna Party (V)."
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "INLD",
+   "name": "INLD+",
+   "color": "#2E7D32",
+   "parties": [
+    "INLD",
+    "SAD"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "BSP",
+   "name": "BSP",
+   "color": "#1E40AF",
+   "parties": [
+    "BSP"
+   ]
+  },
+  {
+   "id": "HJCBL",
+   "name": "HJC(BL)+",
+   "color": "#8E24AA",
+   "parties": [
+    "HJCBL",
+    "HJCPV"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "INLD",
+  "INC",
+  "BSP",
+  "HJCBL"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 46
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   76.1,
+   29.1
+  ],
+  "map_url": "/geo/hr_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0110000-0000-4000-8000-000000002009"
+ ],
+ "history_years": [
+  2009
+ ],
+ "compare_with": [
+  "a0110000-0000-4000-8000-000000002009"
+ ]
+}

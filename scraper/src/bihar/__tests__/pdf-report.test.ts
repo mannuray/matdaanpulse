@@ -1,5 +1,7 @@
 // scraper/src/bihar/__tests__/pdf-report.test.ts
 import { describe, it, expect } from 'vitest';
+import * as fs from 'fs';
+import * as path from 'path';
 import { parseDetailedText, parseSummaryText, parsePartyListText, parsePerformanceText } from '../pdf-report';
 
 const DETAILED_2015 = `
@@ -198,5 +200,96 @@ describe('parseSummaryText with sourced fixes (ECI pages with broken figures)', 
   it('takes voters and total valid votes from the fix for that seat only', () => {
     const [s] = parseSummaryText(block, { 11: { voters: 18897, totalValid: 18883 } });
     expect(s).toMatchObject({ constNo: 11, electors: 23064, voters: 18897, totalValid: 18883, margin: 2000 });
+  });
+});
+
+// DL 2008 (pre-NOTA): rows lead with the Form-7 serial then the rank; "TOTAL:" and "Turn Out" are separate lines.
+const DL2008 = `
+Constituency              1. Nerela                                                      TOTAL ELECTORS :                     192649
+
+    3    1 JASWANT SINGH                      M      55        GEN         INC                   34662            0         34662      31.66
+    4    2 SHARAD KUMAR                       M      33        GEN         BSP                   33827            3         33830      30.90
+    6 10 VISHAL                               M      52        GEN         RWS                      437           0           437       0.40
+
+                                                     TOTAL:                                     109489            5         109494       56.84
+           Turn Out
+
+Constituency              2. Burari                                                      TOTAL ELECTORS :                     190130
+
+    5    1 SHRI KRISHAN                       M      51        GEN         BJP                   31997            9         32006      30.10
+
+                                                     TOTAL:                                     32006            9         32006       30.10
+           Turn Out
+`;
+
+describe('parseDetailedText, pre-NOTA layout (2008/2009)', () => {
+  it('reads the Form-7 serial, drops the rank, and closes a seat on its TOTAL line', () => {
+    const seats = parseDetailedText(DL2008);
+    expect(seats.map(s => [s.constNo, s.acName, s.electors, s.totalVotes, s.nota])).toEqual([[1, 'Nerela', 192649, 109494, null], [2, 'Burari', 190130, 32006, null]]);
+    expect(seats[0].candidates.map(c => [c.serial, c.name, c.sex, c.age, c.party, c.total])).toEqual([
+      [3, 'JASWANT SINGH', 'M', 55, 'INC', 34662], [4, 'SHARAD KUMAR', 'M', 33, 'BSP', 33830], [6, 'VISHAL', 'M', 52, 'RWS', 437]]);
+  });
+});
+
+describe('parseDetailedText, pre-NOTA page break inside a seat', () => {
+  it('skips the repeated "CAND SL." / "as per form 7" header lines', () => {
+    const text = DL2008.replace('    4    2 SHARAD KUMAR', 'CAND SL.\n                CANDIDATE NAME             SEX      AGE CATEGORY            PARTY           GENERAL\nas per form 7\n    4    2 SHARAD KUMAR');
+    expect(parseDetailedText(text)[0].candidates.map(c => c.name)).toEqual(['JASWANT SINGH', 'SHARAD KUMAR', 'VISHAL']);
+  });
+});
+
+describe('parseSummaryText, 2009 layout (indented WINNER / MARGIN)', () => {
+  it('reads Jharkhand 2009 seat 1', () => {
+    const text = fs.readFileSync(path.join(__dirname, 'fixtures/pdf-2009/jh2009-summary-1.txt'), 'utf8');
+    expect(parseSummaryText(text)).toEqual([{ constNo: 1, name: 'Rajmahal', type: 'GEN', electors: 233547, voters: 136119, contested: 12, totalValid: 136118,
+      nota: null, pollDate: '2009-11-25', winner: { party: 'BJP', name: 'Arun Mandal', votes: 51277 }, runnerUp: { party: 'JMM', name: 'Md. Tajuddin', votes: 40874 }, margin: 10403 }]);
+  });
+});
+
+describe('parseSummaryText, Odisha 2009 spelling "RUNER-UP"', () => {
+  it('reads the runner-up', () => {
+    const text = fs.readFileSync(path.join(__dirname, 'fixtures/pdf-2009/jh2009-summary-1.txt'), 'utf8').replace('RUNNER-UP ', '     RUNER-UP ');
+    expect(parseSummaryText(text)[0].runnerUp).toEqual({ party: 'JMM', name: 'Md. Tajuddin', votes: 40874 });
+  });
+});
+
+// JH 2014: section 8 (Women Candidates) is headed "DETAILED RESULTS" too, but its header has no SEX / GENERAL column.
+const JH2014_WOMEN = `
+                                  DETAILED RESULTS
+        CANDIDATE NAME                AGE CATEGORY PARTY SYMBOL                            POSTAL TOTAL         POLLED
+
+Constituency      1. Rajmahal                                             TOTAL ELECTORS :               269959
+    1 KRISHNA MAHTO                    44     GEN         JVM                                   2       1617       100.00
+TURNOUT                                     TOTAL:                                              2        1617         0.60
+`;
+const JH2014_REAL = `
+                                   DETAILED RESULTS
+        CANDIDATE NAME           SEX AGE CATEGORY PARTY SYMBOL                  GENERAL POSTAL TOTAL             POLLED
+Constituency       1. Rajmahal                                                TOTAL ELECTORS :            269959
+    1 ANANT KUMAR OJHA            M     48       GEN         BJP          Lotus             70303     69     70372     37.89
+TURNOUT                                     TOTAL:                                  70303     69     70372     68.80
+`;
+
+describe('parseDetailedText skips tables that are not the detailed results', () => {
+  it('ignores a block whose header has no SEX column, and refuses a seat that still appears twice', () => {
+    const seats = parseDetailedText(JH2014_WOMEN + JH2014_REAL);
+    expect(seats.map(s => [s.constNo, s.candidates.map(c => c.name)])).toEqual([[1, ['ANANT KUMAR OJHA']]]);
+    expect(() => parseDetailedText(JH2014_REAL + JH2014_REAL)).toThrow(/seat 1 appears twice/);
+  });
+});
+
+describe('parseDetailedText, sex glued to the name (JH 2014)', () => {
+  it('splits "BAJRANGI PRASAD YADAV M" into name and sex', () => {
+    const text = JH2014_REAL.replace('    1 ANANT KUMAR OJHA            M     48       GEN         BJP          Lotus             70303     69     70372     37.89',
+      '    3 BAJRANGI PRASAD YADAV M           43     GEN         IND     Auto-         70303          69      70372      9.67');
+    expect(parseDetailedText(text)[0].candidates.map(c => [c.name, c.sex, c.age, c.party])).toEqual([['BAJRANGI PRASAD YADAV', 'M', 43, 'IND']]);
+  });
+});
+
+describe('parseDetailedText, a wrapped party next to a wrapped symbol (JH 2014)', () => {
+  it('"CPI(ML) Auto-" / "(L)  Rickshaw" → party CPI(ML)(L), symbol text not glued on', () => {
+    const text = JH2014_REAL.replace('    1 ANANT KUMAR OJHA            M     48       GEN         BJP          Lotus             70303     69     70372     37.89',
+      '   10 MANI ORAON                   M    44      ST       CPI(ML) Auto-             70303          69       70372      0.75\n                                                           (L)  Rickshaw');
+    expect(parseDetailedText(text)[0].candidates.map(c => [c.name, c.party])).toEqual([['MANI ORAON', 'CPI(ML)(L)']]);
   });
 });

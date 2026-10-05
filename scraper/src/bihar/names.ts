@@ -46,6 +46,8 @@ export function isoDate(raw: string): string {
   if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
   const m = /^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/.exec(s);
   if (m && MONTHS[m[2].toUpperCase()]) return `${m[3]}-${MONTHS[m[2].toUpperCase()]}-${m[1].padStart(2, '0')}`;
+  const d = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(s); // dd/mm/yyyy (2019/2020 summaries)
+  if (d) return `${d[3]}-${d[2].padStart(2, '0')}-${d[1].padStart(2, '0')}`;
   throw new Error(`unrecognised date: ${raw}`);
 }
 

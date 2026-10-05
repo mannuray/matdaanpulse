@@ -190,6 +190,12 @@ If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds f
    WB `d4e5f6a7-b8c9-0123-def0-345678901011`, `…-345678901016`, `…-345678901021`.
 2. Spot-check an alliance tally: Assam 2016 NDA must read 86 seats (BJP 60, AGP 14, BPF 12).
 
+**Delhi, Haryana, Jharkhand, Odisha (Phase 4A).** `setup.sh` now also runs `seed_dl_vs_{parties,2008…2025}.sql` and
+`seed_{hr,jh,od}_vs_{parties,2009…2024}.sql` (new elections), their `seed_<st>_districts_regions.sql`, person links v1 and
+v2 (run-once), and for the latest elections the run-once `seed_<st>_leaders.sql`, `seed_<st>_candidate_photos.sql`,
+`seed_<st>_affidavits.sql` and `seed_<st>_party_profiles.sql`; `seed_party_symbols.sql` gains the new symbol files.
+Back up production (Neon branch) first; Render has auto-deploy off, so deploy `main` there by hand (`render deploys create`).
+
 **Five more states' history (Phase 3A).** `setup.sh` now also runs, for ga, mn, uk, pb, up: `seed_<st>_vs_parties.sql` →
 `seed_<st>_vs_{2012,2017,2022}.sql` (new elections, after the 2026 year seeds), `seed_<st>_districts_regions.sql` (after the
 Assam 2026 districts) and the run-once `seed_<st>_person_links_v1.sql`. Checked with the two-DB check from a fresh copy of

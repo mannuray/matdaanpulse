@@ -16,9 +16,10 @@ export const PARTY_DIR = path.resolve(__dirname, '../../data/parties');
 export const DATA_DIR = dataDir('BR');
 export const RAW_DIR = rawDir('BR');
 
-const sheets = (s: StateCode, file: string): Row[][] => {
+const sheets = (s: StateCode, file: string): Row[][] => namedSheets(s, file).map(x => x.rows);
+const namedSheets = (s: StateCode, file: string): { name: string; rows: Row[] }[] => {
   const wb = XLSX.readFile(path.join(rawDir(s), file));
-  return wb.SheetNames.map(n => XLSX.utils.sheet_to_json<Row>(wb.Sheets[n], { header: 1, defval: null }));
+  return wb.SheetNames.map(n => ({ name: n, rows: XLSX.utils.sheet_to_json<Row>(wb.Sheets[n], { header: 1, defval: null }) }));
 };
 const pdfText = (s: StateCode, file: string): string =>
   execFileSync('pdftotext', ['-layout', path.join(rawDir(s), file), '-'], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
@@ -52,7 +53,7 @@ function loadReport(s: StateCode, year: Year): RawElection {
   return {
     year,
     seats: isPdf(f.detailed) ? parseDetailedText(pdfText(s, f.detailed)) : parseDetailedRows(sheets(s, f.detailed)[0]),
-    summaries: isPdf(f.summary) ? parseSummaryText(pdfText(s, f.summary), fixes) : sheets(s, f.summary).map(parseSummaryRows),
+    summaries: isPdf(f.summary) ? parseSummaryText(pdfText(s, f.summary), fixes) : namedSheets(s, f.summary).map(x => parseSummaryRows(x.rows, x.name)),
     parties,
     performance: performanceByAbbr(isPdf(f.performance) ? parsePerformanceText(pdfText(s, f.performance)) : parsePerformanceRows(sheets(s, f.performance)[0]), parties),
   };

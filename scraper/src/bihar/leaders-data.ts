@@ -7,7 +7,8 @@ export interface LeaderPerson {
   name: string;
   wikidata: string | null;
   /** Bihar VS candidacies that are this person; empty for leaders without a seat (e.g. Legislative Council members). */
-  candidacies: { year: number; const_id: string }[];
+  /** `ballot_name`: the name on that ballot when it differs from `name` ("Parvesh Sahib Singh" for Parvesh Verma). */
+  candidacies: { year: number; const_id: string; ballot_name?: string }[];
 }
 export interface LeaderRole { key: string; role: string; party_id: string }
 /** An election year with curated leaders (Bihar 2010-2025; the 2026 states). */

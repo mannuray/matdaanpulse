@@ -1,0 +1,109 @@
+[
+ {
+  "id": "INLD",
+  "name": "Indian National Lok Dal",
+  "abbreviation": "INLD",
+  "eci_recognition": "State",
+  "founded_year": 1996,
+  "leader_name": "Om Prakash Chautala",
+  "headquarters": "MLA Flat No. 47, Sector 4, Chandigarh 160004",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Indian_National_Lok_Dal",
+  "color": "#005747",
+  "description": "A Haryana regional party founded by Devi Lal in 1996 and led by the Chautala family, which governed the state several times. In 2024 it fought in alliance with the BSP and won 2 of 90 seats (Dabwali and Rania) with about 4.1% of the vote.",
+  "eci_symbol": "Spectacles",
+  "logo": null,
+  "eci_image": {
+   "file": "INLD-eci.svg",
+   "commons": "File:INLD1.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:INLD1.svg",
+   "author": "Khushank94 (original), Furfur (vector)",
+   "licence": "Public domain"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Indian_National_Lok_Dal",
+   "https://en.wikipedia.org/wiki/2024_Haryana_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=6",
+   "https://commons.wikimedia.org/wiki/File:INLD1.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "JJP2",
+  "name": "Jannayak Janta Party",
+  "abbreviation": "JJP",
+  "eci_recognition": "State",
+  "founded_year": 2018,
+  "leader_name": "Ajay Singh Chautala",
+  "headquarters": "18, Janpath, New Delhi",
+  "website": "http://www.jannayakjantaparty.com/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jannayak_Janta_Party",
+  "color": "#71B218",
+  "description": "A Haryana party formed in 2018 by Ajay Singh Chautala and his son Dushyant Chautala after a split in the INLD; it shared power with the BJP from 2019 to March 2024. Allied with the Azad Samaj Party in 2024, it won none of the 66 seats it contested and about 0.9% of the vote.",
+  "eci_symbol": "Key",
+  "logo": {
+   "file": "JJP2-logo.jpg",
+   "commons": "File:Jananayak Janata Party logo.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jananayak_Janata_Party_logo.jpg",
+   "author": "LakhnawiNawab",
+   "licence": "CC BY 4.0"
+  },
+  "eci_image": {
+   "file": "JJP2-eci.svg",
+   "commons": "File:Indian election symbol Key.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_Key.svg",
+   "author": "√Tæ√",
+   "licence": "FAL"
+  },
+  "current_logo_ok": null,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Jannayak_Janta_Party",
+   "https://en.wikipedia.org/wiki/2024_Haryana_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=6",
+   "https://commons.wikimedia.org/wiki/File:Jananayak_Janata_Party_logo.jpg",
+   "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_Key.svg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ },
+ {
+  "id": "ASPKR",
+  "name": "Aazad Samaj Party (Kanshi Ram)",
+  "abbreviation": "ASP(KR)",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 2020,
+  "leader_name": "Chandrashekhar Azad",
+  "headquarters": "3/22-C-136, C Block, Gokulpur, New Delhi 110094",
+  "website": "https://aazadsamajpartyk.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Aazad_Samaj_Party_(Kanshi_Ram)",
+  "color": "#030F89",
+  "description": "An Ambedkarite party founded in 2020 by Bhim Army leader Chandrashekhar Azad, based mainly in Uttar Pradesh. In Haryana in 2024 it contested 12 seats in alliance with the JJP and won none, with about 0.1% of the vote.",
+  "eci_symbol": "Kettle",
+  "logo": {
+   "file": "ASPKR-logo.webp",
+   "commons": "File:AZAD SAMAJ PARTY LOGO.webp",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AZAD_SAMAJ_PARTY_LOGO.webp",
+   "author": "MY Gohad",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "ASPKR-eci.jpg",
+   "commons": "File:Indian Election Symbol Kettle.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Kettle.jpg",
+   "author": "Election Commission of India",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Aazad_Samaj_Party_(Kanshi_Ram)",
+   "https://en.wikipedia.org/wiki/2024_Haryana_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=6",
+   "https://commons.wikimedia.org/wiki/File:AZAD_SAMAJ_PARTY_LOGO.webp",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Kettle.jpg",
+   "https://en.wikipedia.org/wiki/Module:Political_party"
+  ]
+ }
+]

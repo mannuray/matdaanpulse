@@ -1,0 +1,77 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2014_Jharkhand_Legislative_Assembly_election",
+  "note: NDA: BJP with AJSU and LJP; Congress, RJD and JD(U) together; JMM and JVM(P) alone."
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP",
+    "AP1",
+    "LJP"
+   ]
+  },
+  {
+   "id": "JMM",
+   "name": "JMM",
+   "color": "#215B30",
+   "parties": [
+    "JMM"
+   ]
+  },
+  {
+   "id": "UPA",
+   "name": "Congress+",
+   "color": "#19AAED",
+   "parties": [
+    "INC",
+    "RJD",
+    "JDU"
+   ]
+  },
+  {
+   "id": "JVM",
+   "name": "JVM(P)",
+   "color": "#FBC02D",
+   "parties": [
+    "JVM"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "JMM",
+  "UPA",
+  "JVM"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 41
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   85.5,
+   23.6
+  ],
+  "map_url": "/geo/jh_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0140000-0000-4000-8000-000000002009"
+ ],
+ "history_years": [
+  2009
+ ],
+ "compare_with": [
+  "a0140000-0000-4000-8000-000000002009"
+ ]
+}
