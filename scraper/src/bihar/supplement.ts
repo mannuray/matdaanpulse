@@ -4,7 +4,7 @@
  * committed scraper/data/bihar/supplement.json and cross-checked against the Constituency Data Summary like any seat.
  */
 import * as cheerio from 'cheerio';
-import type { RawElection } from './types';
+import type { RawElection, SeatSummary, SeatType } from './types';
 import { partyKey } from './party-map';
 
 export interface SupplementCandidate { name: string; party: string; votes: number }
@@ -50,4 +50,27 @@ export function withoutSeats(raw: RawElection, constNos: number[]): RawElection 
   if (!constNos.length) return raw;
   const drop = new Set(constNos);
   return { ...raw, seats: raw.seats.filter(s => !drop.has(s.constNo)), summaries: raw.summaries.filter(s => !drop.has(s.constNo)) };
+}
+
+/** A seat ECI's Constituency Data Summary leaves out: what the detailed seat cannot tell, sourced (summary-fixes.json `missing`). */
+export interface MissingSummary { name: string; type: SeatType; voters: number; pollDate: string; reason: string }
+
+/**
+ * Builds the summary of each seat the report's Constituency Data Summary lacks (UP 2017: 11 of 403) from its Detailed
+ * Results (electors, contested, valid votes, winner, runner-up, margin) and a sourced fix (type, voters, poll date).
+ */
+export function withMissingSummaries(raw: RawElection, missing: Record<number, MissingSummary>): RawElection {
+  const added: SeatSummary[] = [];
+  for (const [no, m] of Object.entries(missing)) {
+    const constNo = Number(no);
+    if (raw.summaries.some(s => s.constNo === constNo)) continue;
+    const seat = raw.seats.find(s => s.constNo === constNo);
+    if (!seat) throw new Error(`summary fix: seat ${constNo} is not in the Detailed Results`);
+    const [w, r] = [...seat.candidates].sort((a, b) => b.total - a.total);
+    added.push({ constNo, name: m.name, type: m.type, electors: seat.electors, voters: m.voters, contested: seat.candidates.length,
+      // Valid votes for the candidates; NOTA apart (the summaries' convention when they list NOTA).
+      totalValid: seat.candidates.reduce((a, c) => a + c.total, 0), nota: seat.nota,
+      pollDate: m.pollDate, winner: { party: w.party, name: w.name, votes: w.total }, runnerUp: { party: r.party, name: r.name, votes: r.total }, margin: w.total - r.total });
+  }
+  return added.length ? { ...raw, summaries: [...raw.summaries, ...added].sort((a, b) => a.constNo - b.constNo) } : raw;
 }

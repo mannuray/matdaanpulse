@@ -12,6 +12,7 @@ import { matchYear, LOW_SIMILARITY, type Decision } from './match';
 import { changedRows, emitCorrections, emitParties, emitYear, type Plan } from './emit';
 import { validateElection } from './crosscheck';
 import { newElectionSeed } from './new-election';
+import { duplicatePartySeats } from './candidate-fixes';
 import { alliancePartyGaps, emitManifestFixes, type ManifestFixes } from './manifest-fixes';
 import type { ElectionJson, PartyEntry } from './types';
 
@@ -40,7 +41,7 @@ const fresh = new Set<number>();
 let blocked = 0;
 for (const y of electionsOf(ST).map(e => e.year)) {
   const json: ElectionJson = JSON.parse(fs.readFileSync(path.join(DATA_DIR, `vs-${y}.json`), 'utf8'));
-  const errs = validateElection(json, electionOf(ST, y));
+  const errs = [...validateElection(json, electionOf(ST, y)), ...duplicatePartySeats(json).map(d => `party twice in a seat ${d}`)];
   if (errs.length) { console.error(`vs-${y}.json fails validation:\n  ${errs.join('\n  ')}`); process.exit(1); }
   const cfg = electionOf(ST, y);
   const seedFile = path.join(DB_DIR, state.yearSeed(y));
@@ -77,7 +78,10 @@ if (fs.existsSync(corrections)) {
     process.exit(1);
   }
 }
-if (!fs.existsSync(corrections)) fs.writeFileSync(corrections, emitCorrections(plans));
+// New elections (registry newElection) were created by these seeds, so there is nothing to correct; a state with only
+// new elections gets no corrections seed.
+const old = plans.filter(p => !electionOf(ST, p.json.year).newElection);
+if (!fs.existsSync(corrections) && old.length) fs.writeFileSync(corrections, emitCorrections(old));
 else console.log(`${state.correctionsSeed} exists (frozen run-once seed); not rewritten`);
 for (const p of plans) fs.writeFileSync(path.join(DB_DIR, state.yearSeed(p.json.year)), emitYear(p));
 const fixed = plans.filter(p => manifestFixes[p.json.year]).map(p => ({ electionId: p.json.electionId, year: p.json.year, fixes: manifestFixes[p.json.year] }));

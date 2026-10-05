@@ -73,6 +73,26 @@ export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'VS', state: 'Puducherry', year: 2021, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Puducherry', year: 2016, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Puducherry', year: 2011, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Uttar Pradesh', year: 2022, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Uttar Pradesh', year: 2017, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Uttar Pradesh', year: 2012, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Punjab', year: 2022, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Punjab', year: 2017, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Punjab', year: 2012, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Uttarakhand', year: 2022, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Uttarakhand', year: 2017, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Uttarakhand', year: 2012, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Goa', year: 2022, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Goa', year: 2017, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Goa', year: 2012, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+
+  { house: 'VS', state: 'Manipur', year: 2022, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Manipur', year: 2017, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Manipur', year: 2012, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 ];
 
 export interface DataSourceGroup {

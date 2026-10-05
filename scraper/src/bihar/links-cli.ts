@@ -14,7 +14,8 @@ import { STATES, electionsOf, parseState } from './elections';
 const ST = parseState(process.argv[2]);
 const year = process.argv[3] ? Number(process.argv[3]) : null;
 const state = STATES[ST];
-const elections = electionsOf(ST).filter(e => (year ? e.year <= year : !e.newElection));
+// v1 = the historical track: old-seed elections, plus new ones up to 2022 (Phase 3A states); later elections are linked by v2.
+const elections = electionsOf(ST).filter(e => (year ? e.year <= year : !e.newElection || e.year <= 2022));
 const all: Candidacy[] = [];
 for (const e of elections) {
   const s = loadSeeded(ST, e.year);

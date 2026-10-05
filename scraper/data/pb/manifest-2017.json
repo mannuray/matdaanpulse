@@ -1,0 +1,65 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2017_Punjab_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "SAD–BJP",
+   "color": "#F2B705",
+   "parties": [
+    "SAD",
+    "BJP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "AAPLIP",
+   "name": "AAP–LIP",
+   "color": "#00897B",
+   "parties": [
+    "AAP",
+    "LIP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "INC",
+  "AAPLIP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 59
+  }
+ ],
+ "geo": {
+  "zoom": 8,
+  "center": [
+   75.4,
+   30.9
+  ],
+  "map_url": "/geo/pb_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0280000-0000-4000-8000-000000002012"
+ ],
+ "history_years": [
+  2012
+ ],
+ "compare_with": [
+  "a0280000-0000-4000-8000-000000002012"
+ ]
+}

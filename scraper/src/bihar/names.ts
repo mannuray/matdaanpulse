@@ -11,6 +11,9 @@ export function splitAcName(raw: string): { name: string; type: SeatType | null 
     type = m[1].toUpperCase() as SeatType;
     s = s.slice(0, m.index).trim();
   }
+  // Some reports write the reservation without brackets: "Mahadewa S.C", "Machhlishahr S.C.".
+  const dotted = /\s+(S\.C|S\.T)\.?$/i.exec(s);
+  if (dotted && !type) { type = dotted[1].replace('.', '').toUpperCase() as SeatType; s = s.slice(0, dotted.index).trim(); }
   return { name: s, type };
 }
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { applySupplement, parseEciResultsHtml, withoutSeats } from '../supplement';
+import { applySupplement, parseEciResultsHtml, withoutSeats, withMissingSummaries } from '../supplement';
 import type { RawElection } from '../types';
 
 // Trimmed from the archived eciresults.nic.in page for Bihar 2015 seat 195 (Agiaon).
@@ -63,5 +63,23 @@ describe('withoutSeats', () => {
     expect(out.seats.map(s => s.constNo)).toEqual([195]);
     expect(out.summaries.map(s => s.constNo)).toEqual([195]);
     expect(withoutSeats(r, []).seats).toHaveLength(2);
+  });
+});
+
+describe('withMissingSummaries (seats ECI\'s Constituency Data Summary leaves out)', () => {
+  const raw = (): RawElection => ({ year: 2017, parties: [], performance: [], summaries: [],
+    seats: [{ constNo: 141, acName: 'Dhaurahra', type: null, electors: 300000, nota: 900, totalVotes: 0, candidates: [
+      { serial: 1, name: 'A', sex: 'M', age: 50, party: 'BJP', general: 100000, postal: 500, total: 100500 },
+      { serial: 2, name: 'B', sex: 'M', age: 45, party: 'SP', general: 80000, postal: 200, total: 80200 }] }] });
+  const fix = { 141: { name: 'Dhaurahra', type: 'GEN' as const, voters: 190000, pollDate: '2017-02-23', reason: 'r' } };
+  it('builds the summary from the detailed seat and the sourced fix', () => {
+    const [s] = withMissingSummaries(raw(), fix).summaries;
+    expect(s).toEqual({ constNo: 141, name: 'Dhaurahra', type: 'GEN', electors: 300000, voters: 190000, contested: 2, totalValid: 100500 + 80200, nota: 900,
+      pollDate: '2017-02-23', winner: { party: 'BJP', name: 'A', votes: 100500 }, runnerUp: { party: 'SP', name: 'B', votes: 80200 }, margin: 20300 });
+  });
+  it('leaves seats the summary has alone, and fails on a fix for a seat the report lacks', () => {
+    const r = raw(); r.summaries = [{ ...withMissingSummaries(raw(), fix).summaries[0], voters: 1 }];
+    expect(withMissingSummaries(r, fix).summaries.map(s => s.voters)).toEqual([1]);
+    expect(() => withMissingSummaries(raw(), { 999: fix[141] })).toThrow(/seat 999 is not in the Detailed Results/);
   });
 });

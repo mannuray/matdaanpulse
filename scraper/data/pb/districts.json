@@ -1,0 +1,263 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Punjab_Legislative_Assembly (district column; raw wikitext read 2026-10-05)",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Punjab,_India"
+ ],
+ "notes": "Districts as listed on Wikipedia (current 23 districts incl. Pathankot, Fazilka, Malerkotla), except Baba Bakala (25), which Wikipedia lists under Tarn Taran but lies in Amritsar district (Baba Bakala tehsil); both are Majha. Sahibzada Ajit Singh Nagar = Mohali; Shaheed Bhagat Singh Nagar = Nawanshahr.",
+ "districts": [
+  {
+   "code": "PB_PATHANKOT",
+   "name": "Pathankot"
+  },
+  {
+   "code": "PB_GURDASPUR",
+   "name": "Gurdaspur"
+  },
+  {
+   "code": "PB_AMRITSAR",
+   "name": "Amritsar"
+  },
+  {
+   "code": "PB_TARNTARAN",
+   "name": "Tarn Taran"
+  },
+  {
+   "code": "PB_KAPURTHALA",
+   "name": "Kapurthala"
+  },
+  {
+   "code": "PB_JALANDHAR",
+   "name": "Jalandhar"
+  },
+  {
+   "code": "PB_HOSHIARPUR",
+   "name": "Hoshiarpur"
+  },
+  {
+   "code": "PB_SHAHEEDBHAGATSINGHNAGAR",
+   "name": "Shaheed Bhagat Singh Nagar"
+  },
+  {
+   "code": "PB_RUPNAGAR",
+   "name": "Rupnagar"
+  },
+  {
+   "code": "PB_SAHIBZADAAJITSINGHNAGAR",
+   "name": "Sahibzada Ajit Singh Nagar"
+  },
+  {
+   "code": "PB_FATEHGARHSAHIB",
+   "name": "Fatehgarh Sahib"
+  },
+  {
+   "code": "PB_LUDHIANA",
+   "name": "Ludhiana"
+  },
+  {
+   "code": "PB_MOGA",
+   "name": "Moga"
+  },
+  {
+   "code": "PB_FIROZPUR",
+   "name": "Firozpur"
+  },
+  {
+   "code": "PB_FAZILKA",
+   "name": "Fazilka"
+  },
+  {
+   "code": "PB_SRIMUKTSARSAHIB",
+   "name": "Sri Muktsar Sahib"
+  },
+  {
+   "code": "PB_FARIDKOT",
+   "name": "Faridkot"
+  },
+  {
+   "code": "PB_BATHINDA",
+   "name": "Bathinda"
+  },
+  {
+   "code": "PB_MANSA",
+   "name": "Mansa"
+  },
+  {
+   "code": "PB_SANGRUR",
+   "name": "Sangrur"
+  },
+  {
+   "code": "PB_BARNALA",
+   "name": "Barnala"
+  },
+  {
+   "code": "PB_MALERKOTLA",
+   "name": "Malerkotla"
+  },
+  {
+   "code": "PB_PATIALA",
+   "name": "Patiala"
+  }
+ ],
+ "regions": [
+  {
+   "code": "PB_MAJHA",
+   "name": "Majha",
+   "districts": [
+    "PB_AMRITSAR",
+    "PB_TARNTARAN",
+    "PB_GURDASPUR",
+    "PB_PATHANKOT"
+   ]
+  },
+  {
+   "code": "PB_DOABA",
+   "name": "Doaba",
+   "districts": [
+    "PB_JALANDHAR",
+    "PB_KAPURTHALA",
+    "PB_HOSHIARPUR",
+    "PB_SHAHEEDBHAGATSINGHNAGAR"
+   ]
+  },
+  {
+   "code": "PB_MALWA",
+   "name": "Malwa",
+   "districts": [
+    "PB_RUPNAGAR",
+    "PB_SAHIBZADAAJITSINGHNAGAR",
+    "PB_FATEHGARHSAHIB",
+    "PB_LUDHIANA",
+    "PB_MOGA",
+    "PB_FIROZPUR",
+    "PB_FAZILKA",
+    "PB_SRIMUKTSARSAHIB",
+    "PB_FARIDKOT",
+    "PB_BATHINDA",
+    "PB_MANSA",
+    "PB_SANGRUR",
+    "PB_BARNALA",
+    "PB_MALERKOTLA",
+    "PB_PATIALA"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "PB_PATHANKOT",
+  "2": "PB_PATHANKOT",
+  "3": "PB_PATHANKOT",
+  "4": "PB_GURDASPUR",
+  "5": "PB_GURDASPUR",
+  "6": "PB_GURDASPUR",
+  "7": "PB_GURDASPUR",
+  "8": "PB_GURDASPUR",
+  "9": "PB_GURDASPUR",
+  "10": "PB_GURDASPUR",
+  "11": "PB_AMRITSAR",
+  "12": "PB_AMRITSAR",
+  "13": "PB_AMRITSAR",
+  "14": "PB_AMRITSAR",
+  "15": "PB_AMRITSAR",
+  "16": "PB_AMRITSAR",
+  "17": "PB_AMRITSAR",
+  "18": "PB_AMRITSAR",
+  "19": "PB_AMRITSAR",
+  "20": "PB_AMRITSAR",
+  "21": "PB_TARNTARAN",
+  "22": "PB_TARNTARAN",
+  "23": "PB_TARNTARAN",
+  "24": "PB_TARNTARAN",
+  "25": "PB_AMRITSAR",
+  "26": "PB_KAPURTHALA",
+  "27": "PB_KAPURTHALA",
+  "28": "PB_KAPURTHALA",
+  "29": "PB_KAPURTHALA",
+  "30": "PB_JALANDHAR",
+  "31": "PB_JALANDHAR",
+  "32": "PB_JALANDHAR",
+  "33": "PB_JALANDHAR",
+  "34": "PB_JALANDHAR",
+  "35": "PB_JALANDHAR",
+  "36": "PB_JALANDHAR",
+  "37": "PB_JALANDHAR",
+  "38": "PB_JALANDHAR",
+  "39": "PB_HOSHIARPUR",
+  "40": "PB_HOSHIARPUR",
+  "41": "PB_HOSHIARPUR",
+  "42": "PB_HOSHIARPUR",
+  "43": "PB_HOSHIARPUR",
+  "44": "PB_HOSHIARPUR",
+  "45": "PB_HOSHIARPUR",
+  "46": "PB_SHAHEEDBHAGATSINGHNAGAR",
+  "47": "PB_SHAHEEDBHAGATSINGHNAGAR",
+  "48": "PB_SHAHEEDBHAGATSINGHNAGAR",
+  "49": "PB_RUPNAGAR",
+  "50": "PB_RUPNAGAR",
+  "51": "PB_RUPNAGAR",
+  "52": "PB_SAHIBZADAAJITSINGHNAGAR",
+  "53": "PB_SAHIBZADAAJITSINGHNAGAR",
+  "54": "PB_FATEHGARHSAHIB",
+  "55": "PB_FATEHGARHSAHIB",
+  "56": "PB_FATEHGARHSAHIB",
+  "57": "PB_LUDHIANA",
+  "58": "PB_LUDHIANA",
+  "59": "PB_LUDHIANA",
+  "60": "PB_LUDHIANA",
+  "61": "PB_LUDHIANA",
+  "62": "PB_LUDHIANA",
+  "63": "PB_LUDHIANA",
+  "64": "PB_LUDHIANA",
+  "65": "PB_LUDHIANA",
+  "66": "PB_LUDHIANA",
+  "67": "PB_LUDHIANA",
+  "68": "PB_LUDHIANA",
+  "69": "PB_LUDHIANA",
+  "70": "PB_LUDHIANA",
+  "71": "PB_MOGA",
+  "72": "PB_MOGA",
+  "73": "PB_MOGA",
+  "74": "PB_MOGA",
+  "75": "PB_FIROZPUR",
+  "76": "PB_FIROZPUR",
+  "77": "PB_FIROZPUR",
+  "78": "PB_FIROZPUR",
+  "79": "PB_FAZILKA",
+  "80": "PB_FAZILKA",
+  "81": "PB_FAZILKA",
+  "82": "PB_FAZILKA",
+  "83": "PB_SRIMUKTSARSAHIB",
+  "84": "PB_SRIMUKTSARSAHIB",
+  "85": "PB_SRIMUKTSARSAHIB",
+  "86": "PB_SRIMUKTSARSAHIB",
+  "87": "PB_FARIDKOT",
+  "88": "PB_FARIDKOT",
+  "89": "PB_FARIDKOT",
+  "90": "PB_BATHINDA",
+  "91": "PB_BATHINDA",
+  "92": "PB_BATHINDA",
+  "93": "PB_BATHINDA",
+  "94": "PB_BATHINDA",
+  "95": "PB_BATHINDA",
+  "96": "PB_MANSA",
+  "97": "PB_MANSA",
+  "98": "PB_MANSA",
+  "99": "PB_SANGRUR",
+  "100": "PB_SANGRUR",
+  "101": "PB_SANGRUR",
+  "102": "PB_BARNALA",
+  "103": "PB_BARNALA",
+  "104": "PB_BARNALA",
+  "105": "PB_MALERKOTLA",
+  "106": "PB_MALERKOTLA",
+  "107": "PB_SANGRUR",
+  "108": "PB_SANGRUR",
+  "109": "PB_PATIALA",
+  "110": "PB_PATIALA",
+  "111": "PB_PATIALA",
+  "112": "PB_SAHIBZADAAJITSINGHNAGAR",
+  "113": "PB_PATIALA",
+  "114": "PB_PATIALA",
+  "115": "PB_PATIALA",
+  "116": "PB_PATIALA",
+  "117": "PB_PATIALA"
+ }
+}

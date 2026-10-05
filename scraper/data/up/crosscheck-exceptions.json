@@ -1,0 +1,62 @@
+[
+ {
+  "year": 2012,
+  "key": "total-valid:6",
+  "reason": "ECI's Constituency Data Summary total valid votes (195467) differs from its own Detailed Results (195468) by 1; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2012,
+  "key": "total-valid:59",
+  "reason": "ECI's Constituency Data Summary total valid votes (184811) differs from its own Detailed Results (184887) by 76; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2012,
+  "key": "total-valid:108",
+  "reason": "ECI's Constituency Data Summary total valid votes (172371) differs from its own Detailed Results (172373) by 2; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2012,
+  "key": "total-valid:110",
+  "reason": "ECI's Constituency Data Summary total valid votes (197309) differs from its own Detailed Results (197315) by 6; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2012,
+  "key": "total-valid:236",
+  "reason": "ECI's Constituency Data Summary total valid votes (182423) differs from its own Detailed Results (182425) by 2; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2012,
+  "key": "total-valid:283",
+  "reason": "ECI's Constituency Data Summary total valid votes (164654) differs from its own Detailed Results (164658) by 4; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2012,
+  "key": "total-valid:318",
+  "reason": "ECI's Constituency Data Summary total valid votes (216273) differs from its own Detailed Results (216281) by 8; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "runner-up:33",
+  "reason": "Sambhal (33): ECI's Constituency Data Summary names AIMIM (Ziaurrehman, 59,336) runner-up, but its own Detailed Results give BJP (Dr. Arvind, 59,976) more votes; the summary's margin 18,822 is the winner minus AIMIM. The Detailed Results decide."
+ },
+ {
+  "year": 2017,
+  "key": "margin:33",
+  "reason": "Sambhal (33): follows the summary's wrong runner-up (see runner-up:33); winner 79,248 minus BJP 59,976 = 19,272."
+ },
+ {
+  "year": 2017,
+  "key": "margin:79",
+  "reason": "Sadabad (79): ECI's Constituency Data Summary prints margin 26610, but its own winner (91365) and runner-up (64775) votes, which agree with the Detailed Results, give 26590: an arithmetic slip in ECI's summary"
+ },
+ {
+  "year": 2017,
+  "key": "total-valid:95",
+  "reason": "ECI's Constituency Data Summary total valid votes (243585) differs from its own Detailed Results (243591) by 6; winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "margin:124",
+  "reason": "Bareilly (124): ECI's Constituency Data Summary prints margin 28667, but its own winner (115270) and runner-up (86559) votes, which agree with the Detailed Results, give 28711: an arithmetic slip in ECI's summary"
+ }
+]

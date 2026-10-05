@@ -1,0 +1,40 @@
+{
+ "2017": {
+  "402": {
+   "type": "ST",
+   "reason": "ECI's 2017 Constituency Data Summary still shows 402-Obra as general: Obra was reserved for ST for the 2017 election (ECI's 2017 Highlights: SC 84 / ST 2; the 2022 report: ST)."
+  },
+  "403": {
+   "type": "ST",
+   "reason": "ECI's 2017 Constituency Data Summary still shows 403-Duddhi as SC: Duddhi was reserved for ST for the 2017 election (ECI's 2017 Highlights: SC 84 / ST 2; the 2022 report: ST)."
+  },
+  "164": {
+   "type": "SC",
+   "reason": "ECI's 2017 Constituency Data Summary labels 164-Mohan GEN; the seat is SC under the 2008 delimitation (ECI's 2012 and 2022 reports, the 2017 Highlights' SC count of 84)."
+  },
+  "165": {
+   "type": "GEN",
+   "reason": "ECI's 2017 Constituency Data Summary labels 165-Unnao SC; the seat is GEN under the 2008 delimitation (ECI's 2012 and 2022 reports, the 2017 Highlights' SC count of 84)."
+  },
+  "192": {
+   "type": "SC",
+   "reason": "ECI's 2017 Constituency Data Summary labels 192-Kaimganj GEN; the seat is SC under the 2008 delimitation (ECI's 2012 and 2022 reports, the 2017 Highlights' SC count of 84)."
+  },
+  "204": {
+   "type": "SC",
+   "reason": "ECI's 2017 Constituency Data Summary labels 204-Auraiya GEN; the seat is SC under the 2008 delimitation (ECI's 2012 and 2022 reports, the 2017 Highlights' SC count of 84)."
+  },
+  "210": {
+   "type": "GEN",
+   "reason": "ECI's 2017 Constituency Data Summary labels 210-Bithoor SC; the seat is GEN under the 2008 delimitation (ECI's 2012 and 2022 reports, the 2017 Highlights' SC count of 84)."
+  },
+  "243": {
+   "type": "SC",
+   "reason": "ECI's 2017 Constituency Data Summary labels 243-Khaga GEN; the seat is SC under the 2008 delimitation (ECI's 2012 and 2022 reports, the 2017 Highlights' SC count of 84)."
+  },
+  "345": {
+   "type": "GEN",
+   "reason": "ECI's 2017 Constituency Data Summary labels 345-Sagri SC; the seat is GEN under the 2008 delimitation (ECI's 2012 and 2022 reports, the 2017 Highlights' SC count of 84)."
+  }
+ }
+}

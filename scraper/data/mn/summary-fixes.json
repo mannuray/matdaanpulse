@@ -1,0 +1,9 @@
+{
+ "2017": {
+  "11": {
+   "voters": 19581,
+   "totalValid": 19567,
+   "reason": "ECI's Constituency Data Summary page for 11-Sagolband (2017) is broken: voters 0 and total valid votes '(14)'. Total valid votes = the seat's own Detailed Results (candidates + NOTA, 19,567); voters = valid votes + the 14 rejected postal votes the same page lists (no EVM votes were not retrieved)."
+  }
+ }
+}

@@ -1,0 +1,3756 @@
+{
+ "year": 2022,
+ "electionId": "a0210000-0000-4000-8000-000000002022",
+ "source": {
+  "title": "ECI Statistical Report, Manipur Legislative Assembly 2022",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=14166",
+  "retrieved": "2026-10-05"
+ },
+ "parties": [
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "KNA",
+   "name": "Kuki National Assembly",
+   "abbreviation": "KNA",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "KPA",
+   "name": "Kuki People’s Alliance",
+   "abbreviation": "KPA",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "LJPRV",
+   "name": "Lok Janshakti Party(Ram Vilas)",
+   "abbreviation": null,
+   "color": "#3B8BFF",
+   "recognition": null
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NPF",
+   "name": "Naga Peoples Front",
+   "abbreviation": null,
+   "color": "#556B2F",
+   "recognition": null
+  },
+  {
+   "id": "NPP",
+   "name": "National People's Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": "National"
+  },
+  {
+   "id": "RJSNP",
+   "name": "Rashtriya Janhit Sangharsh Party",
+   "abbreviation": "RJSNP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RPOI2",
+   "name": "Republican Party of India (Athawale)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "abbreviation": null,
+   "color": "#FF6600",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Khundrakpam",
+   "type": "GEN",
+   "electors": 27777,
+   "voters": 24977,
+   "turnout": 89.92,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thokchom Lokeshwar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 12211,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thangjam Mohendro Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 64,
+     "votes": 11996,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Elangbam Sovid Singh",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 45,
+     "votes": 497,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thangjam Shyam Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 60,
+     "votes": 40,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 167,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Heingang",
+   "type": "GEN",
+   "electors": 34177,
+   "voters": 31685,
+   "turnout": 92.71,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nongthombam Biren Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 24814,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pangeijam Saratchandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 6543,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 239,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Khurai",
+   "type": "GEN",
+   "electors": 35747,
+   "voters": 33156,
+   "turnout": 92.75,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Leishangthem Susindro Meitei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 11131,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laitonjam Jayananda Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 31,
+     "votes": 8894,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khagokpam Khamba Singh",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 64,
+     "votes": 6792,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Toijam Lokendro Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 33,
+     "votes": 2922,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Khuraijam Ratankumar Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 67,
+     "votes": 2461,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Heisnam Subhas Singh",
+     "partyId": "LJPRV",
+     "sex": "M",
+     "age": 56,
+     "votes": 385,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "R.K. Amusana Singh",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 57,
+     "votes": 356,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 169,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Khetrigao",
+   "type": "GEN",
+   "electors": 36835,
+   "voters": 34601,
+   "turnout": 93.94,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sheikh Noorul Hassan",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 36,
+     "votes": 13118,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nahakpam Indrajit Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 12376,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Wahengbam Rojit Singh @ Bullet",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 41,
+     "votes": 5437,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammed Amin Shah",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 2832,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Punnam Rani Wangkhem",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 53,
+     "votes": 99,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 238,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Thongju",
+   "type": "GEN",
+   "electors": 32132,
+   "voters": 29573,
+   "turnout": 92.04,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thongam Biswajit Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 15338,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Seram Neken Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 8649,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sanglakpam Preshyojit Sharma",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 37,
+     "votes": 4849,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 674,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Keirao",
+   "type": "GEN",
+   "electors": 30224,
+   "voters": 28148,
+   "turnout": 93.13,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Lourembam Rameshwor Meetei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 17335,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Md. Nasiruddin Khan",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 9126,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "M.I. Khan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 58,
+     "votes": 983,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thongram Tony Meitei",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 249,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Toijam Debananda Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 59,
+     "votes": 202,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Yumnam Shanta Meetei",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 44,
+     "votes": 111,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 97,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Andro",
+   "type": "GEN",
+   "electors": 35930,
+   "voters": 33502,
+   "turnout": 93.24,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thounaojam Shyamkumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 16739,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lourembam Sanjoy Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 15282,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Asheibam Bele Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 894,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Keisham Ningthemjao Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 388,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 120,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Lamlai",
+   "type": "GEN",
+   "electors": 30376,
+   "voters": 28711,
+   "turnout": 94.52,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khongbantabam Ibomcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 10105,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kshetrimayum Biren Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 60,
+     "votes": 9984,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Achoibam Deben Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 7049,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mongjam Poireihenba Meetei",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 35,
+     "votes": 957,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sapam Kangleipal Meitei",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 458,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 112,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Thangmeiband",
+   "type": "GEN",
+   "electors": 28212,
+   "voters": 24320,
+   "turnout": 86.2,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khumukcham Joykisan Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 57,
+     "votes": 13629,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jotin Waikhom",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 9856,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Hijam Nutanchandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 457,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 360,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Uripok",
+   "type": "GEN",
+   "electors": 25727,
+   "voters": 23086,
+   "turnout": 89.73,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khwairakpam Raghumani Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 8335,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yumnam Joykumar Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 68,
+     "votes": 7426,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khombongmayum Suresh Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 43,
+     "votes": 5472,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nunglepam Mahananda Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 1540,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 268,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Sagolband",
+   "type": "GEN",
+   "electors": 24019,
+   "voters": 21322,
+   "turnout": 88.77,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajkumar Imo Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 11054,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Khwairakpam Loken Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 59,
+     "votes": 8398,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Moirangthem Momo Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 564,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 228,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Keisamthong",
+   "type": "GEN",
+   "electors": 27536,
+   "voters": 25381,
+   "turnout": 92.17,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nishikant Sapam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 8874,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Maheshwar Thounaojam",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 29,
+     "votes": 8687,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Langpoklakpam Jayanta Kumar Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 59,
+     "votes": 5760,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Elangbam Samuel Johnson",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 1816,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Aribam Pramodini Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 77,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 142,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Singjamei",
+   "type": "GEN",
+   "electors": 20734,
+   "voters": 19029,
+   "turnout": 91.78,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yumnam Khemchand Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 8709,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Oinam Romen Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 51,
+     "votes": 6414,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ngangbam Robert Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 47,
+     "votes": 2164,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Irengbam Hemochandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 1600,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 128,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Yaiskul",
+   "type": "GEN",
+   "electors": 26794,
+   "voters": 24181,
+   "turnout": 90.25,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thokchom Satyabrata Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 9724,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Huidrom Vikramjit Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 57,
+     "votes": 9092,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thounaojam Brinda",
+     "partyId": "JDU",
+     "sex": "F",
+     "age": 43,
+     "votes": 4574,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ningombam Helendro Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 526,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajkumar Suraj Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 49,
+     "votes": 122,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 119,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Wangkhei",
+   "type": "GEN",
+   "electors": 37235,
+   "voters": 32547,
+   "turnout": 87.41,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thangjam Arunkumar",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 54,
+     "votes": 11593,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Okram Henry",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 10840,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Yumkham Erabot Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 82,
+     "votes": 9275,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajkumar Priyobarta Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 416,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 337,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Sekmai",
+   "type": "SC",
+   "electors": 30487,
+   "voters": 27296,
+   "turnout": 89.53,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Heikham Dingo Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 10010,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ayangbam Oken Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 51,
+     "votes": 6677,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khwairakpam Devendro Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 58,
+     "votes": 5966,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ningthoujam Popilal Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 26,
+     "votes": 2007,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ningthoujam Biren Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 1595,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Khaidem Ranjit Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 48,
+     "votes": 471,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Khwairakpam Robin Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Maharabam Anita Devi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 49,
+     "votes": 99,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 190,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Lamsang",
+   "type": "GEN",
+   "electors": 33787,
+   "voters": 31839,
+   "turnout": 94.23,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sorokhaibam Rajen Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 15185,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pukhrambam Sumati Devi",
+     "partyId": "NPP",
+     "sex": "F",
+     "age": 63,
+     "votes": 14785,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arambam Karamjit Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 733,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khundrakpam Kanba Meitei",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 46,
+     "votes": 616,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Likmabam Manibabu Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 241,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 210,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Konthoujam",
+   "type": "GEN",
+   "electors": 30018,
+   "voters": 28415,
+   "turnout": 94.66,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Sapam Ranjan Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 13432,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Konthoujam Sharat Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 58,
+     "votes": 13038,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Laishram Nando Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 895,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nongmaithem Herojit Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 43,
+     "votes": 811,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Khoirom Binarani Devi",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 44,
+     "votes": 75,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 152,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Patsoi",
+   "type": "GEN",
+   "electors": 37604,
+   "voters": 34865,
+   "turnout": 92.72,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sapam Kunjakeswor (Keba) Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 12186,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Akoijam Mirabai Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 57,
+     "votes": 11499,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "R.K. Rameshwar Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 52,
+     "votes": 10741,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Wakambam Ibomcha Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 54,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 285,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Langthabal",
+   "type": "GEN",
+   "electors": 28413,
+   "voters": 26576,
+   "turnout": 93.53,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karam Shyam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 10815,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Okram Joy Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 80,
+     "votes": 8762,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Karam Nabakishor Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 59,
+     "votes": 5949,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Hijam Somarendro Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 504,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 237,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Naoriya Pakhanglakpa",
+   "type": "GEN",
+   "electors": 35053,
+   "voters": 33127,
+   "turnout": 94.51,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sagolshem Kebi Devi",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 32,
+     "votes": 11058,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Soibam Subhaschandra Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 10527,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Soraisham Manaoton Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 9444,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Konthoujam Manoranjan Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 66,
+     "votes": 1721,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 214,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Wangoi",
+   "type": "GEN",
+   "electors": 30031,
+   "voters": 29020,
+   "turnout": 96.63,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khuraijam Loken Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 51,
+     "votes": 15606,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Oinam Lukhoi Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 12340,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Salam Joy Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 156,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 122,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Mayang Imphal",
+   "type": "GEN",
+   "electors": 32053,
+   "voters": 30686,
+   "turnout": 95.74,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kongkham Robindro Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 14642,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Khumujam Ratankumar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 8513,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Urikhimbam Ramesh Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 7374,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 150,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Nambol",
+   "type": "GEN",
+   "electors": 33399,
+   "voters": 31638,
+   "turnout": 94.73,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thounaojam Basanta Kumar Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 16885,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nameirakpam Loken Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 13825,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 124,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Oinam",
+   "type": "GEN",
+   "electors": 28688,
+   "voters": 26737,
+   "turnout": 93.2,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Irengbam Nalini Devi",
+     "partyId": "NPP",
+     "sex": "F",
+     "age": 61,
+     "votes": 10808,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laishram Radhakishore Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 65,
+     "votes": 10366,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thokchom Ithoibi Devi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 41,
+     "votes": 3289,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Laitonjam Brojen Singh",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 52,
+     "votes": 970,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thingbaijam Swarankumar Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 49,
+     "votes": 527,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ashem Babu Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 49,
+     "votes": 408,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ngangom Shivakumar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 145,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 128,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Bishenpur",
+   "type": "GEN",
+   "electors": 32115,
+   "voters": 29661,
+   "turnout": 92.36,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Konthoujam Govindas Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 13611,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Oinam Nabakishore Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 62,
+     "votes": 12202,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ningthoujam Joykumar Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 3395,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 350,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Moirang",
+   "type": "GEN",
+   "electors": 39876,
+   "voters": 36535,
+   "turnout": 91.62,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thongam Shanti Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 61,
+     "votes": 14428,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mairembam Prithviraj Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 12206,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pukhrem Sharatchandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 9404,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 271,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Thanga",
+   "type": "GEN",
+   "electors": 22984,
+   "voters": 21205,
+   "turnout": 92.26,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tongbram Robindro Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 13095,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Birla Haobijam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 7844,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 196,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Kumbi",
+   "type": "GEN",
+   "electors": 28161,
+   "voters": 26273,
+   "turnout": 93.3,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sanasam Premchandra Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 8513,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ahanthem Shanjoy Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 46,
+     "votes": 8141,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ningthoujam Mangi Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 71,
+     "votes": 7787,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr. Khangembam Romesh Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 1169,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Naorem Sorojini Devi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 43,
+     "votes": 330,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 147,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Lilong",
+   "type": "GEN",
+   "electors": 36006,
+   "voters": 34042,
+   "turnout": 94.55,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohd Abdul Nasir",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 48,
+     "votes": 16886,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Y. Antas Khan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 16316,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Syed Anwar Hussain",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 445,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Manan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Md Irshad Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 20,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 140,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Thoubal",
+   "type": "GEN",
+   "electors": 32132,
+   "voters": 29657,
+   "turnout": 92.3,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Okram Ibobi Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 73,
+     "votes": 15085,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Leitanthem Basanta Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 12542,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Konsam Michael Singh",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 67,
+     "votes": 1622,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Irom Chaoba Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 62,
+     "votes": 145,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 187,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Wangkhem",
+   "type": "GEN",
+   "electors": 33866,
+   "voters": 31288,
+   "turnout": 92.39,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Keisham Meghachandra Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 8889,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yumnam Nabachandra Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 7597,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Prof. (Dr.) Nimai Chand Luwang",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 74,
+     "votes": 7100,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kharibam Jiban Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 48,
+     "votes": 3474,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kangabam Jadu @ Jadumani Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 52,
+     "votes": 2891,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Oinam Haridas Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 58,
+     "votes": 82,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Md Abdul Halim",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 74,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Laishram Domen Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 34,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 136,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Heirok",
+   "type": "GEN",
+   "electors": 33098,
+   "voters": 31800,
+   "turnout": 96.08,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thokchom Radheshyam Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 13589,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moirangthem Okendro",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 13186,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ningthoujam Diten Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 53,
+     "votes": 4766,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Moirangthem Totomsana Nongshaba",
+     "partyId": "RJSNP",
+     "sex": "M",
+     "age": 50,
+     "votes": 86,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 121,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Wangjing Tentha",
+   "type": "GEN",
+   "electors": 33398,
+   "voters": 30585,
+   "turnout": 91.58,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Paonam Brojen Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 15765,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moirangthem Hemanta Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 13852,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Usham Manglem",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 26,
+     "votes": 723,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 158,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Khangabo",
+   "type": "GEN",
+   "electors": 37687,
+   "voters": 35138,
+   "turnout": 93.24,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surjakumar Okram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 17435,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khundrakpam Menjor Mangang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 9632,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thokchom Jadumani Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 57,
+     "votes": 7555,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 413,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Wabgai",
+   "type": "GEN",
+   "electors": 31681,
+   "voters": 29377,
+   "turnout": 92.73,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr.USHAM DEBEN SINGH",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 9138,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Md.Fajur Rahim",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 9088,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mayengbam Ranjit Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 5873,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Md. Sikander",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 43,
+     "votes": 3601,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sakir Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 1501,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 152,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Kakching",
+   "type": "GEN",
+   "electors": 30499,
+   "voters": 27231,
+   "turnout": 89.28,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mayanglambam Rameshwar Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 53,
+     "votes": 8546,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yengkhom Surchandra Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 70,
+     "votes": 7341,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kshetrimayum Kennedy Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 5873,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Naorem Nabachandra Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 58,
+     "votes": 2451,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Yengkhom Nilachandra Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 61,
+     "votes": 2009,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Yengkhom Roma Devi",
+     "partyId": "CPI",
+     "sex": "F",
+     "age": 51,
+     "votes": 676,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 239,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Hiyanglam",
+   "type": "GEN",
+   "electors": 27926,
+   "voters": 26476,
+   "turnout": 94.81,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Yumnam Radheshyam Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 8713,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Huidrom Jiten Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 6584,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Elangbam Dwijamani Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 62,
+     "votes": 6559,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Maibam Dhanabir Singh",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 4223,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nongmaithem Sanjay Singh",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 41,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 150,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Sugnoo",
+   "type": "GEN",
+   "electors": 28268,
+   "voters": 25690,
+   "turnout": 90.88,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kangujam Ranjit Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 12673,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mayanglambam Binod",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 11657,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kakyenpaibam Muktasana Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 555,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 146,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Jiribam",
+   "type": "GEN",
+   "electors": 29426,
+   "voters": 26663,
+   "turnout": 90.61,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Md. Achab Uddin",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 56,
+     "votes": 12313,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nameirakpam Budhachandra Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 11897,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Makakmayum Abbas Khan",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 28,
+     "votes": 1113,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Badrur Rahman",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 746,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 579,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Chandel",
+   "type": "ST",
+   "electors": 50378,
+   "voters": 47023,
+   "turnout": 93.34,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "SS. Olish",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 44,
+     "votes": 37066,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Langhu Paulhring Anal",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 47,
+     "votes": 9725,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 91,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Tengnoupal",
+   "type": "ST",
+   "electors": 44914,
+   "voters": 41952,
+   "turnout": 93.41,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Letpao Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 21663,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "D. Korungthang",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 60,
+     "votes": 15252,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Wairok Morung Makunga",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 4099,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tantanga Kohai Moshilpha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 777,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kh. David Maring",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 56,
+     "votes": 52,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jamkholun Haokip",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 27,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 32,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Phungyar",
+   "type": "ST",
+   "electors": 34789,
+   "voters": 31190,
+   "turnout": 89.65,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Leishiyo Keishing",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 47,
+     "votes": 11642,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Awung Shimray Hopingson",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 10863,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Victor Keishing",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 7453,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Wungnaoshang Kasar",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 46,
+     "votes": 693,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ninghor Jajo",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 60,
+     "votes": 154,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 33,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "Ukhrul",
+   "type": "ST",
+   "electors": 48307,
+   "voters": 40181,
+   "turnout": 83.18,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ram Muivah",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 61,
+     "votes": 15503,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Alfred Kanngam S. Arthur",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 14561,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Somatai Shaiza",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 9961,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 48,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Chingai",
+   "type": "ST",
+   "electors": 47449,
+   "voters": 41512,
+   "turnout": 87.49,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khashim Vashum",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 58,
+     "votes": 12837,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ningam Chamroy",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 64,
+     "votes": 10501,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Preshow Mk Shimray",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 9349,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sword Vashum",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 73,
+     "votes": 8150,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 61,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Saikul",
+   "type": "ST",
+   "electors": 29417,
+   "voters": 26737,
+   "turnout": 90.89,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kimneo Haokip Hangshing",
+     "partyId": "KPA",
+     "sex": "F",
+     "age": 34,
+     "votes": 6710,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kenn Raikhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 5461,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chungkhokai Doungel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 81,
+     "votes": 5107,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ch. Ajang Khongsai",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 59,
+     "votes": 4486,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Yamthong Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 2667,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Lhingkim Haokip",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 50,
+     "votes": 935,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Seikholal Haokip",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 46,
+     "votes": 645,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Jamchinlen Lunkim",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 62,
+     "votes": 322,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 103,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Karong",
+   "type": "ST",
+   "electors": 54916,
+   "voters": 49403,
+   "turnout": 89.96,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "J Kumo Sha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 17191,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "R Yuh Jonathan Tao",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 13649,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khoho Siile Anthony",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 52,
+     "votes": 10483,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "D. D. Thaisii",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 5891,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Thaiba Sanii",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 2102,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 44,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Mao",
+   "type": "ST",
+   "electors": 55735,
+   "voters": 51032,
+   "turnout": 91.56,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Losii Dikho",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 55,
+     "votes": 29591,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Woba Joram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 21078,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sanii Alexander Maikho",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 279,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 26,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Tadubi",
+   "type": "ST",
+   "electors": 49410,
+   "voters": 45218,
+   "turnout": 91.52,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "N. Kayisii",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 56,
+     "votes": 21601,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "M. Francis Ngajokpa",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 58,
+     "votes": 21052,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Robert Tailu Maram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 2277,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "O. Lohrii",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 69,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 58,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Kangpokpi",
+   "type": "GEN",
+   "electors": 28124,
+   "voters": 25235,
+   "turnout": 89.73,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nemcha Kipgen",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 56,
+     "votes": 14412,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Soshim Gurung",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 39,
+     "votes": 9016,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ngamkhohen Kipgen",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 77,
+     "votes": 1376,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 315,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Saitu",
+   "type": "ST",
+   "electors": 44686,
+   "voters": 39641,
+   "turnout": 88.71,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Haokholet Kipgen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 67,
+     "votes": 12456,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ngamthang Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 69,
+     "votes": 9762,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Lamtinthang Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 7133,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "K Lhouvum",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 59,
+     "votes": 6978,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Th. Sanglou Maram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 2924,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "L Johny Gangmei",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 42,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 95,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Tamei",
+   "type": "ST",
+   "electors": 42117,
+   "voters": 38883,
+   "turnout": 92.32,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Awangbow Newmai",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 54,
+     "votes": 19643,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Z. Kikhonbou Newmai",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 17945,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Wilubou Newmai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 627,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "GN. Kumuiteung (Dr. Aku)",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 397,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 32,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Tamenglong",
+   "type": "ST",
+   "electors": 35888,
+   "voters": 30760,
+   "turnout": 85.71,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Janghemlung Panmei",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 45,
+     "votes": 10456,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Huri Golmei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 9147,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Samuel Jendai",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 62,
+     "votes": 6447,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khangthuanang Panmei",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 60,
+     "votes": 4481,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 122,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Nungba",
+   "type": "ST",
+   "electors": 29510,
+   "voters": 25264,
+   "turnout": 85.61,
+   "phase": 2,
+   "pollDate": "2022-03-05",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dinganglung Gangmei",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 14464,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gaikhangam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 10678,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 59,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Tipaimukh",
+   "type": "ST",
+   "electors": 18606,
+   "voters": 12910,
+   "turnout": 69.39,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ngursanglur Sanate",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 47,
+     "votes": 6267,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chalton Lien Amo",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 5018,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thangthatling Sinate",
+     "partyId": "NPP",
+     "sex": "F",
+     "age": 64,
+     "votes": 1315,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 128,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Thanlon",
+   "type": "ST",
+   "electors": 18042,
+   "voters": 13862,
+   "turnout": 76.83,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vungzagin Valte",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 4863,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khanthang Tonsing",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 53,
+     "votes": 4112,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Langkhanpau Guite",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 2789,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thangkhosei Guite",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 60,
+     "votes": 797,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Lalhlunsang Sungte",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 39,
+     "votes": 658,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Thangkhangin",
+     "partyId": "LJPRV",
+     "sex": "M",
+     "age": 66,
+     "votes": 71,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 50,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Henglep",
+   "type": "ST",
+   "electors": 31944,
+   "voters": 27697,
+   "turnout": 86.7,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Letzamang Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 13897,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "T. Manga Vaiphei",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 6049,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nehminthang Haokip",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 3824,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "T. Thangzalam Haokip",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 67,
+     "votes": 2605,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Genneikhup",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 58,
+     "votes": 1097,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sehpu Haokip",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 40,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Churachandpur",
+   "type": "ST",
+   "electors": 65325,
+   "voters": 47935,
+   "turnout": 73.38,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "L.M. Khaute",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 60,
+     "votes": 18231,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "V Hangkhanlian",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 17607,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "H. Mangchinkhup Paite",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 8482,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "James Khuma Hauzel",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 2244,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Th. THANGZALIAN",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 53,
+     "votes": 515,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dr. JAINSON HAOKIP D.D.",
+     "partyId": "KNA",
+     "sex": "M",
+     "age": 74,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "H.Lianchinthang",
+     "partyId": "LJPRV",
+     "sex": "M",
+     "age": 60,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 174,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Saikot",
+   "type": "ST",
+   "electors": 62613,
+   "voters": 52809,
+   "turnout": 84.34,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Paolienlal Haokip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 18457,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khaipao Haokip",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 64,
+     "votes": 12586,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "T. N Haokip",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 10250,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Karong Onkholer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 5169,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "George T. Haokip",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 4796,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Joshua Thiek",
+     "partyId": "KNA",
+     "sex": "M",
+     "age": 43,
+     "votes": 837,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "John H Pulamte",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 52,
+     "votes": 231,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "John Mk Thang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 78,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 186,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Singhat",
+   "type": "ST",
+   "electors": 27832,
+   "voters": 23598,
+   "turnout": 84.79,
+   "phase": 1,
+   "pollDate": "2022-02-28",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chinlunthang",
+     "partyId": "KPA",
+     "sex": "M",
+     "age": 46,
+     "votes": 12098,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ginsuanhau Zou",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 10079,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "T. Hangkhanpau",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 58,
+     "votes": 1031,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tuankhan Kiamlo Hangzo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 57,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

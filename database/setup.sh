@@ -92,6 +92,11 @@ for st in wb as kl tn py; do
   run "seed_${st}_corrections_v1.sql"
   for y in 2011 2016 2021 2026; do run "seed_${st}_vs_${y}.sql"; done
 done
+# Phase 3A states (Goa, Manipur, Uttarakhand, Punjab, Uttar Pradesh 2012-2022): new elections, their ECI parties first
+for st in ga mn uk pb up; do
+  run "seed_${st}_vs_parties.sql"
+  for y in 2012 2017 2022; do run "seed_${st}_vs_${y}.sql"; done
+done
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
 for st in kl as; do run "seed_${st}_manifest_fixes_v1.sql"; done
 # Run-once: parties the old manifests put in the wrong alliance (Kerala, Tamil Nadu 2011, West Bengal 2011)
@@ -102,8 +107,11 @@ run seed_bihar_districts_regions.sql
 for st in as kl py tn wb; do run "seed_${st}_districts_regions.sql"; done
 # Assam 2026 seats (2023 delimitation): tagged one by one (the seed above covers only 2008-era seats)
 run seed_as_2026_districts_regions.sql
+# Phase 3A states (2008 delimitation; seat → district sourced in scraper/data/<slug>/districts.json)
+for st in ga mn uk pb up; do run "seed_${st}_districts_regions.sql"; done
 # Person links across 2011-2021 (run-once; must follow the VS results)
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
+for st in ga mn uk pb up; do run "seed_${st}_person_links_v1.sql"; done
 # 2026 candidates → their 2011-2021 persons (run-once; same delimitation only, so none for Assam 2026)
 for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
 # 2026 leaders (curated, user-approved; run-once: candidacy links, fill-only profiles, manifest watchlists)

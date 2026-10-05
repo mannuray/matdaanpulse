@@ -1,0 +1,81 @@
+{
+ "2017": {
+  "141": {
+   "name": "Dhaurahra",
+   "type": "GEN",
+   "voters": 221323,
+   "pollDate": "2017-02-15",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "173": {
+   "name": "Lucknow East",
+   "type": "GEN",
+   "voters": 228115,
+   "pollDate": "2017-02-19",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "187": {
+   "name": "Isauli",
+   "type": "GEN",
+   "voters": 191509,
+   "pollDate": "2017-02-27",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "200": {
+   "name": "Etawah",
+   "type": "GEN",
+   "voters": 220994,
+   "pollDate": "2017-02-19",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "256": {
+   "name": "Phulpur",
+   "type": "GEN",
+   "voters": 223933,
+   "pollDate": "2017-02-23",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "257": {
+   "name": "Pratappur",
+   "type": "GEN",
+   "voters": 207673,
+   "pollDate": "2017-02-23",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "258": {
+   "name": "Handia",
+   "type": "GEN",
+   "voters": 202123,
+   "pollDate": "2017-02-23",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "259": {
+   "name": "Meja",
+   "type": "GEN",
+   "voters": 181184,
+   "pollDate": "2017-02-23",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "260": {
+   "name": "Karachhana",
+   "type": "GEN",
+   "voters": 198734,
+   "pollDate": "2017-02-23",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "264": {
+   "name": "Bara",
+   "type": "SC",
+   "voters": 189974,
+   "pollDate": "2017-02-23",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  },
+  "394": {
+   "name": "Aurai",
+   "type": "SC",
+   "voters": 206026,
+   "pollDate": "2017-03-08",
+   "reason": "Absent from ECI's 2017 Constituency Data Summary (PDF and XLSX hold 392 of 403 seats). Voters = the Detailed Results' \"Total valid votes polled + NOTA\" (rejected postal ballots not included); seat type from ECI's 2022 report (same reservations since 2017); poll date = both neighbouring seats' date in the same district."
+  }
+ }
+}

@@ -52,6 +52,11 @@ describe('parseDetailedText', () => {
     expect(seats[1]).toMatchObject({ constNo: 2, acName: 'Ramnagar', type: 'SC' });
     expect(seats[1].candidates[1]).toMatchObject({ name: 'PRIYA RANJAN PRASAD SRIVASTAVA', party: 'SASAPT', total: 1175 });
   });
+  it('keeps an abbreviation written with spaces ("Aa S P", UP 2012) whole', () => {
+    const text = DETAILED_2010.replace('     2 MUKESH KUMAR KUSHWAHA             M       34       GEN         RJD                    27606           12     27618      19.22',
+      '     2 RAJESH KUMAR SAVITA               M       36       GEN         Aa S P                 27606           12     27618      19.22');
+    expect(parseDetailedText(text)[0].candidates[1]).toMatchObject({ name: 'RAJESH KUMAR SAVITA', party: 'Aa S P', total: 27618 });
+  });
   it('reads 2010 seats (no symbol column, no NOTA)', () => {
     const [s] = parseDetailedText(DETAILED_2010);
     expect(s.nota).toBeNull();
@@ -162,5 +167,36 @@ describe('party list and performance (PDF)', () => {
       { abbr: 'BJP', contested: 102, won: 91, votes: 4790436 },
       { abbr: 'BSP', contested: 239, won: 0, votes: 933947 },
     ]);
+  });
+});
+
+describe('parsePartyListText with a letter-spaced abbreviation', () => {
+  it('reads "Aa S P" (UP 2012) as one abbreviation', () => {
+    const text = ['  PARTY TYPE         ABBREVIATION          PARTY', 'REGISTERED(Unrecognised) PARTIES',
+      '        20 .         ASP                      Adarsh Samaj Party', '', '        21 .         Aa S P                   Asankhya Samaj Party'].join('\n');
+    expect(parsePartyListText(text).map(p => p.abbr)).toEqual(['ASP', 'Aa S P']);
+  });
+});
+
+describe('parseSummaryText with sourced fixes (ECI pages with broken figures)', () => {
+  const block = [
+    '                                          CONSTITUENCY DATA - SUMMARY',
+    '     CONSTITUENCY :-                    11 - Sagolband (GEN)',
+    'I. CANDIDATES', '       4. CONTESTED                                       5          0          0          5',
+    'II. ELECTORS', '       4. TOTAL                                          10831                    12233                          0         23064',
+    'III. VOTERS', '       4. TOTAL                                                                                                                  0',
+    'IV. VOTES', '       3. TOTAL VALID VOTES POLLED                                                                                           (14)',
+    'VI. DATES', '  POLLING              COUNTING', '  04-Mar-2017          11-Mar-2017',
+    'WINNER        BJP      R.K. IMO             8000', 'RUNNER-UP     INC      SOMEONE              6000', 'MARGIN                       2000',
+  ].join('\n');
+  it('fails on the broken page without a fix', () => {
+    expect(() => parseSummaryText(block)).toThrow(/Sagolband.*totalValid not found/);
+  });
+  it('takes a corrected seat type from the fix (ECI pages with an outdated reservation)', () => {
+    expect(parseSummaryText(block, { 11: { voters: 18897, totalValid: 18883, type: 'ST' } })[0].type).toBe('ST');
+  });
+  it('takes voters and total valid votes from the fix for that seat only', () => {
+    const [s] = parseSummaryText(block, { 11: { voters: 18897, totalValid: 18883 } });
+    expect(s).toMatchObject({ constNo: 11, electors: 23064, voters: 18897, totalValid: 18883, margin: 2000 });
   });
 });

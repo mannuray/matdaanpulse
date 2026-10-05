@@ -3,7 +3,7 @@ import { ELECTIONS, STATES, electionOf, electionsOf, parseState } from '../elect
 
 describe('election registry', () => {
   it('lists every state election once, with unique ids and prefixes', () => {
-    expect(ELECTIONS).toHaveLength(4 + 15 + 5);
+    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15);
     expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
     expect(new Set(ELECTIONS.map(e => e.constPrefix)).size).toBe(ELECTIONS.length);
   });
@@ -38,5 +38,16 @@ describe('2026 elections', () => {
   });
   it('keeps every election id unique', () => {
     expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
+  });
+});
+
+describe('Phase 3A states', () => {
+  it('registers 15 new elections with their own reserved counts', () => {
+    expect(electionsOf('UP').map(e => [e.year, e.docid, e.newElection?.reserved])).toEqual([
+      [2012, 3262, { sc: 85, st: 0 }], [2017, 3471, { sc: 84, st: 2 }], [2022, 14185, { sc: 84, st: 2 }]]);
+    expect(electionOf('GA', 2012)).toMatchObject({ electionId: 'a0090000-0000-4000-8000-000000002012', constPrefix: 'GA_VS12_',
+      newElection: { delimitation: '2008', resultDate: '2012-03-06' } });
+    expect((['GA', 'MN', 'PB', 'UK'] as const).map(s => electionsOf(s).map(e => e.docid))).toEqual([
+      [3856, 3862, 14168], [3712, 3713, 14166], [3455, 3614, 14165], [3231, 3470, 14169]]);
   });
 });

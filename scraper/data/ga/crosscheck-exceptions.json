@@ -1,0 +1,17 @@
+[
+ {
+  "year": 2017,
+  "key": "total-valid:8",
+  "reason": "ECI's Constituency Data Summary total valid votes (20087) differs from its own Detailed Results (20084) by 3; the detailed rows add up to the seat total, winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "total-valid:20",
+  "reason": "ECI's Constituency Data Summary total valid votes (26946) differs from its own Detailed Results (26945) by 1; the detailed rows add up to the seat total, winner, runner-up, margin, electors and candidate count agree"
+ },
+ {
+  "year": 2017,
+  "key": "total-valid:25",
+  "reason": "ECI's Constituency Data Summary total valid votes (26105) differs from its own Detailed Results (26099) by 6; the detailed rows add up to the seat total, winner, runner-up, margin, electors and candidate count agree"
+ }
+]

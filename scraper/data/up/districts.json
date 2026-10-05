@@ -1,0 +1,834 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Uttar_Pradesh_Legislative_Assembly (district column; raw wikitext read 2026-10-05)",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Uttar_Pradesh",
+  "https://en.wikipedia.org/wiki/Amethi_district"
+ ],
+ "notes": "Districts as listed on Wikipedia (current 75 districts), except Salon (181), Sareni (182) and Unchahar (183), which Wikipedia lists under Amethi but are in Rae Bareli district (Salon tehsil returned to Rae Bareli in 2013; Amethi district = Tiloi, Jagdishpur, Gauriganj, Amethi). Regions are the Lokniti-CSDS seven regions.",
+ "districts": [
+  {
+   "code": "UP_SAHARANPUR",
+   "name": "Saharanpur"
+  },
+  {
+   "code": "UP_SHAMLI",
+   "name": "Shamli"
+  },
+  {
+   "code": "UP_MUZAFFARNAGAR",
+   "name": "Muzaffarnagar"
+  },
+  {
+   "code": "UP_BIJNOR",
+   "name": "Bijnor"
+  },
+  {
+   "code": "UP_MORADABAD",
+   "name": "Moradabad"
+  },
+  {
+   "code": "UP_SAMBHAL",
+   "name": "Sambhal"
+  },
+  {
+   "code": "UP_RAMPUR",
+   "name": "Rampur"
+  },
+  {
+   "code": "UP_AMROHA",
+   "name": "Amroha"
+  },
+  {
+   "code": "UP_MEERUT",
+   "name": "Meerut"
+  },
+  {
+   "code": "UP_BAGHPAT",
+   "name": "Baghpat"
+  },
+  {
+   "code": "UP_GHAZIABAD",
+   "name": "Ghaziabad"
+  },
+  {
+   "code": "UP_HAPUR",
+   "name": "Hapur"
+  },
+  {
+   "code": "UP_GAUTAMBUDDHANAGAR",
+   "name": "Gautam Buddha Nagar"
+  },
+  {
+   "code": "UP_BULANDSHAHR",
+   "name": "Bulandshahr"
+  },
+  {
+   "code": "UP_ALIGARH",
+   "name": "Aligarh"
+  },
+  {
+   "code": "UP_HATHRAS",
+   "name": "Hathras"
+  },
+  {
+   "code": "UP_MATHURA",
+   "name": "Mathura"
+  },
+  {
+   "code": "UP_AGRA",
+   "name": "Agra"
+  },
+  {
+   "code": "UP_FIROZABAD",
+   "name": "Firozabad"
+  },
+  {
+   "code": "UP_KASGANJ",
+   "name": "Kasganj"
+  },
+  {
+   "code": "UP_ETAH",
+   "name": "Etah"
+  },
+  {
+   "code": "UP_MAINPURI",
+   "name": "Mainpuri"
+  },
+  {
+   "code": "UP_BUDAUN",
+   "name": "Budaun"
+  },
+  {
+   "code": "UP_BAREILLY",
+   "name": "Bareilly"
+  },
+  {
+   "code": "UP_PILIBHIT",
+   "name": "Pilibhit"
+  },
+  {
+   "code": "UP_SHAHJAHANPUR",
+   "name": "Shahjahanpur"
+  },
+  {
+   "code": "UP_LAKHIMPURKHERI",
+   "name": "Lakhimpur Kheri"
+  },
+  {
+   "code": "UP_SITAPUR",
+   "name": "Sitapur"
+  },
+  {
+   "code": "UP_HARDOI",
+   "name": "Hardoi"
+  },
+  {
+   "code": "UP_UNNAO",
+   "name": "Unnao"
+  },
+  {
+   "code": "UP_LUCKNOW",
+   "name": "Lucknow"
+  },
+  {
+   "code": "UP_RAEBARELI",
+   "name": "Rae Bareli"
+  },
+  {
+   "code": "UP_AMETHI",
+   "name": "Amethi"
+  },
+  {
+   "code": "UP_SULTANPUR",
+   "name": "Sultanpur"
+  },
+  {
+   "code": "UP_FARRUKHABAD",
+   "name": "Farrukhabad"
+  },
+  {
+   "code": "UP_KANNAUJ",
+   "name": "Kannauj"
+  },
+  {
+   "code": "UP_ETAWAH",
+   "name": "Etawah"
+  },
+  {
+   "code": "UP_AURAIYA",
+   "name": "Auraiya"
+  },
+  {
+   "code": "UP_KANPURDEHAT",
+   "name": "Kanpur Dehat"
+  },
+  {
+   "code": "UP_KANPURNAGAR",
+   "name": "Kanpur Nagar"
+  },
+  {
+   "code": "UP_JALAUN",
+   "name": "Jalaun"
+  },
+  {
+   "code": "UP_JHANSI",
+   "name": "Jhansi"
+  },
+  {
+   "code": "UP_LALITPUR",
+   "name": "Lalitpur"
+  },
+  {
+   "code": "UP_HAMIRPUR",
+   "name": "Hamirpur"
+  },
+  {
+   "code": "UP_MAHOBA",
+   "name": "Mahoba"
+  },
+  {
+   "code": "UP_BANDA",
+   "name": "Banda"
+  },
+  {
+   "code": "UP_CHITRAKOOT",
+   "name": "Chitrakoot"
+  },
+  {
+   "code": "UP_FATEHPUR",
+   "name": "Fatehpur"
+  },
+  {
+   "code": "UP_PRATAPGARH",
+   "name": "Pratapgarh"
+  },
+  {
+   "code": "UP_KAUSHAMBI",
+   "name": "Kaushambi"
+  },
+  {
+   "code": "UP_PRAYAGRAJ",
+   "name": "Prayagraj"
+  },
+  {
+   "code": "UP_BARABANKI",
+   "name": "Barabanki"
+  },
+  {
+   "code": "UP_AYODHYA",
+   "name": "Ayodhya"
+  },
+  {
+   "code": "UP_AMBEDKARNAGAR",
+   "name": "Ambedkar Nagar"
+  },
+  {
+   "code": "UP_BAHRAICH",
+   "name": "Bahraich"
+  },
+  {
+   "code": "UP_SHRAVASTI",
+   "name": "Shravasti"
+  },
+  {
+   "code": "UP_BALRAMPUR",
+   "name": "Balrampur"
+  },
+  {
+   "code": "UP_GONDA",
+   "name": "Gonda"
+  },
+  {
+   "code": "UP_SIDDHARTHNAGAR",
+   "name": "Siddharthnagar"
+  },
+  {
+   "code": "UP_BASTI",
+   "name": "Basti"
+  },
+  {
+   "code": "UP_SANTKABIRNAGAR",
+   "name": "Sant Kabir Nagar"
+  },
+  {
+   "code": "UP_MAHARAJGANJ",
+   "name": "Maharajganj"
+  },
+  {
+   "code": "UP_GORAKHPUR",
+   "name": "Gorakhpur"
+  },
+  {
+   "code": "UP_KUSHINAGAR",
+   "name": "Kushinagar"
+  },
+  {
+   "code": "UP_DEORIA",
+   "name": "Deoria"
+  },
+  {
+   "code": "UP_AZAMGARH",
+   "name": "Azamgarh"
+  },
+  {
+   "code": "UP_MAU",
+   "name": "Mau"
+  },
+  {
+   "code": "UP_BALLIA",
+   "name": "Ballia"
+  },
+  {
+   "code": "UP_JAUNPUR",
+   "name": "Jaunpur"
+  },
+  {
+   "code": "UP_GHAZIPUR",
+   "name": "Ghazipur"
+  },
+  {
+   "code": "UP_CHANDAULI",
+   "name": "Chandauli"
+  },
+  {
+   "code": "UP_VARANASI",
+   "name": "Varanasi"
+  },
+  {
+   "code": "UP_BHADOHI",
+   "name": "Bhadohi"
+  },
+  {
+   "code": "UP_MIRZAPUR",
+   "name": "Mirzapur"
+  },
+  {
+   "code": "UP_SONBHADRA",
+   "name": "Sonbhadra"
+  }
+ ],
+ "regions": [
+  {
+   "code": "UP_ROHILKHAND",
+   "name": "Rohilkhand",
+   "districts": [
+    "UP_BIJNOR",
+    "UP_MORADABAD",
+    "UP_SAMBHAL",
+    "UP_RAMPUR",
+    "UP_AMROHA",
+    "UP_BUDAUN",
+    "UP_BAREILLY",
+    "UP_PILIBHIT",
+    "UP_SHAHJAHANPUR"
+   ]
+  },
+  {
+   "code": "UP_AWADH",
+   "name": "Awadh",
+   "districts": [
+    "UP_LAKHIMPURKHERI",
+    "UP_SITAPUR",
+    "UP_HARDOI",
+    "UP_UNNAO",
+    "UP_LUCKNOW",
+    "UP_RAEBARELI",
+    "UP_AMETHI",
+    "UP_SULTANPUR",
+    "UP_PRATAPGARH",
+    "UP_BARABANKI",
+    "UP_AYODHYA"
+   ]
+  },
+  {
+   "code": "UP_PURVANCHAL",
+   "name": "Purvanchal",
+   "districts": [
+    "UP_KAUSHAMBI",
+    "UP_PRAYAGRAJ",
+    "UP_AMBEDKARNAGAR",
+    "UP_AZAMGARH",
+    "UP_MAU",
+    "UP_BALLIA",
+    "UP_JAUNPUR",
+    "UP_GHAZIPUR",
+    "UP_CHANDAULI",
+    "UP_VARANASI",
+    "UP_BHADOHI",
+    "UP_MIRZAPUR",
+    "UP_SONBHADRA"
+   ]
+  },
+  {
+   "code": "UP_PASCHIM",
+   "name": "Paschim",
+   "districts": [
+    "UP_SAHARANPUR",
+    "UP_MUZAFFARNAGAR",
+    "UP_SHAMLI",
+    "UP_MEERUT",
+    "UP_BAGHPAT",
+    "UP_GHAZIABAD",
+    "UP_HAPUR",
+    "UP_GAUTAMBUDDHANAGAR",
+    "UP_BULANDSHAHR"
+   ]
+  },
+  {
+   "code": "UP_DOAB",
+   "name": "Doab",
+   "districts": [
+    "UP_ALIGARH",
+    "UP_HATHRAS",
+    "UP_MATHURA",
+    "UP_AGRA",
+    "UP_FIROZABAD",
+    "UP_ETAH",
+    "UP_KASGANJ",
+    "UP_MAINPURI",
+    "UP_FARRUKHABAD",
+    "UP_KANNAUJ",
+    "UP_ETAWAH",
+    "UP_AURAIYA",
+    "UP_KANPURDEHAT",
+    "UP_KANPURNAGAR",
+    "UP_FATEHPUR"
+   ]
+  },
+  {
+   "code": "UP_BUNDELKHAND",
+   "name": "Bundelkhand",
+   "districts": [
+    "UP_JHANSI",
+    "UP_LALITPUR",
+    "UP_JALAUN",
+    "UP_HAMIRPUR",
+    "UP_MAHOBA",
+    "UP_BANDA",
+    "UP_CHITRAKOOT"
+   ]
+  },
+  {
+   "code": "UP_NORTHEAST",
+   "name": "North-East",
+   "districts": [
+    "UP_BAHRAICH",
+    "UP_SHRAVASTI",
+    "UP_BALRAMPUR",
+    "UP_GONDA",
+    "UP_SIDDHARTHNAGAR",
+    "UP_BASTI",
+    "UP_SANTKABIRNAGAR",
+    "UP_MAHARAJGANJ",
+    "UP_GORAKHPUR",
+    "UP_KUSHINAGAR",
+    "UP_DEORIA"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "UP_SAHARANPUR",
+  "2": "UP_SAHARANPUR",
+  "3": "UP_SAHARANPUR",
+  "4": "UP_SAHARANPUR",
+  "5": "UP_SAHARANPUR",
+  "6": "UP_SAHARANPUR",
+  "7": "UP_SAHARANPUR",
+  "8": "UP_SHAMLI",
+  "9": "UP_SHAMLI",
+  "10": "UP_SHAMLI",
+  "11": "UP_MUZAFFARNAGAR",
+  "12": "UP_MUZAFFARNAGAR",
+  "13": "UP_MUZAFFARNAGAR",
+  "14": "UP_MUZAFFARNAGAR",
+  "15": "UP_MUZAFFARNAGAR",
+  "16": "UP_MUZAFFARNAGAR",
+  "17": "UP_BIJNOR",
+  "18": "UP_BIJNOR",
+  "19": "UP_BIJNOR",
+  "20": "UP_BIJNOR",
+  "21": "UP_BIJNOR",
+  "22": "UP_BIJNOR",
+  "23": "UP_BIJNOR",
+  "24": "UP_BIJNOR",
+  "25": "UP_MORADABAD",
+  "26": "UP_MORADABAD",
+  "27": "UP_MORADABAD",
+  "28": "UP_MORADABAD",
+  "29": "UP_MORADABAD",
+  "30": "UP_MORADABAD",
+  "31": "UP_SAMBHAL",
+  "32": "UP_SAMBHAL",
+  "33": "UP_SAMBHAL",
+  "34": "UP_RAMPUR",
+  "35": "UP_RAMPUR",
+  "36": "UP_RAMPUR",
+  "37": "UP_RAMPUR",
+  "38": "UP_RAMPUR",
+  "39": "UP_AMROHA",
+  "40": "UP_AMROHA",
+  "41": "UP_AMROHA",
+  "42": "UP_AMROHA",
+  "43": "UP_MEERUT",
+  "44": "UP_MEERUT",
+  "45": "UP_MEERUT",
+  "46": "UP_MEERUT",
+  "47": "UP_MEERUT",
+  "48": "UP_MEERUT",
+  "49": "UP_MEERUT",
+  "50": "UP_BAGHPAT",
+  "51": "UP_BAGHPAT",
+  "52": "UP_BAGHPAT",
+  "53": "UP_GHAZIABAD",
+  "54": "UP_GHAZIABAD",
+  "55": "UP_GHAZIABAD",
+  "56": "UP_GHAZIABAD",
+  "57": "UP_GHAZIABAD",
+  "58": "UP_HAPUR",
+  "59": "UP_HAPUR",
+  "60": "UP_HAPUR",
+  "61": "UP_GAUTAMBUDDHANAGAR",
+  "62": "UP_GAUTAMBUDDHANAGAR",
+  "63": "UP_GAUTAMBUDDHANAGAR",
+  "64": "UP_BULANDSHAHR",
+  "65": "UP_BULANDSHAHR",
+  "66": "UP_BULANDSHAHR",
+  "67": "UP_BULANDSHAHR",
+  "68": "UP_BULANDSHAHR",
+  "69": "UP_BULANDSHAHR",
+  "70": "UP_BULANDSHAHR",
+  "71": "UP_ALIGARH",
+  "72": "UP_ALIGARH",
+  "73": "UP_ALIGARH",
+  "74": "UP_ALIGARH",
+  "75": "UP_ALIGARH",
+  "76": "UP_ALIGARH",
+  "77": "UP_ALIGARH",
+  "78": "UP_HATHRAS",
+  "79": "UP_HATHRAS",
+  "80": "UP_HATHRAS",
+  "81": "UP_MATHURA",
+  "82": "UP_MATHURA",
+  "83": "UP_MATHURA",
+  "84": "UP_MATHURA",
+  "85": "UP_MATHURA",
+  "86": "UP_AGRA",
+  "87": "UP_AGRA",
+  "88": "UP_AGRA",
+  "89": "UP_AGRA",
+  "90": "UP_AGRA",
+  "91": "UP_AGRA",
+  "92": "UP_AGRA",
+  "93": "UP_AGRA",
+  "94": "UP_AGRA",
+  "95": "UP_FIROZABAD",
+  "96": "UP_FIROZABAD",
+  "97": "UP_FIROZABAD",
+  "98": "UP_FIROZABAD",
+  "99": "UP_FIROZABAD",
+  "100": "UP_KASGANJ",
+  "101": "UP_KASGANJ",
+  "102": "UP_KASGANJ",
+  "103": "UP_ETAH",
+  "104": "UP_ETAH",
+  "105": "UP_ETAH",
+  "106": "UP_ETAH",
+  "107": "UP_MAINPURI",
+  "108": "UP_MAINPURI",
+  "109": "UP_MAINPURI",
+  "110": "UP_MAINPURI",
+  "111": "UP_SAMBHAL",
+  "112": "UP_BUDAUN",
+  "113": "UP_BUDAUN",
+  "114": "UP_BUDAUN",
+  "115": "UP_BUDAUN",
+  "116": "UP_BUDAUN",
+  "117": "UP_BUDAUN",
+  "118": "UP_BAREILLY",
+  "119": "UP_BAREILLY",
+  "120": "UP_BAREILLY",
+  "121": "UP_BAREILLY",
+  "122": "UP_BAREILLY",
+  "123": "UP_BAREILLY",
+  "124": "UP_BAREILLY",
+  "125": "UP_BAREILLY",
+  "126": "UP_BAREILLY",
+  "127": "UP_PILIBHIT",
+  "128": "UP_PILIBHIT",
+  "129": "UP_PILIBHIT",
+  "130": "UP_PILIBHIT",
+  "131": "UP_SHAHJAHANPUR",
+  "132": "UP_SHAHJAHANPUR",
+  "133": "UP_SHAHJAHANPUR",
+  "134": "UP_SHAHJAHANPUR",
+  "135": "UP_SHAHJAHANPUR",
+  "136": "UP_SHAHJAHANPUR",
+  "137": "UP_LAKHIMPURKHERI",
+  "138": "UP_LAKHIMPURKHERI",
+  "139": "UP_LAKHIMPURKHERI",
+  "140": "UP_LAKHIMPURKHERI",
+  "141": "UP_LAKHIMPURKHERI",
+  "142": "UP_LAKHIMPURKHERI",
+  "143": "UP_LAKHIMPURKHERI",
+  "144": "UP_LAKHIMPURKHERI",
+  "145": "UP_SITAPUR",
+  "146": "UP_SITAPUR",
+  "147": "UP_SITAPUR",
+  "148": "UP_SITAPUR",
+  "149": "UP_SITAPUR",
+  "150": "UP_SITAPUR",
+  "151": "UP_SITAPUR",
+  "152": "UP_SITAPUR",
+  "153": "UP_SITAPUR",
+  "154": "UP_HARDOI",
+  "155": "UP_HARDOI",
+  "156": "UP_HARDOI",
+  "157": "UP_HARDOI",
+  "158": "UP_HARDOI",
+  "159": "UP_HARDOI",
+  "160": "UP_HARDOI",
+  "161": "UP_HARDOI",
+  "162": "UP_UNNAO",
+  "163": "UP_UNNAO",
+  "164": "UP_UNNAO",
+  "165": "UP_UNNAO",
+  "166": "UP_UNNAO",
+  "167": "UP_UNNAO",
+  "168": "UP_LUCKNOW",
+  "169": "UP_LUCKNOW",
+  "170": "UP_LUCKNOW",
+  "171": "UP_LUCKNOW",
+  "172": "UP_LUCKNOW",
+  "173": "UP_LUCKNOW",
+  "174": "UP_LUCKNOW",
+  "175": "UP_LUCKNOW",
+  "176": "UP_LUCKNOW",
+  "177": "UP_RAEBARELI",
+  "178": "UP_AMETHI",
+  "179": "UP_RAEBARELI",
+  "180": "UP_RAEBARELI",
+  "181": "UP_RAEBARELI",
+  "182": "UP_RAEBARELI",
+  "183": "UP_RAEBARELI",
+  "184": "UP_AMETHI",
+  "185": "UP_AMETHI",
+  "186": "UP_AMETHI",
+  "187": "UP_SULTANPUR",
+  "188": "UP_SULTANPUR",
+  "189": "UP_SULTANPUR",
+  "190": "UP_SULTANPUR",
+  "191": "UP_SULTANPUR",
+  "192": "UP_FARRUKHABAD",
+  "193": "UP_FARRUKHABAD",
+  "194": "UP_FARRUKHABAD",
+  "195": "UP_FARRUKHABAD",
+  "196": "UP_KANNAUJ",
+  "197": "UP_KANNAUJ",
+  "198": "UP_KANNAUJ",
+  "199": "UP_ETAWAH",
+  "200": "UP_ETAWAH",
+  "201": "UP_ETAWAH",
+  "202": "UP_AURAIYA",
+  "203": "UP_AURAIYA",
+  "204": "UP_AURAIYA",
+  "205": "UP_KANPURDEHAT",
+  "206": "UP_KANPURDEHAT",
+  "207": "UP_KANPURDEHAT",
+  "208": "UP_KANPURDEHAT",
+  "209": "UP_KANPURNAGAR",
+  "210": "UP_KANPURNAGAR",
+  "211": "UP_KANPURNAGAR",
+  "212": "UP_KANPURNAGAR",
+  "213": "UP_KANPURNAGAR",
+  "214": "UP_KANPURNAGAR",
+  "215": "UP_KANPURNAGAR",
+  "216": "UP_KANPURNAGAR",
+  "217": "UP_KANPURNAGAR",
+  "218": "UP_KANPURNAGAR",
+  "219": "UP_JALAUN",
+  "220": "UP_JALAUN",
+  "221": "UP_JALAUN",
+  "222": "UP_JHANSI",
+  "223": "UP_JHANSI",
+  "224": "UP_JHANSI",
+  "225": "UP_JHANSI",
+  "226": "UP_LALITPUR",
+  "227": "UP_LALITPUR",
+  "228": "UP_HAMIRPUR",
+  "229": "UP_HAMIRPUR",
+  "230": "UP_MAHOBA",
+  "231": "UP_MAHOBA",
+  "232": "UP_BANDA",
+  "233": "UP_BANDA",
+  "234": "UP_BANDA",
+  "235": "UP_BANDA",
+  "236": "UP_CHITRAKOOT",
+  "237": "UP_CHITRAKOOT",
+  "238": "UP_FATEHPUR",
+  "239": "UP_FATEHPUR",
+  "240": "UP_FATEHPUR",
+  "241": "UP_FATEHPUR",
+  "242": "UP_FATEHPUR",
+  "243": "UP_FATEHPUR",
+  "244": "UP_PRATAPGARH",
+  "245": "UP_PRATAPGARH",
+  "246": "UP_PRATAPGARH",
+  "247": "UP_PRATAPGARH",
+  "248": "UP_PRATAPGARH",
+  "249": "UP_PRATAPGARH",
+  "250": "UP_PRATAPGARH",
+  "251": "UP_KAUSHAMBI",
+  "252": "UP_KAUSHAMBI",
+  "253": "UP_KAUSHAMBI",
+  "254": "UP_PRAYAGRAJ",
+  "255": "UP_PRAYAGRAJ",
+  "256": "UP_PRAYAGRAJ",
+  "257": "UP_PRAYAGRAJ",
+  "258": "UP_PRAYAGRAJ",
+  "259": "UP_PRAYAGRAJ",
+  "260": "UP_PRAYAGRAJ",
+  "261": "UP_PRAYAGRAJ",
+  "262": "UP_PRAYAGRAJ",
+  "263": "UP_PRAYAGRAJ",
+  "264": "UP_PRAYAGRAJ",
+  "265": "UP_PRAYAGRAJ",
+  "266": "UP_BARABANKI",
+  "267": "UP_BARABANKI",
+  "268": "UP_BARABANKI",
+  "269": "UP_BARABANKI",
+  "270": "UP_BARABANKI",
+  "271": "UP_AYODHYA",
+  "272": "UP_BARABANKI",
+  "273": "UP_AYODHYA",
+  "274": "UP_AYODHYA",
+  "275": "UP_AYODHYA",
+  "276": "UP_AYODHYA",
+  "277": "UP_AMBEDKARNAGAR",
+  "278": "UP_AMBEDKARNAGAR",
+  "279": "UP_AMBEDKARNAGAR",
+  "280": "UP_AMBEDKARNAGAR",
+  "281": "UP_AMBEDKARNAGAR",
+  "282": "UP_BAHRAICH",
+  "283": "UP_BAHRAICH",
+  "284": "UP_BAHRAICH",
+  "285": "UP_BAHRAICH",
+  "286": "UP_BAHRAICH",
+  "287": "UP_BAHRAICH",
+  "288": "UP_BAHRAICH",
+  "289": "UP_SHRAVASTI",
+  "290": "UP_SHRAVASTI",
+  "291": "UP_BALRAMPUR",
+  "292": "UP_BALRAMPUR",
+  "293": "UP_BALRAMPUR",
+  "294": "UP_BALRAMPUR",
+  "295": "UP_GONDA",
+  "296": "UP_GONDA",
+  "297": "UP_GONDA",
+  "298": "UP_GONDA",
+  "299": "UP_GONDA",
+  "300": "UP_GONDA",
+  "301": "UP_GONDA",
+  "302": "UP_SIDDHARTHNAGAR",
+  "303": "UP_SIDDHARTHNAGAR",
+  "304": "UP_SIDDHARTHNAGAR",
+  "305": "UP_SIDDHARTHNAGAR",
+  "306": "UP_SIDDHARTHNAGAR",
+  "307": "UP_BASTI",
+  "308": "UP_BASTI",
+  "309": "UP_BASTI",
+  "310": "UP_BASTI",
+  "311": "UP_BASTI",
+  "312": "UP_SANTKABIRNAGAR",
+  "313": "UP_SANTKABIRNAGAR",
+  "314": "UP_SANTKABIRNAGAR",
+  "315": "UP_MAHARAJGANJ",
+  "316": "UP_MAHARAJGANJ",
+  "317": "UP_MAHARAJGANJ",
+  "318": "UP_MAHARAJGANJ",
+  "319": "UP_MAHARAJGANJ",
+  "320": "UP_GORAKHPUR",
+  "321": "UP_GORAKHPUR",
+  "322": "UP_GORAKHPUR",
+  "323": "UP_GORAKHPUR",
+  "324": "UP_GORAKHPUR",
+  "325": "UP_GORAKHPUR",
+  "326": "UP_GORAKHPUR",
+  "327": "UP_GORAKHPUR",
+  "328": "UP_GORAKHPUR",
+  "329": "UP_KUSHINAGAR",
+  "330": "UP_KUSHINAGAR",
+  "331": "UP_KUSHINAGAR",
+  "332": "UP_KUSHINAGAR",
+  "333": "UP_KUSHINAGAR",
+  "334": "UP_KUSHINAGAR",
+  "335": "UP_KUSHINAGAR",
+  "336": "UP_DEORIA",
+  "337": "UP_DEORIA",
+  "338": "UP_DEORIA",
+  "339": "UP_DEORIA",
+  "340": "UP_DEORIA",
+  "341": "UP_DEORIA",
+  "342": "UP_DEORIA",
+  "343": "UP_AZAMGARH",
+  "344": "UP_AZAMGARH",
+  "345": "UP_AZAMGARH",
+  "346": "UP_AZAMGARH",
+  "347": "UP_AZAMGARH",
+  "348": "UP_AZAMGARH",
+  "349": "UP_AZAMGARH",
+  "350": "UP_AZAMGARH",
+  "351": "UP_AZAMGARH",
+  "352": "UP_AZAMGARH",
+  "353": "UP_MAU",
+  "354": "UP_MAU",
+  "355": "UP_MAU",
+  "356": "UP_MAU",
+  "357": "UP_BALLIA",
+  "358": "UP_BALLIA",
+  "359": "UP_BALLIA",
+  "360": "UP_BALLIA",
+  "361": "UP_BALLIA",
+  "362": "UP_BALLIA",
+  "363": "UP_BALLIA",
+  "364": "UP_JAUNPUR",
+  "365": "UP_JAUNPUR",
+  "366": "UP_JAUNPUR",
+  "367": "UP_JAUNPUR",
+  "368": "UP_JAUNPUR",
+  "369": "UP_JAUNPUR",
+  "370": "UP_JAUNPUR",
+  "371": "UP_JAUNPUR",
+  "372": "UP_JAUNPUR",
+  "373": "UP_GHAZIPUR",
+  "374": "UP_GHAZIPUR",
+  "375": "UP_GHAZIPUR",
+  "376": "UP_GHAZIPUR",
+  "377": "UP_GHAZIPUR",
+  "378": "UP_GHAZIPUR",
+  "379": "UP_GHAZIPUR",
+  "380": "UP_CHANDAULI",
+  "381": "UP_CHANDAULI",
+  "382": "UP_CHANDAULI",
+  "383": "UP_CHANDAULI",
+  "384": "UP_VARANASI",
+  "385": "UP_VARANASI",
+  "386": "UP_VARANASI",
+  "387": "UP_VARANASI",
+  "388": "UP_VARANASI",
+  "389": "UP_VARANASI",
+  "390": "UP_VARANASI",
+  "391": "UP_VARANASI",
+  "392": "UP_BHADOHI",
+  "393": "UP_BHADOHI",
+  "394": "UP_BHADOHI",
+  "395": "UP_MIRZAPUR",
+  "396": "UP_MIRZAPUR",
+  "397": "UP_MIRZAPUR",
+  "398": "UP_MIRZAPUR",
+  "399": "UP_MIRZAPUR",
+  "400": "UP_SONBHADRA",
+  "401": "UP_SONBHADRA",
+  "402": "UP_SONBHADRA",
+  "403": "UP_SONBHADRA"
+ }
+}

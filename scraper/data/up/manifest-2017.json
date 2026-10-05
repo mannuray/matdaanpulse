@@ -1,0 +1,66 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2017_Uttar_Pradesh_Legislative_Assembly_election"
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP",
+    "ADSL",
+    "SBSP"
+   ]
+  },
+  {
+   "id": "SPINC",
+   "name": "SP–Congress",
+   "color": "#CC0000",
+   "parties": [
+    "SP",
+    "INC"
+   ]
+  },
+  {
+   "id": "BSP",
+   "name": "BSP",
+   "color": "#1E40AF",
+   "parties": [
+    "BSP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "NDA",
+  "SPINC",
+  "BSP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 202
+  }
+ ],
+ "geo": {
+  "zoom": 7,
+  "center": [
+   80.9,
+   26.9
+  ],
+  "map_url": "/geo/up_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0340000-0000-4000-8000-000000002012"
+ ],
+ "history_years": [
+  2012
+ ],
+ "compare_with": [
+  "a0340000-0000-4000-8000-000000002012"
+ ]
+}

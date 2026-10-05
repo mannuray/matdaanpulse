@@ -1,0 +1,3238 @@
+{
+ "year": 2017,
+ "electionId": "a0090000-0000-4000-8000-000000002017",
+ "source": {
+  "title": "ECI Statistical Report, Goa Legislative Assembly 2017",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3862",
+  "retrieved": "2026-10-05"
+ },
+ "parties": [
+  {
+   "id": "AAP",
+   "name": "Aam Aadmi Party",
+   "abbreviation": null,
+   "color": "#0066FF",
+   "recognition": "National"
+  },
+  {
+   "id": "APOI",
+   "name": "Ambedkarite Party of India",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "BMP1",
+   "name": "Bahujan Mukti Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "GFP",
+   "name": "Goa Forward Party",
+   "abbreviation": "GFP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "GOPRP",
+   "name": "Goa Praja Party",
+   "abbreviation": "GoPrP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "GSM",
+   "name": "Goa Suraksha Manch",
+   "abbreviation": "GSM",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "GSRP",
+   "name": "Goa Su-Raj Party",
+   "abbreviation": "GSRP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "GVP",
+   "name": "Goa Vikas Party",
+   "abbreviation": "GVP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "MAG",
+   "name": "Maharashtrawadi Gomantak",
+   "abbreviation": "MAG",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NGRF",
+   "name": "Niz Goenkar Revolution Front",
+   "abbreviation": "NGRF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SAJPCS",
+   "name": "Samajwadi Janata Party (ChandraShekhar)",
+   "abbreviation": "SaJPCs",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "abbreviation": null,
+   "color": "#FF6600",
+   "recognition": null
+  },
+  {
+   "id": "UGP",
+   "name": "United Goans Party",
+   "abbreviation": "UGP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Mandrem",
+   "type": "GEN",
+   "electors": 31369,
+   "voters": 28071,
+   "turnout": 89.49,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dayanand Raghunath Sopte",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 16490,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laxmikant Parsekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 9371,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shridhar Ladu Manjrekar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 69,
+     "votes": 678,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Devendra Krishnaji Prabhu Parsekar Desai",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 53,
+     "votes": 620,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajendra M. Satelkar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 49,
+     "votes": 234,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjay Krishnarao Prabhu Dessai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bhim Raghuvir Pednekar",
+     "partyId": "BMP1",
+     "sex": "M",
+     "age": 50,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 415,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Pernem",
+   "type": "SC",
+   "electors": 31360,
+   "voters": 27821,
+   "turnout": 88.71,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajgaonkar Manohar Trimbak",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 63,
+     "votes": 15745,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajendra Arlekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 9715,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vikesh Ramesh Assotikar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 1013,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shivanand Krishna Pilarnkar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 40,
+     "votes": 308,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gopaldas Anant Arlekar",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 48,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Santosh Shankar Mandrekar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 45,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nitin Mohan Chopdekar",
+     "partyId": "BMP1",
+     "sex": "M",
+     "age": 37,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Dnyaneswar S Varkhankar",
+     "partyId": "GOPRP",
+     "sex": "M",
+     "age": 40,
+     "votes": 71,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 469,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Bicholim",
+   "type": "GEN",
+   "electors": 25958,
+   "voters": 23352,
+   "turnout": 89.96,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajesh Patnekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 10654,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Naresh Sawal",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 51,
+     "votes": 9988,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manohar Pandurang Shirodkar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 1761,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sainath Patekar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 33,
+     "votes": 358,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Raut Pandurang Dattaram",
+     "partyId": "GOPRP",
+     "sex": "M",
+     "age": 70,
+     "votes": 324,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 221,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Tivim",
+   "type": "GEN",
+   "electors": 26575,
+   "voters": 22630,
+   "turnout": 85.16,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nilkanth Ramnath Halarnkar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 11099,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kiran Mohan Kandolkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 10304,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pradeep Amonkar Ghadi",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 53,
+     "votes": 703,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Douglas Lawrence Sequeira",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 275,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 179,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Mapusa",
+   "type": "GEN",
+   "electors": 28808,
+   "voters": 22777,
+   "turnout": 79.06,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Francisco C. J. A. De Pinto E Souza",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 10957,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vinod Fadke",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 59,
+     "votes": 4129,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vijay Laxman Bhike",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 3013,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shraddha Khalap",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 33,
+     "votes": 2321,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Domnic Alphonso",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 1543,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjay Vithu Barde",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 52,
+     "votes": 289,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rameshwari Morajkar",
+     "partyId": "GSRP",
+     "sex": "F",
+     "age": 27,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 409,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Siolim",
+   "type": "GEN",
+   "electors": 28171,
+   "voters": 23533,
+   "turnout": 83.54,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vinoda Datarama Paliencar",
+     "partyId": "GFP",
+     "sex": "M",
+     "age": 54,
+     "votes": 10189,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dayanand Rayu Mandrekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 8748,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vishnu Mhaddu Naik",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 34,
+     "votes": 1854,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Patrick Savio Almeida",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 1497,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Paresh Raikar",
+     "partyId": "GSM",
+     "sex": "M",
+     "age": 60,
+     "votes": 532,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abhijit Dhargalkar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 33,
+     "votes": 275,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Janardan Narahari Tamhankar",
+     "partyId": "BMP1",
+     "sex": "M",
+     "age": 50,
+     "votes": 116,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mukesh Sawant",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 212,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Saligao",
+   "type": "GEN",
+   "electors": 26036,
+   "voters": 21051,
+   "turnout": 80.85,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jayesh Vidyadhar Salgaonkar",
+     "partyId": "GFP",
+     "sex": "M",
+     "age": 42,
+     "votes": 9735,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dilip Parulekar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 7598,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Agnelo Nicholas Fernandes",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 1616,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dattatraya Vittal Padgaonkar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 56,
+     "votes": 1330,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajesh Dabholkar",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 45,
+     "votes": 428,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gajanan Rama Naik",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 53,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 171,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Calangute",
+   "type": "GEN",
+   "electors": 24541,
+   "voters": 20117,
+   "turnout": 81.97,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Michael Vincent Lobo",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 11136,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Joseph Robert Sequeira",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 7311,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Godwin Fernandes",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 34,
+     "votes": 1465,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 172,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Porvorim",
+   "type": "GEN",
+   "electors": 24346,
+   "voters": 19699,
+   "turnout": 80.91,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rohan Khaunte",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 11174,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Guruprasad R. Pawaskar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 6961,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajesh Valvaikar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 45,
+     "votes": 846,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajesh Vishnu Sinai Amonkar Alias Rajesh Amonkar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 46,
+     "votes": 222,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Wilbur Fredrick Ticlo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 144,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Raju Dsouza",
+     "partyId": "SAJPCS",
+     "sex": "M",
+     "age": 47,
+     "votes": 133,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 176,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Aldona",
+   "type": "GEN",
+   "electors": 27439,
+   "voters": 21649,
+   "turnout": 78.9,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Glenn Souza Ticlo",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 9405,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Amarnath Panjikar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 4949,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rosy Ursula D`souza",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 49,
+     "votes": 3272,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mahesh Vithu Satelkar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 38,
+     "votes": 3000,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anandrao Narayanrao Nagvenkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 643,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Osbert D`cunha",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 30,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 196,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Panaji",
+   "type": "GEN",
+   "electors": 22203,
+   "voters": 17403,
+   "turnout": 78.38,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sidharth Sripad Kuncalienker",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 7924,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Atanasio J. Monserrate",
+     "partyId": "UGP",
+     "sex": "M",
+     "age": 54,
+     "votes": 6855,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Valmiki Naik",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 40,
+     "votes": 1944,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ketan Kirtikumar Prabhu Bhatikar",
+     "partyId": "GSM",
+     "sex": "M",
+     "age": 32,
+     "votes": 323,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dominic Savio A. E. Fernandes",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 50,
+     "votes": 62,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dilip Ghadi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 36,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Parshuram Dodamani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 20,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 175,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Taleigao",
+   "type": "GEN",
+   "electors": 27864,
+   "voters": 22595,
+   "turnout": 81.09,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jennifer Monserrate",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 46,
+     "votes": 11534,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dattaprasad Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 8679,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Cecille Rodrigues",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 34,
+     "votes": 1976,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vijay V. More",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 252,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "St. Cruz",
+   "type": "GEN",
+   "electors": 27711,
+   "voters": 22260,
+   "turnout": 80.33,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Antonio Caetano Fernandes",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 6202,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hemant Dinanath Golatkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 5560,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rodolfo Louis Fernandes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 5262,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Prakash Gopi Naik",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 43,
+     "votes": 2707,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jose Vincent Gomes",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 47,
+     "votes": 1712,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Helena Lourenco",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 46,
+     "votes": 227,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pedro Caitano Pires Alias Peter Pires",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 53,
+     "votes": 106,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shakeel Jamal Shaikh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 47,
+     "votes": 75,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Jose Lopes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 303,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "St. Andre",
+   "type": "GEN",
+   "electors": 20948,
+   "voters": 16556,
+   "turnout": 79.03,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Francisco Silveira",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 8087,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ramrao Surya Naik Wagh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 3017,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jagdish Umakant Bhobe",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 47,
+     "votes": 2393,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dhaku Arjun Madkaikar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 1285,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rama Gurudas Kankonkar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 31,
+     "votes": 979,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dattaram Naguesh Chari",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 40,
+     "votes": 325,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Simao Aleixo Caiado",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sunil Savlo Kerkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Leocardio A. D. Monteiro",
+     "partyId": "GSRP",
+     "sex": "M",
+     "age": 54,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ashwin Menino Rosario",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 29,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 152,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Cumbarjua",
+   "type": "GEN",
+   "electors": 25055,
+   "voters": 20596,
+   "turnout": 82.2,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pandurang Madkaikar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 12395,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Xavier Fialho",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 3961,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Prakash Dattaram Naik",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 54,
+     "votes": 2394,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vishal Shambu Volvoikar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 990,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Prasad Harmalkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 468,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 348,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Maem",
+   "type": "GEN",
+   "electors": 27097,
+   "voters": 24149,
+   "turnout": 89.12,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pravin Zantye",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 12430,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Santosh Kumar Sawant",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 7456,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Atmaram Vaman Gaonker",
+     "partyId": "GSM",
+     "sex": "M",
+     "age": 50,
+     "votes": 2317,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Subhash Narsinha Kinalkar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 528,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ajeetsingh Vamanrao Rane",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 50,
+     "votes": 525,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Prabhakar Laximan Gaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 174,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Deepkumar D Mapari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ashok Anant Gaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 142,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 377,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Sanquelim",
+   "type": "GEN",
+   "electors": 26207,
+   "voters": 23745,
+   "turnout": 90.61,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Pramod Pandurang Sawant",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 10058,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dharmesh Saglani",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 7927,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suresh Amonkar",
+     "partyId": "GSM",
+     "sex": "M",
+     "age": 65,
+     "votes": 3831,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pratap Prabhakar Gauns",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 857,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Milind Gauns",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 41,
+     "votes": 408,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mahesh Shantaram Parab",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 218,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Moulali Shaikh",
+     "partyId": "GSRP",
+     "sex": "M",
+     "age": 46,
+     "votes": 72,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 329,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Poriem",
+   "type": "GEN",
+   "electors": 30694,
+   "voters": 27707,
+   "turnout": 90.27,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pratapsingh R Rane",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 78,
+     "votes": 14977,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vishwajit Krishnarao Rane",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 10911,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Suhas Gajanan Naik",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 53,
+     "votes": 469,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sitaram Anant Gawas",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 48,
+     "votes": 403,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ajit Sadanand Mhalshekar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 284,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 552,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Valpoi",
+   "type": "GEN",
+   "electors": 28835,
+   "voters": 25382,
+   "turnout": 88.02,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vishwajit Pratapsingh Rane",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 13493,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Satyavijay Subrai Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 7815,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vijay Atmaram Gaonkar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 41,
+     "votes": 3246,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ashish V. Kanekar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 36,
+     "votes": 410,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 362,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Priol",
+   "type": "GEN",
+   "electors": 29568,
+   "voters": 26981,
+   "turnout": 91.25,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Govind Gaude",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 15149,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pandurang Alias Deepak Madhav Dhavalikar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 58,
+     "votes": 10463,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Dattaram B. Dessai",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 64,
+     "votes": 456,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ramkrishna B. Jalmi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 429,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 448,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Ponda",
+   "type": "GEN",
+   "electors": 30568,
+   "voters": 25134,
+   "turnout": 82.22,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ravi Sitaram Naik",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 70,
+     "votes": 9502,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sunil Desai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 6492,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajesh Verekar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 4529,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Lavoo Mamledar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 60,
+     "votes": 3796,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mulla Mansur Muzawar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 37,
+     "votes": 522,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 254,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Siroda",
+   "type": "GEN",
+   "electors": 28265,
+   "voters": 24708,
+   "turnout": 87.42,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Subhash Ankush Shirodkar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 11156,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mahadev Narayan Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 6286,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abhay Ramchandra Prabhu",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 45,
+     "votes": 5815,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Molu Anand Velip",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 42,
+     "votes": 586,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nilesh Govind Gaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 447,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Diya Chandrakant Shetkar",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 39,
+     "votes": 140,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 194,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Marcaim",
+   "type": "GEN",
+   "electors": 26984,
+   "voters": 23462,
+   "turnout": 86.95,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ramkrishna Alias Sudin Dhavalikar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 60,
+     "votes": 17093,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pradeep Pundalik Shet",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 3413,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Urmila Alias Vindiksha Vinod Naik",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 40,
+     "votes": 1259,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Surel Datta Tilve",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 32,
+     "votes": 971,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Hanumant Vasant Naik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 244,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 376,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Mormugao",
+   "type": "GEN",
+   "electors": 21446,
+   "voters": 17379,
+   "turnout": 81.04,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Milind Sagun Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 8466,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sankalp Amonkar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 8326,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Giovanni Karl Vaz",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 53,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sanjay Naik",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 39,
+     "votes": 51,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Parashuram Umaji Sonurlekar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 48,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Maria Liberata Mendonca",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 37,
+     "votes": 31,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 151,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Vasco-da-gama",
+   "type": "GEN",
+   "electors": 35938,
+   "voters": 26146,
+   "turnout": 72.75,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jose Luis Carlos Almeida",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 8765,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Krishna (Daji) V Salkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 7414,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jose Filipe De Sousa",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 60,
+     "votes": 4202,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Saifula Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 3737,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Loretta Shreedharan",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 62,
+     "votes": 928,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Manesh Chandrakant Arolkar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 47,
+     "votes": 654,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gandhi Henriques",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 68,
+     "votes": 77,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Chandrashekher Vast",
+     "partyId": "NGRF",
+     "sex": "M",
+     "age": 49,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 263,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Dabolim",
+   "type": "GEN",
+   "electors": 22650,
+   "voters": 17524,
+   "turnout": 77.37,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mauvin Heliodoro Godinho",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 7234,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Premanand Nanoskar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 40,
+     "votes": 4740,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Francisco Jose Nunes",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 2752,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vasant (Gopi) Naik",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 47,
+     "votes": 1117,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kritesh Naik Gaunkar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 47,
+     "votes": 1043,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kenneth Ian Stewart Silveira",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Tara Govind Kerkar",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 61,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Preetam Keluskar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Suresh Barve",
+     "partyId": "NGRF",
+     "sex": "M",
+     "age": 35,
+     "votes": 56,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 168,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Cortalim",
+   "type": "GEN",
+   "electors": 30463,
+   "voters": 23515,
+   "turnout": 77.19,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Alina Saldanha",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 64,
+     "votes": 5666,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Antonio Vas",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 5148,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gilbert Mariano Rodrigues",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 4326,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nelly Rodrigues",
+     "partyId": "GVP",
+     "sex": "F",
+     "age": 56,
+     "votes": 3380,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Olencio Simoes",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 30,
+     "votes": 2482,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ramakant Borkar",
+     "partyId": "UGP",
+     "sex": "M",
+     "age": 54,
+     "votes": 1708,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sharan Meti",
+     "partyId": "GSRP",
+     "sex": "M",
+     "age": 40,
+     "votes": 258,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Miguel Antonio Rodrigues",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 177,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Suman Sharma",
+     "partyId": "MAG",
+     "sex": "F",
+     "age": 41,
+     "votes": 75,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Gilroy Costa",
+     "partyId": "GOPRP",
+     "sex": "M",
+     "age": 42,
+     "votes": 56,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 210,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Nuvem",
+   "type": "GEN",
+   "electors": 28200,
+   "voters": 21451,
+   "turnout": 76.07,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wilfred D Sa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 9967,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Francisco Xavier Pacheco",
+     "partyId": "GSRP",
+     "sex": "M",
+     "age": 52,
+     "votes": 4307,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mariano Godinho",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 63,
+     "votes": 3389,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vincent Rodrigues",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 58,
+     "votes": 2880,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dinesh Bandodkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 664,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 240,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Curtorim",
+   "type": "GEN",
+   "electors": 28187,
+   "voters": 21333,
+   "turnout": 75.68,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Aleixo Reginaldo Lourenco",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 12841,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Arthur D’silva",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 5144,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Edwin Domnic Vaz",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 38,
+     "votes": 2711,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Conceicao Dias",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 50,
+     "votes": 240,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jose Paulo Fernandes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 249,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Fatorda",
+   "type": "GEN",
+   "electors": 28985,
+   "voters": 23054,
+   "turnout": 79.54,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vijai Sardesai",
+     "partyId": "GFP",
+     "sex": "M",
+     "age": 46,
+     "votes": 10516,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Damu G. Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 9182,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ranjit Cotta Carvalho",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 48,
+     "votes": 1479,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jose D Silva",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 1414,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "D. S. Naik (Dilip)",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 42,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Avin Vishwanath Naik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 72,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 220,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Margao",
+   "type": "GEN",
+   "electors": 28457,
+   "voters": 22366,
+   "turnout": 78.6,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Digambar Vasant Kamat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 12105,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sharmad Raiturkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 7929,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Santosh Raiturkar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 64,
+     "votes": 1832,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jayesh Raghunath Naik",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 43,
+     "votes": 216,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 271,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Benaulim",
+   "type": "GEN",
+   "electors": 28603,
+   "voters": 21316,
+   "turnout": 74.52,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Churchill Alemao",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 67,
+     "votes": 9373,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Royla Clarina Fernandes",
+     "partyId": "AAP",
+     "sex": "F",
+     "age": 37,
+     "votes": 4182,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Caetano Rosario Silva",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 3995,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Edwino Barreto",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 2157,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "John Fernandes",
+     "partyId": "GSRP",
+     "sex": "M",
+     "age": 40,
+     "votes": 571,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Maria Da Luz Arlinda Gomes E Rebelo",
+     "partyId": "GVP",
+     "sex": "F",
+     "age": 48,
+     "votes": 492,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Judith Aurelia Baptista Almeida Alias Judith Almeida",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 61,
+     "votes": 357,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 187,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Navelim",
+   "type": "GEN",
+   "electors": 27349,
+   "voters": 21354,
+   "turnout": 78.08,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Luizinho Faleiro",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 8183,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Avertano Furtado",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 5705,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Edwin Cardozo (Cipru)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 3027,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Satyaviajay Naik",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 48,
+     "votes": 1798,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Siddharth Karapurkar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 48,
+     "votes": 1287,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Cruz Antonio Jorge Barretto",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 60,
+     "votes": 839,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Duarte Pires",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 263,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 249,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Cuncolim",
+   "type": "GEN",
+   "electors": 29067,
+   "voters": 22485,
+   "turnout": 77.36,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Clafasio Dias",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 6415,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Joaquim Alemao",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 6382,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Subhash Alias Rajan K. Naik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 5047,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Elvis Gomes",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 54,
+     "votes": 3437,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "John Inacio Monteiro",
+     "partyId": "GVP",
+     "sex": "M",
+     "age": 38,
+     "votes": 488,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Devendra Dessai",
+     "partyId": "SHS",
+     "sex": "M",
+     "age": 44,
+     "votes": 313,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Derick Dias",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 111,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 247,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Velim",
+   "type": "GEN",
+   "electors": 31178,
+   "voters": 23536,
+   "turnout": 75.49,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Filipe Nery Rodrigues",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 10417,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Benjamin Silva",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 5164,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Cruz Silva",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 47,
+     "votes": 3423,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vinay Tari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 1765,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anthony Rodrigues (Babush)",
+     "partyId": "GFP",
+     "sex": "M",
+     "age": 53,
+     "votes": 1460,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Edrich Correia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 335,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jose Fernandes (Champy)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Domnic Noronha",
+     "partyId": "GSRP",
+     "sex": "M",
+     "age": 45,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Frederick Borges",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 47,
+     "votes": 108,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Wilson Mazarello (Wilmix)",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 98,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Constancio Fernandes",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Cliffton D&#39;souza",
+     "partyId": "APOI",
+     "sex": "M",
+     "age": 35,
+     "votes": 44,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 260,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Quepem",
+   "type": "GEN",
+   "electors": 31293,
+   "voters": 26676,
+   "turnout": 85.25,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chandrakant (Babu) Kavlekar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 13525,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prakash Shankar Velip",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 10933,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Joao Fernandes",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 46,
+     "votes": 1385,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Charles D&#39;silva",
+     "partyId": "GSRP",
+     "sex": "M",
+     "age": 47,
+     "votes": 251,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sudesh Gaude",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 32,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 357,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Curchorem",
+   "type": "GEN",
+   "electors": 26030,
+   "voters": 21720,
+   "turnout": 83.44,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nilesh Cabral",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 12830,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shyam Gopinath Satardekar",
+     "partyId": "GSM",
+     "sex": "M",
+     "age": 50,
+     "votes": 3742,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rosario Mariano Fernandes",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 2778,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "James Fernandes",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2028,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 290,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Sanvordem",
+   "type": "GEN",
+   "electors": 28242,
+   "voters": 25386,
+   "turnout": 89.89,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Deepak Prabhu Pauskar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 43,
+     "votes": 14575,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ganesh Chandru Gaonkar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 9354,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shankar Kirlapalkar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 991,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Balkrishna Marathe",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 152,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 305,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Sanguem",
+   "type": "GEN",
+   "electors": 25769,
+   "voters": 22691,
+   "turnout": 88.06,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Prasad S. Gaonkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 7636,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Subhash Phal Dessai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 6699,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Savitri Kavlekar",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 37,
+     "votes": 5736,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dattaprasad Sawardekar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 989,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ravindra Arjun Velip",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 28,
+     "votes": 658,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Vasudev Gaonkar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 55,
+     "votes": 484,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sudesh Noni Gaunkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rakhi Naik",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 32,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 208,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Canacona",
+   "type": "GEN",
+   "electors": 33233,
+   "voters": 28522,
+   "turnout": 85.82,
+   "phase": 1,
+   "pollDate": "2017-02-04",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Isidore Aleixinho Fernandes",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 10853,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vijay Pai Khot",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 8745,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ramesh Tawadkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 7739,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sandesh Telekar",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 40,
+     "votes": 452,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gourish Bandekar",
+     "partyId": "MAG",
+     "sex": "M",
+     "age": 33,
+     "votes": 398,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 302,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

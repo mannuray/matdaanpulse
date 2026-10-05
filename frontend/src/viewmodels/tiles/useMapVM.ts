@@ -68,7 +68,7 @@ export function useMapVM(): MapVM {
   }, [url, isVS]);
 
   const seats = src.data.mapRegions;
-  const seatOf = useMemo(() => matchFeaturesToSeats(features, seats), [features, seats]);
+  const seatOf = useMemo(() => matchFeaturesToSeats(features, seats, { byNumber: isVS }), [features, seats, isVS]);
   const highlight = activeHighlight(state);
   // Highlight sets are rebuilt each render; key them by content so fills only recompute on real changes.
   const hlKey = `${[...highlight.parties].join(',')}|${[...highlight.seats].join(',')}`;

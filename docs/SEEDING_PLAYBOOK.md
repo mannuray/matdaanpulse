@@ -159,6 +159,14 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | Regenerating a corrections seed after the year seeds were already regenerated | restore the old year seeds first (`git show <pre-branch commit>:database/…`); corrections are a diff against the old rows |
 | Flat 2016 sheets: summing the parsed rows as the seat total makes the turnout check compare a number with itself | read the sheet's own "Total Votes" column |
 
+| A summary page broken or a seat's type wrong in ECI's summary (Manipur 2017 Sagolband; 9 UP 2017 seats) | `summary-fixes.json` per year (`voters`, `totalValid`, `type`), each with its source |
+| Seats missing from ECI's summary (UP 2017: 11) | `missing-summaries.json`: name, type, electors, poll date; totals from the detailed sheet (candidates only, NOTA separate) |
+| Two candidates of one party in a seat (UP 2012 seat 72); the DB keeps one per party per seat | `candidate-fixes.json` (the other as IND); parse/generate refuse such seats without a decision |
+| Letter-spaced abbreviations in the 2012 PDFs ("Aa S P") split into party + symbol | keep spaced runs of 1-2 letters together (detailed and party-list parsers) |
+| Dotted reservation suffixes ("S.C.", "S.T.") | `splitAcName` accepts them |
+| Old map files wound the planar way (2008 GA/MN/PB/UK/UP: d3 draws each seat as the globe) | the loader rewinds (`fixWinding`); a new map still gets `rewindForD3` |
+| Map seat names differ from ECI's (truncated "(SC", transliterations) | VS maps match by seat number as a fallback; check numbering once per map |
+| An all-new state's person links: v1 filtered out new elections | v1 = old-seed elections plus new ones up to 2022 |
 | A brand-new election has no old seed to take names/ids from | registry `newElection` → `new-election.ts` (elections row, constituency ids `<ST>_VS<yy>_<no>_<NAME>`, curated `manifest-<year>.json`) |
 | ECI boundary files: seat names carry "(SC)"/"(ST)" and other spellings; mapshaper writes counter-clockwise rings (d3 draws a square) | map features take our seat names; `rewindForD3` after mapshaper |
 | A redraw (Assam 2023): seat-number seeds (districts/regions, person links) would join unrelated seats | scope old seeds to the old delimitation; tag new seats one by one; link only within one delimitation |
