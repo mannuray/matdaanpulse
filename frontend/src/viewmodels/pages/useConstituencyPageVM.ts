@@ -86,7 +86,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   }, [mapUrl]);
   const locator = useMemo(() => {
     if (!features.length || !d) return null;
-    const matched = matchFeaturesToSeats(features, [{ id: constId, name: d.name, state: d.state?.name }]);
+    const matched = matchFeaturesToSeats(features, [{ id: constId, name: d.name, state: d.state?.name }], { byNumber: e?.type === 'VS' });
     const seat = [...matched.keys()][0] ?? null;
     // LS: the PC file covers India, so show only the seat's state.
     const shown = e?.type === 'LS' && seat ? features.filter(f => f.properties?.st_name === seat.properties?.st_name) : features;
