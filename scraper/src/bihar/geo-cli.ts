@@ -1,7 +1,8 @@
 /**
- * ECI 2026 boundary files → maps. Assam: writes frontend/public/geo/as_ac_2023.geojson (normalised, simplified with
- * mapshaper). The other states keep their 2008 maps; their ECI 2026 files are only checked for the seat numbering.
- * Usage: npx ts-node src/bihar/geo-cli.ts <STATE> [simplify %, default 8]
+ * ECI boundary files (results site `ac/<code>.js`) → maps. Assam: writes frontend/public/geo/as_ac_2023.geojson (normalised,
+ * simplified with mapshaper). The other states keep their 2008 maps; their ECI 2026 files are only checked for the seat
+ * numbering, unless --write replaces a broken 2008 map (Sikkim: the old file left 73% of the state in no seat).
+ * Usage: npx ts-node src/bihar/geo-cli.ts <STATE> [simplify %, default 8] [--year 2024] [--write]
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -12,13 +13,16 @@ import { normaliseFeatures, numberingMismatches, parseEciAcJs, rewindForD3 } fro
 import { readExistingSeed } from './existing-seed';
 import type { ElectionJson } from './types';
 
-const ST = parseState(process.argv[2]);
-const pct = process.argv[3] ?? '8';
-const cfg = electionOf(ST, 2026);
+const args = process.argv.slice(2);
+const ST = parseState(args[0]);
+const flag = (k: string) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : undefined; };
+const pct = args[1] && !args[1].startsWith('--') ? args[1] : '8';
+const YEAR = Number(flag('--year') ?? 2026);
+const cfg = electionOf(ST, YEAR);
 const ROOT = path.resolve(__dirname, '../../..');
 
 (async () => {
-  const file = path.join(rawDir(ST), '2026', 'ac.js');
+  const file = path.join(rawDir(ST), String(YEAR), 'ac.js');
   if (!fs.existsSync(file)) {
     const url = `${cfg.resultsSite!.base}ac/${cfg.resultsSite!.eciCode}.js`;
     const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh) matdaanpulse-seed' } });
@@ -26,10 +30,10 @@ const ROOT = path.resolve(__dirname, '../../..');
     fs.writeFileSync(file, await res.text());
   }
   const fc = parseEciAcJs(fs.readFileSync(file, 'utf8'));
-  const json: ElectionJson = JSON.parse(fs.readFileSync(path.join(dataDir(ST), 'vs-2026.json'), 'utf8'));
-  if (cfg.newElection?.delimitation !== '2008') {
+  const json: ElectionJson = JSON.parse(fs.readFileSync(path.join(dataDir(ST), `vs-${YEAR}.json`), 'utf8'));
+  if (cfg.newElection?.delimitation !== '2008' || args.includes('--write')) {
     const seats = Object.fromEntries(json.seats.map(s => [s.constNo, { type: s.type, name: s.name! }]));
-    const tmp = path.join(rawDir(ST), '2026', 'ac-normalised.geojson');
+    const tmp = path.join(rawDir(ST), String(YEAR), 'ac-normalised.geojson');
     fs.writeFileSync(tmp, JSON.stringify(normaliseFeatures(fc, STATES[ST].name.toUpperCase(), seats)));
     const out = path.join(ROOT, 'frontend/public/geo', `${ST.toLowerCase()}_ac_${cfg.newElection!.delimitation}.geojson`);
     execFileSync('npx', ['mapshaper', tmp, '-simplify', `${pct}%`, 'keep-shapes', '-o', 'precision=0.0001', 'format=geojson', out], { stdio: 'inherit' });

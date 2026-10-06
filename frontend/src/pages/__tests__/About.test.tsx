@@ -25,13 +25,13 @@ describe('About page', () => {
   it('shows every dataset as a matrix cell with its quality, and no raw i18n keys', () => {
     const { container } = renderAbout();
     expect(container.querySelectorAll('[data-matrix-cell]')).toHaveLength(DATA_SOURCES.filter(s => s.house === 'VS').length);
-    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry', 'Uttar Pradesh', 'Punjab', 'Uttarakhand', 'Goa', 'Manipur', 'Delhi', 'Haryana', 'Jharkhand', 'Odisha']);
-    for (const [st, years] of [['Delhi', [2008, 2013, 2015, 2020, 2025]], ['Haryana', [2009, 2014, 2019, 2024]], ['Jharkhand', [2009, 2014, 2019, 2024]], ['Odisha', [2009, 2014, 2019, 2024]]] as const) for (const y of years) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha ${y}: Real votes` })).toBeTruthy();
+    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry', 'Uttar Pradesh', 'Punjab', 'Uttarakhand', 'Goa', 'Manipur', 'Delhi', 'Haryana', 'Jharkhand', 'Odisha', 'Sikkim']);
+    for (const [st, years] of [['Delhi', [2008, 2013, 2015, 2020, 2025]], ['Haryana', [2009, 2014, 2019, 2024]], ['Jharkhand', [2009, 2014, 2019, 2024]], ['Odisha', [2009, 2014, 2019, 2024]], ['Sikkim', [2009, 2014, 2019, 2024]]] as const) for (const y of years) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha ${y}: Real votes` })).toBeTruthy();
     for (const st of ['Goa', 'Manipur', 'Punjab', 'Uttar Pradesh', 'Uttarakhand']) for (const y of [2012, 2017, 2022]) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha ${y}: Real votes` })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Kerala · Vidhan Sabha 2021: Real votes' })).toBeTruthy();
     for (const st of ['Assam', 'Kerala', 'Puducherry', 'Tamil Nadu', 'West Bengal']) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha 2026: Real votes` })).toBeTruthy();
     expect(screen.getByText(`${DATA_SOURCES.filter(s => s.house === 'VS').length} elections covered`)).toBeTruthy();
-    expect(screen.getByText('15 states')).toBeTruthy();
+    expect(screen.getByText('16 states')).toBeTruthy();
     expect(container.textContent).not.toMatch(/Lok Sabha/);
     expect(container.textContent).not.toMatch(/about_[a-z_]+/);
   });
@@ -48,6 +48,8 @@ describe('About page', () => {
     fireEvent.click(screen.getByRole('button', { name: /Odisha · Vidhan Sabha 2019/ }));
     expect(panel()).toMatch(/146 of 147 seats: the Patkura poll was countermanded/);
     expect(panel()).not.toMatch(/Aravakurichi/);
+    fireEvent.click(screen.getByRole('button', { name: /Sikkim · Vidhan Sabha 2024/ }));
+    expect(panel()).toMatch(/Sangha \(seat 32\) is elected by the registered monks/);
   });
 
   it('links to the official ECI results and the contact address', () => {

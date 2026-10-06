@@ -22,11 +22,12 @@ export type DataNote =
   | 'reserved_wrong'
   | 'seats_postponed'
   | 'seat_countermanded'
+  | 'sangha_seat'
   | 'source_unrecorded';
 
 export const DATA_NOTES: readonly DataNote[] = [
   'all_candidates', 'top5_nota', 'two_candidates', 'winner_only', 'votes_from_margin',
-  'placeholder_names', 'turnout_unreliable', 'reserved_wrong', 'seats_postponed', 'seat_countermanded', 'source_unrecorded',
+  'placeholder_names', 'turnout_unreliable', 'reserved_wrong', 'seats_postponed', 'seat_countermanded', 'sangha_seat', 'source_unrecorded',
 ];
 
 export interface DataSource {
@@ -115,6 +116,10 @@ export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'VS', state: 'Odisha', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'seat_countermanded'] },
   { house: 'VS', state: 'Odisha', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Odisha', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Sikkim', year: 2024, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'sangha_seat'] },
+  { house: 'VS', state: 'Sikkim', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'sangha_seat'] },
+  { house: 'VS', state: 'Sikkim', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'sangha_seat'] },
+  { house: 'VS', state: 'Sikkim', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'sangha_seat'] },
 ];
 
 export interface DataSourceGroup {
