@@ -13,6 +13,11 @@ const loadLineage = () => (lineage ??= getPartyLineage().catch(() => { lineage =
  * The party comparison rule for one state's elections (renames, mergers, splits): lineage + each election's counting
  * date by year. `stateId` null = national events only (a person's career across states). Plain id equality until loaded.
  */
+/** Every lineage event (loaded once), or null while loading. */
+export function useLineageEvents(): LineageEvent[] | null {
+  return useApi(loadLineage, []).data ?? null;
+}
+
 export function usePartyComparer(stateId: number | null | undefined, type: 'LS' | 'VS' = 'VS'): PartyComparer {
   const { data: events } = useApi(loadLineage, []);
   const { data: elections } = useApi(() => (stateId != null ? getElections({ type, state_id: stateId }).catch(() => []) : Promise.resolve([])), [stateId, type]);

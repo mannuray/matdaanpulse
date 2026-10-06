@@ -28,6 +28,8 @@ export interface DashboardSources {
   partySwitches: PartySwitchEntry[];
   marginTrend: MarginTrendPoint[];
   partyTrend: PartyTrendPoint[];
+  /** Every party id in this state's past comparable results, as recorded (not lineage-adjusted). */
+  historyPartyIds: Set<string>;
   prevYear: number | null;
   totalSeats: number;
   majority: number;
@@ -59,6 +61,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
 
   const historyResults = useHistoricalResults(manifestData?.history);
   const prevResults = historyResults && historyResults.length > 0 ? historyResults[historyResults.length - 1] : null;
+  const historyPartyIds = useMemo(() => new Set((historyResults ?? []).flat().map(r => r.party_id)), [historyResults]);
   const allConstIds = useMemo(() => [...constCandidates.keys()], [constCandidates]);
   const cmp = usePartyComparer(election.state_id, election.type);
   const ha = useHistoryAnalysis({
@@ -140,7 +143,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   }, [setStored]);
 
   return {
-    election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, prevYear,
+    election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, historyPartyIds, prevYear,
     totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta,
     watchlist, addWatch, removeWatch,
   };

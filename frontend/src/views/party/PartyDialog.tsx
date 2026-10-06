@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { PartyDialogVM } from '../../viewmodels/tiles/usePartyDialogVM';
@@ -79,6 +80,24 @@ export function PartyDialog({ vm }: { vm: PartyDialogVM | null }) {
         </section>
 
         {/* Profile */}
+        {(vm.unit || (vm.lineage?.length ?? 0) > 0 || vm.family) && (
+          <section className="space-y-2 rounded-xl border border-line bg-page/60 p-3.5 text-xs" data-party-unit>
+            {vm.unit && (
+              <>
+                <h3 className="font-display text-sm font-bold uppercase tracking-wider text-ink">{t('party_unit_title', { party: vm.abbreviation ?? vm.id, state: vm.unit.stateName })}</h3>
+                {vm.unit.recognition && <p className="text-muted">{t(`party_recognition_${vm.unit.recognition}`)}</p>}
+                {([['party_unit_president', vm.unit.president], ['party_unit_leader', vm.unit.legislatureLeader]] as const).filter(([, p]) => p).map(([k, p]) => (
+                  <div key={k} className="flex justify-between gap-3">
+                    <span className="text-muted">{t(k)}</span>
+                    {p!.personId ? <Link to={`/person/${p!.personId}`} className="font-medium text-ink underline-offset-2 hover:underline">{p!.name}</Link> : <span className="font-medium text-ink">{p!.name}</span>}
+                  </div>
+                ))}
+              </>
+            )}
+            {vm.lineage?.map((n, i) => <p key={i} className={cn('text-ink-2', vm.unit && i === 0 && 'border-t border-line pt-2')}>{t(`party_lineage_${n.kind}`, { other: n.otherLabel, year: n.year })}</p>)}
+            {vm.family && <p className="font-medium text-ink">{t('party_family', { root: vm.family.rootLabel, parts: vm.family.members.map(x => `${x.label} ${x.seats}`).join(' · '), total: vm.family.total })}</p>}
+          </section>
+        )}
         {(fields.length > 0 || links.length > 0 || vm.profile?.description) && (
           <section className="space-y-3 rounded-xl border border-line bg-page/60 p-3.5 text-xs">
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5 sm:grid-cols-3">

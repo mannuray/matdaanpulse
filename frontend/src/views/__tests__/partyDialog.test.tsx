@@ -62,3 +62,18 @@ describe('PartyDialog', () => {
     expect(screen.getByRole('button', { name: 'Stop tracking Raghopur' }).getAttribute('aria-pressed')).toBe('true');
   });
 });
+
+describe('PartyDialog — state unit, lineage, family (party model)', () => {
+  it('shows the state unit with person links to the leaders who have a page', () => {
+    render(<PartyDialog vm={vm({ unit: { stateName: 'Bihar', recognition: 'State', president: { name: 'Mangani Lal Mandal', personId: 'p9' }, legislatureLeader: { name: 'Tejashwi Yadav', personId: null } } })} />);
+    expect(screen.getByText('RJD in Bihar')).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Mangani Lal Mandal' }).getAttribute('href')).toBe('/person/p9');
+    expect(screen.getByText('Tejashwi Yadav', { selector: 'span' })).toBeTruthy();
+  });
+  it('states the lineage in plain words and the family total after a split', () => {
+    render(<PartyDialog vm={vm({ id: 'SSUBT', abbreviation: 'SS(UBT)', lineage: [{ kind: 'factionOf', otherLabel: 'SHS', year: 2022 }],
+      family: { rootLabel: 'SHS', members: [{ label: 'SHS', seats: 57 }, { label: 'SS(UBT)', seats: 20 }], total: 77 } })} />);
+    expect(screen.getByText('A faction of SHS since the 2022 split.')).toBeTruthy();
+    expect(screen.getByText(/SHS family: SHS 57 · SS\(UBT\) 20 = 77/)).toBeTruthy();
+  });
+});

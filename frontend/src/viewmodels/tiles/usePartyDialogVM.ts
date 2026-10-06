@@ -6,6 +6,8 @@ import { getParty } from '../../model/api/geo.service';
 import { getConstituency } from '../../model/api/election.service';
 import { partyElectionStats, partyKeyCandidates, type PartyElectionStats, type PartyKeyCandidate } from '../../model/derive/partyElection';
 import { collectLeaderEntries, deriveLeaderCards, resolveLeaderSeats } from '../../model/derive/leaders';
+import { partyContext, type LineageNote, type PartyUnitSummary } from '../../model/derive/partyContext';
+import { useLineageEvents } from '../data/usePartyComparer';
 
 export interface PartyDialogVM {
   id: string; name: string; abbreviation: string | null; mark: string | null; color: string | null;
@@ -17,6 +19,12 @@ export interface PartyDialogVM {
   /** Adds or removes the seat on the dashboard watchlist. */
   onToggleTrack(constId: string, label: string): void;
   onClose(): void; onSelectSeat(id: string): void;
+  /** The party's unit in this election's state: recognition there and its current leaders (party model). */
+  unit?: PartyUnitSummary | null;
+  /** Its lineage in plain terms (renames, mergers, splits, breakaways). */
+  lineage?: { kind: LineageNote['kind']; otherLabel: string; year: number }[];
+  /** Its family's seats in this election, when it is part of a split. */
+  family?: { rootLabel: string; members: { label: string; seats: number }[]; total: number } | null;
 }
 
 /** Cards in the scrolling key-candidates strip. */
@@ -33,6 +41,13 @@ export function usePartyDialogVM(): PartyDialogVM | null {
     () => (id ? partyKeyCandidates(id, deriveLeaderCards(resolveLeaderSeats(collectLeaderEntries(src.data.manifestData, []), src.data.results), src.data.currentWinnerMap), src.data.currentWinnerMap, KEY_LIMIT) : []),
     [id, src.data.manifestData, src.data.results, src.data.currentWinnerMap],
   );
+  const lineage = useLineageEvents();
+  // Seats won or leading per party in this election (the family total after a split).
+  const seatsByParty = useMemo(() => {
+    const n = new Map<string, number>();
+    for (const w of src.data.currentWinnerMap.values()) n.set(w.party_id, (n.get(w.party_id) ?? 0) + 1);
+    return n;
+  }, [src.data.currentWinnerMap]);
   // Snapshot rows carry no photos: read them from the shown seats' details (the seat dialog's cache keys).
   const eid = src.election.id;
   const seats = useMemo(() => [...new Set(keyCandidates.map(c => c.constId).filter(Boolean))].sort(), [keyCandidates]);
@@ -48,6 +63,13 @@ export function usePartyDialogVM(): PartyDialogVM | null {
   }), [keyCandidates, details, id, src.watchlist]);
   if (!id || !stats) return null;
   const m = src.partyMeta.get(id);
+  const label = (pid: string) => src.partyMeta.get(pid)?.abbreviation ?? pid;
+  const ctx = party && id === party.id && lineage ? partyContext({
+    partyId: id, units: party.units ?? [], events: lineage, stateId: src.election.state_id ?? null,
+    date: src.election.tentative_next_date?.slice(0, 10) ?? `${src.election.year}-07-01`, seats: seatsByParty,
+    // A note about another party only when it won seats in this state (any year) or contests this election.
+    relevant: p => seatsByParty.has(p) || src.historyPartyIds.has(p) || src.data.results.some(r => r.party_id === p),
+  }) : null;
   // An id the loaded party list and this election's results both lack opens nothing.
   if (!m && src.partyMeta.size > 0 && stats.contested === 0) return null;
   return {
@@ -63,6 +85,9 @@ export function usePartyDialogVM(): PartyDialogVM | null {
     majority: src.majority,
     profile: party && id === party.id ? { leader: party.leader_name, founded: party.founded_year, hq: party.headquarters, website: party.website, wikipedia: party.wikipedia_url, description: party.description } : null,
     keyCandidates: withPhotos,
+    unit: ctx?.unit ?? null,
+    lineage: (ctx?.notes ?? []).map(n => ({ kind: n.kind, otherLabel: label(n.other), year: n.year })),
+    family: ctx?.family ? { rootLabel: label(ctx.family.root), members: ctx.family.members.map(x => ({ label: label(x.id), seats: x.seats })), total: ctx.family.total } : null,
     onToggleTrack: (constId, label) => (src.watchlist.some(w => w.const_id === constId) ? src.removeWatch(constId) : src.addWatch(constId, label)),
     onClose: () => dispatch({ type: 'selectParty', party: null }),
     onSelectSeat: seat => { dispatch({ type: 'selectParty', party: null }); dispatch({ type: 'selectSeat', seat }); },

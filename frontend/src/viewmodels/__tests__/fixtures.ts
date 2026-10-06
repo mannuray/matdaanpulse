@@ -30,7 +30,7 @@ export function makeSources(over: Partial<DashboardSources> = {}): DashboardSour
       userTracked: [], setUserTracked: () => {}, untrack: () => {}, spoilerFilter: null, setSpoilerFilter: () => {},
       refreshAll: () => {}, liveConnected: false, liveStatus: 'Finalized', liveVersion: null,
     },
-    swing: new Map(), dominance: new Map(), incumbency: [], partySwitches: [], marginTrend: [], partyTrend: [], prevYear: null,
+    swing: new Map(), dominance: new Map(), incumbency: [], partySwitches: [], marginTrend: [], partyTrend: [], historyPartyIds: new Set(), prevYear: null,
     totalSeats: 243, majority: 122, votePct: new Map(), ticker: [], recentSeats: new Set(), liveConnected: false,
     availableLayers: ['overview', 'battle', 'demographics', 'insights'],
     partyMeta: new Map([
