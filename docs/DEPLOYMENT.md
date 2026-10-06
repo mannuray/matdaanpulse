@@ -197,7 +197,7 @@ If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds f
 **Maharashtra (Phase 4B-4).** `setup.sh` now also runs `seed_mh_vs_{parties,2009,2014,2019,2024}.sql`,
 `seed_mh_districts_regions.sql`, person links v1/v2, the run-once `seed_mh_leaders.sql`, `seed_mh_candidate_photos.sql`,
 `seed_mh_affidavits.sql`, `seed_mh_party_profiles.sql`, `seed_party_units_v5.sql`, and `seed_party_colors_v4.sql`
-(three colour changes, each only while the old colour is set); `seed_party_lineage.sql` gains MNS. No backend change.
+(three colour changes, each only while the old colour is set), `seed_party_names_v1.sql` (two misspelt party names); `seed_party_lineage.sql` gains MNS. No backend change. Run `setup.sh` soon after the frontend deploy: the new symbol files replace deleted ones, and party marks fall back to the ECI symbol or a dot until the paths are updated.
 Seat analysis deferred. Back up production first.
 
 **Andhra Pradesh (Phase 4B-3).** `setup.sh` now also runs `seed_ap_vs_{parties,2009,2014,2019,2024}.sql`,

@@ -202,6 +202,7 @@ run seed_party_colors_v1.sql
 run seed_party_colors_v2.sql
 run seed_party_colors_v3.sql
 run seed_party_colors_v4.sql
+run seed_party_names_v1.sql
 # Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
 run seed_media_s3_v1.sql
 
