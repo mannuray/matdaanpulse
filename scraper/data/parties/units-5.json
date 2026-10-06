@@ -1,0 +1,103 @@
+[
+ {
+  "party_id": "BJP",
+  "state_code": "SK",
+  "eci_recognition": "National",
+  "office": "State Office, Golitar, Singtam, District Pakyong 737134",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Dilli Ram Thapa",
+    "from_date": "2023-02-04",
+    "to_date": null,
+    "source_url": "https://eastmojo.com/sikkim/2023/02/04/bjp-appoints-d-r-thapa-as-new-sikkim-unit-chief/"
+   },
+   {
+    "role": "state_president",
+    "person_name": "D. B. Chauhan",
+    "from_date": null,
+    "to_date": "2022-12-13",
+    "source_url": "https://eastmojo.com/sikkim/2022/12/13/disillusioned-with-central-leadership-sikkim-bjp-president-resigns/"
+   }
+  ]
+ },
+ {
+  "party_id": "CAP1",
+  "state_code": "SK",
+  "eci_recognition": "State",
+  "office": "Adampool, near Gangtok",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Ganesh Kumar Rai",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://eastmojo.com/news/2025/07/29/citizen-action-party-accuses-sikkim-govt-of-political-violence/"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "SK",
+  "eci_recognition": "National",
+  "office": "NH-31A, 5th Mile, Tadong, Gangtok 737102",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Gopal Chettri",
+    "from_date": "2023-09-23",
+    "to_date": null,
+    "source_url": "https://www.deccanherald.com/india/sikkim/gopal-chettri-appointed-president-of-congress-sikkim-unit-2698500"
+   }
+  ]
+ },
+ {
+  "party_id": "SDF",
+  "state_code": "SK",
+  "eci_recognition": "State",
+  "office": "S.D.F. Bhawan, Indira Bypass, Gangtok",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Pawan Kumar Chamling",
+    "from_date": "1993-03-04",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Pawan_Kumar_Chamling"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Tenzing Norbu Lamtha",
+    "from_date": null,
+    "to_date": "2024-07-10",
+    "source_url": "https://eastmojo.com/sikkim/2024/07/10/sikkim-assembly-goes-opposition-less-as-lone-sdf-legislator-joins-skm/"
+   }
+  ]
+ },
+ {
+  "party_id": "SKM",
+  "state_code": "SK",
+  "eci_recognition": "State",
+  "office": "Ghaley Compound, Tibet Road, Gangtok 737101",
+  "website": "https://www.sikkimkrantikarimorcha.org/",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Prem Singh Tamang",
+    "from_date": "2013-02-04",
+    "to_date": null,
+    "source_url": "https://www.sikkimkrantikarimorcha.org/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Prem Singh Tamang",
+    "from_date": "2019-05-27",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Prem_Singh_Tamang"
+   }
+  ]
+ }
+]

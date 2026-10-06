@@ -1,0 +1,122 @@
+[
+ {
+  "id": "SKM",
+  "name": "Sikkim Krantikari Morcha",
+  "abbreviation": "SKM",
+  "eci_recognition": "State",
+  "founded_year": 2013,
+  "leader_name": "Prem Singh Tamang",
+  "headquarters": "Ghaley Compound, Tibet Road, Gangtok 737101, Sikkim",
+  "website": "https://www.sikkimkrantikarimorcha.org/",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Sikkim_Krantikari_Morcha",
+  "color": "#ED1E26",
+  "description": "A Sikkim regional party founded on 4 February 2013 at Soreng by P. S. Golay (Prem Singh Tamang), a former SDF minister who had broken with Pawan Chamling; it has governed Sikkim since 2019 with Golay as Chief Minister. In 2024 it won 31 of 32 seats with about 58.4% of the vote, and the lone opposition MLA joined it in July 2024.",
+  "eci_symbol": "Lamp",
+  "logo": {
+   "file": "SKM-logo.svg",
+   "commons": "File:Sikkim Krantikari Morcha flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Sikkim_Krantikari_Morcha_flag.svg",
+   "author": "Sikkim Krantikari Morcha",
+   "licence": "Public domain (PD-textlogo)"
+  },
+  "eci_image": {
+   "file": "SKM-eci.png",
+   "commons": "File:Symbol SKM.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Symbol_SKM.png",
+   "author": "Reetban",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Sikkim_Krantikari_Morcha",
+   "https://www.sikkimkrantikarimorcha.org/",
+   "https://en.wikipedia.org/wiki/Prem_Singh_Tamang",
+   "https://en.wikipedia.org/wiki/2024_Sikkim_Legislative_Assembly_election",
+   "https://results.eci.gov.in/AcResultGen2ndJune2024/partywiseresult-S21.htm",
+   "https://eastmojo.com/sikkim/2024/07/10/sikkim-assembly-goes-opposition-less-as-lone-sdf-legislator-joins-skm/",
+   "https://eastmojo.com/sikkim/2025/08/01/sikkim-cap-unveils-cap-wearing-citizen-symbol-including-third-gender-representation/",
+   "https://commons.wikimedia.org/wiki/File:Sikkim_Krantikari_Morcha_flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Symbol_SKM.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party/S"
+  ]
+ },
+ {
+  "id": "SDF",
+  "name": "Sikkim Democratic Front",
+  "abbreviation": "SDF",
+  "eci_recognition": "State",
+  "founded_year": 1993,
+  "leader_name": "Pawan Kumar Chamling",
+  "headquarters": "S.D.F. Bhawan, Indira Bypass, Gangtok, Sikkim",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Sikkim_Democratic_Front",
+  "color": "#FBEC5D",
+  "description": "A Sikkim regional party founded in 1993 by Pawan Kumar Chamling, which governed the state from 1994 to 2019 with Chamling as Chief Minister for 25 years. In 2024 it won 1 of 32 seats with about 27.4% of the vote; Chamling lost both seats he contested, and the party's only MLA joined the SKM in July 2024.",
+  "eci_symbol": "Umbrella",
+  "logo": {
+   "file": "SDF-logo.svg",
+   "commons": "File:Sikkim-Democratic-Front-flag.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Sikkim-Democratic-Front-flag.svg",
+   "author": "Nichalp",
+   "licence": "Public domain (PD-self)"
+  },
+  "eci_image": {
+   "file": "SDF-eci.png",
+   "commons": "File:Indian Election Symbol Umberlla.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Umberlla.png",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Sikkim_Democratic_Front",
+   "https://en.wikipedia.org/wiki/Pawan_Kumar_Chamling",
+   "https://en.wikipedia.org/wiki/2024_Sikkim_Legislative_Assembly_election",
+   "https://results.eci.gov.in/AcResultGen2ndJune2024/partywiseresult-S21.htm",
+   "https://eastmojo.com/sikkim/2024/07/10/sikkim-assembly-goes-opposition-less-as-lone-sdf-legislator-joins-skm/",
+   "https://eastmojo.com/sikkim/2025/08/01/sikkim-cap-unveils-cap-wearing-citizen-symbol-including-third-gender-representation/",
+   "https://commons.wikimedia.org/wiki/File:Sikkim-Democratic-Front-flag.svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Umberlla.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party/S"
+  ]
+ },
+ {
+  "id": "CAP1",
+  "name": "Citizen Action Party – Sikkim",
+  "abbreviation": "CAP",
+  "eci_recognition": "State",
+  "founded_year": 2023,
+  "leader_name": "Ganesh Kumar Rai",
+  "headquarters": "Adampool, near Gangtok, Sikkim",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Citizen_Action_Party_%E2%80%93_Sikkim",
+  "color": "#7B3FA0",
+  "description": "A Sikkim regional party formed in January 2023 at Melli out of a reform campaign led by Ganesh Kumar Rai, presenting itself as reform-focused and crowd-funded. In its first assembly election, in 2024, it won no seats with about 6.0% of the vote, while its Lok Sabha candidate Bharat Basnett came second with about 21.7%.",
+  "eci_symbol": "Nagrik",
+  "logo": null,
+  "eci_image": {
+   "file": "CAP1-eci.png",
+   "commons": "File:Indian Election Symbol Nagrik.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Nagrik.png",
+   "author": "XYZ 250706",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Citizen_Action_Party_%E2%80%93_Sikkim",
+   "https://www.hindustantimes.com/cities/others/new-party-formed-in-sikkim-promises-to-operate-through-crowdfunding-101674794411955.html",
+   "https://www.sikkimexpress.com/news-details/eci-allots-nagarik-symbol-to-citizen-action-party-sikkim",
+   "https://northeastlivetv.com/topnews/sikkim-bharat-basnett-caps-new-president/",
+   "https://eastmojo.com/news/2025/07/29/citizen-action-party-accuses-sikkim-govt-of-political-violence/",
+   "https://eastmojo.com/sikkim/2025/08/01/sikkim-cap-unveils-cap-wearing-citizen-symbol-including-third-gender-representation/",
+   "https://en.wikipedia.org/wiki/2024_Sikkim_Legislative_Assembly_election",
+   "https://results.eci.gov.in/AcResultGen2ndJune2024/partywiseresult-S21.htm",
+   "https://results.eci.gov.in/PcResultGenJune2024/partywiseresult-S21.htm",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Nagrik.png",
+   "https://en.wikipedia.org/wiki/Module:Political_party/C"
+  ]
+ }
+]

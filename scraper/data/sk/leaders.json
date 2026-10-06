@@ -1,0 +1,391 @@
+{
+ "people": [
+  {
+   "key": "prem-singh-tamang",
+   "name": "Prem Singh Tamang",
+   "wikidata": "Q23879743",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "SK_VS09_28_UPPER_BURTUK"
+    },
+    {
+     "year": 2014,
+     "const_id": "SK_VS14_13_NAMTHANGRATEYPANI"
+    },
+    {
+     "year": 2014,
+     "const_id": "SK_VS14_28_UPPER_BURTUK"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_19_RHENOCK",
+     "ballot_name": "P S Tamang"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_7_SORENGCHAKUNG",
+     "ballot_name": "P S Tamang"
+    }
+   ]
+  },
+  {
+   "key": "mingma-norbu-sherpa",
+   "name": "Mingma Norbu Sherpa",
+   "wikidata": "Q65548553",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "SK_VS14_6_DARAMDIN"
+    },
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_6_DARAMDIN"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_6_DARAMDIN"
+    }
+   ]
+  },
+  {
+   "key": "raj-kumari-thapa",
+   "name": "Raj Kumari Thapa",
+   "wikidata": "Q70070204",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_15_RANGANGYANGANG"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_15_RANGANGYANGANG"
+    }
+   ]
+  },
+  {
+   "key": "pawan-kumar-chamling",
+   "name": "Pawan Kumar Chamling",
+   "wikidata": "Q2475703",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "SK_VS09_10_POKLOKKAMRANG",
+     "ballot_name": "Pawan Chamling"
+    },
+    {
+     "year": 2009,
+     "const_id": "SK_VS09_11_NAMCHISINGHITHANG",
+     "ballot_name": "Pawan Chamling"
+    },
+    {
+     "year": 2014,
+     "const_id": "SK_VS14_11_NAMCHISINGHITHANG",
+     "ballot_name": "Pawan Chamling"
+    },
+    {
+     "year": 2014,
+     "const_id": "SK_VS14_15_RANGANGYANGANG",
+     "ballot_name": "Pawan Chamling"
+    },
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_10_POKLOKKAMRANG",
+     "ballot_name": "Pawan Chamling"
+    },
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_11_NAMCHISINGHITHANG",
+     "ballot_name": "Pawan Chamling"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_10_POKLOKKAMRANG"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_22_NAMCHEYBUNG"
+    }
+   ]
+  },
+  {
+   "key": "tenzing-norbu-lamtha",
+   "name": "Tenzing Norbu Lamtha",
+   "wikidata": "Q126291212",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_23_SHYARI"
+    }
+   ]
+  },
+  {
+   "key": "dilli-ram-thapa",
+   "name": "Dilli Ram Thapa",
+   "wikidata": "Q70276579",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_28_UPPER_BURTUK"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_28_UPPER_BURTUK"
+    }
+   ]
+  },
+  {
+   "key": "sonam-lama",
+   "name": "Sonam Lama",
+   "wikidata": "Q65548614",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "SK_VS14_32_SANGHA"
+    },
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_32_SANGHA"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_32_SANGHA"
+    }
+   ]
+  },
+  {
+   "key": "arun-kumar-upreti",
+   "name": "Arun Kumar Upreti",
+   "wikidata": "Q65548424",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_26_ARITHANG"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_26_ARITHANG"
+    }
+   ]
+  },
+  {
+   "key": "samdup-lepcha",
+   "name": "Samdup Lepcha",
+   "wikidata": "Q65548600",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_31_LACHEN_MANGAN"
+    }
+   ]
+  },
+  {
+   "key": "bhim-hang-limboo",
+   "name": "Bhim Hang Limboo",
+   "wikidata": "Q65548426",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_2_YANGTHANG"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_2_YANGTHANG"
+    }
+   ]
+  },
+  {
+   "key": "bhoj-raj-rai",
+   "name": "Bhoj Raj Rai",
+   "wikidata": "Q126289237",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_10_POKLOKKAMRANG"
+    }
+   ]
+  },
+  {
+   "key": "g-t-dhungel",
+   "name": "G. T. Dhungel",
+   "wikidata": "Q116884488",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_25_UPPER_TADONG",
+     "ballot_name": "G.t. Dhungel"
+    }
+   ]
+  },
+  {
+   "key": "puran-kumar-gurung",
+   "name": "Puran Kumar Gurung",
+   "wikidata": "Q126324970",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_20_CHUJACHEN",
+     "ballot_name": "Puran Kr. Gurung"
+    }
+   ]
+  },
+  {
+   "key": "pintso-namgyal-lepcha",
+   "name": "Pintso Namgyal Lepcha",
+   "wikidata": "Q70276740",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "SK_VS19_30_DJONGU"
+    },
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_30_DJONGU"
+    }
+   ]
+  },
+  {
+   "key": "nar-bahadur-dahal",
+   "name": "Nar Bahadur Dahal",
+   "wikidata": "Q126290628",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_17_KHAMDONGSINGTAM"
+    }
+   ]
+  },
+  {
+   "key": "raju-basnet",
+   "name": "Raju Basnet",
+   "wikidata": "Q127693303",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_22_NAMCHEYBUNG"
+    }
+   ]
+  },
+  {
+   "key": "tshering-thendup-bhutia",
+   "name": "Tshering Thendup Bhutia",
+   "wikidata": "Q126325120",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "SK_VS24_1_YUKSOMTASHIDING"
+    }
+   ]
+  }
+ ],
+ "elections": {
+  "2024": {
+   "leaders": [
+    {
+     "key": "prem-singh-tamang",
+     "role": "Chief Minister",
+     "party_id": "SKM"
+    },
+    {
+     "key": "mingma-norbu-sherpa",
+     "role": "Speaker",
+     "party_id": "SKM"
+    },
+    {
+     "key": "raj-kumari-thapa",
+     "role": "Deputy Speaker",
+     "party_id": "SKM"
+    },
+    {
+     "key": "pawan-kumar-chamling",
+     "role": "SDF president, former Chief Minister",
+     "party_id": "SDF"
+    },
+    {
+     "key": "tenzing-norbu-lamtha",
+     "role": "MLA for Shyari (won as the SDF's only 2024 MLA; joined SKM on 10 July 2024)",
+     "party_id": "SKM"
+    },
+    {
+     "key": "dilli-ram-thapa",
+     "role": "BJP state president",
+     "party_id": "BJP"
+    }
+   ],
+   "cabinet": [
+    {
+     "key": "sonam-lama",
+     "role": "Minister of Public Health Engineering, Water Resources and Ecclesiastical Affairs",
+     "party_id": "SKM"
+    },
+    {
+     "key": "arun-kumar-upreti",
+     "role": "Minister of Rural Development and Cooperation",
+     "party_id": "SKM"
+    },
+    {
+     "key": "samdup-lepcha",
+     "role": "Minister of Social Welfare, Women & Child Development and Printing & Stationery",
+     "party_id": "SKM"
+    },
+    {
+     "key": "bhim-hang-limboo",
+     "role": "Minister of Buildings & Housing and Labour",
+     "party_id": "SKM"
+    },
+    {
+     "key": "bhoj-raj-rai",
+     "role": "Minister of Urban Development and Food & Civil Supplies",
+     "party_id": "SKM"
+    },
+    {
+     "key": "g-t-dhungel",
+     "role": "Minister of Health & Family Welfare and Culture",
+     "party_id": "SKM"
+    },
+    {
+     "key": "puran-kumar-gurung",
+     "role": "Minister of Agriculture, Horticulture, Animal Husbandry & Veterinary Services and Fisheries",
+     "party_id": "SKM"
+    },
+    {
+     "key": "pintso-namgyal-lepcha",
+     "role": "Minister of Forest & Environment, Mines & Geology and Science & Technology",
+     "party_id": "SKM"
+    },
+    {
+     "key": "nar-bahadur-dahal",
+     "role": "Minister of Roads & Bridges",
+     "party_id": "SKM"
+    },
+    {
+     "key": "raju-basnet",
+     "role": "Minister of Education, Sports & Youth Affairs, Law and Parliamentary Affairs",
+     "party_id": "SKM"
+    },
+    {
+     "key": "tshering-thendup-bhutia",
+     "role": "Minister of Tourism & Civil Aviation and Commerce & Industries",
+     "party_id": "SKM"
+    }
+   ],
+   "sources": [
+    "https://en.wikipedia.org/wiki/Second_Tamang_ministry",
+    "https://www.indiatodayne.in/sikkim/story/sikkim-governor-allocates-portfolios-to-council-of-ministers-1027127-2024-06-12",
+    "https://en.wikipedia.org/wiki/2024_Sikkim_Legislative_Assembly_election",
+    "https://en.wikipedia.org/wiki/Sikkim_Legislative_Assembly",
+    "https://en.wikipedia.org/wiki/Mingma_Narbu_Sherpa",
+    "https://en.wikipedia.org/wiki/Raj_Kumari_Thapa",
+    "https://en.wikipedia.org/wiki/Tenzing_Norbu_Lamtha",
+    "https://www.thehindu.com/elections/sikkim-assembly/tenzing-norbu-lamtha-the-lone-candidate-who-clinched-a-win-for-sdf-in-sikkim/article68242410.ece",
+    "https://timesofindia.indiatimes.com/india/shyari-assembly-election-results-2024-shyari-sikkim-elections-polls-result-winner/articleshow/110635733.cms",
+    "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Sikkim",
+    "https://theprint.in/politics/dr-thapa-who-led-protests-against-scs-foreign-tag-for-sikkimese-nepali-is-new-bjp-state-chief/1353952/",
+    "https://en.wikipedia.org/wiki/Dilli_Ram_Thapa",
+    "https://en.wikipedia.org/wiki/Pawan_Kumar_Chamling",
+    "https://en.wikipedia.org/wiki/Citizen_Action_Party_%E2%80%93_Sikkim",
+    "https://northeastlivetv.com/topnews/sikkim-bharat-basnett-caps-new-president/"
+   ]
+  }
+ }
+}

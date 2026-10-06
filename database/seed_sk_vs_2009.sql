@@ -561,6 +561,6 @@ JOIN candidates c ON c.id = v.candidate_id::uuid
 WHERE p.id = c.person_id AND p.gender IS NULL;
 
 -- Manifest (only when none is published; admins edit it)
-UPDATE elections SET manifest_url = '{"alliances":[{"id":"SDF","name":"SDF","color":"#FFD400","parties":["SDF"]},{"id":"INC","name":"Congress","color":"#19AAED","parties":["INC"]}],"leaders":[],"cabinet":[],"tracked":["SDF","INC"],"vip_seats":{},"milestones":[{"label":"Majority","value":17}],"geo":{"zoom":9,"center":[88.45,27.6],"map_url":"/geo/sk_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0300000-0000-4000-8000-000000002009' AND manifest_url IS NULL;
+UPDATE elections SET manifest_url = '{"alliances":[{"id":"SDF","name":"SDF","color":"#FBEC5D","parties":["SDF"]},{"id":"INC","name":"Congress","color":"#19AAED","parties":["INC"]}],"leaders":[],"cabinet":[],"tracked":["SDF","INC"],"vip_seats":{},"milestones":[{"label":"Majority","value":17}],"geo":{"zoom":9,"center":[88.45,27.6],"map_url":"/geo/sk_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0300000-0000-4000-8000-000000002009' AND manifest_url IS NULL;
 
 COMMIT;

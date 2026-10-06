@@ -132,12 +132,15 @@ run seed_sk_person_links_v2.sql
 for st in as kl py tn wb; do run "seed_${st}_leaders.sql"; done
 # Delhi 2025, Haryana/Jharkhand/Odisha 2024 leaders (curated, user-approved 2026-10-05; run-once)
 for st in dl hr jh od; do run "seed_${st}_leaders.sql"; done
+run seed_sk_leaders.sql
 # 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
 for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
 for st in dl hr jh od; do run "seed_${st}_candidate_photos.sql"; done
+run seed_sk_candidate_photos.sql
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_affidavits.sql"; done
 for st in dl hr jh od; do run "seed_${st}_affidavits.sql"; done
+run seed_sk_affidavits.sql
 
 echo "==> Seeds: Bihar persons (must follow Bihar VS results + regions)"
 run seed_bihar_persons.sql
@@ -163,11 +166,14 @@ run seed_bihar_party_profiles.sql
 # 2026 top parties of the five states (researched, user-approved; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_party_profiles.sql"; done
 for st in dl hr jh od; do run "seed_${st}_party_profiles.sql"; done
+run seed_sk_party_profiles.sql
 # Party state units and their leaders (run-once; after the leaders and person links)
 run seed_party_units_v1.sql
+run seed_party_units_v2.sql
 run seed_party_colors_v1.sql
 # Colours for seat-winning parties still on a grey placeholder (fill-only, sourced in scraper/data/parties/colors-v2.json)
 run seed_party_colors_v2.sql
+run seed_party_colors_v3.sql
 # Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
 run seed_media_s3_v1.sql
 
