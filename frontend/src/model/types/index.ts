@@ -46,6 +46,38 @@ export interface PartyDetail extends Party {
   website: string | null;
   wikipedia_url: string | null;
   description: string | null;
+  /** Per-state units (migration 023): recognition there, office, leadership terms (current first). */
+  units?: PartyUnit[];
+  /** Lineage events where this party is either side. */
+  lineage?: LineageEvent[];
+}
+
+/** A party came from a predecessor: rename, merger or split (state_id: only in that state's comparisons). */
+export interface LineageEvent {
+  party_id: string;
+  predecessor_id: string;
+  kind: 'rename' | 'merger' | 'split';
+  effective_date: string;
+  state_id: number | null;
+  is_successor: boolean;
+  note: string | null;
+}
+
+export interface PartyUnitRole {
+  role: 'state_president' | 'legislature_leader';
+  person_id: string | null;
+  person_name: string;
+  from_date: string | null;
+  to_date: string | null;
+}
+
+export interface PartyUnit {
+  state_id: number;
+  state_name: string;
+  eci_recognition: 'National' | 'State' | 'Unrecognised' | null;
+  office: string | null;
+  website: string | null;
+  roles: PartyUnitRole[];
 }
 
 /** A candidate's affidavit for one contest (rupees). */

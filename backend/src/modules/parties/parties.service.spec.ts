@@ -199,3 +199,24 @@ describe('PartiesService.findAll', () => {
     expect(prisma.parties.findMany.mock.calls[0][0]).not.toHaveProperty('take');
   });
 });
+
+describe('PartiesService lineage and state units (migration 023)', () => {
+  const lineageRow = { id: 1, party_id: 'SSUBT', predecessor_id: 'SHS', kind: 'split', effective_date: new Date('2022-10-10'), state_id: null, is_successor: false, note: 'n', source_url: 's' };
+  it('findLineage returns every event, oldest first', async () => {
+    const findMany = jest.fn().mockResolvedValue([lineageRow]);
+    const { svc } = make({ party_lineage: { findMany } });
+    expect(await svc.findLineage()).toEqual([{ party_id: 'SSUBT', predecessor_id: 'SHS', kind: 'split', effective_date: '2022-10-10', state_id: null, is_successor: false, note: 'n' }]);
+    expect(findMany.mock.calls[0][0]).toMatchObject({ orderBy: [{ effective_date: 'asc' }, { id: 'asc' }] });
+  });
+  it('findOne adds the state units (current roles first) and the lineage on both sides', async () => {
+    const unit = { party_id: 'BJP', state_id: 5, eci_recognition: 'National', office: 'Patna', website: null, states: { name: 'Bihar' },
+      roles: [{ role: 'state_president', person_id: null, person_name: 'Old', from_date: new Date('2020-01-01'), to_date: new Date('2023-03-01') },
+              { role: 'state_president', person_id: 'p1', person_name: 'New', from_date: new Date('2023-03-01'), to_date: null }] };
+    const { svc } = make({ party_units: { findMany: jest.fn().mockResolvedValue([unit]) }, party_lineage: { findMany: jest.fn().mockResolvedValue([lineageRow]) } });
+    const p = await svc.findOne('BJP');
+    expect(p.units).toEqual([{ state_id: 5, state_name: 'Bihar', eci_recognition: 'National', office: 'Patna', website: null,
+      roles: [{ role: 'state_president', person_id: 'p1', person_name: 'New', from_date: '2023-03-01', to_date: null },
+              { role: 'state_president', person_id: null, person_name: 'Old', from_date: '2020-01-01', to_date: '2023-03-01' }] }]);
+    expect(p.lineage).toHaveLength(1);
+  });
+});

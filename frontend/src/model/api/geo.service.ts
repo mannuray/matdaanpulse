@@ -1,5 +1,5 @@
 import { apiFetch } from './api-client';
-import type { State, Party, PartyDetail } from '../types';
+import type { State, Party, PartyDetail, LineageEvent } from '../types';
 
 /**
  * Geographic & Party Master Data (SOLID: SRP)
@@ -15,4 +15,9 @@ export function getParties() {
 
 export function getParty(id: string) {
   return apiFetch<PartyDetail>(`/parties/${encodeURIComponent(id)}`);
+}
+
+/** Every party lineage event (renames, mergers, splits), oldest first. */
+export function getPartyLineage() {
+  return apiFetch<LineageEvent[]>('/parties/lineage');
 }

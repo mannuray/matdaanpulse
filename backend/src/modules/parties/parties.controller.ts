@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Query, UseInterceptors } from '@nestjs/common';
 import { PartiesService } from './parties.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
-import { PartySummaryDto, PartyDetailDto } from './dto/party-response.dto';
+import { PartySummaryDto, PartyDetailDto, LineageEventDto } from './dto/party-response.dto';
 import { paginated } from '../../common/paginated';
 import { PartiesQueryDto } from '../../common/dto/query.dto';
 import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
@@ -30,6 +30,13 @@ export class PartiesController {
     }
     const allParties = await this.partiesService.findAll();
     return allParties || [];
+  }
+
+  /** Party lineage events (renames, mergers, splits) for cross-election comparisons; small, CDN-cached. */
+  @Get('lineage')
+  @UseInterceptors(new MapToDtoInterceptor(LineageEventDto))
+  findLineage() {
+    return this.partiesService.findLineage();
   }
 
   @Get(':id')

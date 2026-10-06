@@ -184,6 +184,9 @@ model parties {
   eci_recognition String?      @db.VarChar(20)
   updated_at      DateTime     @default(now()) @db.Timestamptz(6)
   candidates      candidates[]
+  lineage         party_lineage[] @relation("lineage_party")
+  successors      party_lineage[] @relation("lineage_predecessor")
+  units           party_units[]
 }
 
 model persons {
@@ -205,6 +208,7 @@ model persons {
   metadata      Json?           @default("{}") @ignore
   candidates    candidates[]
   merges        person_merges[]
+  party_roles   party_unit_roles[]
   districts     districts?      @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   regions       regions?        @relation(fields: [region_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   states        states?         @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -262,6 +266,8 @@ model states {
   elections            elections[]
   persons              persons[]
   regions              regions[]
+  party_lineage        party_lineage[]
+  party_units          party_units[]
 }
 
 model users {
@@ -462,4 +468,55 @@ model image_credits {
   author     String?
   licence    String
   created_at DateTime @default(now()) @db.Timestamptz(6)
+}
+
+/// Migration 023: a party came from a predecessor by rename, merger or split (state_id: only in that state's comparisons).
+model party_lineage {
+  id             Int       @id @default(autoincrement())
+  party_id       String    @db.VarChar(20)
+  predecessor_id String    @db.VarChar(20)
+  kind           String    @db.VarChar(10)
+  effective_date DateTime  @db.Date
+  state_id       Int?
+  is_successor   Boolean   @default(false)
+  note           String?
+  source_url     String?
+  created_at     DateTime  @default(now()) @db.Timestamptz(6)
+  party          parties   @relation("lineage_party", fields: [party_id], references: [id], onUpdate: Cascade, onDelete: NoAction)
+  predecessor    parties   @relation("lineage_predecessor", fields: [predecessor_id], references: [id], onUpdate: Cascade, onDelete: NoAction)
+  states         states?   @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([predecessor_id], map: "idx_party_lineage_predecessor")
+}
+
+/// Migration 023: a party's unit in one state (recognition there, office).
+model party_units {
+  party_id        String             @db.VarChar(20)
+  state_id        Int
+  eci_recognition String?            @db.VarChar(20)
+  office          String?            @db.VarChar(255)
+  website         String?
+  updated_at      DateTime           @default(now()) @db.Timestamptz(6)
+  parties         parties            @relation(fields: [party_id], references: [id], onUpdate: Cascade, onDelete: NoAction)
+  states          states             @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  roles           party_unit_roles[]
+
+  @@id([party_id, state_id])
+}
+
+/// Migration 023: who held a unit role (state_president | legislature_leader) and when; current = to_date null.
+model party_unit_roles {
+  id          Int         @id @default(autoincrement())
+  party_id    String      @db.VarChar(20)
+  state_id    Int
+  role        String      @db.VarChar(30)
+  person_id   String?     @db.Uuid
+  person_name String      @db.VarChar(255)
+  from_date   DateTime?   @db.Date
+  to_date     DateTime?   @db.Date
+  source_url  String?
+  unit        party_units @relation(fields: [party_id, state_id], references: [party_id, state_id], onDelete: Cascade, onUpdate: Cascade)
+  persons     persons?    @relation(fields: [person_id], references: [id], onDelete: SetNull, onUpdate: NoAction)
+
+  @@index([person_id], map: "idx_party_unit_roles_person")
 }

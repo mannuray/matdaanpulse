@@ -6,6 +6,12 @@ import { changedFields, createdFields } from '../audit-log/audit-diff';
 import { PartyNotFoundException } from '../../common/exceptions';
 import type { CreatePartyDto, UpdatePartyDto, EciRecognitionFilter } from './dto/party-input.dto';
 
+const ymd = (d: Date | null): string => (d ? d.toISOString().slice(0, 10) : '');
+const toLineageEvent = (r: { party_id: string; predecessor_id: string; kind: string; effective_date: Date; state_id: number | null; is_successor: boolean; note: string | null }) => ({
+  party_id: r.party_id, predecessor_id: r.predecessor_id, kind: r.kind, effective_date: ymd(r.effective_date),
+  state_id: r.state_id, is_successor: r.is_successor, note: r.note,
+});
+
 @Injectable()
 export class PartiesService {
   constructor(
@@ -25,7 +31,26 @@ export class PartiesService {
       where: { id },
     });
     if (!party) throw new PartyNotFoundException(id);
-    return party;
+    const [units, lineage] = await Promise.all([
+      this.prisma.party_units.findMany({ where: { party_id: id }, include: { states: { select: { name: true } }, roles: true }, orderBy: { state_id: 'asc' } }),
+      this.prisma.party_lineage.findMany({ where: { OR: [{ party_id: id }, { predecessor_id: id }] }, orderBy: [{ effective_date: 'asc' }, { id: 'asc' }] }),
+    ]);
+    return {
+      ...party,
+      units: units.map(u => ({
+        state_id: u.state_id, state_name: u.states.name, eci_recognition: u.eci_recognition, office: u.office, website: u.website,
+        // Current holders (no end date) first, then the most recent terms.
+        roles: [...u.roles].sort((a, b) => Number(a.to_date !== null) - Number(b.to_date !== null) || ymd(b.from_date).localeCompare(ymd(a.from_date)))
+          .map(r => ({ role: r.role, person_id: r.person_id, person_name: r.person_name, from_date: r.from_date ? ymd(r.from_date) : null, to_date: r.to_date ? ymd(r.to_date) : null })),
+      })),
+      lineage: lineage.map(toLineageEvent),
+    };
+  }
+
+  /** Every lineage event (renames, mergers, splits), oldest first: the comparison rule's input on the public site. */
+  async findLineage() {
+    const rows = await this.prisma.party_lineage.findMany({ orderBy: [{ effective_date: 'asc' }, { id: 'asc' }] });
+    return rows.map(toLineageEvent);
   }
 
   /** `eciRecognition`: a value, or `none` for parties with no recognition set (NULL). */
