@@ -25,13 +25,13 @@ describe('About page', () => {
   it('shows every dataset as a matrix cell with its quality, and no raw i18n keys', () => {
     const { container } = renderAbout();
     expect(container.querySelectorAll('[data-matrix-cell]')).toHaveLength(DATA_SOURCES.filter(s => s.house === 'VS').length);
-    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry', 'Uttar Pradesh', 'Punjab', 'Uttarakhand', 'Goa', 'Manipur', 'Delhi', 'Haryana', 'Jharkhand', 'Odisha', 'Sikkim', 'Arunachal Pradesh']);
-    for (const [st, years] of [['Delhi', [2008, 2013, 2015, 2020, 2025]], ['Haryana', [2009, 2014, 2019, 2024]], ['Jharkhand', [2009, 2014, 2019, 2024]], ['Odisha', [2009, 2014, 2019, 2024]], ['Sikkim', [2009, 2014, 2019, 2024]], ['Arunachal Pradesh', [2009, 2014, 2019, 2024]]] as const) for (const y of years) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha ${y}: Real votes` })).toBeTruthy();
+    expect(screen.getAllByRole('rowheader').map(r => r.textContent)).toEqual(['Bihar', 'West Bengal', 'Tamil Nadu', 'Kerala', 'Assam', 'Puducherry', 'Uttar Pradesh', 'Punjab', 'Uttarakhand', 'Goa', 'Manipur', 'Delhi', 'Haryana', 'Jharkhand', 'Odisha', 'Sikkim', 'Arunachal Pradesh', 'Andhra Pradesh']);
+    for (const [st, years] of [['Delhi', [2008, 2013, 2015, 2020, 2025]], ['Haryana', [2009, 2014, 2019, 2024]], ['Jharkhand', [2009, 2014, 2019, 2024]], ['Odisha', [2009, 2014, 2019, 2024]], ['Sikkim', [2009, 2014, 2019, 2024]], ['Arunachal Pradesh', [2009, 2014, 2019, 2024]], ['Andhra Pradesh', [2009, 2014, 2019, 2024]]] as const) for (const y of years) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha ${y}: Real votes` })).toBeTruthy();
     for (const st of ['Goa', 'Manipur', 'Punjab', 'Uttar Pradesh', 'Uttarakhand']) for (const y of [2012, 2017, 2022]) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha ${y}: Real votes` })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Kerala · Vidhan Sabha 2021: Real votes' })).toBeTruthy();
     for (const st of ['Assam', 'Kerala', 'Puducherry', 'Tamil Nadu', 'West Bengal']) expect(screen.getByRole('button', { name: `${st} · Vidhan Sabha 2026: Real votes` })).toBeTruthy();
     expect(screen.getByText(`${DATA_SOURCES.filter(s => s.house === 'VS').length} elections covered`)).toBeTruthy();
-    expect(screen.getByText('17 states')).toBeTruthy();
+    expect(screen.getByText('18 states')).toBeTruthy();
     expect(container.textContent).not.toMatch(/Lok Sabha/);
     expect(container.textContent).not.toMatch(/about_[a-z_]+/);
   });
@@ -53,6 +53,8 @@ describe('About page', () => {
     fireEvent.click(screen.getByRole('button', { name: /Arunachal Pradesh · Vidhan Sabha 2014/ }));
     expect(panel()).toMatch(/won unopposed/);
     expect(panel()).toMatch(/scanned report, read by OCR/);
+    fireEvent.click(screen.getByRole('button', { name: /Andhra Pradesh · Vidhan Sabha 2009/ }));
+    expect(panel()).toMatch(/undivided Andhra Pradesh/);
   });
 
   it('links to the official ECI results and the contact address', () => {

@@ -25,11 +25,12 @@ export type DataNote =
   | 'sangha_seat'
   | 'unopposed_seats'
   | 'ocr_scan'
+  | 'undivided_2009'
   | 'source_unrecorded';
 
 export const DATA_NOTES: readonly DataNote[] = [
   'all_candidates', 'top5_nota', 'two_candidates', 'winner_only', 'votes_from_margin',
-  'placeholder_names', 'turnout_unreliable', 'reserved_wrong', 'seats_postponed', 'seat_countermanded', 'sangha_seat', 'unopposed_seats', 'ocr_scan', 'source_unrecorded',
+  'placeholder_names', 'turnout_unreliable', 'reserved_wrong', 'seats_postponed', 'seat_countermanded', 'sangha_seat', 'unopposed_seats', 'ocr_scan', 'undivided_2009', 'source_unrecorded',
 ];
 
 export interface DataSource {
@@ -126,6 +127,10 @@ export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'VS', state: 'Arunachal Pradesh', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'unopposed_seats'] },
   { house: 'VS', state: 'Arunachal Pradesh', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'unopposed_seats', 'ocr_scan'] },
   { house: 'VS', state: 'Arunachal Pradesh', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'unopposed_seats'] },
+  { house: 'VS', state: 'Andhra Pradesh', year: 2024, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Andhra Pradesh', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Andhra Pradesh', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Andhra Pradesh', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'undivided_2009'] },
 ];
 
 export interface DataSourceGroup {
