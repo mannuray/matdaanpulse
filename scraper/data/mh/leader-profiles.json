@@ -1,0 +1,490 @@
+{
+ "devendra-fadnavis": {
+  "key": "devendra-fadnavis",
+  "wikidata": "Q16728896",
+  "date_of_birth": "1970-07-22",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Devendra_Fadnavis",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q16728896/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Devendra_Fadnavis_@Vidhan_Sabha_04-03-2021.jpg",
+   "author": "Correctinfo86",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "eknath-shinde": {
+  "key": "eknath-shinde",
+  "wikidata": "Q18750400",
+  "date_of_birth": "1964-02-09",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Eknath_Shinde",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q18750400/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Eknath_Shinde_with_PM_Narendra_Modi_Cropped.jpg",
+   "author": "Prime Minister's Office",
+   "licence": "GODL-India"
+  }
+ },
+ "ajit-pawar": {
+  "key": "ajit-pawar",
+  "wikidata": "Q4699799",
+  "date_of_birth": "1959-07-22",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Ajit_Pawar",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q4699799/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Shri_Ajit_Anantrao_Pawar.jpg",
+   "author": "Prime Minister's Office",
+   "licence": "GODL-India"
+  }
+ },
+ "rahul-narwekar": {
+  "key": "rahul-narwekar",
+  "wikidata": "Q28089418",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Rahul_Narwekar",
+  "photo_url": null,
+  "credit": null
+ },
+ "anna-bansode": {
+  "key": "anna-bansode",
+  "wikidata": "Q72280359",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Anna_Bansode",
+  "photo_url": null,
+  "credit": null
+ },
+ "aaditya-thackeray": {
+  "key": "aaditya-thackeray",
+  "wikidata": "Q4683091",
+  "date_of_birth": "1990-06-13",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Aaditya_Thackeray",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q4683091/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Shri_Aaditya_Thackeray_-_2020_(cropped).jpg",
+   "author": "Prime Minister's Office",
+   "licence": "GODL-India"
+  }
+ },
+ "bhaskar-jadhav": {
+  "key": "bhaskar-jadhav",
+  "wikidata": "Q16844421",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Bhaskar_Jadhav",
+  "photo_url": null,
+  "credit": null
+ },
+ "vijay-wadettiwar": {
+  "key": "vijay-wadettiwar",
+  "wikidata": "Q7929216",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Vijay_Namdevrao_Wadettiwar",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q7929216/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Vijay_wadettiwar.jpg",
+   "author": "Rahulbais009",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "nana-patole": {
+  "key": "nana-patole",
+  "wikidata": "Q16734274",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Nana_Patole",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q16734274/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ex_Maharashtra_Speaker_Nana_Patole.jpeg",
+   "author": "Envision Studio",
+   "licence": "CC BY-SA 2.0"
+  }
+ },
+ "jitendra-awhad": {
+  "key": "jitendra-awhad",
+  "wikidata": "Q6203245",
+  "date_of_birth": "1965-08-05",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jitendra_Awhad",
+  "photo_url": null,
+  "credit": null
+ },
+ "jayant-patil": {
+  "key": "jayant-patil",
+  "wikidata": "Q12428156",
+  "date_of_birth": "1963-01-01",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jayant_Patil",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q12428156/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jayant_Patil_(cropped).jpg",
+   "author": "Prime Minister's Office",
+   "licence": "GODL-India"
+  }
+ },
+ "shashikant-shinde": {
+  "key": "shashikant-shinde",
+  "wikidata": "Q19665064",
+  "date_of_birth": "1963-10-19",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Shashikant_Shinde",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q19665064/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:MLC_Shashikant_Shinde_Saheb.jpg",
+   "author": "ShreyasKarale",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "ravindra-chavan": {
+  "key": "ravindra-chavan",
+  "wikidata": "Q18210872",
+  "date_of_birth": "1970-09-20",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Ravindra_Chavan",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q18210872/photo.png",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ravinchav.png",
+   "author": "TOI",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "chandrashekhar-bawankule": {
+  "key": "chandrashekhar-bawankule",
+  "wikidata": "Q21005005",
+  "date_of_birth": "1969-01-13",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Chandrashekhar_Bawankule",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q21005005/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Maharashtra_Energy_Minister,_Shri_Chandrashkahr_Bawankule_calling_on_the_Minister_of_State_(IC)_for_Power_and_New_and_Renewable_Energy,_Shri_Raj_Kumar_Singh,_in_New_Delhi_on_October_16,_2017_(cropped).jpg",
+   "author": "Ministry of Power",
+   "licence": "GODL-India"
+  }
+ },
+ "radhakrishna-vikhe-patil": {
+  "key": "radhakrishna-vikhe-patil",
+  "wikidata": "Q16734840",
+  "date_of_birth": "1957-06-14",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Radhakrishna_Vikhe_Patil",
+  "photo_url": null,
+  "credit": null
+ },
+ "hasan-mushrif": {
+  "key": "hasan-mushrif",
+  "wikidata": "Q22278146",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Hasan_Mushrif",
+  "photo_url": null,
+  "credit": null
+ },
+ "chandrakant-patil": {
+  "key": "chandrakant-patil",
+  "wikidata": "Q18534394",
+  "date_of_birth": "1959-06-10",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Chandrakant_Patil",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q18534394/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Guardian_Minister,_Maharashtra,_Shri_Chandrakantdada_Patil_addressing_at_the_inauguration_of_the_Public_Information_Campaign,_at_Gadhinglaj,_Dist._Kolhapur,_Maharashtra_on_November_06,_2015.jpg",
+   "author": "Ministry of Information and Broadcasting",
+   "licence": "GODL-India"
+  }
+ },
+ "girish-mahajan": {
+  "key": "girish-mahajan",
+  "wikidata": "Q19662596",
+  "date_of_birth": "1960-05-17",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Girish_Mahajan",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q19662596/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Girish_Mahajan.JPG",
+   "author": "Anand.ndtv",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "gulabrao-patil": {
+  "key": "gulabrao-patil",
+  "wikidata": "Q19662527",
+  "date_of_birth": "1966-06-05",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Gulab_Raghunath_Patil",
+  "photo_url": null,
+  "credit": null
+ },
+ "ganesh-naik": {
+  "key": "ganesh-naik",
+  "wikidata": "Q5520841",
+  "date_of_birth": "1950-09-15",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Ganesh_Naik",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q5520841/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ganesh_Naik_2.jpg",
+   "author": "Hemani1",
+   "licence": "Public domain"
+  }
+ },
+ "dadaji-bhuse": {
+  "key": "dadaji-bhuse",
+  "wikidata": "Q20630882",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Dadaji_Bhuse",
+  "photo_url": null,
+  "credit": null
+ },
+ "sanjay-rathod": {
+  "key": "sanjay-rathod",
+  "wikidata": "Q20716632",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Sanjay_Rathod",
+  "photo_url": null,
+  "credit": null
+ },
+ "chhagan-bhujbal": {
+  "key": "chhagan-bhujbal",
+  "wikidata": "Q5094749",
+  "date_of_birth": "1947-10-15",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Chhagan_Bhujbal",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q5094749/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chagan_Bhujbal.jpg",
+   "author": "Bollywood Hungama",
+   "licence": "CC BY 3.0"
+  }
+ },
+ "mangal-prabhat-lodha": {
+  "key": "mangal-prabhat-lodha",
+  "wikidata": "Q18352136",
+  "date_of_birth": "1955-12-18",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Mangal_Lodha",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q18352136/photo.webp",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mangal_Prabhat_Lodha.webp",
+   "author": "Yashkolambekar",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "uday-samant": {
+  "key": "uday-samant",
+  "wikidata": "Q22280258",
+  "date_of_birth": "1975-12-26",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Uday_Samant",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q22280258/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Uday_Samant.jpg",
+   "author": "AbhiSuryawanshi",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "jaykumar-rawal": {
+  "key": "jaykumar-rawal",
+  "wikidata": "Q24906396",
+  "date_of_birth": "1975-01-16",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jayakumar_Jitendrasinh_Rawal",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q24906396/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Tourism_Minister_of_Maharashtra,_Shri_Jaykumar_Rawal_calling_on_the_Minister_of_State_for_Tourism_(IC),_Shri_Alphons_Kannanthanam,_in_New_Delhi_on_May_31,_2018_(cropped).JPG",
+   "author": "Ministry of Tourism",
+   "licence": "GODL-India"
+  }
+ },
+ "atul-save": {
+  "key": "atul-save",
+  "wikidata": "Q24949967",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Atul_Save",
+  "photo_url": null,
+  "credit": null
+ },
+ "ashok-uike": {
+  "key": "ashok-uike",
+  "wikidata": "Q64853111",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Ashok_Uike",
+  "photo_url": null,
+  "credit": null
+ },
+ "shambhuraj-desai": {
+  "key": "shambhuraj-desai",
+  "wikidata": "Q86007297",
+  "date_of_birth": "1966-11-17",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Shambhuraj_Desai",
+  "photo_url": null,
+  "credit": null
+ },
+ "ashish-shelar": {
+  "key": "ashish-shelar",
+  "wikidata": "Q15694140",
+  "date_of_birth": "1972-10-03",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Ashish_Shelar",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q15694140/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Photo_with_Shri_Devendra_Fadnavis_%26_Shri_Ashish_Shelar_(cropped).jpg",
+   "author": "Mayabhai7868",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "aditi-tatkare": {
+  "key": "aditi-tatkare",
+  "wikidata": "Q73115564",
+  "date_of_birth": null,
+  "gender": "F",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Aditi_Tatkare",
+  "photo_url": null,
+  "credit": null
+ },
+ "shivendra-raje-bhosale": {
+  "key": "shivendra-raje-bhosale",
+  "wikidata": "Q69617698",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Shivendra_Raje_Bhosale",
+  "photo_url": null,
+  "credit": null
+ },
+ "dattatray-bharne": {
+  "key": "dattatray-bharne",
+  "wikidata": "Q35829741",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Dattatray_Vithoba_Bharne",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q35829741/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Dattatray_Bharane.jpg",
+   "author": "Rahul Bharat Khomane",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "jaykumar-gore": {
+  "key": "jaykumar-gore",
+  "wikidata": "Q114496801",
+  "date_of_birth": "1975-10-15",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jaykumar_Gore",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q114496801/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jaykumar_Gore.jpg",
+   "author": "Sushant55",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "narhari-zirwal": {
+  "key": "narhari-zirwal",
+  "wikidata": "Q23887382",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Narhari_Zirwal",
+  "photo_url": null,
+  "credit": null
+ },
+ "sanjay-savkare": {
+  "key": "sanjay-savkare",
+  "wikidata": "Q28113111",
+  "date_of_birth": "1970-07-22",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Sanjay_Savkare",
+  "photo_url": null,
+  "credit": null
+ },
+ "sanjay-shirsat": {
+  "key": "sanjay-shirsat",
+  "wikidata": "Q23761297",
+  "date_of_birth": "1961-11-29",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Sanjay_Shirsat",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q23761297/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Member_of_legaslative_assembly_chhatrapati_sambhajinagar_west-108201205487524_6541452555224444.jpg",
+   "author": "Sanjay shirsat",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "pratap-sarnaik": {
+  "key": "pratap-sarnaik",
+  "wikidata": "Q7238593",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Pratap_Sarnaik",
+  "photo_url": null,
+  "credit": null
+ },
+ "bharat-gogawale": {
+  "key": "bharat-gogawale",
+  "wikidata": "Q22277958",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Bharatshet_Gogawale",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q22277958/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bharat-gogavale.jpg",
+   "author": "Roshanmorde",
+   "licence": "CC BY-SA 4.0"
+  }
+ },
+ "makrand-jadhav-patil": {
+  "key": "makrand-jadhav-patil",
+  "wikidata": "Q115492343",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Makrand_Jadhav",
+  "photo_url": null,
+  "credit": null
+ },
+ "nitesh-rane": {
+  "key": "nitesh-rane",
+  "wikidata": "Q10960360",
+  "date_of_birth": "1982-06-23",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Nitesh_Narayan_Rane",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q10960360/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nitesh_rane_at_ministry_meeting_(cropped).jpg",
+   "author": "Aniketp007",
+   "licence": "CC0"
+  }
+ },
+ "akash-fundkar": {
+  "key": "akash-fundkar",
+  "wikidata": "Q24906548",
+  "date_of_birth": "1983-02-05",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Akash_Pandurang_Fundkar",
+  "photo_url": null,
+  "credit": null
+ },
+ "babasaheb-patil": {
+  "key": "babasaheb-patil",
+  "wikidata": "Q130493569",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Babasaheb_Mohanrao_Patil",
+  "photo_url": null,
+  "credit": null
+ },
+ "prakash-abitkar": {
+  "key": "prakash-abitkar",
+  "wikidata": "Q22276686",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Prakashrao_Abitkar",
+  "photo_url": null,
+  "credit": null
+ }
+}

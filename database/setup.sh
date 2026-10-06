@@ -146,6 +146,7 @@ for st in dl hr jh od; do run "seed_${st}_leaders.sql"; done
 run seed_sk_leaders.sql
 run seed_ar_leaders.sql
 run seed_ap_leaders.sql
+run seed_mh_leaders.sql
 # 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
 for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
 for st in dl hr jh od; do run "seed_${st}_candidate_photos.sql"; done

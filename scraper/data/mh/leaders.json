@@ -1,0 +1,936 @@
+{
+ "people": [
+  {
+   "key": "devendra-fadnavis",
+   "name": "Devendra Fadnavis",
+   "wikidata": "Q16728896",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_52_NAGPUR_SOUTH_WEST",
+     "ballot_name": "Devendra Gangadharrao Fadnavis"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_52_NAGPUR_SOUTH_WEST",
+     "ballot_name": "Devendra Gangadhar Fadnavis"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_52_NAGPUR_SOUTH_WEST",
+     "ballot_name": "Devendra Gangadharrao Fadnavis"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_52_NAGPUR_SOUTH_WEST",
+     "ballot_name": "Devendra Gangadhar Fadnavis"
+    }
+   ]
+  },
+  {
+   "key": "eknath-shinde",
+   "name": "Eknath Shinde",
+   "wikidata": "Q18750400",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_147_KOPRIPACHPAKHADI",
+     "ballot_name": "Eknath Sambhaji Shinde"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_147_KOPRIPACHPAKHADI",
+     "ballot_name": "Eknath Sambhaji Shinde"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_147_KOPRIPACHPAKHADI",
+     "ballot_name": "Eknath Sambhaji Shinde"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_147_KOPRI_PACHPAKHADI",
+     "ballot_name": "Eknath Sambhaji Shinde"
+    }
+   ]
+  },
+  {
+   "key": "ajit-pawar",
+   "name": "Ajit Pawar",
+   "wikidata": "Q4699799",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_201_BARAMATI",
+     "ballot_name": "Ajit Anantrao Pawar"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_201_BARAMATI",
+     "ballot_name": "Ajit Anantrao Pawar"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_201_BARAMATI",
+     "ballot_name": "Ajit Aanantrao Pawar"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_201_BARAMATI",
+     "ballot_name": "Ajit Anantrao Pawar"
+    }
+   ]
+  },
+  {
+   "key": "rahul-narwekar",
+   "name": "Rahul Narwekar",
+   "wikidata": "Q28089418",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_187_COLABA",
+     "ballot_name": "Adv. Rahul Suresh Narwekar"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_187_COLABA",
+     "ballot_name": "Adv. Rahul Suresh Narwekar"
+    }
+   ]
+  },
+  {
+   "key": "anna-bansode",
+   "name": "Anna Bansode",
+   "wikidata": "Q72280359",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_206_PIMPRI"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_206_PIMPRI",
+     "ballot_name": "Anna Dadu Bansode"
+    }
+   ]
+  },
+  {
+   "key": "aaditya-thackeray",
+   "name": "Aaditya Thackeray",
+   "wikidata": "Q4683091",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_182_WORLI",
+     "ballot_name": "Aaditya Uddhav Thackeray"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_182_WORLI",
+     "ballot_name": "Aditya Uddhav Thackeray"
+    }
+   ]
+  },
+  {
+   "key": "bhaskar-jadhav",
+   "name": "Bhaskar Jadhav",
+   "wikidata": "Q16844421",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_264_GUHAGAR",
+     "ballot_name": "Jadhav Bhaskar Bhaurao"
+    }
+   ]
+  },
+  {
+   "key": "vijay-wadettiwar",
+   "name": "Vijay Wadettiwar",
+   "wikidata": "Q7929216",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_74_CHIMUR",
+     "ballot_name": "Wadettiwar Vijay Namdeorao"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_73_BRAHMAPURI",
+     "ballot_name": "Wadettiwar Vijay Namdevrao"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_73_BRAHMAPURI",
+     "ballot_name": "Vijay Namdevrao Wadettiwar"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_73_BRAHMAPURI",
+     "ballot_name": "Vijay Namdeorao Wadettiwar"
+    }
+   ]
+  },
+  {
+   "key": "nana-patole",
+   "name": "Nana Patole",
+   "wikidata": "Q16734274",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_62_SAKOLI",
+     "ballot_name": "Nanabhau Falgunrao Patole"
+    }
+   ]
+  },
+  {
+   "key": "jitendra-awhad",
+   "name": "Jitendra Awhad",
+   "wikidata": "Q6203245",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_149_MUMBRAKALWA",
+     "ballot_name": "Awhad Jitendra Satish"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_149_MUMBRAKALWA",
+     "ballot_name": "Awhad Jitendra Satish"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_149_MUMBRAKALWA",
+     "ballot_name": "Awhad Jitendra Satish"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_149_MUMBRA_KALWA",
+     "ballot_name": "Awhad Jitendra Satish"
+    }
+   ]
+  },
+  {
+   "key": "jayant-patil",
+   "name": "Jayant Patil",
+   "wikidata": "Q12428156",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_283_ISLAMPUR",
+     "ballot_name": "Jayant Rajaram Patil"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_283_ISLAMPUR",
+     "ballot_name": "Jayant Rajaram Patil"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_283_ISLAMPUR",
+     "ballot_name": "Jayant Rajaram Patil"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_283_ISLAMPUR",
+     "ballot_name": "Jayant Rajaram Patil"
+    }
+   ]
+  },
+  {
+   "key": "shashikant-shinde",
+   "name": "Shashikant Shinde",
+   "wikidata": "Q19665064",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_257_KOREGAON",
+     "ballot_name": "Shashikant Jaywant Shinde"
+    }
+   ]
+  },
+  {
+   "key": "ravindra-chavan",
+   "name": "Ravindra Chavan",
+   "wikidata": "Q18210872",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_143_DOMBIVALI",
+     "ballot_name": "Chavan Ravindra Dattatray"
+    }
+   ]
+  },
+  {
+   "key": "chandrashekhar-bawankule",
+   "name": "Chandrashekhar Bawankule",
+   "wikidata": "Q21005005",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_58_KAMTHI",
+     "ballot_name": "Chandrashekhar Krushnarao Bawankule"
+    }
+   ]
+  },
+  {
+   "key": "radhakrishna-vikhe-patil",
+   "name": "Radhakrishna Vikhe Patil",
+   "wikidata": "Q16734840",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_218_SHIRDI",
+     "ballot_name": "Patil Vikhe Radhakrushna Eknathrao"
+    }
+   ]
+  },
+  {
+   "key": "hasan-mushrif",
+   "name": "Hasan Mushrif",
+   "wikidata": "Q22278146",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_273_KAGAL",
+     "ballot_name": "Mushrif Hasan Miyalal"
+    }
+   ]
+  },
+  {
+   "key": "chandrakant-patil",
+   "name": "Chandrakant Patil",
+   "wikidata": "Q18534394",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_210_KOTHRUD",
+     "ballot_name": "Chandrakant (Dada) Bachhu Patil"
+    }
+   ]
+  },
+  {
+   "key": "girish-mahajan",
+   "name": "Girish Mahajan",
+   "wikidata": "Q19662596",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_19_JAMNER",
+     "ballot_name": "Girish Dattatray Mahajan"
+    }
+   ]
+  },
+  {
+   "key": "gulabrao-patil",
+   "name": "Gulabrao Patil",
+   "wikidata": "Q19662527",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_14_JALGAON_RURAL",
+     "ballot_name": "Gulabrao Raghunath Patil"
+    }
+   ]
+  },
+  {
+   "key": "ganesh-naik",
+   "name": "Ganesh Naik",
+   "wikidata": "Q5520841",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_151_BELAPUR"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_151_BELAPUR"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_150_AIROLI"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_150_AIROLI",
+     "ballot_name": "Ganesh Ramchandra Naik"
+    }
+   ]
+  },
+  {
+   "key": "dadaji-bhuse",
+   "name": "Dadaji Bhuse",
+   "wikidata": "Q20630882",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_115_MALEGAON_OUTER",
+     "ballot_name": "Dadaji Dagdu Bhuse"
+    }
+   ]
+  },
+  {
+   "key": "sanjay-rathod",
+   "name": "Sanjay Rathod",
+   "wikidata": "Q20716632",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_79_DIGRAS",
+     "ballot_name": "Rathod Sanjay Dulichand"
+    }
+   ]
+  },
+  {
+   "key": "chhagan-bhujbal",
+   "name": "Chhagan Bhujbal",
+   "wikidata": "Q5094749",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_119_YEVLA"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_119_YEVLA"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_119_YEVLA"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_119_YEVLA"
+    }
+   ]
+  },
+  {
+   "key": "mangal-prabhat-lodha",
+   "name": "Mangal Prabhat Lodha",
+   "wikidata": "Q18352136",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_185_MALABAR_HILL"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_185_MALABAR_HILL"
+    },
+    {
+     "year": 2019,
+     "const_id": "MH_VS19_185_MALABAR_HILL"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_185_MALABAR_HILL"
+    }
+   ]
+  },
+  {
+   "key": "uday-samant",
+   "name": "Uday Samant",
+   "wikidata": "Q22280258",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_266_RATNAGIRI",
+     "ballot_name": "Uday Ravindra Samant"
+    }
+   ]
+  },
+  {
+   "key": "jaykumar-rawal",
+   "name": "Jaykumar Rawal",
+   "wikidata": "Q24906396",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_8_SINDKHEDA",
+     "ballot_name": "Jaykumar Jitendrasinh Rawal"
+    }
+   ]
+  },
+  {
+   "key": "atul-save",
+   "name": "Atul Save",
+   "wikidata": "Q24949967",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_109_AURANGABAD_EAST",
+     "ballot_name": "Atul Moreshwar Save"
+    }
+   ]
+  },
+  {
+   "key": "ashok-uike",
+   "name": "Ashok Uike",
+   "wikidata": "Q64853111",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_77_RALEGAON",
+     "ballot_name": "Prof. Dr. Ashok Ramaji Wooike"
+    }
+   ]
+  },
+  {
+   "key": "shambhuraj-desai",
+   "name": "Shambhuraj Desai",
+   "wikidata": "Q86007297",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_261_PATAN",
+     "ballot_name": "Desai Shambhuraj Shivajirao"
+    }
+   ]
+  },
+  {
+   "key": "ashish-shelar",
+   "name": "Ashish Shelar",
+   "wikidata": "Q15694140",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_177_VANDRE_WEST"
+    },
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_177_VANDRE_WEST"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_177_VANDRE_WEST",
+     "ballot_name": "Adv. Ashish Shelar"
+    }
+   ]
+  },
+  {
+   "key": "aditi-tatkare",
+   "name": "Aditi Tatkare",
+   "wikidata": "Q73115564",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_193_SHRIVARDHAN",
+     "ballot_name": "Aditi Sunil Tatkare"
+    }
+   ]
+  },
+  {
+   "key": "shivendra-raje-bhosale",
+   "name": "Shivendra Raje Bhosale",
+   "wikidata": "Q69617698",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_262_SATARA",
+     "ballot_name": "Shivendraraje Abhaysinhraje Bhonsle"
+    }
+   ]
+  },
+  {
+   "key": "dattatray-bharne",
+   "name": "Dattatray Bharne",
+   "wikidata": "Q35829741",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_200_INDAPUR",
+     "ballot_name": "Dattatraya Vithoba Bharane"
+    }
+   ]
+  },
+  {
+   "key": "jaykumar-gore",
+   "name": "Jaykumar Gore",
+   "wikidata": "Q114496801",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_258_MAN",
+     "ballot_name": "Jaykumar Bhagavanrao Gore"
+    }
+   ]
+  },
+  {
+   "key": "narhari-zirwal",
+   "name": "Narhari Zirwal",
+   "wikidata": "Q23887382",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_122_DINDORI",
+     "ballot_name": "Narahari Sitaram Zirwal"
+    }
+   ]
+  },
+  {
+   "key": "sanjay-savkare",
+   "name": "Sanjay Savkare",
+   "wikidata": "Q28113111",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_12_BHUSAWAL",
+     "ballot_name": "Savkare Sanjay Waman"
+    }
+   ]
+  },
+  {
+   "key": "sanjay-shirsat",
+   "name": "Sanjay Shirsat",
+   "wikidata": "Q23761297",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "MH_VS14_108_AURANGABAD_WEST"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_108_AURANGABAD_WEST",
+     "ballot_name": "Sanjay Pandurang Shirsat"
+    }
+   ]
+  },
+  {
+   "key": "pratap-sarnaik",
+   "name": "Pratap Sarnaik",
+   "wikidata": "Q7238593",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_146_OVALA_MAJIWADA",
+     "ballot_name": "Pratap Baburao Sarnaik"
+    }
+   ]
+  },
+  {
+   "key": "bharat-gogawale",
+   "name": "Bharat Gogawale",
+   "wikidata": "Q22277958",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "MH_VS09_194_MAHAD"
+    },
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_194_MAHAD",
+     "ballot_name": "Gogawale Bharat Maruti"
+    }
+   ]
+  },
+  {
+   "key": "makrand-jadhav-patil",
+   "name": "Makrand Jadhav-Patil",
+   "wikidata": "Q115492343",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_256_WAI",
+     "ballot_name": "Makrand Laxmanrao Jadhav (Patil)"
+    }
+   ]
+  },
+  {
+   "key": "nitesh-rane",
+   "name": "Nitesh Rane",
+   "wikidata": "Q10960360",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_268_KANKAVLI",
+     "ballot_name": "Nitesh Narayan Rane"
+    }
+   ]
+  },
+  {
+   "key": "akash-fundkar",
+   "name": "Akash Fundkar",
+   "wikidata": "Q24906548",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_26_KHAMGAON",
+     "ballot_name": "Akash Pandurang Fundkar"
+    }
+   ]
+  },
+  {
+   "key": "babasaheb-patil",
+   "name": "Babasaheb Patil",
+   "wikidata": "Q130493569",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_236_AHMADPUR",
+     "ballot_name": "Babasaheb Mohanrao Patil"
+    }
+   ]
+  },
+  {
+   "key": "prakash-abitkar",
+   "name": "Prakash Abitkar",
+   "wikidata": "Q22276686",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "MH_VS24_272_RADHANAGARI",
+     "ballot_name": "Abitkar Prakash Anandrao"
+    }
+   ]
+  }
+ ],
+ "elections": {
+  "2024": {
+   "leaders": [
+    {
+     "key": "devendra-fadnavis",
+     "role": "Chief Minister",
+     "party_id": "BJP"
+    },
+    {
+     "key": "eknath-shinde",
+     "role": "Deputy Chief Minister",
+     "party_id": "SHS"
+    },
+    {
+     "key": "ajit-pawar",
+     "role": "Deputy Chief Minister (until his death, 28 January 2026)",
+     "party_id": "NCP"
+    },
+    {
+     "key": "rahul-narwekar",
+     "role": "Speaker",
+     "party_id": "BJP"
+    },
+    {
+     "key": "anna-bansode",
+     "role": "Deputy Speaker",
+     "party_id": "NCP"
+    },
+    {
+     "key": "aaditya-thackeray",
+     "role": "Shiv Sena (UBT) legislature party leader",
+     "party_id": "SHSUBT"
+    },
+    {
+     "key": "bhaskar-jadhav",
+     "role": "Shiv Sena (UBT) group leader in the Assembly",
+     "party_id": "SHSUBT"
+    },
+    {
+     "key": "vijay-wadettiwar",
+     "role": "Congress Legislature Party leader",
+     "party_id": "INC"
+    },
+    {
+     "key": "nana-patole",
+     "role": "Maharashtra Congress president during the election",
+     "party_id": "INC"
+    },
+    {
+     "key": "jitendra-awhad",
+     "role": "NCP (Sharadchandra Pawar) group leader in the Assembly",
+     "party_id": "NCPSP"
+    },
+    {
+     "key": "jayant-patil",
+     "role": "NCP (Sharadchandra Pawar) state president during the election",
+     "party_id": "NCPSP"
+    },
+    {
+     "key": "shashikant-shinde",
+     "role": "NCP (Sharadchandra Pawar) state president",
+     "party_id": "NCPSP"
+    },
+    {
+     "key": "ravindra-chavan",
+     "role": "BJP Maharashtra state president",
+     "party_id": "BJP"
+    }
+   ],
+   "cabinet": [
+    {
+     "key": "chandrashekhar-bawankule",
+     "role": "Minister of Revenue (BJP Maharashtra state president during the election, 2022-2025)",
+     "party_id": "BJP"
+    },
+    {
+     "key": "radhakrishna-vikhe-patil",
+     "role": "Minister of Water Resources (Godavari & Krishna Valley Development)",
+     "party_id": "BJP"
+    },
+    {
+     "key": "hasan-mushrif",
+     "role": "Minister of Medical Education",
+     "party_id": "NCP"
+    },
+    {
+     "key": "chandrakant-patil",
+     "role": "Minister of Higher & Technical Education and Parliamentary Affairs",
+     "party_id": "BJP"
+    },
+    {
+     "key": "girish-mahajan",
+     "role": "Minister of Water Resources (Vidarbha, Tapi & Konkan Development) and Disaster Management",
+     "party_id": "BJP"
+    },
+    {
+     "key": "gulabrao-patil",
+     "role": "Minister of Water Supply and Sanitation",
+     "party_id": "SHS"
+    },
+    {
+     "key": "ganesh-naik",
+     "role": "Minister of Forests",
+     "party_id": "BJP"
+    },
+    {
+     "key": "dadaji-bhuse",
+     "role": "Minister of School Education",
+     "party_id": "SHS"
+    },
+    {
+     "key": "sanjay-rathod",
+     "role": "Minister of Soil & Water Conservation",
+     "party_id": "SHS"
+    },
+    {
+     "key": "chhagan-bhujbal",
+     "role": "Minister of Food, Civil Supplies and Consumer Protection (since 20 May 2025)",
+     "party_id": "NCP"
+    },
+    {
+     "key": "mangal-prabhat-lodha",
+     "role": "Minister of Skill Development & Entrepreneurship",
+     "party_id": "BJP"
+    },
+    {
+     "key": "uday-samant",
+     "role": "Minister of Industries and Marathi Language",
+     "party_id": "SHS"
+    },
+    {
+     "key": "jaykumar-rawal",
+     "role": "Minister of Marketing and Protocol",
+     "party_id": "BJP"
+    },
+    {
+     "key": "atul-save",
+     "role": "Minister of OBC & Bahujan Welfare, Dairy Development, New & Renewable Energy and Disability Welfare",
+     "party_id": "BJP"
+    },
+    {
+     "key": "ashok-uike",
+     "role": "Minister of Tribal Development",
+     "party_id": "BJP"
+    },
+    {
+     "key": "shambhuraj-desai",
+     "role": "Minister of Tourism, Mining and Ex-Servicemen Welfare",
+     "party_id": "SHS"
+    },
+    {
+     "key": "ashish-shelar",
+     "role": "Minister of Information Technology and Cultural Affairs",
+     "party_id": "BJP"
+    },
+    {
+     "key": "aditi-tatkare",
+     "role": "Minister of Women & Child Development",
+     "party_id": "NCP"
+    },
+    {
+     "key": "shivendra-raje-bhosale",
+     "role": "Minister of Public Works (excluding Public Undertakings)",
+     "party_id": "BJP"
+    },
+    {
+     "key": "dattatray-bharne",
+     "role": "Minister of Agriculture (since 31 July 2025; Sports & Youth Welfare and Minority Development until then)",
+     "party_id": "NCP"
+    },
+    {
+     "key": "jaykumar-gore",
+     "role": "Minister of Rural Development and Panchayat Raj",
+     "party_id": "BJP"
+    },
+    {
+     "key": "narhari-zirwal",
+     "role": "Minister of Food & Drug Administration and Special Assistance",
+     "party_id": "NCP"
+    },
+    {
+     "key": "sanjay-savkare",
+     "role": "Minister of Textiles",
+     "party_id": "BJP"
+    },
+    {
+     "key": "sanjay-shirsat",
+     "role": "Minister of Social Justice",
+     "party_id": "SHS"
+    },
+    {
+     "key": "pratap-sarnaik",
+     "role": "Minister of Transport",
+     "party_id": "SHS"
+    },
+    {
+     "key": "bharat-gogawale",
+     "role": "Minister of Employment Guarantee, Horticulture and Khar Land Development",
+     "party_id": "SHS"
+    },
+    {
+     "key": "makrand-jadhav-patil",
+     "role": "Minister of Relief & Rehabilitation",
+     "party_id": "NCP"
+    },
+    {
+     "key": "nitesh-rane",
+     "role": "Minister of Fisheries and Ports Development",
+     "party_id": "BJP"
+    },
+    {
+     "key": "akash-fundkar",
+     "role": "Minister of Labour",
+     "party_id": "BJP"
+    },
+    {
+     "key": "babasaheb-patil",
+     "role": "Minister of Co-operation",
+     "party_id": "NCP"
+    },
+    {
+     "key": "prakash-abitkar",
+     "role": "Minister of Public Health & Family Welfare",
+     "party_id": "SHS"
+    }
+   ],
+   "sources": [
+    "https://en.wikipedia.org/wiki/Third_Fadnavis_ministry",
+    "https://en.wikipedia.org/wiki/15th_Maharashtra_Assembly",
+    "https://en.wikipedia.org/wiki/Maharashtra_Legislative_Assembly",
+    "https://en.wikipedia.org/wiki/List_of_leaders_of_the_opposition_in_the_Maharashtra_Legislative_Assembly",
+    "https://indianexpress.com/article/cities/mumbai/maharashtra-cabinet-ministers-full-list-bjp-shiv-sena-ncp-9726178/",
+    "https://www.thehindu.com/news/national/maharashtra/maharashtra-portfolios-fadnavis-keeps-home-shinde-urban-development-ajit-gets-finance/article69013705.ece",
+    "https://www.indiatoday.in/india/story/bjps-rahul-narvekar-colaba-mla-re-elected-unopposed-maharashtra-assembly-speaker-2646978-2024-12-09",
+    "https://www.thehindu.com/elections/maharashtra-assembly/in-a-first-in-six-decades-no-leader-of-opposition-in-maharashtra-assembly/article68904861.ece",
+    "https://www.thehindu.com/elections/maharashtra-assembly/shiv-sena-ubt-elects-aaditya-thackeray-as-leader-of-its-legislature-party/article68909034.ece",
+    "https://www.ndtv.com/india-news/uddhav-thackeray-nominates-mla-bhaskar-jadhav-for-shiv-sena-leader-of-opposition-post-7848349",
+    "https://en.wikipedia.org/wiki/Vijay_Namdevrao_Wadettiwar",
+    "https://en.wikipedia.org/wiki/Maharashtra_Pradesh_Congress_Committee",
+    "https://en.wikipedia.org/wiki/Jayant_Patil",
+    "https://en.wikipedia.org/wiki/Shashikant_Shinde",
+    "https://en.wikipedia.org/wiki/Ravindra_Chavan",
+    "https://www.tv9marathi.com/politics/ravindra-chavan-appointed-as-bjp-maharashtra-chief-1436143.html",
+    "https://en.wikipedia.org/wiki/Chandrashekhar_Bawankule",
+    "https://en.wikipedia.org/wiki/Ajit_Pawar",
+    "https://en.wikipedia.org/wiki/Dhananjay_Munde",
+    "https://en.wikipedia.org/wiki/Manikrao_Kokate"
+   ]
+  }
+ }
+}
