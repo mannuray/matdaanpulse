@@ -1,0 +1,252 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Arunachal_Pradesh_Legislative_Assembly (district + Lok Sabha columns, citing CEO Arunachal's AC-wise/district-wise/PC-wise list; raw wikitext read 2026-10-06)",
+  "https://en.wikipedia.org/wiki/Arunachal_West_Lok_Sabha_constituency and https://en.wikipedia.org/wiki/Arunachal_East_Lok_Sabha_constituency (assembly segments: West 1-33, East 34-60; read 2026-10-06)",
+  "Delimitation of Parliamentary and Assembly Constituencies Order, 2008, Arunachal Pradesh Table A (extent of each AC by circle/village) and Table B (PCs), pp. 33-41: https://web.archive.org/web/20230718103411/https://upload.indiacode.nic.in/showfile?actid=AC_CEN_3_20_00030_200233_1517807324510&type=order&filename=Delimitation%20Order,2008.pdf",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Arunachal_Pradesh, https://en.wikipedia.org/wiki/Bichom_district, https://en.wikipedia.org/wiki/Keyi_Panyor_district (current districts and formation dates; read 2026-10-06)",
+  "Per-AC Wikipedia infoboxes for Bameng (8), Rumgong (32), Pangin (35), Liromoba (27)"
+ ],
+ "notes": "Districts are the current 27 districts of Arunachal Pradesh per the Arunachal Pradesh (Reorganisation of Districts) Act 1980 as amended to 2024; the newest are Bichom (HQ Napangphung, carved from West and East Kameng; Act passed 7 Feb 2024, inaugurated 7 Mar 2024) and Keyi Panyor (HQ Yachuli, carved from Lower Subansiri; inaugurated 1 Mar 2024). Earlier additions: Kra Daadi (2015), Siang (2015), Lower Siang (2017), Kamle (2017), Pakke-Kessang, Lepa Rada, Shi Yomi (all 30 Aug 2018). Itanagar Capital Complex has its own Deputy Commissioner but is not a district under the Act, so 13 Itanagar and 14 Doimukh go to Papum Pare. Seat -> district follows the Wikipedia AC list (district column, updated for the new districts), checked against the 2008 Delimitation Order's circle lists. Where sources disagree: 8 Bameng is put in East Kameng (the Order gives it Bameng, Khenewa and Lada circles; only the Lada side went to Bichom in 2024, and Bameng town stays in East Kameng; the Wikipedia AC list says Bichom, the Bameng article and the Arunachal West page say East Kameng) - uncertain, and with this choice Bichom holds no seat of its own; 16 Yachuli -> Keyi Panyor (the district is exactly the Yachuli AC area; the LS page still says Lower Subansiri); 32 Rumgong and 35 Pangin -> Siang (Siang district, 2015, took Rumgong, Kaying, Pangin, Boleng circles; the LS pages still say West Siang / Upper Siang). Other straddles: 25 Raga takes 29 Daporijo-circle villages of Upper Subansiri but its Raga circle and HQ are Kamle; 27 Liromoba (Liromoba, Darak circles; HQ West Siang) - West Siang; 36 Nari-Koyu - Lower Siang (2017). Regions are the two Lok Sabha seats (2008 Order Table B): Arunachal West = ACs 1-33 (33), Arunachal East = ACs 34-60 (27), assigned per seat via seatRegions; their district lists are empty because Siang district (32 Rumgong West, 35 Pangin East) and Lower Siang (28 Likabali West, 36 Nari-Koyu East) are split between the two. Seat names follow ar-seats.txt numbering (ECI 2024 spellings, e.g. 12 Pakke-Kasang, 26 Damporijo, 57 Borduria-Bogapani, 60 Pongchao-Wakka). Bichom district (2024) holds no seat here: 8 Bameng is kept in East Kameng (its headquarters and most of its circles; the Bameng article and the Delimitation Order), so Bichom is not listed.",
+ "districts": [
+  {
+   "code": "AR_TAWANG",
+   "name": "Tawang"
+  },
+  {
+   "code": "AR_WESTKAMENG",
+   "name": "West Kameng"
+  },
+  {
+   "code": "AR_EASTKAMENG",
+   "name": "East Kameng"
+  },
+  {
+   "code": "AR_PAKKEKESSANG",
+   "name": "Pakke-Kessang"
+  },
+  {
+   "code": "AR_PAPUMPARE",
+   "name": "Papum Pare"
+  },
+  {
+   "code": "AR_KEYIPANYOR",
+   "name": "Keyi Panyor"
+  },
+  {
+   "code": "AR_LOWERSUBANSIRI",
+   "name": "Lower Subansiri"
+  },
+  {
+   "code": "AR_KRADAADI",
+   "name": "Kra Daadi"
+  },
+  {
+   "code": "AR_KURUNGKUMEY",
+   "name": "Kurung Kumey"
+  },
+  {
+   "code": "AR_UPPERSUBANSIRI",
+   "name": "Upper Subansiri"
+  },
+  {
+   "code": "AR_KAMLE",
+   "name": "Kamle"
+  },
+  {
+   "code": "AR_WESTSIANG",
+   "name": "West Siang"
+  },
+  {
+   "code": "AR_LOWERSIANG",
+   "name": "Lower Siang"
+  },
+  {
+   "code": "AR_LEPARADA",
+   "name": "Lepa Rada"
+  },
+  {
+   "code": "AR_SIANG",
+   "name": "Siang"
+  },
+  {
+   "code": "AR_SHIYOMI",
+   "name": "Shi Yomi"
+  },
+  {
+   "code": "AR_UPPERSIANG",
+   "name": "Upper Siang"
+  },
+  {
+   "code": "AR_EASTSIANG",
+   "name": "East Siang"
+  },
+  {
+   "code": "AR_DIBANGVALLEY",
+   "name": "Dibang Valley"
+  },
+  {
+   "code": "AR_LOWERDIBANGVALLEY",
+   "name": "Lower Dibang Valley"
+  },
+  {
+   "code": "AR_LOHIT",
+   "name": "Lohit"
+  },
+  {
+   "code": "AR_ANJAW",
+   "name": "Anjaw"
+  },
+  {
+   "code": "AR_NAMSAI",
+   "name": "Namsai"
+  },
+  {
+   "code": "AR_CHANGLANG",
+   "name": "Changlang"
+  },
+  {
+   "code": "AR_TIRAP",
+   "name": "Tirap"
+  },
+  {
+   "code": "AR_LONGDING",
+   "name": "Longding"
+  }
+ ],
+ "regions": [
+  {
+   "code": "AR_WEST",
+   "name": "Arunachal West",
+   "districts": []
+  },
+  {
+   "code": "AR_EAST",
+   "name": "Arunachal East",
+   "districts": []
+  }
+ ],
+ "seats": {
+  "1": "AR_TAWANG",
+  "2": "AR_TAWANG",
+  "3": "AR_TAWANG",
+  "4": "AR_WESTKAMENG",
+  "5": "AR_WESTKAMENG",
+  "6": "AR_WESTKAMENG",
+  "7": "AR_WESTKAMENG",
+  "8": "AR_EASTKAMENG",
+  "9": "AR_EASTKAMENG",
+  "10": "AR_EASTKAMENG",
+  "11": "AR_EASTKAMENG",
+  "12": "AR_PAKKEKESSANG",
+  "13": "AR_PAPUMPARE",
+  "14": "AR_PAPUMPARE",
+  "15": "AR_PAPUMPARE",
+  "16": "AR_KEYIPANYOR",
+  "17": "AR_LOWERSUBANSIRI",
+  "18": "AR_KRADAADI",
+  "19": "AR_KURUNGKUMEY",
+  "20": "AR_KRADAADI",
+  "21": "AR_KURUNGKUMEY",
+  "22": "AR_UPPERSUBANSIRI",
+  "23": "AR_UPPERSUBANSIRI",
+  "24": "AR_UPPERSUBANSIRI",
+  "25": "AR_KAMLE",
+  "26": "AR_UPPERSUBANSIRI",
+  "27": "AR_WESTSIANG",
+  "28": "AR_LOWERSIANG",
+  "29": "AR_LEPARADA",
+  "30": "AR_WESTSIANG",
+  "31": "AR_WESTSIANG",
+  "32": "AR_SIANG",
+  "33": "AR_SHIYOMI",
+  "34": "AR_UPPERSIANG",
+  "35": "AR_SIANG",
+  "36": "AR_LOWERSIANG",
+  "37": "AR_EASTSIANG",
+  "38": "AR_EASTSIANG",
+  "39": "AR_EASTSIANG",
+  "40": "AR_UPPERSIANG",
+  "41": "AR_DIBANGVALLEY",
+  "42": "AR_LOWERDIBANGVALLEY",
+  "43": "AR_LOWERDIBANGVALLEY",
+  "44": "AR_LOHIT",
+  "45": "AR_ANJAW",
+  "46": "AR_NAMSAI",
+  "47": "AR_NAMSAI",
+  "48": "AR_NAMSAI",
+  "49": "AR_CHANGLANG",
+  "50": "AR_CHANGLANG",
+  "51": "AR_CHANGLANG",
+  "52": "AR_CHANGLANG",
+  "53": "AR_CHANGLANG",
+  "54": "AR_TIRAP",
+  "55": "AR_TIRAP",
+  "56": "AR_TIRAP",
+  "57": "AR_TIRAP",
+  "58": "AR_LONGDING",
+  "59": "AR_LONGDING",
+  "60": "AR_LONGDING"
+ },
+ "seatRegions": {
+  "1": "AR_WEST",
+  "2": "AR_WEST",
+  "3": "AR_WEST",
+  "4": "AR_WEST",
+  "5": "AR_WEST",
+  "6": "AR_WEST",
+  "7": "AR_WEST",
+  "8": "AR_WEST",
+  "9": "AR_WEST",
+  "10": "AR_WEST",
+  "11": "AR_WEST",
+  "12": "AR_WEST",
+  "13": "AR_WEST",
+  "14": "AR_WEST",
+  "15": "AR_WEST",
+  "16": "AR_WEST",
+  "17": "AR_WEST",
+  "18": "AR_WEST",
+  "19": "AR_WEST",
+  "20": "AR_WEST",
+  "21": "AR_WEST",
+  "22": "AR_WEST",
+  "23": "AR_WEST",
+  "24": "AR_WEST",
+  "25": "AR_WEST",
+  "26": "AR_WEST",
+  "27": "AR_WEST",
+  "28": "AR_WEST",
+  "29": "AR_WEST",
+  "30": "AR_WEST",
+  "31": "AR_WEST",
+  "32": "AR_WEST",
+  "33": "AR_WEST",
+  "34": "AR_EAST",
+  "35": "AR_EAST",
+  "36": "AR_EAST",
+  "37": "AR_EAST",
+  "38": "AR_EAST",
+  "39": "AR_EAST",
+  "40": "AR_EAST",
+  "41": "AR_EAST",
+  "42": "AR_EAST",
+  "43": "AR_EAST",
+  "44": "AR_EAST",
+  "45": "AR_EAST",
+  "46": "AR_EAST",
+  "47": "AR_EAST",
+  "48": "AR_EAST",
+  "49": "AR_EAST",
+  "50": "AR_EAST",
+  "51": "AR_EAST",
+  "52": "AR_EAST",
+  "53": "AR_EAST",
+  "54": "AR_EAST",
+  "55": "AR_EAST",
+  "56": "AR_EAST",
+  "57": "AR_EAST",
+  "58": "AR_EAST",
+  "59": "AR_EAST",
+  "60": "AR_EAST"
+ }
+}
