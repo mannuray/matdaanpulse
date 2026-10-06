@@ -15,7 +15,8 @@ NOTA with real ECI votes, seat types, electors, turnout; manifests; districts an
 
 - Years 2009, 2014, 2019, 2024; delimitation `'2008'`; 32 seats each. Earlier years results only.
 - **Bhutia-Lepcha (BL) seats are stored as `ST`** (Bhutia and Lepcha are Scheduled Tribes; ECI's own Highlights call
-  them ST in 2014/2019 and "ST (BL)" in 2024). The seat name keeps ECI's "(BL)" as other states keep "(SC)". Reserved
+  them ST in 2014/2019 and "ST (BL)" in 2024). Like "(SC)" elsewhere, "(BL)" is stripped from the stored
+  name and the type carries it (ST), so names match across years for links and the map. Reserved
   per election: SC 2, ST 12.
 - **Sangha (AC 32) is a `GEN` seat with no map shape**: monastic electorate (registered monks of the state's
   monasteries), no territory. It is in lists, tallies and its seat page; the map has 31 shapes and does not draw it
