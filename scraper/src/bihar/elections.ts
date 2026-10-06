@@ -196,7 +196,7 @@ export const ELECTIONS: ElectionConfig[] = [
   p4('SK', 2009, { docid: 3364 }, 1, '2009-05-16', pdf(2009)), p4('SK', 2014, { docid: 3365 }, 1, '2014-05-16', pdf(2014)),
   p4('SK', 2019, { docid: 11677 }, 1, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_')),
   p4('SK', 2024, { category: 5 }, 1, '2024-06-02', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
-    { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S21', myneta: 'sikkim2024' }),
+    { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S21', myneta: 'sikkim2024' }),
 ];
 
 /** The registry entry of an election id. */

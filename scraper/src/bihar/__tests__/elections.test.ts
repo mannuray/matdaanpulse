@@ -69,7 +69,7 @@ describe('Phase 4B Sikkim', () => {
     expect(electionsOf('SK').map(e => [e.year, e.docid ?? e.category, e.newElection?.resultDate, e.expectedPhases])).toEqual([
       [2009, 3364, '2009-05-16', 1], [2014, 3365, '2014-05-16', 1], [2019, 11677, '2019-05-23', 1], [2024, 5, '2024-06-02', 1]]);
     expect(electionOf('SK', 2024)).toMatchObject({ electionId: 'a0300000-0000-4000-8000-000000002024', constPrefix: 'SK_VS24_',
-      resultsSite: { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S21' }, myneta: 'sikkim2024',
+      resultsSite: { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S21' }, myneta: 'sikkim2024',
       newElection: { delimitation: '2008', reserved: { sc: 2, st: 12 } } });
     const types = Object.entries(STATES.SK.seatTypes!);
     expect(types.filter(([, t]) => t === 'ST').map(([n]) => Number(n))).toEqual([1, 5, 6, 9, 16, 21, 23, 24, 27, 29, 30, 31]);
