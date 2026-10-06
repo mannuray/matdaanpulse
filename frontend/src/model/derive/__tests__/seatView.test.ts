@@ -118,7 +118,9 @@ describe('liveChipState with the snapshot seat state', () => {
 
 describe('seats won unopposed', () => {
   it('buildSeatView flags a declared seat whose only candidate won with no votes', () => {
-    expect(buildSeatView([r('BJP', 'Pema Khandu', 0, 'WON')], { partyMeta: meta, partyColor: color }).uncontested).toBe(true);
+    const v = buildSeatView([r('BJP', 'Pema Khandu', 0, 'WON')], { partyMeta: meta, partyColor: color });
+    expect(v.uncontested).toBe(true);
+    expect(v.candidates[0].pill).toBe('WON');
     expect(buildSeatView([r('BJP', 'A', 500, 'WON', 200), r('RJD', 'B', 300, 'LOST')], { partyMeta: meta, partyColor: color }).uncontested).toBe(false);
   });
   it('seatHistory marks a year won unopposed (no runner-up, no margin)', () => {

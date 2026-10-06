@@ -1,3 +1,4 @@
+import { isUnopposedWinner } from './uncontested';
 import type { ManifestData, ResultRow } from '../types';
 import { displayNameFromConstId } from '../geo/regionMatching';
 
@@ -21,6 +22,8 @@ export interface LeaderCard {
   partyId: string;
   status: LeaderStatus;
   margin: number | null;
+  /** Won unopposed (no poll): no margin to show. */
+  unopposed?: boolean;
   custom: boolean;
   /** The person to link to (manifest entries with person_id); null for custom watches. */
   personId?: string | null;
@@ -87,7 +90,7 @@ export function deriveLeaderCards(entries: Entry[], winners: Map<string, ResultR
       constName: displayNameFromConstId(e.constId),
       partyId: e.partyId || w?.party_id || '',
       status,
-      margin: w ? Number(w.margin) || 0 : null,
+      ...(w && isUnopposedWinner(w) ? { margin: null, unopposed: true } : { margin: w ? Number(w.margin) || 0 : null }),
       custom: e.custom,
       personId: e.personId ?? null,
     };

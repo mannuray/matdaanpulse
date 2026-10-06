@@ -495,6 +495,7 @@
   "cp_house_LS": "Lok Sabha",
   "cp_margin_suffix": "+{{n}} margin",
   "cp_unopposed": "போட்டியின்றி தேர்வு",
+  "studio_unopposed": "போட்டியின்றி",
   "cp_unopposed_body": "வேறு வேட்பாளர் இல்லாததால் வாக்குப்பதிவு நடக்கவில்லை: இத்தொகுதிக்கு வாக்குகள், வித்தியாசம், வாக்குப்பதிவு விகிதம் இல்லை.",
   "cp_three_way_title": "3-way contest",
   "cp_three_way_body": "The winning margin is only {{margin}} votes, while {{name}} polled {{votes}}.",

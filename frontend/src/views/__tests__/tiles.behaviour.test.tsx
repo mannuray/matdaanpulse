@@ -65,6 +65,16 @@ describe('tile behaviour', () => {
     expect(onSelectSeat).toHaveBeenCalledWith('C7');
   });
 
+  it('a leader who won unopposed shows "Unopposed", not a margin', () => {
+    const vm: LeadersVM = {
+      leaders: [{ key: 'k', name: 'Pema Khandu', constId: 'C3', constName: 'Mukto', partyId: 'BJP', status: 'WON', margin: null, unopposed: true, custom: false }], watchlist: [],
+      partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop,
+    };
+    const { container } = render(<LeadersStrip vm={vm} variant="tile" />);
+    expect(container.textContent).toMatch(/Unopposed/);
+    expect(container.textContent).not.toMatch(/\+0/);
+  });
+
   it('a seatless leader with a person links to the person page', () => {
     const vm: LeadersVM = {
       leaders: [{ key: 'k', name: 'Nitish Kumar', constId: '', constName: '', partyId: 'JDU', status: 'PENDING', margin: null, custom: false, personId: 'p-nk' }], watchlist: [],

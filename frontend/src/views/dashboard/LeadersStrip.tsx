@@ -31,6 +31,7 @@ function Card({ c, vm }: { c: LeaderCard; vm: LeadersVM }) {
           {c.partyId && <PartyButton partyId={c.partyId} mark={vm.markOf(c.partyId)} color={color} onOpen={vm.onOpenParty} className="relative z-10 -my-0.5" />}</span>
       </span>
       <span aria-hidden className={cn('shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.status])}>{status}</span>
+      {c.unopposed && <span className="shrink-0 text-xs font-semibold text-muted">{t('studio_unopposed')}</span>}
       {c.margin != null && c.status !== 'PENDING' && <span aria-hidden className="tabular shrink-0 text-xs font-semibold text-ink">{c.status === 'WON' || c.status === 'LEADING' ? '+' : '−'}{c.margin.toLocaleString()}</span>}
     </div>
   );

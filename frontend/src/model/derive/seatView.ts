@@ -23,6 +23,7 @@ export function buildSeatView(rows: ResultRow[], o: { partyMeta: Map<string, Par
     if (na !== nb) return na ? 1 : -1;
     return (b.votes || 0) - (a.votes || 0);
   });
+  const unopposed = isUncontested(rows);
   const all = sorted.map((r): SeatCandidateView => {
     const nota = isNota(r.party_id, r.candidate_name);
     const d = byKey.get(joinKey(r.party_id, r.candidate_name));
@@ -38,7 +39,7 @@ export function buildSeatView(rows: ResultRow[], o: { partyMeta: Map<string, Par
       color: (r.party_id && o.partyColor.get(r.party_id)) || 'var(--color-fallback)',
       votes: Number(r.votes) || 0,
       share: pct(Number(r.votes) || 0, total),
-      pill: counted && (r.status === 'WON' || r.status === 'LEADING') ? r.status : null,
+      pill: (counted || unopposed) && (r.status === 'WON' || r.status === 'LEADING') ? r.status : null,
       incumbent: !!d?.is_incumbent,
       photo: d?.person?.photo_url ?? null,
       personId: nota ? null : d?.person_id ?? d?.person?.id ?? null,
@@ -56,7 +57,7 @@ export function buildSeatView(rows: ResultRow[], o: { partyMeta: Map<string, Par
     others: rest.length ? { count: rest.length, votes: restVotes, share: pct(restVotes, total) } : null,
     totalVotes: total,
     margin: leaderRow ? Number(leaderRow.margin) || null : null,
-    uncontested: isUncontested(rows),
+    uncontested: unopposed,
   };
 }
 

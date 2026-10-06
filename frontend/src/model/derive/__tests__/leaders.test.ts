@@ -28,6 +28,11 @@ describe('collectLeaderEntries', () => {
 });
 
 describe('deriveLeaderCards', () => {
+  it('a leader who won unopposed has no margin and is flagged (not "+0")', () => {
+    const w = new Map([['AR_VS24_3_MUKTO', { const_id: 'AR_VS24_3_MUKTO', party_id: 'BJP', candidate_name: 'PEMA KHANDU', votes: 0, status: 'WON', margin: 0 }]]);
+    const [card] = deriveLeaderCards([{ name: 'Pema Khandu', partyId: 'BJP', constId: 'AR_VS24_3_MUKTO', custom: false }], w);
+    expect([card.status, card.margin, card.unopposed]).toEqual(['WON', null, true]);
+  });
   it('marks won/leading when the leader is the entry party, lost/trailing otherwise, pending with no result', () => {
     const cards = deriveLeaderCards([
       { name: 'Tejashwi Yadav', partyId: 'RJD', constId: 'BR_VS_128_RAGHOPUR', custom: false },

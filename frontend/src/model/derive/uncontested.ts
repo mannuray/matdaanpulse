@@ -15,3 +15,8 @@ export function headlineMargin(candidates: { party_id: string | null; votes: num
   if (isUncontested(candidates)) return { margin: undefined, uncontested: true };
   return { margin: Number(winner.margin) || 0 };
 }
+
+/** From a seat's winning row alone: a declared winner with no votes polled can only have been unopposed. */
+export function isUnopposedWinner(w: { status: string | null; votes: number | null }): boolean {
+  return w.status === 'WON' && !w.votes;
+}
