@@ -116,6 +116,7 @@ function InsightCard({ i, vm }: { i: Insight; vm: ConstituencyPageVM }) {
   let body = '';
   let icon = INFO_PATH;
   switch (i.kind) {
+    case 'split': tone = 'party'; color = partyColor(i.to); icon = SWAP_PATH; title = t('ins_split_title'); body = t('ins_split_body', { to: party(i.to), from: party(i.from), year: i.fromYear }); break;
     case 'flip': tone = 'party'; color = partyColor(i.to); icon = SWAP_PATH; title = t('ins_flip_title'); body = t('ins_flip_body', { to: party(i.to), from: party(i.from), year: i.fromYear }); break;
     case 'hold': tone = 'party'; color = partyColor(i.party); title = t('ins_hold_title', { party: party(i.party) }); body = t('ins_hold_body', { count: i.streak, year: vm.history[0]?.year }); break;
     case 'photoFinish': tone = 'warn'; icon = WARN_PATH; title = t('ins_photo_title'); body = t('ins_photo_body', { margin: formatIN(i.margin), pct: i.pct }); break;

@@ -1,3 +1,4 @@
+import { usePartyComparer } from '../data/usePartyComparer';
 import { useEffect, useMemo, useState } from 'react';
 import { useApi } from '../data/useApi';
 import { useLiveSnapshot } from '../data/useLiveSnapshot';
@@ -48,6 +49,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   const partyMeta = usePartyMeta();
   const election = useApi(() => getElection(electionId), [electionId], { key: ElectionService.getCacheKey(electionId) });
   const e = election.data && election.data.id === electionId ? election.data : null;
+  const cmp = usePartyComparer(e?.state_id, e?.type ?? 'VS');
   // Poll while counting and before it starts, so a page left open on counting day picks up the first results.
   const live = useLiveSnapshot(electionId, e?.status === 'Live' || e?.status === 'Upcoming');
   // /live reports status changes (Upcoming → Live → Finalized) before the election record is refetched.
@@ -113,7 +115,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
     history,
     dominance: seatClass((analysis as { dominance?: string } | null)?.dominance),
     notes,
-    insights: seatInsights(view, history, notes),
+    insights: seatInsights(view, history, notes, 6, { cmp, year: e?.year ?? 0 }),
     redrawnTo: e && elections.data ? redrawnTo(e, elections.data) : null,
     partyMeta,
     locator,

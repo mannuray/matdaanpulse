@@ -1,9 +1,11 @@
 import type { SeatHistoryEntry } from '../types';
 import type { SeatNote, SeatView } from './seatView';
+import { RAW_COMPARER, type PartyComparer } from './partyComparer';
 
 /** Data-backed facts about one seat for the constituency page (each appears only when its data exists). */
 export type SeatInsight =
   | { kind: 'flip'; from: string; to: string; fromYear: number }
+  | { kind: 'split'; from: string; to: string; fromYear: number }
   | { kind: 'hold'; party: string; streak: number }
   | { kind: 'photoFinish'; pct: number; margin: number }
   | { kind: 'nota'; nota: number; margin: number }
@@ -19,7 +21,9 @@ const PHOTO_FINISH_PCT = 1;
  * Ordered by importance: flip/hold, photo finish, NOTA over the margin, incumbent result, margin change, 3-way, spoiler,
  * affidavit highlights. `history` is the seat's past results newest first (seatHistory), `notes` the 3-way/spoiler notes.
  */
-export function seatInsights(view: SeatView, history: SeatHistoryEntry[], notes: SeatNote[], limit = 6): SeatInsight[] {
+export function seatInsights(view: SeatView, history: SeatHistoryEntry[], notes: SeatNote[], limit = 6,
+  lineage: { cmp: PartyComparer; year: number } = { cmp: RAW_COMPARER, year: 0 }): SeatInsight[] {
+  const rel = (party: string | null, year: number) => (party ? lineage.cmp.relation(party, lead!.partyId!, year, lineage.year) : 'different');
   const out: SeatInsight[] = [];
   const ranked = view.candidates.filter(c => !c.nota);
   const lead = ranked.find(c => c.pill);
@@ -28,10 +32,12 @@ export function seatInsights(view: SeatView, history: SeatHistoryEntry[], notes:
 
   const prev = history[0];
   if (prev?.party && lead.partyId) {
-    if (prev.party !== lead.partyId) out.push({ kind: 'flip', from: prev.party, to: lead.partyId, fromYear: prev.year });
+    const r = rel(prev.party, prev.year);
+    if (r === 'different') out.push({ kind: 'flip', from: prev.party, to: lead.partyId, fromYear: prev.year });
+    else if (r === 'split') out.push({ kind: 'split', from: prev.party, to: lead.partyId, fromYear: prev.year });
     else {
       let streak = 1;
-      for (const e of history) { if (e.party === lead.partyId) streak++; else break; }
+      for (const e of history) { if (rel(e.party, e.year) === 'same') streak++; else break; }
       out.push({ kind: 'hold', party: lead.partyId, streak });
     }
   }
@@ -43,7 +49,7 @@ export function seatInsights(view: SeatView, history: SeatHistoryEntry[], notes:
   }
   const incumbent = ranked.find(c => c.incumbent);
   if (incumbent) out.push({ kind: 'incumbent', name: incumbent.name, won: !!incumbent.pill });
-  if (prev && margin != null && prev.party === lead.partyId) out.push({ kind: 'marginChange', prevYear: prev.year, prev: prev.margin, now: margin });
+  if (prev && margin != null && rel(prev.party, prev.year) === 'same') out.push({ kind: 'marginChange', prevYear: prev.year, prev: prev.margin, now: margin });
   out.push(...notes);
 
   const declared = ranked.filter(c => c.affidavit?.criminalCases != null);

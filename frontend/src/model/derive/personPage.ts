@@ -1,3 +1,4 @@
+import { RAW_COMPARER, type PartyComparer } from './partyComparer';
 import type { PersonCandidate } from '../types';
 import { partyMark } from './partyMeta';
 
@@ -41,7 +42,8 @@ export function contestViews(cands: PersonCandidate[]): ContestView[] {
   }));
 }
 
-export function personStats(cands: PersonCandidate[]): PersonStats {
+/** `cmp`: party lineage — following a party through a rename, merger or split is not a switch. */
+export function personStats(cands: PersonCandidate[], cmp: PartyComparer = RAW_COMPARER): PersonStats {
   const decided = cands.filter(c => c.election_status === 'Finalized' || c.status === 'WON');
   const wins = cands.filter(c => c.status === 'WON').length;
   const parties: string[] = [];
@@ -51,10 +53,14 @@ export function personStats(cands: PersonCandidate[]): PersonStats {
   const lab = (id: string) => label.get(id) ?? id;
   const switches: PersonStats['switches'] = [];
   let prev: string | null = null;
+  let prevYear = 0;
   for (const c of [...cands].sort(byYearAsc)) {
     if (!c.party_id) continue;
-    if (prev && prev !== c.party_id) switches.push({ from: prev, to: c.party_id, fromLabel: lab(prev), toLabel: lab(c.party_id), year: c.election_year ?? 0 });
+    if (prev && prev !== c.party_id && cmp.relation(prev, c.party_id, prevYear, c.election_year ?? 0) === 'different') {
+      switches.push({ from: prev, to: c.party_id, fromLabel: lab(prev), toLabel: lab(c.party_id), year: c.election_year ?? 0 });
+    }
     prev = c.party_id;
+    prevYear = c.election_year ?? 0;
   }
   const houses = (['LS', 'VS'] as const).filter(h => cands.some(c => c.election_type === h));
   return { contests: cands.length, wins, decided: decided.length, winRate: decided.length ? Math.round((wins / decided.length) * 100) : null, houses, parties, switches };

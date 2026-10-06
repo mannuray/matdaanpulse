@@ -14,7 +14,9 @@ export interface RegionRow { name: string; seats: Pair; seatIds: string[]; group
 
 export interface Labels { statewide: string; others: string }
 export type CompareOpts =
-  | { mode: 'party'; partyMeta: Map<string, { label: string; color: string }>; topParties?: number; labels: Labels }
+  | { mode: 'party'; partyMeta: Map<string, { label: string; color: string }>; topParties?: number; labels: Labels;
+      /** Party lineage: a previous-election party id → what it counts as now (rename, merger, split successor). */
+      carry?: (party: string) => string }
   | { mode: 'alliance'; curAlliances: Alliance[]; prevAlliances: Alliance[]; labels: Labels };
 
 type Parties = RegionShares['regions'][number]['parties'];
@@ -47,7 +49,9 @@ export function compareRegions(cur: RegionShares, prev: RegionShares | null, o: 
     for (const r of cur.regions) for (const p of r.parties) votes.set(p.party_id, (votes.get(p.party_id) ?? 0) + p.votes);
     const top = new Set([...votes].filter(([id]) => id !== 'IND' && id !== 'NOTA').sort((a, b) => b[1] - a[1]).slice(0, o.topParties ?? TOP_PARTIES).map(([id]) => id));
     for (const id of top) meta.set(id, o.partyMeta.get(id) ?? { label: id, color: OTHERS_COLOR });
-    curGroup = prevGroup = p => (top.has(p) ? p : OTHERS);
+    curGroup = p => (top.has(p) ? p : OTHERS);
+    const carry = o.carry ?? ((p: string) => p);
+    prevGroup = p => { const c = carry(p); return top.has(c) ? c : OTHERS; };
   } else {
     for (const a of [...o.prevAlliances, ...o.curAlliances]) meta.set(a.id, { label: a.name, color: a.color });
     const of = (alliances: Alliance[]) => (p: string) => alliances.find(a => a.parties.includes(p))?.id ?? OTHERS;

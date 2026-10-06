@@ -89,7 +89,7 @@ export function useAnalysis(electionId: string | undefined): UseAnalysisResult {
     const map = new Map<string, SwingEntry>();
     if (!analysisData) return map;
     for (const a of analysisData) {
-      const swing = a.incumbency?.swing as { prev_party?: string; curr_party?: string; flipped?: boolean; margin?: number } | undefined;
+      const swing = a.incumbency?.swing as { prev_party?: string; curr_party?: string; flipped?: boolean; split?: boolean; margin?: number } | undefined;
       if (!swing?.prev_party || !swing?.curr_party) continue;
       map.set(a.const_id, {
         constId: a.const_id,
@@ -98,6 +98,7 @@ export function useAnalysis(electionId: string | undefined): UseAnalysisResult {
         currentMargin: swing.margin || 0,
         prevMargin: 0,
         flipped: !!swing.flipped,
+        split: !!swing.split,
       });
     }
     return map;

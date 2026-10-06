@@ -10,6 +10,8 @@ export interface InsightChip {
   fromColor?: string;
   count: number;
   seatIds: string[];
+  /** 'split': seats a split faction now holds from the old party (party lineage), shown apart from flips. */
+  tag?: 'split';
 }
 
 export interface LayerInsight {
@@ -101,20 +103,21 @@ function battle(ctx: InsightContext): LayerInsight {
 
 function swing(ctx: InsightContext): LayerInsight | null {
   if (!ctx.swing || ctx.swing.size === 0) return null;
-  const flows = new Map<string, { prev: string; cur: string; ids: string[] }>();
+  const flows = new Map<string, { prev: string; cur: string; ids: string[]; split: boolean }>();
   let flipped = 0;
   for (const e of ctx.swing.values()) {
-    if (!e.flipped) continue;
-    flipped++;
-    const key = `${e.prevParty}>${e.currentParty}`;
-    const f = flows.get(key) ?? { prev: e.prevParty, cur: e.currentParty, ids: [] };
+    if (!e.flipped && !e.split) continue;
+    if (e.flipped) flipped++;
+    const key = `${e.split ? 'split:' : ''}${e.prevParty}>${e.currentParty}`;
+    const f = flows.get(key) ?? { prev: e.prevParty, cur: e.currentParty, ids: [], split: !!e.split };
     f.ids.push(e.constId);
     flows.set(key, f);
   }
+  // Flips first (by size), then the split seats.
   const chips = [...flows.entries()]
-    .sort((a, b) => b[1].ids.length - a[1].ids.length || a[0].localeCompare(b[0]))
+    .sort((a, b) => Number(a[1].split) - Number(b[1].split) || b[1].ids.length - a[1].ids.length || a[0].localeCompare(b[0]))
     .slice(0, MAX_CHIPS)
-    .map(([key, f]) => ({ id: key, label: `${f.prev} → ${f.cur}`, fromColor: colorOf(ctx, f.prev), color: colorOf(ctx, f.cur), count: f.ids.length, seatIds: f.ids }));
+    .map(([key, f]): InsightChip => ({ id: key, label: `${f.prev} → ${f.cur}`, fromColor: colorOf(ctx, f.prev), color: colorOf(ctx, f.cur), count: f.ids.length, seatIds: f.ids, ...(f.split ? { tag: 'split' as const } : {}) }));
   return { layer: 'swing', headlineKey: 'studio_insight_swing', headlineParams: { flipped, total: ctx.swing.size, year: ctx.prevYear ?? '' }, chips };
 }
 

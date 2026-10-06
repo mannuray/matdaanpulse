@@ -1,3 +1,4 @@
+import { usePartyComparer } from '../data/usePartyComparer';
 import { useMemo } from 'react';
 import { houseShown } from '../../model/config/houses';
 import { useApi } from '../data/useApi';
@@ -22,6 +23,8 @@ export interface PersonPageVM {
 export function usePersonPageVM(id: string): PersonPageVM {
   // useApi's error is a string, so a 404 is turned into a value here.
   const { data: raw, error } = useApi(() => getPerson(id).catch((e): Missing => { if (e instanceof ApiError && e.status === 404) return { id, notFound: true }; throw e; }), [id], { key: `person_${id}` });
+  // A career spans states: national lineage events only.
+  const cmp = usePartyComparer(null);
   return useMemo((): PersonPageVM => {
     // useApi keeps the previous result while the next loads: only use a result that belongs to this id.
     const mine = raw && raw.id === id ? raw : null;
@@ -40,7 +43,7 @@ export function usePersonPageVM(id: string): PersonPageVM {
       facts: { age: ageFrom(p?.date_of_birth ?? null), gender: genderOf(p?.gender), education: p?.education || null, home: [p?.district?.name, p?.state?.name].filter(Boolean).join(', ') || null },
       wikipedia: p?.wikipedia_url ?? null, bio: p?.bio?.trim() ? p.bio : null,
       incumbent: !!newest?.is_incumbent,
-      stats: personStats(cands), contests, affidavit, latest: affidavit[affidavit.length - 1] ?? null,
+      stats: personStats(cands, cmp), contests, affidavit, latest: affidavit[affidavit.length - 1] ?? null,
     };
-  }, [raw, error, id]);
+  }, [raw, error, id, cmp]);
 }

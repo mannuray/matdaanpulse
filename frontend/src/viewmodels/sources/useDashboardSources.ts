@@ -1,3 +1,4 @@
+import { usePartyComparer } from '../data/usePartyComparer';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDashboardData } from '../data/useDashboardData';
 import { useHistoryAnalysis } from '../data/useHistoryAnalysis';
@@ -59,9 +60,10 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const historyResults = useHistoricalResults(manifestData?.history);
   const prevResults = historyResults && historyResults.length > 0 ? historyResults[historyResults.length - 1] : null;
   const allConstIds = useMemo(() => [...constCandidates.keys()], [constCandidates]);
+  const cmp = usePartyComparer(election.state_id, election.type);
   const ha = useHistoryAnalysis({
     results, currentWinnerMap, allHistResults: historyResults, prevResults, allConstIds,
-    historyYears: manifestData?.history_years || EMPTY_YEARS, currentYear: election.year,
+    historyYears: manifestData?.history_years || EMPTY_YEARS, currentYear: election.year, cmp,
   });
   const ba = useAnalysis(election.status === 'Finalized' ? election.id : undefined);
 

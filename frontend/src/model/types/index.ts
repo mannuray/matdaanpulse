@@ -339,6 +339,8 @@ export interface SwingEntry {
   currentMargin: number;
   prevMargin: number;
   flipped: boolean;
+  /** A split faction now holds the old party's seat (party lineage): not a flip. */
+  split?: boolean;
 }
 
 /** GET /elections/:id/results?v=<version>: every dashboard tile updates from one snapshot. */

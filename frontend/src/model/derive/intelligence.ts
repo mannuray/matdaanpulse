@@ -1,4 +1,5 @@
 import { normalizeConstId } from '../geo/normalizeConstId';
+import { RAW_COMPARER, type PartyComparer } from './partyComparer';
 import type {
   ResultRow, DominanceEntry, IncumbencyEntry,
   PartySwitchEntry, MarginTrendPoint, PartyTrendPoint,
@@ -17,12 +18,14 @@ function normalizeCandidateName(n: string): string {
 export function calculateDominance(
   allHistResults: ResultRow[][] | null,
   currentWinnerMap: Map<string, ResultRow>,
-  normToConstId: Map<string, string>
+  normToConstId: Map<string, string>,
+  /** Party lineage: each past winner counts as the party it became by `currentYear`; `years` = allHistResults' years. */
+  lineage: { cmp: PartyComparer; years: number[]; currentYear: number } = { cmp: RAW_COMPARER, years: [], currentYear: 0 },
 ): Map<string, DominanceEntry> {
   if (!allHistResults) return new Map<string, DominanceEntry>();
   const map = new Map<string, DominanceEntry>();
 
-  const histWinnerMaps: Map<string, string>[] = allHistResults.map((histResults: ResultRow[]) => {
+  const histWinnerMaps: Map<string, string>[] = allHistResults.map((histResults: ResultRow[], hi: number) => {
     const winMap = new Map<string, { party: string; votes: number }>();
     const won = histResults.filter((r: ResultRow) => r.status === 'WON' || r.status === 'LEADING');
     for (const r of won) {
@@ -33,7 +36,7 @@ export function calculateDominance(
       }
     }
     const partyMap = new Map<string, string>();
-    for (const [k, v] of winMap) partyMap.set(k, v.party);
+    for (const [k, v] of winMap) partyMap.set(k, lineage.cmp.carry(v.party, lineage.years[hi] ?? 0, lineage.currentYear));
     return partyMap;
   });
 
@@ -142,7 +145,8 @@ export function calculateIncumbency(
 
 export function calculatePartySwitches(
   allElections: { results: ResultRow[]; year: number }[] | null,
-  normToConstId: Map<string, string>
+  normToConstId: Map<string, string>,
+  cmp: PartyComparer = RAW_COMPARER,
 ): PartySwitchEntry[] {
   if (!allElections) return [];
 
@@ -176,7 +180,8 @@ export function calculatePartySwitches(
       if (!nextCands) continue;
       const prevNorm = normalizeCandidateName(prevWinner.name);
       const match = nextCands.find(c => normalizeCandidateName(c.candidate_name) === prevNorm);
-      if (match && match.party_id !== prevWinner.party) {
+      // Following the party through a rename, merger or split is no switch (party lineage).
+      if (match && cmp.relation(prevWinner.party, match.party_id, prev.year, next.year) === 'different') {
         const won = match.status === 'WON' || match.status === 'LEADING';
         const constId = nextCands[0]?.const_id || norm;
         // Every pair maps to the current election's seat id (const_no is stable across post-2008 elections).
@@ -216,19 +221,23 @@ export function calculateMarginTrend(
 }
 
 export function calculatePartyTrend(
-  allElections: { results: ResultRow[]; year: number }[] | null
+  allElections: { results: ResultRow[]; year: number }[] | null,
+  cmp: PartyComparer = RAW_COMPARER,
 ): PartyTrendPoint[] {
   if (!allElections) return [];
+  // Each year's parties carried forward to the latest year, so a renamed party is one series.
+  const latest = Math.max(...allElections.map(e => e.year));
 
   const points: PartyTrendPoint[] = [];
   for (const { results: elResults, year } of allElections) {
     const won = elResults.filter((r: ResultRow) => r.status === 'WON' || r.status === 'LEADING');
     const byParty = new Map<string, { seats: number; marginSum: number }>();
     for (const r of won) {
-      const entry = byParty.get(r.party_id) || { seats: 0, marginSum: 0 };
+      const party = cmp.carry(r.party_id, year, latest);
+      const entry = byParty.get(party) || { seats: 0, marginSum: 0 };
       entry.seats++;
       entry.marginSum += r.margin;
-      byParty.set(r.party_id, entry);
+      byParty.set(party, entry);
     }
     for (const [party, data] of byParty) {
       points.push({

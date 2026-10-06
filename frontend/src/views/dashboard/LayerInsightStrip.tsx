@@ -13,6 +13,7 @@ function Chip({ c, vm }: { c: InsightChip; vm: LayerInsightVM }) {
       {c.fromColor && <span className="h-2 w-2 rounded-full" style={{ background: c.fromColor }} />}
       <span className="h-2 w-2 rounded-full" style={{ background: c.color }} />
       <span className="font-medium text-ink">{label}</span>
+      {c.tag === 'split' && <span className="rounded-full border border-line px-1.5 text-xs text-muted">{t('studio_insight_split_tag')}</span>}
       <span className="tabular font-display text-lg font-bold text-ink">{c.count}</span>
     </button>
   );

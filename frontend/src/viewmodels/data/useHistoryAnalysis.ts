@@ -7,6 +7,7 @@ import {
   calculateMarginTrend,
   calculatePartyTrend
 } from '../../model/derive/intelligence';
+import { RAW_COMPARER, type PartyComparer } from '../../model/derive/partyComparer';
 import type {
   ResultRow, DominanceEntry, IncumbencyEntry,
   PartySwitchEntry, MarginTrendPoint, PartyTrendPoint, SwingEntry,
@@ -20,6 +21,8 @@ interface UseHistoryAnalysisParams {
   allConstIds?: string[];
   historyYears: number[];
   currentYear: number;
+  /** Party lineage (renames, mergers, splits); plain id equality when absent. */
+  cmp?: PartyComparer;
 }
 
 interface UseHistoryAnalysisResult {
@@ -35,6 +38,7 @@ interface UseHistoryAnalysisResult {
 export function calculateSwing(
   prevResults: ResultRow[] | null,
   currentWinnerMap: Map<string, ResultRow>,
+  lineage: { cmp: PartyComparer; fromYear: number; toYear: number } = { cmp: RAW_COMPARER, fromYear: 0, toYear: 0 },
 ): Map<string, SwingEntry> {
   const out = new Map<string, SwingEntry>();
   if (!prevResults || prevResults.length === 0) return out;
@@ -48,13 +52,15 @@ export function calculateSwing(
   for (const [constId, cur] of currentWinnerMap) {
     const prev = prevWinners.get(normalizeConstId(constId));
     if (!prev) continue;
+    const rel = lineage.cmp.relation(prev.party_id, cur.party_id, lineage.fromYear, lineage.toYear);
     out.set(constId, {
       constId,
       currentParty: cur.party_id,
       prevParty: prev.party_id,
       currentMargin: Number(cur.margin) || 0,
       prevMargin: Number(prev.margin) || 0,
-      flipped: cur.party_id !== prev.party_id,
+      flipped: rel === 'different',
+      split: rel === 'split',
     });
   }
   return out;
@@ -72,6 +78,7 @@ export function useHistoryAnalysis({
   allConstIds,
   historyYears,
   currentYear,
+  cmp = RAW_COMPARER,
 }: UseHistoryAnalysisParams): UseHistoryAnalysisResult {
   
   // 1. Prepare Normalization Mapping
@@ -97,8 +104,8 @@ export function useHistoryAnalysis({
 
   // 3. Delegate Logic to Service Layer
   const dominanceMap = useMemo(() => 
-    calculateDominance(allHistResults, currentWinnerMap, normToConstId),
-    [allHistResults, currentWinnerMap, normToConstId]
+    calculateDominance(allHistResults, currentWinnerMap, normToConstId, { cmp, years: historyYears, currentYear }),
+    [allHistResults, currentWinnerMap, normToConstId, cmp, historyYears, currentYear]
   );
 
   const incumbencyData = useMemo(() => 
@@ -107,8 +114,8 @@ export function useHistoryAnalysis({
   );
 
   const partySwitchData = useMemo(() => 
-    calculatePartySwitches(allElections, normToConstId),
-    [allElections, normToConstId]
+    calculatePartySwitches(allElections, normToConstId, cmp),
+    [allElections, normToConstId, cmp]
   );
 
   const marginTrend = useMemo(() => 
@@ -117,13 +124,13 @@ export function useHistoryAnalysis({
   );
 
   const partyTrend = useMemo(() => 
-    calculatePartyTrend(allElections),
-    [allElections]
+    calculatePartyTrend(allElections, cmp),
+    [allElections, cmp]
   );
 
   const swingMap = useMemo(
-    () => calculateSwing(prevResults, currentWinnerMap),
-    [prevResults, currentWinnerMap]
+    () => calculateSwing(prevResults, currentWinnerMap, { cmp, fromYear: historyYears[historyYears.length - 1] ?? 0, toYear: currentYear }),
+    [prevResults, currentWinnerMap, cmp, historyYears, currentYear]
   );
 
   return { dominanceMap, incumbencyData, partySwitchData, marginTrend, partyTrend, swingMap };
