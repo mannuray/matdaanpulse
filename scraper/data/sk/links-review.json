@@ -1,0 +1,245 @@
+[
+ {
+  "key": "BIRAJ ADHIKARI|19",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "8c0e5427-a632-5c57-81c8-58c8eb5296a1",
+    "year": 2009,
+    "constNo": 19,
+    "name": "Biraj Adhikari",
+    "partyId": "IND",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "ec2d6017-5950-5166-a8d0-18ff8cd66cc5",
+    "year": 2019,
+    "constNo": 19,
+    "name": "Biraj Adhikari",
+    "partyId": "HMSKP",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GARJAMAN GURUNG|14",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "e8e31b3d-c10e-556f-b5d1-d9ec37d4f546",
+    "year": 2014,
+    "constNo": 14,
+    "name": "Garjaman Gurung",
+    "partyId": "SDF",
+    "age": 51,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c2acd8e6-5826-5feb-9298-e8172bcf3a73",
+    "year": 2019,
+    "constNo": 14,
+    "name": "Garjaman Gurung",
+    "partyId": "SDF",
+    "age": 53,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "GOPAL CHETTRI|20",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "18a462a8-85f5-50f6-adfd-9ffcc9789259",
+    "year": 2009,
+    "constNo": 20,
+    "name": "Gopal Chettri",
+    "partyId": "SHRP_SK",
+    "age": 33,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d714f8aa-9290-5cb2-8645-44830963c0e5",
+    "year": 2019,
+    "constNo": 20,
+    "name": "Gopal Chettri",
+    "partyId": "INC",
+    "age": 39,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ISHWAR PRASAD RAI|10",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "87e93428-9aac-5ebc-8fdf-d5b5d969f421",
+    "year": 2014,
+    "constNo": 10,
+    "name": "Ishwar Prasad Rai",
+    "partyId": "INC",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "ffd3083f-155a-5d87-ad16-e6425295a7d2",
+    "year": 2019,
+    "constNo": 10,
+    "name": "Ishwar Prasad Rai",
+    "partyId": "INC",
+    "age": 38,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KARSANG SHERPA|5",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "838da1bd-a3c9-501f-b68a-7c2c4e5c6875",
+    "year": 2009,
+    "constNo": 5,
+    "name": "Karsang Sherpa",
+    "partyId": "SHRP_SK",
+    "age": 31,
+    "era": "2008"
+   },
+   {
+    "candidateId": "f76b9092-d26b-51d8-bcc5-1c78567dff3e",
+    "year": 2014,
+    "constNo": 5,
+    "name": "Karsang Sherpa",
+    "partyId": "INC",
+    "age": 41,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SONAM TSHERING BHUTIA|24",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "84ffc922-37ef-5038-ae86-33bac83ccfe4",
+    "year": 2014,
+    "constNo": 24,
+    "name": "Sonam Tshering Bhutia",
+    "partyId": "INC",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "a1429a18-358c-58cc-85d2-b58ce6cb1331",
+    "year": 2019,
+    "constNo": 24,
+    "name": "Sonam Tshering Bhutia",
+    "partyId": "INC",
+    "age": 44,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TSHERING LAMA|32",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b5567405-4bc1-534d-b958-562574516ac3",
+    "year": 2009,
+    "constNo": 32,
+    "name": "Tshering Lama",
+    "partyId": "INC",
+    "age": 46,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9d6096fb-798b-503e-91b8-ada2cc652f7b",
+    "year": 2014,
+    "constNo": 32,
+    "name": "Tshering Lama",
+    "partyId": "INC",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7d40669f-3482-585a-92f4-89b4b2e1ea9e",
+    "year": 2019,
+    "constNo": 32,
+    "name": "Tshering Lama",
+    "partyId": "SDF",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TSHERING WANGDI LEPCHA|31",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c7d96303-5125-5d0a-9e7a-366aee796f66",
+    "year": 2009,
+    "constNo": 31,
+    "name": "Tshering Wangdi Lepcha",
+    "partyId": "SDF",
+    "age": 38,
+    "era": "2008"
+   },
+   {
+    "candidateId": "bafd6bb6-29b7-5d03-a063-19b5e4e609d9",
+    "year": 2014,
+    "constNo": 31,
+    "name": "Tshering Wangdi Lepcha",
+    "partyId": "SDF",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7bdd7f46-a0d9-5d9d-8f2d-ce6696157393",
+    "year": 2019,
+    "constNo": 31,
+    "name": "Tshering Wangdi Lepcha",
+    "partyId": "SDF",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "UGEN T GYATSO BHUTIA|16",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "427fdf44-7f3f-595a-8a75-fd0a3d7d22f5",
+    "year": 2009,
+    "constNo": 16,
+    "name": "Ugen T Gyatso Bhutia",
+    "partyId": "SDF",
+    "age": 49,
+    "era": "2008"
+   },
+   {
+    "candidateId": "60e56d81-8440-5ebd-a9f2-69753388cf89",
+    "year": 2014,
+    "constNo": 16,
+    "name": "Ugen T. Gyatso Bhutia",
+    "partyId": "SDF",
+    "age": 50,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7727a87f-523c-54e9-9a7a-ead48e67be4b",
+    "year": 2019,
+    "constNo": 16,
+    "name": "Ugen T. Gyatso Bhutia",
+    "partyId": "SDF",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ }
+]

@@ -1,0 +1,140 @@
+[
+ {
+  "key": "AITA TAMANG|28",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "0cbd4503-b339-553b-88fb-52215f31cef0",
+    "year": 2019,
+    "constNo": 28,
+    "name": "Aita Tamang",
+    "partyId": "INC",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c0644615-2679-5ba2-b6b2-a3b7583f4004",
+    "year": 2024,
+    "constNo": 28,
+    "name": "Aita Tamang",
+    "partyId": "INC",
+    "age": 56,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "ASHIS RAI|26",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a3ef3b50-60bf-5316-b1a0-5a4b5566351d",
+    "year": 2019,
+    "constNo": 26,
+    "name": "Ashis Rai",
+    "partyId": "IND",
+    "age": 41,
+    "era": "2008"
+   },
+   {
+    "candidateId": "46d3542a-b778-57b3-936e-e69874e9cb2f",
+    "year": 2024,
+    "constNo": 26,
+    "name": "Ashis Rai",
+    "partyId": "SDF",
+    "age": 49,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "BHOJ RAJ RAI|10",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4d7bfeab-5788-54c6-8e4b-d9c45af140fb",
+    "year": 2014,
+    "constNo": 10,
+    "name": "Bhoj Raj Rai",
+    "partyId": "SKM",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "66a8c5f5-1e54-5875-8590-307907c5d406",
+    "year": 2024,
+    "constNo": 10,
+    "name": "Bhoj Raj Rai",
+    "partyId": "SKM",
+    "age": 60,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "SUMITRA RAI|26",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "5123d91f-d22b-588e-a1d6-2bf8863d6ac5",
+    "year": 2019,
+    "constNo": 26,
+    "name": "Sumitra Rai",
+    "partyId": "INC",
+    "age": 51,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d6128040-9c8b-5f81-b355-a96a60424f1d",
+    "year": 2024,
+    "constNo": 26,
+    "name": "Sumitra Rai",
+    "partyId": "INC",
+    "age": 53,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TSHERING LAMA|32",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b5567405-4bc1-534d-b958-562574516ac3",
+    "year": 2009,
+    "constNo": 32,
+    "name": "Tshering Lama",
+    "partyId": "INC",
+    "age": 46,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9d6096fb-798b-503e-91b8-ada2cc652f7b",
+    "year": 2014,
+    "constNo": 32,
+    "name": "Tshering Lama",
+    "partyId": "INC",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7d40669f-3482-585a-92f4-89b4b2e1ea9e",
+    "year": 2019,
+    "constNo": 32,
+    "name": "Tshering Lama",
+    "partyId": "SDF",
+    "age": 55,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4080be7b-4aa6-5195-82ca-e91fccb3b931",
+    "year": 2024,
+    "constNo": 32,
+    "name": "Tshering Lama",
+    "partyId": "SDF",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ }
+]
