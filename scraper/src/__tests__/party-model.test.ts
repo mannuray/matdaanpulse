@@ -64,6 +64,11 @@ describe('emitUnitsSeed', () => {
     expect(() => emitUnitsSeed([{ ...units[0], roles: [{ ...units[0].roles[0], role: 'boss' }] }], parties, states, () => null)).toThrow(/bad role boss/);
     expect(() => emitUnitsSeed([{ ...units[0], roles: [{ ...units[0].roles[0], person_name: null as never }] }], parties, states, () => null)).toThrow(/BJP BR state_president has no person_name/);
   });
+  it('names its run-once marker (v2 for units added after v1 shipped)', () => {
+    const sql = emitUnitsSeed(units, parties, states, () => null, 'seed_party_units_v2');
+    expect(sql).toContain("'seed_party_units_v2'");
+    expect(sql).not.toContain('seed_party_units_v1');
+  });
   it('refuses two current holders of one role', () => {
     const two = [{ ...units[0], roles: [units[0].roles[0], { ...units[0].roles[0], person_name: 'Someone Else' }] }];
     expect(() => emitUnitsSeed(two, parties, states, () => null)).toThrow(/BJP BR state_president has 2 current holders/);

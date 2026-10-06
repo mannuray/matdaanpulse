@@ -24,8 +24,11 @@ async function main() {
   const lineage: LineageRow[] = JSON.parse(fs.readFileSync(path.join(DATA, 'lineage.json'), 'utf8'));
   fs.writeFileSync(path.join(DB, 'seed_party_lineage.sql'), emitLineageSeed(lineage, parties, states));
 
-  const units: UnitRow[] = fs.readdirSync(DATA).filter(f => /^units-\d+\.json$/.test(f)).sort()
+  // v1 (units-1..4) shipped and is frozen; later units go in v2 (units-5…), its own run-once seed.
+  const read = (files: RegExp) => fs.readdirSync(DATA).filter(f => files.test(f)).sort()
     .flatMap(f => JSON.parse(fs.readFileSync(path.join(DATA, f), 'utf8')) as UnitRow[]);
+  const units = read(/^units-[1-4]\.json$/);
+  const unitsV2 = read(/^units-([5-9]|\d\d+)\.json$/);
   const cands = new Map<string, { id: string; name: string; year: number; party: string }[]>();
   const candidatesOf = (code: string) => {
     if (!cands.has(code)) {
@@ -45,6 +48,9 @@ async function main() {
     roles++; const c = pickCandidate(candidatesOf(code), name, party, related(party)); if (c) linked++; return c;
   });
   fs.writeFileSync(path.join(DB, 'seed_party_units_v1.sql'), sql);
-  console.log(`lineage: ${lineage.length} events · units: ${units.length} · roles: ${roles} (${linked} linked to a person)`);
+  if (unitsV2.length) fs.writeFileSync(path.join(DB, 'seed_party_units_v2.sql'), emitUnitsSeed(unitsV2, parties, states, (name, code, party) => {
+    roles++; const c = pickCandidate(candidatesOf(code), name, party, related(party)); if (c) linked++; return c;
+  }, 'seed_party_units_v2'));
+  console.log(`lineage: ${lineage.length} events · units: ${units.length} + ${unitsV2.length} (v2) · roles: ${roles} (${linked} linked to a person)`);
 }
 main().catch(e => { console.error(e); process.exit(1); });
