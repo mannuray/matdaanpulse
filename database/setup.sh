@@ -121,6 +121,7 @@ for st in ga mn uk pb up; do run "seed_${st}_districts_regions.sql"; done
 for st in dl hr jh od; do run "seed_${st}_districts_regions.sql"; done
 run seed_sk_districts_regions.sql
 run seed_ar_districts_regions.sql
+run seed_ap_districts_regions.sql
 # Person links across 2011-2021 (run-once; must follow the VS results)
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 for st in ga mn uk pb up; do run "seed_${st}_person_links_v1.sql"; done
