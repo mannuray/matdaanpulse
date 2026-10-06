@@ -27,7 +27,7 @@ const fixesFile = path.join(DATA_DIR, 'manifest-party-fixes.json');
 const manifestFixes: Record<string, ManifestFixes> = fs.existsSync(fixesFile) ? JSON.parse(fs.readFileSync(fixesFile, 'utf8')) : {};
 
 /** Manifest keys emitted for a new election (curated files may carry `_sources` and notes). */
-const MANIFEST_KEYS = ['alliances', 'leaders', 'cabinet', 'tracked', 'vip_seats', 'milestones', 'compare_with', 'history', 'history_years', 'geo', 'delimitation_era'];
+const MANIFEST_KEYS = ['alliances', 'leaders', 'cabinet', 'tracked', 'vip_seats', 'milestones', 'no_majority', 'compare_with', 'history', 'history_years', 'geo', 'delimitation_era'];
 const curatedManifest = (y: number): string | null => {
   const f = path.join(DATA_DIR, `manifest-${y}.json`);
   if (!fs.existsSync(f)) return null;

@@ -308,6 +308,8 @@ export interface ManifestData {
   tracked?: string[];
   vip_seats?: Record<string, { label: string; candidate: string }>;
   milestones?: { label: string; value: number }[];
+  /** No majority line: the seats are part of a larger assembly (Andhra 2009, undivided state). */
+  no_majority?: boolean;
   compare_with?: string[];
   vote_splits?: VoteSplitConfig[];
   history?: string[];

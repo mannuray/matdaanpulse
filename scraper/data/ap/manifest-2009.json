@@ -42,6 +42,7 @@
  ],
  "vip_seats": {},
  "milestones": [],
+ "no_majority": true,
  "geo": {
   "zoom": 6.5,
   "center": [

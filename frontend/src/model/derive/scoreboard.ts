@@ -14,7 +14,8 @@ export interface Scoreboard {
   blocs: ScoreBloc[];
   others: { seats: number; votePct: number | null };
   totalSeats: number;
-  majority: number;
+  /** null: no majority line (part of a larger assembly). */
+  majority: number | null;
   countedSeats: number;
   winnerId: string | null;
   marginOverMajority: number | null;
@@ -30,7 +31,7 @@ export function deriveScoreboard(
   parties: PartySeats[],
   votePct: Map<string, number>,
   totalSeats: number,
-  majority: number,
+  majority: number | null,
 ): Scoreboard {
   const hasPct = votePct.size > 0;
   const countedSeats = parties.reduce((s, p) => s + p.seats, 0);
@@ -47,7 +48,7 @@ export function deriveScoreboard(
   const blocs = [...candidates].sort((a, b) => b.seats - a.seats).slice(0, 2);
   const blocSeats = blocs.reduce((s, b) => s + b.seats, 0);
   const blocPct = blocs.reduce((s, b) => s + (b.votePct ?? 0), 0);
-  const winner = blocs[0] && blocs[0].seats >= majority ? blocs[0] : null;
+  const winner = majority != null && blocs[0] && blocs[0].seats >= majority ? blocs[0] : null;
 
   return {
     blocs,
@@ -56,6 +57,6 @@ export function deriveScoreboard(
     majority,
     countedSeats,
     winnerId: winner?.id ?? null,
-    marginOverMajority: winner ? winner.seats - majority : null,
+    marginOverMajority: winner && majority != null ? winner.seats - majority : null,
   };
 }

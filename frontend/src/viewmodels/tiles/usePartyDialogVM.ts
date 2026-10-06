@@ -12,7 +12,7 @@ import { useLineageEvents } from '../data/usePartyComparer';
 export interface PartyDialogVM {
   id: string; name: string; abbreviation: string | null; mark: string | null; color: string | null;
   recognition: 'National' | 'State' | 'Unrecognised' | null;
-  electionName: string; stats: PartyElectionStats; totalSeats: number; majority: number;
+  electionName: string; stats: PartyElectionStats; totalSeats: number; majority: number | null;
   profile: { leader: string | null; founded: number | null; hq: string | null; website: string | null; wikipedia: string | null; description: string | null } | null;
   /** The party's leaders first (a seatless one as party leader), then its biggest wins. */
   keyCandidates: (PartyKeyCandidate & { photo: string | null; tracked: boolean })[];

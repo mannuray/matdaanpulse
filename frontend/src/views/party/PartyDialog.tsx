@@ -67,14 +67,14 @@ export function PartyDialog({ vm }: { vm: PartyDialogVM | null }) {
               <span className="absolute inset-y-0 left-0" style={{ width: pct(stats.won), background: color }} />
               <span className="absolute inset-y-0 border-l border-page/60 [background-image:repeating-linear-gradient(45deg,transparent_0_4px,rgba(0,0,0,.35)_4px_8px)]"
                 style={{ left: pct(stats.won), width: pct(stats.leading), backgroundColor: tint(color, 70) }} />
-              <span className="absolute inset-y-0 z-10 w-0.5 bg-ink shadow-sm" style={{ left: pct(vm.majority) }} />
+              {vm.majority != null && <span className="absolute inset-y-0 z-10 w-0.5 bg-ink shadow-sm" style={{ left: pct(vm.majority) }} />}
             </div>
             <div className="mt-1 flex items-center justify-between text-[10px] text-muted">
               <div className="flex items-center gap-3">
                 <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: color }} />{t('party_won_n', { n: stats.won })}</span>
                 <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm [background-image:repeating-linear-gradient(45deg,transparent_0_2px,rgba(0,0,0,.35)_2px_4px)]" style={{ backgroundColor: tint(color, 70) }} />{t('party_leading_n', { n: stats.leading })}</span>
               </div>
-              <span className="flex items-center gap-1 font-mono text-ink/80"><span className="h-1.5 w-1.5 rounded-full bg-ink" />{t('party_majority_mark', { n: vm.majority })}</span>
+              {vm.majority != null && <span className="flex items-center gap-1 font-mono text-ink/80"><span className="h-1.5 w-1.5 rounded-full bg-ink" />{t('party_majority_mark', { n: vm.majority })}</span>}
             </div>
           </div>
         </section>

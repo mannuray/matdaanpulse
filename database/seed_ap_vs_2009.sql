@@ -6671,6 +6671,6 @@ JOIN candidates c ON c.id = v.candidate_id::uuid
 WHERE p.id = c.person_id AND p.gender IS NULL;
 
 -- Manifest (only when none is published; admins edit it)
-UPDATE elections SET manifest_url = '{"alliances":[{"id":"MAHAKUTAMI","name":"Mahakutami","color":"#FFCC00","parties":["TDP","CPI","CPIM"]},{"id":"INC","name":"Congress","color":"#38C6F4","parties":["INC"]},{"id":"PRAP","name":"PRP","color":"#E91E63","parties":["PRAP"]}],"leaders":[],"cabinet":[],"tracked":["TDP","CPI","CPIM","INC","PRAP"],"vip_seats":{},"milestones":[],"geo":{"zoom":6.5,"center":[80.3,15.9],"map_url":"/geo/ap_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0020000-0000-4000-8000-000000002009' AND manifest_url IS NULL;
+UPDATE elections SET manifest_url = '{"alliances":[{"id":"MAHAKUTAMI","name":"Mahakutami","color":"#FFCC00","parties":["TDP","CPI","CPIM"]},{"id":"INC","name":"Congress","color":"#38C6F4","parties":["INC"]},{"id":"PRAP","name":"PRP","color":"#E91E63","parties":["PRAP"]}],"leaders":[],"cabinet":[],"tracked":["TDP","CPI","CPIM","INC","PRAP"],"vip_seats":{},"milestones":[],"no_majority":true,"geo":{"zoom":6.5,"center":[80.3,15.9],"map_url":"/geo/ap_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0020000-0000-4000-8000-000000002009' AND manifest_url IS NULL;
 
 COMMIT;

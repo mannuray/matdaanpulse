@@ -33,10 +33,10 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
               {vm.blocs.map(b => <div key={b.id} style={{ width: `${(b.seats / total) * 100}%`, background: b.color }} />)}
               <div style={{ width: `${(vm.others.seats / total) * 100}%` }} className="bg-muted/60" />
             </div>
-            <div className="absolute -top-1.5 h-5 w-0.5 bg-ink" style={{ left: `${(vm.majority / total) * 100}%` }} aria-hidden />
+            {vm.majority != null && <div className="absolute -top-1.5 h-5 w-0.5 bg-ink" style={{ left: `${(vm.majority / total) * 100}%` }} aria-hidden />}
             <div className="mt-1 flex justify-between text-xs leading-none text-muted">
               <span>0</span>
-              <span className="font-semibold text-ink">{t('studio_to_win', { count: vm.majority })}</span>
+              {vm.majority != null && <span className="font-semibold text-ink">{t('studio_to_win', { count: vm.majority })}</span>}
               <span>{vm.totalSeats}</span>
             </div>
           </div>
@@ -70,10 +70,10 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
           {vm.blocs.map(b => <div key={b.id} style={{ width: `${(b.seats / total) * 100}%`, background: b.color }} />)}
           <div style={{ width: `${(vm.others.seats / total) * 100}%` }} className="bg-muted/60" />
         </div>
-        <div className="absolute -top-1.5 h-5 w-0.5 bg-ink" style={{ left: `${(vm.majority / total) * 100}%` }} aria-hidden />
+        {vm.majority != null && <div className="absolute -top-1.5 h-5 w-0.5 bg-ink" style={{ left: `${(vm.majority / total) * 100}%` }} aria-hidden />}
         <div className={cn('flex justify-between text-xs text-muted', tileSize ? 'mt-1 leading-none' : 'mt-1.5')}>
           <span>0</span>
-          <span className="font-semibold text-ink">{t('studio_to_win', { count: vm.majority })}</span>
+          {vm.majority != null && <span className="font-semibold text-ink">{t('studio_to_win', { count: vm.majority })}</span>}
           <span>{vm.totalSeats}</span>
         </div>
       </div>

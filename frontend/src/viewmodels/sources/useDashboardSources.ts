@@ -1,3 +1,4 @@
+import { majorityOf } from '../../model/derive/majority';
 import { usePartyComparer } from '../data/usePartyComparer';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDashboardData } from '../data/useDashboardData';
@@ -32,7 +33,8 @@ export interface DashboardSources {
   historyPartyIds: Set<string>;
   prevYear: number | null;
   totalSeats: number;
-  majority: number;
+  /** null: no majority line (part of a larger assembly). */
+  majority: number | null;
   votePct: Map<string, number>;
   ticker: TickerEvent[];
   recentSeats: Set<string>;
@@ -78,8 +80,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const prevYear = years.length > 0 ? years[years.length - 1] : null;
 
   const totalSeats = election.type === 'LS' ? (mapRegions.length || 543) : (election.state?.total_assembly_seats || mapRegions.length);
-  const majorityMilestone = manifestData?.milestones?.find(m => /majority/i.test(m.label))?.value;
-  const majority = majorityMilestone || Math.floor(totalSeats / 2) + 1;
+  const majority = majorityOf(manifestData, totalSeats);
   const votePct = useMemo(() => new Map(voteShare.map(v => [v.party_id, Number(v.percentage)])), [voteShare]);
 
   // Live: ticker + recent-change pulses.
