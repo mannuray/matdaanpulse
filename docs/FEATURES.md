@@ -207,6 +207,20 @@ Spec `docs/superpowers/specs/2026-10-06-party-model-design.md`, plan `docs/super
   pop-up), 40 px chips. Logic in `model/derive/electionChoices.ts` (`TopBarVM.choices(query)`), view
   `views/dashboard/ElectionPicker.tsx`. No keyboard shortcut on the public site.
 
+### Maharashtra 2009-2024 (Phase 4B-4), 2026-10-06
+Plan `docs/superpowers/plans/2026-10-06-phase4b-maharashtra.md`.
+- [x] 4 elections from the ECI statistical reports (2009/2014 PDFs, 2019 XLS, 2024 XLSX): every candidate + NOTA, real
+  votes; winners match ECI (2009 INC 82 / NCP 62; 2014 BJP 122 / SHS 63; 2019 BJP 105 / SHS 56; 2024 BJP 132 / SHS 57 /
+  NCP 41 / SHSUBT 20 / INC 16 / NCPSP 10). Parser: names wrapped onto the next line, summary pages printed twice (the
+  first without totals), per-state `party-name-aliases.json` for ECI's two spellings of a party; sourced fixes for
+  Bhusawal's 2009 type and Shrivardhan's missing 2014 summary.
+- [x] Splits (already in the lineage): Shiv Sena 2022, NCP 2023/24; MNS ← Shiv Sena breakaway (2006) added.
+- [x] Districts (36) and the six election regions (Mumbai 36, Konkan 39, North 35, Western 70 incl. Ahilyanagar as the
+  sources count it, Marathwada 46, Vidarbha 62); person links; 2024 current track (44 leaders incl. Ajit Pawar as Deputy
+  CM until his death on 28 Jan 2026; SHS/SHSUBT/NCP/MNS profiles; units v5 — roles may say `no_candidacy`; distinct
+  colours for Shiv Sena, Shiv Sena (UBT) and NCP (SP) via `seed_party_colors_v4.sql`; NCP's ECI clock replaces a lotus;
+  top-4 photos; affidavits 286/288).
+
 ### Andhra Pradesh 2009-2024 (Phase 4B-3), 2026-10-06
 Plan `docs/superpowers/plans/2026-10-06-phase4b-andhra.md`.
 - [x] 4 elections from the ECI statistical reports; 2009 and 2014 are undivided-state reports (294 seats): today's
