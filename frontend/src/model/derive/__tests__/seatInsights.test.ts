@@ -23,6 +23,12 @@ describe('seatInsights', () => {
     expect(out[3]).toEqual({ kind: 'incumbent', name: 'B', won: false });
   });
 
+  it('no "margin up/down" after a year the seat was won unopposed (there was no margin)', () => {
+    const held = view([cand({ name: 'A', partyId: 'BJP', votes: 6000, pill: 'WON' }), cand({ name: 'B', partyId: 'INC', votes: 2842 })], 3158);
+    const out = seatInsights(held, [{ ...h(2019, 'BJP', 0), runner_up: null, unopposed: true }], []);
+    expect(out.find(i => i.kind === 'marginChange')).toBeUndefined();
+  });
+
   it('a hold counts the streak and reports the margin change', () => {
     const held = view([cand({ name: 'A', partyId: 'RJD', votes: 60000, pill: 'WON' }), cand({ name: 'B', partyId: 'BJP', votes: 40000 })], 20000);
     const out = seatInsights(held, [h(2020, 'RJD', 5000), h(2015, 'RJD', 3000), h(2010, 'BJP', 100)], []);

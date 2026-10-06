@@ -64,6 +64,13 @@ describe('deriveLayerInsight', () => {
     expect(r.chips.map(c => c.id)).toEqual(['BJP', 'JDU']);
   });
 
+  it('overview: a seat won unopposed counts for its winner\'s chip and alliance', () => {
+    const unopposed: SeatResult = { id: 'U', name: 'U', party: 'BJP', status: 'WON', type: 'GEN', uncontested: true };
+    const r = deriveLayerInsight('overview', { ...base, seats: [...seats, unopposed] })!;
+    expect(r.chips.find(c => c.id === 'BJP')!.count).toBe(3);
+    expect(r.headlineParams.text).toMatch(/NDA 5/);
+  });
+
   it('reserved: a reserved seat won unopposed counts for its winner (it has no margin)', () => {
     const unopposed: SeatResult = { id: 'U', name: 'U', party: 'RJD', status: 'WON', type: 'ST', uncontested: true };
     const r = deriveLayerInsight('demographics', { ...base, seats: [...seats, unopposed] })!;

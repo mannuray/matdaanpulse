@@ -1,5 +1,5 @@
 import { displayStateName, stateFromConstId } from '../../geo/regionMatching';
-import { allianceByParty, colorOf, ledSeats } from './shared';
+import { allianceByParty, colorOf, wonSeats } from './shared';
 import type { SummaryContext, SummarySection } from './types';
 
 const LEADERBOARD_LIMIT = 10;
@@ -11,13 +11,13 @@ export function statesSummary(ctx: SummaryContext): SummarySection[] {
   if (ctx.electionType === 'VS') return [];
   const al = allianceByParty(ctx.alliances);
   interface Tally { key: string; name: string; color: string; partyIds: string[]; count: number }
-  const states = new Map<string, { code: string; seats: string[]; marginSum: number; tally: Map<string, Tally> }>();
-  for (const s of ledSeats(ctx)) {
+  const states = new Map<string, { code: string; seats: string[]; margins: number; marginSum: number; tally: Map<string, Tally> }>();
+  for (const s of wonSeats(ctx)) {
     const code = s.state || stateFromConstId(s.id);
     if (!code) continue;
-    const st = states.get(code) ?? { code, seats: [], marginSum: 0, tally: new Map<string, Tally>() };
+    const st = states.get(code) ?? { code, seats: [], margins: 0, marginSum: 0, tally: new Map<string, Tally>() };
     st.seats.push(s.id);
-    st.marginSum += s.margin!;
+    if (s.margin != null) { st.margins++; st.marginSum += s.margin; } // a seat won unopposed has no margin
     const a = al.get(s.party);
     const key = a ? a.name : s.party;
     const t = st.tally.get(key) ?? { key, name: key, color: a ? a.color : colorOf(ctx, s.party), partyIds: a ? a.parties : [s.party], count: 0 };
@@ -30,7 +30,7 @@ export function statesSummary(ctx: SummaryContext): SummarySection[] {
     for (const t of st.tally.values()) if (!dominant || t.count > dominant.count) dominant = t;
     return {
       code: st.code, name: displayStateName(st.code), seatIds: st.seats, seats: st.seats.length,
-      avgMargin: Math.round(st.marginSum / st.seats.length), dominant: dominant!,
+      avgMargin: st.margins ? Math.round(st.marginSum / st.margins) : 0, dominant: dominant!,
       dominantPct: Math.round((dominant!.count / st.seats.length) * 100),
     };
   }).sort((a, b) => b.seats - a.seats);

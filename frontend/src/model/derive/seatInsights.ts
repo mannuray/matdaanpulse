@@ -49,7 +49,7 @@ export function seatInsights(view: SeatView, history: SeatHistoryEntry[], notes:
   }
   const incumbent = ranked.find(c => c.incumbent);
   if (incumbent) out.push({ kind: 'incumbent', name: incumbent.name, won: !!incumbent.pill });
-  if (prev && margin != null && rel(prev.party, prev.year) === 'same') out.push({ kind: 'marginChange', prevYear: prev.year, prev: prev.margin, now: margin });
+  if (prev && margin != null && !prev.unopposed && rel(prev.party, prev.year) === 'same') out.push({ kind: 'marginChange', prevYear: prev.year, prev: prev.margin, now: margin });
   out.push(...notes);
 
   const declared = ranked.filter(c => c.affidavit?.criminalCases != null);

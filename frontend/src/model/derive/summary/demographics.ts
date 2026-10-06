@@ -1,4 +1,4 @@
-import { avg, compact, groupsFor, int, ledSeats } from './shared';
+import { avg, compact, groupsFor, int, wonSeats } from './shared';
 import type { ChartSpec, ChartValueFormat, SummaryContext, SummaryRow, SummarySection } from './types';
 
 const CATS = ['GEN', 'SC', 'ST'] as const;
@@ -20,11 +20,12 @@ export function demographicsSummary(ctx: SummaryContext): SummarySection[] {
     })),
   }];
 
-  const led = ledSeats(ctx);
-  const per = groupsFor(ctx, led).map(g => {
-    const own = led.filter(s => g.partyIds.includes(s.party));
-    const cat = { GEN: { n: 0, sum: 0 }, SC: { n: 0, sum: 0 }, ST: { n: 0, sum: 0 } };
-    own.forEach(s => { const c = cat[s.type === 'SC' || s.type === 'ST' ? s.type : 'GEN']; c.n++; c.sum += s.margin!; });
+  // Seats won unopposed count as won (n) but have no margin (m, sum).
+  const won = wonSeats(ctx);
+  const per = groupsFor(ctx, won).map(g => {
+    const own = won.filter(s => g.partyIds.includes(s.party));
+    const cat = { GEN: { n: 0, m: 0, sum: 0 }, SC: { n: 0, m: 0, sum: 0 }, ST: { n: 0, m: 0, sum: 0 } };
+    own.forEach(s => { const c = cat[s.type === 'SC' || s.type === 'ST' ? s.type : 'GEN']; c.n++; if (s.margin != null) { c.m++; c.sum += s.margin; } });
     return { g, own, cat };
   }).filter(x => x.own.length > 0).sort((a, b) => b.own.length - a.own.length);
   if (per.length === 0) return out;
@@ -48,10 +49,10 @@ export function demographicsSummary(ctx: SummaryContext): SummarySection[] {
     id: 'margin_by_category', titleKey: 'studio_sum_margin_by_category', columnsKeys: ['studio_col_gen', 'studio_col_sc', 'studio_col_st'],
     // Legacy showed 0 for a category without seats; null renders "—" instead.
     rows: per.map((x): SummaryRow => ({
-      ...rowBase(x), value: avg(x.cat.GEN.sum, x.cat.GEN.n), valueFormat: 'compact',
-      extra: [compact(avg(x.cat.SC.sum, x.cat.SC.n)), compact(avg(x.cat.ST.sum, x.cat.ST.n))],
+      ...rowBase(x), value: avg(x.cat.GEN.sum, x.cat.GEN.m), valueFormat: 'compact',
+      extra: [compact(avg(x.cat.SC.sum, x.cat.SC.m)), compact(avg(x.cat.ST.sum, x.cat.ST.m))],
     })),
-    chart: chart((x, c) => avg(x.cat[c].sum, x.cat[c].n), 'compact'),
+    chart: chart((x, c) => avg(x.cat[c].sum, x.cat[c].m), 'compact'),
   });
   return out;
 }

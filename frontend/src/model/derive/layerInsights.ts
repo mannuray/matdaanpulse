@@ -46,6 +46,8 @@ const ACCENT = 'var(--color-accent)';
 const GREY = 'var(--color-fallback)';
 
 const led = (ctx: InsightContext) => ctx.seats.filter(s => s.party && s.margin != null);
+/** Seats with a winner, seats won unopposed included: for counting seats (margins use led). */
+const won = (ctx: InsightContext) => ctx.seats.filter(s => s.party && (s.margin != null || s.uncontested));
 const colorOf = (ctx: InsightContext, party: string) => ctx.partyColor.get(party) ?? GREY;
 
 function partyChips(ctx: InsightContext, seats: SeatResult[]): InsightChip[] {
@@ -64,7 +66,7 @@ function allianceOf(ctx: InsightContext): Map<string, ManifestAlliance> {
 }
 
 function overview(ctx: InsightContext): LayerInsight {
-  const seats = led(ctx);
+  const seats = won(ctx);
   const al = allianceOf(ctx);
   const counts = new Map<string, number>();
   let others = 0;
@@ -137,8 +139,7 @@ function history(ctx: InsightContext): LayerInsight | null {
 }
 
 function reserved(ctx: InsightContext): LayerInsight | null {
-  // Seats won unopposed have no margin (not in led) but still have a winner.
-  const res = ctx.seats.filter(s => s.party && (s.margin != null || s.uncontested) && (s.type === 'SC' || s.type === 'ST'));
+  const res = won(ctx).filter(s => s.type === 'SC' || s.type === 'ST');
   const sc = ctx.seats.filter(s => s.type === 'SC').length;
   const st = ctx.seats.filter(s => s.type === 'ST').length;
   if (sc + st === 0) return null;
@@ -171,7 +172,7 @@ function states(ctx: InsightContext): LayerInsight | null {
   if (ctx.electionType !== 'LS') return null;
   const al = allianceOf(ctx);
   const byState = new Map<string, SeatResult[]>();
-  led(ctx).forEach(s => { if (s.state) byState.set(s.state, [...(byState.get(s.state) ?? []), s]); });
+  won(ctx).forEach(s => { if (s.state) byState.set(s.state, [...(byState.get(s.state) ?? []), s]); });
   const leaders = new Map<string, { a: ManifestAlliance; states: number; seatIds: string[] }>();
   for (const seats of byState.values()) {
     const tally = new Map<string, number>();

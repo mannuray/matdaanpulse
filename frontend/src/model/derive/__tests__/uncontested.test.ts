@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { headlineMargin, isUncontested } from '../uncontested';
+import { headlineMargin, isUncontested, isUnopposedWinner } from '../uncontested';
+import { calculateMarginTrend, calculatePartyTrend } from '../intelligence';
 
 const c = (party_id: string, votes: number, status: string) => ({ party_id, votes, status });
 
@@ -26,5 +27,20 @@ describe('headlineMargin', () => {
     expect(headlineMargin([], undefined)).toEqual({ margin: undefined });
     const alone = { party_id: 'BJP', votes: 0, status: 'WON', margin: 0 };
     expect(headlineMargin([alone], alone)).toEqual({ margin: undefined, uncontested: true });
+  });
+});
+
+describe('trends leave seats won unopposed out of margin averages', () => {
+  const row = (const_id: string, party_id: string, votes: number, margin: number) => ({ const_id, party_id, candidate_name: 'x', votes, status: 'WON', margin });
+  const results = [row('A', 'BJP', 900, 300), row('B', 'BJP', 700, 100), row('U', 'BJP', 0, 0)];
+  it('calculateMarginTrend: average and median over contested seats; seats counts every winner', () => {
+    expect(calculateMarginTrend([{ year: 2024, results }])).toEqual([{ year: 2024, avgMargin: 200, medianMargin: 200, seats: 3 }]);
+  });
+  it('calculatePartyTrend: seats won include the unopposed seat; the average margin does not', () => {
+    expect(calculatePartyTrend([{ year: 2024, results }])).toEqual([{ party: 'BJP', year: 2024, seatsWon: 3, avgMargin: 200 }]);
+  });
+  it('isUnopposedWinner needs no votes and no margin (data with margins but no votes is not unopposed)', () => {
+    expect(isUnopposedWinner({ status: 'WON', votes: 0, margin: 0 })).toBe(true);
+    expect(isUnopposedWinner({ status: 'WON', votes: 0, margin: 1200 })).toBe(false);
   });
 });

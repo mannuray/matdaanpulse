@@ -19,6 +19,11 @@ export function ledSeats(ctx: Pick<SummaryContext, 'seats'>): SeatResult[] {
   return ctx.seats.filter(s => s.party && s.margin != null);
 }
 
+/** Seats with a winner or leader, seats won unopposed included: for counting seats (margins use ledSeats). */
+export function wonSeats(ctx: Pick<SummaryContext, 'seats'>): SeatResult[] {
+  return ctx.seats.filter(s => s.party && (s.margin != null || s.uncontested));
+}
+
 export function colorOf(ctx: Pick<SummaryContext, 'partyColor'>, party: string): string {
   return ctx.partyColor.get(party) ?? FALLBACK_COLOR;
 }

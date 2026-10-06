@@ -1,7 +1,7 @@
 import { roundPct } from '../scoreboard';
 import { rankSeats } from '../stats';
 import type { SeatResult } from '../../types/dashboard';
-import { allianceByParty, bucketIndex, buckets, colorOf, int, intDash, lakh, ledSeats, refRow, partyName, pct, seatIdsOf } from './shared';
+import { allianceByParty, bucketIndex, buckets, colorOf, int, intDash, lakh, ledSeats, refRow, partyName, pct, seatIdsOf, wonSeats } from './shared';
 import { formatSummaryValue } from './format';
 import type { ChartSpec, SummaryContext, SummaryRow, SummarySection } from './types';
 
@@ -169,7 +169,7 @@ export function overviewSummary(ctx: SummaryContext): SummarySection[] {
     });
   }
   out.push(reserved(ctx));
-  out.push(...voteVsSeats(ctx, led));
+  out.push(...voteVsSeats(ctx, wonSeats(ctx))); // seat shares count seats won unopposed
   out.push(wasted(ctx, led));
 
   // Legacy order (after the key stats): margin distribution, closest, biggest, reserved, vote vs seats, wasted votes.

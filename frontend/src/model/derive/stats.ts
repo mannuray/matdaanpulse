@@ -5,7 +5,7 @@ export interface SeatRef {
   id: string;
   name: string;
   party: string;
-  margin: number;
+  /** null for a seat won unopposed */ margin: number | null;
 }
 
 export interface DashboardStats {
@@ -16,7 +16,7 @@ export interface DashboardStats {
   flipped: number | null;
 }
 
-const toRef = (s: SeatResult): SeatRef => ({ id: s.id, name: s.name, party: s.party, margin: s.margin as number });
+const toRef = (s: SeatResult): SeatRef => ({ id: s.id, name: s.name, party: s.party, margin: s.margin ?? null });
 
 /** Declared seats if any, otherwise leading seats — the pool the stats talk about. */
 function pool(seats: SeatResult[]): SeatResult[] {
@@ -32,8 +32,8 @@ export function rankSeats(seats: SeatResult[], order: 'closest' | 'biggest', lim
 
 export function flippedSeatRefs(seats: SeatResult[], swing: Map<string, SwingEntry>): SeatRef[] {
   return seats
-    .filter(s => swing.get(s.id)?.flipped && s.margin != null)
-    .sort((a, b) => a.margin! - b.margin!)
+    .filter(s => swing.get(s.id)?.flipped && (s.margin != null || s.uncontested))
+    .sort((a, b) => (a.margin ?? Infinity) - (b.margin ?? Infinity)) // a flip won unopposed lists last
     .map(toRef);
 }
 

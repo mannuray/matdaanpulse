@@ -1,3 +1,4 @@
+import { isUnopposedWinner } from './uncontested';
 import { normalizeConstId } from '../geo/normalizeConstId';
 import { RAW_COMPARER, type PartyComparer } from './partyComparer';
 import type {
@@ -211,12 +212,13 @@ export function calculateMarginTrend(
 
   return allElections.map(({ results: elResults, year }) => {
     const won = elResults.filter((r: ResultRow) => r.status === 'WON' || r.status === 'LEADING');
-    const margins = won.map(r => r.margin).sort((a, b) => a - b);
-    const seats = margins.length;
-    const avg = seats > 0 ? Math.round(margins.reduce((s, m) => s + m, 0) / seats) : 0;
-    const mid = Math.floor(seats / 2);
-    const median = seats === 0 ? 0 : seats % 2 === 0 ? Math.round((margins[mid - 1] + margins[mid]) / 2) : margins[mid];
-    return { year, avgMargin: avg, medianMargin: median, seats };
+    // Seats won unopposed have no margin: counted as seats, left out of the average and median.
+    const margins = won.filter(r => !isUnopposedWinner(r)).map(r => r.margin).sort((a, b) => a - b);
+    const n = margins.length;
+    const avg = n > 0 ? Math.round(margins.reduce((s, m) => s + m, 0) / n) : 0;
+    const mid = Math.floor(n / 2);
+    const median = n === 0 ? 0 : n % 2 === 0 ? Math.round((margins[mid - 1] + margins[mid]) / 2) : margins[mid];
+    return { year, avgMargin: avg, medianMargin: median, seats: won.length };
   });
 }
 
@@ -231,12 +233,12 @@ export function calculatePartyTrend(
   const points: PartyTrendPoint[] = [];
   for (const { results: elResults, year } of allElections) {
     const won = elResults.filter((r: ResultRow) => r.status === 'WON' || r.status === 'LEADING');
-    const byParty = new Map<string, { seats: number; marginSum: number }>();
+    const byParty = new Map<string, { seats: number; margins: number; marginSum: number }>();
     for (const r of won) {
       const party = cmp.carry(r.party_id, year, latest);
-      const entry = byParty.get(party) || { seats: 0, marginSum: 0 };
+      const entry = byParty.get(party) || { seats: 0, margins: 0, marginSum: 0 };
       entry.seats++;
-      entry.marginSum += r.margin;
+      if (!isUnopposedWinner(r)) { entry.margins++; entry.marginSum += r.margin; }
       byParty.set(party, entry);
     }
     for (const [party, data] of byParty) {
@@ -244,7 +246,7 @@ export function calculatePartyTrend(
         party,
         year,
         seatsWon: data.seats,
-        avgMargin: data.seats > 0 ? Math.round(data.marginSum / data.seats) : 0,
+        avgMargin: data.margins > 0 ? Math.round(data.marginSum / data.margins) : 0,
       });
     }
   }

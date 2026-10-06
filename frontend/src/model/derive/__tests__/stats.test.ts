@@ -51,4 +51,9 @@ describe('rankSeats / flippedSeatRefs', () => {
   it('lists flipped seats closest first', () => {
     expect(flippedSeatRefs(vs, swing).map(s => s.id)).toEqual(['BR_VS_1_SANDESH']);
   });
+  it('lists a flip won unopposed too, with no margin, after the real margins', () => {
+    const u = { ...seat('BR_VS_9_U', 'BJP', undefined, 'WON', 'U'), uncontested: true as const };
+    const sw = new Map(swing); sw.set('BR_VS_9_U', { ...[...swing.values()][0], constId: 'BR_VS_9_U', flipped: true });
+    expect(flippedSeatRefs([...vs, u], sw).map(s => [s.id, s.margin])).toEqual([['BR_VS_1_SANDESH', 27], ['BR_VS_9_U', null]]);
+  });
 });

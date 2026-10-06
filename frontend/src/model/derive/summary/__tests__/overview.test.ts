@@ -38,6 +38,13 @@ describe('overview summary', () => {
     expect(s.rows[2].labelKey).toBe('others');
   });
 
+  it('vote_vs_seats: a seat won unopposed counts in the seat share (7 seats with a winner)', () => {
+    const base = makeCtx();
+    const ctx = makeCtx({ seats: [...base.seats, { ...base.seats[0], id: 'U', party: 'BJP', margin: undefined, uncontested: true as const }] });
+    const nda = byId('vote_vs_seats_alliances', ctx).rows.find(r => r.id === 'alliance:NDA')!;
+    expect(nda.extra!.map(e => e.value)).toEqual([50, 57.1]);
+  });
+
   it('vote_vs_seats_alliances: the difference is taken from the rounded seat % and vote % (matches the baseline)', () => {
     // MGB: seat 2/6 = 33.333 -> 33.3, vote 31.96 -> 32.0; rounded difference +1.3 (the raw one would round to +1.4).
     const ctx = makeCtx({ votePct: new Map([['BJP', 30], ['JDU', 20], ['RJD', 31.96], ['AIMIM', 3], ['IND', 4]]) });

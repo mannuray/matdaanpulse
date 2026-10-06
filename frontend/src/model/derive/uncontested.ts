@@ -16,7 +16,10 @@ export function headlineMargin(candidates: { party_id: string | null; votes: num
   return { margin: Number(winner.margin) || 0 };
 }
 
-/** From a seat's winning row alone: a declared winner with no votes polled can only have been unopposed. */
-export function isUnopposedWinner(w: { status: string | null; votes: number | null }): boolean {
-  return w.status === 'WON' && !w.votes;
+/**
+ * From a seat's winning row alone: declared, no votes polled and no margin (data with margins but no vote counts is
+ * not unopposed). A live seat marked WON before its votes post would still need a 0 margin to match.
+ */
+export function isUnopposedWinner(w: { status: string | null; votes: number | null; margin?: number | string | null }): boolean {
+  return w.status === 'WON' && !w.votes && !Number(w.margin);
 }

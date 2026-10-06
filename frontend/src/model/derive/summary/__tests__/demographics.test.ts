@@ -59,4 +59,10 @@ describe('demographics summary', () => {
     expect(run({ seats: [{ id: 'X', name: 'X', party: '', status: 'PENDING', type: 'SC' as const }] }).map(s => s.id)).toEqual(['category_breakdown']);
     expect(run({ seats: [] })).toEqual([]);
   });
+  it('a seat won unopposed counts as won in its category but stays out of the margin average', () => {
+    const base = makeCtx();
+    const seats = [...base.seats, { ...base.seats[0], id: 'U', party: 'RJD', margin: undefined, type: 'ST' as const, uncontested: true as const }];
+    expect(rows('win_rate_by_category', { seats })).toEqual([['NDA', 3, [2, 1, 0]], ['MGB', 3, [0, 1, 2]]]);
+    expect(rows('margin_by_category', { seats })).toEqual([['NDA', 30400, [12000, null]], ['MGB', null, [400, 3000]]]);
+  });
 });
