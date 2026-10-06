@@ -1,0 +1,67 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2024_Maharashtra_Legislative_Assembly_election",
+  "note: Mahayuti (BJP, Shiv Sena, NCP) vs Maha Vikas Aghadi (Congress, Shiv Sena (UBT), NCP (Sharadchandra Pawar)); smaller partners not listed."
+ ],
+ "alliances": [
+  {
+   "id": "MAHAYUTI",
+   "name": "Mahayuti",
+   "color": "#FF7A1A",
+   "parties": [
+    "BJP",
+    "SHS",
+    "NCP"
+   ]
+  },
+  {
+   "id": "MVA",
+   "name": "Maha Vikas Aghadi",
+   "color": "#38C6F4",
+   "parties": [
+    "INC",
+    "SHSUBT",
+    "NCPSP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "SHS",
+  "NCP",
+  "INC",
+  "SHSUBT",
+  "NCPSP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 145
+  }
+ ],
+ "geo": {
+  "zoom": 6.5,
+  "center": [
+   76.6,
+   19.2
+  ],
+  "map_url": "/geo/mh_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0200000-0000-4000-8000-000000002009",
+  "a0200000-0000-4000-8000-000000002014",
+  "a0200000-0000-4000-8000-000000002019"
+ ],
+ "history_years": [
+  2009,
+  2014,
+  2019
+ ],
+ "compare_with": [
+  "a0200000-0000-4000-8000-000000002019"
+ ]
+}

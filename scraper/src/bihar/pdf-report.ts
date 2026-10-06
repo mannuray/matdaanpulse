@@ -138,8 +138,9 @@ function readSummaryBlock(lines: string[], fixes: SummaryFixes = {}): SeatSummar
     const sec = /^\s*(I|II|III|III\(A\)|IV|V|VI|VII)\.\s*(\S.*)?$/.exec(l);
     if (sec) section = `${sec[1]}. ${(sec[2] ?? '').trim()}`.toUpperCase();
     if (/4\.\s*CONTESTED/.test(l)) f.contested = lastNumber(l);
-    if (section.startsWith('II.') && /\d\.\s*TOTAL\b/.test(l)) f.electors = lastNumber(l);
-    if (section.startsWith('III. VOTERS') && /\d\.\s*TOTAL\b/.test(l)) f.voters = lastNumber(l);
+    // A blank TOTAL is skipped: some pages are printed twice, the first copy without totals (Maharashtra 2014 Beed).
+    if (section.startsWith('II.') && /\d\.\s*TOTAL\s+\d/.test(l)) f.electors = lastNumber(l);
+    if (section.startsWith('III. VOTERS') && /\d\.\s*TOTAL\s+\d/.test(l)) f.voters = lastNumber(l);
     if (section.startsWith('IV.') && /TOTAL ?VALID VOTES POLLED\s+\d+\s*$/.test(l)) f.totalValid = lastNumber(l);
     if (section.startsWith('IV.') && /VOTES POLLED FOR 'NOTA'\s*\(INCLUDING POSTAL\)/.test(l)) f.nota = lastNumber(l);
     if (section.startsWith('VI.') && /^\s*POLLING\s+COUNTING/.test(l)) {
@@ -147,7 +148,10 @@ function readSummaryBlock(lines: string[], fixes: SummaryFixes = {}): SeatSummar
       const d = /(\d{1,2}-[A-Za-z]{3}-\d{4})/.exec(next);
       if (d) pollDate = isoDate(d[1]);
     }
-    const p = /^\s*(WINNER|RUNN?ER-UP)\s+(\S+)\s+(.+?)\s+(\d+|Uncontested)\s*$/.exec(l); // indented in the 2009 reports; Odisha 2009 writes "RUNER-UP"
+    // A name too long for its column wraps onto the next line, which carries the votes (Maharashtra 2014 Nevasa).
+    const wrapped = /^\s*(WINNER|RUNN?ER-UP)\s+\S+\s+\S.*[A-Za-z.]\s*$/.test(l) && /^\s+[A-Za-z][A-Za-z .]*\s+\d+\s*$/.test(lines[i + 1] ?? '');
+    const row = wrapped ? `${l.trimEnd()} ${lines[i + 1].trim()}` : l;
+    const p = /^\s*(WINNER|RUNN?ER-UP)\s+(\S+)\s+(.+?)\s+(\d+|Uncontested)\s*$/.exec(row); // indented in the 2009 reports; Odisha 2009 writes "RUNER-UP"
     if (p) picks[p[1] === 'WINNER' ? 'WINNER' : 'RUNNER-UP'] = { party: p[2], name: p[3].trim(), votes: p[4] === 'Uncontested' ? 0 : Number(p[4]) };
     if (p?.[4] === 'Uncontested') uncontested = true;
     const mg = /^\s*MARGIN\s+(\d+)/.exec(l);

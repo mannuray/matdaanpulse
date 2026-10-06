@@ -1,0 +1,61 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2019_Maharashtra_Legislative_Assembly_election",
+  "note: NDA (BJP + Shiv Sena) vs UPA (Congress + NCP); smaller partners not listed."
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FF7A1A",
+   "parties": [
+    "BJP",
+    "SHS"
+   ]
+  },
+  {
+   "id": "UPA",
+   "name": "UPA",
+   "color": "#38C6F4",
+   "parties": [
+    "INC",
+    "NCP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "SHS",
+  "INC",
+  "NCP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 145
+  }
+ ],
+ "geo": {
+  "zoom": 6.5,
+  "center": [
+   76.6,
+   19.2
+  ],
+  "map_url": "/geo/mh_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0200000-0000-4000-8000-000000002009",
+  "a0200000-0000-4000-8000-000000002014"
+ ],
+ "history_years": [
+  2009,
+  2014
+ ],
+ "compare_with": [
+  "a0200000-0000-4000-8000-000000002014"
+ ]
+}

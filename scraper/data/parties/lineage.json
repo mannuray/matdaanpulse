@@ -308,5 +308,15 @@
   "is_successor": false,
   "note": "Founded in 2011 and led by Y. S. Jagan Mohan Reddy after he left the Congress.",
   "source_url": "https://en.wikipedia.org/wiki/YSR_Congress_Party"
+ },
+ {
+  "party_id": "MNS",
+  "predecessor_id": "SHS",
+  "kind": "breakaway",
+  "effective_date": "2006-03-09",
+  "state_code": null,
+  "is_successor": false,
+  "note": "Founded on 9 March 2006 by Raj Thackeray after he left the Shiv Sena.",
+  "source_url": "https://en.wikipedia.org/wiki/Maharashtra_Navnirman_Sena"
  }
 ]

@@ -321,3 +321,18 @@ describe('parseSummaryText, an unopposed seat from OCR text (Arunachal 2014: bla
       pollDate: '2014-04-09', winner: { party: 'INC', name: 'Pema Khandu', votes: 0 }, runnerUp: null, margin: 0, uncontested: true });
   });
 });
+
+describe('parseSummaryText, a candidate name wrapped onto the next line with the votes (Maharashtra 2014 Nevasa)', () => {
+  it('joins the continuation and reads its votes', () => {
+    const text = fs.readFileSync(path.join(__dirname, 'fixtures/pdf-2009/mh2014-summary-wrapped-runner-up.txt'), 'utf8');
+    expect(parseSummaryText(text)[0]).toMatchObject({ constNo: 221, winner: { party: 'BJP', name: 'Balasaheb Alias Dadasaheb Damodhar', votes: 84570 },
+      runnerUp: { party: 'NCP', name: 'Murkute Shankarrao Yashwantrao Gadakh', votes: 79911 }, margin: 4659 });
+  });
+});
+
+describe('parseSummaryText, a page printed twice, first with blank totals (Maharashtra 2014 Georai)', () => {
+  it('skips a blank TOTAL row and takes the complete one', () => {
+    const text = fs.readFileSync(path.join(__dirname, 'fixtures/pdf-2009/mh2014-summary-blank-totals.txt'), 'utf8');
+    expect(parseSummaryText(text)[0]).toMatchObject({ constNo: 228, electors: 313770, voters: 235348 });
+  });
+});

@@ -27,6 +27,11 @@ function unopposed(): RawElection {
 }
 
 describe('crossCheck', () => {
+  it('a party name the summary spells differently from the party list matches through a sourced alias (Thackeray/Thackrey)', () => {
+    const e = election(); e.summaries[0].winner.party = 'Bharatiya Janta Party';
+    expect(crossCheck(e, []).some(x => x.startsWith('winner:'))).toBe(true);
+    expect(crossCheck(e, [], { aliases: { 'Bharatiya Janta Party': 'BJP' } })).toEqual([]);
+  });
   it('a partial report (a slice of an undivided state) skips the party performance table, which counts every seat', () => {
     const e = election(); e.performance = [{ abbr: 'BJP', contested: 50, won: 30, votes: 9e6 }];
     expect(crossCheck(e, []).some(x => x.startsWith('party-'))).toBe(true);

@@ -1,0 +1,11 @@
+{
+ "2014": {
+  "193": {
+   "name": "Shrivardhan",
+   "type": "GEN",
+   "voters": 150955,
+   "pollDate": "2014-10-15",
+   "reason": "Absent from ECI's 2014 Constituency Data Summary (it jumps from 192 Alibag to 194 Mahad). Name and type from the Detailed Results; voters = the Detailed Results' TURNOUT total (valid votes + NOTA; rejected postal ballots not included); poll date = Maharashtra's single polling day, 15 Oct 2014."
+  }
+ }
+}

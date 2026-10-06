@@ -6,11 +6,13 @@ export interface CrossCheckException { year: number; key: string; reason: string
 
 
 /** `partial`: the report is cut to the state's seats (Andhra 2009/2014); its party table counts every seat, so it is not compared. */
-export function crossCheck(e: RawElection, exceptions: CrossCheckException[], opts: { partial?: boolean } = {}): string[] {
+export function crossCheck(e: RawElection, exceptions: CrossCheckException[], opts: { partial?: boolean; aliases?: Record<string, string> } = {}): string[] {
   const errs: string[] = [];
   const add = (key: string, msg: string) => errs.push(`${key} ${msg}`);
   const fullOf = (abbr: string) => (abbr === 'IND' ? 'Independent' : e.parties.find(p => p.abbr === abbr)?.name ?? abbr);
-  const sameParty = (abbr: string, summaryParty: string) => summaryParty === abbr || normName(fullOf(abbr)) === normName(summaryParty);
+  // `aliases`: summary party name → abbreviation, where ECI's tables spell a party differently (party-name-aliases.json).
+  const sameParty = (abbr: string, summaryParty: string) => summaryParty === abbr || normName(fullOf(abbr)) === normName(summaryParty)
+    || opts.aliases?.[summaryParty] === abbr;
 
   const summaries = new Map(e.summaries.map(s => [s.constNo, s]));
   for (const s of e.summaries) if (!e.seats.some(x => x.constNo === s.constNo)) add(`detailed-missing:${s.constNo}`, 'summary seat absent from Detailed Results');

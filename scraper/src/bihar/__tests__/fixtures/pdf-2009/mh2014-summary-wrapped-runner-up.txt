@@ -1,0 +1,83 @@
+     CONSTITUENCY :              221- Nevasa
+
+                                                           MEN                  WOMEN                 THIRD GENDER           TOTAL
+I.     CANDIDATES
+
+       1. NOMINATION FILED                                   24                       1                         0                25
+
+       2. NOMINATION REJECTED                                 4                       0                         0                 4
+
+       3. WITHDRAWN                                           9                       1                         0                10
+
+       4. CONTESTED                                          11                       0                         0                11
+
+       5. FORFEITED DEPOSIT                                   9                       0                         0                 9
+
+II.    ELECTORS
+
+       1. GENERAL(Other than OVERSEAS)                 126934                   111939                          0            238873
+
+       2. OVERSEAS                                            0                       0                         0                 0
+
+       3. SERVICE                                           220                    108                          0               328
+
+       4. TOTAL                                        127154                   112047                          0            239201
+
+III. VOTERS
+
+       1. GENERAL(Other than OVERSEAS)                    98244                  79386                          0            177630
+
+       2. OVERSEAS                                            0                       0                         0                 0
+
+       3. PROXY ( Already included in III.1 General )                                                                             0
+
+       4. POSTAL                                                                                                                679
+
+       5. TOTAL                                                                                                              178309
+
+III(A). POLLING PERCENTAGE                        74.54
+
+IV. VOTES
+     1. TOTAL VOTES POLLED ON EVM                                                                                            177630
+
+       2. TOTAL DEDUCTED VOTES FROM EVM(TEST
+       VOTES+VOTES NOT RETRIVED+VOTES REJECTED DUE TO                                                                          1590
+       OTHER REASONS + 'NOTA')
+
+       3. TOTALVALID VOTES POLLED ON EVM                                                                                     176040
+
+       4. POSTAL VOTES COUNTED
+                                                                                                                                679
+       5. POSTAL VOTES DEDUCTED(REJECTED POSTAL
+       VOTES + POSTAL VOTES POLLED FOR 'NOTA')
+                                                                                                                                100
+
+       6. VALID POSTAL VOTES                                                                                                    579
+
+       7.TOTAL VALID VOTES POLLED                                                                                            176619
+
+       8.TEST VOTES POLLED ON EVM                                                                                                 0
+
+       9.VOTES POLLED FOR 'NOTA' (INCLUDING POSTAL)                                                                            1590
+
+       10. TENDERED VOTES                                                                                                         5
+
+V. POLLING STATIONS
+   NUMBER      264                                   AVERAGE ELECTORS PER POLLING STATION                                         906
+
+      DATE(s) OF RE-POLL, IF ANY :                                                                                                    0
+
+      NUMBER OF POLLING STATIONS WHERE RE-POLL WAS ORDERED                                                                            0
+
+VI. DATES
+                  POLLING                                         COUNTING                                DECLARATION OF RESULT
+                  15-Oct-2014                                     19-Oct-2014                             19-Oct-2014
+
+VII. RESULT
+                   PARTY                         CANDIDATE                                                          VOTES
+WINNER             BJP                           Balasaheb Alias Dadasaheb Damodhar                                  84570
+RUNNER-UP          NCP                           Murkute Shankarrao Yashwantrao
+                                                 Gadakh                                                              79911
+
+MARGIN              4659                ( 2.64%     of Total Valid Votes)
+                            Election Commission of India, state Election,2014 to the legislative assembly of Maharashtra

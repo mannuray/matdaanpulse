@@ -1,0 +1,42 @@
+[
+ {
+  "year": 2009,
+  "key": "margin:134",
+  "reason": "ECI's 2009 summary prints margin 2291; its own winner and runner-up votes, identical in both tables, give 2192 (digits transposed in the summary)."
+ },
+ {
+  "year": 2009,
+  "key": "margin:178",
+  "reason": "ECI's 2009 summary prints margin 9710; its own winner and runner-up votes, identical in both tables, give 9709: an arithmetic slip in the summary."
+ },
+ {
+  "year": 2009,
+  "key": "total-valid:142",
+  "reason": "ECI's Constituency Data Summary differs from its own Detailed Results by a few votes; the detailed rows add up to the seat total and the winner, runner-up, electors and candidate count agree in both tables: an arithmetic slip in the summary, the Detailed Results are used."
+ },
+ {
+  "year": 2009,
+  "key": "total-valid:233",
+  "reason": "ECI's Constituency Data Summary differs from its own Detailed Results by a few votes; the detailed rows add up to the seat total and the winner, runner-up, electors and candidate count agree in both tables: an arithmetic slip in the summary, the Detailed Results are used."
+ },
+ {
+  "year": 2009,
+  "key": "total-valid:287",
+  "reason": "ECI's Constituency Data Summary differs from its own Detailed Results by a few votes; the detailed rows add up to the seat total and the winner, runner-up, electors and candidate count agree in both tables: an arithmetic slip in the summary, the Detailed Results are used."
+ },
+ {
+  "year": 2014,
+  "key": "total-valid:28",
+  "reason": "ECI's Constituency Data Summary differs from its own Detailed Results by a few votes; the detailed rows add up to the seat total and the winner, runner-up, electors and candidate count agree in both tables: an arithmetic slip in the summary, the Detailed Results are used."
+ },
+ {
+  "year": 2014,
+  "key": "total-valid:40",
+  "reason": "ECI's Constituency Data Summary differs from its own Detailed Results by a few votes; the detailed rows add up to the seat total and the winner, runner-up, electors and candidate count agree in both tables: an arithmetic slip in the summary, the Detailed Results are used."
+ },
+ {
+  "year": 2014,
+  "key": "total-valid:265",
+  "reason": "ECI's Constituency Data Summary differs from its own Detailed Results by a few votes; the detailed rows add up to the seat total and the winner, runner-up, electors and candidate count agree in both tables: an arithmetic slip in the summary, the Detailed Results are used."
+ }
+]

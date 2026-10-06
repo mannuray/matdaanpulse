@@ -1,0 +1,165 @@
+     CONSTITUENCY :              228- Georai
+
+                                                          MEN                    WOMEN                 THIRD GENDER            TOTAL
+I.     CANDIDATES
+
+       1. NOMINATION FILED                                   17                        2                         0                 19
+
+       2. NOMINATION REJECTED                                 1                        1                         0                  2
+
+       3. WITHDRAWN                                           5                        1                         0                  6
+
+       4. CONTESTED                                          11                        0                         0                 11
+
+       5. FORFEITED DEPOSIT                                   9                        0                         0                  9
+
+II.    ELECTORS
+
+       1. GENERAL(Other than OVERSEAS)                 167393                   146155                           0             313548
+
+       2. OVERSEAS
+
+       3. SERVICE                                          157                        65                         0                222
+
+       4. TOTAL
+
+III. VOTERS
+
+       1. GENERAL(Other than OVERSEAS)                 127676                   107161                           0             234837
+
+       2. OVERSEAS
+
+       3. PROXY ( Already included in III.1 General )                                                                              0
+
+       4. POSTAL                                                                                                                  511
+
+       5. TOTAL
+
+III(A). POLLING PERCENTAGE
+
+IV. VOTES
+     1. TOTAL VOTES POLLED ON EVM
+
+       2. TOTAL DEDUCTED VOTES FROM EVM(TEST
+       VOTES+VOTES NOT RETRIVED+VOTES REJECTED DUE TO
+       OTHER REASONS + 'NOTA')
+
+       3. TOTALVALID VOTES POLLED ON EVM
+
+       4. POSTAL VOTES COUNTED
+                                                                                                                                  511
+       5. POSTAL VOTES DEDUCTED(REJECTED POSTAL
+       VOTES + POSTAL VOTES POLLED FOR 'NOTA')
+                                                                                                                                   9
+
+       6. VALID POSTAL VOTES                                                                                                     502
+
+       7.TOTAL VALID VOTES POLLED
+
+       8.TEST VOTES POLLED ON EVM
+
+       9.VOTES POLLED FOR 'NOTA' (INCLUDING POSTAL)                                                                             1362
+
+       10. TENDERED VOTES                                                                                                          0
+
+V. POLLING STATIONS
+   NUMBER      379                                    AVERAGE ELECTORS PER POLLING STATION                                          828
+
+      DATE(s) OF RE-POLL, IF ANY :                                                                                                      0
+
+      NUMBER OF POLLING STATIONS WHERE RE-POLL WAS ORDERED                                                                              0
+
+VI. DATES
+                  POLLING                                         COUNTING                                 DECLARATION OF RESULT
+                  15-Oct-2014                                     19-Oct-2014                              19-Oct-2014
+
+VII. RESULT
+                   PARTY                         CANDIDATE                                                           VOTES
+WINNER             BJP                           Pawar Laxman Madhavro                                                136384
+RUNNER-UP          NCP                           Pandit Badamrao Lahurao                                               76383
+
+MARGIN              60001
+                            Election Commission of India, state Election,2014 to the legislative assembly of Maharashtra
+
+
+                                           CONSTITUENCY DATA - SUMMARY
+                                                          MEN                    WOMEN                 THIRD GENDER            TOTAL
+I.     CANDIDATES
+
+       1. NOMINATION FILED                                   17                        2                         0                 19
+
+       2. NOMINATION REJECTED                                 1                        1                         0                  2
+
+       3. WITHDRAWN                                           5                        1                         0                  6
+
+       4. CONTESTED                                          11                        0                         0                 11
+
+       5. FORFEITED DEPOSIT                                   9                        0                         0                  9
+
+II.    ELECTORS
+
+       1. GENERAL(Other than OVERSEAS)                 167393                   146155                           0             313548
+
+       2. OVERSEAS                                            0                        0                         0                  0
+
+       3. SERVICE                                          157                        65                         0                222
+
+       4. TOTAL                                        167550                   146220                           0             313770
+
+III. VOTERS
+
+       1. GENERAL(Other than OVERSEAS)                 127676                   107161                           0             234837
+
+       2. OVERSEAS                                            0                        0                         0                  0
+
+       3. PROXY ( Already included in III.1 General )                                                                               0
+
+       4. POSTAL                                                                                                                  511
+
+       5. TOTAL                                                                                                                235348
+
+III(A). POLLING PERCENTAGE                       75.01
+
+IV. VOTES
+     1. TOTAL VOTES POLLED ON EVM                                                                                              234837
+
+       2. TOTAL DEDUCTED VOTES FROM EVM(TEST
+       VOTES+VOTES NOT RETRIVED+VOTES REJECTED DUE TO                                                                            1362
+       OTHER REASONS + 'NOTA')
+
+       3. TOTALVALID VOTES POLLED ON EVM                                                                                       233475
+
+       4. POSTAL VOTES COUNTED
+                                                                                                                                  511
+       5. POSTAL VOTES DEDUCTED(REJECTED POSTAL
+       VOTES + POSTAL VOTES POLLED FOR 'NOTA')
+                                                                                                                                    9
+
+       6. VALID POSTAL VOTES                                                                                                      502
+
+       7.TOTAL VALID VOTES POLLED                                                                                              233977
+
+       8.TEST VOTES POLLED ON EVM                                                                                                   0
+
+       9.VOTES POLLED FOR 'NOTA' (INCLUDING POSTAL)                                                                              1362
+
+       10. TENDERED VOTES                                                                                                           0
+
+V. POLLING STATIONS
+   NUMBER      379                                    AVERAGE ELECTORS PER POLLING STATION                                          828
+
+      DATE(s) OF RE-POLL, IF ANY :                                                                                                      0
+
+      NUMBER OF POLLING STATIONS WHERE RE-POLL WAS ORDERED                                                                              0
+
+VI. DATES
+                  POLLING                                         COUNTING                                 DECLARATION OF RESULT
+                  15-Oct-2014                                     19-Oct-2014                              19-Oct-2014
+
+VII. RESULT
+                   PARTY                         CANDIDATE                                                           VOTES
+WINNER             BJP                           Pawar Laxman Madhavro                                                136384
+RUNNER-UP          NCP                           Pandit Badamrao Lahurao                                               76383
+
+MARGIN              60001                ( 25.64%    of Total Valid Votes)
+                            Election Commission of India, state Election,2014 to the legislative assembly of Maharashtra

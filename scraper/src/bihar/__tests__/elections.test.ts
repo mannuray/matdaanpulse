@@ -3,7 +3,7 @@ import { ELECTIONS, STATES, electionOf, electionsOf, parseState } from '../elect
 
 describe('election registry', () => {
   it('lists every state election once, with unique ids and prefixes', () => {
-    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17 + 4 + 4 + 4);
+    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17 + 4 + 4 + 4 + 4);
     expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
     expect(new Set(ELECTIONS.map(e => e.constPrefix)).size).toBe(ELECTIONS.length);
   });
@@ -94,5 +94,14 @@ describe('Phase 4B Andhra Pradesh', () => {
       [2019, 11673, '2019-05-23', null], [2024, 2, '2024-06-04', null]]);
     expect(electionOf('AP', 2024)).toMatchObject({ electionId: 'a0020000-0000-4000-8000-000000002024', constPrefix: 'AP_VS24_',
       resultsSite: { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S01' } });
+  });
+});
+
+describe('Phase 4B Maharashtra', () => {
+  it('registers Maharashtra 2009-2024', () => {
+    expect(electionsOf('MH').map(e => [e.year, e.docid ?? e.category, e.newElection?.resultDate])).toEqual([
+      [2009, 3724, '2009-10-22'], [2014, 3726, '2014-10-19'], [2019, 11699, '2019-10-24'], [2024, 8, '2024-11-23']]);
+    expect(electionOf('MH', 2024)).toMatchObject({ electionId: 'a0200000-0000-4000-8000-000000002024', constPrefix: 'MH_VS24_',
+      resultsSite: { base: 'https://results.eci.gov.in/ResultAcGenNov2024/', eciCode: 'S13' }, newElection: { reserved: { sc: 29, st: 25 } } });
   });
 });

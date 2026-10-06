@@ -1,0 +1,73 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2014_Maharashtra_Legislative_Assembly_election",
+  "note: no alliances: BJP, Shiv Sena, Congress and NCP contested separately (the BJP–Shiv Sena and Congress–NCP alliances broke before the poll)."
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF7A1A",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "SHS",
+   "name": "Shiv Sena",
+   "color": "#C2185B",
+   "parties": [
+    "SHS"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#38C6F4",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "NCP",
+   "name": "NCP",
+   "color": "#006699",
+   "parties": [
+    "NCP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "SHS",
+  "INC",
+  "NCP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 145
+  }
+ ],
+ "geo": {
+  "zoom": 6.5,
+  "center": [
+   76.6,
+   19.2
+  ],
+  "map_url": "/geo/mh_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0200000-0000-4000-8000-000000002009"
+ ],
+ "history_years": [
+  2009
+ ],
+ "compare_with": [
+  "a0200000-0000-4000-8000-000000002009"
+ ]
+}

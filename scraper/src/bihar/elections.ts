@@ -6,8 +6,8 @@
 import type { SeatType } from './types';
 import type { SeatRange } from './seat-range';
 
-export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK' | 'AR' | 'AP';
-export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK', 'AR', 'AP'];
+export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK' | 'AR' | 'AP' | 'MH';
+export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK', 'AR', 'AP', 'MH'];
 
 export interface YearConfig {
   year: number; electionId: string; constPrefix: string;
@@ -83,6 +83,7 @@ export const STATES: Record<StateCode, StateConfig> = {
   AR: { ...state('AR', 'ar', 'Arunachal Pradesh', 3, 60, 0, 59), stripHonorifics: true },
   // Telugu names change word order and initials between reports: loose person-link keys.
   AP: { ...state('AP', 'ap', 'Andhra Pradesh', 2, 175, 29, 7), looseNames: true },
+  MH: state('MH', 'mh', 'Maharashtra', 20, 288, 29, 25),
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */
@@ -220,6 +221,11 @@ export const ELECTIONS: ElectionConfig[] = [
   p4('AP', 2019, { docid: 11673 }, 1, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_')),
   p4('AP', 2024, { category: 2 }, 1, '2024-06-04', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
     { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S01', myneta: 'andhrapradesh2024' }),
+  // Phase 4B-4: Maharashtra (2024 counted with Jharkhand; same results site).
+  p4('MH', 2009, { docid: 3724 }, 1, '2009-10-22', pdf(2009)), p4('MH', 2014, { docid: 3726 }, 1, '2014-10-19', pdf(2014)),
+  p4('MH', 2019, { docid: 11699 }, 1, '2019-10-24', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_Report')),
+  p4('MH', 2024, { category: 8 }, 1, '2024-11-23', xs(2024, 'xlsx', '_', '', 'Constituency_Data_Summery_Report'),
+    { base: 'https://results.eci.gov.in/ResultAcGenNov2024/', eciCode: 'S13', myneta: 'maharashtra2024' }),
 ];
 
 /** The registry entry of an election id. */
