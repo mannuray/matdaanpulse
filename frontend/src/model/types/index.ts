@@ -56,7 +56,7 @@ export interface PartyDetail extends Party {
 export interface LineageEvent {
   party_id: string;
   predecessor_id: string;
-  kind: 'rename' | 'merger' | 'split';
+  kind: 'rename' | 'merger' | 'split' | 'breakaway';
   effective_date: string;
   state_id: number | null;
   is_successor: boolean;

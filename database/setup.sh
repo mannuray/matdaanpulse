@@ -100,6 +100,8 @@ done
 # Phase 4A states (new elections since the 2008 delimitation), their ECI parties first
 run seed_dl_vs_parties.sql; for y in 2008 2013 2015 2020 2025; do run "seed_dl_vs_${y}.sql"; done
 for st in hr jh od; do run "seed_${st}_vs_parties.sql"; for y in 2009 2014 2019 2024; do run "seed_${st}_vs_${y}.sql"; done; done
+# Party lineage (renames, mergers, splits, breakaways; fill-only) — after every party seed
+run seed_party_lineage.sql
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
 for st in kl as; do run "seed_${st}_manifest_fixes_v1.sql"; done
 # Run-once: parties the old manifests put in the wrong alliance (Kerala, Tamil Nadu 2011, West Bengal 2011)
@@ -156,6 +158,8 @@ run seed_bihar_party_profiles.sql
 # 2026 top parties of the five states (researched, user-approved; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_party_profiles.sql"; done
 for st in dl hr jh od; do run "seed_${st}_party_profiles.sql"; done
+# Party state units and their leaders (run-once; after the leaders and person links)
+run seed_party_units_v1.sql
 run seed_party_colors_v1.sql
 # Colours for seat-winning parties still on a grey placeholder (fill-only, sourced in scraper/data/parties/colors-v2.json)
 run seed_party_colors_v2.sql

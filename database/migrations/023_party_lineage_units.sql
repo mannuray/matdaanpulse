@@ -5,6 +5,7 @@
 --   rename  — one row, new ← old (is_successor true)
 --   merger  — one row, absorber ← absorbed (is_successor true: the absorber carries the absorbed party's history)
 --   split   — one row per faction ← the old party; exactly the ECI-recognised faction has is_successor true
+--   breakaway — a new party founded by leaders who left (JJP from INLD): a note only, comparisons treat it as unrelated
 -- state_id set = the event applies only to that state's comparisons (a state unit breaking away).
 CREATE TABLE IF NOT EXISTS party_lineage (
     id             SERIAL PRIMARY KEY,
@@ -17,9 +18,16 @@ CREATE TABLE IF NOT EXISTS party_lineage (
     note           TEXT,
     source_url     TEXT,
     created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
-    CONSTRAINT party_lineage_kind CHECK (kind IN ('rename', 'merger', 'split')),
+    CONSTRAINT party_lineage_kind CHECK (kind IN ('rename', 'merger', 'split', 'breakaway')),
     CONSTRAINT party_lineage_not_self CHECK (party_id <> predecessor_id)
 );
+-- Databases that ran an earlier draft of this migration: allow 'breakaway'.
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'party_lineage_kind' AND pg_get_constraintdef(oid) LIKE '%breakaway%') THEN
+    ALTER TABLE party_lineage DROP CONSTRAINT IF EXISTS party_lineage_kind;
+    ALTER TABLE party_lineage ADD CONSTRAINT party_lineage_kind CHECK (kind IN ('rename', 'merger', 'split', 'breakaway'));
+  END IF;
+END $$;
 CREATE UNIQUE INDEX IF NOT EXISTS uq_party_lineage ON party_lineage (party_id, predecessor_id, COALESCE(state_id, 0));
 CREATE INDEX IF NOT EXISTS idx_party_lineage_predecessor ON party_lineage (predecessor_id);
 

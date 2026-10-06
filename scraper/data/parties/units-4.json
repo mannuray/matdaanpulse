@@ -1,0 +1,706 @@
+[
+ {
+  "party_id": "AAP",
+  "state_code": "GA",
+  "eci_recognition": "National",
+  "office": "Panaji",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Valmiki Naik",
+    "from_date": "2026-01-11",
+    "to_date": null,
+    "source_url": "https://www.thegoan.net/goa-news/valmiki-naik-appointed-aap-goa-president-amid-leadership-reshuffle/141782.html"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Venzy Viegas",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Venzy_Viegas"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "GA",
+  "eci_recognition": "National",
+  "office": "3rd Floor, Navelkar Arcade, Dr. Atmaram Borkar Road, Panaji 403001",
+  "website": "https://goa.bjp.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Damu Naik",
+    "from_date": "2025-01-18",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Goa"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Sadanand Shet Tanavade",
+    "from_date": "2020-01-12",
+    "to_date": "2025-01-18",
+    "source_url": "https://en.wikipedia.org/wiki/Sadanand_Shet_Tanavade"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Pramod Sawant",
+    "from_date": "2019-03-19",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/List_of_chief_ministers_of_Goa"
+   }
+  ]
+ },
+ {
+  "party_id": "GFP",
+  "state_code": "GA",
+  "eci_recognition": "State",
+  "office": null,
+  "website": "https://goaforward.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Vijai Sardesai",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Goa_Forward_Party"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Vijai Sardesai",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Goa_Forward_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "GA",
+  "eci_recognition": "National",
+  "office": "D.B. Bandodkar Marg, Panaji 403001",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Girish Chodankar",
+    "from_date": "2026-05-29",
+    "to_date": null,
+    "source_url": "https://www.heraldgoa.in/?p=476515"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Amit Patkar",
+    "from_date": null,
+    "to_date": "2026-05-29",
+    "source_url": "https://en.wikipedia.org/wiki/Goa_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Girish Chodankar",
+    "from_date": "2018-06-09",
+    "to_date": "2022-03-31",
+    "source_url": "https://en.wikipedia.org/wiki/Goa_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Yuri Alemao",
+    "from_date": "2022-09-20",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Yuri_Alemao"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Michael Lobo",
+    "from_date": "2022-03-31",
+    "to_date": "2022-07-10",
+    "source_url": "https://en.wikipedia.org/wiki/Michael_Lobo_(politician)"
+   }
+  ]
+ },
+ {
+  "party_id": "MAG",
+  "state_code": "GA",
+  "eci_recognition": "State",
+  "office": "18th June Road, Panaji 403001",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Deepak Dhavalikar",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Maharashtrawadi_Gomantak_Party"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Sudin Dhavalikar",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Maharashtrawadi_Gomantak_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "RGP",
+  "state_code": "GA",
+  "eci_recognition": "State",
+  "office": "414, 4th Floor, Kamat Towers, Patto, Panaji 403001",
+  "website": "https://revolutionarygoansparty.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Viresh Borkar",
+    "from_date": "2026-07-24",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Revolutionary_Goans_Party"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Manoj Parab",
+    "from_date": null,
+    "to_date": "2026-07-24",
+    "source_url": "https://en.wikipedia.org/wiki/Manoj_Parab"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Viresh Borkar",
+    "from_date": "2022-03-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Revolutionary_Goans_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "TMC",
+  "state_code": "GA",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Samil Volvoikar",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kiran_Kandolkar"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Kiran Kandolkar",
+    "from_date": "2022-01-19",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kiran_Kandolkar"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "MN",
+  "eci_recognition": "National",
+  "office": "Nitaipai Chuthak, Keishamthong, Imphal 795004",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "A. Sharda Devi",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.tribuneindia.com/news/india/y-khemchand-singh-elected-manipur-bjp-legislature-party-leader/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Yumnam Khemchand Singh",
+    "from_date": "2026-02-03",
+    "to_date": null,
+    "source_url": "https://www.tribuneindia.com/news/india/y-khemchand-singh-elected-manipur-bjp-legislature-party-leader/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "N. Biren Singh",
+    "from_date": "2017-03-15",
+    "to_date": "2025-02-09",
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Manipur"
+   }
+  ]
+ },
+ {
+  "party_id": "CPI",
+  "state_code": "MN",
+  "eci_recognition": "State",
+  "office": "Imphal",
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "INC",
+  "state_code": "MN",
+  "eci_recognition": "National",
+  "office": "B.T. Road, Imphal 795001",
+  "website": "https://www.pccmanipur.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Okram Ibobi Singh",
+    "from_date": "2026-02-05",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Manipur_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Keisham Meghachandra Singh",
+    "from_date": "2022-03-30",
+    "to_date": "2026-02-05",
+    "source_url": "https://en.wikipedia.org/wiki/Manipur_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "state_president",
+    "person_name": "N. Loken Singh",
+    "from_date": null,
+    "to_date": "2022-03-30",
+    "source_url": "https://www.theweek.in/wire-updates/national/2022/03/30/des41-cong-manipur.html"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Keisham Meghachandra Singh",
+    "from_date": "2026-02-05",
+    "to_date": null,
+    "source_url": "https://www.deccanherald.com/india/manipur/congress-appoints-former-cm-okram-ibobi-singh-as-its-manipur-unit-chief-3888037"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Okram Ibobi Singh",
+    "from_date": null,
+    "to_date": "2026-02-05",
+    "source_url": "https://www.deccanherald.com/india/manipur/congress-appoints-former-cm-okram-ibobi-singh-as-its-manipur-unit-chief-3888037"
+   }
+  ]
+ },
+ {
+  "party_id": "JDU",
+  "state_code": "MN",
+  "eci_recognition": "State",
+  "office": "Imphal",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Kshetrimayum Biren Singh",
+    "from_date": null,
+    "to_date": "2025-01-22",
+    "source_url": "https://www.etvbharat.com/en/!bharat/jdu-manipur-unit-withdraws-support-to-bjp-led-biren-singh-govt-enn25012204386"
+   }
+  ]
+ },
+ {
+  "party_id": "KPA",
+  "state_code": "MN",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Tongmang Haokip",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kuki_People%27s_Alliance"
+   }
+  ]
+ },
+ {
+  "party_id": "NPF",
+  "state_code": "MN",
+  "eci_recognition": "State",
+  "office": "Imphal",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Awangbow Newmai",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Awangbow_Newmai"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Losii Dikho",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Naga_People%27s_Front"
+   }
+  ]
+ },
+ {
+  "party_id": "NPP",
+  "state_code": "MN",
+  "eci_recognition": "National",
+  "office": "Imphal",
+  "website": "https://www.nppindia.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Lorho S. Pfoze",
+    "from_date": "2025-12-02",
+    "to_date": null,
+    "source_url": "https://nenow.in/?p=476709"
+   },
+   {
+    "role": "state_president",
+    "person_name": "N. Kayisii",
+    "from_date": "2021-03-16",
+    "to_date": "2025-01-18",
+    "source_url": "https://en.wikipedia.org/wiki/N._Kayisii"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Mayanglambam Rameshwar Singh",
+    "from_date": "2025-12-02",
+    "to_date": null,
+    "source_url": "https://nenow.in/?p=476709"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Sheikh Noorul Hassan",
+    "from_date": null,
+    "to_date": "2025-12-02",
+    "source_url": "https://www.deccanherald.com/india/manipur/sheikh-noorul-hassan-appointed-as-leader-of-npp-legislative-party-in-manipur-3392424"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Yumnam Joykumar Singh",
+    "from_date": "2022-03-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/National_People%27s_Party_(India)"
+   }
+  ]
+ },
+ {
+  "party_id": "AAP",
+  "state_code": "UK",
+  "eci_recognition": "National",
+  "office": "Dehradun",
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "UK",
+  "eci_recognition": "National",
+  "office": "39/29/3 Balbir Road, Dehradun 248001",
+  "website": "https://uttarakhand.bjp.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Mahendra Bhatt",
+    "from_date": "2022-07-30",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Uttarakhand"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Madan Kaushik",
+    "from_date": null,
+    "to_date": "2022-07-30",
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Uttarakhand"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Pushkar Singh Dhami",
+    "from_date": "2021-07-04",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Pushkar_Singh_Dhami"
+   }
+  ]
+ },
+ {
+  "party_id": "BSP",
+  "state_code": "UK",
+  "eci_recognition": "National",
+  "office": "Dehradun",
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "INC",
+  "state_code": "UK",
+  "eci_recognition": "National",
+  "office": "21 Rajpur Road, Dehradun 248001",
+  "website": "https://uttarakhandpradeshcongress.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Ganesh Godiyal",
+    "from_date": "2025-11-11",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Uttarakhand_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Ganesh Godiyal",
+    "from_date": "2021-07-22",
+    "to_date": "2022-04-10",
+    "source_url": "https://en.wikipedia.org/wiki/Uttarakhand_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Yashpal Arya",
+    "from_date": "2022-04-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Uttarakhand_Pradesh_Congress_Committee"
+   }
+  ]
+ },
+ {
+  "party_id": "AD",
+  "state_code": "UP",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "ADSL",
+  "state_code": "UP",
+  "eci_recognition": "State",
+  "office": "1A, Sarva Palli, The Mall Avenue, Lucknow",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "R.P. Gautam",
+    "from_date": "2025-05-29",
+    "to_date": null,
+    "source_url": "https://www.aajtak.in/uttar-pradesh/story/anupriya-patel-party-apna-dal-made-rp-gautam-state-president-he-comes-from-the-jatav-community-lclam-rpti-2251769-2025-05-29"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Rajkumar Pal",
+    "from_date": null,
+    "to_date": "2025-05-29",
+    "source_url": "https://www.aajtak.in/uttar-pradesh/story/anupriya-patel-party-apna-dal-made-rp-gautam-state-president-he-comes-from-the-jatav-community-lclam-rpti-2251769-2025-05-29"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "UP",
+  "eci_recognition": "National",
+  "office": "BJP Bhawan, 7 Vidhan Sabha Marg, Lucknow 226001",
+  "website": "https://up.bjp.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Pankaj Chaudhary",
+    "from_date": "2025-12-14",
+    "to_date": null,
+    "source_url": "https://organiser.org/2025/12/14/330286/politics/uttar-pradesh-union-mos-pankaj-chaudhary-elected-as-bjp-president-for-the-state-owes-to-fulfill-the-responsibility/"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Swatantra Dev Singh",
+    "from_date": "2019-07-16",
+    "to_date": "2022-08-25",
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Uttar_Pradesh"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Yogi Adityanath",
+    "from_date": "2017-03-19",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Uttar_Pradesh"
+   }
+  ]
+ },
+ {
+  "party_id": "BSP",
+  "state_code": "UP",
+  "eci_recognition": "National",
+  "office": "Lucknow",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Vishwanath Pal",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.patrika.com/lucknow-news/bsp-strategy-up-election-2027-akash-anand-mayawati-vishwanath-pal-20791248"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Uma Shankar Singh",
+    "from_date": "2022-03-19",
+    "to_date": "2026-08-05",
+    "source_url": "https://en.wikipedia.org/wiki/Uma_Shankar_Singh_(Uttar_Pradesh_politician)"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "UP",
+  "eci_recognition": "National",
+  "office": "Lucknow",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Aradhana Misra",
+    "from_date": "2026-10-02",
+    "to_date": null,
+    "source_url": "https://theprint.in/india/congress-appoints-aradhana-misra-mona-president-of-up-unit-imran-masood-named-working-president/3060607/"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Ajay Kumar Lallu",
+    "from_date": "2019-10-07",
+    "to_date": "2022-03-16",
+    "source_url": "https://en.wikipedia.org/wiki/Uttar_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Virendra Chaudhary",
+    "from_date": "2026-10-02",
+    "to_date": null,
+    "source_url": "https://theprint.in/india/congress-appoints-aradhana-misra-mona-president-of-up-unit-imran-masood-named-working-president/3060607/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Aradhana Misra",
+    "from_date": null,
+    "to_date": "2026-10-02",
+    "source_url": "https://theprint.in/india/congress-appoints-aradhana-misra-mona-president-of-up-unit-imran-masood-named-working-president/3060607/"
+   }
+  ]
+ },
+ {
+  "party_id": "JDL",
+  "state_code": "UP",
+  "eci_recognition": "Unrecognised",
+  "office": "Lucknow",
+  "website": "https://www.jdl.org.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Raghuraj Pratap Singh",
+    "from_date": "2018-11-30",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Jansatta_Dal_(Loktantrik)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Raghuraj Pratap Singh",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Jansatta_Dal_(Loktantrik)"
+   }
+  ]
+ },
+ {
+  "party_id": "NCP",
+  "state_code": "UP",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "NINSHAD",
+  "state_code": "UP",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sanjay Nishad",
+    "from_date": "2016-08-16",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/NISHAD_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "RLD",
+  "state_code": "UP",
+  "eci_recognition": "Unrecognised",
+  "office": "Lucknow",
+  "website": "https://www.rashtriyalokdal.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Anupam Mishra",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.amarujala.com/lucknow/rld-holds-meeting-with-bjp-president-chandrashekhar-appoints-in-charge-2026-08-01"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Ramashish Rai",
+    "from_date": "2022-05-27",
+    "to_date": "2026-08-07",
+    "source_url": "https://theprint.in/india/rld-up-chief-ramashish-rai-quits-party-citing-assaults-on-constitution/3008448/"
+   }
+  ]
+ },
+ {
+  "party_id": "SBSP",
+  "state_code": "UP",
+  "eci_recognition": "Unrecognised",
+  "office": "Rasra, Ballia",
+  "website": "https://www.sbsp.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Om Prakash Rajbhar",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Suheldev_Bharatiya_Samaj_Party"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Om Prakash Rajbhar",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Suheldev_Bharatiya_Samaj_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "SP",
+  "state_code": "UP",
+  "eci_recognition": "State",
+  "office": "19 Vikramaditya Marg, Lucknow",
+  "website": "https://www.samajwadiparty.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Shyam Lal Pal",
+    "from_date": "2024-05-06",
+    "to_date": null,
+    "source_url": "https://www.tribuneindia.com/news/uttar-pradesh/shyam-lal-pal-appointed-samajwadi-party-uttar-pradesh-president-618493"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Naresh Uttam Patel",
+    "from_date": "2017-01-01",
+    "to_date": "2024-05-06",
+    "source_url": "https://en.wikipedia.org/wiki/Naresh_Uttam_Patel"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Mata Prasad Pandey",
+    "from_date": "2024-07-28",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Leader_of_the_Opposition_in_the_Uttar_Pradesh_Legislative_Assembly"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Akhilesh Yadav",
+    "from_date": "2022-03-26",
+    "to_date": "2024-06-11",
+    "source_url": "https://en.wikipedia.org/wiki/Leader_of_the_Opposition_in_the_Uttar_Pradesh_Legislative_Assembly"
+   }
+  ]
+ }
+]

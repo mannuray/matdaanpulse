@@ -1,0 +1,779 @@
+[
+ {
+  "party_id": "AAP",
+  "state_code": "DL",
+  "eci_recognition": "National",
+  "office": "206, Deen Dayal Upadhyay Marg (Rouse Avenue), New Delhi 110002",
+  "website": "https://aamaadmiparty.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Saurabh Bharadwaj",
+    "from_date": "2025-03-21",
+    "to_date": null,
+    "source_url": "https://www.etvbharat.com/en/!state/saurabh-bhardwaj-appointed-delhi-aap-president-as-party-effects-major-overhaul-enn25032104359"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Gopal Rai",
+    "from_date": null,
+    "to_date": "2025-03-21",
+    "source_url": "https://www.newsonair.gov.in/senior-aap-leader-saurabh-bhardwaj-appointed-as-partys-delhi-convenor"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Atishi",
+    "from_date": "2025-02-23",
+    "to_date": null,
+    "source_url": "https://aamaadmiparty.org/press-release/aap-legislative-group-meeting-convened-former-cm-atishi-has-been-unanimously-elected-as-leader-of-opposition/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Atishi",
+    "from_date": "2024-09-17",
+    "to_date": "2025-02-08",
+    "source_url": "https://en.wikipedia.org/wiki/Atishi"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "DL",
+  "eci_recognition": "National",
+  "office": "14, Pandit Pant Marg, New Delhi 110001",
+  "website": "https://www.bjp.org/delhi",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Harsh Malhotra",
+    "from_date": "2026-05-28",
+    "to_date": null,
+    "source_url": "https://www.amarujala.com/india-news/bjp-appoints-new-state-presidents-for-delhi-punjab-haryana-tripura-know-why-its-important-2026-05-28"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Virendra Sachdeva",
+    "from_date": "2023-03-23",
+    "to_date": "2026-05-28",
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Delhi"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Rekha Gupta",
+    "from_date": "2025-02-19",
+    "to_date": null,
+    "source_url": "https://www.wionews.com/india-news/meet-rekha-gupta-next-chief-minister-of-delhi-set-to-take-oath-on-feb-20-8737332"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Vijender Gupta",
+    "from_date": "2024-08-05",
+    "to_date": "2025-02-08",
+    "source_url": "https://en.wikipedia.org/wiki/Vijender_Gupta"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "DL",
+  "eci_recognition": "National",
+  "office": "Rajiv Bhawan, 2 DDU Marg, New Delhi 110002",
+  "website": "https://incdelhi.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Devender Yadav",
+    "from_date": "2024-04-30",
+    "to_date": null,
+    "source_url": "https://www.tribuneindia.com/news/delhi/congress-appoints-devender-yadav-as-interim-president-of-delhi-unit-616619"
+   }
+  ]
+ },
+ {
+  "party_id": "JDU",
+  "state_code": "DL",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Shailendra Kumar",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.etvbharat.com/en/!bharat/jdu-leader-lalan-singh-attacks-aap-government-ahead-of-delhi-assembly-polls-enn25012704976"
+   }
+  ]
+ },
+ {
+  "party_id": "LJPRV",
+  "state_code": "DL",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "AAP",
+  "state_code": "HR",
+  "eci_recognition": "National",
+  "office": null,
+  "website": "https://aamaadmiparty.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sushil Gupta",
+    "from_date": "2022-05-25",
+    "to_date": null,
+    "source_url": "https://m.tribuneindia.com/news/haryana/rajya-sabha-mp-sushil-gupta-is-new-aap-haryana-president-511147"
+   }
+  ]
+ },
+ {
+  "party_id": "ASPKR",
+  "state_code": "HR",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "HR",
+  "eci_recognition": "National",
+  "office": "30, HUDA Complex, Rohtak",
+  "website": "https://www.bjpharyana.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Archana Gupta",
+    "from_date": "2026-05-28",
+    "to_date": null,
+    "source_url": "https://www.amarujala.com/india-news/bjp-appoints-new-state-presidents-for-delhi-punjab-haryana-tripura-know-why-its-important-2026-05-28"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Mohan Lal Badoli",
+    "from_date": "2024-07-09",
+    "to_date": "2026-05-28",
+    "source_url": "https://www.newsonair.gov.in/bjp-appoints-mohan-lal-badoli-as-haryana-state-party-president/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Nayab Singh Saini",
+    "from_date": "2024-03-12",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Nayab_Singh_Saini"
+   }
+  ]
+ },
+ {
+  "party_id": "BSP",
+  "state_code": "HR",
+  "eci_recognition": "National",
+  "office": null,
+  "website": "https://www.bspindia.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Krishan Jamalpur",
+    "from_date": "2025-01-28",
+    "to_date": null,
+    "source_url": "https://www.amarujala.com/haryana/hisar/krishna-jamalpur-appointed-state-president-of-bsp-hisar-news-c-21-hsr1020-552970-2025-01-28"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIM",
+  "state_code": "HR",
+  "eci_recognition": "National",
+  "office": null,
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "INC",
+  "state_code": "HR",
+  "eci_recognition": "National",
+  "office": "Kothi No. 140, Sector 9-B, Chandigarh 160009",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Rao Narender Singh",
+    "from_date": "2025-09-29",
+    "to_date": null,
+    "source_url": "https://www.tribuneindia.com/news/haryana/congress-appoints-rao-narender-singh-as-state-party-chief-hooda-named-clp-leader"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Udai Bhan",
+    "from_date": "2022-04-27",
+    "to_date": "2025-09-28",
+    "source_url": "https://en.wikipedia.org/wiki/Haryana_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Bhupinder Singh Hooda",
+    "from_date": "2025-09-29",
+    "to_date": null,
+    "source_url": "https://www.tribuneindia.com/news/haryana/congress-appoints-rao-narender-singh-as-state-party-chief-hooda-named-clp-leader"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Bhupinder Singh Hooda",
+    "from_date": null,
+    "to_date": "2024-10-08",
+    "source_url": "https://thewire.in/politics/haryana-hooda-back-as-clp-leader-but-congress-makes-a-tactical-shift-with-obc-state-party-president"
+   }
+  ]
+ },
+ {
+  "party_id": "INLD",
+  "state_code": "HR",
+  "eci_recognition": "State",
+  "office": "MLA Flat No. 47, Sector 4, Chandigarh 160004",
+  "website": "http://www.inld.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Rampal Majra",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.theweek.in/wire-updates/national/2025/03/25/des99-hr-inld.html"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Aditya Devilal",
+    "from_date": "2024-10-29",
+    "to_date": null,
+    "source_url": "https://newsarenaindia.com/states/aditya-devi-lal-new-leader-of-inld/26413"
+   }
+  ]
+ },
+ {
+  "party_id": "JJP2",
+  "state_code": "HR",
+  "eci_recognition": "State",
+  "office": "18, Janpath, New Delhi",
+  "website": "https://www.jannayakjantaparty.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Brij Sharma",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.tribuneindia.com/news/haryana/jjp-to-launch-statewide-membership-drive-from-june-15"
+   }
+  ]
+ },
+ {
+  "party_id": "AP1",
+  "state_code": "JH",
+  "eci_recognition": "State",
+  "office": "Harmu Road, Ranchi 834001",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sudesh Mahto",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/AJSU_Party"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Nirmal Mahto",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/AJSU_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "JH",
+  "eci_recognition": "National",
+  "office": "Dr. Syama Prasad Mookerji Bhawan, M-7, Harmu Housing Colony, Ranchi 834002",
+  "website": "https://bjpjharkhand.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Aditya Sahu",
+    "from_date": "2026-01-14",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Jharkhand"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Babulal Marandi",
+    "from_date": "2023-07-04",
+    "to_date": "2026-01-14",
+    "source_url": "https://en.wikipedia.org/wiki/Babulal_Marandi"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Babulal Marandi",
+    "from_date": "2025-03-05",
+    "to_date": null,
+    "source_url": "https://www.newsonair.gov.in/jharkhand-babulal-marandi-elected-as-leader-of-bjp-legislative-party/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Amar Kumar Bauri",
+    "from_date": "2023-10-16",
+    "to_date": "2024-11-23",
+    "source_url": "https://en.wikipedia.org/wiki/Amar_Kumar_Bauri"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIML",
+  "state_code": "JH",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": "https://cpiml.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Manoj Bhakt",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.newsarenaindia.com/states/jharkhand-seat-row-cpi-ml-demands-fair-share-in-india-bloc/26305"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "JH",
+  "eci_recognition": "National",
+  "office": "Congress Bhawan, Swami Shraddhanand Marg, Ranchi 834001",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Keshav Mahto Kamlesh",
+    "from_date": "2024-08-16",
+    "to_date": null,
+    "source_url": "https://www.tribuneindia.com/news/j-k/congress-appoints-tariq-hameed-karra-as-j-k-unit-president-keshav-mahto-kamlesh-named-party-chief-in-jharkhand"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Pradeep Yadav",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Pradeep_Yadav_(Indian_politician)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Rameshwar Oraon",
+    "from_date": null,
+    "to_date": "2024-11-23",
+    "source_url": "https://en.wikipedia.org/wiki/Pradeep_Yadav_(Indian_politician)"
+   }
+  ]
+ },
+ {
+  "party_id": "JDU",
+  "state_code": "JH",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Khiru Mahto",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Khiru_Mahto"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Saryu Roy",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Saryu_Roy"
+   }
+  ]
+ },
+ {
+  "party_id": "JLKM",
+  "state_code": "JH",
+  "eci_recognition": "Unrecognised",
+  "office": "Indrapuri Colony, Badhraibera, Sector 12, Bokaro",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Jairam Mahto",
+    "from_date": "2023-06-18",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Jharkhand_Loktantrik_Krantikari_Morcha"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Jairam Mahto",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Jharkhand_Loktantrik_Krantikari_Morcha"
+   }
+  ]
+ },
+ {
+  "party_id": "JMM",
+  "state_code": "JH",
+  "eci_recognition": "State",
+  "office": "Bariatu Road, Ranchi 834008",
+  "website": "https://jmmparty.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Hemant Soren",
+    "from_date": "2025-04-15",
+    "to_date": null,
+    "source_url": "https://ianslive.in/hemant-soren-takes-charge-of-jmm-elected-party-chief-at-13th-convention--20250415181132"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Shibu Soren",
+    "from_date": "1987-08-09",
+    "to_date": "2025-04-15",
+    "source_url": "https://en.wikipedia.org/wiki/Jharkhand_Mukti_Morcha"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Hemant Soren",
+    "from_date": "2024-07-04",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Hemant_Soren"
+   }
+  ]
+ },
+ {
+  "party_id": "LJPRV",
+  "state_code": "JH",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Janardan Paswan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://patnapress.com/chirag-paswan-rallies-for-ljp-r-candidate-in-chatra-calls-for-ndas-return-to-power-in-jharkhand/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Janardan Paswan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://prsindia.org/mlatrack/janardhan-paswan"
+   }
+  ]
+ },
+ {
+  "party_id": "RJD",
+  "state_code": "JH",
+  "eci_recognition": "State",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sanjay Singh Yadav",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.theweek.in/wire-updates/national/2025/06/16/cal1-jh-rjd.html"
+   }
+  ]
+ },
+ {
+  "party_id": "BJD",
+  "state_code": "OD",
+  "eci_recognition": "State",
+  "office": "Sankha Bhawan, Plot No. 798, Unit-VI, Bhubaneswar 751001",
+  "website": "https://www.bjdodisha.org.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Naveen Patnaik",
+    "from_date": "1997-12-26",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Biju_Janata_Dal"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Naveen Patnaik",
+    "from_date": "2000-03-05",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Biju_Janata_Dal"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "OD",
+  "eci_recognition": "National",
+  "office": "4R-3/2, Unit-3, Janpath, Bhubaneswar 751001",
+  "website": "https://www.bjp.org/odisha",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Manmohan Samal",
+    "from_date": "2023-03-24",
+    "to_date": null,
+    "source_url": "https://www.etvbharat.com/en/!state/bjp-reappoints-manmohan-samal-as-its-odisha-unit-president-enn25070802851"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Mohan Charan Majhi",
+    "from_date": "2024-06-11",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Odisha"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Jayanarayan Mishra",
+    "from_date": "2022-07-30",
+    "to_date": "2024-06-04",
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Odisha"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIM",
+  "state_code": "OD",
+  "eci_recognition": "National",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Ali Kishor Patnaik",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://cpim.org/odisha-cpim-state-conference-resolves-strengthen-organisation/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Lakshman Munda",
+    "from_date": "2024-06-04",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Lakshman_Munda"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "OD",
+  "eci_recognition": "National",
+  "office": "Congress Bhawan, Unit-2, Bhubaneswar 751009",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Bhakta Charan Das",
+    "from_date": "2025-02-11",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Odisha_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Sarat Pattanayak",
+    "from_date": "2022-05-23",
+    "to_date": "2024-07-21",
+    "source_url": "https://odishabytes.com/odisha-pradesh-congress-committee-dissolved-rama-kadam-appointed-clp-leader/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Rama Chandra Kadam",
+    "from_date": "2024-07-21",
+    "to_date": null,
+    "source_url": "https://odishabytes.com/odisha-pradesh-congress-committee-dissolved-rama-kadam-appointed-clp-leader/"
+   }
+  ]
+ },
+ {
+  "party_id": "AAP",
+  "state_code": "PB",
+  "eci_recognition": "National",
+  "office": "Chandigarh",
+  "website": "https://aamaadmiparty.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Aman Arora",
+    "from_date": "2024-11-22",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Aam_Aadmi_Party_%E2%80%93_Punjab"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Bhagwant Mann",
+    "from_date": null,
+    "to_date": "2024-11-22",
+    "source_url": "https://en.wikipedia.org/wiki/Aam_Aadmi_Party_%E2%80%93_Punjab"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Bhagwant Mann",
+    "from_date": "2022-03-11",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Aam_Aadmi_Party_%E2%80%93_Punjab"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Harpal Singh Cheema",
+    "from_date": "2018-07-27",
+    "to_date": "2022-03-10",
+    "source_url": "https://en.wikipedia.org/wiki/Harpal_Singh_Cheema"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "PB",
+  "eci_recognition": "National",
+  "office": "Dr. Syama Prasad Mookerjee Smarak Bhawan, Dakshin Marg, Sector 37-A, Chandigarh 160036",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Kewal Singh Dhillon",
+    "from_date": "2026-05-28",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Punjab"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Ashwani Sharma",
+    "from_date": "2020-01-17",
+    "to_date": "2023-07-04",
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Punjab"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Ashwani Sharma",
+    "from_date": "2022-04-01",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Punjab_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "BSP",
+  "state_code": "PB",
+  "eci_recognition": "National",
+  "office": null,
+  "website": "https://www.bspindia.org",
+  "roles": [
+   {
+    "role": "legislature_leader",
+    "person_name": "Nachhatar Pal",
+    "from_date": "2022-03-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Punjab_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "PB",
+  "eci_recognition": "National",
+  "office": "Punjab Congress Bhawan, Sector 15-A, Chandigarh 160015",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Pargat Singh",
+    "from_date": "2026-10-02",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Punjab_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Navjot Singh Sidhu",
+    "from_date": "2021-07-18",
+    "to_date": "2022-03-16",
+    "source_url": "https://en.wikipedia.org/wiki/Punjab_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Partap Singh Bajwa",
+    "from_date": "2022-04-09",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Punjab_Assembly"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Charanjit Singh Channi",
+    "from_date": "2021-09-19",
+    "to_date": "2022-03-11",
+    "source_url": "https://en.wikipedia.org/wiki/Charanjit_Singh_Channi"
+   }
+  ]
+ },
+ {
+  "party_id": "PLCP",
+  "state_code": "PB",
+  "eci_recognition": "Unrecognised",
+  "office": "SCO 61-63, Sector 9-D, Chandigarh (defunct)",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Amarinder Singh",
+    "from_date": "2021-11-02",
+    "to_date": "2022-09-19",
+    "source_url": "https://en.wikipedia.org/wiki/Punjab_Lok_Congress"
+   }
+  ]
+ },
+ {
+  "party_id": "SAD",
+  "state_code": "PB",
+  "eci_recognition": "State",
+  "office": "Block 6, Madhya Marg, Sector 28, Chandigarh",
+  "website": "https://www.shiromaniakalidal.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sukhbir Singh Badal",
+    "from_date": "2025-04-12",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Shiromani_Akali_Dal"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Sukhbir Singh Badal",
+    "from_date": "2008-01-31",
+    "to_date": "2024-11-16",
+    "source_url": "https://en.wikipedia.org/wiki/Shiromani_Akali_Dal"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Ganieve Kaur Majithia",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Punjab_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "SADS",
+  "state_code": "PB",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sukhdev Singh Dhindsa",
+    "from_date": "2021-05-17",
+    "to_date": "2024-03-05",
+    "source_url": "https://en.wikipedia.org/wiki/Shiromani_Akali_Dal_(Sanyukt)"
+   }
+  ]
+ }
+]

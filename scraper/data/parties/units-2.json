@@ -1,0 +1,927 @@
+[
+ {
+  "party_id": "BDJS",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Thushar Vellappally",
+    "from_date": "2015-12-01",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharath_Dharma_Jana_Sena"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "KL",
+  "eci_recognition": "National",
+  "office": "Thiruvananthapuram",
+  "website": "https://www.keralabjp.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Rajeev Chandrasekhar",
+    "from_date": "2025-03-24",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Kerala"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "B. B. Gopakumar",
+    "from_date": "2026-05-27",
+    "to_date": null,
+    "source_url": "https://www.onmanorama.com/news/kerala/2026/05/27/gopakumar-leads-bjp-kerala-assembly.html"
+   }
+  ]
+ },
+ {
+  "party_id": "CMPKSC",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": "MVR Bhavan, Chitra Nagar, Pattom, Thiruvananthapuram 695037",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "C. P. John",
+    "from_date": "2014-03-01",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Communist_Marxist_Party"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "C. P. John",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Communist_Marxist_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "CPI",
+  "state_code": "KL",
+  "eci_recognition": "State",
+  "office": "MN Smarakam, Thiruvananthapuram",
+  "website": "https://cpikerala.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Binoy Viswam",
+    "from_date": "2023-12-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Binoy_Viswam"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "K. Rajan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Kerala_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIM",
+  "state_code": "KL",
+  "eci_recognition": "National",
+  "office": "AKG Centre, Thiruvananthapuram",
+  "website": "https://cpimkerala.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "M. V. Govindan",
+    "from_date": "2022-08-31",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/M._V._Govindan"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Pinarayi Vijayan",
+    "from_date": "2016-05-25",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Pinarayi_Vijayan"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "KL",
+  "eci_recognition": "National",
+  "office": "Indira Bhavan, Sasthamangalam, Thiruvananthapuram",
+  "website": "https://kpcc.org.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sunny Joseph",
+    "from_date": "2025-05-08",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Sunny_Joseph_(politician)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "V. D. Satheesan",
+    "from_date": "2021-05-22",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/V._D._Satheesan"
+   }
+  ]
+ },
+ {
+  "party_id": "INCS",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": "Ram Raj Bhavan, Manikkath Road, Kochi 682016",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Kadannappalli Ramachandran",
+    "from_date": "1990-01-01",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kadannappalli_Ramachandran"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Kadannappalli Ramachandran",
+    "from_date": "2016-05-19",
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/Kadannappalli_Ramachandran"
+   }
+  ]
+ },
+ {
+  "party_id": "INL",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "legislature_leader",
+    "person_name": "Ahamed Devarkovil",
+    "from_date": "2021-05-20",
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/Ahamed_Devarkovil"
+   }
+  ]
+ },
+ {
+  "party_id": "ISJD",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": "Palakkad",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Mathew T. Thomas",
+    "from_date": "2026-01-17",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Indian_Socialist_Janata_Dal"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Mathew T. Thomas",
+    "from_date": "2026-01-17",
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/Mathew_T._Thomas"
+   }
+  ]
+ },
+ {
+  "party_id": "IUML",
+  "state_code": "KL",
+  "eci_recognition": "State",
+  "office": "Kozhikode",
+  "website": "https://iumlkerala.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sayyid Sadiq Ali Shihab Thangal",
+    "from_date": "2022-03-07",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Sayyid_Sadiq_Ali_Shihab_Thangal"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "P. K. Kunhalikutty",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Kerala_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "KEC",
+  "state_code": "KL",
+  "eci_recognition": "State",
+  "office": "Kottayam",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "P. J. Joseph",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kerala_Congress"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "P. J. Joseph",
+    "from_date": null,
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/15th_Kerala_Assembly"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Mons Joseph",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Kerala_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "KECB",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": "P. T. Chacko Smaraka Mandiram, S. S. Kovil Road, Thampanoor, Thiruvananthapuram 695001",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "K. B. Ganesh Kumar",
+    "from_date": "2021-05-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(B)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "K. B. Ganesh Kumar",
+    "from_date": "2021-05-02",
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(B)"
+   }
+  ]
+ },
+ {
+  "party_id": "KECJ",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": "Central Committee Office, T. B. Road, Kottayam",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Vakkanad Radhakrishnan",
+    "from_date": "2020-06-26",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(Jacob)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Anoop Jacob",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(Jacob)"
+   }
+  ]
+ },
+ {
+  "party_id": "KECM",
+  "state_code": "KL",
+  "eci_recognition": "State",
+  "office": "State Committee Office, Near Fire Station, Kottayam",
+  "website": "https://www.keralacongressm.co.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Jose K. Mani",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(M)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Roshy Augustine",
+    "from_date": null,
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/Kerala_Congress_(M)"
+   }
+  ]
+ },
+ {
+  "party_id": "KRSPLM",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Kovoor Kunjumon",
+    "from_date": "2016-01-01",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Revolutionary_Socialist_Party_(Leninist)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Kovoor Kunjumon",
+    "from_date": "2016-05-01",
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/Kovoor_Kunjumon"
+   }
+  ]
+ },
+ {
+  "party_id": "NCPSP",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Thomas K. Thomas",
+    "from_date": "2025-02-28",
+    "to_date": null,
+    "source_url": "https://www.onmanorama.com/news/kerala/2025/02/28/kuttanad-mla-thomas-k-thomas-appointed-ncp-kerala-chief.html"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "A. K. Saseendran",
+    "from_date": null,
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/A._K._Saseendran"
+   }
+  ]
+ },
+ {
+  "party_id": "RJD",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": "Kozhikode",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "M. V. Shreyams Kumar",
+    "from_date": "2023-10-12",
+    "to_date": null,
+    "source_url": "https://www.onmanorama.com/news/kerala/2023/10/12/ljd-rjd-merger-kozhikode.html"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "K. P. Mohanan",
+    "from_date": "2023-10-12",
+    "to_date": "2026-05-04",
+    "source_url": "https://www.onmanorama.com/news/kerala/2026/02/09/kerala-rjd-chief-mv-shreyams-kumar-says-no-plans-to-contest-in-assembly-polls.amp.html"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "P. K. Praveen",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://patnapress.com/rjd-kerala-result-kuthuparamba-pk-praveen-victory/"
+   }
+  ]
+ },
+ {
+  "party_id": "RMPI",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": "Onchiyam, Kozhikode district",
+  "website": null,
+  "roles": [
+   {
+    "role": "legislature_leader",
+    "person_name": "K. K. Rema",
+    "from_date": "2021-05-02",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/K._K._Rema"
+   }
+  ]
+ },
+ {
+  "party_id": "RSP",
+  "state_code": "KL",
+  "eci_recognition": "State",
+  "office": "Thiruvananthapuram",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Shibu Baby John",
+    "from_date": "2023-02-21",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Shibu_Baby_John"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Shibu Baby John",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Kerala_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "TP",
+  "state_code": "KL",
+  "eci_recognition": "Unrecognised",
+  "office": "Kizhakkambalam, Ernakulam district",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sabu M. Jacob",
+    "from_date": "2015-05-11",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Twenty20_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "AIADMK",
+  "state_code": "TN",
+  "eci_recognition": "State",
+  "office": "Puratchi Thalaivar M. G. R. Maaligai, 226 V. P. Raman Salai, Royapettah, Chennai 600014",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Edappadi K. Palaniswami",
+    "from_date": "2022-07-11",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/All_India_Anna_Dravida_Munnetra_Kazhagam"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Edappadi K. Palaniswami",
+    "from_date": "2021-05-11",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/List_of_leaders_of_the_opposition_in_the_Tamil_Nadu_Legislative_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "AIPTMMK",
+  "state_code": "TN",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "V. K. Sasikala",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/All_India_Puratchi_Thalaivar_Makkal_Munnettra_Kazhagam"
+   }
+  ]
+ },
+ {
+  "party_id": "AJPK",
+  "state_code": "TN",
+  "eci_recognition": "Unrecognised",
+  "office": "Tindivanam, Villupuram district",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "S. Ramadoss",
+    "from_date": null,
+    "to_date": "2026-06-24",
+    "source_url": "https://en.wikipedia.org/wiki/Anaithindhiya_Jananayaka_Padhugappu_Kazhagam"
+   }
+  ]
+ },
+ {
+  "party_id": "AMMK",
+  "state_code": "TN",
+  "eci_recognition": "Unrecognised",
+  "office": "Adyar, Chennai",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "T. T. V. Dhinakaran",
+    "from_date": "2018-03-15",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Amma_Makkal_Munnettra_Kazagam"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "TN",
+  "eci_recognition": "National",
+  "office": "Kamalalayam, 19 Vaidyaraman Street, T. Nagar, Chennai 600017",
+  "website": "https://tamilnadu.bjp.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Nainar Nagendran",
+    "from_date": "2025-04-12",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Tamil_Nadu"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "M. Bhojarajan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/17th_Tamil_Nadu_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "CPI",
+  "state_code": "TN",
+  "eci_recognition": "State",
+  "office": "Chennai",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "M. Veerapandian",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIM",
+  "state_code": "TN",
+  "eci_recognition": "National",
+  "office": "27 Vaidyaraman Street, T. Nagar, Chennai 600017",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "P. Shanmugam",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Communist_Party_of_India_(Marxist),_Tamil_Nadu"
+   }
+  ]
+ },
+ {
+  "party_id": "DMDK",
+  "state_code": "TN",
+  "eci_recognition": "State",
+  "office": "Captain Aalayam, 125/7 Jawaharlal Nehru Salai, Koyambedu, Chennai 600107",
+  "website": "https://www.dmdkparty.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Premallatha Vijayakant",
+    "from_date": "2023-12-14",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Desiya_Murpokku_Dravida_Kazhagam"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Premallatha Vijayakant",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/17th_Tamil_Nadu_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "DMK",
+  "state_code": "TN",
+  "eci_recognition": "State",
+  "office": "Anna Arivalayam, Teynampet, Chennai",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "M. K. Stalin",
+    "from_date": "2018-08-28",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/M._K._Stalin"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "M. K. Stalin",
+    "from_date": "2021-05-07",
+    "to_date": "2026-05-09",
+    "source_url": "https://en.wikipedia.org/wiki/M._K._Stalin"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Udhayanidhi Stalin",
+    "from_date": "2026-05-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Udhayanidhi_Stalin"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "TN",
+  "eci_recognition": "National",
+  "office": "Sathyamurthy Bhavan, Chennai",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "K. Selvaperunthagai",
+    "from_date": "2024-02-17",
+    "to_date": "2026-06-27",
+    "source_url": "https://www.theweek.in/news/india/2026/06/27/tamil-nadu-congress-manickam-tagore-appointment.html"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Manickam Tagore",
+    "from_date": "2026-06-27",
+    "to_date": null,
+    "source_url": "https://www.theweek.in/news/india/2026/06/27/tamil-nadu-congress-manickam-tagore-appointment.html"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "S. Rajeshkumar",
+    "from_date": null,
+    "to_date": "2026-08-14",
+    "source_url": "https://www.dtnext.in/news/tamilnadu/tharahai-cuthbert-appointed-congress-legislature-party-leader-in-tamil-nadu"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Tharahai Cuthbert",
+    "from_date": "2026-08-14",
+    "to_date": null,
+    "source_url": "https://www.dtnext.in/news/tamilnadu/tharahai-cuthbert-appointed-congress-legislature-party-leader-in-tamil-nadu"
+   }
+  ]
+ },
+ {
+  "party_id": "IUML",
+  "state_code": "TN",
+  "eci_recognition": "Unrecognised",
+  "office": "Quaid-e-Millath Manzil, 36 Maraikayar Lebbai Street, Chennai",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "K. M. Kader Mohideen",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election"
+   }
+  ]
+ },
+ {
+  "party_id": "PMK",
+  "state_code": "TN",
+  "eci_recognition": "Unrecognised",
+  "office": "Tindivanam, Villupuram district",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Anbumani Ramadoss",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Pattali_Makkal_Katchi"
+   }
+  ]
+ },
+ {
+  "party_id": "TVK",
+  "state_code": "TN",
+  "eci_recognition": "State",
+  "office": "Panaiyur, Chennai",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Vijay",
+    "from_date": "2024-02-02",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Tamilaga_Vettri_Kazhagam"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Vijay",
+    "from_date": "2026-05-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/17th_Tamil_Nadu_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "VCK",
+  "state_code": "TN",
+  "eci_recognition": "State",
+  "office": "Chennai",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Thol. Thirumavalavan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Viduthalai_Chiruthaigal_Katchi"
+   }
+  ]
+ },
+ {
+  "party_id": "AIADMK",
+  "state_code": "PY",
+  "eci_recognition": "State",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "A. Anbalagan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://newsonair.gov.in/puducherry-aiadmk-mla-a-anbalagan-appointed-as-pro-tem-assembly-speaker/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "A. Anbalagan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Puducherry_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "AINRC",
+  "state_code": "PY",
+  "eci_recognition": "State",
+  "office": "65/6, E.C.R. Salai, Pakkamudayanpet, Pondicherry 605008",
+  "website": "https://allindianrcongress.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "N. Rangasamy",
+    "from_date": "2011-02-07",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/All_India_N.R._Congress"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "N. Rangasamy",
+    "from_date": "2021-05-07",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Puducherry_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "PY",
+  "eci_recognition": "National",
+  "office": "Pandit Deendayal Upadhyaya Bhavan, Plot 45-46, 3rd Cross, Sithananda Nagar, Pondicherry 605005",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "V. P. Ramalingam",
+    "from_date": "2025-06-30",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Puducherry"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "A. Namassivayam",
+    "from_date": "2021-05-07",
+    "to_date": null,
+    "source_url": "https://organiser.org/2021/05/07/24379/bharat/a-namassivayam-elected-floor-leader-of-bjp-in-puducherry-assembly/"
+   }
+  ]
+ },
+ {
+  "party_id": "DMK",
+  "state_code": "PY",
+  "eci_recognition": "State",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "R. Siva",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.newsonair.gov.in/puducherry-elections-political-parties-shift-to-campaign-mode-after-nomination-scrutiny"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "R. Siva",
+    "from_date": "2021-05-08",
+    "to_date": "2026-05-04",
+    "source_url": "https://en.wikipedia.org/wiki/R._Siva"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "A. M. H. Nazeem",
+    "from_date": "2026-05-13",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Fifth_Rangaswamy_ministry"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "PY",
+  "eci_recognition": "National",
+  "office": "Pondicherry",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "V. Vaithilingam",
+    "from_date": "2023-06-09",
+    "to_date": "2026-05-08",
+    "source_url": "https://en.wikipedia.org/wiki/Puducherry_Pradesh_Congress_Committee"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "P. Karthikeyan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Puducherry_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "LJK",
+  "state_code": "PY",
+  "eci_recognition": "Unrecognised",
+  "office": "191, Villianur Main Rd, Pavazha Nagar, Reddiarpalayam, Puducherry 605010",
+  "website": "https://ljkofficial.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Jose Charles Martin",
+    "from_date": "2025-12-14",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Latchiya_Jananayaka_Katchi"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Jose Charles Martin",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Latchiya_Jananayaka_Katchi"
+   }
+  ]
+ },
+ {
+  "party_id": "NYMK",
+  "state_code": "PY",
+  "eci_recognition": "Unrecognised",
+  "office": "Puducherry",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "G. Nehru Kuppusamy",
+    "from_date": "2025-10-27",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/G._Nehru_Kuppusamy"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "G. Nehru Kuppusamy",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Puducherry_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "TVK",
+  "state_code": "PY",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": "https://tvkvijay.com",
+  "roles": [
+   {
+    "role": "legislature_leader",
+    "person_name": "A. K. Sai J. Saravanan Kumar",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Puducherry_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "VCK",
+  "state_code": "PY",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": []
+ }
+]

@@ -1,0 +1,646 @@
+[
+ {
+  "party_id": "AGP",
+  "state_code": "AS",
+  "eci_recognition": "State",
+  "office": "AGP Complex, Gopinath Bordoloi Road, Ambari, Guwahati - 781001",
+  "website": "https://agpofficial.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Atul Bora",
+    "from_date": "2014-07-15",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Asom_Gana_Parishad"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Atul Bora",
+    "from_date": "2026-05-06",
+    "to_date": null,
+    "source_url": "https://www.theweek.in/wire-updates/national/2026/05/06/assam-atul-bora-unanimously-elected-agp-legislature-party-leader.html"
+   }
+  ]
+ },
+ {
+  "party_id": "AIUDF",
+  "state_code": "AS",
+  "eci_recognition": "State",
+  "office": "No.3 Friends Path, Hatigaon, Guwahati - 781038",
+  "website": "http://www.aiudf.org/",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Badruddin Ajmal",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/All_India_United_Democratic_Front"
+   }
+  ]
+ },
+ {
+  "party_id": "AJP",
+  "state_code": "AS",
+  "eci_recognition": "Unrecognised",
+  "office": "H.No. 33, 1st Floor, Lamb Road, Guwahati - 781001",
+  "website": "https://assamjatiyaparishad.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Lurinjyoti Gogoi",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Assam_Jatiya_Parishad"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "AS",
+  "eci_recognition": "National",
+  "office": "Guwahati",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Dilip Saikia",
+    "from_date": "2025-01-17",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Dilip_Saikia"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Himanta Biswa Sarma",
+    "from_date": "2021-05-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Himanta_Biswa_Sarma"
+   }
+  ]
+ },
+ {
+  "party_id": "BOPF",
+  "state_code": "AS",
+  "eci_recognition": "State",
+  "office": "Kokrajhar",
+  "website": "https://www.bpfassam.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Hagrama Mohilary",
+    "from_date": "2005-12-05",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bodoland_People%27s_Front"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIM",
+  "state_code": "AS",
+  "eci_recognition": "National",
+  "office": "Guwahati",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Suprakash Talukdar",
+    "from_date": "2022-02-17",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Suprakash_Talukdar"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIML",
+  "state_code": "AS",
+  "eci_recognition": "Unrecognised",
+  "office": null,
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "INC",
+  "state_code": "AS",
+  "eci_recognition": "National",
+  "office": "Rajiv Bhawan, Guwahati",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Gaurav Gogoi",
+    "from_date": "2025-05-26",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Gaurav_Gogoi"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Debabrata Saikia",
+    "from_date": null,
+    "to_date": "2026-05-26",
+    "source_url": "https://en.wikipedia.org/wiki/Debabrata_Saikia"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Wazed Ali Choudhury",
+    "from_date": "2026-05-26",
+    "to_date": null,
+    "source_url": "https://nenow.in/north-east-news/assam-congress-appoints-wazed-ali-choudhury-as-clp-leader-joy-prakash-das-as-deputy-leader.html"
+   }
+  ]
+ },
+ {
+  "party_id": "RJRD",
+  "state_code": "AS",
+  "eci_recognition": "Unrecognised",
+  "office": "House No. 1, Near Modern High School, Mathgharia, Guwahati - 781020",
+  "website": "https://www.raijordal.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Akhil Gogoi",
+    "from_date": "2020-10-02",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Raijor_Dal"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Akhil Gogoi",
+    "from_date": "2021-05-02",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Raijor_Dal"
+   }
+  ]
+ },
+ {
+  "party_id": "TMC",
+  "state_code": "AS",
+  "eci_recognition": "Unrecognised",
+  "office": "Guwahati",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sherman Ali Ahmed",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://deccanherald.com/india/assam/staying-firm-through-tough-times-led-by-lone-mla-assam-trinamool-decides-to-stay-with-mamata-banerjee-amid-turmoil-4077689"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Sherman Ali Ahmed",
+    "from_date": "2026-05-04",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Sherman_Ali_Ahmed"
+   }
+  ]
+ },
+ {
+  "party_id": "AIMIM",
+  "state_code": "BR",
+  "eci_recognition": "Unrecognised",
+  "office": "Patna",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Akhtarul Iman",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Akhtarul_Iman"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Akhtarul Iman",
+    "from_date": "2020-11-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Akhtarul_Iman"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "BR",
+  "eci_recognition": "National",
+  "office": "8, Veerchand Patel Path, Patna",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Dilip Kumar Jaiswal",
+    "from_date": "2024-07-26",
+    "to_date": "2025-12-15",
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Bihar"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Sanjay Saraogi",
+    "from_date": "2025-12-15",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party,_Bihar"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Samrat Choudhary",
+    "from_date": "2024-01-28",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Samrat_Choudhary"
+   }
+  ]
+ },
+ {
+  "party_id": "BSP",
+  "state_code": "BR",
+  "eci_recognition": "National",
+  "office": "Patna",
+  "website": null,
+  "roles": [
+   {
+    "role": "legislature_leader",
+    "person_name": "Satish Kumar Singh Yadav",
+    "from_date": "2025-11-14",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bihar_Legislative_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "CPI",
+  "state_code": "BR",
+  "eci_recognition": "Unrecognised",
+  "office": "Patna",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Ram Naresh Pandey",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Ram_Naresh_Pandey"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIM",
+  "state_code": "BR",
+  "eci_recognition": "National",
+  "office": "Patna",
+  "website": null,
+  "roles": [
+   {
+    "role": "legislature_leader",
+    "person_name": "Ajay Kumar",
+    "from_date": "2025-11-14",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bihar_Legislative_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIML",
+  "state_code": "BR",
+  "eci_recognition": "State",
+  "office": "Patna",
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "HAMS",
+  "state_code": "BR",
+  "eci_recognition": "Unrecognised",
+  "office": "12, Strand Road, Patna - 800015",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Santosh Kumar Suman",
+    "from_date": "2022-04-26",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Santosh_Kumar_Suman"
+   }
+  ]
+ },
+ {
+  "party_id": "IIP",
+  "state_code": "BR",
+  "eci_recognition": "Unrecognised",
+  "office": "Patna",
+  "website": "https://iip.org.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Indrajeet Prasad Gupta",
+    "from_date": "2025-10-11",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Indian_Inclusive_Party"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Indrajeet Prasad Gupta",
+    "from_date": "2025-11-14",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Indian_Inclusive_Party"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "BR",
+  "eci_recognition": "National",
+  "office": "Sadaqat Ashram, Patna - 800010",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Rajesh Kumar",
+    "from_date": "2025-03-18",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bihar_Pradesh_Congress_Committee"
+   }
+  ]
+ },
+ {
+  "party_id": "JDU",
+  "state_code": "BR",
+  "eci_recognition": "State",
+  "office": "Patna",
+  "website": "https://jdu.org.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Umesh Singh Kushwaha",
+    "from_date": "2021-01-10",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Umesh_Singh_Kushwaha"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Nitish Kumar",
+    "from_date": null,
+    "to_date": "2026-04-15",
+    "source_url": "https://en.wikipedia.org/wiki/Nitish_Kumar"
+   }
+  ]
+ },
+ {
+  "party_id": "LJPRV",
+  "state_code": "BR",
+  "eci_recognition": "State",
+  "office": "1, Wheeler Road, Patna - 800001",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Raju Tiwari",
+    "from_date": "2021-10-05",
+    "to_date": "2026-08-26",
+    "source_url": "https://en.wikipedia.org/wiki/Raju_Tiwari"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Surendra Vivek",
+    "from_date": "2026-08-26",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Lok_Janshakti_Party_(Ram_Vilas)"
+   }
+  ]
+ },
+ {
+  "party_id": "RJD",
+  "state_code": "BR",
+  "eci_recognition": "State",
+  "office": "Patna",
+  "website": "https://rjd.co.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Mangani Lal Mandal",
+    "from_date": "2025-06-19",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Mangani_Lal_Mandal"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Tejashwi Yadav",
+    "from_date": "2025-11-17",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bihar_Legislative_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "RLM",
+  "state_code": "BR",
+  "eci_recognition": "Unrecognised",
+  "office": "24M Strand Road, Patna - 800014",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Upendra Kushwaha",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Rashtriya_Lok_Morcha"
+   }
+  ]
+ },
+ {
+  "party_id": "AIFB",
+  "state_code": "WB",
+  "eci_recognition": "State",
+  "office": "Kolkata",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Naren Chatterjee",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/All_India_Forward_Bloc"
+   }
+  ]
+ },
+ {
+  "party_id": "AISF",
+  "state_code": "WB",
+  "eci_recognition": "Unrecognised",
+  "office": "Furfura Sharif, Hooghly",
+  "website": "https://isf.org.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Nawsad Siddique",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Indian_Secular_Front"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Nawsad Siddique",
+    "from_date": "2021-05-02",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Indian_Secular_Front"
+   }
+  ]
+ },
+ {
+  "party_id": "AJUP",
+  "state_code": "WB",
+  "eci_recognition": "Unrecognised",
+  "office": "Murshidabad",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Humayun Kabir",
+    "from_date": "2025-12-22",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Humayun_Kabir_(West_Bengal_politician)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Humayun Kabir",
+    "from_date": "2026-05-04",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Humayun_Kabir_(West_Bengal_politician)"
+   }
+  ]
+ },
+ {
+  "party_id": "BGPM",
+  "state_code": "WB",
+  "eci_recognition": "Unrecognised",
+  "office": "Darjeeling",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Anit Thapa",
+    "from_date": "2021-09-09",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Bharatiya_Gorkha_Prajatantrik_Morcha"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "WB",
+  "eci_recognition": "National",
+  "office": "6, Muralidhar Sen Lane, College Square, Kolkata - 700073",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Samik Bhattacharya",
+    "from_date": "2025-07-03",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Samik_Bhattacharya"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Suvendu Adhikari",
+    "from_date": "2021-05-13",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Suvendu_Adhikari"
+   }
+  ]
+ },
+ {
+  "party_id": "CPI",
+  "state_code": "WB",
+  "eci_recognition": "Unrecognised",
+  "office": "Kolkata",
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "CPIM",
+  "state_code": "WB",
+  "eci_recognition": "National",
+  "office": "Kolkata",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Mohammed Salim",
+    "from_date": "2022-03-16",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Mohammed_Salim_(politician)"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Md. Mostafijur Rahaman",
+    "from_date": "2026-05-04",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/West_Bengal_Legislative_Assembly"
+   }
+  ]
+ },
+ {
+  "party_id": "CPIML",
+  "state_code": "WB",
+  "eci_recognition": "Unrecognised",
+  "office": "Kolkata",
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "INC",
+  "state_code": "WB",
+  "eci_recognition": "National",
+  "office": "Bidhan Bhavan, Sealdah, Kolkata - 700014",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Subhankar Sarkar",
+    "from_date": "2024-09-21",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/West_Bengal_Pradesh_Congress_Committee"
+   }
+  ]
+ },
+ {
+  "party_id": "RSP",
+  "state_code": "WB",
+  "eci_recognition": "Unrecognised",
+  "office": "Kolkata",
+  "website": null,
+  "roles": []
+ },
+ {
+  "party_id": "TMC",
+  "state_code": "WB",
+  "eci_recognition": "State",
+  "office": "30B Harish Chatterjee Street, Kolkata - 700026",
+  "website": "https://aitcofficial.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Subrata Bakshi",
+    "from_date": "1998-01-01",
+    "to_date": "2026-06-05",
+    "source_url": "https://en.wikipedia.org/wiki/Subrata_Bakshi"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Mamata Banerjee",
+    "from_date": "2026-07-04",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Chandrima_Bhattacharya"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Mamata Banerjee",
+    "from_date": "2011-05-20",
+    "to_date": "2026-05-07",
+    "source_url": "https://en.wikipedia.org/wiki/Mamata_Banerjee"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Sovandeb Chattopadhyay",
+    "from_date": "2026-05-09",
+    "to_date": "2026-06-03",
+    "source_url": "https://newsonair.gov.in/ritabrata-banerjee-appointed-leader-of-opposition-in-west-bengal-assembly-amid-tmc-split/"
+   }
+  ]
+ }
+]

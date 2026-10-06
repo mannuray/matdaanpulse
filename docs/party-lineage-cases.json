@@ -1,41 +1,299 @@
 {
   "_doc": "The party comparison rule's case table (spec docs/superpowers/specs/2026-10-06-party-model-design.md §4). Read by backend/src/common/comparable-parties.spec.ts and frontend/src/model/derive/__tests__/comparableParties.test.ts — both implementations must pass every case. Events model real ones (dates approximate where the test does not depend on them).",
   "events": [
-    { "party_id": "BRS", "predecessor_id": "TRS", "kind": "rename", "effective_date": "2022-12-09", "state_id": null, "is_successor": true },
-    { "party_id": "BJP", "predecessor_id": "JVM", "kind": "merger", "effective_date": "2020-02-17", "state_id": null, "is_successor": true },
-    { "party_id": "SSUBT", "predecessor_id": "SHS", "kind": "split", "effective_date": "2022-10-10", "state_id": null, "is_successor": false },
-    { "party_id": "LJPRV", "predecessor_id": "LJP", "kind": "split", "effective_date": "2021-10-05", "state_id": null, "is_successor": true },
-    { "party_id": "RLJP", "predecessor_id": "LJP", "kind": "split", "effective_date": "2021-10-05", "state_id": null, "is_successor": false },
-    { "party_id": "KECJ", "predecessor_id": "KECM", "kind": "split", "effective_date": "2020-06-01", "state_id": 16, "is_successor": false }
+    {
+      "party_id": "BRS",
+      "predecessor_id": "TRS",
+      "kind": "rename",
+      "effective_date": "2022-12-09",
+      "state_id": null,
+      "is_successor": true
+    },
+    {
+      "party_id": "BJP",
+      "predecessor_id": "JVM",
+      "kind": "merger",
+      "effective_date": "2020-02-17",
+      "state_id": null,
+      "is_successor": true
+    },
+    {
+      "party_id": "SSUBT",
+      "predecessor_id": "SHS",
+      "kind": "split",
+      "effective_date": "2022-10-10",
+      "state_id": null,
+      "is_successor": false
+    },
+    {
+      "party_id": "LJPRV",
+      "predecessor_id": "LJP",
+      "kind": "split",
+      "effective_date": "2021-10-05",
+      "state_id": null,
+      "is_successor": true
+    },
+    {
+      "party_id": "RLJP",
+      "predecessor_id": "LJP",
+      "kind": "split",
+      "effective_date": "2021-10-05",
+      "state_id": null,
+      "is_successor": false
+    },
+    {
+      "party_id": "KECJ",
+      "predecessor_id": "KECM",
+      "kind": "split",
+      "effective_date": "2020-06-01",
+      "state_id": 16,
+      "is_successor": false
+    },
+    {
+      "party_id": "JJP2",
+      "predecessor_id": "INLD",
+      "kind": "breakaway",
+      "effective_date": "2018-12-09",
+      "state_id": null,
+      "is_successor": false
+    }
   ],
   "relation": [
-    { "case": "rename: BRS is TRS", "prev": "TRS", "cur": "BRS", "from": "2018-12-11", "to": "2023-12-03", "state": 32, "expect": "same" },
-    { "case": "merger before the later election: JVM's seat now BJP", "prev": "JVM", "cur": "BJP", "from": "2019-12-23", "to": "2024-11-23", "state": 14, "expect": "same" },
-    { "case": "merger after the later election does not apply", "prev": "JVM", "cur": "BJP", "from": "2014-12-23", "to": "2019-12-23", "state": 14, "expect": "different" },
-    { "case": "split: the name-holder keeps the history", "prev": "SHS", "cur": "SHS", "from": "2019-10-24", "to": "2024-11-23", "state": 20, "expect": "same" },
-    { "case": "split: the other faction holding an old-party seat", "prev": "SHS", "cur": "SSUBT", "from": "2019-10-24", "to": "2024-11-23", "state": 20, "expect": "split" },
-    { "case": "split: the other faction taking a seat from another party is a flip", "prev": "INC", "cur": "SSUBT", "from": "2019-10-24", "to": "2024-11-23", "state": 20, "expect": "different" },
-    { "case": "split with a new-id successor", "prev": "LJP", "cur": "LJPRV", "from": "2020-11-10", "to": "2025-11-14", "state": 5, "expect": "same" },
-    { "case": "split: the non-successor faction of LJP", "prev": "LJP", "cur": "RLJP", "from": "2020-11-10", "to": "2025-11-14", "state": 5, "expect": "split" },
-    { "case": "a 2014→2019 comparison ignores the 2022 split", "prev": "SHS", "cur": "SSUBT", "from": "2014-10-19", "to": "2019-10-24", "state": 20, "expect": "different" },
-    { "case": "a state-scoped split applies in its state", "prev": "KECM", "cur": "KECJ", "from": "2016-05-19", "to": "2021-05-02", "state": 16, "expect": "split" },
-    { "case": "a state-scoped split does not leak into another state", "prev": "KECM", "cur": "KECJ", "from": "2016-05-19", "to": "2021-05-02", "state": 31, "expect": "different" },
-    { "case": "unrelated parties", "prev": "BJP", "cur": "INC", "from": "2019-10-24", "to": "2024-11-23", "state": 20, "expect": "different" }
+    {
+      "case": "rename: BRS is TRS",
+      "prev": "TRS",
+      "cur": "BRS",
+      "from": "2018-12-11",
+      "to": "2023-12-03",
+      "state": 32,
+      "expect": "same"
+    },
+    {
+      "case": "merger before the later election: JVM's seat now BJP",
+      "prev": "JVM",
+      "cur": "BJP",
+      "from": "2019-12-23",
+      "to": "2024-11-23",
+      "state": 14,
+      "expect": "same"
+    },
+    {
+      "case": "merger after the later election does not apply",
+      "prev": "JVM",
+      "cur": "BJP",
+      "from": "2014-12-23",
+      "to": "2019-12-23",
+      "state": 14,
+      "expect": "different"
+    },
+    {
+      "case": "split: the name-holder keeps the history",
+      "prev": "SHS",
+      "cur": "SHS",
+      "from": "2019-10-24",
+      "to": "2024-11-23",
+      "state": 20,
+      "expect": "same"
+    },
+    {
+      "case": "split: the other faction holding an old-party seat",
+      "prev": "SHS",
+      "cur": "SSUBT",
+      "from": "2019-10-24",
+      "to": "2024-11-23",
+      "state": 20,
+      "expect": "split"
+    },
+    {
+      "case": "split: the other faction taking a seat from another party is a flip",
+      "prev": "INC",
+      "cur": "SSUBT",
+      "from": "2019-10-24",
+      "to": "2024-11-23",
+      "state": 20,
+      "expect": "different"
+    },
+    {
+      "case": "split with a new-id successor",
+      "prev": "LJP",
+      "cur": "LJPRV",
+      "from": "2020-11-10",
+      "to": "2025-11-14",
+      "state": 5,
+      "expect": "same"
+    },
+    {
+      "case": "split: the non-successor faction of LJP",
+      "prev": "LJP",
+      "cur": "RLJP",
+      "from": "2020-11-10",
+      "to": "2025-11-14",
+      "state": 5,
+      "expect": "split"
+    },
+    {
+      "case": "a 2014→2019 comparison ignores the 2022 split",
+      "prev": "SHS",
+      "cur": "SSUBT",
+      "from": "2014-10-19",
+      "to": "2019-10-24",
+      "state": 20,
+      "expect": "different"
+    },
+    {
+      "case": "a state-scoped split applies in its state",
+      "prev": "KECM",
+      "cur": "KECJ",
+      "from": "2016-05-19",
+      "to": "2021-05-02",
+      "state": 16,
+      "expect": "split"
+    },
+    {
+      "case": "a state-scoped split does not leak into another state",
+      "prev": "KECM",
+      "cur": "KECJ",
+      "from": "2016-05-19",
+      "to": "2021-05-02",
+      "state": 31,
+      "expect": "different"
+    },
+    {
+      "case": "unrelated parties",
+      "prev": "BJP",
+      "cur": "INC",
+      "from": "2019-10-24",
+      "to": "2024-11-23",
+      "state": 20,
+      "expect": "different"
+    },
+    {
+      "case": "a breakaway party taking the old party's seat is a flip (note only)",
+      "prev": "INLD",
+      "cur": "JJP2",
+      "from": "2014-10-19",
+      "to": "2019-10-24",
+      "state": 11,
+      "expect": "different"
+    }
   ],
   "carryForward": [
-    { "case": "rename", "party": "TRS", "from": "2018-12-11", "to": "2023-12-03", "state": 32, "expect": "BRS" },
-    { "case": "merger", "party": "JVM", "from": "2019-12-23", "to": "2024-11-23", "state": 14, "expect": "BJP" },
-    { "case": "split, new-id successor", "party": "LJP", "from": "2020-11-10", "to": "2025-11-14", "state": 5, "expect": "LJPRV" },
-    { "case": "split, name kept by the successor (no row): unchanged", "party": "SHS", "from": "2019-10-24", "to": "2024-11-23", "state": 20, "expect": "SHS" },
-    { "case": "no event between the dates", "party": "TRS", "from": "2014-05-16", "to": "2018-12-11", "state": 32, "expect": "TRS" }
+    {
+      "case": "rename",
+      "party": "TRS",
+      "from": "2018-12-11",
+      "to": "2023-12-03",
+      "state": 32,
+      "expect": "BRS"
+    },
+    {
+      "case": "merger",
+      "party": "JVM",
+      "from": "2019-12-23",
+      "to": "2024-11-23",
+      "state": 14,
+      "expect": "BJP"
+    },
+    {
+      "case": "split, new-id successor",
+      "party": "LJP",
+      "from": "2020-11-10",
+      "to": "2025-11-14",
+      "state": 5,
+      "expect": "LJPRV"
+    },
+    {
+      "case": "split, name kept by the successor (no row): unchanged",
+      "party": "SHS",
+      "from": "2019-10-24",
+      "to": "2024-11-23",
+      "state": 20,
+      "expect": "SHS"
+    },
+    {
+      "case": "no event between the dates",
+      "party": "TRS",
+      "from": "2014-05-16",
+      "to": "2018-12-11",
+      "state": 32,
+      "expect": "TRS"
+    }
   ],
   "familyOf": [
-    { "case": "Shiv Sena family after the split (the name-holder continues)", "party": "SSUBT", "date": "2024-11-23", "state": 20, "expect": { "root": "SHS", "members": ["SHS", "SSUBT"] } },
-    { "case": "LJP family (the old id no longer contests)", "party": "RLJP", "date": "2025-11-14", "state": 5, "expect": { "root": "LJP", "members": ["LJPRV", "RLJP"] } },
-    { "case": "no family before the split", "party": "SHS", "date": "2019-10-24", "state": 20, "expect": { "root": "SHS", "members": ["SHS"] } }
+    {
+      "case": "Shiv Sena family after the split (the name-holder continues)",
+      "party": "SSUBT",
+      "date": "2024-11-23",
+      "state": 20,
+      "expect": {
+        "root": "SHS",
+        "members": [
+          "SHS",
+          "SSUBT"
+        ]
+      }
+    },
+    {
+      "case": "LJP family (the old id no longer contests)",
+      "party": "RLJP",
+      "date": "2025-11-14",
+      "state": 5,
+      "expect": {
+        "root": "LJP",
+        "members": [
+          "LJPRV",
+          "RLJP"
+        ]
+      }
+    },
+    {
+      "case": "no family before the split",
+      "party": "SHS",
+      "date": "2019-10-24",
+      "state": 20,
+      "expect": {
+        "root": "SHS",
+        "members": [
+          "SHS"
+        ]
+      }
+    },
+    {
+      "case": "a breakaway is not in the old party's family",
+      "party": "JJP2",
+      "date": "2019-10-24",
+      "state": 11,
+      "expect": {
+        "root": "JJP2",
+        "members": [
+          "JJP2"
+        ]
+      }
+    }
   ],
-  "cycle": { "events": [
-    { "party_id": "A", "predecessor_id": "B", "kind": "rename", "effective_date": "2020-01-01", "state_id": null, "is_successor": true },
-    { "party_id": "B", "predecessor_id": "A", "kind": "rename", "effective_date": "2020-06-01", "state_id": null, "is_successor": true }
-  ], "party": "A", "from": "2019-01-01", "to": "2021-01-01", "state": 1, "expectError": "lineage cycle at" }
+  "cycle": {
+    "events": [
+      {
+        "party_id": "A",
+        "predecessor_id": "B",
+        "kind": "rename",
+        "effective_date": "2020-01-01",
+        "state_id": null,
+        "is_successor": true
+      },
+      {
+        "party_id": "B",
+        "predecessor_id": "A",
+        "kind": "rename",
+        "effective_date": "2020-06-01",
+        "state_id": null,
+        "is_successor": true
+      }
+    ],
+    "party": "A",
+    "from": "2019-01-01",
+    "to": "2021-01-01",
+    "state": 1,
+    "expectError": "lineage cycle at"
+  }
 }

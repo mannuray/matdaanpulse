@@ -15,7 +15,7 @@ export class PartySummaryDto {
 export class LineageEventDto {
   @Expose() party_id: string;
   @Expose() predecessor_id: string;
-  @Expose() kind: 'rename' | 'merger' | 'split';
+  @Expose() kind: 'rename' | 'merger' | 'split' | 'breakaway';
   @Expose() effective_date: string;
   @Expose() state_id: number | null;
   @Expose() is_successor: boolean;
