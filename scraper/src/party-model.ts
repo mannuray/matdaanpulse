@@ -68,7 +68,7 @@ export function pickCandidate(cands: { id: string; name: string; year: number; p
  * The run-once seed a units file belongs to. Shipped seeds are frozen and their markers already set on production, so
  * every new units file needs its own version here (add `units-6.json` → v3, …); an unmapped file is an error.
  */
-const UNITS_SEEDS: [RegExp, string][] = [[/^units-[1-4]\.json$/, 'seed_party_units_v1'], [/^units-5\.json$/, 'seed_party_units_v2']];
+const UNITS_SEEDS: [RegExp, string][] = [[/^units-[1-4]\.json$/, 'seed_party_units_v1'], [/^units-5\.json$/, 'seed_party_units_v2'], [/^units-6\.json$/, 'seed_party_units_v3']];
 export function unitsSeedOf(file: string): string {
   const hit = UNITS_SEEDS.find(([re]) => re.test(file));
   if (!hit) throw new Error(`${file} has no seed version: add it to UNITS_SEEDS with a new run-once seed (v1/v2 are frozen)`);
