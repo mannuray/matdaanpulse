@@ -207,6 +207,25 @@ Spec `docs/superpowers/specs/2026-10-06-party-model-design.md`, plan `docs/super
   pop-up), 40 px chips. Logic in `model/derive/electionChoices.ts` (`TopBarVM.choices(query)`), view
   `views/dashboard/ElectionPicker.tsx`. No keyboard shortcut on the public site.
 
+### Arunachal Pradesh 2009-2024 (Phase 4B-2), 2026-10-06
+Plan `docs/superpowers/plans/2026-10-06-phase4b-arunachal.md`.
+- [x] 4 elections from the ECI statistical reports (2009 PDF, 2014 scanned PDF, 2019 XLS, 2024 XLSX): every candidate
+  (+ NOTA from 2014), real votes; winners match ECI (INC 42 / INC 42 / BJP 41 / BJP 46); 59 ST + 1 GEN seats.
+- [x] Seats won unopposed (3 / 11 / 3 / 10): one WON candidate with 0 votes, no NOTA row, voters/turnout NULL. The
+  parsers read ECI's three forms ("Uncontested" in the 2009 PDF; 1 contestant and 0 voters; 2024 seats left out of
+  Detailed Results and built from the summary, `fromSummary`, skipped by the party-performance check).
+  The product rule `model/derive/uncontested.ts` (`isUncontested`, `headlineMargin`, `isUnopposedWinner`): counted
+  and coloured for the winner, no margin (never the closest contest, not in margin buckets or the flipped list's
+  margin order), "Elected unopposed" on the seat page and in seat history, "Unopposed" in the leaders strip. Also
+  covers Surat (LS 2024).
+- [x] OCR for scanned reports (Arunachal 2014 has no text layer): `ocr-cli.ts` (macOS Vision via `ocr.swift`, two
+  passes: the page, then its number columns) → `<pdf>.ocr.txt`; `ocrNormalise` (systematic misreads, Cyrillic
+  look-alikes, faint zeros, postal = total − general); hand fixes checked against the scan in
+  `scraper/data/ar/ocr-fixes.json` (15). Every seat, summary and party total cross-checks.
+- [x] Districts (26 current) and regions (the 2 Lok Sabha seats: West 33, East 27, by seat); `Shri`/`Smt` prefixes
+  dropped (`STATES.AR.stripHonorifics`); person links; 2024 current track (24 leaders, PPA profile, party units v3,
+  140 candidate photos, affidavits 59/60).
+
 ### Sikkim 2009-2024 (Phase 4B-1), 2026-10-06
 Plan `docs/superpowers/plans/2026-10-06-phase4b-sikkim.md`. Phase 4B fills the remaining 2024/25 states one at a time
 (Sikkim → Arunachal → Andhra → Maharashtra → J&K), each deployed on its own.

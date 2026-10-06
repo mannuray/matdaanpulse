@@ -184,6 +184,10 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | MyNeta hides ~11 % of 2026 winners in packed scripts (assets as images) | decode the "hunter" packer arithmetically; never execute the page's JavaScript |
 | MyNeta seat spellings (Labhpur/Labpur) and nicknames in names | variant fallback: close seat + same winner name, unique only |
 | Two candidates with the leader's exact name in one seat | `pickCandidacy` prefers the winner |
+| Seats won unopposed: "Uncontested" (2009 PDF), all-zero sheets with no electors/winner (2019 XLS), or absent from Detailed Results and the party table (2024) | `completeUncontested` builds/fills them; one WON candidate with 0 votes, no NOTA, turnout NULL |
+| A scanned report with no text layer (Arunachal 2014) | `ocr-cli.ts` (macOS Vision, two passes) + `ocrNormalise`; hand fixes in `<slug>/ocr-fixes.json`, each checked against the page image |
+| Honorifics on some names only ("Shri X" in one year, "X" in another) | per-state `stripHonorifics` (never on shipped states: their data must stay byte-identical) |
+| MyNeta slugs are not the state code (`arunachalpradesh2024`) | check the winners page has links before running affidavits |
 | Old-site docids are not ordered by state or year | the statistical-reports listing (`get-election-data?page_seo_name=statistical-reports`) links `old.eci.gov.in/files/file/<docid>-…` for every state and year |
 | A state's files label reserved seats differently every year (Sikkim: BL / ST / none) | a fixed per-state `seatTypes` table; a contradicting label is a parse error |
 | A seat with no territory (Sikkim's Sangha) | GEN seat without a map feature: lists, tallies and its page work; About notes it |
