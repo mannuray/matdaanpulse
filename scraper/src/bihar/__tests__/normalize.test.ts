@@ -72,4 +72,10 @@ describe('normalize', () => {
     r.summaries[1] = { ...r.summaries[1], voters: 0, contested: 1, totalValid: 0, nota: 0, winner: { party: 'BJP', name: 'S', votes: 0 }, runnerUp: null, margin: 0, uncontested: true };
     expect(normalize(r, YEARS[2010], map, '2026-10-06').json.seats[1].candidates.map(c => c.partyId)).toEqual(['BJP']);
   });
+  it('drops a "Shri"/"Smt" prefix when the state asks (Arunachal 2009/2019 write it on some names only)', () => {
+    const r = raw(); r.seats[0].candidates[0].name = 'Shri Techi Kaso'; r.seats[0].candidates[1].name = 'SMT. SITA DEVI';
+    const names = (cfg: object) => normalize(r, { ...electionOf('AR', 2019), ...cfg }, map, '2026-10-06').json.seats[0].candidates.map(c => c.name);
+    expect(names({ stripHonorifics: true })).toEqual(['Techi Kaso', 'Sita Devi']);
+    expect(names({ stripHonorifics: false })).toEqual(['Shri Techi Kaso', 'Smt. Sita Devi']);
+  });
 });

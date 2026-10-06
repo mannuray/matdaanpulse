@@ -33,11 +33,14 @@ export interface ElectionConfig extends YearConfig {
   myneta?: string;
   /** Seat types fixed by the state (listed seats; the rest GEN), when its files label them inconsistently (Sikkim). */
   seatTypes?: Record<number, SeatType>;
+  /** Drop a "Shri"/"Smt"/"Sri" prefix from candidate names (written on some names only, so they would not link). */
+  stripHonorifics?: boolean;
 }
 export interface StateConfig {
   code: StateCode; slug: string; name: string; stateId: number; seats: number; reserved: { sc: number; st: number };
   partiesSeed: string; correctionsSeed: string; linksSeed: string; linksSeedName: string; yearSeed: (year: number) => string;
   seatTypes?: Record<number, SeatType>;
+  stripHonorifics?: boolean;
 }
 
 export const ECI_RESULTS_2026 = 'https://results.eci.gov.in/ResultAcGenMay2026/';
@@ -71,7 +74,8 @@ export const STATES: Record<StateCode, StateConfig> = {
   // these differently every year, so the types come from here (Phase 4B spec §3).
   SK: { ...state('SK', 'sk', 'Sikkim', 30, 32, 2, 12),
     seatTypes: { 1: 'ST', 5: 'ST', 6: 'ST', 8: 'SC', 9: 'ST', 16: 'ST', 18: 'SC', 21: 'ST', 23: 'ST', 24: 'ST', 27: 'ST', 29: 'ST', 30: 'ST', 31: 'ST' } },
-  AR: state('AR', 'ar', 'Arunachal Pradesh', 3, 60, 0, 59),
+  // Arunachal's 2009/2019 reports write "Shri" on some names only.
+  AR: { ...state('AR', 'ar', 'Arunachal Pradesh', 3, 60, 0, 59), stripHonorifics: true },
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */
@@ -105,7 +109,7 @@ const p4 = (code: StateCode, year: number, src: { docid: number } | { category: 
   const base: ElectionConfig = 'docid' in src ? hist(code, year, id, src.docid, expectedPhases, files)
     : { state: code, year, electionId: id, constPrefix: `${code}_VS${String(year).slice(2)}_`, expectedPhases, category: src.category, files,
         source: { title: `ECI Statistical Report, ${STATES[code].name} Legislative Assembly ${year}`, url: `https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=${src.category}` } };
-  return { ...base, ...(STATES[code].seatTypes ? { seatTypes: STATES[code].seatTypes } : {}), ...extra, newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate, reserved: STATES[code].reserved },
+  return { ...base, ...(STATES[code].seatTypes ? { seatTypes: STATES[code].seatTypes } : {}), ...(STATES[code].stripHonorifics ? { stripHonorifics: true } : {}), ...extra, newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate, reserved: STATES[code].reserved },
     ...(latest ? { resultsSite: { base: latest.base, eciCode: latest.eciCode }, myneta: latest.myneta } : {}) };
 };
 const pdf = (y: number) => ({ pdf: `${y}/${y}.pdf` });

@@ -25,7 +25,8 @@ export function normalize(raw: RawElection, cfg: YearConfig | ElectionConfig, ma
       const p = resolveParty(c.party, raw.parties, map);
       if ('unknown' in p) { errors.add(`party: ${p.unknown}`); return null; }
       if (p.id !== 'NOTA') parties.set(p.id, p);
-      return { serial: c.serial, name: displayName(c.name), partyId: p.id, sex: c.sex, age: c.age, votes: c.total, status: c.total === top ? 'WON' : 'LOST' };
+      const name = 'stripHonorifics' in cfg && cfg.stripHonorifics ? c.name.replace(/^\s*(shri|smt|sri)\.?\s+/i, '') : c.name;
+      return { serial: c.serial, name: displayName(name), partyId: p.id, sex: c.sex, age: c.age, votes: c.total, status: c.total === top ? 'WON' : 'LOST' };
     }).filter((c): c is CandidateJson => c !== null);
     if (seat.nota !== null && !m.uncontested) candidates.push({ serial: Math.max(0, ...seat.candidates.map(c => c.serial)) + 1, name: 'NOTA', partyId: 'NOTA', sex: null, age: null, votes: seat.nota, status: 'LOST' });
     seats.push({ constNo: seat.constNo, ...('newElection' in cfg && cfg.newElection ? { name: displayName(seat.acName) } : {}), type: fixed ?? m.type, electors: m.electors,

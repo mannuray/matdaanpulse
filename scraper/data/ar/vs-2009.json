@@ -415,7 +415,7 @@
    "candidates": [
     {
      "serial": 3,
-     "name": "Shri Techi Kaso",
+     "name": "Techi Kaso",
      "partyId": "NCP",
      "sex": "M",
      "age": 52,
@@ -424,7 +424,7 @@
     },
     {
      "serial": 1,
-     "name": "Shri Kipa Babu",
+     "name": "Kipa Babu",
      "partyId": "INC",
      "sex": "M",
      "age": 36,
@@ -433,7 +433,7 @@
     },
     {
      "serial": 2,
-     "name": "Shri Lichi Legi",
+     "name": "Lichi Legi",
      "partyId": "BJP",
      "sex": "M",
      "age": 58,
@@ -442,7 +442,7 @@
     },
     {
      "serial": 5,
-     "name": "Shri Techi Necha",
+     "name": "Techi Necha",
      "partyId": "TMC",
      "sex": "M",
      "age": 40,
@@ -451,7 +451,7 @@
     },
     {
      "serial": 4,
-     "name": "Sri Tami Taniang",
+     "name": "Tami Taniang",
      "partyId": "JDU",
      "sex": "M",
      "age": 40,
@@ -472,7 +472,7 @@
    "candidates": [
     {
      "serial": 1,
-     "name": "Shri Nabam Rebia",
+     "name": "Nabam Rebia",
      "partyId": "INC",
      "sex": "M",
      "age": 47,
@@ -481,7 +481,7 @@
     },
     {
      "serial": 2,
-     "name": "Shri Ngurang Pinch",
+     "name": "Ngurang Pinch",
      "partyId": "NCP",
      "sex": "M",
      "age": 42,
@@ -490,7 +490,7 @@
     },
     {
      "serial": 3,
-     "name": "Shri T.C. Teli",
+     "name": "T.C. Teli",
      "partyId": "TMC",
      "sex": "M",
      "age": 45,
@@ -511,7 +511,7 @@
    "candidates": [
     {
      "serial": 1,
-     "name": "Shri Nabam Tuki",
+     "name": "Nabam Tuki",
      "partyId": "INC",
      "sex": "M",
      "age": 42,
@@ -520,7 +520,7 @@
     },
     {
      "serial": 2,
-     "name": "Sri Tad Tana",
+     "name": "Tad Tana",
      "partyId": "NCP",
      "sex": "M",
      "age": 42,
@@ -541,7 +541,7 @@
    "candidates": [
     {
      "serial": 1,
-     "name": "Shri Likha Saaya",
+     "name": "Likha Saaya",
      "partyId": "INC",
      "sex": "M",
      "age": 34,
@@ -550,7 +550,7 @@
     },
     {
      "serial": 3,
-     "name": "Shri Nikh Kamin",
+     "name": "Nikh Kamin",
      "partyId": "TMC",
      "sex": "M",
      "age": 39,
@@ -559,7 +559,7 @@
     },
     {
      "serial": 2,
-     "name": "Shri Jotam Toko Takam",
+     "name": "Jotam Toko Takam",
      "partyId": "PPA",
      "sex": "M",
      "age": 45,
@@ -580,7 +580,7 @@
    "candidates": [
     {
      "serial": 1,
-     "name": "Shri Padi Richo",
+     "name": "Padi Richo",
      "partyId": "INC",
      "sex": "M",
      "age": 44,
@@ -598,7 +598,7 @@
     },
     {
      "serial": 2,
-     "name": "Shri Kuru Tai",
+     "name": "Kuru Tai",
      "partyId": "BJP",
      "sex": "M",
      "age": 40,
@@ -607,7 +607,7 @@
     },
     {
      "serial": 3,
-     "name": "Sri Subu Koyang",
+     "name": "Subu Koyang",
      "partyId": "NCP",
      "sex": "M",
      "age": 42,
@@ -757,7 +757,7 @@
    "candidates": [
     {
      "serial": 1,
-     "name": "Shri Tanga Byaling",
+     "name": "Tanga Byaling",
      "partyId": "INC",
      "sex": "M",
      "age": 57,
@@ -766,7 +766,7 @@
     },
     {
      "serial": 2,
-     "name": "Shri Ajit Nacho",
+     "name": "Ajit Nacho",
      "partyId": "BJP",
      "sex": "M",
      "age": 41,
@@ -775,7 +775,7 @@
     },
     {
      "serial": 3,
-     "name": "Shri Tapa Garam Baki",
+     "name": "Tapa Garam Baki",
      "partyId": "NCP",
      "sex": "M",
      "age": 42,
@@ -796,7 +796,7 @@
    "candidates": [
     {
      "serial": 2,
-     "name": "Shri Punji Mara",
+     "name": "Punji Mara",
      "partyId": "INC",
      "sex": "M",
      "age": 55,
@@ -805,7 +805,7 @@
     },
     {
      "serial": 1,
-     "name": "Shri Nyato Rigia",
+     "name": "Nyato Rigia",
      "partyId": "TMC",
      "sex": "M",
      "age": 45,
@@ -826,7 +826,7 @@
    "candidates": [
     {
      "serial": 2,
-     "name": "Shri Tapen Siga",
+     "name": "Tapen Siga",
      "partyId": "BJP",
      "sex": "M",
      "age": 51,
@@ -844,7 +844,7 @@
     },
     {
      "serial": 3,
-     "name": "Shri Daklo Nidak",
+     "name": "Daklo Nidak",
      "partyId": "TMC",
      "sex": "M",
      "age": 48,
@@ -853,7 +853,7 @@
     },
     {
      "serial": 4,
-     "name": "Shri Maji Marging",
+     "name": "Maji Marging",
      "partyId": "NCP",
      "sex": "M",
      "age": 35,
@@ -862,7 +862,7 @@
     },
     {
      "serial": 5,
-     "name": "Shri Takir Kurdu",
+     "name": "Takir Kurdu",
      "partyId": "JDU",
      "sex": "M",
      "age": 30,
@@ -883,7 +883,7 @@
    "candidates": [
     {
      "serial": 1,
-     "name": "Sri Nido Pavitra",
+     "name": "Nido Pavitra",
      "partyId": "INC",
      "sex": "M",
      "age": 42,
@@ -892,7 +892,7 @@
     },
     {
      "serial": 3,
-     "name": "Shri Aath Tacho Kabak",
+     "name": "Aath Tacho Kabak",
      "partyId": "NCP",
      "sex": "M",
      "age": 45,
@@ -901,7 +901,7 @@
     },
     {
      "serial": 2,
-     "name": "Shri Talo Mugli",
+     "name": "Talo Mugli",
      "partyId": "TMC",
      "sex": "M",
      "age": 52,
@@ -922,7 +922,7 @@
    "candidates": [
     {
      "serial": 1,
-     "name": "Shri Takar Marde",
+     "name": "Takar Marde",
      "partyId": "INC",
      "sex": "M",
      "age": 49,
@@ -931,7 +931,7 @@
     },
     {
      "serial": 2,
-     "name": "Shri Lompak Paksok",
+     "name": "Lompak Paksok",
      "partyId": "BJP",
      "sex": "M",
      "age": 35,
@@ -1531,7 +1531,7 @@
    "candidates": [
     {
      "serial": 2,
-     "name": "Shri Laeta Umbrey",
+     "name": "Laeta Umbrey",
      "partyId": "TMC",
      "sex": "M",
      "age": 53,
@@ -1591,7 +1591,7 @@
    "candidates": [
     {
      "serial": 2,
-     "name": "Shri Kalikho Pul",
+     "name": "Kalikho Pul",
      "partyId": "INC",
      "sex": "M",
      "age": 37,
@@ -1600,7 +1600,7 @@
     },
     {
      "serial": 4,
-     "name": "Shri Baritlum Ama",
+     "name": "Baritlum Ama",
      "partyId": "TMC",
      "sex": "M",
      "age": 37,
@@ -1618,7 +1618,7 @@
     },
     {
      "serial": 3,
-     "name": "Shri Khuje Drai",
+     "name": "Khuje Drai",
      "partyId": "NCP",
      "sex": "M",
      "age": 40,

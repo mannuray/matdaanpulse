@@ -1,0 +1,389 @@
+[
+ {
+  "key": "BIYURAM WAHGE|12",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a85e3612-430f-529a-aff2-d4dcbdcc0164",
+    "year": 2019,
+    "constNo": 12,
+    "name": "Biyuram Wahge",
+    "partyId": "BJP",
+    "age": 34,
+    "era": "2008"
+   },
+   {
+    "candidateId": "6ddc4b4d-8859-5b45-8787-c5d048410d71",
+    "year": 2024,
+    "constNo": 12,
+    "name": "Biyuram Wahge",
+    "partyId": "BJP",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "DONGRU SIONGJU|7",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "2a9e03ec-dd27-5d1a-b604-4d3b7d455393",
+    "year": 2019,
+    "constNo": 7,
+    "name": "Dongru Siongju",
+    "partyId": "JDU",
+    "age": 51,
+    "era": "2008"
+   },
+   {
+    "candidateId": "c82d06aa-8e73-5b48-b4f2-09d3efe86296",
+    "year": 2024,
+    "constNo": 7,
+    "name": "Dongru Siongju",
+    "partyId": "BJP",
+    "age": null,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "HONCHUN NGANDAM|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9b16cdd3-0b20-501b-b697-0f4bcbc51878",
+    "year": 2009,
+    "constNo": 60,
+    "name": "Honchun Ngandam",
+    "partyId": "INC",
+    "age": 56,
+    "era": "2008"
+   },
+   {
+    "candidateId": "1477a2a9-821d-512a-ac56-6bfbd3f693e7",
+    "year": 2014,
+    "constNo": 60,
+    "name": "Honchun Ngandam",
+    "partyId": "INC",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "dd504d55-85e1-5d3a-9141-88ea33cf75da",
+    "year": 2019,
+    "constNo": 60,
+    "name": "Honchun Ngandam",
+    "partyId": "BJP",
+    "age": 53,
+    "era": "2008"
+   },
+   {
+    "candidateId": "fb3b532c-ca04-5274-b832-e765cb8971fc",
+    "year": 2024,
+    "constNo": 60,
+    "name": "Honchun Ngandam",
+    "partyId": "BJP",
+    "age": 58,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "JIKKE TAKO|20",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "69e6f310-5655-5770-a42a-241cb0c8bb45",
+    "year": 2019,
+    "constNo": 20,
+    "name": "Jikke Tako",
+    "partyId": "JDU",
+    "age": 37,
+    "era": "2008"
+   },
+   {
+    "candidateId": "231099cb-d1df-5b4f-9557-80da80b76d9e",
+    "year": 2024,
+    "constNo": 20,
+    "name": "Jikke Tako",
+    "partyId": "BJP",
+    "age": null,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KAHFA BENGIA|21",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c936fa75-082a-5a6b-b79a-9b5a59386077",
+    "year": 2009,
+    "constNo": 21,
+    "name": "Kahfa Bengia",
+    "partyId": "NCP",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4b23c941-0ca7-5eca-a71c-3403acc59f10",
+    "year": 2024,
+    "constNo": 21,
+    "name": "Kahfa Bengia",
+    "partyId": "PPA",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "MUTCHU MITHI|43",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c981c765-e594-538e-9f75-b763b5bc5c0c",
+    "year": 2014,
+    "constNo": 43,
+    "name": "Mutchu Mithi",
+    "partyId": "INC",
+    "age": 36,
+    "era": "2008"
+   },
+   {
+    "candidateId": "474f4a0c-b731-55b2-9172-a9da58a0c2fa",
+    "year": 2019,
+    "constNo": 43,
+    "name": "Mutchu Mithi",
+    "partyId": "NPP",
+    "age": 40,
+    "era": "2008"
+   },
+   {
+    "candidateId": "8ee6e64b-96df-5c23-83cf-03691ce23ee1",
+    "year": 2024,
+    "constNo": 43,
+    "name": "Mutchu Mithi",
+    "partyId": "BJP",
+    "age": null,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NIKH KAMIN|49",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "364871c9-ce77-53cd-97b5-45c535cf6765",
+    "year": 2014,
+    "constNo": 49,
+    "name": "Nikh Kamin",
+    "partyId": "PPA",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b1f258e1-0c66-5f0c-9ac4-d0f1f93148d6",
+    "year": 2019,
+    "constNo": 49,
+    "name": "Nikh Kamin",
+    "partyId": "NPP",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "72fdf51d-12ad-5392-a745-9b9e7d9d73e7",
+    "year": 2024,
+    "constNo": 49,
+    "name": "Nikh Kamin",
+    "partyId": "NCP",
+    "age": 57,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "PANI TARAM|21",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "cf741c54-734d-53d6-b1ea-64466a0cb9e3",
+    "year": 2014,
+    "constNo": 21,
+    "name": "Pani Taram",
+    "partyId": "PPA",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0faf8168-7534-56e0-9246-63f27f0eedd4",
+    "year": 2019,
+    "constNo": 21,
+    "name": "Pani Taram",
+    "partyId": "NPP",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0c922d61-fb91-522a-8b79-2497aef76f29",
+    "year": 2024,
+    "constNo": 21,
+    "name": "Pani Taram",
+    "partyId": "BJP",
+    "age": 49,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "PEMA KHANDU|3",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "01aa61ab-18a8-51b4-b776-5408e319c6c3",
+    "year": 2014,
+    "constNo": 3,
+    "name": "Pema Khandu",
+    "partyId": "INC",
+    "age": 34,
+    "era": "2008"
+   },
+   {
+    "candidateId": "8047165e-3354-5d0d-b99a-8fda7405ac42",
+    "year": 2019,
+    "constNo": 3,
+    "name": "Pema Khandu",
+    "partyId": "BJP",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "5be6969a-9014-51f5-a421-fed0713613fe",
+    "year": 2024,
+    "constNo": 3,
+    "name": "Pema Khandu",
+    "partyId": "BJP",
+    "age": null,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TANGA BYALING|22",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ed830ce2-733a-5b42-85ed-6d9cb5ce8624",
+    "year": 2009,
+    "constNo": 22,
+    "name": "Tanga Byaling",
+    "partyId": "INC",
+    "age": 57,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7b56db7b-b6e8-5a80-bf7d-71bdcb4c4151",
+    "year": 2014,
+    "constNo": 22,
+    "name": "Tanga Byaling",
+    "partyId": "INC",
+    "age": 65,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9d4f8021-3865-5a9e-98f7-71dba212f1d5",
+    "year": 2019,
+    "constNo": 22,
+    "name": "Tanga Byaling",
+    "partyId": "INC",
+    "age": 71,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4accdeef-3637-5739-a3e2-fbc1fb41818c",
+    "year": 2024,
+    "constNo": 22,
+    "name": "Tanga Byaling",
+    "partyId": "INC",
+    "age": 76,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TANI LOFFA|11",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "129244af-555d-57ef-b77c-0a95c0d80037",
+    "year": 2009,
+    "constNo": 11,
+    "name": "Tani Loffa",
+    "partyId": "TMC",
+    "age": 52,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d50c64fa-6279-58d5-92d4-f9fae5e9ed2b",
+    "year": 2019,
+    "constNo": 11,
+    "name": "Tani Loffa",
+    "partyId": "JDU",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "461550a3-b038-5adf-861a-619806301b00",
+    "year": 2024,
+    "constNo": 11,
+    "name": "Tani Loffa",
+    "partyId": "NPP",
+    "age": 58,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TECHI KASO|13",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "353d7d4a-8367-535e-89c5-a70621c7a58f",
+    "year": 2009,
+    "constNo": 13,
+    "name": "Techi Kaso",
+    "partyId": "NCP",
+    "age": 52,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d92e829a-466c-5b55-9b7f-32e94fc702b6",
+    "year": 2014,
+    "constNo": 13,
+    "name": "Techi Kaso",
+    "partyId": "INC",
+    "age": 56,
+    "era": "2008"
+   },
+   {
+    "candidateId": "b083fb5c-277f-5f8a-a64d-f16173d0acdc",
+    "year": 2019,
+    "constNo": 13,
+    "name": "Techi Kaso",
+    "partyId": "JDU",
+    "age": 61,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9c52b234-cc01-5aa2-8fbc-a6ad5d6c0c07",
+    "year": 2024,
+    "constNo": 13,
+    "name": "Techi Kaso",
+    "partyId": "BJP",
+    "age": null,
+    "era": "2008"
+   }
+  ]
+ }
+]

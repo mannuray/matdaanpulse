@@ -1,0 +1,455 @@
+[
+ {
+  "key": "GUMKE RIBA|28",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "4d93f7ed-1aab-58c1-aaeb-76bb1df3c211",
+    "year": 2009,
+    "constNo": 28,
+    "name": "Gumke Riba",
+    "partyId": "NCP",
+    "age": 51,
+    "era": "2008"
+   },
+   {
+    "candidateId": "8ce474e9-197c-59bc-8655-ce663975e2e2",
+    "year": 2014,
+    "constNo": 28,
+    "name": "Gumke Riba",
+    "partyId": "BJP",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "HONCHUN NGANDAM|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "9b16cdd3-0b20-501b-b697-0f4bcbc51878",
+    "year": 2009,
+    "constNo": 60,
+    "name": "Honchun Ngandam",
+    "partyId": "INC",
+    "age": 56,
+    "era": "2008"
+   },
+   {
+    "candidateId": "1477a2a9-821d-512a-ac56-6bfbd3f693e7",
+    "year": 2014,
+    "constNo": 60,
+    "name": "Honchun Ngandam",
+    "partyId": "INC",
+    "age": 48,
+    "era": "2008"
+   },
+   {
+    "candidateId": "dd504d55-85e1-5d3a-9141-88ea33cf75da",
+    "year": 2019,
+    "constNo": 60,
+    "name": "Honchun Ngandam",
+    "partyId": "BJP",
+    "age": 53,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KALIKHO PUL|45",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3ac2d396-f54e-5d2d-8cc3-2dc72b9073c9",
+    "year": 2009,
+    "constNo": 45,
+    "name": "Kalikho Pul",
+    "partyId": "INC",
+    "age": 37,
+    "era": "2008"
+   },
+   {
+    "candidateId": "39060133-a07a-52f7-8a28-7679d29558dd",
+    "year": 2014,
+    "constNo": 45,
+    "name": "Kalikho Pul",
+    "partyId": "INC",
+    "age": 45,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "KAPNAI WANGSA|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "33207d42-c69f-5b53-aed4-c397d9396390",
+    "year": 2009,
+    "constNo": 60,
+    "name": "Kapnai Wangsa",
+    "partyId": "NCP",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "fafd9198-3e39-5774-b8ec-df7634f5c178",
+    "year": 2014,
+    "constNo": 60,
+    "name": "Kapnai Wangsa",
+    "partyId": "IND",
+    "age": 47,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "LOKAM TASSAR|21",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "39e47a3e-9cfa-552a-b2a7-9bb375ec0ba9",
+    "year": 2009,
+    "constNo": 21,
+    "name": "Lokam Tassar",
+    "partyId": "INC",
+    "age": 37,
+    "era": "2008"
+   },
+   {
+    "candidateId": "030bae7f-a4fb-5358-a6e1-09764e699e36",
+    "year": 2014,
+    "constNo": 21,
+    "name": "Lokam Tassar",
+    "partyId": "INC",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "bd70aaf1-1ff5-595b-a3a5-f3b45c0e8c4a",
+    "year": 2019,
+    "constNo": 21,
+    "name": "Lokam Tassar",
+    "partyId": "BJP",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NANI RIBIA|17",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "d3de84a5-4f3c-5b46-80c2-3ed7f97d97f4",
+    "year": 2009,
+    "constNo": 17,
+    "name": "Nani Ribia",
+    "partyId": "TMC",
+    "age": 49,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d47e3ce7-acf2-554d-b6eb-f72267660bd9",
+    "year": 2019,
+    "constNo": 17,
+    "name": "Nani Ribia",
+    "partyId": "INC",
+    "age": 54,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "NIDO PAVITRA|25",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "33a354c8-c85c-5cc0-a0a1-b83a7a7180c1",
+    "year": 2009,
+    "constNo": 25,
+    "name": "Nido Pavitra",
+    "partyId": "INC",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "14220bc1-a980-5615-93fd-ff7cfad3500a",
+    "year": 2014,
+    "constNo": 25,
+    "name": "Nido Pavitra",
+    "partyId": "INC",
+    "age": 43,
+    "era": "2008"
+   },
+   {
+    "candidateId": "48560f3a-e2b3-5dc2-8f03-f9b40e3479f3",
+    "year": 2019,
+    "constNo": 25,
+    "name": "Nido Pavitra",
+    "partyId": "PPA",
+    "age": 49,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "PANI TARAM|21",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "cf741c54-734d-53d6-b1ea-64466a0cb9e3",
+    "year": 2014,
+    "constNo": 21,
+    "name": "Pani Taram",
+    "partyId": "PPA",
+    "age": 39,
+    "era": "2008"
+   },
+   {
+    "candidateId": "0faf8168-7534-56e0-9246-63f27f0eedd4",
+    "year": 2019,
+    "constNo": 21,
+    "name": "Pani Taram",
+    "partyId": "NPP",
+    "age": 48,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "PHOSUM KHIMHUN|52",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "90a2307a-656f-50e0-b46a-0b637faaf01a",
+    "year": 2009,
+    "constNo": 52,
+    "name": "Phosum Khimhun",
+    "partyId": "INC",
+    "age": 44,
+    "era": "2008"
+   },
+   {
+    "candidateId": "49db617f-4b18-5704-9540-b1d234bf27ad",
+    "year": 2019,
+    "constNo": 52,
+    "name": "Phosum Khimhun",
+    "partyId": "BJP",
+    "age": 59,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "RAJESH TACHO|41",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "04fd3448-17ed-5699-949f-e229c0fb7fc5",
+    "year": 2009,
+    "constNo": 41,
+    "name": "Rajesh Tacho",
+    "partyId": "INC",
+    "age": 47,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9ceb6a41-8175-5b4b-a569-cc66b2e25db9",
+    "year": 2014,
+    "constNo": 41,
+    "name": "Rajesh Tacho",
+    "partyId": "INC",
+    "age": 55,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TAKAR MARDE|26",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "28966c42-420b-586d-8eef-98298aa3f131",
+    "year": 2009,
+    "constNo": 26,
+    "name": "Takar Marde",
+    "partyId": "INC",
+    "age": 49,
+    "era": "2008"
+   },
+   {
+    "candidateId": "69d93efd-6eda-549a-9f9e-bcaf3fb7488a",
+    "year": 2014,
+    "constNo": 26,
+    "name": "Takar Marde",
+    "partyId": "INC",
+    "age": 48,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TANGA BYALING|22",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ed830ce2-733a-5b42-85ed-6d9cb5ce8624",
+    "year": 2009,
+    "constNo": 22,
+    "name": "Tanga Byaling",
+    "partyId": "INC",
+    "age": 57,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7b56db7b-b6e8-5a80-bf7d-71bdcb4c4151",
+    "year": 2014,
+    "constNo": 22,
+    "name": "Tanga Byaling",
+    "partyId": "INC",
+    "age": 65,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9d4f8021-3865-5a9e-98f7-71dba212f1d5",
+    "year": 2019,
+    "constNo": 22,
+    "name": "Tanga Byaling",
+    "partyId": "INC",
+    "age": 71,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TANI LOFFA|11",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "129244af-555d-57ef-b77c-0a95c0d80037",
+    "year": 2009,
+    "constNo": 11,
+    "name": "Tani Loffa",
+    "partyId": "TMC",
+    "age": 52,
+    "era": "2008"
+   },
+   {
+    "candidateId": "d50c64fa-6279-58d5-92d4-f9fae5e9ed2b",
+    "year": 2019,
+    "constNo": 11,
+    "name": "Tani Loffa",
+    "partyId": "JDU",
+    "age": 47,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "THANGKAI KHUSUMCHAI|60",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c5659aad-8228-5769-9aa4-22237ef1ec86",
+    "year": 2014,
+    "constNo": 60,
+    "name": "Thangkai Khusumchai",
+    "partyId": "NPF",
+    "age": 42,
+    "era": "2008"
+   },
+   {
+    "candidateId": "9f8653ef-917a-51bb-b0f6-a660575a350d",
+    "year": 2019,
+    "constNo": 60,
+    "name": "Thangkai Khusumchai",
+    "partyId": "INC",
+    "age": 37,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "THINGHAAP TAIJU|53",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b4faf0bd-1538-5489-a455-f936dd842b78",
+    "year": 2009,
+    "constNo": 53,
+    "name": "Thinghaap Taiju",
+    "partyId": "INC",
+    "age": 45,
+    "era": "2008"
+   },
+   {
+    "candidateId": "70d99276-4522-5ee0-9d7d-118e1f2686a3",
+    "year": 2014,
+    "constNo": 53,
+    "name": "Thinghaap Taiju",
+    "partyId": "INC",
+    "age": 57,
+    "era": "2008"
+   },
+   {
+    "candidateId": "cba20167-54fd-5082-a6ae-45c33b841f89",
+    "year": 2019,
+    "constNo": 53,
+    "name": "Thinghaap Taiju",
+    "partyId": "INC",
+    "age": 62,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TIRONG ABOH|56",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ef2c5756-d55a-51c8-a2b6-bc5ecc66b9f2",
+    "year": 2014,
+    "constNo": 56,
+    "name": "Tirong Aboh",
+    "partyId": "PPA",
+    "age": 37,
+    "era": "2008"
+   },
+   {
+    "candidateId": "7b36d0e0-51ec-5cb3-a611-c9ea02e42fbb",
+    "year": 2019,
+    "constNo": 56,
+    "name": "Tirong Aboh",
+    "partyId": "NPP",
+    "age": 45,
+    "era": "2008"
+   }
+  ]
+ },
+ {
+  "key": "TOSHAM MOSSANG|51",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "027dcc5a-42f3-52fa-b077-ad7d655ebe94",
+    "year": 2009,
+    "constNo": 51,
+    "name": "Tosham Mossang",
+    "partyId": "IND",
+    "age": 43,
+    "era": "2008"
+   },
+   {
+    "candidateId": "4a9c76e6-acb9-53fe-a5a0-49466d9a5fb6",
+    "year": 2014,
+    "constNo": 51,
+    "name": "Tosham Mossang",
+    "partyId": "NPF",
+    "age": 52,
+    "era": "2008"
+   }
+  ]
+ }
+]
