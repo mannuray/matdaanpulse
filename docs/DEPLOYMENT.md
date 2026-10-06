@@ -190,6 +190,10 @@ If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds f
    WB `d4e5f6a7-b8c9-0123-def0-345678901011`, `…-345678901016`, `…-345678901021`.
 2. Spot-check an alliance tally: Assam 2016 NDA must read 86 seats (BJP 60, AGP 14, BPF 12).
 
+**Party model (migration 023).** `setup.sh` runs migration 023, `seed_party_lineage.sql` and the run-once
+`seed_party_units_v1.sql`. After the deploy, recompute the stored seat analysis so flips follow the lineage:
+`ADMIN_EMAIL=… ADMIN_PASSWORD=… API_BASE_URL=https://<api>/api/v1 npx ts-node scraper/src/recompute-analysis-cli.ts --type VS`.
+
 **Delhi, Haryana, Jharkhand, Odisha (Phase 4A).** `setup.sh` now also runs `seed_dl_vs_{parties,2008…2025}.sql` and
 `seed_{hr,jh,od}_vs_{parties,2009…2024}.sql` (new elections), their `seed_<st>_districts_regions.sql`, person links v1 and
 v2 (run-once), and for the latest elections the run-once `seed_<st>_leaders.sql`, `seed_<st>_candidate_photos.sql`,

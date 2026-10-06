@@ -180,6 +180,26 @@ Plan `docs/superpowers/plans/2026-10-03-phase2a-historical-results.md` (historic
 - Per-state party overrides (`scraper/data/<slug>/party-overrides.json`) where an ECI name means another party here
   (Kerala 2011's "Muslim League Kerala State Committee" = IUML).
 
+### Party model: lineage (splits, mergers, renames, breakaways) and state units, 2026-10-06
+Spec `docs/superpowers/specs/2026-10-06-party-model-design.md`, plan `docs/superpowers/plans/2026-10-06-party-model.md`.
+- [x] Migration 023: `party_lineage` (rename / merger / split / breakaway, date, optional state, successor flag, source),
+  `party_units` (recognition in a state, office), `party_unit_roles` (state president, legislature leader, from/to,
+  person link). Read API: `GET /parties/lineage`; `GET /parties/:id` adds `units` and `lineage`.
+- [x] One comparison rule (`backend/src/common/comparable-parties.ts` = `frontend/src/model/derive/comparableParties.ts`,
+  identical, tested against `docs/party-lineage-cases.json`): rename/merger = same party; split → the ECI-recognised
+  successor keeps the history, another faction holding an old-party seat is a **split** (not a flip); breakaway = a
+  note only. Applied in the seat analysis (swing `split`, no "switch" for following a split, dominance) and in every
+  frontend comparison (`PartyComparer`, `usePartyComparer`: swing, dominance, switches, trends, seat insights, person
+  pages, region comparison, swing chips tagged "split").
+- [x] Data (sourced, user-approved 2026-10-06): 28 lineage events (15 mergers, 7 splits, 6 breakaways) and 139 state
+  units with 259 leadership roles (`scraper/data/parties/lineage.json`, `units-*.json`, `scraper/src/party-model-cli.ts`
+  → `seed_party_lineage.sql`, run-once `seed_party_units_v1.sql`).
+- [x] Party dialog (state context): "<party> in <state>" — recognition there, state president and legislature leader
+  (linked to person pages), lineage notes in plain words, and the family total after a split.
+- [x] `scraper/src/recompute-analysis-cli.ts` recomputes the stored seat analysis for every election (history from the
+  manifest, else every earlier election of the state). Known: the admin "Compute analysis" button sends no history.
+- Next: the `/party/:id` page; admin editing of lineage and units.
+
 ### Election picker: one list instead of state + year dropdowns, 2026-10-05
 - [x] The dashboard's election button opens one list (like the admin's): a search box ("bih", "2025", "bih 20"), live
   and upcoming elections pinned on top, then one row per state (alphabetical) with its years as chips, newest first; one tap picks.

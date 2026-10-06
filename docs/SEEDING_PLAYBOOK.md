@@ -159,6 +159,7 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | Regenerating a corrections seed after the year seeds were already regenerated | restore the old year seeds first (`git show <pre-branch commit>:database/…`); corrections are a diff against the old rows |
 | Flat 2016 sheets: summing the parsed rows as the seat total makes the turnout check compare a number with itself | read the sheet's own "Total Votes" column |
 
+| A party renamed, merged, split or broke away between two elections (flips and swing look wrong) | add a sourced row to `scraper/data/parties/lineage.json` (split = ECI faction dispute; breakaway = leaders left), regenerate `seed_party_lineage.sql`, recompute the analysis |
 | Pre-NOTA PDFs (2008/2009): rows "serial rank NAME", "TOTAL:" then a bare "Turn Out" line, indented WINNER/MARGIN, "RUNER-UP" | parser variants, each with a fixture test |
 | A table headed "DETAILED RESULTS" that is not (JH 2014 Women Candidates: no SEX column) | skip blocks whose header lacks SEX; a seat appearing twice throws |
 | 2019/2020 summary sheets: label "NARELA-GEN", the seat number only in the sheet name ("U05-1"), plain headings, dd/mm/yyyy | `parseSummaryRows(rows, sheetName)` |
