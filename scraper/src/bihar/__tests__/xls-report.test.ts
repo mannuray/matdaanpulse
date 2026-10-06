@@ -106,6 +106,12 @@ describe('parseSummaryRows', () => {
     expect(parseSummaryRows(rows, 'U05-1')).toMatchObject({ constNo: 1, name: 'NARELA', type: 'GEN' });
     expect(() => parseSummaryRows(rows)).toThrow(/unrecognised constituency label "NARELA-GEN"/);
   });
+  it('reads Sikkim 2024 labels: "-(BL)" is ST, and Sangha carries no type (GEN)', () => {
+    const at = (label: string) => S2020.map((r, i) => (i === 1 ? [r[0], r[1], r[2], label, ...r.slice(4)] : r));
+    expect(parseSummaryRows(at('1-YUKSOM-TASHIDING-(BL)'))).toMatchObject({ constNo: 1, name: 'YUKSOM-TASHIDING', type: 'ST' });
+    expect(parseSummaryRows(at('18-WEST PENDAM-(SC)'))).toMatchObject({ constNo: 18, name: 'WEST PENDAM', type: 'SC' });
+    expect(parseSummaryRows(at('32-SANGHA'))).toMatchObject({ constNo: 32, name: 'SANGHA', type: 'GEN' });
+  });
   it('reads the 2019/2020 plain layout (no roman section numbers)', () => {
     expect(parseSummaryRows(S2020PLAIN, 'U05-1')).toEqual({
       constNo: 1, name: 'NARELA', type: 'GEN', electors: 253982, voters: 165963, contested: 11, totalValid: 164941, nota: 753,

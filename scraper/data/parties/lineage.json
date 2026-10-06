@@ -278,5 +278,15 @@
   "is_successor": true,
   "note": "The Marxist Co-ordination Committee of Jharkhand merged into the CPI(ML) Liberation.",
   "source_url": "https://en.wikipedia.org/wiki/Marxist_Coordination_Committee"
+ },
+ {
+  "party_id": "SKM",
+  "predecessor_id": "SDF",
+  "kind": "breakaway",
+  "effective_date": "2013-02-04",
+  "state_code": null,
+  "is_successor": false,
+  "note": "Founded on 4 February 2013 by P. S. Golay, an SDF minister who had broken with Pawan Chamling.",
+  "source_url": "https://en.wikipedia.org/wiki/Sikkim_Krantikari_Morcha"
  }
 ]

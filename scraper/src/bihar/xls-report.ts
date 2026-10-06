@@ -77,7 +77,9 @@ export function parseDetailedRows(rows: Row[]): RawSeat[] {
 export function parseSummaryRows(rows: Row[], sheetName?: string): SeatSummary {
   const label = text(rows[1]?.[3]);
   const sheetNo = sheetName ? /-(\d+)$/.exec(sheetName.trim())?.[1] : undefined;
-  const m = /^(\d+)-(.+)-\(?(GEN|SC|ST)\)?$/i.exec(label) ?? (sheetNo ? /^()(.+)-\(?(GEN|SC|ST)\)?$/i.exec(label)?.map((x, i) => (i === 1 ? sheetNo : x)) as RegExpExecArray | undefined : null);
+  // Sikkim 2024: "1-YUKSOM-TASHIDING-(BL)" (Bhutia-Lepcha = ST) and "32-SANGHA" (no type: GEN).
+  const m = /^(\d+)-(.+)-\(?(GEN|SC|ST|BL)\)?$/i.exec(label) ?? (sheetNo ? /^()(.+)-\(?(GEN|SC|ST)\)?$/i.exec(label)?.map((x, i) => (i === 1 ? sheetNo : x)) as RegExpExecArray | undefined : null)
+    ?? /^(\d+)-([^()]+?)()$/.exec(label);
   if (!m) throw new Error(`Summary: unrecognised constituency label "${label}"`);
   let section = '';
   const found: Record<string, number> = {};
@@ -114,7 +116,7 @@ export function parseSummaryRows(rows: Row[], sheetName?: string): SeatSummary {
   }
   for (const k of ['contested', 'electors', 'voters', 'totalValid']) if (found[k] === undefined) throw new Error(`Summary ${label}: ${k} not found`);
   if (!pollDate || !picks.winner || !picks['runner-up'] || margin === null) throw new Error(`Summary ${label}: dates/result not found`);
-  return { constNo: Number(m[1]), name: m[2].trim(), type: m[3].toUpperCase() as SeatType, electors: found.electors, voters: found.voters,
+  return { constNo: Number(m[1]), name: m[2].trim(), type: ({ BL: 'ST', '': 'GEN' }[m[3].toUpperCase()] ?? m[3].toUpperCase()) as SeatType, electors: found.electors, voters: found.voters,
     contested: found.contested, totalValid: found.totalValid, nota: found.nota ?? null, pollDate, winner: picks.winner, runnerUp: picks['runner-up'], margin };
 }
 

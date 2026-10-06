@@ -1,0 +1,1816 @@
+{
+ "year": 2014,
+ "electionId": "a0300000-0000-4000-8000-000000002014",
+ "source": {
+  "title": "ECI Statistical Report, Sikkim Legislative Assembly 2014",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3365",
+  "retrieved": "2026-10-06"
+ },
+ "parties": [
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SDF",
+   "name": "Sikkim Democratic Front",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SKM",
+   "name": "Sikkim Krantikari Morcha",
+   "abbreviation": null,
+   "color": "#FF4500",
+   "recognition": null
+  },
+  {
+   "id": "TMC",
+   "name": "All India Trinamool Congress",
+   "abbreviation": null,
+   "color": "#00CC44",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Yoksam-tashiding",
+   "type": "ST",
+   "electors": 11530,
+   "voters": 9969,
+   "turnout": 86.46,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sonam Dadul Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 43,
+     "votes": 6777,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thutop Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 54,
+     "votes": 2559,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pema Rinzing Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 363,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 219,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Yangthang",
+   "type": "GEN",
+   "electors": 11015,
+   "voters": 9342,
+   "turnout": 84.81,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chandra Maya Limboo (Subba)",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 38,
+     "votes": 5211,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kharka Bdr. Subba",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 31,
+     "votes": 3572,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Lall Man Subba",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ashis Gurung",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 140,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 159,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Maneybung-dentam",
+   "type": "GEN",
+   "electors": 12451,
+   "voters": 10746,
+   "turnout": 86.31,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Narendra Kumar Subba",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 46,
+     "votes": 7737,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Birbal Tamling",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 65,
+     "votes": 2519,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Keshar Man Gurung",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 140,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Man Maya Limbu",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 50,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 156,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Gyalshing-barnyak",
+   "type": "GEN",
+   "electors": 10469,
+   "voters": 8946,
+   "turnout": 85.45,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sher Bahadur Subedi",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 56,
+     "votes": 4529,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lok Nath Sharma",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 41,
+     "votes": 3890,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mandhoj Thapa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 135,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dal Bahadur Karki",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Hari Chandra Sharma",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 37,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 148,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Rinchenpong",
+   "type": "ST",
+   "electors": 12515,
+   "voters": 10796,
+   "turnout": 86.26,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karma Sonam Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 49,
+     "votes": 7347,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pema Kinzang Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 41,
+     "votes": 2891,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Laten Tshering Sherpa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 28,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Karsang Sherpa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Phur Tshering Lepcha",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 61,
+     "votes": 93,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 97,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Daramdin",
+   "type": "ST",
+   "electors": 13452,
+   "voters": 11464,
+   "turnout": 85.22,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Danorbu Sherpa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 51,
+     "votes": 6250,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mingma Norbu Sherpa",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 43,
+     "votes": 4646,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Laden Lepcha",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 41,
+     "votes": 306,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 185,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Soreong-chakung",
+   "type": "GEN",
+   "electors": 13930,
+   "voters": 11956,
+   "turnout": 85.83,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ram Bahadur Limboo (Subba)",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 60,
+     "votes": 6596,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bharati Sharma",
+     "partyId": "SKM",
+     "sex": "F",
+     "age": 43,
+     "votes": 4667,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pushker Limbu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sher Bahadur Karki",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 197,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 234,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Salghari-zoom",
+   "type": "SC",
+   "electors": 9649,
+   "voters": 8111,
+   "turnout": 84.06,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arjun Kumar Ghatani",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 34,
+     "votes": 4250,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bhanu Pratap Rasaily",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 35,
+     "votes": 3471,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ranjit Kami",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kharka Bahadur Thatal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 64,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 129,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Barfung",
+   "type": "ST",
+   "electors": 12283,
+   "voters": 10434,
+   "turnout": 84.95,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dorjee Dazom Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 63,
+     "votes": 6639,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pema Wangyal Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 55,
+     "votes": 3460,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dadul Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 30,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 197,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Poklok-kamrang",
+   "type": "GEN",
+   "electors": 13477,
+   "voters": 11655,
+   "turnout": 86.48,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kedar Nath Rai",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 49,
+     "votes": 7996,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bhoj Raj Rai",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 45,
+     "votes": 3325,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ishwar Prasad Rai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 178,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Namchi-singhithang",
+   "type": "GEN",
+   "electors": 10852,
+   "voters": 8722,
+   "turnout": 80.37,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Chamling",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 62,
+     "votes": 4774,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Milan Rai",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 45,
+     "votes": 3690,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khush Bdr. Rai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 92,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 112,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Melli",
+   "type": "GEN",
+   "electors": 13445,
+   "voters": 11423,
+   "turnout": 84.96,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tulshi Devi Rai",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 39,
+     "votes": 7655,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prem Bahadur Karki",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 40,
+     "votes": 3406,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Man Bahadur Rai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 178,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Namthang-rateypani",
+   "type": "GEN",
+   "electors": 13224,
+   "voters": 11093,
+   "turnout": 83.89,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tilu Gurung",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 47,
+     "votes": 5947,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Prem Singh Tamang",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 44,
+     "votes": 4792,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dik Maya Basnet",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 28,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Yasodha Barakoti",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 39,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 109,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Temi-namphing",
+   "type": "GEN",
+   "electors": 12197,
+   "voters": 10259,
+   "turnout": 84.11,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Garjaman Gurung",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 51,
+     "votes": 5657,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lalit Sharma",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 41,
+     "votes": 4268,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Deepak Bhandari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 180,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Rangang-yangang",
+   "type": "GEN",
+   "electors": 11762,
+   "voters": 9976,
+   "turnout": 84.82,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Chamling",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 62,
+     "votes": 6343,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bikash Basnet",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 26,
+     "votes": 3201,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Om Prakash Bista",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 186,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Tumen-lingi",
+   "type": "ST",
+   "electors": 13607,
+   "voters": 11578,
+   "turnout": 85.09,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ugen T. Gyatso Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 50,
+     "votes": 7191,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nidup Tshering Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 50,
+     "votes": 3999,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pandup Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Prem Tshering Lepcha",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 38,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 105,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Khamdong-singtam",
+   "type": "GEN",
+   "electors": 11444,
+   "voters": 9641,
+   "turnout": 84.25,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Som Nath Poudyal",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 50,
+     "votes": 4718,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mani Kumar Sharma",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 43,
+     "votes": 4448,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Madan Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Punya Prasad Koirala",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 160,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "West pendam",
+   "type": "SC",
+   "electors": 12418,
+   "voters": 10286,
+   "turnout": 82.83,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gopal Baraily",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 48,
+     "votes": 5382,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "K. K. Thatal",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 45,
+     "votes": 4462,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Amar Lohar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 157,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ranjeet Gazmer",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 74,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohan Lall Thatal(Darjee)",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 40,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 113,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Rhenock",
+   "type": "GEN",
+   "electors": 15175,
+   "voters": 12855,
+   "turnout": 84.71,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hemendra Adhikari",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 56,
+     "votes": 6415,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bhim Prasad Dhungel",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 42,
+     "votes": 5461,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tilak Kumar Pradhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 474,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Padam Bdr. Chettri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Om Prakash Bhandari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 99,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nawraj Chettri",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 36,
+     "votes": 92,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 139,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Chujachen",
+   "type": "GEN",
+   "electors": 15466,
+   "voters": 12894,
+   "turnout": 83.37,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bikram Pradhan",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 34,
+     "votes": 7836,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kharga Bahadur Gurung",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 54,
+     "votes": 4425,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gajendra Rizal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rudra Narsing Sakya",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 179,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Gnathang-machong",
+   "type": "ST",
+   "electors": 10080,
+   "voters": 8665,
+   "turnout": 85.96,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dorjee Tsh. Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 56,
+     "votes": 5017,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sonam Dorjee",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 59,
+     "votes": 3101,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pempa Tshering Bhutia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 325,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dorjee Ongden Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 69,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Namcheybung",
+   "type": "GEN",
+   "electors": 12906,
+   "voters": 11037,
+   "turnout": 85.52,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bek Bahadur Rai",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 45,
+     "votes": 5577,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dilip Rai",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 43,
+     "votes": 4955,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tashi Rai",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 33,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Manoj Rai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 139,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 157,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Shyari",
+   "type": "ST",
+   "electors": 12623,
+   "voters": 10235,
+   "turnout": 81.08,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kunga Nima Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 66,
+     "votes": 5324,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Karma Tempo Namgyal Gyaltsen",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 52,
+     "votes": 4588,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Samdup Dorjee Lama",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 142,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 140,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Martam-rumtek",
+   "type": "ST",
+   "electors": 14512,
+   "voters": 12103,
+   "turnout": 83.4,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mechung Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 36,
+     "votes": 6055,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Menlom Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 46,
+     "votes": 5576,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sonam Tshering Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 183,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 239,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Upper tadong",
+   "type": "GEN",
+   "electors": 8952,
+   "voters": 6884,
+   "turnout": 76.9,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Timothy William Basnett",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 45,
+     "votes": 3333,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bhasker Basnett",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 52,
+     "votes": 3211,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Eli Pal",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 49,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tara Kumar Pradhan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 79,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Arithang",
+   "type": "GEN",
+   "electors": 9493,
+   "voters": 6974,
+   "turnout": 73.46,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shyam Pradhan",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 42,
+     "votes": 4026,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Udai Lama",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 60,
+     "votes": 2420,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sherap Dorjee Bhutia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 253,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gyalpo Tamang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajeney Gurung",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 42,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 71,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Gangtok",
+   "type": "ST",
+   "electors": 10073,
+   "voters": 6880,
+   "turnout": 68.3,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pintso Chopel",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 45,
+     "votes": 4208,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hishey Lachungpa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 47,
+     "votes": 2317,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Norden Gyalpo Dorji",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tshering Gyatso Kaleon",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 72,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Tshering Wangchuk Lepcha",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 35,
+     "votes": 37,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 62,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Upper burtuk",
+   "type": "GEN",
+   "electors": 12764,
+   "voters": 10432,
+   "turnout": 81.73,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Prem Singh Tamang",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 44,
+     "votes": 5272,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "D. R. Thapa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 45,
+     "votes": 4699,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ugen Tamang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Santa Bir Gurung",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 139,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Kabi lungchuk",
+   "type": "ST",
+   "electors": 11061,
+   "voters": 9431,
+   "turnout": 85.26,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ugen Nedup Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 46,
+     "votes": 4615,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thenlay Tshering Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 60,
+     "votes": 4489,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Karma Tashi Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 127,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 152,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Djongu",
+   "type": "ST",
+   "electors": 8167,
+   "voters": 7269,
+   "turnout": 89,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sonam Gyatso Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 52,
+     "votes": 4618,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dawa Tshering Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 40,
+     "votes": 2443,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Penzong Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 29,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 87,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Lachen mangan",
+   "type": "ST",
+   "electors": 6874,
+   "voters": 5870,
+   "turnout": 85.39,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tshering Wangdi Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 47,
+     "votes": 3127,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Samdup Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 48,
+     "votes": 2570,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Topden Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 79,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Sangha",
+   "type": "GEN",
+   "electors": 2904,
+   "voters": 2209,
+   "turnout": 76.07,
+   "phase": 1,
+   "pollDate": "2014-04-12",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sonam Lama",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 38,
+     "votes": 1096,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Palden Lachungpa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 58,
+     "votes": 971,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tshering Lama",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 108,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 23,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

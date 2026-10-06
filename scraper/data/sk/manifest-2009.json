@@ -1,0 +1,46 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2009_Sikkim_Legislative_Assembly_election",
+  "note: SDF and Congress contested alone; SDF won all 32 seats."
+ ],
+ "alliances": [
+  {
+   "id": "SDF",
+   "name": "SDF",
+   "color": "#FFD400",
+   "parties": [
+    "SDF"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "SDF",
+  "INC"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 17
+  }
+ ],
+ "geo": {
+  "zoom": 9,
+  "center": [
+   88.45,
+   27.6
+  ],
+  "map_url": "/geo/sk_ac_2008.geojson"
+ },
+ "delimitation_era": "2008"
+}

@@ -1,0 +1,2048 @@
+{
+ "year": 2024,
+ "electionId": "a0300000-0000-4000-8000-000000002024",
+ "source": {
+  "title": "ECI Statistical Report, Sikkim Legislative Assembly 2024",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=5",
+  "retrieved": "2026-10-06"
+ },
+ "parties": [
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "CAP1",
+   "name": "Citizen Action Party-Sikkim",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SDF",
+   "name": "Sikkim Democratic Front",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SKM",
+   "name": "Sikkim Krantikari Morcha",
+   "abbreviation": null,
+   "color": "#FF4500",
+   "recognition": null
+  },
+  {
+   "id": "SKPP",
+   "name": "Sikkim Republican Party",
+   "abbreviation": "SKPP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Yuksom-Tashiding",
+   "type": "ST",
+   "electors": 15524,
+   "voters": 13640,
+   "turnout": 87.86,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tshering Thendup Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 59,
+     "votes": 8271,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Meewang Gyatso Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 32,
+     "votes": 3459,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jigmey Bhutia",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 43,
+     "votes": 1024,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kunzang Sherab Bhutia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 318,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kamal Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Palden Lepcha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sonam Palzor Bhutia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 75,
+     "votes": 94,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 159,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Yangthang",
+   "type": "GEN",
+   "electors": 14121,
+   "voters": 12177,
+   "turnout": 86.23,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bhim Hang Limboo",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 35,
+     "votes": 6621,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kesham Limboo",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 42,
+     "votes": 4065,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Phip Dhoj Limboo",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 40,
+     "votes": 551,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pravin Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 536,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sancha Man Limboo",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 185,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mangal Subba (limboo)",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 81,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 85,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Maneybung-Dentam",
+   "type": "GEN",
+   "electors": 16403,
+   "voters": 14287,
+   "turnout": 87.1,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sudesh Kumar Subba",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 47,
+     "votes": 8553,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tika Ram Chettri",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 63,
+     "votes": 2514,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Narendra Kumar Subba",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 1924,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Prakash Sharma",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 31,
+     "votes": 840,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dipendra Gurung",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 122,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nar Bahadur Gurung",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 145,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Gyalshing-Barnyak",
+   "type": "GEN",
+   "electors": 13683,
+   "voters": 11715,
+   "turnout": 85.62,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Lok Nath Sharma",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 51,
+     "votes": 5612,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khusandra Prasad Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 4649,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tika Prasad Sharma",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 45,
+     "votes": 829,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pujan Kharka",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 37,
+     "votes": 317,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bharat Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 105,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Rinchenpong",
+   "type": "ST",
+   "electors": 16024,
+   "voters": 14013,
+   "turnout": 87.45,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Erung Tenzing Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 32,
+     "votes": 9624,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Norden Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 46,
+     "votes": 3224,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dawa Ongdi Lepcha",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 54,
+     "votes": 552,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sancho Lepcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 328,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 239,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Daramdin",
+   "type": "ST",
+   "electors": 16404,
+   "voters": 13966,
+   "turnout": 85.14,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mingma Norbu Sherpa",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 54,
+     "votes": 9404,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pem Norbu Sherpa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 44,
+     "votes": 3429,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pem Dorjee Sherpa",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 47,
+     "votes": 472,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Phurba Dorjee Sherpa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 351,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 224,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Soreng-Chakung",
+   "type": "GEN",
+   "electors": 16740,
+   "voters": 14583,
+   "turnout": 87.11,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P S Tamang",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 56,
+     "votes": 10480,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. A D Subba",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 59,
+     "votes": 3084,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pobin Hang Subba",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 34,
+     "votes": 498,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Purna Singh Subba",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 330,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 128,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Salghari-Zoom",
+   "type": "SC",
+   "electors": 11694,
+   "voters": 9693,
+   "turnout": 82.89,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Madan Cintury",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 64,
+     "votes": 5678,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Janga Bir Darnal",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 59,
+     "votes": 2966,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pahal Man Kami",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 555,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kaushal Lohagan",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 43,
+     "votes": 400,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 75,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Barfung",
+   "type": "ST",
+   "electors": 15980,
+   "voters": 13587,
+   "turnout": 85.03,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rikshal Dorjee Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 52,
+     "votes": 8358,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bhaichung Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 47,
+     "votes": 4012,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dadul Lepcha",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 39,
+     "votes": 656,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tashi Dadul Bhutia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 298,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 188,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Poklok-Kamrang",
+   "type": "GEN",
+   "electors": 16870,
+   "voters": 14680,
+   "turnout": 87.02,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bhoj Raj Rai",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 60,
+     "votes": 8037,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pawan Kumar Chamling",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 73,
+     "votes": 4974,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arjun Rai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 739,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sanju Rai",
+     "partyId": "CAP1",
+     "sex": "F",
+     "age": 50,
+     "votes": 691,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 175,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Namchi-Singhithang",
+   "type": "GEN",
+   "electors": 13251,
+   "voters": 11121,
+   "turnout": 83.93,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Krishna Kumari Rai",
+     "partyId": "SKM",
+     "sex": "F",
+     "age": 47,
+     "votes": 7907,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bimal Rai",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 56,
+     "votes": 2605,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mahesh Rai",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 29,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Aruna Manger",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 48,
+     "votes": 233,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 62,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Melli",
+   "type": "GEN",
+   "electors": 16029,
+   "voters": 13717,
+   "turnout": 85.58,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nar Bahadur Pradhan",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 56,
+     "votes": 7904,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ganesh Kumar Rai",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 44,
+     "votes": 3621,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nirmal Kumar Pradhan",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 56,
+     "votes": 1321,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Yogen Rai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 582,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rupen Karki",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 99,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Namthang-Rateypani",
+   "type": "GEN",
+   "electors": 16455,
+   "voters": 14174,
+   "turnout": 86.14,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sanjeet Kharel",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 47,
+     "votes": 8949,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Suman Pradhan",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 42,
+     "votes": 3344,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Hari Chandra Chettri",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 48,
+     "votes": 1300,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Janak Kumar Gurung",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 344,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 164,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Temi-Namphing",
+   "type": "GEN",
+   "electors": 15465,
+   "voters": 13118,
+   "turnout": 84.82,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bedu Singh Panth",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 71,
+     "votes": 6759,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Suman Kumar Tewari",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 57,
+     "votes": 3201,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bikash Sharma",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 55,
+     "votes": 2616,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bhupendra Giri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 303,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 159,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Rangang-Yangang",
+   "type": "GEN",
+   "electors": 15261,
+   "voters": 12901,
+   "turnout": 84.54,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raj Kumari Thapa",
+     "partyId": "SKM",
+     "sex": "F",
+     "age": 43,
+     "votes": 6514,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mani Kumar Subba",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 57,
+     "votes": 5313,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Anil Kumar Nepal",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 38,
+     "votes": 662,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gopi Das Sharma (pokhrel)",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 256,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 94,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Tumen-Lingi",
+   "type": "ST",
+   "electors": 16767,
+   "voters": 14388,
+   "turnout": 85.81,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Samdup Tshering Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 65,
+     "votes": 8265,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Norzong Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 54,
+     "votes": 4177,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pema Gyalpu Bhutia",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 45,
+     "votes": 885,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Passang Gyali Sherpa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 593,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Samdup Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 197,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 115,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Khamdong-Singtam",
+   "type": "GEN",
+   "electors": 14428,
+   "voters": 11779,
+   "turnout": 81.64,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nar Bahadur Dahal",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 58,
+     "votes": 5882,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mani Kumar Sharma",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 53,
+     "votes": 4143,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chetan Sapkota",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 506,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sumati Chettri",
+     "partyId": "CAP1",
+     "sex": "F",
+     "age": 55,
+     "votes": 450,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Tanka Nath Adhikari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 70,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 75,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "West Pendam",
+   "type": "SC",
+   "electors": 15880,
+   "voters": 12962,
+   "turnout": 81.62,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Lall Bahadur Das",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 52,
+     "votes": 6237,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Anup Thatal",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 46,
+     "votes": 4285,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhupal Baraily",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 959,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jagdish Cintury",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 731,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Madan Kumar Shiva Shanker",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 59,
+     "votes": 580,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 126,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Rhenock",
+   "type": "GEN",
+   "electors": 18356,
+   "voters": 15746,
+   "turnout": 85.78,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "P S Tamang",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 56,
+     "votes": 10094,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Som Nath Poudyal",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 60,
+     "votes": 3050,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tika Ram Sharma",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 34,
+     "votes": 1171,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Prem Chhetri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 852,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Laxmi Sharma",
+     "partyId": "SKPP",
+     "sex": "F",
+     "age": 32,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kapil Prasad Sapkota",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 162,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Chujachen",
+   "type": "GEN",
+   "electors": 18749,
+   "voters": 15557,
+   "turnout": 82.98,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Puran Kr. Gurung",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 57,
+     "votes": 8199,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mani Kumar Gurung",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 45,
+     "votes": 4865,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ganesh Kumar Rai",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 44,
+     "votes": 1077,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Duk Nath Nepal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 464,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 126,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Gnathang-Machong",
+   "type": "ST",
+   "electors": 12965,
+   "voters": 10959,
+   "turnout": 84.53,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pamin Lepcha",
+     "partyId": "SKM",
+     "sex": "F",
+     "age": 39,
+     "votes": 6676,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tshering Wangdi Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 56,
+     "votes": 2869,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sangay Gyatso Bhutia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 602,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Phuri Sherpa",
+     "partyId": "CAP1",
+     "sex": "F",
+     "age": 49,
+     "votes": 531,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Tshering Pema Bhutia",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 37,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 94,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Namcheybung",
+   "type": "GEN",
+   "electors": 16397,
+   "voters": 13573,
+   "turnout": 82.78,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raju Basnet",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 55,
+     "votes": 7195,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pawan Kumar Chamling",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 73,
+     "votes": 4939,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Severine Rai",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 42,
+     "votes": 814,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pooja Sharma",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 38,
+     "votes": 374,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 147,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Shyari",
+   "type": "ST",
+   "electors": 16196,
+   "voters": 12899,
+   "turnout": 79.64,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tenzing Norbu Lamtha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 49,
+     "votes": 6633,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kunga Nima Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 77,
+     "votes": 5319,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pempo Dorjee Lepcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 403,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sonam Tshering Lepcha",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 51,
+     "votes": 268,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Karma Tashi Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 93,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Martam-Rumtek",
+   "type": "ST",
+   "electors": 17844,
+   "voters": 15109,
+   "turnout": 84.67,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sonam Tsh. Venchungpa",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 52,
+     "votes": 8070,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mechung Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 46,
+     "votes": 5308,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chewang Dadul Bhutia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 705,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Karma Tshering Bhutia",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 54,
+     "votes": 637,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ganga Lepcha",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 40,
+     "votes": 89,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 132,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Upper Tadong",
+   "type": "GEN",
+   "electors": 12228,
+   "voters": 9159,
+   "turnout": 74.9,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "G.t. Dhungel",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 64,
+     "votes": 6209,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Chandra Bahadur Chettri",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 42,
+     "votes": 2120,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Niren Bhandari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 280,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ravi Gurung",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 48,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kailash Chandra Pradhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 57,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Arithang",
+   "type": "GEN",
+   "electors": 12602,
+   "voters": 8746,
+   "turnout": 69.4,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arun Kumar Upreti",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 56,
+     "votes": 5356,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ashis Rai",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 49,
+     "votes": 2627,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Udai Gurung",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 541,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rikesh Pradhan",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 46,
+     "votes": 93,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sumitra Rai",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 53,
+     "votes": 46,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 49,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Gangtok",
+   "type": "ST",
+   "electors": 11881,
+   "voters": 7774,
+   "turnout": 65.43,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Delay Namgyal Barfungpa",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 58,
+     "votes": 4440,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pintso Chopel Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 55,
+     "votes": 1748,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pema Wangyal Rinzing",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 1230,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dawcho Lepcha",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 54,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Snumit Targain",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 62,
+     "votes": 44,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 62,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Upper Burtuk",
+   "type": "GEN",
+   "electors": 16236,
+   "voters": 12624,
+   "turnout": 77.75,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kala Rai",
+     "partyId": "SKM",
+     "sex": "F",
+     "age": 49,
+     "votes": 6323,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dilli Ram Thapa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 3755,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dil Bahadur Thapa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 58,
+     "votes": 1623,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bhim Kumar Tamang",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 61,
+     "votes": 581,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Aita Tamang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 123,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 107,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Kabi Lungchuk",
+   "type": "ST",
+   "electors": 13209,
+   "voters": 10994,
+   "turnout": 83.23,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thenlay Tshering Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 71,
+     "votes": 5882,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gnawo Chopel Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 61,
+     "votes": 4189,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ugen Nedup Bhutia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 589,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 196,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Djongu",
+   "type": "ST",
+   "electors": 10523,
+   "voters": 9281,
+   "turnout": 88.2,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pintso Namgyal Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 49,
+     "votes": 6402,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sonam Gyatso Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 62,
+     "votes": 1395,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jorbu Tshering Lepcha",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 55,
+     "votes": 1190,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Penzong Lepcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 68,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Lachen Mangan",
+   "type": "ST",
+   "electors": 8404,
+   "voters": 7171,
+   "turnout": 85.33,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Samdup Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 59,
+     "votes": 3929,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hishey Lachungpa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 56,
+     "votes": 3078,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 89,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Sangha",
+   "type": "GEN",
+   "electors": 4074,
+   "voters": 3209,
+   "turnout": 78.77,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sonam Lama",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 48,
+     "votes": 1919,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tseten Tashi Bhutia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 1054,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tshering Lama",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 59,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Norcho Lepcha",
+     "partyId": "CAP1",
+     "sex": "M",
+     "age": 34,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 14,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

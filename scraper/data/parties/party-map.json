@@ -2946,6 +2946,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "CITIZENACTIONPARTYSIKKIM": {
+    "id": "CAP1",
+    "name": "Citizen Action Party-Sikkim",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "COMMUNISTMARXISTPARTYKERALASTATECOMMITTEE": {
     "id": "CMPKSC",
     "name": "Communist Marxist Party Kerala State Committee",
@@ -3580,6 +3587,13 @@
     "id": "HP",
     "name": "Hamdard Party",
     "abbreviation": "HP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "HAMROSIKKIMPARTY": {
+    "id": "HMSKP",
+    "name": "Hamro Sikkim Party",
+    "abbreviation": "HMSKP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -9187,6 +9201,62 @@
     "id": "SHRP",
     "name": "Shreshthatam Rashtra Party",
     "abbreviation": "ShRP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SIKKIMDEMOCRATICFRONT": {
+    "id": "SDF",
+    "name": "Sikkim Democratic Front",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "SIKKIMGORKHAPRAJATANTRICPARTY": {
+    "id": "SGPP",
+    "name": "Sikkim Gorkha Prajatantric Party",
+    "abbreviation": "SGPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SIKKIMHIMALIRAJYAPARISHADPARTY": {
+    "id": "SHRP_SK",
+    "name": "Sikkim Himali Rajya Parishad Party",
+    "abbreviation": "SHRP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SIKKIMJANEKTAPARTY": {
+    "id": "SJEP",
+    "name": "Sikkim Jan-Ekta Party",
+    "abbreviation": "SJEP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SIKKIMKRANTIKARIMORCHA": {
+    "id": "SKM",
+    "name": "Sikkim Krantikari Morcha",
+    "abbreviation": null,
+    "color": "#FF4500",
+    "recognition": null
+  },
+  "SIKKIMRAJYAMANCHPARTY": {
+    "id": "SRMP",
+    "name": "Sikkim Rajya Manch Party",
+    "abbreviation": "SRMP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SIKKIMREPUBLICANPARTY": {
+    "id": "SKPP",
+    "name": "Sikkim Republican Party",
+    "abbreviation": "SKPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "SIKKIMUNITEDFRONT": {
+    "id": "SUTF",
+    "name": "Sikkim United Front",
+    "abbreviation": "SUTF",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },

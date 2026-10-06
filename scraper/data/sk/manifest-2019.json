@@ -1,0 +1,75 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2019_Sikkim_Legislative_Assembly_election",
+  "note: no pre-poll alliances; SKM formed the government and joined the NDA after the result (post-poll)."
+ ],
+ "alliances": [
+  {
+   "id": "SKM",
+   "name": "SKM",
+   "color": "#FF4500",
+   "parties": [
+    "SKM"
+   ]
+  },
+  {
+   "id": "SDF",
+   "name": "SDF",
+   "color": "#FFD400",
+   "parties": [
+    "SDF"
+   ]
+  },
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "SKM",
+  "SDF",
+  "BJP",
+  "INC"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 17
+  }
+ ],
+ "geo": {
+  "zoom": 9,
+  "center": [
+   88.45,
+   27.6
+  ],
+  "map_url": "/geo/sk_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0300000-0000-4000-8000-000000002009",
+  "a0300000-0000-4000-8000-000000002014"
+ ],
+ "history_years": [
+  2009,
+  2014
+ ],
+ "compare_with": [
+  "a0300000-0000-4000-8000-000000002014"
+ ]
+}

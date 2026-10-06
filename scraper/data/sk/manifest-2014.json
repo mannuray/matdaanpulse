@@ -1,0 +1,73 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2014_Sikkim_Legislative_Assembly_election",
+  "note: no pre-poll alliances; SKM (founded 2013 by leaders who left SDF) contested its first election."
+ ],
+ "alliances": [
+  {
+   "id": "SDF",
+   "name": "SDF",
+   "color": "#FFD400",
+   "parties": [
+    "SDF"
+   ]
+  },
+  {
+   "id": "SKM",
+   "name": "SKM",
+   "color": "#FF4500",
+   "parties": [
+    "SKM"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#19AAED",
+   "parties": [
+    "INC"
+   ]
+  },
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF6B00",
+   "parties": [
+    "BJP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "SDF",
+  "SKM",
+  "INC",
+  "BJP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 17
+  }
+ ],
+ "geo": {
+  "zoom": 9,
+  "center": [
+   88.45,
+   27.6
+  ],
+  "map_url": "/geo/sk_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0300000-0000-4000-8000-000000002009"
+ ],
+ "history_years": [
+  2009
+ ],
+ "compare_with": [
+  "a0300000-0000-4000-8000-000000002009"
+ ]
+}

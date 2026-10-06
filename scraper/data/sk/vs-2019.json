@@ -1,0 +1,2105 @@
+{
+ "year": 2019,
+ "electionId": "a0300000-0000-4000-8000-000000002019",
+ "source": {
+  "title": "ECI Statistical Report, Sikkim Legislative Assembly 2019",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=11677",
+  "retrieved": "2026-10-06"
+ },
+ "parties": [
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "HMSKP",
+   "name": "Hamro Sikkim Party",
+   "abbreviation": "HMSKP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JMBP",
+   "name": "Jai Maha Bharath Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SDF",
+   "name": "Sikkim Democratic Front",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SKM",
+   "name": "Sikkim Krantikari Morcha",
+   "abbreviation": null,
+   "color": "#FF4500",
+   "recognition": null
+  },
+  {
+   "id": "SKPP",
+   "name": "Sikkim Republican Party",
+   "abbreviation": "SKPP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SRMP",
+   "name": "Sikkim Rajya Manch Party",
+   "abbreviation": "SRMP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SUTF",
+   "name": "Sikkim United Front",
+   "abbreviation": "SUTF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Yoksam-tashiding",
+   "type": "ST",
+   "electors": 13808,
+   "voters": 11745,
+   "turnout": 85.06,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sangay Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 56,
+     "votes": 5686,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dichen Wangchuk Bhutia",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 59,
+     "votes": 5607,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Phurkit Lepcha",
+     "partyId": "HMSKP",
+     "sex": "F",
+     "age": 31,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pema Rinzing Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 132,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Yangthang",
+   "type": "GEN",
+   "electors": 12952,
+   "voters": 10741,
+   "turnout": 82.93,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bhim Hang Limboo",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 30,
+     "votes": 5184,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dal Bdr. Subba",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 36,
+     "votes": 5137,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dhan Singh Limboo",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 43,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Binay Limboo (Tsong)",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 93,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mangal Subba (Limboo)",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 93,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 74,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Maneybung-dentam",
+   "type": "GEN",
+   "electors": 15174,
+   "voters": 12992,
+   "turnout": 85.62,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Narendra Kumar Subba",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 51,
+     "votes": 7134,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Purna Hang Subba",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 37,
+     "votes": 5630,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 172,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Gyalshing-barnyak",
+   "type": "GEN",
+   "electors": 12406,
+   "voters": 10308,
+   "turnout": 83.09,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Lok Nath Sharma",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 46,
+     "votes": 5862,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laxuman Sharma",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 53,
+     "votes": 4048,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhanu Bhakta Dahal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 64,
+     "votes": 217,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sukuhang Subba",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 33,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 73,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Rinchenpong",
+   "type": "ST",
+   "electors": 14756,
+   "voters": 12631,
+   "turnout": 85.6,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karma Sonam Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 55,
+     "votes": 6582,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Phurba Tsh. Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 42,
+     "votes": 5513,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sancho Lepcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 26,
+     "votes": 303,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Phurchung Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 92,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 109,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Daramdin",
+   "type": "ST",
+   "electors": 15269,
+   "voters": 12731,
+   "turnout": 83.38,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mingma Norbu Sherpa",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 49,
+     "votes": 6219,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pem Norbu Sherpa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 40,
+     "votes": 5883,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rozer Tasho Lepcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 317,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Passang Gyalchen Sherpa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 102,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Datempa Sherpa",
+     "partyId": "SRMP",
+     "sex": "M",
+     "age": 58,
+     "votes": 43,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sonam Gyatso Sherpa",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 35,
+     "votes": 30,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 78,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Soreng-chakung",
+   "type": "GEN",
+   "electors": 15589,
+   "voters": 13194,
+   "turnout": 84.64,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Aditya Golay (Tamang)",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 28,
+     "votes": 6580,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sancha Raj Subba",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 46,
+     "votes": 6372,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 188,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Salghari-zoom",
+   "type": "SC",
+   "electors": 10942,
+   "voters": 8931,
+   "turnout": 81.62,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sunita Gajmer",
+     "partyId": "SKM",
+     "sex": "F",
+     "age": 41,
+     "votes": 4400,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dhan Kumari Kami",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 42,
+     "votes": 4307,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ganga Maya Cintury",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 40,
+     "votes": 119,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Pahal Man Kami",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 40,
+     "votes": 34,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 71,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Barfung",
+   "type": "ST",
+   "electors": 14875,
+   "voters": 12126,
+   "turnout": 81.52,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tashi Thendup Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 56,
+     "votes": 5936,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lobzang Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 54,
+     "votes": 5839,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mingma Tshring Sherpa",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 60,
+     "votes": 169,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 139,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Poklok-kamrang",
+   "type": "GEN",
+   "electors": 15595,
+   "voters": 13146,
+   "turnout": 84.3,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Chamling",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 68,
+     "votes": 7731,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kharka Bahadur Rai",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 44,
+     "votes": 4832,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Yadhu Kumar Rai",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 197,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ishwar Prasad Rai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Birkha Bahadur Rai",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 68,
+     "votes": 90,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 108,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Namchi-singhithang",
+   "type": "GEN",
+   "electors": 12689,
+   "voters": 10089,
+   "turnout": 79.51,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Chamling",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 68,
+     "votes": 5054,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ganesh Rai",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 45,
+     "votes": 4677,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kamala Rai",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 37,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kharga Bahadur Rai",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 50,
+     "votes": 83,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Hukum Chandra Rai",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 45,
+     "votes": 70,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 75,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Melli",
+   "type": "GEN",
+   "electors": 15479,
+   "voters": 12727,
+   "turnout": 82.22,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Farwanti Tamang",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 45,
+     "votes": 6354,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tilak Basnet",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 44,
+     "votes": 5489,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhola Chawhan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 382,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Hari Basnett",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bal Bir Tamang",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 51,
+     "votes": 70,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Lall Bahadur Chettri",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 59,
+     "votes": 63,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 166,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Namthang-rateypani",
+   "type": "GEN",
+   "electors": 15451,
+   "voters": 12845,
+   "turnout": 83.13,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sanjeet Kharel",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 42,
+     "votes": 6848,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Birjan Tamang",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 37,
+     "votes": 5543,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sancha Man Chettri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 31,
+     "votes": 128,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ganga Ram Sharma",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 48,
+     "votes": 83,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Madan Tamang",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 43,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Usha Gurung",
+     "partyId": "JMBP",
+     "sex": "F",
+     "age": 35,
+     "votes": 41,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 89,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Temi-namphing",
+   "type": "GEN",
+   "electors": 14225,
+   "voters": 11827,
+   "turnout": 83.14,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bedu Singh Panth",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 66,
+     "votes": 6084,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Garjaman Gurung",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 53,
+     "votes": 5314,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Deepak Kumar Bhandari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 146,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Durga Bahadur Chhetri",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 54,
+     "votes": 142,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 82,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Rangang-yangang",
+   "type": "GEN",
+   "electors": 13919,
+   "voters": 11544,
+   "turnout": 82.94,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raj Kumari Thapa",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 39,
+     "votes": 6146,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Raj Kumar Basnet",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 60,
+     "votes": 4621,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rup Narayan Chamling",
+     "partyId": "SRMP",
+     "sex": "M",
+     "age": 51,
+     "votes": 443,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tanka Nath Adhikari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 32,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kamala Rai",
+     "partyId": "HMSKP",
+     "sex": "F",
+     "age": 37,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohan Gurung",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 27,
+     "votes": 41,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 70,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Tumen-lingi",
+   "type": "ST",
+   "electors": 15888,
+   "voters": 13294,
+   "turnout": 83.67,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ugen T. Gyatso Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 59,
+     "votes": 6615,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Samdup Tshering Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 60,
+     "votes": 6295,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhaichung Bhutia",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 42,
+     "votes": 234,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 116,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Khamdong-singtam",
+   "type": "GEN",
+   "electors": 13067,
+   "voters": 10657,
+   "turnout": 81.56,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mani Kumar Sharma",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 48,
+     "votes": 5347,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Garjaman Gurung",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 48,
+     "votes": 4474,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sher Bahadur Karki",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 558,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tula Ram Guragai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 72,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Neeraj Adhikari",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 31,
+     "votes": 67,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gopal Khatiwara",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 31,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 62,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "West pendam",
+   "type": "SC",
+   "electors": 14984,
+   "voters": 11716,
+   "turnout": 78.19,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "L .B Das",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 48,
+     "votes": 5799,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gopal Baraily",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 53,
+     "votes": 4901,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Birendra Pourali",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 597,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Binod Darjee",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Santosh Bardewa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 64,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Indra Kr Suji",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 45,
+     "votes": 60,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bikash Darjee",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 47,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sonam Darjee",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 31,
+     "votes": 31,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 83,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Rhenock",
+   "type": "GEN",
+   "electors": 17396,
+   "voters": 14328,
+   "turnout": 82.36,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bishnu Kumar Sharma",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 64,
+     "votes": 8039,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hemendra Adhikari",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 61,
+     "votes": 4953,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bharat Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 649,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Deo Kr Pradhan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Chakrapani Sharma",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 122,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Biraj Adhikari",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 57,
+     "votes": 85,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ramesh Sharma",
+     "partyId": "SUTF",
+     "sex": "M",
+     "age": 43,
+     "votes": 62,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 142,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Chujachen",
+   "type": "GEN",
+   "electors": 17776,
+   "voters": 14302,
+   "turnout": 80.46,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Krishna Bahadur Rai",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 70,
+     "votes": 7266,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Damber Kumar Pradhan",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 33,
+     "votes": 5939,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohan Gurung",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 76,
+     "votes": 514,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gopal Chettri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 177,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anil Kr Rai",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rudra Khatiwara",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 46,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rudra Narsing Sakya",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 56,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 97,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Gnathang-machong",
+   "type": "ST",
+   "electors": 12048,
+   "voters": 10179,
+   "turnout": 84.49,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dorjee Tshering Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 62,
+     "votes": 6380,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tshering Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 69,
+     "votes": 3460,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dorjee Ongden Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 76,
+     "votes": 127,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sangay Chopel Bhutia",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 40,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 86,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Namcheybung",
+   "type": "GEN",
+   "electors": 15095,
+   "voters": 12455,
+   "turnout": 82.51,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Em Prasad Sharma",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 43,
+     "votes": 6141,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Denis Rai",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 51,
+     "votes": 5170,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Devi Basnett",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 56,
+     "votes": 574,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kharga Bahadur Rai",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 50,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Phipra Hang Subba",
+     "partyId": "SRMP",
+     "sex": "M",
+     "age": 39,
+     "votes": 161,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anush Rai",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 38,
+     "votes": 102,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 90,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Shyari",
+   "type": "ST",
+   "electors": 15732,
+   "voters": 12265,
+   "turnout": 77.96,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kunga Nima Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 71,
+     "votes": 6638,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Karma Wangdi Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 49,
+     "votes": 5282,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chewang Dorjee Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 132,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Martam-rumtek",
+   "type": "ST",
+   "electors": 16975,
+   "voters": 13815,
+   "turnout": 81.38,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dorjee Tshering Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 61,
+     "votes": 6244,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sonam Tshering Venchungpa",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 47,
+     "votes": 6171,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jigdal Chewang Bhutia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 804,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nima Lepcha",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 55,
+     "votes": 183,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gyaltsen Bhutia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sonam Tshering Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 118,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Upper tadong",
+   "type": "GEN",
+   "electors": 10334,
+   "voters": 7593,
+   "turnout": 73.48,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gay Tshering Dhungel",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 59,
+     "votes": 3844,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Anand Lama",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 57,
+     "votes": 3428,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dr. Bina Basnett",
+     "partyId": "HMSKP",
+     "sex": "F",
+     "age": 33,
+     "votes": 123,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anita Gurung",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 34,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Punam Bhandari",
+     "partyId": "SKPP",
+     "sex": "F",
+     "age": 28,
+     "votes": 16,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 56,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Arithang",
+   "type": "GEN",
+   "electors": 11408,
+   "voters": 7899,
+   "turnout": 69.24,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arun Kumar Upreti",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 51,
+     "votes": 3150,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ashis Rai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 2676,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shyam Pradhan",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 47,
+     "votes": 1545,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dal Bahadur Chettri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 393,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sumitra Rai",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 51,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 66,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Gangtok",
+   "type": "ST",
+   "electors": 11649,
+   "voters": 7505,
+   "turnout": 64.43,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kunga Nima Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 71,
+     "votes": 3838,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pintso Chopel",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 50,
+     "votes": 2950,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Yong Tshering Lepcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 392,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Delay Namgyal Barfungpa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bhaichung Bhutia",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 42,
+     "votes": 70,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Phurba Sherpa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 42,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 38,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Upper burtuk",
+   "type": "GEN",
+   "electors": 15231,
+   "voters": 11872,
+   "turnout": 77.95,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dilli Ram Thapa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 50,
+     "votes": 6107,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nagendra Bikram Gurung",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 68,
+     "votes": 5350,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Aita Tamang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 128,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dal Bahadur Tamang",
+     "partyId": "SKPP",
+     "sex": "M",
+     "age": 41,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Philip Lamichaney",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 34,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 93,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Kabi lungchuk",
+   "type": "ST",
+   "electors": 12661,
+   "voters": 10378,
+   "turnout": 81.97,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karma Loday Bhutia",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 54,
+     "votes": 5705,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ugen Nedup Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 51,
+     "votes": 4268,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Phurden Tshering Lepcha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 152,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gyurmik Yauseel Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 97,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Djongu",
+   "type": "ST",
+   "electors": 9595,
+   "voters": 8523,
+   "turnout": 88.83,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pintso Namgyal Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 44,
+     "votes": 5613,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chungkipu Lepcha",
+     "partyId": "SKM",
+     "sex": "F",
+     "age": 59,
+     "votes": 2612,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Penzong Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 119,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Athup Lepcha",
+     "partyId": "HMSKP",
+     "sex": "M",
+     "age": 74,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 51,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Lachen mangan",
+   "type": "ST",
+   "electors": 7867,
+   "voters": 6743,
+   "turnout": 85.71,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Samdup Lepcha",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 55,
+     "votes": 3615,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tshering Wangdi Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 52,
+     "votes": 3031,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 73,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Sangha",
+   "type": "GEN",
+   "electors": 3293,
+   "voters": 2386,
+   "turnout": 72.46,
+   "phase": 1,
+   "pollDate": "2019-04-11",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sonam Lama",
+     "partyId": "SKM",
+     "sex": "M",
+     "age": 43,
+     "votes": 1488,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tshering Lama",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 55,
+     "votes": 858,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Karma Tashi Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 17,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 13,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

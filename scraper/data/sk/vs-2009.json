@@ -1,0 +1,1963 @@
+{
+ "year": 2009,
+ "electionId": "a0300000-0000-4000-8000-000000002009",
+ "source": {
+  "title": "ECI Statistical Report, Sikkim Legislative Assembly 2009",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3364",
+  "retrieved": "2026-10-06"
+ },
+ "parties": [
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "SDF",
+   "name": "Sikkim Democratic Front",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SGPP",
+   "name": "Sikkim Gorkha Prajatantric Party",
+   "abbreviation": "SGPP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SHRP_SK",
+   "name": "Sikkim Himali Rajya Parishad Party",
+   "abbreviation": "SHRP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "SJEP",
+   "name": "Sikkim Jan-Ekta Party",
+   "abbreviation": "SJEP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Yoksam-tashiding",
+   "type": "ST",
+   "electors": 9472,
+   "voters": 8247,
+   "turnout": 87.07,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dawcho Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 39,
+     "votes": 5909,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aden Tshering Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 1666,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nedup Tshering Bhutia",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 57,
+     "votes": 430,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pemba Sherpa",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 29,
+     "votes": 230,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Yangthang",
+   "type": "GEN",
+   "electors": 9169,
+   "voters": 7919,
+   "turnout": 86.37,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Prem Lall Subba",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 44,
+     "votes": 5770,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Depan Hang Limbu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 1545,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Padam Bahadur Chettri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 218,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Akar Dhoj Limbu",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 44,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Karna Bahadur Gurung",
+     "partyId": "SJEP",
+     "sex": "M",
+     "age": 31,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ganesh Bhattarai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 28,
+     "votes": 60,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Maneybung-dentam",
+   "type": "GEN",
+   "electors": 10012,
+   "voters": 8720,
+   "turnout": 87.1,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chandra Maya Subba",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 34,
+     "votes": 6252,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laxuman Gurung",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 30,
+     "votes": 1899,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dilip Kumar Gurung",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 29,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tek Man Subba",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 40,
+     "votes": 131,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Santa Bir Gurung",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Krishna Lall Basnett",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 30,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nil Bikram Subba",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 68,
+     "votes": 57,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Gyalshing-barnyak",
+   "type": "GEN",
+   "electors": 8647,
+   "voters": 7325,
+   "turnout": 84.71,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Man Bahadur Dahal",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 50,
+     "votes": 4967,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Youa Raj Rai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 1557,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Laxmi Pd. Tiwari",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 66,
+     "votes": 361,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Man Dhoj Thapa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 28,
+     "votes": 258,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Yam Lall Dangal",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 26,
+     "votes": 148,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Rinchenpong",
+   "type": "ST",
+   "electors": 10185,
+   "voters": 8883,
+   "turnout": 87.22,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dawa Norbu Takarpa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 58,
+     "votes": 6438,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pema Kinzang Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 2145,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Phurba Sherpa",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Karsang Sherpa",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 31,
+     "votes": 114,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Daramdin",
+   "type": "ST",
+   "electors": 11122,
+   "voters": 9475,
+   "turnout": 85.19,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tenzi Sherpa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 37,
+     "votes": 6507,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pem Nuri Sherpa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 1807,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Laden Lepcha",
+     "partyId": "SHRP_SK",
+     "sex": "F",
+     "age": 37,
+     "votes": 834,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sonam Sherpa",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 173,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Steny Lepcha",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 27,
+     "votes": 114,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Soreong-chakung",
+   "type": "GEN",
+   "electors": 11546,
+   "voters": 9808,
+   "turnout": 84.95,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ran Bahadur Subba",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 52,
+     "votes": 6497,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nar Bahadur Bhandari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 2378,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Akar Dhoj Limbu",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 44,
+     "votes": 503,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Iman Singh Limbu",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 217,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Metra Lall Pandey",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 175,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Salghari-zoom",
+   "type": "SC",
+   "electors": 8050,
+   "voters": 6831,
+   "turnout": 84.86,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Madan Cintury",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 48,
+     "votes": 4437,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Janga Bir Darnal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 2139,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nirmala Kami",
+     "partyId": "SJEP",
+     "sex": "F",
+     "age": 37,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Padam Bahadur Darnal",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 51,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Giri Kumar Pariyar",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 56,
+     "votes": 41,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Basant Gajmer",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 39,
+     "votes": 34,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Barfung",
+   "type": "ST",
+   "electors": 10023,
+   "voters": 8622,
+   "turnout": 86.02,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sonam Gyatso Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 51,
+     "votes": 6049,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lobzang Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 2197,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sonam Pintso Bhutia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 352,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Poklok-kamrang",
+   "type": "GEN",
+   "electors": 10595,
+   "voters": 9178,
+   "turnout": 86.63,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Chamling",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 58,
+     "votes": 7379,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Purna Kumari Rai",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 50,
+     "votes": 1423,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Padam Pd Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bhim Shila Rai",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 37,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dhanman Rai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 53,
+     "votes": 39,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jai Prakash Rai",
+     "partyId": "SJEP",
+     "sex": "M",
+     "age": 38,
+     "votes": 38,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Namchi-singhithang",
+   "type": "GEN",
+   "electors": 9086,
+   "voters": 7036,
+   "turnout": 77.44,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Chamling",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 58,
+     "votes": 5653,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Khush Bdr Rai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 1009,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Basant Kr. Rai",
+     "partyId": "SJEP",
+     "sex": "M",
+     "age": 38,
+     "votes": 127,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anjana Tamang",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 44,
+     "votes": 81,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sheela Rai",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 31,
+     "votes": 62,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Arjun Kumar Rai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 50,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Melli",
+   "type": "GEN",
+   "electors": 11150,
+   "voters": 9386,
+   "turnout": 84.18,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tulshi Devi Rai",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 36,
+     "votes": 6307,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dil Kri. Chhetri",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 32,
+     "votes": 2454,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhola Chawan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bhagirath Bhandari",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 25,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shiva Das Rai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 119,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Phulchand Rai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jashram Rai",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 68,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Tilak Psd. Rai",
+     "partyId": "SJEP",
+     "sex": "M",
+     "age": 46,
+     "votes": 37,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Namthang-rateypani",
+   "type": "GEN",
+   "electors": 11011,
+   "voters": 9157,
+   "turnout": 83.16,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tilu Gurung",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 41,
+     "votes": 5988,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Suk Bdr. Tamang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 2777,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arun Kr. Gurung",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 38,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Manoj Uprety",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abir Singh Subba",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 60,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanjukta Rai",
+     "partyId": "SJEP",
+     "sex": "F",
+     "age": 26,
+     "votes": 48,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Temi-namphing",
+   "type": "GEN",
+   "electors": 10332,
+   "voters": 8805,
+   "turnout": 85.22,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bedu Singh Panth",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 56,
+     "votes": 4577,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lalit Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 2837,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Garja Man Rai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 985,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ugen Tamang",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 231,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kharga Bahadur Gurung",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 148,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Rangang-yangang",
+   "type": "GEN",
+   "electors": 9533,
+   "voters": 8169,
+   "turnout": 85.69,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chandra Bdr Karki",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 52,
+     "votes": 5558,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Avinash Yakha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 2361,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tika Ram Chettri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Keshav Prasad Bhattarai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 38,
+     "votes": 101,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Tumen-lingi",
+   "type": "ST",
+   "electors": 10700,
+   "voters": 9116,
+   "turnout": 85.2,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ugen T Gyatso Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 49,
+     "votes": 5026,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Phuchung Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 3702,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mingma Tharbu Sherpa",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 50,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pema Bhutia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 152,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dawa Ongdup Lepcha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 44,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Khamdong-singtam",
+   "type": "GEN",
+   "electors": 9051,
+   "voters": 7643,
+   "turnout": 84.44,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Am Prasad Sharma",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 36,
+     "votes": 4298,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nar Bahadur Bhandari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 3032,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arun Kr. Pradhan",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 39,
+     "votes": 295,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "West pendam",
+   "type": "SC",
+   "electors": 9350,
+   "voters": 7779,
+   "turnout": 83.2,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Neeru Sewa",
+     "partyId": "SDF",
+     "sex": "F",
+     "age": 31,
+     "votes": 4151,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jagdish Cintury",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 31,
+     "votes": 3088,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "S.K. Bardewa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tika Ghatani",
+     "partyId": "SGPP",
+     "sex": "F",
+     "age": 40,
+     "votes": 116,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tek Bahadur Thatal",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 60,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nandalal Darjee",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 71,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jit Man Darjee",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 48,
+     "votes": 44,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Rhenock",
+   "type": "GEN",
+   "electors": 12293,
+   "voters": 10475,
+   "turnout": 85.21,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bhim Prasad Dhungel",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 36,
+     "votes": 5611,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kedar Nath Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 4168,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Biraj Adhikari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rudra Khatiwara",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 32,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bedan Kumar Chettri",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 44,
+     "votes": 119,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Udaya Chandra Ghimiray",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 30,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Atri Ram Chandra Poudyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 90,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Chujachen",
+   "type": "GEN",
+   "electors": 12944,
+   "voters": 10903,
+   "turnout": 84.23,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Puran Kr. Gurung",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 44,
+     "votes": 8077,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Harka Raj Gurung",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 2114,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gajen Rizal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 28,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohan Gurung",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dhiraj Kumar Rai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 27,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gopal Chettri",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 33,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shiva Kr. Pradhan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Biraj Adhikari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 72,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Gnathang-machong",
+   "type": "ST",
+   "electors": 8113,
+   "voters": 6984,
+   "turnout": 86.08,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "L.M. Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 60,
+     "votes": 4077,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chhopel Dzongpo Bhutia",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 43,
+     "votes": 1677,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nima Wangchuk Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 994,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Phurba Tsh. Sherpa",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 30,
+     "votes": 90,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Chewang Dorjee Bhutia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 63,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Namgay Tsh. Bhutia",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 37,
+     "votes": 58,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Namcheybung",
+   "type": "GEN",
+   "electors": 10723,
+   "voters": 9293,
+   "turnout": 86.66,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bek Bdr. Rai",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 41,
+     "votes": 5877,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Em Prasad Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 2954,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ashok Kr. Subba",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 59,
+     "votes": 132,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ten Tshera Subba",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 35,
+     "votes": 101,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Diwash Thapa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sunder Rai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 34,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Punya Prasad Koirala",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 39,
+     "votes": 41,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Shyari",
+   "type": "ST",
+   "electors": 9779,
+   "voters": 8002,
+   "turnout": 81.83,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karma Tempo Namgyal Gyaltsen",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 48,
+     "votes": 5034,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kunga Nima Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 2753,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Karma Tsh. Sherpa",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 52,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ang Tshering Bhutia",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 49,
+     "votes": 87,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Martam-rumtek",
+   "type": "ST",
+   "electors": 11702,
+   "voters": 10013,
+   "turnout": 85.57,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Menlom Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 41,
+     "votes": 6392,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rinzing Namgyal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 3027,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nima Lepcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 336,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sonam Tashi Bhutia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 117,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bindu Lepcha",
+     "partyId": "SGPP",
+     "sex": "F",
+     "age": 45,
+     "votes": 68,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Tempo Tshering Bhutia",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 58,
+     "votes": 41,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Upper tadong",
+   "type": "GEN",
+   "electors": 7200,
+   "voters": 5642,
+   "turnout": 78.36,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dil Bahadur Thapa",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 44,
+     "votes": 3148,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Arun Kr Basnet",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 2105,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Depak Rai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 130,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Padam Pd. Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kharka Singh Gurung",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 52,
+     "votes": 70,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Garjaman Rai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 49,
+     "votes": 64,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Arithang",
+   "type": "GEN",
+   "electors": 7396,
+   "voters": 5465,
+   "turnout": 73.89,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Narendra Kr. Pradhan",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 58,
+     "votes": 3320,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bharat Basnett",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 1865,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ashok Kr Subba",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 59,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Atal Bahadur Tamang",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 57,
+     "votes": 48,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Amit Kumar Pradhan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 46,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kharga Bahadur Rai",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 27,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Gangtok",
+   "type": "ST",
+   "electors": 8143,
+   "voters": 5754,
+   "turnout": 70.66,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dorjee Namgyal Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 49,
+     "votes": 3506,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tshering Gyatso Kaleon",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 1928,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Delay Namgyal Barfungpa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Uttam Lepcha",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 38,
+     "votes": 123,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mingma Topden Sherpa",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 24,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Upper burtuk",
+   "type": "GEN",
+   "electors": 9110,
+   "voters": 7543,
+   "turnout": 82.8,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Prem Singh Tamang",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 41,
+     "votes": 5908,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Arun Kumar Rai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 1345,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sumitra Rai",
+     "partyId": "SHRP_SK",
+     "sex": "F",
+     "age": 41,
+     "votes": 86,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Binod Kumar Adhikari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 75,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tikendra Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 74,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Yuwa Raj Gurung",
+     "partyId": "SGPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 26,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Kabi lungchuk",
+   "type": "ST",
+   "electors": 8765,
+   "voters": 7509,
+   "turnout": 85.67,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thenlay Tshering Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 55,
+     "votes": 4823,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ugen Nedup Bhutia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 2659,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Djongu",
+   "type": "ST",
+   "electors": 6623,
+   "voters": 5959,
+   "turnout": 89.97,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sonam Gyatso Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 47,
+     "votes": 4756,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Norden Tshering Lepcha",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 819,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tseten Dorjee Lepcha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 372,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Lachen mangan",
+   "type": "ST",
+   "electors": 5701,
+   "voters": 5110,
+   "turnout": 89.63,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tshering Wangdi Lepcha",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 38,
+     "votes": 2719,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Anil Lachenpa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 1940,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chewang Jigme Lepcha",
+     "partyId": "SHRP_SK",
+     "sex": "M",
+     "age": 28,
+     "votes": 442,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Sangha",
+   "type": "GEN",
+   "electors": 3058,
+   "voters": 1985,
+   "turnout": 64.91,
+   "phase": 1,
+   "pollDate": "2009-04-30",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Phetook Tsh. Bhutia",
+     "partyId": "SDF",
+     "sex": "M",
+     "age": 62,
+     "votes": 980,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tshering Lama",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 925,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Samdup Dorjee Lama",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 75,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}
