@@ -5,7 +5,8 @@ import { normName } from './names';
 export interface CrossCheckException { year: number; key: string; reason: string }
 
 
-export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): string[] {
+/** `partial`: the report is cut to the state's seats (Andhra 2009/2014); its party table counts every seat, so it is not compared. */
+export function crossCheck(e: RawElection, exceptions: CrossCheckException[], opts: { partial?: boolean } = {}): string[] {
   const errs: string[] = [];
   const add = (key: string, msg: string) => errs.push(`${key} ${msg}`);
   const fullOf = (abbr: string) => (abbr === 'IND' ? 'Independent' : e.parties.find(p => p.abbr === abbr)?.name ?? abbr);
@@ -44,7 +45,7 @@ export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): s
     const t = perf.get(ak(p.abbr)) ?? { abbr: p.abbr, contested: 0, won: 0, votes: 0 };
     perf.set(ak(p.abbr), { abbr: p.abbr, contested: t.contested + p.contested, won: t.won + p.won, votes: t.votes + p.votes });
   }
-  for (const p of perf.values()) {
+  for (const p of opts.partial ? [] : perf.values()) {
     if (p.abbr === 'IND') continue; // independents are reported as one pseudo-party in some years; checked through seats
     const polled = e.seats.filter(s => !s.fromSummary); // the performance table leaves out seats built from a summary
     const cands = polled.flatMap(s => s.candidates.filter(c => ak(c.party) === ak(p.abbr)));

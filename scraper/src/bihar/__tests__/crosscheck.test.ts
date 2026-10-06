@@ -27,6 +27,11 @@ function unopposed(): RawElection {
 }
 
 describe('crossCheck', () => {
+  it('a partial report (a slice of an undivided state) skips the party performance table, which counts every seat', () => {
+    const e = election(); e.performance = [{ abbr: 'BJP', contested: 50, won: 30, votes: 9e6 }];
+    expect(crossCheck(e, []).some(x => x.startsWith('party-'))).toBe(true);
+    expect(crossCheck(e, [], { partial: true })).toEqual([]);
+  });
   it('leaves seats built from a summary out of the party performance check (that table leaves them out too)', () => {
     const e = unopposed(); e.seats[0].fromSummary = true; e.performance = [{ abbr: 'BJP', contested: 0, won: 0, votes: 0 }];
     expect(crossCheck(e, [])).toEqual([]);

@@ -3,7 +3,7 @@ import { ELECTIONS, STATES, electionOf, electionsOf, parseState } from '../elect
 
 describe('election registry', () => {
   it('lists every state election once, with unique ids and prefixes', () => {
-    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17 + 4 + 4);
+    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17 + 4 + 4 + 4);
     expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
     expect(new Set(ELECTIONS.map(e => e.constPrefix)).size).toBe(ELECTIONS.length);
   });
@@ -84,5 +84,15 @@ describe('Phase 4B Arunachal', () => {
       [2009, 4039, '2009-10-22'], [2014, 4040, '2014-05-16'], [2019, 11675, '2019-05-23'], [2024, 3, '2024-06-02']]);
     expect(electionOf('AR', 2024)).toMatchObject({ electionId: 'a0030000-0000-4000-8000-000000002024', constPrefix: 'AR_VS24_',
       resultsSite: { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S02' }, myneta: 'arunachalpradesh2024' });
+  });
+});
+
+describe('Phase 4B Andhra Pradesh', () => {
+  it('registers Andhra 2009-2024; 2009/2014 keep the undivided report\'s seats 120-294 as 1-175', () => {
+    expect(electionsOf('AP').map(e => [e.year, e.docid ?? e.category, e.newElection?.resultDate, e.seatRange ?? null])).toEqual([
+      [2009, 4054, '2009-05-16', { from: 120, to: 294, offset: 119 }], [2014, 4055, '2014-05-16', { from: 120, to: 294, offset: 119 }],
+      [2019, 11673, '2019-05-23', null], [2024, 2, '2024-06-04', null]]);
+    expect(electionOf('AP', 2024)).toMatchObject({ electionId: 'a0020000-0000-4000-8000-000000002024', constPrefix: 'AP_VS24_',
+      resultsSite: { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S01' } });
   });
 });

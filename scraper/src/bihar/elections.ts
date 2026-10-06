@@ -4,9 +4,10 @@
  * historical seed names so its output never changes.
  */
 import type { SeatType } from './types';
+import type { SeatRange } from './seat-range';
 
-export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK' | 'AR';
-export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK', 'AR'];
+export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK' | 'AR' | 'AP';
+export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK', 'AR', 'AP'];
 
 export interface YearConfig {
   year: number; electionId: string; constPrefix: string;
@@ -35,6 +36,8 @@ export interface ElectionConfig extends YearConfig {
   seatTypes?: Record<number, SeatType>;
   /** Drop a "Shri"/"Smt"/"Sri" prefix from candidate names (written on some names only, so they would not link). */
   stripHonorifics?: boolean;
+  /** The report covers more seats than the state has today (Andhra 2009/2014): keep this range, renumbered. */
+  seatRange?: SeatRange;
 }
 export interface StateConfig {
   code: StateCode; slug: string; name: string; stateId: number; seats: number; reserved: { sc: number; st: number };
@@ -76,6 +79,7 @@ export const STATES: Record<StateCode, StateConfig> = {
     seatTypes: { 1: 'ST', 5: 'ST', 6: 'ST', 8: 'SC', 9: 'ST', 16: 'ST', 18: 'SC', 21: 'ST', 23: 'ST', 24: 'ST', 27: 'ST', 29: 'ST', 30: 'ST', 31: 'ST' } },
   // Arunachal's 2009/2019 reports write "Shri" on some names only.
   AR: { ...state('AR', 'ar', 'Arunachal Pradesh', 3, 60, 0, 59), stripHonorifics: true },
+  AP: state('AP', 'ap', 'Andhra Pradesh', 2, 175, 29, 7),
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */
@@ -207,6 +211,12 @@ export const ELECTIONS: ElectionConfig[] = [
   p4('AR', 2019, { docid: 11675 }, 1, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_')),
   p4('AR', 2024, { category: 3 }, 1, '2024-06-02', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
     { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S02', myneta: 'arunachalpradesh2024' }),
+  // Phase 4B-3: Andhra Pradesh. 2009/2014 reports cover the undivided state (294 seats): today's Andhra is 120-294.
+  p4('AP', 2009, { docid: 4054 }, 2, '2009-05-16', pdf(2009), undefined, { seatRange: { from: 120, to: 294, offset: 119 } }),
+  p4('AP', 2014, { docid: 4055 }, 1, '2014-05-16', pdf(2014), undefined, { seatRange: { from: 120, to: 294, offset: 119 } }),
+  p4('AP', 2019, { docid: 11673 }, 1, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_')),
+  p4('AP', 2024, { category: 2 }, 1, '2024-06-04', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
+    { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S01', myneta: 'andhrapradesh2024' }),
 ];
 
 /** The registry entry of an election id. */

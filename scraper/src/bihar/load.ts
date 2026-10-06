@@ -5,6 +5,7 @@ import type { PartyListEntry, RawElection, Year } from './types';
 import { STATES, electionOf, electionsOf, type StateCode } from './elections';
 import { parseDetailedRows, parsePartyListRows, parsePerformanceRows, parseSummaryRows, performanceByAbbr, type Row } from './xls-report';
 import { completeUncontested } from './uncontested';
+import { sliceSeats } from './seat-range';
 import { applyOcrFixes, ocrNormalise, type OcrFix } from './ocr';
 import { parseDetailedText, parsePartyListText, parsePerformanceText, parseSummaryText, type SummaryFixes } from './pdf-report';
 import * as fs from 'fs';
@@ -41,7 +42,9 @@ export function loadRaw(s: StateCode, year: Year): RawElection {
   const sup: Supplement = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
   const mf = path.join(dataDir(s), 'missing-summaries.json');
   const missing: Record<string, Record<number, MissingSummary>> = fs.existsSync(mf) ? JSON.parse(fs.readFileSync(mf, 'utf8')) : {};
-  return withoutSeats(applySupplement(withMissingSummaries(completeUncontested(loadReport(s, year)), missing[year] ?? {}), sup[year] ?? []), electionOf(s, year).excludeSeats ?? []);
+  const range = electionOf(s, year).seatRange;
+  const report = range ? sliceSeats(loadReport(s, year), range) : loadReport(s, year);
+  return withoutSeats(applySupplement(withMissingSummaries(completeUncontested(report), missing[year] ?? {}), sup[year] ?? []), electionOf(s, year).excludeSeats ?? []);
 }
 
 /** summary-fixes.json: year → seat → sourced voters / total valid votes, for ECI summary pages with broken figures. */

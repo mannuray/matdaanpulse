@@ -24,7 +24,7 @@ let failed = false;
 for (const y of process.argv.slice(3).map(Number) as Year[]) {
   const cfg = electionOf(ST, y);
   const raw = loadRaw(ST, y);
-  const xErrs = crossCheck(raw, readJson<CrossCheckException[]>('crosscheck-exceptions.json', []));
+  const xErrs = crossCheck(raw, readJson<CrossCheckException[]>('crosscheck-exceptions.json', []), { partial: !!cfg.seatRange });
   const { json: normalized, errors } = normalize(raw, cfg, applyOverrides(readJson<PartyMap>('party-map.json', {}, PARTY_DIR), readJson<Record<string, string | PartyEntry>>('party-overrides.json', {})), new Date().toISOString().slice(0, 10));
   const json = applyCandidateFixes(normalized, readJson<Record<string, CandidateFixes>>('candidate-fixes.json', {})[y] ?? {});
   const dups = duplicatePartySeats(json).map(d => `party twice in a seat ${d} (add a sourced candidate-fixes.json entry)`);
