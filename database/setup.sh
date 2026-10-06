@@ -158,6 +158,7 @@ for st in dl hr jh od; do run "seed_${st}_affidavits.sql"; done
 run seed_sk_affidavits.sql
 run seed_ar_affidavits.sql
 run seed_ap_affidavits.sql
+run seed_mh_affidavits.sql
 
 echo "==> Seeds: Bihar persons (must follow Bihar VS results + regions)"
 run seed_bihar_persons.sql
