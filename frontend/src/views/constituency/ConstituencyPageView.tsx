@@ -202,6 +202,11 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
                 {second && <Contender c={second} vm={vm} rank={2} right />}
               </div>
             </div>
+            {vm.view.uncontested && (
+              <p className="relative mt-4 border-t border-line/70 pt-3 text-sm text-muted" data-unopposed>
+                <span className="font-semibold text-ink">{t('cp_unopposed')}</span> {t('cp_unopposed_body')}
+              </p>
+            )}
             {vm.view.totalVotes > 0 && (
               <div className="relative mt-4 space-y-2 border-t border-line/70 pt-3">
                 {vm.view.margin != null && (
@@ -350,7 +355,7 @@ export function ConstituencyPageView({ vm }: { vm: ConstituencyPageVM }) {
                       <div className="flex-1 rounded-lg border border-line/80 bg-page/60 px-3 py-2.5">
                         <div className="flex items-center justify-between">
                           <span className="font-display text-sm font-bold text-ink">{h.year} {house}</span>
-                          <span className="tabular font-mono text-xs font-semibold text-ok-text">{t('cp_margin_suffix', { n: formatIN(h.margin) })}</span>
+                          <span className="tabular font-mono text-xs font-semibold text-ok-text">{h.unopposed ? t('cp_unopposed') : t('cp_margin_suffix', { n: formatIN(h.margin) })}</span>
                         </div>
                         <div className="mt-1.5 flex items-center justify-between text-xs">
                           <div className="flex min-w-0 items-center gap-1.5"><PartyMark mark={m?.mark ?? null} color={m?.color ?? null} label={label} /><span className="truncate font-bold text-ink/90">{h.candidate}</span><span className="text-muted">({label})</span></div>

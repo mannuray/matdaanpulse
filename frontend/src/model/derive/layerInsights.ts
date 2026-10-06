@@ -137,7 +137,8 @@ function history(ctx: InsightContext): LayerInsight | null {
 }
 
 function reserved(ctx: InsightContext): LayerInsight | null {
-  const res = led(ctx).filter(s => s.type === 'SC' || s.type === 'ST');
+  // Seats won unopposed have no margin (not in led) but still have a winner.
+  const res = ctx.seats.filter(s => s.party && (s.margin != null || s.uncontested) && (s.type === 'SC' || s.type === 'ST'));
   const sc = ctx.seats.filter(s => s.type === 'SC').length;
   const st = ctx.seats.filter(s => s.type === 'ST').length;
   if (sc + st === 0) return null;

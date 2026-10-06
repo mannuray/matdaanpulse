@@ -97,6 +97,8 @@ export interface SeatHistoryEntry {
   vote_share?: number | null;
   runner_up?: string | null;
   runner_up_party?: string | null;
+  /** Won unopposed that year (no runner-up, no margin); set by seatHistory. */
+  unopposed?: boolean;
 }
 
 export interface PartySummary {

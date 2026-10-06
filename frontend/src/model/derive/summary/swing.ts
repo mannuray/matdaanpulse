@@ -19,7 +19,9 @@ export function swingSummary(ctx: SummaryContext): SummarySection[] {
     if (!info.has(key)) info.set(key, { name: a?.name ?? party, color: a?.color ?? ctx.partyColor.get(party) ?? FALLBACK_COLOR, partyIds: a?.parties ?? [party] });
     return { key, ...info.get(key)! };
   };
-  const flips: { id: string; from: string; to: string; fromColor: string; toColor: string; margin: number; parties: string[] }[] = [];
+  // A seat won unopposed flips like any other but has no margin: it lists after the real margins.
+  const unopposed = new Set(ctx.seats.filter(s => s.uncontested).map(s => s.id));
+  const flips: { id: string; from: string; to: string; fromColor: string; toColor: string; margin: number | null; parties: string[] }[] = [];
   for (const e of swing.values()) {
     if (!e.flipped) continue;
     const from = describe(e.prevParty);
@@ -27,10 +29,10 @@ export function swingSummary(ctx: SummaryContext): SummarySection[] {
     losses.set(from.key, (losses.get(from.key) ?? 0) + 1);
     gains.set(to.key, (gains.get(to.key) ?? 0) + 1);
     gainedIds.set(to.key, [...(gainedIds.get(to.key) ?? []), e.constId]);
-    flips.push({ id: e.constId, from: from.name, to: to.name, fromColor: from.color, toColor: to.color, margin: e.currentMargin, parties: [e.prevParty, e.currentParty] });
+    flips.push({ id: e.constId, from: from.name, to: to.name, fromColor: from.color, toColor: to.color, margin: unopposed.has(e.constId) ? null : e.currentMargin, parties: [e.prevParty, e.currentParty] });
   }
   if (flips.length === 0) return [];
-  flips.sort((a, b) => a.margin - b.margin);
+  flips.sort((a, b) => (a.margin ?? Infinity) - (b.margin ?? Infinity));
 
   const net = [...new Set([...gains.keys(), ...losses.keys()])].map(key => {
     const g = gains.get(key) ?? 0;

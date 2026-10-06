@@ -64,6 +64,13 @@ describe('deriveLayerInsight', () => {
     expect(r.chips.map(c => c.id)).toEqual(['BJP', 'JDU']);
   });
 
+  it('reserved: a reserved seat won unopposed counts for its winner (it has no margin)', () => {
+    const unopposed: SeatResult = { id: 'U', name: 'U', party: 'RJD', status: 'WON', type: 'ST', uncontested: true };
+    const r = deriveLayerInsight('demographics', { ...base, seats: [...seats, unopposed] })!;
+    expect(r.headlineParams).toEqual({ sc: 1, st: 2 });
+    expect(r.chips.map(c => c.id)).toEqual(expect.arrayContaining(['BJP', 'JDU', 'RJD']));
+  });
+
   it('insights: spoiler seats per vote-split config', () => {
     const cc = new Map<string, ResultRow[]>([
       ['A', [

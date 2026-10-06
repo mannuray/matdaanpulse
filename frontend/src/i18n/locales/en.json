@@ -492,6 +492,8 @@
   "cp_house_VS": "Assembly",
   "cp_house_LS": "Lok Sabha",
   "cp_margin_suffix": "+{{n}} margin",
+  "cp_unopposed": "Elected unopposed",
+  "cp_unopposed_body": "No other candidate stood, so no poll was held: the seat has no votes, margin or turnout.",
   "cp_three_way_title": "3-way contest",
   "cp_three_way_body": "The winning margin is only {{margin}} votes, while {{name}} polled {{votes}}.",
   "cp_spoiler_title": "Possible spoiler",

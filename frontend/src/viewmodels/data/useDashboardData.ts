@@ -1,3 +1,4 @@
+import { headlineMargin } from '../../model/derive/uncontested';
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useApi } from './useApi';
 import { getAlliances, getVoteShare, getResults, getManifest, ElectionService } from '../../model/api/election.service';
@@ -213,7 +214,7 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
         candidate: winner?.candidate_name || '',
         party: winner?.party_id || '',
         partyColor: color,
-        margin: winner ? (Number(winner.margin) || 0) : undefined,
+        ...headlineMargin(candidates, winner),
         status: winner?.status || 'PENDING',
         type: candidates[0]?.const_type || 'GEN',
         recentChange: false,

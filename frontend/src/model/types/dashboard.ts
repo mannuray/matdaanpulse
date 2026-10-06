@@ -19,8 +19,10 @@ export interface SeatResult {
   state?: string;
   /** Leading/winning party id, '' when pending. */
   party: string;
-  /** Leader's margin; undefined when no leader yet. */
+  /** Leader's margin; undefined when no leader yet, or for a seat won unopposed. */
   margin?: number;
+  /** Won unopposed (no poll): counted and coloured, but no margin, turnout or swing. */
+  uncontested?: true;
   /** WON | LEADING | PENDING */
   status: string;
   type: 'GEN' | 'SC' | 'ST';

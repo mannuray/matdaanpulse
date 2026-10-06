@@ -36,6 +36,16 @@ describe('ConstituencyPageView', () => {
     expect(within(table).getByRole('link', { name: 'A' }).getAttribute('href')).toBe('/person/p1');
   });
 
+  it('a seat won unopposed says so, without a margin; a year won unopposed in the history says so too', () => {
+    renderIt(vm({
+      view: { totalVotes: 0, margin: null, others: null, uncontested: true, candidates: [cand({ name: 'Pema Khandu', votes: 0, share: 0, pill: 'WON' })] },
+      history: [{ year: 2014, party: 'INC', candidate: 'Pema Khandu', margin: 0, vote_share: null, runner_up: null, runner_up_party: null, unopposed: true }],
+    }));
+    expect(document.querySelector('[data-unopposed]')?.textContent).toMatch(/Elected unopposed/);
+    expect(screen.queryByText(/ahead by/i)).toBeNull();
+    expect(screen.getAllByText('Elected unopposed').length).toBe(2);
+  });
+
   it('below lg renders the same candidates as stacked rows with a one-line affidavit summary', () => {
     renderIt(vm({ view: { ...vm().view, candidates: [
       ...vm().view.candidates.slice(0, 2),

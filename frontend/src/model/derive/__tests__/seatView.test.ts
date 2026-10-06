@@ -115,3 +115,17 @@ describe('liveChipState with the snapshot seat state', () => {
     expect(liveChipState('Live', rows, { current_round: 2, total_rounds: 20 }, { state: 'counting', cr: null, tr: null })).toEqual({ kind: 'counting', round: { current: 2, total: 20 } });
   });
 });
+
+describe('seats won unopposed', () => {
+  it('buildSeatView flags a declared seat whose only candidate won with no votes', () => {
+    expect(buildSeatView([r('BJP', 'Pema Khandu', 0, 'WON')], { partyMeta: meta, partyColor: color }).uncontested).toBe(true);
+    expect(buildSeatView([r('BJP', 'A', 500, 'WON', 200), r('RJD', 'B', 300, 'LOST')], { partyMeta: meta, partyColor: color }).uncontested).toBe(false);
+  });
+  it('seatHistory marks a year won unopposed (no runner-up, no margin)', () => {
+    const analysis = { incumbency: { seat_history: [
+      { year: 2014, party: 'INC', candidate: 'X', margin: 0, vote_share: null, runner_up: null, runner_up_party: null },
+      { year: 2019, party: 'BJP', candidate: 'Y', margin: 900, vote_share: 51, runner_up: 'Z', runner_up_party: 'INC' },
+    ] } } as unknown as AnalysisEntry;
+    expect(seatHistory(analysis, 2024).map(h => [h.year, h.unopposed])).toEqual([[2019, false], [2014, true]]);
+  });
+});

@@ -1,3 +1,4 @@
+import { isUncontested } from './uncontested';
 import type { ResultRow, CandidateResult, AnalysisEntry, SeatHistoryEntry, SeatLiveState } from '../types';
 import { isNota, type PartyMeta } from './partyMeta';
 
@@ -8,7 +9,8 @@ export interface SeatCandidateView {
   personId: string | null; nota: boolean;
   affidavit: { age: number | null; assets: number | null; liabilities: number | null; criminalCases: number | null } | null;
 }
-export interface SeatView { candidates: SeatCandidateView[]; others: { count: number; votes: number; share: number } | null; totalVotes: number; margin: number | null }
+export interface SeatView { candidates: SeatCandidateView[]; others: { count: number; votes: number; share: number } | null; totalVotes: number; margin: number | null;
+  /** Won unopposed (no poll): no margin, no shares. */ uncontested?: boolean }
 
 const pct = (votes: number, total: number) => (total > 0 ? Math.round((votes / total) * 1000) / 10 : 0);
 const joinKey = (partyId: string | null | undefined, name: string) => `${partyId ?? ''}|${name.trim().toUpperCase()}`;
@@ -54,6 +56,7 @@ export function buildSeatView(rows: ResultRow[], o: { partyMeta: Map<string, Par
     others: rest.length ? { count: rest.length, votes: restVotes, share: pct(restVotes, total) } : null,
     totalVotes: total,
     margin: leaderRow ? Number(leaderRow.margin) || null : null,
+    uncontested: isUncontested(rows),
   };
 }
 
@@ -78,7 +81,8 @@ export function liveChipState(
 
 export function seatHistory(analysis: AnalysisEntry | null, currentYear: number): SeatHistoryEntry[] {
   const list = (analysis?.incumbency as { seat_history?: SeatHistoryEntry[] } | undefined)?.seat_history ?? [];
-  return list.filter(h => h.year !== currentYear).sort((a, b) => b.year - a.year);
+  return list.filter(h => h.year !== currentYear).sort((a, b) => b.year - a.year)
+    .map(h => ({ ...h, unopposed: !h.runner_up && !h.margin }));
 }
 
 export type SeatNote = { kind: 'threeWay'; thirdName: string; thirdVotes: number; margin: number } | { kind: 'spoiler'; party: string; votes: number; margin: number };
