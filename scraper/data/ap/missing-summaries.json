@@ -1,0 +1,11 @@
+{
+ "2014": {
+  "169": {
+   "name": "Satyavedu",
+   "type": "SC",
+   "voters": 161036,
+   "pollDate": "2014-05-07",
+   "reason": "Seat 288 of the undivided report (169 in today's numbering) is absent from ECI's 2014 Constituency Data Summary (it jumps from 287 Srikalahasti to 289 Nagari). Name and type from the Detailed Results; voters = the Detailed Results' TURNOUT total (valid votes + NOTA; rejected postal ballots not included); poll date = the neighbouring seat 287's date (Andhra polled on 7 May 2014)."
+  }
+ }
+}

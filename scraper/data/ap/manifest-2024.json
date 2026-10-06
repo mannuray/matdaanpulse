@@ -1,0 +1,75 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2024_Andhra_Pradesh_Legislative_Assembly_election",
+  "note: NDA = TDP, Jana Sena and BJP (seat-sharing agreed March 2024); Congress with the CPI and CPI(M)."
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FFCC00",
+   "parties": [
+    "TDP",
+    "JP",
+    "BJP"
+   ]
+  },
+  {
+   "id": "YSRCP",
+   "name": "YSRCP",
+   "color": "#0066CC",
+   "parties": [
+    "YSRCP"
+   ]
+  },
+  {
+   "id": "INDIA",
+   "name": "INDIA",
+   "color": "#38C6F4",
+   "parties": [
+    "INC",
+    "CPI",
+    "CPIM"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "TDP",
+  "JP",
+  "BJP",
+  "YSRCP",
+  "INC",
+  "CPI"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 88
+  }
+ ],
+ "geo": {
+  "zoom": 6.5,
+  "center": [
+   80.3,
+   15.9
+  ],
+  "map_url": "/geo/ap_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0020000-0000-4000-8000-000000002009",
+  "a0020000-0000-4000-8000-000000002014",
+  "a0020000-0000-4000-8000-000000002019"
+ ],
+ "history_years": [
+  2009,
+  2014,
+  2019
+ ],
+ "compare_with": [
+  "a0020000-0000-4000-8000-000000002019"
+ ]
+}

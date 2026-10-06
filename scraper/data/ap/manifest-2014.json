@@ -1,0 +1,66 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2014_Andhra_Pradesh_Legislative_Assembly_election",
+  "note: pre-poll NDA alliance of TDP and BJP (Jana Sena supported without contesting)."
+ ],
+ "alliances": [
+  {
+   "id": "NDA",
+   "name": "NDA",
+   "color": "#FFCC00",
+   "parties": [
+    "TDP",
+    "BJP"
+   ]
+  },
+  {
+   "id": "YSRCP",
+   "name": "YSRCP",
+   "color": "#0066CC",
+   "parties": [
+    "YSRCP"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#38C6F4",
+   "parties": [
+    "INC"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "TDP",
+  "BJP",
+  "YSRCP",
+  "INC"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 88
+  }
+ ],
+ "geo": {
+  "zoom": 6.5,
+  "center": [
+   80.3,
+   15.9
+  ],
+  "map_url": "/geo/ap_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0020000-0000-4000-8000-000000002009"
+ ],
+ "history_years": [
+  2009
+ ],
+ "compare_with": [
+  "a0020000-0000-4000-8000-000000002009"
+ ]
+}

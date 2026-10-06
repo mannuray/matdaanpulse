@@ -288,5 +288,25 @@
   "is_successor": false,
   "note": "Founded on 4 February 2013 by P. S. Golay, an SDF minister who had broken with Pawan Chamling.",
   "source_url": "https://en.wikipedia.org/wiki/Sikkim_Krantikari_Morcha"
+ },
+ {
+  "party_id": "INC",
+  "predecessor_id": "PRAP",
+  "kind": "merger",
+  "effective_date": "2011-02-06",
+  "state_code": null,
+  "is_successor": true,
+  "note": "Chiranjeevi's Praja Rajyam Party merged into the Indian National Congress.",
+  "source_url": "https://en.wikipedia.org/wiki/Praja_Rajyam_Party"
+ },
+ {
+  "party_id": "YSRCP",
+  "predecessor_id": "INC",
+  "kind": "breakaway",
+  "effective_date": "2011-03-12",
+  "state_code": null,
+  "is_successor": false,
+  "note": "Founded in 2011 and led by Y. S. Jagan Mohan Reddy after he left the Congress.",
+  "source_url": "https://en.wikipedia.org/wiki/YSR_Congress_Party"
  }
 ]
