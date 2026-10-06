@@ -1,4 +1,5 @@
-import { AnalysisStrategy, AnalysisContext } from './analysis-strategy.interface';
+import { AnalysisStrategy, AnalysisContext, compareWindow } from './analysis-strategy.interface';
+import { carryForward } from '../../../common/comparable-parties';
 
 export class DominanceStrategy implements AnalysisStrategy {
   name = 'dominance';
@@ -14,8 +15,11 @@ export class DominanceStrategy implements AnalysisStrategy {
       // Find winner for this constNo in this election
       const winner = context.winnersByElection.get(eid)?.get(constNo);
       if (winner) {
-        partyWins.set(winner.party_id, (partyWins.get(winner.party_id) || 0) + 1);
-        winnerList.push({ party: winner.party_id, election_id: eid });
+        // Each past winner counts as the party it became by this election (renames, mergers, a split's successor).
+        const w = compareWindow(context, eid, electionId);
+        const party = eid === electionId ? winner.party_id : carryForward(context.lineage ?? [], winner.party_id, w.fromDate, w.toDate, w.stateId);
+        partyWins.set(party, (partyWins.get(party) || 0) + 1);
+        winnerList.push({ party, election_id: eid });
       }
     }
 

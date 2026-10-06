@@ -272,9 +272,15 @@ export class ConstituenciesService {
 
     const allElections = await this.prisma.elections.findMany({
       where: { id: { in: allElectionIds } },
-      select: { id: true, year: true }
+      select: { id: true, year: true, tentative_next_date: true }
     });
     const electionYearMap = new Map(allElections.map(e => [e.id, e.year]));
+    // Party lineage (migration 023): comparisons follow renames, mergers and splits between two elections' counting dates.
+    const electionDateMap = new Map(allElections.filter(e => e.tentative_next_date).map(e => [e.id, e.tentative_next_date!.toISOString().slice(0, 10)]));
+    const lineage = (await this.prisma.party_lineage.findMany()).map(r => ({
+      party_id: r.party_id, predecessor_id: r.predecessor_id, kind: r.kind, effective_date: r.effective_date.toISOString().slice(0, 10),
+      state_id: r.state_id, is_successor: r.is_successor,
+    }));
 
     // Fetch winners for all elections
     const winners = await this.prisma.results.findMany({
@@ -352,6 +358,9 @@ export class ConstituenciesService {
         candidatesByElectionConst,
         seatStatsByElection,
         manifest,
+        lineage,
+        electionDateMap,
+        stateId: election.state_id,
       };
 
       let analysisData: any = {};

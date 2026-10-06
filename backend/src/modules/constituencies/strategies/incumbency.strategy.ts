@@ -1,4 +1,5 @@
-import { AnalysisStrategy, AnalysisContext } from './analysis-strategy.interface';
+import { AnalysisStrategy, AnalysisContext, compareWindow } from './analysis-strategy.interface';
+import { relation } from '../../../common/comparable-parties';
 
 export class IncumbencyStrategy implements AnalysisStrategy {
   name = 'incumbency';
@@ -24,7 +25,10 @@ export class IncumbencyStrategy implements AnalysisStrategy {
 
         if (match) {
           incumbency.re_contesting = true;
-          if (match.party_id !== prevWinner.party_id) incumbency.switched_to = match.party_id;
+          // Following the party through a rename/merger is no switch; going with a split faction is recorded as such.
+          const rel = relation(context.lineage ?? [], prevWinner.party_id, match.party_id, compareWindow(context, prevEid, electionId));
+          if (rel === 'different') incumbency.switched_to = match.party_id;
+          else if (rel === 'split') incumbency.followed_split = match.party_id;
           
           const currWinner = winnersByElection.get(electionId)?.get(constNo);
           if (currWinner) {
