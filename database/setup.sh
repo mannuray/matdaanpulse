@@ -130,6 +130,7 @@ for st in dl hr jh od; do run "seed_${st}_person_links_v1.sql"; done
 run seed_sk_person_links_v1.sql
 run seed_ar_person_links_v1.sql
 run seed_ap_person_links_v1.sql
+run seed_mh_person_links_v1.sql
 # 2026 candidates → their 2011-2021 persons (run-once; same delimitation only, so none for Assam 2026)
 for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
 # Latest DL/HR/JH/OD candidates → their earlier persons (run-once)
@@ -137,6 +138,7 @@ for st in dl hr jh od; do run "seed_${st}_person_links_v2.sql"; done
 run seed_sk_person_links_v2.sql
 run seed_ar_person_links_v2.sql
 run seed_ap_person_links_v2.sql
+run seed_mh_person_links_v2.sql
 # 2026 leaders (curated, user-approved; run-once: candidacy links, fill-only profiles, manifest watchlists)
 for st in as kl py tn wb; do run "seed_${st}_leaders.sql"; done
 # Delhi 2025, Haryana/Jharkhand/Odisha 2024 leaders (curated, user-approved 2026-10-05; run-once)
