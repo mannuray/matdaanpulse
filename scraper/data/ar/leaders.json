@@ -1,0 +1,567 @@
+{
+  "people": [
+    {
+      "key": "pema-khandu",
+      "name": "Pema Khandu",
+      "wikidata": "Q7161834",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_3_MUKTO"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_3_MUKTO"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_3_MUKTO"
+        }
+      ]
+    },
+    {
+      "key": "chowna-mein",
+      "name": "Chowna Mein",
+      "wikidata": "Q16732438",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "AR_VS09_48_LEKANG"
+        },
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_48_LEKANG"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_46_CHOWKHAM"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_46_CHOWKHAM"
+        }
+      ]
+    },
+    {
+      "key": "tesam-pongte",
+      "name": "Tesam Pongte",
+      "wikidata": "Q19663664",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_53_CHANGLANG_NORTH"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_53_CHANGLANG_NORTH"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_53_CHANGLANG_NORTH"
+        }
+      ]
+    },
+    {
+      "key": "kardo-nyigyor",
+      "name": "Kardo Nyigyor",
+      "wikidata": "Q74691053",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_28_LIKABALI"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_28_LIKABALI"
+        }
+      ]
+    },
+    {
+      "key": "kumar-waii",
+      "name": "Kumar Waii",
+      "wikidata": "Q26924486",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "AR_VS09_8_BAMENG"
+        },
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_8_BAMENG"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_8_BAMENG"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_8_BAMENG"
+        }
+      ]
+    },
+    {
+      "key": "nabam-vivek",
+      "name": "Nabam Vivek",
+      "wikidata": "Q126303626",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_14_DOIMUKH"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_14_DOIMUKH"
+        }
+      ]
+    },
+    {
+      "key": "oken-tayeng",
+      "name": "Oken Tayeng",
+      "wikidata": "Q126306913",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_39_MEBO"
+        }
+      ]
+    },
+    {
+      "key": "namgey-tsering",
+      "name": "Namgey Tsering",
+      "wikidata": "Q126303060",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_2_TAWANG"
+        }
+      ]
+    },
+    {
+      "key": "kahfa-bengia",
+      "name": "Kahfa Bengia",
+      "wikidata": null,
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_21_KOLORIANG"
+        }
+      ]
+    },
+    {
+      "key": "toko-tatung",
+      "name": "Toko Tatung",
+      "wikidata": "Q126303947",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_16_YACHULI"
+        }
+      ]
+    },
+    {
+      "key": "nikh-kamin",
+      "name": "Nikh Kamin",
+      "wikidata": "Q16730550",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_49_BORDUMSADIYUN"
+        }
+      ]
+    },
+    {
+      "key": "likha-saaya",
+      "name": "Likha Saaya",
+      "wikidata": "Q27733907",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "AR_VS09_16_YACHULI"
+        },
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_16_YACHULI"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_47_NAMSAI"
+        }
+      ]
+    },
+    {
+      "key": "thangwang-wangham",
+      "name": "Thangwang Wangham",
+      "wikidata": "Q27916362",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_59_LONGDING_PUMAO"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_59_LONGDING_PUMAO"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_59_LONGDINGPUMAO"
+        }
+      ]
+    },
+    {
+      "key": "kaling-moyong",
+      "name": "Kaling Moyong",
+      "wikidata": "Q18128222",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "AR_VS09_38_PASIGHAT_EAST"
+        },
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_38_PASIGHAT_EAST"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_38_PASIGHAT_EAST"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_38_PASIGHAT_EAST"
+        }
+      ]
+    },
+    {
+      "key": "ojing-tasing",
+      "name": "Ojing Tasing",
+      "wikidata": "Q116785069",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_35_PANGIN"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_35_PANGIN"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_35_PANGIN"
+        }
+      ]
+    },
+    {
+      "key": "kento-jini",
+      "name": "Kento Jini",
+      "wikidata": "Q116785067",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_31_ALONG_EAST"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_31_ALONG_EAST"
+        }
+      ]
+    },
+    {
+      "key": "balo-raja",
+      "name": "Balo Raja",
+      "wikidata": "Q28113065",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "AR_VS09_18_PALIN"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_18_PALIN"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_18_PALIN"
+        }
+      ]
+    },
+    {
+      "key": "mama-natung",
+      "name": "Mama Natung",
+      "wikidata": "Q16739008",
+      "candidacies": [
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_11_SEPPA_WEST"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_11_SEPPA_WEST"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_11_SEPPA_WEST"
+        }
+      ]
+    },
+    {
+      "key": "dasanglu-pul",
+      "name": "Dasanglu Pul",
+      "wikidata": "Q27919796",
+      "candidacies": [
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_45_HAYULIANG"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_45_HAYULIANG"
+        }
+      ]
+    },
+    {
+      "key": "pasang-dorjee-sona",
+      "name": "Pasang Dorjee Sona",
+      "wikidata": "Q27734244",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "AR_VS09_33_MECHUKHA"
+        },
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_33_MECHUKA"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_33_MECHUKA"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_33_MECHUKA"
+        }
+      ]
+    },
+    {
+      "key": "gabriel-denwang-wangsu",
+      "name": "Gabriel Denwang Wangsu",
+      "wikidata": "Q18356813",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "AR_VS09_58_KANUBARI"
+        },
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_58_KANUBARI"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_58_KANUBARI"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_58_KANUBARI"
+        }
+      ]
+    },
+    {
+      "key": "wangki-lowang",
+      "name": "Wangki Lowang",
+      "wikidata": "Q24572455",
+      "candidacies": [
+        {
+          "year": 2009,
+          "const_id": "AR_VS09_54_NAMSANG"
+        },
+        {
+          "year": 2014,
+          "const_id": "AR_VS14_54_NAMSANG"
+        },
+        {
+          "year": 2019,
+          "const_id": "AR_VS19_54_NAMSANG"
+        },
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_54_NAMSANG"
+        }
+      ]
+    },
+    {
+      "key": "nyato-dukam",
+      "name": "Nyato Dukam",
+      "wikidata": "Q116785063",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_23_TALIHA"
+        }
+      ]
+    },
+    {
+      "key": "biyuram-wahge",
+      "name": "Biyuram Wahge",
+      "wikidata": "Q97574078",
+      "candidacies": [
+        {
+          "year": 2024,
+          "const_id": "AR_VS24_12_PAKKEKASANG"
+        }
+      ]
+    }
+  ],
+  "elections": {
+    "2024": {
+      "leaders": [
+        {
+          "key": "pema-khandu",
+          "role": "Chief Minister (re-elected from Mukto unopposed; sworn in 13 June 2024)",
+          "party_id": "BJP"
+        },
+        {
+          "key": "chowna-mein",
+          "role": "Deputy Chief Minister (re-elected from Chowkham unopposed)",
+          "party_id": "BJP"
+        },
+        {
+          "key": "tesam-pongte",
+          "role": "Speaker (elected unopposed, June 2024)",
+          "party_id": "BJP"
+        },
+        {
+          "key": "kardo-nyigyor",
+          "role": "Deputy Speaker (elected unopposed, June 2024)",
+          "party_id": "BJP"
+        },
+        {
+          "key": "kumar-waii",
+          "role": "Congress's only MLA (Bameng); the lone opposition member",
+          "party_id": "INC"
+        },
+        {
+          "key": "nabam-vivek",
+          "role": "PPA president (since 7 December 2024)",
+          "party_id": "PPA"
+        },
+        {
+          "key": "oken-tayeng",
+          "role": "PPA legislature party leader (since 28 July 2025)",
+          "party_id": "PPA"
+        },
+        {
+          "key": "namgey-tsering",
+          "role": "PPA deputy legislature party leader (since 28 July 2025); won Tawang for the NPP and moved to the PPA (recorded 12 May 2025)",
+          "party_id": "PPA"
+        },
+        {
+          "key": "kahfa-bengia",
+          "role": "PPA president at the 2024 election (until 7 December 2024)",
+          "party_id": "PPA"
+        },
+        {
+          "key": "toko-tatung",
+          "role": "NCP state president (since 30 May 2025)",
+          "party_id": "NCP"
+        },
+        {
+          "key": "nikh-kamin",
+          "role": "NCP legislature party leader",
+          "party_id": "NCP"
+        },
+        {
+          "key": "likha-saaya",
+          "role": "NCP state president at the 2024 election",
+          "party_id": "NCP"
+        },
+        {
+          "key": "thangwang-wangham",
+          "role": "NPP state president (since May 2023) and its only remaining MLA after June 2025",
+          "party_id": "NPP"
+        },
+        {
+          "key": "kaling-moyong",
+          "role": "BJP state president (since January 2025)",
+          "party_id": "BJP"
+        }
+      ],
+      "cabinet": [
+        {
+          "key": "ojing-tasing",
+          "role": "Minister of Rural Development & Panchayati Raj, Cooperation and Transport",
+          "party_id": "BJP"
+        },
+        {
+          "key": "kento-jini",
+          "role": "Minister of Law, Legislative and Justice, Social Justice, Empowerment & Tribal Affairs, and Sports & Youth Affairs",
+          "party_id": "BJP"
+        },
+        {
+          "key": "balo-raja",
+          "role": "Minister of Urban Affairs, Land Management, and Civil Aviation",
+          "party_id": "BJP"
+        },
+        {
+          "key": "mama-natung",
+          "role": "Minister of Home and Inter State Border Affairs, Public Health Engineering & Water Supply, and Indigenous Affairs",
+          "party_id": "BJP"
+        },
+        {
+          "key": "dasanglu-pul",
+          "role": "Minister of Women & Child Development, Cultural Affairs, and Science & Technology",
+          "party_id": "BJP"
+        },
+        {
+          "key": "pasang-dorjee-sona",
+          "role": "Minister of Education, Rural Works, Parliamentary Affairs, Tourism, and Libraries",
+          "party_id": "BJP"
+        },
+        {
+          "key": "gabriel-denwang-wangsu",
+          "role": "Minister of Agriculture, Horticulture, Animal Husbandry & Veterinary, Dairy Development, Fisheries, Food & Civil Supplies, and Consumer Affairs",
+          "party_id": "BJP"
+        },
+        {
+          "key": "wangki-lowang",
+          "role": "Minister of Environment & Forests, Geology, Mining & Minerals, and the Department of Tirap, Changlang and Longding",
+          "party_id": "BJP"
+        },
+        {
+          "key": "nyato-dukam",
+          "role": "Minister of Commerce & Industries, Labour & Employment, and Information & Public Relations & Printing",
+          "party_id": "BJP"
+        },
+        {
+          "key": "biyuram-wahge",
+          "role": "Minister of Health & Family Welfare and Water Resources (BJP state president 2020 to January 2025)",
+          "party_id": "BJP"
+        }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Fifth_Pema_Khandu_ministry",
+        "https://indianexpress.com/article/india/arunachal-pradesh-cabinet-ministers-list-9389702/",
+        "https://timesofindia.indiatimes.com/city/itanagar/arunachal-pradesh-cm-pema-khandu-allocates-portfolios-to-newly-inducted-ministers/articleshow/111019227.cms",
+        "https://www.financialexpress.com/india-news/arunachal-pradesh-council-of-ministers-portfolios-who-got-what/3525827/",
+        "https://en.wikipedia.org/wiki/2024_Arunachal_Pradesh_Legislative_Assembly_election",
+        "https://en.wikipedia.org/wiki/Arunachal_Pradesh_Legislative_Assembly",
+        "https://en.wikipedia.org/wiki/11th_Arunachal_Pradesh_Assembly",
+        "https://timesofindia.indiatimes.com/city/guwahati/tesam-pongte-kardo-nyigyor-elected-unopposed-as-assembly-speaker/articleshow/111029862.cms",
+        "https://en.wikipedia.org/wiki/Tesam_Pongte",
+        "https://en.wikipedia.org/wiki/Kardo_Nyigyor",
+        "https://en.wikipedia.org/wiki/Kumar_Waii",
+        "https://en.wikipedia.org/wiki/People%27s_Party_of_Arunachal",
+        "https://arunachaltimes.in/index.php/2024/12/07/nabam-vivek-elected-ppa-president-to-seek-371-h-modification/",
+        "https://northeasttoday.in/northeast/arunachal-pradesh/oken-tayeng-appointed-as-ppa-legislature-party-leader-in-arunachal-assembly/",
+        "https://www.indiatodayne.in/arunachal-pradesh/story/four-npp-mlas-defect-to-peoples-party-of-arunachal-1229889-2025-06-16",
+        "https://northeastlivetv.com/topnews/blow-to-npp-in-arunachal-as-4-mlas-switch-to-ppa-party-left-with-only-one-legislator/",
+        "https://www.indiatodayne.in/elections/arunachal-assembly-election/story/arunachal-president-of-peoples-party-kahfa-bengia-withdraws-candidature-from-assembly-elections-980009-2024-04-14",
+        "https://arunachal24.in/arunachal-toko-tatung-appointed-ncp-state-president-for-arunachal-pradesh/",
+        "https://northeastlivetv.com/topnews/arunachal-ncp-changes-candidates-president-likha-saayaa-to-now-contest-from-namsai/",
+        "https://en.wikipedia.org/wiki/Likha_Saaya",
+        "https://timesofindia.indiatimes.com/city/itanagar/thangwang-wangham-to-lead-npp-in-arunachal/articleshow/100434582.cms",
+        "https://en.wikipedia.org/wiki/Thangwang_Wangham",
+        "https://arunachaltimes.in/index.php/2025/01/19/kaling-moyong-elected-state-bjp-president/",
+        "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Arunachal_Pradesh",
+        "https://en.wikipedia.org/wiki/Biyuram_Wahge"
+      ]
+    }
+  }
+}

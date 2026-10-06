@@ -1,0 +1,131 @@
+[
+ {
+  "party_id": "BJP",
+  "state_code": "AR",
+  "eci_recognition": "National",
+  "office": "State BJP Office, opposite Arunodaya School, Vivek Vihar, Itanagar 791113",
+  "website": "https://www.bjp.org/arunachal-pradesh",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Kaling Moyong",
+    "from_date": "2025-01-18",
+    "to_date": null,
+    "source_url": "https://arunachaltimes.in/index.php/2025/01/19/kaling-moyong-elected-state-bjp-president/"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Biyuram Wahge",
+    "from_date": null,
+    "to_date": "2025-01-18",
+    "source_url": "https://arunachaltimes.in/index.php/2025/01/19/kaling-moyong-elected-state-bjp-president/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Pema Khandu",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://northeastlivetv.com/topnews/arunachal-pema-khandu-elected-bjp-legislature-party-leader-to-be-sworn-in-as-cm-tomorrow/"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "AR",
+  "eci_recognition": "National",
+  "office": "Rajiv Gandhi Bhawan, Itanagar",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Bosiram Siram",
+    "from_date": "2025-06-18",
+    "to_date": null,
+    "source_url": "https://www.hindustantimes.com/cities/others/bosiram-siram-replaces-nabam-tuki-as-arunachal-pradesh-congress-chief-101750306194904.html"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Nabam Tuki",
+    "from_date": null,
+    "to_date": "2025-06-18",
+    "source_url": "https://www.hindustantimes.com/cities/others/bosiram-siram-replaces-nabam-tuki-as-arunachal-pradesh-congress-chief-101750306194904.html"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Kumar Waii",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://northeastlivetv.com/topnews/congress-mla-kumar-waii-left-as-lone-opposition-in-60-member-strong-arunachal-assembly/"
+   }
+  ]
+ },
+ {
+  "party_id": "NCP",
+  "state_code": "AR",
+  "eci_recognition": "State",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Toko Tatung",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://arunachal24.in/arunachal-toko-tatung-appointed-ncp-state-president/"
+   }
+  ]
+ },
+ {
+  "party_id": "NPP",
+  "state_code": "AR",
+  "eci_recognition": "National",
+  "office": null,
+  "website": "https://www.nppindia.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Thangwang Wangham",
+    "from_date": "2023-05-21",
+    "to_date": null,
+    "source_url": "https://arunachalobserver.org/2023/05/23/wangham-appointed-new-arunachal-npp-president/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Thangwang Wangham",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.hindustantimes.com/cities/others/four-npp-mlas-shift-to-ppa-in-arunachal-pradesh-101750083113171.html"
+   }
+  ]
+ },
+ {
+  "party_id": "PPA",
+  "state_code": "AR",
+  "eci_recognition": "State",
+  "office": "Mowb-II, Near AG Office, Itanagar",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Nabam Vivek",
+    "from_date": "2024-12-07",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/People%27s_Party_of_Arunachal"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Kahfa Bengia",
+    "from_date": null,
+    "to_date": "2024-12-07",
+    "source_url": "https://en.wikipedia.org/wiki/People%27s_Party_of_Arunachal"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Oken Tayeng",
+    "from_date": "2025-07-27",
+    "to_date": null,
+    "source_url": "https://northeasttoday.in/northeast/arunachal-pradesh/oken-tayeng-appointed-as-ppa-legislature-party-leader-in-arunachal-assembly/"
+   }
+  ]
+ }
+]

@@ -1,0 +1,40 @@
+[
+ {
+  "id": "PPA",
+  "name": "People's Party of Arunachal",
+  "abbreviation": "PPA",
+  "eci_recognition": "State",
+  "founded_year": 1977,
+  "leader_name": "Nabam Vivek",
+  "headquarters": "Mowb-II, Near AG Office, Itanagar, Arunachal Pradesh",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/People%27s_Party_of_Arunachal",
+  "color": "#008000",
+  "description": "Arunachal Pradesh's oldest regional party, founded in 1977 by Bakin Pertin; it briefly governed the territory under Tomo Riba in 1979. In September 2016 Chief Minister Pema Khandu and 42 other Congress MLAs moved to the PPA, and after the party suspended Khandu that December, he and 32 of its MLAs joined the BJP. In 2024 it won 2 of 60 seats with about 7.2% of the vote, and four NPP MLAs switched to it in 2025, taking it to six.",
+  "eci_symbol": "Maize",
+  "logo": null,
+  "eci_image": {
+   "file": "PPA-eci.svg",
+   "commons": "File:Indian Election Symbol Maize.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Maize.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/People%27s_Party_of_Arunachal",
+   "https://en.wikipedia.org/wiki/2024_Arunachal_Pradesh_Legislative_Assembly_election",
+   "https://en.wikipedia.org/wiki/11th_Arunachal_Pradesh_Assembly",
+   "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+   "https://en.wikipedia.org/wiki/Module:Political_party/P",
+   "https://indianexpress.com/article/india/india-news-india/cong-loses-arunachal-2-months-after-it-got-it-43-of-44-mlas-defect-3034803/",
+   "https://indianexpress.com/article/india/in-arunachal-cm-pema-khandu-wins-musical-chairs-game-for-bjp-4453844/",
+   "https://www.hindustantimes.com/cities/others/four-npp-mlas-shift-to-ppa-in-arunachal-pradesh-101750083113171.html",
+   "https://www.indiatodayne.in/arunachal-pradesh/story/four-npp-mlas-defect-to-peoples-party-of-arunachal-1229889-2025-06-16",
+   "https://northeasttoday.in/northeast/arunachal-pradesh/oken-tayeng-appointed-as-ppa-legislature-party-leader-in-arunachal-assembly/",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=3",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Maize.svg"
+  ]
+ }
+]

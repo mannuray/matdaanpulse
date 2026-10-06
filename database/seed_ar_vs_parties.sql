@@ -13,6 +13,6 @@ INSERT INTO parties (id, name, abbreviation, color, eci_recognition) VALUES
   ('NCP', 'Nationalist Congress Party', NULL, '#006699', NULL),
   ('NPF', 'Naga Peoples Front', NULL, '#556B2F', NULL),
   ('NPP', 'National People''s Party', NULL, '#808080', 'National'),
-  ('PPA', 'People''s Party of Arunachal', 'PPA', '#9CA3AF', 'Unrecognised'),
+  ('PPA', 'People''s Party of Arunachal', 'PPA', '#008000', 'State'),
   ('TMC', 'All India Trinamool Congress', NULL, '#00CC44', NULL)
 ON CONFLICT (id) DO NOTHING;

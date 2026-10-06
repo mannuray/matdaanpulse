@@ -559,6 +559,6 @@ JOIN candidates c ON c.id = v.candidate_id::uuid
 WHERE p.id = c.person_id AND p.gender IS NULL;
 
 -- Manifest (only when none is published; admins edit it)
-UPDATE elections SET manifest_url = '{"alliances":[{"id":"INC","name":"Congress","color":"#38C6F4","parties":["INC"]},{"id":"NCP","name":"NCP","color":"#006699","parties":["NCP"]},{"id":"TMC","name":"AITC","color":"#00CC44","parties":["TMC"]},{"id":"PPA","name":"PPA","color":"#C62828","parties":["PPA"]},{"id":"BJP","name":"BJP","color":"#FF7A1A","parties":["BJP"]}],"leaders":[],"cabinet":[],"tracked":["INC","NCP","TMC","PPA","BJP"],"vip_seats":{},"milestones":[{"label":"Majority","value":31}],"geo":{"zoom":7,"center":[94.5,28],"map_url":"/geo/ar_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0030000-0000-4000-8000-000000002009' AND manifest_url IS NULL;
+UPDATE elections SET manifest_url = '{"alliances":[{"id":"INC","name":"Congress","color":"#38C6F4","parties":["INC"]},{"id":"NCP","name":"NCP","color":"#006699","parties":["NCP"]},{"id":"TMC","name":"AITC","color":"#00CC44","parties":["TMC"]},{"id":"PPA","name":"PPA","color":"#008000","parties":["PPA"]},{"id":"BJP","name":"BJP","color":"#FF7A1A","parties":["BJP"]}],"leaders":[],"cabinet":[],"tracked":["INC","NCP","TMC","PPA","BJP"],"vip_seats":{},"milestones":[{"label":"Majority","value":31}],"geo":{"zoom":7,"center":[94.5,28],"map_url":"/geo/ar_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0030000-0000-4000-8000-000000002009' AND manifest_url IS NULL;
 
 COMMIT;

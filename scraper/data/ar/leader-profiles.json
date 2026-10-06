@@ -1,0 +1,221 @@
+{
+ "pema-khandu": {
+  "key": "pema-khandu",
+  "wikidata": "Q7161834",
+  "date_of_birth": "1979-08-21",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Pema_Khandu",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q7161834/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pema_Khandu_in_July_2016.jpg",
+   "author": "Ministry of Home Affairs",
+   "licence": "GODL-India"
+  }
+ },
+ "chowna-mein": {
+  "key": "chowna-mein",
+  "wikidata": "Q16732438",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Chowna_Mein",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q16732438/photo.jpg",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Agriculture_Minister_of_Arunachal_Pradesh,_Shri_Chowna_Mein_calling_on_the_Union_Minister_for_Agriculture,_Shri_Radha_Mohan_Singh,_in_New_Delhi_on_September_17,_2014_(cropped).jpg",
+   "author": "Ministry of Agriculture and Farmers' Welfare",
+   "licence": "GODL-India"
+  }
+ },
+ "tesam-pongte": {
+  "key": "tesam-pongte",
+  "wikidata": "Q19663664",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Tesam_Pongte",
+  "photo_url": null,
+  "credit": null
+ },
+ "kardo-nyigyor": {
+  "key": "kardo-nyigyor",
+  "wikidata": "Q74691053",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kardo_Nyigyor",
+  "photo_url": null,
+  "credit": null
+ },
+ "kumar-waii": {
+  "key": "kumar-waii",
+  "wikidata": "Q26924486",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kumar_Waii",
+  "photo_url": null,
+  "credit": null
+ },
+ "nabam-vivek": {
+  "key": "nabam-vivek",
+  "wikidata": "Q126303626",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Nabam_Vivek",
+  "photo_url": null,
+  "credit": null
+ },
+ "oken-tayeng": {
+  "key": "oken-tayeng",
+  "wikidata": "Q126306913",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Oken_Tayeng",
+  "photo_url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/Q126306913/photo.png",
+  "credit": {
+   "source_url": "https://commons.wikimedia.org/wiki/File:Oken_Tayeng.png",
+   "author": "Persis Farooqy",
+   "licence": "CC0"
+  }
+ },
+ "namgey-tsering": {
+  "key": "namgey-tsering",
+  "wikidata": "Q126303060",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Namgey_Tsering",
+  "photo_url": null,
+  "credit": null
+ },
+ "toko-tatung": {
+  "key": "toko-tatung",
+  "wikidata": "Q126303947",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Toko_Tatung",
+  "photo_url": null,
+  "credit": null
+ },
+ "nikh-kamin": {
+  "key": "nikh-kamin",
+  "wikidata": "Q16730550",
+  "date_of_birth": "1967-12-25",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Nikh_Kamin",
+  "photo_url": null,
+  "credit": null
+ },
+ "likha-saaya": {
+  "key": "likha-saaya",
+  "wikidata": "Q27733907",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Likha_Saaya",
+  "photo_url": null,
+  "credit": null
+ },
+ "thangwang-wangham": {
+  "key": "thangwang-wangham",
+  "wikidata": "Q27916362",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Thangwang_Wangham",
+  "photo_url": null,
+  "credit": null
+ },
+ "kaling-moyong": {
+  "key": "kaling-moyong",
+  "wikidata": "Q18128222",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kaling_Moyong",
+  "photo_url": null,
+  "credit": null
+ },
+ "ojing-tasing": {
+  "key": "ojing-tasing",
+  "wikidata": "Q116785069",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Ojing_Tasing",
+  "photo_url": null,
+  "credit": null
+ },
+ "kento-jini": {
+  "key": "kento-jini",
+  "wikidata": "Q116785067",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Kento_Jini",
+  "photo_url": null,
+  "credit": null
+ },
+ "balo-raja": {
+  "key": "balo-raja",
+  "wikidata": "Q28113065",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Balo_Raja",
+  "photo_url": null,
+  "credit": null
+ },
+ "mama-natung": {
+  "key": "mama-natung",
+  "wikidata": "Q16739008",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Mama_Natung",
+  "photo_url": null,
+  "credit": null
+ },
+ "dasanglu-pul": {
+  "key": "dasanglu-pul",
+  "wikidata": "Q27919796",
+  "date_of_birth": null,
+  "gender": "F",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Dasanglu_Pul",
+  "photo_url": null,
+  "credit": null
+ },
+ "pasang-dorjee-sona": {
+  "key": "pasang-dorjee-sona",
+  "wikidata": "Q27734244",
+  "date_of_birth": "1972-11-06",
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Pasang_Dorjee_Sona",
+  "photo_url": null,
+  "credit": null
+ },
+ "gabriel-denwang-wangsu": {
+  "key": "gabriel-denwang-wangsu",
+  "wikidata": "Q18356813",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Gabriel_Denwang_Wangsu",
+  "photo_url": null,
+  "credit": null
+ },
+ "wangki-lowang": {
+  "key": "wangki-lowang",
+  "wikidata": "Q24572455",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Wangki_Lowang",
+  "photo_url": null,
+  "credit": null
+ },
+ "nyato-dukam": {
+  "key": "nyato-dukam",
+  "wikidata": "Q116785063",
+  "date_of_birth": null,
+  "gender": null,
+  "wikipedia_url": null,
+  "photo_url": null,
+  "credit": null
+ },
+ "biyuram-wahge": {
+  "key": "biyuram-wahge",
+  "wikidata": "Q97574078",
+  "date_of_birth": null,
+  "gender": "M",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Biyuram_Wahge",
+  "photo_url": null,
+  "credit": null
+ }
+}

@@ -651,6 +651,6 @@ JOIN candidates c ON c.id = v.candidate_id::uuid
 WHERE p.id = c.person_id AND p.gender IS NULL;
 
 -- Manifest (only when none is published; admins edit it)
-UPDATE elections SET manifest_url = '{"alliances":[{"id":"INC","name":"Congress","color":"#38C6F4","parties":["INC"]},{"id":"BJP","name":"BJP","color":"#FF7A1A","parties":["BJP"]},{"id":"PPA","name":"PPA","color":"#C62828","parties":["PPA"]}],"leaders":[],"cabinet":[],"tracked":["INC","BJP","PPA"],"vip_seats":{},"milestones":[{"label":"Majority","value":31}],"compare_with":["a0030000-0000-4000-8000-000000002009"],"history":["a0030000-0000-4000-8000-000000002009"],"history_years":[2009],"geo":{"zoom":7,"center":[94.5,28],"map_url":"/geo/ar_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0030000-0000-4000-8000-000000002014' AND manifest_url IS NULL;
+UPDATE elections SET manifest_url = '{"alliances":[{"id":"INC","name":"Congress","color":"#38C6F4","parties":["INC"]},{"id":"BJP","name":"BJP","color":"#FF7A1A","parties":["BJP"]},{"id":"PPA","name":"PPA","color":"#008000","parties":["PPA"]}],"leaders":[],"cabinet":[],"tracked":["INC","BJP","PPA"],"vip_seats":{},"milestones":[{"label":"Majority","value":31}],"compare_with":["a0030000-0000-4000-8000-000000002009"],"history":["a0030000-0000-4000-8000-000000002009"],"history_years":[2009],"geo":{"zoom":7,"center":[94.5,28],"map_url":"/geo/ar_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0030000-0000-4000-8000-000000002014' AND manifest_url IS NULL;
 
 COMMIT;
