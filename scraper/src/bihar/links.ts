@@ -26,14 +26,29 @@ export const moveGuard = (pid: string, cid: string) => [
   `  AND NOT EXISTS (SELECT 1 FROM persons pp WHERE pp.id = ${pid} AND (pp.photo_url IS NOT NULL OR pp.bio IS NOT NULL OR pp.wikipedia_url IS NOT NULL OR pp.date_of_birth IS NOT NULL))`,
 ];
 
-export const linkKey = (name: string) => normName(name.replace(/\s+(alias|urf|@)\s+.*$/i, '')).replace(/[0-9]/g, '').replace(/\s+/g, ' ').trim();
+/**
+ * The name part of a link key. `loose` (Andhra: Telugu names change word order and initials between reports, "Nara
+ * Chandrababu Naidu" / "Chandrababu Naidu Nara", "Y.S." / "Y S" / "Ys"): dots become spaces, runs of single letters
+ * merge, words are sorted. Off by default, so the shipped states' keys (and seeds) do not change.
+ */
+export function linkKey(name: string, o: { loose?: boolean } = {}): string {
+  const base = (s: string) => normName(s.replace(/\s+(alias|urf|@)\s+.*$/i, '')).replace(/[0-9]/g, '').replace(/\s+/g, ' ').trim();
+  if (!o.loose) return base(name);
+  const merged: string[] = [];
+  let initials = false; // the last word is a run of single letters ("Y S" → "YS")
+  for (const w of base(name.replace(/\./g, ' ')).split(' ').filter(Boolean)) {
+    if (w.length === 1 && initials) merged[merged.length - 1] += w;
+    else { merged.push(w); initials = w.length === 1; }
+  }
+  return merged.sort().join(' ');
+}
 
-export function groupCandidacies(all: Candidacy[]): LinkGroup[] {
+export function groupCandidacies(all: Candidacy[], o: { loose?: boolean } = {}): LinkGroup[] {
   const groups = new Map<string, Candidacy[]>();
   for (const x of all) {
     if (x.partyId === 'NOTA') continue;
     // The era joins the seat key only when set, so the 2008-era keys (and the order of the shipped seeds) stay the same.
-    const key = `${linkKey(x.name)}|${x.era && x.era !== '2008' ? `${x.era}:` : ''}${x.constNo}`;
+    const key = `${linkKey(x.name, o)}|${x.era && x.era !== '2008' ? `${x.era}:` : ''}${x.constNo}`;
     groups.set(key, [...(groups.get(key) ?? []), x]);
   }
   const out: LinkGroup[] = [];

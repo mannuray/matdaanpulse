@@ -74,3 +74,18 @@ describe('links across delimitations and the 2026 v2 seed', () => {
     expect(emitLinksSeed([], 'seed_kl_person_links_v2', 'Kerala VS 2011-2026')).toContain('across Kerala VS 2011-2026');
   });
 });
+
+describe('loose name keys (Andhra: Telugu names change word order and initials between reports)', () => {
+  it('a state may ask for keys that ignore word order, dots and spaced initials', () => {
+    const k = (n: string) => linkKey(n, { loose: true });
+    expect(new Set(['Y.S.Jagan Mohan Reddy', 'Y S Jagan Mohan Reddy', 'Ys Jagan Mohan Reddy'].map(k)).size).toBe(1);
+    expect(k('Nara Chandrababu Naidu')).toBe(k('Chandrababu Naidu Nara'));
+    expect(k('Monditoka Jagan Mohana Rao')).not.toBe(k('Monditoka Jagan Mohan Rao'));
+    expect(linkKey('Nara Chandrababu Naidu')).not.toBe(linkKey('Chandrababu Naidu Nara')); // default unchanged
+  });
+  it('groupCandidacies uses them when asked', () => {
+    const c = (name: string, year: number) => ({ candidateId: `${name}${year}`, year, constNo: 175, name, partyId: 'TDP', age: 50 + (year - 2009) / 5 * 5 });
+    const groups = groupCandidacies([c('Nara Chandrababu Naidu', 2009), c('Chandrababu Naidu Nara', 2024)], { loose: true });
+    expect(groups.filter(g => g.members.length === 2)).toHaveLength(1);
+  });
+});

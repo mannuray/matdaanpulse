@@ -44,6 +44,8 @@ export interface StateConfig {
   partiesSeed: string; correctionsSeed: string; linksSeed: string; linksSeedName: string; yearSeed: (year: number) => string;
   seatTypes?: Record<number, SeatType>;
   stripHonorifics?: boolean;
+  /** Person links ignore word order and spaced initials (Telugu names: "Nara Chandrababu Naidu" / "Chandrababu Naidu Nara"). */
+  looseNames?: boolean;
 }
 
 export const ECI_RESULTS_2026 = 'https://results.eci.gov.in/ResultAcGenMay2026/';
@@ -79,7 +81,8 @@ export const STATES: Record<StateCode, StateConfig> = {
     seatTypes: { 1: 'ST', 5: 'ST', 6: 'ST', 8: 'SC', 9: 'ST', 16: 'ST', 18: 'SC', 21: 'ST', 23: 'ST', 24: 'ST', 27: 'ST', 29: 'ST', 30: 'ST', 31: 'ST' } },
   // Arunachal's 2009/2019 reports write "Shri" on some names only.
   AR: { ...state('AR', 'ar', 'Arunachal Pradesh', 3, 60, 0, 59), stripHonorifics: true },
-  AP: state('AP', 'ap', 'Andhra Pradesh', 2, 175, 29, 7),
+  // Telugu names change word order and initials between reports: loose person-link keys.
+  AP: { ...state('AP', 'ap', 'Andhra Pradesh', 2, 175, 29, 7), looseNames: true },
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */

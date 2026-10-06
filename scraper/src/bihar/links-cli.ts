@@ -24,7 +24,8 @@ for (const e of elections) {
     all.push({ candidateId: s.idOf(seat.constNo, c), year: e.year, constNo: seat.constNo, name: c.name, partyId: c.partyId, age: c.age, ...(era ? { era } : {}) });
   }
 }
-const groups = year ? onlyGroupsTouching(groupCandidacies(all), year) : groupCandidacies(all);
+const loose = { loose: !!STATES[ST].looseNames };
+const groups = year ? onlyGroupsTouching(groupCandidacies(all, loose), year) : groupCandidacies(all, loose);
 const count = (c: string) => groups.filter(g => g.confidence === c).length;
 if (year && groups.length === 0) {
   console.log(`${state.name} ${year}: no seat-level links (no earlier election on the same boundaries); no seed written`);
