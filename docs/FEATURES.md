@@ -207,6 +207,21 @@ Spec `docs/superpowers/specs/2026-10-06-party-model-design.md`, plan `docs/super
   pop-up), 40 px chips. Logic in `model/derive/electionChoices.ts` (`TopBarVM.choices(query)`), view
   `views/dashboard/ElectionPicker.tsx`. No keyboard shortcut on the public site.
 
+### Sikkim 2009-2024 (Phase 4B-1), 2026-10-06
+Plan `docs/superpowers/plans/2026-10-06-phase4b-sikkim.md`. Phase 4B fills the remaining 2024/25 states one at a time
+(Sikkim → Arunachal → Andhra → Maharashtra → J&K), each deployed on its own.
+- [x] 4 elections from the ECI statistical reports (2009, 2014 one PDF each; 2019 XLS set; 2024 XLSX set): every
+  candidate (+ NOTA from 2014), real votes, electors, turnout; winners match ECI's party totals (2024 SKM 31 SDF 1).
+- [x] Seat types: Bhutia-Lepcha (BL) seats are ST ("(BL)" stripped like "(SC)"); ECI labels them differently every year,
+  so a fixed per-state table (`STATES.SK.seatTypes`: SC 2, ST 12) sets the types and a contradicting label is an error.
+  AC 32 Sangha (monastic electorate, no territory) is GEN, not on the map, and noted on About.
+- [x] Map: `sk_ac_2008.geojson` rebuilt from ECI's 2024 boundary file (archived results site `ac/S21.js`; `geo-cli.ts
+  SK --year 2024 --write`) — the old file left 73% of the state in unnumbered blocks.
+- [x] Districts (6, since 2021) and regions (the 4 former districts); person links v1/v2; 2024 current track: leaders
+  (user-approved; two-seat contests of Chamling and Golay attached by hand), SKM/SDF/CAP-Sikkim profiles, top-4 photos
+  (results site `AcResultGen2ndJune2024`), affidavits 32/32; party units for Sikkim in `seed_party_units_v2.sql`
+  (run-once; v1 stays frozen); SKM's colour #ED1E26 via `seed_party_colors_v3.sql`; lineage SKM ← SDF (breakaway, 2013).
+
 ### Delhi, Haryana, Jharkhand, Odisha since the 2008 delimitation (Phase 4A), 2026-10-05
 Plan `docs/superpowers/plans/2026-10-05-phase4a-dl-hr-jh-od.md`. The 2024/25 states, for completeness (the other states
 get their history only as their own election approaches).

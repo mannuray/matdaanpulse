@@ -194,6 +194,14 @@ If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds f
 `seed_party_units_v1.sql`. After the deploy, recompute the stored seat analysis so flips follow the lineage:
 `ADMIN_EMAIL=… ADMIN_PASSWORD=… API_BASE_URL=https://<api>/api/v1 npx ts-node scraper/src/recompute-analysis-cli.ts --type VS`.
 
+**Sikkim (Phase 4B-1).** `setup.sh` now also runs `seed_sk_vs_{parties,2009,2014,2019,2024}.sql`,
+`seed_sk_districts_regions.sql`, person links v1/v2, and the run-once `seed_sk_leaders.sql`, `seed_sk_candidate_photos.sql`,
+`seed_sk_affidavits.sql`, `seed_sk_party_profiles.sql`, plus `seed_party_units_v2.sql` (run-once, after v1) and
+`seed_party_colors_v3.sql` (SKM's colour, only while it is the old one); `seed_party_lineage.sql` gains SKM ← SDF.
+The Sikkim map file is replaced (no earlier election used it). Run `setup.sh` against Neon's direct host (the `-pooler`
+host rejects psql's startup options). Render auto-deploy has not been triggering: deploy with
+`render deploys create <service> --commit <sha> --confirm` when backend files change.
+
 **Delhi, Haryana, Jharkhand, Odisha (Phase 4A).** `setup.sh` now also runs `seed_dl_vs_{parties,2008…2025}.sql` and
 `seed_{hr,jh,od}_vs_{parties,2009…2024}.sql` (new elections), their `seed_<st>_districts_regions.sql`, person links v1 and
 v2 (run-once), and for the latest elections the run-once `seed_<st>_leaders.sql`, `seed_<st>_candidate_photos.sql`,

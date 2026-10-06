@@ -184,6 +184,13 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | MyNeta hides ~11 % of 2026 winners in packed scripts (assets as images) | decode the "hunter" packer arithmetically; never execute the page's JavaScript |
 | MyNeta seat spellings (Labhpur/Labpur) and nicknames in names | variant fallback: close seat + same winner name, unique only |
 | Two candidates with the leader's exact name in one seat | `pickCandidacy` prefers the winner |
+| Old-site docids are not ordered by state or year | the statistical-reports listing (`get-election-data?page_seo_name=statistical-reports`) links `old.eci.gov.in/files/file/<docid>-…` for every state and year |
+| A state's files label reserved seats differently every year (Sikkim: BL / ST / none) | a fixed per-state `seatTypes` table; a contradicting label is a parse error |
+| A seat with no territory (Sikkim's Sangha) | GEN seat without a map feature: lists, tallies and its page work; About notes it |
+| A 2008 map file with big unnumbered blocks (Sikkim: 73% of the state) | rebuild it from ECI's results-site boundary file (`geo-cli.ts <ST> --year <y> --write`, Wayback for old sites) |
+| A leader contests two seats in one election (Chamling, Golay) | the name+seat linker splits them; attach every candidacy in `leaders.json` (with `ballot_name` where it differs) |
+| The results site of an early count has its own base (Sikkim `AcResultGen2ndJune2024`, not `…June2024`) | find it in the Wayback CDX index before running photos |
+| CLIs that upload to S3 do not read `scraper/.env` | `set -a; . ./.env; set +a` plus `S3_BUCKET`/`S3_REGION`/`S3_PUBLIC_BASE_URL` (values in `.env.example`) |
 
 ## 10. Running things
 
