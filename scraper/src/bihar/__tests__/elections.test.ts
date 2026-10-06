@@ -83,6 +83,6 @@ describe('Phase 4B Arunachal', () => {
     expect(electionsOf('AR').map(e => [e.year, e.docid ?? e.category, e.newElection?.resultDate])).toEqual([
       [2009, 4039, '2009-10-22'], [2014, 4040, '2014-05-16'], [2019, 11675, '2019-05-23'], [2024, 3, '2024-06-02']]);
     expect(electionOf('AR', 2024)).toMatchObject({ electionId: 'a0030000-0000-4000-8000-000000002024', constPrefix: 'AR_VS24_',
-      resultsSite: { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S02' }, myneta: 'arunachal2024' });
+      resultsSite: { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S02' }, myneta: 'arunachalpradesh2024' });
   });
 });

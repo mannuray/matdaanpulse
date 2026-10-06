@@ -206,7 +206,7 @@ export const ELECTIONS: ElectionConfig[] = [
   p4('AR', 2009, { docid: 4039 }, 1, '2009-10-22', pdf(2009)), p4('AR', 2014, { docid: 4040 }, 1, '2014-05-16', pdf(2014)),
   p4('AR', 2019, { docid: 11675 }, 1, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_')),
   p4('AR', 2024, { category: 3 }, 1, '2024-06-02', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
-    { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S02', myneta: 'arunachal2024' }),
+    { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S02', myneta: 'arunachalpradesh2024' }),
 ];
 
 /** The registry entry of an election id. */
