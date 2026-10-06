@@ -194,6 +194,12 @@ If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds f
 `seed_party_units_v1.sql`. After the deploy, recompute the stored seat analysis so flips follow the lineage:
 `ADMIN_EMAIL=… ADMIN_PASSWORD=… API_BASE_URL=https://<api>/api/v1 npx ts-node scraper/src/recompute-analysis-cli.ts --type VS`.
 
+**Andhra Pradesh (Phase 4B-3).** `setup.sh` now also runs `seed_ap_vs_{parties,2009,2014,2019,2024}.sql`,
+`seed_ap_districts_regions.sql`, person links v1/v2, the run-once `seed_ap_leaders.sql`, `seed_ap_candidate_photos.sql`,
+`seed_ap_affidavits.sql`, `seed_ap_party_profiles.sql`, and `seed_party_units_v4.sql`; `seed_party_lineage.sql` gains
+PRP → INC and YSRCP ← INC; the Andhra map file is replaced (no earlier election used it). Frontend change only
+(`no_majority`); no backend change. Seat analysis deferred. Back up production first.
+
 **Arunachal Pradesh (Phase 4B-2).** `setup.sh` now also runs `seed_ar_vs_{parties,2009,2014,2019,2024}.sql`,
 `seed_ar_districts_regions.sql`, person links v1/v2, the run-once `seed_ar_leaders.sql`, `seed_ar_candidate_photos.sql`,
 `seed_ar_affidavits.sql`, `seed_ar_party_profiles.sql`, and `seed_party_units_v3.sql` (after v2). Frontend only

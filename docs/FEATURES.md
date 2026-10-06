@@ -207,6 +207,20 @@ Spec `docs/superpowers/specs/2026-10-06-party-model-design.md`, plan `docs/super
   pop-up), 40 px chips. Logic in `model/derive/electionChoices.ts` (`TopBarVM.choices(query)`), view
   `views/dashboard/ElectionPicker.tsx`. No keyboard shortcut on the public site.
 
+### Andhra Pradesh 2009-2024 (Phase 4B-3), 2026-10-06
+Plan `docs/superpowers/plans/2026-10-06-phase4b-andhra.md`.
+- [x] 4 elections from the ECI statistical reports; 2009 and 2014 are undivided-state reports (294 seats): today's
+  Andhra is seats 120-294, kept and renumbered 1-175 (`seatRange`; the party table is not compared for such partial
+  reports). Winners match ECI (2009 Andhra seats INC 106 / TDP 53 / PRP 16; 2014 TDP 102 / YSRCP 67; 2019 YSRCP 151;
+  2024 TDP 135 / JSP 21 / YSRCP 11 / BJP 8). 2014 seat 169 (Satyavedu) has no summary page: built from Detailed Results.
+- [x] 2009 has no majority line: a manifest may say `no_majority` (`model/derive/majority.ts`); About explains it.
+- [x] Lineage: Praja Rajyam → Congress (merger, 2011), YSRCP ← Congress (breakaway, 2011).
+- [x] Map rebuilt from ECI's 2024 boundary file (the old file had 177 mis-numbered features).
+- [x] Districts (28 current, incl. Markapuram and Polavaram of Dec 2025); regions Uttarandhra 34 / Coastal Andhra 89 /
+  Rayalaseema 52 (by the old districts); person links with loose name keys (`STATES.AP.looseNames`: Telugu names
+  change word order and initials); 2024 current track (29 leaders, TDP/YSRCP/Jana Sena profiles, party units v4 whose
+  roles may name the exact `ballot_name`, top-4 photos, affidavits 172/175).
+
 ### Arunachal Pradesh 2009-2024 (Phase 4B-2), 2026-10-06
 Plan `docs/superpowers/plans/2026-10-06-phase4b-arunachal.md`.
 - [x] 4 elections from the ECI statistical reports (2009 PDF, 2014 scanned PDF, 2019 XLS, 2024 XLSX): every candidate
