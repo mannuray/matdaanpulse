@@ -47,4 +47,14 @@ describe('normalize', () => {
     const { errors } = normalize(raw(), YEARS[2010], {}, '2026-10-03');
     expect(errors).toEqual(['party: no party-map entry for "Bharatiya Janata Party" (BJP)']);
   });
+  it('a seat-type table sets every type; a file label that contradicts it is an error, a missing one is not', () => {
+    const r = raw(); r.summaries[0].type = null as never; r.summaries[1].type = 'SC';
+    const cfg = { ...electionOf('SK', 2019), seatTypes: { 2: 'ST' as const } };
+    const { errors } = normalize(r, cfg, map, '2026-10-06');
+    expect(errors).toEqual(['seat 2: the file says SC, the seat-type table says ST']);
+    r.summaries[1].type = 'ST';
+    const ok = normalize(r, cfg, map, '2026-10-06');
+    expect(ok.errors).toEqual([]);
+    expect(ok.json.seats.map(x => x.type)).toEqual(['GEN', 'ST']);
+  });
 });

@@ -3,14 +3,19 @@ import type { SeatType, Sex } from './types';
 
 export { normName };
 
-/** "RAMNAGAR (SC)" / "Ramnagar (SC) (SC)" → name + type; no marker → type null. */
+/** "RAMNAGAR (SC)" / "Ramnagar (SC) (SC)" / "Daramdin(BL)" → name + type; no marker → type null. */
 export function splitAcName(raw: string): { name: string; type: SeatType | null } {
   // A leading seat number ("175-Lucknow Cantt.") is dropped; "(S.C.)" counts as "(SC)".
   let s = raw.replace(/\s+/g, ' ').trim().replace(/^\d+\s*-\s*/, '');
   let type: SeatType | null = null;
-  const marker = /\s*\((GEN|S\.?C\.?|S\.?T\.?)\)\s*$/i;
+  // Sikkim's 2019 summary appends the type after a dash: "Yoksam-tashiding (BL)-ST", "Sangha-GEN".
+  const suffix = /\s*-(GEN|SC|ST)$/.exec(s);
+  if (suffix) { type = suffix[1] as SeatType; s = s.slice(0, suffix.index).trim(); }
+  // "(BL)" (Sikkim's Bhutia-Lepcha seats, Scheduled Tribes) counts as ST; 2024 writes "-(BL)".
+  const marker = /\s*-?\s*\((GEN|S\.?C\.?|S\.?T\.?|BL)\)\s*$/i;
   for (let m = marker.exec(s); m; m = marker.exec(s)) {
-    type = m[1].replace(/\./g, '').toUpperCase() as SeatType;
+    const t = m[1].replace(/\./g, '').toUpperCase();
+    type = (t === 'BL' ? 'ST' : t) as SeatType;
     s = s.slice(0, m.index).trim();
   }
   // Some reports write the reservation without brackets: "Mahadewa S.C", "Machhlishahr S.C.".

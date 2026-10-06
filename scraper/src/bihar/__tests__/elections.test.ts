@@ -3,7 +3,7 @@ import { ELECTIONS, STATES, electionOf, electionsOf, parseState } from '../elect
 
 describe('election registry', () => {
   it('lists every state election once, with unique ids and prefixes', () => {
-    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17);
+    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17 + 4);
     expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
     expect(new Set(ELECTIONS.map(e => e.constPrefix)).size).toBe(ELECTIONS.length);
   });
@@ -61,5 +61,19 @@ describe('Phase 4A states', () => {
     expect(electionOf('OD', 2019)).toMatchObject({ electionId: 'a0260000-0000-4000-8000-000000002019', constPrefix: 'OD_VS19_', expectedPhases: 4 });
     expect(electionOf('JH', 2024)).toMatchObject({ resultsSite: { base: 'https://results.eci.gov.in/ResultAcGenNov2024/', eciCode: 'S27' }, myneta: 'jharkhand2024',
       newElection: { reserved: { sc: 9, st: 28 } } });
+  });
+});
+
+describe('Phase 4B Sikkim', () => {
+  it('registers Sikkim 2009-2024 with its sources, dates and seat types', () => {
+    expect(electionsOf('SK').map(e => [e.year, e.docid ?? e.category, e.newElection?.resultDate, e.expectedPhases])).toEqual([
+      [2009, 3364, '2009-05-16', 1], [2014, 3365, '2014-05-16', 1], [2019, 11677, '2019-05-23', 1], [2024, 5, '2024-06-02', 1]]);
+    expect(electionOf('SK', 2024)).toMatchObject({ electionId: 'a0300000-0000-4000-8000-000000002024', constPrefix: 'SK_VS24_',
+      resultsSite: { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S21' }, myneta: 'sikkim2024',
+      newElection: { delimitation: '2008', reserved: { sc: 2, st: 12 } } });
+    const types = Object.entries(STATES.SK.seatTypes!);
+    expect(types.filter(([, t]) => t === 'ST').map(([n]) => Number(n))).toEqual([1, 5, 6, 9, 16, 21, 23, 24, 27, 29, 30, 31]);
+    expect(types.filter(([, t]) => t === 'SC').map(([n]) => Number(n))).toEqual([8, 18]);
+    expect(electionOf('SK', 2019).seatTypes).toBe(STATES.SK.seatTypes);
   });
 });

@@ -13,6 +13,9 @@ export function normalize(raw: RawElection, cfg: YearConfig | ElectionConfig, ma
   for (const seat of [...raw.seats].sort((a, b) => a.constNo - b.constNo)) {
     const m = summaries.get(seat.constNo);
     if (!m) { errors.add(`summary: seat ${seat.constNo} missing`); continue; }
+    const table = 'seatTypes' in cfg ? cfg.seatTypes : undefined;
+    const fixed = table ? table[seat.constNo] ?? 'GEN' : null;
+    if (fixed && m.type && m.type !== fixed) errors.add(`seat ${seat.constNo}: the file says ${m.type}, the seat-type table says ${fixed}`);
     const top = Math.max(...seat.candidates.map(c => c.total));
     const candidates: CandidateJson[] = seat.candidates.map(c => {
       const p = resolveParty(c.party, raw.parties, map);
@@ -21,7 +24,7 @@ export function normalize(raw: RawElection, cfg: YearConfig | ElectionConfig, ma
       return { serial: c.serial, name: displayName(c.name), partyId: p.id, sex: c.sex, age: c.age, votes: c.total, status: c.total === top ? 'WON' : 'LOST' };
     }).filter((c): c is CandidateJson => c !== null);
     if (seat.nota !== null) candidates.push({ serial: Math.max(0, ...seat.candidates.map(c => c.serial)) + 1, name: 'NOTA', partyId: 'NOTA', sex: null, age: null, votes: seat.nota, status: 'LOST' });
-    seats.push({ constNo: seat.constNo, ...('newElection' in cfg && cfg.newElection ? { name: displayName(seat.acName) } : {}), type: m.type, electors: m.electors, voters: m.voters, turnout: Math.round((m.voters / m.electors) * 10000) / 100,
+    seats.push({ constNo: seat.constNo, ...('newElection' in cfg && cfg.newElection ? { name: displayName(seat.acName) } : {}), type: fixed ?? m.type, electors: m.electors, voters: m.voters, turnout: Math.round((m.voters / m.electors) * 10000) / 100,
       phase: dates.indexOf(m.pollDate) + 1, pollDate: m.pollDate, candidates });
   }
   return {

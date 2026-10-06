@@ -3,9 +3,10 @@
  * seats / reserved seats / poll dates (for validation), and the names of the generated seeds. Bihar keeps its
  * historical seed names so its output never changes.
  */
+import type { SeatType } from './types';
 
-export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD';
-export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD'];
+export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK';
+export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK'];
 
 export interface YearConfig {
   year: number; electionId: string; constPrefix: string;
@@ -30,10 +31,13 @@ export interface ElectionConfig extends YearConfig {
   resultsSite?: { base: string; eciCode: string };
   /** MyNeta (ADR) site slug for the winners' affidavits. */
   myneta?: string;
+  /** Seat types fixed by the state (listed seats; the rest GEN), when its files label them inconsistently (Sikkim). */
+  seatTypes?: Record<number, SeatType>;
 }
 export interface StateConfig {
   code: StateCode; slug: string; name: string; stateId: number; seats: number; reserved: { sc: number; st: number };
   partiesSeed: string; correctionsSeed: string; linksSeed: string; linksSeedName: string; yearSeed: (year: number) => string;
+  seatTypes?: Record<number, SeatType>;
 }
 
 export const ECI_RESULTS_2026 = 'https://results.eci.gov.in/ResultAcGenMay2026/';
@@ -63,6 +67,10 @@ export const STATES: Record<StateCode, StateConfig> = {
   HR: state('HR', 'hr', 'Haryana', 11, 90, 17, 0),
   JH: state('JH', 'jh', 'Jharkhand', 14, 81, 9, 28),
   OD: state('OD', 'od', 'Odisha', 26, 147, 24, 33),
+  // Bhutia-Lepcha (BL) seats are Scheduled Tribe seats; AC 32 Sangha (monastic electorate) is GEN. ECI's files label
+  // these differently every year, so the types come from here (Phase 4B spec §3).
+  SK: { ...state('SK', 'sk', 'Sikkim', 30, 32, 2, 12),
+    seatTypes: { 1: 'ST', 5: 'ST', 6: 'ST', 8: 'SC', 9: 'ST', 16: 'ST', 18: 'SC', 21: 'ST', 23: 'ST', 24: 'ST', 27: 'ST', 29: 'ST', 30: 'ST', 31: 'ST' } },
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */
@@ -96,7 +104,7 @@ const p4 = (code: StateCode, year: number, src: { docid: number } | { category: 
   const base: ElectionConfig = 'docid' in src ? hist(code, year, id, src.docid, expectedPhases, files)
     : { state: code, year, electionId: id, constPrefix: `${code}_VS${String(year).slice(2)}_`, expectedPhases, category: src.category, files,
         source: { title: `ECI Statistical Report, ${STATES[code].name} Legislative Assembly ${year}`, url: `https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=${src.category}` } };
-  return { ...base, ...extra, newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate, reserved: STATES[code].reserved },
+  return { ...base, ...(STATES[code].seatTypes ? { seatTypes: STATES[code].seatTypes } : {}), ...extra, newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate, reserved: STATES[code].reserved },
     ...(latest ? { resultsSite: { base: latest.base, eciCode: latest.eciCode }, myneta: latest.myneta } : {}) };
 };
 const pdf = (y: number) => ({ pdf: `${y}/${y}.pdf` });
@@ -184,6 +192,11 @@ export const ELECTIONS: ElectionConfig[] = [
   p4('OD', 2019, { docid: 11679 }, 4, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_'), undefined, { seats: 146, excludeSeats: [96] }),
   p4('OD', 2024, { category: 4 }, 4, '2024-06-04', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
     { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S18', myneta: 'odisha2024' }),
+  // Phase 4B-1: Sikkim (fetch-cli saves ECI's 2019 names with spaces as underscores, as Odisha 2019).
+  p4('SK', 2009, { docid: 3364 }, 1, '2009-05-16', pdf(2009)), p4('SK', 2014, { docid: 3365 }, 1, '2014-05-16', pdf(2014)),
+  p4('SK', 2019, { docid: 11677 }, 1, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_')),
+  p4('SK', 2024, { category: 5 }, 1, '2024-06-02', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
+    { base: 'https://results.eci.gov.in/AcResultGenJune2024/', eciCode: 'S21', myneta: 'sikkim2024' }),
 ];
 
 /** The registry entry of an election id. */

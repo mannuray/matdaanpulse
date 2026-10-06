@@ -59,4 +59,12 @@ describe('splitAcName with dotted brackets and a seat-number prefix (UP/UK 2017 
     expect(splitAcName('175-Lucknow Cantt.')).toEqual({ name: 'Lucknow Cantt.', type: null });
     expect(splitAcName('12 - Pernem')).toEqual({ name: 'Pernem', type: null });
   });
+  it('reads Sikkim\'s (BL) as ST, in each file\'s spelling', () => {
+    expect(splitAcName('6- Daramdin(BL)')).toEqual({ name: 'Daramdin', type: 'ST' });
+    expect(splitAcName('1-YUKSOM-TASHIDING-(BL)')).toEqual({ name: 'YUKSOM-TASHIDING', type: 'ST' });
+    expect(splitAcName('Yoksam-tashiding (BL)-ST')).toEqual({ name: 'Yoksam-tashiding', type: 'ST' });
+    expect(splitAcName('Sangha-GEN')).toEqual({ name: 'Sangha', type: 'GEN' });
+    expect(splitAcName('Kabi Lungchuk (BL)')).toEqual({ name: 'Kabi Lungchuk', type: 'ST' });
+    expect(splitAcName('NAMCHI-SINGHITHANG')).toEqual({ name: 'NAMCHI-SINGHITHANG', type: null });
+  });
 });
