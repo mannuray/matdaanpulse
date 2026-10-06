@@ -57,4 +57,19 @@ describe('normalize', () => {
     expect(ok.errors).toEqual([]);
     expect(ok.json.seats.map(x => x.type)).toEqual(['GEN', 'ST']);
   });
+  it('a seat won unopposed: voters and turnout null, flagged; no poll date → the election\'s poll date', () => {
+    const r = raw();
+    r.seats[1] = { ...r.seats[1], nota: null, totalVotes: 0, candidates: [{ ...r.seats[1].candidates[1], general: 0, postal: 0, total: 0 }] };
+    r.summaries[1] = { ...r.summaries[1], voters: 0, contested: 1, totalValid: 0, pollDate: '', winner: { party: 'BJP', name: 'S', votes: 0 }, runnerUp: null, margin: 0, uncontested: true };
+    const { json, errors } = normalize(r, YEARS[2010], map, '2026-10-06');
+    expect(errors).toEqual([]);
+    expect(json.seats[1]).toMatchObject({ voters: null, turnout: null, uncontested: true, pollDate: '2010-10-28', phase: 1 });
+    expect(json.seats[1].candidates).toEqual([{ serial: 2, name: 'Sita Devi', partyId: 'BJP', sex: 'F', age: 35, votes: 0, status: 'WON' }]);
+  });
+  it('a seat won unopposed keeps no NOTA row even when the report prints NOTA 0 (Arunachal 2014)', () => {
+    const r = raw();
+    r.seats[1] = { ...r.seats[1], nota: 0, totalVotes: 0, candidates: [{ ...r.seats[1].candidates[1], general: 0, postal: 0, total: 0 }] };
+    r.summaries[1] = { ...r.summaries[1], voters: 0, contested: 1, totalValid: 0, nota: 0, winner: { party: 'BJP', name: 'S', votes: 0 }, runnerUp: null, margin: 0, uncontested: true };
+    expect(normalize(r, YEARS[2010], map, '2026-10-06').json.seats[1].candidates.map(c => c.partyId)).toEqual(['BJP']);
+  });
 });

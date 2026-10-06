@@ -1,5 +1,6 @@
 // scraper/src/bihar/__tests__/pdf-report.test.ts
 import { describe, it, expect } from 'vitest';
+import { ocrNormalise } from '../ocr';
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseDetailedText, parseSummaryText, parsePartyListText, parsePerformanceText } from '../pdf-report';
@@ -302,5 +303,21 @@ describe('parseDetailedText fails loudly on layouts it does not know', () => {
   it('keeps a candidate name that starts with digits on a layout without ranks', () => {
     const text = JH2014_REAL.replace('ANANT KUMAR OJHA          ', '420 ANANT KUMAR OJHA      ');
     expect(parseDetailedText(text)[0].candidates[0].name).toBe('420 ANANT KUMAR OJHA');
+  });
+});
+
+describe('parseSummaryText, a seat won unopposed (Arunachal 2009)', () => {
+  it('reads the winner with 0 votes, no runner-up, and marks the seat uncontested', () => {
+    const text = fs.readFileSync(path.join(__dirname, 'fixtures/pdf-2009/ar2009-summary-uncontested.txt'), 'utf8');
+    expect(parseSummaryText(text)).toEqual([{ constNo: 1, name: 'Lumla', type: 'ST', electors: 8022, voters: 0, contested: 1, totalValid: 0,
+      nota: null, pollDate: '2009-10-13', winner: { party: 'INC', name: 'Jambey Tashi', votes: 0 }, runnerUp: null, margin: 0, uncontested: true }]);
+  });
+});
+
+describe('parseSummaryText, an unopposed seat from OCR text (Arunachal 2014: blanks, NOTA as "runner-up")', () => {
+  it('a seat with 1 contestant and 0 voters is unopposed: winner 0 votes, no runner-up', () => {
+    const text = ocrNormalise(fs.readFileSync(path.join(__dirname, 'fixtures/pdf-2009/ar2014-ocr-summary-uncontested.txt'), 'utf8'));
+    expect(parseSummaryText(text)[0]).toMatchObject({ constNo: 3, name: 'MUKTO', type: 'ST', electors: 7181, voters: 0, contested: 1, totalValid: 0,
+      pollDate: '2014-04-09', winner: { party: 'INC', name: 'Pema Khandu', votes: 0 }, runnerUp: null, margin: 0, uncontested: true });
   });
 });

@@ -29,8 +29,13 @@ export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): s
     if (valid + (seat.nota ?? 0) !== seat.totalVotes) add(k('turnout-row'), `candidates+NOTA ${valid + (seat.nota ?? 0)} vs TURNOUT row ${seat.totalVotes}`);
     const ranked = [...seat.candidates].sort((a, b) => b.total - a.total);
     const [w, r] = ranked;
+    if (m.uncontested) {
+      // Won unopposed: the winner is the only candidate and no votes were polled.
+      if (seat.candidates.length !== 1 || w.total !== 0 || !sameParty(w.party, m.winner.party)) add(k('uncontested'), `${seat.candidates.length} candidates, winner ${w?.party} ${w?.total} vs summary ${m.winner.party} unopposed`);
+      continue;
+    }
     if (!w || !sameParty(w.party, m.winner.party) || w.total !== m.winner.votes) add(k('winner'), `detailed ${w?.party} ${w?.total} vs summary ${m.winner.party} ${m.winner.votes}`);
-    if (!r || !sameParty(r.party, m.runnerUp.party) || r.total !== m.runnerUp.votes) add(k('runner-up'), `detailed ${r?.party} ${r?.total} vs summary ${m.runnerUp.party} ${m.runnerUp.votes}`);
+    if (!r || !m.runnerUp || !sameParty(r.party, m.runnerUp.party) || r.total !== m.runnerUp.votes) add(k('runner-up'), `detailed ${r?.party} ${r?.total} vs summary ${m.runnerUp?.party} ${m.runnerUp?.votes}`);
     if (w && r && w.total - r.total !== m.margin) add(k('margin'), `detailed ${w.total - r.total} vs summary ${m.margin}`);
   }
   const ak = (a: string) => a.replace(/\s/g, '').toUpperCase();
@@ -41,8 +46,9 @@ export function crossCheck(e: RawElection, exceptions: CrossCheckException[]): s
   }
   for (const p of perf.values()) {
     if (p.abbr === 'IND') continue; // independents are reported as one pseudo-party in some years; checked through seats
-    const cands = e.seats.flatMap(s => s.candidates.filter(c => ak(c.party) === ak(p.abbr)));
-    const won = e.seats.filter(s => ak([...s.candidates].sort((a, b) => b.total - a.total)[0]?.party ?? '') === ak(p.abbr)).length;
+    const polled = e.seats.filter(s => !s.fromSummary); // the performance table leaves out seats built from a summary
+    const cands = polled.flatMap(s => s.candidates.filter(c => ak(c.party) === ak(p.abbr)));
+    const won = polled.filter(s => ak([...s.candidates].sort((a, b) => b.total - a.total)[0]?.party ?? '') === ak(p.abbr)).length;
     const votes = cands.reduce((a, c) => a + c.total, 0);
     if (cands.length !== p.contested) add(`party-contested:${p.abbr}`, `detailed ${cands.length} vs performance ${p.contested}`);
     if (won !== p.won) add(`party-won:${p.abbr}`, `detailed ${won} vs performance ${p.won}`);
@@ -70,7 +76,9 @@ export function validateElection(e: ElectionJson, cfg: ElectionConfig): string[]
     const top = [...real].sort((a, b) => b.votes - a.votes);
     if (top.length > 1 && top[0].votes === top[1].votes) errs.push(`tie:${s.constNo}`);
     if (winners[0] && top[0] && winners[0] !== top[0]) errs.push(`winner-not-top:${s.constNo}`);
-    if (!(s.turnout > 0 && s.turnout <= 100)) errs.push(`turnout:${s.constNo} ${s.turnout}`);
+    if (s.uncontested) {
+      if (real.length !== 1 || real[0].votes !== 0 || s.candidates.length !== 1 || s.turnout !== null) errs.push(`uncontested:${s.constNo} must be one candidate with 0 votes and no turnout`);
+    } else if (!(s.turnout !== null && s.turnout > 0 && s.turnout <= 100)) errs.push(`turnout:${s.constNo} ${s.turnout}`);
     if (!s.candidates.every(c => Number.isInteger(c.votes) && c.votes >= 0)) errs.push(`votes:${s.constNo}`);
   }
   return errs;

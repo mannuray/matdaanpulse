@@ -818,6 +818,13 @@
     "color": "#FF9933",
     "recognition": null
   },
+  "ALLINDIANSPARTY": {
+    "id": "AIP",
+    "name": "All Indians Party",
+    "abbreviation": "AIP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ALLINDIAPARTYFORTHEPROTECTIONOFCIVILRIGHTS": {
     "id": "AIPPMR",
     "name": "All India Party for the Protection of Civil Rights",
@@ -1249,6 +1256,13 @@
     "id": "ARADD",
     "name": "Arjak Adhikar Dal",
     "abbreviation": "ARADD",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ARUNACHALDEMOCRATICPARTY": {
+    "id": "ANCHDMCP",
+    "name": "Arunachal Democratic Party",
+    "abbreviation": "ANCHDMCP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -6779,6 +6793,13 @@
     "id": "PEPART",
     "name": "People’s Party",
     "abbreviation": "PEPART",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "PEOPLESPARTYOFARUNACHAL": {
+    "id": "PPA",
+    "name": "People's Party of Arunachal",
+    "abbreviation": "PPA",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },

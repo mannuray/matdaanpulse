@@ -1,0 +1,2536 @@
+{
+ "year": 2024,
+ "electionId": "a0030000-0000-4000-8000-000000002024",
+ "source": {
+  "title": "ECI Statistical Report, Arunachal Pradesh Legislative Assembly 2024",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=3",
+  "retrieved": "2026-10-06"
+ },
+ "parties": [
+  {
+   "id": "ANCHDMCP",
+   "name": "Arunachal Democratic Party",
+   "abbreviation": "ANCHDMCP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "LJPRV",
+   "name": "Lok Janshakti Party(Ram Vilas)",
+   "abbreviation": null,
+   "color": "#3B8BFF",
+   "recognition": null
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NPP",
+   "name": "National People's Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": "National"
+  },
+  {
+   "id": "PPA",
+   "name": "People's Party of Arunachal",
+   "abbreviation": "PPA",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Lumla",
+   "type": "ST",
+   "electors": 9961,
+   "voters": 8642,
+   "turnout": 86.76,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tsering Lhamu",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 50,
+     "votes": 5040,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jampa Thirnly Kunkhap",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 3509,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 65,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Tawang",
+   "type": "ST",
+   "electors": 10777,
+   "voters": 8430,
+   "turnout": 78.22,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Namgey Tsering",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 42,
+     "votes": 4667,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tsering Dorjee",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 3671,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 56,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Mukto",
+   "type": "ST",
+   "electors": 8075,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pema Khandu",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 4,
+   "name": "Dirang",
+   "type": "ST",
+   "electors": 15544,
+   "voters": 13745,
+   "turnout": 88.43,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Phurpa Tsering",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 7430,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yeshi Tsewang",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 48,
+     "votes": 6228,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 81,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Kalaktang",
+   "type": "ST",
+   "electors": 11097,
+   "voters": 9343,
+   "turnout": 84.19,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tseten Chombay Kee",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 6030,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Wangdi Dorjee Khrimey",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 45,
+     "votes": 3161,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 82,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Thrizino-Buragaon",
+   "type": "ST",
+   "electors": 14762,
+   "voters": 11058,
+   "turnout": 74.91,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tenzin Nyima Glow",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 5593,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kumsi Sidisow",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 5193,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 104,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Bomdila",
+   "type": "ST",
+   "electors": 10927,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dongru Siongju",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 8,
+   "name": "Bameng",
+   "type": "ST",
+   "electors": 13979,
+   "voters": 12530,
+   "turnout": 89.63,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kumar Waii",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 6554,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Doba Lamnio",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 5919,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 45,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Chayangtajo",
+   "type": "ST",
+   "electors": 13899,
+   "voters": 11070,
+   "turnout": 79.65,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hayeng Mangfi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 8809,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kompu Dolo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 2124,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 30,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Seppa East",
+   "type": "ST",
+   "electors": 12508,
+   "voters": 9309,
+   "turnout": 74.42,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ealing Tallang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 7412,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tame Gyadi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 1812,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 47,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Seppa West",
+   "type": "ST",
+   "electors": 8447,
+   "voters": 7889,
+   "turnout": 93.39,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mama Natung",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 4430,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tani Loffa",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 58,
+     "votes": 3181,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 9,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Pakke-Kasang",
+   "type": "ST",
+   "electors": 9324,
+   "voters": 8300,
+   "turnout": 89.02,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Biyuram Wahge",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 3933,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Techi Hemu",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 56,
+     "votes": 3120,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dongli Gollo",
+     "partyId": "LJPRV",
+     "sex": "M",
+     "age": 33,
+     "votes": 997,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gollo Yapung Tana",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 45,
+     "votes": 166,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 68,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Itanagar",
+   "type": "ST",
+   "electors": 64035,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Techi Kaso",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 14,
+   "name": "Doimukh",
+   "type": "ST",
+   "electors": 25441,
+   "voters": 21017,
+   "turnout": 82.61,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nabam Vivek",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 51,
+     "votes": 11409,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tana Hali Tara",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 8879,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nabam Tado",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 548,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 105,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Sagalee",
+   "type": "ST",
+   "electors": 14641,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ratu Techi",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 16,
+   "name": "Yachuli",
+   "type": "ST",
+   "electors": 17576,
+   "voters": 16394,
+   "turnout": 93.27,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Toko Tatung",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 47,
+     "votes": 8255,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Taba Tedir",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 8027,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 42,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Ziro-Hapoli",
+   "type": "ST",
+   "electors": 25637,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hage Appa",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 18,
+   "name": "Palin",
+   "type": "ST",
+   "electors": 17376,
+   "voters": 15441,
+   "turnout": 88.86,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Balo Raja",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 10029,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mayu Taring",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 39,
+     "votes": 4989,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tarh Johny",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 295,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 71,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Nyapin",
+   "type": "ST",
+   "electors": 16474,
+   "voters": 14689,
+   "turnout": 89.16,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tai Nikio",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 7896,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tadar Mangku",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 53,
+     "votes": 6714,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 10,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Tali",
+   "type": "ST",
+   "electors": 14569,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jikke Tako",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 21,
+   "name": "Koloriang",
+   "type": "ST",
+   "electors": 14561,
+   "voters": 12848,
+   "turnout": 88.24,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pani Taram",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 11594,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kahfa Bengia",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 59,
+     "votes": 1044,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 169,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Nacho",
+   "type": "ST",
+   "electors": 12454,
+   "voters": 10761,
+   "turnout": 86.41,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nakap Nalo",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 5415,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tanga Byaling",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 76,
+     "votes": 4042,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 29,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Taliha",
+   "type": "ST",
+   "electors": 11457,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nyato Dukam",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 24,
+   "name": "Daporijo",
+   "type": "ST",
+   "electors": 17107,
+   "voters": 13546,
+   "turnout": 79.18,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Taniya Soki",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 6671,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dikto Yekar",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 6443,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Reri Kirbe Dulom",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 41,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Raga",
+   "type": "ST",
+   "electors": 16978,
+   "voters": 14716,
+   "turnout": 86.68,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rotom Tebin",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 8791,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ajay Murtem",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 5857,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 26,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Damporijo",
+   "type": "ST",
+   "electors": 12929,
+   "voters": 11253,
+   "turnout": 87.04,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rode Bui",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 6400,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tabe Doni",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 59,
+     "votes": 4809,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 17,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Liromoba",
+   "type": "ST",
+   "electors": 14061,
+   "voters": 12888,
+   "turnout": 91.66,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pesi Jilen",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 7206,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nyamar Karbak",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 5508,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 29,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Likabali",
+   "type": "ST",
+   "electors": 12536,
+   "voters": 10717,
+   "turnout": 85.49,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kardo Nyigyor",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 6607,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moli Riba",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 4002,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 48,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Basar",
+   "type": "ST",
+   "electors": 19424,
+   "voters": 16728,
+   "turnout": 86.12,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nyabi Jini Dirchi",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 47,
+     "votes": 9174,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gokar Basar",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 7383,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 44,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Along West",
+   "type": "ST",
+   "electors": 14965,
+   "voters": 13421,
+   "turnout": 89.68,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Topin Ete",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 7629,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nyamo Ete",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 5678,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 54,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Along East",
+   "type": "ST",
+   "electors": 14596,
+   "voters": 11674,
+   "turnout": 79.98,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kento Jini",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 7380,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jarkar Gamlin",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 69,
+     "votes": 4222,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 40,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Rumgong",
+   "type": "ST",
+   "electors": 12778,
+   "voters": 11222,
+   "turnout": 87.82,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Talem Taboh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 5862,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Taja Bonung",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 41,
+     "votes": 4680,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tahan Mibang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 44,
+     "votes": 540,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Taling Yaying",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 51,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 38,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Mechuka",
+   "type": "ST",
+   "electors": 11190,
+   "voters": 10169,
+   "turnout": 90.88,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pasang Dorjee Sona",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 6320,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aju Chije",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 34,
+     "votes": 3762,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 43,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Tuting-Yingkiong",
+   "type": "ST",
+   "electors": 13194,
+   "voters": 11397,
+   "turnout": 86.38,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Alo Libang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 6095,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nobeng Burang",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 60,
+     "votes": 5180,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 63,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Pangin",
+   "type": "ST",
+   "electors": 14320,
+   "voters": 12898,
+   "turnout": 90.07,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ojing Tasing",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 7500,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tapang Taloh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 60,
+     "votes": 4906,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Takku Jerang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 361,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tamo Taggu",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 41,
+     "votes": 68,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 22,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Nari-Koyu",
+   "type": "ST",
+   "electors": 8259,
+   "voters": 7537,
+   "turnout": 91.26,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tojir Kadu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 4545,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gegong Apang",
+     "partyId": "ANCHDMCP",
+     "sex": "M",
+     "age": 77,
+     "votes": 2896,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 60,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Pasighat West",
+   "type": "ST",
+   "electors": 14742,
+   "voters": 13587,
+   "turnout": 92.17,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ninong Ering",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 65,
+     "votes": 8049,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tapyam Pada",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 62,
+     "votes": 5178,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kalen Taying",
+     "partyId": "ANCHDMCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Taka Muang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 91,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 56,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Pasighat East",
+   "type": "ST",
+   "electors": 21923,
+   "voters": 18022,
+   "turnout": 82.21,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tapi Darang",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 62,
+     "votes": 9070,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kaling Moyong",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 8749,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 176,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Mebo",
+   "type": "ST",
+   "electors": 12436,
+   "voters": 11714,
+   "turnout": 94.19,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Oken Tayeng",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 51,
+     "votes": 6287,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lombo Tayeng",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 5270,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shoney Pertin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 31,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Mariyang-Geku",
+   "type": "ST",
+   "electors": 12249,
+   "voters": 11631,
+   "turnout": 94.95,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Oni Panyang",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 6115,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Olom Panyang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 5442,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 28,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Anini",
+   "type": "ST",
+   "electors": 4757,
+   "voters": 4287,
+   "turnout": 90.12,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mopi Mihu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 2711,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Eri Tayu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 1538,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 12,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Dambuk",
+   "type": "ST",
+   "electors": 13081,
+   "voters": 12227,
+   "turnout": 93.47,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Puinnyo Apum",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 6009,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Raju Tayeng",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 60,
+     "votes": 5787,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tobing Lego",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 262,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Vijay Pertin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 42,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Roing",
+   "type": "ST",
+   "electors": 11844,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mutchu Mithi",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 44,
+   "name": "Tezu",
+   "type": "ST",
+   "electors": 21029,
+   "voters": 18177,
+   "turnout": 86.44,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Mohesh Chai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 8535,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Karikho Kri",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 50,
+     "votes": 5730,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Badang Tayang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 1716,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jeremai Krong",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 38,
+     "votes": 348,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 180,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Hayuliang",
+   "type": "ST",
+   "electors": 13191,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dasanglu Pul",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 46,
+   "name": "Chowkham",
+   "type": "ST",
+   "electors": 14369,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chowna Mein",
+     "partyId": "BJP",
+     "sex": null,
+     "age": null,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 47,
+   "name": "Namsai",
+   "type": "ST",
+   "electors": 24624,
+   "voters": 21141,
+   "turnout": 85.86,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chau Zingnu Namchoom",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 14540,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Likha Saaya",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 49,
+     "votes": 5984,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 584,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Lekang",
+   "type": "ST",
+   "electors": 21218,
+   "voters": 17912,
+   "turnout": 84.42,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Likha Soni",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 7804,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chow Sujana Namchoom",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 7150,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tana Tamar Tara",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 31,
+     "votes": 1122,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Haren Tali",
+     "partyId": "ANCHDMCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 690,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Moneswar Danggen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 289,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Bordumsa-Diyun",
+   "type": "GEN",
+   "electors": 23110,
+   "voters": 20620,
+   "turnout": 89.23,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nikh Kamin",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 57,
+     "votes": 10497,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Somlung Mossang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 9145,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Biri Joy",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 42,
+     "votes": 364,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Upen Chandra Deori",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 222,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Madan Tanti",
+     "partyId": "ANCHDMCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 139,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 200,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Miao",
+   "type": "ST",
+   "electors": 22687,
+   "voters": 19251,
+   "turnout": 84.85,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kamlung Mosang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 11021,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chatu Longri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 7894,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 211,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Nampong",
+   "type": "ST",
+   "electors": 9823,
+   "voters": 8885,
+   "turnout": 90.45,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Laisam Simai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 3180,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Izmir Tikhak",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 3112,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khimshom Mossang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 2458,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 69,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Changlang South",
+   "type": "ST",
+   "electors": 6404,
+   "voters": 5946,
+   "turnout": 92.85,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hamjong Tangha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 3654,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Timpu Ngemu",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 2172,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Salman Salnang Mungrey",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 33,
+     "votes": 55,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 28,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Changlang North",
+   "type": "ST",
+   "electors": 10410,
+   "voters": 9206,
+   "turnout": 88.43,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tesam Pongte",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 4524,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dihom Kitnya",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 2522,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Marina Kenglang",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 51,
+     "votes": 1547,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nyasam Jongsam",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 50,
+     "votes": 75,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 64,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Namsang",
+   "type": "ST",
+   "electors": 9589,
+   "voters": 7659,
+   "turnout": 79.87,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wangki Lowang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 3781,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ngonglin Boi",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 3725,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 109,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Khonsa East",
+   "type": "ST",
+   "electors": 10231,
+   "voters": 8179,
+   "turnout": 79.94,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wanglam Sawin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 4544,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kamrang Tesia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2328,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nokju Wanghop",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 42,
+     "votes": 1229,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 40,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Khonsa West",
+   "type": "ST",
+   "electors": 11882,
+   "voters": 10284,
+   "turnout": 86.55,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chakat Aboh",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 46,
+     "votes": 4093,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yang Sen Matey",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 28,
+     "votes": 3289,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Azet Homtok",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 1972,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gawang Hakhun",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 34,
+     "votes": 466,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tangse Tekwa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 316,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 77,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Borduria-Bogapani",
+   "type": "ST",
+   "electors": 9197,
+   "voters": 8315,
+   "turnout": 90.41,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wanglin Lowangdong",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 4731,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jowang Hosai",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 46,
+     "votes": 3279,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Honting Wangpan",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 33,
+     "votes": 195,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 68,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Kanubari",
+   "type": "ST",
+   "electors": 12646,
+   "voters": 11916,
+   "turnout": 94.23,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gabriel Denwang Wangsu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 5584,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Panjam Wangsa",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 44,
+     "votes": 3525,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nokchai Boham",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 36,
+     "votes": 2508,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sompha Wangsa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 201,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 37,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Longding-Pumao",
+   "type": "ST",
+   "electors": 14933,
+   "voters": 13290,
+   "turnout": 89,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thangwang Wangham",
+     "partyId": "NPP",
+     "sex": "M",
+     "age": 54,
+     "votes": 6702,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tanpho Wangnaw",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 6533,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 49,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Pongchao-Wakka",
+   "type": "ST",
+   "electors": 16209,
+   "voters": 14756,
+   "turnout": 91.04,
+   "phase": 1,
+   "pollDate": "2024-04-19",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Honchun Ngandam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 9623,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Holai Wangsa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 4961,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 122,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2198 @@
+{
+ "year": 2009,
+ "electionId": "a0030000-0000-4000-8000-000000002009",
+ "source": {
+  "title": "ECI Statistical Report, Arunachal Pradesh Legislative Assembly 2009",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=4039",
+  "retrieved": "2026-10-06"
+ },
+ "parties": [
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "PPA",
+   "name": "People's Party of Arunachal",
+   "abbreviation": "PPA",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "TMC",
+   "name": "All India Trinamool Congress",
+   "abbreviation": null,
+   "color": "#00CC44",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Lumla",
+   "type": "ST",
+   "electors": 8022,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jambey Tashi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 2,
+   "name": "Tawang",
+   "type": "ST",
+   "electors": 9812,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tsewang Dhondup",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 3,
+   "name": "Mukto",
+   "type": "ST",
+   "electors": 6916,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dorjee Khandu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 4,
+   "name": "Dirang",
+   "type": "ST",
+   "electors": 13760,
+   "voters": 11723,
+   "turnout": 85.2,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Phurpa Tsering",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 39,
+     "votes": 6618,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Tsering Gyurme",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 5085,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Kalaktang",
+   "type": "ST",
+   "electors": 9122,
+   "voters": 7632,
+   "turnout": 83.67,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Tenzing Norbu Thongdok",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 4189,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Rinchin Khandu Khrimey",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 62,
+     "votes": 2958,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Thrizino-buragaon",
+   "type": "ST",
+   "electors": 14734,
+   "voters": 11567,
+   "turnout": 78.51,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kumsi Sidisow",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 27,
+     "votes": 8279,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Naresh Glow",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 3281,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Bomdila",
+   "type": "ST",
+   "electors": 11038,
+   "voters": 7994,
+   "turnout": 72.42,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "R. T. Khunjuju",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 4062,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Japu Deru",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 51,
+     "votes": 3670,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sambu Siongju",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 239,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Bameng",
+   "type": "ST",
+   "electors": 9330,
+   "voters": 7949,
+   "turnout": 85.2,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kumar Waii",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 5647,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tagung Neri",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 38,
+     "votes": 2283,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Chayang tajo",
+   "type": "ST",
+   "electors": 8396,
+   "voters": 7023,
+   "turnout": 83.65,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karya Bagang",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 32,
+     "votes": 3674,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kameng Dolo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 3332,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Seppa East",
+   "type": "ST",
+   "electors": 11959,
+   "voters": 9092,
+   "turnout": 76.03,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Tapuk Taku",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 40,
+     "votes": 4666,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Tame Phassang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 4374,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Seppa West",
+   "type": "ST",
+   "electors": 5534,
+   "voters": 5272,
+   "turnout": 95.27,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Tani Loffa",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 52,
+     "votes": 2783,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Hari Notung",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 2472,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Pakke kessang",
+   "type": "ST",
+   "electors": 6426,
+   "voters": 5714,
+   "turnout": 88.92,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Atum Welly",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 2885,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Techi Hemu",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 2818,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Itanagar",
+   "type": "ST",
+   "electors": 57979,
+   "voters": 29608,
+   "turnout": 51.07,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Shri Techi Kaso",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 52,
+     "votes": 13443,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Shri Kipa Babu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 10057,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Shri Lichi Legi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 4894,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shri Techi Necha",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 40,
+     "votes": 884,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sri Tami Taniang",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 40,
+     "votes": 278,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Doimukh",
+   "type": "ST",
+   "electors": 25910,
+   "voters": 16603,
+   "turnout": 64.08,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shri Nabam Rebia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 6752,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shri Ngurang Pinch",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 6154,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shri T.C. Teli",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 3686,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Sagalee",
+   "type": "ST",
+   "electors": 12005,
+   "voters": 9600,
+   "turnout": 79.97,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shri Nabam Tuki",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 6646,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sri Tad Tana",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 2954,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Yachuli",
+   "type": "ST",
+   "electors": 16463,
+   "voters": 13578,
+   "turnout": 82.48,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shri Likha Saaya",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 5638,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Nikh Kamin",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 39,
+     "votes": 5596,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Shri Jotam Toko Takam",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 45,
+     "votes": 2324,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Ziro hapoli",
+   "type": "ST",
+   "electors": 23791,
+   "voters": 17137,
+   "turnout": 72.03,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shri Padi Richo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 9569,
+     "status": "WON"
+    },
+    {
+     "serial": 4,
+     "name": "Nani Ribia",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 49,
+     "votes": 6697,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Shri Kuru Tai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 442,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sri Subu Koyang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 412,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Palin",
+   "type": "ST",
+   "electors": 12919,
+   "voters": 11426,
+   "turnout": 88.44,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Takam Tagar",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 34,
+     "votes": 6015,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Balo Raja",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 5326,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Charu Tanam",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 77,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Nyapin",
+   "type": "ST",
+   "electors": 10292,
+   "voters": 8992,
+   "turnout": 87.37,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bamang Felix",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 4865,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tatar Kipa",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 4126,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Tali",
+   "type": "ST",
+   "electors": 9054,
+   "voters": 7810,
+   "turnout": 86.26,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Markio Tado",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 38,
+     "votes": 5261,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Takam Sorang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 2548,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Koloriang",
+   "type": "ST",
+   "electors": 10788,
+   "voters": 9092,
+   "turnout": 84.28,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Lokam Tassar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 5095,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Kahfa Bengia",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 48,
+     "votes": 3996,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Nacho",
+   "type": "ST",
+   "electors": 8187,
+   "voters": 6983,
+   "turnout": 85.29,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shri Tanga Byaling",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 4878,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shri Ajit Nacho",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 1052,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Tapa Garam Baki",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 1039,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Taliha",
+   "type": "ST",
+   "electors": 8023,
+   "voters": 6742,
+   "turnout": 84.03,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Shri Punji Mara",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 3570,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Shri Nyato Rigia",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 3164,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Daporijo",
+   "type": "ST",
+   "electors": 17152,
+   "voters": 12822,
+   "turnout": 74.76,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Shri Tapen Siga",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 5009,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Smti Yari Dulom",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 54,
+     "votes": 3806,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Daklo Nidak",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 48,
+     "votes": 2874,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shri Maji Marging",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 684,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shri Takir Kurdu",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 30,
+     "votes": 391,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Raga",
+   "type": "ST",
+   "electors": 18037,
+   "voters": 13469,
+   "turnout": 74.67,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sri Nido Pavitra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 5460,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Aath Tacho Kabak",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 45,
+     "votes": 4274,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Shri Talo Mugli",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 52,
+     "votes": 3700,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Dumporijo",
+   "type": "ST",
+   "electors": 12039,
+   "voters": 9263,
+   "turnout": 76.94,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shri Takar Marde",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 7493,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shri Lompak Paksok",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 1735,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Liromoba",
+   "type": "ST",
+   "electors": 11847,
+   "voters": 9495,
+   "turnout": 80.15,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 3,
+     "name": "Jarbom Gamlin",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 6640,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Bai Gadi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2748,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Likabali",
+   "type": "ST",
+   "electors": 10188,
+   "voters": 8481,
+   "turnout": 83.24,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Jomde Kena",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 3420,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Yai Mara",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 50,
+     "votes": 2527,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Gumke Riba",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2477,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kardu Taipodia",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 57,
+     "votes": 44,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Basar",
+   "type": "ST",
+   "electors": 16904,
+   "voters": 13948,
+   "turnout": 82.51,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gojen Gadi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 8438,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Dakter Basar",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 53,
+     "votes": 5317,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Yomkar Riba",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 45,
+     "votes": 109,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Along West",
+   "type": "ST",
+   "electors": 11799,
+   "voters": 10228,
+   "turnout": 86.69,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Gadam Ete",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 5113,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Duter Padu",
+     "partyId": "TMC",
+     "sex": "F",
+     "age": 44,
+     "votes": 5082,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Along East",
+   "type": "ST",
+   "electors": 13249,
+   "voters": 9758,
+   "turnout": 73.65,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Jarkar Gamlin",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 5175,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Yomto Jini",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 45,
+     "votes": 4576,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Rumgong",
+   "type": "ST",
+   "electors": 11620,
+   "voters": 9467,
+   "turnout": 81.47,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tamiyo Taga",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 3658,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Karma Jerang",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 53,
+     "votes": 2915,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Dibang Tatak",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 2749,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tayu Jerang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 114,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Mechukha",
+   "type": "ST",
+   "electors": 9053,
+   "voters": 7699,
+   "turnout": 85.04,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pasang Dorjee Sona",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 3973,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tsering Naksang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 40,
+     "votes": 2423,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bote Yuto",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 31,
+     "votes": 1175,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tako Puning",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 52,
+     "votes": 118,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Tuting Yingkiong",
+   "type": "ST",
+   "electors": 10712,
+   "voters": 9032,
+   "turnout": 84.32,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Alo Libang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 45,
+     "votes": 4827,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Gegong Apang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 3457,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Katan Komboh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 735,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Pangin",
+   "type": "ST",
+   "electors": 12937,
+   "voters": 10871,
+   "turnout": 84.03,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Tapang Taloh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 6826,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Kaling Jerang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 4045,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Nari-Koyu",
+   "type": "ST",
+   "electors": 6854,
+   "voters": 6055,
+   "turnout": 88.34,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Tako Dabi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 3398,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Kenyir Ringu",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 55,
+     "votes": 2656,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Pasighat West",
+   "type": "ST",
+   "electors": 12399,
+   "voters": 10402,
+   "turnout": 83.89,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Dr. Tangor Tapak",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 5529,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Omak Apang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 4868,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Pasighat East",
+   "type": "ST",
+   "electors": 20256,
+   "voters": 14927,
+   "turnout": 73.69,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bosiram Siram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 8908,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kaling Moyong",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 5683,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Oyem Dai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 329,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Mebo",
+   "type": "ST",
+   "electors": 10732,
+   "voters": 9698,
+   "turnout": 90.37,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Ralom Borang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 5142,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Lombo Tayeng",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 4555,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Mariyang-Geku",
+   "type": "ST",
+   "electors": 10676,
+   "voters": 9465,
+   "turnout": 88.66,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "J K Panggeng",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 4165,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Raising Perme",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 60,
+     "votes": 2885,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Olom Panyang",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 43,
+     "votes": 2212,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dana Pertin",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 194,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Anini",
+   "type": "ST",
+   "electors": 3738,
+   "voters": 3386,
+   "turnout": 90.58,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajesh Tacho",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 1730,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Eri Tayu",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 1649,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Dambuk",
+   "type": "ST",
+   "electors": 10672,
+   "voters": 9818,
+   "turnout": 92,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Jomin Tayeng",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 64,
+     "votes": 4967,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Roding Pertin",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 4837,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Roing",
+   "type": "ST",
+   "electors": 11137,
+   "voters": 9534,
+   "turnout": 85.61,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Shri Laeta Umbrey",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 53,
+     "votes": 5170,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Smti Pomaya Mithi",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 51,
+     "votes": 4337,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "Tezu",
+   "type": "ST",
+   "electors": 15649,
+   "voters": 12977,
+   "turnout": 82.93,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karikho Kri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 8397,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nakul Chai",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 55,
+     "votes": 4552,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Hayuliang",
+   "type": "ST",
+   "electors": 9943,
+   "voters": 9148,
+   "turnout": 92,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Shri Kalikho Pul",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 7788,
+     "status": "WON"
+    },
+    {
+     "serial": 4,
+     "name": "Shri Baritlum Ama",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 37,
+     "votes": 998,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Sh. Banim Kri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 32,
+     "votes": 250,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shri Khuje Drai",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 40,
+     "votes": 98,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Chowkham",
+   "type": "ST",
+   "electors": 13265,
+   "voters": 10312,
+   "turnout": 77.74,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Chow Tewa Mein",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 6279,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Chow Chinakong Namchoom",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 62,
+     "votes": 4023,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Namsai",
+   "type": "ST",
+   "electors": 19159,
+   "voters": 16160,
+   "turnout": 84.35,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 4,
+     "name": "Nang Sati Mein",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 49,
+     "votes": 10477,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Chow Pingthika Namchoom",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 53,
+     "votes": 4778,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Chau Ambika Enling",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 603,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Chow Chandra Mansai",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 288,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Lekang",
+   "type": "ST",
+   "electors": 14391,
+   "voters": 12117,
+   "turnout": 84.2,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chowna Mein",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 6896,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "James Techi Tara",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 32,
+     "votes": 3950,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sotai Kri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 705,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Koruna Morang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 305,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Larbin Nasi",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 52,
+     "votes": 248,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Bordumsa - Diyum",
+   "type": "GEN",
+   "electors": 15603,
+   "voters": 12772,
+   "turnout": 81.86,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "C.C Singpho",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 6193,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Khumral Lungphi",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 37,
+     "votes": 5238,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Siraiong Singpho",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 1250,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Miao",
+   "type": "ST",
+   "electors": 18728,
+   "voters": 15337,
+   "turnout": 81.89,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kamlung Mosang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 9151,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Samchom Ngemu",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 57,
+     "votes": 6180,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Nampong",
+   "type": "ST",
+   "electors": 7716,
+   "voters": 7019,
+   "turnout": 90.97,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Setong Sena",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 5432,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tosham Mossang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 1582,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Changlang South",
+   "type": "ST",
+   "electors": 4636,
+   "voters": 4304,
+   "turnout": 92.84,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Phosum Khimhun",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 2904,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Tengam Ngemu",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 64,
+     "votes": 950,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Hamjong Tangha",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 33,
+     "votes": 445,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Changlang North",
+   "type": "ST",
+   "electors": 9117,
+   "voters": 7754,
+   "turnout": 85.05,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Thinghaap Taiju",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 4088,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Wangnia Pongte",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 51,
+     "votes": 2834,
+     "status": "LOST"
+    },
+    {
+     "serial": 1,
+     "name": "Happa Taidong",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 41,
+     "votes": 804,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Namsang",
+   "type": "ST",
+   "electors": 9599,
+   "voters": 7245,
+   "turnout": 75.48,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wangki Lowang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 4968,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Wanglong Rajkumar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 2275,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Khonsa East",
+   "type": "ST",
+   "electors": 10360,
+   "voters": 7679,
+   "turnout": 74.12,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Kamthok Lowang",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 42,
+     "votes": 3475,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "T L Rajkumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 3020,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ngampay Lamaty",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 42,
+     "votes": 721,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Wangman Lowangcha",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 442,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Khonsa West",
+   "type": "ST",
+   "electors": 8711,
+   "voters": 7853,
+   "turnout": 90.15,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Yumsem Matey",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 4030,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Thajam Aboh",
+     "partyId": "TMC",
+     "sex": "M",
+     "age": 47,
+     "votes": 3562,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jitbo Aboh",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 37,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Langwang Sumpa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 115,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Borduria Bogapani",
+   "type": "ST",
+   "electors": 6864,
+   "voters": 5943,
+   "turnout": 86.58,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wanglin Lowangdong",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 4034,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tonhang Tongluk",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 55,
+     "votes": 1908,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Kanubari",
+   "type": "ST",
+   "electors": 9926,
+   "voters": 9053,
+   "turnout": 91.2,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Newlai Tingkhatra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 4859,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gabriel Denwang Wangsu",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 35,
+     "votes": 4189,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Longding Pumao",
+   "type": "ST",
+   "electors": 9754,
+   "voters": 8944,
+   "turnout": 91.7,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Thangwang Wangham",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 4763,
+     "status": "WON"
+    },
+    {
+     "serial": 1,
+     "name": "Tanpho Wangnaw",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 43,
+     "votes": 4178,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Pongchao wakka",
+   "type": "ST",
+   "electors": 14066,
+   "voters": 12222,
+   "turnout": 86.89,
+   "phase": 1,
+   "pollDate": "2009-10-13",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Honchun Ngandam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 7531,
+     "status": "WON"
+    },
+    {
+     "serial": 3,
+     "name": "Anok Wangsa",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 53,
+     "votes": 2976,
+     "status": "LOST"
+    },
+    {
+     "serial": 2,
+     "name": "Kapnai Wangsa",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1713,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

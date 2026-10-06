@@ -1,0 +1,86 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2024_Arunachal_Pradesh_Legislative_Assembly_election",
+  "note: no pre-poll alliances (BJP and NPP contested separately); 10 seats won unopposed (BJP), incl. CM Pema Khandu."
+ ],
+ "alliances": [
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF7A1A",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "NPP",
+   "name": "NPP",
+   "color": "#F5AD00",
+   "parties": [
+    "NPP"
+   ]
+  },
+  {
+   "id": "NCP",
+   "name": "NCP",
+   "color": "#006699",
+   "parties": [
+    "NCP"
+   ]
+  },
+  {
+   "id": "PPA",
+   "name": "PPA",
+   "color": "#C62828",
+   "parties": [
+    "PPA"
+   ]
+  },
+  {
+   "id": "INC",
+   "name": "Congress",
+   "color": "#38C6F4",
+   "parties": [
+    "INC"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "BJP",
+  "NPP",
+  "NCP",
+  "PPA",
+  "INC"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 31
+  }
+ ],
+ "geo": {
+  "zoom": 7,
+  "center": [
+   94.5,
+   28.0
+  ],
+  "map_url": "/geo/ar_ac_2008.geojson"
+ },
+ "delimitation_era": "2008",
+ "history": [
+  "a0030000-0000-4000-8000-000000002009",
+  "a0030000-0000-4000-8000-000000002014",
+  "a0030000-0000-4000-8000-000000002019"
+ ],
+ "history_years": [
+  2009,
+  2014,
+  2019
+ ],
+ "compare_with": [
+  "a0030000-0000-4000-8000-000000002019"
+ ]
+}

@@ -3,7 +3,7 @@ import { ELECTIONS, STATES, electionOf, electionsOf, parseState } from '../elect
 
 describe('election registry', () => {
   it('lists every state election once, with unique ids and prefixes', () => {
-    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17 + 4);
+    expect(ELECTIONS).toHaveLength(4 + 15 + 5 + 15 + 17 + 4 + 4);
     expect(new Set(ELECTIONS.map(e => e.electionId)).size).toBe(ELECTIONS.length);
     expect(new Set(ELECTIONS.map(e => e.constPrefix)).size).toBe(ELECTIONS.length);
   });
@@ -75,5 +75,14 @@ describe('Phase 4B Sikkim', () => {
     expect(types.filter(([, t]) => t === 'ST').map(([n]) => Number(n))).toEqual([1, 5, 6, 9, 16, 21, 23, 24, 27, 29, 30, 31]);
     expect(types.filter(([, t]) => t === 'SC').map(([n]) => Number(n))).toEqual([8, 18]);
     expect(electionOf('SK', 2019).seatTypes).toBe(STATES.SK.seatTypes);
+  });
+});
+
+describe('Phase 4B Arunachal', () => {
+  it('registers Arunachal 2009-2024', () => {
+    expect(electionsOf('AR').map(e => [e.year, e.docid ?? e.category, e.newElection?.resultDate])).toEqual([
+      [2009, 4039, '2009-10-22'], [2014, 4040, '2014-05-16'], [2019, 11675, '2019-05-23'], [2024, 3, '2024-06-02']]);
+    expect(electionOf('AR', 2024)).toMatchObject({ electionId: 'a0030000-0000-4000-8000-000000002024', constPrefix: 'AR_VS24_',
+      resultsSite: { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S02' }, myneta: 'arunachal2024' });
   });
 });

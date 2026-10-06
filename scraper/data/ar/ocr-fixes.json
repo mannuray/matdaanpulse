@@ -1,0 +1,79 @@
+{
+ "2014/2014.pdf": [
+  {
+   "find": "              2 THEG TSE RINPOCHE                             48          ST            IND        Battery             2739            16           2755        38.55",
+   "replace": "            2 THEG TSE RINPOCHE                        M   48   ST   IND   Battery   2739   16   2755   38.55",
+   "note": "2014.pdf page 73: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "             3 None of the Above                                                      NOTA          NOTA                  11   0   11         0.13",
+   "replace": "            3 None of the Above                                       NOTA   NOTA   11   0   11   0.13",
+   "note": "2014.pdf page 76: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              1 CHOWNA MEIN                              M     64                                   Hand               6166           171           6337         47.46",
+   "replace": "            1 CHOWNA MEIN                              M   64   ST   INC   Hand   6166   171   6337   47.46",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              2 BIDA TAKU                                M     50                                   Maize              5136            22           5158         38.63",
+   "replace": "            2 BIDA TAKU                                M   50   ST   PPA   Maize   5136   22   5158   38.63",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              3 TAPE BAGRA                               M    60                                    Lotus              1286              6          1292          9.68",
+   "replace": "            3 TAPE BAGRA                               M   60   ST   BJP   Lotus   1286   6   1292   9.68",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              4 PIKE PULU                                M    49                                    Cock                236   0   236         1.77",
+   "replace": "            4 PIKE PULU                                M   49   ST   NPF   Cock   236   0   236   1.77",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              5 ANITA PAYENG                             F  32                          IND        Battery              190   0   190          1.42",
+   "replace": "            5 ANITA PAYENG                             F   32   ST   IND   Battery   190   0   190   1.42",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              2 C. C. SINGPHO                            M 67            ST                         Hand               3810           171           3981        31.18",
+   "replace": "            2 C. C. SINGPHO                            M   67   ST   INC   Hand   3810   171   3981   31.18",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              3 MAYONG MAIO                              M 43           ST                          Clock              2312            51           2363        18.51",
+   "replace": "            3 MAYONG MAIO                              M   43   ST   NCP   Clock   2312   51   2363   18.51",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              2 CHOMJONG HAIDLEY                               46         ST            BJP         Lotus              4919            63           4982         35.58",
+   "replace": "            2 CHOMJONG HAIDLEY                         M   46   ST   BJP   Lotus   4919   63   4982   35.58",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "              1 LAISAM SIMAI                                  39         ST             BJP         Lotus              3439            90           3529         49.52",
+   "replace": "            1 LAISAM SIMAI                             M   39   ST   BJP   Lotus   3439   90   3529   49.52",
+   "note": "2014.pdf page 81: OCR dropped cells; row as printed in the scan"
+  },
+  {
+   "find": "                                      BJP                        Bharatiya Janata Party",
+   "replace": "                        1.            BJP                        Bharatiya Janata Party",
+   "note": "2014.pdf List of Participating Political Parties: OCR dropped the serial number"
+  },
+  {
+   "find": "                                      NCP                         Nationalist Congress Party",
+   "replace": "                        3.            NCP                         Nationalist Congress Party",
+   "note": "2014.pdf List of Participating Political Parties: OCR dropped the serial number"
+  },
+  {
+   "find": "                                      PPA                        People's Party of Arunachal",
+   "replace": "                        4.            PPA                        People's Party of Arunachal",
+   "note": "2014.pdf List of Participating Political Parties: OCR dropped the serial number"
+  },
+  {
+   "find": "                                      NOTA                        None of the Above",
+   "replace": "                        8.            NOTA                        None of the Above",
+   "note": "2014.pdf List of Participating Political Parties: OCR dropped the serial number"
+  }
+ ]
+}

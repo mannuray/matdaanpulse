@@ -5,8 +5,8 @@
  */
 import type { SeatType } from './types';
 
-export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK';
-export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK'];
+export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK' | 'AR';
+export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK', 'AR'];
 
 export interface YearConfig {
   year: number; electionId: string; constPrefix: string;
@@ -71,6 +71,7 @@ export const STATES: Record<StateCode, StateConfig> = {
   // these differently every year, so the types come from here (Phase 4B spec §3).
   SK: { ...state('SK', 'sk', 'Sikkim', 30, 32, 2, 12),
     seatTypes: { 1: 'ST', 5: 'ST', 6: 'ST', 8: 'SC', 9: 'ST', 16: 'ST', 18: 'SC', 21: 'ST', 23: 'ST', 24: 'ST', 27: 'ST', 29: 'ST', 30: 'ST', 31: 'ST' } },
+  AR: state('AR', 'ar', 'Arunachal Pradesh', 3, 60, 0, 59),
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */
@@ -197,6 +198,11 @@ export const ELECTIONS: ElectionConfig[] = [
   p4('SK', 2019, { docid: 11677 }, 1, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_')),
   p4('SK', 2024, { category: 5 }, 1, '2024-06-02', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
     { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S21', myneta: 'sikkim2024' }),
+  // Phase 4B-2: Arunachal Pradesh (2024 counted with Sikkim on 2 June; same results site).
+  p4('AR', 2009, { docid: 4039 }, 1, '2009-10-22', pdf(2009)), p4('AR', 2014, { docid: 4040 }, 1, '2014-05-16', pdf(2014)),
+  p4('AR', 2019, { docid: 11675 }, 1, '2019-05-23', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_')),
+  p4('AR', 2024, { category: 3 }, 1, '2024-06-02', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
+    { base: 'https://results.eci.gov.in/AcResultGen2ndJune2024/', eciCode: 'S02', myneta: 'arunachal2024' }),
 ];
 
 /** The registry entry of an election id. */

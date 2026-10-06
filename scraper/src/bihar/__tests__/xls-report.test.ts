@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as path from 'path';
 // scraper/src/bihar/__tests__/xls-report.test.ts
 import { describe, it, expect } from 'vitest';
 import { parseDetailedRows, parseSummaryRows, parsePartyListRows, parsePerformanceRows, performanceByAbbr } from '../xls-report';
@@ -166,5 +168,17 @@ describe('party list and performance', () => {
       [214, 'NOTA', '-', '-', '-', 706295, '1.68%', 1.68], ['Grand Total:', null, 2616, 243, 2107, 50207733, '-', 100],
     ];
     expect(parsePerformanceRows(rows)).toEqual([{ abbr: 'BJP', contested: 110, won: 74, votes: 8202067 }]);
+  });
+});
+
+describe('parseSummaryRows, seats won unopposed (Arunachal)', () => {
+  const fx = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/ar-summary-unopposed.json'), 'utf8'));
+  it('2024: the winner with 0 votes, no runner-up, no poll date', () => {
+    expect(parseSummaryRows(fx.ar2024.rows, fx.ar2024.name)).toMatchObject({ constNo: 3, name: 'Mukto', type: 'ST', electors: 8075, voters: 0, contested: 1,
+      pollDate: '', winner: { party: 'Bharatiya Janata Party', name: 'PEMA KHANDU', votes: 0 }, runnerUp: null, margin: 0, uncontested: true });
+  });
+  it('2019: an all-zero sheet (no electors, no winner, a 1970 date): unopposed, the rest comes from Detailed Results', () => {
+    expect(parseSummaryRows(fx.ar2019.rows, fx.ar2019.name)).toMatchObject({ constNo: 4, electors: 0, voters: 0, contested: 1, pollDate: '',
+      winner: { party: '', name: '', votes: 0 }, runnerUp: null, margin: 0, uncontested: true });
   });
 });

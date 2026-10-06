@@ -18,10 +18,27 @@ function election(): RawElection {
   };
 }
 
+function unopposed(): RawElection {
+  const e = election();
+  e.seats[0] = { ...e.seats[0], nota: null, totalVotes: 0, candidates: [{ ...e.seats[0].candidates[0], general: 0, postal: 0, total: 0 }] };
+  e.summaries[0] = { ...e.summaries[0], voters: 0, contested: 1, totalValid: 0, nota: null, winner: { party: 'BJP', name: 'A', votes: 0 }, runnerUp: null, margin: 0, uncontested: true };
+  e.performance = [{ abbr: 'BJP', contested: 1, won: 1, votes: 0 }];
+  return e;
+}
+
 describe('crossCheck', () => {
+  it('leaves seats built from a summary out of the party performance check (that table leaves them out too)', () => {
+    const e = unopposed(); e.seats[0].fromSummary = true; e.performance = [{ abbr: 'BJP', contested: 0, won: 0, votes: 0 }];
+    expect(crossCheck(e, [])).toEqual([]);
+  });
+  it('accepts a seat won unopposed (one candidate, 0 votes) and refuses one with a second candidate', () => {
+    expect(crossCheck(unopposed(), [])).toEqual([]);
+    const e = unopposed(); e.seats[0].candidates.push({ ...e.seats[0].candidates[0], serial: 2, party: 'INC' });
+    expect(crossCheck(e, []).map(x => x.split(' ')[0])).toContain('uncontested:2');
+  });
   it('passes when the tables agree (party given by full name or abbreviation)', () => {
     expect(crossCheck(election(), [])).toEqual([]);
-    const e = election(); e.summaries[0].winner.party = 'BJP'; e.summaries[0].runnerUp.party = 'INC';
+    const e = election(); e.summaries[0].winner.party = 'BJP'; e.summaries[0].runnerUp!.party = 'INC';
     expect(crossCheck(e, [])).toEqual([]);
   });
   it('reports each mismatch with its key', () => {
@@ -32,7 +49,7 @@ describe('crossCheck', () => {
   });
   it('treats IND and "Independent" as the same party', () => {
     const e = election();
-    e.seats[0].candidates[1].party = 'IND'; e.summaries[0].runnerUp.party = 'Independent';
+    e.seats[0].candidates[1].party = 'IND'; e.summaries[0].runnerUp!.party = 'Independent';
     e.performance = e.performance.filter(p => p.abbr !== 'INC');
     expect(crossCheck(e, [])).toEqual([]);
   });
@@ -93,5 +110,13 @@ describe('validateElection', () => {
     expect(errs).toEqual(expect.arrayContaining([
       expect.stringMatching(/^winners:1/), expect.stringMatching(/^reserved:/), expect.stringMatching(/^turnout:61/), expect.stringMatching(/^phases:/),
     ]));
+  });
+  it('validateElection accepts a seat won unopposed and refuses a polled seat without turnout', () => {
+    const e = { year: 2024, electionId: 'x', source: { title: '', url: '', retrieved: '' }, parties: [], seats: [] } as unknown as ElectionJson;
+    const seat = (constNo: number, extra: object, votes: number[]) => ({ constNo, type: 'ST', electors: 100, voters: 50, turnout: 50, phase: 1, pollDate: '2024-04-19',
+      candidates: votes.map((v, i) => ({ serial: i + 1, name: 'X', partyId: i ? 'INC' : 'BJP', sex: null, age: null, votes: v, status: i ? 'LOST' : 'WON' })), ...extra });
+    e.seats = [seat(1, { voters: null, turnout: null, uncontested: true }, [0]), seat(2, { turnout: null }, [30, 20])] as never;
+    const errs = validateElection(e, { ...electionOf('SK', 2024), seats: 2, newElection: { name: '', delimitation: '2008', resultDate: '', reserved: { sc: 0, st: 2 } } });
+    expect(errs.filter(x => /turnout|tie|winner/.test(x))).toEqual(['turnout:2 null']);
   });
 });

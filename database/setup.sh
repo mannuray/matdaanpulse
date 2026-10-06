@@ -102,6 +102,7 @@ run seed_dl_vs_parties.sql; for y in 2008 2013 2015 2020 2025; do run "seed_dl_v
 for st in hr jh od; do run "seed_${st}_vs_parties.sql"; for y in 2009 2014 2019 2024; do run "seed_${st}_vs_${y}.sql"; done; done
 # Phase 4B states, one at a time (Sikkim 2009-2024)
 run seed_sk_vs_parties.sql; for y in 2009 2014 2019 2024; do run "seed_sk_vs_${y}.sql"; done
+run seed_ar_vs_parties.sql; for y in 2009 2014 2019 2024; do run "seed_ar_vs_${y}.sql"; done
 # Party lineage (renames, mergers, splits, breakaways; fill-only) — after every party seed
 run seed_party_lineage.sql
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)

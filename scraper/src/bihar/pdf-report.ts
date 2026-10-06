@@ -132,6 +132,7 @@ function readSummaryBlock(lines: string[], fixes: SummaryFixes = {}): SeatSummar
   let pollDate = '';
   const picks: Record<string, SummaryPick> = {};
   let margin: number | null = null;
+  let uncontested = false; // Arunachal 2009: "WINNER INC Jambey Tashi Uncontested", no runner-up
   for (let i = 1; i < lines.length; i++) {
     const l = lines[i];
     const sec = /^\s*(I|II|III|III\(A\)|IV|V|VI|VII)\.\s*(\S.*)?$/.exec(l);
@@ -146,8 +147,9 @@ function readSummaryBlock(lines: string[], fixes: SummaryFixes = {}): SeatSummar
       const d = /(\d{1,2}-[A-Za-z]{3}-\d{4})/.exec(next);
       if (d) pollDate = isoDate(d[1]);
     }
-    const p = /^\s*(WINNER|RUNN?ER-UP)\s+(\S+)\s+(.+?)\s+(\d+)\s*$/.exec(l); // indented in the 2009 reports; Odisha 2009 writes "RUNER-UP"
-    if (p) picks[p[1] === 'WINNER' ? 'WINNER' : 'RUNNER-UP'] = { party: p[2], name: p[3].trim(), votes: Number(p[4]) };
+    const p = /^\s*(WINNER|RUNN?ER-UP)\s+(\S+)\s+(.+?)\s+(\d+|Uncontested)\s*$/.exec(l); // indented in the 2009 reports; Odisha 2009 writes "RUNER-UP"
+    if (p) picks[p[1] === 'WINNER' ? 'WINNER' : 'RUNNER-UP'] = { party: p[2], name: p[3].trim(), votes: p[4] === 'Uncontested' ? 0 : Number(p[4]) };
+    if (p?.[4] === 'Uncontested') uncontested = true;
     const mg = /^\s*MARGIN\s+(\d+)/.exec(l);
     if (mg) margin = Number(mg[1]);
   }
@@ -155,9 +157,11 @@ function readSummaryBlock(lines: string[], fixes: SummaryFixes = {}): SeatSummar
   const fix = fixes[Number(head[1])] ?? {};
   for (const k of ['voters', 'totalValid'] as const) if (fix[k] !== undefined) f[k] = fix[k]!;
   for (const k of ['contested', 'electors', 'voters', 'totalValid']) if (f[k] === undefined) throw new Error(`Summary ${label}: ${k} not found`);
-  if (!pollDate || !picks.WINNER || !picks['RUNNER-UP'] || margin === null) throw new Error(`Summary ${label}: dates/result not found`);
+  // One contestant and no voters: won unopposed, whatever the result block prints (2014 lists NOTA as "runner-up").
+  if (f.contested === 1 && f.voters === 0) uncontested = true;
+  if (!pollDate || !picks.WINNER || (!picks['RUNNER-UP'] && !uncontested) || margin === null) throw new Error(`Summary ${label}: dates/result not found`);
   return { constNo: Number(head[1]), name: ac.name, type: fix.type ?? ((ac.type ?? 'GEN') as SeatType), electors: f.electors, voters: f.voters, contested: f.contested,
-    totalValid: f.totalValid, nota: f.nota ?? null, pollDate, winner: picks.WINNER, runnerUp: picks['RUNNER-UP'], margin };
+    totalValid: f.totalValid, nota: f.nota ?? null, pollDate, winner: uncontested ? { ...picks.WINNER, votes: 0 } : picks.WINNER, runnerUp: uncontested ? null : picks['RUNNER-UP'], margin: uncontested ? 0 : margin, ...(uncontested ? { uncontested: true as const } : {}) };
 }
 
 export function parsePartyListText(text: string): PartyListEntry[] {

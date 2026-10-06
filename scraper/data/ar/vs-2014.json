@@ -1,0 +1,2629 @@
+{
+ "year": 2014,
+ "electionId": "a0030000-0000-4000-8000-000000002014",
+ "source": {
+  "title": "ECI Statistical Report, Arunachal Pradesh Legislative Assembly 2014",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=4040",
+  "retrieved": "2026-10-06"
+ },
+ "parties": [
+  {
+   "id": "AAP",
+   "name": "Aam Aadmi Party",
+   "abbreviation": null,
+   "color": "#0066FF",
+   "recognition": "National"
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NPF",
+   "name": "Naga Peoples Front",
+   "abbreviation": null,
+   "color": "#556B2F",
+   "recognition": null
+  },
+  {
+   "id": "PPA",
+   "name": "People's Party of Arunachal",
+   "abbreviation": "PPA",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Lumla",
+   "type": "ST",
+   "electors": 8177,
+   "voters": 7159,
+   "turnout": 87.55,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jambey Tashi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 4254,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Theg Tse Rinpoche",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 2755,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 138,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Tawang",
+   "type": "ST",
+   "electors": 10082,
+   "voters": 7996,
+   "turnout": 79.31,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tsering Tashi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 6421,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tsewang Dhondup",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 1367,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 172,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Mukto",
+   "type": "ST",
+   "electors": 7181,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Pema Khandu",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 4,
+   "name": "Dirang",
+   "type": "ST",
+   "electors": 13515,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Phurpa Tsering",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 5,
+   "name": "Kalaktang",
+   "type": "ST",
+   "electors": 9156,
+   "voters": 7979,
+   "turnout": 87.15,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tenzing Norbu Thongdok",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 4110,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tsering Sonam",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 32,
+     "votes": 3401,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dorjee Khandu Thongon",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 400,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 56,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Thrizino-Buragaon",
+   "type": "ST",
+   "electors": 14071,
+   "voters": 10936,
+   "turnout": 77.72,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kumsi Sidisow",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 32,
+     "votes": 7873,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gandhi Sakrinsow",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 2790,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 255,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Bomdila",
+   "type": "ST",
+   "electors": 10433,
+   "voters": 8179,
+   "turnout": 78.4,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Japu Deru",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 4345,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "R.T.Khunjuju",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 3660,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 160,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Bameng",
+   "type": "ST",
+   "electors": 10016,
+   "voters": 8520,
+   "turnout": 85.06,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kumar Waii",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 5080,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vijay Sonam",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 3221,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Madang Sonam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 81,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 68,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Chayang Tajo",
+   "type": "ST",
+   "electors": 9912,
+   "voters": 8957,
+   "turnout": 90.37,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Karya Bagang",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 37,
+     "votes": 4343,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "L.K. Yangfo",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 3928,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jabring Venia",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 33,
+     "votes": 535,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 78,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Seppa East",
+   "type": "ST",
+   "electors": 10862,
+   "voters": 7846,
+   "turnout": 72.23,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tapuk Taku",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 5134,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lelung Lingfa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 2366,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 107,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Seppa West",
+   "type": "ST",
+   "electors": 6284,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Mama Natung",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 12,
+   "name": "Pakke Kessang",
+   "type": "ST",
+   "electors": 6936,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Kameng Dolo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 13,
+   "name": "Itanagar",
+   "type": "ST",
+   "electors": 61245,
+   "voters": 34008,
+   "turnout": 55.53,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Techi Kaso",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 18790,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tame Phassang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 13949,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Toko Sheetal",
+     "partyId": "PPA",
+     "sex": "F",
+     "age": 33,
+     "votes": 418,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tarh Tada",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 28,
+     "votes": 232,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Takam Tatung",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 210,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 356,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Doimukh",
+   "type": "ST",
+   "electors": 23580,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Nabam Rebia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 15,
+   "name": "Sagalee",
+   "type": "ST",
+   "electors": 12613,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Nabam Tuki",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 16,
+   "name": "Yachuli",
+   "type": "ST",
+   "electors": 15171,
+   "voters": 13961,
+   "turnout": 92.02,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Likha Saaya",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 6685,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Taba Nirmali",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 50,
+     "votes": 6615,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Debia Tara",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 569,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 69,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Ziro Hapoli",
+   "type": "ST",
+   "electors": 21113,
+   "voters": 16902,
+   "turnout": 80.05,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tage Taki",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 8885,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Padi Richo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 7666,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Michi Tani",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 126,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 170,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Palin",
+   "type": "ST",
+   "electors": 13868,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Takam Pario",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 19,
+   "name": "Nyapin",
+   "type": "ST",
+   "electors": 11795,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Bamang Felix",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 20,
+   "name": "Tali",
+   "type": "ST",
+   "electors": 11679,
+   "voters": 8727,
+   "turnout": 74.72,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Markio Tado",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 4762,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thaji Gichak Kiogi",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 3949,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 11,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Koloriang",
+   "type": "ST",
+   "electors": 12090,
+   "voters": 9731,
+   "turnout": 80.49,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pani Taram",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 39,
+     "votes": 4974,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lokam Tassar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 4697,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 40,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Nacho",
+   "type": "ST",
+   "electors": 10499,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Tanga Byaling",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 23,
+   "name": "Taliha",
+   "type": "ST",
+   "electors": 9603,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Punji Mara",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 24,
+   "name": "Daporijo",
+   "type": "ST",
+   "electors": 17038,
+   "voters": 12735,
+   "turnout": 74.74,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dikto Yekar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 27,
+     "votes": 6278,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tapen Siga",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 6241,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 99,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Raga",
+   "type": "ST",
+   "electors": 15637,
+   "voters": 13030,
+   "turnout": 83.33,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tamar Murtem",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 6401,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nido Pavitra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 6380,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 139,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Dumporijo",
+   "type": "ST",
+   "electors": 11618,
+   "voters": 9837,
+   "turnout": 84.67,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Paknga Bage",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 5500,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Takar Marde",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 4143,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 68,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Liromoba",
+   "type": "ST",
+   "electors": 11637,
+   "voters": 10054,
+   "turnout": 86.4,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jarbom Gamlin",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 5483,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bai Gadi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 4179,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Johny Tali",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 25,
+     "votes": 135,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 38,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Likabali",
+   "type": "ST",
+   "electors": 10253,
+   "voters": 8811,
+   "turnout": 85.94,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jomde Kena",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 3524,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yai Mara",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 55,
+     "votes": 2972,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gumke Riba",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 1930,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Kirri Dini Bogum",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 45,
+     "votes": 142,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 28,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Basar",
+   "type": "ST",
+   "electors": 16354,
+   "voters": 12828,
+   "turnout": 78.44,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gojen Gadi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 7206,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Togo Basar",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 40,
+     "votes": 5407,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 153,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Along West",
+   "type": "ST",
+   "electors": 11915,
+   "voters": 10313,
+   "turnout": 86.55,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tumke Bagra",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 6312,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gadam Ete",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 3726,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Geliete",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 33,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 32,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Along East",
+   "type": "ST",
+   "electors": 12384,
+   "voters": 10071,
+   "turnout": 81.32,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jarkar Gamlin",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 4409,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tummar Bagra",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 51,
+     "votes": 3477,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Yomto Jini",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 1947,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gegum Lollen",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 42,
+     "votes": 40,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 27,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Rumgong",
+   "type": "ST",
+   "electors": 10593,
+   "voters": 9253,
+   "turnout": 87.35,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tamiyo Taga",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 4609,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Talem Taboh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 4419,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 30,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Mechuka",
+   "type": "ST",
+   "electors": 9330,
+   "voters": 7945,
+   "turnout": 85.16,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pasang Dorjee Sona",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 42,
+     "votes": 3825,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Toriragyor",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 3779,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Maling Koje",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 238,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bote Yuto",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 36,
+     "votes": 59,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 21,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Tuting Yingkiong",
+   "type": "ST",
+   "electors": 11339,
+   "voters": 9415,
+   "turnout": 83.03,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Alo Libang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 4834,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gegong Apang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 4470,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 77,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Pangin",
+   "type": "ST",
+   "electors": 12691,
+   "voters": 10920,
+   "turnout": 86.05,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tapang Taloh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 5652,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ojing Tasing",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 5046,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tayam Siram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 20,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Nari-Koyu",
+   "type": "ST",
+   "electors": 6958,
+   "voters": 6215,
+   "turnout": 89.32,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kento Rina",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 3264,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tako Dabi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 2875,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 32,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Pasighat West",
+   "type": "ST",
+   "electors": 12418,
+   "voters": 10529,
+   "turnout": 84.79,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tatung Jamoh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 5589,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tangor Tapak",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 4755,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 132,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Pasighat East",
+   "type": "ST",
+   "electors": 19201,
+   "voters": 15546,
+   "turnout": 80.96,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kaling Moyong",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 7664,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bosiram Siram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 7614,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 137,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Mebo",
+   "type": "ST",
+   "electors": 10265,
+   "voters": null,
+   "turnout": null,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 2,
+     "name": "Lombo Tayeng",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 0,
+     "status": "WON"
+    }
+   ],
+   "uncontested": true
+  },
+  {
+   "constNo": 40,
+   "name": "Mariyang-Geku",
+   "type": "ST",
+   "electors": 10114,
+   "voters": 9152,
+   "turnout": 90.49,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Olom Panyang",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 4198,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "J. K. Panggeng",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 4189,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thomas Borang",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 43,
+     "votes": 321,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ogen Jamoh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 49,
+     "votes": 231,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Toi Modi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 7,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Anini",
+   "type": "ST",
+   "electors": 4059,
+   "voters": 3516,
+   "turnout": 86.62,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajesh Tacho",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 1829,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Eri Tayu",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 1637,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 34,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Dambuk",
+   "type": "ST",
+   "electors": 11244,
+   "voters": 10023,
+   "turnout": 89.14,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gum Tayeng",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 70,
+     "votes": 5473,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Roding Pertin",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 4284,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gotem Tayeng",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 51,
+     "votes": 131,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 62,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Roing",
+   "type": "ST",
+   "electors": 12174,
+   "voters": 9770,
+   "turnout": 80.25,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mutchu Mithi",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 5434,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Laeta Umbreyr",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 57,
+     "votes": 3249,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Malo Linggi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 905,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 91,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "Tezu",
+   "type": "ST",
+   "electors": 16625,
+   "voters": 14066,
+   "turnout": 84.61,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Mohesh Chai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 7147,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Karikho Kri",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 6666,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 206,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Hayuliang",
+   "type": "ST",
+   "electors": 10747,
+   "voters": 9395,
+   "turnout": 87.42,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kalikho Pul",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 7272,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Banim Kri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 1502,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ejenso Yun",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 34,
+     "votes": 441,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 146,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Chowkham",
+   "type": "ST",
+   "electors": 13097,
+   "voters": 10028,
+   "turnout": 76.57,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chow Tewa Mein",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 5578,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sotai Kri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2684,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chow Rajanam Namchoom",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 802,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Soto Thalai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 783,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 170,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Namsai",
+   "type": "ST",
+   "electors": 20552,
+   "voters": 16929,
+   "turnout": 82.37,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Zingnu Namchoom",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 37,
+     "votes": 10402,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chow Pingthika Namchoom",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 6091,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 406,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Lekang",
+   "type": "ST",
+   "electors": 15109,
+   "voters": 13373,
+   "turnout": 88.51,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chowna Mein",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 6337,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bida Taku",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 50,
+     "votes": 5158,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tape Bagra",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 1292,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pike Pulu",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 49,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Anita Payeng",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 32,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 138,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Bordumsa - Diyun",
+   "type": "GEN",
+   "electors": 15172,
+   "voters": 12793,
+   "turnout": 84.32,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nikh Kamin",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 44,
+     "votes": 5309,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "C. C. Singpho",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 67,
+     "votes": 3981,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mayong Maio",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 43,
+     "votes": 2363,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Siraiong Singpho",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 967,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 148,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Miao",
+   "type": "ST",
+   "electors": 17890,
+   "voters": 14024,
+   "turnout": 78.39,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kamlung Mosang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 8806,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chomjong Haidley",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 4982,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 216,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Nampong",
+   "type": "ST",
+   "electors": 8306,
+   "voters": 7153,
+   "turnout": 86.12,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Laisam Simai",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 3529,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Setong Sena",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 3326,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tosham Mossang",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 52,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 95,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Changlang South",
+   "type": "ST",
+   "electors": 4932,
+   "voters": 4580,
+   "turnout": 92.86,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Phosum Khimhum",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 3235,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "John Jugli",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 45,
+     "votes": 1241,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 92,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Changlang North",
+   "type": "ST",
+   "electors": 9191,
+   "voters": 7691,
+   "turnout": 83.68,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tesam Pongte",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 3486,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Thinghaap Taiju",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 2449,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nongming Kamba Longchang",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 44,
+     "votes": 1211,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Haappa Taidong",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 37,
+     "votes": 203,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 95,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Namsang",
+   "type": "ST",
+   "electors": 9399,
+   "voters": 6890,
+   "turnout": 73.31,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wangki Lowang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 2956,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Wanglong Rajkumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2040,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arun Namati",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 39,
+     "votes": 1760,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 126,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Khonsa East",
+   "type": "ST",
+   "electors": 10283,
+   "voters": 7679,
+   "turnout": 74.68,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wanglam Sawin",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 45,
+     "votes": 3169,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "T.L.Rajkumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 65,
+     "votes": 2292,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kamthok Lowang",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 1911,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 106,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Khonsa West",
+   "type": "ST",
+   "electors": 9396,
+   "voters": 8648,
+   "turnout": 92.04,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tirong Aboh",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 37,
+     "votes": 3898,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yumsem Matey",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 1990,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Thajam Aboh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 1361,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Phawang Lowang",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 35,
+     "votes": 1325,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 70,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Borduria Bogapani",
+   "type": "ST",
+   "electors": 7103,
+   "voters": 6348,
+   "turnout": 89.37,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Wanglin Lowangdong",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 2253,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Lowangcha Wanglat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 1939,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jowang Hosai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1102,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Chaphung Wangsu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 875,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Hangcha Tonrang",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 105,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 62,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Kanubari",
+   "type": "ST",
+   "electors": 10412,
+   "voters": 9589,
+   "turnout": 92.1,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Newlai Tingkhatra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 3383,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rongnai Maham",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 3334,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gabriel Denwang Wangsu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 2756,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 109,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Longding Pumao",
+   "type": "ST",
+   "electors": 10042,
+   "voters": 9038,
+   "turnout": 90,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Thangwang Wangham",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 4341,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tanpho Wangnaw",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 3966,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pongsa Saham",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 42,
+     "votes": 292,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ngamkhah Wangnao",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 49,
+     "votes": 273,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 156,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Pongchau Wakka",
+   "type": "ST",
+   "electors": 13985,
+   "voters": 12422,
+   "turnout": 88.82,
+   "phase": 1,
+   "pollDate": "2014-04-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Honchun Ngandam",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 5432,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Longwang Wangham",
+     "partyId": "PPA",
+     "sex": "M",
+     "age": 32,
+     "votes": 3394,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Holai Wangsa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 33,
+     "votes": 2267,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thangkai Khusumchai",
+     "partyId": "NPF",
+     "sex": "M",
+     "age": 42,
+     "votes": 1127,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kapnai Wangsa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 128,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 74,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+     CONSTITUENCY :                     1- Lumla (ST)
+
+                                                                         MEN                            WOMEN                        TOTAL
+I.     CANDIDATES
+
+       1. NOMINATION FILED                                                   1                                 0                           1
+
+       2. NOMINATION REJECTED                                                0                                 0                           0
+
+       3. WITHDRAWN                                                          0                                 0                           0
+
+       4. CONTESTED                                                          1                                 0                           1
+
+       5. FORFEITED DEPOSIT                                                  0                                 0                           0
+
+
+II.    ELECTORS
+
+       1. GENERAL                                                        3918                              4098                       8016
+
+       2. SERVICE                                                            5                                 1                           6
+
+       3. TOTAL                                                          3923                              4099                       8022
+
+
+III. VOTERS
+
+       1. GENERAL                                                            0                                 0                           0
+
+       2. PROXY (Already Included in III.1 General)                                                                                        0
+
+       3. POSTAL                                                                                                                           0
+
+       4. TOTAL                                                                                                                            0
+
+III(A). POLLING PERCENTAGE                             0.00
+
+IV. VOTES
+
+        1. REJECTED VOTES (POSTAL)                                       Uncontested
+
+        2. VOTES NOT RETREIVED FROM EVM                                                                                                    0
+
+        3. TOTAL VALID VOTES POLLED                                                                                                        0
+
+        4. TENDERED VOTES                                                                                                                  0
+
+V. POLLING STATIONS
+
+      NUMBER            21                                              AVERAGE ELECTORS PER POLLING STATION                         382
+
+      DATE(s) OF RE-POLL, IF ANY :                                                                                                             NIL
+
+      NUMBER OF POLLING STATIONS WHERE RE-POLL WAS ORDERED                                                                                     NIL
+
+VI. DATES
+                  POLLING                                          COUNTING                                   DECLARATION OF RESULT
+
+                  13-Oct-2009                                      22-Oct-2009                                29-Sep-2009
+
+VII. RESULT
+
+                   PARTY                             CANDIDATE                                                          VOTES
+
+     WINNER        INC                               Jambey Tashi                                                      Uncontested
+
+RUNNER-UP
+
+     MARGIN         0                        Uncontested
+
+
+
+
+                                                                     Page 10 of 79
+                             Election Commission of India, state Election,2009 to the legislative assembly of Arunachal Pradesh
+
+
+                                               CONSTITUENCY DATA - SUMMARY
+

@@ -4,6 +4,8 @@ import * as XLSX from 'xlsx';
 import type { PartyListEntry, RawElection, Year } from './types';
 import { STATES, electionOf, electionsOf, type StateCode } from './elections';
 import { parseDetailedRows, parsePartyListRows, parsePerformanceRows, parseSummaryRows, performanceByAbbr, type Row } from './xls-report';
+import { completeUncontested } from './uncontested';
+import { applyOcrFixes, ocrNormalise, type OcrFix } from './ocr';
 import { parseDetailedText, parsePartyListText, parsePerformanceText, parseSummaryText, type SummaryFixes } from './pdf-report';
 import * as fs from 'fs';
 import { applySupplement, withMissingSummaries, withoutSeats, type MissingSummary, type Supplement } from './supplement';
@@ -21,8 +23,17 @@ const namedSheets = (s: StateCode, file: string): { name: string; rows: Row[] }[
   const wb = XLSX.readFile(path.join(rawDir(s), file));
   return wb.SheetNames.map(n => ({ name: n, rows: XLSX.utils.sheet_to_json<Row>(wb.Sheets[n], { header: 1, defval: null }) }));
 };
-const pdfText = (s: StateCode, file: string): string =>
-  execFileSync('pdftotext', ['-layout', path.join(rawDir(s), file), '-'], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
+/** A scanned report's OCR text (`ocr-cli.ts`, `<pdf>.ocr.txt`) when present, else pdftotext's layout text. */
+const pdfText = (s: StateCode, file: string): string => {
+  const ocr = path.join(rawDir(s), `${file}.ocr.txt`);
+  if (fs.existsSync(ocr)) {
+    // ocr-fixes.json: report file → hand fixes of OCR misreads, each checked against the scanned page.
+    const fixFile = path.join(dataDir(s), 'ocr-fixes.json');
+    const fixes: Record<string, OcrFix[]> = fs.existsSync(fixFile) ? JSON.parse(fs.readFileSync(fixFile, 'utf8')) : {};
+    return applyOcrFixes(ocrNormalise(fs.readFileSync(ocr, 'utf8')), fixes[file] ?? []);
+  }
+  return execFileSync('pdftotext', ['-layout', path.join(rawDir(s), file), '-'], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
+};
 
 /** The raw report for a year, with any committed supplement seats (supplement.json) added. */
 export function loadRaw(s: StateCode, year: Year): RawElection {
@@ -30,7 +41,7 @@ export function loadRaw(s: StateCode, year: Year): RawElection {
   const sup: Supplement = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
   const mf = path.join(dataDir(s), 'missing-summaries.json');
   const missing: Record<string, Record<number, MissingSummary>> = fs.existsSync(mf) ? JSON.parse(fs.readFileSync(mf, 'utf8')) : {};
-  return withoutSeats(applySupplement(withMissingSummaries(loadReport(s, year), missing[year] ?? {}), sup[year] ?? []), electionOf(s, year).excludeSeats ?? []);
+  return withoutSeats(applySupplement(withMissingSummaries(completeUncontested(loadReport(s, year)), missing[year] ?? {}), sup[year] ?? []), electionOf(s, year).excludeSeats ?? []);
 }
 
 /** summary-fixes.json: year → seat → sourced voters / total valid votes, for ECI summary pages with broken figures. */
