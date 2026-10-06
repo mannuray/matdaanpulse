@@ -185,13 +185,6 @@
     "from_date": null,
     "to_date": null,
     "source_url": "https://en.wikipedia.org/wiki/Kiran_Kandolkar"
-   },
-   {
-    "role": "state_president",
-    "person_name": "Kiran Kandolkar",
-    "from_date": "2022-01-19",
-    "to_date": null,
-    "source_url": "https://en.wikipedia.org/wiki/Kiran_Kandolkar"
    }
   ]
  },
@@ -371,7 +364,7 @@
     "role": "legislature_leader",
     "person_name": "Yumnam Joykumar Singh",
     "from_date": "2022-03-10",
-    "to_date": null,
+    "to_date": "2025-12-02",
     "source_url": "https://en.wikipedia.org/wiki/National_People%27s_Party_(India)"
    }
   ]

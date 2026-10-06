@@ -26,20 +26,24 @@ async function main() {
 
   const units: UnitRow[] = fs.readdirSync(DATA).filter(f => /^units-\d+\.json$/.test(f)).sort()
     .flatMap(f => JSON.parse(fs.readFileSync(path.join(DATA, f), 'utf8')) as UnitRow[]);
-  const cands = new Map<string, { id: string; name: string; year: number }[]>();
+  const cands = new Map<string, { id: string; name: string; year: number; party: string }[]>();
   const candidatesOf = (code: string) => {
     if (!cands.has(code)) {
       const st = code as StateCode;
       const list = STATES[st] ? electionsOf(st).flatMap(e => {
         const s = loadSeeded(st, e.year as Year);
-        return s.json.seats.flatMap(seat => seat.candidates.filter(c => c.partyId !== 'NOTA').map(c => ({ id: s.idOf(seat.constNo, c), name: c.name, year: e.year })));
+        return s.json.seats.flatMap(seat => seat.candidates.filter(c => c.partyId !== 'NOTA').map(c => ({ id: s.idOf(seat.constNo, c), name: c.name, year: e.year, party: c.partyId })));
       }) : [];
       cands.set(code, list);
     }
     return cands.get(code)!;
   };
+  // A leader may have contested for a party their unit's party came from (or broke away from): any direct lineage edge.
+  const related = (a: string) => (b: string) => lineage.some(l => (l.party_id === a && l.predecessor_id === b) || (l.party_id === b && l.predecessor_id === a));
   let linked = 0, roles = 0;
-  const sql = emitUnitsSeed(units, parties, states, (name, code) => { roles++; const c = pickCandidate(candidatesOf(code), name); if (c) linked++; return c; });
+  const sql = emitUnitsSeed(units, parties, states, (name, code, party) => {
+    roles++; const c = pickCandidate(candidatesOf(code), name, party, related(party)); if (c) linked++; return c;
+  });
   fs.writeFileSync(path.join(DB, 'seed_party_units_v1.sql'), sql);
   console.log(`lineage: ${lineage.length} events · units: ${units.length} · roles: ${roles} (${linked} linked to a person)`);
 }

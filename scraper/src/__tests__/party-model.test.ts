@@ -24,16 +24,25 @@ describe('emitLineageSeed', () => {
 
 describe('pickCandidate', () => {
   const cands = [
-    { id: 'c1', name: 'Samrat Choudhary', year: 2025 }, { id: 'c0', name: 'Samrat Choudhary', year: 2020 },
-    { id: 'c2', name: 'Tejashwi Prasad Yadav', year: 2025 }, { id: 'c3', name: 'Tej Pratap Yadav', year: 2025 },
+    { id: 'c1', name: 'Samrat Choudhary', year: 2025, party: 'BJP' }, { id: 'c0', name: 'Samrat Choudhary', year: 2020, party: 'BJP' },
+    { id: 'c2', name: 'Tejashwi Prasad Yadav', year: 2025, party: 'BJP' }, { id: 'c3', name: 'Tej Pratap Yadav', year: 2025, party: 'BJP' },
   ];
   it('the newest candidacy whose name holds every word of the person\'s name', () => {
-    expect(pickCandidate(cands, 'Samrat Choudhary')).toBe('c1');
-    expect(pickCandidate(cands, 'Tejashwi Yadav')).toBe('c2');
+    expect(pickCandidate(cands, 'Samrat Choudhary', 'BJP')).toBe('c1');
+    expect(pickCandidate(cands, 'Tejashwi Yadav', 'BJP')).toBe('c2');
+  });
+  it('a different initial is a different person (M. Veerapandian is not K.Veerapandian)', () => {
+    expect(pickCandidate([{ id: 'k', name: 'K.Veerapandian', year: 2021, party: 'MIDP' }], 'M. Veerapandian', 'CPI')).toBeNull();
+    expect(pickCandidate([{ id: 'm', name: 'M. Veerapandian', year: 2021, party: 'CPI' }], 'M. Veerapandian', 'CPI')).toBe('m');
+  });
+  it('the candidacy must be for the unit\'s party (or one related by lineage)', () => {
+    expect(pickCandidate([{ id: 'x', name: 'Sabu M Jacob', year: 2026, party: 'KECM' }], 'Sabu M. Jacob', 'TP')).toBeNull();
+    expect(pickCandidate([{ id: 'y', name: 'Sabu M Jacob', year: 2026, party: 'TP' }], 'Sabu M. Jacob', 'TP')).toBe('y');
+    expect(pickCandidate([{ id: 'z', name: 'Babulal Marandi', year: 2014, party: 'JVM' }], 'Babulal Marandi', 'BJP', p => p === 'JVM')).toBe('z');
   });
   it('null when no candidate matches or two different people match', () => {
-    expect(pickCandidate(cands, 'Dilip Jaiswal')).toBeNull();
-    expect(pickCandidate(cands, 'Yadav')).toBeNull();
+    expect(pickCandidate(cands, 'Dilip Jaiswal', 'BJP')).toBeNull();
+    expect(pickCandidate(cands, 'Yadav', 'BJP')).toBeNull();
   });
 });
 
@@ -54,5 +63,9 @@ describe('emitUnitsSeed', () => {
     expect(() => emitUnitsSeed([{ ...units[0], eci_recognition: 'Big' }], parties, states, () => null)).toThrow(/bad recognition Big/);
     expect(() => emitUnitsSeed([{ ...units[0], roles: [{ ...units[0].roles[0], role: 'boss' }] }], parties, states, () => null)).toThrow(/bad role boss/);
     expect(() => emitUnitsSeed([{ ...units[0], roles: [{ ...units[0].roles[0], person_name: null as never }] }], parties, states, () => null)).toThrow(/BJP BR state_president has no person_name/);
+  });
+  it('refuses two current holders of one role', () => {
+    const two = [{ ...units[0], roles: [units[0].roles[0], { ...units[0].roles[0], person_name: 'Someone Else' }] }];
+    expect(() => emitUnitsSeed(two, parties, states, () => null)).toThrow(/BJP BR state_president has 2 current holders/);
   });
 });

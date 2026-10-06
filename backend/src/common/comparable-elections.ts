@@ -16,3 +16,16 @@ export async function comparableElectionIds(prisma: PrismaService, election: Com
   const keep = new Set(ok.map(e => e.id));
   return ids.filter(i => i !== election.id && keep.has(i));
 }
+
+/**
+ * Every earlier election (newest first) of the same type, state and delimitation: the seat history when none is given
+ * (the admin Compute button sends none). A NULL delimitation has no history.
+ */
+export async function earlierComparableElectionIds(prisma: PrismaService, election: ComparableElection & { year: number }): Promise<string[]> {
+  if (!election.delimitation) return [];
+  const rows = await prisma.elections.findMany({
+    where: { type: election.type as never, state_id: election.state_id, delimitation: election.delimitation, year: { lt: election.year } },
+    select: { id: true }, orderBy: { year: 'desc' },
+  });
+  return rows.map(e => e.id);
+}

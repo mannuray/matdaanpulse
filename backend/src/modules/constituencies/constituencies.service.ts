@@ -8,7 +8,7 @@ import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFo
 import type { UpdateAnalysisDto } from './dto/constituency-input.dto';
 import { AuditLogService, type RecordAuditEntry } from '../audit-log/audit-log.service';
 import { changedFields } from '../audit-log/audit-diff';
-import { comparableElectionIds } from '../../common/comparable-elections';
+import { comparableElectionIds, earlierComparableElectionIds } from '../../common/comparable-elections';
 
 @Injectable()
 export class ConstituenciesService {
@@ -265,7 +265,10 @@ export class ConstituenciesService {
     if (!election) throw new ElectionNotFoundException(electionId);
 
     // Only elections of the same type, state and delimitation: seat numbers mean other places across a redraw.
-    historyElectionIds = await comparableElectionIds(this.prisma, election, historyElectionIds);
+    // None given (the admin Compute button): every earlier one, so a recompute never drops the seat history.
+    historyElectionIds = historyElectionIds.length
+      ? await comparableElectionIds(this.prisma, election, historyElectionIds)
+      : await earlierComparableElectionIds(this.prisma, election);
 
     const constituencies = await this.prisma.constituencies.findMany({ where: { election_id: electionId } });
     const allElectionIds = [...historyElectionIds, electionId];

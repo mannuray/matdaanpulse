@@ -45,32 +45,41 @@ export function emitLineageSeed(rows: LineageRow[], parties: Set<string>, states
   ].join('\n');
 }
 
-const words = (n: string) => n.toUpperCase().replace(/[^A-Z ]/g, ' ').split(/\s+/).filter(w => w.length > 1);
+const words = (n: string) => n.toUpperCase().replace(/[^A-Z ]/g, ' ').split(/\s+/).filter(Boolean);
 
 /**
- * The candidacy (newest) that is this person: every word of the name appears in the ballot name. Null when none matches
- * or the matches are two different ballot names (ambiguous).
+ * The candidacy (newest) that is this person: every word of the name, initials included (M. Veerapandian is not
+ * K. Veerapandian), appears in the ballot name, and the candidacy is for the unit's party or a party related to it by
+ * lineage. Null when none matches or the matches are two different ballot names (ambiguous).
  */
-export function pickCandidate(cands: { id: string; name: string; year: number }[], personName: string): string | null {
+export function pickCandidate(cands: { id: string; name: string; year: number; party: string }[], personName: string,
+  partyId: string, related: (party: string) => boolean = () => false): string | null {
   const want = words(personName);
-  if (!want.length) return null;
-  const hits = cands.filter(c => { const w = new Set(words(c.name)); return want.every(x => w.has(x)); });
+  if (!want.some(w => w.length > 1)) return null;
+  const hits = cands.filter(c => {
+    if (c.party !== partyId && !related(c.party)) return false;
+    const w = new Set(words(c.name)); return want.every(x => w.has(x));
+  });
   if (!hits.length || new Set(hits.map(h => h.name.toUpperCase())).size > 1) return null;
   return [...hits].sort((a, b) => b.year - a.year)[0].id;
 }
 
 export function emitUnitsSeed(units: UnitRow[], parties: Set<string>, states: Map<string, number>,
-  candidateFor: (personName: string, stateCode: string) => string | null): string {
+  candidateFor: (personName: string, stateCode: string, partyId: string) => string | null): string {
   const body: string[] = [];
   for (const u of units) {
     const p = party(u.party_id, parties);
     const s = state(u.state_code, states)!;
     if (u.eci_recognition !== null && !RECOGNITION.has(u.eci_recognition)) throw new Error(`bad recognition ${u.eci_recognition}`);
     body.push(`INSERT INTO party_units (party_id, state_id, eci_recognition, office, website) VALUES (${q(p)}, ${s}, ${q(u.eci_recognition)}, ${q(u.office)}, ${q(u.website)}) ON CONFLICT DO NOTHING;`);
+    for (const role of ROLES) {
+      const open = u.roles.filter(r => r.role === role && !r.to_date).length;
+      if (open > 1) throw new Error(`${u.party_id} ${u.state_code} ${role} has ${open} current holders`);
+    }
     for (const r of u.roles) {
       if (!ROLES.has(r.role)) throw new Error(`bad role ${r.role}`);
       if (!r.person_name) throw new Error(`${u.party_id} ${u.state_code} ${r.role} has no person_name`);
-      const cand = candidateFor(r.person_name, u.state_code);
+      const cand = candidateFor(r.person_name, u.state_code, p);
       const person = cand ? `(SELECT person_id FROM candidates WHERE id = ${q(cand)})` : 'NULL';
       body.push(`INSERT INTO party_unit_roles (party_id, state_id, role, person_id, person_name, from_date, to_date, source_url) VALUES (${q(p)}, ${s}, ${q(r.role)}, ${person}, ${q(r.person_name)}, ${q(r.from_date)}, ${q(r.to_date)}, ${q(r.source_url)}) ON CONFLICT DO NOTHING;`);
     }
