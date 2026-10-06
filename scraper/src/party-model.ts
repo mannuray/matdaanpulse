@@ -2,7 +2,7 @@
  * Seeds for the party model (migration 023, spec docs/superpowers/specs/2026-10-06-party-model-design.md §6):
  * - seed_party_lineage.sql — renames, mergers, splits (fill-only, curated in scraper/data/parties/lineage.json);
  * - seed_party_units_v1.sql / _v2.sql — state units and their leaders (run-once: admins will edit units later), from
- *   scraper/data/parties/units-1..4.json (v1, shipped) and units-5.json (v2: Sikkim, added after v1 shipped). A leader is linked to a person through a matching candidacy's person
+ *   scraper/data/parties/units-1..4.json (v1) and units-5.json (v2: Sikkim); see unitsSeedOf. A leader is linked to a person through a matching candidacy's person
  *   (candidate ids are stable across databases; person ids are not).
  */
 import { q } from './bihar/sql';
@@ -62,6 +62,17 @@ export function pickCandidate(cands: { id: string; name: string; year: number; p
   });
   if (!hits.length || new Set(hits.map(h => h.name.toUpperCase())).size > 1) return null;
   return [...hits].sort((a, b) => b.year - a.year)[0].id;
+}
+
+/**
+ * The run-once seed a units file belongs to. Shipped seeds are frozen and their markers already set on production, so
+ * every new units file needs its own version here (add `units-6.json` → v3, …); an unmapped file is an error.
+ */
+const UNITS_SEEDS: [RegExp, string][] = [[/^units-[1-4]\.json$/, 'seed_party_units_v1'], [/^units-5\.json$/, 'seed_party_units_v2']];
+export function unitsSeedOf(file: string): string {
+  const hit = UNITS_SEEDS.find(([re]) => re.test(file));
+  if (!hit) throw new Error(`${file} has no seed version: add it to UNITS_SEEDS with a new run-once seed (v1/v2 are frozen)`);
+  return hit[1];
 }
 
 export function emitUnitsSeed(units: UnitRow[], parties: Set<string>, states: Map<string, number>,

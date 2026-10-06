@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { emitLineageSeed, emitUnitsSeed, pickCandidate } from '../party-model';
+import { emitLineageSeed, emitUnitsSeed, pickCandidate, unitsSeedOf } from '../party-model';
 
 const parties = new Set(['SHS', 'SSUBT', 'BJP', 'JVM']);
 const states = new Map([['MH', 20], ['KL', 16], ['BR', 5]]);
@@ -72,5 +72,13 @@ describe('emitUnitsSeed', () => {
   it('refuses two current holders of one role', () => {
     const two = [{ ...units[0], roles: [units[0].roles[0], { ...units[0].roles[0], person_name: 'Someone Else' }] }];
     expect(() => emitUnitsSeed(two, parties, states, () => null)).toThrow(/BJP BR state_president has 2 current holders/);
+  });
+});
+
+describe('unitsSeedOf', () => {
+  it('maps each units file to exactly one run-once seed; a new file needs its own version', () => {
+    expect(['units-1.json', 'units-4.json'].map(unitsSeedOf)).toEqual(['seed_party_units_v1', 'seed_party_units_v1']);
+    expect(unitsSeedOf('units-5.json')).toBe('seed_party_units_v2');
+    expect(() => unitsSeedOf('units-6.json')).toThrow(/units-6.json has no seed version/);
   });
 });
