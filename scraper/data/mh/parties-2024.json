@@ -1,0 +1,175 @@
+[
+ {
+  "id": "SHS",
+  "name": "Shiv Sena",
+  "abbreviation": "SHS",
+  "eci_recognition": "State",
+  "founded_year": 1966,
+  "leader_name": "Eknath Shinde",
+  "headquarters": "Anand Ashram, Shree Bhavani Chowk, Tembhi Naka, Thane West, Maharashtra 400601",
+  "website": "https://shivsenacentraloffice.com",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Shiv_Sena_(Eknath_Shinde)",
+  "color": "#B8430B",
+  "description": "A Marathi regionalist and Hindutva party founded by Bal Thackeray in Mumbai in June 1966; it first governed Maharashtra with the BJP in 1995, and under Uddhav Thackeray it led the Maha Vikas Aghadi government from 2019. Eknath Shinde's revolt in June 2022 split the party, and in February 2023 the Election Commission awarded the Shiv Sena name and its bow-and-arrow symbol to Shinde's faction, while Thackeray's group became the Shiv Sena (UBT). In 2024, contesting in the BJP-led Mahayuti, it won 57 of 288 seats, and Shinde, Chief Minister since 2022, became Deputy Chief Minister.",
+  "eci_symbol": "Bow and Arrow",
+  "logo": {
+   "file": "SHS-logo.png",
+   "commons": "File:Shiv Sena Flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Shiv_Sena_Flag.png",
+   "author": "Soumava2002",
+   "licence": "CC BY 4.0"
+  },
+  "eci_image": {
+   "file": "SHS-eci.svg",
+   "commons": "File:Indian Election Symbol Bow And Arrow.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Bow_And_Arrow.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 3.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Shiv_Sena_(Eknath_Shinde)",
+   "https://en.wikipedia.org/wiki/Shiv_Sena",
+   "https://www.eci.gov.in/eci-backend/public/api/download?url=LMAhAK6sOPBp%2FNFF0iRfXbEB1EVSLT41NNLRjYNJJP1KivrUxbfqkDatmHy12e%2FzBiU51zPFZI5qMtjV1qgjFva%2BcZe4H5hLgRzEPbXgT4%2BEJecVc93B3LTxyyJga%2BpSgKdCmUSHqA1uyd%2BQgGswdQ%3D%3D",
+   "https://en.wikipedia.org/wiki/2024_Maharashtra_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=8",
+   "https://www.thehindu.com/news/cities/mumbai/shinde-chairs-shiv-senas-first-national-executive-meeting-seeks-bharat-ratna-for-savarkar/article66537902.ece",
+   "https://newsonair.gov.in/cm-eknath-shinde-elected-as-leader-of-shiv-sena-legislature-party/",
+   "https://www.newindianexpress.com/india/2024/Dec/04/fadnavis-elected-bjp-legislature-leader-to-become-maharashtra-cm-on-dec-5-shinde-to-be-dy-cm",
+   "https://shivsenacentraloffice.com",
+   "https://en.wikipedia.org/wiki/Module:Political_party/S",
+   "https://commons.wikimedia.org/wiki/File:Shiv_Sena_Flag.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Bow_And_Arrow.svg"
+  ]
+ },
+ {
+  "id": "SHSUBT",
+  "name": "Shiv Sena (Uddhav Balasaheb Thackeray)",
+  "abbreviation": "SS(UBT)",
+  "eci_recognition": "State",
+  "founded_year": 2022,
+  "leader_name": "Uddhav Thackeray",
+  "headquarters": "Shivsena Bhavan, Gadkari Chowk, Dadar, Mumbai, Maharashtra 400028",
+  "website": "https://shivsena.in",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Shiv_Sena_(UBT)",
+  "color": "#F5B400",
+  "description": "The party of Uddhav Thackeray's faction of the Shiv Sena, which the Election Commission named Shiv Sena (Uddhav Balasaheb Thackeray) and gave the flaming-torch symbol in October 2022, after Eknath Shinde's revolt that June; in February 2023 the original name and bow-and-arrow went to Shinde's faction. Thackeray had been Chief Minister from 2019 to 2022 at the head of the Maha Vikas Aghadi with the Congress and the NCP. In 2024, contesting in that alliance, it won 20 of 288 seats, and Aaditya Thackeray was elected leader of its legislators.",
+  "eci_symbol": "Flaming Torch",
+  "logo": {
+   "file": "SHSUBT-logo.png",
+   "commons": "File:SS(UBT) flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:SS(UBT)_flag.png",
+   "author": "456legend",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "SHSUBT-eci.png",
+   "commons": "File:Indian Election Symbol Flaming Torch.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Flaming_Torch.png",
+   "author": "Abilngeorge (credited on Commons to the Election Commission of India)",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Shiv_Sena_(UBT)",
+   "https://www.eci.gov.in/eci-backend/public/api/download?url=LMAhAK6sOPBp%2FNFF0iRfXbEB1EVSLT41NNLRjYNJJP1KivrUxbfqkDatmHy12e%2FzBiU51zPFZI5qMtjV1qgjFva%2BcZe4H5hLgRzEPbXgT4%2BEJecVc93B3LTxyyJga%2BpSgKdCmUSHqA1uyd%2BQgGswdQ%3D%3D",
+   "https://en.wikipedia.org/wiki/2024_Maharashtra_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=8",
+   "https://www.news18.com/news/politics/ec-allots-balasahebchi-shiv-sena-as-new-name-for-shinde-led-faction-mashaal-poll-symbol-for-uddhav-camp-6137785.html",
+   "https://www.thehindu.com/elections/maharashtra-assembly/shiv-sena-ubt-elects-aaditya-thackeray-as-leader-of-its-legislature-party/article68909034.ece",
+   "https://shivsena.in",
+   "https://en.wikipedia.org/wiki/Module:Political_party/S",
+   "https://commons.wikimedia.org/wiki/File:SS(UBT)_flag.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Flaming_Torch.png"
+  ]
+ },
+ {
+  "id": "NCP",
+  "name": "Nationalist Congress Party",
+  "abbreviation": "NCP",
+  "eci_recognition": "State",
+  "founded_year": 1999,
+  "leader_name": "Ajit Pawar",
+  "headquarters": "79, North Avenue, New Delhi 110001",
+  "website": "https://ncponline.in",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Nationalist_Congress_Party",
+  "color": "#006699",
+  "description": "Founded in June 1999 by Sharad Pawar, P. A. Sangma and Tariq Anwar after the Congress expelled them, the NCP governed Maharashtra with the Congress from 1999 to 2014 and joined the Maha Vikas Aghadi government in 2019. In July 2023 Ajit Pawar took most of its MLAs into the Shinde–BJP government, and in February 2024 the Election Commission awarded his faction the NCP name and clock symbol, while Sharad Pawar's became the NCP (Sharadchandra Pawar). In 2024, in the Mahayuti, it won 41 of 288 seats to the Sharad Pawar party's 10; after Ajit Pawar died in a plane crash in January 2026, Sunetra Pawar succeeded him as Deputy Chief Minister and party president.",
+  "eci_symbol": "Clock",
+  "logo": {
+   "file": "NCP-logo.svg",
+   "commons": "File:Flag of Nationalist Congress Party.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Flag_of_Nationalist_Congress_Party.svg",
+   "author": "Aksarin20",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "NCP-eci.png",
+   "commons": "File:Clock symbol of NCP.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Clock_symbol_of_NCP.png",
+   "author": "Atharvgairola692004",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Nationalist_Congress_Party",
+   "https://en.wikipedia.org/wiki/Nationalist_Congress_Party_%E2%80%93_Sharadchandra_Pawar",
+   "https://www.eci.gov.in/eci-backend/public/api/download?url=LMAhAK6sOPBp%2FNFF0iRfXbEB1EVSLT41NNLRjYNJJP1KivrUxbfqkDatmHy12e%2FzBiU51zPFZI5qMtjV1qgjFva%2BcZe4H5hLgRzEPbXgT4%2BEJecVc93B3LTxyyJga%2BpSgKdCmUSHqA1uyd%2BQgGswdQ%3D%3D",
+   "https://en.wikipedia.org/wiki/2024_Maharashtra_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=8",
+   "https://frontline.thehindu.com/politics/news-analysis-maharashtra-politics-eci-ajit-pawar-ncp-as-maharashtra-election-sharad-pawar-supriya-sule-2024-lok-sabha/article67825327.ece",
+   "https://www.thehindu.com/news/national/maharashtra/maharshtra-plane-crash-ajit-pawar-dead-updates/article70559359.ece",
+   "https://www.rediff.com/news/commentary/2026/jan/31/sunetra-pawar-elected-ncp-legislature-party-leader/8732c9cbeeb4f23cd1b91bcbe4d20f50",
+   "https://www.thehindu.com/news/national/maharashtra/sunetra-pawar-unanimously-elected-as-ncp-national-president/article70681068.ece",
+   "https://ncponline.in",
+   "https://en.wikipedia.org/wiki/Module:Political_party/N",
+   "https://www.hindustantimes.com/cities/mumbai-news/can-ajit-pawar-s-pink-strategy-turn-around-ncp-s-fortunes-101721503623243.html",
+   "https://commons.wikimedia.org/wiki/File:Flag_of_Nationalist_Congress_Party.svg",
+   "https://commons.wikimedia.org/wiki/File:Clock_symbol_of_NCP.png"
+  ]
+ },
+ {
+  "id": "MNS",
+  "name": "Maharashtra Navnirman Sena",
+  "abbreviation": "MNS",
+  "eci_recognition": "State",
+  "founded_year": 2006,
+  "leader_name": "Raj Thackeray",
+  "headquarters": "Krishna Kunj, M. B. Raut Road, Shivaji Park, Mumbai, Maharashtra 400028",
+  "website": null,
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Maharashtra_Navnirman_Sena",
+  "color": "#5F2301",
+  "description": "A Marathi regionalist party founded in Mumbai on 9 March 2006 by Raj Thackeray after he left the Shiv Sena, then led by his cousin Uddhav Thackeray. It won 13 seats in its first assembly election in 2009, then one each in 2014 and 2019. In 2024 it contested 125 of the 288 seats outside both main alliances and won none, with about 1.6% of the vote.",
+  "eci_symbol": "Railway Engine",
+  "logo": {
+   "file": "MNS-logo.jpg",
+   "commons": "File:Maharashtra Navnirman Sena Official Flag.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Maharashtra_Navnirman_Sena_Official_Flag.jpg",
+   "author": "Maharashtra Navnirman Sena",
+   "licence": "Public domain (PD-textlogo)"
+  },
+  "eci_image": {
+   "file": "MNS-eci.png",
+   "commons": "File:Mns-symbol-railway-engine.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mns-symbol-railway-engine.png",
+   "author": "Pratham Sawant",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Maharashtra_Navnirman_Sena",
+   "https://www.eci.gov.in/eci-backend/public/api/download?url=LMAhAK6sOPBp%2FNFF0iRfXbEB1EVSLT41NNLRjYNJJP1KivrUxbfqkDatmHy12e%2FzBiU51zPFZI5qMtjV1qgjFva%2BcZe4H5hLgRzEPbXgT4%2BEJecVc93B3LTxyyJga%2BpSgKdCmUSHqA1uyd%2BQgGswdQ%3D%3D",
+   "https://en.wikipedia.org/wiki/2024_Maharashtra_Legislative_Assembly_election",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=8",
+   "https://www.thehindu.com/news/national/mns-at-risk-of-losing-recognition-symbol-after-drawing-blank-in-maharashtra-polls/article68908706.ece",
+   "https://indianexpress.com/article/cities/mumbai/for-better-fortunes-mns-now-turns-its-railway-engine-to-left-4445019/",
+   "https://en.wikipedia.org/wiki/Module:Political_party/M",
+   "https://commons.wikimedia.org/wiki/File:Maharashtra_Navnirman_Sena_Official_Flag.jpg",
+   "https://commons.wikimedia.org/wiki/File:Mns-symbol-railway-engine.png"
+  ]
+ }
+]

@@ -164,7 +164,7 @@ INSERT INTO parties (id, name, abbreviation, color, eci_recognition) VALUES
   ('MHSP', 'Maharashtra Swarajya Party', 'MHSP', '#9CA3AF', 'Unrecognised'),
   ('MLKTWDP', 'Maharashtra Lokhitwadi Party', 'MLKTWDP', '#9CA3AF', 'Unrecognised'),
   ('MLPOIRF', 'Marxist Leninist Party of India (Red Flag)', 'MLPOIRF', '#9CA3AF', 'Unrecognised'),
-  ('MNS', 'Maharashtra Navnirman sena', 'MNS', '#9CA3AF', 'Unrecognised'),
+  ('MNS', 'Maharashtra Navnirman sena', 'MNS', '#5F2301', 'State'),
   ('MPST', 'Maharashtra Parivartan Sena (T)', 'MPS(T)', '#9CA3AF', 'Unrecognised'),
   ('MVA', 'Maharashtra Vikas Aghadi', 'MVA', '#9CA3AF', 'Unrecognised'),
   ('MWMM', 'Marathwada Mukti Morcha', 'MWMM', '#9CA3AF', 'Unrecognised'),

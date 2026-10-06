@@ -75,6 +75,10 @@ describe('emitUnitsSeed', () => {
     expect(sql).toContain("'seed_party_units_v2'");
     expect(sql).not.toContain('seed_party_units_v1');
   });
+  it('a role marked no_candidacy is never linked (Raj Thackeray did not contest; "Amit Raj Thackeray" would match his words)', () => {
+    const u = [{ ...units[0], roles: [{ ...units[0].roles[0], no_candidacy: true }] }];
+    expect(emitUnitsSeed(u, parties, states, () => 'cand-1')).not.toContain('cand-1');
+  });
   it('refuses two current holders of one role', () => {
     const two = [{ ...units[0], roles: [units[0].roles[0], { ...units[0].roles[0], person_name: 'Someone Else' }] }];
     expect(() => emitUnitsSeed(two, parties, states, () => null)).toThrow(/BJP BR state_president has 2 current holders/);

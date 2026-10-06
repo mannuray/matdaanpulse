@@ -189,15 +189,18 @@ for st in dl hr jh od; do run "seed_${st}_party_profiles.sql"; done
 run seed_sk_party_profiles.sql
 run seed_ar_party_profiles.sql
 run seed_ap_party_profiles.sql
+run seed_mh_party_profiles.sql
 # Party state units and their leaders (run-once; after the leaders and person links)
 run seed_party_units_v1.sql
 run seed_party_units_v2.sql
 run seed_party_units_v3.sql
 run seed_party_units_v4.sql
+run seed_party_units_v5.sql
 run seed_party_colors_v1.sql
 # Colours for seat-winning parties still on a grey placeholder (fill-only, sourced in scraper/data/parties/colors-v2.json)
 run seed_party_colors_v2.sql
 run seed_party_colors_v3.sql
+run seed_party_colors_v4.sql
 # Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
 run seed_media_s3_v1.sql
 

@@ -1,0 +1,198 @@
+[
+ {
+  "party_id": "BJP",
+  "state_code": "MH",
+  "eci_recognition": "National",
+  "office": "Dadar, Mumbai, Maharashtra",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Ravindra Chavan",
+    "from_date": "2025-07-01",
+    "to_date": null,
+    "source_url": "https://www.livemint.com/news/maharashtra-bjp-gets-new-president-ravindra-chavan-elected-unanimously-11751376389182.html",
+    "ballot_name": "Chavan Ravindra Dattatray"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Chandrashekhar Bawankule",
+    "from_date": "2022-08-12",
+    "to_date": "2025-07-01",
+    "source_url": "https://www.thehindu.com/news/national/other-states/bjp-appoints-chandrashekharbawankule-as-maharashtra-chief-ashish-shelar-returns-as-mumbai-unit-head/article65761757.ece",
+    "ballot_name": "Chandrashekhar Krushnarao Bawankule"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Devendra Fadnavis",
+    "from_date": "2024-12-04",
+    "to_date": null,
+    "source_url": "https://www.newindianexpress.com/india/2024/Dec/04/fadnavis-elected-bjp-legislature-leader-to-become-maharashtra-cm-on-dec-5-shinde-to-be-dy-cm",
+    "ballot_name": "Devendra Gangadhar Fadnavis"
+   }
+  ]
+ },
+ {
+  "party_id": "SHS",
+  "state_code": "MH",
+  "eci_recognition": "State",
+  "office": "Agiary Lane, near Talao Pali, Jambli Naka, Thane West, Thane, Maharashtra 400601",
+  "website": "https://shivsenacentraloffice.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Eknath Shinde",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/cities/mumbai/shinde-chairs-shiv-senas-first-national-executive-meeting-seeks-bharat-ratna-for-savarkar/article66537902.ece",
+    "ballot_name": "Eknath Sambhaji Shinde"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Eknath Shinde",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://newsonair.gov.in/cm-eknath-shinde-elected-as-leader-of-shiv-sena-legislature-party/",
+    "ballot_name": "Eknath Sambhaji Shinde"
+   }
+  ]
+ },
+ {
+  "party_id": "NCP",
+  "state_code": "MH",
+  "eci_recognition": "State",
+  "office": "A-4, Rajgad, Madam Cama Road, opposite Mantralaya, Mumbai, Maharashtra 400032",
+  "website": "https://ncponline.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sunil Tatkare",
+    "from_date": "2023-07-03",
+    "to_date": null,
+    "source_url": "https://www.aninews.in/news/national/general-news/sunil-tatkare-appointed-state-president-of-ncp-in-maharashtra-praful-patel20230703222902"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Sunetra Pawar",
+    "from_date": "2026-01-31",
+    "to_date": null,
+    "source_url": "https://www.rediff.com/news/commentary/2026/jan/31/sunetra-pawar-elected-ncp-legislature-party-leader/8732c9cbeeb4f23cd1b91bcbe4d20f50"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Ajit Pawar",
+    "from_date": null,
+    "to_date": "2026-01-28",
+    "source_url": "https://www.thehindu.com/news/national/maharashtra/maharshtra-plane-crash-ajit-pawar-dead-updates/article70559359.ece",
+    "ballot_name": "Ajit Anantrao Pawar"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "MH",
+  "eci_recognition": "National",
+  "office": "Tilak Bhavan, Dadar, Mumbai, Maharashtra",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Harshwardhan Sapkal",
+    "from_date": "2025-02-13",
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/national/maharashtra/congress-appoints-harshwardhan-sapkal-as-partys-maharashtra-chief/article69215702.ece"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Nana Patole",
+    "from_date": null,
+    "to_date": "2025-02-13",
+    "source_url": "https://www.thehindu.com/news/national/maharashtra/congress-appoints-harshwardhan-sapkal-as-partys-maharashtra-chief/article69215702.ece",
+    "ballot_name": "Nanabhau Falgunrao Patole"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Vijay Wadettiwar",
+    "from_date": "2025-02-13",
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/national/maharashtra/congress-appoints-harshwardhan-sapkal-as-partys-maharashtra-chief/article69215702.ece",
+    "ballot_name": "Vijay Namdeorao Wadettiwar"
+   }
+  ]
+ },
+ {
+  "party_id": "SHSUBT",
+  "state_code": "MH",
+  "eci_recognition": "State",
+  "office": "Shivsena Bhavan, Gadkari Chowk, Dadar, Mumbai, Maharashtra 400028",
+  "website": "https://shivsena.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Uddhav Thackeray",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Shiv_Sena_(UBT)",
+    "no_candidacy": true
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Aaditya Thackeray",
+    "from_date": "2024-11-25",
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/elections/maharashtra-assembly/shiv-sena-ubt-elects-aaditya-thackeray-as-leader-of-its-legislature-party/article68909034.ece",
+    "ballot_name": "Aditya Uddhav Thackeray"
+   }
+  ]
+ },
+ {
+  "party_id": "NCPSP",
+  "state_code": "MH",
+  "eci_recognition": "State",
+  "office": null,
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Shashikant Shinde",
+    "from_date": "2025-07-15",
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/national/maharashtra/ncp-sp-appoints-shashikant-shinde-as-new-state-president-succeeding-jayant-patil/article69815512.ece",
+    "ballot_name": "Shashikant Jaywant Shinde"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Jayant Patil",
+    "from_date": null,
+    "to_date": "2025-07-15",
+    "source_url": "https://www.thehindu.com/news/national/maharashtra/ncp-sp-appoints-shashikant-shinde-as-new-state-president-succeeding-jayant-patil/article69815512.ece",
+    "ballot_name": "Jayant Rajaram Patil"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Jitendra Awhad",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://theindianawaaz.com/ncp-pawar-appoints-jitendra-awhad-as-its-leader-in-maharashtra-assembly/",
+    "ballot_name": "Awhad Jitendra Satish"
+   }
+  ]
+ },
+ {
+  "party_id": "MNS",
+  "state_code": "MH",
+  "eci_recognition": "State",
+  "office": "Krishna Kunj, M. B. Raut Road, Shivaji Park, Mumbai, Maharashtra 400028",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Raj Thackeray",
+    "from_date": "2006-03-09",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Maharashtra_Navnirman_Sena",
+    "no_candidacy": true
+   }
+  ]
+ }
+]

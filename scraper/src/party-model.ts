@@ -13,7 +13,8 @@ export interface LineageRow {
   is_successor: boolean; note: string | null; source_url: string | null;
 }
 export interface UnitRole { role: string; person_name: string; from_date: string | null; to_date: string | null; source_url: string | null;
-  /** The person's name on a ballot when it differs from person_name (matched exactly). */ ballot_name?: string }
+  /** The person's name on a ballot when it differs from person_name (matched exactly). */ ballot_name?: string;
+  /** Never contested an assembly election here: no link (a relative's ballot may contain the same words). */ no_candidacy?: boolean }
 export interface UnitRow { party_id: string; state_code: string; eci_recognition: string | null; office: string | null; website: string | null; roles: UnitRole[] }
 
 const KINDS = new Set(['rename', 'merger', 'split', 'breakaway']);
@@ -96,7 +97,7 @@ export function emitUnitsSeed(units: UnitRow[], parties: Set<string>, states: Ma
     for (const r of u.roles) {
       if (!ROLES.has(r.role)) throw new Error(`bad role ${r.role}`);
       if (!r.person_name) throw new Error(`${u.party_id} ${u.state_code} ${r.role} has no person_name`);
-      const cand = candidateFor(r.person_name, u.state_code, p, r.ballot_name);
+      const cand = r.no_candidacy ? null : candidateFor(r.person_name, u.state_code, p, r.ballot_name);
       const person = cand ? `(SELECT person_id FROM candidates WHERE id = ${q(cand)})` : 'NULL';
       body.push(`INSERT INTO party_unit_roles (party_id, state_id, role, person_id, person_name, from_date, to_date, source_url) VALUES (${q(p)}, ${s}, ${q(r.role)}, ${person}, ${q(r.person_name)}, ${q(r.from_date)}, ${q(r.to_date)}, ${q(r.source_url)}) ON CONFLICT DO NOTHING;`);
     }

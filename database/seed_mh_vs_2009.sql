@@ -10993,6 +10993,6 @@ JOIN candidates c ON c.id = v.candidate_id::uuid
 WHERE p.id = c.person_id AND p.gender IS NULL;
 
 -- Manifest (only when none is published; admins edit it)
-UPDATE elections SET manifest_url = '{"alliances":[{"id":"DF","name":"Democratic Front","color":"#38C6F4","parties":["INC","NCP"]},{"id":"NDA","name":"BJP–Shiv Sena","color":"#FF7A1A","parties":["BJP","SHS"]},{"id":"MNS","name":"MNS","color":"#8B4513","parties":["MNS"]}],"leaders":[],"cabinet":[],"tracked":["INC","NCP","BJP","SHS","MNS"],"vip_seats":{},"milestones":[{"label":"Majority","value":145}],"geo":{"zoom":6.5,"center":[76.6,19.2],"map_url":"/geo/mh_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0200000-0000-4000-8000-000000002009' AND manifest_url IS NULL;
+UPDATE elections SET manifest_url = '{"alliances":[{"id":"DF","name":"Democratic Front","color":"#38C6F4","parties":["INC","NCP"]},{"id":"NDA","name":"BJP–Shiv Sena","color":"#FF7A1A","parties":["BJP","SHS"]},{"id":"MNS","name":"MNS","color":"#5F2301","parties":["MNS"]}],"leaders":[],"cabinet":[],"tracked":["INC","NCP","BJP","SHS","MNS"],"vip_seats":{},"milestones":[{"label":"Majority","value":145}],"geo":{"zoom":6.5,"center":[76.6,19.2],"map_url":"/geo/mh_ac_2008.geojson"},"delimitation_era":"2008"}' WHERE id = 'a0200000-0000-4000-8000-000000002009' AND manifest_url IS NULL;
 
 COMMIT;
