@@ -40,6 +40,12 @@ describe('pickCandidate', () => {
     expect(pickCandidate([{ id: 'y', name: 'Sabu M Jacob', year: 2026, party: 'TP' }], 'Sabu M. Jacob', 'TP')).toBe('y');
     expect(pickCandidate([{ id: 'z', name: 'Babulal Marandi', year: 2014, party: 'JVM' }], 'Babulal Marandi', 'BJP', p => p === 'JVM')).toBe('z');
   });
+  it('a ballot name, when given, matches that exact ballot (newest), whatever the common name', () => {
+    const cands = [{ id: 'a', name: 'Pawan Kalyan Konidala', year: 2019, party: 'JP' }, { id: 'b', name: 'Konidala Pawan Kalyan', year: 2024, party: 'JP' }];
+    expect(pickCandidate(cands, 'Pawan Kalyan', 'JP')).toBeNull();
+    expect(pickCandidate(cands, 'Pawan Kalyan', 'JP', () => false, 'Konidala Pawan Kalyan')).toBe('b');
+    expect(pickCandidate(cands, 'Pawan Kalyan', 'TDP', () => false, 'Konidala Pawan Kalyan')).toBeNull();
+  });
   it('null when no candidate matches or two different people match', () => {
     expect(pickCandidate(cands, 'Dilip Jaiswal', 'BJP')).toBeNull();
     expect(pickCandidate(cands, 'Yadav', 'BJP')).toBeNull();

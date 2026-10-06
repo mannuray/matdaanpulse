@@ -1,0 +1,2905 @@
+{
+ "entries": [
+  {
+   "constNo": 1,
+   "serial": 1,
+   "candidateId": "83f4fb5c-e35f-5912-aa2d-33c0fd11f4f0",
+   "name": "Ashok Bendalam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-1-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/ASHOK-2024-20240501054704.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202530/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S011.htm"
+  },
+  {
+   "constNo": 1,
+   "serial": 2,
+   "candidateId": "71999950-12ec-5b39-9ba1-263209161274",
+   "name": "Piriya Vijaya",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-1-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/PIRIY-2024-20240501054941.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202530/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S011.htm"
+  },
+  {
+   "constNo": 1,
+   "serial": 4,
+   "candidateId": "22963702-403b-5b28-96ab-b6e7ff6ed40f",
+   "name": "Masupatri Chakravarthi Reddy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-1-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MASUP-2024-20240501053553.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202530/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S011.htm"
+  },
+  {
+   "constNo": 1,
+   "serial": 5,
+   "candidateId": "daa1053f-4366-534d-a351-b98255b59200",
+   "name": "Surya Vara Prasada Rao Jannela",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-1-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/SURYA-2024-20240501042225.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202530/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S011.htm"
+  },
+  {
+   "constNo": 2,
+   "serial": 1,
+   "candidateId": "c35957d1-017b-5300-830d-5f70fcc67d40",
+   "name": "Gouthu Sireesha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-2-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GOUTH-2024-20240419040010.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S012.htm"
+  },
+  {
+   "constNo": 2,
+   "serial": 2,
+   "candidateId": "6b92126c-416e-5a64-a0cd-e970f48d1203",
+   "name": "Appalaraju Seediri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-2-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/APPAL-2024-20240422030548.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S012.htm"
+  },
+  {
+   "constNo": 2,
+   "serial": 4,
+   "candidateId": "042944ca-14d9-5522-9519-242aeefc9c0f",
+   "name": "Trinath Babu Majji",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-2-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MAJJI-2024-20240419042120.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S012.htm"
+  },
+  {
+   "constNo": 2,
+   "serial": 5,
+   "candidateId": "eee449c5-ad45-5ae2-a9fe-ac195c260123",
+   "name": "D.veeraswami",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-2-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/DATTI-2024-20240424013804.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S012.htm"
+  },
+  {
+   "constNo": 3,
+   "serial": 1,
+   "candidateId": "aaffb147-345f-562c-8ef2-9859245b273f",
+   "name": "Atchannaidu Kinjarapu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-3-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ATCHA-2024-20240422115003.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202545/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S013.htm"
+  },
+  {
+   "constNo": 3,
+   "serial": 2,
+   "candidateId": "da474935-6236-501c-a466-f1ab75aef6a2",
+   "name": "Duvvada Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-3-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SRINI-2024-20240419033951.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202545/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S013.htm"
+  },
+  {
+   "constNo": 3,
+   "serial": 4,
+   "candidateId": "736cd1dd-3277-5730-b9a2-d84fb91d2709",
+   "name": "Killi Krupa Rani",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-3-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KILLI-2024-20240419121020.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202545/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S013.htm"
+  },
+  {
+   "constNo": 3,
+   "serial": 5,
+   "candidateId": "df4060c5-ff5d-5454-87d3-ca2955989d57",
+   "name": "Chintada Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-3-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/CHINT-2024-20240423115234.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202545/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S013.htm"
+  },
+  {
+   "constNo": 4,
+   "serial": 1,
+   "candidateId": "2c04c43d-7dcb-58df-831c-6d43f5b5cea5",
+   "name": "Mamidi Govinda Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-4-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MAMID-2024-20240419071751.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S014.htm"
+  },
+  {
+   "constNo": 4,
+   "serial": 2,
+   "candidateId": "e43839b0-817d-5c50-840a-bb617445f1a5",
+   "name": "Reddy Shanthi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-4-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SHANT-2024-20240422034915.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S014.htm"
+  },
+  {
+   "constNo": 4,
+   "serial": 4,
+   "candidateId": "369961f2-95c6-5184-a4a6-bed65800fd6d",
+   "name": "Koppurautu Venkata Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-4-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VENKA-2024-20240423052345.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S014.htm"
+  },
+  {
+   "constNo": 4,
+   "serial": 5,
+   "candidateId": "ee811e53-e5bf-5057-a5fa-6fdab6b1b188",
+   "name": "Boddepalli Krishna Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-4-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BODDE-2024-20240424013110.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S014.htm"
+  },
+  {
+   "constNo": 5,
+   "serial": 1,
+   "candidateId": "b9bd52f1-2e11-5207-a9e7-93a0fa80b905",
+   "name": "Gondu Shankar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-5-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/GONDU-2024-20240425013036.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S015.htm"
+  },
+  {
+   "constNo": 5,
+   "serial": 2,
+   "candidateId": "d5af0525-b241-5e00-89be-ab0d2074e3b8",
+   "name": "Dharmana Prasada Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-5-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/DHARM-2024-20240424011115.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S015.htm"
+  },
+  {
+   "constNo": 5,
+   "serial": 3,
+   "candidateId": "1c68e72c-0d06-5744-b095-d327a2c539ed",
+   "name": "Ambati Krishna Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-5-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/AMBAT-2024-20240424030136.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S015.htm"
+  },
+  {
+   "constNo": 5,
+   "serial": 5,
+   "candidateId": "1e763001-2ead-5394-ad3b-8c4b6e99a77e",
+   "name": "Gujjala Suryanarayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-5-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/GUJJA-2024-20240424042832.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S015.htm"
+  },
+  {
+   "constNo": 6,
+   "serial": 1,
+   "candidateId": "7e938060-f450-523f-afff-0f152e95d845",
+   "name": "Koona Ravi Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-6-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOONA-2024-20240419024148.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S016.htm"
+  },
+  {
+   "constNo": 6,
+   "serial": 2,
+   "candidateId": "0a65b9a4-bb5b-5c88-a1eb-2a9c9dce41f1",
+   "name": "Thammineni Seetaram",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-6-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/THAMM-2024-20240422060208.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S016.htm"
+  },
+  {
+   "constNo": 6,
+   "serial": 3,
+   "candidateId": "9e4532b0-da17-58a7-b8aa-a5d9f23e6ddc",
+   "name": "Gandhi Suvvari",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-6-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GANDH-2024-20240424014528.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S016.htm"
+  },
+  {
+   "constNo": 6,
+   "serial": 4,
+   "candidateId": "f5cb7a51-c247-5605-8fa3-822c6543fafe",
+   "name": "Annajirao Sanapala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-6-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ANNAJ-2024-20240422054323.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S016.htm"
+  },
+  {
+   "constNo": 7,
+   "serial": 1,
+   "candidateId": "e23a4e6d-c011-548a-8013-74b49e473395",
+   "name": "Eswara Rao Nadukuditi (n.e.r)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-7-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ESWAR-2024-20240424075115.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202606/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S017.htm"
+  },
+  {
+   "constNo": 7,
+   "serial": 2,
+   "candidateId": "7c44c75b-639d-5442-b2a8-b8368d4f2ac1",
+   "name": "Gorle.kiran Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-7-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KIRAN-2024-20240419062251.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202606/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S017.htm"
+  },
+  {
+   "constNo": 7,
+   "serial": 4,
+   "candidateId": "5d1b044a-0d8e-5bb6-a7b6-6ac556c6aa79",
+   "name": "Karimajji.malleswara Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-7-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KARIM-2024-20240422112939.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202606/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S017.htm"
+  },
+  {
+   "constNo": 7,
+   "serial": 5,
+   "candidateId": "8ccd038f-308f-580d-97db-6f8115f0261c",
+   "name": "Gantlana.ramarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-7-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GANTL-2024-20240419065404.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202606/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S017.htm"
+  },
+  {
+   "constNo": 8,
+   "serial": 1,
+   "candidateId": "2acdc450-fe6e-5a80-b04a-853efc8bb56a",
+   "name": "Baggu Ramanamurthy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-8-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BAGGU-2024-20240420054630.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S018.htm"
+  },
+  {
+   "constNo": 8,
+   "serial": 2,
+   "candidateId": "f7e49062-5930-5895-9901-55f60cbd4fa0",
+   "name": "Dharmana Krishnadas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-8-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/2024/ac/E24/S01/8/1713442493DASSIRSTAMPSIZE.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S018.htm"
+  },
+  {
+   "constNo": 8,
+   "serial": 4,
+   "candidateId": "8e804f79-afe9-5eab-98bf-5433cb03c417",
+   "name": "Narasimhamurthy Mantri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-8-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MANTH-2024-20240422055628.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S018.htm"
+  },
+  {
+   "constNo": 8,
+   "serial": 5,
+   "candidateId": "6e46e2e4-3aab-5220-b2db-039771b4353d",
+   "name": "Kaya Kameswari",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-8-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KAYAK-2024-20240422054519.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S018.htm"
+  },
+  {
+   "constNo": 9,
+   "serial": 1,
+   "candidateId": "e1fc42ae-5011-5d5f-b1b8-2e71d53a3519",
+   "name": "Kondru Murali Mohan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-9-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KONDR-2024-20240419025629.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202537/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S019.htm"
+  },
+  {
+   "constNo": 9,
+   "serial": 2,
+   "candidateId": "a00b0b86-28b8-5c06-825a-7833797a82f1",
+   "name": "Dr. Tale Rajesh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-9-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/DRTA-2024-20240424080914.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202537/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S019.htm"
+  },
+  {
+   "constNo": 9,
+   "serial": 3,
+   "candidateId": "53391bb7-29df-5bca-a2f1-f1a26d43c13b",
+   "name": "Kambala Rajavardhana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-9-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KAMBA-2024-20240423054737.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202537/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S019.htm"
+  },
+  {
+   "constNo": 9,
+   "serial": 5,
+   "candidateId": "94623c12-368f-5d3e-ae91-28cbe358a475",
+   "name": "Boccha Buddudu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-9-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BOCCH-2024-20240422025004.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202537/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S019.htm"
+  },
+  {
+   "constNo": 10,
+   "serial": 1,
+   "candidateId": "30a702ec-b028-51f1-9b7f-8e20165bda07",
+   "name": "Jayakrishna Nimmaka",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-10-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/JAIKR-2024-20240425031932.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0110.htm"
+  },
+  {
+   "constNo": 10,
+   "serial": 2,
+   "candidateId": "7a379a42-b49a-5a40-8ff0-59aae696d616",
+   "name": "Viswasarayi Kalavathi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-10-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VISWA-2024-20240419055900.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0110.htm"
+  },
+  {
+   "constNo": 10,
+   "serial": 4,
+   "candidateId": "d8a4d34f-f724-5ad9-b9bd-736453a49bbc",
+   "name": "Chanti Babu Savara",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-10-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SAVAR-2024-20240424041553.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0110.htm"
+  },
+  {
+   "constNo": 10,
+   "serial": 5,
+   "candidateId": "cf9c91bc-002f-57fa-86b4-b807c7d05f62",
+   "name": "Vooyaka. Bhanu Chandar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-10-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VOOYA-2024-20240425034824.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0110.htm"
+  },
+  {
+   "constNo": 11,
+   "serial": 1,
+   "candidateId": "2aa5744f-b629-5c90-a8b9-023b92758ea0",
+   "name": "Jagadeeswari Thoyaka",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-11-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/JAGAD-2024-20240422024109.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0111.htm"
+  },
+  {
+   "constNo": 11,
+   "serial": 2,
+   "candidateId": "9ab18e09-4e7d-54e2-bb88-2f8c28497970",
+   "name": "Pamula Pushpa Sreevani",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-11-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PAMUL-2024-20240419124958.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0111.htm"
+  },
+  {
+   "constNo": 11,
+   "serial": 4,
+   "candidateId": "0be916fa-0b1e-54b4-8ce0-f2fbf0cc88ce",
+   "name": "Mandangi Ramana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-11-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/RAMAN-2024-20240423025158.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0111.htm"
+  },
+  {
+   "constNo": 11,
+   "serial": 5,
+   "candidateId": "16a5dd18-0db7-5f74-bfaa-d0658ce97927",
+   "name": "Tadangi Minnarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-11-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/TADAN-2024-20240425010910.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0111.htm"
+  },
+  {
+   "constNo": 12,
+   "serial": 1,
+   "candidateId": "ea365d01-e54a-5acc-a307-a68103a5bf62",
+   "name": "Bonela Vijaya Chandra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-12-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BONEL-2024-20240419054145.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202537/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0112.htm"
+  },
+  {
+   "constNo": 12,
+   "serial": 2,
+   "candidateId": "9fb62c09-fcb7-51a2-8592-7fa9956ff973",
+   "name": "Alajangi Jogarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-12-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/ALAJA-2024-20240429041335.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202537/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0112.htm"
+  },
+  {
+   "constNo": 12,
+   "serial": 4,
+   "candidateId": "e0bfc779-c92a-5c76-9fa7-624ca7bc7d39",
+   "name": "Bathina Mohanarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-12-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BATHI-2024-20240423042257.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202537/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0112.htm"
+  },
+  {
+   "constNo": 12,
+   "serial": 5,
+   "candidateId": "fffb2289-8cb3-5f39-99a1-10ed985a5d42",
+   "name": "Kuppili Venkata Ramana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-12-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KUPPI-2024-20240422072930.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202537/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0112.htm"
+  },
+  {
+   "constNo": 13,
+   "serial": 1,
+   "candidateId": "45b856e6-7615-59b1-b61a-d0f1eb8aad6d",
+   "name": "Gummidi Sandhyarani",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-13-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GUMMI-2024-20240419053214.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202543/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0113.htm"
+  },
+  {
+   "constNo": 13,
+   "serial": 2,
+   "candidateId": "962b8571-b7f5-58ba-87ea-8b3d78f2e465",
+   "name": "Rajanna Dora Peedika",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-13-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PEEDI-2024-20240419125016.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202543/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0113.htm"
+  },
+  {
+   "constNo": 13,
+   "serial": 4,
+   "candidateId": "86868b93-eaf4-5937-bad5-98a021d2ac91",
+   "name": "Muvvala Puspharao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-13-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MUVVA-2024-20240424053855.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202543/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0113.htm"
+  },
+  {
+   "constNo": 13,
+   "serial": 5,
+   "candidateId": "a02ffbe6-cd9c-52e3-8388-a637bfd21191",
+   "name": "Muvvala Gnanaprakasam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-13-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MUVVA-2024-20240425071141.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202543/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0113.htm"
+  },
+  {
+   "constNo": 14,
+   "serial": 1,
+   "candidateId": "5a88ac3b-45f1-5ee3-95af-e0597e745550",
+   "name": "R.v.s.k.k.ranga Rao @ Babynayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-14-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/VSK-2024-20240423120407.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0114.htm"
+  },
+  {
+   "constNo": 14,
+   "serial": 2,
+   "candidateId": "0dddf0e9-92d7-5920-85b5-ac51efc9c6ad",
+   "name": "Venkata China Appala Naidu Sambangi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-14-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SAMBA-2024-20240419061908.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0114.htm"
+  },
+  {
+   "constNo": 14,
+   "serial": 3,
+   "candidateId": "e0f46b53-1400-5b8a-ab48-009da7c4b6cd",
+   "name": "Maripi Vidyasagar (vinay)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-14-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MARIP-2024-20240422035727.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0114.htm"
+  },
+  {
+   "constNo": 14,
+   "serial": 5,
+   "candidateId": "f8520342-d7f9-5779-9a66-48d403c4f81d",
+   "name": "Savalapuram Ramana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-14-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SAVAL-2024-20240425040728.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0114.htm"
+  },
+  {
+   "constNo": 15,
+   "serial": 1,
+   "candidateId": "4a634a70-0b58-5bbe-9f1f-e7e5ab40a9da",
+   "name": "Kalavenkatarao Kimidi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-15-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KALAV-2024-20240424072238.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0115.htm"
+  },
+  {
+   "constNo": 15,
+   "serial": 2,
+   "candidateId": "b6d90b56-c022-5be8-8c93-df58e9b9ae32",
+   "name": "Botcha Satyanarayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-15-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BOTCH-2024-20240419040123.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0115.htm"
+  },
+  {
+   "constNo": 15,
+   "serial": 3,
+   "candidateId": "a9fd3b66-cbb2-57e8-9e34-de40e478d73a",
+   "name": "Aadinarayana Jammu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-15-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/JAMMU-2024-20240425031959.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0115.htm"
+  },
+  {
+   "constNo": 15,
+   "serial": 5,
+   "candidateId": "26e9b804-74bb-5a17-90c7-f9d6e7fdbd32",
+   "name": "Sabbi Satyanarayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-15-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SABBI-2024-20240425011226.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0115.htm"
+  },
+  {
+   "constNo": 16,
+   "serial": 1,
+   "candidateId": "0a7282a1-2585-592b-8c0d-d8c3e8aad37b",
+   "name": "Kondapalli Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-16-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KONDA-2024-20240419041507.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202534/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0116.htm"
+  },
+  {
+   "constNo": 16,
+   "serial": 2,
+   "candidateId": "54aa16b9-5a2f-52a3-b1bf-9aa16c4582a4",
+   "name": "Appalanarasayya Botcha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-16-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/APPAL-2024-20240419051011.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202534/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0116.htm"
+  },
+  {
+   "constNo": 16,
+   "serial": 4,
+   "candidateId": "a33874c6-2d4e-56b0-9f0e-c8a5fa7b87ea",
+   "name": "Dola. Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-16-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/DOLA-2024-20240424050004.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202534/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0116.htm"
+  },
+  {
+   "constNo": 16,
+   "serial": 5,
+   "candidateId": "49216222-235a-5012-9c31-5e418f4db1c7",
+   "name": "Chelluboina Srinu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-16-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/CHELL-2024-20240425050208.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202534/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0116.htm"
+  },
+  {
+   "constNo": 17,
+   "serial": 1,
+   "candidateId": "4b99a476-25c8-5df0-8ceb-a4f1fe9ee9a8",
+   "name": "Lokam Naga Madhavi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-17-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/LOKAM-2024-20240419092444.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0117.htm"
+  },
+  {
+   "constNo": 17,
+   "serial": 2,
+   "candidateId": "e5382b7c-6429-5e8f-b023-dd38b29de447",
+   "name": "Appalanaidu Baddukonda",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-17-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/APPAL-2024-20240418091035.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0117.htm"
+  },
+  {
+   "constNo": 17,
+   "serial": 4,
+   "candidateId": "3eeb2180-66f6-5817-9956-c11fa2e43299",
+   "name": "Saragada Ramesh Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-17-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SARAG-2024-20240425042557.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0117.htm"
+  },
+  {
+   "constNo": 17,
+   "serial": 5,
+   "candidateId": "217b2cf4-abf4-5b4c-8ed3-68ee362e22b9",
+   "name": "Lenka Madhavi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-17-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/LENKA-2024-20240425043209.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0117.htm"
+  },
+  {
+   "constNo": 18,
+   "serial": 1,
+   "candidateId": "e6608791-1b1c-566f-8597-1dd01ffba1cc",
+   "name": "Aditi Vijayalakshmi Gajapathi Raju Pusapati",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-18-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ADITI-2024-20240424043319.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0118.htm"
+  },
+  {
+   "constNo": 18,
+   "serial": 2,
+   "candidateId": "0218d826-8323-52e8-8682-23fe17713e2c",
+   "name": "Kolagatla Veerabhadra Swamy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-18-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOLAG-2024-20240420034525.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0118.htm"
+  },
+  {
+   "constNo": 18,
+   "serial": 3,
+   "candidateId": "f44e7f5b-e66e-55aa-9f05-dd1d8f98fb78",
+   "name": "Geetha Meesala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-18-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GEETH-2024-20240419033429.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0118.htm"
+  },
+  {
+   "constNo": 18,
+   "serial": 4,
+   "candidateId": "d0e146a9-2677-5ffe-bccc-8bb2b83c2781",
+   "name": "Satish Kumar Sunkari",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-18-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SATIS-2024-20240419033742.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202540/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0118.htm"
+  },
+  {
+   "constNo": 19,
+   "serial": 1,
+   "candidateId": "f06ee349-8f36-5bff-beb7-a2122bff1e39",
+   "name": "Kolla Lalitha Kumari",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-19-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOLLA-2024-20240424045003.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202529/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0119.htm"
+  },
+  {
+   "constNo": 19,
+   "serial": 2,
+   "candidateId": "0b3fb501-2f8c-5ab2-8df1-5d5688c52b11",
+   "name": "Kadubandi Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-19-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KADUB-2024-20240419020445.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202529/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0119.htm"
+  },
+  {
+   "constNo": 19,
+   "serial": 4,
+   "candidateId": "61c1363e-d91b-51f4-8bbc-58dc6e2d9061",
+   "name": "Gedela Tirupati",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-19-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GEDEL-2024-20240425082630.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202529/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0119.htm"
+  },
+  {
+   "constNo": 19,
+   "serial": 5,
+   "candidateId": "8aa49b31-34d8-5946-9fd1-79250a9e8593",
+   "name": "Lokabhi Ramakoti Kotyada",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-19-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/LOKAB-2024-20240418053309.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202529/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0119.htm"
+  },
+  {
+   "constNo": 20,
+   "serial": 1,
+   "candidateId": "66282a8c-f7c0-5f75-a923-f5373c13d654",
+   "name": "Ganta Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-20-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/GANTA-2024-20240418045049.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0120.htm"
+  },
+  {
+   "constNo": 20,
+   "serial": 2,
+   "candidateId": "3438af07-f7a7-5b2c-a188-4ecab9d86093",
+   "name": "Muttamsetti (avanthi) Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-20-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MUTTA-2024-20240424052554.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0120.htm"
+  },
+  {
+   "constNo": 20,
+   "serial": 3,
+   "candidateId": "8012333b-2333-52ca-a651-9bcf9ff289ca",
+   "name": "Addala Venkata Varma Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-20-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VENKA-2024-20240422043820.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0120.htm"
+  },
+  {
+   "constNo": 20,
+   "serial": 4,
+   "candidateId": "8d86a64b-7b89-56b5-b5f6-bf5b6dada4d3",
+   "name": "Bugatha Ramu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-20-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BUGAT-2024-20240419033120.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0120.htm"
+  },
+  {
+   "constNo": 21,
+   "serial": 1,
+   "candidateId": "5d978cf2-de5d-58a2-b5c1-6ee786ed37e4",
+   "name": "Ramakrishna Babu Velagapudi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-21-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VELAG-2024-20240419055004.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0121.htm"
+  },
+  {
+   "constNo": 21,
+   "serial": 2,
+   "candidateId": "847ba854-8f49-54d0-84cc-d94003ac85b4",
+   "name": "M V V Satyanarayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-21-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MULLA-2024-20240424042328.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0121.htm"
+  },
+  {
+   "constNo": 21,
+   "serial": 3,
+   "candidateId": "123874a6-a643-53c7-9148-a8cfff3e4b45",
+   "name": "Vaddi Sirisha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-21-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VADDI-2024-20240425064028.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0121.htm"
+  },
+  {
+   "constNo": 21,
+   "serial": 4,
+   "candidateId": "840882d1-a757-58bf-b12f-bea3f4c37ca9",
+   "name": "Guthula Srinivas Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-21-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GUTHU-2024-20240424050535.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0121.htm"
+  },
+  {
+   "constNo": 22,
+   "serial": 1,
+   "candidateId": "a700d87e-e823-5a46-bb32-63ff95b134c1",
+   "name": "Ch.vamsi Krishna Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-22-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/CHENN-2024-20240424122759.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0122.htm"
+  },
+  {
+   "constNo": 22,
+   "serial": 2,
+   "candidateId": "163e167f-6d7f-5996-be86-43f426f1402f",
+   "name": "Ganesh Kumar Vasupalli",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-22-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GANES-2024-20240420024857.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0122.htm"
+  },
+  {
+   "constNo": 22,
+   "serial": 3,
+   "candidateId": "f54d64d4-ab4c-50b5-b3b8-8a2a18d90019",
+   "name": "Vasupalli Santosh Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-22-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VASUP-2024-20240423124651.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0122.htm"
+  },
+  {
+   "constNo": 22,
+   "serial": 4,
+   "candidateId": "09513135-23a7-5d28-92e4-cd9a9b27abc3",
+   "name": "Kadiri Ramu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-22-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/RAMUK-2024-20240422030320.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0122.htm"
+  },
+  {
+   "constNo": 23,
+   "serial": 1,
+   "candidateId": "43c911f6-6365-58fa-8f2d-ec7b54692064",
+   "name": "Vishnu Kumar Raju Penmetsa",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-23-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PENME-2024-20240423125255.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0123.htm"
+  },
+  {
+   "constNo": 23,
+   "serial": 2,
+   "candidateId": "60fb2c61-6a52-570a-883d-dc3460b7cd9d",
+   "name": "Kannaparaju Kammila (k.k. Raju)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-23-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KANNA-2024-20240424124339.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0123.htm"
+  },
+  {
+   "constNo": 23,
+   "serial": 3,
+   "candidateId": "2bcc8056-d9e3-5298-923d-8f14e6330f7b",
+   "name": "Vaddi Sirisha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-23-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/VADDI-2024-20240424023849.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0123.htm"
+  },
+  {
+   "constNo": 23,
+   "serial": 4,
+   "candidateId": "06364b14-6f32-5a0d-a69f-38961f7602f3",
+   "name": "Lakshmi Narayana V.v. (j D Lakshmi Narayana)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-23-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VENKA-2024-20240425115310.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0123.htm"
+  },
+  {
+   "constNo": 24,
+   "serial": 1,
+   "candidateId": "4e583b3a-0615-50ae-80c3-2871bc32b35f",
+   "name": "P.g.v.r.naidu(ganababu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-24-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GANAV-2024-20240424051951.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202539/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0124.htm"
+  },
+  {
+   "constNo": 24,
+   "serial": 2,
+   "candidateId": "5719e0f6-9ad6-585b-a68b-963638c58a3a",
+   "name": "Adari Anand Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-24-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ADARI-2024-20240419013317.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202539/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0124.htm"
+  },
+  {
+   "constNo": 24,
+   "serial": 3,
+   "candidateId": "379a66d6-2ee1-5137-a798-ac3c6ffcb8e9",
+   "name": "Athukumsetti Rama Chandra Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-24-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ATHUK-2024-20240420050829.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202539/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0124.htm"
+  },
+  {
+   "constNo": 24,
+   "serial": 5,
+   "candidateId": "11cf5946-7816-52ad-bbb0-421626c3e737",
+   "name": "Athili Vimala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-24-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ATHIL-2024-20240420052258.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202539/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0124.htm"
+  },
+  {
+   "constNo": 25,
+   "serial": 1,
+   "candidateId": "6337dca8-6ac9-5d63-8d61-49ee8d25782f",
+   "name": "Palla Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-25-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PALLA-2024-20240424044821.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202544/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0125.htm"
+  },
+  {
+   "constNo": 25,
+   "serial": 2,
+   "candidateId": "e8e428e8-23a0-5925-86d1-9b279b96d5e1",
+   "name": "Amarnath Gudivada",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-25-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/AVSSA-2024-20240424045936.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202544/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0125.htm"
+  },
+  {
+   "constNo": 25,
+   "serial": 3,
+   "candidateId": "d9a359df-1738-536e-821a-f3b4f279ba8c",
+   "name": "Kakarlamudi Krishna Pradeep",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-25-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KAKAR-2024-20240425045905.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202544/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0125.htm"
+  },
+  {
+   "constNo": 25,
+   "serial": 4,
+   "candidateId": "a15a00a7-db66-55ed-9607-233a5db609b4",
+   "name": "Jaggu Naidu Maradana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-25-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MARAD-2024-20240420042007.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202544/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0125.htm"
+  },
+  {
+   "constNo": 26,
+   "serial": 1,
+   "candidateId": "a0868548-6b15-5b32-9fbb-73f3b08141d1",
+   "name": "Surya Naga Sanyasi Raju Kalidindi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-26-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/SURYA-2024-20240423044124.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0126.htm"
+  },
+  {
+   "constNo": 26,
+   "serial": 2,
+   "candidateId": "a2ab8c95-7ec1-5efa-be58-5174a0708470",
+   "name": "Karanam Dharmasri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-26-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/DHARM-2024-20240423044545.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0126.htm"
+  },
+  {
+   "constNo": 26,
+   "serial": 4,
+   "candidateId": "e7c7ae7c-3f5f-59be-b583-803d85435686",
+   "name": "Jagata Srinivasurao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-26-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/JAGAT-2024-20240423042612.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0126.htm"
+  },
+  {
+   "constNo": 26,
+   "serial": 5,
+   "candidateId": "e673ee55-97fd-55fe-96cb-f5e36246c08f",
+   "name": "Vegi Mahalakshmi Naidu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-26-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VEGIM-2024-20240425090144.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0126.htm"
+  },
+  {
+   "constNo": 27,
+   "serial": 1,
+   "candidateId": "5a557e88-f6c4-5f57-936b-273f06a51226",
+   "name": "Bandaru Satyanarayana Murthy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-27-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BANDA-2024-20240422074208.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202558/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0127.htm"
+  },
+  {
+   "constNo": 27,
+   "serial": 2,
+   "candidateId": "d93f5ca6-7d20-5bd4-8864-332de03bc75f",
+   "name": "Anuradha Erli",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-27-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ERLIA-2024-20240422072006.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202558/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0127.htm"
+  },
+  {
+   "constNo": 27,
+   "serial": 4,
+   "candidateId": "2268153a-9d2e-5a9b-a19e-f3c3678cf640",
+   "name": "Boddu Srinivasa",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-27-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BODDU-2024-20240422073032.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202558/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0127.htm"
+  },
+  {
+   "constNo": 27,
+   "serial": 5,
+   "candidateId": "0d9c0997-f2e9-534c-98e7-a4868628b01d",
+   "name": "Karanam Tirupathi Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-27-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/TIRUP-2024-20240419053159.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202558/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0127.htm"
+  },
+  {
+   "constNo": 28,
+   "serial": 1,
+   "candidateId": "e147218b-c0d1-544f-bdac-7cd626dd6606",
+   "name": "Regam Matyalingam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-28-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/REGAM-2024-20240430113731.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0128.htm"
+  },
+  {
+   "constNo": 28,
+   "serial": 2,
+   "candidateId": "d6670310-5371-5208-ab9c-2d8d4a34fc36",
+   "name": "Rajarao Pangi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-28-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/RAJAR-2024-20240430111452.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0128.htm"
+  },
+  {
+   "constNo": 28,
+   "serial": 3,
+   "candidateId": "c88d1767-0650-5b9f-a136-5a466a7561b3",
+   "name": "Vanthala Ramanna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-28-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/VANTH-2024-20240430120554.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0128.htm"
+  },
+  {
+   "constNo": 28,
+   "serial": 4,
+   "candidateId": "b4a996a1-dcc3-515e-a3f5-66b07f7bbf51",
+   "name": "Lake Rajarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-28-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/LAKER-2024-20240430110502.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0128.htm"
+  },
+  {
+   "constNo": 29,
+   "serial": 1,
+   "candidateId": "64aafc54-148c-574d-b77c-61de1b524423",
+   "name": "Matsyarasa Visweswara Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-29-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MATSY-2024-20240419060312.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202603/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0129.htm"
+  },
+  {
+   "constNo": 29,
+   "serial": 2,
+   "candidateId": "84faedd8-4bac-5251-b209-0b9f10156cec",
+   "name": "Eswari Giddi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-29-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/GIDDI-2024-20240426070131.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202603/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0129.htm"
+  },
+  {
+   "constNo": 29,
+   "serial": 3,
+   "candidateId": "06658e74-360f-5390-bf30-01e0ac3ac9ae",
+   "name": "Vanthala Subba Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-29-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VANTH-2024-20240422062915.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202603/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0129.htm"
+  },
+  {
+   "constNo": 29,
+   "serial": 4,
+   "candidateId": "9fdf001b-a6e5-5829-91e2-55938178a2de",
+   "name": "Bullibabu Sataka",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-29-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BULLI-2024-20240422060634.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202603/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0129.htm"
+  },
+  {
+   "constNo": 30,
+   "serial": 1,
+   "candidateId": "e4547e13-fb0e-561a-96d9-4b3e5687dd41",
+   "name": "Konathala Ramakrishna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-30-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KONAT-2024-20240419072908.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0130.htm"
+  },
+  {
+   "constNo": 30,
+   "serial": 2,
+   "candidateId": "e0f6b9b2-2df1-5696-8a78-865fe14d1b17",
+   "name": "Bharath Kumar Malasala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-30-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BHARA-2024-20240424043916.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0130.htm"
+  },
+  {
+   "constNo": 30,
+   "serial": 3,
+   "candidateId": "5a98bfbc-d8fe-53ce-b218-c0fe3cdcaaa5",
+   "name": "I. R. Gangadhar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-30-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ILLAR-2024-20240423053601.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0130.htm"
+  },
+  {
+   "constNo": 30,
+   "serial": 5,
+   "candidateId": "d0e97209-4cbe-53a3-822e-0ceaefd5aa0e",
+   "name": "Sudhikonda Manikyala Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-30-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/SUDIK-2024-20240418055937.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0130.htm"
+  },
+  {
+   "constNo": 31,
+   "serial": 1,
+   "candidateId": "9e7fa6d5-e5c1-5ae5-9254-7428ba087dd8",
+   "name": "Panchakarla Ramesh Babu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-31-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/PANCH-2024-20240430120930.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0131.htm"
+  },
+  {
+   "constNo": 31,
+   "serial": 2,
+   "candidateId": "f0dffb75-22d7-50ce-b624-f7bb83aa8c05",
+   "name": "Annamreddy Adeep Raj",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-31-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/ANNAM-2024-20240430120343.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0131.htm"
+  },
+  {
+   "constNo": 31,
+   "serial": 3,
+   "candidateId": "7855a01f-a320-5093-8319-8a3551938738",
+   "name": "Bhagat Piridi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-31-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BHAGA-2024-20240430121057.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0131.htm"
+  },
+  {
+   "constNo": 31,
+   "serial": 5,
+   "candidateId": "189cc8fe-ea6e-59f4-acfc-2fc30b4b9bd3",
+   "name": "Bangari . Ramana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-31-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BANGA-2024-20240430120310.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0131.htm"
+  },
+  {
+   "constNo": 32,
+   "serial": 1,
+   "candidateId": "445c13c3-13a3-5605-84a0-919d29b6ab85",
+   "name": "Sundarapu Vijay Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-32-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SUNDA-2024-20240418045928.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0132.htm"
+  },
+  {
+   "constNo": 32,
+   "serial": 2,
+   "candidateId": "9378fc45-6b3b-5fd8-8ad4-824eb29e041e",
+   "name": "Uppalapati Venkata Ramanamurthy Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-32-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/UPPAL-2024-20240419035539.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0132.htm"
+  },
+  {
+   "constNo": 32,
+   "serial": 4,
+   "candidateId": "1656985a-59d3-5418-9c62-299d1abf27a9",
+   "name": "Anantha Rama Narasingarao Thanakala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-32-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/THANA-2024-20240423023907.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0132.htm"
+  },
+  {
+   "constNo": 32,
+   "serial": 5,
+   "candidateId": "0f79a69d-bb90-5e54-a966-0836f60a9ac5",
+   "name": "Lamba Srinuvasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-32-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/LAMBA-2024-20240424053813.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0132.htm"
+  },
+  {
+   "constNo": 33,
+   "serial": 1,
+   "candidateId": "aa9070cf-2511-560d-bc4e-fd2fbb4e9753",
+   "name": "Anitha Vangalapudi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-33-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ANITH-2024-20240422042248.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202535/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0133.htm"
+  },
+  {
+   "constNo": 33,
+   "serial": 2,
+   "candidateId": "0e5abfeb-7de5-583c-9ddf-eb46610433d1",
+   "name": "Jogulu Kambala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-33-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/JOGUL-2024-20240422033227.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202535/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0133.htm"
+  },
+  {
+   "constNo": 33,
+   "serial": 4,
+   "candidateId": "590319a6-cceb-5fe1-9aa0-de6a092f541f",
+   "name": "Dr.boni Tata Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-33-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/TATAR-2024-20240424031650.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202535/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0133.htm"
+  },
+  {
+   "constNo": 33,
+   "serial": 5,
+   "candidateId": "87ac7db9-66d4-5530-ab5b-373490994cf6",
+   "name": "Krishna Swaroop Vadlamuri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-33-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KRISH-2024-20240424124310.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202535/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0133.htm"
+  },
+  {
+   "constNo": 34,
+   "serial": 1,
+   "candidateId": "877fa0a9-7706-5ab7-87b6-0140f4efff1e",
+   "name": "Ayyannapatrudu Chintakayala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-34-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/AYYAN-2024-20240419012806.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0134.htm"
+  },
+  {
+   "constNo": 34,
+   "serial": 2,
+   "candidateId": "946a4c28-e8e1-5f44-882a-1beee420f950",
+   "name": "Uma Sankara Ganesh Petla",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-34-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/UMASA-2024-20240423030406.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0134.htm"
+  },
+  {
+   "constNo": 34,
+   "serial": 4,
+   "candidateId": "2e60b11c-dd9a-5c74-84d7-ed65c518264b",
+   "name": "Botta Nagaraju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-34-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BOTTA-2024-20240429101827.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0134.htm"
+  },
+  {
+   "constNo": 34,
+   "serial": 5,
+   "candidateId": "c7256456-d538-508c-9a31-9be4b2fe66f0",
+   "name": "Ruthala Srirama Murthy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-34-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/RUTAL-2024-20240424010623.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0134.htm"
+  },
+  {
+   "constNo": 35,
+   "serial": 1,
+   "candidateId": "081e67a2-3db2-5d4b-ab55-4f8b5bbc6318",
+   "name": "Divya Yanamala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-35-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/DIVYA-2024-20240429121504.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202539/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0135.htm"
+  },
+  {
+   "constNo": 35,
+   "serial": 2,
+   "candidateId": "91bebf63-7993-581f-a5d6-ac8eea253187",
+   "name": "Dadisetti Raja",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-35-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/DADIS-2024-20240424030539.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202539/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0135.htm"
+  },
+  {
+   "constNo": 35,
+   "serial": 4,
+   "candidateId": "1fcd5e7b-8f7d-5432-a631-945daabeca6b",
+   "name": "Gelam Srinivasarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-35-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/GELAM-2024-20240430110926.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202539/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0135.htm"
+  },
+  {
+   "constNo": 35,
+   "serial": 5,
+   "candidateId": "38079cff-2428-51c6-b01f-a9d76fe88af3",
+   "name": "Kona Ramakrishna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-35-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KONAR-2024-20240429121428.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202539/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0135.htm"
+  },
+  {
+   "constNo": 36,
+   "serial": 1,
+   "candidateId": "ed324a32-4c97-5f77-a5d6-8bc87dd75279",
+   "name": "Varupula Satya Prabha",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-36-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VARUP-2024-20240423051340.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202551/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0136.htm"
+  },
+  {
+   "constNo": 36,
+   "serial": 2,
+   "candidateId": "9ff75067-2e96-5e22-9e8a-5c2da56b8b62",
+   "name": "Varupula Subbarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-36-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VARUP-2024-20240419040539.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202551/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0136.htm"
+  },
+  {
+   "constNo": 36,
+   "serial": 4,
+   "candidateId": "499f6790-ebfe-55db-8867-44793c4ff978",
+   "name": "Neerukonda Veera Venkata Satyanarayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-36-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/NEERU-2024-20240423065617.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202551/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0136.htm"
+  },
+  {
+   "constNo": 36,
+   "serial": 5,
+   "candidateId": "0181a78e-a11d-5937-9e51-90ba8a501567",
+   "name": "Gontina Sivaraja",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-36-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GONTI-2024-20240425082745.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202551/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0136.htm"
+  },
+  {
+   "constNo": 37,
+   "serial": 1,
+   "candidateId": "66487ceb-7d3f-5ba2-84ce-f2770da6f402",
+   "name": "Konidala Pawan Kalyan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-37-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KONID-2024-20240423030208.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0137.htm"
+  },
+  {
+   "constNo": 37,
+   "serial": 2,
+   "candidateId": "3f5a8656-c86c-59d0-8f43-cfc1ecab4148",
+   "name": "Vanga Geetha Viswanath",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-37-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GEETH-2024-20240422022701.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0137.htm"
+  },
+  {
+   "constNo": 37,
+   "serial": 4,
+   "candidateId": "f77d7267-f70d-5842-9625-4a6a07a78ea2",
+   "name": "Gowri Mani Bolisetti",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-37-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GOWRI-2024-20240424075839.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0137.htm"
+  },
+  {
+   "constNo": 37,
+   "serial": 5,
+   "candidateId": "1bf2d777-3aa6-5943-b873-87f966e35785",
+   "name": "Madepalli Satyananda Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-37-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MADEP-2024-20240424072820.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202612/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0137.htm"
+  },
+  {
+   "constNo": 38,
+   "serial": 1,
+   "candidateId": "6a1f5a32-4950-5528-ac65-499ce78dfbe8",
+   "name": "Pantam Venkateswara Rao (pantam Nanaji)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-38-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PANTA-2024-20240419040536.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0138.htm"
+  },
+  {
+   "constNo": 38,
+   "serial": 2,
+   "candidateId": "d3225df3-6a5c-512c-a23c-9941d250eefb",
+   "name": "Kurasala Kanna Babu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-38-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KURAS-2024-20240422030356.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0138.htm"
+  },
+  {
+   "constNo": 38,
+   "serial": 3,
+   "candidateId": "0f17934a-4fb9-50bd-b724-7355e357829c",
+   "name": "Melam Veeraswamy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-38-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MELAM-2024-20240425084828.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0138.htm"
+  },
+  {
+   "constNo": 38,
+   "serial": 4,
+   "candidateId": "d4fd83fc-eb34-5222-ae42-214deeb64793",
+   "name": "Pilli Satya Lakshmi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-38-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PILLI-2024-20240424044554.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0138.htm"
+  },
+  {
+   "constNo": 39,
+   "serial": 1,
+   "candidateId": "d50163b0-3c18-510f-95de-963311871853",
+   "name": "China Rajappa Nimmakayala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-39-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/NIMMA-2024-20240422042512.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0139.htm"
+  },
+  {
+   "constNo": 39,
+   "serial": 2,
+   "candidateId": "7f27cd8e-5528-5ddc-8051-17f0c033a548",
+   "name": "Davuluri Dorababu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-39-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/DAVUL-2024-20240429043905.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0139.htm"
+  },
+  {
+   "constNo": 39,
+   "serial": 3,
+   "candidateId": "7243eac0-092a-59d4-aa6f-2f326d1e288e",
+   "name": "Thummala Dorababu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-39-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/THUMM-2024-20240425054211.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0139.htm"
+  },
+  {
+   "constNo": 39,
+   "serial": 5,
+   "candidateId": "ffc0f4ae-a28e-5ab2-afb6-d9fb7824a557",
+   "name": "Duvvada Kannayya@kannababu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-39-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/DUVVA-2024-20240429044050.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0139.htm"
+  },
+  {
+   "constNo": 40,
+   "serial": 1,
+   "candidateId": "1dc45ea7-88d9-57c8-93db-6a7c23739dca",
+   "name": "Ramakrishna Reddy Nallamilli",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-40-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/RAMAK-2024-20240423113847.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0140.htm"
+  },
+  {
+   "constNo": 40,
+   "serial": 2,
+   "candidateId": "b69d5bc1-1c1c-5a6c-b695-b01e83af55b6",
+   "name": "Doctor.sathi Suryanarayana Reddy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-40-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SATHI-2024-20240424115617.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0140.htm"
+  },
+  {
+   "constNo": 40,
+   "serial": 4,
+   "candidateId": "f4186e6c-2d2f-5d25-85e4-f26004a7fb30",
+   "name": "Yella Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-40-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/YELLA-2024-20240423033102.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0140.htm"
+  },
+  {
+   "constNo": 40,
+   "serial": 5,
+   "candidateId": "f8ef1b55-9301-538e-8097-023e17fef13e",
+   "name": "Pulagam Surreddy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-40-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PULAG-2024-20240425071509.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202605/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0140.htm"
+  },
+  {
+   "constNo": 41,
+   "serial": 1,
+   "candidateId": "31c6184b-3d80-5c3e-85e2-fe2c7db4bfce",
+   "name": "Vanamadi Venkateswara Rao @ Kondababu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-41-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VANAM-2024-20240419123554.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202553/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0141.htm"
+  },
+  {
+   "constNo": 41,
+   "serial": 2,
+   "candidateId": "e2318519-4690-53a7-ae13-3e3930559a1b",
+   "name": "Dwarampudi Chandrasekhara Reddy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-41-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/CHAND-2024-20240422124640.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202553/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0141.htm"
+  },
+  {
+   "constNo": 41,
+   "serial": 3,
+   "candidateId": "6b9809fd-bb34-57a8-b82d-d34623d42bd8",
+   "name": "Chekka Nookaraju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-41-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/CHEKK-2024-20240423063649.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202553/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0141.htm"
+  },
+  {
+   "constNo": 41,
+   "serial": 4,
+   "candidateId": "c1ed8f2c-10eb-5732-89b6-5c1552559df2",
+   "name": "M.venkateswara Rao (bandababu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-41-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MATTA-2024-20240418052255.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202553/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0141.htm"
+  },
+  {
+   "constNo": 42,
+   "serial": 1,
+   "candidateId": "53e8bf7a-f5f5-5c47-8c6c-00920681484a",
+   "name": "Vasamsetti. Subash",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-42-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/VASAM-2024-20240429064913.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202556/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0142.htm"
+  },
+  {
+   "constNo": 42,
+   "serial": 2,
+   "candidateId": "519ca49e-c413-5037-baec-e9481fb61663",
+   "name": "Pilli Surya Prakash",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-42-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/PILLI-2024-20240429064758.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202556/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0142.htm"
+  },
+  {
+   "constNo": 42,
+   "serial": 4,
+   "candidateId": "a88d2618-3be7-5844-b21f-4e6ad0cf67dd",
+   "name": "Matha Rani Subrahmanyam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-42-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MATHA-2024-20240429064930.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202556/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0142.htm"
+  },
+  {
+   "constNo": 42,
+   "serial": 5,
+   "candidateId": "97615644-b3d9-53af-8c47-4a3db906d6ab",
+   "name": "Kota. Srinivas Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-42-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KOTA-2024-20240429065022.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202556/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0142.htm"
+  },
+  {
+   "constNo": 43,
+   "serial": 1,
+   "candidateId": "1aa74ecf-6420-539f-b4a9-18508719fba0",
+   "name": "Datla Subbaraju (buchibabu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-43-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/DATLA-2024-20240430122257.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202553/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0143.htm"
+  },
+  {
+   "constNo": 43,
+   "serial": 2,
+   "candidateId": "06b41d7f-406c-597c-a79d-733ea35896c3",
+   "name": "Ponnada Venkata Satish Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-43-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/PONNA-2024-20240430122035.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202553/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0143.htm"
+  },
+  {
+   "constNo": 43,
+   "serial": 3,
+   "candidateId": "89fa597d-cb1b-521d-9bf8-462a730d3c2d",
+   "name": "Bhimarao Vakapalli",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-43-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/VAKAP-2024-20240430122524.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202553/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0143.htm"
+  },
+  {
+   "constNo": 43,
+   "serial": 5,
+   "candidateId": "81358ec7-b633-567d-84b3-437cbee21159",
+   "name": "Palepu Dharma Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-43-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/PALEP-2024-20240430122057.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202553/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0143.htm"
+  },
+  {
+   "constNo": 44,
+   "serial": 1,
+   "candidateId": "7cb6cb08-d3ff-5d9f-931a-4d388959d330",
+   "name": "Aithabathula Anandarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-44-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/AITHA-2024-20240419124544.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202542/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0144.htm"
+  },
+  {
+   "constNo": 44,
+   "serial": 2,
+   "candidateId": "4d15a48e-f187-511c-ab0f-597a4b231595",
+   "name": "Viswarupu Pinipe",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-44-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VISWA-2024-20240422012348.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202542/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0144.htm"
+  },
+  {
+   "constNo": 44,
+   "serial": 4,
+   "candidateId": "4879f29e-871d-5bea-b240-dbd3b07403f0",
+   "name": "Mohan Babu Polamuri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-44-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MOHAN-2024-20240423013105.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202542/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0144.htm"
+  },
+  {
+   "constNo": 44,
+   "serial": 5,
+   "candidateId": "b79e9510-0699-52b2-933f-ef290ab13344",
+   "name": "Aithabathula Subhashini",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-44-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/AITHA-2024-20240423121956.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202542/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0144.htm"
+  },
+  {
+   "constNo": 45,
+   "serial": 1,
+   "candidateId": "d3d546ff-2dc6-5d3f-a9e4-f99cf42a0c71",
+   "name": "Deva Varaprasad",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-45-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/DEVAV-2024-20240430115610.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0145.htm"
+  },
+  {
+   "constNo": 45,
+   "serial": 2,
+   "candidateId": "e9e7c64f-b23e-5367-a68d-05e82e01af7a",
+   "name": "Gollapalli Surya Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-45-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/GOLLA-2024-20240430115647.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0145.htm"
+  },
+  {
+   "constNo": 45,
+   "serial": 4,
+   "candidateId": "6237af02-f694-5226-b9f1-330982898d89",
+   "name": "Sarella Prasanna Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-45-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SAREL-2024-20240424032948.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0145.htm"
+  },
+  {
+   "constNo": 45,
+   "serial": 5,
+   "candidateId": "13fbeeaf-da48-5c99-b57b-8e6ee28275dd",
+   "name": "Pulapakura Lilini Asha Rani",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-45-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/PULAP-2024-20240430120206.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0145.htm"
+  },
+  {
+   "constNo": 46,
+   "serial": 1,
+   "candidateId": "b6d68366-e826-51f2-be41-3ba13b9d9ba5",
+   "name": "Giddi. Satyanarayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-46-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SATYA-2024-20240422094015.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0146.htm"
+  },
+  {
+   "constNo": 46,
+   "serial": 2,
+   "candidateId": "069572c6-e970-537d-8411-9d6dc1c4ec97",
+   "name": "Vipparthi . Venugopalarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-46-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/VIPPA-2024-20240503093947.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0146.htm"
+  },
+  {
+   "constNo": 46,
+   "serial": 3,
+   "candidateId": "0f94ed46-6486-5586-b0cc-26a138400205",
+   "name": "Kollabathula Satyanarayana (satyam)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-46-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOLLA-2024-20240424065843.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0146.htm"
+  },
+  {
+   "constNo": 46,
+   "serial": 5,
+   "candidateId": "bfc901dd-84d3-540b-964f-26add81b892d",
+   "name": "Chittibabu Kondeti",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-46-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KONDE-2024-20240425112117.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0146.htm"
+  },
+  {
+   "constNo": 47,
+   "serial": 1,
+   "candidateId": "85270d07-0c14-5e34-b47b-f27568151127",
+   "name": "Bandaru Satyananda Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-47-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BANDA-2024-20240501042517.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0147.htm"
+  },
+  {
+   "constNo": 47,
+   "serial": 2,
+   "candidateId": "231f6d9b-03dd-5237-acb7-248c339eb517",
+   "name": "Chirla Jaggi Reddy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-47-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/CHIRL-2024-20240501042428.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0147.htm"
+  },
+  {
+   "constNo": 47,
+   "serial": 4,
+   "candidateId": "f16e8f1e-f85b-555b-871b-a8bf48a07713",
+   "name": "Eswara Rao Routhu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-47-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/ESWAR-2024-20240501042533.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0147.htm"
+  },
+  {
+   "constNo": 47,
+   "serial": 5,
+   "candidateId": "927b87b0-a4f2-5f22-9b7e-aeaf48db0239",
+   "name": "Bocha Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-47-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BOCHA-2024-20240501042609.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0147.htm"
+  },
+  {
+   "constNo": 48,
+   "serial": 1,
+   "candidateId": "0b3ee17e-7664-5f23-9642-80b6b37d9a77",
+   "name": "Jogeswara Rao.v",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-48-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VEGUL-2024-20240422024102.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0148.htm"
+  },
+  {
+   "constNo": 48,
+   "serial": 2,
+   "candidateId": "e5a92147-8b34-508d-8511-e8988b702395",
+   "name": "Thota Trimurthulu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-48-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/THOTA-2024-20240424084013.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0148.htm"
+  },
+  {
+   "constNo": 48,
+   "serial": 4,
+   "candidateId": "a84ec403-e6ab-5f43-a3b3-f4df94ef4014",
+   "name": "Kamana Prabhakara Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-48-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KAMAN-2024-20240427052010.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0148.htm"
+  },
+  {
+   "constNo": 48,
+   "serial": 5,
+   "candidateId": "4243ed5d-90c7-50ea-963a-30900089e53c",
+   "name": "Satyanarayana Marni",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-48-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SATYA-2024-20240418043210.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0148.htm"
+  },
+  {
+   "constNo": 49,
+   "serial": 1,
+   "candidateId": "80ff0bc1-bd11-5235-a8a5-edd48822d0cc",
+   "name": "Bathula Balaramakrishna S/o Gangarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-49-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BALAR-2024-20240427060610.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0149.htm"
+  },
+  {
+   "constNo": 49,
+   "serial": 2,
+   "candidateId": "f52b8d23-2a18-5f55-a1fd-ef5b506b753a",
+   "name": "Jakkampudi Raja",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-49-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/JAKKA-2024-20240429052935.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0149.htm"
+  },
+  {
+   "constNo": 49,
+   "serial": 4,
+   "candidateId": "c430062e-255a-5389-a4ab-c4076ad21994",
+   "name": "Mundru Venkata Srinivas(pedababu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-49-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MUNDR-2024-20240427060442.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0149.htm"
+  },
+  {
+   "constNo": 49,
+   "serial": 5,
+   "candidateId": "1696d974-964d-5cd0-a66f-b25216f1aab6",
+   "name": "Kothapalli Bhaskara Ramam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-49-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KOTHA-2024-20240429053151.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0149.htm"
+  },
+  {
+   "constNo": 50,
+   "serial": 1,
+   "candidateId": "efd30f06-e88d-5453-9a2d-34a27ea303e0",
+   "name": "Adireddy Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-50-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/ADIRE-2024-20240505124350.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0150.htm"
+  },
+  {
+   "constNo": 50,
+   "serial": 2,
+   "candidateId": "3d259b99-60df-56f2-886a-f5288f1e50ec",
+   "name": "Margani Bharat Ram",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-50-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MARGA-2024-20240430045119.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0150.htm"
+  },
+  {
+   "constNo": 50,
+   "serial": 3,
+   "candidateId": "a732dd72-12ed-5651-a3ba-379edc300840",
+   "name": "Boda Venkat",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-50-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BODAL-2024-20240422031213.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0150.htm"
+  },
+  {
+   "constNo": 50,
+   "serial": 5,
+   "candidateId": "35f30eef-0937-558a-950e-208a8c914f62",
+   "name": "Meda Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-50-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MEDAS-2024-20240420041559.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0150.htm"
+  },
+  {
+   "constNo": 51,
+   "serial": 1,
+   "candidateId": "1c3e564a-f54e-5cf8-a57f-a937e1ac29c7",
+   "name": "Gorantla Butchaiah Choudary",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-51-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BUTCH-2024-20240419051437.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202530/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0151.htm"
+  },
+  {
+   "constNo": 51,
+   "serial": 2,
+   "candidateId": "751ad0c6-0436-5fa1-a4b7-b566f14ec6e6",
+   "name": "Gopalakrishna Chelluboyina(venu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-51-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SRINI-2024-20240424010327.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202530/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0151.htm"
+  },
+  {
+   "constNo": 51,
+   "serial": 3,
+   "candidateId": "a08925a6-3a5d-580a-9220-9ad81d3c038e",
+   "name": "Balepalli Muralidhar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-51-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BALEP-2024-20240422031412.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202530/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0151.htm"
+  },
+  {
+   "constNo": 51,
+   "serial": 5,
+   "candidateId": "d5d9f02d-f5ba-5249-828f-02f5639da4e3",
+   "name": "Kondapalli Suribabu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-51-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KONDA-2024-20240425041006.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202530/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0151.htm"
+  },
+  {
+   "constNo": 52,
+   "serial": 1,
+   "candidateId": "08e92806-562a-59fd-a8d8-f36b4153332d",
+   "name": "Jyothula Nehru",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-52-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/JYOTH-2024-20240419034925.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202535/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0152.htm"
+  },
+  {
+   "constNo": 52,
+   "serial": 2,
+   "candidateId": "b1031b0b-6638-504c-b590-e1b4eaf4e9e5",
+   "name": "Thota Narasimham",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-52-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/THOTA-2024-20240423055918.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202535/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0152.htm"
+  },
+  {
+   "constNo": 52,
+   "serial": 3,
+   "candidateId": "db3601f4-12fc-5ad8-93da-9a0eb5a52c50",
+   "name": "Patamsetti Suryachandra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-52-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PATAM-2024-20240423054718.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202535/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0152.htm"
+  },
+  {
+   "constNo": 52,
+   "serial": 5,
+   "candidateId": "85962855-1012-5f9e-a49f-648a9a0c4d09",
+   "name": "Marothi Siva Ganesh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-52-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MAROT-2024-20240423053948.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202535/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0152.htm"
+  },
+  {
+   "constNo": 53,
+   "serial": 1,
+   "candidateId": "f3dee4c1-28a1-5d9d-affb-707db85b7457",
+   "name": "Miriyala Sirisha Devi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-53-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MIRIY-2024-20240501084718.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0153.htm"
+  },
+  {
+   "constNo": 53,
+   "serial": 2,
+   "candidateId": "92b20e93-d44f-594c-af9a-c8d7173c34ab",
+   "name": "Nagulapalli Dhanalakshmi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-53-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/NAGUL-2024-20240422031848.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0153.htm"
+  },
+  {
+   "constNo": 53,
+   "serial": 3,
+   "candidateId": "c46bdebd-4156-5350-a614-78e62169b784",
+   "name": "Lotha Ramarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-53-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/LOTHA-2024-20240422124609.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0153.htm"
+  },
+  {
+   "constNo": 53,
+   "serial": 5,
+   "candidateId": "e9f1055e-1e7b-56df-9a1f-bcd450353aa0",
+   "name": "Pallala Latchi Reddy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-53-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PALLA-2024-20240420120706.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202600/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0153.htm"
+  },
+  {
+   "constNo": 54,
+   "serial": 1,
+   "candidateId": "c4f24136-9cd7-5e67-9eeb-57bf80b5ef5e",
+   "name": "Muppidi Venkateswara Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-54-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MUPPI-2024-20240419061322.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0154.htm"
+  },
+  {
+   "constNo": 54,
+   "serial": 2,
+   "candidateId": "7f935739-1559-5dff-a01f-c9ef678c7182",
+   "name": "Talari Venkata Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-54-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VENKA-2024-20240418054217.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0154.htm"
+  },
+  {
+   "constNo": 54,
+   "serial": 4,
+   "candidateId": "2cd2eea6-879e-5867-b875-8e0b2290aff2",
+   "name": "Arigela Aruna Kumari",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-54-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ARIGE-2024-20240419062806.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0154.htm"
+  },
+  {
+   "constNo": 54,
+   "serial": 5,
+   "candidateId": "401bc848-a1a7-5e83-8c65-e965cd480b84",
+   "name": "Sekhar Babu Koyya",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-54-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SEKHA-2024-20240425072552.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0154.htm"
+  },
+  {
+   "constNo": 55,
+   "serial": 1,
+   "candidateId": "4c90cfe5-2c40-5f81-b1a2-df4f730b6993",
+   "name": "Kandula Durgesh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-55-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KANDU-2024-20240505024053.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0155.htm"
+  },
+  {
+   "constNo": 55,
+   "serial": 2,
+   "candidateId": "43478e3d-8d83-508f-843c-7ce3231dd186",
+   "name": "G.srinivas Naidu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-55-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/GSRI-2024-20240505022913.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0155.htm"
+  },
+  {
+   "constNo": 55,
+   "serial": 4,
+   "candidateId": "cbf29c0c-11ba-5f93-8216-875cc4edbcc4",
+   "name": "Kasturi Satya Prasad",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-55-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KASTU-2024-20240505023132.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0155.htm"
+  },
+  {
+   "constNo": 55,
+   "serial": 5,
+   "candidateId": "9ac01a84-b35d-5fbc-a9a5-07578ace8b65",
+   "name": "Kancherla Durgesh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-55-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KANCH-2024-20240505023828.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0155.htm"
+  },
+  {
+   "constNo": 56,
+   "serial": 1,
+   "candidateId": "3faad5f6-9331-5546-949f-60d6be2177af",
+   "name": "Satyanarayana Pithani",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-56-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SATYA-2024-20240419043853.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0156.htm"
+  },
+  {
+   "constNo": 56,
+   "serial": 2,
+   "candidateId": "8b3c1c66-1dc1-5556-8da5-5d88a0d9cc9f",
+   "name": "Cherukuvada Sri Ranganadha Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-56-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/CHERU-2024-20240419040326.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0156.htm"
+  },
+  {
+   "constNo": 56,
+   "serial": 3,
+   "candidateId": "b4c737f5-f672-5251-9de0-609af859a1ea",
+   "name": "Nekkanti Venkata Satyanarayana (satish)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-56-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/NVS-2024-20240425095248.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0156.htm"
+  },
+  {
+   "constNo": 56,
+   "serial": 5,
+   "candidateId": "4b3520dd-4f67-5c1f-9178-73fbb4d31edd",
+   "name": "Aluri Chinnarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-56-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/AALUR-2024-20240422021140.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202550/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0156.htm"
+  },
+  {
+   "constNo": 57,
+   "serial": 1,
+   "candidateId": "7c6bce9e-ce29-5d89-a010-21a0c7568107",
+   "name": "Dr.nimmala Ramanaidu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-57-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/NIMMA-2024-20240419061622.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202547/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0157.htm"
+  },
+  {
+   "constNo": 57,
+   "serial": 2,
+   "candidateId": "b77417e4-cde5-54cf-93c2-d24812cfdacd",
+   "name": "Gudala Sri Hari Gopala Rao (gudala Gopi)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-57-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GUDAL-2024-20240424045252.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202547/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0157.htm"
+  },
+  {
+   "constNo": 57,
+   "serial": 3,
+   "candidateId": "c1408d8f-5aa8-59f5-b947-0da1ad42ccd4",
+   "name": "Arjunarao Kolukuluri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-57-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ARJUN-2024-20240419045136.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202547/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0157.htm"
+  },
+  {
+   "constNo": 57,
+   "serial": 5,
+   "candidateId": "b2790775-6ec1-5467-af2c-4cad4cebab1f",
+   "name": "Eliya Kollabathula",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-57-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOLLA-2024-20240424052812.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202547/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0157.htm"
+  },
+  {
+   "constNo": 58,
+   "serial": 1,
+   "candidateId": "2044724c-8cd1-5333-a0a5-af65cba9f969",
+   "name": "Bommidi Nayakar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-58-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BOMMI-2024-20240422061327.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0158.htm"
+  },
+  {
+   "constNo": 58,
+   "serial": 2,
+   "candidateId": "2e07ca36-4c62-5036-b798-ebbfdccc31b3",
+   "name": "Mudunuri Prasada Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-58-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/NAGAR-2024-20240419063253.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0158.htm"
+  },
+  {
+   "constNo": 58,
+   "serial": 5,
+   "candidateId": "394bd4cc-780a-5174-81e6-0e655956f795",
+   "name": "Kolli Nayakar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-58-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOLLI-2024-20240425091144.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202611/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0158.htm"
+  },
+  {
+   "constNo": 59,
+   "serial": 1,
+   "candidateId": "3b1bd849-e814-5e9c-92fb-154deb5cb662",
+   "name": "Ramanjaneyulu Pulaparthi (anjibabu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-59-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/RAMAN-2024-20240424052122.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0159.htm"
+  },
+  {
+   "constNo": 59,
+   "serial": 2,
+   "candidateId": "3a352f60-4fcb-521c-a80f-96f8ec1d5e66",
+   "name": "Grandhi Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-59-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SRINI-2024-20240419040936.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0159.htm"
+  },
+  {
+   "constNo": 59,
+   "serial": 3,
+   "candidateId": "925eae26-2cd2-5c73-8ac9-67573b2e140a",
+   "name": "Ankem Seetaram",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-59-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ANKEM-2024-20240422053019.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0159.htm"
+  },
+  {
+   "constNo": 59,
+   "serial": 4,
+   "candidateId": "89dc2a69-eb91-5d45-bcab-393d31f6fb4f",
+   "name": "Pericherla Ramanjaneyulu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-59-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PERIC-2024-20240425090341.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0159.htm"
+  },
+  {
+   "constNo": 60,
+   "serial": 1,
+   "candidateId": "f9a9936b-b458-5d78-a5ea-c60523c3f9f0",
+   "name": "Kanumuru Raghu Rama Krishna Raju (r R R)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-60-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KANUM-2024-20240419045510.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202549/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0160.htm"
+  },
+  {
+   "constNo": 60,
+   "serial": 2,
+   "candidateId": "484e86a5-2eaa-51f5-8762-4f71ad77d432",
+   "name": "Penmetsa Venkata Lakshmi Narasimha Raju (p.v.l)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-60-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VENKA-2024-20240419052707.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202549/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0160.htm"
+  },
+  {
+   "constNo": 60,
+   "serial": 3,
+   "candidateId": "ee0fec28-4cee-50f0-81f8-3f9c696a0e79",
+   "name": "V V Siva Rama Raju (kalavapudi Siva)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-60-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/VVSIV-2024-20240429093904.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202549/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0160.htm"
+  },
+  {
+   "constNo": 60,
+   "serial": 5,
+   "candidateId": "02d1e285-33e9-5042-a5e6-ffb532e771a5",
+   "name": "Venkata Gopala Krishnam Raju Vegesna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-60-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/VENKA-2024-20240419022521.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202549/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0160.htm"
+  },
+  {
+   "constNo": 61,
+   "serial": 1,
+   "candidateId": "dc8ef0dc-3c89-54bf-a670-37e4d576b463",
+   "name": "Arimilli Radha Krishna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-61-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ARIMI-2024-20240419040540.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202557/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0161.htm"
+  },
+  {
+   "constNo": 61,
+   "serial": 2,
+   "candidateId": "de1667aa-12ce-5f2a-a64e-a0c3809af3cd",
+   "name": "Karumuri Venkata Nageswara Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-61-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KARUM-2024-20240430094957.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202557/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0161.htm"
+  },
+  {
+   "constNo": 61,
+   "serial": 3,
+   "candidateId": "8cc5ba79-861b-5569-8f9e-75e02e37b9c1",
+   "name": "Kadali Rama Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-61-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KADAL-2024-20240422031109.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202557/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0161.htm"
+  },
+  {
+   "constNo": 61,
+   "serial": 5,
+   "candidateId": "791d3811-e3ca-55a6-becb-de62a56c1f89",
+   "name": "Akumarthi Dhanumjaya",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-61-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/AKUMA-2024-20240422032705.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202557/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0161.htm"
+  },
+  {
+   "constNo": 62,
+   "serial": 1,
+   "candidateId": "36318108-e57b-5b6d-a094-33ffee52f912",
+   "name": "Bolisetty Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-62-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BOLIS-2024-20240419034037.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0162.htm"
+  },
+  {
+   "constNo": 62,
+   "serial": 2,
+   "candidateId": "fd6b34e8-b5be-5103-b630-f5e54bcaf456",
+   "name": "Kottu Satyanarayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-62-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOTTU-2024-20240425070031.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0162.htm"
+  },
+  {
+   "constNo": 62,
+   "serial": 3,
+   "candidateId": "70681ba1-9812-56ce-bd57-04f2903e3fde",
+   "name": "Marneedi. Sekhar (babji)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-62-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MARNE-2024-20240424013335.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0162.htm"
+  },
+  {
+   "constNo": 62,
+   "serial": 5,
+   "candidateId": "e92d12cf-006d-5f7b-b520-999462d40054",
+   "name": "P.s.r. Krishna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-62-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PALLA-2024-20240425063912.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202610/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0162.htm"
+  },
+  {
+   "constNo": 63,
+   "serial": 1,
+   "candidateId": "c76e2475-febe-5d67-a962-04d225dbcb92",
+   "name": "Dharmaraju Patsamatla",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-63-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/PATSA-2024-20240420023924.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0163.htm"
+  },
+  {
+   "constNo": 63,
+   "serial": 2,
+   "candidateId": "9530732b-2117-56b0-b507-d94481dacfc2",
+   "name": "Puppala Srinivasa Rao (vasu Babu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-63-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/PUPPA-2024-20240425082116.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0163.htm"
+  },
+  {
+   "constNo": 63,
+   "serial": 3,
+   "candidateId": "7cf7df9b-3485-51b5-a7f1-0b12f0dd1095",
+   "name": "Pathapati Hari Kumara Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-63-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PATHA-2024-20240422123102.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0163.htm"
+  },
+  {
+   "constNo": 63,
+   "serial": 5,
+   "candidateId": "6c62bbfa-d561-553f-9174-7a15ea2e4ba5",
+   "name": "Bunga Yesu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-63-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BUNGA-2024-20240423064929.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202613/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0163.htm"
+  },
+  {
+   "constNo": 64,
+   "serial": 1,
+   "candidateId": "07a9dea7-e85d-552d-bb4d-77dbd8be8f3b",
+   "name": "Chintamaneni Prabhakar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-64-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/CHINT-2024-20240422050226.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0164.htm"
+  },
+  {
+   "constNo": 64,
+   "serial": 2,
+   "candidateId": "27087fea-073d-5c8e-9c9d-e4d31fbeb842",
+   "name": "Abbaya Chowdary Kotharu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-64-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ABBAY-2024-20240419034154.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0164.htm"
+  },
+  {
+   "constNo": 64,
+   "serial": 4,
+   "candidateId": "cde90904-3ac5-5564-bf49-1a657cfef8cf",
+   "name": "Alapati Narasimha Murthy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-64-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ALAPA-2024-20240418033751.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0164.htm"
+  },
+  {
+   "constNo": 64,
+   "serial": 5,
+   "candidateId": "85923bf6-bdc5-56f3-8283-08823eb46d45",
+   "name": "Netala Ramesh Babu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-64-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/NETAL-2024-20240422055022.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0164.htm"
+  },
+  {
+   "constNo": 65,
+   "serial": 1,
+   "candidateId": "33c33b12-7783-5e1a-ada3-951f0648539b",
+   "name": "Badeti Radha Krishnayya (chanti)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-65-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/RADHA-2024-20240423023058.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202552/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0165.htm"
+  },
+  {
+   "constNo": 65,
+   "serial": 2,
+   "candidateId": "55870810-701b-53de-87f9-75345995e604",
+   "name": "Alla Kali Krishna Srinivas (alla Nani)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-65-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/ALLAK-2024-20240418045025.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202552/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0165.htm"
+  },
+  {
+   "constNo": 65,
+   "serial": 3,
+   "candidateId": "ee9ff333-ab51-5bde-b3d8-c003e60c8c0a",
+   "name": "Mathe Bobby",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-65-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MATHE-2024-20240425122307.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202552/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0165.htm"
+  },
+  {
+   "constNo": 65,
+   "serial": 5,
+   "candidateId": "4fb5af99-424b-5dfc-9518-65ad6b6fb93f",
+   "name": "Alluri Satyanarayana Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-65-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ALLUR-2024-20240424124558.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202552/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0165.htm"
+  },
+  {
+   "constNo": 66,
+   "serial": 1,
+   "candidateId": "e7e826ac-737a-5100-8056-9f579daaa7b1",
+   "name": "Maddipati Venkata Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-66-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MADDI-2024-20240505031128.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0166.htm"
+  },
+  {
+   "constNo": 66,
+   "serial": 2,
+   "candidateId": "5b3e89c1-3aae-5367-9637-04c959d0e9a1",
+   "name": "Taneti Vanita",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-66-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/TANET-2024-20240505031255.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0166.htm"
+  },
+  {
+   "constNo": 66,
+   "serial": 4,
+   "candidateId": "1661a97a-386c-5312-9625-bb89b5d2dba9",
+   "name": "Sodadasi Martin Luther",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-66-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/SODAD-2024-20240505031421.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0166.htm"
+  },
+  {
+   "constNo": 66,
+   "serial": 5,
+   "candidateId": "c686c54c-9d56-5879-925b-637f57a7ff4e",
+   "name": "Bharatha Rao Sirra (bharath)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-66-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BHARA-2024-20240505031321.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0166.htm"
+  },
+  {
+   "constNo": 67,
+   "serial": 1,
+   "candidateId": "c38cb8d2-b461-5844-b6cf-cfb77bd5d380",
+   "name": "Chirri Balaraju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-67-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/CHIRR-2024-20240418053031.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0167.htm"
+  },
+  {
+   "constNo": 67,
+   "serial": 2,
+   "candidateId": "cc2f6926-383c-54b8-ac83-f50cffc109d7",
+   "name": "Tellam Rajya Lakshmi",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-67-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/TELLA-2024-20240424033242.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0167.htm"
+  },
+  {
+   "constNo": 67,
+   "serial": 4,
+   "candidateId": "a62593b1-43c3-55b8-9e8a-839eff36f69b",
+   "name": "Sariyam Ram Mohan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-67-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SARIY-2024-20240422025406.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0167.htm"
+  },
+  {
+   "constNo": 67,
+   "serial": 5,
+   "candidateId": "77cb5e0d-2716-5fbc-b5eb-39b839a1311d",
+   "name": "Kaka Krishna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-67-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KAKAK-2024-20240423050049.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0167.htm"
+  },
+  {
+   "constNo": 68,
+   "serial": 1,
+   "candidateId": "36a766fb-a210-513c-820d-1ed604f29d29",
+   "name": "Roshan Kumar Songa",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-68-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ROSHA-2024-20240422044844.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0168.htm"
+  },
+  {
+   "constNo": 68,
+   "serial": 2,
+   "candidateId": "00850490-7e94-5c6b-b1f4-459073602c18",
+   "name": "Kambham Vijaya Raju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-68-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KAMBH-2024-20240420053017.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0168.htm"
+  },
+  {
+   "constNo": 68,
+   "serial": 3,
+   "candidateId": "5b4a9162-ee6f-5a8f-8caf-d6885c07101d",
+   "name": "Vunnamatla Rakada Eliza",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-68-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ELIZA-2024-20240423013127.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0168.htm"
+  },
+  {
+   "constNo": 68,
+   "serial": 5,
+   "candidateId": "80c186b6-f556-5b15-9138-9dd9228776c1",
+   "name": "Esther Rani Muvvala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-68-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ESTHE-2024-20240423012717.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202538/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0168.htm"
+  },
+  {
+   "constNo": 69,
+   "serial": 1,
+   "candidateId": "63a28604-c35a-5927-b661-379452c5f2e8",
+   "name": "Kolikapudi Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-69-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOLIK-2024-20240422034257.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0169.htm"
+  },
+  {
+   "constNo": 69,
+   "serial": 2,
+   "candidateId": "4d3a984e-be1c-5984-8e60-14dcb6da12e4",
+   "name": "Nallagatla Swamy Das",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-69-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/NALLA-2024-20240418020157.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0169.htm"
+  },
+  {
+   "constNo": 69,
+   "serial": 3,
+   "candidateId": "611c0b24-2b8e-5144-b941-db959e768907",
+   "name": "Lam Thantiya Kumari",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-69-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/LAMTH-2024-20240424012815.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0169.htm"
+  },
+  {
+   "constNo": 69,
+   "serial": 5,
+   "candidateId": "63a0fe60-752e-5bc1-a911-d48e6928a7d9",
+   "name": "Lakkepogu Vandana Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-69-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/LAKKE-2024-20240420022915.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202554/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0169.htm"
+  },
+  {
+   "constNo": 70,
+   "serial": 1,
+   "candidateId": "41efc262-38f7-5fae-a7b3-f79f86bc10e6",
+   "name": "Kolusu Partha Sarathy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-70-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/KOLUS-2024-20240422051651.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202531/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0170.htm"
+  },
+  {
+   "constNo": 70,
+   "serial": 2,
+   "candidateId": "327da2ed-2d73-51ad-bc5f-2f6d57ee0787",
+   "name": "Meka Venkata Pratap Apparao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-70-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VENKA-2024-20240419011901.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202531/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0170.htm"
+  },
+  {
+   "constNo": 70,
+   "serial": 4,
+   "candidateId": "c2a818e1-594a-55dd-9cb9-a881cd57028f",
+   "name": "Mareedu. Krishna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-70-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MAREE-2024-20240426125714.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202531/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0170.htm"
+  },
+  {
+   "constNo": 70,
+   "serial": 5,
+   "candidateId": "c2632aa8-0c07-5029-b573-5c270a284789",
+   "name": "Chaliganti Venkatesh (doctor)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-70-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/CHALI-2024-20240424081044.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202531/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0170.htm"
+  },
+  {
+   "constNo": 71,
+   "serial": 1,
+   "candidateId": "69a080ec-300f-5e65-b02e-46ecf5a55bbe",
+   "name": "Yarlagadda Venkata Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-71-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/YARLA-2024-20240418054631.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202555/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0171.htm"
+  },
+  {
+   "constNo": 71,
+   "serial": 2,
+   "candidateId": "ec3a3091-1a59-57c6-a9d5-8a4c119e678b",
+   "name": "Vamsi Vallabhaneni",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-71-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VALLA-2024-20240420060417.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202555/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0171.htm"
+  },
+  {
+   "constNo": 71,
+   "serial": 4,
+   "candidateId": "b2363b35-a793-54db-99ee-7862ac8d7bbb",
+   "name": "Kallam Venkateswararao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-71-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KALLA-2024-20240423054043.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202555/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0171.htm"
+  },
+  {
+   "constNo": 71,
+   "serial": 5,
+   "candidateId": "5fa78f57-0410-5fda-b772-3f7532f0a7fa",
+   "name": "Tadanki Jagdish Ramachandrarao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-71-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/TADAN-2024-20240424100812.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202555/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0171.htm"
+  },
+  {
+   "constNo": 72,
+   "serial": 1,
+   "candidateId": "8f3a33ca-055f-5d90-a749-0a7b4e89fdf4",
+   "name": "Venigandla Ramu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-72-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VENIG-2024-20240422070613.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202536/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0172.htm"
+  },
+  {
+   "constNo": 72,
+   "serial": 2,
+   "candidateId": "7af1537b-9df6-5df1-aa2c-207c83a93266",
+   "name": "Kodali Sri Venkateswara Rao (nani)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-72-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KODAL-2024-20240422055116.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202536/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0172.htm"
+  },
+  {
+   "constNo": 72,
+   "serial": 3,
+   "candidateId": "22c896a5-1196-5f88-a2a1-ef6f6671f359",
+   "name": "Vaddadi Govinda Rao (rajesh)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-72-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VADDA-2024-20240419050513.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202536/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0172.htm"
+  },
+  {
+   "constNo": 72,
+   "serial": 5,
+   "candidateId": "50df5067-01aa-54ac-93e1-4e72ca53659e",
+   "name": "Avula Praveen Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-72-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/AVULA-2024-20240425072010.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202536/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0172.htm"
+  },
+  {
+   "constNo": 73,
+   "serial": 1,
+   "candidateId": "39e41844-f8fa-520f-9104-af736ccf747b",
+   "name": "Kamineni Srinivas",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-73-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KAMIN-2024-20240423040838.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202604/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0173.htm"
+  },
+  {
+   "constNo": 73,
+   "serial": 2,
+   "candidateId": "ed157e5a-acb8-5a27-8db5-2e2be174e6c4",
+   "name": "Dulam Nageswara Rao (dnr)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-73-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/DULAM-2024-20240422043613.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202604/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0173.htm"
+  },
+  {
+   "constNo": 73,
+   "serial": 3,
+   "candidateId": "8d3d6dfa-2901-5ef5-b038-baefad4561ea",
+   "name": "Boddu Noble",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-73-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BODDU-2024-20240501033426.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202604/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0173.htm"
+  },
+  {
+   "constNo": 73,
+   "serial": 5,
+   "candidateId": "1f5da0c0-af01-59c1-9e45-14ade7dfcd1b",
+   "name": "Madasu Satyanarayana",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-73-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/MADAS-2024-20240501033749.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202604/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0173.htm"
+  },
+  {
+   "constNo": 74,
+   "serial": 1,
+   "candidateId": "ee3dd3da-244a-5c75-a4a0-fcee10f58195",
+   "name": "Kagitha Krishnaprasad",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-74-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KAGIT-2024-20240422033216.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0174.htm"
+  },
+  {
+   "constNo": 74,
+   "serial": 2,
+   "candidateId": "2bafc059-49de-5e5e-9b17-d237020293aa",
+   "name": "Uppala Ramesh(ramu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-74-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/UPPAL-2024-20240424033155.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0174.htm"
+  },
+  {
+   "constNo": 74,
+   "serial": 3,
+   "candidateId": "d694e648-d367-59c5-988d-6990931f28ad",
+   "name": "Sonti. Nagaraju",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-74-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SONTI-2024-20240422030712.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0174.htm"
+  },
+  {
+   "constNo": 74,
+   "serial": 5,
+   "candidateId": "f47111ff-11c7-5364-bf0c-69947c2f952e",
+   "name": "S.v. Babu",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-74-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SAMME-2024-20240420023037.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202601/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0174.htm"
+  },
+  {
+   "constNo": 75,
+   "serial": 1,
+   "candidateId": "ffbc4c86-a140-5d0f-854e-8c19f9c08352",
+   "name": "Kollu. Ravindra",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-75-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KOLLU-2024-20240424040308.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202555/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0175.htm"
+  },
+  {
+   "constNo": 75,
+   "serial": 2,
+   "candidateId": "9fd69251-d331-57fd-a99b-fa3960330800",
+   "name": "Perni Krishnamurthy (kittu)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-75-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PERNI-2024-20240422015327.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202555/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0175.htm"
+  },
+  {
+   "constNo": 75,
+   "serial": 3,
+   "candidateId": "9ef43ec4-2947-56b2-a64b-eace2c2478d1",
+   "name": "Abdul Mateen",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-75-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ABDUL-2024-20240424043101.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202555/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0175.htm"
+  },
+  {
+   "constNo": 75,
+   "serial": 5,
+   "candidateId": "aaf973c9-06a3-5da5-96c5-c0debe49bd3d",
+   "name": "Kona Nagarjuna",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-75-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/KONAN-2024-20240422034945.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202555/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0175.htm"
+  },
+  {
+   "constNo": 76,
+   "serial": 1,
+   "candidateId": "6970860c-fb31-59e0-86e0-7503253b5720",
+   "name": "Buddhaprasad Mandali",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-76-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BUDDH-2024-20240422041412.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0176.htm"
+  },
+  {
+   "constNo": 76,
+   "serial": 2,
+   "candidateId": "bbf37d08-f3b2-5808-81f8-01e71e5fc927",
+   "name": "Ramesh Babu Simhadri",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-76-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/RAMES-2024-20240424060531.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0176.htm"
+  },
+  {
+   "constNo": 76,
+   "serial": 4,
+   "candidateId": "fa708133-e252-5054-a675-e3e39b783301",
+   "name": "Ande Sri Ramamurthy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-76-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SRIRA-2024-20240424050618.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0176.htm"
+  },
+  {
+   "constNo": 76,
+   "serial": 5,
+   "candidateId": "e369c1a8-6e57-5130-8e46-df1596dcccaf",
+   "name": "Boyina Buddaprasad",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-76-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BOYIN-2024-20240425095526.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202609/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0176.htm"
+  },
+  {
+   "constNo": 77,
+   "serial": 1,
+   "candidateId": "1b12944c-6291-5164-b022-3955b92b9212",
+   "name": "Kumar Raja Varla",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-77-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VARLA-2024-20240418034449.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0177.htm"
+  },
+  {
+   "constNo": 77,
+   "serial": 2,
+   "candidateId": "d1ee7d2c-ae24-57a8-862c-01c11c6b7a44",
+   "name": "Anil Kumar Kaile",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-77-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ANILK-2024-20240422030357.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0177.htm"
+  },
+  {
+   "constNo": 77,
+   "serial": 3,
+   "candidateId": "da3f393c-2779-59be-9b25-27722a0d4b6f",
+   "name": "D Y Das",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-77-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/DOVAR-2024-20240424044357.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0177.htm"
+  },
+  {
+   "constNo": 77,
+   "serial": 5,
+   "candidateId": "6d23757b-a0ab-57cf-9e97-0260cab572db",
+   "name": "M Raja Manohar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-77-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MANGA-2024-20240423034947.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202546/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0177.htm"
+  },
+  {
+   "constNo": 78,
+   "serial": 1,
+   "candidateId": "81b73cc2-63d4-5aeb-a616-08ee54185b59",
+   "name": "Bode Prasad",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-78-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/BODEP-2024-20240429055818.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202534/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0178.htm"
+  },
+  {
+   "constNo": 78,
+   "serial": 2,
+   "candidateId": "ab6697aa-b929-5f6c-ab1e-d86d4d0bfce4",
+   "name": "Jogi Ramesh",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-78-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/JOGIR-2024-20240424064633.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202534/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0178.htm"
+  },
+  {
+   "constNo": 78,
+   "serial": 3,
+   "candidateId": "df842657-cf74-589c-8f0f-10d84af7f3eb",
+   "name": "Elisala Subramanyam",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-78-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SUBRA-2024-20240425011634.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202534/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0178.htm"
+  },
+  {
+   "constNo": 78,
+   "serial": 5,
+   "candidateId": "a6def4e0-7244-5323-a6f8-d0f85b3e363f",
+   "name": "Somu Maheswara Rao (mahesh Yadav)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-78-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SOMUM-2024-20240422053910.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202534/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0178.htm"
+  },
+  {
+   "constNo": 79,
+   "serial": 1,
+   "candidateId": "1fd56979-6a6c-5236-bfab-2b14ab1c4e35",
+   "name": "Yalamanchili Satyanarayana Chowdary (sujana Chowdary)",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-79-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/SATYA-2024-20240418030955.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202606/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0179.htm"
+  },
+  {
+   "constNo": 79,
+   "serial": 2,
+   "candidateId": "3fc96b5c-05bf-5b6f-b55c-46c4577a8301",
+   "name": "Asif Shaik",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-79-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/ASIFS-2024-20240419054458.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202606/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0179.htm"
+  },
+  {
+   "constNo": 79,
+   "serial": 3,
+   "candidateId": "5cea7428-ea26-588c-a169-5007da0011d8",
+   "name": "Koteswara Rao Gummadidala",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-79-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/GUMMA-2024-20240419055156.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202606/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0179.htm"
+  },
+  {
+   "constNo": 79,
+   "serial": 5,
+   "candidateId": "d1392dca-6d74-5bbe-b543-8409ea2adfe0",
+   "name": "Maddirala Vinod Kumar",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-79-5.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/MADDI-2024-20240422044947.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202606/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0179.htm"
+  },
+  {
+   "constNo": 80,
+   "serial": 1,
+   "candidateId": "24041b50-2ec4-54be-b00b-884782bd392e",
+   "name": "Bonda Umamaheswararao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-80-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/BONDA-2024-20240419035215.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0180.htm"
+  },
+  {
+   "constNo": 80,
+   "serial": 2,
+   "candidateId": "0ff9db5d-7594-5cb5-a0f0-66a2224a347e",
+   "name": "Velampalli Srinivasa Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-80-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/VELAM-2024-20240422010424.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0180.htm"
+  },
+  {
+   "constNo": 80,
+   "serial": 3,
+   "candidateId": "87cae506-a915-5b1a-ba8d-a939bfed6fc3",
+   "name": "Chigurupati Babu Rao",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-80-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/CHIGU-2024-20240419044741.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0180.htm"
+  },
+  {
+   "constNo": 80,
+   "serial": 4,
+   "candidateId": "f3671071-7b8a-5f46-9f03-302148c0cac5",
+   "name": "Gollapalli Sree Phani Raj",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-80-4.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/PHANI-2024-20240422024717.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202559/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0180.htm"
+  },
+  {
+   "constNo": 81,
+   "serial": 1,
+   "candidateId": "d0bf97cf-fe00-5195-ac19-1ea6e9e03d6b",
+   "name": "Gadde Rama Mohan",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-81-1.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/S01/GADDE-2024-20240429054820.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202551/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0181.htm"
+  },
+  {
+   "constNo": 81,
+   "serial": 2,
+   "candidateId": "d50eb2fb-612d-59f4-b33b-d9f4c1e21f41",
+   "name": "Avinash Devineni",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-81-2.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/AVINA-2024-20240424122643.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202551/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0181.htm"
+  },
+  {
+   "constNo": 81,
+   "serial": 3,
+   "candidateId": "bb08d894-ca19-5290-8f36-b77ceab9f512",
+   "name": "Dasharath Kunapareddy",
+   "url": "https://matdaanpulse-media.s3.ap-south-1.amazonaws.com/persons/eci2024/ap-81-3.jpg",
+   "eciUrl": "https://results.eci.gov.in/uploads1/candprofile/E24/2024/AC/s01/DASHA-2024-20240425041934.jpg",
+   "sourceUrl": "https://web.archive.org/web/20251106202551/https://results.eci.gov.in/AcResultGenJune2024/candidateswise-S0181.htm"
+  }
+ ],
+ "unmatched": [
+  "seat 58: Kanuri U.b.k Prasad(bujji) (INC, 1915)"
+ ]
+}

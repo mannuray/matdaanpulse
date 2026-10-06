@@ -43,8 +43,8 @@ async function main() {
   // A leader may have contested for a party their unit's party came from (or broke away from): any direct lineage edge.
   const related = (a: string) => (b: string) => lineage.some(l => (l.party_id === a && l.predecessor_id === b) || (l.party_id === b && l.predecessor_id === a));
   let linked = 0, roles = 0;
-  const candidateFor = (name: string, code: string, party: string) => {
-    roles++; const c = pickCandidate(candidatesOf(code), name, party, related(party)); if (c) linked++; return c;
+  const candidateFor = (name: string, code: string, party: string, ballot?: string) => {
+    roles++; const c = pickCandidate(candidatesOf(code), name, party, related(party), ballot); if (c) linked++; return c;
   };
   for (const [seed, units] of bySeed) fs.writeFileSync(path.join(DB, `${seed}.sql`), emitUnitsSeed(units, parties, states, candidateFor, seed));
   console.log(`lineage: ${lineage.length} events · units: ${[...bySeed].map(([k, u]) => `${k.replace('seed_party_units_', '')} ${u.length}`).join(', ')} · roles: ${roles} (${linked} linked to a person)`);

@@ -1,0 +1,129 @@
+[
+ {
+  "party_id": "TDP",
+  "state_code": "AP",
+  "eci_recognition": "State",
+  "office": "N. T. R. Bhavan, Mangalagiri, Andhra Pradesh",
+  "website": "https://www.telugudesam.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Palla Srinivasa Rao",
+    "from_date": "2024-06-14",
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/cities/Visakhapatnam/gajuwaka-mla-elect-palla-srinivasa-rao-made-tdp-ap-president/article68289667.ece"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Kinjarapu Atchannaidu",
+    "from_date": null,
+    "to_date": "2024-06-14",
+    "source_url": "https://www.thehindu.com/news/cities/Visakhapatnam/gajuwaka-mla-elect-palla-srinivasa-rao-made-tdp-ap-president/article68289667.ece"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "N. Chandrababu Naidu",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/national/andhra-pradesh/nda-unanimously-elects-chandrababu-naidu-leader-of-the-house-chief-minister/article68276248.ece",
+    "ballot_name": "Chandrababu Naidu Nara"
+   }
+  ]
+ },
+ {
+  "party_id": "YSRCP",
+  "state_code": "AP",
+  "eci_recognition": "State",
+  "office": "Plot no. 13, Suryadevara Township, Tadepalli, Guntur district, Andhra Pradesh 522501",
+  "website": "https://www.ysrcongress.com",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Y. S. Jagan Mohan Reddy",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://timesofindia.indiatimes.com/city/hyderabad/ysr-congress-is-now-jagans-party/articleshow/7505072.cms",
+    "ballot_name": "Ys Jagan Mohan Reddy"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Y. S. Jagan Mohan Reddy",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/16th_Andhra_Pradesh_Assembly",
+    "ballot_name": "Ys Jagan Mohan Reddy"
+   }
+  ]
+ },
+ {
+  "party_id": "JP",
+  "state_code": "AP",
+  "eci_recognition": "State",
+  "office": "Mangalagiri, Guntur district, Andhra Pradesh",
+  "website": "https://www.janasenaparty.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Pawan Kalyan",
+    "from_date": "2014-03-14",
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Janasena_Party",
+    "ballot_name": "Konidala Pawan Kalyan"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Pawan Kalyan",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/national/andhra-pradesh/nda-unanimously-elects-chandrababu-naidu-leader-of-the-house-chief-minister/article68276248.ece",
+    "ballot_name": "Konidala Pawan Kalyan"
+   }
+  ]
+ },
+ {
+  "party_id": "BJP",
+  "state_code": "AP",
+  "eci_recognition": "National",
+  "office": "BJP State Office, Vijayawada, Andhra Pradesh",
+  "website": "https://www.bjp.org/andhra-pradesh",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "P. V. N. Madhav",
+    "from_date": "2025-07-01",
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/national/andhra-pradesh/pvn-madhav-takes-charge-as-bjp-ap-unit-president-promises-to-strengthen-nda/article69760179.ece"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Daggubati Purandeswari",
+    "from_date": null,
+    "to_date": "2025-07-01",
+    "source_url": "https://www.thehindu.com/news/national/andhra-pradesh/pvn-madhav-takes-charge-as-bjp-ap-unit-president-promises-to-strengthen-nda/article69760179.ece"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "AP",
+  "eci_recognition": "National",
+  "office": "Andhra Ratna Bhavan, Vijayawada, Andhra Pradesh",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Y. S. Sharmila",
+    "from_date": "2024-01-16",
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/national/andhra-pradesh/ys-sharmila-appointed-ap-congress-president/article67744491.ece"
+   },
+   {
+    "role": "state_president",
+    "person_name": "Gidugu Rudra Raju",
+    "from_date": null,
+    "to_date": "2024-01-16",
+    "source_url": "https://www.thehindu.com/news/national/andhra-pradesh/ys-sharmila-appointed-ap-congress-president/article67744491.ece"
+   }
+  ]
+ }
+]

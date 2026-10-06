@@ -1,0 +1,116 @@
+[
+ {
+  "id": "TDP",
+  "name": "Telugu Desam Party",
+  "abbreviation": "TDP",
+  "eci_recognition": "State",
+  "founded_year": 1982,
+  "leader_name": "N. Chandrababu Naidu",
+  "headquarters": "N. T. R. Bhavan, Mangalagiri, Andhra Pradesh",
+  "website": "https://www.telugudesam.org",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Telugu_Desam_Party",
+  "color": "#FFED00",
+  "description": "A Telugu regional party founded in March 1982 by the film actor N. T. Rama Rao, which formed its first government in undivided Andhra Pradesh in 1983; N. Chandrababu Naidu has led it since 1995. After the state's bifurcation it governed the new Andhra Pradesh from 2014 to 2019 and then lost to the YSR Congress Party. In 2024, contesting with the Jana Sena Party and the BJP as the NDA, it won 135 of 175 seats on its own (the alliance took 164), and Naidu returned as Chief Minister.",
+  "eci_symbol": "Bicycle",
+  "logo": {
+   "file": "TDP-logo.png",
+   "commons": "File:Telugu Desam Party Flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Telugu_Desam_Party_Flag.png",
+   "author": "456legend",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "TDP-eci.png",
+   "commons": "File:Indian Election Symbol Cycle.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Cycle.png",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Telugu_Desam_Party",
+   "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+   "https://en.wikipedia.org/wiki/2024_Andhra_Pradesh_Legislative_Assembly_election",
+   "https://en.wikipedia.org/wiki/Module:Political_party/T",
+   "https://www.thehindu.com/news/national/andhra-pradesh/nda-unanimously-elects-chandrababu-naidu-leader-of-the-house-chief-minister/article68276248.ece",
+   "https://commons.wikimedia.org/wiki/File:Telugu_Desam_Party_Flag.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Cycle.png"
+  ]
+ },
+ {
+  "id": "YSRCP",
+  "name": "Yuvajana Sramika Rythu Congress Party",
+  "abbreviation": "YSRCP",
+  "eci_recognition": "State",
+  "founded_year": 2011,
+  "leader_name": "Y. S. Jagan Mohan Reddy",
+  "headquarters": "Plot no. 13, Suryadevara Township, Tadepalli, Guntur district, Andhra Pradesh 522501",
+  "website": "https://www.ysrcongress.com",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/YSR_Congress_Party",
+  "color": "#1569C7",
+  "description": "A regional party formed in March 2011 by Y. S. Jagan Mohan Reddy after he left the Congress following the death of his father, Chief Minister Y. S. Rajasekhara Reddy; it took over a party first registered by a supporter, K. Shiva Kumar. It was the main opposition from 2014 and won 151 of 175 seats in 2019, when Jagan became Chief Minister. In 2024 it fell to 11 seats against the TDP-led NDA, short of the number needed for Leader of the Opposition status.",
+  "eci_symbol": "Ceiling Fan",
+  "logo": null,
+  "eci_image": {
+   "file": "YSRCP-eci.svg",
+   "commons": "File:Indian Election Symbol Ceiling Fan.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Ceiling_Fan.svg",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/YSR_Congress_Party",
+   "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+   "https://en.wikipedia.org/wiki/2024_Andhra_Pradesh_Legislative_Assembly_election",
+   "https://en.wikipedia.org/wiki/16th_Andhra_Pradesh_Assembly",
+   "https://en.wikipedia.org/wiki/Module:Political_party/Y",
+   "https://timesofindia.indiatimes.com/city/hyderabad/ysr-congress-is-now-jagans-party/articleshow/7505072.cms",
+   "https://www.ysrcongress.com/en",
+   "https://commons.wikimedia.org/wiki/File:YSRCPLOGO.jpg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Ceiling_Fan.svg"
+  ]
+ },
+ {
+  "id": "JP",
+  "name": "Jana Sena Party",
+  "abbreviation": "JSP",
+  "eci_recognition": "State",
+  "founded_year": 2014,
+  "leader_name": "Pawan Kalyan",
+  "headquarters": "Mangalagiri, Guntur district, Andhra Pradesh",
+  "website": "https://www.janasenaparty.org",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Janasena_Party",
+  "color": "#E8232A",
+  "description": "A regional party founded in March 2014 by the Telugu film actor Pawan Kalyan; it backed the TDP and BJP in 2014 without contesting, and won a single seat in 2019, when it fought alongside the BSP, CPI and CPI(M). In 2024 it contested 21 seats in the NDA alliance with the TDP and BJP and won all 21 of 175, and Pawan Kalyan became Deputy Chief Minister. The Election Commission recognised it as a state party in January 2025 and reserved its glass tumbler symbol.",
+  "eci_symbol": "Glass Tumbler",
+  "logo": {
+   "file": "JP-logo.png",
+   "commons": "File:Janasena Party Flag.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Janasena_Party_Flag.png",
+   "author": "456legend",
+   "licence": "CC BY-SA 4.0"
+  },
+  "eci_image": {
+   "file": "JP-eci.svg",
+   "commons": "File:Indian election symbol glass tumbler.svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_glass_tumbler.svg",
+   "author": "Eelelectric25",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": false,
+  "current_eci_ok": false,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Janasena_Party",
+   "https://en.wikipedia.org/wiki/List_of_political_parties_in_India",
+   "https://en.wikipedia.org/wiki/2024_Andhra_Pradesh_Legislative_Assembly_election",
+   "https://en.wikipedia.org/wiki/Module:Political_party/J",
+   "https://www.hindustantimes.com/india-news/ec-designates-jana-sena-as-recognised-regional-political-party-101737573017969.html",
+   "https://www.thehindu.com/news/national/andhra-pradesh/nda-unanimously-elects-chandrababu-naidu-leader-of-the-house-chief-minister/article68276248.ece",
+   "https://commons.wikimedia.org/wiki/File:Janasena_Party_Flag.png",
+   "https://commons.wikimedia.org/wiki/File:Indian_election_symbol_glass_tumbler.svg"
+  ]
+ }
+]

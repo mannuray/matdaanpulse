@@ -1,0 +1,686 @@
+{
+ "people": [
+  {
+   "key": "n-chandrababu-naidu",
+   "name": "N. Chandrababu Naidu",
+   "wikidata": "Q3518013",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_175_KUPPAM"
+    },
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_175_KUPPAM"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_175_KUPPAM"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_175_KUPPAM",
+     "ballot_name": "Chandrababu Naidu Nara"
+    }
+   ]
+  },
+  {
+   "key": "pawan-kalyan",
+   "name": "Pawan Kalyan",
+   "wikidata": "Q6067643",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_25_GAJUWAKA",
+     "ballot_name": "Pawan Kalyan Konidala"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_59_BHIMAVARAM",
+     "ballot_name": "Pawan Kalyan Konidala"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_37_PITHAPURAM",
+     "ballot_name": "Konidala Pawan Kalyan"
+    }
+   ]
+  },
+  {
+   "key": "chintakayala-ayyanna-patrudu",
+   "name": "Chintakayala Ayyanna Patrudu",
+   "wikidata": "Q5101295",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_34_NARSIPATNAM"
+    },
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_34_NARSIPATNAM"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_34_NARSIPATNAM"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_34_NARSIPATNAM",
+     "ballot_name": "Ayyannapatrudu Chintakayala"
+    }
+   ]
+  },
+  {
+   "key": "raghu-rama-krishna-raju",
+   "name": "Raghu Rama Krishna Raju",
+   "wikidata": "Q64011064",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_60_UNDI",
+     "ballot_name": "Kanumuru Raghu Rama Krishna Raju (r R R)"
+    }
+   ]
+  },
+  {
+   "key": "y-s-jagan-mohan-reddy",
+   "name": "Y. S. Jagan Mohan Reddy",
+   "wikidata": "Q3531971",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_129_PULIVENDLA"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_129_PULIVENDLA"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_129_PULIVENDLA",
+     "ballot_name": "Ys Jagan Mohan Reddy"
+    }
+   ]
+  },
+  {
+   "key": "nara-lokesh",
+   "name": "Nara Lokesh",
+   "wikidata": "Q13561072",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_87_MANGALAGIRI"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_87_MANGALAGIRI"
+    }
+   ]
+  },
+  {
+   "key": "palla-srinivasa-rao",
+   "name": "Palla Srinivasa Rao",
+   "wikidata": "Q124257948",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_25_GAJUWAKA"
+    }
+   ]
+  },
+  {
+   "key": "satya-kumar-yadav",
+   "name": "Satya Kumar Yadav",
+   "wikidata": "Q126519110",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_160_DHARMAVARAM"
+    }
+   ]
+  },
+  {
+   "key": "kinjarapu-atchannaidu",
+   "name": "Kinjarapu Atchannaidu",
+   "wikidata": "Q110253549",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_3_TEKKALI"
+    },
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_3_TEKKALI"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_3_TEKKALI"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_3_TEKKALI",
+     "ballot_name": "Atchannaidu Kinjarapu"
+    }
+   ]
+  },
+  {
+   "key": "kollu-ravindra",
+   "name": "Kollu Ravindra",
+   "wikidata": "Q25564058",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_75_MACHILIPATNAM"
+    },
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_75_MACHILIPATNAM"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_75_MACHILIPATNAM"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_75_MACHILIPATNAM",
+     "ballot_name": "Kollu. Ravindra"
+    }
+   ]
+  },
+  {
+   "key": "nadendla-manohar",
+   "name": "Nadendla Manohar",
+   "wikidata": "Q6957544",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_91_TENALI"
+    },
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_91_TENALI"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_91_TENALI"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_91_TENALI"
+    }
+   ]
+  },
+  {
+   "key": "ponguru-narayana",
+   "name": "Ponguru Narayana",
+   "wikidata": "Q20561374",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_117_NELLORE_CITY"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_117_NELLORE_CITY",
+     "ballot_name": "Narayana Ponguru"
+    }
+   ]
+  },
+  {
+   "key": "vangalapudi-anitha",
+   "name": "Vangalapudi Anitha",
+   "wikidata": "Q125116741",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_33_PAYAKARAOPETA"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_54_KOVVUR"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_33_PAYAKARAOPET",
+     "ballot_name": "Anitha Vangalapudi"
+    }
+   ]
+  },
+  {
+   "key": "nimmala-rama-naidu",
+   "name": "Nimmala Rama Naidu",
+   "wikidata": "Q24263582",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_57_PALACOLE"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_57_PALACOLE"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_57_PALACOLE",
+     "ballot_name": "Dr.nimmala Ramanaidu"
+    }
+   ]
+  },
+  {
+   "key": "n-md-farooq",
+   "name": "N. Md. Farooq",
+   "wikidata": "Q42932309",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_139_NANDYAL",
+     "ballot_name": "Nasyam Mohammed Farook"
+    }
+   ]
+  },
+  {
+   "key": "anam-ramanarayana-reddy",
+   "name": "Anam Ramanarayana Reddy",
+   "wikidata": "Q4751171",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_115_ATMAKUR"
+    },
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_115_ATMAKUR"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_122_VENKATAGIRI"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_115_ATMAKUR",
+     "ballot_name": "Anam.ramanarayana Reddy"
+    }
+   ]
+  },
+  {
+   "key": "payyavula-keshav",
+   "name": "Payyavula Keshav",
+   "wikidata": "Q7156945",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_149_URAVAKONDA"
+    },
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_149_URAVAKONDA"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_149_URAVAKONDA"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_149_URAVAKONDA"
+    }
+   ]
+  },
+  {
+   "key": "anagani-satya-prasad",
+   "name": "Anagani Satya Prasad",
+   "wikidata": "Q26464776",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_90_REPALLE"
+    },
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_90_REPALLE"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_90_REPALLE"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_90_REPALLE"
+    }
+   ]
+  },
+  {
+   "key": "kolusu-parthasarathy",
+   "name": "Kolusu Parthasarathy",
+   "wikidata": "Q64011241",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_78_PENAMALURU"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_70_NUZVID",
+     "ballot_name": "Kolusu Partha Sarathy"
+    }
+   ]
+  },
+  {
+   "key": "dola-sree-bala-veeranjaneya-swamy",
+   "name": "Dola Sree Bala Veeranjaneya Swamy",
+   "wikidata": "Q126010563",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_110_KONDAPI"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_110_KONDAPI"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_110_KONDAPI",
+     "ballot_name": "Doctor Dola Sree Bala Veeranjaneya Swamy"
+    }
+   ]
+  },
+  {
+   "key": "gottipati-ravi-kumar",
+   "name": "Gottipati Ravi Kumar",
+   "wikidata": "Q124973111",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_105_ADDANKI"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_105_ADDANKI"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_105_ADDANKI"
+    }
+   ]
+  },
+  {
+   "key": "kandula-durgesh",
+   "name": "Kandula Durgesh",
+   "wikidata": "Q97381832",
+   "candidacies": [
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_51_RAJAMUNDRY_RURAL"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_55_NIDADAVOLE"
+    }
+   ]
+  },
+  {
+   "key": "gummadi-sandhya-rani",
+   "name": "Gummadi Sandhya Rani",
+   "wikidata": "Q126515497",
+   "candidacies": [
+    {
+     "year": 2009,
+     "const_id": "AP_VS09_13_SALUR"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_13_SALUR",
+     "ballot_name": "Gummidi Sandhyarani"
+    }
+   ]
+  },
+  {
+   "key": "b-c-janardhan-reddy",
+   "name": "B. C. Janardhan Reddy",
+   "wikidata": "Q126768678",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_140_BANAGANAPALLE"
+    },
+    {
+     "year": 2019,
+     "const_id": "AP_VS19_140_BANAGANAPALLE"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_140_BANAGANAPALLE",
+     "ballot_name": "B.c. Janardhan Reddy"
+    }
+   ]
+  },
+  {
+   "key": "t-g-bharath",
+   "name": "T. G. Bharath",
+   "wikidata": "Q126514172",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_137_KURNOOL",
+     "ballot_name": "T.g.bharath"
+    }
+   ]
+  },
+  {
+   "key": "s-savitha",
+   "name": "S. Savitha",
+   "wikidata": "Q126515494",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_158_PENUKONDA"
+    }
+   ]
+  },
+  {
+   "key": "vasamsetti-subhash",
+   "name": "Vasamsetti Subhash",
+   "wikidata": "Q126405485",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_42_RAMACHANDRAPURAM",
+     "ballot_name": "Vasamsetti. Subash"
+    }
+   ]
+  },
+  {
+   "key": "kondapalli-srinivas",
+   "name": "Kondapalli Srinivas",
+   "wikidata": "Q126373294",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_16_GAJAPATHINAGARAM"
+    }
+   ]
+  },
+  {
+   "key": "mandipalli-ramprasad-reddy",
+   "name": "Mandipalli Ramprasad Reddy",
+   "wikidata": "Q126515646",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "AP_VS14_128_RAYACHOTI"
+    },
+    {
+     "year": 2024,
+     "const_id": "AP_VS24_128_RAYACHOTI",
+     "ballot_name": "Mandipalli Ramprasad Reddy(ramudu)"
+    }
+   ]
+  }
+ ],
+ "elections": {
+  "2024": {
+   "leaders": [
+    {
+     "key": "n-chandrababu-naidu",
+     "role": "Chief Minister (sworn in 12 June 2024; won Kuppam); TDP national president",
+     "party_id": "TDP"
+    },
+    {
+     "key": "pawan-kalyan",
+     "role": "Deputy Chief Minister (sworn in 12 June 2024; won Pithapuram); Jana Sena Party founder-president",
+     "party_id": "JP"
+    },
+    {
+     "key": "chintakayala-ayyanna-patrudu",
+     "role": "Speaker (elected unanimously, 22 June 2024)",
+     "party_id": "TDP"
+    },
+    {
+     "key": "raghu-rama-krishna-raju",
+     "role": "Deputy Speaker (since 14 November 2024)",
+     "party_id": "TDP"
+    },
+    {
+     "key": "y-s-jagan-mohan-reddy",
+     "role": "YSRCP president and former Chief Minister; the Leader of the Opposition post has been vacant since June 2024 (YSRCP's 11 seats were not recognised as the official opposition)",
+     "party_id": "YSRCP"
+    },
+    {
+     "key": "nara-lokesh",
+     "role": "Minister of Human Resources Development, IT, Electronics & Communication and Real Time Governance (won Mangalagiri)",
+     "party_id": "TDP"
+    },
+    {
+     "key": "palla-srinivasa-rao",
+     "role": "TDP Andhra Pradesh state president (appointed 14 June 2024)",
+     "party_id": "TDP"
+    }
+   ],
+   "cabinet": [
+    {
+     "key": "satya-kumar-yadav",
+     "role": "Minister of Health, Family Welfare & Medical Education (the BJP's only minister)",
+     "party_id": "BJP"
+    },
+    {
+     "key": "kinjarapu-atchannaidu",
+     "role": "Minister of Agriculture, Co-operation, Marketing, Animal Husbandry, Dairy Development & Fisheries",
+     "party_id": "TDP"
+    },
+    {
+     "key": "kollu-ravindra",
+     "role": "Minister of Mines & Geology and Excise",
+     "party_id": "TDP"
+    },
+    {
+     "key": "nadendla-manohar",
+     "role": "Minister of Food & Civil Supplies and Consumer Affairs",
+     "party_id": "JP"
+    },
+    {
+     "key": "ponguru-narayana",
+     "role": "Minister of Municipal Administration & Urban Development",
+     "party_id": "TDP"
+    },
+    {
+     "key": "vangalapudi-anitha",
+     "role": "Minister of Home Affairs & Disaster Management",
+     "party_id": "TDP"
+    },
+    {
+     "key": "nimmala-rama-naidu",
+     "role": "Minister of Water Resources Development",
+     "party_id": "TDP"
+    },
+    {
+     "key": "n-md-farooq",
+     "role": "Minister of Law & Justice and Minority Welfare",
+     "party_id": "TDP"
+    },
+    {
+     "key": "anam-ramanarayana-reddy",
+     "role": "Minister of Endowments",
+     "party_id": "TDP"
+    },
+    {
+     "key": "payyavula-keshav",
+     "role": "Minister of Finance, Planning, Commercial Taxes and Legislative Affairs",
+     "party_id": "TDP"
+    },
+    {
+     "key": "anagani-satya-prasad",
+     "role": "Minister of Revenue, Registration & Stamps",
+     "party_id": "TDP"
+    },
+    {
+     "key": "kolusu-parthasarathy",
+     "role": "Minister of Housing and Information & Public Relations",
+     "party_id": "TDP"
+    },
+    {
+     "key": "dola-sree-bala-veeranjaneya-swamy",
+     "role": "Minister of Social Welfare, Disabled & Senior Citizen Welfare, and Sachivalayam & Village Volunteer",
+     "party_id": "TDP"
+    },
+    {
+     "key": "gottipati-ravi-kumar",
+     "role": "Minister of Energy",
+     "party_id": "TDP"
+    },
+    {
+     "key": "kandula-durgesh",
+     "role": "Minister of Tourism, Culture and Cinematography",
+     "party_id": "JP"
+    },
+    {
+     "key": "gummadi-sandhya-rani",
+     "role": "Minister of Women & Child Welfare and Tribal Welfare",
+     "party_id": "TDP"
+    },
+    {
+     "key": "b-c-janardhan-reddy",
+     "role": "Minister of Roads & Buildings and Infrastructure & Investments",
+     "party_id": "TDP"
+    },
+    {
+     "key": "t-g-bharath",
+     "role": "Minister of Industries & Commerce and Food Processing",
+     "party_id": "TDP"
+    },
+    {
+     "key": "s-savitha",
+     "role": "Minister of Backward Classes Welfare, Economically Weaker Sections Welfare, and Handlooms & Textiles",
+     "party_id": "TDP"
+    },
+    {
+     "key": "vasamsetti-subhash",
+     "role": "Minister of Labour, Factories, Boilers & Insurance Medical Services",
+     "party_id": "TDP"
+    },
+    {
+     "key": "kondapalli-srinivas",
+     "role": "Minister of MSME, Society for Elimination of Rural Poverty, and NRI Empowerment & Relations",
+     "party_id": "TDP"
+    },
+    {
+     "key": "mandipalli-ramprasad-reddy",
+     "role": "Minister of Transport and Youth & Sports",
+     "party_id": "TDP"
+    }
+   ],
+   "sources": [
+    "https://en.wikipedia.org/wiki/Fourth_N._Chandrababu_Naidu_ministry",
+    "https://www.thehindu.com/elections/andhra-pradesh-assembly/andhra-pradesh-council-of-ministers-full-list/article68288989.ece",
+    "https://www.ndtv.com/andhra-pradesh-news/andhra-pradesh-pawan-kalyan-among-25-ministers-to-take-oath-with-chandrababu-naidu-5871149",
+    "https://en.wikipedia.org/wiki/16th_Andhra_Pradesh_Assembly",
+    "https://www.thehindu.com/news/national/andhra-pradesh/ayyanna-patrudu-to-be-elected-as-ap-assembly-speaker-unanimously-on-june-22/article68317066.ece",
+    "https://en.wikipedia.org/wiki/Raghu_Rama_Krishna_Raju",
+    "https://en.wikipedia.org/wiki/List_of_leaders_of_the_opposition_in_the_Andhra_Pradesh_Legislative_Assembly",
+    "https://en.wikipedia.org/wiki/Palla_Srinivasa_Rao",
+    "https://www.thehindu.com/news/national/andhra-pradesh/palla-srinivasa-rao-meets-chandrababu-naidu-thanks-him-for-being-appointed-as-tdp-ap-president/article68300098.ece",
+    "https://en.wikipedia.org/wiki/Bharatiya_Janata_Party_%E2%80%93_Andhra_Pradesh",
+    "https://en.wikipedia.org/wiki/Y._S._Sharmila"
+   ]
+  }
+ }
+}

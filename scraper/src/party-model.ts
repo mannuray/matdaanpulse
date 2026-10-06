@@ -12,7 +12,8 @@ export interface LineageRow {
   party_id: string; predecessor_id: string; kind: string; effective_date: string; state_code: string | null;
   is_successor: boolean; note: string | null; source_url: string | null;
 }
-export interface UnitRole { role: string; person_name: string; from_date: string | null; to_date: string | null; source_url: string | null }
+export interface UnitRole { role: string; person_name: string; from_date: string | null; to_date: string | null; source_url: string | null;
+  /** The person's name on a ballot when it differs from person_name (matched exactly). */ ballot_name?: string }
 export interface UnitRow { party_id: string; state_code: string; eci_recognition: string | null; office: string | null; website: string | null; roles: UnitRole[] }
 
 const KINDS = new Set(['rename', 'merger', 'split', 'breakaway']);
@@ -53,7 +54,12 @@ const words = (n: string) => n.toUpperCase().replace(/[^A-Z ]/g, ' ').split(/\s+
  * lineage. Null when none matches or the matches are two different ballot names (ambiguous).
  */
 export function pickCandidate(cands: { id: string; name: string; year: number; party: string }[], personName: string,
-  partyId: string, related: (party: string) => boolean = () => false): string | null {
+  partyId: string, related: (party: string) => boolean = () => false, ballotName?: string): string | null {
+  if (ballotName) {
+    // The exact ballot name (Telugu names change order and initials: "Chandrababu Naidu Nara"), newest candidacy.
+    const exact = cands.filter(c => (c.party === partyId || related(c.party)) && c.name.toUpperCase() === ballotName.toUpperCase());
+    return exact.length ? [...exact].sort((a, b) => b.year - a.year)[0].id : null;
+  }
   const want = words(personName);
   if (!want.some(w => w.length > 1)) return null;
   const hits = cands.filter(c => {
@@ -76,7 +82,7 @@ export function unitsSeedOf(file: string): string {
 }
 
 export function emitUnitsSeed(units: UnitRow[], parties: Set<string>, states: Map<string, number>,
-  candidateFor: (personName: string, stateCode: string, partyId: string) => string | null, name = 'seed_party_units_v1'): string {
+  candidateFor: (personName: string, stateCode: string, partyId: string, ballotName?: string) => string | null, name = 'seed_party_units_v1'): string {
   const body: string[] = [];
   for (const u of units) {
     const p = party(u.party_id, parties);
@@ -90,7 +96,7 @@ export function emitUnitsSeed(units: UnitRow[], parties: Set<string>, states: Ma
     for (const r of u.roles) {
       if (!ROLES.has(r.role)) throw new Error(`bad role ${r.role}`);
       if (!r.person_name) throw new Error(`${u.party_id} ${u.state_code} ${r.role} has no person_name`);
-      const cand = candidateFor(r.person_name, u.state_code, p);
+      const cand = candidateFor(r.person_name, u.state_code, p, r.ballot_name);
       const person = cand ? `(SELECT person_id FROM candidates WHERE id = ${q(cand)})` : 'NULL';
       body.push(`INSERT INTO party_unit_roles (party_id, state_id, role, person_id, person_name, from_date, to_date, source_url) VALUES (${q(p)}, ${s}, ${q(r.role)}, ${person}, ${q(r.person_name)}, ${q(r.from_date)}, ${q(r.to_date)}, ${q(r.source_url)}) ON CONFLICT DO NOTHING;`);
     }
