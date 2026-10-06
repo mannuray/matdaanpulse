@@ -148,6 +148,7 @@ for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
 for st in dl hr jh od; do run "seed_${st}_candidate_photos.sql"; done
 run seed_sk_candidate_photos.sql
 run seed_ar_candidate_photos.sql
+run seed_ap_candidate_photos.sql
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_affidavits.sql"; done
 for st in dl hr jh od; do run "seed_${st}_affidavits.sql"; done
