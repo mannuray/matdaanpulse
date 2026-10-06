@@ -131,6 +131,10 @@ export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'VS', state: 'Andhra Pradesh', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Andhra Pradesh', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Andhra Pradesh', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'undivided_2009'] },
+  { house: 'VS', state: 'Maharashtra', year: 2024, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Maharashtra', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Maharashtra', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Maharashtra', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
 ];
 
 export interface DataSourceGroup {
