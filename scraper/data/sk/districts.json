@@ -1,0 +1,99 @@
+{
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_constituencies_of_the_Sikkim_Legislative_Assembly (district column, citing CEO Sikkim's Form 20 per district; raw wikitext read 2026-10-06)",
+  "https://en.wikipedia.org/wiki/List_of_districts_of_Sikkim (6 districts since 2021: Pakyong carved out of East, Soreng out of West; North renamed Mangan, South Namchi, West Gyalshing, East Gangtok)"
+ ],
+ "notes": "Current 6 districts. Regions are the 4 districts before 2021 (East = Gangtok + Pakyong, West = Gyalshing + Soreng, South = Namchi, North = Mangan). Sangha (32) is a non-territorial seat (registered monks of the state's monasteries); it is put under Gangtok / East as an administrative choice (the state capital), not a geographic one.",
+ "districts": [
+  {
+   "code": "SK_GYALSHING",
+   "name": "Gyalshing"
+  },
+  {
+   "code": "SK_SORENG",
+   "name": "Soreng"
+  },
+  {
+   "code": "SK_NAMCHI",
+   "name": "Namchi"
+  },
+  {
+   "code": "SK_GANGTOK",
+   "name": "Gangtok"
+  },
+  {
+   "code": "SK_PAKYONG",
+   "name": "Pakyong"
+  },
+  {
+   "code": "SK_MANGAN",
+   "name": "Mangan"
+  }
+ ],
+ "regions": [
+  {
+   "code": "SK_EAST",
+   "name": "East",
+   "districts": [
+    "SK_GANGTOK",
+    "SK_PAKYONG"
+   ]
+  },
+  {
+   "code": "SK_WEST",
+   "name": "West",
+   "districts": [
+    "SK_GYALSHING",
+    "SK_SORENG"
+   ]
+  },
+  {
+   "code": "SK_SOUTH",
+   "name": "South",
+   "districts": [
+    "SK_NAMCHI"
+   ]
+  },
+  {
+   "code": "SK_NORTH",
+   "name": "North",
+   "districts": [
+    "SK_MANGAN"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "SK_GYALSHING",
+  "2": "SK_GYALSHING",
+  "3": "SK_GYALSHING",
+  "4": "SK_GYALSHING",
+  "5": "SK_SORENG",
+  "6": "SK_SORENG",
+  "7": "SK_SORENG",
+  "8": "SK_SORENG",
+  "9": "SK_NAMCHI",
+  "10": "SK_NAMCHI",
+  "11": "SK_NAMCHI",
+  "12": "SK_NAMCHI",
+  "13": "SK_NAMCHI",
+  "14": "SK_NAMCHI",
+  "15": "SK_NAMCHI",
+  "16": "SK_NAMCHI",
+  "17": "SK_GANGTOK",
+  "18": "SK_PAKYONG",
+  "19": "SK_PAKYONG",
+  "20": "SK_PAKYONG",
+  "21": "SK_PAKYONG",
+  "22": "SK_PAKYONG",
+  "23": "SK_GANGTOK",
+  "24": "SK_GANGTOK",
+  "25": "SK_GANGTOK",
+  "26": "SK_GANGTOK",
+  "27": "SK_GANGTOK",
+  "28": "SK_GANGTOK",
+  "29": "SK_MANGAN",
+  "30": "SK_MANGAN",
+  "31": "SK_MANGAN",
+  "32": "SK_GANGTOK"
+ }
+}
