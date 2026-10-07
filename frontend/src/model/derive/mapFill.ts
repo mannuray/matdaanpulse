@@ -31,6 +31,15 @@ export const MAP_FILL = {
 };
 /** Overview while live: how firm the lead is. Too close is also dashed. */
 export const CALL_OPACITY: Record<Call, number> = { declared: 1, safe: 1, likely: 0.6, counting: 0.6, too_close: 0.3, not_started: 1 };
+/**
+ * The live state worth drawing: only while some seat is still counting. Before the first result and once every seat is
+ * declared, the map is the ordinary results map (Battle back on margin buckets), spec §3.2.
+ */
+export function countingLive(live: Map<string, SeatLive> | undefined): Map<string, SeatLive> | undefined {
+  if (!live) return undefined;
+  for (const s of live.values()) if (s.call !== 'declared' && s.call !== 'not_started') return live;
+  return undefined;
+}
 export const DIM_OPACITY = 0.12;
 /** The bright outline only helps find a few seats; above this many highlighted seats opacity alone carries the highlight. */
 export const OUTLINE_MAX = 40;

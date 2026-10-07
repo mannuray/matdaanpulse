@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { seatFill, MOMENTUM_FILL, MAP_FILL, type FillContext } from '../mapFill';
+import { seatFill, countingLive, MOMENTUM_FILL, MAP_FILL, type FillContext } from '../mapFill';
 import type { SeatLive } from '../seatAnalysis';
 import type { SeatResult } from '../../types/dashboard';
 
@@ -39,5 +39,16 @@ describe('live fills', () => {
     const c = { ...ctx('overview', [live('A', 'too_close'), live('B', 'too_close')]), highlight: { parties: new Set<string>(), seats: new Set(['A']) } };
     expect(seatFill(seat('A'), c)).toEqual({ color: '#f80', opacity: 1, highlighted: true });
     expect(seatFill(seat('B'), c)).toMatchObject({ opacity: 0.12, highlighted: false });
+  });
+});
+
+describe('countingLive', () => {
+  it('live data only while some seat is still counting (all declared or none started → today\'s look, Battle margin buckets)', () => {
+    const m = (calls: SeatLive['call'][]) => new Map(calls.map((c, i) => [`S${i}`, { const_id: `S${i}`, call: c } as SeatLive]));
+    expect(countingLive(m(['declared', 'declared']))).toBeUndefined();
+    expect(countingLive(m(['not_started', 'not_started']))).toBeUndefined();
+    expect(countingLive(undefined)).toBeUndefined();
+    const live = m(['declared', 'too_close']);
+    expect(countingLive(live)).toBe(live);
   });
 });

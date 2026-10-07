@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { intentFor } from '../store/hoverIntent';
+import { countingLive } from '../../model/derive/mapFill';
 import { deriveLayerInsight, type InsightChip, type LayerInsight } from '../../model/derive/layerInsights';
 import type { LayerId } from '../../model/types/dashboard';
 
@@ -34,7 +35,7 @@ export function useLayerInsightVM(): LayerInsightVM {
     voteSplits: src.data.manifestData?.vote_splits,
     constCandidates: src.data.constCandidates,
     threeWaySeats: src.data.spoilerData.threeWaySeats,
-    live: src.election.status === 'Live' ? src.liveAnalysis?.seats : undefined,
+    live: countingLive(src.election.status === 'Live' ? src.liveAnalysis?.seats : undefined),
   }), [state.layer, src, alliances]);
 
   const locked = state.locked;

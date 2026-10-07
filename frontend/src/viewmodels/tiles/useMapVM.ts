@@ -7,7 +7,7 @@ import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { activeHighlight, type MapMode } from '../store/dashboardStore';
 import { ElectionService } from '../../model/api/election.service';
-import { seatFills, showOutline, type SeatFill } from '../../model/derive/mapFill';
+import { seatFills, showOutline, type SeatFill, countingLive } from '../../model/derive/mapFill';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import type { LayerId } from '../../model/types/dashboard';
@@ -79,7 +79,7 @@ export function useMapVM(): MapVM {
   // Highlight sets are rebuilt each render; key them by content so fills only recompute on real changes.
   const hlKey = `${[...highlight.parties].join(',')}|${[...highlight.seats].join(',')}`;
   // Live counting only: the per-seat live state colours the Overview (call) and Battle (momentum).
-  const live = src.election.status === 'Live' ? src.liveAnalysis?.seats : undefined;
+  const live = useMemo(() => countingLive(src.election.status === 'Live' ? src.liveAnalysis?.seats : undefined), [src.election.status, src.liveAnalysis]);
   const fillCtx = {
     live,
     layer: state.layer,
