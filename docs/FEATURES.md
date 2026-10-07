@@ -207,6 +207,24 @@ Spec `docs/superpowers/specs/2026-10-06-party-model-design.md`, plan `docs/super
   pop-up), 40 px chips. Logic in `model/derive/electionChoices.ts` (`TopBarVM.choices(query)`), view
   `views/dashboard/ElectionPicker.tsx`. No keyboard shortcut on the public site.
 
+### Jammu & Kashmir 2008, 2014, 2024 (Phase 4B-5), 2026-10-07
+Plan `docs/superpowers/plans/2026-10-07-phase4b-jk.md`.
+- [x] 3 elections from the ECI statistical reports (2008/2014 PDFs, 2024 XLSX): every candidate + NOTA (from 2014), real
+  votes; winners match ECI (2008 NC 28 / PDP 21 / INC 17 / BJP 11; 2014 PDP 28 / BJP 25 / NC 15 / INC 12; 2024 NC 42 /
+  BJP 29 / IND 7 / INC 6 / PDP 3). 2008 and 2014 are the state's 87 seats on the **1995 boundaries** (Ladakh's 4
+  included; delimitation `'1995'`, majority 44); 2024 is the union territory's 90 seats on the **2022 delimitation**
+  (`'2022'`, majority 46; the 5 nominated members are not modelled) and has no seat history. The registry takes
+  per-election `seats`, `delimitation` and reserved counts (`p4` `newElection` overrides).
+- [x] Maps: `jk_ac_2022.geojson` from ECI's 2024 boundary file (90 seats + 4 unnumbered areas, kept as `ac_no` 0 like
+  the older maps); the old `jk_ac_2008.geojson` (really the 1995 seats) is now `jk_ac_1995.geojson` with SC seats
+  typed; old paths redirect.
+- [x] Hakeem Yaseen's PDF(S) is one party across years (`<slug>/party-overrides.json`: ECI's 2008 "People's Democratic
+  Front" → JKPDF); Apni Party ← PDP (2020) and DPAP ← INC (2022) breakaways.
+- [x] Districts and regions per boundary set (`regions-cli` reads `districts-1995.json` / `districts-2022.json`; 1995:
+  22 districts, Jammu 37 / Kashmir 46 / Ladakh 4; 2022: 20 districts, Jammu 43 / Kashmir 47); person links 2008↔2014
+  only; 2024 current track (15 leaders linked across the redraw by name; NC/PDP/People's Conference profiles; units v6;
+  `seed_party_colors_v5.sql` gives PDP a darker green and People's Conference blue; top-4 photos 358; affidavits 90/90).
+
 ### Maharashtra 2009-2024 (Phase 4B-4), 2026-10-06
 Plan `docs/superpowers/plans/2026-10-06-phase4b-maharashtra.md`.
 - [x] 4 elections from the ECI statistical reports (2009/2014 PDFs, 2019 XLS, 2024 XLSX): every candidate + NOTA, real

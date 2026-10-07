@@ -318,5 +318,25 @@
   "is_successor": false,
   "note": "Founded on 9 March 2006 by Raj Thackeray after he left the Shiv Sena.",
   "source_url": "https://en.wikipedia.org/wiki/Maharashtra_Navnirman_Sena"
+ },
+ {
+  "party_id": "JAKAP",
+  "predecessor_id": "JKPDP",
+  "kind": "breakaway",
+  "effective_date": "2020-03-08",
+  "state_code": null,
+  "is_successor": false,
+  "note": "Formed on 8 March 2020 by Altaf Bukhari and 31 former members of the PDP and the Congress.",
+  "source_url": "https://en.wikipedia.org/wiki/Jammu_and_Kashmir_Apni_Party"
+ },
+ {
+  "party_id": "DPAP",
+  "predecessor_id": "INC",
+  "kind": "breakaway",
+  "effective_date": "2022-09-26",
+  "state_code": null,
+  "is_successor": false,
+  "note": "Ghulam Nabi Azad left the Congress on 26 August 2022 and named his new party on 26 September 2022.",
+  "source_url": "https://en.wikipedia.org/wiki/Democratic_Progressive_Azad_Party"
  }
 ]

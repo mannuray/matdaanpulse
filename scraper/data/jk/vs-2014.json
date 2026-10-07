@@ -1,0 +1,9557 @@
+{
+ "year": 2014,
+ "electionId": "a0130000-0000-4000-8000-000000002014",
+ "source": {
+  "title": "ECI Statistical Report, Jammu and Kashmir Legislative Assembly 2014",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/old-site-statistical-report-data?docid=3797",
+  "retrieved": "2026-10-07"
+ },
+ "parties": [
+  {
+   "id": "AAP",
+   "name": "Aam Aadmi Party",
+   "abbreviation": null,
+   "color": "#0066FF",
+   "recognition": "National"
+  },
+  {
+   "id": "ABHM",
+   "name": "Akhil Bharat Hindu Mahasabha",
+   "abbreviation": "ABHM",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AIFB",
+   "name": "All India Forward Bloc",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "AJKMP",
+   "name": "All J & K Kisan Majdoor Party",
+   "abbreviation": "AJKMP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AKAKRP",
+   "name": "All Jammu and Kashmir Republican Party",
+   "abbreviation": "AKAKRP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BHBP",
+   "name": "Bharatiya Bahujan Party",
+   "abbreviation": "BHBP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "BMP1",
+   "name": "Bahujan Mukti Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BSP",
+   "name": "Bahujan Samaj Party",
+   "abbreviation": null,
+   "color": "#4B5BD6",
+   "recognition": "National"
+  },
+  {
+   "id": "CPI",
+   "name": "Communist Party of India",
+   "abbreviation": null,
+   "color": "#FF0000",
+   "recognition": null
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "DGPP",
+   "name": "Duggar Pradesh Party",
+   "abbreviation": "DGPP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "HJP_TN",
+   "name": "Hindustan Janta Party",
+   "abbreviation": "HJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "HKRD",
+   "name": "Hindustan Krantikari Dal",
+   "abbreviation": "HKRD",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "IPCP",
+   "name": "Indian People’s Conference Party",
+   "abbreviation": "IPCP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JDS",
+   "name": "Janata Dal  (Secular)",
+   "abbreviation": null,
+   "color": "#228B22",
+   "recognition": null
+  },
+  {
+   "id": "JKDPN",
+   "name": "Jammu and Kashmir Democratic Party Nationalist",
+   "abbreviation": "JKDPN",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JKNC",
+   "name": "Jammu & Kashmir National Conference",
+   "abbreviation": null,
+   "color": "#C41E3A",
+   "recognition": null
+  },
+  {
+   "id": "JKNPP",
+   "name": "Jammu & Kashmir National Panthers Party",
+   "abbreviation": "JKNPP",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "JKPC",
+   "name": "Jammu & Kashmir People Conference",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JKPDF",
+   "name": "Jammu And Kashmir People Democratic Front (Secular)",
+   "abbreviation": "JKPDF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JKPDP",
+   "name": "Jammu & Kashmir Peoples Democratic Party",
+   "abbreviation": null,
+   "color": "#90EE90",
+   "recognition": null
+  },
+  {
+   "id": "JKPPAP",
+   "name": "Jammu & Kashmir Pir Panjal Awami Party",
+   "abbreviation": "JKPPAP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JKPPS",
+   "name": "Jammu Kashmir People's Party (Secular)",
+   "abbreviation": "JKPPS",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JSMP_JK",
+   "name": "Jammu State Morcha (Progressive)",
+   "abbreviation": "JSM(P)",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "LJP",
+   "name": "Lok Janshakti Party",
+   "abbreviation": null,
+   "color": "#0000CD",
+   "recognition": null
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "RAJPA",
+   "name": "Rashtriya Jankranti Party",
+   "abbreviation": "RaJPa",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RKSP",
+   "name": "Rashtriya Krantikari Samajwadi Party",
+   "abbreviation": "RKSP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RPI",
+   "name": "Republican Party of India",
+   "abbreviation": "RPI",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RPOIA",
+   "name": "Republican Party of India (A)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SP",
+   "name": "Samajwadi Party",
+   "abbreviation": null,
+   "color": "#E60000",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Karnah",
+   "type": "GEN",
+   "electors": 33132,
+   "voters": 25910,
+   "turnout": 78.2,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Raja Manzoor Ahmad",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 59,
+     "votes": 12371,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kifil Ur Rehman Khan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 6596,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ali Asgar Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 75,
+     "votes": 2894,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammad Saleem Mir",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 38,
+     "votes": 2359,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ishfaq Ur Rehman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 654,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jahangir Khan",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 41,
+     "votes": 453,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Aijaz Ahmad Badana",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 61,
+     "votes": 339,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 244,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Kupwara",
+   "type": "GEN",
+   "electors": 107033,
+   "voters": 71823,
+   "turnout": 67.1,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bashir Ahmad Dar",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 52,
+     "votes": 24754,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mir Mohd Fayaz",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 37,
+     "votes": 24603,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mir Saifullah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 54,
+     "votes": 17390,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ab Rehman Lone",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 790,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Wali Mohd Khan",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 38,
+     "votes": 672,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gh Hassan Sheikh",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 50,
+     "votes": 598,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Adv. Mohd Amin Peer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 582,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gh Rasool Malik",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 561,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Javid Ahmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 412,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mushtaq Ahmad Shiekh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 352,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sardar Khan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 283,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Saifullah Khan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 60,
+     "votes": 157,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 664,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Lolab",
+   "type": "GEN",
+   "electors": 100045,
+   "voters": 71622,
+   "turnout": 71.59,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Haq Khan",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 29408,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Qaiser Jamsheed Lone",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 39,
+     "votes": 26538,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Haji Farooq Ahmad Mir",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 7629,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Rehman Wani",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 60,
+     "votes": 3981,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ab Rashid Zargar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1092,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Suriaya Bano",
+     "partyId": "RPI",
+     "sex": "F",
+     "age": 36,
+     "votes": 765,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohammad Sultan Magray",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 40,
+     "votes": 458,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ghulam Ahmad Malik",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 268,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Gh Nabi Shah",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 256,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1222,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Handwara",
+   "type": "GEN",
+   "electors": 89983,
+   "voters": 67974,
+   "turnout": 75.54,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sajad Gani Lone",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 47,
+     "votes": 29355,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chowdry Mohamad Ramzan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 65,
+     "votes": 23932,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ghulam Mohi-Ui-Din Sofi",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 64,
+     "votes": 9849,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd Yaseen Bhat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 70,
+     "votes": 1119,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abdul Rahman Tantry",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 747,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sajad Ahmad Pir",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 492,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ajaz Ahmad Sofi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 397,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gh. Qadir Mircha",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 61,
+     "votes": 390,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Anaytullah Lohar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 302,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Hilal Ahmad Tantry",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Haneefa Begum",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 36,
+     "votes": 198,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohd Abdullah Bhat",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 60,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 776,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Langate",
+   "type": "GEN",
+   "electors": 70608,
+   "voters": 51204,
+   "turnout": 72.52,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Rashid Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 18172,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Nabi Ganai",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 53,
+     "votes": 15667,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Abdullah Mir",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 63,
+     "votes": 10015,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Irshad Hussain Ganaie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 1819,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Wali Mohd Bhat",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 61,
+     "votes": 1645,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bashir Ahmad Wani",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 983,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Akbar Ganie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 632,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd Ramzan Malla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 607,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohammad Maqbool War",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 523,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mudasir Ahmad Tantry",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 390,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Javid Ahmad Najar",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 39,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 532,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Uri",
+   "type": "GEN",
+   "electors": 74909,
+   "voters": 62133,
+   "turnout": 82.94,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohammad Shafi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 71,
+     "votes": 24359,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aijaz Ali Khan",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 62,
+     "votes": 18567,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Taj Mohi-Ud-Din",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 69,
+     "votes": 16588,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mushtaq Ahmad Mir",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 1269,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Waseem Raja",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 26,
+     "votes": 549,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 729,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Rafiabad",
+   "type": "GEN",
+   "electors": 80165,
+   "voters": 55458,
+   "turnout": 69.18,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yawar Ahmad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 27,
+     "votes": 17918,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Abdul Gani Vakil",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 15584,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Javed Ahmad Dar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 40,
+     "votes": 14980,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khursheed Ahmad Khan",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 57,
+     "votes": 3080,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Fayaz Ahmad Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 776,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Desh Kumar Nehru",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 634,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ab Majeed Dar",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 51,
+     "votes": 483,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Maqbool Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 331,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Gh Mohu Din Ahanger",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 318,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mudasir Rasool Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 288,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Gh Nabi Paray",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 283,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohd Maqbool Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 556,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Sopore",
+   "type": "GEN",
+   "electors": 103782,
+   "voters": 31963,
+   "turnout": 30.8,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Rashid Dar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 65,
+     "votes": 8429,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nazir Ahmad Naikoo",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 5674,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Irshad Rasool Kar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 5324,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd. Ashraf Ganie",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 73,
+     "votes": 4079,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohmmad Ramzan Baba",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 56,
+     "votes": 1567,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shahzad Aasim",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1394,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohamad Abdullah Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 1208,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Gh. Mohmad War",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1182,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Zahid Gani Mircha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 1022,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sajad Mohi Ud Din Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 545,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Gh. Rasool Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 511,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Muzafar Ahmad Lone",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 26,
+     "votes": 204,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Bashir Ahmad Azad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 182,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Syed Iqbal Nazki",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 178,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Ulfat Sabba Ahmad Khawaja",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 120,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 333,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Gurez",
+   "type": "GEN",
+   "electors": 17624,
+   "voters": 13817,
+   "turnout": 78.4,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nazir Ahmad Khan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 49,
+     "votes": 6664,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Faqir Mohmad Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 6523,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd. Ismail Lone",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 47,
+     "votes": 448,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gh. Rasool Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 66,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Bandipora",
+   "type": "GEN",
+   "electors": 98701,
+   "voters": 66581,
+   "turnout": 67.46,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Usman Abdul Majid",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 25084,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nizam-U-Din Bhat",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 67,
+     "votes": 21341,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdullah Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 55,
+     "votes": 6754,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nazir Ahmad Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 4200,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohammad Ismail Bhat",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 59,
+     "votes": 1580,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Shafi Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1137,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd. Shafi Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 1123,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Javid Ahmad Shah",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 816,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sheikh Waseem Bari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 796,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Gh Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 691,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Abdul Rehman",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 565,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohmmad Iqbal Zargar",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 29,
+     "votes": 492,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Manzoor Ahmad Baba",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 44,
+     "votes": 340,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1641,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Sonawari",
+   "type": "GEN",
+   "electors": 99490,
+   "voters": 80363,
+   "turnout": 80.77,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohammad Akbar Lone",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 67,
+     "votes": 32567,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yasir Reshi",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 39,
+     "votes": 32161,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Imtiyaz Ahmad Parray",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 29,
+     "votes": 12065,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Qawamudin Sheikh",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 52,
+     "votes": 1174,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gh Mohammad Parray",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 529,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nazir Ahmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 475,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Gh Rasool Malik",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 313,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1075,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Sangrama",
+   "type": "GEN",
+   "electors": 66159,
+   "voters": 38724,
+   "turnout": 58.53,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Syed Basharat Ahmed Bukhari",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 52,
+     "votes": 12146,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shuib Nabi Lone",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 35,
+     "votes": 10392,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khwaja Mohammad Yaqoob Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 76,
+     "votes": 6696,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Irfan Hafiz Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 3829,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Fazal Mahmood Baig",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 1970,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gh. Mohi-Ud-Din Bhat",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 68,
+     "votes": 856,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Farooq Ahmad Bhat",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 850,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Hilal Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 796,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gh. Mohi-Ud-Din Sofi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 575,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Nisar Ahmad Shah",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 42,
+     "votes": 156,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 456,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Baramulla",
+   "type": "GEN",
+   "electors": 82937,
+   "voters": 32966,
+   "turnout": 39.75,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javid Hassan Baig",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 50,
+     "votes": 14418,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gh. Hassan Rahi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 57,
+     "votes": 7401,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Salman Anees Soz",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 6805,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd. Yousf Dar",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 49,
+     "votes": 1164,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gulam Ud Din Gulshan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 850,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd. Maqbool Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 570,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd. Aslam Deedar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 381,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Altaf Jameel Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Gulshan Sanhotra",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 60,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ashiq Hussian Ganaie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohd Afsar Khan",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 42,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 758,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Gulmarg",
+   "type": "GEN",
+   "electors": 94700,
+   "voters": 67944,
+   "turnout": 71.75,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohd. Abass Wani",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 49,
+     "votes": 22957,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Hassan Mir",
+     "partyId": "JKDPN",
+     "sex": "M",
+     "age": 64,
+     "votes": 20146,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shabir Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 11083,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sheikh Mustafa Kamal",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 71,
+     "votes": 9275,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tejinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1939,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ab Ahad Sheikh",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 62,
+     "votes": 645,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd. Akram Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 547,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gh. Mohi Ud Din Malla",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 52,
+     "votes": 396,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 917,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Pattan",
+   "type": "GEN",
+   "electors": 89416,
+   "voters": 52508,
+   "turnout": 58.72,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Imran Raza Ansari",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 21218,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aga Syed Mehmood Al Mosavi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 11884,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Reyaz Ahmad",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 6629,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Basharat Hussain Najar",
+     "partyId": "JKDPN",
+     "sex": "M",
+     "age": 38,
+     "votes": 4666,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ab. Rashid Shaheen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 2466,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abdul Ahad Yatoo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 2280,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Farooq Ahmad Ganie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 1567,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ashiq Hussain Lone",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 27,
+     "votes": 481,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bashir Ahmad Ganai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 239,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ashiq Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Tariq Ahmad Parry",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Wali Mohamad Wani",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 56,
+     "votes": 144,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 567,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Kangan",
+   "type": "GEN",
+   "electors": 69590,
+   "voters": 54815,
+   "turnout": 78.77,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Altaf Ahmad",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 57,
+     "votes": 25812,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bashir Ahmad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 38,
+     "votes": 24380,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ajaz Ahmad Sheikh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 889,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Showkat Hussain Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 691,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ghulam Hassan Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 608,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nazir Ahmad Raina",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 583,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Rashid Ganaie",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 38,
+     "votes": 481,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mushtaq Ahmad Shah",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 42,
+     "votes": 373,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shabir Ahmad Mir",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 31,
+     "votes": 139,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohd Sultan Lone",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 44,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 731,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Ganderbal",
+   "type": "GEN",
+   "electors": 90582,
+   "voters": 53544,
+   "turnout": 59.11,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ishfaq Ahmad Sheikh",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 45,
+     "votes": 19478,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Qazi Mohammad Afzal",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 71,
+     "votes": 18881,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sheikh Ghulam Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 6009,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammad Yousuf Bhat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 3190,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Gh Rasool Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 1236,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bilal Ahmad Khanday",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 1057,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sheikh Abdul Rasheed",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 671,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Javed Ahmad Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 660,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Hilal Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 489,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Abdul Majeed Dhobi",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 59,
+     "votes": 321,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Syed Ali Mohammad Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 289,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Nazir Ahmad Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 230,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Ali Mohammad Baba",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 66,
+     "votes": 228,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 800,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Hazratbal",
+   "type": "GEN",
+   "electors": 99857,
+   "voters": 29497,
+   "turnout": 29.54,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Asiea",
+     "partyId": "JKPDP",
+     "sex": "F",
+     "age": 44,
+     "votes": 13234,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohammad Syed Akhoon",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 64,
+     "votes": 9834,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Masood Ul Hassan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 2635,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Altaf Hussain Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 1089,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Syed Ahmad",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 921,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ghulam Nabi Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 348,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mirza Sajad Hussain",
+     "partyId": "RAJPA",
+     "sex": "M",
+     "age": 34,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Javeed Ahmad Tota",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Adil Mustafa Khan",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 179,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ghulam Ahmad Shalla",
+     "partyId": "ABHM",
+     "sex": "M",
+     "age": 61,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Khalid Tufail",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 127,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mushtaq Ahmad Sofi",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 39,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 422,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Zadibal",
+   "type": "GEN",
+   "electors": 76915,
+   "voters": 18405,
+   "turnout": 23.93,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abid Hussain Ansari",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 68,
+     "votes": 7852,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Peer Afaq Ahmad",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 54,
+     "votes": 4849,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shahid Ali Kachroo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 1329,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nazir Ud Din Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 1063,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shameema Raina",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 44,
+     "votes": 922,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Ashraf Dar",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 50,
+     "votes": 630,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Arshid Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 468,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Neelam Gaash",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 32,
+     "votes": 360,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Saleem Akhtar Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 242,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Syed Owais Qadri",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 241,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Nisar Ahmad Ahangar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 133,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Hakim Mohammad Afzal",
+     "partyId": "RAJPA",
+     "sex": "M",
+     "age": 70,
+     "votes": 93,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Syed Maqsood Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 138,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Eidgah",
+   "type": "GEN",
+   "electors": 58822,
+   "voters": 16352,
+   "turnout": 27.8,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mubarik Ahmad Gul",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 64,
+     "votes": 6766,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ali Mohammad Wani",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 6158,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Imtiyaz Ahmad Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 29,
+     "votes": 1274,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Fayaz Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1238,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Irfan Ahmad Mattoo",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 41,
+     "votes": 385,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mehraj Ud Din Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 213,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ghulam Mohammad Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohammad Ashraf Khan",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 38,
+     "votes": 44,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 177,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Khanyar",
+   "type": "GEN",
+   "electors": 51011,
+   "voters": 13343,
+   "turnout": 26.16,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ali Mohd Sagar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 56,
+     "votes": 6505,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Muhammad Khurshid Alam",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 5338,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Firdous Ahmad Shiekh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 552,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ashok Kumar Bhat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 550,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bilal Ahmed Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 154,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohammed Yaqub Vakil",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 70,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 102,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Habba kadal",
+   "type": "GEN",
+   "electors": 54858,
+   "voters": 11689,
+   "turnout": 21.31,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shamim Firdous",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 48,
+     "votes": 4955,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Moti Koul",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 2596,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Zafar Meraj",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 62,
+     "votes": 992,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Raman Mattoo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 973,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sanjay Saraf",
+     "partyId": "LJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 830,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Waseem Ahmed Shalla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 508,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nazir Ahmad Gilkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 261,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bilal Ahmad Parra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Muneeb Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Parviaz Ah Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 48,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Zahid Bashir",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 34,
+     "votes": 36,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 118,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Amira kadal",
+   "type": "GEN",
+   "electors": 86520,
+   "voters": 21488,
+   "turnout": 24.84,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Syed Mohammad Altaf Bukhari",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 55,
+     "votes": 11726,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nasir Aslam Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 48,
+     "votes": 6385,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Heena Shafi Bhat",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 36,
+     "votes": 1359,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bikram Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 478,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sheikh Aamir Rasool",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 27,
+     "votes": 318,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Younis Qawam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 188,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ghulam Hassan Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Farooq Ahmad Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 161,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Zeeshan Pandith",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 145,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shafat Ahmad Siddiqi",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 31,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Syed Masood Ahmad Andrabi",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 56,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Shakeel Ahmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 56,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Sushant Bakhshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 53,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Azad Abdul Samad Mandu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 25,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 208,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Sonawar",
+   "type": "GEN",
+   "electors": 77512,
+   "voters": 34131,
+   "turnout": 44.03,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohammad Ashraf Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 45,
+     "votes": 14283,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Omar Abdullah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 44,
+     "votes": 9500,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Peer Bilal Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 4394,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Laldin Mir",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 45,
+     "votes": 1996,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Darakhshan Andrabi",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 40,
+     "votes": 1100,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Khem Lata Wakhlu",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 74,
+     "votes": 808,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Parvez Jamal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 458,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohammad Younus Najar",
+     "partyId": "RAJPA",
+     "sex": "M",
+     "age": 26,
+     "votes": 410,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Malik Noor Ul Amin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Gowhar Ahmad Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 179,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Farooq Ahmad Dar",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 39,
+     "votes": 161,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Amjad Ali Buhroo",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 35,
+     "votes": 141,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Abdul Rashid Lone",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 45,
+     "votes": 89,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Riyaz Ahmad Wani",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 32,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 305,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Batmaloo",
+   "type": "GEN",
+   "electors": 120344,
+   "voters": 29472,
+   "turnout": 24.49,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Noor Mohd Sheikh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 12542,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohd Irfan Shah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 47,
+     "votes": 8215,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdul Qayoom Bhat",
+     "partyId": "JKDPN",
+     "sex": "M",
+     "age": 47,
+     "votes": 1409,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd Maqbool Shiekh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 1399,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Zubair Nazir Wani",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 26,
+     "votes": 1304,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abdul Hamid Rather",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 1204,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Muzzaffar Ahmad Gazi",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 41,
+     "votes": 942,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Reyaz Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 764,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gulzar Ahmad Bangroo",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 27,
+     "votes": 458,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Maqbool Rather",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 252,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Javaid Ahmad Dandru",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sajad Ah Reshi",
+     "partyId": "JKPPS",
+     "sex": "M",
+     "age": 35,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohd Adil Hussain Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Mehbooba Shadab",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 54,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Bashir Ahmad Wani",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 45,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Showkat Ahmad Bhat",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 39,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 86,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Chadoora",
+   "type": "GEN",
+   "electors": 84218,
+   "voters": 53406,
+   "turnout": 63.41,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javaid Mustafa Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 44,
+     "votes": 25770,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ali Mohammad Dar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 57,
+     "votes": 24077,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gulam Mohamad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 1261,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bilal Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 665,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohammad Maqbool Malla",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 384,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gh Mohd Paul",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 64,
+     "votes": 376,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Riyaz Ahmad Rather",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 32,
+     "votes": 344,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 526,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Budgam",
+   "type": "GEN",
+   "electors": 103683,
+   "voters": 68758,
+   "turnout": 66.32,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Aga Syed Ruhullah Mehdi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 38,
+     "votes": 30090,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gh Mohi-Ud-Din Bhat (Muntazir)",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 27303,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Fayaz Ahmad Dar",
+     "partyId": "JKPDF",
+     "sex": "M",
+     "age": 43,
+     "votes": 6387,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammad Kamal Malik",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 59,
+     "votes": 2342,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mir Fayaz Rahat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 880,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rafiq Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 872,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ghulam Hussain Geelani",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 520,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 364,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Beerwah",
+   "type": "GEN",
+   "electors": 93046,
+   "voters": 69402,
+   "turnout": 74.59,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Omar Abdullah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 44,
+     "votes": 23717,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nazir Ahmad Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 22807,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shafi Ahmad Wani",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 17554,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dawood Khan Lodhi",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 34,
+     "votes": 3103,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Rashid Banday",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 64,
+     "votes": 1142,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Aijaz Ahmad Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 364,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 710,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Khan Sahib",
+   "type": "GEN",
+   "electors": 86041,
+   "voters": 69935,
+   "turnout": 81.28,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hakeem Mohammad Yaseen Shah",
+     "partyId": "JKPDF",
+     "sex": "M",
+     "age": 66,
+     "votes": 26649,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Saif-U-Din Bhat",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 25540,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manzoor Ahmad Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 53,
+     "votes": 15397,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bashir Ahmad Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 697,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Gani Naseem",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 648,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohammad Anwar Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 312,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 585,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "Chrar-i-sharief",
+   "type": "GEN",
+   "electors": 78359,
+   "voters": 64600,
+   "turnout": 82.44,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ghulam Nabi Lone",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 32849,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Abdul Rahim Rather",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 27682,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Zahid Hussain",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 922,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ghulam Mohamad Chopan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 845,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohammad Lateef Lone",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 34,
+     "votes": 727,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Showkat Ahmad Raina",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 579,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Nazir Ahmad Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 362,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mushtaq Ahmad Baba",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 56,
+     "votes": 271,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 363,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Tral",
+   "type": "GEN",
+   "electors": 84231,
+   "voters": 32193,
+   "turnout": 38.22,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mushtaq Ahmad Shah",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 51,
+     "votes": 12415,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohd Ashraf Bhat",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 64,
+     "votes": 8305,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gh Mohd Mir",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 3649,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Avtar Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2945,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ab Rashid Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 2222,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sheikh Ab Rashid",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 1649,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Krishan Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 45,
+     "votes": 291,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 717,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Pampore",
+   "type": "GEN",
+   "electors": 78176,
+   "voters": 36604,
+   "turnout": 46.82,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Zahoor Ahmad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 16239,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yawar Ali Abass Masoodi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 30,
+     "votes": 12741,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohammad Anwar Bhat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 4063,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ali Mohammad Wagay",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 2019,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ghulam Mohd Yatoo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 540,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Iqbal Sofi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 365,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 625,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Pulwama",
+   "type": "GEN",
+   "electors": 79175,
+   "voters": 30183,
+   "turnout": 38.12,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohd. Khalil Band",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 11631,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Nabi Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 60,
+     "votes": 10599,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ab. Quyoom Mir",
+     "partyId": "JKPDF",
+     "sex": "M",
+     "age": 44,
+     "votes": 1850,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sana Ullah Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 80,
+     "votes": 1760,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bashir Ahmad Magrey",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 1558,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Riyaz Ahmad Mir",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 672,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bashir Ahmad Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 669,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Farooq Ahmad Mir",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 45,
+     "votes": 661,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Masuod Hussain Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 260,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Abdul Gani Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 219,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 289,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Rajpora",
+   "type": "GEN",
+   "electors": 90581,
+   "voters": 49018,
+   "turnout": 54.12,
+   "phase": 3,
+   "pollDate": "2014-12-09",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Haseeb A Drabu",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 53,
+     "votes": 18103,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gh. Mohi-Ud-Din Mir",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 52,
+     "votes": 13830,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gh. Nabi Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 6477,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Peerzada Syed Bashir Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 5133,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Fayaz Ahmad Dar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 1923,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sayed Riyaz Ahmad Riyaz Khawar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 1565,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd Abdullah Dar",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 50,
+     "votes": 571,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Lateef Ahmad Dederd",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 555,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 840,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Wachi",
+   "type": "GEN",
+   "electors": 79257,
+   "voters": 36761,
+   "turnout": 46.38,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Aijaz Ahmad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 28,
+     "votes": 15610,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Showkat Hussain Ganie",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 39,
+     "votes": 13805,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Zahoor Ahmad Rather",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 44,
+     "votes": 2779,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tariq Ahmad Mir",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 30,
+     "votes": 1047,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Maroof Ahmad Wani",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 920,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ahsan Ul Haq",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 50,
+     "votes": 553,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd Khalil Naik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 67,
+     "votes": 473,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Kulbushan Kaw",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 421,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Yaqoob Malik",
+     "partyId": "AKAKRP",
+     "sex": "M",
+     "age": 45,
+     "votes": 355,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohd Yousuf Mir",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 623,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Shopian",
+   "type": "GEN",
+   "electors": 82348,
+   "voters": 41709,
+   "turnout": 50.65,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohd Yousuf Bhat",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 66,
+     "votes": 14262,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shabir Ahmad Kullay",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 11896,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sheikh Mohd Rafi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 48,
+     "votes": 5280,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Javid Ahmad Qadri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 3384,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mushtaq Ahmad Khanday",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 2642,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Tariq Ahmad Ahanger",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 894,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ab Rashid Pandit",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 54,
+     "votes": 849,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Yaqoob Rather",
+     "partyId": "AKAKRP",
+     "sex": "M",
+     "age": 49,
+     "votes": 648,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Yousuf Haji",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 533,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shah Fayaz Ahmad",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 499,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 819,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Noorabad",
+   "type": "GEN",
+   "electors": 73355,
+   "voters": 59359,
+   "turnout": 80.92,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Majid Padder",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 55,
+     "votes": 28698,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sakina Itoo",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 44,
+     "votes": 24990,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manzoor Ahmad Zargar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 1410,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mushtaq Ahmad Doie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 725,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mushtaq Ahmad Malik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 648,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Abdur Rahman Magrey",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 474,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mushtaq Ahmad",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 44,
+     "votes": 337,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Amin Telli",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 307,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Tawseef Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 264,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mehraj-Ud-Din Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Gulzar Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 146,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ab.Rashid Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Bashir Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Akhter Hussain Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Bilal Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 92,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 750,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "Kulgam",
+   "type": "GEN",
+   "electors": 94362,
+   "voters": 53206,
+   "turnout": 56.38,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohamad Yousuf Tarigami",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 65,
+     "votes": 20574,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nazir Ahmad Laway",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 20240,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Imran Nabi Dar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 33,
+     "votes": 8273,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ghulam Hassan Zargar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 1944,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Peer Nazim-Ud-Din",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 519,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Towseef Ahmad Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 483,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rashida Mir",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 38,
+     "votes": 350,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Riyaz Ahmad Shah",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 121,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 674,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Hom Shali Bugh",
+   "type": "GEN",
+   "electors": 75936,
+   "voters": 28522,
+   "turnout": 37.56,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ab. Majeed",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 55,
+     "votes": 11406,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Abdul Gaffar Sofi",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 10137,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Anayatulla Rather",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 43,
+     "votes": 3822,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gulam Nabi Dar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 1527,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Bary Naik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 702,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Amin Bhat",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 52,
+     "votes": 305,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bashir Ahmad Bhat",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 56,
+     "votes": 246,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Ayoub Sheikh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 42,
+     "votes": 140,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 233,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Anantnag",
+   "type": "GEN",
+   "electors": 83607,
+   "voters": 33200,
+   "turnout": 39.71,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mufti Mohd Sayeed",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 72,
+     "votes": 16983,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hilal Ahmad Shah",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 10955,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Iftikhar Hussain Misger",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 45,
+     "votes": 2403,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd Rafiq Wani",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 1275,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nasir Ali Kochak",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 428,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Shafi Mir",
+     "partyId": "AKAKRP",
+     "sex": "M",
+     "age": 54,
+     "votes": 399,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ghulam Rasool Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 306,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Farooq Ahmad Mir",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 114,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 308,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Devsar",
+   "type": "GEN",
+   "electors": 88991,
+   "voters": 57524,
+   "turnout": 64.64,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohammad Amin Bhat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 20162,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohammad Sartaj Madni",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 18651,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Peerzada Gh. Ahmad",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 77,
+     "votes": 11585,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Fayaz Ahmad Bhat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 3892,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mudasir Rashid Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 933,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nisar Ahmad Hajam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 614,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mushtaq Ahmad Bhat",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 514,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Asif Jeelani",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 44,
+     "votes": 299,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 822,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Dooru",
+   "type": "GEN",
+   "electors": 74321,
+   "voters": 48318,
+   "turnout": 65.01,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Syed Farooq Ahmad Andrabi",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 55,
+     "votes": 18150,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Ahmad Mir",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 17989,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Farooq Ahmad Ganai",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 41,
+     "votes": 8251,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gull Mohammad Mir",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 1030,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Syed Shariq Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 734,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Suhail Malik",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 25,
+     "votes": 500,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Syed Rasheed Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 329,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Farooq Ahmad Gashroo",
+     "partyId": "HJP_TN",
+     "sex": "M",
+     "age": 34,
+     "votes": 164,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Yousuf Ganai",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 52,
+     "votes": 86,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Abdul Ahad Mir",
+     "partyId": "IPCP",
+     "sex": "M",
+     "age": 48,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 997,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Kokernag",
+   "type": "GEN",
+   "electors": 86825,
+   "voters": 57449,
+   "turnout": 66.17,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Rahim Rather",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 57,
+     "votes": 24284,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Peerzada Mohammad Syed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 19713,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ghulam Nabi Bhat",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 73,
+     "votes": 8248,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khurshid Ahmad Malik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1842,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ghulam Hassan Khanday",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 1131,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohammad Yousuf Ganie",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 52,
+     "votes": 790,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Javaid Ahmad Rather",
+     "partyId": "AKAKRP",
+     "sex": "M",
+     "age": 26,
+     "votes": 451,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 956,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "Shangus",
+   "type": "GEN",
+   "electors": 82689,
+   "voters": 56877,
+   "turnout": 68.78,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gulzar Ahmad Wani",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 21085,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Peerzada Mansoor Hussain",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 52,
+     "votes": 18896,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Reyaz Ahmad Khan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 50,
+     "votes": 10892,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Khalid Muzaffar Maqbool Dar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2275,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tanveer Hussain Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 1240,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohammad Yousuf Ganie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 563,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mushtaq Ahmad Bhat",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 41,
+     "votes": 561,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Bashir Ahmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 435,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ishfaq Ahmad Shah",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 31,
+     "votes": 328,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 591,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Bijbehara",
+   "type": "GEN",
+   "electors": 86929,
+   "voters": 48358,
+   "turnout": 55.63,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Rehman Bhat",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 23581,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bashir Ahmad Shah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 47,
+     "votes": 20713,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pushkar Nath Pandita",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 62,
+     "votes": 1591,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Manzoor Ahmad Ganie",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 1294,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mushtaq Ahmad Sheikh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 580,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 575,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Pahalgam",
+   "type": "GEN",
+   "electors": 80985,
+   "voters": 56533,
+   "turnout": 69.81,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Altaf Ahmad Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 41,
+     "votes": 25232,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rafi Ahmad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 59,
+     "votes": 24328,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Irfan Abid",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 42,
+     "votes": 2148,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sofi Yousuf",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 1943,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Farooq Ahmad Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 788,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shabir Ahmad Shah",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 503,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anwar Jan",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 38,
+     "votes": 492,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1056,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Nubra",
+   "type": "GEN",
+   "electors": 14109,
+   "voters": 10607,
+   "turnout": 75.18,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Deldan Namgail",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 36,
+     "votes": 3936,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tsetan Namgyal",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 48,
+     "votes": 2318,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Stanzin Delik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 1947,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tashi Gyalson",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1415,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tsewang Rigzin",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 534,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nisar Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 49,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Leh",
+   "type": "GEN",
+   "electors": 70840,
+   "voters": 48281,
+   "turnout": 68.15,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nawang Rigzin",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 27585,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chering Dorjay",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 19909,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 662,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Kargil",
+   "type": "GEN",
+   "electors": 60094,
+   "voters": 45440,
+   "turnout": 75.61,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Asgar Ali Karbalaie",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 22911,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Anayat Ali",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 45,
+     "votes": 12406,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Kacho Mohammad Hussain",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 7363,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Aziz",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 2317,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 360,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Zanskar",
+   "type": "GEN",
+   "electors": 21143,
+   "voters": 15672,
+   "turnout": 74.12,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Syed Mohammad Baqir Rizvi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 74,
+     "votes": 6763,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Raza",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 6197,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Stanzin Lakpa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 2292,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ghulam Mohammad",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 157,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Kishtwar",
+   "type": "GEN",
+   "electors": 79174,
+   "voters": 61939,
+   "turnout": 78.23,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sunil Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 28054,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sajjad Ahmed Kichloo",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 49,
+     "votes": 25202,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Firdous Ahmed Tak",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 37,
+     "votes": 6432,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nek Ram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 782,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jaswant Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Aijaz Hussain",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 38,
+     "votes": 202,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Farooq Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gulzar Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 163,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Amin Bhat",
+     "partyId": "JDS",
+     "sex": "M",
+     "age": 53,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Des Raj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 279,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Inderwal",
+   "type": "GEN",
+   "electors": 83813,
+   "voters": 63461,
+   "turnout": 75.72,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ghulam Mohd Saroori",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 29754,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tariq Hussain Keen",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 49,
+     "votes": 17384,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdul Majeed Batt",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 52,
+     "votes": 12570,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tanveer Hussain",
+     "partyId": "RKSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 881,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shanawaz Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 559,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abdul Majeed Ganai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 547,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Salam Din",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 57,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Farooq Ahmed Keen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 259,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ashaq Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 255,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Jaber Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Imtiaz Ahmad",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 33,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Jyoti Prakash",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 88,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 435,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Doda",
+   "type": "GEN",
+   "electors": 84548,
+   "voters": 67222,
+   "turnout": 79.51,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shakti Raj",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 24572,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Abdul Majid Wani",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 20532,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khalid Najib Suharwardy",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 54,
+     "votes": 16416,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shahab Ul Haq",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2201,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nuzhat Iqbal Zargar",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 46,
+     "votes": 803,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Daya Krishan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 410,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd Yousaf",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 347,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Farooq Ahmed Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 316,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Chunni Lal",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 67,
+     "votes": 301,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Rajinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 235,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohd Ali Shokeen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 216,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 735,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Bhaderwah",
+   "type": "GEN",
+   "electors": 106302,
+   "voters": 73571,
+   "turnout": 69.21,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Daleep Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 25953,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohd Sharief Niaz",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 70,
+     "votes": 24457,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sheikh Mehboob Iqbal",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 63,
+     "votes": 16673,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Reyaz Ahmed Zarger",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 1310,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Narinder Kant",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 61,
+     "votes": 891,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Riaz Anayat Ullah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 60,
+     "votes": 880,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shiekh Mohammad Shafi",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 55,
+     "votes": 828,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Dr. Kuldeep Singh Charak",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 605,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sanjay Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 374,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mehraj Din",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 365,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Bhoori Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 27,
+     "votes": 326,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Nirej Singh Manhas",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 249,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Er Om Parkash",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 213,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 339,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Ramban",
+   "type": "SC",
+   "electors": 86604,
+   "voters": 59969,
+   "turnout": 69.25,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Neelam Kumar Langeh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 25349,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Chaman Lal",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 42,
+     "votes": 19985,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ashok Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 5643,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Swami Raj",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 57,
+     "votes": 4672,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Amrit Barsha",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 50,
+     "votes": 1156,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Suraish Kumar",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 26,
+     "votes": 1123,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Prithvi Raj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 530,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Girdhari Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 423,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1047,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Banihal",
+   "type": "GEN",
+   "electors": 78588,
+   "voters": 57691,
+   "turnout": 73.41,
+   "phase": 1,
+   "pollDate": "2014-11-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vikar Rasool Wani",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 17671,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bashir Ahmed Runyal",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 13322,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sajad Shaheen",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 46,
+     "votes": 13002,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Showket Javeed Daing",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 34,
+     "votes": 9874,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sewa Singh Bali",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 733,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Ali",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 51,
+     "votes": 656,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 2405,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Gulab Garh",
+   "type": "GEN",
+   "electors": 68379,
+   "voters": 56403,
+   "turnout": 82.49,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mumtaz Ahmed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 17964,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Abdul Gani Malik",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 55,
+     "votes": 16148,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shafiq Ur Rehman",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 37,
+     "votes": 11202,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pardeep Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 8767,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shaber Ahmed",
+     "partyId": "HJP_TN",
+     "sex": "M",
+     "age": 29,
+     "votes": 741,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jawahar Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 47,
+     "votes": 425,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bashir Ud Din",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 26,
+     "votes": 346,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 539,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Reasi",
+   "type": "GEN",
+   "electors": 108535,
+   "voters": 87819,
+   "turnout": 80.91,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajay Nanda",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 22017,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Saraf Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 20130,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jugal Kishore",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 18929,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Karnail Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 10256,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jagjiwan Lal",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 62,
+     "votes": 9457,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Baldev Raj Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 2061,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Karan Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 53,
+     "votes": 1048,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Om Parkash",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 59,
+     "votes": 664,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rano Devi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 55,
+     "votes": 379,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Balwan Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 372,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Meenakshi Sharma",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 49,
+     "votes": 359,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Bansi Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 340,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Kuldeep Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 296,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 597,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Gool Arnas",
+   "type": "GEN",
+   "electors": 61476,
+   "voters": 50828,
+   "turnout": 82.68,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajaz Ahmed Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 45,
+     "votes": 22966,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Kuldeep Raj Dubey",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 16088,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Imtiyaz Ahmed Shan",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 39,
+     "votes": 7132,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shamshad Bano",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 37,
+     "votes": 2203,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Gulzar Ahmed Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 452,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Abdul Rehman",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 412,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Arjun Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 393,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shiban",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 210,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shakeel Ahmed",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 34,
+     "votes": 145,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Romail Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 627,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Udhampur",
+   "type": "GEN",
+   "electors": 107118,
+   "voters": 85240,
+   "turnout": 79.58,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Kumar Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 36226,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Balwant Singh Mankotia",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 45,
+     "votes": 21576,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pawan Khajuria",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 20174,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sunil Verma",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 53,
+     "votes": 1440,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ashok Kumar Gupta",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 56,
+     "votes": 1249,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sukhdev Sharma",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 1149,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Soma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 1088,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ranjit Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 882,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Anil Khajuria",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 407,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dharam Paul",
+     "partyId": "HJP_TN",
+     "sex": "M",
+     "age": 57,
+     "votes": 247,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 653,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 61,
+   "name": "Chenani",
+   "type": "SC",
+   "electors": 87627,
+   "voters": 66199,
+   "turnout": 75.55,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dina Nath",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 33047,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Krishan Chander",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 12715,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dhani Ram Atri",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 53,
+     "votes": 11992,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Hans Raj",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 2929,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Pushpa Devi",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 35,
+     "votes": 1830,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sansar Chand",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 47,
+     "votes": 1198,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohinder Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 30,
+     "votes": 980,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1185,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 62,
+   "name": "Ram Nagar",
+   "type": "GEN",
+   "electors": 109209,
+   "voters": 82479,
+   "turnout": 75.52,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ranbir Singh Pathania",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 45891,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Harsh Dev Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 54,
+     "votes": 28471,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Raj Kapoor",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 43,
+     "votes": 3073,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sukham Chand",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 65,
+     "votes": 1424,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Vinod Kumar Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 1384,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sanju Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 1086,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1048,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 63,
+   "name": "Bani",
+   "type": "GEN",
+   "electors": 41533,
+   "voters": 32896,
+   "turnout": 79.2,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Jewan Lal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 44,
+     "votes": 12841,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Hyder Malik",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 62,
+     "votes": 8429,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Lal Chand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 5012,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pawan Dev Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 2916,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajnish Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 1379,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Salim Lone",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 1087,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Madan Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 310,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Rafiq",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 258,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ramzan Hussian",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 115,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Deep Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 80,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Pishori Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 79,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 302,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 64,
+   "name": "Basohli",
+   "type": "GEN",
+   "electors": 76209,
+   "voters": 56274,
+   "turnout": 73.84,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Lal Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 29808,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Davinder Singh",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 46,
+     "votes": 12007,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jagdish Raj Spolia",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 68,
+     "votes": 8809,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 2550,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Darshan Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 508,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rangil Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 68,
+     "votes": 502,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Romesh Chander Gupta",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 52,
+     "votes": 431,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Parvez Ahmed Reza",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 360,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Khadam Hussain",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 41,
+     "votes": 261,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shams Deen",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Jagdish Chander",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 159,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Charan Dass",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 462,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 65,
+   "name": "Kathua",
+   "type": "GEN",
+   "electors": 113075,
+   "voters": 91207,
+   "turnout": 80.66,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajiv Jasrotia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 35670,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Som Raj Majotra",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 62,
+     "votes": 28864,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Charanjit Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 13242,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jatinder Singh Alias Babu Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 7195,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Subash Chander",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 65,
+     "votes": 1305,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Robin Ramkrishan Alias Robin Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 1088,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Manoj Kumar",
+     "partyId": "CPI",
+     "sex": "M",
+     "age": 39,
+     "votes": 760,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kishor Kumar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 56,
+     "votes": 702,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Balbir Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 31,
+     "votes": 505,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "S. Jamit Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 411,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Naresh Kumar Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 386,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Gurnam Singh",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 43,
+     "votes": 227,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Kasturi Lal",
+     "partyId": "BMP1",
+     "sex": "M",
+     "age": 60,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Sudesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 201,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Harish Chander Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 272,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 66,
+   "name": "Billawar",
+   "type": "GEN",
+   "electors": 96599,
+   "voters": 74540,
+   "turnout": 77.16,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Nirmal Kumar Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 43447,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dr. Manohar Lal Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 25472,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sanjeev Khajuria",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 54,
+     "votes": 3084,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Naresh Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 30,
+     "votes": 834,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mahmood Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 388,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ravinder Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 44,
+     "votes": 352,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Jatinder Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 55,
+     "votes": 344,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sham Lal Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 414,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 67,
+   "name": "Hira Nagar",
+   "type": "SC",
+   "electors": 110753,
+   "voters": 80179,
+   "turnout": 72.39,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kuldeep Raj",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 55399,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Girdhari Lal Chalotra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 75,
+     "votes": 16115,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bansi Lal Kandley",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 3158,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Puran Chand",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 48,
+     "votes": 1917,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Chandu Ram",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 69,
+     "votes": 1057,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Suraj Parkash",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 992,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ravail Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 639,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Jagdish Raj",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 43,
+     "votes": 407,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 434,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 68,
+   "name": "Samba",
+   "type": "SC",
+   "electors": 84916,
+   "voters": 64201,
+   "turnout": 75.61,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Devinder Kumar Manyal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 34075,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yash Paul Kundal",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 43,
+     "votes": 11957,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Subhash Chander",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 9063,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sunny Sangral",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 30,
+     "votes": 2971,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Som Nath",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 2779,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Satwant Kaur",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 51,
+     "votes": 2220,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vijay Kumar Atri",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 62,
+     "votes": 310,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Darshan Kumar",
+     "partyId": "BMP1",
+     "sex": "M",
+     "age": 44,
+     "votes": 296,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 524,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 69,
+   "name": "Vijay pur",
+   "type": "GEN",
+   "electors": 113082,
+   "voters": 88867,
+   "turnout": 78.59,
+   "phase": 4,
+   "pollDate": "2014-12-14",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chander Parkash",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 38607,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Surjit Singh Slathia",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 26435,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manjit Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 15761,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Harmesh Singh Slathia",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 3480,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Raj Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 1108,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jagdish Raj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 57,
+     "votes": 629,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rajan Jamwal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 543,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rajesh Kumar Pargotra",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 43,
+     "votes": 513,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ajad Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 512,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sanjeev Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 347,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Kuldeep Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 310,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Bahadur Singh Chowdhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Jeet Ram",
+     "partyId": "BMP1",
+     "sex": "M",
+     "age": 64,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Kamal Kishore",
+     "partyId": "HJP_TN",
+     "sex": "M",
+     "age": 27,
+     "votes": 69,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 263,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 70,
+   "name": "Nagrota",
+   "type": "GEN",
+   "electors": 72907,
+   "voters": 60678,
+   "turnout": 83.23,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Devender Singh Rana",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 49,
+     "votes": 23678,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nand Kishore",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 19630,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rakesh Wazir",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 6422,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shiv Dev Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 4853,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ch Hussain Ali Waffa",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 56,
+     "votes": 4049,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nazakat Ali Khatana",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 616,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vilakshana Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 35,
+     "votes": 286,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Kamal Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 179,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Riaz Ahmed",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 58,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Abdul Gani",
+     "partyId": "JSMP_JK",
+     "sex": "M",
+     "age": 51,
+     "votes": 118,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Bansi Lal",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 49,
+     "votes": 95,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 594,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 71,
+   "name": "Gandhi Nagar",
+   "type": "GEN",
+   "electors": 169672,
+   "voters": 110772,
+   "turnout": 65.29,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kavinder Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 56679,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Raman Bhalla",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 39902,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Amrik Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 57,
+     "votes": 9815,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Surinder Singh Bunty",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 43,
+     "votes": 1099,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ravinder Singh Pappu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 1080,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kuldeep Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 526,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Gourav Kapoor",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 28,
+     "votes": 414,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Madhu Bala",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 40,
+     "votes": 277,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Anita Kumari",
+     "partyId": "JKNPP",
+     "sex": "F",
+     "age": 43,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Prabodh Chander Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 67,
+     "votes": 143,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Kanchan Sharma",
+     "partyId": "BHBP",
+     "sex": "F",
+     "age": 45,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 523,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 72,
+   "name": "Jammu East",
+   "type": "GEN",
+   "electors": 53346,
+   "voters": 35298,
+   "turnout": 66.17,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajesh Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 21776,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vikram Malhotra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 9082,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bharat Chowdhary",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 31,
+     "votes": 3072,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sanjeev Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 430,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bimla Luthra",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 61,
+     "votes": 261,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Kasturi Lal Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 240,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rajesh Gondhi",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 40,
+     "votes": 136,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ajay Jagotra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mahesh Chander Padha",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 60,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 129,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 73,
+   "name": "Jammu West",
+   "type": "GEN",
+   "electors": 153794,
+   "voters": 98580,
+   "turnout": 64.1,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sat Paul Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 69626,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Surinder Singh Shingari",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 18997,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dharamveer Singh",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 49,
+     "votes": 4733,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sarv Daman Bhasin",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 67,
+     "votes": 2419,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohinder Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 65,
+     "votes": 523,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dr. Anil Kumar Dhar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 446,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sanjay Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 378,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajinder Singh Bloria",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 66,
+     "votes": 254,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kanwarjeet",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ghani Sham",
+     "partyId": "RKSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sawtanter Bharat Bakshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Neeraj Gupta",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 39,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Arun Kumar Sawhney",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Vijay Kumar Verma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 78,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Uday Chand",
+     "partyId": "DGPP",
+     "sex": "M",
+     "age": 62,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 359,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 74,
+   "name": "Bishnah",
+   "type": "GEN",
+   "electors": 92694,
+   "voters": 71437,
+   "turnout": 77.07,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kamal Verma",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 53,
+     "votes": 29380,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ashwani Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 26394,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Faqir Chand",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 8112,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gulchain Singh Charak",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 73,
+     "votes": 3272,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bharat Bushan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 1668,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ghansham Sharma",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 55,
+     "votes": 473,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vicky Kumar Dogra",
+     "partyId": "BMP1",
+     "sex": "M",
+     "age": 29,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Krishan Kumar Digra",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 60,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ram Pal Khajuria",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 185,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Bimla Devi Mottan",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 61,
+     "votes": 142,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 490,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 75,
+   "name": "Ranbir singh Pura",
+   "type": "SC",
+   "electors": 79570,
+   "voters": 61696,
+   "turnout": 77.54,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Gagan Bhagat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 25696,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bushan Lal",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 43,
+     "votes": 12086,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "B.R Kundal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 11140,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Romesh Lal Mottan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 58,
+     "votes": 5852,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suman Lata Bhagat",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 63,
+     "votes": 3665,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ajaib Singh Motan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 966,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Devinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 594,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kuldeep Raj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 421,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Kesar Parveen",
+     "partyId": "JKNPP",
+     "sex": "F",
+     "age": 40,
+     "votes": 418,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sham Lal",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 60,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Pargat Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 254,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 336,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 76,
+   "name": "Suchet Garh",
+   "type": "GEN",
+   "electors": 65695,
+   "voters": 51454,
+   "turnout": 78.32,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sham Lal Choudhary",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 19971,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Taranjit Singh Toni",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 50,
+     "votes": 10554,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rajinder Singh Chib",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 72,
+     "votes": 9684,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tarlok Singh Bajwa",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 8578,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Bhupinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 628,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Harjeet Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 49,
+     "votes": 520,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rajinder Singh Toofani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 353,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ranjeet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 234,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ashok Kumar Randhawa",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 51,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Jeet Raj",
+     "partyId": "BMP1",
+     "sex": "M",
+     "age": 61,
+     "votes": 181,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Bachan Lal Chowdhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 76,
+     "votes": 174,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ch. Dev Raj",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 64,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 217,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 77,
+   "name": "Marh",
+   "type": "GEN",
+   "electors": 73503,
+   "voters": 59965,
+   "turnout": 81.58,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sukhnandan Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 25396,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ajay Kumar Sadhotra",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 13784,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Balwan Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 11255,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Suram Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 51,
+     "votes": 4886,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ashok Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 42,
+     "votes": 2972,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sandeep Singh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 30,
+     "votes": 448,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vijay Kumar",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 48,
+     "votes": 272,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Darshan Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shanker Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 48,
+     "votes": 202,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 514,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 78,
+   "name": "Raipur Domana",
+   "type": "SC",
+   "electors": 98420,
+   "voters": 73354,
+   "turnout": 74.53,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bali Bhagat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 49134,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mula Ram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 16991,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sat Paul",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 56,
+     "votes": 2767,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Chaman Lal",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 1384,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Behari Lal Digra",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 1189,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nirmal Kishore",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 51,
+     "votes": 337,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Naresh Salgotra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 286,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Harbans Lal Bhagat",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 60,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 196,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Raj Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Surjit Kumar",
+     "partyId": "BHBP",
+     "sex": "M",
+     "age": 29,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 559,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 79,
+   "name": "Akhnoor",
+   "type": "GEN",
+   "electors": 97125,
+   "voters": 78772,
+   "turnout": 81.1,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajeev Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 41901,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sham Lal Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 55,
+     "votes": 32521,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Dev Raj",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 1291,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Raj Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 50,
+     "votes": 1003,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Dr. Gafur Ahmed",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 859,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Pardeep Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 304,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Tej Ram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Pushvinder Singh",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 37,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 436,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 80,
+   "name": "Chhamb",
+   "type": "SC",
+   "electors": 76763,
+   "voters": 59531,
+   "turnout": 77.55,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Kirshan Lal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 36033,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Tara Chand",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 51,
+     "votes": 21243,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Madan Lal",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 55,
+     "votes": 653,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Manoj Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 38,
+     "votes": 238,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shakti Bala",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 29,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Janak Raj",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 48,
+     "votes": 226,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bhajan Lal",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 29,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohinder Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 199,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Biru Mal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 139,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Subash Chander",
+     "partyId": "AJKMP",
+     "sex": "M",
+     "age": 49,
+     "votes": 123,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 223,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 81,
+   "name": "Nowshera",
+   "type": "GEN",
+   "electors": 94729,
+   "voters": 75512,
+   "turnout": 79.71,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ravinder Raina",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 37,
+     "votes": 37374,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Surinder Choudhary",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 59,
+     "votes": 27871,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ravinder Kumar Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 47,
+     "votes": 5342,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rajinder Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1208,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Radhay Sham Sharma",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 64,
+     "votes": 1099,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Yash Pal",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 44,
+     "votes": 697,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ashwani Kumar Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 484,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Pankaj Kumar Raina",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 328,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Haq Nawaz",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 29,
+     "votes": 311,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vijay Kumar Bali",
+     "partyId": "HJP_TN",
+     "sex": "M",
+     "age": 55,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Surinder Kumar Choudhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 152,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 423,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 82,
+   "name": "Darhal",
+   "type": "GEN",
+   "electors": 93646,
+   "voters": 77256,
+   "turnout": 82.5,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chowdhary Zulfkar Ali",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 44,
+     "votes": 24381,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Choudhary Liaqat Ali",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 66,
+     "votes": 19313,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Iqbal Malik",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 67,
+     "votes": 18605,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Thakur Puran Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 70,
+     "votes": 11940,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nazir Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 656,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Manir Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 645,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sheraz Begum",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 40,
+     "votes": 421,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Rakiz",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 36,
+     "votes": 366,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Rafaqat Ajaz Choudhary",
+     "partyId": "HKRD",
+     "sex": "M",
+     "age": 28,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ghulam Header Atish",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 136,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Abdul Manaf",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 108,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 475,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 83,
+   "name": "Rajouri",
+   "type": "GEN",
+   "electors": 115647,
+   "voters": 88001,
+   "turnout": 76.09,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Qamar Hussain",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 52,
+     "votes": 26954,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chowdhary Talib Hussain",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 72,
+     "votes": 24464,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shabir Ahmed Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 52,
+     "votes": 24296,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mirza Abdul Rashid",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 76,
+     "votes": 4888,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Yog Raj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 1744,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Farooq",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 1733,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Istkhar Ali Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 587,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ghulam Mustafa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 587,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sharafat Ali",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 26,
+     "votes": 438,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Zaheer Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 370,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ghulam Rasool",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 361,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ghulam Mustafa",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 45,
+     "votes": 358,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Liyaqat Ali",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 348,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 864,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 84,
+   "name": "Kala kote",
+   "type": "GEN",
+   "electors": 86303,
+   "voters": 66365,
+   "turnout": 76.9,
+   "phase": 5,
+   "pollDate": "2014-12-20",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Ghani Kohli",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 71,
+     "votes": 25225,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rachhpal Singh",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 63,
+     "votes": 19047,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ashok Kumar Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 10520,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Asad Bari Shah",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 54,
+     "votes": 8325,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohd Rafiq",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 1472,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ashok Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 526,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mahesh Kumar Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 281,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 766,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 85,
+   "name": "Surankote",
+   "type": "GEN",
+   "electors": 86084,
+   "voters": 65887,
+   "turnout": 76.54,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ch Mohd Akram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 30584,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mushtaq Ahmed Shah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 65,
+     "votes": 22520,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Iqbal Hussain Shah",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 51,
+     "votes": 8290,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd Taj Khan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 2123,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ashfaq Rana",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 47,
+     "votes": 429,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ayaz Ahmed Mughal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 371,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Naseer-Ul-Islam Ahmed",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 36,
+     "votes": 327,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Sadiq Qureshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 322,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Javaid Ahmed",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 33,
+     "votes": 312,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohd Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 375,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 86,
+   "name": "Mendhar",
+   "type": "GEN",
+   "electors": 81554,
+   "voters": 65330,
+   "turnout": 80.11,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javed Ahmed Rana",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 50,
+     "votes": 31186,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohd Mahroof Khan",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 53,
+     "votes": 22161,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Murtaza Ahmed Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 50,
+     "votes": 7255,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Zulfqar Hussain Khan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 46,
+     "votes": 1472,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohd Sharief Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 830,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nisar Ahmed Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 534,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nisar Hussain Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 495,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mushtaq Ahmed",
+     "partyId": "JKPPAP",
+     "sex": "M",
+     "age": 48,
+     "votes": 345,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Abdul Majeed Chowan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 343,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohd Tariq Khan",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 45,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohd Shafeeq Khan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 39,
+     "votes": 133,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 351,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 87,
+   "name": "Poonch Haveli",
+   "type": "GEN",
+   "electors": 99958,
+   "voters": 76261,
+   "turnout": 76.29,
+   "phase": 2,
+   "pollDate": "2014-12-02",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shah Mohd Tantray",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 19488,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ajaz Ahmed Jan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 37,
+     "votes": 15976,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chaudhary Abdul Ghani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 15110,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pardeep Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 11292,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ch Bashir Ahmed Naaz",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 10289,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Younis",
+     "partyId": "JKPPAP",
+     "sex": "M",
+     "age": 49,
+     "votes": 1351,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Kabir Qureshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 682,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Javid Iqbal Reshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 543,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Rashid",
+     "partyId": "JKNPP",
+     "sex": "M",
+     "age": 50,
+     "votes": 417,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ashfaq Ahmed",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 31,
+     "votes": 406,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 661,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}

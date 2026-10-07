@@ -1,0 +1,58 @@
+{
+ "_sources": [
+  "https://en.wikipedia.org/wiki/2024_Jammu_and_Kashmir_Legislative_Assembly_election",
+  "note: INDIA = National Conference, Congress, CPI(M) (seat sharing 26 Aug 2024, friendly contests in 6 seats). 90 elected seats on the 2022 boundaries; majority 46 of the 90 (the 5 members the Lieutenant Governor nominates are not modelled; with them the House is 95 and the majority 48). No earlier election shares these boundaries."
+ ],
+ "alliances": [
+  {
+   "id": "INDIA",
+   "name": "INDIA",
+   "color": "#C41E3A",
+   "parties": [
+    "JKNC",
+    "INC",
+    "CPIM"
+   ]
+  },
+  {
+   "id": "BJP",
+   "name": "BJP",
+   "color": "#FF7A1A",
+   "parties": [
+    "BJP"
+   ]
+  },
+  {
+   "id": "JKPDP",
+   "name": "PDP",
+   "color": "#058532",
+   "parties": [
+    "JKPDP"
+   ]
+  }
+ ],
+ "leaders": [],
+ "cabinet": [],
+ "tracked": [
+  "JKNC",
+  "JKPDP",
+  "INC",
+  "BJP"
+ ],
+ "vip_seats": {},
+ "milestones": [
+  {
+   "label": "Majority",
+   "value": 46
+  }
+ ],
+ "geo": {
+  "zoom": 7.5,
+  "center": [
+   75.25,
+   33.6
+  ],
+  "map_url": "/geo/jk_ac_2022.geojson"
+ },
+ "delimitation_era": "2022"
+}

@@ -1,0 +1,102 @@
+[
+ {
+  "id": "JKNC",
+  "name": "Jammu & Kashmir National Conference",
+  "abbreviation": "JKNC",
+  "eci_recognition": "State",
+  "founded_year": 1932,
+  "leader_name": "Farooq Abdullah",
+  "headquarters": "Nawa-e-Subha, Srinagar, Jammu and Kashmir",
+  "website": "https://jknc.co.in",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jammu_%26_Kashmir_National_Conference",
+  "color": "#C41E3A",
+  "description": "Founded by Sheikh Abdullah and Chaudhry Ghulam Abbas on 15 October 1932 as the All Jammu and Kashmir Muslim Conference, it took the name National Conference in 1939 and backed the princely state's accession to India in 1947. It governed Jammu and Kashmir for most of the years until 2002 and again from 2009 to 2015, led successively by Sheikh Abdullah, his son Farooq Abdullah and grandson Omar Abdullah. In 2024, in the first assembly election since the state became a union territory in 2019, it contested in alliance with the Congress and won 42 of 90 seats, the most of any party, and Omar Abdullah was sworn in on 16 October 2024 as the union territory's first Chief Minister.",
+  "eci_symbol": "Plough",
+  "logo": {
+   "file": "JKNC-logo.svg",
+   "commons": "File:Flag of Jammu and Kashmir (1936-1953).svg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Flag_of_Jammu_and_Kashmir_(1936-1953).svg",
+   "author": "Germenfer",
+   "licence": "Public domain"
+  },
+  "eci_image": {
+   "file": "JKNC-eci.png",
+   "commons": "File:Indian Election Symbol Plough.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Plough.png",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Jammu_%26_Kashmir_National_Conference",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=7",
+   "https://en.wikipedia.org/wiki/2024_Jammu_and_Kashmir_Legislative_Assembly_election",
+   "https://jknc.co.in",
+   "https://newsonair.gov.in/omar-abdullah-unanimously-elected-as-legislature-party-leader-in-jk/",
+   "https://en.wikipedia.org/wiki/Module:Political_party/J",
+   "https://commons.wikimedia.org/wiki/File:Flag_of_Jammu_and_Kashmir_(1936-1953).svg",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Plough.png"
+  ]
+ },
+ {
+  "id": "JKPDP",
+  "name": "Jammu & Kashmir Peoples Democratic Party",
+  "abbreviation": "JKPDP",
+  "eci_recognition": "State",
+  "founded_year": 1999,
+  "leader_name": "Mehbooba Mufti",
+  "headquarters": "2, Circuit House, Emporium Lane, Residency Road, Srinagar, Jammu and Kashmir",
+  "website": "https://jkpdp.org",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jammu_and_Kashmir_Peoples_Democratic_Party",
+  "color": "#058532",
+  "description": "A Kashmir-based regional party founded in 1999 by former Union Home Minister Mufti Mohammad Sayeed, who became Chief Minister in 2002 at the head of a coalition with the Congress. It emerged as the largest party in 2014 with 28 seats and formed a government with the BJP, led by Sayeed and, after his death in 2016, by his daughter Mehbooba Mufti, until the BJP withdrew in June 2018. In 2024 it contested 81 of the 90 seats and won 3, with about 8.9% of the vote, its worst result since its formation; Waheed Para became the leader of its legislators. In November 2025 it won the Budgam by-election, the seat Omar Abdullah had vacated.",
+  "eci_symbol": "Ink Pot and Pen",
+  "logo": null,
+  "eci_image": {
+   "file": "JKPDP-eci.png",
+   "commons": "File:Indian Election Symbol Ink Pot and Pen.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Ink_Pot_and_Pen.png",
+   "author": "Abilngeorge",
+   "licence": "CC BY-SA 4.0"
+  },
+  "current_logo_ok": true,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Jammu_and_Kashmir_Peoples_Democratic_Party",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=7",
+   "https://en.wikipedia.org/wiki/2024_Jammu_and_Kashmir_Legislative_Assembly_election",
+   "https://www.greaterkashmir.com/jammu-kashmir/pdp-appoints-dr-mehboob-beg-as-partys-chief-spokesperson/",
+   "https://results.eci.gov.in/AcResultByeNov2025/candidateswise-U0827.htm",
+   "https://jkpdp.org",
+   "https://en.wikipedia.org/wiki/Module:Political_party/J",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Ink_Pot_and_Pen.png"
+  ]
+ },
+ {
+  "id": "JKPC",
+  "name": "Jammu & Kashmir People's Conference",
+  "abbreviation": "JKPC",
+  "eci_recognition": "Unrecognised",
+  "founded_year": 1978,
+  "leader_name": "Sajad Gani Lone",
+  "headquarters": "J-65, Jawahar Nagar, Srinagar, Jammu and Kashmir 190008",
+  "website": "https://jkpcofficial.org",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jammu_and_Kashmir_People%27s_Conference",
+  "color": "#005085",
+  "description": "Founded in 1978 by Abdul Ghani Lone, a former Congress legislator who later became a separatist leader and a founder of the All Parties Hurriyat Conference; he was assassinated in Srinagar in 2002. His son Sajad Gani Lone returned the party to electoral politics, and it won two seats in 2014 and joined the PDP-BJP government, in which Lone was a minister. In 2024 it contested 15 seats and won one, Handwara, where Lone was elected by 662 votes.",
+  "eci_symbol": "Apple",
+  "logo": null,
+  "eci_image": null,
+  "current_logo_ok": false,
+  "current_eci_ok": null,
+  "sources": [
+   "https://en.wikipedia.org/wiki/Jammu_and_Kashmir_People%27s_Conference",
+   "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=7",
+   "https://en.wikipedia.org/wiki/2024_Jammu_and_Kashmir_Legislative_Assembly_election",
+   "https://jkpcofficial.org",
+   "https://en.wikipedia.org/wiki/Module:Political_party/J",
+   "https://commons.wikimedia.org/wiki/File:Indian_Election_Symbol_Apple_(Old_Version).jpg"
+  ]
+ }
+]

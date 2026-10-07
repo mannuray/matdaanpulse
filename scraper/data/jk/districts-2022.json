@@ -1,0 +1,216 @@
+{
+ "sources": [
+  "https://web.archive.org/web/20220924222358/https://ceojk.nic.in/pdf/Delimitation/English%20Final%20JK.pdf (Delimitation Commission final order, J&K Official Gazette 5 May 2022, Table-A: the 90 ACs grouped under '1-DISTRICT : KUPWARA' ... '20-DISTRICT : POONCH' with tehsil/patwar-circle extents; primary source; read 2026-10-07)",
+  "https://en.wikipedia.org/w/index.php?title=List_of_constituencies_of_the_Jammu_and_Kashmir_Legislative_Assembly&action=raw (current list, district column, 'Kashmir division' (1-47) and 'Jammu division' (48-90) section headers; cites the same order; raw wikitext read 2026-10-07) - all 90 agree with the order",
+  "Wikipedia district pages (raw wikitext read 2026-10-07) cross-checking each district's assembly segments - fully matched: Kupwara (6), Baramulla (7), Bandipora (3), Srinagar (8), Kulgam (3), Anantnag (7), Kishtwar (3), Doda (3), Ramban (2), Udhampur (4), Kathua (6), Samba (3), Rajouri (5), Poonch (3); Jammu gives only a count (11, matches); Ganderbal, Budgam, Pulwama, Shopian and Reasi pages list no segments"
+ ],
+ "notes": "Seats are the 90 of the 2022 Delimitation Commission order (ECI numbering, 1 Karnah ... 90 Mendhar), used in 2024; seats 91-114 (Pakistan-administered Kashmir) are not elected and not included. Numbers run district by district. Districts are the 20 of the union territory. The order delimits every AC within one district (no seat spans districts); the Table-A district headings were used directly. Spelling: ECI's 2024 list writes Habbakadal, Channapora, Khansahib, Bhadarwah, D. H. Pora (Damhal Hanji Pora), Ramnagar; the order writes Kishtwar where Wikipedia's table says Kishtawar. Regions: Kashmir division 47 seats (1-47, 10 districts), Jammu division 43 (48-90, 10 districts), as grouped by the Wikipedia list's division headers (the order itself groups only by district; the 10 districts on each side are the standard division membership).",
+ "districts": [
+  {
+   "code": "JK_KUPWARA",
+   "name": "Kupwara"
+  },
+  {
+   "code": "JK_BARAMULLA",
+   "name": "Baramulla"
+  },
+  {
+   "code": "JK_BANDIPORA",
+   "name": "Bandipora"
+  },
+  {
+   "code": "JK_GANDERBAL",
+   "name": "Ganderbal"
+  },
+  {
+   "code": "JK_SRINAGAR",
+   "name": "Srinagar"
+  },
+  {
+   "code": "JK_BUDGAM",
+   "name": "Budgam"
+  },
+  {
+   "code": "JK_PULWAMA",
+   "name": "Pulwama"
+  },
+  {
+   "code": "JK_SHOPIAN",
+   "name": "Shopian"
+  },
+  {
+   "code": "JK_KULGAM",
+   "name": "Kulgam"
+  },
+  {
+   "code": "JK_ANANTNAG",
+   "name": "Anantnag"
+  },
+  {
+   "code": "JK_KISHTWAR",
+   "name": "Kishtwar"
+  },
+  {
+   "code": "JK_DODA",
+   "name": "Doda"
+  },
+  {
+   "code": "JK_RAMBAN",
+   "name": "Ramban"
+  },
+  {
+   "code": "JK_REASI",
+   "name": "Reasi"
+  },
+  {
+   "code": "JK_UDHAMPUR",
+   "name": "Udhampur"
+  },
+  {
+   "code": "JK_KATHUA",
+   "name": "Kathua"
+  },
+  {
+   "code": "JK_SAMBA",
+   "name": "Samba"
+  },
+  {
+   "code": "JK_JAMMU",
+   "name": "Jammu"
+  },
+  {
+   "code": "JK_RAJOURI",
+   "name": "Rajouri"
+  },
+  {
+   "code": "JK_POONCH",
+   "name": "Poonch"
+  }
+ ],
+ "regions": [
+  {
+   "code": "JK_JAMMU",
+   "name": "Jammu",
+   "districts": [
+    "JK_KISHTWAR",
+    "JK_DODA",
+    "JK_RAMBAN",
+    "JK_REASI",
+    "JK_UDHAMPUR",
+    "JK_KATHUA",
+    "JK_SAMBA",
+    "JK_JAMMU",
+    "JK_RAJOURI",
+    "JK_POONCH"
+   ]
+  },
+  {
+   "code": "JK_KASHMIR",
+   "name": "Kashmir",
+   "districts": [
+    "JK_KUPWARA",
+    "JK_BARAMULLA",
+    "JK_BANDIPORA",
+    "JK_GANDERBAL",
+    "JK_SRINAGAR",
+    "JK_BUDGAM",
+    "JK_PULWAMA",
+    "JK_SHOPIAN",
+    "JK_KULGAM",
+    "JK_ANANTNAG"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "JK_KUPWARA",
+  "2": "JK_KUPWARA",
+  "3": "JK_KUPWARA",
+  "4": "JK_KUPWARA",
+  "5": "JK_KUPWARA",
+  "6": "JK_KUPWARA",
+  "7": "JK_BARAMULLA",
+  "8": "JK_BARAMULLA",
+  "9": "JK_BARAMULLA",
+  "10": "JK_BARAMULLA",
+  "11": "JK_BARAMULLA",
+  "12": "JK_BARAMULLA",
+  "13": "JK_BARAMULLA",
+  "14": "JK_BANDIPORA",
+  "15": "JK_BANDIPORA",
+  "16": "JK_BANDIPORA",
+  "17": "JK_GANDERBAL",
+  "18": "JK_GANDERBAL",
+  "19": "JK_SRINAGAR",
+  "20": "JK_SRINAGAR",
+  "21": "JK_SRINAGAR",
+  "22": "JK_SRINAGAR",
+  "23": "JK_SRINAGAR",
+  "24": "JK_SRINAGAR",
+  "25": "JK_SRINAGAR",
+  "26": "JK_SRINAGAR",
+  "27": "JK_BUDGAM",
+  "28": "JK_BUDGAM",
+  "29": "JK_BUDGAM",
+  "30": "JK_BUDGAM",
+  "31": "JK_BUDGAM",
+  "32": "JK_PULWAMA",
+  "33": "JK_PULWAMA",
+  "34": "JK_PULWAMA",
+  "35": "JK_PULWAMA",
+  "36": "JK_SHOPIAN",
+  "37": "JK_SHOPIAN",
+  "38": "JK_KULGAM",
+  "39": "JK_KULGAM",
+  "40": "JK_KULGAM",
+  "41": "JK_ANANTNAG",
+  "42": "JK_ANANTNAG",
+  "43": "JK_ANANTNAG",
+  "44": "JK_ANANTNAG",
+  "45": "JK_ANANTNAG",
+  "46": "JK_ANANTNAG",
+  "47": "JK_ANANTNAG",
+  "48": "JK_KISHTWAR",
+  "49": "JK_KISHTWAR",
+  "50": "JK_KISHTWAR",
+  "51": "JK_DODA",
+  "52": "JK_DODA",
+  "53": "JK_DODA",
+  "54": "JK_RAMBAN",
+  "55": "JK_RAMBAN",
+  "56": "JK_REASI",
+  "57": "JK_REASI",
+  "58": "JK_REASI",
+  "59": "JK_UDHAMPUR",
+  "60": "JK_UDHAMPUR",
+  "61": "JK_UDHAMPUR",
+  "62": "JK_UDHAMPUR",
+  "63": "JK_KATHUA",
+  "64": "JK_KATHUA",
+  "65": "JK_KATHUA",
+  "66": "JK_KATHUA",
+  "67": "JK_KATHUA",
+  "68": "JK_KATHUA",
+  "69": "JK_SAMBA",
+  "70": "JK_SAMBA",
+  "71": "JK_SAMBA",
+  "72": "JK_JAMMU",
+  "73": "JK_JAMMU",
+  "74": "JK_JAMMU",
+  "75": "JK_JAMMU",
+  "76": "JK_JAMMU",
+  "77": "JK_JAMMU",
+  "78": "JK_JAMMU",
+  "79": "JK_JAMMU",
+  "80": "JK_JAMMU",
+  "81": "JK_JAMMU",
+  "82": "JK_JAMMU",
+  "83": "JK_RAJOURI",
+  "84": "JK_RAJOURI",
+  "85": "JK_RAJOURI",
+  "86": "JK_RAJOURI",
+  "87": "JK_RAJOURI",
+  "88": "JK_POONCH",
+  "89": "JK_POONCH",
+  "90": "JK_POONCH"
+ }
+}

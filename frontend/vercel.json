@@ -5,6 +5,11 @@
   "outputDirectory": "dist",
   "redirects": [
     {
+      "source": "/geo/jk_ac(_2008)?\\.geojson",
+      "destination": "/geo/jk_ac_1995.geojson",
+      "permanent": true
+    },
+    {
       "source": "/geo/([a-z]+_ac|india_pc)\\.geojson",
       "destination": "/geo/$1_2008.geojson",
       "permanent": true

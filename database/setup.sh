@@ -105,6 +105,7 @@ run seed_sk_vs_parties.sql; for y in 2009 2014 2019 2024; do run "seed_sk_vs_${y
 run seed_ar_vs_parties.sql; for y in 2009 2014 2019 2024; do run "seed_ar_vs_${y}.sql"; done
 run seed_ap_vs_parties.sql; for y in 2009 2014 2019 2024; do run "seed_ap_vs_${y}.sql"; done
 run seed_mh_vs_parties.sql; for y in 2009 2014 2019 2024; do run "seed_mh_vs_${y}.sql"; done
+run seed_jk_vs_parties.sql; for y in 2008 2014 2024; do run "seed_jk_vs_${y}.sql"; done
 # Party lineage (renames, mergers, splits, breakaways; fill-only) — after every party seed
 run seed_party_lineage.sql
 # Run-once: old manifests' party ids → the ids the ECI data uses (published manifests are never rewritten by the year files)
@@ -124,6 +125,7 @@ run seed_sk_districts_regions.sql
 run seed_ar_districts_regions.sql
 run seed_ap_districts_regions.sql
 run seed_mh_districts_regions.sql
+run seed_jk_districts_regions.sql
 # Person links across 2011-2021 (run-once; must follow the VS results)
 for st in as kl py tn wb; do run "seed_${st}_person_links_v1.sql"; done
 for st in ga mn uk pb up; do run "seed_${st}_person_links_v1.sql"; done
@@ -132,6 +134,7 @@ run seed_sk_person_links_v1.sql
 run seed_ar_person_links_v1.sql
 run seed_ap_person_links_v1.sql
 run seed_mh_person_links_v1.sql
+run seed_jk_person_links_v1.sql
 # 2026 candidates → their 2011-2021 persons (run-once; same delimitation only, so none for Assam 2026)
 for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
 # Latest DL/HR/JH/OD candidates → their earlier persons (run-once)
@@ -148,6 +151,7 @@ run seed_sk_leaders.sql
 run seed_ar_leaders.sql
 run seed_ap_leaders.sql
 run seed_mh_leaders.sql
+run seed_jk_leaders.sql
 # 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
 for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
 for st in dl hr jh od; do run "seed_${st}_candidate_photos.sql"; done
@@ -155,6 +159,7 @@ run seed_sk_candidate_photos.sql
 run seed_ar_candidate_photos.sql
 run seed_ap_candidate_photos.sql
 run seed_mh_candidate_photos.sql
+run seed_jk_candidate_photos.sql
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_affidavits.sql"; done
 for st in dl hr jh od; do run "seed_${st}_affidavits.sql"; done
@@ -162,6 +167,7 @@ run seed_sk_affidavits.sql
 run seed_ar_affidavits.sql
 run seed_ap_affidavits.sql
 run seed_mh_affidavits.sql
+run seed_jk_affidavits.sql
 
 echo "==> Seeds: Bihar persons (must follow Bihar VS results + regions)"
 run seed_bihar_persons.sql
@@ -191,17 +197,20 @@ run seed_sk_party_profiles.sql
 run seed_ar_party_profiles.sql
 run seed_ap_party_profiles.sql
 run seed_mh_party_profiles.sql
+run seed_jk_party_profiles.sql
 # Party state units and their leaders (run-once; after the leaders and person links)
 run seed_party_units_v1.sql
 run seed_party_units_v2.sql
 run seed_party_units_v3.sql
 run seed_party_units_v4.sql
 run seed_party_units_v5.sql
+run seed_party_units_v6.sql
 run seed_party_colors_v1.sql
 # Colours for seat-winning parties still on a grey placeholder (fill-only, sourced in scraper/data/parties/colors-v2.json)
 run seed_party_colors_v2.sql
 run seed_party_colors_v3.sql
 run seed_party_colors_v4.sql
+run seed_party_colors_v5.sql
 run seed_party_names_v1.sql
 # Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
 run seed_media_s3_v1.sql

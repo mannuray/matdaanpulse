@@ -186,6 +186,9 @@ seeds don't know, and is **frozen** once shipped (a later fix is `_v2`). A brand
 | Two candidates with the leader's exact name in one seat | `pickCandidacy` prefers the winner |
 | ECI's party list and summaries spell a party differently ("Thackrey"/"Thackeray") | `<slug>/party-name-aliases.json` (year → summary name → abbreviation) for the cross-check |
 | A unit leader never contested, and a relative's ballot holds the same words (Raj / Amit Raj Thackeray) | `no_candidacy: true` on the role |
+| A state's elections span a redraw (J&K: 1995 boundaries in 2008/2014, 2022 in 2024) | per-election `seats` / `delimitation` / reserved in the registry; `districts-<era>.json` per boundary set; links only within an era; leaders attach candidacies across the redraw by name |
+| ECI's boundary file has areas with no seat (`AC_NO` 0, "NA") | kept as unnamed `ac_no` 0 shapes |
+| ECI names one party differently in one year (Hakeem Yaseen's PDF(S) in 2008) | `<slug>/party-overrides.json` maps that year's full name to the party's id for this state only |
 | A report covers a larger, older state (Andhra 2009/2014: undivided, 294 seats) | registry `seatRange { from, to, offset }` keeps and renumbers today's seats; the party table is skipped (`partial`); manifest `no_majority` when the assembly itself was larger. `summary-fixes.json` / `ocr-fixes.json` use the report's old numbers; `missing-summaries`, `supplement`, `candidate-fixes`, `excludeSeats` and cross-check keys use the new ones |
 | Names change word order and initials between years (Telugu: "Nara Chandrababu Naidu" / "Chandrababu Naidu Nara") | per-state `looseNames` link keys; unit roles and leaders may name the exact `ballot_name` |
 | Seats won unopposed: "Uncontested" (2009 PDF), all-zero sheets with no electors/winner (2019 XLS), or absent from Detailed Results and the party table (2024) | `completeUncontested` builds/fills them; one WON candidate with 0 votes, no NOTA, turnout NULL |

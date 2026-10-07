@@ -307,6 +307,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "ADARSHPOLITICALPARTY": {
+    "id": "APP",
+    "name": "Adarsh Political Party",
+    "abbreviation": "APP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ADARSHRASHTRIYAVIKASPARTY": {
     "id": "ARVP",
     "name": "Adarsh Rashtriya Vikas Party",
@@ -1042,10 +1049,31 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "ALLJAMMUANDKASHMIRREPUBLICANPARTY": {
+    "id": "AKAKRP",
+    "name": "All Jammu and Kashmir Republican Party",
+    "abbreviation": "AKAKRP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLJAMMUKASHMIRLIBERALDEMOCRATICPARTY": {
+    "id": "AJKLDP",
+    "name": "All Jammu & Kashmir Liberal Democratic Party",
+    "abbreviation": "AJKLDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "ALLJHARKHANDSTUDENTSUNION": {
     "id": "AJSU",
     "name": "All Jharkhand Students Union",
     "abbreviation": "AJSU",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "ALLJKKISANMAJDOORPARTY": {
+    "id": "AJKMP",
+    "name": "All J & K Kisan Majdoor Party",
+    "abbreviation": "AJKMP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1067,6 +1095,13 @@
     "id": "AJSP",
     "name": "Alpjan Samaj Party",
     "abbreviation": "AJSP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "AMANAURSHANTITEHREEKEJAMMUKASHMIR": {
+    "id": "AASTEJK",
+    "name": "Aman Aur Shanti Tehreek-e-jammu & Kashmir",
+    "abbreviation": "AASTEJK",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -1545,6 +1580,13 @@
     "abbreviation": null,
     "color": "#808080",
     "recognition": null
+  },
+  "BACKWARDCLASSESDEMOCRATICPARTYJK": {
+    "id": "BCDP",
+    "name": "Backward Classes Democratic Party, J&K",
+    "abbreviation": "BCDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "BAHUJANANDOLANPARTY": {
     "id": "BHUANDP",
@@ -3492,6 +3534,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "DEMOCRATICPROGRESSIVEAZADPARTY": {
+    "id": "DPAP",
+    "name": "Democratic Progressive Azad Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
   "DEMOCRATICSECULARPARTY": {
     "id": "DESEP",
     "name": "Democratic Secular Party",
@@ -3674,6 +3723,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "DUGGARPRADESHPARTY": {
+    "id": "DGPP",
+    "name": "Duggar Pradesh Party",
+    "abbreviation": "DGPP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "EKLAVYASAMAJPARTY": {
     "id": "EKSP",
     "name": "Eklavya Samaj Party",
@@ -3825,6 +3881,13 @@
     "id": "GBVP",
     "name": "Garib Berozgar Vikas Party",
     "abbreviation": "GBVP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "GARIBDEMOCRATICPARTY": {
+    "id": "GRBDMCTP",
+    "name": "Garib Democratic Party",
+    "abbreviation": "GRBDMCTP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -4049,6 +4112,13 @@
     "id": "HMSKP",
     "name": "Hamro Sikkim Party",
     "abbreviation": "HMSKP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "HAQINSAAFPARTY": {
+    "id": "HIP",
+    "name": "Haq Insaaf Party",
+    "abbreviation": "HIP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -4493,6 +4563,13 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "INDIANPEOPLESCONFERENCEPARTY": {
+    "id": "IPCP",
+    "name": "Indian People’s Conference Party",
+    "abbreviation": "IPCP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "INDIANPEOPLESFORWARDBLOCK": {
     "id": "IPFB",
     "name": "Indian Peoples Forward Block",
@@ -4780,12 +4857,138 @@
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
+  "JAMMUANDKASHMIRAPNIPARTY": {
+    "id": "JAKAP",
+    "name": "Jammu and Kashmir Apni Party",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JAMMUANDKASHMIRAWAMILEAGUE": {
+    "id": "JKAL",
+    "name": "Jammu And Kashmir Awami League",
+    "abbreviation": "JKAL",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUANDKASHMIRDEMOCRATICPARTYNATIONALIST": {
+    "id": "JKDPN",
+    "name": "Jammu and Kashmir Democratic Party Nationalist",
+    "abbreviation": "JKDPN",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUANDKASHMIRNATIONALISTPEOPLESFRONT": {
+    "id": "JAKNPF",
+    "name": "Jammu And Kashmir Nationalist People's Front",
+    "abbreviation": "JAKNPF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUANDKASHMIRPEOPLEDEMOCRATICFRONTSECULAR": {
+    "id": "JKPDF",
+    "name": "Jammu And Kashmir People Democratic Front (Secular)",
+    "abbreviation": "JKPDF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUANDKASHMIRPEOPLESDEMOCRATICFRONTSECULAR": {
+    "id": "JKPDF",
+    "name": "Jammu And Kashmir Peoples Democratic Front (secular)",
+    "abbreviation": "JKPDF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUKASHMIRALLALLIANCEDEMOCRATICPARTY": {
+    "id": "JKAADP",
+    "name": "Jammu & Kashmir All Alliance Democratic Party",
+    "abbreviation": "JKAADP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUKASHMIRAWAMINATIONALCONFERENCE": {
+    "id": "JKANC",
+    "name": "Jammu & Kashmir Awami National Conference",
+    "abbreviation": "JKANC",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUKASHMIRDEMOCRATICPARTYNATIONALIST": {
+    "id": "JKDPN",
+    "name": "Jammu & Kashmir Democratic Party Nationalist",
+    "abbreviation": "JKDPN",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUKASHMIRNATIONALCONFERENCE": {
+    "id": "JKNC",
+    "name": "Jammu & Kashmir National Conference",
+    "abbreviation": null,
+    "color": "#C41E3A",
+    "recognition": null
+  },
   "JAMMUKASHMIRNATIONALPANTHERSPARTY": {
     "id": "JKNPP",
     "name": "Jammu & Kashmir National Panthers Party",
     "abbreviation": "JKNPP",
     "color": "#9CA3AF",
     "recognition": "State"
+  },
+  "JAMMUKASHMIRNATIONALPANTHERSPARTYBHIM": {
+    "id": "JKNPPB",
+    "name": "Jammu & Kashmir National Panthers Party (bhim)",
+    "abbreviation": "JKNPPB",
+    "color": "#9CA3AF",
+    "recognition": "State"
+  },
+  "JAMMUKASHMIRNATIONALUNITEDFRONT": {
+    "id": "JKNUF",
+    "name": "Jammu & Kashmir National United Front",
+    "abbreviation": "JKNUF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUKASHMIRPEOPLECONFERENCE": {
+    "id": "JKPC",
+    "name": "Jammu & Kashmir People Conference",
+    "abbreviation": null,
+    "color": "#808080",
+    "recognition": null
+  },
+  "JAMMUKASHMIRPEOPLEDEMOCRATICFRONTSECULAR": {
+    "id": "JKPDFS",
+    "name": "Jammu & Kashmir People Democratic Front(Secular)",
+    "abbreviation": "JKPDF(S)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUKASHMIRPEOPLESDEMOCRATICPARTY": {
+    "id": "JKPDP",
+    "name": "Jammu & Kashmir Peoples Democratic Party",
+    "abbreviation": null,
+    "color": "#90EE90",
+    "recognition": null
+  },
+  "JAMMUKASHMIRPEOPLESPARTYSECULAR": {
+    "id": "JKPPS",
+    "name": "Jammu Kashmir People's Party (Secular)",
+    "abbreviation": "JKPPS",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUKASHMIRPIRPANJALAWAMIPARTY": {
+    "id": "JKPPAP",
+    "name": "Jammu & Kashmir Pir Panjal Awami Party",
+    "abbreviation": "JKPPAP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "JAMMUSTATEMORCHAPROGRESSIVE": {
+    "id": "JSMP_JK",
+    "name": "Jammu State Morcha (Progressive)",
+    "abbreviation": "JSM(P)",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
   },
   "JANABHIYANPARTY": {
     "id": "JNABHNP",
@@ -5494,6 +5697,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "JKNATIONALPANTHERSPARTYINDIA": {
+    "id": "JKNPPI",
+    "name": "J&k National Panthers Party (india)",
+    "abbreviation": "JKNPPI",
+    "color": "#9CA3AF",
+    "recognition": "State"
+  },
   "JOHAARPARTY": {
     "id": "JOHPR",
     "name": "Johaar Party",
@@ -5785,6 +5995,13 @@
     "id": "KOMM",
     "name": "Koshal Mukti Morcha",
     "abbreviation": "KOMM",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "KRANTIDAL": {
+    "id": "KRD",
+    "name": "Kranti Dal",
+    "abbreviation": "KRD",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -7097,6 +7314,13 @@
     "color": "#808080",
     "recognition": null
   },
+  "NATIONALAWAMIUNITEDPARTY": {
+    "id": "NAUP",
+    "name": "National Awami United Party",
+    "abbreviation": "NAUP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
   "NATIONALBLACKPANTHERPARTY": {
     "id": "NBPP",
     "name": "National Black Panther Party",
@@ -7115,6 +7339,20 @@
     "id": "NADEF",
     "name": "National Democratic Front",
     "abbreviation": "NADEF",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALDEMOCRATICPARTY": {
+    "id": "NDP",
+    "name": "National Democratic Party",
+    "abbreviation": "NDP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "NATIONALDEMOCRATICPARTYINDIAN": {
+    "id": "NDPI",
+    "name": "National Democratic Party (indian)",
+    "abbreviation": "NDPI",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -8389,6 +8627,13 @@
     "id": "RDHP",
     "name": "Rajyadhikara Party",
     "abbreviation": "RDHP",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "RAJYANOJAWANSHAKTIPARTY": {
+    "id": "RNSP",
+    "name": "Rajya Nojawan Shakti Party",
+    "abbreviation": "RNSP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -10611,6 +10856,13 @@
     "color": "#FF6600",
     "recognition": null
   },
+  "SHIVSENAUDDHAVBALASAHEBTHACKERAY": {
+    "id": "SHSUBT",
+    "name": "Shiv Sena (Uddhav Balasaheb Thackeray)",
+    "abbreviation": "SS(UBT)",
+    "color": "#F5B400",
+    "recognition": "State"
+  },
   "SHIVSENAUDDHAVBALASAHEBTHACKREY": {
     "id": "SHSUBT",
     "name": "Shiv Sena (Uddhav Balasaheb Thackrey)",
@@ -11294,6 +11546,13 @@
     "id": "UMK",
     "name": "Ulzaipali Makkal Katchy",
     "abbreviation": "UMK",
+    "color": "#9CA3AF",
+    "recognition": "Unrecognised"
+  },
+  "UNITEDCITIZENPARTY": {
+    "id": "UCP",
+    "name": "United Citizen Party",
+    "abbreviation": "UCP",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },

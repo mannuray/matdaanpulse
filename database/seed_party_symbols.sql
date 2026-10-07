@@ -89,9 +89,8 @@ UPDATE parties SET symbol_url = '/symbols/logos/JDU.svg', eci_symbol_url = '/sym
 UPDATE parties SET symbol_url = '/symbols/logos/JHF.svg' WHERE id = 'JHF';
 UPDATE parties SET symbol_url = '/symbols/logos/JJ.png' WHERE id = 'JJ';
 UPDATE parties SET symbol_url = '/symbols/logos/JJD.svg' WHERE id = 'JJD';
-UPDATE parties SET symbol_url = '/symbols/logos/JKNC.svg' WHERE id = 'JKNC';
-UPDATE parties SET symbol_url = '/symbols/logos/JKPC.svg' WHERE id = 'JKPC';
-UPDATE parties SET symbol_url = '/symbols/logos/JKPDP.png' WHERE id = 'JKPDP';
+UPDATE parties SET symbol_url = '/symbols/logos/JKNC.svg', eci_symbol_url = '/symbols/eci/JKNC.png' WHERE id = 'JKNC';
+UPDATE parties SET symbol_url = '/symbols/logos/JKPDP.png', eci_symbol_url = '/symbols/eci/JKPDP.png' WHERE id = 'JKPDP';
 UPDATE parties SET symbol_url = '/symbols/logos/JMBP.svg' WHERE id = 'JMBP';
 UPDATE parties SET symbol_url = '/symbols/logos/JMM.svg', eci_symbol_url = '/symbols/eci/JMM.png' WHERE id = 'JMM';
 UPDATE parties SET symbol_url = '/symbols/logos/JMVP.svg' WHERE id = 'JMVP';
