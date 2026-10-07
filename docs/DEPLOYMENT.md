@@ -260,8 +260,9 @@ backend reads `constituency_analysis.data`:
 3. Run `setup.sh` with the direct URL. This applies migration 024 and `seed_election_government.sql`, and the running
    old backend ignores both. Then `select count(*) from elections where type='VS' and manifest_url::jsonb ? 'government'`
    should be 75.
-4. Merge and push (Render and Vercel deploy). Until a row is recomputed, `GET /elections/:id/analysis` serves the
-   stored pre-024 JSON.
+4. Merge and push (Render and Vercel deploy). Until a row is recomputed, `GET /elections/:id/analysis` also serves the
+   stored pre-024 JSON. Constituency pages read their seat history from it. Dashboard layers fall back to the
+   browser-side history analysis, but spoiler and seat-type notes stay empty until step 5, so run step 5 right away.
 5. Recompute right away: `cd scraper && API_BASE_URL=https://matdaanpulse-api.onrender.com/api/v1 ADMIN_EMAIL=… ADMIN_PASSWORD=… npx ts-node src/recompute-analysis-cli.ts --type VS`.
 6. Spot-check:
    - Bihar 2025's `election_analysis.data.prev_election_id` is Bihar 2020;

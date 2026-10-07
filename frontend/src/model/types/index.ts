@@ -415,6 +415,8 @@ export interface AnalysisEntry {
   dominance_party: string | null;
   /** Shared-module SeatAnalysis (migration 024); null until computed, missing on an older backend. */
   data?: SeatAnalysis | null;
+  /** Pre-024 JSON, served for one release while a row is not yet recomputed (only its seat history is read). */
+  incumbency?: { seat_history?: SeatAnalysis['history'] };
 }
 
 export interface ConstituencyAnalysisDetail extends AnalysisEntry {

@@ -131,3 +131,10 @@ describe('seats won unopposed', () => {
     expect(seatHistory(analysis, 2024).map(h => [h.year, h.unopposed])).toEqual([[2019, false], [2014, true]]);
   });
 });
+
+describe('seatHistory before a recompute', () => {
+  it('a row not yet recomputed (no data) reads the stored pre-024 seat history the API still serves', () => {
+    const a = { data: null, incumbency: { seat_history: [{ year: 2015, party: 'JDU', candidate: 'X', margin: 1 }, { year: 2020, party: 'BJP', candidate: 'A', margin: 3 }] } } as unknown as AnalysisEntry;
+    expect(seatHistory(a, 2025).map(h => [h.year, h.party])).toEqual([[2020, 'BJP'], [2015, 'JDU']]);
+  });
+});

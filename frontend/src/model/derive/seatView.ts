@@ -81,7 +81,8 @@ export function liveChipState(
 }
 
 export function seatHistory(analysis: AnalysisEntry | null, currentYear: number): SeatHistoryEntry[] {
-  const list = analysis?.data?.history ?? [];
+  // Until a row is recomputed (migration 024) the API still serves the stored pre-024 JSON; drop with the legacy adapter.
+  const list = analysis?.data?.history ?? analysis?.incumbency?.seat_history ?? [];
   return list.filter(h => h.year !== currentYear).sort((a, b) => b.year - a.year)
     .map(h => ({ year: h.year, party: h.party, candidate: h.candidate, margin: h.margin ?? 0, vote_share: h.vote_share, runner_up: h.runner_up, runner_up_party: h.runner_up_party, unopposed: !h.runner_up && !h.margin }));
 }
