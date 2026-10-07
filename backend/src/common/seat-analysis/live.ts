@@ -89,7 +89,8 @@ export function analyseLive(b: Baseline, seats: SeatLiveIn[]): { seats: SeatLive
     const counted = rk.total;
     const remaining = remainingOf(counted, s.round, base);
     const call = callOf(rk, counted, remaining);
-    const w = counted > 0 ? rk.winner : null;
+    // A winner declared unopposed has 0 votes but is still the winner.
+    const w = counted > 0 || rk.winner?.status === 'WON' ? rk.winner : null;
     const sitting = sittingOf(base, byId);
     const upsets: Upset[] = [];
     if (w && base?.class_before?.kind === 'stronghold' && w.party_id !== base.class_before.holder) upsets.push('stronghold_trailing');

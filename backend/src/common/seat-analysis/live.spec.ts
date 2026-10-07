@@ -57,3 +57,12 @@ describe('analyseLive', () => {
     expect(l.tally.parties.filter(p => p.won).map(pick)).toEqual(fin.election.parties.filter(p => p.won).map(pick));
   });
 });
+
+describe('analyseLive edge cases found by live = final', () => {
+  it('a winner declared unopposed (WON, 0 votes) is the leader, declared, with the final outcome', () => {
+    const cur = el(2024, [seat(1, [['A', 'BJP', 0, 'WON']])]);
+    const inp = input(cur, [el(2014, [seat(1, [['A', 'JVM', 50], ['B', 'JMM', 40]])]), prev], { lineage: [JVM_MERGER] });
+    const l = analyseLive(baselineOf(inp), [{ const_id: 'T_1', candidates: cur.seats[0].candidates, round: null, trail: null }]).seats[0];
+    expect(l).toMatchObject({ call: 'declared', leader: { name: 'A' }, outcome: analyse(inp).seats[0].outcome });
+  });
+});

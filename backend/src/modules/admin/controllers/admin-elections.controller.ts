@@ -22,6 +22,12 @@ export class AdminElectionsController {
     private readonly seatAnalysis: SeatAnalysisService,
   ) {}
 
+  /** Going Live stores the pre-counting baseline (decided 2026-10-07); a failure is logged, the update stands. */
+  private async computeIfLive(id: string, before: string, after: string): Promise<void> {
+    if (after !== 'Live' || before === 'Live') return;
+    try { await this.seatAnalysis.computeBaseline(id); } catch (e) { this.logger.error(`baseline for ${id} failed: ${(e as Error).message}`); }
+  }
+
   /** Finalizing stores the final seat analysis (spec 2026-10-07-seat-analysis-design.md §4.5); a failure is logged, the finalize stands. */
   private async computeIfFinalized(id: string, before: string, after: string): Promise<void> {
     if (after !== 'Finalized' || before === 'Finalized') return;
@@ -47,6 +53,7 @@ export class AdminElectionsController {
     const before = await this.electionsService.findOne(id);
     const updated = await this.electionsService.update(id, body);
     await this.computeIfFinalized(id, String(before.status), String(body.status ?? before.status));
+    await this.computeIfLive(id, String(before.status), String(body.status ?? before.status));
     return this.afterElectionChange(id, updated);
   }
 
@@ -62,7 +69,9 @@ export class AdminElectionsController {
   @Post('elections/:id/reopen')
   @Roles('SUPER_ADMIN')
   async reopenElection(@Param('id', ParseUUIDPipe) id: string, @Req() req: any) {
-    return this.afterElectionChange(id, await this.electionsService.reopen(id, req.user?.id ?? null));
+    const reopened = await this.electionsService.reopen(id, req.user?.id ?? null);
+    await this.computeIfLive(id, 'Finalized', 'Live');
+    return this.afterElectionChange(id, reopened);
   }
 
   @Get('elections/:id/manifest')

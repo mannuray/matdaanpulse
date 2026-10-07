@@ -1,7 +1,9 @@
 export type SeatStateName = 'not_started' | 'counting' | 'declared' | 'countermanded' | 'adjourned';
 export interface Roster { election: { id: string; type: string; state_id: number | null; year: number; status: string };
   parties: { id: string; name: string; abbreviation: string | null }[];
-  seats: { const_id: string; const_no: number; name: string; type: string; state_id: number | null; candidates: { candidate_id: string; name: string; party_id: string | null }[] }[] }
+  seats: { const_id: string; const_no: number; name: string; type: string; state_id: number | null; candidates: { candidate_id: string; name: string; party_id: string | null }[] }[];
+  /** Baseline freshness (seat analysis Phase B); missing on an older server. */
+  baseline?: { computed_at: string | null; stale: boolean } }
 export interface SeatState { const_id: string; state: SeatStateName; round?: { current: number; total: number } | null; votes: Record<string, number> }
 export interface MappingReport { seats_total: number; seats_mapped: number; unmapped: { ref: string; reason: string }[] }
 export interface PartyTally { party_id: string; won: number; leading: number }

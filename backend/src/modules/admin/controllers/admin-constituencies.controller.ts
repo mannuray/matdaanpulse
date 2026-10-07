@@ -83,7 +83,7 @@ export class AdminConstituenciesController {
   @Post('analysis/compute/:electionId')
   @Roles('SUPER_ADMIN', 'EDITOR')
   computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string) {
-    return this.seatAnalysis.compute(electionId);
+    return this.seatAnalysis.computeFor(electionId);
   }
 
   @Patch('analysis/:id')

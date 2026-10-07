@@ -60,7 +60,7 @@ async function makeApp(env: Record<string, string>) {
       { provide: ResultsService, useValue: resultsService },
       { provide: ConstituenciesService, useValue: {} },
       { provide: LiveStateService, useValue: liveState },
-      { provide: SeatAnalysisService, useValue: { summary: jest.fn(async (id: string) => ({ election_id: id, parties: [] })) } },
+      { provide: SeatAnalysisService, useValue: { summary: jest.fn(async (id: string) => ({ election_id: id, parties: [] })), baseline: jest.fn(async (id: string) => (id === EID ? { election_id: id, seats: [], computed_at: '2027-02-26T10:00:00.000Z' } : null)) } },
     ],
   }).compile();
   const app = moduleRef.createNestApplication<NestExpressApplication>({ bodyParser: false, logger: false });
@@ -104,6 +104,13 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect(res.status).toBe(200);
     expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.RESULTS_LATEST);
     expect((await res.json()).data).toEqual([{ seq: 1, r: 1, rt: 20, lp: 'BJP', m: 120, v: 900, declared: false, at: '2027-02-27T04:00:00.000Z' }]);
+  });
+
+  it('GET /elections/:id/baseline returns the baseline with the public cache policy', async () => {
+    const res = await get(`/elections/${EID}/baseline`);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.PUBLIC);
+    expect((await res.json()).data).toEqual({ election_id: EID, seats: [], computed_at: '2027-02-26T10:00:00.000Z' });
   });
 
   it('GET /elections/:id/analysis/summary returns the stored ElectionAnalysis', async () => {

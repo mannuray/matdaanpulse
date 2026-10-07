@@ -58,7 +58,7 @@ export function heavyweightsOf(ctx: Ctx, cands: CandidateIn[]): Extract<SeatNote
 
 export function seatNotes(ctx: Ctx, seat: SeatIn, _a: SeatAnalysis): SeatNote[] {
   const rk = seatOf(ctx, ctx.input.current, seat.const_no);
-  if (!rk?.winner) return [];
+  if (!rk?.winner || rk.seat.const_id !== seat.const_id) return [];
   const notes: SeatNote[] = [];
   const sp = spoiler(ctx, rk);
   if (sp) notes.push(sp);

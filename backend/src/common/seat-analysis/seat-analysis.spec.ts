@@ -201,3 +201,15 @@ describe('phase B fixes', () => {
     expect(s.notes.filter(n => n.kind === 'heavyweight')).toEqual([]);
   });
 });
+
+describe('duplicate seat numbers', () => {
+  it('an empty stray seat sharing a const_no never hides the real seat', () => {
+    const real = seat(5, [['A', 'X', 50], ['B', 'Y', 40]]);
+    const stray = { ...seat(5, [['Z', 'Q', 1]]), const_id: 'T_5_STRAY', candidates: [] };
+    const r = analyse(input(el(2020, [real, stray]), [el(2015, [seat(5, [['A', 'X', 50], ['B', 'Y', 40]])])]));
+    expect(r.seats.find(s => s.const_id === 'T_5')).toMatchObject({ winner: { name: 'A' }, outcome: { kind: 'retained' } });
+    expect(r.seats.find(s => s.const_id === 'T_5_STRAY')).toMatchObject({ winner: null, outcome: null, class: null, history: [], notes: [] });
+    expect(r.election.flow).toEqual([{ from: 'X', to: 'X', seats: 1, split: false }]);
+    expect(r.election.parties.find(p => p.party_id === 'X')).toMatchObject({ won: 1, contested: 1, votes: 50 });
+  });
+});

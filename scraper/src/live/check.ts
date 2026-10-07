@@ -5,8 +5,17 @@
 import { existsSync, readFileSync } from 'fs';
 import { IngestClient } from './client';
 import { ADAPTERS } from './registry';
+import type { Roster } from './types';
 
 function arg(name: string): string | undefined { const i = process.argv.indexOf(`--${name}`); return i >= 0 ? process.argv[i + 1] : undefined; }
+
+/** The baseline must exist and be newer than the last candidate change (spec §5.1; decided 2026-10-07). Null = ready. */
+export function baselineReady(r: Roster): string | null {
+  if (!r.baseline) return 'server too old: no baseline field in the roster';
+  if (!r.baseline.computed_at) return 'no baseline: compute it (admin "Compute all analysis" or the compute endpoint)';
+  if (r.baseline.stale) return `baseline older than the latest candidate change (${r.baseline.computed_at}): recompute it`;
+  return null;
+}
 
 async function main() {
   const election = arg('election'), source = arg('source'), shard = arg('shard') ?? 'rest';
@@ -17,7 +26,10 @@ async function main() {
   if (!factory) throw new Error(`no adapter "${source}" (have: ${Object.keys(ADAPTERS).join(', ')})`);
   const client = new IngestClient({ baseUrl: process.env.INGEST_API_URL ?? cfg.apiBaseUrl ?? 'http://localhost:3082/api/v1', key: process.env.INGEST_KEY ?? '' });
   const adapter = factory(cfg.adapters?.[source] ?? {});
-  const report = await adapter.prepare(await client.roster(election, shard));
+  const roster = await client.roster(election, shard);
+  const notReady = baselineReady(roster);
+  if (notReady) console.log(`  baseline: ${notReady}`);
+  const report = await adapter.prepare(roster);
   console.log(`mapped ${report.seats_mapped}/${report.seats_total} seats`);
   for (const u of report.unmapped) console.log(`  unmapped ${u.ref}: ${u.reason}`);
   const seats = await adapter.poll();
@@ -28,7 +40,8 @@ async function main() {
     rejected += res.counts.rejected;
     for (const s of res.seats.filter(x => x.outcome === 'rejected')) console.log(`  rejected ${s.const_id}: ${s.reason} ${s.detail ? JSON.stringify(s.detail) : ''}`);
   }
-  console.log(rejected || report.unmapped.length ? 'NOT READY' : 'READY');
-  process.exit(rejected || report.unmapped.length ? 1 : 0);
+  const bad = rejected || report.unmapped.length || notReady;
+  console.log(bad ? 'NOT READY' : 'READY');
+  process.exit(bad ? 1 : 0);
 }
-main().catch(e => { console.error(e); process.exit(1); });
+if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });

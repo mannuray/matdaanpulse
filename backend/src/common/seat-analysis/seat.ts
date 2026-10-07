@@ -16,7 +16,13 @@ export interface Ctx {
 /** The analysis context: the input plus every involved election's seats ranked once, by const_no. */
 export function makeCtx(input: AnalysisInput): Ctx {
   const idx = new Map<string, Map<number, Ranked>>();
-  const add = (e: ElectionIn | null) => { if (e && !idx.has(e.id)) idx.set(e.id, new Map(e.seats.map(s => [s.const_no, rank(s)]))); };
+  const add = (e: ElectionIn | null) => {
+    if (!e || idx.has(e.id)) return;
+    const m = new Map<number, Ranked>();
+    // Two seats with one const_no (a stray duplicate row): keep the one with candidates.
+    for (const s of e.seats) { const old = m.get(s.const_no); if (!old || old.seat.candidates.length < s.candidates.length) m.set(s.const_no, rank(s)); }
+    idx.set(e.id, m);
+  };
   [...input.history, input.previousAny, input.current].forEach(add);
   return { input, idx };
 }
@@ -132,9 +138,19 @@ function seatTypeOf(rk: Ranked): SeatType | null {
   return 'two-way';
 }
 
+/** A stray duplicate seat (its const_no belongs to another seat with candidates): nothing to analyse. */
+function emptySeat(seat: SeatIn): SeatAnalysis {
+  return {
+    schema_version: SCHEMA_VERSION, const_id: seat.const_id, const_no: seat.const_no, winner: null, runner_up: null, margin: null, margin_pct: null,
+    total_votes: 0, provisional: false, outcome: null, swing: null, class: null, incumbent: null, history: [], seat_type: null, notes: [],
+  };
+}
+
 export function analyseSeat(ctx: Ctx, seat: SeatIn): SeatAnalysis {
   const { current, history } = ctx.input;
-  const cur = seatOf(ctx, current, seat.const_no) ?? rank(seat);
+  const indexed = seatOf(ctx, current, seat.const_no);
+  if (indexed && indexed.seat.const_id !== seat.const_id) return emptySeat(seat);
+  const cur = indexed ?? rank(seat);
   const prevE = history[history.length - 1];
   const prev = prevE ? seatOf(ctx, prevE, seat.const_no) : undefined;
   const elections = [...history, current];

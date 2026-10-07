@@ -10,7 +10,7 @@ describe('AdminElectionsController: seat analysis on finalize', () => {
     };
     const resultsService: any = { purgeElectionCache: jest.fn(async () => undefined) };
     const liveState: any = { invalidate: jest.fn() };
-    return new AdminElectionsController(electionsService, {} as any, resultsService, liveState, { compute } as any);
+    return new AdminElectionsController(electionsService, {} as any, resultsService, liveState, { compute, computeBaseline: compute } as any);
   }
 
   it('finalize computes once; a compute failure does not fail the finalize', async () => {
@@ -26,5 +26,14 @@ describe('AdminElectionsController: seat analysis on finalize', () => {
     await make('Live', compute).updateElection('e', { name: 'x' } as any);
     await make('Finalized', compute).updateElection('e', { status: 'Finalized' } as any);
     expect(compute).toHaveBeenCalledTimes(1);
+  });
+
+  it('going Live computes the baseline once; a failure does not fail the update', async () => {
+    const computeBaseline = jest.fn().mockRejectedValueOnce(new Error('boom'));
+    const electionsService: any = { findOne: jest.fn(async () => ({ id: 'e', status: 'Upcoming' })), update: jest.fn(async (_id: string, b: any) => ({ id: 'e', status: b.status })) };
+    const ctrl = new AdminElectionsController(electionsService, {} as any, { purgeElectionCache: jest.fn(async () => undefined) } as any, { invalidate: jest.fn() } as any, { compute: jest.fn(), computeBaseline } as any);
+    await expect(ctrl.updateElection('e', { status: 'Live' } as any)).resolves.toMatchObject({ status: 'Live' });
+    await ctrl.updateElection('e', { name: 'x' } as any);
+    expect(computeBaseline).toHaveBeenCalledTimes(1);
   });
 });
