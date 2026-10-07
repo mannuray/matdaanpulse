@@ -13,6 +13,7 @@ import { buildStateByConstId, displayNameFromConstId } from '../../model/geo/reg
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import type { Election, MapTab, ResultRow, ManifestData, StandingsData, VoteShare, SeatLiveState } from '../../model/types';
 import type { PartySeats, SeatResult } from '../../model/types/dashboard';
+import type { SeatTrail } from '../../model/derive/seatAnalysis';
 import { LS_MAP_URL } from '../../model/geo/maps';
 
 export interface MapRegionViewModel extends SeatResult {
@@ -41,6 +42,8 @@ export interface DashboardViewModel {
   results: ResultRow[];
   /** Per-seat ingest state of the live snapshot (empty without one). */
   seats: Record<string, SeatLiveState>;
+  /** Per-seat counting trail of the live snapshot (empty without one). */
+  trails: Record<string, SeatTrail>;
   manifestData: ManifestData | null;
   standings: StandingsData;
   constCandidates: Map<string, ResultRow[]>;
@@ -74,6 +77,7 @@ export interface DashboardViewModel {
 }
 
 const NO_SEATS: Record<string, SeatLiveState> = {};
+const NO_TRAILS: Record<string, SeatTrail> = {};
 const PENDING_FILL = 'var(--map-default-fill)';
 
 function recolor<R extends { color: string }[] | null | undefined>(rows: R, theme: ThemeName): R {
@@ -314,6 +318,7 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
   return {
     results: results || [],
     seats: snap?.seats ?? NO_SEATS,
+    trails: snap?.trail ?? NO_TRAILS,
     manifestData,
     standings,
     constCandidates,

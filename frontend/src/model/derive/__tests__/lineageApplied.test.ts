@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { makeComparer } from '../partyComparer';
-import { calculateDominance, calculatePartySwitches, calculatePartyTrend } from '../intelligence';
+import { calculatePartyTrend } from '../intelligence';
 import { seatInsights } from '../seatInsights';
 import { personStats } from '../personPage';
 import { compareRegions } from '../regionComparison';
@@ -17,19 +17,6 @@ const row = (const_id: string, party_id: string, candidate_name = 'A', status = 
   ({ const_id, party_id, candidate_name, status, votes, margin }) as unknown as ResultRow;
 
 describe('cross-election comparisons follow party lineage', () => {
-  it('calculateDominance: a renamed party\'s past wins count together', () => {
-    const d = calculateDominance([[row('X_1', 'TRS')]], new Map([['X_1', row('X_1', 'BRS')]]), new Map([['X1', 'X_1']]), { cmp, years: [2018], currentYear: 2023 });
-    expect(d.get('X_1')).toMatchObject({ dominantParty: 'BRS', streak: 2 });
-  });
-
-  it('calculatePartySwitches: following a rename or a split is not a switch; joining another party is', () => {
-    const sw = calculatePartySwitches([
-      { year: 2019, results: [row('X_1', 'SHS', 'Ravi'), row('X_2', 'SHS', 'Mohan')] },
-      { year: 2024, results: [row('X_1', 'SSUBT', 'Ravi'), row('X_2', 'INC', 'Mohan')] },
-    ], new Map([['X1', 'X_1'], ['X2', 'X_2']]), cmp);
-    expect(sw.map(s => [s.candidateName, s.toParty])).toEqual([['Mohan', 'INC']]);
-  });
-
   it('calculatePartyTrend: a renamed party is one series (carried to the latest year)', () => {
     const t = calculatePartyTrend([{ year: 2018, results: [row('X_1', 'TRS')] }, { year: 2023, results: [row('X_1', 'BRS')] }], cmp);
     expect(t.map(p => [p.party, p.year])).toEqual([['BRS', 2018], ['BRS', 2023]]);

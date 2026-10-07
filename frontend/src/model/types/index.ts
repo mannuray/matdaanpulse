@@ -1,4 +1,4 @@
-import type { SeatAnalysis } from '../derive/seatAnalysis';
+import type { SeatAnalysis, SeatTrail } from '../derive/seatAnalysis';
 export interface State {
   id: number;
   name: string;
@@ -364,6 +364,8 @@ export interface ResultsSnapshot {
   voteShare: VoteShare[];
   /** Per-seat ingest state keyed by const_id. */
   seats?: Record<string, SeatLiveState>;
+  /** Per-seat counting trail (≤6 points); missing on an older backend. */
+  trail?: Record<string, SeatTrail>;
 }
 
 export interface DominanceEntry {
