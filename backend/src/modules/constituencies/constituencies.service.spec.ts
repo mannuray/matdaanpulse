@@ -19,7 +19,7 @@ function make() {
     audit_logs: { create: jest.fn().mockResolvedValue({}), createMany: jest.fn().mockResolvedValue({ count: 1 }) },
     $transaction: jest.fn(async (ops: Promise<unknown>[]) => Promise.all(ops)),
   };
-  const svc = new ConstituenciesService(prisma, {} as any, [], new AuditLogService(prisma));
+  const svc = new ConstituenciesService(prisma, {} as any, new AuditLogService(prisma));
   return { svc, prisma };
 }
 
@@ -105,9 +105,20 @@ describe('UpdateConstituencyDto', () => {
 
 describe('UpdateAnalysisDto', () => {
   it('an emptied text field is saved as null, not \'\'', async () => {
-    const dto = plainToInstance(UpdateAnalysisDto, { dominance: '', dominance_party: '', notes: '' });
-    expect(dto).toMatchObject({ dominance: null, dominance_party: null, notes: null });
+    const dto = plainToInstance(UpdateAnalysisDto, { notes: '' });
+    expect(dto).toMatchObject({ notes: null });
     expect(await validate(dto)).toEqual([]);
+  });
+});
+
+describe('ConstituenciesService.updateAnalysis', () => {
+  it('writes only the admin notes (computed fields come from the seat analysis)', async () => {
+    const update = jest.fn(async ({ data }) => ({ id: 'a', ...data }));
+    const prisma: any = { constituency_analysis: { findUnique: jest.fn(async () => ({ id: 'a', election_id: 'e' })), update } };
+    const cache: any = { del: jest.fn(async () => undefined) };
+    await new ConstituenciesService(prisma, cache, {} as any).updateAnalysis('a', { notes: 'n', dominance: 'swing' } as any);
+    expect(Object.keys(update.mock.calls[0][0].data).sort()).toEqual(['notes', 'updated_at']);
+    expect(cache.del).toHaveBeenCalledWith('election:e:public-analysis');
   });
 });
 
@@ -117,7 +128,7 @@ describe('ConstituenciesService.findOneWithAnalysis', () => {
       constituencies: { findUnique: jest.fn().mockResolvedValue({ ...seat, election_id: 'e1', districts: null, regions: null, elections: {}, states: { id: 5, code: 'BR', name: 'Bihar' } }) },
       constituency_analysis: { findUnique: jest.fn().mockResolvedValue(null) },
     };
-    const svc = new ConstituenciesService(prisma, {} as any, [], {} as any);
+    const svc = new ConstituenciesService(prisma, {} as any, {} as any);
     const out = await svc.findOneWithAnalysis('BR_VS_1');
     expect(prisma.constituencies.findUnique.mock.calls[0][0].include).toMatchObject({ states: true });
     expect(out.state).toEqual({ id: 5, code: 'BR', name: 'Bihar' });
@@ -132,7 +143,7 @@ describe('ConstituenciesService.history', () => {
     const prisma: any = {
       constituencies: { findUnique: jest.fn().mockResolvedValue(seat), findMany: jest.fn().mockResolvedValue(matches) },
     };
-    return { svc: new ConstituenciesService(prisma, {} as any, [], {} as any), prisma };
+    return { svc: new ConstituenciesService(prisma, {} as any, {} as any), prisma };
   }
   const current = { id: 'BR_VS_1_VALMIKI_NAGAR', state_id: 5, const_no: 1, elections: { type: 'VS', delimitation: '2008' } };
 
@@ -187,21 +198,19 @@ describe('ConstituencySummaryDto', () => {
   });
 });
 
-describe('ConstituenciesService.computeAnalysis history', () => {
-  it('no history given (the admin Compute button): every earlier comparable election of the state is the history', async () => {
-    const { svc, prisma } = make();
-    prisma.constituencies.findMany.mockResolvedValue([]);
-    prisma.elections = {
-      findUnique: jest.fn().mockResolvedValue({ id: 'jh24', type: 'VS', state_id: 14, delimitation: '2008', year: 2024 }),
-      findMany: jest.fn().mockResolvedValue([{ id: 'jh19', year: 2019, tentative_next_date: null }, { id: 'jh14', year: 2014, tentative_next_date: null }]),
-    };
-    prisma.party_lineage = { findMany: jest.fn().mockResolvedValue([]) };
-    prisma.results = { findMany: jest.fn().mockResolvedValue([]) };
-    prisma.candidates = { findMany: jest.fn().mockResolvedValue([]) };
-    prisma.constituency_analysis = { deleteMany: jest.fn().mockResolvedValue({}), createMany: jest.fn().mockResolvedValue({}) };
-    (svc as any).cache = { del: jest.fn() };
-    await svc.computeAnalysis('jh24', []);
-    expect(prisma.elections.findMany.mock.calls[0][0].where).toEqual({ type: 'VS', state_id: 14, delimitation: '2008', year: { lt: 2024 } });
-    expect(prisma.results.findMany.mock.calls[0][0].where.election_id.in).toEqual(['jh19', 'jh14', 'jh24']);
+describe('ConstituenciesService analysis reads (legacy fallback)', () => {
+  const cache: any = { getOrSet: (_k: string, _t: number, f: () => unknown) => f(), del: async () => undefined };
+  it('a row not yet recomputed (data null) serves its stored incumbency; a recomputed row serves the adapter', async () => {
+    const rows = [
+      { id: '1', const_id: 'A', election_id: 'e', dominance: 'loyal', dominance_party: 'X', data: null, incumbency: { incumbent_name: 'Old' } },
+      { id: '2', const_id: 'B', election_id: 'e', dominance: 'new', dominance_party: 'Y', incumbency: { stale: true },
+        data: { winner: { party_id: 'Y', name: 'W' }, margin: 5, seat_type: 'two-way', outcome: { kind: 'new', from: null, from_raw: null },
+          class: { kind: 'new', holder: 'Y', streak: 1, since: 2020, wins: 1, total: 1 }, incumbent: null, history: [], notes: [] } },
+    ];
+    const prisma: any = { constituency_analysis: { findMany: jest.fn(async () => rows) } };
+    const out = await new ConstituenciesService(prisma, cache, {} as any).getPublicAnalysis('e');
+    expect(out[0].incumbency).toEqual({ incumbent_name: 'Old' });
+    expect(out[1].incumbency).toMatchObject({ seat_type: 'two-way', dominance_total: 1 });
+    expect(out[1].incumbency).not.toHaveProperty('stale');
   });
 });

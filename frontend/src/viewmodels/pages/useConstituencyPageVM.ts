@@ -18,7 +18,7 @@ import { LS_MAP_URL } from '../../model/geo/maps';
 
 const NOT_FOUND = 'NOT_FOUND' as const;
 
-export const SEAT_CLASSES = ['stronghold', 'loyal', 'swing', 'anti_incumbency', 'new'] as const;
+export const SEAT_CLASSES = ['stronghold', 'loyal', 'swing', 'new'] as const;
 export type SeatClass = typeof SEAT_CLASSES[number];
 const seatClass = (v: unknown): SeatClass | null => (SEAT_CLASSES as readonly unknown[]).includes(v) ? v as SeatClass : null;
 

@@ -22,7 +22,10 @@ export class AdminAnalysisDto {
   @Expose() dominance: string;
   @Expose() dominance_party: string | null;
   @Expose() incumbency: any;
+  /** Shared-module SeatAnalysis (migration 024); null until computed. */
+  @Expose() data: any;
   @Expose() notes: string | null;
+  @Expose() @Transform(toIso) computed_at: string | null;
   /** When the analysis was last computed (TIMESTAMP without time zone, read as UTC). */
   @Expose() @Transform(toIso) updated_at: string | null;
 }

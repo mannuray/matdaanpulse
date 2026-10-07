@@ -250,6 +250,29 @@ elections is recomputed later together with all elections (decided 2026-10-03): 
 KL `a7b8c9d0-e1f2-3456-0123-678901232026`, PY `b1c2d3e4-f5a6-7890-1234-567890ab2026`, TN `e5f6a7b8-c9d0-1234-ef01-456789012026`,
 WB `d4e5f6a7-b8c9-0123-def0-345678901026` (Assam: no history ids, it is the first election on the 2023 boundaries).
 
+### 5.0b Seat analysis rework (migration 024, 2026-10)
+
+Replaces every "seat analysis deferred" note above: one recompute covers all elections. Order matters, because the new
+backend reads `constituency_analysis.data`:
+1. Check `select count(*) from constituency_analysis where notes is not null and notes <> ''` (the upsert keeps notes
+   anyway).
+2. Take a Neon backup (branch / snapshot).
+3. Run `setup.sh` with the direct URL. This applies migration 024 and `seed_election_government.sql`, and the running
+   old backend ignores both. Then `select count(*) from elections where type='VS' and manifest_url::jsonb ? 'government'`
+   should be 75.
+4. Merge and push (Render and Vercel deploy). Until a row is recomputed, `GET /elections/:id/analysis` also serves the
+   stored pre-024 JSON. Constituency pages read their seat history from it. Dashboard layers fall back to the
+   browser-side history analysis, but spoiler and seat-type notes stay empty until step 5, so run step 5 right away.
+5. Recompute right away: `cd scraper && API_BASE_URL=https://matdaanpulse-api.onrender.com/api/v1 ADMIN_EMAIL=… ADMIN_PASSWORD=… npx ts-node src/recompute-analysis-cli.ts --type VS`.
+6. Spot-check:
+   - Bihar 2025's `election_analysis.data.prev_election_id` is Bihar 2020;
+   - AS 2026 and JK 2024 have no `prev_election_id` and an empty flow;
+   - MH 2024 has `split` seats;
+   - no VS row has `data` null.
+
+From then on, finalizing an election computes its analysis. A follow-up release drops the legacy `incumbency` adapter
+and column.
+
 ### 5.1 Neon
 
 1. Create project in the region chosen in D1. Note both connection strings:

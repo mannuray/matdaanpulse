@@ -220,6 +220,7 @@ run seed_election_result_dates.sql
 
 echo "==> Seeds: election delimitations (must follow every election insert)"
 run seed_election_delimitation.sql
+run seed_election_government.sql
 
 echo "==> Seeds: display names (fill-only)"
 run seed_state_names_v1.sql

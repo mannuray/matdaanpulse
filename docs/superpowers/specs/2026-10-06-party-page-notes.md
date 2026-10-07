@@ -150,7 +150,8 @@ Same header, with the state president as leader and the state's recognition; sta
 3. **Map, where it won:** latest election's own map (`geo.map_url`), seats won in party colour, contested-lost faint;
    year picker; click → constituency page.
 4. **Seat changes at the latest election:** held / gained (from whom) / lost (to whom), splits labelled "split" not
-   flips. Reads the stored seat analysis, so it follows the seat analysis improvements (§7). Kept.
+   flips. Reads `election_analysis` (`GET /elections/:id/analysis/summary`: party rows with held / gained / lost /
+   split, and the seat flow matrix), shipped by the seat analysis rework, Phase A. Kept.
 5. **Its MLAs:** winners at the latest election (name, photo, constituency, margin; person / constituency links);
    a search box for long lists, no expanders.
 6. **Strongest regions:** seats won per region / district at the latest election, as a bar list; only where the

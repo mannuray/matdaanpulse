@@ -367,14 +367,15 @@ export interface ConstituencyAnalysis {
   election_id: string;
   dominance: string | null;
   dominance_party: string | null;
-  incumbency: {
-    incumbent_name?: string;
-    incumbent_party?: string;
-    re_contesting?: boolean;
-    switched_to?: string;
+  /** The shared seat-analysis output (migration 024); only the fields the admin card shows. Null until computed. */
+  data?: {
+    class?: { kind: string; holder: string; streak: number; since: number } | null;
+    outcome?: { kind: string; from: string | null } | null;
+    incumbent?: { name: string; party: string | null; recontested: boolean; switched: boolean; party_now: string | null } | null;
   } | null;
   notes?: string | null;
-  /** When it was last computed (ISO). */
+  /** When it was last computed (ISO); computed_at from migration 024, else updated_at. */
+  computed_at?: string | null;
   updated_at?: string | null;
 }
 

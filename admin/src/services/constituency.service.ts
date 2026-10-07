@@ -46,9 +46,7 @@ export async function bulkTagConstituencies(ids: string[], addTags?: string[], r
   })) || [];
 }
 
-export function computeConstituencyAnalysis(electionId: string, historyElectionIds: string[], manifest?: Record<string, unknown>) {
-  return apiFetch<{ computed: number }>(`/admin/constituencies/analysis/compute/${electionId}`, {
-    method: 'POST',
-    body: JSON.stringify({ history_election_ids: historyElectionIds, manifest }),
-  });
+/** The server loads the history, manifest and lineage itself (one compute path for every trigger). */
+export function computeConstituencyAnalysis(electionId: string) {
+  return apiFetch<{ computed: number }>(`/admin/constituencies/analysis/compute/${electionId}`, { method: 'POST' });
 }

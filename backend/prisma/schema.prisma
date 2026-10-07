@@ -94,10 +94,15 @@ model constituency_analysis {
   election_id     String         @db.Uuid
   dominance       String?        @db.VarChar(20)
   dominance_party String?        @db.VarChar(20)
+  /// Pre-024 analysis JSON: no longer written; read only as a fallback while `data` is null. Dropped by a later migration.
   incumbency      Json?          @default("{}")
   notes           String?
   created_at      DateTime?      @default(now()) @db.Timestamp(6)
   updated_at      DateTime?      @default(now()) @db.Timestamp(6)
+  /// Shared-module SeatAnalysis (migration 024).
+  data            Json?
+  schema_version  Int?           @db.SmallInt
+  computed_at     DateTime?      @db.Timestamptz(6)
   constituencies  constituencies @relation(fields: [const_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   elections       elections      @relation(fields: [election_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
@@ -131,6 +136,7 @@ model elections {
   candidates            candidates[]
   constituencies        constituencies[]
   constituency_analysis constituency_analysis[]
+  election_analysis     election_analysis?
   states                states?                 @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   results               results[]
   election_live_state   election_live_state?
@@ -519,4 +525,14 @@ model party_unit_roles {
   persons     persons?    @relation(fields: [person_id], references: [id], onDelete: SetNull, onUpdate: NoAction)
 
   @@index([person_id], map: "idx_party_unit_roles_person")
+}
+
+/// Per-election seat analysis (migration 024): ElectionAnalysis in `data`; `baseline` is Phase B.
+model election_analysis {
+  election_id    String    @id @db.Uuid
+  data           Json
+  baseline       Json?
+  schema_version Int       @db.SmallInt
+  computed_at    DateTime  @default(now()) @db.Timestamptz(6)
+  elections      elections @relation(fields: [election_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }

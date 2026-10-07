@@ -117,7 +117,7 @@ export function useConstituencyManager(electionId: string) {
     if (!electionId || computing) return;
     setComputing(true);
     try {
-      await computeConstituencyAnalysis(electionId, []);
+      await computeConstituencyAnalysis(electionId);
       toast('Analysis computation queued');
     } catch (err) {
       toastError(err, 'Failed to start computation');

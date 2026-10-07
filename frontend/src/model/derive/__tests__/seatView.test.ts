@@ -50,7 +50,7 @@ describe('buildSeatView', () => {
 
 describe('seatHistory', () => {
   it('drops the current year and sorts newest first', () => {
-    const a = { incumbency: { seat_history: [{ year: 2015, party: 'JDU', candidate: 'X', margin: 1 }, { year: 2025, party: 'BJP', candidate: 'A', margin: 2 }, { year: 2020, party: 'BJP', candidate: 'A', margin: 3, vote_share: 50.5 }] } } as unknown as AnalysisEntry;
+    const a = { data: { history: [{ year: 2015, party: 'JDU', candidate: 'X', margin: 1 }, { year: 2020, party: 'BJP', candidate: 'A', margin: 3, vote_share: 50.5 }, { year: 2025, party: 'BJP', candidate: 'A', margin: 2 }] } } as unknown as AnalysisEntry;
     expect(seatHistory(a, 2025).map(h => h.year)).toEqual([2020, 2015]);
     expect(seatHistory(null, 2025)).toEqual([]);
   });
@@ -63,7 +63,7 @@ describe('seatNotes', () => {
   });
   it('adds the spoiler from the analysis', () => {
     const v = buildSeatView([r('BJP', 'A', 500, 'WON', 200), r('RJD', 'B', 300, 'LOST')], { partyMeta: meta, partyColor: color });
-    const a = { incumbency: { spoiler: { spoiler_party: 'VIP', spoiler_votes: 900, winner_margin: 200 } } } as unknown as AnalysisEntry;
+    const a = { data: { notes: [{ kind: 'spoiler', name: 'C', party: 'VIP', votes: 900, margin: 200, hurts: 'NDA' }, { kind: 'spoiler', name: 'D', party: 'X', votes: 1, margin: 200 }] } } as unknown as AnalysisEntry;
     expect(seatNotes(v, a)).toEqual([{ kind: 'spoiler', party: 'VIP', votes: 900, margin: 200 }]);
   });
   it('no notes for an uncounted seat', () => {
@@ -124,10 +124,17 @@ describe('seats won unopposed', () => {
     expect(buildSeatView([r('BJP', 'A', 500, 'WON', 200), r('RJD', 'B', 300, 'LOST')], { partyMeta: meta, partyColor: color }).uncontested).toBe(false);
   });
   it('seatHistory marks a year won unopposed (no runner-up, no margin)', () => {
-    const analysis = { incumbency: { seat_history: [
-      { year: 2014, party: 'INC', candidate: 'X', margin: 0, vote_share: null, runner_up: null, runner_up_party: null },
+    const analysis = { data: { history: [
+      { year: 2014, party: 'INC', candidate: 'X', margin: null, vote_share: null, runner_up: null, runner_up_party: null },
       { year: 2019, party: 'BJP', candidate: 'Y', margin: 900, vote_share: 51, runner_up: 'Z', runner_up_party: 'INC' },
     ] } } as unknown as AnalysisEntry;
     expect(seatHistory(analysis, 2024).map(h => [h.year, h.unopposed])).toEqual([[2019, false], [2014, true]]);
+  });
+});
+
+describe('seatHistory before a recompute', () => {
+  it('a row not yet recomputed (no data) reads the stored pre-024 seat history the API still serves', () => {
+    const a = { data: null, incumbency: { seat_history: [{ year: 2015, party: 'JDU', candidate: 'X', margin: 1 }, { year: 2020, party: 'BJP', candidate: 'A', margin: 3 }] } } as unknown as AnalysisEntry;
+    expect(seatHistory(a, 2025).map(h => [h.year, h.party])).toEqual([[2020, 'BJP'], [2015, 'JDU']]);
   });
 });

@@ -1,0 +1,701 @@
+[
+ {
+  "state": "AP",
+  "year": 2009,
+  "parties": [
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2009_Andhra_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "AP",
+  "year": 2014,
+  "parties": [
+   "TDP",
+   "BJP"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2014_Andhra_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "AP",
+  "year": 2019,
+  "parties": [
+   "YSRCP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2019_Andhra_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "AP",
+  "year": 2024,
+  "parties": [
+   "TDP",
+   "JP",
+   "BJP"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2024_Andhra_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "AR",
+  "year": 2009,
+  "parties": [
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2009_Arunachal_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "AR",
+  "year": 2014,
+  "parties": [
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2014_Arunachal_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "AR",
+  "year": 2019,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2019_Arunachal_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "AR",
+  "year": 2024,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2024_Arunachal_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "AS",
+  "year": 2011,
+  "parties": [
+   "INC",
+   "BOPF"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2011_Assam_Legislative_Assembly_election"
+ },
+ {
+  "state": "AS",
+  "year": 2016,
+  "parties": [
+   "BJP",
+   "AGP",
+   "BOPF"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2016_Assam_Legislative_Assembly_election"
+ },
+ {
+  "state": "AS",
+  "year": 2021,
+  "parties": [
+   "BJP",
+   "AGP",
+   "UPPL"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2021_Assam_Legislative_Assembly_election"
+ },
+ {
+  "state": "AS",
+  "year": 2026,
+  "parties": [
+   "BJP",
+   "AGP",
+   "BOPF"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2026_Assam_Legislative_Assembly_election"
+ },
+ {
+  "state": "BR",
+  "year": 2010,
+  "parties": [
+   "JDU",
+   "BJP"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2010_Bihar_Legislative_Assembly_election"
+ },
+ {
+  "state": "BR",
+  "year": 2015,
+  "parties": [
+   "JDU",
+   "RJD",
+   "INC"
+  ],
+  "label": "Mahagathbandhan",
+  "source": "https://en.wikipedia.org/wiki/2015_Bihar_Legislative_Assembly_election"
+ },
+ {
+  "state": "BR",
+  "year": 2020,
+  "parties": [
+   "JDU",
+   "BJP",
+   "HAMS",
+   "VIP"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2020_Bihar_Legislative_Assembly_election"
+ },
+ {
+  "state": "BR",
+  "year": 2025,
+  "parties": [
+   "BJP",
+   "JDU",
+   "LJPRV",
+   "HAMS",
+   "RLM"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2025_Bihar_Legislative_Assembly_election"
+ },
+ {
+  "state": "DL",
+  "year": 2008,
+  "parties": [
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2008_Delhi_Legislative_Assembly_election"
+ },
+ {
+  "state": "DL",
+  "year": 2013,
+  "parties": [
+   "AAP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2013_Delhi_Legislative_Assembly_election"
+ },
+ {
+  "state": "DL",
+  "year": 2015,
+  "parties": [
+   "AAP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2015_Delhi_Legislative_Assembly_election"
+ },
+ {
+  "state": "DL",
+  "year": 2020,
+  "parties": [
+   "AAP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2020_Delhi_Legislative_Assembly_election"
+ },
+ {
+  "state": "DL",
+  "year": 2025,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2025_Delhi_Legislative_Assembly_election"
+ },
+ {
+  "state": "GA",
+  "year": 2012,
+  "parties": [
+   "BJP",
+   "MAG"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2012_Goa_Legislative_Assembly_election"
+ },
+ {
+  "state": "GA",
+  "year": 2017,
+  "parties": [
+   "BJP",
+   "MAG",
+   "GFP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2017_Goa_Legislative_Assembly_election"
+ },
+ {
+  "state": "GA",
+  "year": 2022,
+  "parties": [
+   "BJP",
+   "MAG"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2022_Goa_Legislative_Assembly_election"
+ },
+ {
+  "state": "HR",
+  "year": 2009,
+  "parties": [
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2009_Haryana_Legislative_Assembly_election"
+ },
+ {
+  "state": "HR",
+  "year": 2014,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2014_Haryana_Legislative_Assembly_election"
+ },
+ {
+  "state": "HR",
+  "year": 2019,
+  "parties": [
+   "BJP",
+   "JJP2"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2019_Haryana_Legislative_Assembly_election"
+ },
+ {
+  "state": "HR",
+  "year": 2024,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2024_Haryana_Legislative_Assembly_election"
+ },
+ {
+  "state": "JH",
+  "year": 2009,
+  "parties": [
+   "JMM",
+   "BJP",
+   "AP1",
+   "JDU"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2009_Jharkhand_Legislative_Assembly_election"
+ },
+ {
+  "state": "JH",
+  "year": 2014,
+  "parties": [
+   "BJP",
+   "AP1"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2014_Jharkhand_Legislative_Assembly_election"
+ },
+ {
+  "state": "JH",
+  "year": 2019,
+  "parties": [
+   "JMM",
+   "INC",
+   "RJD"
+  ],
+  "label": "Mahagathbandhan",
+  "source": "https://en.wikipedia.org/wiki/2019_Jharkhand_Legislative_Assembly_election"
+ },
+ {
+  "state": "JH",
+  "year": 2024,
+  "parties": [
+   "JMM",
+   "INC",
+   "RJD"
+  ],
+  "label": "INDIA",
+  "source": "https://en.wikipedia.org/wiki/2024_Jharkhand_Legislative_Assembly_election"
+ },
+ {
+  "state": "JK",
+  "year": 2008,
+  "parties": [
+   "JKNC",
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2008_Jammu_and_Kashmir_Legislative_Assembly_election"
+ },
+ {
+  "state": "JK",
+  "year": 2014,
+  "parties": [
+   "JKPDP",
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2014_Jammu_and_Kashmir_Legislative_Assembly_election"
+ },
+ {
+  "state": "JK",
+  "year": 2024,
+  "parties": [
+   "JKNC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2024_Jammu_and_Kashmir_Legislative_Assembly_election"
+ },
+ {
+  "state": "KL",
+  "year": 2011,
+  "parties": [
+   "INC",
+   "IUML",
+   "KECM",
+   "KECB",
+   "KECJ",
+   "SJD",
+   "KRSP"
+  ],
+  "label": "UDF",
+  "source": "https://en.wikipedia.org/wiki/2011_Kerala_Legislative_Assembly_election"
+ },
+ {
+  "state": "KL",
+  "year": 2016,
+  "parties": [
+   "CPIM",
+   "CPI",
+   "JDS",
+   "NCP",
+   "INCS"
+  ],
+  "label": "LDF",
+  "source": "https://en.wikipedia.org/wiki/2016_Kerala_Legislative_Assembly_election"
+ },
+ {
+  "state": "KL",
+  "year": 2021,
+  "parties": [
+   "CPIM",
+   "CPI",
+   "KECM",
+   "JDS",
+   "NCP",
+   "INL",
+   "JKC",
+   "INCS",
+   "KECB"
+  ],
+  "label": "LDF",
+  "source": "https://en.wikipedia.org/wiki/2021_Kerala_Legislative_Assembly_election"
+ },
+ {
+  "state": "KL",
+  "year": 2026,
+  "parties": [
+   "INC",
+   "IUML",
+   "KEC",
+   "RSP",
+   "KECJ",
+   "CMPKSC"
+  ],
+  "label": "UDF",
+  "source": "https://en.wikipedia.org/wiki/2026_Kerala_Legislative_Assembly_election"
+ },
+ {
+  "state": "MH",
+  "year": 2009,
+  "parties": [
+   "INC",
+   "NCP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2009_Maharashtra_Legislative_Assembly_election"
+ },
+ {
+  "state": "MH",
+  "year": 2014,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2014_Maharashtra_Legislative_Assembly_election"
+ },
+ {
+  "state": "MH",
+  "year": 2019,
+  "parties": [
+   "SHS",
+   "NCP",
+   "INC"
+  ],
+  "label": "MVA",
+  "source": "https://en.wikipedia.org/wiki/2019_Maharashtra_Legislative_Assembly_election"
+ },
+ {
+  "state": "MH",
+  "year": 2024,
+  "parties": [
+   "BJP",
+   "SHS",
+   "NCP"
+  ],
+  "label": "Mahayuti",
+  "source": "https://en.wikipedia.org/wiki/2024_Maharashtra_Legislative_Assembly_election"
+ },
+ {
+  "state": "MN",
+  "year": 2012,
+  "parties": [
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2012_Manipur_Legislative_Assembly_election"
+ },
+ {
+  "state": "MN",
+  "year": 2017,
+  "parties": [
+   "BJP",
+   "NPP",
+   "NPF",
+   "LJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2017_Manipur_Legislative_Assembly_election"
+ },
+ {
+  "state": "MN",
+  "year": 2022,
+  "parties": [
+   "BJP",
+   "NPF"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2022_Manipur_Legislative_Assembly_election"
+ },
+ {
+  "state": "OD",
+  "year": 2009,
+  "parties": [
+   "BJD"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2009_Odisha_Legislative_Assembly_election"
+ },
+ {
+  "state": "OD",
+  "year": 2014,
+  "parties": [
+   "BJD"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2014_Odisha_Legislative_Assembly_election"
+ },
+ {
+  "state": "OD",
+  "year": 2019,
+  "parties": [
+   "BJD"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2019_Odisha_Legislative_Assembly_election"
+ },
+ {
+  "state": "OD",
+  "year": 2024,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2024_Odisha_Legislative_Assembly_election"
+ },
+ {
+  "state": "PB",
+  "year": 2012,
+  "parties": [
+   "SAD",
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2012_Punjab_Legislative_Assembly_election"
+ },
+ {
+  "state": "PB",
+  "year": 2017,
+  "parties": [
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2017_Punjab_Legislative_Assembly_election"
+ },
+ {
+  "state": "PB",
+  "year": 2022,
+  "parties": [
+   "AAP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2022_Punjab_Legislative_Assembly_election"
+ },
+ {
+  "state": "PY",
+  "year": 2011,
+  "parties": [
+   "AINRC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2011_Puducherry_Legislative_Assembly_election"
+ },
+ {
+  "state": "PY",
+  "year": 2016,
+  "parties": [
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2016_Puducherry_Legislative_Assembly_election"
+ },
+ {
+  "state": "PY",
+  "year": 2021,
+  "parties": [
+   "AINRC",
+   "BJP"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2021_Puducherry_Legislative_Assembly_election"
+ },
+ {
+  "state": "PY",
+  "year": 2026,
+  "parties": [
+   "AINRC",
+   "BJP"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2026_Puducherry_Legislative_Assembly_election"
+ },
+ {
+  "state": "SK",
+  "year": 2009,
+  "parties": [
+   "SDF"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2009_Sikkim_Legislative_Assembly_election"
+ },
+ {
+  "state": "SK",
+  "year": 2014,
+  "parties": [
+   "SDF"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2014_Sikkim_Legislative_Assembly_election"
+ },
+ {
+  "state": "SK",
+  "year": 2019,
+  "parties": [
+   "SKM"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2019_Sikkim_Legislative_Assembly_election"
+ },
+ {
+  "state": "SK",
+  "year": 2024,
+  "parties": [
+   "SKM"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2024_Sikkim_Legislative_Assembly_election"
+ },
+ {
+  "state": "TN",
+  "year": 2011,
+  "parties": [
+   "AIADMK"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2011_Tamil_Nadu_Legislative_Assembly_election"
+ },
+ {
+  "state": "TN",
+  "year": 2016,
+  "parties": [
+   "AIADMK"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2016_Tamil_Nadu_Legislative_Assembly_election"
+ },
+ {
+  "state": "TN",
+  "year": 2021,
+  "parties": [
+   "DMK"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2021_Tamil_Nadu_Legislative_Assembly_election"
+ },
+ {
+  "state": "TN",
+  "year": 2026,
+  "parties": [
+   "TVK",
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election"
+ },
+ {
+  "state": "UK",
+  "year": 2012,
+  "parties": [
+   "INC",
+   "UKDP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2012_Uttarakhand_Legislative_Assembly_election"
+ },
+ {
+  "state": "UK",
+  "year": 2017,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2017_Uttarakhand_Legislative_Assembly_election"
+ },
+ {
+  "state": "UK",
+  "year": 2022,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2022_Uttarakhand_Legislative_Assembly_election"
+ },
+ {
+  "state": "UP",
+  "year": 2012,
+  "parties": [
+   "SP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2012_Uttar_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "UP",
+  "year": 2017,
+  "parties": [
+   "BJP",
+   "ADSL",
+   "SBSP"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2017_Uttar_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "UP",
+  "year": 2022,
+  "parties": [
+   "BJP",
+   "ADSL",
+   "NINSHAD"
+  ],
+  "label": "NDA",
+  "source": "https://en.wikipedia.org/wiki/2022_Uttar_Pradesh_Legislative_Assembly_election"
+ },
+ {
+  "state": "WB",
+  "year": 2011,
+  "parties": [
+   "TMC",
+   "INC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2011_West_Bengal_Legislative_Assembly_election"
+ },
+ {
+  "state": "WB",
+  "year": 2016,
+  "parties": [
+   "TMC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2016_West_Bengal_Legislative_Assembly_election"
+ },
+ {
+  "state": "WB",
+  "year": 2021,
+  "parties": [
+   "TMC"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2021_West_Bengal_Legislative_Assembly_election"
+ },
+ {
+  "state": "WB",
+  "year": 2026,
+  "parties": [
+   "BJP"
+  ],
+  "source": "https://en.wikipedia.org/wiki/2026_West_Bengal_Legislative_Assembly_election"
+ }
+]

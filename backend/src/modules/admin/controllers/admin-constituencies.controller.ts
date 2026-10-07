@@ -1,5 +1,6 @@
 import { Controller, Get, Patch, Post, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { ConstituenciesService } from '../../constituencies/constituencies.service';
+import { SeatAnalysisService } from '../../constituencies/seat-analysis.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
@@ -7,7 +8,7 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminConstituencyDto, AdminAnalysisDto, AdminSeatHistoryDto } from '../dto/admin-response.dto';
 import {
-  UpdateConstituencyDto, BulkTagDto, ComputeAnalysisDto, UpdateAnalysisDto,
+  UpdateConstituencyDto, BulkTagDto, UpdateAnalysisDto,
 } from '../../constituencies/dto/constituency-input.dto';
 import { AdminConstituenciesQueryDto } from '../../../common/dto/query.dto';
 
@@ -17,6 +18,7 @@ export class AdminConstituenciesController {
   constructor(
     private readonly constituenciesService: ConstituenciesService,
     private readonly audit: AuditLogService,
+    private readonly seatAnalysis: SeatAnalysisService,
   ) {}
 
   @Get('list/:electionId')
@@ -80,12 +82,8 @@ export class AdminConstituenciesController {
 
   @Post('analysis/compute/:electionId')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  @UseInterceptors(new MapToDtoInterceptor(AdminAnalysisDto))
-  computeAnalysis(
-    @Param('electionId', ParseUUIDPipe) electionId: string,
-    @Body() body: ComputeAnalysisDto,
-  ) {
-    return this.constituenciesService.computeAnalysis(electionId, body.history_election_ids || [], body.manifest);
+  computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string) {
+    return this.seatAnalysis.compute(electionId);
   }
 
   @Patch('analysis/:id')
