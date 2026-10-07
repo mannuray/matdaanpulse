@@ -113,6 +113,13 @@ export class ElectionsController {
     return this.resultsService.getRegionShares(id);
   }
 
+  /** Pre-counting facts per seat (spec §5.1); the browser runs the live analysis on it. Null until computed. */
+  @Get(':id/baseline')
+  getBaseline(@Param('id', ParseUUIDPipe) id: string, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    applyCacheControl(req, res, CACHE_CONTROL.PUBLIC);
+    return this.seatAnalysis.baseline(id);
+  }
+
   /** Per-election seat analysis (party rows, seat flow, alliance change, close seats, bellwethers, breakdowns). */
   @Get(':id/analysis/summary')
   getAnalysisSummary(@Param('id', ParseUUIDPipe) id: string) {
@@ -138,6 +145,13 @@ export class ElectionsController {
     @Param('districtId', ParseIntPipe) districtId: number,
   ) {
     return this.resultsService.getDistrictResults(id, districtId);
+  }
+
+  /** A seat's counting timeline (seat dialog sparkline); short CDN cache while counting. */
+  @Get(':id/constituencies/:constId/rounds')
+  getSeatRounds(@Param('id', ParseUUIDPipe) id: string, @Param('constId') constId: string, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    applyCacheControl(req, res, CACHE_CONTROL.RESULTS_LATEST);
+    return this.resultsService.getSeatRounds(id, constId);
   }
 
   @Get(':id/constituencies/:constId')

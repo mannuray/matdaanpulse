@@ -20,7 +20,7 @@ export function makeSources(over: Partial<DashboardSources> = {}): DashboardSour
   return {
     election: { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 4, state: { id: 4, name: 'Bihar', code: 'BR', total_assembly_seats: 243, total_ls_seats: 40 }, year: 2025, status: 'Finalized', tentative_next_date: null, manifest_url: null },
     data: {
-      results: rows, seats: {}, manifestData: { alliances: [{ id: 'NDA', name: 'NDA', color: '#FF7A1A', parties: ['BJP', 'JDU'] }, { id: 'MGB', name: 'MGB', color: '#7BD34A', parties: ['RJD'] }] },
+      results: rows, seats: {}, trails: {}, manifestData: { alliances: [{ id: 'NDA', name: 'NDA', color: '#FF7A1A', parties: ['BJP', 'JDU'] }, { id: 'MGB', name: 'MGB', color: '#7BD34A', parties: ['RJD'] }] },
       standings: { groups: [], independents: [] }, constCandidates: cc, currentWinnerMap: winners,
       partyColorMap: new Map([['JDU', '#1FA37A'], ['BJP', '#FF7A1A'], ['RJD', '#7BD34A']]),
       partyNameMap: new Map([['JDU', 'Janata Dal (United)'], ['BJP', 'Bharatiya Janata Party'], ['RJD', 'Rashtriya Janata Dal']]),
@@ -37,7 +37,7 @@ export function makeSources(over: Partial<DashboardSources> = {}): DashboardSour
       ['BJP', { id: 'BJP', name: 'Bharatiya Janata Party', abbreviation: 'BJP', color: '#FF7A1A', mark: '/symbols/logos/BJP.svg', eciRecognition: 'National' as const }],
       ['JDU', { id: 'JDU', name: 'Janata Dal (United)', abbreviation: 'JD(U)', color: '#1FA37A', mark: null, eciRecognition: 'State' as const }],
     ]),
-    watchlist: [], addWatch: () => {}, removeWatch: () => {},
+    watchlist: [], addWatch: () => {}, removeWatch: () => {}, liveAnalysis: null,
     ...over,
   };
 }

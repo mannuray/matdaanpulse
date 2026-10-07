@@ -20,6 +20,10 @@ Shorthand: `<id>` is the election id; `API` is the backend base URL (`…/api/v1
 
 Dry runs against the real ECI site, then drills. Do each drill and confirm the result in the Live Console.
 
+0. Baseline: once the final candidate list is in, compute the election's seat-analysis baseline (admin Constituencies
+   → "Compute all analysis", or `POST /admin/constituencies/analysis/compute/<id>`). `npm run live:check` must print
+   READY with no `baseline:` line; any later candidate change makes it NOT READY until the baseline is recomputed.
+   Going Live recomputes it automatically.
 1. Dry run: `npm run live -- --config live.config.json` against ECI with the feed Paused or on a test election; watch lag and rejected seats.
 2. Drill (a), failover: stop the cloud worker; the laptop's loop takes the shard lease within 90 s. A running worker renews its lease every 30 s during a cycle and before every chunk, so a slow poll does not lose it; if another job takes the shard, the worker logs `lease lost to <holder>` and stops that cycle.
 3. Drill (b), source switch: switch Source to another and back (Apply asks for confirmation on a switch).
@@ -61,3 +65,24 @@ Practice without ECI: clones Bihar 2025 into a fictional Live election and repla
 5. `npm run sim:replay` advances the rounds (`ROUND_DELAY_MS` sets the pace).
 6. Or `npm run sim:smoke`, an automated end-to-end check; it needs a clean state: `sim:cleanup` -> `sim:setup` -> Live.
 7. `npm run sim:cleanup` when done.
+
+`sim:mock-eci` and the sim scripts read `DATABASE_URL` from the environment: run them with the root `.env` loaded
+(`set -a && . ../.env && set +a`). The simulation election copies its source's `delimitation`, so it has comparable
+history and a baseline (compute it with the admin compute endpoint once it is set up).
+
+### Call thresholds (provisional)
+
+The live analysis labels each counting seat `safe` / `likely` / `too_close` by lead ÷ estimated remaining votes
+(`CALL_THRESHOLDS` in `backend/src/common/seat-analysis/live.ts`: too close below 0.05, likely below 0.2). Tuned on
+2026-10-07 on a simulation run (`sim:smoke`, Bihar 2025 replayed in 24 synthetic rounds), with
+`npx ts-node src/simulation/tune-calls.ts`:
+
+| Label | Points | Flip rate (leader at that point ≠ final winner) |
+|---|---|---|
+| safe | 1,341 | 0.00% |
+| likely | 1,353 | 0.00% |
+| too_close | 1,630 | 6.01% |
+
+The simulation splits a real final result into synthetic rounds, so leads rarely reverse. Re-check the thresholds
+against real mid-count data as soon as there is some (the script works on any election's `seat_rounds`:
+`--election <id>`).

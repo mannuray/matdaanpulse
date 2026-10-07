@@ -10,7 +10,8 @@ const pct = (v: number, t: number) => (t > 0 ? r1((v / t) * 100) : 0);
 const bump = (m: Map<string, number>, k: string, n = 1) => m.set(k, (m.get(k) ?? 0) + n);
 
 function ranks(ctx: Ctx, e: ElectionIn): Ranked[] {
-  return e.seats.map(s => seatOf(ctx, e, s.const_no)).filter((r): r is Ranked => !!r);
+  // Each indexed seat once (a stray duplicate const_no maps to the same ranked seat).
+  return e.seats.map(s => seatOf(ctx, e, s.const_no)).filter((r, i): r is Ranked => !!r && r.seat.const_id === e.seats[i].const_id);
 }
 
 /** Seats won and votes per party (as `key` maps it) over an election. */
@@ -81,7 +82,7 @@ function flow(seats: SeatAnalysis[]): FlowRow[] {
   return [...m.values()].sort((a, b) => b.seats - a.seats);
 }
 
-const allianceOf = (e: ElectionIn, party: string | null) => {
+export const allianceOf = (e: Pick<ElectionIn, 'alliances'>, party: string | null) => {
   const a = party ? e.alliances.find(x => x.parties.includes(party)) : undefined;
   return a ? ALLIANCE_ALIASES[a.id] ?? a.id : 'OTHERS';
 };

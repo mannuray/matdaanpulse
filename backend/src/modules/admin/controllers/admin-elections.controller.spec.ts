@@ -10,7 +10,7 @@ describe('AdminElectionsController: seat analysis on finalize', () => {
     };
     const resultsService: any = { purgeElectionCache: jest.fn(async () => undefined) };
     const liveState: any = { invalidate: jest.fn() };
-    return new AdminElectionsController(electionsService, {} as any, resultsService, liveState, { compute } as any);
+    return new AdminElectionsController(electionsService, {} as any, resultsService, liveState, { compute, computeBaseline: compute } as any);
   }
 
   it('finalize computes once; a compute failure does not fail the finalize', async () => {
@@ -27,4 +27,26 @@ describe('AdminElectionsController: seat analysis on finalize', () => {
     await make('Finalized', compute).updateElection('e', { status: 'Finalized' } as any);
     expect(compute).toHaveBeenCalledTimes(1);
   });
+
+  it('going Live computes the baseline once; a failure does not fail the update', async () => {
+    const computeBaseline = jest.fn().mockRejectedValueOnce(new Error('boom'));
+    const electionsService: any = { findOne: jest.fn(async () => ({ id: 'e', status: 'Upcoming' })), update: jest.fn(async (_id: string, b: any) => ({ id: 'e', status: b.status })) };
+    const ctrl = new AdminElectionsController(electionsService, {} as any, { purgeElectionCache: jest.fn(async () => undefined) } as any, { invalidate: jest.fn() } as any, { compute: jest.fn(), computeBaseline } as any);
+    await expect(ctrl.updateElection('e', { status: 'Live' } as any)).resolves.toMatchObject({ status: 'Live' });
+    await ctrl.updateElection('e', { name: 'x' } as any);
+    expect(computeBaseline).toHaveBeenCalledTimes(1);
+  });
+
+  it('the final analysis is computed before the status flips to Finalized (viewers never see Finalized without it)', async () => {
+    const order: string[] = [];
+    const electionsService: any = { findOne: jest.fn(async () => ({ id: 'e', status: 'Live' })),
+      finalize: jest.fn(async () => { order.push('finalize'); return { id: 'e', status: 'Finalized' }; }),
+      update: jest.fn(async () => { order.push('update'); return { id: 'e', status: 'Finalized' }; }) };
+    const seatAnalysis: any = { compute: jest.fn(async () => { order.push('compute'); }), computeBaseline: jest.fn() };
+    const ctrl = new AdminElectionsController(electionsService, {} as any, { purgeElectionCache: jest.fn(async () => undefined) } as any, { invalidate: jest.fn() } as any, seatAnalysis);
+    await ctrl.finalizeElection('e');
+    await ctrl.updateElection('e', { status: 'Finalized' } as any);
+    expect(order).toEqual(['compute', 'finalize', 'compute', 'update']);
+  });
 });
+

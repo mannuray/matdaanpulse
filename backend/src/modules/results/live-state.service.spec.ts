@@ -67,6 +67,15 @@ describe('LiveStateService', () => {
 });
 
 describe('buildSnapshot', () => {
+  it('buildSnapshot carries the per-seat trail; seats without timeline rows have none', () => {
+    const s = buildSnapshot(7, [], [], [{ const_id: 'A', points: [{ r: 1, lp: 'BJP', m: 120, v: 900 }, { r: 2, lp: 'INC', m: 40, v: 1800 }], lc: 1, pk: 120, md: 0.1 }]);
+    expect(s.trail).toEqual({ A: { points: [{ r: 1, lp: 'BJP', m: 120, v: 900 }, { r: 2, lp: 'INC', m: 40, v: 1800 }], lc: 1, pk: 120, md: 0.1 } });
+    expect(buildSnapshot(7, []).trail).toEqual({});
+  });
+  it('snapshot rows carry the candidate person_id (the live analysis matches people by it)', () => {
+    const r = { const_id: 'A', votes: 5, status: 'LEADING', margin: 5, candidates: { party_id: 'P', name: 'X', person_id: 'p1', parties: { name: 'P', color: null } }, constituencies: { type: 'GEN' } };
+    expect(buildSnapshot(1, [r as any]).results[0].person_id).toBe('p1');
+  });
   const row = (const_id: string, party: string | null, votes: number, status: string) => ({
     const_id,
     votes,
@@ -93,7 +102,7 @@ describe('buildSnapshot', () => {
     ]);
     expect(snap.version).toBe(9);
     expect(snap.results).toHaveLength(6);
-    expect(snap.results[4]).toEqual({ const_id: 'B', party_id: null, candidate_name: 'null-cand', votes: 10, status: 'TRAILING', margin: 0, const_type: 'GEN' });
+    expect(snap.results[4]).toEqual({ const_id: 'B', party_id: null, candidate_name: 'null-cand', person_id: null, votes: 10, status: 'TRAILING', margin: 0, const_type: 'GEN' });
     expect(snap.summary).toEqual([
       { party_id: 'P1', party_name: 'P1 name', color: '#111', won: 1, leading: 0 },
       { party_id: 'P2', party_name: 'P2 name', color: '#111', won: 0, leading: 1 },

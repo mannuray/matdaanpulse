@@ -4,6 +4,8 @@ import { join } from 'path';
 import { Prisma, PrismaClient } from '@prisma/client';
 import { SeatAnalysisService } from './seat-analysis.service';
 import { SeatAnalysisLoader } from './seat-analysis.loader';
+import { isDeepStrictEqual } from 'util';
+import { analyse, analyseLive, baselineOf } from '../../common/seat-analysis';
 
 config({ path: join(__dirname, '../../../.env') });
 class Rollback extends Error {}
@@ -32,7 +34,7 @@ describe('seat analysis compute (DB)', () => {
       const cache: any = { del: jest.fn(async () => undefined), getOrSet: async (_k: string, _t: number, f: () => unknown) => f() };
       await body(new SeatAnalysisService(db, new SeatAnalysisLoader(db), cache), tx);
       throw new Rollback();
-    }, { timeout: 120_000 }).catch(e => { if (!(e instanceof Rollback)) throw e; });
+    }, { timeout: 600_000 }).catch(e => { if (!(e instanceof Rollback)) throw e; });
   }
 
   it('Bihar 2025 compares with 2020 (not 2010), stores data + summary, purges caches', () => run('bihar', async (svc, tx) => {
@@ -58,4 +60,37 @@ describe('seat analysis compute (DB)', () => {
     expect(after.notes).toBe('admin note');
     expect(after.data).toEqual(before);
   }));
+
+  it('computeBaseline stores the baseline and its time; a second run keeps the final data', () => run('baseline', async (svc, tx) => {
+    await svc.compute(br25!);
+    const before = (await tx.election_analysis.findUnique({ where: { election_id: br25! } })).data;
+    expect(await svc.computeBaseline(br25!)).toEqual({ seats: 243 });
+    const row = await tx.election_analysis.findUnique({ where: { election_id: br25! } });
+    expect((row.baseline as any).seats).toHaveLength(243);
+    expect(row.baseline_computed_at).toBeInstanceOf(Date);
+    expect(row.data).toEqual(before);
+    expect((await svc.computeFor(br25!)).kind).toBe('final');
+  }));
+
+  it('live on final results equals the final analysis for every VS election', () => run('live=final', async (_svc, tx) => {
+    const loader = new SeatAnalysisLoader(tx);
+    let seats = 0; const bad: string[] = [];
+    for (const e of await tx.elections.findMany({ where: { type: 'VS' }, select: { id: true } })) {
+      const inp = await loader.load(e.id);
+      const fin = analyse(inp);
+      const l = analyseLive(baselineOf(inp), inp.current.seats.map(s => ({ const_id: s.const_id, candidates: s.candidates, round: null, trail: null })));
+      const finBy = new Map(fin.seats.map(s => [s.const_id, s]));
+      for (const s of l.seats) {
+        seats++; const f = finBy.get(s.const_id)!;
+        if (!isDeepStrictEqual([s.leader?.name ?? null, s.margin, s.outcome, s.swing], [f.winner?.name ?? null, f.margin, f.outcome, f.swing])) bad.push(s.const_id);
+      }
+      if (!isDeepStrictEqual(l.tally.flow, fin.election.flow)) bad.push(`${e.id} flow`);
+      const mv = (rows: { from: string; to: string; seats: number }[]) => rows.map(m => `${m.from}>${m.to}:${m.seats}`).sort();
+      if (!isDeepStrictEqual(mv(l.tally.alliance_moves), mv(fin.election.alliance?.moves ?? []))) bad.push(`${e.id} alliance`);
+      const hg = (rows: any[]) => rows.filter(p => p.held + p.gained + p.lost + p.split_gained + p.split_lost > 0).map(p => [p.party_id, p.held, p.gained, p.lost, p.split_gained, p.split_lost].join(',')).sort();
+      if (!isDeepStrictEqual(hg(l.tally.parties), hg(fin.election.parties))) bad.push(`${e.id} parties`);
+    }
+    expect(seats).toBeGreaterThan(10_000);
+    expect(bad.slice(0, 20)).toEqual([]);
+  }), 600_000);
 });

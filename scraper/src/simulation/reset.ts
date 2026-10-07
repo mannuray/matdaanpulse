@@ -23,7 +23,12 @@ async function main() {
       WHERE election_id = $1
     `, [SIM_ELECTION_ID]);
 
-    console.log(`Reset ${rowCount} results to zero. Ready for replay.`);
+    // Counting state too: a stored round would make the replay's round 1 "stale", and an old timeline would show in the trail.
+    await pool.query('DELETE FROM seat_rounds WHERE election_id = $1', [SIM_ELECTION_ID]);
+    await pool.query('DELETE FROM seat_ingest_state WHERE election_id = $1', [SIM_ELECTION_ID]);
+    await pool.query('UPDATE constituencies SET current_round = NULL, total_rounds = NULL WHERE election_id = $1', [SIM_ELECTION_ID]);
+
+    console.log(`Reset ${rowCount} results to zero, cleared the timeline and counting state. Ready for replay.`);
   } finally {
     await pool.end();
   }

@@ -2,11 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
-import { analyse, SCHEMA_VERSION, type ElectionAnalysis } from '../../common/seat-analysis';
+import { analyse, baselineOf, SCHEMA_VERSION, type Baseline, type ElectionAnalysis } from '../../common/seat-analysis';
 import { SeatAnalysisLoader } from './seat-analysis.loader';
 
 export const publicAnalysisKey = (id: string) => `election:${id}:public-analysis`;
 export const analysisSummaryKey = (id: string) => `election:${id}:analysis-summary`;
+export const baselineKey = (id: string) => `election:${id}:baseline`;
 
 /**
  * The one path that computes and stores the seat analysis (spec §4.5): the admin button, the compute endpoint, the CLI
@@ -43,5 +44,32 @@ export class SeatAnalysisService {
       const row = await this.prisma.election_analysis.findUnique({ where: { election_id: electionId }, select: { data: true } });
       return (row?.data as unknown as ElectionAnalysis) ?? null;
     });
+  }
+
+  /** The pre-counting baseline (spec §5.1): computed on demand, and when an election goes Live. Leaves `data` untouched. */
+  async computeBaseline(electionId: string): Promise<{ seats: number }> {
+    const b = baselineOf(await this.loader.load(electionId));
+    const now = new Date();
+    await this.prisma.election_analysis.upsert({
+      where: { election_id: electionId },
+      create: { election_id: electionId, data: Prisma.DbNull, baseline: b as unknown as Prisma.InputJsonValue, schema_version: SCHEMA_VERSION, baseline_computed_at: now },
+      update: { baseline: b as unknown as Prisma.InputJsonValue, baseline_computed_at: now },
+    });
+    await this.cache.del(baselineKey(electionId));
+    return { seats: b.seats.length };
+  }
+
+  baseline(electionId: string): Promise<(Baseline & { computed_at: string }) | null> {
+    return this.cache.getOrSet(baselineKey(electionId), CACHE_TTL.PUBLIC_ANALYSIS, async () => {
+      const row = await this.prisma.election_analysis.findUnique({ where: { election_id: electionId }, select: { baseline: true, baseline_computed_at: true } });
+      return row?.baseline ? { ...(row.baseline as unknown as Baseline), computed_at: row.baseline_computed_at!.toISOString() } : null;
+    });
+  }
+
+  /** The admin button / compute endpoint / CLI: a Finalized election gets its final analysis, any other its baseline. */
+  async computeFor(electionId: string): Promise<{ computed: number; kind: 'final' | 'baseline' }> {
+    const e = await this.prisma.elections.findUnique({ where: { id: electionId }, select: { status: true } });
+    if (e?.status === 'Finalized') return { ...(await this.compute(electionId)), kind: 'final' };
+    return { computed: (await this.computeBaseline(electionId)).seats, kind: 'baseline' };
   }
 }

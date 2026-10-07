@@ -1,3 +1,4 @@
+import { appendSeatRounds } from './seat-rounds';
 import { Injectable, Logger } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -13,6 +14,8 @@ export interface Roster {
   election: { id: string; type: string; state_id: number | null; year: number; status: string };
   parties: { id: string; name: string; abbreviation: string | null }[];
   seats: { const_id: string; const_no: number; name: string; type: string; state_id: number | null; candidates: { candidate_id: string; name: string; party_id: string | null }[] }[];
+  /** Seat analysis baseline: when computed, and whether a candidate changed since (live:check refuses a stale one). */
+  baseline: { computed_at: string | null; stale: boolean };
 }
 export interface IngestConfig { status: string; source: string | null; poll_hint_ms: number; shard: { name: string; seat_count: number }; lease: { holder: string | null; expires_at: Date | null } }
 export type SeatOutcomeName = 'applied' | 'unchanged' | 'stale' | 'held' | 'rejected';
@@ -81,9 +84,14 @@ export class IngestService {
     const parties = await this.prisma.parties.findMany({ where: { id: { in: partyIds } }, select: { id: true, name: true, abbreviation: true }, orderBy: { id: 'asc' } });
     const byConst = new Map<string, Roster['seats'][number]['candidates']>();
     for (const c of cands) (byConst.get(c.const_id) ?? byConst.set(c.const_id, []).get(c.const_id)!).push({ candidate_id: c.id, name: c.name, party_id: c.party_id });
+    const ea = await this.prisma.election_analysis.findUnique({ where: { election_id: electionId }, select: { baseline_computed_at: true } });
+    const lastCand = await this.prisma.candidates.aggregate({ where: { election_id: electionId }, _max: { updated_at: true } });
+    const at = ea?.baseline_computed_at ?? null;
+    const baseline = { computed_at: at?.toISOString() ?? null, stale: !at || (!!lastCand._max.updated_at && lastCand._max.updated_at > at) };
     return {
       election: { ...election, type: String(election.type), status: String(election.status) },
       parties,
+      baseline,
       seats: seats.filter(s => !only || only.has(s.id)).map(s => ({ const_id: s.id, const_no: s.const_no, name: s.name, type: String(s.type), state_id: s.state_id, candidates: byConst.get(s.id) ?? [] })),
     };
   }
@@ -241,6 +249,8 @@ export class IngestService {
     if (released.length) {
       await tx.$executeRaw`DELETE FROM seat_holds WHERE election_id = ${electionId}::uuid AND const_id = ANY(${released}::varchar[])`;
     }
+    // Seat timeline (migration 025): same transaction and seat lock as the results write.
+    if (applied.length) await appendSeatRounds(tx, electionId, applied.map(a => a.seat.const_id), 'ingest', observedAt);
   }
 }
 

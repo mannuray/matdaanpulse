@@ -65,24 +65,26 @@ export class SeatAnalysisLoader {
   private async election(id: string): Promise<ElectionIn> {
     const e = await this.prisma.elections.findUniqueOrThrow({ where: { id }, select: { id: true, year: true, tentative_next_date: true, manifest_url: true } });
     const consts = await this.prisma.constituencies.findMany({
-      where: { election_id: id }, select: { id: true, const_no: true, type: true, region_id: true, voter_turnout: true },
+      where: { election_id: id }, select: { id: true, const_no: true, type: true, region_id: true, voter_turnout: true, total_electors: true },
     });
-    const results = await this.prisma.results.findMany({
+    // Candidates with their result if any: an Upcoming election has candidates before results rows exist (its baseline).
+    const cands = await this.prisma.candidates.findMany({
       where: { election_id: id },
-      select: { const_id: true, votes: true, status: true, candidates: { select: { person_id: true, name: true, party_id: true } } },
+      select: { const_id: true, person_id: true, name: true, party_id: true, results: { select: { votes: true, status: true }, take: 1 } },
     });
     const byConst = new Map<string, SeatIn['candidates']>();
-    for (const r of results) {
-      const list = byConst.get(r.const_id) ?? [];
-      list.push({ person_id: r.candidates.person_id, name: r.candidates.name, party_id: r.candidates.party_id, votes: r.votes ?? 0, status: String(r.status) });
-      byConst.set(r.const_id, list);
+    for (const c of cands) {
+      const r = c.results[0];
+      const list = byConst.get(c.const_id) ?? [];
+      list.push({ person_id: c.person_id, name: c.name, party_id: c.party_id, votes: r?.votes ?? 0, status: r ? String(r.status) : 'PENDING' });
+      byConst.set(c.const_id, list);
     }
     const bits = manifestBits(e.manifest_url);
     return {
       id: e.id, year: e.year, date: e.tentative_next_date ? e.tentative_next_date.toISOString().slice(0, 10) : `${e.year}-07-01`,
       seats: consts.map(c => ({
         const_id: c.id, const_no: c.const_no, reserved: String(c.type) as SeatIn['reserved'], region_id: c.region_id,
-        turnout: c.voter_turnout == null ? null : Number(c.voter_turnout), candidates: byConst.get(c.id) ?? [],
+        turnout: c.voter_turnout == null ? null : Number(c.voter_turnout), electors: c.total_electors ?? null, candidates: byConst.get(c.id) ?? [],
       })),
       alliances: bits.alliances, government: bits.government,
     };

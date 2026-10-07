@@ -599,6 +599,50 @@ Spec `docs/superpowers/specs/2026-10-07-seat-analysis-design.md`, plan `docs/sup
   Finalized, the dashboard still uses `useHistoryAnalysis` until Phase B (baseline, seat timeline, live analysis).
 - Known: in states dominated by one party, "bellwether" and "stronghold" overlap (e.g. WB 2021: 124 bellwethers).
 
+
+### Seat analysis rework (Phase B, 2026-10)
+
+Plan `docs/superpowers/plans/2026-10-07-seat-analysis-phase-b.md` (spec §5). Data first: the live signals are computed
+and exposed, but not drawn yet (the map brainstorm designs their visuals).
+
+- [x] **Baseline** (`baselineOf` in the shared module): what is known per seat before counting:
+  - previous holder carried through lineage, its alliance, margin, vote shares and turnout;
+  - the class before this election;
+  - the sitting MLA (re-contesting, where, for whom; switched or followed a split);
+  - rematch, switchers, heavyweights, close / narrowing last time.
+
+  It is stored in `election_analysis.baseline` and served at `GET /elections/:id/baseline` (CDN `PUBLIC`). The compute
+  endpoint and the admin button compute the final analysis for a Finalized election and the baseline otherwise.
+  Going Live recomputes it.
+- [x] **Readiness:** `live:check` reports NOT READY when the baseline is missing or older than the latest candidate
+  change (the roster carries `baseline: { computed_at, stale }`). Staleness compares two database times: the candidate
+  trigger's `updated_at` and `baseline_computed_at`.
+- [x] **Seat timeline** (migration 025, `seat_rounds`): one row per change of leader, runner-up, margin or declared
+  state. It is appended set-based in the same transaction and under the same seat lock as the results write, by the
+  ingest and by admin seat corrections.
+- [x] **Snapshot trail:** each versioned snapshot carries `trail[const_id] = { points (≤6: round, leader party, margin,
+  votes counted), lc (lead changes), pk (peak margin) }`, read in the snapshot's RepeatableRead transaction.
+  `GET /elections/:id/constituencies/:constId/rounds` returns the full timeline.
+- [x] **Live analysis** (`analyseLive`, in the browser on each snapshot):
+  - outcome (provisional while leading) and vote swing;
+  - call: `declared` / `safe` / `likely` / `too_close` / `counting` / `not_started`, from lead ÷ remaining votes
+    (remaining from the rounds, else electors × previous turnout);
+  - momentum (`switched` / `narrowing` / `widening` / `stable`) and comeback, from the trail;
+  - the sitting MLA's status;
+  - upsets (stronghold trailing, heavyweight trailing, sitting MLA trailing);
+  - live tallies (party held / gained / lost, seat flow, alliance moves).
+
+  The thresholds are provisional (see `docs/LIVE_RUNBOOK.md` → Call thresholds).
+- [x] **Live = final:** a DB test runs `analyseLive` on every local VS election's final results with its baseline,
+  and requires the same winner, margin, outcome, swing, party held / gained / lost and flow as `analyse()`. It caught
+  and fixed two bugs: winners declared unopposed, and stray duplicate seat rows.
+- [x] **Dashboard:** live and upcoming elections take their swing / history / incumbency / switcher maps from the
+  baseline + live analysis; Finalized ones take them from the stored analysis. The old browser engine is gone (only
+  its trend charts remain), and "changed hands vs <year>" uses the baseline's previous election.
+  `DashboardSources.liveAnalysis` exposes the per-seat live state for the map work. A missing baseline or trail leaves
+  the maps empty, with no error.
+- [x] **Simulation:** the simulation election copies its source's delimitation; `sim:reset` also clears the timeline
+  and counting state; `tune-calls.ts` measures the call labels on a run.
 ### Admin redesign: shell + Live Console (2026-10)
 - New shell: grouped sidebar (Counting / Data / Admin), top bar with a global election picker (remembered in `?election=` + localStorage), live-updates pill, health dot (`/health/ready`), keyboard-shortcuts dialog.
 - Election picker (`components/shell/ElectionPicker.tsx` + `electionGrid.ts`): the top-bar button shows state, type, year and status ("West Bengal · Vidhan Sabha 2021 · Finalized", status dot green live / amber upcoming / grey finalized). It opens a Radix Popover with a search box, a "Live & upcoming" pinned list, and a state × year grid (Lok Sabha first, states A–Z, years newest first). Search matches every token against state words, state initials (`wb`, `tn`), year prefix (`20`), type (`ls`, `vidhan`) or status (`live`). `E` opens it anywhere outside a text field, dialog, menu or popover (a Radix menu's typeahead keeps its letter keys); ↑↓ move, Enter picks, Esc closes. Switching with unsaved edits asks first.

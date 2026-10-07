@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { analyse } from '../seatAnalysis';
 
-const SHARED = ['types', 'rank', 'match', 'seat', 'notes', 'election', 'index'];
+const SHARED = ['types', 'rank', 'match', 'seat', 'notes', 'election', 'index', 'baseline', 'live'];
 
 describe('seatAnalysis stays identical to the backend copy', () => {
   it.each(SHARED)('%s.ts', f => {
@@ -14,7 +14,7 @@ describe('seatAnalysis stays identical to the backend copy', () => {
 
 describe('seatAnalysis (smoke)', () => {
   it('runs on the frontend lineage copy', () => {
-    const seat = { const_id: 'T_1', const_no: 1, reserved: 'GEN' as const, region_id: null, turnout: null,
+    const seat = { const_id: 'T_1', const_no: 1, reserved: 'GEN' as const, region_id: null, turnout: null, electors: null,
       candidates: [{ person_id: null, name: 'A', party_id: 'BJP', votes: 50, status: 'WON' }, { person_id: null, name: 'B', party_id: 'JMM', votes: 40, status: 'LOST' }] };
     const prev = { ...seat, candidates: [{ ...seat.candidates[0], party_id: 'JVM' }, seat.candidates[1]] };
     const e = (year: number, s: typeof seat) => ({ id: `E${year}`, year, date: `${year}-07-01`, seats: [s], alliances: [], government: null });

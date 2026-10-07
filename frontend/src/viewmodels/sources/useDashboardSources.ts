@@ -5,6 +5,10 @@ import { useDashboardData } from '../data/useDashboardData';
 import { useHistoryAnalysis } from '../data/useHistoryAnalysis';
 import { useHistoricalResults } from '../data/useHistoricalResults';
 import { useAnalysis } from '../data/useAnalysis';
+import { useBaseline } from '../data/useBaseline';
+import { useLiveAnalysis } from '../data/useLiveAnalysis';
+import { liveMaps, prevYearOf } from '../../model/derive/liveMaps';
+import type { SeatLive, LiveTally } from '../../model/derive/seatAnalysis';
 import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
 import { usePartyMeta } from '../data/usePartyMeta';
@@ -19,6 +23,7 @@ import type { DashboardViewModel } from '../data/useDashboardData';
 const RECENT_CHANGE_MS = 3000;
 const EMPTY_YEARS: number[] = [];
 const EMPTY_WATCH: CustomWatch[] = [];
+const EMPTY_MAPS: { swing: Map<string, SwingEntry>; dominance: Map<string, DominanceEntry>; incumbency: IncumbencyEntry[]; partySwitches: PartySwitchEntry[] } = { swing: new Map(), dominance: new Map(), incumbency: [], partySwitches: [] };
 
 export interface DashboardSources {
   election: Election;
@@ -41,6 +46,8 @@ export interface DashboardSources {
   /** Live election: the last poll succeeded. */
   liveConnected: boolean;
   availableLayers: LayerId[];
+  /** Live / upcoming election: per-seat live state and live tallies (null without a baseline). For the map work. */
+  liveAnalysis: { seats: Map<string, SeatLive>; tally: LiveTally } | null;
   /** Party abbreviation and mark (logo → ECI symbol) by party id. */
   partyMeta: Map<string, PartyMeta>;
   /** The user's own tracked seats (shared by the seat panel and the watchlist tab). */
@@ -53,7 +60,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const data = useDashboardData(pageElection);
   const { setLiveConnected } = useElection();
   const partyMeta = usePartyMeta();
-  const { manifestData, results, currentWinnerMap, constCandidates, mapRegions, voteShare, liveConnected, liveStatus, liveVersion } = data;
+  const { manifestData, results, mapRegions, voteShare, liveConnected, liveStatus, liveVersion } = data;
   // The election as the tiles should see it: its status follows /live (Upcoming → Live → Finalized
   // without a reload).
   const election = useMemo(
@@ -62,22 +69,20 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   );
 
   const historyResults = useHistoricalResults(manifestData?.history);
-  const prevResults = historyResults && historyResults.length > 0 ? historyResults[historyResults.length - 1] : null;
   const historyPartyIds = useMemo(() => new Set((historyResults ?? []).flat().map(r => r.party_id)), [historyResults]);
-  const allConstIds = useMemo(() => [...constCandidates.keys()], [constCandidates]);
   const cmp = usePartyComparer(election.state_id, election.type);
   const ha = useHistoryAnalysis({
-    results, currentWinnerMap, allHistResults: historyResults, prevResults, allConstIds,
-    historyYears: manifestData?.history_years || EMPTY_YEARS, currentYear: election.year, cmp,
+    results, allHistResults: historyResults, historyYears: manifestData?.history_years || EMPTY_YEARS, currentYear: election.year, cmp,
   });
-  const ba = useAnalysis(election.status === 'Finalized' ? election.id : undefined);
-
-  const swing = ba.swingMap.size > 0 ? ba.swingMap : ha.swingMap;
-  const dominance = ba.dominanceMap.size > 0 ? ba.dominanceMap : ha.dominanceMap;
-  const incumbency = ba.incumbencyData.length > 0 ? ba.incumbencyData : ha.incumbencyData;
-  const partySwitches = ba.partySwitchData.length > 0 ? ba.partySwitchData : ha.partySwitchData;
-  const years = manifestData?.history_years ?? [];
-  const prevYear = years.length > 0 ? years[years.length - 1] : null;
+  // Seat maps: the stored analysis once Finalized; before that the baseline + live analysis (one engine: seat analysis Phase B).
+  const notFinal = election.status !== 'Finalized';
+  const ba = useAnalysis(notFinal ? undefined : election.id);
+  const baseline = useBaseline(election.id, notFinal);
+  const liveAnalysis = useLiveAnalysis(baseline, results, data.seats, data.trails);
+  const lm = useMemo(() => (baseline ? liveMaps(baseline, liveAnalysis ? [...liveAnalysis.seats.values()] : [], election.year) : null), [baseline, liveAnalysis, election.year]);
+  const src = !notFinal ? { swing: ba.swingMap, dominance: ba.dominanceMap, incumbency: ba.incumbencyData, partySwitches: ba.partySwitchData } : lm ?? EMPTY_MAPS;
+  const { swing, dominance, incumbency, partySwitches } = src;
+  const prevYear = prevYearOf(notFinal ? baseline : null, manifestData?.history_years ?? EMPTY_YEARS);
 
   const totalSeats = election.type === 'LS' ? (mapRegions.length || 543) : (election.state?.total_assembly_seats || mapRegions.length);
   const majority = majorityOf(manifestData, totalSeats);
@@ -145,7 +150,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
 
   return {
     election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, historyPartyIds, prevYear,
-    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta,
+    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta, liveAnalysis,
     watchlist, addWatch, removeWatch,
   };
 }

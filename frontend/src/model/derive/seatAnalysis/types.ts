@@ -15,6 +15,8 @@ export interface SeatIn {
   region_id: number | null;
   /** Turnout %, when known. */
   turnout: number | null;
+  /** Registered electors, when known (live: votes still to count). */
+  electors: number | null;
   candidates: CandidateIn[];
 }
 export interface AllianceIn { id: string; parties: string[] }
@@ -142,4 +144,90 @@ export interface ElectionAnalysis {
   narrowing_seats: string[];
   bellwethers: string[];
   breakdowns: { reserved: BreakdownRow[]; region: BreakdownRow[]; turnout: BreakdownRow[] };
+}
+
+export interface SeatBaseline {
+  const_id: string;
+  const_no: number;
+  /** The previous comparable election's result in this seat; null after a redraw or for a first election. */
+  prev: {
+    year: number;
+    date: string;
+    party_raw: string | null;
+    /** party_raw carried to this election's ids (JVM → BJP); IND stays IND. */
+    holder: string | null;
+    alliance: string | null;
+    candidate: string;
+    person_id: string | null;
+    margin: number | null;
+    margin_pct: number | null;
+    /** Vote share % per party carried to this election's ids; null when the seat had no votes. */
+    shares: Record<string, number> | null;
+    turnout: number | null;
+  } | null;
+  /** The class before this election (comparable history only). */
+  class_before: SeatClass | null;
+  /** The previous winner and whether / where / for whom they contest now (`won` omitted: not known before counting). */
+  sitting: Omit<Incumbency, 'won'> | null;
+  /** The previous top two, both contesting this seat again. */
+  rematch: [string, string] | null;
+  switchers: Extract<SeatNote, { kind: 'switcher' }>[];
+  heavyweights: Extract<SeatNote, { kind: 'heavyweight' }>[];
+  close_last: boolean;
+  narrowing_last: boolean;
+  electors: number | null;
+  history: HistoryEntry[];
+}
+export interface Baseline {
+  schema_version: number;
+  election_id: string;
+  date: string;
+  state_id: number | null;
+  lineage: LineageEventLike[];
+  /** This election's alliances (normalised ids via ALLIANCE_ALIASES when compared). */
+  alliances: AllianceIn[];
+  /** The previous comparable election had alliances (alliance moves exist only when both do, as in analyse()). */
+  prev_has_alliances: boolean;
+  seats: SeatBaseline[];
+}
+
+export interface TrailPoint { r: number | null; lp: string | null; m: number | null; v: number }
+export interface SeatTrail {
+  points: TrailPoint[];
+  lc: number;
+  pk: number | null;
+  /** The current leader's deepest deficit over the whole timeline (share of votes counted); missing on older snapshots. */
+  md?: number | null;
+}
+export interface SeatLiveIn {
+  const_id: string;
+  candidates: CandidateIn[];
+  round: { current: number; total: number } | null;
+  trail: SeatTrail | null;
+}
+export type Call = 'declared' | 'safe' | 'likely' | 'too_close' | 'counting' | 'not_started';
+export type Momentum = 'switched' | 'narrowing' | 'widening' | 'stable';
+export type SittingStatus = 'won' | 'lost' | 'leading' | 'trailing' | 'not_started' | 'not_contesting';
+export type Upset = 'stronghold_trailing' | 'heavyweight_trailing' | 'sitting_trailing';
+export interface SeatLive {
+  const_id: string;
+  leader: Placed | null;
+  runner_up: Placed | null;
+  margin: number | null;
+  provisional: boolean;
+  votes_counted: number;
+  remaining: number | null;
+  outcome: Outcome | null;
+  swing: { winner_party: number | null; prev_holder: number | null } | null;
+  call: Call;
+  momentum: Momentum | null;
+  comeback: boolean;
+  lead_changes: number;
+  sitting: SittingStatus | null;
+  upsets: Upset[];
+}
+export interface LiveTally {
+  parties: { party_id: string; won: number; leading: number; held: number; gained: number; lost: number; split_gained: number; split_lost: number }[];
+  flow: FlowRow[];
+  alliance_moves: { from: string; to: string; seats: number }[];
 }

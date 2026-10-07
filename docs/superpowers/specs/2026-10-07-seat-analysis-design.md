@@ -224,9 +224,10 @@ lands, with no code change.
   - switchers;
   - heavyweights;
   - battleground flags (close / narrowing last time).
-- Stored in `election_analysis.baseline` (JSONB column added in migration 024 so Phase A fixes the schema), computed by
-  the same service when an election moves to Live, on demand from admin, and whenever its candidate list changes
-  while it is Upcoming.
+- Stored in `election_analysis.baseline` (JSONB column added in migration 024 so Phase A fixes the schema). **Decided
+  2026-10-07:** computed on demand (admin button / compute endpoint / CLI) and automatically when an election goes
+  Live, with no hook in candidate CRUD; `live:check` reports NOT READY when it is missing or older than the latest
+  candidate change.
 - `GET /elections/:id/baseline` returns it, CDN-cached (it never changes during counting).
 
 ### 5.2 Seat timeline (migration 025)
@@ -242,7 +243,8 @@ lands, with no code change.
   - by `SeatCorrectionService` (source `correction`, so a correction shows in the timeline);
   - a reopen appends, never rewrites.
 - **The versioned snapshot carries a bounded trail per seat:**
-  - the last 6 entries as `{ r, lp, m }` (round, leader party, margin);
+  - the last 6 entries as `{ r, lp, m, v }` (round, leader party, margin, votes counted; `v` decided 2026-10-07, for
+    comeback);
   - `lc`: lead changes so far;
   - `pk`: the largest margin so far.
   - This is at most ~50 KB uncompressed for UP's 403 seats.
