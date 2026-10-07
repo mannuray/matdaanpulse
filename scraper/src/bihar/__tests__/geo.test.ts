@@ -17,6 +17,10 @@ describe('normaliseFeatures', () => {
   it('fails on a seat missing from the results (a numbering mismatch)', () => {
     expect(() => normaliseFeatures(parseEciAcJs(js), 'ASSAM', {})).toThrow(/AC 33 has no seat type/);
   });
+  it('keeps ECI\'s unnumbered areas (AC 0, "NA": land with no seat) as unnamed shapes, as the older maps do', () => {
+    const fc = parseEciAcJs(js.replace('"AC_NO":33,"AC_NAME":"DISPUR"', '"AC_NO":0,"AC_NAME":"NA"'));
+    expect(normaliseFeatures(fc, 'JAMMU AND KASHMIR', {}).features[0].properties).toEqual({ ac_no: 0, ac_name: '', ac_category: 'GEN', st_name: 'JAMMU AND KASHMIR' });
+  });
 });
 describe('numberingMismatches', () => {
   it('flags a seat whose ECI 2026 name is unlike our name for that number', () => {

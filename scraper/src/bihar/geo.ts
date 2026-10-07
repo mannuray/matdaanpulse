@@ -17,6 +17,8 @@ export function parseEciAcJs(js: string): FeatureCollection {
 export function normaliseFeatures(fc: FeatureCollection, stName: string, seats: Record<number, { type: 'GEN' | 'SC' | 'ST'; name: string }>): FeatureCollection {
   return { type: 'FeatureCollection', features: fc.features.map(f => {
     const no = Number(f.properties.AC_NO);
+    // AC 0 ("NA"): land in the state's outline that belongs to no seat (J&K); kept unnamed, as the older maps keep it.
+    if (no === 0) return { type: 'Feature', properties: { ac_no: 0, ac_name: '', ac_category: 'GEN', st_name: stName }, geometry: f.geometry };
     if (!seats[no]) throw new Error(`AC ${no} has no seat type`);
     return { type: 'Feature', properties: { ac_no: no, ac_name: seats[no].name.toUpperCase(), ac_category: seats[no].type, st_name: stName }, geometry: f.geometry };
   }) };

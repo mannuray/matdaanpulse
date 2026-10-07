@@ -12,7 +12,8 @@
 /geo/hr_ac.geojson  /geo/hr_ac_2008.geojson  301
 /geo/india_pc.geojson  /geo/india_pc_2008.geojson  301
 /geo/jh_ac.geojson  /geo/jh_ac_2008.geojson  301
-/geo/jk_ac.geojson  /geo/jk_ac_2008.geojson  301
+/geo/jk_ac.geojson  /geo/jk_ac_1995.geojson  301
+/geo/jk_ac_2008.geojson  /geo/jk_ac_1995.geojson  301
 /geo/ka_ac.geojson  /geo/ka_ac_2008.geojson  301
 /geo/kl_ac.geojson  /geo/kl_ac_2008.geojson  301
 /geo/mh_ac.geojson  /geo/mh_ac_2008.geojson  301

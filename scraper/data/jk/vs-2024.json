@@ -1,0 +1,10075 @@
+{
+ "year": 2024,
+ "electionId": "a0130000-0000-4000-8000-000000002024",
+ "source": {
+  "title": "ECI Statistical Report, Jammu and Kashmir Legislative Assembly 2024",
+  "url": "https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=7",
+  "retrieved": "2026-10-07"
+ },
+ "parties": [
+  {
+   "id": "AAP",
+   "name": "Aam Aadmi Party",
+   "abbreviation": null,
+   "color": "#0066FF",
+   "recognition": "National"
+  },
+  {
+   "id": "AASTEJK",
+   "name": "Aman Aur Shanti Tehreek-e-jammu & Kashmir",
+   "abbreviation": "AASTEJK",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AIFB",
+   "name": "All India Forward Bloc",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "AJKLDP",
+   "name": "All Jammu & Kashmir Liberal Democratic Party",
+   "abbreviation": "AJKLDP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "AKSJP",
+   "name": "Anarakshit Samaj Party",
+   "abbreviation": "AKSJP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "ASP8",
+   "name": "Azad Samaj Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "ASPKR",
+   "name": "Aazad Samaj Party (Kanshi Ram)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BHRTJDOP",
+   "name": "Bharat Jodo Party",
+   "abbreviation": "BHRTJDOP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "BJP",
+   "name": "Bharatiya Janata Party",
+   "abbreviation": null,
+   "color": "#FF7A1A",
+   "recognition": "National"
+  },
+  {
+   "id": "BS",
+   "name": "Bhim Sena",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BSKP",
+   "name": "Bharatiya Sampuran Krantikari Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "BSP",
+   "name": "Bahujan Samaj Party",
+   "abbreviation": null,
+   "color": "#4B5BD6",
+   "recognition": "National"
+  },
+  {
+   "id": "CPIM",
+   "name": "Communist Party of India  (Marxist)",
+   "abbreviation": null,
+   "color": "#B83A3E",
+   "recognition": "National"
+  },
+  {
+   "id": "DPAP",
+   "name": "Democratic Progressive Azad Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "GRBDMCTP",
+   "name": "Garib Democratic Party",
+   "abbreviation": "GRBDMCTP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "HIP",
+   "name": "Haq Insaaf Party",
+   "abbreviation": "HIP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "HSS",
+   "name": "Hindustan Shakti Sena",
+   "abbreviation": "HSS",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "INC",
+   "name": "Indian National Congress",
+   "abbreviation": null,
+   "color": "#38C6F4",
+   "recognition": "National"
+  },
+  {
+   "id": "IND",
+   "name": "Independent",
+   "abbreviation": "IND",
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JAKAP",
+   "name": "Jammu and Kashmir Apni Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JAKNPF",
+   "name": "Jammu And Kashmir Nationalist People's Front",
+   "abbreviation": "JAKNPF",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JDU",
+   "name": "Janata Dal  (United)",
+   "abbreviation": "JD(U)",
+   "color": "#1FA37A",
+   "recognition": "State"
+  },
+  {
+   "id": "JKAADP",
+   "name": "Jammu & Kashmir All Alliance Democratic Party",
+   "abbreviation": "JKAADP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JKANC",
+   "name": "Jammu & Kashmir Awami National Conference",
+   "abbreviation": "JKANC",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JKNC",
+   "name": "Jammu & Kashmir National Conference",
+   "abbreviation": null,
+   "color": "#C41E3A",
+   "recognition": null
+  },
+  {
+   "id": "JKNPPB",
+   "name": "Jammu & Kashmir National Panthers Party (bhim)",
+   "abbreviation": "JKNPPB",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "JKNPPI",
+   "name": "J&k National Panthers Party (india)",
+   "abbreviation": "JKNPPI",
+   "color": "#9CA3AF",
+   "recognition": "State"
+  },
+  {
+   "id": "JKPC",
+   "name": "Jammu & Kashmir People Conference",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "JKPDF",
+   "name": "Jammu And Kashmir Peoples Democratic Front (secular)",
+   "abbreviation": "JKPDFS",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "JKPDP",
+   "name": "Jammu & Kashmir Peoples Democratic Party",
+   "abbreviation": null,
+   "color": "#90EE90",
+   "recognition": null
+  },
+  {
+   "id": "LDP",
+   "name": "Liberal Democratic Party",
+   "abbreviation": "LDP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NAUP",
+   "name": "National Awami United Party",
+   "abbreviation": "NAUP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NCP",
+   "name": "Nationalist Congress Party",
+   "abbreviation": null,
+   "color": "#006699",
+   "recognition": null
+  },
+  {
+   "id": "NDPI",
+   "name": "National Democratic Party (indian)",
+   "abbreviation": "NDPI",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NLP",
+   "name": "National Loktantrik Party",
+   "abbreviation": "NLP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NRPI",
+   "name": "National Republic Party Of India",
+   "abbreviation": "NRPI",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "NYP",
+   "name": "National Youth Party",
+   "abbreviation": "NYP",
+   "color": "#9CA3AF",
+   "recognition": "Unrecognised"
+  },
+  {
+   "id": "RLD",
+   "name": "Rashtriya Lok Dal",
+   "abbreviation": null,
+   "color": "#33CC33",
+   "recognition": null
+  },
+  {
+   "id": "RLJP",
+   "name": "Rashtriya Lok Janshakti Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RPOI2",
+   "name": "Republican Party of India (Athawale)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "RPOIA",
+   "name": "Republican Party of India (A)",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SBKP",
+   "name": "Sampoorna Bharat Kranti Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  },
+  {
+   "id": "SHSUBT",
+   "name": "Shiv Sena (Uddhav Balasaheb Thackeray)",
+   "abbreviation": "SS(UBT)",
+   "color": "#F5B400",
+   "recognition": "State"
+  },
+  {
+   "id": "SP",
+   "name": "Samajwadi Party",
+   "abbreviation": null,
+   "color": "#E60000",
+   "recognition": null
+  },
+  {
+   "id": "SSP5",
+   "name": "Sainik Samaj Party",
+   "abbreviation": null,
+   "color": "#808080",
+   "recognition": null
+  }
+ ],
+ "seats": [
+  {
+   "constNo": 1,
+   "name": "Karnah",
+   "type": "GEN",
+   "electors": 59224,
+   "voters": 41446,
+   "turnout": 69.98,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javaid Ahmad Mirchal",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 46,
+     "votes": 14294,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Naseer Ahmad Awan",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 62,
+     "votes": 8032,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Firdous Ahmad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 46,
+     "votes": 6354,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Raja Manzoor Ahmad Khan",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 69,
+     "votes": 5151,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohd Idrees",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 2973,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Fayaz Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 2925,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sajawal Shah",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 54,
+     "votes": 735,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sajid Ahmad Mir",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 25,
+     "votes": 392,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 464,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 2,
+   "name": "Trehgam",
+   "type": "GEN",
+   "electors": 79216,
+   "voters": 53443,
+   "turnout": 67.46,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Saifullah Mir",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 64,
+     "votes": 18002,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bashir Ahmad Dar",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 63,
+     "votes": 14376,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nazir Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 8216,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr Noor Ud Din Ahmad Shah",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 60,
+     "votes": 3828,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohammad Afzal Wani",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 66,
+     "votes": 3495,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Javid Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 2386,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Kaysar Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 1129,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sajad Khan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 58,
+     "votes": 462,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shafeeqa Begum",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 54,
+     "votes": 329,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shair Zaman Deedad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 205,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 920,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 3,
+   "name": "Kupwara",
+   "type": "GEN",
+   "electors": 95859,
+   "voters": 62077,
+   "turnout": 64.76,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mir Mohammad Fayaz",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 47,
+     "votes": 27773,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nasir Aslam Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 58,
+     "votes": 17976,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sajad Gani Lone",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 57,
+     "votes": 7457,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pirzada Firdous Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 5672,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sabiha Begum",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 42,
+     "votes": 591,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gh Nabi Khan Pathan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 575,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bashir Ahmad Malik",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 47,
+     "votes": 410,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Saleema",
+     "partyId": "NCP",
+     "sex": "F",
+     "age": 39,
+     "votes": 218,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1383,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 4,
+   "name": "Lolab",
+   "type": "GEN",
+   "electors": 91669,
+   "voters": 59987,
+   "turnout": 65.44,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Qaysar Jamshaid Lone",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 49,
+     "votes": 19603,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Dawood Bashir Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 11732,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Waqar Ul Haq Khan",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 40,
+     "votes": 10508,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Haji Farooq Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 6292,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mudasir Akbar Shah",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 41,
+     "votes": 4095,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Muneer Ahmad Mir",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2998,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Nazir Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 974,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Abdul Rehman Wani",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 71,
+     "votes": 967,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shadab Shaheen",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 46,
+     "votes": 426,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Farooq Ahmad Bhat",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 45,
+     "votes": 287,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Zahid Ahmad Shah",
+     "partyId": "AKSJP",
+     "sex": "M",
+     "age": 28,
+     "votes": 242,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1220,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 5,
+   "name": "Handwara",
+   "type": "GEN",
+   "electors": 99271,
+   "voters": 73227,
+   "turnout": 73.76,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sajad Gani Lone",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 57,
+     "votes": 29812,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chowdry Mohammad Ramzan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 74,
+     "votes": 29150,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdul Majid Banday",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 7639,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gauhar Azad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 44,
+     "votes": 2010,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ghulam Mohammad Mir",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 72,
+     "votes": 1750,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Zahid Mushtaq Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 1218,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shahid Hussain Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 268,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1253,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 6,
+   "name": "Langate",
+   "type": "GEN",
+   "electors": 120584,
+   "voters": 78177,
+   "turnout": 64.83,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khursheed Ahmad Shiekh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 25984,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Irfan Sultan Pandithpuri",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 52,
+     "votes": 24382,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Junaid Jawaid Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 9125,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Irshad Hussain Ganaie",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 7823,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Kalimullah Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 3535,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohammad Munawar Khawaja",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 63,
+     "votes": 1154,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohammad Sultan Magray",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 876,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Syed Ghulam Nabi Bukhari",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 44,
+     "votes": 832,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohammad Muzaffar Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 742,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shabir Ahmad Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 547,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Khursheeda Bagam",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 47,
+     "votes": 499,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ghulam Qadir Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 487,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Mohammad Ashraf Gojri",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 25,
+     "votes": 403,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Irfan Bashir Malik",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 38,
+     "votes": 300,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Abdul Hameed Teli",
+     "partyId": "BSKP",
+     "sex": "M",
+     "age": 55,
+     "votes": 269,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1104,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 7,
+   "name": "Sopore",
+   "type": "GEN",
+   "electors": 112997,
+   "voters": 51563,
+   "turnout": 45.63,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Irshad Rasool Kar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 51,
+     "votes": 26975,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mursaleen Aajir",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 32,
+     "votes": 6619,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Abdul Rashid Dar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 74,
+     "votes": 5167,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammad Latief Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 2099,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Irfan Ali Lone",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 37,
+     "votes": 1687,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ghulam Mohammad War",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 59,
+     "votes": 1519,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Irshad Ahmad Tantray",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 51,
+     "votes": 1154,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Dr Farooz Ahmad Ganai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1066,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Dr Manzoor Ahmad Bhat",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 40,
+     "votes": 987,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Aijaz Ahmad Ganai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 848,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Arti Nehru",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 40,
+     "votes": 471,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Shuiab Mohd Shiekh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 469,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Manzoor Ahmad Kaloo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 406,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Mushtaq Ahmad Changa",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 385,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Waris Abdullah Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 310,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Raquib-ul-rashid Budha",
+     "partyId": "JKAADP",
+     "sex": "M",
+     "age": 51,
+     "votes": 270,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Rizwan Illahi Parvaiz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 258,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Tanveer Fatima",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 56,
+     "votes": 215,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Farooq Ahmad Rather",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 40,
+     "votes": 178,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Aijaz Ahmad Guroo",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 58,
+     "votes": 129,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 341,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 8,
+   "name": "Rafiabad",
+   "type": "GEN",
+   "electors": 113457,
+   "voters": 71228,
+   "turnout": 62.78,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javid Ahmad Dar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 50,
+     "votes": 28783,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yawar Ahmad Mir",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 36,
+     "votes": 19581,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Muzafar Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 8473,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Gani Vakil",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 66,
+     "votes": 6370,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nazir Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 1627,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sajad Ahmad Dar",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 44,
+     "votes": 1456,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Altaf Hussain Malik",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 1400,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohmad Sayeed Peer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 557,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Akbar Bhat",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 51,
+     "votes": 549,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ghulam Nabi Parray",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 461,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Tahir Salmani",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 38,
+     "votes": 396,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Fatima Javid",
+     "partyId": "SBKP",
+     "sex": "F",
+     "age": 43,
+     "votes": 357,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1193,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 9,
+   "name": "Uri",
+   "type": "GEN",
+   "electors": 105612,
+   "voters": 74626,
+   "turnout": 70.66,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sajjad Shafi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 55,
+     "votes": 39713,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Taj Mohi Ud Din",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 79,
+     "votes": 25244,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Munir Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 3316,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Dr. Bashir Ahmad Chalkoo",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 62,
+     "votes": 1792,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sheikh Muneeb",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 36,
+     "votes": 1382,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sajad Subhan Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 941,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1520,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 10,
+   "name": "Baramulla",
+   "type": "GEN",
+   "electors": 126820,
+   "voters": 68800,
+   "turnout": 54.25,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javid Hassan Baig",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 60,
+     "votes": 22523,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Shoaib Nabi Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 10750,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Muzafar Hussain Baig",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 78,
+     "votes": 5872,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Touseef Mehraj Raina",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 5324,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mir Iqbal Ahmad",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 4669,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shabir Ahmad Lone",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 52,
+     "votes": 3183,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Rafiq Rather",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 3177,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ravinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 2599,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Abdul Rehman Shalla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 74,
+     "votes": 1968,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ghulam Rasool Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 1376,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Asif Akber Lone",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 48,
+     "votes": 1330,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Javed Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 632,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Manzoor Ahmad Dar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 41,
+     "votes": 604,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Raqia Akhter",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 27,
+     "votes": 540,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Nighat Parveen",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 45,
+     "votes": 504,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Sayed Nisar Geelani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 460,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Waseem Habib Ganaie",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 26,
+     "votes": 445,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Adil Islam",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 31,
+     "votes": 403,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Arshad Wali",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 36,
+     "votes": 390,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "Musaib Hassan Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 383,
+     "status": "LOST"
+    },
+    {
+     "serial": 22,
+     "name": "Mushtaq Ahmad Lone",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 45,
+     "votes": 352,
+     "status": "LOST"
+    },
+    {
+     "serial": 23,
+     "name": "Javid Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 305,
+     "status": "LOST"
+    },
+    {
+     "serial": 24,
+     "name": "Mudassir Manzoor",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 195,
+     "status": "LOST"
+    },
+    {
+     "serial": 25,
+     "name": "Santosh Labroo",
+     "partyId": "JKAADP",
+     "sex": "F",
+     "age": 68,
+     "votes": 127,
+     "status": "LOST"
+    },
+    {
+     "serial": 26,
+     "name": "Mohammad Maqbool Maknu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 107,
+     "status": "LOST"
+    },
+    {
+     "serial": 27,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 561,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 11,
+   "name": "Gulmarg",
+   "type": "GEN",
+   "electors": 90597,
+   "voters": 65412,
+   "turnout": 72.2,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pirzada Farooq Ahmed Shah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 61,
+     "votes": 26984,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Hassan Mir",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 74,
+     "votes": 22793,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shabir Ahmed Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 70,
+     "votes": 6012,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Aadil Nazir Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 4656,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Amood Gulzar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 743,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Umar Farooq Parry",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 545,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Syed Ameer Suhail",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 506,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shabir Ahmad Najar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 376,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Hilal Ahmad Malla",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 46,
+     "votes": 342,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Abdul Ahad Aakhoon",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 59,
+     "votes": 302,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohammad Iqbal Shah",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 75,
+     "votes": 276,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Tejinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Abid Hussain Malik",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 40,
+     "votes": 137,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1494,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 12,
+   "name": "Wagoora - Kreeri",
+   "type": "GEN",
+   "electors": 72718,
+   "voters": 44548,
+   "turnout": 61.26,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Irfan Hafiz Lone",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 17002,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Syed Basharat Ahmed Bukhari",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 9251,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Naseer Ahmad Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 6355,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Rehana Begum",
+     "partyId": "JDU",
+     "sex": "F",
+     "age": 42,
+     "votes": 2587,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shabir Ahmad Shah",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 68,
+     "votes": 2219,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Safina Baig",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 52,
+     "votes": 1699,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Syed Abas Hussain",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 57,
+     "votes": 1602,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Imtiyaz Ahmad Parra",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 41,
+     "votes": 969,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Owais Abass",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 25,
+     "votes": 503,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Tajamul Hamid",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 447,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Abdul Gani Dar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 47,
+     "votes": 366,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Inam Ul Rashid",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 232,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1313,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 13,
+   "name": "Pattan",
+   "type": "GEN",
+   "electors": 103574,
+   "voters": 70302,
+   "turnout": 67.88,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javaid Riyaz",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 71,
+     "votes": 29893,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Imran Raza Ansari",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 52,
+     "votes": 29290,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Akbar Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 3316,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Javid Iqbal Ganaie",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 34,
+     "votes": 2758,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohammad Mustafa Lone",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 37,
+     "votes": 644,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Syeed Abrar Ahmad Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 613,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Reyaz Ahmad Sheikh",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 50,
+     "votes": 558,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Nisar Hussain Dar",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 32,
+     "votes": 544,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bilal Ahmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 529,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Munir Ahmad Khan",
+     "partyId": "JAKNPF",
+     "sex": "M",
+     "age": 50,
+     "votes": 426,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Wasim Gulzar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 36,
+     "votes": 326,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Abdul Ahad",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 53,
+     "votes": 232,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Bashir Ahmad Parray",
+     "partyId": "SBKP",
+     "sex": "M",
+     "age": 49,
+     "votes": 111,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1032,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 14,
+   "name": "Sonawari",
+   "type": "GEN",
+   "electors": 121336,
+   "voters": 85115,
+   "turnout": 70.15,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hilal Akbar Lone",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 50,
+     "votes": 31535,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yasir Reshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 17791,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Imtiyaz Ahmad Parray",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 40,
+     "votes": 17608,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammad Tahir Qadri",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 45,
+     "votes": 3773,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Majeed Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 3422,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Syed Mohammad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 2051,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Saheer Ahmad Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 1807,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shabir Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1382,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Wazir Ahmad Qureshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 1245,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ab Rashid Khan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 1024,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Aafaq Sadiq",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 469,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Younis Qawam",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 461,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Syed Tajamul Ali",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 37,
+     "votes": 377,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Syed Fida Hussain Moosvi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 357,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Ghulam Mohammad Dar",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 56,
+     "votes": 299,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Aasif Ahmad Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Hilal Ahmad Wagay",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 30,
+     "votes": 211,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Mohammad Abdullah Khan",
+     "partyId": "RPOI2",
+     "sex": "M",
+     "age": 64,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 846,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 15,
+   "name": "Bandipora",
+   "type": "GEN",
+   "electors": 117224,
+   "voters": 74424,
+   "turnout": 63.49,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nizam Uddin Bhat",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 77,
+     "votes": 20391,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Usman Abdul Majid",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 19580,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Prince Parvez",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 8138,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Syed Shafat Qazmi",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 38,
+     "votes": 6650,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Balkees Akhter",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 65,
+     "votes": 2920,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohammad Sikandar Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 2411,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohammad Ismail Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 74,
+     "votes": 1785,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Syed Tajamul Islam",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 46,
+     "votes": 1769,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mudasir Ahmad Bhat",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 40,
+     "votes": 1762,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ghulam Mustafa Khan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1695,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mudasir Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 1441,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Naseer Ahmad Lone",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 31,
+     "votes": 1196,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Bilal Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 921,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Mohammad Shafi Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 841,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Imran Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 779,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Tariq Ahmad Sheikh",
+     "partyId": "NYP",
+     "sex": "M",
+     "age": 37,
+     "votes": 489,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Ghulam Mohammad Bhat",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 41,
+     "votes": 441,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "Tahir Ahmad Rather",
+     "partyId": "JKAADP",
+     "sex": "M",
+     "age": 34,
+     "votes": 313,
+     "status": "LOST"
+    },
+    {
+     "serial": 20,
+     "name": "Mohammad Aslam Chopan",
+     "partyId": "BHRTJDOP",
+     "sex": "M",
+     "age": 35,
+     "votes": 273,
+     "status": "LOST"
+    },
+    {
+     "serial": 21,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 501,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 16,
+   "name": "Gurez",
+   "type": "ST",
+   "electors": 22742,
+   "voters": 17978,
+   "turnout": 79.05,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Nazir Ahmad Khan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 8378,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Faqeer Mohammad Khan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 7246,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nisar Ahmad Lone",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 59,
+     "votes": 1966,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Ghulam Rasool",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 113,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohammad Hamza Lone",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 37,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 150,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 17,
+   "name": "Kangan",
+   "type": "ST",
+   "electors": 78960,
+   "voters": 57885,
+   "turnout": 73.31,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mian Mehar Ali",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 38,
+     "votes": 28907,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Syed Jamat Ali Shah",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 69,
+     "votes": 25088,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Atta Mohammad Khatana",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 42,
+     "votes": 718,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohd Ayoub Chohan",
+     "partyId": "AJKLDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 621,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abdul Majeed Baniyea",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 62,
+     "votes": 595,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gulam Rubani Tadwa",
+     "partyId": "AKSJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 354,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1564,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 18,
+   "name": "Ganderbal",
+   "type": "GEN",
+   "electors": 129188,
+   "voters": 74775,
+   "turnout": 57.88,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Omar Abdullah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 53,
+     "votes": 32727,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bashir Ahmad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 22153,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ishfaq Ahmad Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 6060,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Qaiser Sultan Ganaie",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 34,
+     "votes": 3781,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Farooq Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 2732,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Qazi Mubisher Farooq",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 29,
+     "votes": 1160,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ashiq Ahmad Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 963,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Javaid Ahmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 765,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Maajid Ashraf Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 621,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Tariq Ahmad Zargar",
+     "partyId": "RLJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 460,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Zahoor Ahmad Malik",
+     "partyId": "RPOIA",
+     "sex": "M",
+     "age": 37,
+     "votes": 459,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sarjan Ahmad Wagay",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 438,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Abdul Rashid Ganaie",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 48,
+     "votes": 308,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Saquib Rahman Makhdoomi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 218,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Ghulam Qadir Rather",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 51,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1713,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 19,
+   "name": "Hazratbal",
+   "type": "GEN",
+   "electors": 113021,
+   "voters": 36670,
+   "turnout": 32.45,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Salman Sagar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 43,
+     "votes": 18890,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Asiea Naqash",
+     "partyId": "JKPDP",
+     "sex": "F",
+     "age": 55,
+     "votes": 8595,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Peer Bilal Ahmad",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 52,
+     "votes": 5471,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammad Maqbool Beigh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 79,
+     "votes": 827,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Faiz Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 68,
+     "votes": 703,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shahid Hassan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 34,
+     "votes": 342,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Basit Bashir Gagroo",
+     "partyId": "JAKNPF",
+     "sex": "M",
+     "age": 37,
+     "votes": 225,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Basit Hayat Zargar",
+     "partyId": "RLD",
+     "sex": "M",
+     "age": 26,
+     "votes": 185,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shabir Ahmad Ganie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 175,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Omar Majeed Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 171,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Dr Sajjad Hussain Qanungo",
+     "partyId": "JKAADP",
+     "sex": "M",
+     "age": 47,
+     "votes": 139,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohd Sidiq Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 117,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Shadib Hanief Khan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 35,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 732,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 20,
+   "name": "Khanyar",
+   "type": "GEN",
+   "electors": 91300,
+   "voters": 23866,
+   "turnout": 26.14,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ali Mohammad Sagar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 66,
+     "votes": 14906,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sheikh Imran",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 4994,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Waseem Ahmed Shalla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 1951,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tafazul Mushtaq",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 32,
+     "votes": 651,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bilal Ahmad Mir",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 41,
+     "votes": 312,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Parvez Jamal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 247,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohammad Shafi Khan Kashi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Farooq Ahmed",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 41,
+     "votes": 111,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shabir Ahmad Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 94,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Riyaz Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 76,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 411,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 21,
+   "name": "Habbakadal",
+   "type": "GEN",
+   "electors": 95759,
+   "voters": 19246,
+   "turnout": 20.1,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shamim Firdous",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 58,
+     "votes": 12437,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ashok Kumar Bhat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 65,
+     "votes": 2899,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nazir Ahmad Gilkar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 1475,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Arif Irshad Laigroo",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 49,
+     "votes": 602,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nazir Ahmad Sofi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 330,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Muzzafar Shah",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 66,
+     "votes": 276,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sanjay Saraf",
+     "partyId": "RLJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 265,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Asif Ahmad Beigh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ajaz Ahmad Sofi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohammad Farooq Khan",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 59,
+     "votes": 100,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Jeelani Hamid Kumar",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 32,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Ashok Shaib",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Nanaji Dembi",
+     "partyId": "SBKP",
+     "sex": "M",
+     "age": 60,
+     "votes": 65,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Fayaz Ahmad Butt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 58,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Rubina Akhter",
+     "partyId": "NLP",
+     "sex": "F",
+     "age": 42,
+     "votes": 46,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Faisal Manzoor",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 27,
+     "votes": 40,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 148,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 22,
+   "name": "Lal Chowk",
+   "type": "GEN",
+   "electors": 107573,
+   "voters": 36812,
+   "turnout": 34.22,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sheikh Ahsan Ahmed",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 50,
+     "votes": 16731,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohammad Ashraf Mir",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 52,
+     "votes": 5388,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Zuhaib Yousf Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 35,
+     "votes": 4966,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Manzoor Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 4475,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Aijaz Hussain Rather",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 40,
+     "votes": 3281,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gazanfar Ali",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 461,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Rashid Haroon",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 59,
+     "votes": 374,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Nisar Ahmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 296,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sheikh Sarwar Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Qari Zaheer Abbas Bhatti",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 53,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 585,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 23,
+   "name": "Channapora",
+   "type": "GEN",
+   "electors": 85809,
+   "voters": 25431,
+   "turnout": 29.64,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mushtaq Guroo",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 49,
+     "votes": 13717,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Syed Mohammad Altaf Bukhari",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 65,
+     "votes": 8029,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohammed Iqbal Trumboo",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 57,
+     "votes": 1450,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Hilal Ahmad Wani",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 722,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jibran Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 598,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sheeban Ashai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 225,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Showkat Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 212,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "A. R. Wani",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 73,
+     "votes": 123,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 355,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 24,
+   "name": "Zadibal",
+   "type": "GEN",
+   "electors": 113036,
+   "voters": 34894,
+   "turnout": 30.87,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tanvir Sadiq",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 45,
+     "votes": 22189,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Abid Hussain Ansari",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 77,
+     "votes": 6016,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Junaid Azim Mattu",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 2700,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sheikh Gowher Ali",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 956,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohammad Omar Hafiz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 902,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Tanveer Hussain Pathan",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 36,
+     "votes": 604,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Burhan Basheer Bazaz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 391,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sheikh Masoodi John",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Aasiful Hassan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 153,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mirza Sajad Hussain Beigh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 125,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 695,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 25,
+   "name": "Eidgah",
+   "type": "GEN",
+   "electors": 62080,
+   "voters": 22985,
+   "turnout": 37.02,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mubarik Gul",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 73,
+     "votes": 7700,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Nabi Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 6020,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohammad Khurshid Alam",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 70,
+     "votes": 3302,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Irfan Ahmad Mattoo",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 51,
+     "votes": 1285,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Imtiyaz Ahmad Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 957,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shakeel Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 741,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Irfan Ahmad Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 712,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Arif Majeed Pampore",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 479,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohammad Faheem Reshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 470,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohammad Ashraf Bhat Palpori",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 39,
+     "votes": 442,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rouf Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 26,
+     "votes": 298,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mehraj Ud Din Ahanger",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 38,
+     "votes": 110,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Nissar Ahmed Dar",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 33,
+     "votes": 65,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 404,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 26,
+   "name": "Central Shalteng",
+   "type": "GEN",
+   "electors": 108147,
+   "voters": 34488,
+   "turnout": 31.89,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Tariq Hameed Karra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 69,
+     "votes": 18933,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Muhammad Irfan Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 4538,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Noor Mohammad Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 4103,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Qayum Bhat",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 58,
+     "votes": 2730,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Zaffer Habib Dar",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 45,
+     "votes": 886,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Adil Hussain Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 357,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Indomeet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 350,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Riyaz Ahmad Mir",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 47,
+     "votes": 295,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Muddasir Rashid Bazaz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 203,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Muzaffar Hussain Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 200,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sameer Ahmed Bhat",
+     "partyId": "NRPI",
+     "sex": "M",
+     "age": 43,
+     "votes": 184,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Irshad Ahmad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Inam Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 124,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 821,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 27,
+   "name": "Budgam",
+   "type": "GEN",
+   "electors": 125855,
+   "voters": 66103,
+   "turnout": 52.52,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Omar Abdullah",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 53,
+     "votes": 36010,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aga Syed Muntazir Mehdi",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 31,
+     "votes": 17525,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nisar Ahmad Pal",
+     "partyId": "JKPDF",
+     "sex": "M",
+     "age": 40,
+     "votes": 3365,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mehraj Ud Din Ganayee",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 3358,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mukhtar Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 1674,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Nazir Ahmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1583,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Aga Syed Ahmad Moosvi",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 48,
+     "votes": 524,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gazanfar Maqbool Shah",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 38,
+     "votes": 256,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1757,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 28,
+   "name": "Beerwah",
+   "type": "GEN",
+   "electors": 98652,
+   "voters": 66307,
+   "turnout": 67.21,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shafi Ahmad Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 71,
+     "votes": 20118,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Nazir Ahmad Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 15957,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sarjan Ahmad Wagay",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 12282,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gulam Ahmad Khan",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 71,
+     "votes": 7718,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Farooq Ahmad Ganaie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 3970,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sanjay Parva",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 927,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mir Fanoon Rafiq",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 804,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Showket Hussain Mir",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 38,
+     "votes": 792,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Showket Ahmed Wani",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 51,
+     "votes": 705,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ali Mohammad Dar",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 38,
+     "votes": 528,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Nazir Ahmad Khan",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 39,
+     "votes": 431,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Nisar Ahmad Dar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 52,
+     "votes": 367,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1647,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 29,
+   "name": "Khansahib",
+   "type": "GEN",
+   "electors": 94416,
+   "voters": 68346,
+   "turnout": 72.39,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Saif Ud Din Bhat",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 69,
+     "votes": 33225,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Hakeem Mohammad Yaseen Shah",
+     "partyId": "JKPDF",
+     "sex": "M",
+     "age": 76,
+     "votes": 21611,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manzoor Ahmad Wani",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 63,
+     "votes": 3334,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jahangir Ahmad Sheikh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 2643,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dr Ali Mohd Mir",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 53,
+     "votes": 1605,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Firdouse Ahmed Farash",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 55,
+     "votes": 1407,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mudasir Ahmad Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 834,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Syed Basharat Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 616,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Reyaz Ahmad Batana",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 37,
+     "votes": 485,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Shahnaz Hussain Shah",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 44,
+     "votes": 206,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 2364,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 30,
+   "name": "CHRAR-i- SHARIEF",
+   "type": "GEN",
+   "electors": 104791,
+   "voters": 74195,
+   "turnout": 70.8,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Advocate Abdul Rahim Rather",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 80,
+     "votes": 35957,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Nabi Lone",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 70,
+     "votes": 24461,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Hakeem Mohammad Yaseen Shah",
+     "partyId": "JKPDF",
+     "sex": "M",
+     "age": 76,
+     "votes": 4401,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Owais Ashraf Shah",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 31,
+     "votes": 1853,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Zahid Hussain Jan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 1779,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Javed Mohmad Hubi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 1295,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Nisar Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 1079,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Yousuf Ganaie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 999,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Gazanfar Ali",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 70,
+     "votes": 671,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Mohd Shafi Hurrah",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 47,
+     "votes": 348,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1333,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 31,
+   "name": "Chadoora",
+   "type": "GEN",
+   "electors": 88853,
+   "voters": 50972,
+   "turnout": 57.37,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ali Mohammad Dar",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 66,
+     "votes": 31991,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohmad Yaseen Bhat",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 43,
+     "votes": 14773,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Faisal Fayaz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 942,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Syed Fahed Andrabi",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 30,
+     "votes": 716,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nilofar Sajjad Gandru",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 40,
+     "votes": 452,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Abass Kant",
+     "partyId": "NLP",
+     "sex": "M",
+     "age": 28,
+     "votes": 182,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1265,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 32,
+   "name": "Pampore",
+   "type": "GEN",
+   "electors": 100428,
+   "voters": 45447,
+   "turnout": 45.25,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Hasnain Masoodi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 70,
+     "votes": 15088,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Zahoor Ahmad Mir",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 52,
+     "votes": 12325,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohammad Maqbool Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 5846,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Quyoom Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 55,
+     "votes": 2305,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Aadil Rashid Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 2237,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohammad Altaf Mir",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1543,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Asif Ganai",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 1185,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Syed Showkat Gayoor Andrabi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 957,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bilal Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 797,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Parvaiz Ahmad Hajam",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 34,
+     "votes": 653,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Mohammad Akbar Lone",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 530,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mashooq Ahmad Mir",
+     "partyId": "JAKNPF",
+     "sex": "M",
+     "age": 36,
+     "votes": 476,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Arshid Ahmad",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 50,
+     "votes": 289,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Shakeel Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 222,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 966,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 33,
+   "name": "Tral",
+   "type": "GEN",
+   "electors": 98457,
+   "voters": 43457,
+   "turnout": 44.14,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rafiq Ahmad Naik",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 10710,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Surinder Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 10250,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ghulam Nabi Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 9778,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Harbaksh Singh Sassan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 8557,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Pushvinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 766,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Abdul Rashid Gojar",
+     "partyId": "AJKLDP",
+     "sex": "M",
+     "age": 55,
+     "votes": 709,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Rashid Gojjer",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 461,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Zahid Iqbal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 444,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Tahir Mansoor Zargar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 258,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1445,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 34,
+   "name": "Pulwama",
+   "type": "GEN",
+   "electors": 99758,
+   "voters": 51011,
+   "turnout": 51.13,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Waheed Ur Rehman Para",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 38,
+     "votes": 24716,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohammad Khalil Band",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 73,
+     "votes": 16568,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Talat Majid Alie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 1833,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Fayaz Ahmad Sofi",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 39,
+     "votes": 1224,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sofi Mohammad Akbar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 1117,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Ayoub Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 1052,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd Iqbal Sofi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 871,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Javeed Ahmad Chopan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 810,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ishtiyaq Ahmad Sheikh",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 37,
+     "votes": 400,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Ali Mohmmad Wani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 379,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Asif Nabi Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 227,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Shabir Ahmad Wani",
+     "partyId": "RLJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 207,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1095,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 35,
+   "name": "Rajpora",
+   "type": "GEN",
+   "electors": 109635,
+   "voters": 53500,
+   "turnout": 48.8,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ghulam Mohi Uddin Mir",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 58,
+     "votes": 25627,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Syed Bashir Ahmad",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 71,
+     "votes": 11314,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arsheed Ahmad Bhat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 35,
+     "votes": 5584,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd Altaf Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 3273,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Muddasir Hassan",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 39,
+     "votes": 2827,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ghulam Hasan Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 1357,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ghulam Nabi Wani Niloora",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 55,
+     "votes": 1354,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gulam Nabi Digoo",
+     "partyId": "LDP",
+     "sex": "M",
+     "age": 55,
+     "votes": 471,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Daisy Raina",
+     "partyId": "RPOI2",
+     "sex": "F",
+     "age": 56,
+     "votes": 235,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Arun Kumar Raina",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 53,
+     "votes": 177,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1248,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 36,
+   "name": "Zainapora",
+   "type": "GEN",
+   "electors": 108582,
+   "voters": 60906,
+   "turnout": 56.09,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Showkat Hussain Ganie",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 49,
+     "votes": 28251,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aijaz Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 15018,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gh Mohi Ud Din Wani",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 65,
+     "votes": 6209,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gowhar Hussain Wani",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 46,
+     "votes": 5163,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Suhaib Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 1152,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Umar Hamid Malla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 731,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mashooq Ahmad Dar",
+     "partyId": "GRBDMCTP",
+     "sex": "M",
+     "age": 48,
+     "votes": 629,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Abdul Rehman Bhat",
+     "partyId": "LDP",
+     "sex": "M",
+     "age": 64,
+     "votes": 578,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohammad Yousuf Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 538,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Nazir Ahmed Najar",
+     "partyId": "JAKNPF",
+     "sex": "M",
+     "age": 58,
+     "votes": 513,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 2082,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 37,
+   "name": "Shopian",
+   "type": "GEN",
+   "electors": 100615,
+   "voters": 59499,
+   "turnout": 59.14,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shabir Ahmad Kullay",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 14113,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sheikh Mohammad Rafi",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 62,
+     "votes": 12906,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Raja Abdul Waheed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 10440,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Javid Ahmad Qadri",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 6895,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Yawar Shafi Banday",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 41,
+     "votes": 5486,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ovais Mushtaq",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 34,
+     "votes": 3076,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mushtaq Ahmad Khan",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 44,
+     "votes": 1448,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Suhail Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 1221,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Yaqoob Malla",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 959,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Feroz Ahmad Najar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 770,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Riyaz Ahmad Gorsi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 584,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1559,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 38,
+   "name": "D. H. Pora",
+   "type": "GEN",
+   "electors": 99290,
+   "voters": 68584,
+   "turnout": 69.07,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sakeena Masood",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 52,
+     "votes": 36623,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gulzar Ahmad Dar",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 54,
+     "votes": 19174,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Arif Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 4054,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Majeed Padder",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 66,
+     "votes": 2974,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohammad Ayub Matoo",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 72,
+     "votes": 2620,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sajad Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 685,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 2390,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 39,
+   "name": "Kulgam",
+   "type": "GEN",
+   "electors": 117862,
+   "voters": 75093,
+   "turnout": 63.71,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohamad Yousuf Tarigami",
+     "partyId": "CPIM",
+     "sex": "M",
+     "age": 75,
+     "votes": 33634,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sayar Ahmad Reshi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 25796,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Amin Dar",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 59,
+     "votes": 7561,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohammad Aaqib Dar",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 31,
+     "votes": 2726,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Zaman Irshad Parry",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 993,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sudarshan Singh",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 54,
+     "votes": 778,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Ahad Mir",
+     "partyId": "AASTEJK",
+     "sex": "M",
+     "age": 56,
+     "votes": 646,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sajad Ahmad Dar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 636,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Nazir Ahmad Laway",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 57,
+     "votes": 506,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Afrooza Banoo",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 37,
+     "votes": 344,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1358,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 40,
+   "name": "Devsar",
+   "type": "GEN",
+   "electors": 112835,
+   "voters": 65441,
+   "turnout": 58,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Peerzada Feroze Ahamad",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 50,
+     "votes": 18230,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohammad Sartaj Madni",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 73,
+     "votes": 17390,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohammad Amin Bhat",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 58,
+     "votes": 6959,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Nazir Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 5838,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Suhil Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 5506,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Aman Ullah Mantoo",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 57,
+     "votes": 4746,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Reyaz Ahmad Bhat",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 34,
+     "votes": 2855,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Abdul Rouf Naik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 1852,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sheikh Fida Hussain",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 50,
+     "votes": 524,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1410,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 41,
+   "name": "Dooru",
+   "type": "GEN",
+   "electors": 117320,
+   "voters": 73038,
+   "turnout": 62.26,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gulam Ahmad Mir",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 64,
+     "votes": 44270,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohammad Ashraf Malik",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 60,
+     "votes": 14542,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohamad Saleem Paray",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 41,
+     "votes": 2877,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Hilal Ahmad Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 2292,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bashir Ahmad Wani",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 61,
+     "votes": 2108,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Mohd Iqbal Ahangar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 1502,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohsin Shafqat Mir",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 26,
+     "votes": 839,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Nizamuddin Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 57,
+     "votes": 839,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sameer Ahmad Parray",
+     "partyId": "RLJP",
+     "sex": "M",
+     "age": 39,
+     "votes": 244,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Riyaz Ahmad Sofi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 222,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 2662,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 42,
+   "name": "Kokernag",
+   "type": "ST",
+   "electors": 91504,
+   "voters": 57542,
+   "turnout": 62.88,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Zafar Ali Khatana",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 65,
+     "votes": 17949,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Haroon Rashid Khatana",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 61,
+     "votes": 11787,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gulzar Ahmad Khatana",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 8066,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Anwar Jaan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 6977,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Roshan Hussain Khan Gojar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 41,
+     "votes": 4173,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Dr Ishfaq Ahmed Chodhary",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 3007,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bashir Ahmad Khari",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 72,
+     "votes": 1628,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohammad Sharief Shah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 1113,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohammad Waqar",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 39,
+     "votes": 847,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Abrar Ahmad Gojjar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 369,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1561,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 43,
+   "name": "Anantnag West",
+   "type": "GEN",
+   "electors": 126483,
+   "voters": 62015,
+   "turnout": 49.03,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Abdul Majeed Bhat",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 63,
+     "votes": 25135,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Abdul Gaffar Sofi",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 71,
+     "votes": 14700,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Rafiq Wani",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 6574,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bilal Ahmad Deva",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 45,
+     "votes": 6530,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Aaqib Mushtaq Ganie",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 2877,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Fayaz Ahmad Khanday",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 1862,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Gull Mohd Bhat",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 49,
+     "votes": 1546,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Gulshan Akhter",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 60,
+     "votes": 899,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohammad Rafiq Wani",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 58,
+     "votes": 428,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1382,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 44,
+   "name": "Anantnag",
+   "type": "GEN",
+   "electors": 61318,
+   "voters": 28135,
+   "turnout": 45.88,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Peerzada Mohammad Syed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 6679,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mehboob Beg",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 75,
+     "votes": 4993,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Hilal Ahmad Shah",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 49,
+     "votes": 4245,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mansoor Hussain Soharvardi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 4047,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mir Altaf Hussain",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 46,
+     "votes": 2331,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Asif Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 1930,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Syed Peerzada Wajahat Hussain",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 1508,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Tawseef Nisar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 560,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Nasir Ali Kochak",
+     "partyId": "JKAADP",
+     "sex": "M",
+     "age": 56,
+     "votes": 402,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Javaid Ahmad Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 236,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Bilal Ahmad Mir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sanjay Saraf",
+     "partyId": "RLJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 161,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Rafiq Ahmad Kunroo",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 57,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 640,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 45,
+   "name": "Srigufwara - Bijbehara",
+   "type": "GEN",
+   "electors": 102295,
+   "voters": 62125,
+   "turnout": 60.73,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Bashir Ahmad Shah Veeri",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 57,
+     "votes": 33299,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Iltija Mehbooba Mufti",
+     "partyId": "JKPDP",
+     "sex": "F",
+     "age": 37,
+     "votes": 23529,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sofi Yousif",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 57,
+     "votes": 3716,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1552,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 46,
+   "name": "Shangus - Anantnag East",
+   "type": "GEN",
+   "electors": 101707,
+   "voters": 58167,
+   "turnout": 57.19,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Reyaz Ahmad Khan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 60,
+     "votes": 30345,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Abdul Rehman Bhat",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 68,
+     "votes": 15813,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vir Ji Saraf",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 1988,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Faizan Rahi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 1980,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sheikh Zafarrulah",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1363,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Maharaj Krishan Yogi",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 63,
+     "votes": 1162,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Imtiyaz Ahmad Rather",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 53,
+     "votes": 923,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rawoof Ahmad Padder",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 776,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Reyaz Majid Sofi",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 625,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Irshad Ahmad Malik",
+     "partyId": "NLP",
+     "sex": "M",
+     "age": 48,
+     "votes": 578,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Dilip Kumar Pandita",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 249,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Abdul Majeed Khan",
+     "partyId": "BS",
+     "sex": "M",
+     "age": 29,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Abdul Hamid Wani",
+     "partyId": "JKAADP",
+     "sex": "M",
+     "age": 63,
+     "votes": 117,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1905,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 47,
+   "name": "Pahalgam",
+   "type": "GEN",
+   "electors": 69696,
+   "voters": 50178,
+   "turnout": 72,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Altaf Ahmad Wani",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 52,
+     "votes": 26210,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rafi Ahmed Mir",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 69,
+     "votes": 12454,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shabir Ahmad Sediqui",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 59,
+     "votes": 8051,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Showket Ahmad Bhat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 950,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Maqbool Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 602,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shabir Ahmad Padder",
+     "partyId": "JKANC",
+     "sex": "M",
+     "age": 49,
+     "votes": 394,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1502,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 48,
+   "name": "Inderwal",
+   "type": "GEN",
+   "electors": 64207,
+   "voters": 53879,
+   "turnout": 83.91,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Payare Lal Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 14195,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ghulam Mohd Saroori",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 13552,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Zafarullah",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 33,
+     "votes": 12533,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Taraq Hussain Keen",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 9550,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Nasir Hussain Sheikh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 47,
+     "votes": 1044,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Salman Rabbani",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 723,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Salman Nisar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 30,
+     "votes": 549,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ashiq Hussain",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 37,
+     "votes": 299,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Imtiyaz Bashir",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 265,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1145,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 49,
+   "name": "Kishtwar",
+   "type": "GEN",
+   "electors": 75187,
+   "voters": 60717,
+   "turnout": 80.75,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shagun Parihar",
+     "partyId": "BJP",
+     "sex": "F",
+     "age": 29,
+     "votes": 29053,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sajjad Ahmed Kichloo",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 59,
+     "votes": 28532,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Firdoos Ahmed Tak",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 47,
+     "votes": 997,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Roop Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 571,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sumit Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 441,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Ravi Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 39,
+     "votes": 177,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Anoop Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 615,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 50,
+   "name": "Padder - Nagseni",
+   "type": "GEN",
+   "electors": 40910,
+   "voters": 33823,
+   "turnout": 82.68,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sunil Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 17036,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pooja Thakur",
+     "partyId": "JKNC",
+     "sex": "F",
+     "age": 40,
+     "votes": 15490,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sandesh Kumar",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 44,
+     "votes": 372,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rakesh Goswami",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 209,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Shri Kant",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 169,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Anil Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 362,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 51,
+   "name": "Bhadarwah",
+   "type": "GEN",
+   "electors": 125983,
+   "voters": 86350,
+   "turnout": 68.54,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Daleep Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 42128,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sheikh Mehboob Iqbal",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 72,
+     "votes": 31998,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Nadeem Sharief",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 39,
+     "votes": 7151,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Meenakshi Bhagat",
+     "partyId": "BSP",
+     "sex": "F",
+     "age": 25,
+     "votes": 1066,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Manoj Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 777,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vikram Rathore",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 42,
+     "votes": 580,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohsin Imtiyaz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 472,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Majid",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 409,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Ashok Kumar Kachroo",
+     "partyId": "JKAADP",
+     "sex": "M",
+     "age": 56,
+     "votes": 405,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Vinod Kumar",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 44,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 865,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 52,
+   "name": "Doda",
+   "type": "GEN",
+   "electors": 99026,
+   "voters": 73367,
+   "turnout": 74.09,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mehraj Malik",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 36,
+     "votes": 23228,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Gajay Singh Rana",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 51,
+     "votes": 18690,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Khalid Najib Suharwardy",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 64,
+     "votes": 13334,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Abdul Majid Wani",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 66,
+     "votes": 10027,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sheikh Riaz Ahmed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 4170,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mansoor Ahmed Batt",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 51,
+     "votes": 1359,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bilal Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 618,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Jawaz Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 426,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Tariq Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 306,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 822,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 53,
+   "name": "Doda West",
+   "type": "GEN",
+   "electors": 88023,
+   "voters": 68219,
+   "turnout": 77.5,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Shakti Raj Parihar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 33964,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pardeep Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 38,
+     "votes": 30511,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Swarn Veer Singh Jaral",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 857,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Yasir Shafi Matto",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 34,
+     "votes": 437,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Abdul Ghani",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 62,
+     "votes": 436,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Tanveer Hussain",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 43,
+     "votes": 433,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Tilak Raj Shan",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 37,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Meenakshi Kalra",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 43,
+     "votes": 146,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 998,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 54,
+   "name": "Ramban",
+   "type": "GEN",
+   "electors": 98541,
+   "voters": 69326,
+   "turnout": 70.35,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arjun Singh Raju",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 41,
+     "votes": 28425,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Suraj Singh Parihar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 19412,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Rakesh Singh Thakur",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 43,
+     "votes": 17511,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sunil Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 1371,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Tilak Raj",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 41,
+     "votes": 567,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Suteesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 428,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Chain Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 69,
+     "votes": 195,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Dev Raj Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 175,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1123,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 55,
+   "name": "Banihal",
+   "type": "GEN",
+   "electors": 126315,
+   "voters": 91192,
+   "turnout": 72.19,
+   "phase": 1,
+   "pollDate": "2024-09-18",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sajad Shaheen",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 56,
+     "votes": 33128,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Imtiaz Ahmed Shan",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 49,
+     "votes": 27018,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vikar Rasool Wani",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 20458,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd Saleem Bhat",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 6285,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Munazar Ahmed Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 1071,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bashir Ahmed Shan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 837,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mudassir Azmat",
+     "partyId": "AAP",
+     "sex": "M",
+     "age": 35,
+     "votes": 654,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1631,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 56,
+   "name": "Gulabgarh",
+   "type": "ST",
+   "electors": 95570,
+   "voters": 71452,
+   "turnout": 74.76,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Khurshied Ahmed",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 54,
+     "votes": 30591,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Aijaz Ahmad Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 24064,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Akram",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 12215,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Mohd Farooq",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 1688,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Arshad Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 27,
+     "votes": 775,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Riaz Ahmed",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 33,
+     "votes": 360,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1743,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 57,
+   "name": "Reasi",
+   "type": "GEN",
+   "electors": 86246,
+   "voters": 62646,
+   "turnout": 72.64,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Kuldeep Raj Dubey",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 67,
+     "votes": 39647,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mumtaz Ahmed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 49,
+     "votes": 20832,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arjun Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 37,
+     "votes": 501,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Diksha Kaluria",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 27,
+     "votes": 346,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Satish Mohan",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 55,
+     "votes": 294,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bashir Ud Din",
+     "partyId": "JKNPPI",
+     "sex": "M",
+     "age": 34,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Bodh Raj Meania",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 67,
+     "votes": 151,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 414,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 58,
+   "name": "Shri Mata Vaishno Devi",
+   "type": "GEN",
+   "electors": 56783,
+   "voters": 46074,
+   "turnout": 81.14,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Baldev Raj Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 70,
+     "votes": 18199,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jugal Kishore",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 16204,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Bhupinder Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 5655,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sham Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 4191,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Raj Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 434,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Bansi Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 296,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Partap Krishan Sharma",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 64,
+     "votes": 210,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 355,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 59,
+   "name": "Udhampur West",
+   "type": "GEN",
+   "electors": 117010,
+   "voters": 90729,
+   "turnout": 77.54,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Pawan Kumar Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 66,
+     "votes": 47164,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sumeet Magotra",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 48,
+     "votes": 26412,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Jasvir Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 12556,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tranter Singh",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 37,
+     "votes": 637,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Anil Khajuria",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 495,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Soma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 477,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kewal Kumar",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 47,
+     "votes": 341,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ganpati Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 314,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Sahil Manhas",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 35,
+     "votes": 288,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Sulakshna Khajuria",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 45,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ajay Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 192,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sanjeev Kumar",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 51,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1290,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 60,
+   "name": "Udhampur East",
+   "type": "GEN",
+   "electors": 102054,
+   "voters": 79433,
+   "turnout": 77.83,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ranbir Singh Pathania",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 45,
+     "votes": 32996,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Pawan Khajuria",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 30647,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Balwan Singh",
+     "partyId": "JKNPPI",
+     "sex": "M",
+     "age": 50,
+     "votes": 8427,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Sunil Verma",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 63,
+     "votes": 4495,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Soma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 740,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Achhav Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 39,
+     "votes": 591,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sahil Gandotra",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 29,
+     "votes": 397,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Baqeel Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 43,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 176,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 591,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 61,
+   "name": "Chenani",
+   "type": "GEN",
+   "electors": 110037,
+   "voters": 85189,
+   "turnout": 77.42,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Balwant Singh Mankotia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 47990,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Harsh Dev Singh",
+     "partyId": "JKNPPI",
+     "sex": "M",
+     "age": 64,
+     "votes": 32379,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shabir",
+     "partyId": "JKAADP",
+     "sex": "M",
+     "age": 40,
+     "votes": 941,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Surjeet Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 495,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sham Lal Dogra",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 457,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Krishan Chand",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 302,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Mohd Vaseem",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 35,
+     "votes": 267,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Geeta Manhas",
+     "partyId": "SP",
+     "sex": "F",
+     "age": 53,
+     "votes": 223,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Gulam Rasool",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 42,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1855,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 62,
+   "name": "Ramnagar",
+   "type": "SC",
+   "electors": 97662,
+   "voters": 71296,
+   "turnout": 73,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sunil Bhardwaj",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 38,
+     "votes": 34550,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ashri Devi",
+     "partyId": "JKNPPI",
+     "sex": "F",
+     "age": 49,
+     "votes": 25244,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mool Raj",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 63,
+     "votes": 7800,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Herjeet",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 37,
+     "votes": 809,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Raj Singh",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 40,
+     "votes": 714,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sanju Kumar",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 53,
+     "votes": 486,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sandeep Kumar Sarmal",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 33,
+     "votes": 463,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1167,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 63,
+   "name": "Bani",
+   "type": "GEN",
+   "electors": 58179,
+   "voters": 43028,
+   "turnout": 73.96,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr Rameshwar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 18672,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Jewan Lal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 16624,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gouri Shanker",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 48,
+     "votes": 4001,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ms Kajal",
+     "partyId": "INC",
+     "sex": "F",
+     "age": 29,
+     "votes": 1970,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jatinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 628,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sarfraz Safder",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 291,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Parveen Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 190,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Romesh Chander Verma",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 65,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 427,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 64,
+   "name": "Billawar",
+   "type": "GEN",
+   "electors": 96211,
+   "voters": 69485,
+   "turnout": 72.22,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Satish Kumar Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 44629,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Manohar Lal Sharma",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 23261,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sanjay Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 595,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Akhter Ali",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 50,
+     "votes": 309,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 525,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 65,
+   "name": "Basohli",
+   "type": "GEN",
+   "electors": 70182,
+   "voters": 48884,
+   "turnout": 69.65,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Darshan Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 48,
+     "votes": 31874,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ch. Lal Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 66,
+     "votes": 15840,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Pankaj Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 30,
+     "votes": 421,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Yoginder Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 59,
+     "votes": 368,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 246,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 66,
+   "name": "Jasrota",
+   "type": "GEN",
+   "electors": 90066,
+   "voters": 66163,
+   "turnout": 73.46,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajiv Jasrotia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 50,
+     "votes": 34157,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Brijeshwar Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 21737,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Raman Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 35,
+     "votes": 3302,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Balbir Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 69,
+     "votes": 3219,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Amrish Jasrotia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 1755,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Jaswinder Singh",
+     "partyId": "ASPKR",
+     "sex": "M",
+     "age": 42,
+     "votes": 926,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Ganesh Dutt Sharma",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 66,
+     "votes": 112,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajesh Kumar",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 50,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 456,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 67,
+   "name": "Kathua",
+   "type": "SC",
+   "electors": 110873,
+   "voters": 83474,
+   "turnout": 75.29,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Bharat Bhushan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 45944,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Sandeep Majotra",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 40,
+     "votes": 33827,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Subash Chander",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 52,
+     "votes": 1597,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Khushboo Bhagat",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 31,
+     "votes": 680,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sudesh Kumar",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 460,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 733,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 68,
+   "name": "Hiranagar",
+   "type": "GEN",
+   "electors": 91832,
+   "voters": 67613,
+   "turnout": 73.63,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vijay Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 36737,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rakesh Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 44,
+     "votes": 28127,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Balbir Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 70,
+     "votes": 1015,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Gaurav Kumar",
+     "partyId": "ASPKR",
+     "sex": "M",
+     "age": 31,
+     "votes": 506,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Vishal Salgotra",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 48,
+     "votes": 207,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Surinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 66,
+     "votes": 189,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 321,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 69,
+   "name": "Ramgarh",
+   "type": "SC",
+   "electors": 92549,
+   "voters": 69621,
+   "turnout": 75.23,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr Devinder Kumar Manyal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 54,
+     "votes": 35672,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yash Paul Kundal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 54,
+     "votes": 21470,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Sahil Bharti",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 36,
+     "votes": 10426,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Surinder Kumar Attri",
+     "partyId": "ASP8",
+     "sex": "M",
+     "age": 36,
+     "votes": 463,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Parshotam Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 58,
+     "votes": 457,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rakesh Kumar",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 47,
+     "votes": 245,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Manoj Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 208,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 283,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 70,
+   "name": "Samba",
+   "type": "GEN",
+   "electors": 95131,
+   "voters": 70350,
+   "turnout": 73.95,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surjeet Singh Slathia",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 70,
+     "votes": 43182,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 12873,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Vinod Kumar",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 59,
+     "votes": 4289,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Krishan Dev Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 3628,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Baldev Raj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 61,
+     "votes": 1309,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bhanu Partap Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 1140,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Lovely Mangol",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 42,
+     "votes": 901,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Reena Choudhary",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 38,
+     "votes": 544,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Raj Kumar",
+     "partyId": "ASPKR",
+     "sex": "M",
+     "age": 47,
+     "votes": 488,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Pinki Devi",
+     "partyId": "NAUP",
+     "sex": "F",
+     "age": 40,
+     "votes": 375,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rajinder Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 49,
+     "votes": 318,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sandeep Singh Sambyal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 270,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Vinod Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 44,
+     "votes": 158,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Rajan Jamwal",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 58,
+     "votes": 134,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 330,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 71,
+   "name": "Vijaypur",
+   "type": "GEN",
+   "electors": 83312,
+   "voters": 64208,
+   "turnout": 77.07,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Chander Parkash",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 69,
+     "votes": 32859,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajesh Kumar Pargotra",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 52,
+     "votes": 13819,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manjit Singh",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 61,
+     "votes": 13161,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Bachan Lal",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 54,
+     "votes": 672,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Raj Kumar Chalotra",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 66,
+     "votes": 544,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Raj Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 242,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Inderjeet",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 34,
+     "votes": 200,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Krishan Dutt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 169,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Paramveer Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 165,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Uttam Chand",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 62,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Balwan Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 152,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 320,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 72,
+   "name": "Bishnah",
+   "type": "SC",
+   "electors": 124516,
+   "voters": 95161,
+   "turnout": 76.42,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Rajeev Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 53435,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Neeraj Kundan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 34,
+     "votes": 37808,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Prem Pal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 799,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Tilak Raj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 63,
+     "votes": 660,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jai Bharat",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 38,
+     "votes": 475,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vishal Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 29,
+     "votes": 341,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Vicky Kumar Dogra",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 39,
+     "votes": 297,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Tarsem Lal Khullar",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 57,
+     "votes": 225,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kamal Kumar",
+     "partyId": "HSS",
+     "sex": "M",
+     "age": 58,
+     "votes": 170,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 401,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 73,
+   "name": "Suchetgarh",
+   "type": "SC",
+   "electors": 118022,
+   "voters": 85352,
+   "turnout": 72.32,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Gharu Ram",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 68,
+     "votes": 39302,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Bhusan Lal",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 53,
+     "votes": 28161,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Ajaib Singh",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 64,
+     "votes": 8265,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Usha Devi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 28,
+     "votes": 4210,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sham Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 1277,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Bishan Dass",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 64,
+     "votes": 1094,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Dr Preeti Kumari",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 37,
+     "votes": 644,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Karan Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 45,
+     "votes": 495,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Dr Hans Raj Bharadwaj",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 475,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Swarn Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 411,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Kulbir Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 43,
+     "votes": 104,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 409,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 74,
+   "name": "R. S. Pura- Jammu South",
+   "type": "GEN",
+   "electors": 131731,
+   "voters": 88141,
+   "turnout": 66.91,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Dr. Narinder Singh Raina",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 43317,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Raman Bhalla",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 41351,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gurdev Raj",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 43,
+     "votes": 737,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Narinder Sharma",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 41,
+     "votes": 520,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Pavneet Kour",
+     "partyId": "JAKAP",
+     "sex": "F",
+     "age": 38,
+     "votes": 401,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Chaudhary Garu Ram",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 64,
+     "votes": 237,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Shashi Kant Khajuria",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 220,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Harpreet Singh",
+     "partyId": "JDU",
+     "sex": "M",
+     "age": 41,
+     "votes": 204,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Harbans Lal",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 149,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Atul Raina",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 38,
+     "votes": 148,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Ravinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 56,
+     "votes": 97,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sunny Kant Chib",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 92,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Sulaksh Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 57,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Subash Chander",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 28,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 432,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 75,
+   "name": "Bahu",
+   "type": "GEN",
+   "electors": 121428,
+   "voters": 73489,
+   "turnout": 60.52,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Vikram Randhawa",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 40385,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Taranjit Singh Tony",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 29134,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Varinder Singh",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 42,
+     "votes": 918,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Pushp Shabalya",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 45,
+     "votes": 869,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Sobat Ali",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 46,
+     "votes": 362,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Jayesh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kulwant Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 49,
+     "votes": 140,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rohit Sharma",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 34,
+     "votes": 138,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Bishan Dass Baboria",
+     "partyId": "NCP",
+     "sex": "M",
+     "age": 63,
+     "votes": 136,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Dr Sohail Muzammil Goni",
+     "partyId": "JKAADP",
+     "sex": "M",
+     "age": 42,
+     "votes": 96,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sulaksh Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 25,
+     "votes": 93,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Qari Zaheer Abbas Bhatti",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 52,
+     "votes": 84,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 460,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 76,
+   "name": "Jammu East",
+   "type": "GEN",
+   "electors": 107430,
+   "voters": 69323,
+   "turnout": 64.53,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Yudhvir Sethi",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 56,
+     "votes": 42589,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yogesh Sawhney",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 62,
+     "votes": 24475,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Aditya Gupta",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 39,
+     "votes": 448,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Rajesh Gupta",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 64,
+     "votes": 339,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Raj Kumar",
+     "partyId": "HSS",
+     "sex": "M",
+     "age": 53,
+     "votes": 239,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Chander Mohan Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 71,
+     "votes": 202,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sanjeev Luthra",
+     "partyId": "SSP5",
+     "sex": "M",
+     "age": 62,
+     "votes": 155,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Rajesh Gondhi",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 50,
+     "votes": 144,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Asif D.m",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 59,
+     "votes": 142,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 565,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 77,
+   "name": "Nagrota",
+   "type": "GEN",
+   "electors": 97603,
+   "voters": 75415,
+   "turnout": 77.27,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Devender Singh Rana",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 59,
+     "votes": 48113,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Joginder Singh",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 60,
+     "votes": 17641,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Balbir Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 46,
+     "votes": 5979,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Jaswant Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 809,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shak Mohd",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 59,
+     "votes": 791,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Shah Mohd",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 218,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Sat Paul",
+     "partyId": "SP",
+     "sex": "M",
+     "age": 64,
+     "votes": 144,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Shabir Chowdhary",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 38,
+     "votes": 103,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 285,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 78,
+   "name": "Jammu West",
+   "type": "GEN",
+   "electors": 106580,
+   "voters": 64849,
+   "turnout": 60.85,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Arvind Gupta",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 41963,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Manmohan Singh",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 58,
+     "votes": 19836,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Gourav Chopra",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 35,
+     "votes": 667,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Sahil Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 34,
+     "votes": 479,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Rajat Gupta",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 36,
+     "votes": 383,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Sumit Sharma",
+     "partyId": "SSP5",
+     "sex": "M",
+     "age": 49,
+     "votes": 193,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Rakesh Kumar",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 65,
+     "votes": 174,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Raj Kumar Lalotra",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 160,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Shikha Bandral",
+     "partyId": "NAUP",
+     "sex": "F",
+     "age": 30,
+     "votes": 149,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Meenakshi Chibber",
+     "partyId": "SHSUBT",
+     "sex": "F",
+     "age": 40,
+     "votes": 126,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Rishi Kaul",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 35,
+     "votes": 87,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Sawtanter Bharat Bakshi",
+     "partyId": "HIP",
+     "sex": "M",
+     "age": 72,
+     "votes": 73,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 530,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 79,
+   "name": "Jammu North",
+   "type": "GEN",
+   "electors": 112896,
+   "voters": 74284,
+   "turnout": 65.8,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Sham Lal Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 63,
+     "votes": 47219,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ajay Kumar Sadhotra",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 68,
+     "votes": 19856,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shiv Dev Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 72,
+     "votes": 2442,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Akash Singh Slathia",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 1161,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Badri Nath",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 67,
+     "votes": 598,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Amit Kapoor",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 560,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Darshan Kumar Magotra",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 62,
+     "votes": 266,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Ajay Singh Saini",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 31,
+     "votes": 248,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Kushal Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 246,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Maheshwar Singh Manhas",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 67,
+     "votes": 204,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Sunita Turki",
+     "partyId": "NDPI",
+     "sex": "F",
+     "age": 49,
+     "votes": 199,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "Mohit",
+     "partyId": "NAUP",
+     "sex": "M",
+     "age": 30,
+     "votes": 191,
+     "status": "LOST"
+    },
+    {
+     "serial": 14,
+     "name": "Ravi Dutt",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 186,
+     "status": "LOST"
+    },
+    {
+     "serial": 15,
+     "name": "Kuldeep Kumar Rao",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 64,
+     "votes": 163,
+     "status": "LOST"
+    },
+    {
+     "serial": 16,
+     "name": "Naresh Kumar Chib",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 63,
+     "votes": 150,
+     "status": "LOST"
+    },
+    {
+     "serial": 17,
+     "name": "Priyanka Sharma",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 29,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 18,
+     "name": "Om Prakash Gupta",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 61,
+     "status": "LOST"
+    },
+    {
+     "serial": 19,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 319,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 80,
+   "name": "Marh",
+   "type": "SC",
+   "electors": 96054,
+   "voters": 77310,
+   "turnout": 80.49,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surinder Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 42,
+     "votes": 42563,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mula Ram",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 71,
+     "votes": 19477,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohan Lal Kaith",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 60,
+     "votes": 12868,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Som Nath",
+     "partyId": "ASPKR",
+     "sex": "M",
+     "age": 60,
+     "votes": 802,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Jagdish Chander",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 60,
+     "votes": 496,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Ashok Kumar",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 52,
+     "votes": 422,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 411,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 81,
+   "name": "Akhnoor",
+   "type": "SC",
+   "electors": 98658,
+   "voters": 77296,
+   "turnout": 78.35,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Mohan Lal",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 49927,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ashok Kumar",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 60,
+     "votes": 25248,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Chittar Manu",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 32,
+     "votes": 1009,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 778,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 82,
+   "name": "Chhamb",
+   "type": "GEN",
+   "electors": 110285,
+   "voters": 87452,
+   "turnout": 79.3,
+   "phase": 3,
+   "pollDate": "2024-10-01",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Satish Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 33985,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Rajeev Sharma",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 52,
+     "votes": 27056,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Tara Chand",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 61,
+     "votes": 16449,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Narinder Singh",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 8005,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Malkeet Kumar",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 54,
+     "votes": 313,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Vijay Kumar",
+     "partyId": "JKNPPB",
+     "sex": "M",
+     "age": 58,
+     "votes": 294,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Surinder Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 261,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Parveen Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 47,
+     "votes": 199,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 384,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 83,
+   "name": "Kalakote - Sunderbani",
+   "type": "GEN",
+   "electors": 99788,
+   "voters": 69209,
+   "turnout": 69.36,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Randhir Singh",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 58,
+     "votes": 35010,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Yashu Vardhan Singh",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 30,
+     "votes": 20601,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Arun K Sharma",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 56,
+     "votes": 9380,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Ashok Kumar Sharma",
+     "partyId": "DPAP",
+     "sex": "M",
+     "age": 67,
+     "votes": 1695,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Majid Hussain Shah",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 36,
+     "votes": 507,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Swarn Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 302,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Kabir Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 33,
+     "votes": 222,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Suresh Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 50,
+     "votes": 207,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Pankaj Kumar Raina",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 167,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "Rakesh Kumar",
+     "partyId": "SHSUBT",
+     "sex": "M",
+     "age": 52,
+     "votes": 126,
+     "status": "LOST"
+    },
+    {
+     "serial": 12,
+     "name": "Pinty Devi",
+     "partyId": "IND",
+     "sex": "F",
+     "age": 36,
+     "votes": 109,
+     "status": "LOST"
+    },
+    {
+     "serial": 13,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 577,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 84,
+   "name": "Nowshera",
+   "type": "GEN",
+   "electors": 89255,
+   "voters": 65339,
+   "turnout": 73.2,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Surinder Kumar Choudhary",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 56,
+     "votes": 35069,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Ravinder Raina",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 47,
+     "votes": 27250,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Manohar Singh",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 71,
+     "votes": 1456,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Haq Nawaz",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 39,
+     "votes": 425,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shiv Dev Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 63,
+     "votes": 326,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 222,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 85,
+   "name": "Rajouri",
+   "type": "ST",
+   "electors": 90791,
+   "voters": 64486,
+   "turnout": 71.03,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Iftkar Ahmed",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 41,
+     "votes": 28923,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Vibod Kumar",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 60,
+     "votes": 27519,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mian Mohd Mehfooz",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 36,
+     "votes": 4052,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Manzoor Hussain Shah",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 54,
+     "votes": 1766,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Tasadiq Hussain",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 74,
+     "votes": 727,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rafaqat Ajaz",
+     "partyId": "ASPKR",
+     "sex": "M",
+     "age": 33,
+     "votes": 353,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Hemkant Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 68,
+     "votes": 180,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Mohd Arif",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 40,
+     "votes": 162,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 538,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 86,
+   "name": "Budhal",
+   "type": "ST",
+   "electors": 96420,
+   "voters": 68571,
+   "turnout": 71.12,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javaid Iqbal",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 48,
+     "votes": 42043,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Chowdhary Zulfkar Ali",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 55,
+     "votes": 23135,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Guftar Ahmed",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 30,
+     "votes": 1885,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Abdul Rashid",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 58,
+     "votes": 497,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 814,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 87,
+   "name": "Thannamandi",
+   "type": "ST",
+   "electors": 124168,
+   "voters": 91857,
+   "turnout": 73.98,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Muzaffar Iqbal Khan",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 52,
+     "votes": 32645,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohd Iqbal Malik",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 77,
+     "votes": 26466,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Qamar Hussain",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 63,
+     "votes": 21986,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Mohd Shabir Khan",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 59,
+     "votes": 7508,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Astkhar Ali Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 48,
+     "votes": 1015,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Irfan Anjum",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 31,
+     "votes": 666,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 1094,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 88,
+   "name": "Surankote",
+   "type": "ST",
+   "electors": 113956,
+   "voters": 86993,
+   "turnout": 76.34,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Choudhary Mohammed Akram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 62,
+     "votes": 34201,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Mohd Shahnawaz",
+     "partyId": "INC",
+     "sex": "M",
+     "age": 40,
+     "votes": 25350,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mushtaq Ahmed Shah Bukhari",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 75,
+     "votes": 23773,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Javaid Iqbal",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 51,
+     "votes": 1325,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Qazi Mohd Irshad",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 41,
+     "votes": 689,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Mohd Akram",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 51,
+     "votes": 480,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Javaid Ahmed",
+     "partyId": "AIFB",
+     "sex": "M",
+     "age": 43,
+     "votes": 376,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Faiz Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 42,
+     "votes": 299,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 378,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 89,
+   "name": "Poonch Haveli",
+   "type": "GEN",
+   "electors": 130102,
+   "voters": 98185,
+   "turnout": 75.47,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Ajaz Ahmed Jan",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 47,
+     "votes": 41807,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Choudhary Abdul Ghani",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 20928,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Shah Mohd Tantray",
+     "partyId": "JAKAP",
+     "sex": "M",
+     "age": 68,
+     "votes": 9090,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Masood Ahmed",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 61,
+     "votes": 9017,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Shamim Ahmed",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 46,
+     "votes": 8631,
+     "status": "LOST"
+    },
+    {
+     "serial": 6,
+     "name": "Udesh Paul Sharma",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 32,
+     "votes": 5731,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Rydham Preet Singh Sudan",
+     "partyId": "JKPC",
+     "sex": "M",
+     "age": 37,
+     "votes": 1010,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Sanjeev Kumar",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 46,
+     "votes": 794,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 847,
+     "status": "LOST"
+    }
+   ]
+  },
+  {
+   "constNo": 90,
+   "name": "Mendhar",
+   "type": "ST",
+   "electors": 111252,
+   "voters": 83173,
+   "turnout": 74.76,
+   "phase": 2,
+   "pollDate": "2024-09-25",
+   "candidates": [
+    {
+     "serial": 1,
+     "name": "Javed Ahmed Rana",
+     "partyId": "JKNC",
+     "sex": "M",
+     "age": 61,
+     "votes": 32176,
+     "status": "WON"
+    },
+    {
+     "serial": 2,
+     "name": "Murtaza Ahmed Khan",
+     "partyId": "BJP",
+     "sex": "M",
+     "age": 61,
+     "votes": 17270,
+     "status": "LOST"
+    },
+    {
+     "serial": 3,
+     "name": "Mohd Ashfaq",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 54,
+     "votes": 13750,
+     "status": "LOST"
+    },
+    {
+     "serial": 4,
+     "name": "Shazad Ahmed Malik",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 45,
+     "votes": 10675,
+     "status": "LOST"
+    },
+    {
+     "serial": 5,
+     "name": "Nadeem Ahmed Khan",
+     "partyId": "JKPDP",
+     "sex": "M",
+     "age": 40,
+     "votes": 7135,
+     "status": "LOST"
+    },
+    {
+     "serial": 7,
+     "name": "Waseem Hayat",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 30,
+     "votes": 379,
+     "status": "LOST"
+    },
+    {
+     "serial": 8,
+     "name": "Nazir Hussain",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 65,
+     "votes": 289,
+     "status": "LOST"
+    },
+    {
+     "serial": 9,
+     "name": "Noor Mohd",
+     "partyId": "BSP",
+     "sex": "M",
+     "age": 46,
+     "votes": 286,
+     "status": "LOST"
+    },
+    {
+     "serial": 10,
+     "name": "Mohd Asif",
+     "partyId": "IND",
+     "sex": "M",
+     "age": 28,
+     "votes": 284,
+     "status": "LOST"
+    },
+    {
+     "serial": 11,
+     "name": "NOTA",
+     "partyId": "NOTA",
+     "sex": null,
+     "age": null,
+     "votes": 490,
+     "status": "LOST"
+    }
+   ]
+  }
+ ]
+}
