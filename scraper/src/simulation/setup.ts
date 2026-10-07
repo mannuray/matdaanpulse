@@ -20,11 +20,11 @@ async function main() {
       return;
     }
 
-    // 2. Clone election row
+    // 2. Clone election row (with its delimitation: without it the seats compare with nothing and the baseline is empty)
     console.log('Creating simulation election...');
     await pool.query(`
-      INSERT INTO elections (id, name, type, state_id, year, status, tentative_next_date, manifest_url)
-      SELECT $1, 'Bihar Vidhan Sabha 2027 (Simulation)', type, state_id, 2027, 'Live', NULL, manifest_url
+      INSERT INTO elections (id, name, type, state_id, year, status, tentative_next_date, manifest_url, delimitation)
+      SELECT $1, 'Bihar Vidhan Sabha 2027 (Simulation)', type, state_id, 2027, 'Live', NULL, manifest_url, delimitation
       FROM elections WHERE id = $2
     `, [SIM_ELECTION_ID, SOURCE_ELECTION_ID]);
 

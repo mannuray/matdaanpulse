@@ -67,6 +67,11 @@ describe('LiveStateService', () => {
 });
 
 describe('buildSnapshot', () => {
+  it('buildSnapshot carries the per-seat trail; seats without timeline rows have none', () => {
+    const s = buildSnapshot(7, [], [], [{ const_id: 'A', points: [{ r: 1, lp: 'BJP', m: 120, v: 900 }, { r: 2, lp: 'INC', m: 40, v: 1800 }], lc: 1, pk: 120 }]);
+    expect(s.trail).toEqual({ A: { points: [{ r: 1, lp: 'BJP', m: 120, v: 900 }, { r: 2, lp: 'INC', m: 40, v: 1800 }], lc: 1, pk: 120 } });
+    expect(buildSnapshot(7, []).trail).toEqual({});
+  });
   const row = (const_id: string, party: string | null, votes: number, status: string) => ({
     const_id,
     votes,

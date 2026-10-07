@@ -140,6 +140,13 @@ export class ElectionsController {
     return this.resultsService.getDistrictResults(id, districtId);
   }
 
+  /** A seat's counting timeline (seat dialog sparkline); short CDN cache while counting. */
+  @Get(':id/constituencies/:constId/rounds')
+  getSeatRounds(@Param('id', ParseUUIDPipe) id: string, @Param('constId') constId: string, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    applyCacheControl(req, res, CACHE_CONTROL.RESULTS_LATEST);
+    return this.resultsService.getSeatRounds(id, constId);
+  }
+
   @Get(':id/constituencies/:constId')
   @UseInterceptors(new MapToDtoInterceptor(ConstituencyDetailDto))
   getConstituencyDetail(

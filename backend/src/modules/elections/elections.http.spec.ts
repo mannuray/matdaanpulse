@@ -43,6 +43,7 @@ async function makeApp(env: Record<string, string>) {
     getSnapshot: jest.fn(async (_id: string, version: number) => ({ version, results: rows, summary: [], voteShare: [] })),
     getElectionSummary: jest.fn(async () => []),
     getVoteShare: jest.fn(async () => []),
+    getSeatRounds: jest.fn(async () => [{ seq: 1, r: 1, rt: 20, lp: 'BJP', m: 120, v: 900, declared: false, at: '2027-02-27T04:00:00.000Z' }]),
   };
   const moduleRef = await Test.createTestingModule({
     controllers: [ElectionsController, AdminLikeController],
@@ -96,6 +97,13 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     const one = (await (await get(`/elections/${EID}`)).json()).data;
     expect(one.delimitation).toBe('2008');
     expect(one.tentative_next_date).toBe('2029-05-01T00:00:00.000Z');
+  });
+
+  it('GET /elections/:id/constituencies/:constId/rounds returns the seat timeline with the short results cache', async () => {
+    const res = await get(`/elections/${EID}/constituencies/A/rounds`);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.RESULTS_LATEST);
+    expect((await res.json()).data).toEqual([{ seq: 1, r: 1, rt: 20, lp: 'BJP', m: 120, v: 900, declared: false, at: '2027-02-27T04:00:00.000Z' }]);
   });
 
   it('GET /elections/:id/analysis/summary returns the stored ElectionAnalysis', async () => {
