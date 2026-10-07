@@ -25,6 +25,10 @@
   --color-map-stroke: #0A0F1E;
   --color-map-pending: #2A3452;
   --color-map-swing: #E8C547;
+  --color-map-mo-switched: #8A80FF;
+  --color-map-mo-narrowing: #E04FB0;
+  --color-map-mo-widening: #7D93B8;
+  --color-map-mo-stable: #3A4260;
   --color-map-threeway: #F59E0B;
   --color-on-accent: #0A0F1E;
   --color-ok: #34D399;
@@ -60,6 +64,10 @@
   --color-map-stroke: #FFFFFF;
   --color-map-pending: #C9D0E0;
   --color-map-swing: #B8930F;
+  --color-map-mo-switched: #5B4BE0;
+  --color-map-mo-narrowing: #C2378F;
+  --color-map-mo-widening: #5D7397;
+  --color-map-mo-stable: #B7BFD2;
   --color-map-threeway: #D97706;
   --color-on-accent: #FFFFFF;
   --color-ok: #059669;
