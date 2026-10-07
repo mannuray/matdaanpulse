@@ -9,6 +9,7 @@ import { ConstituencyDetailDto } from '../results/dto/constituency-detail.dto';
 import { ElectionsQueryDto, ResultsQueryDto } from '../../common/dto/query.dto';
 import { CACHE_CONTROL, CacheControl, applyCacheControl } from '../../common/http/cache-control';
 import { successEnvelope } from '../../common/interceptors/transform.interceptor';
+import { SeatAnalysisService } from '../constituencies/seat-analysis.service';
 import { LiveStateService } from '../results/live-state.service';
 
 @Controller('elections')
@@ -19,6 +20,7 @@ export class ElectionsController {
     private readonly resultsService: ResultsService,
     private readonly constituenciesService: ConstituenciesService,
     private readonly liveState: LiveStateService,
+    private readonly seatAnalysis: SeatAnalysisService,
   ) {}
 
   /**
@@ -109,6 +111,12 @@ export class ElectionsController {
   @Get(':id/region-shares')
   getRegionShares(@Param('id', ParseUUIDPipe) id: string) {
     return this.resultsService.getRegionShares(id);
+  }
+
+  /** Per-election seat analysis (party rows, seat flow, alliance change, close seats, bellwethers, breakdowns). */
+  @Get(':id/analysis/summary')
+  getAnalysisSummary(@Param('id', ParseUUIDPipe) id: string) {
+    return this.seatAnalysis.summary(id);
   }
 
   @Get(':id/analysis')

@@ -37,17 +37,8 @@ export class BulkTagDto {
   remove_tags?: string[];
 }
 
-/** Emptied text fields are saved as null, not ''. */
+/** Admin notes on a seat's analysis (everything else is computed). An emptied field is saved as null, not ''. */
 export class UpdateAnalysisDto {
-  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
-  dominance?: string | null;
-
-  @IsOptional() @Transform(emptyToNull) @IsString() @MaxLength(20)
-  dominance_party?: string | null;
-
-  @IsOptional() @IsObject()
-  incumbency?: Record<string, unknown>;
-
   @IsOptional() @Transform(emptyToNull) @IsString()
   notes?: string | null;
 }

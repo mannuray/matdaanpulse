@@ -105,9 +105,20 @@ describe('UpdateConstituencyDto', () => {
 
 describe('UpdateAnalysisDto', () => {
   it('an emptied text field is saved as null, not \'\'', async () => {
-    const dto = plainToInstance(UpdateAnalysisDto, { dominance: '', dominance_party: '', notes: '' });
-    expect(dto).toMatchObject({ dominance: null, dominance_party: null, notes: null });
+    const dto = plainToInstance(UpdateAnalysisDto, { notes: '' });
+    expect(dto).toMatchObject({ notes: null });
     expect(await validate(dto)).toEqual([]);
+  });
+});
+
+describe('ConstituenciesService.updateAnalysis', () => {
+  it('writes only the admin notes (computed fields come from the seat analysis)', async () => {
+    const update = jest.fn(async ({ data }) => ({ id: 'a', ...data }));
+    const prisma: any = { constituency_analysis: { findUnique: jest.fn(async () => ({ id: 'a', election_id: 'e' })), update } };
+    const cache: any = { del: jest.fn(async () => undefined) };
+    await new ConstituenciesService(prisma, cache, {} as any).updateAnalysis('a', { notes: 'n', dominance: 'swing' } as any);
+    expect(Object.keys(update.mock.calls[0][0].data).sort()).toEqual(['notes', 'updated_at']);
+    expect(cache.del).toHaveBeenCalledWith('election:e:public-analysis');
   });
 });
 
@@ -184,5 +195,22 @@ describe('ConstituencySummaryDto', () => {
     const map = (v: unknown) => plainToInstance(ConstituencySummaryDto, { id: 'ADILABAD', voter_turnout: v }, { excludeExtraneousValues: true });
     expect(map(new Prisma.Decimal('65.28')).voter_turnout).toBe(65.28);
     expect(map(null).voter_turnout).toBeNull();
+  });
+});
+
+describe('ConstituenciesService analysis reads (legacy fallback)', () => {
+  const cache: any = { getOrSet: (_k: string, _t: number, f: () => unknown) => f(), del: async () => undefined };
+  it('a row not yet recomputed (data null) serves its stored incumbency; a recomputed row serves the adapter', async () => {
+    const rows = [
+      { id: '1', const_id: 'A', election_id: 'e', dominance: 'loyal', dominance_party: 'X', data: null, incumbency: { incumbent_name: 'Old' } },
+      { id: '2', const_id: 'B', election_id: 'e', dominance: 'new', dominance_party: 'Y', incumbency: { stale: true },
+        data: { winner: { party_id: 'Y', name: 'W' }, margin: 5, seat_type: 'two-way', outcome: { kind: 'new', from: null, from_raw: null },
+          class: { kind: 'new', holder: 'Y', streak: 1, since: 2020, wins: 1, total: 1 }, incumbent: null, history: [], notes: [] } },
+    ];
+    const prisma: any = { constituency_analysis: { findMany: jest.fn(async () => rows) } };
+    const out = await new ConstituenciesService(prisma, cache, {} as any).getPublicAnalysis('e');
+    expect(out[0].incumbency).toEqual({ incumbent_name: 'Old' });
+    expect(out[1].incumbency).toMatchObject({ seat_type: 'two-way', dominance_total: 1 });
+    expect(out[1].incumbency).not.toHaveProperty('stale');
   });
 });

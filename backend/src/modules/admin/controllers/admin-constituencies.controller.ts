@@ -82,7 +82,6 @@ export class AdminConstituenciesController {
 
   @Post('analysis/compute/:electionId')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  @UseInterceptors(new MapToDtoInterceptor(AdminAnalysisDto))
   computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string) {
     return this.seatAnalysis.compute(electionId);
   }

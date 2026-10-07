@@ -2,11 +2,13 @@ import { paginated } from '../../common/paginated';
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
-import { Prisma } from '@prisma/client';
 import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFoundException } from '../../common/exceptions';
 import type { UpdateAnalysisDto } from './dto/constituency-input.dto';
 import { AuditLogService, type RecordAuditEntry } from '../audit-log/audit-log.service';
 import { changedFields } from '../audit-log/audit-diff';
+import type { SeatAnalysis } from '../../common/seat-analysis';
+import { legacyIncumbency } from './legacy-analysis';
+import { publicAnalysisKey } from './seat-analysis.service';
 
 @Injectable()
 export class ConstituenciesService {
@@ -219,34 +221,31 @@ export class ConstituenciesService {
     });
   }
 
+  /** Admin notes only: every computed field comes from SeatAnalysisService and a recompute keeps the notes. */
   async updateAnalysis(id: string, data: UpdateAnalysisDto) {
     const existing = await this.prisma.constituency_analysis.findUnique({ where: { id } });
     if (!existing) throw new AnalysisNotFoundException(id);
-    const { incumbency, ...rest } = data;
     const updated = await this.prisma.constituency_analysis.update({
       where: { id },
-      data: {
-        ...rest,
-        ...(incumbency !== undefined && { incumbency: incumbency as Prisma.InputJsonValue }),
-        updated_at: new Date(),
-      }
+      data: { notes: data.notes, updated_at: new Date() },
     });
-    await this.cache.del(`election:${existing.election_id}:public-analysis`);
+    await this.cache.del(publicAnalysisKey(existing.election_id));
     return updated;
   }
 
   async getPublicAnalysis(electionId: string) {
-    return this.cache.getOrSet(`election:${electionId}:public-analysis`, CACHE_TTL.PUBLIC_ANALYSIS, () =>
-      this.prisma.constituency_analysis.findMany({
+    return this.cache.getOrSet(publicAnalysisKey(electionId), CACHE_TTL.PUBLIC_ANALYSIS, async () => {
+      const rows = await this.prisma.constituency_analysis.findMany({
         where: { election_id: electionId },
-        select: { id: true, const_id: true, election_id: true, dominance: true, dominance_party: true, incumbency: true }
-      }),
-    );
+        select: { id: true, const_id: true, election_id: true, dominance: true, dominance_party: true, data: true, incumbency: true },
+      });
+      // Until a row is recomputed (`data` null), the stored pre-024 JSON is served as it was.
+      return rows.map(r => ({ ...r, incumbency: r.data ? legacyIncumbency(r.data as unknown as SeatAnalysis) : r.incumbency ?? {} }));
+    });
   }
 
   async getConstituencyAnalysisDetail(electionId: string, constId: string) {
-    return this.prisma.constituency_analysis.findUnique({
-      where: { const_id_election_id: { const_id: constId, election_id: electionId } },
-    });
+    const r = await this.prisma.constituency_analysis.findUnique({ where: { const_id_election_id: { const_id: constId, election_id: electionId } } });
+    return r ? { ...r, incumbency: r.data ? legacyIncumbency(r.data as unknown as SeatAnalysis) : r.incumbency ?? {} } : null;
   }
 }

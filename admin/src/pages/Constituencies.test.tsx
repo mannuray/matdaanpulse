@@ -113,7 +113,7 @@ describe('Constituencies page', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Compute all analysis' }));
     expect(svc.computeConstituencyAnalysis).not.toHaveBeenCalled();
     fireEvent.click(await screen.findByRole('button', { name: 'Compute all' }));
-    await waitFor(() => expect(svc.computeConstituencyAnalysis).toHaveBeenCalledWith('e1', []));
+    await waitFor(() => expect(svc.computeConstituencyAnalysis).toHaveBeenCalledWith('e1'));
   });
 
   it('a percent over 100 shows inline and blocks Save', async () => {
@@ -246,9 +246,14 @@ describe('Constituencies page', () => {
     svc.getAdminConstituencyDetail.mockImplementation(async (id: string) => ({
       ...data.page1.find((c) => c.id === id)!, metadata: {}, voter_turnout: 58.4, state: { id: 1, code: 'BR', name: 'Bihar' },
       analysis: {
-        id: 'x', const_id: id, election_id: 'e1', dominance: 'STRONG', dominance_party: 'JDU',
-        incumbency: { incumbent_name: 'Hari Singh', incumbent_party: 'JDU', re_contesting: true }, notes: 'Held since 2010',
-        updated_at: '2026-10-02T06:30:00.000Z',
+        id: 'x', const_id: id, election_id: 'e1', dominance: 'stronghold', dominance_party: 'JDU',
+        data: {
+          class: { kind: 'stronghold', holder: 'JDU', streak: 3, since: 2010 },
+          outcome: { kind: 'gained', from: 'RJD' },
+          incumbent: { name: 'Hari Singh', party: 'JDU', recontested: true, switched: true, party_now: 'BJP' },
+        },
+        notes: 'Held since 2010',
+        updated_at: '2026-09-01T06:30:00.000Z', computed_at: '2026-10-02T06:30:00.000Z',
       },
     }));
     renderAt('/constituencies/a');
@@ -256,6 +261,9 @@ describe('Constituencies page', () => {
     const analysis = card('Analysis');
     expect(within(analysis).getByText('Computed 2 Oct 2026')).toBeTruthy();
     expect(within(analysis).getByText('Hari Singh (JDU)')).toBeTruthy();
+    expect(within(analysis).getByText('Stronghold · JDU since 2010')).toBeTruthy();
+    expect(within(analysis).getByText('Gained from RJD')).toBeTruthy();
+    expect(within(analysis).getByText('BJP')).toBeTruthy();
     expect(within(analysis).getByText('Held since 2010')).toBeTruthy();
     const rec = card('Record');
     expect(within(rec).getByText('BR')).toBeTruthy();

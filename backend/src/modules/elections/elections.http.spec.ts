@@ -7,6 +7,7 @@ import { ElectionsService } from './elections.service';
 import { ResultsService } from '../results/results.service';
 import { ConstituenciesService } from '../constituencies/constituencies.service';
 import { LiveStateService } from '../results/live-state.service';
+import { SeatAnalysisService } from '../constituencies/seat-analysis.service';
 import { CACHE_CONTROL } from '../../common/http/cache-control';
 
 @Controller('admin/thing')
@@ -58,6 +59,7 @@ async function makeApp(env: Record<string, string>) {
       { provide: ResultsService, useValue: resultsService },
       { provide: ConstituenciesService, useValue: {} },
       { provide: LiveStateService, useValue: liveState },
+      { provide: SeatAnalysisService, useValue: { summary: jest.fn(async (id: string) => ({ election_id: id, parties: [] })) } },
     ],
   }).compile();
   const app = moduleRef.createNestApplication<NestExpressApplication>({ bodyParser: false, logger: false });
@@ -94,6 +96,12 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     const one = (await (await get(`/elections/${EID}`)).json()).data;
     expect(one.delimitation).toBe('2008');
     expect(one.tentative_next_date).toBe('2029-05-01T00:00:00.000Z');
+  });
+
+  it('GET /elections/:id/analysis/summary returns the stored ElectionAnalysis', async () => {
+    const res = await get(`/elections/${EID}/analysis/summary`);
+    expect(res.status).toBe(200);
+    expect((await res.json()).data).toEqual({ election_id: EID, parties: [] });
   });
 
   it('/live is CDN-cached 30 s while not counting (Upcoming/Finalized)', async () => {
