@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { emitStateRegions } from '../regions';
+import { emitStateRegions, regionSets } from '../regions';
+import { electionsOf } from '../elections';
 
 const base = {
   stateId: 9, stateName: 'Goa', seatCount: 2,
@@ -32,5 +33,20 @@ describe('emitStateRegions with seatRegions (Delhi: regions are Lok Sabha seats)
     expect(sql).toContain("region_id = (SELECT id FROM regions WHERE state_id = 9 AND code = 'GA_SOUTH') WHERE election_id IN ('a', 'b') AND const_no = 1;");
     expect(() => emitStateRegions({ ...base, regions: [], seatRegions: { 1: 'GA_X', 2: 'GA_X' } })).toThrow(/GA_X is not a region/);
     expect(() => emitStateRegions({ ...base, regions: [{ code: 'GA_NORTH', name: 'North Goa', districts: [] }], seatRegions: { 1: 'GA_NORTH' } })).toThrow(/seat 2 has no region/);
+  });
+});
+
+describe('regionSets', () => {
+  it('reads districts.json as the 2008 boundary set, scoped to the 2008-delimitation elections', () => {
+    expect(regionSets('MH', ['districts.json', 'leaders.json'])).toEqual([
+      { file: 'districts.json', delimitation: '2008', seatCount: 288, electionIds: electionsOf('MH').map(e => e.electionId) }]);
+  });
+  it('reads one districts-<era>.json per boundary set, each scoped to that era\'s elections and seat count (J&K)', () => {
+    expect(regionSets('JK', ['districts-2022.json', 'districts-1995.json'])).toEqual([
+      { file: 'districts-1995.json', delimitation: '1995', seatCount: 87, electionIds: ['a0130000-0000-4000-8000-000000002008', 'a0130000-0000-4000-8000-000000002014'] },
+      { file: 'districts-2022.json', delimitation: '2022', seatCount: 90, electionIds: ['a0130000-0000-4000-8000-000000002024'] }]);
+  });
+  it('fails on a boundary set with no elections', () => {
+    expect(() => regionSets('JK', ['districts-2008.json'])).toThrow(/no JK election/);
   });
 });
