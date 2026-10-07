@@ -1,14 +1,12 @@
 import { paginated } from '../../common/paginated';
-import { Injectable, Inject, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
-import { AnalysisContext, AnalysisStrategy, SeatStats } from './strategies/analysis-strategy.interface';
 import { Prisma } from '@prisma/client';
 import { ConstituencyNotFoundException, ElectionNotFoundException, AnalysisNotFoundException } from '../../common/exceptions';
 import type { UpdateAnalysisDto } from './dto/constituency-input.dto';
 import { AuditLogService, type RecordAuditEntry } from '../audit-log/audit-log.service';
 import { changedFields } from '../audit-log/audit-diff';
-import { comparableElectionIds, earlierComparableElectionIds } from '../../common/comparable-elections';
 
 @Injectable()
 export class ConstituenciesService {
@@ -17,8 +15,6 @@ export class ConstituenciesService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly cache: CacheService,
-    @Inject('ANALYSIS_STRATEGIES')
-    private readonly strategies: AnalysisStrategy[],
     private readonly audit: AuditLogService,
   ) {}
 
@@ -135,7 +131,7 @@ export class ConstituenciesService {
 
   /**
    * Seat history from results, newest first: the seats of every election of the same type with the same state
-   * and `const_no` (the columns, so an id that `extractConstNo` cannot parse still works) and the same
+   * and `const_no` (the columns, so any id format works) and the same
    * delimitation (migration 019). Independent of constituency_analysis. A seat with no state or no delimitation
    * returns only itself. Volatility counts party changes between
    * consecutive elections that have a winner.
@@ -252,157 +248,5 @@ export class ConstituenciesService {
     return this.prisma.constituency_analysis.findUnique({
       where: { const_id_election_id: { const_id: constId, election_id: electionId } },
     });
-  }
-
-  private extractConstNo(constId: string): string {
-    const stripped = constId.replace(/^[A-Z]{2}_(?:VS\d*_)?/, '');
-    const match = stripped.match(/^(\d+)_/);
-    return match ? match[1] : stripped;
-  }
-
-  async computeAnalysis(electionId: string, historyElectionIds: string[], manifest?: any) {
-    const election = await this.prisma.elections.findUnique({ where: { id: electionId } });
-    if (!election) throw new ElectionNotFoundException(electionId);
-
-    // Only elections of the same type, state and delimitation: seat numbers mean other places across a redraw.
-    // None given (the admin Compute button): every earlier one, so a recompute never drops the seat history.
-    historyElectionIds = historyElectionIds.length
-      ? await comparableElectionIds(this.prisma, election, historyElectionIds)
-      : await earlierComparableElectionIds(this.prisma, election);
-
-    const constituencies = await this.prisma.constituencies.findMany({ where: { election_id: electionId } });
-    const allElectionIds = [...historyElectionIds, electionId];
-
-    const allElections = await this.prisma.elections.findMany({
-      where: { id: { in: allElectionIds } },
-      select: { id: true, year: true, tentative_next_date: true }
-    });
-    const electionYearMap = new Map(allElections.map(e => [e.id, e.year]));
-    // Party lineage (migration 023): comparisons follow renames, mergers and splits between two elections' counting dates.
-    const electionDateMap = new Map(allElections.filter(e => e.tentative_next_date).map(e => [e.id, e.tentative_next_date!.toISOString().slice(0, 10)]));
-    const lineage = (await this.prisma.party_lineage.findMany()).map(r => ({
-      party_id: r.party_id, predecessor_id: r.predecessor_id, kind: r.kind, effective_date: r.effective_date.toISOString().slice(0, 10),
-      state_id: r.state_id, is_successor: r.is_successor,
-    }));
-
-    // Fetch winners for all elections
-    const winners = await this.prisma.results.findMany({
-      where: { election_id: { in: allElectionIds }, status: { in: ['WON', 'LEADING'] } },
-      include: { candidates: true }
-    });
-
-    const winnersByElection = new Map<string, Map<string, any>>();
-    for (const w of winners) {
-      if (!winnersByElection.has(w.election_id)) winnersByElection.set(w.election_id, new Map());
-      winnersByElection.get(w.election_id)!.set(this.extractConstNo(w.const_id), {
-        party_id: w.candidates.party_id,
-        candidate_name: w.candidates.name,
-        margin: w.margin || 0,
-        votes: w.votes || 0,
-      });
-    }
-
-    // Every result of these elections, highest votes first: per seat the total and the runner-up (seat history).
-    const allResults = await this.prisma.results.findMany({
-      where: { election_id: { in: allElectionIds } },
-      select: { election_id: true, const_id: true, votes: true, candidates: { select: { name: true, party_id: true } } },
-      orderBy: { votes: 'desc' },
-    });
-    const seatStatsByElection = new Map<string, Map<string, SeatStats>>();
-    const seen = new Map<string, number>();
-    for (const r of allResults) {
-      const constNo = this.extractConstNo(r.const_id);
-      if (!seatStatsByElection.has(r.election_id)) seatStatsByElection.set(r.election_id, new Map());
-      const byConst = seatStatsByElection.get(r.election_id)!;
-      const s = byConst.get(constNo) ?? { total: 0, runnerUp: null };
-      s.total += r.votes || 0;
-      const key = `${r.election_id}|${constNo}`;
-      const rank = (seen.get(key) ?? 0) + 1;
-      seen.set(key, rank);
-      if (rank === 2) s.runnerUp = { name: r.candidates.name, party_id: r.candidates.party_id };
-      byConst.set(constNo, s);
-    }
-
-    // Results by constituency for current election
-    const currentResults = await this.prisma.results.findMany({
-      where: { election_id: electionId },
-      include: { candidates: true },
-      orderBy: [{ const_id: 'asc' }, { votes: 'desc' }]
-    });
-    const resultsByConst = new Map<string, any[]>();
-    for (const r of currentResults) {
-      const arr = resultsByConst.get(r.const_id) || [];
-      arr.push({ party_id: r.candidates.party_id, votes: r.votes || 0, status: r.status });
-      resultsByConst.set(r.const_id, arr);
-    }
-
-    // Candidates by election and constituency
-    const allCandidates = await this.prisma.candidates.findMany({ where: { election_id: { in: allElectionIds } } });
-    const candidatesByElectionConst = new Map<string, Map<string, any[]>>();
-    for (const c of allCandidates) {
-      if (!candidatesByElectionConst.has(c.election_id)) candidatesByElectionConst.set(c.election_id, new Map());
-      const cMap = candidatesByElectionConst.get(c.election_id)!;
-      const arr = cMap.get(c.const_id) || [];
-      arr.push(c);
-      cMap.set(c.const_id, arr);
-    }
-
-    const analysisToCreate: any[] = [];
-
-    for (const constituency of constituencies) {
-      const context: AnalysisContext = {
-        constId: constituency.id,
-        constNo: this.extractConstNo(constituency.id),
-        electionId,
-        historyElectionIds,
-        electionYearMap,
-        winnersByElection,
-        resultsByConst,
-        candidatesByElectionConst,
-        seatStatsByElection,
-        manifest,
-        lineage,
-        electionDateMap,
-        stateId: election.state_id,
-      };
-
-      let analysisData: any = {};
-      for (const strategy of this.strategies) {
-        const result = strategy.execute(context);
-        analysisData = { ...analysisData, ...result };
-      }
-
-      analysisToCreate.push({
-        const_id: constituency.id,
-        election_id: electionId,
-        dominance: analysisData.dominance,
-        dominance_party: analysisData.dominance_party,
-        incumbency: {
-          ...analysisData.incumbency,
-          swing: analysisData.swing,
-          seat_type: analysisData.seat_type,
-          dominance_wins: analysisData.dominance_wins,
-          dominance_total: analysisData.dominance_total,
-          revision: analysisData.revision,
-          seat_history: analysisData.seat_history,
-          spoiler: analysisData.spoiler,
-        },
-      });
-    }
-
-    // Perform bulk update in a transaction
-    await this.prisma.$transaction([
-      this.prisma.constituency_analysis.deleteMany({
-        where: { election_id: electionId }
-      }),
-      this.prisma.constituency_analysis.createMany({
-        data: analysisToCreate
-      })
-    ]);
-
-    // Invalidate public analysis cache
-    await this.cache.del(`election:${electionId}:public-analysis`);
-
-    return { computed: analysisToCreate.length };
   }
 }

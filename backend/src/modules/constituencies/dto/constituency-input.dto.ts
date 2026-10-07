@@ -1,6 +1,5 @@
 import { IsString, IsOptional, IsInt, IsObject, IsArray, MaxLength, Min, Max, ArrayMaxSize, IsIn, ValidateIf } from 'class-validator';
 import { Transform } from 'class-transformer';
-import { IsUuidLike } from '../../../common/validation/uuid-like';
 import { emptyToNull, MAX_IDS_PER_REQUEST } from '../../../common/validation/dto-helpers';
 
 /** Request-body DTOs (moved out of admin/ so domain services do not depend on the admin module). */
@@ -36,14 +35,6 @@ export class BulkTagDto {
 
   @IsOptional() @IsArray() @IsString({ each: true }) @MaxLength(100, { each: true })
   remove_tags?: string[];
-}
-
-export class ComputeAnalysisDto {
-  @IsOptional() @IsArray() @ArrayMaxSize(50) @IsUuidLike({ each: true })
-  history_election_ids?: string[];
-
-  @IsOptional() @IsObject()
-  manifest?: Record<string, unknown>;
 }
 
 /** Emptied text fields are saved as null, not ''. */

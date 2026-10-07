@@ -19,7 +19,7 @@ function make() {
     audit_logs: { create: jest.fn().mockResolvedValue({}), createMany: jest.fn().mockResolvedValue({ count: 1 }) },
     $transaction: jest.fn(async (ops: Promise<unknown>[]) => Promise.all(ops)),
   };
-  const svc = new ConstituenciesService(prisma, {} as any, [], new AuditLogService(prisma));
+  const svc = new ConstituenciesService(prisma, {} as any, new AuditLogService(prisma));
   return { svc, prisma };
 }
 
@@ -117,7 +117,7 @@ describe('ConstituenciesService.findOneWithAnalysis', () => {
       constituencies: { findUnique: jest.fn().mockResolvedValue({ ...seat, election_id: 'e1', districts: null, regions: null, elections: {}, states: { id: 5, code: 'BR', name: 'Bihar' } }) },
       constituency_analysis: { findUnique: jest.fn().mockResolvedValue(null) },
     };
-    const svc = new ConstituenciesService(prisma, {} as any, [], {} as any);
+    const svc = new ConstituenciesService(prisma, {} as any, {} as any);
     const out = await svc.findOneWithAnalysis('BR_VS_1');
     expect(prisma.constituencies.findUnique.mock.calls[0][0].include).toMatchObject({ states: true });
     expect(out.state).toEqual({ id: 5, code: 'BR', name: 'Bihar' });
@@ -132,7 +132,7 @@ describe('ConstituenciesService.history', () => {
     const prisma: any = {
       constituencies: { findUnique: jest.fn().mockResolvedValue(seat), findMany: jest.fn().mockResolvedValue(matches) },
     };
-    return { svc: new ConstituenciesService(prisma, {} as any, [], {} as any), prisma };
+    return { svc: new ConstituenciesService(prisma, {} as any, {} as any), prisma };
   }
   const current = { id: 'BR_VS_1_VALMIKI_NAGAR', state_id: 5, const_no: 1, elections: { type: 'VS', delimitation: '2008' } };
 
@@ -184,24 +184,5 @@ describe('ConstituencySummaryDto', () => {
     const map = (v: unknown) => plainToInstance(ConstituencySummaryDto, { id: 'ADILABAD', voter_turnout: v }, { excludeExtraneousValues: true });
     expect(map(new Prisma.Decimal('65.28')).voter_turnout).toBe(65.28);
     expect(map(null).voter_turnout).toBeNull();
-  });
-});
-
-describe('ConstituenciesService.computeAnalysis history', () => {
-  it('no history given (the admin Compute button): every earlier comparable election of the state is the history', async () => {
-    const { svc, prisma } = make();
-    prisma.constituencies.findMany.mockResolvedValue([]);
-    prisma.elections = {
-      findUnique: jest.fn().mockResolvedValue({ id: 'jh24', type: 'VS', state_id: 14, delimitation: '2008', year: 2024 }),
-      findMany: jest.fn().mockResolvedValue([{ id: 'jh19', year: 2019, tentative_next_date: null }, { id: 'jh14', year: 2014, tentative_next_date: null }]),
-    };
-    prisma.party_lineage = { findMany: jest.fn().mockResolvedValue([]) };
-    prisma.results = { findMany: jest.fn().mockResolvedValue([]) };
-    prisma.candidates = { findMany: jest.fn().mockResolvedValue([]) };
-    prisma.constituency_analysis = { deleteMany: jest.fn().mockResolvedValue({}), createMany: jest.fn().mockResolvedValue({}) };
-    (svc as any).cache = { del: jest.fn() };
-    await svc.computeAnalysis('jh24', []);
-    expect(prisma.elections.findMany.mock.calls[0][0].where).toEqual({ type: 'VS', state_id: 14, delimitation: '2008', year: { lt: 2024 } });
-    expect(prisma.results.findMany.mock.calls[0][0].where.election_id.in).toEqual(['jh19', 'jh14', 'jh24']);
   });
 });

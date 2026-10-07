@@ -56,7 +56,7 @@ describe('admin detail responses: updated_at + last_edit', () => {
     expect(candidate).toMatchObject({ updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
     const seats = { findOneWithAnalysis: jest.fn().mockResolvedValue({ id: 'BR_VS_1', name: 'V', phase: 2, updated_at }) };
-    const seat = map(AdminConstituencyDto, await new AdminConstituenciesController(seats as any, audit).getConstituencyDetail('BR_VS_1'));
+    const seat = map(AdminConstituencyDto, await new AdminConstituenciesController(seats as any, audit, {} as any).getConstituencyDetail('BR_VS_1'));
     expect(seat).toMatchObject({ phase: 2, updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
     expect(prisma.audit_logs.findFirst.mock.calls.map((c: any) => c[0].where.entity_type)).toEqual(['person', 'candidate', 'constituency']);
@@ -110,7 +110,7 @@ describe('admin derived read endpoints: response mapping keeps every field', () 
       rows: [{ election_id: 'e1', year: 2025, type: 'VS', winner: 'A', party_id: 'BJP', margin: 10, turnout: 61.2, is_current: true }],
     };
     const svc = { history: jest.fn().mockResolvedValue(out) };
-    expect(map(AdminSeatHistoryDto, await new AdminConstituenciesController(svc as any, audit).history('BR_VS_1'))).toEqual(out);
+    expect(map(AdminSeatHistoryDto, await new AdminConstituenciesController(svc as any, audit, {} as any).history('BR_VS_1'))).toEqual(out);
   });
 });
 
