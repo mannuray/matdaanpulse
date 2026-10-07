@@ -136,3 +136,55 @@ describe('seat analysis: notes', () => {
     expect(kinds(s)).not.toContain('switcher');
   });
 });
+
+describe('election analysis', () => {
+  const e = (inp: Parameters<typeof analyse>[0]) => analyse(inp).election;
+  it('party rows: contested, won, share; held/gained/lost; prev across a redraw via previousAny', () => {
+    const prev = el(2015, [seat(1, [['A', 'X', 60], ['B', 'Y', 40]]), seat(2, [['C', 'X', 60], ['D', 'Y', 40]])]);
+    const cur = el(2020, [seat(1, [['A', 'X', 55], ['B', 'Y', 45]]), seat(2, [['D', 'Y', 70], ['C', 'X', 30]])]);
+    const x = e(input(cur, [prev])).parties.find(p => p.party_id === 'X')!;
+    expect(x).toEqual({ party_id: 'X', contested: 2, won: 1, votes: 85, share: 42.5, prev: { won: 2, share: 60 }, held: 1, gained: 0, lost: 1, split_gained: 0, split_lost: 0 });
+    const redraw = e(input(cur, [], { previousAny: prev }));
+    expect(redraw.parties.find(p => p.party_id === 'X')).toMatchObject({ prev: { won: 2, share: 60 }, held: 0, lost: 0 });
+    expect(redraw.flow).toEqual([]);
+    expect(redraw.prev_election_id).toBeNull();
+    expect(redraw.prev_any_election_id).toBe('E2015');
+  });
+  it('flow carries the old holder; split moves are flagged; family totals', () => {
+    const prev = el(2019, [seat(1, [['A', 'SHS', 50], ['B', 'INC', 40]]), seat(2, [['C', 'JVM', 50], ['D', 'INC', 40]])]);
+    const cur = el(2024, [seat(1, [['E', 'SHSUBT', 50], ['A', 'SHS', 40]]), seat(2, [['C', 'BJP', 50], ['D', 'INC', 40]])]);
+    const r = e(input(cur, [prev], { lineage: [SHS_SPLIT, { ...JVM_MERGER, effective_date: '2020-02-17' }] }));
+    expect(r.flow).toEqual(expect.arrayContaining([{ from: 'SHS', to: 'SHSUBT', seats: 1, split: true }, { from: 'BJP', to: 'BJP', seats: 1, split: false }]));
+    expect(r.families).toEqual([{ root: 'SHS', members: ['SHS', 'SHSUBT'], won: 1, share: 50 }]);
+  });
+  it('alliance change: moves between alliances, moves inside one, UPA = INDIA, shares', () => {
+    const prev = el(2019, [seat(1, [['A', 'INC', 50], ['B', 'BJP', 40]]), seat(2, [['C', 'JDU', 50], ['D', 'INC', 40]])], { alliances: [{ id: 'UPA', parties: ['INC'] }, { id: 'NDA', parties: ['BJP', 'JDU'] }] });
+    const cur = el(2024, [seat(1, [['B', 'BJP', 50], ['A', 'INC', 40]]), seat(2, [['E', 'BJP', 50], ['D', 'INC', 40]])], { alliances: [{ id: 'INDIA', parties: ['INC'] }, { id: 'NDA', parties: ['BJP', 'JDU'] }] });
+    const a = e(input(cur, [prev])).alliance!;
+    expect(a.moves).toEqual([{ from: 'INDIA', to: 'NDA', seats: 1 }]);
+    expect(a.within).toEqual([{ alliance: 'NDA', seats: 1 }]);
+    expect(a.shares.find(s => s.alliance === 'NDA')).toEqual({ alliance: 'NDA', share: 55.6, prev_share: 50 });
+  });
+  it('close and narrowing seats', () => {
+    const s = (m: number) => seat(1, [['A', 'X', 50 + m], ['B', 'Y', 50 - m]]);
+    const r = e(input(el(2020, [s(1)]), [el(2010, [s(10)]), el(2015, [s(5)])]));
+    expect(r.close_seats).toEqual(['T_1']);
+    expect(r.narrowing_seats).toEqual(['T_1']);
+  });
+  it('bellwether: winner in government every time, 3+ elections, all known; a missing government gives none', () => {
+    const s = (p: string) => seat(1, [['A', p, 50], ['B', 'Z', 40]]);
+    const h = [el(2010, [s('X')], { government: ['X'] }), el(2015, [s('Y')], { government: ['Y', 'W'] })];
+    const r = analyse(input(el(2020, [s('X')], { government: ['X'] }), h));
+    expect(r.election.bellwethers).toEqual(['T_1']);
+    expect(r.seats[0].notes).toContainEqual({ kind: 'bellwether', elections: 3 });
+    expect(e(input(el(2020, [s('X')]), h)).bellwethers).toEqual([]);
+  });
+  it('breakdowns: reserved, region, turnout band', () => {
+    const prev = el(2015, [seat(1, [['A', 'X', 50], ['B', 'Y', 40]], { turnout: 60 })]);
+    const cur = el(2020, [seat(1, [['A', 'X', 50], ['B', 'Y', 40]], { turnout: 67, reserved: 'SC', region_id: 7 })]);
+    const b = e(input(cur, [prev])).breakdowns;
+    expect(b.reserved).toEqual([{ group: 'SC', seats: 1, parties: [{ party_id: 'X', won: 1, share: 55.6 }, { party_id: 'Y', won: 0, share: 44.4 }] }]);
+    expect(b.region.map(g => g.group)).toEqual(['7']);
+    expect(b.turnout.map(g => g.group)).toEqual(['≥5']);
+  });
+});
