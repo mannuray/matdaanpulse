@@ -1,0 +1,393 @@
+{
+ "people": [
+  {
+   "key": "omar-abdullah",
+   "name": "Omar Abdullah",
+   "wikidata": "Q2745305",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_17_GANDERBAL",
+     "ballot_name": "Omar Abdullah"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_24_SONAWAR",
+     "ballot_name": "Omar Abdullah"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_28_BEERWAH",
+     "ballot_name": "Omar Abdullah"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_18_GANDERBAL",
+     "ballot_name": "Omar Abdullah"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_27_BUDGAM",
+     "ballot_name": "Omar Abdullah"
+    }
+   ]
+  },
+  {
+   "key": "surinder-kumar-choudhary",
+   "name": "Surinder Kumar Choudhary",
+   "wikidata": "Q130466422",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_81_NOWSHERA"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_81_NOWSHERA"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_84_NOWSHERA",
+     "ballot_name": "Surinder Kumar Choudhary"
+    }
+   ]
+  },
+  {
+   "key": "abdul-rahim-rather",
+   "name": "Abdul Rahim Rather",
+   "wikidata": "Q130307490",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_30_CHRARI_SHARIEF",
+     "ballot_name": "Abdul Rahim Rather"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_30_CHRARISHARIEF",
+     "ballot_name": "Abdul Rahim Rather"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_30_CHRARI_SHARIEF",
+     "ballot_name": "Advocate Abdul Rahim Rather"
+    }
+   ]
+  },
+  {
+   "key": "sunil-kumar-sharma",
+   "name": "Sunil Kumar Sharma",
+   "wikidata": "Q28092398",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_51_KISHTWAR",
+     "ballot_name": "Sunil Kumar"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_51_KISHTWAR"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_50_PADDER_NAGSENI",
+     "ballot_name": "Sunil Kumar Sharma"
+    }
+   ]
+  },
+  {
+   "key": "ravinder-raina",
+   "name": "Ravinder Raina",
+   "wikidata": "Q19542630",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_81_NOWSHERA"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_84_NOWSHERA",
+     "ballot_name": "Ravinder Raina"
+    }
+   ]
+  },
+  {
+   "key": "tariq-hameed-karra",
+   "name": "Tariq Hameed Karra",
+   "wikidata": "Q16901287",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_25_BATAMALOO"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_26_CENTRAL_SHALTENG",
+     "ballot_name": "Tariq Hameed Karra"
+    }
+   ]
+  },
+  {
+   "key": "ghulam-ahmad-mir",
+   "name": "Ghulam Ahmad Mir",
+   "wikidata": "Q63164601",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_42_DOORU"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_42_DOORU"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_41_DOORU",
+     "ballot_name": "Gulam Ahmad Mir"
+    }
+   ]
+  },
+  {
+   "key": "waheed-para",
+   "name": "Waheed Para",
+   "wikidata": "Q125880950",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_34_PULWAMA",
+     "ballot_name": "Waheed Ur Rehman Para"
+    }
+   ]
+  },
+  {
+   "key": "sajad-gani-lone",
+   "name": "Sajad Gani Lone",
+   "wikidata": "Q16197077",
+   "candidacies": [
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_4_HANDWARA",
+     "ballot_name": "Sajad Gani Lone"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_5_HANDWARA",
+     "ballot_name": "Sajad Gani Lone"
+    }
+   ]
+  },
+  {
+   "key": "mohamad-yousuf-tarigami",
+   "name": "Mohamad Yousuf Tarigami",
+   "wikidata": "Q6893404",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_38_KULGAM",
+     "ballot_name": "Mohmad Yousuf Rather"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_38_KULGAM"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_39_KULGAM",
+     "ballot_name": "Mohamad Yousuf Tarigami"
+    }
+   ]
+  },
+  {
+   "key": "mehraj-malik",
+   "name": "Mehraj Malik",
+   "wikidata": "Q111417221",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_52_DODA",
+     "ballot_name": "Mehraj Malik"
+    }
+   ]
+  },
+  {
+   "key": "sakina-itoo",
+   "name": "Sakina Itoo",
+   "wikidata": "Q103534083",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_37_NOORABAD"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_37_NOORABAD"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_38_D_H_PORA",
+     "ballot_name": "Sakeena Masood"
+    }
+   ]
+  },
+  {
+   "key": "javid-ahmad-dar",
+   "name": "Javid Ahmad Dar",
+   "wikidata": "Q130466197",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_7_RAFIABAD",
+     "ballot_name": "Javaid Ahmad Dar"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_7_RAFIABAD",
+     "ballot_name": "Javed Ahmad Dar"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_8_RAFIABAD",
+     "ballot_name": "Javid Ahmad Dar"
+    }
+   ]
+  },
+  {
+   "key": "javed-ahmed-rana",
+   "name": "Javed Ahmed Rana",
+   "wikidata": "Q130337282",
+   "candidacies": [
+    {
+     "year": 2008,
+     "const_id": "JK_VS08_86_MENDHAR",
+     "ballot_name": "Javid Ahmed Rana"
+    },
+    {
+     "year": 2014,
+     "const_id": "JK_VS14_86_MENDHAR"
+    },
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_90_MENDHAR",
+     "ballot_name": "Javed Ahmed Rana"
+    }
+   ]
+  },
+  {
+   "key": "satish-sharma",
+   "name": "Satish Sharma",
+   "wikidata": "Q130544113",
+   "candidacies": [
+    {
+     "year": 2024,
+     "const_id": "JK_VS24_82_CHHAMB",
+     "ballot_name": "Satish Sharma"
+    }
+   ]
+  }
+ ],
+ "elections": {
+  "2024": {
+   "leaders": [
+    {
+     "key": "omar-abdullah",
+     "role": "Chief Minister (won Budgam and Ganderbal; kept Ganderbal, resigned Budgam)",
+     "party_id": "JKNC"
+    },
+    {
+     "key": "surinder-kumar-choudhary",
+     "role": "Deputy Chief Minister (Public Works (R&B); Industries & Commerce; Mining; Labour & Employment; Skill Development)",
+     "party_id": "JKNC"
+    },
+    {
+     "key": "abdul-rahim-rather",
+     "role": "Speaker",
+     "party_id": "JKNC"
+    },
+    {
+     "key": "sunil-kumar-sharma",
+     "role": "Leader of the Opposition",
+     "party_id": "BJP"
+    },
+    {
+     "key": "ravinder-raina",
+     "role": "BJP Jammu & Kashmir president during the election",
+     "party_id": "BJP"
+    },
+    {
+     "key": "tariq-hameed-karra",
+     "role": "Jammu & Kashmir Congress president",
+     "party_id": "INC"
+    },
+    {
+     "key": "ghulam-ahmad-mir",
+     "role": "Congress Legislature Party leader",
+     "party_id": "INC"
+    },
+    {
+     "key": "waheed-para",
+     "role": "PDP legislature party leader",
+     "party_id": "JKPDP"
+    },
+    {
+     "key": "sajad-gani-lone",
+     "role": "People's Conference chairman",
+     "party_id": "JKPC"
+    },
+    {
+     "key": "mohamad-yousuf-tarigami",
+     "role": "CPI(M) Central Committee member; the party's only MLA",
+     "party_id": "CPIM"
+    },
+    {
+     "key": "mehraj-malik",
+     "role": "AAP Jammu & Kashmir president (from March 2025); the party's only MLA",
+     "party_id": "AAP"
+    }
+   ],
+   "cabinet": [
+    {
+     "key": "sakina-itoo",
+     "role": "Minister of Health & Medical Education, School Education, Higher Education and Social Welfare",
+     "party_id": "JKNC"
+    },
+    {
+     "key": "javid-ahmad-dar",
+     "role": "Minister of Agriculture Production, Rural Development & Panchayati Raj, Cooperative and Election",
+     "party_id": "JKNC"
+    },
+    {
+     "key": "javed-ahmed-rana",
+     "role": "Minister of Jal Shakti, Forest, Ecology & Environment and Tribal Affairs",
+     "party_id": "JKNC"
+    },
+    {
+     "key": "satish-sharma",
+     "role": "Minister of Food, Civil Supplies & Consumer Affairs, Transport, Science & Technology, Information Technology, Youth Services & Sports and ARI & Training",
+     "party_id": "IND"
+    }
+   ],
+   "sources": [
+    "https://en.wikipedia.org/wiki/Second_Omar_Abdullah_ministry",
+    "https://en.wikipedia.org/wiki/Jammu_and_Kashmir_Legislative_Assembly",
+    "https://en.wikipedia.org/wiki/1st_Jammu_and_Kashmir_Assembly_(union_territory)",
+    "https://www.jkgad.nic.in/common/showOrder.aspx?actCode=O44007",
+    "https://www.thehindu.com/news/national/jammu-and-kashmir/jk-l-g-allocates-portfolios-who-gets-what-in-newly-inducted-omar-abdullah-led-cabinet/article68767814.ece",
+    "https://www.thehindu.com/elections/jammu-and-kashmir-assembly/omar-abdullah-sworn-in-as-first-cm-of-ut-jammu-and-kashmir/article68759594.ece",
+    "https://en.wikipedia.org/wiki/Abdul_Rahim_Rather_(born_1944)",
+    "https://en.wikipedia.org/wiki/Sunil_Kumar_Sharma_(Jammu_and_Kashmir_politician)",
+    "https://en.wikipedia.org/wiki/Ravinder_Raina",
+    "https://en.wikipedia.org/wiki/Tariq_Hameed_Karra",
+    "https://en.wikipedia.org/wiki/Ghulam_Ahmad_Mir",
+    "https://en.wikipedia.org/wiki/Waheed_Para",
+    "https://en.wikipedia.org/wiki/Sajjad_Gani_Lone",
+    "https://en.wikipedia.org/wiki/Mohamad_Yousuf_Tarigami",
+    "https://en.wikipedia.org/wiki/Mehraj_Malik",
+    "https://thechenabtimes.com/2025/03/21/aam-aadmi-party-appoints-mehraj-malik-as-jammu-and-kashmir-state-president-ahead-of-elections/",
+    "https://en.wikipedia.org/wiki/Javed_Ahmed_Rana",
+    "https://en.wikipedia.org/wiki/Satish_Sharma_(politician)",
+    "https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&ppprop=wikibase_item",
+    "https://www.wikidata.org/w/api.php?action=wbgetentities"
+   ]
+  }
+ }
+}

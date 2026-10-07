@@ -1,0 +1,122 @@
+[
+ {
+  "party_id": "BJP",
+  "state_code": "JK",
+  "eci_recognition": "National",
+  "office": "Dr. Shyama Prasad Mookherjee Bhawan, Sector 3 Extension, Trikuta Nagar, Jammu 180012",
+  "website": "https://jkbjp.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sat Paul Sharma",
+    "from_date": "2024-11-03",
+    "to_date": null,
+    "source_url": "https://www.thehindu.com/news/national/jammu-and-kashmir/sat-sharma-appointed-j-k-bjp-president/article68825007.ece",
+    "no_candidacy": true
+   },
+   {
+    "role": "state_president",
+    "person_name": "Ravinder Raina",
+    "from_date": "2018-05-13",
+    "to_date": "2024-11-03",
+    "source_url": "https://indianexpress.com/article/india/bjp-mla-ravinder-raina-appointed-new-jammu-kashmir-unit-chief-5174998/"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Sunil Kumar Sharma",
+    "from_date": "2024-11-03",
+    "to_date": null,
+    "source_url": "https://newsonair.gov.in/sunil-sharma-elected-leader-of-opposition-in-jammu-and-kashmir-assembly/"
+   }
+  ]
+ },
+ {
+  "party_id": "INC",
+  "state_code": "JK",
+  "eci_recognition": "National",
+  "office": "Shaheedi Chowk, Jammu 180001",
+  "website": null,
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Tariq Hameed Karra",
+    "from_date": "2024-08-16",
+    "to_date": null,
+    "source_url": "https://economictimes.indiatimes.com/news/elections/assembly-elections/jammu-kashmir/congress-appoints-tariq-hameed-karra-as-jammu-kashmir-congress-chief-ahead-of-assembly-elections/articleshow/112573994.cms"
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Ghulam Ahmad Mir",
+    "from_date": "2024-10-15",
+    "to_date": null,
+    "source_url": "https://kashmirlife.net/g-a-mir-is-new-leader-of-congress-legislature-party-of-jk-369575/",
+    "ballot_name": "Gulam Ahmad Mir"
+   }
+  ]
+ },
+ {
+  "party_id": "JKNC",
+  "state_code": "JK",
+  "eci_recognition": "State",
+  "office": "Nawa-e-Subha, Srinagar, Jammu and Kashmir",
+  "website": "https://jknc.co.in",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Farooq Abdullah",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Jammu_%26_Kashmir_National_Conference",
+    "no_candidacy": true
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Omar Abdullah",
+    "from_date": "2024-10-10",
+    "to_date": null,
+    "source_url": "https://newsonair.gov.in/omar-abdullah-unanimously-elected-as-legislature-party-leader-in-jk/"
+   }
+  ]
+ },
+ {
+  "party_id": "JKPDP",
+  "state_code": "JK",
+  "eci_recognition": "State",
+  "office": "2, Circuit House, Emporium Lane, Residency Road, Srinagar, Jammu and Kashmir",
+  "website": "https://jkpdp.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Mehbooba Mufti",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Jammu_and_Kashmir_Peoples_Democratic_Party",
+    "no_candidacy": true
+   },
+   {
+    "role": "legislature_leader",
+    "person_name": "Waheed Para",
+    "from_date": "2024-11-14",
+    "to_date": null,
+    "source_url": "https://www.greaterkashmir.com/jammu-kashmir/pdp-appoints-dr-mehboob-beg-as-partys-chief-spokesperson/",
+    "ballot_name": "Waheed Ur Rehman Para"
+   }
+  ]
+ },
+ {
+  "party_id": "JKPC",
+  "state_code": "JK",
+  "eci_recognition": "Unrecognised",
+  "office": "J-65, Jawahar Nagar, Srinagar, Jammu and Kashmir 190008",
+  "website": "https://jkpcofficial.org",
+  "roles": [
+   {
+    "role": "state_president",
+    "person_name": "Sajad Gani Lone",
+    "from_date": null,
+    "to_date": null,
+    "source_url": "https://en.wikipedia.org/wiki/Jammu_and_Kashmir_People%27s_Conference"
+   }
+  ]
+ }
+]

@@ -151,6 +151,7 @@ run seed_sk_leaders.sql
 run seed_ar_leaders.sql
 run seed_ap_leaders.sql
 run seed_mh_leaders.sql
+run seed_jk_leaders.sql
 # 2026 top-4 candidate photos (S3; run-once, fill-only; after the leaders, whose photos win)
 for st in as kl py tn wb; do run "seed_${st}_candidate_photos.sql"; done
 for st in dl hr jh od; do run "seed_${st}_candidate_photos.sql"; done
@@ -158,6 +159,7 @@ run seed_sk_candidate_photos.sql
 run seed_ar_candidate_photos.sql
 run seed_ap_candidate_photos.sql
 run seed_mh_candidate_photos.sql
+run seed_jk_candidate_photos.sql
 # 2026 winners' affidavits (MyNeta; run-once, fill-only)
 for st in as kl py tn wb; do run "seed_${st}_affidavits.sql"; done
 for st in dl hr jh od; do run "seed_${st}_affidavits.sql"; done
@@ -195,17 +197,20 @@ run seed_sk_party_profiles.sql
 run seed_ar_party_profiles.sql
 run seed_ap_party_profiles.sql
 run seed_mh_party_profiles.sql
+run seed_jk_party_profiles.sql
 # Party state units and their leaders (run-once; after the leaders and person links)
 run seed_party_units_v1.sql
 run seed_party_units_v2.sql
 run seed_party_units_v3.sql
 run seed_party_units_v4.sql
 run seed_party_units_v5.sql
+run seed_party_units_v6.sql
 run seed_party_colors_v1.sql
 # Colours for seat-winning parties still on a grey placeholder (fill-only, sourced in scraper/data/parties/colors-v2.json)
 run seed_party_colors_v2.sql
 run seed_party_colors_v3.sql
 run seed_party_colors_v4.sql
+run seed_party_colors_v5.sql
 run seed_party_names_v1.sql
 # Run-once: stored Vercel Blob image URLs → the same keys on S3 (after every seed that writes photos)
 run seed_media_s3_v1.sql
