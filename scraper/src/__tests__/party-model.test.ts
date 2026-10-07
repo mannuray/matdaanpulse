@@ -92,6 +92,7 @@ describe('unitsSeedOf', () => {
     expect(unitsSeedOf('units-6.json')).toBe('seed_party_units_v3');
     expect(unitsSeedOf('units-7.json')).toBe('seed_party_units_v4');
     expect(unitsSeedOf('units-8.json')).toBe('seed_party_units_v5');
-    expect(() => unitsSeedOf('units-9.json')).toThrow(/units-9.json has no seed version/);
+    expect(unitsSeedOf('units-9.json')).toBe('seed_party_units_v6');
+    expect(() => unitsSeedOf('units-10.json')).toThrow(/units-10.json has no seed version/);
   });
 });
