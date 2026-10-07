@@ -1,0 +1,230 @@
+{
+ "sources": [
+  "https://web.archive.org/web/20081231174529/http://ceojammukashmir.nic.in/Constituencies.html (CEO Jammu & Kashmir, 'List of Assembly Constituencies' by District Name / AC Number / AC Name, page dated Nov 2008: all 87 seats under the 22 districts; primary source; read 2026-10-07)",
+  "https://en.wikipedia.org/w/index.php?title=2014_Jammu_and_Kashmir_Legislative_Assembly_election&action=raw ('Results by Constituency' table, district column, 87 seats; also 'Results by District' per division; raw wikitext read 2026-10-07) - all 87 seats agree with the CEO list",
+  "Wikipedia constituency pages (raw wikitext read 2026-10-07) for abolished/border seats: Sangrama ('Wagoora, Kreeri and Khoie Tehsils', infobox Baramulla), Amira Kadal, Sonawar, Batmaloo (Srinagar), Wachi (Shopian), Noorabad, Hom Shali Bugh (Kulgam), Gool Arnas (Reasi; cites the same CEO page), Raipur Domana, Chhamb (Jammu), Darhal (Rajouri), Nubra, Leh (Leh), Kargil, Zanskar (Kargil), Gulabgarh (Reasi), Inderwal (Kishtwar), Bani (Kathua), Chenani (Udhampur), Rajpora (Pulwama), Gurez, Sonawari (Bandipora), Kangan (Ganderbal), Shopian (Shopian) - all agree",
+  "https://en.wikipedia.org/w/index.php?title=2014_Jammu_and_Kashmir_Legislative_Assembly_election&action=raw ('Result by Division': Kashmir 46, Ladakh 4, Jammu 37 seats; 'Results by District' groups the 10 Kashmir districts, Leh + Kargil under Ladakh, and the 10 Jammu districts; read 2026-10-07)"
+ ],
+ "notes": "Seats are the 87 of the 1995 delimitation used in 2008 and 2014 (ECI numbering, 1 Karnah ... 87 Poonch Haveli; numbering is not geographic within districts, e.g. 9-11 Gurez/Bandipora/Sonawari are Bandipora between Baramulla seats, 35 Wachi and 36 Shopian are Shopian after 31-34 Pulwama, 40 Anantnag sits between Kulgam's 39 and 41). Districts are the 22 of the then state after the 2007 reorganisation (Bandipora, Ganderbal, Kulgam, Shopian, Kishtwar, Ramban, Reasi, Samba created 2007), as the CEO J&K listed them in Nov 2008. Spelling: the CEO page writes Baramula, Bandipur, Badgam, Rajauri; this file uses the current official Baramulla, Bandipora, Budgam, Rajouri (same codes as districts-2022.json). Seats spanning districts: none is split by the CEO list (it assigns each seat to one district). Gool Arnas (59) lies across Gool tehsil (now Ramban district) and Arnas (Reasi district); CEO and Wikipedia both place it in Reasi, kept. Zanskar (50): infobox Kargil, but its Wikipedia page carries a 'Leh district' category - the CEO list and the 2014 table give Kargil, kept. Gurez (9): its Wikipedia page carries a Baramulla category (pre-2007 district) - CEO gives Bandipora, kept. Sangrama (12): page category says Bandipore, but its extent (Wagoora, Kreeri, Khoie tehsils) and the CEO list give Baramulla, kept. Regions: Kashmir division 46 seats (1-46), Ladakh 4 (47-50: Nubra, Leh, Kargil, Zanskar), Jammu division 37 (51-87); these match the 2014 Wikipedia page's 'Result by Division' table (46/4/37). District pages on Wikipedia now list the 2022 seats, so they could not be used to cross-check this 1995 list.",
+ "districts": [
+  {
+   "code": "JK_KUPWARA",
+   "name": "Kupwara"
+  },
+  {
+   "code": "JK_BARAMULLA",
+   "name": "Baramulla"
+  },
+  {
+   "code": "JK_BANDIPORA",
+   "name": "Bandipora"
+  },
+  {
+   "code": "JK_GANDERBAL",
+   "name": "Ganderbal"
+  },
+  {
+   "code": "JK_SRINAGAR",
+   "name": "Srinagar"
+  },
+  {
+   "code": "JK_BUDGAM",
+   "name": "Budgam"
+  },
+  {
+   "code": "JK_PULWAMA",
+   "name": "Pulwama"
+  },
+  {
+   "code": "JK_SHOPIAN",
+   "name": "Shopian"
+  },
+  {
+   "code": "JK_KULGAM",
+   "name": "Kulgam"
+  },
+  {
+   "code": "JK_ANANTNAG",
+   "name": "Anantnag"
+  },
+  {
+   "code": "JK_KISHTWAR",
+   "name": "Kishtwar"
+  },
+  {
+   "code": "JK_DODA",
+   "name": "Doda"
+  },
+  {
+   "code": "JK_RAMBAN",
+   "name": "Ramban"
+  },
+  {
+   "code": "JK_REASI",
+   "name": "Reasi"
+  },
+  {
+   "code": "JK_UDHAMPUR",
+   "name": "Udhampur"
+  },
+  {
+   "code": "JK_KATHUA",
+   "name": "Kathua"
+  },
+  {
+   "code": "JK_SAMBA",
+   "name": "Samba"
+  },
+  {
+   "code": "JK_JAMMU",
+   "name": "Jammu"
+  },
+  {
+   "code": "JK_RAJOURI",
+   "name": "Rajouri"
+  },
+  {
+   "code": "JK_POONCH",
+   "name": "Poonch"
+  },
+  {
+   "code": "JK_LEH",
+   "name": "Leh"
+  },
+  {
+   "code": "JK_KARGIL",
+   "name": "Kargil"
+  }
+ ],
+ "regions": [
+  {
+   "code": "JK_JAMMU",
+   "name": "Jammu",
+   "districts": [
+    "JK_KISHTWAR",
+    "JK_DODA",
+    "JK_RAMBAN",
+    "JK_REASI",
+    "JK_UDHAMPUR",
+    "JK_KATHUA",
+    "JK_SAMBA",
+    "JK_JAMMU",
+    "JK_RAJOURI",
+    "JK_POONCH"
+   ]
+  },
+  {
+   "code": "JK_KASHMIR",
+   "name": "Kashmir",
+   "districts": [
+    "JK_KUPWARA",
+    "JK_BARAMULLA",
+    "JK_BANDIPORA",
+    "JK_GANDERBAL",
+    "JK_SRINAGAR",
+    "JK_BUDGAM",
+    "JK_PULWAMA",
+    "JK_SHOPIAN",
+    "JK_KULGAM",
+    "JK_ANANTNAG"
+   ]
+  },
+  {
+   "code": "JK_LADAKH",
+   "name": "Ladakh",
+   "districts": [
+    "JK_LEH",
+    "JK_KARGIL"
+   ]
+  }
+ ],
+ "seats": {
+  "1": "JK_KUPWARA",
+  "2": "JK_KUPWARA",
+  "3": "JK_KUPWARA",
+  "4": "JK_KUPWARA",
+  "5": "JK_KUPWARA",
+  "6": "JK_BARAMULLA",
+  "7": "JK_BARAMULLA",
+  "8": "JK_BARAMULLA",
+  "9": "JK_BANDIPORA",
+  "10": "JK_BANDIPORA",
+  "11": "JK_BANDIPORA",
+  "12": "JK_BARAMULLA",
+  "13": "JK_BARAMULLA",
+  "14": "JK_BARAMULLA",
+  "15": "JK_BARAMULLA",
+  "16": "JK_GANDERBAL",
+  "17": "JK_GANDERBAL",
+  "18": "JK_SRINAGAR",
+  "19": "JK_SRINAGAR",
+  "20": "JK_SRINAGAR",
+  "21": "JK_SRINAGAR",
+  "22": "JK_SRINAGAR",
+  "23": "JK_SRINAGAR",
+  "24": "JK_SRINAGAR",
+  "25": "JK_SRINAGAR",
+  "26": "JK_BUDGAM",
+  "27": "JK_BUDGAM",
+  "28": "JK_BUDGAM",
+  "29": "JK_BUDGAM",
+  "30": "JK_BUDGAM",
+  "31": "JK_PULWAMA",
+  "32": "JK_PULWAMA",
+  "33": "JK_PULWAMA",
+  "34": "JK_PULWAMA",
+  "35": "JK_SHOPIAN",
+  "36": "JK_SHOPIAN",
+  "37": "JK_KULGAM",
+  "38": "JK_KULGAM",
+  "39": "JK_KULGAM",
+  "40": "JK_ANANTNAG",
+  "41": "JK_KULGAM",
+  "42": "JK_ANANTNAG",
+  "43": "JK_ANANTNAG",
+  "44": "JK_ANANTNAG",
+  "45": "JK_ANANTNAG",
+  "46": "JK_ANANTNAG",
+  "47": "JK_LEH",
+  "48": "JK_LEH",
+  "49": "JK_KARGIL",
+  "50": "JK_KARGIL",
+  "51": "JK_KISHTWAR",
+  "52": "JK_KISHTWAR",
+  "53": "JK_DODA",
+  "54": "JK_DODA",
+  "55": "JK_RAMBAN",
+  "56": "JK_RAMBAN",
+  "57": "JK_REASI",
+  "58": "JK_REASI",
+  "59": "JK_REASI",
+  "60": "JK_UDHAMPUR",
+  "61": "JK_UDHAMPUR",
+  "62": "JK_UDHAMPUR",
+  "63": "JK_KATHUA",
+  "64": "JK_KATHUA",
+  "65": "JK_KATHUA",
+  "66": "JK_KATHUA",
+  "67": "JK_KATHUA",
+  "68": "JK_SAMBA",
+  "69": "JK_SAMBA",
+  "70": "JK_JAMMU",
+  "71": "JK_JAMMU",
+  "72": "JK_JAMMU",
+  "73": "JK_JAMMU",
+  "74": "JK_JAMMU",
+  "75": "JK_JAMMU",
+  "76": "JK_JAMMU",
+  "77": "JK_JAMMU",
+  "78": "JK_JAMMU",
+  "79": "JK_JAMMU",
+  "80": "JK_JAMMU",
+  "81": "JK_RAJOURI",
+  "82": "JK_RAJOURI",
+  "83": "JK_RAJOURI",
+  "84": "JK_RAJOURI",
+  "85": "JK_POONCH",
+  "86": "JK_POONCH",
+  "87": "JK_POONCH"
+ }
+}
