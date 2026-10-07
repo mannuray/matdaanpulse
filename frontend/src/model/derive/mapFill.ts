@@ -1,9 +1,15 @@
 import type { SwingEntry, DominanceEntry } from '../types';
 import type { LayerId, SeatResult } from '../types/dashboard';
 import { MARGIN_BUCKETS } from './layerInsights';
+import type { Call, SeatLive } from './seatAnalysis';
+import { MOMENTUM_FILL } from './mapColors';
+export { MOMENTUM_FILL };
 
-/** `highlighted`: part of the active hover/lock highlight (drawn at full strength with an outline). */
-export interface SeatFill { color: string; opacity: number; highlighted: boolean }
+/**
+ * `highlighted`: part of the active hover/lock highlight (drawn at full strength with an outline).
+ * `dashed`: a too-close seat while live (drawn with a dashed outline in its fill colour).
+ */
+export interface SeatFill { color: string; opacity: number; highlighted: boolean; dashed?: boolean }
 
 export interface FillContext {
   layer: LayerId;
@@ -14,6 +20,8 @@ export interface FillContext {
   spoilerSeats?: Set<string>;
   threeWaySeats?: Set<string>;
   highlight: { parties: Set<string>; seats: Set<string> };
+  /** Live counting: per-seat live state (seat analysis Phase B). Absent → every layer as before. */
+  live?: Map<string, SeatLive>;
 }
 
 export const MAP_FILL = {
@@ -21,6 +29,17 @@ export const MAP_FILL = {
   swing: 'var(--color-map-swing)',
   threeWay: 'var(--color-map-threeway)',
 };
+/** Overview while live: how firm the lead is. Too close is also dashed. */
+export const CALL_OPACITY: Record<Call, number> = { declared: 1, safe: 1, likely: 0.6, counting: 0.6, too_close: 0.3, not_started: 1 };
+/**
+ * The live state worth drawing: only while some seat is still counting. Before the first result and once every seat is
+ * declared, the map is the ordinary results map (Battle back on margin buckets), spec §3.2.
+ */
+export function countingLive(live: Map<string, SeatLive> | undefined): Map<string, SeatLive> | undefined {
+  if (!live) return undefined;
+  for (const s of live.values()) if (s.call !== 'declared' && s.call !== 'not_started') return live;
+  return undefined;
+}
 export const DIM_OPACITY = 0.12;
 /** The bright outline only helps find a few seats; above this many highlighted seats opacity alone carries the highlight. */
 export const OUTLINE_MAX = 40;
@@ -42,8 +61,14 @@ type LayerFill = Omit<SeatFill, 'highlighted'>;
 function layerFill(seat: SeatResult, ctx: FillContext): LayerFill {
   const color = ctx.partyColor.get(seat.party) ?? 'var(--color-fallback)';
   switch (ctx.layer) {
-    case 'battle':
+    case 'battle': {
+      if (ctx.live) {
+        if (ctx.live.get(seat.id)?.call === 'not_started') return { color: MAP_FILL.pending, opacity: 1 };
+        const m = ctx.live.get(seat.id)?.momentum;
+        return { color: m && m !== 'stable' ? MOMENTUM_FILL[m] : MOMENTUM_FILL.stable, opacity: 1 };
+      }
       return { color, opacity: marginOpacity(seat.margin, ctx.electionType) };
+    }
     case 'swing': {
       const e = ctx.swing?.get(seat.id);
       return e?.flipped ? { color, opacity: 1 } : { color, opacity: HELD_OPACITY };
@@ -61,8 +86,12 @@ function layerFill(seat: SeatResult, ctx: FillContext): LayerFill {
       if (ctx.spoilerSeats?.has(seat.id)) return { color, opacity: 1 };
       if (ctx.threeWaySeats?.has(seat.id)) return { color: MAP_FILL.threeWay, opacity: 1 };
       return { color, opacity: DIM_OPACITY };
-    default:
-      return { color, opacity: 1 };
+    default: {
+      const call = ctx.layer === 'overview' ? ctx.live?.get(seat.id)?.call : undefined;
+      if (!call) return { color, opacity: 1 };
+      if (call === 'not_started') return { color: MAP_FILL.pending, opacity: 1 };
+      return call === 'too_close' ? { color, opacity: CALL_OPACITY.too_close, dashed: true } : { color, opacity: CALL_OPACITY[call] };
+    }
   }
 }
 
@@ -72,7 +101,7 @@ export function seatFill(seat: SeatResult, ctx: FillContext): SeatFill {
   if (parties.size === 0 && seats.size === 0) return { ...fill, highlighted: false };
   // Highlighted seats keep the layer colour but ignore its opacity (Battle's faint close seats included).
   if (seats.has(seat.id) || parties.has(seat.party)) return { color: fill.color, opacity: 1, highlighted: true };
-  return { ...fill, opacity: DIM_OPACITY, highlighted: false };
+  return { color: fill.color, opacity: DIM_OPACITY, highlighted: false };
 }
 
 export function seatFills(seats: SeatResult[], ctx: FillContext): Map<string, SeatFill> {

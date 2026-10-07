@@ -31,13 +31,13 @@ export function makeSources(over: Partial<DashboardSources> = {}): DashboardSour
       refreshAll: () => {}, liveConnected: false, liveStatus: 'Finalized', liveVersion: null,
     },
     swing: new Map(), dominance: new Map(), incumbency: [], partySwitches: [], marginTrend: [], partyTrend: [], historyPartyIds: new Set(), prevYear: null,
-    totalSeats: 243, majority: 122, votePct: new Map(), ticker: [], recentSeats: new Set(), liveConnected: false,
+    totalSeats: 243, majority: 122, votePct: new Map(), ticker: [], recentSeats: new Map(), liveConnected: false,
     availableLayers: ['overview', 'battle', 'demographics', 'insights'],
     partyMeta: new Map([
       ['BJP', { id: 'BJP', name: 'Bharatiya Janata Party', abbreviation: 'BJP', color: '#FF7A1A', mark: '/symbols/logos/BJP.svg', eciRecognition: 'National' as const }],
       ['JDU', { id: 'JDU', name: 'Janata Dal (United)', abbreviation: 'JD(U)', color: '#1FA37A', mark: null, eciRecognition: 'State' as const }],
     ]),
-    watchlist: [], addWatch: () => {}, removeWatch: () => {}, liveAnalysis: null,
+    watchlist: [], addWatch: () => {}, removeWatch: () => {}, liveAnalysis: null, baselineSeats: null,
     ...over,
   };
 }

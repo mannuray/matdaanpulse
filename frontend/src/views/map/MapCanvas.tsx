@@ -44,11 +44,15 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
       const fill = id ? vm.fills.get(id) : undefined;
       const el = select(this);
       const outlined = !!id && (id === vm.selectedSeat || id === hoveredId);
+      // A too-close seat while live: a dashed outline in its own colour (reads as undecided, not missing).
+      const dashed = !outlined && !!fill?.dashed;
       el.style('fill', fill?.color ?? 'var(--color-map-pending)')
         .style('fill-opacity', String(fill?.opacity ?? 1))
-        .style('stroke', outlined ? 'var(--color-ink)' : 'var(--color-map-stroke)')
-        .style('stroke-width', outlined ? '1.5px' : '0.4px')
+        .style('stroke', outlined ? 'var(--color-ink)' : dashed ? fill!.color : 'var(--color-map-stroke)')
+        .style('stroke-width', outlined ? '1.5px' : dashed ? '1px' : '0.4px')
+        .style('stroke-dasharray', dashed ? '3 2' : 'none')
         .attr('data-highlighted', fill?.highlighted ? 'true' : null)
+        .attr('data-pulse', id ? vm.recentSeats.get(id) ?? null : null)
         .classed('studio-seat-pulse', !!id && vm.recentSeats.has(id));
     });
   }, [loaded, gRef, vm.fills, vm.seatOf, vm.selectedSeat, hoveredId, vm.recentSeats, vm.geoConfig, vm.stateFeatures]);
@@ -114,6 +118,12 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
           {info.state && <div data-tip-state className="text-[11px] text-muted">{info.state}</div>}
           {info.candidate && <div className="text-ink">{info.candidate}</div>}
           <div className="flex items-center gap-1.5 text-muted">{info.party && <PartyMark mark={info.mark} color={info.color} label={info.party} />}{info.party} · {info.status}{info.margin ? ` · +${info.margin.toLocaleString('en-IN')}` : ''}</div>
+          {info.live && (
+            <div data-tip-live className="mt-1 flex items-center gap-1.5 text-[11px] font-semibold">
+              <span className="text-ink">{info.live.call}</span>
+              {info.live.leadSwitch && <span className="rounded px-1 text-white" style={{ background: 'var(--color-map-mo-switched)' }}>{t('studio_tip_lead_switch')}</span>}
+            </div>
+          )}
         </div>,
         document.body,
       )}

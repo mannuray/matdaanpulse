@@ -9,13 +9,16 @@ import { DashboardStoreProvider, useDashboardStore } from '../store/DashboardSto
 
 const getConstituency = vi.fn();
 const getConstituencyAnalysis = vi.fn();
+const getSeatRounds = vi.fn();
 vi.mock('../../model/api/election.service', async (orig) => ({
   ...(await orig<typeof import('../../model/api/election.service')>()),
   getConstituency: (...a: unknown[]) => getConstituency(...a),
   getConstituencyAnalysis: (...a: unknown[]) => getConstituencyAnalysis(...a),
+  getSeatRounds: (...a: unknown[]) => getSeatRounds(...a),
 }));
 
 import { useSeatDialogVM } from '../tiles/useSeatDialogVM';
+import type { SeatLive, SeatBaseline } from '../../model/derive/seatAnalysis';
 
 function wrap(url: string, sources = makeSources()) {
   return ({ children }: { children: ReactNode }) => (
@@ -95,4 +98,31 @@ describe('useSeatDialogVM', () => {
     act(() => result.current.vm!.onOpenParty('JDU'));
     expect(result.current.store.state.selectedParty).toBe('JDU');
   });
+
+  it('a Finalized seat has no live block and fetches no rounds', async () => {
+    getConstituency.mockResolvedValue(null); getConstituencyAnalysis.mockResolvedValue(null); getSeatRounds.mockReset();
+    const { result } = renderHook(() => useSeatDialogVM(), { wrapper: wrap('/?seat=BR_VS_1_SANDESH') });
+    await waitFor(() => expect(result.current).not.toBeNull());
+    expect(result.current).toMatchObject({ liveSeat: null, upsets: [], trend: [], narrowed: null });
+    expect(getSeatRounds).not.toHaveBeenCalled();
+  });
+
+  it('a live seat: its SeatLive, upset badges, the margin trend from the rounds endpoint, refetched on a new version', async () => {
+    getConstituency.mockResolvedValue(null); getConstituencyAnalysis.mockResolvedValue(null);
+    getSeatRounds.mockReset().mockResolvedValue([{ seq: 1, r: 1, rt: 20, lp: 'BJP', m: 300, v: 900, declared: false, at: '' }, { seq: 2, r: 2, rt: 20, lp: 'RJD', m: 120, v: 1800, declared: false, at: '' }]);
+    const seatLive = { const_id: 'BR_VS_1_SANDESH', call: 'too_close', momentum: 'narrowing', upsets: ['sitting_trailing'], margin: 120, lead_changes: 1, comeback: false } as unknown as SeatLive;
+    const base = makeSources();
+    const live = (version: number) => ({ ...base, election: { ...base.election, status: 'Live' as const }, data: { ...base.data, liveVersion: version, trails: {} },
+      liveAnalysis: { seats: new Map([[seatLive.const_id, seatLive]]), tally: { parties: [], flow: [], alliance_moves: [] } },
+      baselineSeats: new Map([[seatLive.const_id, { sitting: { name: 'Asha Devi', party: 'BJP' } } as unknown as SeatBaseline]]) });
+    let sources = live(7);
+    const { result, rerender } = renderHook(() => useSeatDialogVM(), { wrapper: ({ children }) => wrap('/?seat=BR_VS_1_SANDESH', sources)({ children }) });
+    await waitFor(() => expect(result.current?.trend).toHaveLength(2));
+    expect(result.current?.liveSeat?.call).toBe('too_close');
+    expect(result.current?.upsets).toEqual([{ kind: 'sitting_trailing', name: 'Asha Devi', party: 'BJP', margin: 120 }]);
+    expect(result.current?.trend[1]).toMatchObject({ x: 2, party: 'RJD', switched: true });
+    sources = live(8); rerender();
+    await waitFor(() => expect(getSeatRounds).toHaveBeenCalledTimes(2));
+  });
 });
+

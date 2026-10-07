@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
-import { describe, it, expect, vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import '../../../i18n';
 import { MapCanvas } from '../MapCanvas';
 import type { MapVM } from '../../../viewmodels/tiles/useMapVM';
@@ -16,14 +16,34 @@ function makeVM(): MapVM {
   return {
     status: 'ready', features: [feature], stateFeatures: null, isVS: true, geoConfig: undefined,
     seatOf: new Map([[feature, 'S1']]), fills: new Map([['S1', { color: '#1FA37A', opacity: 1, highlighted: false }]]), outline: true, regionOutlines: [],
-    recentSeats: new Set(), selectedSeat: null, layer: 'overview', layers: ['overview'], mapMode: 'map',
+    recentSeats: new Map(), selectedSeat: null, legend: null, layer: 'overview', layers: ['overview'], mapMode: 'map',
     hexAvailable: false, lockedLabel: null,
     seatInfo: () => ({ name: 'Sandesh', state: 'Bihar', candidate: 'A', party: 'JDU', status: 'Won', color: '#1FA37A', mark: null, type: null }),
     onLayer: vi.fn(), onMapMode: vi.fn(), onSelect: vi.fn(), onClearLock: vi.fn(), onFocus: vi.fn(),
   };
 }
 
+afterEach(cleanup);
+
 describe('MapCanvas', () => {
+  it('while live, the hover card shows the call and a lead switch', () => {
+    const base = makeVM();
+    const vm = { ...base, seatInfo: () => ({ ...base.seatInfo('S1')!, live: { call: 'Too close', leadSwitch: true } }) };
+    const { container } = render(<MapCanvas vm={vm} />);
+    fireEvent.mouseMove(container.querySelector('path.pc') as SVGPathElement, { clientX: 10, clientY: 20 });
+    expect(document.body.textContent).toContain('Too close');
+    expect(document.body.textContent).toContain('Lead switch');
+  });
+
+  it('a too-close seat gets a dashed outline in its colour; a recent change carries its pulse kind', () => {
+    const vm = { ...makeVM(), fills: new Map([['S1', { color: '#1FA37A', opacity: 0.3, highlighted: false, dashed: true }]]), recentSeats: new Map([['S1', 'switch' as const]]) };
+    const { container } = render(<MapCanvas vm={vm} />);
+    const path = container.querySelector('path.pc') as SVGPathElement;
+    expect(path.style.strokeDasharray).toBe('3 2');
+    expect(path.getAttribute('data-pulse')).toBe('switch');
+    expect(path.classList.contains('studio-seat-pulse')).toBe(true);
+  });
+
   it('redraws when the features change while the map stays loaded (cached geojson on return)', () => {
     const vm = makeVM();
     const { container, rerender } = render(<MapCanvas vm={vm} />);

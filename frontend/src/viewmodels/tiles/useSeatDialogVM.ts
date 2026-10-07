@@ -2,7 +2,9 @@ import { useMemo } from 'react';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { useApi } from '../data/useApi';
-import { getConstituency, getConstituencyAnalysis, ElectionService } from '../../model/api/election.service';
+import { getConstituency, getConstituencyAnalysis, getSeatRounds, ElectionService } from '../../model/api/election.service';
+import { trendPoints, narrowedLine, upsetBadges } from '../../model/derive/liveSeat';
+import type { SeatLive } from '../../model/derive/seatAnalysis';
 import { displayNameFromConstId } from '../../model/geo/regionMatching';
 import { buildSeatView, liveChipState, seatHistory, seatNotes, type LiveChipState, type SeatView, type SeatNote } from '../../model/derive/seatView';
 import type { PartyMeta } from '../../model/derive/partyMeta';
@@ -13,6 +15,11 @@ export interface SeatDialogVM {
   live: LiveChipState;
   electors: number | null; turnout: number | null; phase: number | null;
   view: SeatView; history: SeatHistoryEntry[]; notes: SeatNote[];
+  /** Live counting only (null / empty otherwise): the seat's live state, its upsets with names, the margin by round, the narrowed line. */
+  liveSeat: SeatLive | null;
+  upsets: ReturnType<typeof upsetBadges>;
+  trend: ReturnType<typeof trendPoints>;
+  narrowed: ReturnType<typeof narrowedLine>;
   partyMeta: Map<string, PartyMeta>;
   detailState: 'loading' | 'ready' | 'error';
   fullPageHref: string; tracked: boolean;
@@ -29,6 +36,9 @@ export function useSeatDialogVM(): SeatDialogVM | null {
   // Refetch while open on every new live version, so the counting round follows the snapshot (CDN-cached ~60 s).
   const version = src.election.status === 'Live' ? src.data.liveVersion : null;
   const detail = useApi(() => (id ? getConstituency(eid, id) : Promise.resolve(null)), [eid, id, version], { key: id ? `${ElectionService.getConstituencyCacheKey(eid, id)}_v${version ?? ''}` : undefined });
+  const isLive = src.election.status === 'Live';
+  const liveSeat = isLive && id ? src.liveAnalysis?.seats.get(id) ?? null : null;
+  const rounds = useApi(() => (liveSeat && id ? getSeatRounds(eid, id) : Promise.resolve([])), [eid, id, version, !!liveSeat], { key: id && liveSeat ? `${eid}_${id}_rounds_v${version ?? ''}` : undefined });
   const analysis = useApi(() => (id ? getConstituencyAnalysis(eid, id).catch(() => null) : Promise.resolve(null)), [eid, id], { key: id ? `${ElectionService.getConstituencyCacheKey(eid, id)}_analysis` : undefined });
   // useApi keeps the previous seat's data while the next one loads: only use data that belongs to the selected seat.
   const d = detail.data && detail.data.id === id ? detail.data : null;
@@ -53,6 +63,10 @@ export function useSeatDialogVM(): SeatDialogVM | null {
     turnout: d?.voter_turnout != null ? Number(d.voter_turnout) : null,
     phase: d?.phase ?? null,
     view,
+    liveSeat,
+    upsets: liveSeat ? upsetBadges(liveSeat, src.baselineSeats?.get(id) ?? null) : [],
+    trend: liveSeat ? trendPoints(rounds.data ?? []) : [],
+    narrowed: liveSeat ? narrowedLine(src.data.trails[id] ?? null, liveSeat.momentum) : null,
     history: seatHistory(fullAnalysis, src.election.year),
     notes: seatNotes(view, fullAnalysis),
     partyMeta: src.partyMeta,

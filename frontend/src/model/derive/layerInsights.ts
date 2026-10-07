@@ -1,6 +1,8 @@
 import type { ManifestAlliance, SwingEntry, DominanceEntry, IncumbencyEntry, VoteSplitConfig, ResultRow } from '../types';
 import type { LayerId, SeatResult } from '../types/dashboard';
 import { median } from './marginStats';
+import { MOMENTUM_FILL } from './mapColors';
+import type { SeatLive } from './seatAnalysis';
 
 export interface InsightChip {
   id: string;
@@ -33,6 +35,8 @@ export interface InsightContext {
   voteSplits?: VoteSplitConfig[];
   constCandidates?: Map<string, ResultRow[]>;
   threeWaySeats?: Set<string>;
+  /** Live counting: per-seat live state (seat analysis Phase B). Absent → the finished-election insights. */
+  live?: Map<string, SeatLive>;
 }
 
 export const MARGIN_BUCKETS: Record<'LS' | 'VS', { label: string; max: number }[]> = {
@@ -81,11 +85,38 @@ function overview(ctx: InsightContext): LayerInsight {
     layer: 'overview',
     headlineKey: othersCount > 0 ? 'studio_insight_overview_others' : 'studio_insight_overview',
     headlineParams: { text: parts.join(' · '), others: othersCount },
-    chips: partyChips(ctx, seats),
+    chips: [...partyChips(ctx, seats), ...tooCloseChip(ctx)],
+  };
+}
+
+/** While live: one chip for the seats too close to call (filters the map). */
+function tooCloseChip(ctx: InsightContext): InsightChip[] {
+  if (!ctx.live) return [];
+  const ids = [...ctx.live.values()].filter(s => s.call === 'too_close').map(s => s.const_id);
+  return ids.length ? [{ id: 'too_close', label: 'Too close', labelKey: 'studio_chip_too_close', color: MOMENTUM_FILL.narrowing, count: ids.length, seatIds: ids }] : [];
+}
+
+/** Battle while live: lead changes, and where the leads are moving (spec §3.2). */
+function battleLive(live: Map<string, SeatLive>): LayerInsight {
+  const all = [...live.values()];
+  const ids = (f: (s: SeatLive) => boolean) => all.filter(f).map(s => s.const_id);
+  const chip = (id: string, labelKey: string, color: string, seatIds: string[]): InsightChip => ({ id, label: id, labelKey, color, count: seatIds.length, seatIds });
+  return {
+    layer: 'battle',
+    headlineKey: 'studio_insight_battle_live',
+    headlineParams: { n: all.reduce((s, x) => s + (x.lead_changes ?? 0), 0) },
+    chips: [
+      chip('mo_switched', 'map_legend_switched', MOMENTUM_FILL.switched, ids(s => s.momentum === 'switched')),
+      chip('mo_narrowing', 'map_legend_narrowing', MOMENTUM_FILL.narrowing, ids(s => s.momentum === 'narrowing')),
+      chip('mo_widening', 'map_legend_widening', MOMENTUM_FILL.widening, ids(s => s.momentum === 'widening')),
+      chip('comebacks', 'studio_chip_comebacks', ACCENT, ids(s => s.comeback)),
+      chip('upsets', 'studio_chip_upsets', 'var(--color-live)', ids(s => s.upsets.length > 0)),
+    ],
   };
 }
 
 function battle(ctx: InsightContext): LayerInsight {
+  if (ctx.live) return battleLive(ctx.live);
   const seats = led(ctx);
   const buckets = MARGIN_BUCKETS[ctx.electionType];
   const threshold = CLOSE_THRESHOLD[ctx.electionType];

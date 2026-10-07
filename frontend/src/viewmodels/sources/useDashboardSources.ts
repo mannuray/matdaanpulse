@@ -8,15 +8,15 @@ import { useAnalysis } from '../data/useAnalysis';
 import { useBaseline } from '../data/useBaseline';
 import { useLiveAnalysis } from '../data/useLiveAnalysis';
 import { liveMaps, prevYearOf } from '../../model/derive/liveMaps';
-import type { SeatLive, LiveTally } from '../../model/derive/seatAnalysis';
+import type { SeatLive, LiveTally, SeatBaseline } from '../../model/derive/seatAnalysis';
 import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
 import { usePartyMeta } from '../data/usePartyMeta';
 import type { CustomWatch } from '../../model/derive/leaders';
 import type { PartyMeta } from '../../model/derive/partyMeta';
 import { appendTicker, type TickerEvent } from '../../model/live/ticker';
-import { diffLeaders } from '../../model/live/liveUpdates';
-import type { Election, ResultRow, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint, PartyTrendPoint } from '../../model/types';
+import { liveStep, type LiveStepState, type PulseKind } from '../../model/live/pulse';
+import type { Election, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint, PartyTrendPoint } from '../../model/types';
 import type { LayerId } from '../../model/types/dashboard';
 import type { DashboardViewModel } from '../data/useDashboardData';
 
@@ -42,10 +42,13 @@ export interface DashboardSources {
   majority: number | null;
   votePct: Map<string, number>;
   ticker: TickerEvent[];
-  recentSeats: Set<string>;
+  /** Seats that changed in the last few seconds, with the change kind (map pulse colour). */
+  recentSeats: Map<string, PulseKind>;
   /** Live election: the last poll succeeded. */
   liveConnected: boolean;
   availableLayers: LayerId[];
+  /** Live / upcoming election: each seat's pre-counting baseline (names behind upsets in the seat dialog); null without one. */
+  baselineSeats: Map<string, SeatBaseline> | null;
   /** Live / upcoming election: per-seat live state and live tallies (null without a baseline). For the map work. */
   liveAnalysis: { seats: Map<string, SeatLive>; tally: LiveTally } | null;
   /** Party abbreviation and mark (logo → ECI symbol) by party id. */
@@ -79,6 +82,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const ba = useAnalysis(notFinal ? undefined : election.id);
   const baseline = useBaseline(election.id, notFinal);
   const liveAnalysis = useLiveAnalysis(baseline, results, data.seats, data.trails);
+  const baselineSeats = useMemo(() => (baseline ? new Map(baseline.seats.map(s => [s.const_id, s])) : null), [baseline]);
   const lm = useMemo(() => (baseline ? liveMaps(baseline, liveAnalysis ? [...liveAnalysis.seats.values()] : [], election.year) : null), [baseline, liveAnalysis, election.year]);
   const src = !notFinal ? { swing: ba.swingMap, dominance: ba.dominanceMap, incumbency: ba.incumbencyData, partySwitches: ba.partySwitchData } : lm ?? EMPTY_MAPS;
   const { swing, dominance, incumbency, partySwitches } = src;
@@ -90,20 +94,20 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
 
   // Live: ticker + recent-change pulses.
   const [ticker, setTicker] = useState<TickerEvent[]>([]);
-  const [recentSeats, setRecentSeats] = useState<Set<string>>(() => new Set());
+  const [recentSeats, setRecentSeats] = useState<Map<string, PulseKind>>(() => new Map());
   const timers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
   useEffect(() => {
     const t = timers.current;
     return () => { t.forEach(clearTimeout); t.clear(); };
   }, []);
-  const markRecent = useCallback((ids: string[]) => {
-    if (ids.length === 0) return;
-    setRecentSeats(prev => new Set([...prev, ...ids]));
-    for (const id of ids) {
+  const markRecent = useCallback((kinds: Map<string, PulseKind>) => {
+    if (kinds.size === 0) return;
+    setRecentSeats(prev => new Map([...prev, ...kinds]));
+    for (const id of kinds.keys()) {
       clearTimeout(timers.current.get(id));
       timers.current.set(id, setTimeout(() => {
         timers.current.delete(id);
-        setRecentSeats(prev => { const n = new Set(prev); n.delete(id); return n; });
+        setRecentSeats(prev => { const n = new Map(prev); n.delete(id); return n; });
       }, RECENT_CHANGE_MS));
     }
   }, []);
@@ -111,18 +115,16 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   // seats whose leader changed feed the ticker and pulse on the map. The first snapshot
   // (and the first after switching elections) is the baseline, not news. Snapshots only
   // move forward (the poller drops older versions), so events are never replayed backwards.
-  const prevSnapshot = useRef<{ electionId: string; version: number; results: ResultRow[] } | null>(null);
+  const liveState = useRef<LiveStepState | null>(null);
   useEffect(() => {
-    if (liveVersion === null) { prevSnapshot.current = null; return; }
-    const prev = prevSnapshot.current;
-    if (prev && prev.electionId === election.id && prev.version === liveVersion) return;
-    prevSnapshot.current = { electionId: election.id, version: liveVersion, results };
-    if (!prev || prev.electionId !== election.id || liveVersion < prev.version) return;
-    const changes = diffLeaders(prev.results, results);
-    if (changes.length === 0) return;
-    markRecent(changes.map(c => c.const_id));
-    setTicker(p => appendTicker(p, changes));
-  }, [results, liveVersion, election.id, markRecent]);
+    if (liveVersion === null) { liveState.current = null; return; }
+    const upsets = new Map([...(liveAnalysis?.seats.values() ?? [])].filter(s => s.upsets.length).map(s => [s.const_id, s.upsets]));
+    const step = liveStep(liveState.current, { electionId: election.id, version: liveVersion, results, upsets });
+    liveState.current = step.state;
+    if (step.kinds.size === 0) return;
+    markRecent(step.kinds);
+    setTicker(p => appendTicker(p, step.changes, Date.now(), step.ups));
+  }, [results, liveVersion, election.id, markRecent, liveAnalysis]);
   useEffect(() => { setLiveConnected(liveConnected); }, [liveConnected, setLiveConnected]);
   // Leaving the dashboard: the legacy header must not keep showing a stale "connected".
   useEffect(() => () => setLiveConnected(false), [setLiveConnected]);
@@ -150,7 +152,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
 
   return {
     election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, historyPartyIds, prevYear,
-    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta, liveAnalysis,
+    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta, liveAnalysis, baselineSeats,
     watchlist, addWatch, removeWatch,
   };
 }

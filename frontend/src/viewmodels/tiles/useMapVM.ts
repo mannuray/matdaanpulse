@@ -1,10 +1,13 @@
+import { mapLegend, type LegendItem } from '../../model/derive/mapLegend';
+export type { LegendItem };
+import type { PulseKind } from '../../model/live/pulse';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { activeHighlight, type MapMode } from '../store/dashboardStore';
 import { ElectionService } from '../../model/api/election.service';
-import { seatFills, showOutline, type SeatFill } from '../../model/derive/mapFill';
+import { seatFills, showOutline, type SeatFill, countingLive } from '../../model/derive/mapFill';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import type { LayerId } from '../../model/types/dashboard';
@@ -26,7 +29,10 @@ export interface MapVM {
   outline: boolean;
   /** Regions layer: each region's outline, built from its seats (strong for the highlighted region). Empty elsewhere. */
   regionOutlines: RegionOutline[];
-  recentSeats: Set<string>;
+  /** Seats that just changed, with the change kind (pulse colour). */
+  recentSeats: Map<string, PulseKind>;
+  /** The live legend (calls on the Overview, momentum on Battle); null when not live. */
+  legend: LegendItem[] | null;
   selectedSeat: string | null;
   layer: LayerId;
   layers: LayerId[];
@@ -34,7 +40,8 @@ export interface MapVM {
   hexAvailable: boolean;
   lockedLabel: string | null;
   /** Tooltip facts; state is the seat's state (LS: from the PC map, VS: the election's state) when known. */
-  seatInfo(id: string): { name: string; state: string | null; candidate: string; party: string; status: string; margin?: number; color: string; mark: string | null; type: 'GEN' | 'SC' | 'ST' | null } | null;
+  /** `live`: while counting, the seat's call and whether its lead just switched (hover card, spec §3.1). */
+  seatInfo(id: string): { name: string; state: string | null; candidate: string; party: string; status: string; margin?: number; color: string; mark: string | null; type: 'GEN' | 'SC' | 'ST' | null; live?: { call: string; leadSwitch: boolean } } | null;
   onLayer(l: LayerId): void;
   onMapMode(m: MapMode): void;
   onSelect(id: string): void;
@@ -72,7 +79,10 @@ export function useMapVM(): MapVM {
   const highlight = activeHighlight(state);
   // Highlight sets are rebuilt each render; key them by content so fills only recompute on real changes.
   const hlKey = `${[...highlight.parties].join(',')}|${[...highlight.seats].join(',')}`;
+  // Live counting only: the per-seat live state colours the Overview (call) and Battle (momentum).
+  const live = useMemo(() => countingLive(src.election.status === 'Live' ? src.liveAnalysis?.seats : undefined), [src.election.status, src.liveAnalysis]);
   const fillCtx = {
+    live,
     layer: state.layer,
     electionType: src.election.type,
     partyColor: src.data.partyColorMap,
@@ -83,7 +93,8 @@ export function useMapVM(): MapVM {
     highlight,
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fills = useMemo(() => seatFills(seats, fillCtx), [seats, state.layer, src.election.type, src.data.partyColorMap, src.swing, src.dominance, src.data.spoilerData, hlKey]);
+  const fills = useMemo(() => seatFills(seats, fillCtx), [seats, state.layer, src.election.type, src.data.partyColorMap, src.swing, src.dominance, src.data.spoilerData, hlKey, live]);
+  const legend = useMemo(() => mapLegend(state.layer, live), [state.layer, live]);
 
   const outline = useMemo(() => showOutline([...fills.values()].filter(f => f.highlighted).length), [fills]);
   const onRegions = state.layer === 'regions';
@@ -94,13 +105,14 @@ export function useMapVM(): MapVM {
 
   return {
     status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills, outline: outline && !onRegions, regionOutlines: regionLines,
-    recentSeats: src.recentSeats, selectedSeat: state.selectedSeat,
+    recentSeats: src.recentSeats, legend, selectedSeat: state.selectedSeat,
     layer: state.layer, layers: src.availableLayers, mapMode: state.mapMode, hexAvailable: Boolean(geo?.hex_url),
     lockedLabel: state.locked?.label ?? null,
     seatInfo: id => {
       const s = byId.get(id);
       if (!s) return null;
-      return { name: s.name, state: (isVS ? src.election.state?.name : s.state) || null, candidate: s.candidate, party: s.party, status: s.party ? t(s.status.toLowerCase(), s.status) : t('results_pending'), margin: s.margin, color: s.partyColor, mark: s.party ? src.partyMeta.get(s.party)?.mark ?? null : null, type: s.type ?? null };
+      return { name: s.name, state: (isVS ? src.election.state?.name : s.state) || null, candidate: s.candidate, party: s.party, status: s.party ? t(s.status.toLowerCase(), s.status) : t('results_pending'), margin: s.margin, color: s.partyColor, mark: s.party ? src.partyMeta.get(s.party)?.mark ?? null : null, type: s.type ?? null,
+        ...(live?.get(id) ? { live: { call: t(`seat_call_${live.get(id)!.call}`), leadSwitch: live.get(id)!.momentum === 'switched' } } : {}) };
     },
     onLayer: l => dispatch({ type: 'setLayer', layer: l }),
     onMapMode: m => dispatch({ type: 'setMapMode', mode: m }),

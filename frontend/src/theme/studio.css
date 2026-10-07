@@ -25,6 +25,10 @@
   --color-map-stroke: #0A0F1E;
   --color-map-pending: #2A3452;
   --color-map-swing: #E8C547;
+  --color-map-mo-switched: #8A80FF;
+  --color-map-mo-narrowing: #E04FB0;
+  --color-map-mo-widening: #7D93B8;
+  --color-map-mo-stable: #3A4260;
   --color-map-threeway: #F59E0B;
   --color-on-accent: #0A0F1E;
   --color-ok: #34D399;
@@ -60,6 +64,10 @@
   --color-map-stroke: #FFFFFF;
   --color-map-pending: #C9D0E0;
   --color-map-swing: #B8930F;
+  --color-map-mo-switched: #5B4BE0;
+  --color-map-mo-narrowing: #C2378F;
+  --color-map-mo-widening: #5D7397;
+  --color-map-mo-stable: #B7BFD2;
   --color-map-threeway: #D97706;
   --color-on-accent: #FFFFFF;
   --color-ok: #059669;
@@ -92,8 +100,11 @@
 @keyframes studio-zoom { from { opacity: 0; scale: .96; } to { opacity: 1; scale: 1; } }
 .studio-focus[data-state="open"] { animation: studio-zoom 200ms ease-out; }
 @media (prefers-reduced-motion: reduce) { .studio-pulse, .studio-seat-pulse, .studio-focus[data-state="open"] { animation: none; } }
-@keyframes studio-seat-pulse { 0%,100% { stroke-width: .4px; } 50% { stroke: var(--color-ink); stroke-width: 2px; } }
-.studio-seat-pulse { animation: studio-seat-pulse 900ms ease-in-out 2; }
+/* Typed pulse (live map): lead switch = momentum violet, upset = live red, others = ink. */
+@keyframes studio-seat-pulse { 0%,100% { stroke-width: .4px; } 50% { stroke: var(--pulse-stroke); stroke-width: 2px; } }
+.studio-seat-pulse { --pulse-stroke: var(--color-ink); animation: studio-seat-pulse 900ms ease-in-out 2; }
+.studio-seat-pulse[data-pulse="switch"] { --pulse-stroke: var(--color-map-mo-switched); }
+.studio-seat-pulse[data-pulse="upset"] { --pulse-stroke: var(--color-live); }
 /* Thin, theme-aware scrollbar for tile bodies that scroll (side card tabs). */
 .studio-scroll { scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
 .studio-scroll::-webkit-scrollbar { width: 6px; }
