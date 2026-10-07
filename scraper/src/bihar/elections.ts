@@ -6,8 +6,8 @@
 import type { SeatType } from './types';
 import type { SeatRange } from './seat-range';
 
-export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK' | 'AR' | 'AP' | 'MH';
-export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK', 'AR', 'AP', 'MH'];
+export type StateCode = 'BR' | 'WB' | 'TN' | 'KL' | 'AS' | 'PY' | 'GA' | 'MN' | 'PB' | 'UK' | 'UP' | 'DL' | 'HR' | 'JH' | 'OD' | 'SK' | 'AR' | 'AP' | 'MH' | 'JK';
+export const STATE_CODES: StateCode[] = ['BR', 'WB', 'TN', 'KL', 'AS', 'PY', 'GA', 'MN', 'PB', 'UK', 'UP', 'DL', 'HR', 'JH', 'OD', 'SK', 'AR', 'AP', 'MH', 'JK'];
 
 export interface YearConfig {
   year: number; electionId: string; constPrefix: string;
@@ -84,6 +84,8 @@ export const STATES: Record<StateCode, StateConfig> = {
   // Telugu names change word order and initials between reports: loose person-link keys.
   AP: { ...state('AP', 'ap', 'Andhra Pradesh', 2, 175, 29, 7), looseNames: true },
   MH: state('MH', 'mh', 'Maharashtra', 20, 288, 29, 25),
+  // Today's union territory (2022 boundaries); the 2008/2014 elections set their own seats, boundaries and reserved counts.
+  JK: state('JK', 'jk', 'Jammu and Kashmir', 13, 90, 7, 9),
 };
 
 /** A historical election of one of the five states: ECI old-site report; 2011/2016 one PDF, 2021 XLSX (set after fetch). */
@@ -112,12 +114,13 @@ const p3 = (code: StateCode, stateHex: string, year: number, docid: number, expe
 });
 /** A Phase 4A election (2008-2025): old-site docid or new-site category, no old seed, its own counting date. */
 const p4 = (code: StateCode, year: number, src: { docid: number } | { category: number }, expectedPhases: number, resultDate: string,
-  files: YearConfig['files'], latest?: { base: string; eciCode: string; myneta: string }, extra: Partial<ElectionConfig> = {}): ElectionConfig => {
+  files: YearConfig['files'], latest?: { base: string; eciCode: string; myneta: string },
+  extra: Omit<Partial<ElectionConfig>, 'newElection'> & { newElection?: Partial<NonNullable<ElectionConfig['newElection']>> } = {}): ElectionConfig => {
   const id = `a0${String(STATES[code].stateId).padStart(2, '0')}0000-0000-4000-8000-00000000${year}`;
   const base: ElectionConfig = 'docid' in src ? hist(code, year, id, src.docid, expectedPhases, files)
     : { state: code, year, electionId: id, constPrefix: `${code}_VS${String(year).slice(2)}_`, expectedPhases, category: src.category, files,
         source: { title: `ECI Statistical Report, ${STATES[code].name} Legislative Assembly ${year}`, url: `https://www.eci.gov.in/eci-backend/public/api/election-result?category_id=${src.category}` } };
-  return { ...base, ...(STATES[code].seatTypes ? { seatTypes: STATES[code].seatTypes } : {}), ...(STATES[code].stripHonorifics ? { stripHonorifics: true } : {}), ...extra, newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate, reserved: STATES[code].reserved },
+  return { ...base, ...(STATES[code].seatTypes ? { seatTypes: STATES[code].seatTypes } : {}), ...(STATES[code].stripHonorifics ? { stripHonorifics: true } : {}), ...extra, newElection: { name: `${STATES[code].name} Vidhan Sabha ${year}`, delimitation: '2008', resultDate, reserved: STATES[code].reserved, ...extra.newElection },
     ...(latest ? { resultsSite: { base: latest.base, eciCode: latest.eciCode }, myneta: latest.myneta } : {}) };
 };
 const pdf = (y: number) => ({ pdf: `${y}/${y}.pdf` });
@@ -226,6 +229,12 @@ export const ELECTIONS: ElectionConfig[] = [
   p4('MH', 2019, { docid: 11699 }, 1, '2019-10-24', xs(2019, 'xls', '_', '', 'Constituency_Data_Summery_Report')),
   p4('MH', 2024, { category: 8 }, 1, '2024-11-23', xs(2024, 'xlsx', '_', '', 'Constituency_Data_Summery_Report'),
     { base: 'https://results.eci.gov.in/ResultAcGenNov2024/', eciCode: 'S13', myneta: 'maharashtra2024' }),
+  // Phase 4B-5: Jammu & Kashmir. 2008/2014: the state's 87 seats on the 1995 boundaries (Ladakh's 4 included);
+  // 2024: the union territory's 90 seats on the 2022 boundaries (no history across the two).
+  p4('JK', 2008, { docid: 3796 }, 7, '2008-12-28', pdf(2008), undefined, { seats: 87, newElection: { delimitation: '1995', reserved: { sc: 7, st: 0 } } }),
+  p4('JK', 2014, { docid: 3797 }, 5, '2014-12-23', pdf(2014), undefined, { seats: 87, newElection: { delimitation: '1995', reserved: { sc: 7, st: 0 } } }),
+  p4('JK', 2024, { category: 7 }, 3, '2024-10-08', xs(2024, 'xlsx', '-', '', 'Constituency-Data-Summery-Report'),
+    { base: 'https://results.eci.gov.in/AcResultGenOct2024/', eciCode: 'U08', myneta: 'jammukashmir2024' }, { seats: 90, newElection: { delimitation: '2022' } }),
 ];
 
 /** The registry entry of an election id. */
