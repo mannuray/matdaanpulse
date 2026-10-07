@@ -33,10 +33,16 @@ describe('SeatDialog live block', () => {
     expect(screen.getByText('Too close')).toBeTruthy();
     expect(screen.getByText('Narrowing')).toBeTruthy();
     expect(document.querySelector('svg[data-margin-trend]')).toBeTruthy();
-    expect(screen.getByText('Lead switch R3')).toBeTruthy();
+    expect([...document.querySelectorAll('svg[data-margin-trend] text')].map(e => e.textContent)).toEqual(['Lead switch R3']);
     expect(screen.getByText('Sitting MLA trailing · Asha Devi (BJP)')).toBeTruthy();
     expect(screen.getByText('Stronghold at risk · held by BJP since 2005')).toBeTruthy();
     expect(screen.getByText('Lead narrowed from 2,890 to 342 over the last 3 rounds')).toBeTruthy();
+  });
+  it('labels only the latest lead switch (neighbouring switches do not stack labels); every switch keeps a marker', () => {
+    const many = [1, 2, 3, 4, 5].map(x => ({ x, y: 300, party: x % 2 ? 'BJP' : 'RJD', switched: x > 1 }));
+    renderIt(vm({ liveSeat, trend: many }));
+    expect([...document.querySelectorAll('svg[data-margin-trend] text')].map(e => e.textContent)).toEqual(['Lead switch R5']);
+    expect(document.querySelectorAll('svg[data-margin-trend] circle[data-switch]')).toHaveLength(4);
   });
   it('no chart with fewer than 2 points; nothing live for a non-live seat', () => {
     renderIt(vm({ liveSeat, trend: trend.slice(0, 1) }));
