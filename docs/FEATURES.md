@@ -643,6 +643,49 @@ and exposed, but not drawn yet (the map brainstorm designs their visuals).
   the maps empty, with no error.
 - [x] **Simulation:** the simulation election copies its source's delimitation; `sim:reset` also clears the timeline
   and counting state; `tune-calls.ts` measures the call labels on a run.
+
+### Live map (2026-10)
+
+Spec `docs/superpowers/specs/2026-10-07-live-map-design.md`, plan `docs/superpowers/plans/2026-10-07-live-map.md`.
+Stitch screens (project 7025431006647439600): desktop Overview `0b2199443acd4d57835764059329e6be`, desktop Battle
+`01ffabeedaaa4043b747bf4729fbdfa9`, seat dialog `61d96702a88c46d2a8f6a8e4c80e9333`, mobile Overview
+`448c33328ceb4c18b1e6cc19f7741f99`, mobile Battle `97964eded11043c58578129396e11542`.
+
+Live styling applies only while the election is Live and some seat is still counting (`countingLive`). Before the
+first result, and once every seat is declared, the dashboard is the ordinary results map.
+
+- [x] **Overview:** the leading party's colour with strength by call:
+
+  | Call | Look |
+  |---|---|
+  | Declared / safe | solid |
+  | Likely / counting | 0.6 |
+  | Too close | 0.3 with a dashed outline in the party colour |
+  | Not started | pending grey |
+
+  The legend reads Safe · Likely · Too close · Not started, with counts and no vote thresholds (the tooltip explains
+  "lead compared with the votes still to count"). A "Too close · N" chip in the insight strip filters the map.
+- [x] **Battle:** seats coloured by momentum in non-party colours:
+  - switched = violet `--color-map-mo-switched`;
+  - narrowing = magenta;
+  - widening = pale grey-blue;
+  - stable / declared = slate.
+
+  The headline reads "N lead changes so far", with Switched / Narrowing / Widening / Comebacks / Upsets chips. When
+  nothing is counting, Battle keeps the margin buckets.
+- [x] **Typed pulse:** the outline flash is coloured by type: upset (red) > lead switch (violet) > declared /
+  update. The ticker adds "Lead switch: seat · from → to" and "Upset: …" lines.
+- [x] **Live seat dialog:**
+  - round progress bar;
+  - call badge (Too close dashed) and momentum badge;
+  - margin trend chart from `GET …/rounds`: party-coloured segments, a marker per lead switch, only the latest one
+    labelled;
+  - upset badges with names (sitting MLA, stronghold holder and year, heavyweight);
+  - "Lead narrowed / widened from X to Y over the last N rounds".
+- [x] **The Map / Hex toggle is hidden;** no hex renderer exists yet.
+- Checked on a simulation run: desktop, mobile 390×844, light theme. Known: early in a count many seats are "too
+  close" (about 110 of 243 at round 8 of 24 in the simulation), because the provisional thresholds compare the lead
+  with all remaining votes.
 ### Admin redesign: shell + Live Console (2026-10)
 - New shell: grouped sidebar (Counting / Data / Admin), top bar with a global election picker (remembered in `?election=` + localStorage), live-updates pill, health dot (`/health/ready`), keyboard-shortcuts dialog.
 - Election picker (`components/shell/ElectionPicker.tsx` + `electionGrid.ts`): the top-bar button shows state, type, year and status ("West Bengal · Vidhan Sabha 2021 · Finalized", status dot green live / amber upcoming / grey finalized). It opens a Radix Popover with a search box, a "Live & upcoming" pinned list, and a state × year grid (Lok Sabha first, states A–Z, years newest first). Search matches every token against state words, state initials (`wb`, `tn`), year prefix (`20`), type (`ls`, `vidhan`) or status (`live`). `E` opens it anywhere outside a text field, dialog, menu or popover (a Radix menu's typeahead keeps its letter keys); ↑↓ move, Enter picks, Esc closes. Switching with unsaved edits asks first.

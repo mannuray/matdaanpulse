@@ -70,6 +70,19 @@ Practice without ECI: clones Bihar 2025 into a fictional Live election and repla
 (`set -a && . ../.env && set +a`). The simulation election copies its source's `delimitation`, so it has comparable
 history and a baseline (compute it with the admin compute endpoint once it is set up).
 
+### Live map checks (simulation)
+
+With a replay running (`ROUND_DELAY_MS=10000`–`15000`), check on the dashboard:
+- **Overview:** solid / medium / faint-dashed seats, legend counts, and the "Too close · N" chip filtering the map;
+- **Battle:** momentum colours, "N lead changes so far" and the chips;
+- **Pulse:** violet on lead switches, red on upsets;
+- **Seat dialog** on a narrowing seat: badges, the margin chart growing per round, the narrowed line;
+- **Mobile** at 390×844: the legend wraps;
+- **Light theme.**
+
+Once every seat is declared, the map returns to the ordinary results look. A tab left in the background pauses
+polling, so reload or refocus it before judging.
+
 ### Call thresholds (provisional)
 
 The live analysis labels each counting seat `safe` / `likely` / `too_close` by lead ÷ estimated remaining votes
