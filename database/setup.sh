@@ -133,6 +133,7 @@ run seed_sk_person_links_v1.sql
 run seed_ar_person_links_v1.sql
 run seed_ap_person_links_v1.sql
 run seed_mh_person_links_v1.sql
+run seed_jk_person_links_v1.sql
 # 2026 candidates → their 2011-2021 persons (run-once; same delimitation only, so none for Assam 2026)
 for st in kl py tn wb; do run "seed_${st}_person_links_v2.sql"; done
 # Latest DL/HR/JH/OD candidates → their earlier persons (run-once)

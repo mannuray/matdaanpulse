@@ -1,0 +1,635 @@
+[
+ {
+  "key": "ABDUL RASHID DAR|1995:8",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "d0f1bd9d-824b-59a4-afcf-40f34ee3e343",
+    "year": 2008,
+    "constNo": 8,
+    "name": "Abdul Rashid Dar",
+    "partyId": "INC",
+    "age": 55,
+    "era": "1995"
+   },
+   {
+    "candidateId": "d5cd276f-9496-52a6-9336-9dd5fc269241",
+    "year": 2014,
+    "constNo": 8,
+    "name": "Abdul Rashid Dar",
+    "partyId": "INC",
+    "age": 65,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "ALTAF AHMAD|1995:16",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "464c8bad-31c6-54c3-af63-f34622159df1",
+    "year": 2008,
+    "constNo": 16,
+    "name": "Altaf Ahmad",
+    "partyId": "JKNC",
+    "age": 48,
+    "era": "1995"
+   },
+   {
+    "candidateId": "4ea5fb84-62bb-517c-9a26-378ed99bad66",
+    "year": 2014,
+    "constNo": 16,
+    "name": "Altaf Ahmad",
+    "partyId": "JKNC",
+    "age": 57,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "AMRIT BARSHA|1995:55",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "fd96e535-257e-5138-a48e-faba0254d184",
+    "year": 2008,
+    "constNo": 55,
+    "name": "Amrit Barsha",
+    "partyId": "SP",
+    "age": 47,
+    "era": "1995"
+   },
+   {
+    "candidateId": "ffd1fb4d-81a7-5036-812f-acdd2314adff",
+    "year": 2014,
+    "constNo": 55,
+    "name": "Amrit Barsha",
+    "partyId": "SP",
+    "age": 50,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "ASHFAQ AHMED|1995:87",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "8b0ea0a7-e7af-5141-b886-aa2629fe9633",
+    "year": 2008,
+    "constNo": 87,
+    "name": "Ashfaq Ahmed",
+    "partyId": "BSP",
+    "age": 28,
+    "era": "1995"
+   },
+   {
+    "candidateId": "89b0e369-4597-59d0-b375-f3a5c787d01f",
+    "year": 2014,
+    "constNo": 87,
+    "name": "Ashfaq Ahmed",
+    "partyId": "BSP",
+    "age": 31,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "ASHIQ HUSSAIN LONE|1995:15",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "8179d65a-8dd7-574f-8ea8-44b9cd264481",
+    "year": 2008,
+    "constNo": 15,
+    "name": "Ashiq Hussain Lone",
+    "partyId": "BSP",
+    "age": 26,
+    "era": "1995"
+   },
+   {
+    "candidateId": "47a6bd72-5958-5720-937b-52191fbacfb9",
+    "year": 2014,
+    "constNo": 15,
+    "name": "Ashiq Hussain Lone",
+    "partyId": "BSP",
+    "age": 27,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "ASIEA|1995:18",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ea7f053c-d45b-5fe5-8055-627ba9402132",
+    "year": 2008,
+    "constNo": 18,
+    "name": "Asiea",
+    "partyId": "JKPDP",
+    "age": 39,
+    "era": "1995"
+   },
+   {
+    "candidateId": "c0f5f9df-15e9-56ff-96a4-826210105b0c",
+    "year": 2014,
+    "constNo": 18,
+    "name": "Asiea",
+    "partyId": "JKPDP",
+    "age": 44,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "BASHIR AHMAD WANI|1995:5",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b9f143c1-206f-5832-b6ba-7146576c9f70",
+    "year": 2008,
+    "constNo": 5,
+    "name": "Bashir Ahmad Wani",
+    "partyId": "JKPDFS",
+    "age": 48,
+    "era": "1995"
+   },
+   {
+    "candidateId": "f3b92d79-1738-5984-970f-8ec96ea0fbf0",
+    "year": 2014,
+    "constNo": 5,
+    "name": "Bashir Ahmad Wani",
+    "partyId": "INC",
+    "age": 59,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "FAYAZ AHMAD DAR|1995:34",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "375d9ddc-0aee-50d1-a174-4049af825d95",
+    "year": 2008,
+    "constNo": 34,
+    "name": "Fayaz Ahmad Dar",
+    "partyId": "BSP",
+    "age": 45,
+    "era": "1995"
+   },
+   {
+    "candidateId": "e5b39861-8b93-5201-91a6-36e983fa9f17",
+    "year": 2014,
+    "constNo": 34,
+    "name": "Fayaz Ahmad Dar",
+    "partyId": "INC",
+    "age": 40,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "GH MOHD MIR|1995:31",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "c32d0b47-e0a2-548a-9253-9fedc2b61695",
+    "year": 2008,
+    "constNo": 31,
+    "name": "Gh. Mohd Mir",
+    "partyId": "IND",
+    "age": 57,
+    "era": "1995"
+   },
+   {
+    "candidateId": "49673830-2098-5429-b543-8a7cc8e0034d",
+    "year": 2014,
+    "constNo": 31,
+    "name": "Gh Mohd Mir",
+    "partyId": "INC",
+    "age": 60,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "IRFAN HAFIZ LONE|1995:12",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b947c6ff-3016-589b-86de-99acf79bb1d8",
+    "year": 2008,
+    "constNo": 12,
+    "name": "Irfan Hafiz Lone",
+    "partyId": "IND",
+    "age": 26,
+    "era": "1995"
+   },
+   {
+    "candidateId": "78f40cf3-c395-5c0c-8766-ead364c12a1a",
+    "year": 2014,
+    "constNo": 12,
+    "name": "Irfan Hafiz Lone",
+    "partyId": "IND",
+    "age": 37,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "KANWARJEET|1995:73",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "739230a0-e904-5199-9133-a12a00258deb",
+    "year": 2008,
+    "constNo": 73,
+    "name": "Kanwarjeet",
+    "partyId": "IND",
+    "age": 42,
+    "era": "1995"
+   },
+   {
+    "candidateId": "facf76fa-5789-597f-94d9-0f925a23bbdc",
+    "year": 2014,
+    "constNo": 73,
+    "name": "Kanwarjeet",
+    "partyId": "IND",
+    "age": 47,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "KRISHAN SINGH|1995:31",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "6a1f9f25-6fcf-5cfa-903d-bcdad4395b51",
+    "year": 2008,
+    "constNo": 31,
+    "name": "Krishan Singh",
+    "partyId": "JKNPP",
+    "age": 45,
+    "era": "1995"
+   },
+   {
+    "candidateId": "72557ce0-55e8-5529-a05f-23ecdc0e364c",
+    "year": 2014,
+    "constNo": 31,
+    "name": "Krishan Singh",
+    "partyId": "JKNPP",
+    "age": 45,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "MOHAMMAD AMIN BHAT|1995:41",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "cd0a42c3-8ca0-549f-910c-41c78e7db83e",
+    "year": 2008,
+    "constNo": 41,
+    "name": "Mohammad Amin Bhat",
+    "partyId": "INC",
+    "age": 35,
+    "era": "1995"
+   },
+   {
+    "candidateId": "fc159395-6eec-5d0d-8b3b-2934252675ba",
+    "year": 2014,
+    "constNo": 41,
+    "name": "Mohammad Amin Bhat",
+    "partyId": "INC",
+    "age": 48,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "MOHD ASHRAF GANIE|1995:8",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "532b0c38-cd70-5f51-b0d1-7f46d87cd282",
+    "year": 2008,
+    "constNo": 8,
+    "name": "Mohd Ashraf Ganie",
+    "partyId": "JKNC",
+    "age": 60,
+    "era": "1995"
+   },
+   {
+    "candidateId": "40f7dd32-8fcb-5ebd-9207-cbb90fe3b37b",
+    "year": 2014,
+    "constNo": 8,
+    "name": "Mohd. Ashraf Ganie",
+    "partyId": "JKNC",
+    "age": 73,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "MOHD SHAFEEQ KHAN|1995:86",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "2fe4d591-f59b-5bb3-b1a2-d41fca728f6c",
+    "year": 2008,
+    "constNo": 86,
+    "name": "Mohd. Shafeeq Khan",
+    "partyId": "BSP",
+    "age": 37,
+    "era": "1995"
+   },
+   {
+    "candidateId": "595049cd-b382-54c3-896f-7aba8b12f60f",
+    "year": 2014,
+    "constNo": 86,
+    "name": "Mohd Shafeeq Khan",
+    "partyId": "BSP",
+    "age": 39,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "MOHD YOUSUF BHAT|1995:36",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "8d8e6550-d099-5897-a8c1-5b92d74a538e",
+    "year": 2008,
+    "constNo": 36,
+    "name": "Mohd Yousuf Bhat",
+    "partyId": "JKNPP",
+    "age": 42,
+    "era": "1995"
+   },
+   {
+    "candidateId": "1f6ede5d-0ea5-5fdd-b7b8-8b580f34702c",
+    "year": 2014,
+    "constNo": 36,
+    "name": "Mohd Yousuf Bhat",
+    "partyId": "JKPDP",
+    "age": 66,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "MUSHTAQ AHMAD SHAH|1995:31",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "a623df92-7bbc-5cbe-8d64-090795e41d5d",
+    "year": 2008,
+    "constNo": 31,
+    "name": "Mushtaq Ahmad Shah",
+    "partyId": "JKPDP",
+    "age": 53,
+    "era": "1995"
+   },
+   {
+    "candidateId": "4a43d5a4-408f-55fb-a747-ba67e1dce8a3",
+    "year": 2014,
+    "constNo": 31,
+    "name": "Mushtaq Ahmad Shah",
+    "partyId": "JKPDP",
+    "age": 51,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "NAWANG RIGZIN|1995:48",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "401dff47-ba1a-55a5-a132-a316a5c497d6",
+    "year": 2008,
+    "constNo": 48,
+    "name": "Nawang Rigzin",
+    "partyId": "INC",
+    "age": 53,
+    "era": "1995"
+   },
+   {
+    "candidateId": "511f0854-d00e-5337-89ea-f075f2369101",
+    "year": 2014,
+    "constNo": 48,
+    "name": "Nawang Rigzin",
+    "partyId": "INC",
+    "age": 56,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "NAZIR AHMAD KHAN|1995:9",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "61cec011-8a7d-5a15-880e-f5f92d2d10cd",
+    "year": 2008,
+    "constNo": 9,
+    "name": "Nazir Ahmad Khan",
+    "partyId": "JKNC",
+    "age": 35,
+    "era": "1995"
+   },
+   {
+    "candidateId": "113e3723-0998-5166-9dd1-29ea38ec3176",
+    "year": 2014,
+    "constNo": 9,
+    "name": "Nazir Ahmad Khan",
+    "partyId": "JKNC",
+    "age": 49,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "NAZIR AHMAD RAINA|1995:16",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "cf4a3ac4-e6a3-5d1c-a6ea-03c3f322a99c",
+    "year": 2008,
+    "constNo": 16,
+    "name": "Nazir Ahmad Raina",
+    "partyId": "BJP",
+    "age": 37,
+    "era": "1995"
+   },
+   {
+    "candidateId": "4acba0de-c6af-5a2e-a44d-43446dd94c9a",
+    "year": 2014,
+    "constNo": 16,
+    "name": "Nazir Ahmad Raina",
+    "partyId": "BJP",
+    "age": 47,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "SARDAR KHAN|1995:2",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "3aa53b0e-d5b4-5509-8a4a-180fbe9df5f4",
+    "year": 2008,
+    "constNo": 2,
+    "name": "Sardar Khan",
+    "partyId": "BSP",
+    "age": 35,
+    "era": "1995"
+   },
+   {
+    "candidateId": "8a2c5e45-3a89-5bbc-8aa2-9228e425b6ca",
+    "year": 2014,
+    "constNo": 2,
+    "name": "Sardar Khan",
+    "partyId": "BSP",
+    "age": 44,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "SHEIKH MOHD RAFI|1995:36",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "19df3a50-7373-570d-92a5-3817514560bc",
+    "year": 2008,
+    "constNo": 36,
+    "name": "Sheikh Mohd Rafi",
+    "partyId": "JKANC",
+    "age": 47,
+    "era": "1995"
+   },
+   {
+    "candidateId": "9965e928-a5bd-56b9-9983-ec8047ef07fe",
+    "year": 2014,
+    "constNo": 36,
+    "name": "Sheikh Mohd Rafi",
+    "partyId": "JKNC",
+    "age": 48,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "SOM NATH|1995:68",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "b9c3a12b-3b03-5e95-adf3-40ed0c104c84",
+    "year": 2008,
+    "constNo": 68,
+    "name": "Som Nath",
+    "partyId": "BSP",
+    "age": 48,
+    "era": "1995"
+   },
+   {
+    "candidateId": "0b583762-1275-58ae-a26a-7e40aba2af93",
+    "year": 2008,
+    "constNo": 68,
+    "name": "Som Nath",
+    "partyId": "JKNC",
+    "age": 63,
+    "era": "1995"
+   },
+   {
+    "candidateId": "ab92556b-647f-58e2-ab70-7c2631a6457c",
+    "year": 2014,
+    "constNo": 68,
+    "name": "Som Nath",
+    "partyId": "BSP",
+    "age": 54,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "SYED FAROOQ AHMAD ANDRABI|1995:42",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "55f5ade6-7e56-5d9e-9199-7cd02ca05b8e",
+    "year": 2008,
+    "constNo": 42,
+    "name": "Syed Farooq Ahmad Andrabi",
+    "partyId": "JKPDP",
+    "age": 43,
+    "era": "1995"
+   },
+   {
+    "candidateId": "8a909787-00e2-5b05-9126-6b9d588e6137",
+    "year": 2014,
+    "constNo": 42,
+    "name": "Syed Farooq Ahmad Andrabi",
+    "partyId": "JKPDP",
+    "age": 55,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "TAJ MOHIUDDIN|1995:6",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "ccce7f6d-d5b7-5026-8928-b3489bf7e387",
+    "year": 2008,
+    "constNo": 6,
+    "name": "Taj Mohi-Ud-Din",
+    "partyId": "INC",
+    "age": 60,
+    "era": "1995"
+   },
+   {
+    "candidateId": "a6fe7945-a08d-5e41-b3f0-3ac11762a1ca",
+    "year": 2014,
+    "constNo": 6,
+    "name": "Taj Mohi-Ud-Din",
+    "partyId": "INC",
+    "age": 69,
+    "era": "1995"
+   }
+  ]
+ },
+ {
+  "key": "UDAY CHAND|1995:73",
+  "confidence": "review",
+  "members": [
+   {
+    "candidateId": "0620f9fa-129a-5783-ab62-75c8442c4265",
+    "year": 2008,
+    "constNo": 73,
+    "name": "Uday Chand",
+    "partyId": "IND",
+    "age": 40,
+    "era": "1995"
+   },
+   {
+    "candidateId": "57167b13-96a2-57f8-aad7-47fe6548fc14",
+    "year": 2014,
+    "constNo": 73,
+    "name": "Uday Chand",
+    "partyId": "DGPP",
+    "age": 62,
+    "era": "1995"
+   }
+  ]
+ }
+]
