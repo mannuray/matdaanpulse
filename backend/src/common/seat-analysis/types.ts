@@ -188,3 +188,38 @@ export interface Baseline {
   alliances: AllianceIn[];
   seats: SeatBaseline[];
 }
+
+export interface TrailPoint { r: number | null; lp: string | null; m: number | null; v: number }
+export interface SeatTrail { points: TrailPoint[]; lc: number; pk: number | null }
+export interface SeatLiveIn {
+  const_id: string;
+  candidates: CandidateIn[];
+  round: { current: number; total: number } | null;
+  trail: SeatTrail | null;
+}
+export type Call = 'declared' | 'safe' | 'likely' | 'too_close' | 'counting' | 'not_started';
+export type Momentum = 'switched' | 'narrowing' | 'widening' | 'stable';
+export type SittingStatus = 'won' | 'lost' | 'leading' | 'trailing' | 'not_started' | 'not_contesting';
+export type Upset = 'stronghold_trailing' | 'heavyweight_trailing' | 'sitting_trailing';
+export interface SeatLive {
+  const_id: string;
+  leader: Placed | null;
+  runner_up: Placed | null;
+  margin: number | null;
+  provisional: boolean;
+  votes_counted: number;
+  remaining: number | null;
+  outcome: Outcome | null;
+  swing: { winner_party: number | null; prev_holder: number | null } | null;
+  call: Call;
+  momentum: Momentum | null;
+  comeback: boolean;
+  lead_changes: number;
+  sitting: SittingStatus | null;
+  upsets: Upset[];
+}
+export interface LiveTally {
+  parties: { party_id: string; won: number; leading: number; held: number; gained: number; lost: number; split_gained: number; split_lost: number }[];
+  flow: FlowRow[];
+  alliance_moves: { from: string; to: string; seats: number }[];
+}

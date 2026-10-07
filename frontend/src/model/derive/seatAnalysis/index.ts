@@ -5,6 +5,8 @@ import type { AnalysisInput, ElectionAnalysis, SeatAnalysis } from './types';
 
 export * from './types';
 export { normName, samePerson, findPerson } from './match';
+export { baselineOf } from './baseline';
+export { analyseLive, CALL_THRESHOLDS, MOMENTUM } from './live';
 
 /** The whole analysis of one election (spec §§3–4). Pure; throws when `history` is not oldest → newest. */
 export function analyse(input: AnalysisInput): { seats: SeatAnalysis[]; election: ElectionAnalysis } {

@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { analyse } from '../seatAnalysis';
 
-const SHARED = ['types', 'rank', 'match', 'seat', 'notes', 'election', 'index'];
+const SHARED = ['types', 'rank', 'match', 'seat', 'notes', 'election', 'index', 'baseline', 'live'];
 
 describe('seatAnalysis stays identical to the backend copy', () => {
   it.each(SHARED)('%s.ts', f => {
