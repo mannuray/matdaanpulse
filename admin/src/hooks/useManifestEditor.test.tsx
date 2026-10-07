@@ -79,3 +79,14 @@ describe('useManifestEditor save', () => {
     expect(result.current.isDirty).toBe(true);
   });
 });
+
+describe('useManifestEditor keeps keys it has no editor for', () => {
+  it('a save after an edit still carries government (bellwether seats, seat analysis)', async () => {
+    const government = { parties: ['BJP', 'JDU'], label: 'NDA', source: 'https://x' };
+    vi.mocked(getManifest).mockResolvedValueOnce({ draft: { alliances: [], government }, manifest_url: null } as never);
+    const { result } = await loaded();
+    act(() => result.current.updateManifest('compare_with', ['2019']));
+    await act(async () => { await result.current.saveDraft(result.current.manifest); });
+    expect(vi.mocked(saveManifestDraft).mock.calls[0][1]).toMatchObject({ government, compare_with: ['2019'] });
+  });
+});
