@@ -1,3 +1,4 @@
+import { appendSeatRounds } from './seat-rounds';
 import { Injectable, Logger } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -241,6 +242,8 @@ export class IngestService {
     if (released.length) {
       await tx.$executeRaw`DELETE FROM seat_holds WHERE election_id = ${electionId}::uuid AND const_id = ANY(${released}::varchar[])`;
     }
+    // Seat timeline (migration 025): same transaction and seat lock as the results write.
+    if (applied.length) await appendSeatRounds(tx, electionId, applied.map(a => a.seat.const_id), 'ingest', observedAt);
   }
 }
 

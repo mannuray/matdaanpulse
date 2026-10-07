@@ -57,6 +57,20 @@ describe('ingest write (DB)', () => {
     });
   });
 
+  it('an applied seat appends one timeline row; an identical repeat appends none (migration 025)', async () => {
+    await run('timeline', async (svc, tx, _n, key) => {
+      const now = new Date('2027-02-27T04:12:00Z');
+      const count = () => tx.seat_rounds.count({ where: { election_id: seat!.election_id, const_id: seat!.const_id } });
+      const before = await count();
+      await svc.ingestSeats(seat!.election_id, key, req(votes(1000), 3, '2027-02-27T04:11:00Z'), now);
+      expect(await count()).toBe(before + 1);
+      await svc.ingestSeats(seat!.election_id, key, req(votes(1000), 3, '2027-02-27T04:11:30Z'), now);
+      expect(await count()).toBe(before + 1);
+      const last = await tx.seat_rounds.findFirst({ where: { election_id: seat!.election_id, const_id: seat!.const_id }, orderBy: { seq: 'desc' } });
+      expect([last.source, last.round_no, last.round_total]).toEqual(['ingest', 3, 20]);
+    });
+  });
+
   it('an older round is stale and changes nothing', async () => {
     await run('stale', async (svc, tx, _n, key) => {
       const now = new Date('2027-02-27T04:12:00Z');

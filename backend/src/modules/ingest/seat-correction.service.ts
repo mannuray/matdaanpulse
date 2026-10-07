@@ -1,3 +1,4 @@
+import { appendSeatRounds } from './seat-rounds';
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -54,6 +55,7 @@ export class SeatCorrectionService {
             round_current = COALESCE(EXCLUDED.round_current, seat_ingest_state.round_current),
             round_total = COALESCE(EXCLUDED.round_total, seat_ingest_state.round_total),
             last_source = EXCLUDED.last_source, last_observed_at = EXCLUDED.last_observed_at, last_applied_at = EXCLUDED.last_applied_at`;
+        await appendSeatRounds(tx, electionId, [constId], 'correction', now);
         await tx.audit_logs.create({ data: { user_id: userId, action: 'RESULT_SEAT_CORRECTION', entity_type: 'constituency', entity_id: constId,
           old_value: Object.fromEntries(storedRows.map(r => [r.candidate_id, r.votes])) as Prisma.InputJsonValue,
           new_value: { state: seat.state, round: seat.round ?? null, votes: seat.votes } as Prisma.InputJsonValue } });
