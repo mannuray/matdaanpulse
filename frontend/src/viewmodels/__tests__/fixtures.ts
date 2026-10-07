@@ -37,7 +37,7 @@ export function makeSources(over: Partial<DashboardSources> = {}): DashboardSour
       ['BJP', { id: 'BJP', name: 'Bharatiya Janata Party', abbreviation: 'BJP', color: '#FF7A1A', mark: '/symbols/logos/BJP.svg', eciRecognition: 'National' as const }],
       ['JDU', { id: 'JDU', name: 'Janata Dal (United)', abbreviation: 'JD(U)', color: '#1FA37A', mark: null, eciRecognition: 'State' as const }],
     ]),
-    watchlist: [], addWatch: () => {}, removeWatch: () => {}, liveAnalysis: null,
+    watchlist: [], addWatch: () => {}, removeWatch: () => {}, liveAnalysis: null, baselineSeats: null,
     ...over,
   };
 }

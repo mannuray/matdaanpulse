@@ -18,10 +18,35 @@ const vm = (over: Partial<SeatDialogVM> = {}): SeatDialogVM => ({
   ] },
   history: [{ year: 2020, party: 'BJP', candidate: 'X', margin: 1, vote_share: 50.5 }], notes: [{ kind: 'threeWay', thirdName: 'C', thirdVotes: 300, margin: 200 }],
   partyMeta: new Map(), detailState: 'ready', fullPageHref: '/election/e/constituency/S', tracked: false,
+  liveSeat: null, upsets: [], trend: [], narrowed: null,
   onToggleTrack: vi.fn(), onClose: vi.fn(), onOpenParty: vi.fn(), personHref: id => `/person/${id}`, ...over,
 });
 
 const renderIt = (v: SeatDialogVM) => render(<MemoryRouter><SeatDialog vm={v} /></MemoryRouter>);
+
+describe('SeatDialog live block', () => {
+  const liveSeat = { call: 'too_close', momentum: 'narrowing' } as unknown as NonNullable<SeatDialogVM['liveSeat']>;
+  const trend = [1, 2, 3, 4].map(x => ({ x, y: 400 - x * 50, party: x < 3 ? 'BJP' : 'RJD', switched: x === 3 }));
+  it('shows the call and momentum badges, the margin trend, upset badges and the narrowed line', () => {
+    renderIt(vm({ liveSeat, trend, upsets: [{ kind: 'sitting_trailing', name: 'Asha Devi', party: 'BJP', margin: 200 }, { kind: 'stronghold_trailing', party: 'BJP', since: 2005 }],
+      narrowed: { kind: 'narrowed', from: 2890, to: 342, rounds: 3 } }));
+    expect(screen.getByText('Too close')).toBeTruthy();
+    expect(screen.getByText('Narrowing')).toBeTruthy();
+    expect(document.querySelector('svg[data-margin-trend]')).toBeTruthy();
+    expect(screen.getByText('Lead switch R3')).toBeTruthy();
+    expect(screen.getByText('Sitting MLA trailing · Asha Devi (BJP)')).toBeTruthy();
+    expect(screen.getByText('Stronghold at risk · held by BJP since 2005')).toBeTruthy();
+    expect(screen.getByText('Lead narrowed from 2,890 to 342 over the last 3 rounds')).toBeTruthy();
+  });
+  it('no chart with fewer than 2 points; nothing live for a non-live seat', () => {
+    renderIt(vm({ liveSeat, trend: trend.slice(0, 1) }));
+    expect(screen.getByText('Too close')).toBeTruthy();
+    expect(document.querySelector('svg[data-margin-trend]')).toBeNull();
+    cleanup();
+    renderIt(vm());
+    expect(screen.queryByText('Too close')).toBeNull();
+  });
+});
 
 describe('SeatDialog', () => {
   it('shows header facts, stats, ranked candidates and the full-page link', () => {

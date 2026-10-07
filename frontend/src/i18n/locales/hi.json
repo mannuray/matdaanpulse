@@ -594,5 +594,19 @@
   "studio_ticker_switch": "बढ़त बदली: {{seat}} · {{from}} → {{party}}",
   "studio_ticker_upset_sitting_trailing": "उलटफेर: {{seat}} में मौजूदा विधायक पीछे",
   "studio_ticker_upset_stronghold_trailing": "उलटफेर: {{seat}} में गढ़ खतरे में",
-  "studio_ticker_upset_heavyweight_trailing": "उलटफेर: {{seat}} में दिग्गज पीछे"
+  "studio_ticker_upset_heavyweight_trailing": "उलटफेर: {{seat}} में दिग्गज पीछे",
+  "seat_call_safe": "सुरक्षित",
+  "seat_call_likely": "संभावित",
+  "seat_call_too_close": "कांटे की टक्कर",
+  "seat_call_counting": "गिनती जारी",
+  "seat_call_declared": "घोषित",
+  "seat_call_not_started": "गिनती शुरू नहीं",
+  "seat_trend_title": "राउंड के हिसाब से अंतर",
+  "seat_trend_switch": "बढ़त बदली R{{r}}",
+  "seat_trend_now": "अभी +{{m}}",
+  "seat_upset_sitting_trailing": "मौजूदा विधायक पीछे · {{name}} ({{party}})",
+  "seat_upset_stronghold_trailing": "गढ़ खतरे में · {{since}} से {{party}} का",
+  "seat_upset_heavyweight_trailing": "दिग्गज पीछे · {{name}}",
+  "seat_narrowed": "पिछले {{n}} राउंड में बढ़त {{from}} से घटकर {{to}}",
+  "seat_widened": "पिछले {{n}} राउंड में बढ़त {{from}} से बढ़कर {{to}}"
 }

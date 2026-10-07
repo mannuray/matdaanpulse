@@ -594,5 +594,19 @@
   "studio_ticker_switch": "முன்னிலை மாற்றம்: {{seat}} · {{from}} → {{party}}",
   "studio_ticker_upset_sitting_trailing": "அதிர்ச்சி: {{seat}} இல் தற்போதைய எம்எல்ஏ பின்னடைவு",
   "studio_ticker_upset_stronghold_trailing": "அதிர்ச்சி: {{seat}} இல் கோட்டை ஆபத்தில்",
-  "studio_ticker_upset_heavyweight_trailing": "அதிர்ச்சி: {{seat}} இல் முக்கிய தலைவர் பின்னடைவு"
+  "studio_ticker_upset_heavyweight_trailing": "அதிர்ச்சி: {{seat}} இல் முக்கிய தலைவர் பின்னடைவு",
+  "seat_call_safe": "பாதுகாப்பானது",
+  "seat_call_likely": "வாய்ப்பு",
+  "seat_call_too_close": "கடும் போட்டி",
+  "seat_call_counting": "எண்ணிக்கை நடக்கிறது",
+  "seat_call_declared": "அறிவிக்கப்பட்டது",
+  "seat_call_not_started": "எண்ணிக்கை தொடங்கவில்லை",
+  "seat_trend_title": "சுற்று வாரியான வித்தியாசம்",
+  "seat_trend_switch": "முன்னிலை மாற்றம் R{{r}}",
+  "seat_trend_now": "இப்போது +{{m}}",
+  "seat_upset_sitting_trailing": "தற்போதைய எம்எல்ஏ பின்னடைவு · {{name}} ({{party}})",
+  "seat_upset_stronghold_trailing": "கோட்டை ஆபத்தில் · {{since}} முதல் {{party}} வசம்",
+  "seat_upset_heavyweight_trailing": "முக்கிய தலைவர் பின்னடைவு · {{name}}",
+  "seat_narrowed": "கடந்த {{n}} சுற்றுகளில் முன்னிலை {{from}} இலிருந்து {{to}} ஆகக் குறைந்தது",
+  "seat_widened": "கடந்த {{n}} சுற்றுகளில் முன்னிலை {{from}} இலிருந்து {{to}} ஆக உயர்ந்தது"
 }

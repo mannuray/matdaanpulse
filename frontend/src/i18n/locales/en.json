@@ -594,5 +594,19 @@
   "studio_ticker_switch": "Lead switch: {{seat}} · {{from}} → {{party}}",
   "studio_ticker_upset_sitting_trailing": "Upset: sitting MLA trailing in {{seat}}",
   "studio_ticker_upset_stronghold_trailing": "Upset: stronghold at risk in {{seat}}",
-  "studio_ticker_upset_heavyweight_trailing": "Upset: heavyweight trailing in {{seat}}"
+  "studio_ticker_upset_heavyweight_trailing": "Upset: heavyweight trailing in {{seat}}",
+  "seat_call_safe": "Safe",
+  "seat_call_likely": "Likely",
+  "seat_call_too_close": "Too close",
+  "seat_call_counting": "Counting",
+  "seat_call_declared": "Declared",
+  "seat_call_not_started": "Not started",
+  "seat_trend_title": "Margin by round",
+  "seat_trend_switch": "Lead switch R{{r}}",
+  "seat_trend_now": "Now +{{m}}",
+  "seat_upset_sitting_trailing": "Sitting MLA trailing · {{name}} ({{party}})",
+  "seat_upset_stronghold_trailing": "Stronghold at risk · held by {{party}} since {{since}}",
+  "seat_upset_heavyweight_trailing": "Heavyweight trailing · {{name}}",
+  "seat_narrowed": "Lead narrowed from {{from}} to {{to}} over the last {{n}} rounds",
+  "seat_widened": "Lead widened from {{from}} to {{to}} over the last {{n}} rounds"
 }

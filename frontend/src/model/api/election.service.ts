@@ -5,6 +5,7 @@ import type {
 } from '../types';
 import type { LiveState } from '../live/poller';
 import type { Baseline } from '../derive/seatAnalysis';
+import type { SeatRound } from '../derive/liveSeat';
 import type { RegionShares } from '../derive/regionComparison';
 import { fixWinding } from '../geo/winding';
 import { visibleElections } from '../config/houses';
@@ -102,6 +103,11 @@ export function getConstituencyAnalysis(electionId: string, constId: string) {
 /** Pre-counting baseline (seat analysis Phase B). A missing or failed one is null: the dashboard then shows no live seat maps. */
 export async function getBaseline(electionId: string): Promise<(Baseline & { computed_at: string }) | null> {
   try { return await apiFetch<(Baseline & { computed_at: string }) | null>(`/elections/${electionId}/baseline`); } catch { return null; }
+}
+
+/** A seat's counting timeline (seat dialog margin chart); [] when unavailable. */
+export async function getSeatRounds(electionId: string, constId: string): Promise<SeatRound[]> {
+  try { return await apiFetch<SeatRound[]>(`/elections/${electionId}/constituencies/${constId}/rounds`); } catch { return []; }
 }
 
 export function getAnalysis(electionId: string) {

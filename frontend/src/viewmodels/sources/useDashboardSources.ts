@@ -8,7 +8,7 @@ import { useAnalysis } from '../data/useAnalysis';
 import { useBaseline } from '../data/useBaseline';
 import { useLiveAnalysis } from '../data/useLiveAnalysis';
 import { liveMaps, prevYearOf } from '../../model/derive/liveMaps';
-import type { SeatLive, LiveTally, Upset } from '../../model/derive/seatAnalysis';
+import type { SeatLive, LiveTally, Upset, SeatBaseline } from '../../model/derive/seatAnalysis';
 import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
 import { usePartyMeta } from '../data/usePartyMeta';
@@ -48,6 +48,8 @@ export interface DashboardSources {
   /** Live election: the last poll succeeded. */
   liveConnected: boolean;
   availableLayers: LayerId[];
+  /** Live / upcoming election: each seat's pre-counting baseline (names behind upsets in the seat dialog); null without one. */
+  baselineSeats: Map<string, SeatBaseline> | null;
   /** Live / upcoming election: per-seat live state and live tallies (null without a baseline). For the map work. */
   liveAnalysis: { seats: Map<string, SeatLive>; tally: LiveTally } | null;
   /** Party abbreviation and mark (logo → ECI symbol) by party id. */
@@ -81,6 +83,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const ba = useAnalysis(notFinal ? undefined : election.id);
   const baseline = useBaseline(election.id, notFinal);
   const liveAnalysis = useLiveAnalysis(baseline, results, data.seats, data.trails);
+  const baselineSeats = useMemo(() => (baseline ? new Map(baseline.seats.map(s => [s.const_id, s])) : null), [baseline]);
   const lm = useMemo(() => (baseline ? liveMaps(baseline, liveAnalysis ? [...liveAnalysis.seats.values()] : [], election.year) : null), [baseline, liveAnalysis, election.year]);
   const src = !notFinal ? { swing: ba.swingMap, dominance: ba.dominanceMap, incumbency: ba.incumbencyData, partySwitches: ba.partySwitchData } : lm ?? EMPTY_MAPS;
   const { swing, dominance, incumbency, partySwitches } = src;
@@ -158,7 +161,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
 
   return {
     election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, historyPartyIds, prevYear,
-    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta, liveAnalysis,
+    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta, liveAnalysis, baselineSeats,
     watchlist, addWatch, removeWatch,
   };
 }

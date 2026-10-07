@@ -7,6 +7,43 @@ import { Avatar } from '../ui/Avatar';
 import { formatIN } from '../ui/format';
 import { STATUS_STYLE } from '../dashboard/statusStyle';
 import { cn } from '../ui/cn';
+import { MarginTrend } from './MarginTrend';
+
+const MOMENTUM_COLOR: Record<string, string> = { switched: 'var(--color-map-mo-switched)', narrowing: 'var(--color-map-mo-narrowing)', widening: 'var(--color-map-mo-widening)' };
+
+/** Live counting: round progress, the call and momentum badges, the margin trend and the upset badges (spec §4). */
+function LiveBlock({ vm }: { vm: SeatDialogVM }) {
+  const { t } = useTranslation();
+  const s = vm.liveSeat;
+  if (!s) return null;
+  const round = vm.live?.kind === 'counting' ? vm.live.round : null;
+  const colorOf = (party: string | null) => (party ? vm.partyMeta.get(party)?.color : null) ?? 'var(--color-fallback)';
+  return (
+    <div className="mb-4">
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        {round && (
+          <span className="h-1.5 w-28 overflow-hidden rounded-full bg-page" role="progressbar" aria-valuenow={round.current} aria-valuemax={round.total} aria-label={t('seat_round', round)}>
+            <span className="block h-full bg-ok-text" style={{ width: `${(round.current / round.total) * 100}%` }} />
+          </span>
+        )}
+        <span className={cn('rounded-md px-2 py-0.5 text-[11px] font-bold uppercase text-ink', s.call === 'too_close' ? 'border border-dashed border-warn-text text-warn-text' : 'border border-line')}>{t(`seat_call_${s.call}`)}</span>
+        {s.momentum && s.momentum !== 'stable' && (
+          <span className="rounded-md px-2 py-0.5 text-[11px] font-bold uppercase text-white" style={{ background: MOMENTUM_COLOR[s.momentum] }}>{t(`map_legend_${s.momentum}`)}</span>
+        )}
+      </div>
+      <MarginTrend points={vm.trend} colorOf={colorOf} />
+      {vm.upsets.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {vm.upsets.map(u => (
+            <span key={u.kind} className="rounded-tile border border-live/50 bg-live/10 px-3 py-1 text-xs font-semibold text-ink">
+              {t(`seat_upset_${u.kind}`, { name: u.name ?? '', party: u.party ?? '', since: u.since ?? '' })}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function Stat({ label, value, tone }: { label: string; value: string; tone?: 'ok' }) {
   return (
@@ -65,6 +102,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
       {loading
         ? <div className="mb-4 grid grid-cols-2 gap-2 lg:grid-cols-4">{[0, 1, 2, 3].map(i => <Skel key={i} className="h-[58px] rounded-tile" />)}</div>
         : stats.length > 0 && <div className="mb-4 grid grid-cols-2 gap-2 lg:grid-cols-4">{stats}</div>}
+      <LiveBlock vm={vm} />
       {vm.detailState === 'error' && <p className="mb-2 text-xs text-muted">{t('seat_details_unavailable')}</p>}
       <table className="w-full text-sm">
         <thead><tr className="border-b border-line text-left text-[11px] uppercase tracking-wider text-muted">
@@ -95,6 +133,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
           )}
         </tbody>
       </table>
+      {vm.narrowed && <p className="mt-3 rounded-tile border border-line px-3 py-2 text-xs text-ink-2">{t(`seat_${vm.narrowed.kind}`, { from: formatIN(vm.narrowed.from), to: formatIN(vm.narrowed.to), n: vm.narrowed.rounds })}</p>}
       {/* Footer: past winners, then the 3-way / spoiler notes, then the full-page link last. */}
       {(vm.history.length > 0 || loading) && (
         <div className="mt-4 flex flex-wrap items-center gap-2">
