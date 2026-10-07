@@ -101,3 +101,38 @@ describe('seat analysis: swing, incumbency, seat type', () => {
     expect(t([['A', 'X', 40], ['B', 'Y', 35], ['C', 'Z', 12], ['D', 'W', 13]])).toBe('multi-cornered');
   });
 });
+
+describe('seat analysis: notes', () => {
+  const kinds = (s: ReturnType<typeof one>) => s.notes.map(n => n.kind);
+  it('generic spoiler: third candidate above the margin; NOTA above the margin', () => {
+    const s = one(input(el(2020, [seat(1, [['A', 'X', 40], ['B', 'Y', 35], ['C', 'Z', 10], ['NOTA', 'NOTA', 8]])])));
+    expect(s.notes).toEqual([{ kind: 'spoiler', name: 'C', party: 'Z', votes: 10, margin: 5 }, { kind: 'nota', votes: 8, margin: 5 }]);
+  });
+  it('alliance spoiler replaces the generic one', () => {
+    const cur = el(2025, [seat(1, [['A', 'BJP', 40], ['B', 'RJD', 35], ['C', 'AIMIM', 10]])], { alliances: [{ id: 'MGB', parties: ['RJD', 'INC'] }, { id: 'NDA', parties: ['BJP'] }] });
+    const s = one(input(cur, [], { voteSplits: [{ spoiler: 'AIMIM', hurts: 'MGB', label: 'AIMIM split' }] }));
+    expect(s.notes.filter(n => n.kind === 'spoiler')).toEqual([{ kind: 'spoiler', name: 'C', party: 'AIMIM', votes: 10, margin: 5, hurts: 'MGB', label: 'AIMIM split' }]);
+  });
+  it('rematch and revenge', () => {
+    const prev = el(2015, [seat(1, [['A', 'X', 50], ['B', 'Y', 40]])]);
+    const s = one(input(el(2020, [seat(1, [['B', 'Y', 50], ['A', 'X', 45]])]), [prev]));
+    expect(s.notes).toEqual(expect.arrayContaining([{ kind: 'rematch', names: ['B', 'A'] }, { kind: 'revenge', name: 'B', beat: 'A' }]));
+  });
+  it('switcher: a top-two candidate whose last candidacy was for a non-comparable party (a split faction is not one)', () => {
+    const prev = el(2019, [seat(1, [['A', 'INC', 50], ['B', 'SHS', 40]]), seat(2, [['Q', 'Y', 9]])]);
+    const cur = el(2024, [seat(1, [['A', 'BJP', 50], ['B', 'SHSUBT', 40]])]);
+    const s = one(input(cur, [prev], { lineage: [SHS_SPLIT] }));
+    expect(s.notes.filter(n => n.kind === 'switcher')).toEqual([{ kind: 'switcher', name: 'A', from: 'INC', to: 'BJP', year: 2019, match: 'name' }]);
+  });
+  it('switcher looks across a redraw via previousAny', () => {
+    const before = el(2014, [seat(9, [['Unique Person', 'PDP', 50], ['Z', 'Y', 40]])]);
+    const s = one(input(el(2024, [seat(1, [['Unique Person', 'APNI', 50], ['B', 'NC', 40]])]), [], { previousAny: before }));
+    expect(s.notes).toContainEqual({ kind: 'switcher', name: 'Unique Person', from: 'PDP', to: 'APNI', year: 2014, match: 'name' });
+  });
+  it('heavyweight needs the same person and the same party', () => {
+    const cur = el(2020, [seat(1, [['Ram Kumar', 'BJP', 50], ['Ram Kumar', 'INC', 40]])]);
+    const s = one(input(cur, [], { heavyweights: [{ person_id: null, name: 'Ram Kumar', party_id: 'BJP', reason: 'state_president' }, { person_id: null, name: 'Ram Kumar', party_id: 'BJP', reason: 'leader' }] }));
+    expect(s.notes.filter(n => n.kind === 'heavyweight')).toEqual([{ kind: 'heavyweight', name: 'Ram Kumar', party: 'BJP', reasons: ['state_president', 'leader'] }]);
+    expect(kinds(s)).not.toContain('switcher');
+  });
+});
