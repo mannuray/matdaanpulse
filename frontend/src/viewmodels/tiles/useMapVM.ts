@@ -1,3 +1,6 @@
+import { mapLegend, type LegendItem } from '../../model/derive/mapLegend';
+export type { LegendItem };
+import type { PulseKind } from '../../model/live/pulse';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
@@ -26,7 +29,10 @@ export interface MapVM {
   outline: boolean;
   /** Regions layer: each region's outline, built from its seats (strong for the highlighted region). Empty elsewhere. */
   regionOutlines: RegionOutline[];
-  recentSeats: Set<string>;
+  /** Seats that just changed, with the change kind (pulse colour). */
+  recentSeats: Map<string, PulseKind>;
+  /** The live legend (calls on the Overview, momentum on Battle); null when not live. */
+  legend: LegendItem[] | null;
   selectedSeat: string | null;
   layer: LayerId;
   layers: LayerId[];
@@ -72,7 +78,10 @@ export function useMapVM(): MapVM {
   const highlight = activeHighlight(state);
   // Highlight sets are rebuilt each render; key them by content so fills only recompute on real changes.
   const hlKey = `${[...highlight.parties].join(',')}|${[...highlight.seats].join(',')}`;
+  // Live counting only: the per-seat live state colours the Overview (call) and Battle (momentum).
+  const live = src.election.status === 'Live' ? src.liveAnalysis?.seats : undefined;
   const fillCtx = {
+    live,
     layer: state.layer,
     electionType: src.election.type,
     partyColor: src.data.partyColorMap,
@@ -83,7 +92,10 @@ export function useMapVM(): MapVM {
     highlight,
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fills = useMemo(() => seatFills(seats, fillCtx), [seats, state.layer, src.election.type, src.data.partyColorMap, src.swing, src.dominance, src.data.spoilerData, hlKey]);
+  const fills = useMemo(() => seatFills(seats, fillCtx), [seats, state.layer, src.election.type, src.data.partyColorMap, src.swing, src.dominance, src.data.spoilerData, hlKey, live]);
+  const legend = useMemo(() => mapLegend(state.layer, live), [state.layer, live]);
+  // Until the sources carry pulse kinds, every recent change is a plain update.
+  const recentSeats = useMemo(() => new Map<string, PulseKind>([...src.recentSeats].map(id => [id, 'update'])), [src.recentSeats]);
 
   const outline = useMemo(() => showOutline([...fills.values()].filter(f => f.highlighted).length), [fills]);
   const onRegions = state.layer === 'regions';
@@ -94,7 +106,7 @@ export function useMapVM(): MapVM {
 
   return {
     status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills, outline: outline && !onRegions, regionOutlines: regionLines,
-    recentSeats: src.recentSeats, selectedSeat: state.selectedSeat,
+    recentSeats, legend, selectedSeat: state.selectedSeat,
     layer: state.layer, layers: src.availableLayers, mapMode: state.mapMode, hexAvailable: Boolean(geo?.hex_url),
     lockedLabel: state.locked?.label ?? null,
     seatInfo: id => {

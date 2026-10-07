@@ -577,5 +577,14 @@
   "regions_no_prev": "इस राज्य का तुलना के लिए कोई पिछला चुनाव नहीं: केवल {{cur}}।",
   "regions_seats_now": "{{cur}} सीटें",
   "map_tab_regions": "क्षेत्र",
-  "regions_pin": "{{name}} नक्शे पर दिखाएँ"
+  "regions_pin": "{{name}} नक्शे पर दिखाएँ",
+  "map_legend_safe": "सुरक्षित",
+  "map_legend_likely": "संभावित",
+  "map_legend_too_close": "कांटे की टक्कर",
+  "map_legend_not_started": "गिनती शुरू नहीं",
+  "map_legend_rule": "बढ़त की तुलना बाकी गिने जाने वाले वोटों से",
+  "map_legend_switched": "बढ़त बदली",
+  "map_legend_narrowing": "बढ़त घट रही",
+  "map_legend_widening": "बढ़त बढ़ रही",
+  "map_legend_stable": "स्थिर / घोषित"
 }

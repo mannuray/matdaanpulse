@@ -577,5 +577,14 @@
   "regions_no_prev": "ஒப்பிட இந்த மாநிலத்தின் முந்தைய தேர்தல் இல்லை: {{cur}} மட்டும்.",
   "regions_seats_now": "{{cur}} இடங்கள்",
   "map_tab_regions": "பகுதிகள்",
-  "regions_pin": "{{name}} வரைபடத்தில் காட்டு"
+  "regions_pin": "{{name}} வரைபடத்தில் காட்டு",
+  "map_legend_safe": "பாதுகாப்பானது",
+  "map_legend_likely": "வாய்ப்பு",
+  "map_legend_too_close": "கடும் போட்டி",
+  "map_legend_not_started": "எண்ணிக்கை தொடங்கவில்லை",
+  "map_legend_rule": "முன்னிலை, இன்னும் எண்ண வேண்டிய வாக்குகளுடன் ஒப்பிடப்படுகிறது",
+  "map_legend_switched": "முன்னிலை மாறியது",
+  "map_legend_narrowing": "முன்னிலை குறைகிறது",
+  "map_legend_widening": "முன்னிலை அதிகரிக்கிறது",
+  "map_legend_stable": "நிலையானது / அறிவிக்கப்பட்டது"
 }

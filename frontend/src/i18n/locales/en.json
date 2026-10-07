@@ -577,5 +577,14 @@
   "regions_no_prev": "No earlier election of this state to compare with: {{cur}} only.",
   "regions_seats_now": "{{cur}} seats",
   "map_tab_regions": "Regions",
-  "regions_pin": "Show {{name}} on the map"
+  "regions_pin": "Show {{name}} on the map",
+  "map_legend_safe": "Safe",
+  "map_legend_likely": "Likely",
+  "map_legend_too_close": "Too close",
+  "map_legend_not_started": "Not started",
+  "map_legend_rule": "Lead compared with the votes still to count",
+  "map_legend_switched": "Switched",
+  "map_legend_narrowing": "Narrowing",
+  "map_legend_widening": "Widening",
+  "map_legend_stable": "Stable / declared"
 }

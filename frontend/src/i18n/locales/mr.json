@@ -577,5 +577,14 @@
   "regions_no_prev": "तुलनेसाठी या राज्याची आधीची निवडणूक नाही: फक्त {{cur}}.",
   "regions_seats_now": "{{cur}} जागा",
   "map_tab_regions": "प्रदेश",
-  "regions_pin": "{{name}} नकाशावर दाखवा"
+  "regions_pin": "{{name}} नकाशावर दाखवा",
+  "map_legend_safe": "सुरक्षित",
+  "map_legend_likely": "संभाव्य",
+  "map_legend_too_close": "अटीतटीची लढत",
+  "map_legend_not_started": "मोजणी सुरू नाही",
+  "map_legend_rule": "आघाडीची तुलना अजून मोजायच्या मतांशी",
+  "map_legend_switched": "आघाडी बदलली",
+  "map_legend_narrowing": "आघाडी घटत आहे",
+  "map_legend_widening": "आघाडी वाढत आहे",
+  "map_legend_stable": "स्थिर / घोषित"
 }

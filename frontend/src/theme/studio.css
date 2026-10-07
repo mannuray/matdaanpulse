@@ -100,8 +100,11 @@
 @keyframes studio-zoom { from { opacity: 0; scale: .96; } to { opacity: 1; scale: 1; } }
 .studio-focus[data-state="open"] { animation: studio-zoom 200ms ease-out; }
 @media (prefers-reduced-motion: reduce) { .studio-pulse, .studio-seat-pulse, .studio-focus[data-state="open"] { animation: none; } }
-@keyframes studio-seat-pulse { 0%,100% { stroke-width: .4px; } 50% { stroke: var(--color-ink); stroke-width: 2px; } }
-.studio-seat-pulse { animation: studio-seat-pulse 900ms ease-in-out 2; }
+/* Typed pulse (live map): lead switch = momentum violet, upset = live red, others = ink. */
+@keyframes studio-seat-pulse { 0%,100% { stroke-width: .4px; } 50% { stroke: var(--pulse-stroke); stroke-width: 2px; } }
+.studio-seat-pulse { --pulse-stroke: var(--color-ink); animation: studio-seat-pulse 900ms ease-in-out 2; }
+.studio-seat-pulse[data-pulse="switch"] { --pulse-stroke: var(--color-map-mo-switched); }
+.studio-seat-pulse[data-pulse="upset"] { --pulse-stroke: var(--color-live); }
 /* Thin, theme-aware scrollbar for tile bodies that scroll (side card tabs). */
 .studio-scroll { scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
 .studio-scroll::-webkit-scrollbar { width: 6px; }

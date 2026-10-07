@@ -44,11 +44,15 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
       const fill = id ? vm.fills.get(id) : undefined;
       const el = select(this);
       const outlined = !!id && (id === vm.selectedSeat || id === hoveredId);
+      // A too-close seat while live: a dashed outline in its own colour (reads as undecided, not missing).
+      const dashed = !outlined && !!fill?.dashed;
       el.style('fill', fill?.color ?? 'var(--color-map-pending)')
         .style('fill-opacity', String(fill?.opacity ?? 1))
-        .style('stroke', outlined ? 'var(--color-ink)' : 'var(--color-map-stroke)')
-        .style('stroke-width', outlined ? '1.5px' : '0.4px')
+        .style('stroke', outlined ? 'var(--color-ink)' : dashed ? fill!.color : 'var(--color-map-stroke)')
+        .style('stroke-width', outlined ? '1.5px' : dashed ? '1px' : '0.4px')
+        .style('stroke-dasharray', dashed ? '3 2' : 'none')
         .attr('data-highlighted', fill?.highlighted ? 'true' : null)
+        .attr('data-pulse', id ? vm.recentSeats.get(id) ?? null : null)
         .classed('studio-seat-pulse', !!id && vm.recentSeats.has(id));
     });
   }, [loaded, gRef, vm.fills, vm.seatOf, vm.selectedSeat, hoveredId, vm.recentSeats, vm.geoConfig, vm.stateFeatures]);
