@@ -32,6 +32,30 @@ function lastCandidacy(ctx: Ctx, c: CandidateIn, constNo: number) {
   return null;
 }
 
+/** A switcher note when `c`'s previous candidacy (comparable history, then previousAny) was for a non-comparable party. */
+export function switcherOf(ctx: Ctx, c: CandidateIn, constNo: number): Extract<SeatNote, { kind: 'switcher' }> | null {
+  if (!isParty(c.party_id)) return null;
+  const last = lastCandidacy(ctx, c, constNo);
+  const old = last?.m.cand.party_id ?? null;
+  if (!last || !isParty(old)) return null;
+  const rel = relation(ctx.input.lineage, old, c.party_id, { fromDate: last.e.date, toDate: ctx.input.current.date, stateId: ctx.input.stateId });
+  return rel === 'different' ? { kind: 'switcher', name: c.name, from: old, to: c.party_id, year: last.e.year, match: last.m.match } : null;
+}
+
+/** Heavyweight notes: candidates who are a manifest leader / cabinet member or hold a party unit role (same person, same party). */
+export function heavyweightsOf(ctx: Ctx, cands: CandidateIn[]): Extract<SeatNote, { kind: 'heavyweight' }>[] {
+  const out: Extract<SeatNote, { kind: 'heavyweight' }>[] = [];
+  for (const c of cands) {
+    const reasons: HeavyweightReason[] = [];
+    for (const h of ctx.input.heavyweights) {
+      const party = !h.party_id || !c.party_id || h.party_id === c.party_id || (h.person_id != null && h.person_id === c.person_id);
+      if (party && strictSamePerson(h, c) && !reasons.includes(h.reason)) reasons.push(h.reason);
+    }
+    if (reasons.length) out.push({ kind: 'heavyweight', name: c.name, party: c.party_id, reasons });
+  }
+  return out;
+}
+
 export function seatNotes(ctx: Ctx, seat: SeatIn, _a: SeatAnalysis): SeatNote[] {
   const rk = seatOf(ctx, ctx.input.current, seat.const_no);
   if (!rk?.winner) return [];
@@ -52,21 +76,9 @@ export function seatNotes(ctx: Ctx, seat: SeatIn, _a: SeatAnalysis): SeatNote[] 
   }
 
   for (const c of top) {
-    if (!isParty(c.party_id)) continue;
-    const last = lastCandidacy(ctx, c, seat.const_no);
-    const old = last?.m.cand.party_id ?? null;
-    if (!last || !isParty(old)) continue;
-    const rel = relation(ctx.input.lineage, old, c.party_id, { fromDate: last.e.date, toDate: ctx.input.current.date, stateId: ctx.input.stateId });
-    if (rel === 'different') notes.push({ kind: 'switcher', name: c.name, from: old, to: c.party_id, year: last.e.year, match: last.m.match });
+    const n = switcherOf(ctx, c, seat.const_no);
+    if (n) notes.push(n);
   }
-
-  for (const c of rk.ranked) {
-    const reasons: HeavyweightReason[] = [];
-    for (const h of ctx.input.heavyweights) {
-      const party = !h.party_id || !c.party_id || h.party_id === c.party_id || (h.person_id != null && h.person_id === c.person_id);
-      if (party && strictSamePerson(h, c) && !reasons.includes(h.reason)) reasons.push(h.reason);
-    }
-    if (reasons.length) notes.push({ kind: 'heavyweight', name: c.name, party: c.party_id, reasons });
-  }
+  notes.push(...heavyweightsOf(ctx, rk.ranked));
   return notes;
 }

@@ -81,7 +81,7 @@ function flow(seats: SeatAnalysis[]): FlowRow[] {
   return [...m.values()].sort((a, b) => b.seats - a.seats);
 }
 
-const allianceOf = (e: ElectionIn, party: string | null) => {
+export const allianceOf = (e: Pick<ElectionIn, 'alliances'>, party: string | null) => {
   const a = party ? e.alliances.find(x => x.parties.includes(party)) : undefined;
   return a ? ALLIANCE_ALIASES[a.id] ?? a.id : 'OTHERS';
 };

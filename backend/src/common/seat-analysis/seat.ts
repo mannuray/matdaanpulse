@@ -13,6 +13,14 @@ export interface Ctx {
   idx: Map<string, Map<number, Ranked>>;
 }
 
+/** The analysis context: the input plus every involved election's seats ranked once, by const_no. */
+export function makeCtx(input: AnalysisInput): Ctx {
+  const idx = new Map<string, Map<number, Ranked>>();
+  const add = (e: ElectionIn | null) => { if (e && !idx.has(e.id)) idx.set(e.id, new Map(e.seats.map(s => [s.const_no, rank(s)]))); };
+  [...input.history, input.previousAny, input.current].forEach(add);
+  return { input, idx };
+}
+
 export const seatOf = (ctx: Ctx, e: ElectionIn, constNo: number): Ranked | undefined => ctx.idx.get(e.id)?.get(constNo);
 const win = (ctx: Ctx, from: ElectionIn) => ({ fromDate: from.date, toDate: ctx.input.current.date, stateId: ctx.input.stateId });
 
@@ -63,24 +71,24 @@ function swingOf(ctx: Ctx, prevE: ElectionIn | undefined, prev: Ranked | undefin
   return { winner_party: sw(cur.winner!.party_id), prev_holder: sw(holder) };
 }
 
-function classOf(ctx: Ctx, elections: ElectionIn[], constNo: number): SeatClass | null {
+/** The class over `elections` (oldest → newest); holder = the last one's winner party (carried to this election's ids); null if the last has no winner. */
+export function classOver(ctx: Ctx, elections: ElectionIn[], constNo: number): SeatClass | null {
   const runs = elections
     .map(e => ({ e, w: seatOf(ctx, e, constNo)?.winner ?? null }))
     .filter((x): x is { e: ElectionIn; w: CandidateIn } => x.w != null)
-    .map(x => ({ year: x.e.year, key: holderKey(ctx, x.w, x.e) }));
+    .map(x => ({ e: x.e, w: x.w, key: holderKey(ctx, x.w, x.e) }));
   const last = runs[runs.length - 1];
-  if (!last || last.year !== ctx.input.current.year) return null;
-  const holder = seatOf(ctx, ctx.input.current, constNo)?.winner?.party_id ?? '';
+  if (!last || last.e.id !== elections[elections.length - 1]?.id) return null;
+  const holder = last.w.party_id ? carry(ctx, last.w.party_id, last.e) : '';
   let streak = 0;
   for (let i = runs.length - 1; i >= 0 && runs[i].key === last.key; i--) streak++;
   const wins = runs.filter(r => r.key === last.key).length;
   const total = runs.length;
-  const since = runs[runs.length - streak].year;
   const kind = total === 1 ? 'new' : wins === total && total >= 3 ? 'stronghold' : streak >= 2 ? 'loyal' : 'swing';
-  return { kind, holder, streak, since, wins, total };
+  return { kind, holder, streak, since: runs[runs.length - streak].e.year, wins, total };
 }
 
-function incumbencyOf(ctx: Ctx, prevE: ElectionIn | undefined, prev: Ranked | undefined, seat: SeatIn): Incumbency | null {
+export function incumbencyOf(ctx: Ctx, prevE: ElectionIn | undefined, prev: Ranked | undefined, seat: SeatIn): Incumbency | null {
   if (!prevE || !prev?.winner) return null;
   const w = prev.winner;
   const m = findPerson(w, ctx.input.current, seat.const_no);
@@ -101,7 +109,7 @@ function incumbencyOf(ctx: Ctx, prevE: ElectionIn | undefined, prev: Ranked | un
   };
 }
 
-function historyOf(ctx: Ctx, elections: ElectionIn[], constNo: number): HistoryEntry[] {
+export function historyOf(ctx: Ctx, elections: ElectionIn[], constNo: number): HistoryEntry[] {
   const out: HistoryEntry[] = [];
   for (const e of elections) {
     const rk = seatOf(ctx, e, constNo);
@@ -143,7 +151,7 @@ export function analyseSeat(ctx: Ctx, seat: SeatIn): SeatAnalysis {
     provisional: w?.status === 'LEADING',
     outcome: w ? outcomeOf(ctx, prevE, prev, cur) : null,
     swing: w ? swingOf(ctx, prevE, prev, cur) : null,
-    class: w ? classOf(ctx, elections, seat.const_no) : null,
+    class: w ? classOver(ctx, elections, seat.const_no) : null,
     incumbent: incumbencyOf(ctx, prevE, prev, seat),
     history: historyOf(ctx, elections, seat.const_no),
     seat_type: seatTypeOf(cur),

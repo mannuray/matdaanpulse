@@ -145,3 +145,46 @@ export interface ElectionAnalysis {
   bellwethers: string[];
   breakdowns: { reserved: BreakdownRow[]; region: BreakdownRow[]; turnout: BreakdownRow[] };
 }
+
+export interface SeatBaseline {
+  const_id: string;
+  const_no: number;
+  /** The previous comparable election's result in this seat; null after a redraw or for a first election. */
+  prev: {
+    year: number;
+    date: string;
+    party_raw: string | null;
+    /** party_raw carried to this election's ids (JVM → BJP); IND stays IND. */
+    holder: string | null;
+    alliance: string | null;
+    candidate: string;
+    person_id: string | null;
+    margin: number | null;
+    margin_pct: number | null;
+    /** Vote share % per party carried to this election's ids; null when the seat had no votes. */
+    shares: Record<string, number> | null;
+    turnout: number | null;
+  } | null;
+  /** The class before this election (comparable history only). */
+  class_before: SeatClass | null;
+  /** The previous winner and whether / where / for whom they contest now (`won` omitted: not known before counting). */
+  sitting: Omit<Incumbency, 'won'> | null;
+  /** The previous top two, both contesting this seat again. */
+  rematch: [string, string] | null;
+  switchers: Extract<SeatNote, { kind: 'switcher' }>[];
+  heavyweights: Extract<SeatNote, { kind: 'heavyweight' }>[];
+  close_last: boolean;
+  narrowing_last: boolean;
+  electors: number | null;
+  history: HistoryEntry[];
+}
+export interface Baseline {
+  schema_version: number;
+  election_id: string;
+  date: string;
+  state_id: number | null;
+  lineage: LineageEventLike[];
+  /** This election's alliances (normalised ids via ALLIANCE_ALIASES when compared). */
+  alliances: AllianceIn[];
+  seats: SeatBaseline[];
+}
