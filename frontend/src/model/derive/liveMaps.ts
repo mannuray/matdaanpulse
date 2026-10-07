@@ -24,3 +24,9 @@ export function liveMaps(b: Baseline, live: SeatLive[], year: number) {
   }
   return { dominance, swing, incumbency, partySwitches };
 }
+
+/** The year seats are compared with: the baseline's previous election when there is one, else the manifest's last history year. */
+export function prevYearOf(b: Baseline | null, historyYears: number[]): number | null {
+  const fromBaseline = b?.seats.find(s => s.prev)?.prev?.year;
+  return fromBaseline ?? (historyYears.length > 0 ? historyYears[historyYears.length - 1] : null);
+}

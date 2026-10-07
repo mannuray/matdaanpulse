@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { liveMaps } from '../liveMaps';
+import { liveMaps, prevYearOf } from '../liveMaps';
 import type { Baseline, SeatLive } from '../seatAnalysis';
 
 const b = { schema_version: 1, election_id: 'e', date: '2027-02-27', state_id: 1, lineage: [], alliances: [], seats: [{
@@ -27,5 +27,13 @@ describe('liveMaps', () => {
     expect(m.swing.size).toBe(0);
     expect(m.incumbency).toEqual([]);
     expect(m.partySwitches).toHaveLength(1);
+  });
+});
+
+describe('prevYearOf', () => {
+  it('the baseline\'s previous election year wins over the manifest\'s history years', () => {
+    expect(prevYearOf(b, [2010, 2015, 2020])).toBe(2022);
+    expect(prevYearOf(null, [2010, 2015, 2020])).toBe(2020);
+    expect(prevYearOf(null, [])).toBeNull();
   });
 });

@@ -7,7 +7,7 @@ import { useHistoricalResults } from '../data/useHistoricalResults';
 import { useAnalysis } from '../data/useAnalysis';
 import { useBaseline } from '../data/useBaseline';
 import { useLiveAnalysis } from '../data/useLiveAnalysis';
-import { liveMaps } from '../../model/derive/liveMaps';
+import { liveMaps, prevYearOf } from '../../model/derive/liveMaps';
 import type { SeatLive, LiveTally } from '../../model/derive/seatAnalysis';
 import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
@@ -82,8 +82,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const lm = useMemo(() => (baseline ? liveMaps(baseline, liveAnalysis ? [...liveAnalysis.seats.values()] : [], election.year) : null), [baseline, liveAnalysis, election.year]);
   const src = !notFinal ? { swing: ba.swingMap, dominance: ba.dominanceMap, incumbency: ba.incumbencyData, partySwitches: ba.partySwitchData } : lm ?? EMPTY_MAPS;
   const { swing, dominance, incumbency, partySwitches } = src;
-  const years = manifestData?.history_years ?? [];
-  const prevYear = years.length > 0 ? years[years.length - 1] : null;
+  const prevYear = prevYearOf(notFinal ? baseline : null, manifestData?.history_years ?? EMPTY_YEARS);
 
   const totalSeats = election.type === 'LS' ? (mapRegions.length || 543) : (election.state?.total_assembly_seats || mapRegions.length);
   const majority = majorityOf(manifestData, totalSeats);
