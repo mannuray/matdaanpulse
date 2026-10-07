@@ -26,11 +26,13 @@ export type DataNote =
   | 'unopposed_seats'
   | 'ocr_scan'
   | 'undivided_2009'
+  | 'jk_boundaries_1995'
+  | 'jk_boundaries_2022'
   | 'source_unrecorded';
 
 export const DATA_NOTES: readonly DataNote[] = [
   'all_candidates', 'top5_nota', 'two_candidates', 'winner_only', 'votes_from_margin',
-  'placeholder_names', 'turnout_unreliable', 'reserved_wrong', 'seats_postponed', 'seat_countermanded', 'sangha_seat', 'unopposed_seats', 'ocr_scan', 'undivided_2009', 'source_unrecorded',
+  'placeholder_names', 'turnout_unreliable', 'reserved_wrong', 'seats_postponed', 'seat_countermanded', 'sangha_seat', 'unopposed_seats', 'ocr_scan', 'undivided_2009', 'jk_boundaries_1995', 'jk_boundaries_2022', 'source_unrecorded',
 ];
 
 export interface DataSource {
@@ -135,6 +137,9 @@ export const DATA_SOURCES: readonly DataSource[] = [
   { house: 'VS', state: 'Maharashtra', year: 2019, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Maharashtra', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
   { house: 'VS', state: 'Maharashtra', year: 2009, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates'] },
+  { house: 'VS', state: 'Jammu and Kashmir', year: 2024, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'jk_boundaries_2022'] },
+  { house: 'VS', state: 'Jammu and Kashmir', year: 2014, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'jk_boundaries_1995'] },
+  { house: 'VS', state: 'Jammu and Kashmir', year: 2008, source: ECI_STAT_REPORT, quality: 'real', notes: ['all_candidates', 'jk_boundaries_1995'] },
 ];
 
 export interface DataSourceGroup {
