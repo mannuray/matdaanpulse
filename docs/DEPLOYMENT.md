@@ -194,6 +194,14 @@ If a pre-flight stops, reconcile as for Bihar above, but restore the old seeds f
 `seed_party_units_v1.sql`. After the deploy, recompute the stored seat analysis so flips follow the lineage:
 `ADMIN_EMAIL=… ADMIN_PASSWORD=… API_BASE_URL=https://<api>/api/v1 npx ts-node scraper/src/recompute-analysis-cli.ts --type VS`.
 
+**Jammu & Kashmir (Phase 4B-5).** `setup.sh` now also runs `seed_jk_vs_{parties,2008,2014,2024}.sql`,
+`seed_jk_districts_regions.sql`, `seed_jk_person_links_v1.sql`, the run-once `seed_jk_leaders.sql`,
+`seed_jk_candidate_photos.sql`, `seed_jk_affidavits.sql`, `seed_jk_party_profiles.sql`, `seed_party_units_v6.sql` and
+`seed_party_colors_v5.sql` (two colour changes, each only while the old colour is set); `seed_party_lineage.sql` gains
+two breakaways. New maps `jk_ac_1995.geojson` / `jk_ac_2022.geojson` (the old `jk_ac_2008.geojson` path redirects; the
+Vercel redirect is in `frontend/vercel.json`). No backend change. Run `setup.sh` after the frontend deploy (People's
+Conference's wrong logo file is removed and its path cleared by the profiles seed). Back up production first.
+
 **Maharashtra (Phase 4B-4).** `setup.sh` now also runs `seed_mh_vs_{parties,2009,2014,2019,2024}.sql`,
 `seed_mh_districts_regions.sql`, person links v1/v2, the run-once `seed_mh_leaders.sql`, `seed_mh_candidate_photos.sql`,
 `seed_mh_affidavits.sql`, `seed_mh_party_profiles.sql`, `seed_party_units_v5.sql`, and `seed_party_colors_v4.sql`
