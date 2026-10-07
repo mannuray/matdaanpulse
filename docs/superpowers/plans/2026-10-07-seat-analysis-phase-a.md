@@ -18,6 +18,8 @@ ts-node scripts (scraper).
 
 ## Global Constraints
 
+- Work on branch `feat/seat-analysis-a` (create it from `main` before Task 1). `main` auto-deploys to Render and
+  Vercel, so nothing is pushed to `main` until Task 11, step 4.
 - Migrations: idempotent (`IF NOT EXISTS` / `DO` blocks), no dependency on seed data, numbered `024_…`.
 - Seeds: `ON CONFLICT DO NOTHING` / fill-only, never `TRUNCATE`; run on every deploy by `database/setup.sh`.
 - `backend/prisma/schema.prisma` matches the SQL. Check with `prisma migrate diff` (needs `DIRECT_URL`). Never
@@ -90,7 +92,7 @@ ts-node scripts (scraper).
   `elections`)
 
 **Interfaces:**
-- Produces: columns `constituency_analysis.data JSONB`, `.schema_version SMALLINT`, `.computed_at TIMESTAMPTZ`; table
+- Produces: columns `constituency_analysis.data JSONB`, `.schema_version SMALLINT`, `.computed_at TIMESTAMPTZ` (`incumbency` stays, no longer written); table
   `election_analysis(election_id PK, data, baseline, schema_version, computed_at)`. Prisma model `election_analysis`.
 
 - [ ] **Step 1: Write the migration**
@@ -121,9 +123,11 @@ Expected: both runs succeed (NOTICEs about existing columns are fine).
 
 - [ ] **Step 3: Update Prisma**
 
-In `model constituency_analysis`, add the fields below and mark `incumbency` ignored:
+In `model constituency_analysis`, add the fields below. Keep `incumbency` readable, because it is the fallback until
+production is recomputed. Only add a comment to it:
 ```prisma
-  incumbency      Json?          @default("{}") @ignore
+  /// Pre-024 analysis JSON: no longer written; read only as a fallback while `data` is null. Dropped by a later migration.
+  incumbency      Json?          @default("{}")
   data            Json?
   schema_version  Int?           @db.SmallInt
   computed_at     DateTime?      @db.Timestamptz(6)
@@ -148,12 +152,10 @@ Run: `cd backend && npx prisma generate && DIRECT_URL=$DATABASE_URL npx prisma m
 Expected: only the known drift (`ALTER COLUMN "person_id" SET NOT NULL` on candidates, `metadata` drops). Nothing
 about `constituency_analysis` or `election_analysis`.
 
-- [ ] **Step 5: Fix compile errors from `@ignore`**
+- [ ] **Step 5: Type check**
 
 Run: `cd backend && npx tsc --noEmit -p tsconfig.json`
-Expected: errors only where `incumbency` is read or written (`constituencies.service.ts` `updateAnalysis` /
-`getPublicAnalysis`, the admin DTOs). Leave them failing for now: Task 7 rewrites those call sites. If anything else
-fails, fix it here.
+Expected: PASS. Every commit in this plan must build.
 
 - [ ] **Step 6: Commit**
 
@@ -1439,7 +1441,7 @@ Expected: PASS.
 /** SeatAnalysisService against the local DB (Bihar 2025); every write is rolled back. */
 import { config } from 'dotenv';
 import { join } from 'path';
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 import { SeatAnalysisService } from './seat-analysis.service';
 import { SeatAnalysisLoader } from './seat-analysis.loader';
 
@@ -1476,7 +1478,7 @@ describe('seat analysis compute (DB)', () => {
   it('Bihar 2025 compares with 2020 (not 2010), stores data + summary, purges caches', () => run('bihar', async (svc, tx) => {
     const r = await svc.compute(br25!);
     expect(r.computed).toBe(243);
-    const row = await tx.constituency_analysis.findFirst({ where: { election_id: br25!, NOT: { data: { equals: null } } } });
+    const row = await tx.constituency_analysis.findFirst({ where: { election_id: br25!, data: { not: Prisma.DbNull } } });
     const data = row.data as any;
     expect(data.schema_version).toBe(1);
     expect(data.history.map((h: any) => h.year)).toEqual([...data.history.map((h: any) => h.year)].sort());
@@ -1559,6 +1561,16 @@ match them.
 
 - In `constituencies.module.ts`: add `SeatAnalysisLoader` and `SeatAnalysisService` to `providers` and `exports`, and
   remove the `ANALYSIS_STRATEGIES` provider and the strategy imports.
+- In `admin-constituencies.controller.ts`, rewire the compute endpoint now, so the build stays green:
+  ```ts
+    @Post('analysis/compute/:electionId')
+    @Roles('SUPER_ADMIN', 'EDITOR')
+    computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string) {
+      return this.seatAnalysis.compute(electionId);
+    }
+  ```
+  Inject `SeatAnalysisService` in the constructor, keep the existing decorators and route path, drop `@Body()`, and
+  delete the compute body DTO (`history_election_ids`, `manifest`) from `dto/constituency-input.dto.ts`.
 - In `constituencies.service.ts`: delete `computeAnalysis`, `extractConstNo` (if nothing else uses it), the strategies
   injection, and the `comparable-elections` / strategy imports that become unused.
 - `git rm -r backend/src/modules/constituencies/strategies`.
@@ -1570,9 +1582,7 @@ match them.
 - [ ] **Step 8: Run backend tests**
 
 Run: `cd backend && npx tsc --noEmit && npm run test:unit && REQUIRE_DB_TESTS=1 npx jest --runInBand src/modules/constituencies/seat-analysis.db.spec.ts`
-Expected: `tsc` passes except the `incumbency` call sites Task 7 rewrites (`updateAnalysis`, `getPublicAnalysis`,
-admin DTOs). If those block the run, do Task 7 Step 3 first, then rerun. Unit tests pass, and the DB spec passes
-(needs the local DB with migration 024).
+Expected: `tsc` passes, unit tests pass, and the DB spec passes (needs the local DB with migration 024).
 
 - [ ] **Step 9: Commit**
 
@@ -1590,12 +1600,8 @@ git commit -m "feat(analysis): SeatAnalysisService: one compute path (loader →
 - Modify:
   - `backend/src/modules/constituencies/constituencies.service.ts` (`getPublicAnalysis`,
     `getConstituencyAnalysisDetail`, `updateAnalysis`)
-  - `backend/src/modules/constituencies/dto/constituency-input.dto.ts` (`UpdateAnalysisDto`: `notes` only; delete the
-    compute body DTO)
-  - `backend/src/modules/admin/dto/admin-response.dto.ts` (`AdminAnalysisDto`: add `data`, `computed_at`; drop
-    `incumbency`)
-  - `backend/src/modules/admin/controllers/admin-constituencies.controller.ts` (compute calls
-    `SeatAnalysisService.compute`, no body)
+  - `backend/src/modules/constituencies/dto/constituency-input.dto.ts` (`UpdateAnalysisDto`: `notes` only)
+  - `backend/src/modules/admin/dto/admin-response.dto.ts` (`AdminAnalysisDto`: add `data`, `computed_at`)
   - `backend/src/modules/admin/controllers/admin-elections.controller.ts` (compute on finalize / update to Finalized)
   - `backend/src/modules/elections/elections.controller.ts` (`GET :id/analysis/summary`)
   - `admin/src/types/index.ts`, `admin/src/components/entity/constituencies/ConstituencyAnalysisCard.tsx`,
@@ -1672,34 +1678,28 @@ Run: `cd backend && npx jest src/modules/constituencies/legacy-analysis.spec.ts`
     return this.cache.getOrSet(publicAnalysisKey(electionId), CACHE_TTL.PUBLIC_ANALYSIS, async () => {
       const rows = await this.prisma.constituency_analysis.findMany({
         where: { election_id: electionId },
-        select: { id: true, const_id: true, election_id: true, dominance: true, dominance_party: true, data: true },
+        select: { id: true, const_id: true, election_id: true, dominance: true, dominance_party: true, data: true, incumbency: true },
       });
-      return rows.map(r => ({ ...r, incumbency: legacyIncumbency(r.data as unknown as SeatAnalysis | null) }));
+      // Until a row is recomputed (`data` null), the stored pre-024 JSON is served as it was.
+      return rows.map(r => ({ ...r, incumbency: r.data ? legacyIncumbency(r.data as unknown as SeatAnalysis) : r.incumbency ?? {} }));
     });
   }
 
   async getConstituencyAnalysisDetail(electionId: string, constId: string) {
     const r = await this.prisma.constituency_analysis.findUnique({ where: { const_id_election_id: { const_id: constId, election_id: electionId } } });
-    return r ? { ...r, incumbency: legacyIncumbency(r.data as unknown as SeatAnalysis | null) } : null;
+    return r ? { ...r, incumbency: r.data ? legacyIncumbency(r.data as unknown as SeatAnalysis) : r.incumbency ?? {} } : null;
   }
 ```
 `updateAnalysis(id, body)` now writes only `notes` (+ `updated_at`) and purges `publicAnalysisKey`. `UpdateAnalysisDto`
-becomes `{ @IsOptional() @IsString() notes?: string | null }`. Delete the compute body DTO (`history_election_ids`,
-`manifest`). In `AdminAnalysisDto`, replace `incumbency` with `data` and `computed_at`.
+becomes `{ @IsOptional() @IsString() notes?: string | null }`. In `AdminAnalysisDto`, add `data` and `computed_at`
+(keep `incumbency`).
 
-- [ ] **Step 4: Triggers**
+Add to `legacy-analysis.spec.ts` (or the service spec) a test that a row with `data: null` serves its stored
+`incumbency` unchanged.
 
-`admin-constituencies.controller.ts`:
-```ts
-  @Post('analysis/compute/:electionId')
-  @Roles('SUPER_ADMIN', 'EDITOR')
-  computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string) {
-    return this.seatAnalysis.compute(electionId);
-  }
-```
-(Inject `SeatAnalysisService` in the constructor. Keep the existing decorators and route path; drop `@Body()`.)
+- [ ] **Step 4: Compute on finalize**
 
-`admin-elections.controller.ts`: compute after a transition to Finalized. A compute failure is logged and never
+(The compute endpoint was rewired in Task 6.) `admin-elections.controller.ts`: compute after a transition to Finalized. A compute failure is logged and never
 undoes the finalize:
 ```ts
   private readonly logger = new Logger(AdminElectionsController.name);
@@ -1744,7 +1744,7 @@ Declare it **before** any `:id/analysis/:x` style route if one exists, so Nest m
 
 - [ ] **Step 6: Admin card, button, types, CLI**
 
-- `admin/src/types/index.ts`: in `ConstituencyAnalysis`, replace `incumbency` with
+- `admin/src/types/index.ts`: in `ConstituencyAnalysis`, add
   `data: { class?: { kind: string; holder: string; streak: number; since: number } | null; incumbent?: { name: string; party: string | null; recontested: boolean; switched: boolean; party_now: string | null } | null; outcome?: { kind: string; from: string | null } | null } | null;`
   and add `computed_at?: string | null`.
 - `ConstituencyAnalysisCard.tsx`:
@@ -1957,6 +1957,9 @@ Use party ids exactly as in the `parties` table for that election (check with
 of the ministry) as the `source`. Where knowledge is uncertain, use WebSearch / WebFetch to confirm before writing
 the entry.
 
+In the task report, list every row that needed a judgment call: MH 2019, BR 2015, JK 2014, DL 2013, hung houses,
+any coalition with outside support. Give the source for each. The user reviews this list before the seed ships.
+
 - [ ] **Step 2: Write the generator test (failing)**
 
 ```ts
@@ -2063,8 +2066,7 @@ git commit -m "feat(data): manifest government for every VS election (fill-only 
 ### Task 10: Local full recompute, spot checks, docs
 
 **Files:**
-- Modify: `docs/FEATURES.md`, `CLAUDE.md`, `docs/superpowers/specs/2026-10-07-seat-analysis-design.md` (spec
-  corrections below), `docs/superpowers/specs/2026-10-06-party-page-notes.md` (§8 note), `docs/DEPLOYMENT.md` (the
+- Modify: `docs/FEATURES.md`, `CLAUDE.md`, `docs/superpowers/specs/2026-10-06-party-page-notes.md` (§8 note), `docs/DEPLOYMENT.md` (the
   deferred-analysis notes)
 
 - [ ] **Step 1: Recompute every VS election locally**
@@ -2088,6 +2090,11 @@ psql "$U" -At -c "select count(*) from constituency_analysis c join elections e 
 psql "$U" -At -c "select count(*) from constituency_analysis c join elections e on e.id=c.election_id where e.type='VS' and c.data is null"   # 0
 ```
 Record the outputs in the task report. If one is wrong, fix the module (with a test reproducing it), then recompute.
+
+**Timing:** time `analyse()` for UP 2022 (403 seats). Add a temporary log around the call in
+`SeatAnalysisService.compute`, or time the endpoint. Phase B runs the same module in the browser on every poll. If it
+takes more than ~1 s, build per-election indexes in `Ctx` (person_id → match, normName → matches) and use them in
+`findPerson`. Add a test that the results don't change, commit, then recompute.
 
 - [ ] **Step 3: Click through**
 
@@ -2116,14 +2123,6 @@ Run `cd frontend && npm run e2e` (dev servers running). Expected: green.
     shared module `backend/src/common/seat-analysis/` = `frontend/src/model/derive/seatAnalysis/` (identical except
     `lineage.ts`; tests enforce); computed only by `SeatAnalysisService.compute` (finalize, admin button, CLI)";
   - in the seed order: `seed_election_government.sql` after `seed_election_delimitation.sql`.
-- **Spec corrections** (in `2026-10-07-seat-analysis-design.md`):
-  - seat type values are `'two-way' | 'three-way' | 'multi-cornered'`;
-  - `government` is `{ parties: string[], label?, source }` (a post-poll coalition fits);
-  - it is edited through the admin manifest editor (JSON tab), not the election dialog;
-  - the browser-side engine swap (§4.6, second bullet) moves to Phase B with the baseline, and until then
-    `useHistoryAnalysis` remains the fallback for non-Finalized elections;
-  - the admin card shows `notes` (editable through `PATCH`; no editor UI).
-  - incumbency has no separate `denied` field: `recontested: false` means not a candidate anywhere.
 - **`DEPLOYMENT.md`:** replace the deferred-analysis notes with a pointer to Task 11's rollout.
 - **Party page notes §8:** item 4 reads `election_analysis` (held / gained / lost, flow).
 
@@ -2138,21 +2137,22 @@ git commit -m "docs: seat analysis rework (Phase A): features, CLAUDE.md, spec c
 
 ### Task 11: Production rollout (each step needs the user's go-ahead)
 
-No code. The executor stops before each production action, asks the user and reports the result.
+No code. The executor stops before each production action, asks the user and reports the result. Order matters:
+production gets the schema before the new backend, and is recomputed right after the push.
 
-- [ ] **Step 1:** Push `main` (Render auto-deploys the backend, Vercel the frontend and admin). Check
-  `/api/v1/health/ready` and that `GET /elections/<BR2025>/analysis` still returns rows with `incumbency` (legacy
-  adapter; `data` is null until recompute).
-- [ ] **Step 2:** On the Neon project `matdaanpulse`, check
+- [ ] **Step 1:** On the Neon project `matdaanpulse`, check
   `select count(*) from constituency_analysis where notes is not null and notes <> ''`. If any rows have notes, list
   them for the user. (The upsert keeps them anyway.)
-- [ ] **Step 3:** Take a Neon snapshot / branch of production (backup).
-- [ ] **Step 4:** Confirm the deploy ran `setup.sh` (migration 024 + `seed_election_government.sql`):
-  `select count(*) from elections where type='VS' and manifest_url::jsonb ? 'government'` = 76. If the deploy does not
-  run `setup.sh`, run it as `docs/DEPLOYMENT.md` describes.
-- [ ] **Step 5:** Recompute once:
+- [ ] **Step 2:** Take a Neon snapshot / branch of production (backup).
+- [ ] **Step 3:** Run `database/setup.sh` against Neon with the direct URL (`docs/DEPLOYMENT.md` B10). This applies
+  migration 024 and `seed_election_government.sql`, which the running old backend ignores. Check
+  `select count(*) from elections where type='VS' and manifest_url::jsonb ? 'government'` = 76.
+- [ ] **Step 4:** Merge `feat/seat-analysis-a` into `main` and push. Render deploys the backend, Vercel the frontend
+  and admin. Wait for both deploys. Check `/api/v1/health/ready` and that `GET /elections/<BR2025>/analysis` still
+  returns rows with the stored `incumbency` (fallback while `data` is null).
+- [ ] **Step 5:** Recompute right away:
   `cd scraper && API_BASE_URL=https://matdaanpulse-api.onrender.com/api/v1 ADMIN_EMAIL=… ADMIN_PASSWORD=… npx ts-node src/recompute-analysis-cli.ts --type VS`.
 - [ ] **Step 6:** Re-run Task 10 Step 2's SQL against production, and click through the Bihar 2025 dashboard and one
   constituency page on `matdaanpulse.vercel.app`.
 - [ ] **Step 7:** Update memory (`party-model-phase` / seat analysis status) and tell the user Phase A is live. The
-  legacy adapter removal is a follow-up release.
+  legacy adapter removal (and dropping `incumbency`) is a follow-up release.

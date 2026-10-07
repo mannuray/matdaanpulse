@@ -105,11 +105,12 @@ lands, with no code change.
   - The constituency page's `anti_incumbency` class is removed; "sitting MLA lost" comes from incumbency.
 - **Incumbency** (§3.1 matching): the previous winner's `person_id` (or name), `match`, `recontested`, `seat` (`same` |
   the other `const_id`), `party` now, `switched` (party not comparable to their old one; following a split faction is
-  `followedSplit`, not a switch), `won`. `denied` = not a candidate anywhere in the election.
+  `followedSplit`, not a switch), `won`. `recontested: false` = not a candidate anywhere in the election (no separate
+  `denied` field).
 - **Seat history:** per comparable election, oldest → newest: year, winner (name, person_id, party), margin, vote
   share, runner-up; each party also carries its **lineage family id** (`carryForward` to this election), so "JVM 2014"
   can render as BJP's line while keeping the real party.
-- **Seat type:** `two_way` | `three_way` | `multi` (today's definition, kept).
+- **Seat type:** `two-way` | `three-way` | `multi-cornered` (today's definition and values, kept).
 - **Notes** (a list, rendered by the UI):
   - `spoiler`: the third candidate's votes exceed the winning margin (every election); where the manifest has
     `vote_splits` / alliances, the richer alliance note (which split hurt which alliance) replaces it;
@@ -144,11 +145,13 @@ lands, with no code change.
 
 ### 4.3 New manifest field: `government`
 
-- `government: { party_id?: string; alliance_id?: string; source: string }` is the side that formed the government
-  **after these results** (the first government formed; later re-alignments, e.g. Bihar 2017 or Maharashtra 2022, are
-  not recorded).
+- `government: { parties: string[]; label?: string; source: string }` lists the parties that formed the government
+  **after these results**: the first government that took office and was not out before its floor test, counting only
+  ministry or coalition parties (outside support excluded). A post-poll coalition fits (MH 2019 = SHS, NCP, INC).
+  Later re-alignments, e.g. Bihar 2017 or Maharashtra 2022, are not recorded.
 - It is filled for every seeded VS election by a fill-only seed (`seed_election_government.sql`, sets the manifest key
-  only where empty; sources noted per row) and is editable in the admin election dialog.
+  only where empty; sources noted per row; generated from `scraper/data/government.json`) and is editable in the admin
+  manifest editor (JSON tab).
 - Missing → no bellwethers for that state.
 
 ### 4.4 Storage (migration 024, idempotent, no seed data dependency)
@@ -157,8 +160,8 @@ lands, with no code change.
   - `data JSONB` (the `SeatAnalysis`);
   - `schema_version SMALLINT`;
   - `computed_at TIMESTAMPTZ`.
-- `dominance` / `dominance_party` stay (filled from the class). `incumbency` is no longer written; it is `@ignore`d in
-  Prisma and dropped by a later migration (expand / contract, like `metadata`).
+- `dominance` / `dominance_party` stay (filled from the class). `incumbency` is no longer written. It stays readable
+  as the fallback for rows not yet recomputed, and a later migration drops it (expand / contract, like `metadata`).
 - **`notes` becomes admin-only and survives every recompute.** The compute upserts `data` / `dominance*` /
   `computed_at` and never touches `notes`; today's delete-and-reinsert goes. (No row has notes on the local DB;
   production is checked before the recompute.)
@@ -189,10 +192,13 @@ lands, with no code change.
 
 - `useAnalysis` maps `data` into the existing maps (swing, dominance, incumbency, party switches); the views barely
   change.
-- For elections that are not Finalized, the dashboard runs the shared module in the browser on the history it already
-  fetches (`useHistoricalResults`), replacing `useHistoryAnalysis`. Phase B swaps that input for the baseline.
+- **Moved to Phase B (decided when planning, 2026-10-07):** running the shared module in the browser for elections
+  that are not Finalized. It needs inputs the browser lacks today (person ids, lineage events, every candidate of the
+  history), and the baseline (§5.1) brings exactly those. Until Phase B, `useHistoryAnalysis` stays the fallback for
+  non-Finalized elections, so two engines remain only for elections that aren't Finalized. Phase B must land before
+  counting day (27 Feb 2027).
 - The constituency page and seat dialog read class, history (with lineage family), notes and incumbency from `data`.
-- The admin analysis card shows the new fields and keeps `notes` editable.
+- The admin analysis card shows the new fields and `notes` (editable through `PATCH`; no editor UI).
 
 ### 4.7 Rollout
 
