@@ -2917,6 +2917,6 @@ JOIN candidates c ON c.id = v.candidate_id::uuid
 WHERE p.id = c.person_id AND p.gender IS NULL;
 
 -- Manifest (only when none is published; admins edit it)
-UPDATE elections SET manifest_url = '{"alliances":[{"id":"INDIA","name":"INDIA","color":"#C41E3A","parties":["JKNC","INC","CPIM"]},{"id":"BJP","name":"BJP","color":"#FF7A1A","parties":["BJP"]},{"id":"JKPDP","name":"PDP","color":"#2E8B57","parties":["JKPDP"]}],"leaders":[],"cabinet":[],"tracked":["JKNC","JKPDP","INC","BJP"],"vip_seats":{},"milestones":[{"label":"Majority","value":46}],"geo":{"zoom":7.5,"center":[75.25,33.6],"map_url":"/geo/jk_ac_2022.geojson"},"delimitation_era":"2022"}' WHERE id = 'a0130000-0000-4000-8000-000000002024' AND manifest_url IS NULL;
+UPDATE elections SET manifest_url = '{"alliances":[{"id":"INDIA","name":"INDIA","color":"#C41E3A","parties":["JKNC","INC","CPIM"]},{"id":"BJP","name":"BJP","color":"#FF7A1A","parties":["BJP"]},{"id":"JKPDP","name":"PDP","color":"#058532","parties":["JKPDP"]}],"leaders":[],"cabinet":[],"tracked":["JKNC","JKPDP","INC","BJP"],"vip_seats":{},"milestones":[{"label":"Majority","value":46}],"geo":{"zoom":7.5,"center":[75.25,33.6],"map_url":"/geo/jk_ac_2022.geojson"},"delimitation_era":"2022"}' WHERE id = 'a0130000-0000-4000-8000-000000002024' AND manifest_url IS NULL;
 
 COMMIT;

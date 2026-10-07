@@ -46,6 +46,9 @@ describe('regionSets', () => {
       { file: 'districts-1995.json', delimitation: '1995', seatCount: 87, electionIds: ['a0130000-0000-4000-8000-000000002008', 'a0130000-0000-4000-8000-000000002014'] },
       { file: 'districts-2022.json', delimitation: '2022', seatCount: 90, electionIds: ['a0130000-0000-4000-8000-000000002024'] }]);
   });
+  it('fails when the state has no districts file (it would write an empty seed)', () => {
+    expect(() => regionSets('WB', ['vs-2021.json', 'manifest-2021.json'])).toThrow(/no districts/);
+  });
   it('fails on a boundary set with no elections', () => {
     expect(() => regionSets('JK', ['districts-2008.json'])).toThrow(/no JK election/);
   });

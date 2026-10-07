@@ -55,7 +55,7 @@ export function emitStateRegions(o: StateRegions): string {
  * (J&K: 1995 and 2022) has one `districts-<era>.json` per set. Each set is scoped to that era's elections and seats.
  */
 export function regionSets(code: StateCode, files: string[]): { file: string; delimitation: string; seatCount: number; electionIds: string[] }[] {
-  return files.flatMap(file => {
+  const sets = files.flatMap(file => {
     const m = /^districts(?:-(\d{4}))?\.json$/.exec(file);
     if (!m) return [];
     const delimitation = m[1] ?? '2008';
@@ -63,4 +63,7 @@ export function regionSets(code: StateCode, files: string[]): { file: string; de
     if (!elections.length) throw new Error(`${file}: no ${code} election on the ${delimitation} boundaries`);
     return [{ file, delimitation, seatCount: elections[0].seats ?? STATES[code].seats, electionIds: elections.map(e => e.electionId) }];
   }).sort((a, b) => a.delimitation.localeCompare(b.delimitation));
+  // Writing a seed from no file would empty a shipped one (BR/WB/TN/KL/PY keep their seeds without a districts file).
+  if (!sets.length) throw new Error(`${code}: no districts.json or districts-<era>.json in its data dir`);
+  return sets;
 }

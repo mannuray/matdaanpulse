@@ -4895,7 +4895,7 @@
   "JAMMUANDKASHMIRPEOPLESDEMOCRATICFRONTSECULAR": {
     "id": "JKPDF",
     "name": "Jammu And Kashmir Peoples Democratic Front (secular)",
-    "abbreviation": "JKPDFS",
+    "abbreviation": "JKPDF",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
@@ -4958,7 +4958,7 @@
   "JAMMUKASHMIRPEOPLEDEMOCRATICFRONTSECULAR": {
     "id": "JKPDFS",
     "name": "Jammu & Kashmir People Democratic Front(Secular)",
-    "abbreviation": "JKPDF",
+    "abbreviation": "JKPDF(S)",
     "color": "#9CA3AF",
     "recognition": "Unrecognised"
   },
