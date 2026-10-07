@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import { join } from 'path';
 import { PrismaClient } from '@prisma/client';
 import { appendSeatRounds } from './seat-rounds';
+import { loadTrails } from '../results/results.service';
 
 config({ path: join(__dirname, '../../../.env') });
 class Rollback extends Error {}
@@ -56,4 +57,16 @@ describe('seat timeline (DB)', () => {
     await setVotes(tx, 20, 5); await appendSeatRounds(tx, seat!.election_id, [seat!.const_id], 'ingest', new Date());
     expect((await rows(tx)).map((x: any) => x.seq)).toEqual([1, 2]);
   }));
+
+  it('the trail reports the current leader\'s deepest deficit over the whole timeline (md), not just the last 6 points', () => run('md', async tx => {
+    await tx.$executeRaw`DELETE FROM seat_rounds WHERE election_id = ${seat!.election_id}::uuid AND const_id = ${seat!.const_id}`;
+    const at = new Date();
+    await setVotes(tx, 100, 150, ['TRAILING', 'LEADING']); await appendSeatRounds(tx, seat!.election_id, [seat!.const_id], 'ingest', at);   // A trails by 50 of 250
+    for (let i = 1; i <= 7; i++) { await setVotes(tx, 300 + i * 10, 150, ['LEADING', 'TRAILING']); await appendSeatRounds(tx, seat!.election_id, [seat!.const_id], 'ingest', at); }
+    const t = (await loadTrails(tx, seat!.election_id)).find(x => x.const_id === seat!.const_id)!;
+    expect(t.points).toHaveLength(6);
+    expect(t.lc).toBe(1);
+    expect(t.md).toBeCloseTo(0.2, 5);
+  }));
 });
+

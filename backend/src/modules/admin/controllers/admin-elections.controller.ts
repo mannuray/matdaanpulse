@@ -51,8 +51,9 @@ export class AdminElectionsController {
   @Roles('SUPER_ADMIN', 'EDITOR')
   async updateElection(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateElectionDto) {
     const before = await this.electionsService.findOne(id);
-    const updated = await this.electionsService.update(id, body);
+    // The final analysis first, so a viewer who sees Finalized already gets it; the baseline after going Live.
     await this.computeIfFinalized(id, String(before.status), String(body.status ?? before.status));
+    const updated = await this.electionsService.update(id, body);
     await this.computeIfLive(id, String(before.status), String(body.status ?? before.status));
     return this.afterElectionChange(id, updated);
   }
@@ -61,8 +62,9 @@ export class AdminElectionsController {
   @Roles('SUPER_ADMIN')
   async finalizeElection(@Param('id', ParseUUIDPipe) id: string) {
     const before = await this.electionsService.findOne(id);
-    const finalized = await this.electionsService.finalize(id);
+    // Computed before the status flips: a viewer who sees Finalized already gets the stored analysis.
     await this.computeIfFinalized(id, String(before.status), 'Finalized');
+    const finalized = await this.electionsService.finalize(id);
     return this.afterElectionChange(id, finalized);
   }
 

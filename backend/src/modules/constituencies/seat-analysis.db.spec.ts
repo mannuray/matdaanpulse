@@ -85,6 +85,8 @@ describe('seat analysis compute (DB)', () => {
         if (!isDeepStrictEqual([s.leader?.name ?? null, s.margin, s.outcome, s.swing], [f.winner?.name ?? null, f.margin, f.outcome, f.swing])) bad.push(s.const_id);
       }
       if (!isDeepStrictEqual(l.tally.flow, fin.election.flow)) bad.push(`${e.id} flow`);
+      const mv = (rows: { from: string; to: string; seats: number }[]) => rows.map(m => `${m.from}>${m.to}:${m.seats}`).sort();
+      if (!isDeepStrictEqual(mv(l.tally.alliance_moves), mv(fin.election.alliance?.moves ?? []))) bad.push(`${e.id} alliance`);
       const hg = (rows: any[]) => rows.filter(p => p.held + p.gained + p.lost + p.split_gained + p.split_lost > 0).map(p => [p.party_id, p.held, p.gained, p.lost, p.split_gained, p.split_lost].join(',')).sort();
       if (!isDeepStrictEqual(hg(l.tally.parties), hg(fin.election.parties))) bad.push(`${e.id} parties`);
     }

@@ -213,6 +213,8 @@ export interface ResultRow {
   status: string;
   margin: number;
   const_type?: 'GEN' | 'SC' | 'ST';
+  /** The candidate's person (live snapshots; matches sitting MLAs and heavyweights). Missing on older backends. */
+  person_id?: string | null;
 }
 
 export interface SpoilerInfo {

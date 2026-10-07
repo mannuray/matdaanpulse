@@ -54,5 +54,5 @@ export function baselineOf(input: AnalysisInput): Baseline {
       history: historyOf(ctx, history, seat.const_no),
     };
   });
-  return { schema_version: SCHEMA_VERSION, election_id: current.id, date: current.date, state_id: input.stateId, lineage: input.lineage, alliances: current.alliances, seats };
+  return { schema_version: SCHEMA_VERSION, election_id: current.id, date: current.date, state_id: input.stateId, lineage: input.lineage, alliances: current.alliances, prev_has_alliances: !!prevE?.alliances.length, seats };
 }

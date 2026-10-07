@@ -17,7 +17,8 @@ export function liveMaps(b: Baseline, live: SeatLive[], year: number) {
     if (l?.outcome && l.outcome.kind !== 'new' && l.leader?.party_id && l.outcome.from_raw) {
       swing.set(s.const_id, { constId: s.const_id, currentParty: l.leader.party_id, prevParty: l.outcome.from_raw, currentMargin: l.margin ?? 0, prevMargin: s.prev?.margin ?? 0, flipped: l.outcome.kind === 'gained', split: l.outcome.kind === 'split' });
     }
-    if (s.sitting && l?.sitting && l.sitting !== 'not_started') {
+    // Only sitting MLAs who contest again (as the old engine did): "not contesting" is not "lost".
+    if (s.sitting && l?.sitting && l.sitting !== 'not_started' && l.sitting !== 'not_contesting') {
       incumbency.push({ constId: s.const_id, incumbentName: s.sitting.name, incumbentParty: s.sitting.party ?? '', won: l.sitting === 'won' || l.sitting === 'leading', currentMargin: l.margin ?? 0 });
     }
     for (const n of s.switchers) partySwitches.push({ constId: s.const_id, candidateName: n.name, fromParty: n.from, toParty: n.to, fromYear: n.year, toYear: year, wonInNewParty: l?.leader?.name === n.name, margin: l?.margin ?? 0 });

@@ -10,7 +10,7 @@ export function useLiveAnalysis(baseline: Baseline | null, results: ResultRow[] 
     for (const r of results) (byConst.get(r.const_id) ?? byConst.set(r.const_id, []).get(r.const_id)!).push(r);
     const input = [...byConst].map(([const_id, rows]) => {
       const st = seats[const_id];
-      return { const_id, candidates: rows.map(r => ({ person_id: null, name: r.candidate_name, party_id: r.party_id || null, votes: Number(r.votes) || 0, status: r.status })),
+      return { const_id, candidates: rows.map(r => ({ person_id: r.person_id ?? null, name: r.candidate_name, party_id: r.party_id || null, votes: Number(r.votes) || 0, status: r.status })),
         round: st?.cr && st.tr ? { current: st.cr, total: st.tr } : null, trail: trails[const_id] ?? null };
     });
     const out = analyseLive(baseline, input);

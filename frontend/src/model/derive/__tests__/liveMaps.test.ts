@@ -37,3 +37,10 @@ describe('prevYearOf', () => {
     expect(prevYearOf(null, [])).toBeNull();
   });
 });
+
+describe('liveMaps incumbency', () => {
+  it('a sitting MLA who is not contesting is not listed as an incumbent who lost', () => {
+    const notContesting = [{ ...live[0], sitting: 'not_contesting' }] as unknown as SeatLive[];
+    expect(liveMaps(b, notContesting, 2027).incumbency).toEqual([]);
+  });
+});

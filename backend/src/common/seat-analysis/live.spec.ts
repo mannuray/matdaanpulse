@@ -66,3 +66,29 @@ describe('analyseLive edge cases found by live = final', () => {
     expect(l).toMatchObject({ call: 'declared', leader: { name: 'A' }, outcome: analyse(inp).seats[0].outcome });
   });
 });
+
+describe('review fixes', () => {
+  it('no alliance moves when the previous election had no alliances (as analyse(): alliance change is null)', () => {
+    const cur = el(2024, [seat(1, [['B', 'JMM', 60], ['A', 'BJP', 40]])], { alliances: [{ id: 'INDIA', parties: ['JMM'] }, { id: 'NDA', parties: ['BJP'] }] });
+    const inp = input(cur, [el(2014, [seat(1, [['A', 'JVM', 50], ['B', 'JMM', 40]])]), prev], { lineage: [JVM_MERGER] });
+    expect(analyse(inp).election.alliance).toBeNull();
+    expect(analyseLive(baselineOf(inp), [{ const_id: 'T_1', candidates: cur.seats[0].candidates, round: null, trail: null }]).tally.alliance_moves).toEqual([]);
+  });
+  it('an estimate that runs out before the seat is declared never calls a narrow lead safe', () => {
+    const cands = [c('A', 'BJP', 5050, 'LEADING'), c('B', 'JMM', 5000)];
+    // all rounds in, not declared
+    expect(analyseLive(base(), [live(cands, { current: 20, total: 20 })]).seats[0].call).toBe('counting');
+    // electors fallback: turnout already above last time's (remaining clamps to 0)
+    const b2 = base(el(2024, [seat(1, [['A', 'BJP', 0, 'PENDING'], ['B', 'JMM', 0, 'PENDING']], { electors: 10000 })]));
+    expect(b2.seats[0].prev?.turnout ?? null).toBeNull();
+    const withTurnout = { ...b2, seats: [{ ...b2.seats[0], prev: { ...b2.seats[0].prev!, turnout: 60 } }] };
+    expect(analyseLive(withTurnout, [live(cands)]).seats[0].call).toBe('counting');
+  });
+  it('comeback uses the whole-timeline deficit (md) when the snapshot has it', () => {
+    const lead = [c('A', 'BJP', 6000, 'LEADING'), c('B', 'JMM', 5000)];
+    const t = { points: [{ r: 7, lp: 'BJP', m: 900, v: 15000 }, { r: 8, lp: 'BJP', m: 1000, v: 16000 }], lc: 1, pk: 1000, md: 0.2 };
+    expect(analyseLive(base(), [live(lead, { current: 8, total: 20 }, t)]).seats[0].comeback).toBe(true);
+    expect(analyseLive(base(), [live(lead, { current: 8, total: 20 }, { ...t, md: null })]).seats[0].comeback).toBe(false);
+  });
+});
+

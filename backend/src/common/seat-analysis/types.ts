@@ -186,11 +186,19 @@ export interface Baseline {
   lineage: LineageEventLike[];
   /** This election's alliances (normalised ids via ALLIANCE_ALIASES when compared). */
   alliances: AllianceIn[];
+  /** The previous comparable election had alliances (alliance moves exist only when both do, as in analyse()). */
+  prev_has_alliances: boolean;
   seats: SeatBaseline[];
 }
 
 export interface TrailPoint { r: number | null; lp: string | null; m: number | null; v: number }
-export interface SeatTrail { points: TrailPoint[]; lc: number; pk: number | null }
+export interface SeatTrail {
+  points: TrailPoint[];
+  lc: number;
+  pk: number | null;
+  /** The current leader's deepest deficit over the whole timeline (share of votes counted); missing on older snapshots. */
+  md?: number | null;
+}
 export interface SeatLiveIn {
   const_id: string;
   candidates: CandidateIn[];

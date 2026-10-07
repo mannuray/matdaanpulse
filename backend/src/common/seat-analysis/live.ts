@@ -46,8 +46,8 @@ function remainingOf(counted: number, round: SeatLiveIn['round'], base: SeatBase
 function callOf(rk: ReturnType<typeof rank>, counted: number, remaining: number | null): Call {
   if (rk.winner?.status === 'WON') return 'declared';
   if (counted <= 0 || !rk.winner) return 'not_started';
-  if (remaining == null) return 'counting';
-  if (remaining <= 0) return 'safe';
+  // No estimate, or one that ran out before the seat is declared (all rounds in, turnout above last time's): unknown.
+  if (remaining == null || remaining <= 0) return 'counting';
   const f = (rk.margin ?? 0) / remaining;
   return f < CALL_THRESHOLDS.tooClose ? 'too_close' : f < CALL_THRESHOLDS.likely ? 'likely' : 'safe';
 }
@@ -62,6 +62,8 @@ function momentumOf(trail: SeatLiveIn['trail']): Momentum | null {
 }
 
 function comebackOf(trail: SeatLiveIn['trail'], leaderParty: string | null): boolean {
+  // The whole timeline when the snapshot has it; else only the ≤6 points carried.
+  if (trail && trail.md !== undefined) return (trail.md ?? 0) > MOMENTUM.comebackFrac;
   return !!trail?.points.some(p => p.lp !== leaderParty && p.v > 0 && (p.m ?? 0) / p.v > MOMENTUM.comebackFrac);
 }
 
@@ -124,7 +126,7 @@ function tallyOf(b: Baseline, bases: Map<string, SeatBaseline>, seats: SeatLive[
     const split = o.kind === 'split', k = `${from}>${to}>${split}`;
     const f = flow.get(k) ?? { from, to, seats: 0, split }; f.seats++; flow.set(k, f);
     const pa = bases.get(s.const_id)?.prev?.alliance;
-    if (pa && b.alliances.length) { const ta = allianceOf(cur, to); if (pa !== ta) moves.set(`${pa}>${ta}`, (moves.get(`${pa}>${ta}`) ?? 0) + 1); }
+    if (pa && b.alliances.length && b.prev_has_alliances) { const ta = allianceOf(cur, to); if (pa !== ta) moves.set(`${pa}>${ta}`, (moves.get(`${pa}>${ta}`) ?? 0) + 1); }
   }
   return {
     parties: [...rows.values()].sort((a, c) => c.won + c.leading - (a.won + a.leading) || a.party_id.localeCompare(c.party_id)),

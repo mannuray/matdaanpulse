@@ -179,25 +179,14 @@ export class ResultsService {
             votes: true,
             status: true,
             margin: true,
-            candidates: { select: { party_id: true, name: true, parties: { select: { name: true, color: true } } } },
+            candidates: { select: { party_id: true, name: true, person_id: true, parties: { select: { name: true, color: true } } } },
             constituencies: { select: { type: true } },
           },
           orderBy: { const_id: 'asc' },
         });
         const seatStates = await tx.seat_ingest_state.findMany({ where: { election_id: id, state: { not: null } }, select: { const_id: true, state: true, round_current: true, round_total: true } });
         // Same RepeatableRead transaction as the version and results: a snapshot never pairs version N with another trail.
-        const trails = await tx.$queryRaw<({ const_id: string } & SeatTrailDto)[]>`
-          SELECT t.const_id,
-                 json_agg(json_build_object('r', t.round_no, 'lp', c.party_id, 'm', t.margin, 'v', t.votes_counted) ORDER BY t.seq) FILTER (WHERE t.rn <= 6) AS points,
-                 (count(*) FILTER (WHERE t.changed))::int AS lc,
-                 max(t.margin) AS pk
-          FROM (
-            SELECT s.*, row_number() OVER (PARTITION BY s.const_id ORDER BY s.seq DESC) AS rn,
-                   (lag(s.leader_candidate_id) OVER (PARTITION BY s.const_id ORDER BY s.seq) IS NOT NULL
-                    AND lag(s.leader_candidate_id) OVER (PARTITION BY s.const_id ORDER BY s.seq) IS DISTINCT FROM s.leader_candidate_id) AS changed
-            FROM seat_rounds s WHERE s.election_id = ${id}::uuid
-          ) t LEFT JOIN candidates c ON c.id = t.leader_candidate_id
-          GROUP BY t.const_id`;
+        const trails = await loadTrails(tx, id);
         // A row without a state only records a rejection (migration 021); viewers never see it.
         return buildSnapshot(Number(state?.version ?? 0), rows, seatStates as { const_id: string; state: string; round_current: number | null; round_total: number | null }[], trails);
       },
@@ -404,7 +393,33 @@ export class ResultsService {
 }
 
 /** A seat's counting trail in a snapshot: points oldest → newest (round, leader party, margin, votes counted). */
-export interface SeatTrailDto { points: { r: number | null; lp: string | null; m: number | null; v: number }[]; lc: number; pk: number | null }
+export interface SeatTrailDto {
+  points: { r: number | null; lp: string | null; m: number | null; v: number }[];
+  /** Lead changes over the whole timeline. */
+  lc: number;
+  /** Largest margin over the whole timeline. */
+  pk: number | null;
+  /** The current leader's deepest deficit over the whole timeline, as a share of votes counted then (comeback); null if never behind. */
+  md: number | null;
+}
+
+/** Every seat's counting trail for an election (call inside the snapshot's transaction): last ≤6 points + whole-timeline lc, pk, md. */
+export function loadTrails(tx: Pick<PrismaService, '$queryRaw'>, electionId: string): Promise<({ const_id: string } & SeatTrailDto)[]> {
+  return tx.$queryRaw<({ const_id: string } & SeatTrailDto)[]>`
+    SELECT t.const_id,
+           json_agg(json_build_object('r', t.round_no, 'lp', c.party_id, 'm', t.margin, 'v', t.votes_counted) ORDER BY t.seq) FILTER (WHERE t.rn <= 6) AS points,
+           (count(*) FILTER (WHERE t.changed))::int AS lc,
+           max(t.margin) AS pk,
+           max(t.margin::float8 / NULLIF(t.votes_counted, 0)) FILTER (WHERE t.leader_candidate_id IS DISTINCT FROM t.current_leader) AS md
+    FROM (
+      SELECT s.*, row_number() OVER (PARTITION BY s.const_id ORDER BY s.seq DESC) AS rn,
+             first_value(s.leader_candidate_id) OVER (PARTITION BY s.const_id ORDER BY s.seq DESC) AS current_leader,
+             (lag(s.leader_candidate_id) OVER (PARTITION BY s.const_id ORDER BY s.seq) IS NOT NULL
+              AND lag(s.leader_candidate_id) OVER (PARTITION BY s.const_id ORDER BY s.seq) IS DISTINCT FROM s.leader_candidate_id) AS changed
+      FROM seat_rounds s WHERE s.election_id = ${electionId}::uuid
+    ) t LEFT JOIN candidates c ON c.id = t.leader_candidate_id
+    GROUP BY t.const_id`;
+}
 
 export interface ResultsSnapshot {
   version: number;
@@ -413,6 +428,8 @@ export interface ResultsSnapshot {
     const_id: string;
     party_id: string | null;
     candidate_name: string;
+    /** The candidate's person (the live analysis matches sitting MLAs and heavyweights by it). */
+    person_id: string | null;
     votes: number;
     status: string;
     margin: number | null;
@@ -433,7 +450,7 @@ interface SnapshotSourceRow {
   votes: number;
   status: string;
   margin: number | null;
-  candidates: { party_id: string | null; name: string; parties: { name: string; color: string | null } | null };
+  candidates: { party_id: string | null; name: string; person_id?: string | null; parties: { name: string; color: string | null } | null };
   constituencies: { type: string };
 }
 
@@ -448,6 +465,7 @@ export function buildSnapshot(
     const_id: r.const_id,
     party_id: r.candidates.party_id,
     candidate_name: r.candidates.name,
+    person_id: r.candidates.person_id ?? null,
     votes: r.votes,
     status: r.status,
     margin: r.margin,
