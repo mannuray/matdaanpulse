@@ -15,6 +15,12 @@ export function samePerson(a: Who, b: Who): boolean {
   return n !== '' && n === normName(b.name);
 }
 
+/** Like samePerson, but two different person_ids never match (heavyweights: a namesake is not the leader). */
+export function strictSamePerson(a: Who, b: Who): boolean {
+  if (a.person_id && b.person_id) return a.person_id === b.person_id;
+  return samePerson(a, b);
+}
+
 interface PersonIndex {
   /** person_id → its first candidacy in seat order. */
   byPerson: Map<string, Match>;

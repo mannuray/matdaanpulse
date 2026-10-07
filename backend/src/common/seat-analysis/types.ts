@@ -15,6 +15,8 @@ export interface SeatIn {
   region_id: number | null;
   /** Turnout %, when known. */
   turnout: number | null;
+  /** Registered electors, when known (live: votes still to count). */
+  electors: number | null;
   candidates: CandidateIn[];
 }
 export interface AllianceIn { id: string; parties: string[] }

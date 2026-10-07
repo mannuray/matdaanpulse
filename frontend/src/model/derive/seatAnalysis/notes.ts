@@ -1,5 +1,5 @@
 import { relation } from './lineage';
-import { findPerson, samePerson } from './match';
+import { findPerson, samePerson, strictSamePerson } from './match';
 import { seatOf, type Ctx } from './seat';
 import { INDEPENDENT, NOTA, type CandidateIn, type ElectionIn, type HeavyweightReason, type SeatAnalysis, type SeatIn, type SeatNote } from './types';
 
@@ -64,7 +64,7 @@ export function seatNotes(ctx: Ctx, seat: SeatIn, _a: SeatAnalysis): SeatNote[] 
     const reasons: HeavyweightReason[] = [];
     for (const h of ctx.input.heavyweights) {
       const party = !h.party_id || !c.party_id || h.party_id === c.party_id || (h.person_id != null && h.person_id === c.person_id);
-      if (party && samePerson(h, c) && !reasons.includes(h.reason)) reasons.push(h.reason);
+      if (party && strictSamePerson(h, c) && !reasons.includes(h.reason)) reasons.push(h.reason);
     }
     if (reasons.length) notes.push({ kind: 'heavyweight', name: c.name, party: c.party_id, reasons });
   }

@@ -8,7 +8,7 @@ export function seat(no: number, cands: C[], extra: Partial<SeatIn> = {}): SeatI
     name, party_id, votes, person_id: person_id ?? null,
     status: status ?? (party_id !== 'NOTA' && votes === top ? 'WON' : 'LOST'),
   }));
-  return { const_id: `T_${no}`, const_no: no, reserved: 'GEN', region_id: null, turnout: null, candidates, ...extra };
+  return { const_id: `T_${no}`, const_no: no, reserved: 'GEN', region_id: null, turnout: null, electors: null, candidates, ...extra };
 }
 export const el = (year: number, seats: SeatIn[], extra: Partial<ElectionIn> = {}): ElectionIn =>
   ({ id: `E${year}`, year, date: `${year}-07-01`, seats, alliances: [], government: null, ...extra });

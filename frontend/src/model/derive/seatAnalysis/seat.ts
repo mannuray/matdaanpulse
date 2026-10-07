@@ -97,7 +97,7 @@ function incumbencyOf(ctx: Ctx, prevE: ElectionIn | undefined, prev: Ranked | un
   const there = seatOf(ctx, ctx.input.current, m.seat.const_no);
   return {
     ...base, match: m.match, recontested: true, const_id: m.seat.const_id, same_seat: m.seat.const_no === seat.const_no,
-    party_now: now, switched, followed_split: followed, won: there?.winner === m.cand,
+    party_now: now, switched, followed_split: followed, won: there?.winner ? there.winner === m.cand : null,
   };
 }
 

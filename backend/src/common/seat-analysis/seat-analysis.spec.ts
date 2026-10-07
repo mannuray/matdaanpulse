@@ -188,3 +188,16 @@ describe('election analysis', () => {
     expect(b.turnout.map(g => g.group)).toEqual(['≥5']);
   });
 });
+
+describe('phase B fixes', () => {
+  it('incumbent.won is null while the seat they contest has no winner', () => {
+    const prev = el(2015, [seat(1, [['A', 'X', 50], ['B', 'Y', 40]])]);
+    const inc = one(input(el(2020, [seat(1, [['A', 'X', 0, 'TRAILING'], ['C', 'Y', 0, 'TRAILING']])]), [prev])).incumbent;
+    expect(inc).toMatchObject({ recontested: true, won: null });
+  });
+  it('a heavyweight never matches a namesake with a different person_id', () => {
+    const cur = el(2020, [seat(1, [['Ram Kumar', 'BJP', 50, undefined, 'p2'], ['Z', 'INC', 40]])]);
+    const s = one(input(cur, [], { heavyweights: [{ person_id: 'p1', name: 'Ram Kumar', party_id: 'BJP', reason: 'leader' }] }));
+    expect(s.notes.filter(n => n.kind === 'heavyweight')).toEqual([]);
+  });
+});
