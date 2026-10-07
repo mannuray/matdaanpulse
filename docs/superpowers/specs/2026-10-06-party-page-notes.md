@@ -1,8 +1,8 @@
 # Party page (`/party/:id`): handoff notes
 
-Status: **not designed yet.** Parked on 2026-10-06 to finish the data; updated 2026-10-07 for a fresh session. These
-are brainstorming notes, not an approved spec. Resume at §5: settle the open question, design the screen in Stitch,
-then write the spec and plan.
+Status: **intent, state handling and sections agreed (2026-10-07, §8); not designed in Stitch yet.** Paused so the
+seat analysis improvements land first (the state view's seat changes read the stored analysis, and the prod recompute
+should run once). Resume at §8 → Stitch design → spec → plan. §§2, 4 and 5 are the original notes; §8 supersedes them.
 
 ## 1. Where things stand (2026-10-07)
 
@@ -113,3 +113,52 @@ then write the spec and plan.
 - **Admin editing** of lineage and units.
 - **By-elections.**
 - **The 2027 current track,** once nominations close.
+
+## 8. Decisions (brainstorm 2026-10-07)
+
+- **Purpose: profile + track record, equally (option C).** A profile header, then the track record as the main body.
+  Audience: the general public (curious voters, journalists); useful on any day, final results only on counting day
+  (no live tallies). VS only, while LS is hidden.
+- **States: national page + state switch (§4 option 1).** `/party/:id` is the national view; a state chip row
+  ("All states" first) or `?state=JH` turns the same page into the state view, with a shareable link. A party that
+  contested only one state opens straight on its state view. The dashboard party dialog links to `?state=<its state>`.
+
+### National view (`/party/BJP`)
+
+1. **Header:** party mark (logo → ECI symbol → dot), name, abbreviation, recognition, founded, HQ, national leader,
+   links.
+2. **Headline numbers:** MLAs today = seats won at each state's latest election, summed over covered states ("holds
+   N of M seats in K states"), labelled "at each state's latest election" because the years differ; states where it
+   governs / is the largest party.
+3. **States table (the main body):** one row per state contested: latest year, seats won / contested, vote share,
+   change vs the previous comparable election (lineage applied; blank across a redraw), seat sparkline, current
+   state president. A row opens the state view.
+4. **Lineage:** predecessors, successors, factions, each with its source.
+5. **About:** profile description, image credits.
+
+Left out: a national all-states map (mixes years; the table does it better), Lok Sabha.
+
+### State view (`/party/BJP?state=JH`)
+
+Same header, with the state president as leader and the state's recognition; state chips at the top.
+
+1. **State unit:** current state president and legislature party leader (photo, person link), past holders below,
+   state office / website.
+2. **Election record:** newest first: year, seats won / contested, vote share, deltas; lineage applied with events
+   inline ("+ JVM(P) merged 2020", family total after a split); a redraw is a divider (seat comparison stops, vote
+   share continues); a small seats + vote share chart above.
+3. **Map, where it won:** latest election's own map (`geo.map_url`), seats won in party colour, contested-lost faint;
+   year picker; click → constituency page.
+4. **Seat changes at the latest election:** held / gained (from whom) / lost (to whom), splits labelled "split" not
+   flips. Reads the stored seat analysis, so it follows the seat analysis improvements (§7). Kept.
+5. **Its MLAs:** winners at the latest election (name, photo, constituency, margin; person / constituency links);
+   a search box for long lists, no expanders.
+6. **Strongest regions:** seats won per region / district at the latest election, as a bar list; only where the
+   regions seeds exist, hidden otherwise. Kept.
+
+Left out for v1: alliance partners (per-election manifest data; later), candidate-level history.
+
+### Next
+
+Seat analysis improvements first (their own discussion), then: Stitch design of both views (discuss before every
+Stitch command) → spec `YYYY-MM-DD-party-page-design.md` → plan → build (§6 step 4).
