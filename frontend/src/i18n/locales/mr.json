@@ -590,5 +590,9 @@
   "studio_chip_too_close": "अटीतटीची लढत",
   "studio_chip_comebacks": "पुनरागमन",
   "studio_chip_upsets": "धक्कादायक निकाल",
-  "studio_insight_battle_live": "आतापर्यंत {{n}} वेळा आघाडी बदलली"
+  "studio_insight_battle_live": "आतापर्यंत {{n}} वेळा आघाडी बदलली",
+  "studio_ticker_switch": "आघाडी बदलली: {{seat}} · {{from}} → {{party}}",
+  "studio_ticker_upset_sitting_trailing": "धक्का: {{seat}} मध्ये विद्यमान आमदार पिछाडीवर",
+  "studio_ticker_upset_stronghold_trailing": "धक्का: {{seat}} मध्ये बालेकिल्ला धोक्यात",
+  "studio_ticker_upset_heavyweight_trailing": "धक्का: {{seat}} मध्ये दिग्गज पिछाडीवर"
 }

@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 import type { StatsVM, SeatRef } from '../../viewmodels/tiles/useStatsVM';
+type TickerItem = StatsVM['ticker'][number];
 
 function Stat({ label, value, sub, onClick }: { label: string; value: string; sub?: string; onClick?(): void }) {
   return (
@@ -24,6 +26,13 @@ function SeatList({ title, seats, vm }: { title: string; seats: SeatRef[]; vm: S
   );
 }
 
+/** One ticker line: declared, a first lead, a lead switch, or an upset. */
+function tickerLine(t: TFunction, e: TickerItem): string {
+  if (e.kind === 'switch') return t('studio_ticker_switch', { seat: e.constName, from: e.prevParty, party: e.partyId });
+  if (e.kind === 'upset') return t(`studio_ticker_upset_${e.upset}`, { seat: e.constName });
+  return t(e.kind === 'won' ? 'studio_ticker_won' : 'studio_ticker_lead', { party: e.partyId, seat: e.constName });
+}
+
 export function StatsStrip({ vm, variant }: { vm: StatsVM; variant: 'tile' | 'focus' }) {
   const { t } = useTranslation();
   const { stats } = vm;
@@ -34,14 +43,14 @@ export function StatsStrip({ vm, variant }: { vm: StatsVM; variant: 'tile' | 'fo
         <SeatList title={t('studio_biggest_wins')} seats={vm.biggest10} vm={vm} />
         {vm.flipped.length > 0 ? <SeatList title={t('studio_seats_flipped')} seats={vm.flipped} vm={vm} /> : (
           <div><h3 className="mb-2 font-display text-lg font-bold uppercase text-ink">{t('studio_live_feed')}</h3>
-            <ul className="flex flex-col gap-1 text-sm">{vm.ticker.map(e => <li key={e.id}>{t(e.kind === 'won' ? 'studio_ticker_won' : 'studio_ticker_lead', { party: e.partyId, seat: e.constName })}</li>)}</ul></div>
+            <ul className="flex flex-col gap-1 text-sm">{vm.ticker.map(e => <li key={e.id}>{tickerLine(t, e)}</li>)}</ul></div>
         )}
       </div>
     );
   }
   const latest = vm.ticker[0];
   const tickerText = latest
-    ? t(latest.kind === 'won' ? 'studio_ticker_won' : 'studio_ticker_lead', { party: latest.partyId, seat: latest.constName })
+    ? tickerLine(t, latest)
     : vm.isLive ? t('studio_ticker_waiting') : t('studio_ticker_all_declared', { count: stats.total });
   return (
     <section className="flex min-w-0 items-stretch gap-2 overflow-hidden rounded-tile border border-line bg-tile p-2">

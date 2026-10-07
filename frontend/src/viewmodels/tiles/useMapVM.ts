@@ -94,8 +94,6 @@ export function useMapVM(): MapVM {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fills = useMemo(() => seatFills(seats, fillCtx), [seats, state.layer, src.election.type, src.data.partyColorMap, src.swing, src.dominance, src.data.spoilerData, hlKey, live]);
   const legend = useMemo(() => mapLegend(state.layer, live), [state.layer, live]);
-  // Until the sources carry pulse kinds, every recent change is a plain update.
-  const recentSeats = useMemo(() => new Map<string, PulseKind>([...src.recentSeats].map(id => [id, 'update'])), [src.recentSeats]);
 
   const outline = useMemo(() => showOutline([...fills.values()].filter(f => f.highlighted).length), [fills]);
   const onRegions = state.layer === 'regions';
@@ -106,7 +104,7 @@ export function useMapVM(): MapVM {
 
   return {
     status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills, outline: outline && !onRegions, regionOutlines: regionLines,
-    recentSeats, legend, selectedSeat: state.selectedSeat,
+    recentSeats: src.recentSeats, legend, selectedSeat: state.selectedSeat,
     layer: state.layer, layers: src.availableLayers, mapMode: state.mapMode, hexAvailable: Boolean(geo?.hex_url),
     lockedLabel: state.locked?.label ?? null,
     seatInfo: id => {

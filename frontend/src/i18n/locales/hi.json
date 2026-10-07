@@ -590,5 +590,9 @@
   "studio_chip_too_close": "कांटे की टक्कर",
   "studio_chip_comebacks": "वापसी",
   "studio_chip_upsets": "उलटफेर",
-  "studio_insight_battle_live": "अब तक {{n}} बार बढ़त बदली"
+  "studio_insight_battle_live": "अब तक {{n}} बार बढ़त बदली",
+  "studio_ticker_switch": "बढ़त बदली: {{seat}} · {{from}} → {{party}}",
+  "studio_ticker_upset_sitting_trailing": "उलटफेर: {{seat}} में मौजूदा विधायक पीछे",
+  "studio_ticker_upset_stronghold_trailing": "उलटफेर: {{seat}} में गढ़ खतरे में",
+  "studio_ticker_upset_heavyweight_trailing": "उलटफेर: {{seat}} में दिग्गज पीछे"
 }

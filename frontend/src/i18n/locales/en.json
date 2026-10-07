@@ -590,5 +590,9 @@
   "studio_chip_too_close": "Too close",
   "studio_chip_comebacks": "Comebacks",
   "studio_chip_upsets": "Upsets",
-  "studio_insight_battle_live": "{{n}} lead changes so far"
+  "studio_insight_battle_live": "{{n}} lead changes so far",
+  "studio_ticker_switch": "Lead switch: {{seat}} · {{from}} → {{party}}",
+  "studio_ticker_upset_sitting_trailing": "Upset: sitting MLA trailing in {{seat}}",
+  "studio_ticker_upset_stronghold_trailing": "Upset: stronghold at risk in {{seat}}",
+  "studio_ticker_upset_heavyweight_trailing": "Upset: heavyweight trailing in {{seat}}"
 }
