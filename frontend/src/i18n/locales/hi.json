@@ -586,5 +586,9 @@
   "map_legend_switched": "बढ़त बदली",
   "map_legend_narrowing": "बढ़त घट रही",
   "map_legend_widening": "बढ़त बढ़ रही",
-  "map_legend_stable": "स्थिर / घोषित"
+  "map_legend_stable": "स्थिर / घोषित",
+  "studio_chip_too_close": "कांटे की टक्कर",
+  "studio_chip_comebacks": "वापसी",
+  "studio_chip_upsets": "उलटफेर",
+  "studio_insight_battle_live": "अब तक {{n}} बार बढ़त बदली"
 }

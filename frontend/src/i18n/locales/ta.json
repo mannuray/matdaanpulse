@@ -586,5 +586,9 @@
   "map_legend_switched": "முன்னிலை மாறியது",
   "map_legend_narrowing": "முன்னிலை குறைகிறது",
   "map_legend_widening": "முன்னிலை அதிகரிக்கிறது",
-  "map_legend_stable": "நிலையானது / அறிவிக்கப்பட்டது"
+  "map_legend_stable": "நிலையானது / அறிவிக்கப்பட்டது",
+  "studio_chip_too_close": "கடும் போட்டி",
+  "studio_chip_comebacks": "மீள்வருகை",
+  "studio_chip_upsets": "அதிர்ச்சி முடிவுகள்",
+  "studio_insight_battle_live": "இதுவரை {{n}} முறை முன்னிலை மாறியது"
 }

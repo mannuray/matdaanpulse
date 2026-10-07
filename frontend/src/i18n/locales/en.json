@@ -586,5 +586,9 @@
   "map_legend_switched": "Switched",
   "map_legend_narrowing": "Narrowing",
   "map_legend_widening": "Widening",
-  "map_legend_stable": "Stable / declared"
+  "map_legend_stable": "Stable / declared",
+  "studio_chip_too_close": "Too close",
+  "studio_chip_comebacks": "Comebacks",
+  "studio_chip_upsets": "Upsets",
+  "studio_insight_battle_live": "{{n}} lead changes so far"
 }

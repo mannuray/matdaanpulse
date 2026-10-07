@@ -586,5 +586,9 @@
   "map_legend_switched": "आघाडी बदलली",
   "map_legend_narrowing": "आघाडी घटत आहे",
   "map_legend_widening": "आघाडी वाढत आहे",
-  "map_legend_stable": "स्थिर / घोषित"
+  "map_legend_stable": "स्थिर / घोषित",
+  "studio_chip_too_close": "अटीतटीची लढत",
+  "studio_chip_comebacks": "पुनरागमन",
+  "studio_chip_upsets": "धक्कादायक निकाल",
+  "studio_insight_battle_live": "आतापर्यंत {{n}} वेळा आघाडी बदलली"
 }

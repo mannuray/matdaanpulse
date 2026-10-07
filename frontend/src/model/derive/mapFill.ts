@@ -2,6 +2,8 @@ import type { SwingEntry, DominanceEntry } from '../types';
 import type { LayerId, SeatResult } from '../types/dashboard';
 import { MARGIN_BUCKETS } from './layerInsights';
 import type { Call, SeatLive } from './seatAnalysis';
+import { MOMENTUM_FILL } from './mapColors';
+export { MOMENTUM_FILL };
 
 /**
  * `highlighted`: part of the active hover/lock highlight (drawn at full strength with an outline).
@@ -26,13 +28,6 @@ export const MAP_FILL = {
   pending: 'var(--color-map-pending)',
   swing: 'var(--color-map-swing)',
   threeWay: 'var(--color-map-threeway)',
-};
-/** Battle layer while live: momentum colours (none of them a party colour). */
-export const MOMENTUM_FILL = {
-  switched: 'var(--color-map-mo-switched)',
-  narrowing: 'var(--color-map-mo-narrowing)',
-  widening: 'var(--color-map-mo-widening)',
-  stable: 'var(--color-map-mo-stable)',
 };
 /** Overview while live: how firm the lead is. Too close is also dashed. */
 export const CALL_OPACITY: Record<Call, number> = { declared: 1, safe: 1, likely: 0.6, counting: 0.6, too_close: 0.3, not_started: 1 };

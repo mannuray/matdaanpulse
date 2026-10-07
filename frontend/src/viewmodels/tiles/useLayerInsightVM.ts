@@ -34,6 +34,7 @@ export function useLayerInsightVM(): LayerInsightVM {
     voteSplits: src.data.manifestData?.vote_splits,
     constCandidates: src.data.constCandidates,
     threeWaySeats: src.data.spoilerData.threeWaySeats,
+    live: src.election.status === 'Live' ? src.liveAnalysis?.seats : undefined,
   }), [state.layer, src, alliances]);
 
   const locked = state.locked;
