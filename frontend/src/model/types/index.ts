@@ -1,3 +1,4 @@
+import type { SeatAnalysis } from '../derive/seatAnalysis';
 export interface State {
   id: number;
   name: string;
@@ -412,7 +413,8 @@ export interface AnalysisEntry {
   election_id: string;
   dominance: string | null;
   dominance_party: string | null;
-  incumbency: Record<string, unknown>;
+  /** Shared-module SeatAnalysis (migration 024); null until computed, missing on an older backend. */
+  data?: SeatAnalysis | null;
 }
 
 export interface ConstituencyAnalysisDetail extends AnalysisEntry {

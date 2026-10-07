@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useApi } from './useApi';
 import { getAnalysis } from '../../model/api/api';
 import type {
-  DominanceEntry, IncumbencyEntry,
+  AnalysisEntry, DominanceEntry, IncumbencyEntry,
   PartySwitchEntry, SwingEntry,
 } from '../../model/types';
 
@@ -16,121 +16,39 @@ interface UseAnalysisResult {
   loading: boolean;
 }
 
+/** The stored seat analysis (`data`) as the dashboard's maps; rows without `data` are skipped. */
+export function mapAnalysis(rows: AnalysisEntry[] | null) {
+  const dominanceMap = new Map<string, DominanceEntry>();
+  const swingMap = new Map<string, SwingEntry>();
+  const spoilerMap = new Map<string, { spoilerParty: string; spoilerVotes: number; winnerMargin: number; hurtsAlliance: string }>();
+  const seatTypeMap = new Map<string, 'two-way' | 'three-way' | 'multi-cornered'>();
+  const incumbencyData: IncumbencyEntry[] = [];
+  const partySwitchData: PartySwitchEntry[] = [];
+  for (const a of rows ?? []) {
+    const d = a.data;
+    if (!d) continue;
+    const id = a.const_id;
+    const year = d.history[d.history.length - 1]?.year ?? 0;
+    if (d.class) dominanceMap.set(id, { constId: id, winners: d.history.map(h => ({ party: h.party ?? '' })), classification: d.class.kind, dominantParty: d.class.holder, streak: d.class.streak });
+    if (d.outcome && d.outcome.kind !== 'new' && d.winner?.party_id && d.outcome.from_raw) {
+      swingMap.set(id, { constId: id, currentParty: d.winner.party_id, prevParty: d.outcome.from_raw, currentMargin: d.margin ?? 0,
+        prevMargin: d.history[d.history.length - 2]?.margin ?? 0, flipped: d.outcome.kind === 'gained', split: d.outcome.kind === 'split' });
+    }
+    if (d.incumbent) incumbencyData.push({ constId: id, incumbentName: d.incumbent.name, incumbentParty: d.incumbent.party ?? '', won: !!d.incumbent.won, currentMargin: d.margin ?? 0 });
+    for (const n of d.notes) {
+      if (n.kind === 'switcher') partySwitchData.push({ constId: id, candidateName: n.name, fromParty: n.from, toParty: n.to, fromYear: n.year, toYear: year, wonInNewParty: d.winner?.name === n.name, margin: d.margin ?? 0 });
+      if (n.kind === 'spoiler' && n.hurts) spoilerMap.set(id, { spoilerParty: n.label || n.party || n.name, spoilerVotes: n.votes, winnerMargin: n.margin, hurtsAlliance: n.hurts });
+    }
+    if (d.seat_type) seatTypeMap.set(id, d.seat_type);
+  }
+  return { dominanceMap, incumbencyData, partySwitchData, swingMap, spoilerMap, seatTypeMap };
+}
+
 export function useAnalysis(electionId: string | undefined): UseAnalysisResult {
   const { data: analysisData, loading } = useApi(
     () => electionId ? getAnalysis(electionId) : Promise.resolve(null),
     [electionId]
   );
-
-  const dominanceMap = useMemo(() => {
-    const map = new Map<string, DominanceEntry>();
-    if (!analysisData) return map;
-    for (const a of analysisData) {
-      if (!a.dominance) continue;
-      const inc = a.incumbency || {};
-      const seatHistory = (inc.seat_history as Array<{ party: string }>) || [];
-      const winners = seatHistory.map(h => ({ party: h.party }));
-      const classification = a.dominance as DominanceEntry['classification'];
-      const dominanceWins = (inc.dominance_wins as number) || 0;
-      map.set(a.const_id, {
-        constId: a.const_id,
-        winners,
-        classification,
-        dominantParty: a.dominance_party || undefined,
-        streak: dominanceWins,
-      });
-    }
-    return map;
-  }, [analysisData]);
-
-  const incumbencyData = useMemo((): IncumbencyEntry[] => {
-    if (!analysisData) return [];
-    const entries: IncumbencyEntry[] = [];
-    for (const a of analysisData) {
-      const inc = a.incumbency || {};
-      if (inc.incumbent_name) {
-        entries.push({
-          constId: a.const_id,
-          incumbentName: inc.incumbent_name as string,
-          incumbentParty: inc.incumbent_party as string,
-          won: !!inc.won,
-          currentMargin: 0,
-        });
-      }
-    }
-    return entries;
-  }, [analysisData]);
-
-  const partySwitchData = useMemo((): PartySwitchEntry[] => {
-    if (!analysisData) return [];
-    const entries: PartySwitchEntry[] = [];
-    for (const a of analysisData) {
-      const switchers = (a.incumbency?.party_switchers as Array<{
-        candidate_name: string; from_party: string; to_party: string;
-        from_year: number; to_year: number; won_in_new: boolean; margin: number;
-      }>) || [];
-      for (const s of switchers) {
-        entries.push({
-          constId: a.const_id,
-          candidateName: s.candidate_name,
-          fromParty: s.from_party,
-          toParty: s.to_party,
-          fromYear: s.from_year,
-          toYear: s.to_year,
-          wonInNewParty: s.won_in_new,
-          margin: s.margin,
-        });
-      }
-    }
-    return entries;
-  }, [analysisData]);
-
-  const swingMap = useMemo(() => {
-    const map = new Map<string, SwingEntry>();
-    if (!analysisData) return map;
-    for (const a of analysisData) {
-      const swing = a.incumbency?.swing as { prev_party?: string; curr_party?: string; flipped?: boolean; split?: boolean; margin?: number } | undefined;
-      if (!swing?.prev_party || !swing?.curr_party) continue;
-      map.set(a.const_id, {
-        constId: a.const_id,
-        currentParty: swing.curr_party,
-        prevParty: swing.prev_party,
-        currentMargin: swing.margin || 0,
-        prevMargin: 0,
-        flipped: !!swing.flipped,
-        split: !!swing.split,
-      });
-    }
-    return map;
-  }, [analysisData]);
-
-  const spoilerMap = useMemo(() => {
-    const map = new Map<string, { spoilerParty: string; spoilerVotes: number; winnerMargin: number; hurtsAlliance: string }>();
-    if (!analysisData) return map;
-    for (const a of analysisData) {
-      const sp = a.incumbency?.spoiler as { spoiler_party?: string; spoiler_votes?: number; winner_margin?: number; hurts_alliance?: string; label?: string } | undefined;
-      if (!sp?.spoiler_party) continue;
-      map.set(a.const_id, {
-        spoilerParty: sp.label || sp.spoiler_party,
-        spoilerVotes: sp.spoiler_votes || 0,
-        winnerMargin: sp.winner_margin || 0,
-        hurtsAlliance: sp.hurts_alliance || '',
-      });
-    }
-    return map;
-  }, [analysisData]);
-
-  const seatTypeMap = useMemo(() => {
-    const map = new Map<string, 'two-way' | 'three-way' | 'multi-cornered'>();
-    if (!analysisData) return map;
-    for (const a of analysisData) {
-      const st = a.incumbency?.seat_type as string | undefined;
-      if (st === 'two-way' || st === 'three-way' || st === 'multi-cornered') {
-        map.set(a.const_id, st);
-      }
-    }
-    return map;
-  }, [analysisData]);
-
-  return { dominanceMap, incumbencyData, partySwitchData, swingMap, spoilerMap, seatTypeMap, loading };
+  const maps = useMemo(() => mapAnalysis(analysisData), [analysisData]);
+  return { ...maps, loading };
 }

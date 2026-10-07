@@ -81,9 +81,9 @@ export function liveChipState(
 }
 
 export function seatHistory(analysis: AnalysisEntry | null, currentYear: number): SeatHistoryEntry[] {
-  const list = (analysis?.incumbency as { seat_history?: SeatHistoryEntry[] } | undefined)?.seat_history ?? [];
+  const list = analysis?.data?.history ?? [];
   return list.filter(h => h.year !== currentYear).sort((a, b) => b.year - a.year)
-    .map(h => ({ ...h, unopposed: !h.runner_up && !h.margin }));
+    .map(h => ({ year: h.year, party: h.party, candidate: h.candidate, margin: h.margin ?? 0, vote_share: h.vote_share, runner_up: h.runner_up, runner_up_party: h.runner_up_party, unopposed: !h.runner_up && !h.margin }));
 }
 
 export type SeatNote = { kind: 'threeWay'; thirdName: string; thirdVotes: number; margin: number } | { kind: 'spoiler'; party: string; votes: number; margin: number };
@@ -94,8 +94,9 @@ export function seatNotes(view: SeatView, analysis: AnalysisEntry | null): SeatN
   if (view.totalVotes > 0 && view.margin != null && ranked.length >= 3 && ranked[2].votes > view.margin) {
     notes.push({ kind: 'threeWay', thirdName: ranked[2].name, thirdVotes: ranked[2].votes, margin: view.margin });
   }
-  const sp = (analysis?.incumbency as { spoiler?: { spoiler_party: string; spoiler_votes: number; winner_margin: number } } | undefined)?.spoiler;
-  if (sp) notes.push({ kind: 'spoiler', party: sp.spoiler_party, votes: sp.spoiler_votes, margin: sp.winner_margin });
+  // The alliance spoiler (from the manifest's vote splits); the generic one is the client-side threeWay note above.
+  const sp = analysis?.data?.notes.find(n => n.kind === 'spoiler' && n.hurts);
+  if (sp?.kind === 'spoiler') notes.push({ kind: 'spoiler', party: sp.label || sp.party || sp.name, votes: sp.votes, margin: sp.margin });
   return notes;
 }
 

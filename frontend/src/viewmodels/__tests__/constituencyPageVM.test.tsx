@@ -38,7 +38,7 @@ describe('useConstituencyPageVM', () => {
   it('builds facts, the full ranked table with NOTA last, and history', async () => {
     api.getElection.mockResolvedValue({ id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', status: 'Finalized', year: 2025 });
     api.getConstituency.mockResolvedValue(detail);
-    api.getConstituencyAnalysis.mockResolvedValue({ dominance: 'swing', incumbency: { seat_history: [{ year: 2020, party: 'BJP', candidate: 'A', margin: 5 }] } });
+    api.getConstituencyAnalysis.mockResolvedValue({ dominance: 'swing', data: { history: [{ year: 2020, party: 'BJP', candidate: 'A', margin: 5 }], notes: [] } });
     api.getManifest.mockResolvedValue(null);
     const { result } = renderHook(() => useConstituencyPageVM('e1', 'S'));
     await waitFor(() => expect(result.current.status).toBe('ready'));
