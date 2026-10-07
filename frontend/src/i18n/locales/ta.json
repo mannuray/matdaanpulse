@@ -608,5 +608,9 @@
   "seat_upset_stronghold_trailing": "கோட்டை ஆபத்தில் · {{since}} முதல் {{party}} வசம்",
   "seat_upset_heavyweight_trailing": "முக்கிய தலைவர் பின்னடைவு · {{name}}",
   "seat_narrowed": "கடந்த {{n}} சுற்றுகளில் முன்னிலை {{from}} இலிருந்து {{to}} ஆகக் குறைந்தது",
-  "seat_widened": "கடந்த {{n}} சுற்றுகளில் முன்னிலை {{from}} இலிருந்து {{to}} ஆக உயர்ந்தது"
+  "seat_widened": "கடந்த {{n}} சுற்றுகளில் முன்னிலை {{from}} இலிருந்து {{to}} ஆக உயர்ந்தது",
+  "studio_tip_lead_switch": "முன்னிலை மாற்றம்",
+  "seat_upset_sitting_trailing_plain": "தற்போதைய எம்எல்ஏ பின்னடைவு",
+  "seat_upset_stronghold_trailing_plain": "கோட்டை ஆபத்தில்",
+  "seat_upset_heavyweight_trailing_plain": "முக்கிய தலைவர் பின்னடைவு"
 }

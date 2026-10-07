@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 import type { SeatDialogVM } from '../../viewmodels/tiles/useSeatDialogVM';
 import { DetailDialog } from '../ui/DetailDialog';
 import { PartyMark } from '../ui/PartyMark';
@@ -10,6 +11,16 @@ import { cn } from '../ui/cn';
 import { MarginTrend } from './MarginTrend';
 
 const MOMENTUM_COLOR: Record<string, string> = { switched: 'var(--color-map-mo-switched)', narrowing: 'var(--color-map-mo-narrowing)', widening: 'var(--color-map-mo-widening)' };
+
+/** One upset badge's text: with the names when the baseline has them, plain otherwise (never empty brackets). */
+function upsetText(t: TFunction, u: SeatDialogVM['upsets'][number]): string {
+  if (u.kind === 'sitting_trailing') {
+    if (!u.name) return t('seat_upset_sitting_trailing_plain');
+    return t('seat_upset_sitting_trailing', { name: u.name, party: u.party ?? '' }) + (u.margin != null ? ` −${formatIN(u.margin)}` : '');
+  }
+  if (u.kind === 'stronghold_trailing') return u.party && u.since ? t('seat_upset_stronghold_trailing', { party: u.party, since: u.since }) : t('seat_upset_stronghold_trailing_plain');
+  return u.name ? t('seat_upset_heavyweight_trailing', { name: u.name }) : t('seat_upset_heavyweight_trailing_plain');
+}
 
 /** Live counting: round progress, the call and momentum badges, the margin trend and the upset badges (spec §4). */
 function LiveBlock({ vm }: { vm: SeatDialogVM }) {
@@ -36,7 +47,7 @@ function LiveBlock({ vm }: { vm: SeatDialogVM }) {
         <div className="flex flex-wrap gap-2">
           {vm.upsets.map(u => (
             <span key={u.kind} className="rounded-tile border border-live/50 bg-live/10 px-3 py-1 text-xs font-semibold text-ink">
-              {t(`seat_upset_${u.kind}`, { name: u.name ?? '', party: u.party ?? '', since: u.since ?? '' })}
+              {upsetText(t, u)}
             </span>
           ))}
         </div>

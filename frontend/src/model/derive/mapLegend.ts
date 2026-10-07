@@ -19,7 +19,8 @@ export function mapLegend(layer: LayerId, live: Map<string, SeatLive> | undefine
     { key: 'switched', labelKey: 'map_legend_switched', color: MOMENTUM_FILL.switched, count: n(s => s.momentum === 'switched') },
     { key: 'narrowing', labelKey: 'map_legend_narrowing', color: MOMENTUM_FILL.narrowing, count: n(s => s.momentum === 'narrowing') },
     { key: 'widening', labelKey: 'map_legend_widening', color: MOMENTUM_FILL.widening, count: n(s => s.momentum === 'widening') },
-    { key: 'stable', labelKey: 'map_legend_stable', color: MOMENTUM_FILL.stable, count: n(s => !s.momentum || s.momentum === 'stable') },
+    { key: 'stable', labelKey: 'map_legend_stable', color: MOMENTUM_FILL.stable, count: n(s => s.call !== 'not_started' && (!s.momentum || s.momentum === 'stable')) },
+    { key: 'not_started', labelKey: 'map_legend_not_started', color: MAP_FILL.pending, count: n(s => s.call === 'not_started') },
   ];
   return null;
 }

@@ -52,3 +52,11 @@ describe('countingLive', () => {
     expect(countingLive(live)).toBe(live);
   });
 });
+
+describe('not-started seats while live', () => {
+  it('are pending grey on the Overview and on Battle, even with a party on the row', () => {
+    const l: [string, SeatLive][] = [['A', { const_id: 'A', call: 'not_started', momentum: null } as unknown as SeatLive]];
+    expect(seatFill(seat('A'), ctx('overview', l))).toEqual({ color: MAP_FILL.pending, opacity: 1, highlighted: false });
+    expect(seatFill(seat('A'), ctx('battle', l))).toEqual({ color: MAP_FILL.pending, opacity: 1, highlighted: false });
+  });
+});

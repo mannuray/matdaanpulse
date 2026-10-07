@@ -22,11 +22,11 @@ export function MarginTrend({ points, colorOf }: { points: SeatDialogVM['trend']
       <svg data-margin-trend viewBox={`0 0 ${W} ${H}`} className="h-20 w-full" role="img" aria-label={t('seat_trend_title')}>
         <line x1={PAD} x2={W - PAD} y1={H - PAD} y2={H - PAD} stroke="var(--color-line)" strokeDasharray="3 3" />
         {points.slice(1).map((p, i) => (
-          <line key={p.x} x1={px(points[i].x)} y1={py(points[i].y)} x2={px(p.x)} y2={py(p.y)} stroke={colorOf(p.party)} strokeWidth={2} strokeLinecap="round" />
+          <line key={p.seq} x1={px(points[i].x)} y1={py(points[i].y)} x2={px(p.x)} y2={py(p.y)} stroke={colorOf(p.party)} strokeWidth={2} strokeLinecap="round" />
         ))}
         {/* Every lead switch gets a marker (with a tooltip); only the latest one is labelled, so neighbouring switches never stack labels. */}
         {switches.map(p => (
-          <circle key={`s${p.x}`} data-switch cx={px(p.x)} cy={py(p.y)} r={3.5} fill="var(--color-map-mo-switched)"><title>{t('seat_trend_switch', { r: p.x })}</title></circle>
+          <circle key={`s${p.seq}`} data-switch cx={px(p.x)} cy={py(p.y)} r={3.5} fill="var(--color-map-mo-switched)"><title>{t('seat_trend_switch', { r: p.x })}</title></circle>
         ))}
         {latest && <text x={px(latest.x)} y={H - 1} textAnchor="middle" className="fill-[var(--color-muted)] text-[10px]">{t('seat_trend_switch', { r: latest.x })}</text>}
         <circle cx={px(last.x)} cy={py(last.y)} r={3.5} fill={colorOf(last.party)} />

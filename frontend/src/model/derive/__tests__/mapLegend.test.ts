@@ -12,11 +12,18 @@ describe('mapLegend', () => {
   });
   it('Battle live: Switched · Narrowing · Widening · Stable/declared', () => {
     const items = mapLegend('battle', L([['A', { momentum: 'switched' }], ['B', { momentum: 'narrowing' }], ['C', { momentum: null }]]))!;
-    expect(items.map(i => [i.key, i.count])).toEqual([['switched', 1], ['narrowing', 1], ['widening', 0], ['stable', 1]]);
+    expect(items.map(i => [i.key, i.count])).toEqual([['switched', 1], ['narrowing', 1], ['widening', 0], ['stable', 1], ['not_started', 0]]);
     expect(items[0].color).toBe(MOMENTUM_FILL.switched);
   });
   it('no legend when not live, or on other layers', () => {
     expect(mapLegend('overview', undefined)).toBeNull();
     expect(mapLegend('swing', L([['A', { call: 'safe' }]]))).toBeNull();
+  });
+});
+
+describe('mapLegend not-started on Battle', () => {
+  it('counts not-started seats apart from stable / declared', () => {
+    const items = mapLegend('battle', L([['A', { momentum: null, call: 'not_started' }], ['B', { momentum: 'stable', call: 'declared' }]]))!;
+    expect(items.map(i => [i.key, i.count])).toEqual([['switched', 0], ['narrowing', 0], ['widening', 0], ['stable', 1], ['not_started', 1]]);
   });
 });

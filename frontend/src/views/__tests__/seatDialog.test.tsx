@@ -26,7 +26,7 @@ const renderIt = (v: SeatDialogVM) => render(<MemoryRouter><SeatDialog vm={v} />
 
 describe('SeatDialog live block', () => {
   const liveSeat = { call: 'too_close', momentum: 'narrowing' } as unknown as NonNullable<SeatDialogVM['liveSeat']>;
-  const trend = [1, 2, 3, 4].map(x => ({ x, y: 400 - x * 50, party: x < 3 ? 'BJP' : 'RJD', switched: x === 3 }));
+  const trend = [1, 2, 3, 4].map(x => ({ seq: x, x, y: 400 - x * 50, party: x < 3 ? 'BJP' : 'RJD', switched: x === 3 }));
   it('shows the call and momentum badges, the margin trend, upset badges and the narrowed line', () => {
     renderIt(vm({ liveSeat, trend, upsets: [{ kind: 'sitting_trailing', name: 'Asha Devi', party: 'BJP', margin: 200 }, { kind: 'stronghold_trailing', party: 'BJP', since: 2005 }],
       narrowed: { kind: 'narrowed', from: 2890, to: 342, rounds: 3 } }));
@@ -34,15 +34,21 @@ describe('SeatDialog live block', () => {
     expect(screen.getByText('Narrowing')).toBeTruthy();
     expect(document.querySelector('svg[data-margin-trend]')).toBeTruthy();
     expect([...document.querySelectorAll('svg[data-margin-trend] text')].map(e => e.textContent)).toEqual(['Lead switch R3']);
-    expect(screen.getByText('Sitting MLA trailing · Asha Devi (BJP)')).toBeTruthy();
+    expect(screen.getByText('Sitting MLA trailing · Asha Devi (BJP) −200')).toBeTruthy();
     expect(screen.getByText('Stronghold at risk · held by BJP since 2005')).toBeTruthy();
     expect(screen.getByText('Lead narrowed from 2,890 to 342 over the last 3 rounds')).toBeTruthy();
   });
   it('labels only the latest lead switch (neighbouring switches do not stack labels); every switch keeps a marker', () => {
-    const many = [1, 2, 3, 4, 5].map(x => ({ x, y: 300, party: x % 2 ? 'BJP' : 'RJD', switched: x > 1 }));
+    const many = [1, 2, 3, 4, 5].map(x => ({ seq: x, x, y: 300, party: x % 2 ? 'BJP' : 'RJD', switched: x > 1 }));
     renderIt(vm({ liveSeat, trend: many }));
     expect([...document.querySelectorAll('svg[data-margin-trend] text')].map(e => e.textContent)).toEqual(['Lead switch R5']);
     expect(document.querySelectorAll('svg[data-margin-trend] circle[data-switch]')).toHaveLength(4);
+  });
+  it('upset badges without names read plainly (no empty brackets)', () => {
+    renderIt(vm({ liveSeat, upsets: [{ kind: 'sitting_trailing', margin: null }, { kind: 'stronghold_trailing', party: null }, { kind: 'heavyweight_trailing' }] }));
+    expect(screen.getByText('Sitting MLA trailing')).toBeTruthy();
+    expect(screen.getByText('Stronghold at risk')).toBeTruthy();
+    expect(screen.getByText('Heavyweight trailing')).toBeTruthy();
   });
   it('no chart with fewer than 2 points; nothing live for a non-live seat', () => {
     renderIt(vm({ liveSeat, trend: trend.slice(0, 1) }));

@@ -63,6 +63,7 @@ function layerFill(seat: SeatResult, ctx: FillContext): LayerFill {
   switch (ctx.layer) {
     case 'battle': {
       if (ctx.live) {
+        if (ctx.live.get(seat.id)?.call === 'not_started') return { color: MAP_FILL.pending, opacity: 1 };
         const m = ctx.live.get(seat.id)?.momentum;
         return { color: m && m !== 'stable' ? MOMENTUM_FILL[m] : MOMENTUM_FILL.stable, opacity: 1 };
       }
@@ -88,6 +89,7 @@ function layerFill(seat: SeatResult, ctx: FillContext): LayerFill {
     default: {
       const call = ctx.layer === 'overview' ? ctx.live?.get(seat.id)?.call : undefined;
       if (!call) return { color, opacity: 1 };
+      if (call === 'not_started') return { color: MAP_FILL.pending, opacity: 1 };
       return call === 'too_close' ? { color, opacity: CALL_OPACITY.too_close, dashed: true } : { color, opacity: CALL_OPACITY[call] };
     }
   }

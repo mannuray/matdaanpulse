@@ -118,6 +118,12 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
           {info.state && <div data-tip-state className="text-[11px] text-muted">{info.state}</div>}
           {info.candidate && <div className="text-ink">{info.candidate}</div>}
           <div className="flex items-center gap-1.5 text-muted">{info.party && <PartyMark mark={info.mark} color={info.color} label={info.party} />}{info.party} · {info.status}{info.margin ? ` · +${info.margin.toLocaleString('en-IN')}` : ''}</div>
+          {info.live && (
+            <div data-tip-live className="mt-1 flex items-center gap-1.5 text-[11px] font-semibold">
+              <span className="text-ink">{info.live.call}</span>
+              {info.live.leadSwitch && <span className="rounded px-1 text-white" style={{ background: 'var(--color-map-mo-switched)' }}>{t('studio_tip_lead_switch')}</span>}
+            </div>
+          )}
         </div>,
         document.body,
       )}

@@ -608,5 +608,9 @@
   "seat_upset_stronghold_trailing": "बालेकिल्ला धोक्यात · {{since}} पासून {{party}} कडे",
   "seat_upset_heavyweight_trailing": "दिग्गज पिछाडीवर · {{name}}",
   "seat_narrowed": "मागील {{n}} फेऱ्यांत आघाडी {{from}} वरून {{to}} पर्यंत घटली",
-  "seat_widened": "मागील {{n}} फेऱ्यांत आघाडी {{from}} वरून {{to}} पर्यंत वाढली"
+  "seat_widened": "मागील {{n}} फेऱ्यांत आघाडी {{from}} वरून {{to}} पर्यंत वाढली",
+  "studio_tip_lead_switch": "आघाडी बदलली",
+  "seat_upset_sitting_trailing_plain": "विद्यमान आमदार पिछाडीवर",
+  "seat_upset_stronghold_trailing_plain": "बालेकिल्ला धोक्यात",
+  "seat_upset_heavyweight_trailing_plain": "दिग्गज पिछाडीवर"
 }

@@ -608,5 +608,9 @@
   "seat_upset_stronghold_trailing": "Stronghold at risk · held by {{party}} since {{since}}",
   "seat_upset_heavyweight_trailing": "Heavyweight trailing · {{name}}",
   "seat_narrowed": "Lead narrowed from {{from}} to {{to}} over the last {{n}} rounds",
-  "seat_widened": "Lead widened from {{from}} to {{to}} over the last {{n}} rounds"
+  "seat_widened": "Lead widened from {{from}} to {{to}} over the last {{n}} rounds",
+  "studio_tip_lead_switch": "Lead switch",
+  "seat_upset_sitting_trailing_plain": "Sitting MLA trailing",
+  "seat_upset_stronghold_trailing_plain": "Stronghold at risk",
+  "seat_upset_heavyweight_trailing_plain": "Heavyweight trailing"
 }
