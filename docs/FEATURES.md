@@ -196,8 +196,8 @@ Spec `docs/superpowers/specs/2026-10-06-party-model-design.md`, plan `docs/super
   → `seed_party_lineage.sql`, run-once `seed_party_units_v1.sql`).
 - [x] Party dialog (state context): "<party> in <state>" — recognition there, state president and legislature leader
   (linked to person pages), lineage notes in plain words, and the family total after a split.
-- [x] `scraper/src/recompute-analysis-cli.ts` recomputes the stored seat analysis for every election (history from the
-  manifest, else every earlier election of the state). Known: the admin "Compute analysis" button sends no history.
+- [x] `scraper/src/recompute-analysis-cli.ts` recomputes the stored seat analysis for every election. Since the seat
+  analysis rework (below) it posts no body: the server loads each election's history itself, as the admin button does.
 - Next: the `/party/:id` page; admin editing of lineage and units.
 
 ### Election picker: one list instead of state + year dropdowns, 2026-10-05
@@ -318,7 +318,7 @@ Plan `docs/superpowers/plans/2026-10-05-phase3a-five-states-history.md` (histori
 - [x] Maps: the existing 2008 files; a Vidhan Sabha map feature takes the seat with its number when the names differ
   (`matchFeaturesToSeats(…, { byNumber })`), and maps wound the planar way are rewound on load (`model/geo/winding.ts`).
 - [x] Person links across 2012-2022 (`seed_<slug>_person_links_v1.sql`, run-once). About lists the 15 datasets.
-- Not yet: leaders, photos, party profiles, affidavits (with the 2027 elections, for every candidate); seat analysis recompute.
+- Not yet: leaders, photos, party profiles, affidavits (with the 2027 elections, for every candidate).
 
 ### The five 2026 elections (AS, KL, PY, TN, WB), 2026-10-04
 Plan `docs/superpowers/plans/2026-10-03-phase2b-2026-elections.md` (current track).
@@ -540,9 +540,8 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
 - [x] Constituency metadata: manual tags (caste, religion, geography, region) stored as JSONB
 - [x] Predefined tag palette with autocomplete (yadav_dominated, muslim_majority, urban, seemanchal, etc.)
 - [x] Bulk tagging: multi-select constituencies and add/remove tags in bulk
-- [x] Auto-computed analysis: dominance (stronghold/loyal/swing) + incumbency from historical results
-  - Reuses same logic as frontend History tab, persisted server-side in `constituency_analysis` table
-  - Triggered via "Compute" button, uses `manifest.history` election IDs
+- [x] Auto-computed analysis: dominance (stronghold/loyal/swing) + incumbency from historical results. Superseded
+  2026-10 by "Seat analysis rework (Phase A)" below.
 - [~] ~~AI enrichment pipeline (constituency briefings, demographics, key issues; candidate/person/party enrichment)~~ — **removed 2026-09-30**, see "Built-in AI and constituency briefing removed" below
 - [x] Constituency Manager admin page (`/constituencies`)
   - Top-bar election + search + tag filter
@@ -552,6 +551,53 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` �
   - Compute button: triggers server-side dominance/incumbency analysis
 - [x] Admin route `/constituencies` with sidebar nav link
 - [x] Backend: `ConstituencyAnalysis` entity, extended `ConstituenciesService`, `AdminConstituenciesController`
+
+### Seat analysis rework (Phase A, 2026-10)
+
+Spec `docs/superpowers/specs/2026-10-07-seat-analysis-design.md`, plan `docs/superpowers/plans/2026-10-07-seat-analysis-phase-a.md`.
+
+- [x] **One engine.** A pure module, `backend/src/common/seat-analysis/` = `frontend/src/model/derive/seatAnalysis/`,
+  byte-identical except each side's one-line `lineage.ts` (tests on both sides enforce it). It replaced the backend
+  strategies. `analyse(input)` throws unless the history is oldest → newest (the old engine compared Bihar 2025 with
+  2010 when the admin button sent no history).
+- [x] **Per seat** (`constituency_analysis.data`, migration 024):
+  - winner, runner-up, margin;
+  - outcome: retained / gained from X / split / new, with `provisional` while it's only a lead;
+  - vote swing of the winner party and the previous holder;
+  - class from the current holder and streak (stronghold = the same party every time, at least 3; loyal = streak 2+;
+    swing; new);
+  - incumbency (re-contested, where, party now, switched / followed a split, won);
+  - seat history with each party's lineage family;
+  - seat type;
+  - notes: spoiler (third candidate above the margin, or the manifest's alliance vote split), NOTA above the margin,
+    rematch, revenge, party switcher, heavyweight (manifest leaders / cabinet, party unit roles on the election date),
+    bellwether.
+- [x] **Per election** (`election_analysis`):
+  - party rows: seats, votes and share, change against the previous election of the state even across a redraw;
+    held / gained / lost / split only within one delimitation;
+  - lineage family totals;
+  - seat flow matrix;
+  - alliance change (UPA counts as INDIA);
+  - close seats (under 3%) and narrowing seats;
+  - bellwethers: the winner was in the manifest `government` at every comparable election, at least 3;
+  - breakdowns by reserved type, region and turnout change.
+- [x] **One compute path:** `SeatAnalysisService.compute` loads the history, `previousAny`, lineage, manifest and unit
+  roles itself. It is called by finalizing an election (a failure is logged, the finalize stands), the admin "Compute
+  all analysis" button, `POST /admin/constituencies/analysis/compute/:id` (no body) and the recompute CLI. It upserts and
+  never touches the admin `notes`. UP 2022 computes in about 40 ms.
+- [x] **API:** `GET /elections/:id/analysis` returns `data` per seat, plus the old `incumbency` JSON for one release
+  (built from `data`, or the stored pre-024 JSON while a row is not yet recomputed). `GET /elections/:id/analysis/summary`
+  returns the `ElectionAnalysis`.
+- [x] **Person matching:** by person_id, else by name in the same seat, else by name anywhere in the election only if
+  that name is unique. Older elections are only partly person-linked (TN, KL and UP find far more repeat candidates by
+  name), so better person links improve the analysis with no code change.
+- [x] **Manifest `government`:** `{ parties, label?, source }`, the parties that formed the government after each VS
+  election. Filled for all 75 by the fill-only `seed_election_government.sql` (generated from
+  `scraper/data/government.json` by `scraper/src/government-cli.ts`); edited in the admin manifest JSON tab.
+- [x] **Frontend:** dashboard maps, seat history and the alliance spoiler read `data`; the constituency page's
+  `anti_incumbency` class is gone (the "incumbents lost" chip stays, from incumbency). For elections that are not
+  Finalized, the dashboard still uses `useHistoryAnalysis` until Phase B (baseline, seat timeline, live analysis).
+- Known: in states dominated by one party, "bellwether" and "stronghold" overlap (e.g. WB 2021: 124 bellwethers).
 
 ### Admin redesign: shell + Live Console (2026-10)
 - New shell: grouped sidebar (Counting / Data / Admin), top bar with a global election picker (remembered in `?election=` + localStorage), live-updates pill, health dot (`/health/ready`), keyboard-shortcuts dialog.
@@ -726,7 +772,7 @@ Spec: `docs/superpowers/specs/2026-10-02-person-required-design.md`. Every candi
   - LS 2024: `voter_turnout` / `total_electors` implausible (e.g. Lakshadweep 1,474,599 electors; in 294 seats the votes exceed electors × turnout).
   - Candidate coverage: all candidates in every Vidhan Sabha election (Bihar 2010–2025, five states 2011–2026); top 5 + NOTA in LS 2024. TN 2016 has 232/234 seats (2 postponed polls).
 
-- **Detail screens:** affidavit columns (age, assets, liabilities, criminal cases) appear only where admins or seeds filled them; seat-history runner-up and share appear after the next analysis recompute; the counting round in the seat dialog can trail the vote numbers by up to a few minutes (CDN cache); turnout and vote-share change versus the previous election are not shown (no source yet).
+- **Detail screens:** affidavit columns (age, assets, liabilities, criminal cases) appear only where admins or seeds filled them; the counting round in the seat dialog can trail the vote numbers by up to a few minutes (CDN cache); turnout and vote-share change versus the previous election are not shown (no source yet).
 
 ## Planned
 
