@@ -86,13 +86,22 @@ export async function setStatus(request: APIRequestContext, status: 'Upcoming' |
   expect(res.ok(), `set ${status}: HTTP ${res.status()} ${await res.text()}`).toBe(true);
 }
 
-export async function correct(request: APIRequestContext, constId: string, state: string, votes: Record<string, number>): Promise<void> {
-  const res = await request.put(`${API}/admin/elections/${SIM}/seats/${constId}`, { headers: await auth(), data: { state, votes } });
+/** Admin seat correction (places a hold); `votes` must list every candidate of the seat. */
+export async function correct(request: APIRequestContext, constId: string, state: string, votes: Record<string, number>, round: { current: number; total: number } | null = null): Promise<void> {
+  const res = await request.put(`${API}/admin/elections/${SIM}/seats/${constId}`, { headers: await auth(), data: { state, votes, ...(round ? { round } : {}) } });
   expect(res.ok(), `correct ${constId} ${state}: HTTP ${res.status()} ${await res.text()}`).toBe(true);
 }
 
 export async function releaseHold(request: APIRequestContext, constId: string): Promise<void> {
   await request.delete(`${API}/admin/elections/${SIM}/holds/${constId}`, { headers: await auth() });
+}
+
+/** Seats currently on hold. */
+export async function holds(request: APIRequestContext): Promise<string[]> {
+  const res = await request.get(`${API}/admin/elections/${SIM}/holds`, { headers: await auth() });
+  expect(res.ok(), `GET holds HTTP ${res.status()}`).toBe(true);
+  const body = (await res.json()) as { data: { const_id: string }[] };
+  return body.data.map(h => h.const_id);
 }
 
 /** Admin per-seat roster (candidate ids and votes) for corrections. */

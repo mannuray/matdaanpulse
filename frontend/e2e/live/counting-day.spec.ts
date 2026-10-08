@@ -5,7 +5,7 @@
  */
 import { test, expect, type Page } from '@playwright/test';
 import { SIM } from './env';
-import { advanceTo, liveState, shot, waitForViewer, type Snapshot } from './sim';
+import { adminSeats, advanceTo, correct, holds, liveState, releaseHold, shot, snapshot, waitForViewer, type Snapshot } from './sim';
 import { baseline, leadersOf, liveOf } from './oracle';
 
 test.describe.configure({ mode: 'serial' });
@@ -114,4 +114,77 @@ test('counting day, desktop', async ({ page, request }) => {
   await expect(person.getByText(/Counting|Leading|Trailing/).first(), 'C2: person page shows the live state').toBeVisible({ timeout: 20_000 });
   await shot(person, 'C2-person', 'desktop');
   await person.close();
+
+  // C3: special seat states at round 10, set by the admin seat correction (as on counting day).
+  snap = await advanceTo(request, 10, excluded);
+  const roster = await adminSeats(request);
+  const countingIds = roster.filter(s => snap.seats?.[s.const_id]?.state === 'counting' && s.candidates.filter(c => c.votes > 0).length >= 2).map(s => s.const_id);
+  const [cmId, adjId, heldId, otherCounting] = countingIds;
+  const rosterVotes = (id: string, over: Record<string, number> = {}) =>
+    Object.fromEntries(roster.find(s => s.const_id === id)!.candidates.map(c => [c.candidate_id, over[c.candidate_id] ?? c.votes]));
+  const [hA, hB] = [...roster.find(s => s.const_id === heldId)!.candidates].sort((a, b) => b.votes - a.votes);
+  const heldVotes = hA.votes + 777;
+  for (const id of [cmId, adjId, heldId]) excluded.add(id);
+  try {
+    await correct(request, cmId, 'countermanded', rosterVotes(cmId));
+    await correct(request, adjId, 'adjourned', rosterVotes(adjId));
+    await correct(request, heldId, 'counting', rosterVotes(heldId, { [hB.candidate_id]: heldVotes }), (() => { const st = snap.seats?.[heldId]; return st?.cr && st.tr ? { current: st.cr, total: st.tr } : null; })());
+    const v3 = (await liveState(request)).version;
+    await waitForViewer(page, v3, 'C3:');
+    for (const [id, text, name] of [[cmId, 'Countermanded', 'countermanded'], [adjId, 'Counting adjourned', 'adjourned']] as const) {
+      await page.locator(`path.pc[data-seat="${id}"]`).dispatchEvent('click');
+      await expect(page.getByRole('dialog').getByText(text).first(), `C3: ${id}'s dialog says ${text}`).toBeVisible({ timeout: 15_000 });
+      await shot(page, `C3-${name}`, 'desktop');
+      await page.keyboard.press('Escape');
+    }
+    await page.locator(`path.pc[data-seat="${heldId}"]`).dispatchEvent('click');
+    await expect(page.getByRole('dialog').getByText(heldVotes.toLocaleString('en-IN')).first(), `C3: held seat ${heldId} shows the corrected ${heldVotes}`).toBeVisible({ timeout: 15_000 });
+    await shot(page, 'C3-held', 'desktop');
+    await page.keyboard.press('Escape');
+
+    // While the source stays at round 10 the holds protect the corrections (ingest spec D4). The worker polls every
+    // 3 s, so two cycles have run after this wait: absence of change needs a window, not a condition.
+    await page.waitForTimeout(8_000);
+    const held = await snapshot(request, (await liveState(request)).version);
+    expect(held.seats?.[cmId]?.state, `C3: ${cmId} stays countermanded under its hold`).toBe('countermanded');
+    expect(held.seats?.[adjId]?.state, `C3: ${adjId} stays adjourned under its hold`).toBe('adjourned');
+    expect(held.results.some(r => r.const_id === heldId && r.votes === heldVotes), `C3: ${heldId} keeps ${heldVotes} under its hold`).toBe(true);
+    expect((await holds(request)).sort(), 'C3: three seats on hold').toEqual([cmId, adjId, heldId].sort());
+
+    // A later source round releases the holds by itself: the seats follow the source again (settle checks them).
+    excluded.clear();
+    snap = await advanceTo(request, 11, excluded);
+    expect(await holds(request), 'C3: holds released by the later round').toEqual([]);
+
+    // C4: partial declarations at round 18.
+    snap = await advanceTo(request, 18, excluded);
+    await waitForViewer(page, snap.version, 'C4:');
+    const lead4 = leadersOf(snap);
+    const declared = [...lead4].filter(([, l]) => l.won).map(([id]) => id);
+    expect(declared.length, 'C4: some seats declared by round 18').toBeGreaterThan(0);
+    expect(declared.length, 'C4: not all seats declared by round 18').toBeLessThan(lead4.size);
+    const declaredOnPage = Number((await page.getByText(/^\d+\/243$/).first().textContent())!.split('/')[0]);
+    expect(declaredOnPage, `C4: declared count vs snapshot (${declared.length})`).toBe(declared.length);
+    await expect(page.getByText(/\d+ to win/).first(), 'C4: majority line').toBeVisible();
+    // Party standings: won + leading per party, as in the snapshot summary.
+    await page.getByRole('radio', { name: 'Parties', exact: true }).click();
+    for (const p of snap.summary.filter(x => (x.won ?? 0) + (x.leading ?? 0) > 0).slice(0, 4)) {
+      const n = (p.won ?? 0) + (p.leading ?? 0);
+      await expect(page.getByRole('button', { name: new RegExp(`^${p.party_id} .* ${n}$`) }).first(), `C4: standings ${p.party_id} = ${n}`).toBeVisible();
+    }
+    await shot(page, 'C4', 'desktop');
+    await page.getByRole('radio', { name: 'Summary · Overview' }).click();
+
+    // Constituency pages of a declared and a counting seat (new tab).
+    const cp = await page.context().newPage();
+    for (const [id, kind] of [[declared[0], 'declared'], [otherCounting, 'counting']] as const) {
+      await cp.goto(`/election/${SIM}/constituency/${id}`);
+      await expect(cp.getByRole('heading', { level: 1 }), `C4: constituency page ${id}`).toBeVisible({ timeout: 20_000 });
+      await expect(cp.getByText(kind === 'declared' ? /Won|Declared/ : /Counting|Leading/).first(), `C4: ${kind} constituency page shows its state`).toBeVisible();
+      await shot(cp, `C4-constituency-${kind}`, 'desktop');
+    }
+    await cp.close();
+  } finally {
+    for (const id of [cmId, adjId, heldId]) await releaseHold(request, id);
+  }
 });
