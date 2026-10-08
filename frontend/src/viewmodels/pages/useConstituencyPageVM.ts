@@ -3,7 +3,7 @@ import { partyPageHref } from '../../model/derive/partyRecord';
 import { useEffect, useMemo, useState } from 'react';
 import { useApi } from '../data/useApi';
 import { loadElectionList } from '../data/useElectionList';
-import { useLiveSnapshot } from '../data/useLiveSnapshot';
+import { useLiveVersion } from '../data/useLiveVersion';
 import { usePartyMeta } from '../data/usePartyMeta';
 import { useLocalStorage } from '../data/useLocalStorage';
 import { getElection, getConstituency, getConstituencyAnalysis, getManifest, ElectionService } from '../../model/api/election.service';
@@ -53,15 +53,16 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   const election = useApi(() => getElection(electionId), [electionId], { key: ElectionService.getCacheKey(electionId) });
   const e = election.data && election.data.id === electionId ? election.data : null;
   const cmp = usePartyComparer(e?.state_id, e?.type ?? 'VS');
-  // Poll while counting and before it starts, so a page left open on counting day picks up the first results.
-  const live = useLiveSnapshot(electionId, e?.status === 'Live' || e?.status === 'Upcoming');
+  // Poll /live while counting and before it starts, so a page left open on counting day picks up the first results.
+  // Only the small /live document: the seat detail is fetched per version, never the full results snapshot.
+  const live = useLiveVersion(electionId, e?.status === 'Live' || e?.status === 'Upcoming');
   // /live reports status changes (Upcoming → Live → Finalized) before the election record is refetched.
   const electionStatus = live.status ?? e?.status ?? null;
-  // Refetch the detail on every new live version, so the counting round follows the snapshot (CDN-cached).
-  const version = live.snapshot?.version ?? null;
+  // Refetch the detail on every new live version (?v=, CDN-cached per version), so votes and round follow the count.
+  const version = live.version;
   // useApi's error is a string, so a 404 is turned into a value here.
   const detailRes = useApi(
-    () => getConstituency(electionId, constId).catch(e => { if (e instanceof ApiError && e.status === 404) return NOT_FOUND; throw e; }),
+    () => getConstituency(electionId, constId, version).catch(e => { if (e instanceof ApiError && e.status === 404) return NOT_FOUND; throw e; }),
     [electionId, constId, version], { key: `${ElectionService.getConstituencyCacheKey(electionId, constId)}_v${version ?? ''}` },
   );
   const notFound = detailRes.data === NOT_FOUND;
@@ -74,10 +75,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   // Same key as the dashboard watchlist, so tracking is shared.
   const [watch, setWatch] = useLocalStorage<CustomWatch[]>(`watchlist_${electionId}`, []);
 
-  const rows = useMemo(() => {
-    const snapRows = live.snapshot?.results.filter(r => r.const_id === constId);
-    return snapRows && snapRows.length ? snapRows : d ? detailToRows(constId, d.candidates ?? []) : [];
-  }, [live.snapshot, d, constId]);
+  const rows = useMemo(() => (d ? detailToRows(constId, d.candidates ?? []) : []), [d, constId]);
   const partyColor = useMemo(() => new Map((d?.candidates ?? []).filter(c => c.party).map(c => [c.party!.id, c.party!.color ?? 'var(--color-fallback)'])), [d]);
   const view = useMemo(() => buildSeatView(rows, { partyMeta, partyColor, detail: d?.candidates ?? null }), [rows, partyMeta, partyColor, d]);
 
@@ -108,7 +106,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
     electionName: e?.name ?? '', electionHref: `/election/${electionId}`,
     stateName: d?.state?.name ?? null, districtName: d?.district?.name ?? null,
     name: d?.name ?? '', constNo: d?.const_no ?? null, type: d?.type ?? null,
-    live: e ? liveChipState(electionStatus, rows, d, live.snapshot?.seats?.[constId] ?? null) : null,
+    live: e ? liveChipState(electionStatus, rows, d, d?.seat_state ? { state: d.seat_state, cr: d.current_round ?? null, tr: d.total_rounds ?? null } : null) : null,
     facts: {
       electors: d?.total_electors ?? null, votesPolled: view.totalVotes > 0 ? view.totalVotes : null,
       turnout: d?.voter_turnout != null ? Number(d.voter_turnout) : null, phase: d?.phase ?? null,
