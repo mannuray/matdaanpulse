@@ -1,14 +1,14 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useApi } from '../data/useApi';
 import { usePartyMeta } from '../data/usePartyMeta';
 import { getParty } from '../../model/api/geo.service';
 import { getPartyRecord } from '../../model/api/party.service';
 import { ApiError } from '../../model/api/api-client';
-import { deltaOf, headline, latestByState, sparkline, type Delta, type Headline } from '../../model/derive/partyRecord';
+import { deltaOf, headline, latestByState, previousComparable, recordLines, sparkline, type Delta, type Headline, type RecordLine } from '../../model/derive/partyRecord';
 import type { LineageEvent, PartyDetail, PartyRecord, PartyUnit } from '../../model/types';
 
-export type { Delta, Headline };
+export type { Delta, Headline, RecordLine };
 export type { LineageEvent } from '../../model/types';
 
 interface Missing { id: string; notFound: true }
@@ -20,8 +20,26 @@ export interface StateRowView {
   delta: Delta | null; spark: number[]; president: { name: string; personId: string | null; photo: string | null } | null; href: string;
 }
 
-/** The state view's sections (party page spec §4); filled in by the state view. */
-export type PartyStateView = null;
+export type StateSection = 'record' | 'map' | 'changes' | 'mlas' | 'regions';
+export interface MlaView { personId: string | null; name: string; photo: string | null; constId: string; constName: string; margin: number | null }
+
+/** One state's view (party page spec §4). */
+export interface PartyStateView {
+  code: string; name: string; electionId: string; year: number; won: number; seatsTotal: number; share: number; delta: Delta | null;
+  recognition: string | null; office: string | null; website: string | null;
+  president: RoleView | null; leader: RoleView | null; pastPresidents: { name: string; from: string | null; to: string | null }[];
+  /** Newest first, with lineage events and redraws in place. */
+  lines: RecordLine[];
+  /** Oldest → newest. */
+  chart: { year: number; won: number; share: number }[];
+  /** Null when there is no earlier election on the same boundaries. */
+  changes: { held: number; gained: number; lost: number; gainedFrom: { party: string; seats: number; split: boolean }[]; lostTo: { party: string; seats: number; split: boolean }[] } | null;
+  mlas: MlaView[];
+  query: string; setQuery(q: string): void; filteredMlas: MlaView[];
+  regions: { region: string; seats: number; won: number }[] | null;
+  /** Jump links: sections that have something to show. */
+  sections: StateSection[];
+}
 
 export interface PartyPageVM {
   status: 'loading' | 'error' | 'notFound' | 'ready';
@@ -37,7 +55,7 @@ export interface PartyPageVM {
   states: StateRowView[];
   lineage: LineageEvent[];
   noResults: boolean;
-  stateView: PartyStateView;
+  stateView: PartyStateView | null;
   recordError: boolean;
   retry(): void;
   nameOf(partyId: string): string;
@@ -54,6 +72,7 @@ export function usePartyPageVM(id: string): PartyPageVM {
   const navigate = useNavigate();
   const wanted = params.get('state')?.trim().toUpperCase() || null;
   const meta = usePartyMeta();
+  const [query, setQuery] = useState('');
   // useApi's error is a string, so a 404 is turned into a value here.
   const party = useApi(() => getParty(id).catch((e): Missing => { if (e instanceof ApiError && e.status === 404) return { id, notFound: true }; throw e; }), [id], { key: `party_${id}` });
   const record = useApi(() => getPartyRecord(id, wanted ?? undefined), [id, wanted], { key: `party_record_${id}_${wanted ?? ''}` });
@@ -94,7 +113,37 @@ export function usePartyPageVM(id: string): PartyPageVM {
       missingState: wanted && rec && !contested ? wanted : null,
       chips, headline: headline(rec ?? { party_id: id, elections: [], lineage: [] }), states,
       lineage: rec?.lineage ?? p?.lineage ?? [], noResults: !!rec && rec.elections.length === 0,
-      stateView: null, recordError: !!record.error && !rec, retry: record.refetch, nameOf,
+      stateView: contested && rec ? stateViewOf(id, rec, wanted!, p?.units, nameOf, query, setQuery) : null, recordError: !!record.error && !rec, retry: record.refetch, nameOf,
     };
-  }, [mineParty, party.error, rec, record.error, record.refetch, latest, wanted, id, meta]);
+  }, [mineParty, party.error, rec, record.error, record.refetch, latest, wanted, id, meta, query]);
+}
+
+function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUnit[] | undefined, nameOf: (pid: string) => string,
+  query: string, setQuery: (q: string) => void): PartyStateView | null {
+  const rows = rec.elections.filter(r => r.state_code === code);
+  const latest = rows[0];
+  if (!latest) return null;
+  const unit = units?.find(u => u.state_id === latest.state_id);
+  const flow = rec.state?.code === code ? rec.state.flow : [];
+  const changes = previousComparable(rows, latest) ? {
+    held: latest.held, gained: latest.gained, lost: latest.lost,
+    gainedFrom: flow.filter(f => f.to === id).map(f => ({ party: f.from, seats: f.seats, split: f.split })),
+    lostTo: flow.filter(f => f.from === id).map(f => ({ party: f.to, seats: f.seats, split: f.split })),
+  } : null;
+  const mlas: MlaView[] = (rec.state?.code === code ? rec.state.mlas : []).map(m => ({ personId: m.person_id, name: m.name, photo: m.photo_url, constId: m.const_id, constName: m.const_name, margin: m.margin }));
+  const q = query.trim().toLowerCase();
+  const regions = rec.state?.code === code ? rec.state.regions : null;
+  const sections: StateSection[] = ['record', 'map', ...(changes ? ['changes' as const] : []), ...(mlas.length ? ['mlas' as const] : []), ...(regions?.length ? ['regions' as const] : [])];
+  return {
+    code, name: latest.state_name, electionId: latest.election_id, year: latest.year, won: latest.won, seatsTotal: latest.seats_total, share: latest.share,
+    delta: deltaOf(id, rows, latest, rec.lineage, nameOf),
+    recognition: unit?.eci_recognition ?? null, office: unit?.office ?? null, website: unit?.website ?? null,
+    president: currentRole(unit, 'state_president'), leader: currentRole(unit, 'legislature_leader'),
+    pastPresidents: (unit?.roles ?? []).filter(r => r.role === 'state_president' && r.to_date != null).map(r => ({ name: r.person_name, from: r.from_date, to: r.to_date })),
+    lines: recordLines(id, rec, latest.state_id, nameOf),
+    chart: rows.map(r => ({ year: r.year, won: r.won, share: r.share })).reverse(),
+    changes, mlas, query, setQuery,
+    filteredMlas: q ? mlas.filter(m => m.name.toLowerCase().includes(q) || m.constName.toLowerCase().includes(q)) : mlas,
+    regions, sections,
+  };
 }

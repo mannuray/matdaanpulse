@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { renderHook, waitFor } from '@testing-library/react';
+import { renderHook, waitFor, act } from '@testing-library/react';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 
@@ -78,5 +78,44 @@ describe('usePartyPageVM', () => {
     await waitFor(() => expect(result.current.noResults).toBe(true));
     expect(result.current.chips).toEqual([]);
     expect(result.current.states).toEqual([]);
+  });
+});
+
+describe('usePartyPageVM, state view', () => {
+  const stateRec = (over: Record<string, unknown> = {}) => ({
+    party_id: 'BJP', lineage: [],
+    elections: [{ ...el('a', 9, 'JH', 'Jharkhand', 2024, 21), held: 14, gained: 7, lost: 9 }, el('b', 9, 'JH', 'Jharkhand', 2019, 25)],
+    state: { code: 'JH', election_id: 'a',
+      mlas: [{ person_id: 'p1', name: 'Babulal Marandi', photo_url: null, const_id: 'C1', const_name: 'Dhanwar', margin: 100 },
+             { person_id: 'p2', name: 'C P Singh', photo_url: null, const_id: 'C2', const_name: 'Ranchi', margin: 50 }],
+      flow: [{ from: 'JMM', to: 'BJP', seats: 4, split: false }, { from: 'BJP', to: 'INC', seats: 3, split: false }],
+      regions: [{ region: 'Palamu', seats: 9, won: 5 }] },
+    ...over,
+  });
+  it('unit roles, record lines, changes from the flow, MLAs search (name or seat, any case), sections', async () => {
+    api.getPartyRecord.mockResolvedValue(stateRec());
+    const { result } = hook('BJP', '/party/BJP?state=JH');
+    await waitFor(() => expect(result.current.stateView).not.toBeNull());
+    const sv = result.current.stateView!;
+    expect(sv).toMatchObject({ code: 'JH', name: 'Jharkhand', year: 2024, won: 21, seatsTotal: 81, president: { name: 'Babulal Marandi' }, leader: null });
+    expect(sv.lines.map(l => l.kind)).toEqual(['election', 'election']);
+    expect(sv.chart.map(c => c.year)).toEqual([2019, 2024]);
+    expect(sv.changes).toEqual({ held: 14, gained: 7, lost: 9, gainedFrom: [{ party: 'JMM', seats: 4, split: false }], lostTo: [{ party: 'INC', seats: 3, split: false }] });
+    expect(sv.sections).toEqual(['record', 'map', 'changes', 'mlas', 'regions']);
+    act(() => sv.setQuery('ranchi'));
+    await waitFor(() => expect(result.current.stateView!.filteredMlas.map(m => m.name)).toEqual(['C P Singh']));
+    act(() => result.current.stateView!.setQuery('BABULAL'));
+    await waitFor(() => expect(result.current.stateView!.filteredMlas.map(m => m.name)).toEqual(['Babulal Marandi']));
+  });
+  it('a state with no unit, no regions and no earlier comparable election shows only what it has', async () => {
+    api.getParty.mockImplementation((id: string) => Promise.resolve({ ...party([]), id }));
+    api.getPartyRecord.mockResolvedValue(stateRec({ elections: [el('a', 9, 'JH', 'Jharkhand', 2024, 21)], state: { code: 'JH', election_id: 'a', mlas: [], flow: [], regions: null } }));
+    const { result } = hook('BJP', '/party/BJP?state=JH');
+    await waitFor(() => expect(result.current.stateView).not.toBeNull());
+    const sv = result.current.stateView!;
+    expect(sv.president).toBeNull();
+    expect(sv.pastPresidents).toEqual([]);
+    expect(sv.changes).toBeNull();
+    expect(sv.sections).toEqual(['record', 'map']);
   });
 });

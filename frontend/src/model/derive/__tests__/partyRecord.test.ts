@@ -49,6 +49,13 @@ describe('partyRecord', () => {
     expect(sparkline(r, 9)).toEqual([30, 25, 21]);
     expect(recordLines('BJP', r, 9, nameOf).map(l => l.kind)).toEqual(['election', 'event', 'election', 'redraw', 'election']);
   });
+  it('a national event shows inline only where the predecessor ran (a Kerala merger stays out of Jharkhand)', () => {
+    const kjps: LineageEvent = { party_id: 'BJP', predecessor_id: 'KJPS', kind: 'merger', effective_date: '2024-03-01', state_id: null, is_successor: true, note: null };
+    const jvmNational: LineageEvent = { ...merger, state_id: null };
+    const r = rec([e('a', 9, 2024, 21), e('b', 9, 2019, 25, { family: [{ party_id: 'JVM', won: 3, share: 5 }] })], [jvmNational, kjps]);
+    const events = recordLines('BJP', r, 9, nameOf).filter(l => l.kind === 'event').map(l => (l.kind === 'event' ? l.event.predecessor_id : ''));
+    expect(events).toEqual(['JVM']);
+  });
   it('a party with no elections: empty everything, no crash', () => {
     const r = rec([]);
     expect(latestByState(r)).toEqual([]);

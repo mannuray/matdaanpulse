@@ -60,15 +60,19 @@ export function sparkline(rec: PartyRecord, stateId: number): number[] {
   return rec.elections.filter(r => r.state_id === stateId).map(r => r.won).reverse();
 }
 
-/** The state's record, newest first, with lineage events and boundary redraws between the elections they fall between. */
+/** The state's record, newest first, with this state's lineage events and boundary redraws between the elections they fall between. */
 export function recordLines(partyId: string, rec: PartyRecord, stateId: number, nameOf: (id: string) => string): RecordLine[] {
   const rows = rec.elections.filter(r => r.state_id === stateId);
+  // A national event (state_id null) belongs here only if the other party in it ran in this state.
+  const ranHere = new Set(rows.flatMap(r => r.family.map(f => f.party_id)));
+  const relevant = (ev: LineageEvent) => ev.state_id === stateId
+    || (ev.state_id == null && ranHere.has(ev.party_id === partyId ? ev.predecessor_id : ev.party_id));
   const out: RecordLine[] = [];
   rows.forEach((row, i) => {
     out.push({ kind: 'election', row, delta: deltaOf(partyId, rows, row, rec.lineage, nameOf) });
     const prev = rows[i + 1];
     if (!prev) return;
-    rec.lineage.filter(ev => (ev.state_id == null || ev.state_id === stateId) && ev.effective_date > prev.date && ev.effective_date <= row.date)
+    rec.lineage.filter(ev => relevant(ev) && ev.effective_date > prev.date && ev.effective_date <= row.date)
       .reverse().forEach(event => out.push({ kind: 'event', event }));
     if (prev.delimitation !== row.delimitation) out.push({ kind: 'redraw', delimitation: row.delimitation, year: row.year });
   });
