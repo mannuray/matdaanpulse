@@ -150,7 +150,8 @@ function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUni
   const mlas: MlaView[] = (rec.state?.code === code ? rec.state.mlas : []).map(m => ({ personId: m.person_id, name: m.name, photo: m.photo_url, constId: m.const_id, constName: m.const_name, margin: m.margin }));
   const q = query.trim().toLowerCase();
   const regions = rec.state?.code === code ? rec.state.regions : null;
-  const sections: StateSection[] = ['record', 'map', ...(changes ? ['changes' as const] : []), ...(mlas.length ? ['mlas' as const] : []), ...(regions?.length ? ['regions' as const] : [])];
+  // The seat-changes card always shows (it says when there is nothing to compare with), so it always has a link.
+  const sections: StateSection[] = ['record', 'map', 'changes', ...(mlas.length ? ['mlas' as const] : []), ...(regions?.length ? ['regions' as const] : [])];
   return {
     code, name: latest.state_name, electionId: latest.election_id, year: latest.year, won: latest.won, seatsTotal: latest.seats_total, share: latest.share,
     delta: deltaOf(id, rows, latest, rec.lineage, nameOf, rec.family_elections ?? [], rec.state_elections ?? []),

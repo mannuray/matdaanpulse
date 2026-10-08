@@ -33,4 +33,11 @@ describe('PartyMapCard', () => {
     fireEvent.change(getByRole('combobox'), { target: { value: 'e19' } });
     expect(m.setElection).toHaveBeenCalledWith('e19');
   });
+  it('a seat drawn in several pieces is one path (its faint tint never stacks)', () => {
+    const c = f(87);
+    const m = map({ features: [a, b, c], seatOf: new Map([[a, 'S1'], [b, 'S2'], [c, 'S2']]) });
+    const { container } = render(<MemoryRouter><PartyMapCard map={m} color="#f80" /></MemoryRouter>);
+    expect(container.querySelectorAll('path[data-seat="S2"]')).toHaveLength(1);
+    expect(container.querySelectorAll('path[data-seat]')).toHaveLength(2);
+  });
 });

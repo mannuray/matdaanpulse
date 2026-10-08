@@ -119,7 +119,7 @@ describe('usePartyPageVM, state view', () => {
     expect(sv.president).toBeNull();
     expect(sv.pastPresidents).toEqual([]);
     expect(sv.changes).toBeNull();
-    expect(sv.sections).toEqual(['record', 'map']);
+    expect(sv.sections).toEqual(['record', 'map', 'changes']);   // the seat-changes card always shows ("first election on these boundaries")
   });
 });
 

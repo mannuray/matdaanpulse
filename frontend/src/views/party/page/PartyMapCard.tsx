@@ -15,7 +15,15 @@ export function PartyMapCard({ map, color }: { map: PartyMapVM | null; color: st
     if (!map || !map.features.length) return [];
     const fc = { type: 'FeatureCollection', features: map.features } as unknown as GeoJSON.FeatureCollection;
     const path = geoPath(geoMercator().fitExtent([[8, 8], [W - 8, H - 8]], fc));
-    return map.features.map(f => ({ f, d: path(f as unknown as GeoJSON.Feature) ?? '', id: map.seatOf.get(f) ?? null }));
+    // One path per seat: a seat drawn in several (overlapping) pieces is joined, so its faint tint does not stack.
+    const bySeat = new Map<string, string>();
+    const unmatched: { d: string; id: null }[] = [];
+    for (const f of map.features) {
+      const d = path(f as unknown as GeoJSON.Feature) ?? '';
+      const id = map.seatOf.get(f);
+      if (id) bySeat.set(id, (bySeat.get(id) ?? '') + d); else unmatched.push({ d, id: null });
+    }
+    return [...[...bySeat].map(([id, d]) => ({ d, id: id as string | null })), ...unmatched];
   }, [map]);
   const resultText = (r: string | undefined) => t(r === 'won' ? 'pty_map_won' : r === 'lost' ? 'pty_map_lost' : 'pty_map_none');
   return (

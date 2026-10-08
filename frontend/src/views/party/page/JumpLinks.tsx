@@ -7,15 +7,17 @@ import { cn } from '../../ui/cn';
 export function JumpLinks({ sections }: { sections: StateSection[] }) {
   const { t } = useTranslation();
   const [active, setActive] = useState<StateSection | null>(null);
+  // Keyed by content: the list is rebuilt on every MLA-search keystroke, the sections themselves rarely change.
+  const key = sections.join(',');
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') return;
     const io = new IntersectionObserver(entries => {
       const hit = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
       if (hit) setActive(hit.target.id.replace('pty-', '') as StateSection);
     }, { rootMargin: '-96px 0px -60% 0px' });
-    sections.forEach(s => { const el = document.getElementById(`pty-${s}`); if (el) io.observe(el); });
+    key.split(',').forEach(s => { const el = document.getElementById(`pty-${s}`); if (el) io.observe(el); });
     return () => io.disconnect();
-  }, [sections]);
+  }, [key]);
   return (
     <nav aria-label={t('pty_jump')} className="sticky top-12 z-10 -mx-4 flex gap-4 overflow-x-auto border-b border-line bg-page/95 px-4 py-2 backdrop-blur lg:mx-0 lg:rounded-xl lg:border">
       {sections.map(s => (

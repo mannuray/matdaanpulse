@@ -32,6 +32,22 @@ describe('usePartyMap', () => {
     await waitFor(() => expect(result.current?.electionId).toBe('e19'));
     await waitFor(() => expect(api.getResults).toHaveBeenCalledWith('e19'));
   });
+  it('switching to a year on the same map file stays loading until that year\'s results arrive (no old colours)', async () => {
+    api.getManifest.mockImplementation((id: string) => Promise.resolve({ election_id: id, manifest_url: null, draft: { geo: { map_url: '/geo/same.geojson' } } }));
+    api.getGeoJSON.mockResolvedValue({ type: 'FeatureCollection', features: [feature(1, 'Rajmahal')] });
+    let release: (rows: unknown[]) => void = () => {};
+    api.getResults.mockImplementation((id: string) => (id === 'x24'
+      ? Promise.resolve([{ const_id: 'JH_VS24_1_RAJMAHAL', party_id: 'BJP', candidate_name: 'a', votes: 1, status: 'WON', margin: 1 }])
+      : new Promise(r => { release = r; })));
+    const { result } = renderHook(() => usePartyMap('BJP', '#f80', [{ electionId: 'x24', year: 2024 }, { electionId: 'x19', year: 2019 }]));
+    await waitFor(() => expect(result.current?.status).toBe('ready'));
+    act(() => result.current!.setElection('x19'));
+    await waitFor(() => expect(result.current?.electionId).toBe('x19'));
+    expect(result.current?.status).toBe('loading');
+    act(() => release([{ const_id: 'JH_VS19_1_RAJMAHAL', party_id: 'JMM', candidate_name: 'a', votes: 1, status: 'WON', margin: 1 }]));
+    await waitFor(() => expect(result.current?.status).toBe('ready'));
+    expect(result.current?.fills.get('JH_VS19_1_RAJMAHAL')?.result).toBe('none');
+  });
   it('no elections → null', () => {
     const { result } = renderHook(() => usePartyMap('BJP', '#f80', []));
     expect(result.current).toBeNull();

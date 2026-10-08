@@ -88,5 +88,6 @@ describe('partyRecord', () => {
     expect(partyPageHref('IND')).toBeNull();
     expect(partyPageHref('NOTA')).toBeNull();
     expect(partyPageHref('')).toBeNull();
+    expect(partyPageHref('BJP', 'j&k')).toBe('/party/BJP?state=J%26K');
   });
 });
