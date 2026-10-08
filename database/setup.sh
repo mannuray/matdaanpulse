@@ -227,5 +227,7 @@ run seed_state_names_v1.sql
 
 echo "==> Seeds: manifest leader seats (run-once; after every person link, so the person ids it adds stay valid)"
 run seed_manifest_leader_seats_v1.sql
+# Run-once: leaders split across several persons (after the leader seats, which add person ids it may remap)
+run seed_leader_person_merges_v1.sql
 
 echo "==> Done. Create an admin user with: cd backend && npm run create-admin"
