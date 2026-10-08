@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma, election_status, election_type } from '@prisma/client';
-import { ElectionNotFinalizedException, ElectionNotFoundException } from '../../common/exceptions';
+import { ElectionNotFoundException } from '../../common/exceptions';
 import type { CreateElectionDto, UpdateElectionDto } from './dto/election-input.dto';
 import { comparableElectionIds } from '../../common/comparable-elections';
 
@@ -110,22 +110,5 @@ export class ElectionsService {
       where: { id },
       data: this.toElectionData(data) as Prisma.electionsUncheckedUpdateInput,
     });
-  }
-
-  async finalize(id: string) {
-    await this.findOne(id);
-    return this.prisma.elections.update({
-      where: { id },
-      data: { status: 'Finalized' },
-    });
-  }
-
-  /** A late correction after Finalize (spec §6): SUPER_ADMIN only, audited; Live again until re-finalized. */
-  async reopen(id: string, userId: string | null) {
-    const election = await this.findOne(id);
-    if (election.status !== 'Finalized') throw new ElectionNotFinalizedException(id);
-    const updated = await this.prisma.elections.update({ where: { id }, data: { status: 'Live' } });
-    await this.prisma.audit_logs.create({ data: { user_id: userId, action: 'ELECTION_REOPEN', entity_type: 'election', entity_id: id } });
-    return updated;
   }
 }

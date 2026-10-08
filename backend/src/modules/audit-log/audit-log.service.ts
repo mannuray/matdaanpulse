@@ -32,6 +32,9 @@ export type RecordAuditEntry = Omit<AuditEntry, 'userId' | 'action' | 'entityTyp
   entityType: RecordEntityType;
 };
 
+/** An operational audit entry (election status, ingest feed and keys, seat corrections): any action, any entity. */
+export interface OperationalAuditEntry { userId?: string | null; action: string; entityType: string; entityId: string; oldValue?: object; newValue?: object }
+
 /** Interactive-transaction client as used by `record` (needs raw SQL for the savepoint). */
 export type AuditTx = Pick<Prisma.TransactionClient, 'audit_logs' | '$executeRawUnsafe'>;
 
@@ -46,7 +49,7 @@ export class AuditLogService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  private toRow(e: RecordAuditEntry | AuditEntry) {
+  private toRow(e: RecordAuditEntry | AuditEntry | OperationalAuditEntry) {
     return {
       user_id: e.userId ?? null,
       action: e.action,
@@ -63,6 +66,15 @@ export class AuditLogService {
    * savepoint — a failed INSERT would otherwise abort the whole transaction and lose the save.
    */
   async record(entry: RecordAuditEntry, tx?: AuditTx): Promise<void> {
+    return this.write(entry, tx);
+  }
+
+  /** An operational audit row (any action): the same never-throws, savepoint-in-a-transaction contract as `record`. */
+  async log(entry: OperationalAuditEntry, tx?: AuditTx): Promise<void> {
+    return this.write(entry, tx);
+  }
+
+  private async write(entry: RecordAuditEntry | OperationalAuditEntry, tx?: AuditTx): Promise<void> {
     try {
       if (!tx) {
         await this.prisma.audit_logs.create({ data: this.toRow(entry) });

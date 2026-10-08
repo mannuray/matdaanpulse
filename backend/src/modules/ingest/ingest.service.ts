@@ -1,4 +1,4 @@
-import { appendSeatRounds } from './seat-rounds';
+import { leaderRow, writeSeats } from './seat-writer';
 import { Injectable, Logger } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -200,44 +200,17 @@ export class IngestService {
     throw refused.error;
   }
 
-  /** One transaction: results rows, rounds, seat state, released holds, seat rejections. Unchanged seats only advance their observation. */
+  /** One transaction: the results write (writeSeats: rows, rounds, seat state, timeline), released holds, seat rejections. */
   async write(tx: PrismaService, electionId: string, evaluated: Evaluated[], source: string, observedAt: Date, now: Date): Promise<void> {
     const applied = evaluated.filter(e => e.outcome.kind === 'applied') as { seat: IncomingSeat; outcome: Extract<SeatOutcome, { kind: 'applied' }> }[];
     const touched = evaluated.filter(e => e.outcome.kind === 'applied' || e.outcome.kind === 'unchanged');
     const released = evaluated.filter(e => (e.outcome.kind === 'applied' || e.outcome.kind === 'unchanged') && (e.outcome as any).releaseHold).map(e => e.seat.const_id);
     const rejected = evaluated.filter(e => e.outcome.kind === 'rejected' && e.track) as { seat: IncomingSeat; outcome: { kind: 'rejected'; reason: string } }[];
 
-    const flat = applied.flatMap(a => a.outcome.rows.map(r => ({ ...r, round: a.seat.round?.current ?? null })));
-    if (flat.length) {
-      await tx.$executeRaw`
-        UPDATE results AS r SET votes = u.votes, status = u.status::result_status, margin = u.margin,
-               round_no = COALESCE(u.round_no, r.round_no), last_updated = ${now}
-        FROM UNNEST(${flat.map(r => r.candidate_id)}::uuid[], ${flat.map(r => r.votes)}::int[], ${flat.map(r => r.status)}::text[],
-                    ${flat.map(r => r.margin)}::int[], ${flat.map(r => r.round)}::int[]) AS u(cid, votes, status, margin, round_no)
-        WHERE r.candidate_id = u.cid AND r.election_id = ${electionId}::uuid`;
-    }
-    const withRound = applied.filter(a => a.seat.round);
-    if (withRound.length) {
-      await tx.$executeRaw`
-        UPDATE constituencies AS c SET current_round = u.cr, total_rounds = u.tr
-        FROM UNNEST(${withRound.map(a => a.seat.const_id)}::varchar[], ${withRound.map(a => a.seat.round!.current)}::int[], ${withRound.map(a => a.seat.round!.total)}::int[]) AS u(id, cr, tr)
-        WHERE c.id = u.id AND c.election_id = ${electionId}::uuid`;
-    }
-    if (touched.length) {
-      await tx.$executeRaw`
-        INSERT INTO seat_ingest_state (election_id, const_id, state, round_current, round_total, last_source, last_observed_at, last_applied_at)
-        SELECT ${electionId}::uuid, u.id, u.state, u.rc, u.rt, ${source}, ${observedAt}, CASE WHEN u.applied THEN ${now}::timestamptz END
-        FROM UNNEST(${touched.map(t => t.seat.const_id)}::varchar[], ${touched.map(t => t.seat.state)}::text[],
-                    ${touched.map(t => t.seat.round?.current ?? null)}::int[], ${touched.map(t => t.seat.round?.total ?? null)}::int[],
-                    ${touched.map(t => t.outcome.kind === 'applied')}::bool[]) AS u(id, state, rc, rt, applied)
-        ON CONFLICT (election_id, const_id) DO UPDATE SET
-          state = EXCLUDED.state,
-          round_current = COALESCE(EXCLUDED.round_current, seat_ingest_state.round_current),
-          round_total = COALESCE(EXCLUDED.round_total, seat_ingest_state.round_total),
-          last_source = EXCLUDED.last_source, last_observed_at = EXCLUDED.last_observed_at,
-          last_applied_at = COALESCE(EXCLUDED.last_applied_at, seat_ingest_state.last_applied_at),
-          last_rejected_reason = NULL, last_rejected_at = NULL`;
-    }
+    await writeSeats(tx, electionId, {
+      applied: applied.map(a => ({ const_id: a.seat.const_id, state: a.seat.state, round: a.seat.round ?? null, rows: a.outcome.rows })),
+      unchanged: touched.filter(t => t.outcome.kind === 'unchanged').map(t => ({ const_id: t.seat.const_id, state: t.seat.state, round: t.seat.round ?? null })),
+    }, source, observedAt, now, 'ingest');
     if (rejected.length) {
       // The seat's current rejection, kept until the seat is next applied or unchanged; a new row has no state (viewers do not see it).
       await tx.$executeRaw`
@@ -249,8 +222,6 @@ export class IngestService {
     if (released.length) {
       await tx.$executeRaw`DELETE FROM seat_holds WHERE election_id = ${electionId}::uuid AND const_id = ANY(${released}::varchar[])`;
     }
-    // Seat timeline (migration 025): same transaction and seat lock as the results write.
-    if (applied.length) await appendSeatRounds(tx, electionId, applied.map(a => a.seat.const_id), 'ingest', observedAt);
   }
 }
 
@@ -277,8 +248,7 @@ function changedRows(evaluated: Evaluated[], rosterOf: Map<string, RosterCandida
   for (const { seat, outcome } of evaluated) {
     if (outcome.kind !== 'applied') continue;
     const party = new Map((rosterOf.get(seat.const_id) ?? []).map(c => [c.candidate_id, c.party_id]));
-    const ranked = outcome.rows.filter(r => party.get(r.candidate_id) !== 'NOTA');
-    const lead = ranked.find(r => r.status === 'LEADING' || r.status === 'WON') ?? [...ranked].sort((a, b) => b.votes - a.votes)[0];
+    const lead = leaderRow(outcome.rows, party);
     const p = lead ? party.get(lead.candidate_id) : null;
     if (!lead || !p) continue;
     out.push({ const_id: seat.const_id, p, m: lead.margin, s: lead.status, ...(seat.round ? { r: seat.round.current, cr: seat.round.current, tr: seat.round.total } : {}) });

@@ -1,5 +1,7 @@
 # Upcoming 2026 State Assembly Elections — Preparation Tracker
 
+> Historical checklist. The `database/data/*.json` files it mentions were deleted on 2026-10-08 (the legacy pipeline was retired; current data lives in `scraper/data/<state>/`, see `docs/SEEDING_PLAYBOOK.md`).
+
 > **Done (2026-10-04, Phase 2B).** All five 2026 elections are loaded; see `docs/FEATURES.md` and `docs/SEEDING_PLAYBOOK.md`.
 > This tracker is historical and partly wrong: **Assam 2026 follows the 2023 delimitation** (126 seats, 9 SC, 19 ST), not 2008.
 
