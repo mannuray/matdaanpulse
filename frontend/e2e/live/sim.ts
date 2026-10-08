@@ -112,5 +112,6 @@ export async function adminSeats(request: APIRequestContext): Promise<AdminSeat[
 }
 
 export async function shot(page: Page, checkpoint: string, viewport: string): Promise<void> {
-  await page.screenshot({ path: join(ARTIFACTS, `${checkpoint}-${viewport}.png`) });
+  // animations: 'disabled' finishes CSS transitions (e.g. colours fading after a theme switch) before the shot.
+  await page.screenshot({ path: join(ARTIFACTS, `${checkpoint}-${viewport}.png`), animations: 'disabled' });
 }

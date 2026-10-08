@@ -3,9 +3,10 @@
  * The mock ECI and the worker run from global setup; every check compares the page with the backend snapshot of the
  * version on screen. Screenshots go to e2e/artifacts/live/.
  */
+import { execSync } from 'node:child_process';
 import { test, expect, type Page } from '@playwright/test';
-import { SIM } from './env';
-import { adminSeats, advanceTo, correct, holds, liveState, releaseHold, setStatus, shot, snapshot, waitForViewer, type Snapshot } from './sim';
+import { fileEnv, SCRAPER, SIM } from './env';
+import { adminSeats, advanceTo, correct, holds, liveState, mockReset, releaseHold, setStatus, shot, snapshot, waitForViewer, type Snapshot } from './sim';
 import { baseline, leadersOf, liveOf } from './oracle';
 
 test.describe.configure({ mode: 'serial' });
@@ -213,4 +214,49 @@ test('counting day, desktop', async ({ page, request }) => {
   await expect(page.getByText(/^Live · \d+\/\d+ declared/), 'C6: Live chip gone').toHaveCount(0);
   expect(await pinnedSim(page), 'C6: the picker no longer pins the election').toBe(false);
   await shot(page, 'C6', 'desktop');
+});
+
+test('counting day, mobile and light theme', async ({ page, request }) => {
+  // A fresh count: the desktop test finalized the election.
+  await mockReset();
+  execSync('npm run sim:reset', { cwd: SCRAPER, env: fileEnv(), stdio: 'inherit' });
+  await setStatus(request, 'Upcoming');
+  await setStatus(request, 'Live');
+  const excluded = new Set<string>();
+  const base = await baseline(request);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`/election/${SIM}`);
+  // Phones have no stats strip on the first screen (it lives in the card rail): check the map.
+  await expect(page.locator('path.pc[data-seat]').first(), 'M-C0: map drawn').toBeAttached({ timeout: 30_000 });
+  expect(await colouredSeats(page), 'M-C0: no seat coloured').toEqual([]);
+  await shot(page, 'C0', 'mobile');
+
+  let snap = await advanceTo(request, 8, excluded);
+  await waitForViewer(page, snap.version, 'M-C2:');
+  const live2 = liveOf(base, snap);
+  const tooClose = [...live2.values()].filter(s => s.call === 'too_close').length;
+  expect(await dashedSeats(page), `M-C2: dashed seats vs snapshot (${tooClose})`).toBe(tooClose);
+  await shot(page, 'C2', 'mobile');
+  const seat = Object.keys(snap.seats ?? {}).find(id => snap.seats![id].state === 'counting')!;
+  await page.locator(`path.pc[data-seat="${seat}"]`).dispatchEvent('click');
+  await expect(page.getByRole('dialog').getByText(/Round \d+( of |\/)\d+/).first(), 'M-C2: seat dialog with its round').toBeVisible({ timeout: 15_000 });
+  await shot(page, 'C2-dialog', 'mobile');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog'), 'M-C2: Escape closes the seat dialog').toHaveCount(0);
+
+  // Light theme at C2, desktop size (screenshot only).
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.getByRole('button', { name: 'Switch to light theme' }).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await shot(page, 'C2-light', 'desktop');
+  await page.getByRole('button', { name: 'Switch to dark theme' }).click();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  snap = await advanceTo(request, 24, excluded);
+  await waitForViewer(page, snap.version, 'M-C5:');
+  const live = await liveState(request);
+  expect(live.declared, 'M-C5: all declared').toBe(live.total);
+  expect(await dashedSeats(page), 'M-C5: no too-close dashes').toBe(0);
+  await shot(page, 'C5', 'mobile');
 });
