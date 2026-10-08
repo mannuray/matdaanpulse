@@ -42,7 +42,7 @@ export function login(email: string, password: string) {
 export async function revokeSession(token: string | null): Promise<void> {
   if (!token) return;
   try {
-    await fetch(`${API_BASE_URL}/auth/logout`, { method: 'POST', headers: { Authorization: `Bearer ${token}` }, keepalive: true });
+    await fetch(`${API_BASE_URL}/auth/logout`, { method: 'POST', headers: { Authorization: `Bearer ${token}` } });
   } catch {
     // Offline or the API is down: the token still expires on its own (JWT_TTL, default 8 h).
   }
