@@ -134,6 +134,7 @@ test('counting day, desktop', async ({ page, request }) => {
     for (const [id, text, name] of [[cmId, 'Countermanded', 'countermanded'], [adjId, 'Counting adjourned', 'adjourned']] as const) {
       await page.locator(`path.pc[data-seat="${id}"]`).dispatchEvent('click');
       await expect(page.getByRole('dialog').getByText(text).first(), `C3: ${id}'s dialog says ${text}`).toBeVisible({ timeout: 15_000 });
+      await expect(page.getByRole('dialog').getByText('Not started'), `C3: ${id}'s dialog shows no call badge`).toHaveCount(0);
       await shot(page, `C3-${name}`, 'desktop');
       await page.keyboard.press('Escape');
     }
