@@ -6,7 +6,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { IngestClient } from '../live/client';
 import { runForever } from '../live/loop';
-import { ADAPTERS } from '../live/registry';
+import { adaptersFor } from '../live/registry';
 import { BACKEND_BASE, MOCK_ECI_PORT, SIM_ELECTION_ID, TOTAL_ROUNDS } from './config';
 
 const liveUrl = `${BACKEND_BASE}/elections/${SIM_ELECTION_ID}/live`;
@@ -40,7 +40,7 @@ async function main() {
     return r;
   };
   const ac = new AbortController();
-  const worker = runForever(SIM_ELECTION_ID, 'rest', { client, adapters: ADAPTERS, adapterOpts: { 'mock-eci': { intervalMs: '1500' } }, holder: 'smoke', log: m => console.log(m) }, ac.signal);
+  const worker = runForever(SIM_ELECTION_ID, 'rest', { client, adapters: adaptersFor({ log: m => console.warn(m) }), adapterOpts: { 'mock-eci': { intervalMs: '1500' } }, holder: 'smoke', log: m => console.log(m) }, ac.signal);
 
   const samples: number[] = [];
   const sample = async () => {

@@ -32,7 +32,7 @@ Agreed decisions:
 - Retired: `POST /admin/results/override-bulk` (only the simulation used it). The simulation becomes the `mock-eci`
   adapter on the ingest path.
 - Replaced: the scraper stubs (`scraper/src/index.ts`, `scheduler/`, `normalizer/`, `adapters/eci-adapter.ts`) by the
-  live worker (§7). The cheerio parsers in `scraper/src/adapters/eci-vs-adapter.ts` are reused inside the `eci-web`
+  live worker (§7). The cheerio parsers (`scraper/src/live/adapters/eci-parse.ts`, formerly in `adapters/eci-vs-adapter.ts`) are reused inside the `eci-web`
   adapter.
 
 ## 3. Data model (one new migration)
@@ -173,7 +173,7 @@ scraper/src/live/
                   lease held elsewhere, or no adapter for the effective source
   adapters/
     types.ts      SourceAdapter contract
-    eci-web.ts    ECI results site (reuses scraper/src/adapters/eci-vs-adapter.ts parsers)
+    eci-web.ts    ECI results site (parsers in eci-parse.ts)
     mock-eci.ts   the simulation's mock server (scraper/src/simulation/mock-eci-server.ts)
 ```
 

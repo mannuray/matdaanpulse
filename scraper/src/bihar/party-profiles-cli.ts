@@ -10,7 +10,7 @@ import * as path from 'path';
 import { parseState } from './elections';
 import { latestYear, trackOf } from './current-track';
 import { DB_DIR } from './seeded';
-import { BIHAR_PARTIES, currentPath, emitPartyProfilesSeed, symbolsSeedLine, type ApprovedImages, type PartyProfile, type RemovedImages } from './party-profiles';
+import { currentPath, emitPartyProfilesSeed, symbolsSeedLine, type ApprovedImages, type PartyProfile, type RemovedImages } from './party-profiles';
 
 const RAW = path.resolve(__dirname, '../../data/raw/party-images');
 const PUBLIC = path.resolve(__dirname, '../../../frontend/public');
@@ -48,5 +48,4 @@ for (const p of profiles) {
   console.log(`${p.id.padEnd(6)} logo ${out.logo ? 'NEW' : removed[p.id]?.logo ? 'REMOVED' : logo ? 'kept' : 'none'}, eci ${out.eci ? 'NEW' : eci ? 'kept' : 'none'}`);
 }
 fs.writeFileSync(SYMBOLS_SEED, seed);
-const opts = ST === 'BR' ? BIHAR_PARTIES : { seedName: track.partyProfilesSeed, label: `${track.state.name} ${year}`, dataFile: `scraper/data/${track.state.slug}/parties-${year}.json` };
-fs.writeFileSync(path.join(DB_DIR, `${track.partyProfilesSeed}.sql`), emitPartyProfilesSeed(profiles, approved, removed, opts) + '\n');
+fs.writeFileSync(path.join(DB_DIR, `${track.partyProfilesSeed}.sql`), emitPartyProfilesSeed(profiles, approved, removed, track.partyProfilesOpts(year)) + '\n');
