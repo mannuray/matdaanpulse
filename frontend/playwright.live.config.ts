@@ -7,6 +7,6 @@ export default defineConfig({
   timeout: 15 * 60_000,
   globalSetup: './e2e/live/global-setup.ts',
   globalTeardown: './e2e/live/global-teardown.ts',
-  use: { baseURL: 'http://localhost:3080', colorScheme: 'dark' },
+  use: { baseURL: 'http://localhost:3080', colorScheme: 'dark', screenshot: 'only-on-failure' },
   reporter: 'list',
 });
