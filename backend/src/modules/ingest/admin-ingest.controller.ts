@@ -3,6 +3,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { PrismaService } from '../prisma/prisma.service';
+import { AuditLogService } from '../audit-log/audit-log.service';
 import { IngestStatusService } from './ingest-status.service';
 import { ShardsService } from './shards.service';
 import { HoldsService } from './holds.service';
@@ -16,6 +17,8 @@ export class AdminIngestController {
   constructor(
     private readonly prisma: PrismaService, private readonly status: IngestStatusService, private readonly shards: ShardsService,
     private readonly holds: HoldsService, private readonly correction: SeatCorrectionService, private readonly keys: IngestKeysService,
+    /** Never throws: the change has committed, a failed audit row must not turn it into a 500 (and a retry). */
+    private readonly audit: AuditLogService,
   ) {}
 
   @Get('elections/:id/ingest') @Roles('SUPER_ADMIN', 'EDITOR')
@@ -25,7 +28,7 @@ export class AdminIngestController {
   async put(@Param('id', ParseUUIDPipe) id: string, @Body() b: FeedSettingsBody, @Req() req: any) {
     const data = { active_source: b.active_source ?? null, hold_minutes: b.hold_minutes, updated_at: new Date(), updated_by: req.user?.id ?? null };
     await this.prisma.election_ingest.upsert({ where: { election_id: id }, create: { election_id: id, ...data }, update: data });
-    await this.prisma.audit_logs.create({ data: { user_id: req.user?.id ?? null, action: 'INGEST_FEED_UPDATE', entity_type: 'election', entity_id: id, new_value: data as any } });
+    await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_FEED_UPDATE', entityType: 'election', entityId: id, newValue: data });
     return this.status.status(id);
   }
 
@@ -60,14 +63,14 @@ export class AdminIngestController {
   @Post('ingest-keys') @HttpCode(201) @Roles('SUPER_ADMIN')
   async createKey(@Body() b: IngestKeyBody, @Req() req: any) {
     const out = await this.keys.create(b.name, req.user?.id ?? null);
-    await this.prisma.audit_logs.create({ data: { user_id: req.user?.id ?? null, action: 'INGEST_KEY_CREATE', entity_type: 'ingest_key', entity_id: out.row.id, new_value: { name: b.name } } });
+    await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_KEY_CREATE', entityType: 'ingest_key', entityId: out.row.id, newValue: { name: b.name } });
     return out;
   }
 
   @Delete('ingest-keys/:keyId') @Roles('SUPER_ADMIN')
   async revokeKey(@Param('keyId', ParseUUIDPipe) keyId: string, @Req() req: any) {
     await this.keys.revoke(keyId);
-    await this.prisma.audit_logs.create({ data: { user_id: req.user?.id ?? null, action: 'INGEST_KEY_REVOKE', entity_type: 'ingest_key', entity_id: keyId } });
+    await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_KEY_REVOKE', entityType: 'ingest_key', entityId: keyId });
     return { revoked: true };
   }
 }

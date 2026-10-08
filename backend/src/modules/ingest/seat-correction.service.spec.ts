@@ -1,4 +1,6 @@
+import { Logger } from '@nestjs/common';
 import { SeatCorrectionService } from './seat-correction.service';
+import { AuditLogService } from '../audit-log/audit-log.service';
 import { IngestBadRequestException, IngestNotLiveException } from '../../common/exceptions';
 
 const NOW = new Date('2027-02-27T04:12:00Z');
@@ -12,15 +14,24 @@ function make(status = 'Live', stored: any[] = ZERO) {
     results: { findMany: jest.fn(async () => stored) },
     seat_ingest_state: { findUnique: jest.fn(async () => ({ state: 'counting', round_current: 7, round_total: 20, last_source: 'eci-web', last_observed_at: NOW })) },
     audit_logs: { create: jest.fn(async () => ({})) },
+    $executeRawUnsafe: jest.fn(async () => 0),
     $executeRaw: jest.fn(async (strings: TemplateStringsArray) => { executed.push(strings.join('?').trim().split(/\s+/).slice(0, 3).join(' ')); return 1; }),
   };
   prisma.$transaction = jest.fn(async (fn: any) => fn(prisma));
   const holds: any = { upsert: jest.fn(async () => new Date(NOW.getTime() + 600_000)) };
   const notifier: any = { afterCommit: jest.fn(async () => undefined) };
-  return { svc: new SeatCorrectionService(prisma, holds, notifier), prisma, holds, notifier, executed };
+  return { svc: new SeatCorrectionService(prisma, holds, notifier, new AuditLogService(prisma)), prisma, holds, notifier, executed };
 }
 
 describe('SeatCorrectionService', () => {
+  it('a failed audit insert never aborts the correction (savepoint inside the transaction)', async () => {
+    jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
+    const { svc, prisma, holds } = make();
+    prisma.audit_logs.create.mockRejectedValue(new Error('audit down'));
+    await expect(svc.correct('e', 'S1', { state: 'counting', votes: { a: 900, b: 800 } }, 'u1', NOW)).resolves.toMatchObject({ outcome: 'applied' });
+    expect(holds.upsert).toHaveBeenCalled();
+    expect(prisma.$executeRawUnsafe).toHaveBeenCalledWith('ROLLBACK TO SAVEPOINT audit_row');
+  });
   it('applies the derived rows, audits, and holds the seat at the corrected round', async () => {
     const { svc, holds, prisma, notifier } = make();
     const out = await svc.correct('e', 'S1', { state: 'counting', round: { current: 8, total: 20 }, votes: { a: 900, b: 800 } }, 'u1', NOW);

@@ -1,3 +1,4 @@
+import { AuditLogModule } from '../audit-log/audit-log.module';
 import { Module } from '@nestjs/common';
 import { LiveModule } from '../live/live.module';
 import { AuthModule } from '../auth/auth.module';
@@ -15,7 +16,7 @@ import { SeatCorrectionService } from './seat-correction.service';
 import { AdminIngestController } from './admin-ingest.controller';
 
 @Module({
-  imports: [LiveModule, AuthModule],
+  imports: [LiveModule, AuthModule, AuditLogModule],
   controllers: [IngestController, IngestHealthController, AdminIngestController],
   providers: [IngestService, IngestKeysService, IngestKeyGuard, ShardsService, LeaseService, IngestStatusService, IngestAlertsService, HoldsService, SeatCorrectionService,
     { provide: ALERT_WEBHOOK_URL, useFactory: () => process.env.INGEST_ALERT_WEBHOOK_URL || undefined }],

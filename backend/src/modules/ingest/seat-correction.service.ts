@@ -2,6 +2,7 @@ import { appendSeatRounds } from './seat-rounds';
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
+import { AuditLogService } from '../audit-log/audit-log.service';
 import { ResultChangeNotifier } from '../live/result-change-notifier';
 import { HoldsService } from './holds.service';
 import { lockSeats } from './seat-lock';
@@ -13,7 +14,8 @@ export const ADMIN_SOURCE = 'admin';
 /** Spec §6: an admin's seat correction — same derive rules as ingest, no source/lease/freshness, always holds the seat. */
 @Injectable()
 export class SeatCorrectionService {
-  constructor(private readonly prisma: PrismaService, private readonly holds: HoldsService, private readonly notifier: ResultChangeNotifier) {}
+  constructor(private readonly prisma: PrismaService, private readonly holds: HoldsService, private readonly notifier: ResultChangeNotifier,
+    private readonly audit: AuditLogService) {}
 
   async correct(electionId: string, constId: string, input: { state: SeatState; round?: { current: number; total: number } | null; votes: Record<string, number> }, userId: string | null, now = new Date()) {
     const election = await this.prisma.elections.findUnique({ where: { id: electionId }, select: { status: true } });
@@ -56,9 +58,10 @@ export class SeatCorrectionService {
             round_total = COALESCE(EXCLUDED.round_total, seat_ingest_state.round_total),
             last_source = EXCLUDED.last_source, last_observed_at = EXCLUDED.last_observed_at, last_applied_at = EXCLUDED.last_applied_at`;
         await appendSeatRounds(tx, electionId, [constId], 'correction', now);
-        await tx.audit_logs.create({ data: { user_id: userId, action: 'RESULT_SEAT_CORRECTION', entity_type: 'constituency', entity_id: constId,
-          old_value: Object.fromEntries(storedRows.map(r => [r.candidate_id, r.votes])) as Prisma.InputJsonValue,
-          new_value: { state: seat.state, round: seat.round ?? null, votes: seat.votes } as Prisma.InputJsonValue } });
+        // Never throws, and runs under a savepoint: a failed audit insert must not abort the correction.
+        await this.audit.log({ userId, action: 'RESULT_SEAT_CORRECTION', entityType: 'constituency', entityId: constId,
+          oldValue: Object.fromEntries(storedRows.map(r => [r.candidate_id, r.votes])),
+          newValue: { state: seat.state, round: seat.round ?? null, votes: seat.votes } }, tx);
       }
       expires = await this.holds.upsert(tx, electionId, constId, roundAtHold, minutes, userId, now);
     });
