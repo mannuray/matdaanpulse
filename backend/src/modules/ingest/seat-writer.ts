@@ -1,4 +1,4 @@
-import type { PrismaService } from '../prisma/prisma.service';
+import type { Prisma } from '@prisma/client';
 import { appendSeatRounds } from './seat-rounds';
 
 export interface SeatRowWrite { candidate_id: string; votes: number; status: string; margin: number }
@@ -6,7 +6,7 @@ export interface SeatRound { current: number; total: number }
 export interface AppliedSeat { const_id: string; state: string | null; round: SeatRound | null; rows: SeatRowWrite[] }
 export interface ObservedSeat { const_id: string; state: string | null; round: SeatRound | null }
 
-type Tx = Pick<PrismaService, '$executeRaw'>;
+type Tx = Pick<Prisma.TransactionClient, '$executeRaw'>;
 
 /**
  * The one results write (ingest batches and the admin seat correction; call it inside the transaction, under the seat
