@@ -469,6 +469,9 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` Â
 - [x] CORS origins trimmed, no credentials (Bearer auth), optional `CORS_ORIGIN_REGEX` for preview URLs
 - [x] `X-Request-ID` accepted only if it matches `^[\w-]{1,64}$`; auth logs carry user ids, not emails
 
+### Security hardening (2026-10-08)
+- [x] JWT pinned to HS256 (signing, `JwtService.verify`, passport strategy); startup fails when `JWT_SECRET` is shorter than 32 chars (except `NODE_ENV=test`)
+
 ### Live Toast Notifications
 - [x] New component `LiveToast` (`frontend/src/components/atoms/LiveToast.tsx`)
 - [x] Fixed-position bottom-right toast stack (max 5 visible)

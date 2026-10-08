@@ -28,7 +28,7 @@ describe('LiveSseTokenService', () => {
 
   it('an SSE token is never accepted as a Bearer session credential', async () => {
     const prisma = { users: { findUnique: jest.fn().mockResolvedValue({ id: 'u1', email: 'a', role: 'SUPER_ADMIN', name: 'A' }) } };
-    const strategy = new JwtStrategy({ getOrThrow: () => 's' } as any, prisma as any);
+    const strategy = new JwtStrategy({ getOrThrow: () => 's', get: () => 'test' } as any, prisma as any);
     await expect(strategy.validate({ sub: 'u1', role: 'SUPER_ADMIN', scope: 'live-sse' })).rejects.toMatchObject({ status: 401 });
     await expect(strategy.validate({ sub: 'u1', role: 'SUPER_ADMIN' })).resolves.toMatchObject({ id: 'u1' });
   });
