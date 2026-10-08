@@ -6,13 +6,14 @@ import { getConstituencies } from '../services/constituency.service';
 import { useToast } from '../context/ToastContext';
 import { ApiError } from '../services/api-client';
 import { resolvePublishedManifest } from '../utils/manifest-helpers';
-import type { Election, ManifestData, Party, Constituency } from '../types';
+import type { Election, ManifestData, Milestone, Party, Constituency } from '../types';
 
 const DEFAULT_MANIFEST: ManifestData = {
   alliances: [],
   watchlists: [],
   tracked: [],
-  milestones: [{ label: 'Majority', value: 272 }],
+  // No fixed majority (272 is only the Lok Sabha's): defaultMilestones derives it from the election's seats.
+  milestones: [],
   compare_with: [],
   history: [],
   history_years: [],
@@ -22,6 +23,11 @@ const DEFAULT_MANIFEST: ManifestData = {
   live_tabs: [],
   geo: {}
 };
+
+/** The majority of `seats` (floor(seats/2)+1) as the default milestone; none when the seat count is unknown. */
+export function defaultMilestones(seats: number): Milestone[] {
+  return seats > 0 ? [{ label: 'Majority', value: Math.floor(seats / 2) + 1 }] : [];
+}
 
 /** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
 export type ManifestLoadError = 'not_found' | 'failed';
@@ -73,7 +79,7 @@ export function useManifestEditor(electionId: string | null) {
         data = (await resolvePublishedManifest(m.manifest_url)) || DEFAULT_MANIFEST;
         setIsDraft(false);
       } else {
-        data = DEFAULT_MANIFEST;
+        data = { ...DEFAULT_MANIFEST, milestones: defaultMilestones(c.length) };
         setIsDraft(false);
       }
 
@@ -93,7 +99,7 @@ export function useManifestEditor(electionId: string | null) {
         alliances: data.alliances || [],
         watchlists: watchlists.map(w => ({ ...w, entries: w.entries || [] })),
         tracked: data.tracked || [],
-        milestones: data.milestones || DEFAULT_MANIFEST.milestones,
+        milestones: data.milestones || defaultMilestones(c.length),
         compare_with: data.compare_with || [],
         history: data.history || [],
         history_years: data.history_years || [],
