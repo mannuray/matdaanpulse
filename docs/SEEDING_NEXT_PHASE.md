@@ -54,7 +54,7 @@ Known data bug: Assam 2021 manifest leader `AS_VS21_40_JALUKBARI` points at seat
 - Photos: **our own storage** (Vercel Blob via the admin media path), never hotlinked. Download once, upload, store our
   URL; record source + licence per photo (Wikimedia is mostly CC BY-SA → show a credit on the person page or About).
 - Affidavits (age, assets, liabilities, criminal cases): `scraper/src/adapters/myneta-adapter.ts`,
-  `scraper/src/generate-affidavit-seed.ts` exist (Bihar).
+  `scraper/src/generate-affidavit-seed.ts` existed (Bihar; retired 2026-10-08, see `scraper/src/bihar/affidavits-cli.ts`).
 
 ### D. Key leaders by person id
 - Add `person_id` to manifest `leaders` / `cabinet` / `watchlists` entries so the frontend stops name-matching

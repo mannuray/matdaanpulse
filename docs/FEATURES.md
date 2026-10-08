@@ -384,7 +384,7 @@ Plan `docs/superpowers/plans/2026-10-03-bihar-persons-leaders.md` (spec §6–§
 - [x] Bihar 2025 manifest updated with `compare_with` pointing to 2020
 
 ### West Bengal VS Historical Data (2011, 2016, 2021)
-- [x] Seed generator (`scraper/src/generate-wb-vs-seeds.ts`) — single script for all 3 years, reads JSON + GeoJSON
+- [x] Seed generator (`scraper/src/generate-wb-vs-seeds.ts`, retired 2026-10-08: replaced by the registry pipeline, `docs/SEEDING_PLAYBOOK.md`)
 - [x] GeoJSON: `frontend/public/geo/wb_ac_2008.geojson` (294 ACs with `ac_name`, `ac_no`, `ac_category`)
 - [x] Party SQL (`database/seed_wb_parties.sql`) — 8 new parties: SUCI, GJM, GNLF, JKP, JKPN, DSPP, RSMP, RCPIR
 - [x] **WB VS 2011** (`database/seed_wb_vs_2011.sql`) — 294 seats, real vote counts
@@ -1008,8 +1008,7 @@ Renamed "Turnout" tab to **"Insights"**. First sub-view: spoiler/vote-split anal
   - `fetchCandidateDetail(slug, candidateId)` — scrapes individual affidavit page for detailed data
   - HTML caching in `scraper/src/cache/myneta/` (one file per page, avoids re-fetching)
   - 500ms rate limiting between requests, 3 retries with exponential backoff
-- [x] Affidavit seed generator (`scraper/src/generate-affidavit-seed.ts`)
-  - Generic CLI: `npx tsx src/generate-affidavit-seed.ts <myneta-slug> <election-id>`
+- [x] Affidavit seed generator (`scraper/src/generate-affidavit-seed.ts`, retired 2026-10-08: affidavits now come from `scraper/src/bihar/affidavits-cli.ts`)
   - DB-connected: queries candidates + person_id, no seed SQL parsing
   - Matches MyNeta candidates by const_no + normalized name, fuzzy fallback (Levenshtein ≤ 3)
   - Outputs `database/seed_affidavit_<slug>.sql`
