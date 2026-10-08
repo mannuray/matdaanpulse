@@ -1,5 +1,6 @@
 import { paginated } from '../../common/paginated';
 import { Injectable } from '@nestjs/common';
+import type { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { changedFields, createdFields } from '../audit-log/audit-diff';
@@ -10,6 +11,12 @@ import { electionDate, manifestBits } from '../../common/manifest';
 import type { CreatePartyDto, UpdatePartyDto, EciRecognitionFilter } from './dto/party-input.dto';
 
 const ymd = (d: Date | null): string => (d ? d.toISOString().slice(0, 10) : '');
+/** `?q=` on /parties (both shapes): name, id or abbreviation contains q, case-insensitive. */
+const partyTextMatch = (q: string): Prisma.partiesWhereInput[] => [
+  { name: { contains: q, mode: 'insensitive' } },
+  { id: { contains: q, mode: 'insensitive' } },
+  { abbreviation: { contains: q, mode: 'insensitive' } },
+];
 export const toLineageEvent = (r: { party_id: string; predecessor_id: string; kind: string; effective_date: Date; state_id: number | null; is_successor: boolean; note: string | null; source_url?: string | null }) => ({
   party_id: r.party_id, predecessor_id: r.predecessor_id, kind: r.kind, effective_date: ymd(r.effective_date),
   state_id: r.state_id, is_successor: r.is_successor, note: r.note, source_url: r.source_url ?? null,
@@ -26,8 +33,10 @@ export class PartiesService {
    * Every party: the public lookup that colours and marks every result (no cap; ~1,800 rows). Only the PartySummaryDto
    * columns are read (the DTO drops the rest anyway; the admin edits through /admin/parties).
    */
-  findAll() {
+  /** Every party, or those whose name, id or abbreviation contains `q` (case-insensitive). */
+  findAll(q?: string) {
     return this.prisma.parties.findMany({
+      where: q ? { OR: partyTextMatch(q) } : undefined,
       select: { id: true, name: true, abbreviation: true, color: true, symbol_url: true, eci_symbol_url: true, eci_recognition: true },
       orderBy: { name: 'asc' },
     });
@@ -119,13 +128,7 @@ export class PartiesService {
     
     // Build the where clause
     const where: any = {};
-    if (q) {
-      where.OR = [
-        { name: { contains: q, mode: 'insensitive' } },
-        { id: { contains: q, mode: 'insensitive' } },
-        { abbreviation: { contains: q, mode: 'insensitive' } },
-      ];
-    }
+    if (q) where.OR = partyTextMatch(q);
     if (eciRecognition) where.eci_recognition = eciRecognition === 'none' ? null : eciRecognition;
 
     const filterCandidates: any = {};

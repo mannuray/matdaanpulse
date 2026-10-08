@@ -7,7 +7,7 @@ import * as electionApi from '../../model/api/election.service';
 import { useDefaultElectionId } from '../tiles/useDefaultElectionId';
 import { forgetElectionList } from '../data/useElectionList';
 
-const el = (id: string, type: 'LS' | 'VS', year: number) => ({ id, name: id, type, year, state_id: null, state: null, status: 'Finalized', tentative_next_date: null, manifest_url: null });
+const el = (id: string, type: 'LS' | 'VS', year: number) => ({ id, name: id, type, year, state_id: null, state: null, status: 'Finalized', tentative_next_date: null });
 
 function wrapper({ children }: { children: ReactNode }) {
   return <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>{children}</MemoryRouter>;

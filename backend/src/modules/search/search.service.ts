@@ -14,7 +14,7 @@ export class SearchService {
 
     return this.prisma.constituencies.findMany({
       where,
-      include: { districts: true },
+      include: { districts: { select: { id: true, name: true } } },
       orderBy: { name: 'asc' },
       take: 50,
     });

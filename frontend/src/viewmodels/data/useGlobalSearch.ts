@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { searchConstituencies, searchCandidates } from '../../model/api/api';
-import type { Constituency, Candidate } from '../../model/types';
+import type { ConstituencySearchHit, Candidate } from '../../model/types';
 
 /**
  * CONTROLLER: Global Search (MVC)
@@ -8,7 +8,7 @@ import type { Constituency, Candidate } from '../../model/types';
  */
 export function useGlobalSearch(electionId?: string) {
   const [query, setQuery] = useState('');
-  const [constituencies, setConstituencies] = useState<Constituency[]>([]);
+  const [constituencies, setConstituencies] = useState<ConstituencySearchHit[]>([]);
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);

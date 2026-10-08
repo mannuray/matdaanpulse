@@ -13,7 +13,6 @@ import { CACHE_CONTROL, CacheControl, applyCacheControl } from '../../common/htt
 import { successEnvelope } from '../../common/interceptors/transform.interceptor';
 import { SeatAnalysisService } from '../constituencies/seat-analysis.service';
 import { LiveStateService, type LiveElectionStatus } from '../results/live-state.service';
-import { parseManifest } from '../../common/manifest';
 import { SkipThrottle } from '@nestjs/throttler';
 import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
 import { SnapshotBodyCache, sendSnapshotBody } from '../results/snapshot-body-cache';
@@ -85,12 +84,8 @@ export class ElectionsController {
   @Get(':id')
   @UseInterceptors(new MapToDtoInterceptor(ElectionDetailDto))
   findOne(@Param('id', new ParseUUIDPipe()) id: string, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
-    return this.withPolicy(id, req, res, async () => {
-      const election = await this.electionsService.findOne(id);
-      const summary = await this.resultsService.getElectionSummary(id);
-      const manifest = await this.electionsService.comparableManifest(election, parseManifest(election.manifest_url));
-      return { ...election, manifest, summary };
-    });
+    // The election row only: the manifest is GET :id/manifest and the tally GET :id/alliances (no client read them here).
+    return this.withPolicy(id, req, res, () => this.electionsService.findOne(id));
   }
 
   @Get(':id/manifest')
