@@ -11,6 +11,7 @@ import {
   UpdateConstituencyDto, BulkTagDto, UpdateAnalysisDto,
 } from '../../constituencies/dto/constituency-input.dto';
 import { AdminConstituenciesQueryDto } from '../../../common/dto/query.dto';
+import { BoundedJsonObjectPipe } from '../../../common/validation/bounded-json';
 
 @Controller('admin/constituencies')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -61,7 +62,7 @@ export class AdminConstituenciesController {
   @Patch(':id/metadata')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
-  async updateMetadata(@Req() req: any, @Param('id') id: string, @Body() body: Record<string, unknown>) {
+  async updateMetadata(@Req() req: any, @Param('id') id: string, @Body(new BoundedJsonObjectPipe()) body: Record<string, unknown>) {
     const constituency = await this.constituenciesService.updateMetadata(id, body, req.user?.id);
     return { ...constituency, last_edit: await this.audit.lastEdit('constituency', id) };
   }
@@ -82,14 +83,16 @@ export class AdminConstituenciesController {
 
   @Post('analysis/compute/:electionId')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string) {
-    return this.seatAnalysis.computeFor(electionId);
+  async computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string, @Req() req: any) {
+    const out = await this.seatAnalysis.computeFor(electionId);
+    await this.audit.log({ userId: req.user?.id, action: 'ANALYSIS_COMPUTE', entityType: 'election', entityId: electionId, newValue: out });
+    return out;
   }
 
   @Patch('analysis/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminAnalysisDto))
-  updateAnalysis(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateAnalysisDto) {
-    return this.constituenciesService.updateAnalysis(id, body);
+  updateAnalysis(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateAnalysisDto, @Req() req: any) {
+    return this.constituenciesService.updateAnalysis(id, body, req.user?.id);
   }
 }

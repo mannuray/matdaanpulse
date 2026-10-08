@@ -1,8 +1,9 @@
-import { Controller, Post, Body, NotFoundException } from '@nestjs/common';
+import { Controller, Post, Body, NotFoundException, HttpCode, Req, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
 import { LoginDto, RegisterDto } from './dto/auth.dto';
 import { AuthRateLimited } from '../../common/throttle/throttle.config';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 /** Every route here counts against the strict `auth` throttler (THROTTLE_AUTH_PER_MIN, default 5/min per IP). */
 @Controller('auth')
@@ -16,6 +17,14 @@ export class AuthController {
   @Post('login')
   login(@Body() body: LoginDto) {
     return this.authService.login(body.email, body.password);
+  }
+
+  /** Revokes every session token of the caller (all devices); the admin also clears its local copy. */
+  @Post('logout')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(204)
+  async logout(@Req() req: { user: { id: string } }) {
+    await this.authService.logout(req.user.id);
   }
 
   /**

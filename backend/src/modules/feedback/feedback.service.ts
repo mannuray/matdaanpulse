@@ -3,6 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
+import { AuditLogService } from '../audit-log/audit-log.service';
 import { paginated } from '../../common/paginated';
 import { FeedbackNotFoundException } from '../../common/exceptions';
 import type { FeedbackStatus } from '../../common/dto/query.dto';
@@ -51,6 +52,7 @@ export class FeedbackService {
   constructor(
     private readonly prisma: PrismaService,
     config: ConfigService,
+    private readonly audit: AuditLogService,
   ) {
     const salt = config.get<string>('FEEDBACK_IP_SALT')?.trim();
     if (!salt) this.logger.warn('FEEDBACK_IP_SALT not set; using the built-in dev salt for feedback IP hashes');
@@ -94,10 +96,11 @@ export class FeedbackService {
     return paginated(rows.map(toItem), { page, limit, total });
   }
 
-  async updateStatus(id: string, status: FeedbackStatus): Promise<FeedbackItem> {
-    const existing = await this.prisma.feedback.findUnique({ where: { id }, select: { id: true } });
+  async updateStatus(id: string, status: FeedbackStatus, userId?: string): Promise<FeedbackItem> {
+    const existing = await this.prisma.feedback.findUnique({ where: { id }, select: { id: true, status: true } });
     if (!existing) throw new FeedbackNotFoundException(id);
     const row = await this.prisma.feedback.update({ where: { id }, data: { status }, select: ITEM_SELECT });
+    await this.audit.log({ userId, action: 'FEEDBACK_UPDATE', entityType: 'feedback', entityId: id, oldValue: { status: existing.status }, newValue: { status } });
     return toItem(row);
   }
 }

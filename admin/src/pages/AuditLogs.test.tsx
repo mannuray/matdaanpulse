@@ -59,14 +59,19 @@ describe('Audit logs page', () => {
       'Candidate created', 'Candidate edited', 'Candidate moved to person', 'Contest split to new person',
       'Candidate unlinked (legacy)', 'Seat edited',
       'Ingest lease take-over', 'Ingest shard saved', 'Ingest shard deleted', 'Seat hold released',
+      'User created', 'User edited', 'User role changed', 'Password reset', 'User deleted',
+      'Election created', 'Election edited', 'Manifest draft saved', 'Manifest published',
+      'Seat analysis computed', 'Analysis notes edited', 'Image uploaded', 'Feedback status changed',
     ]);
-    expect(options('Entity')).toEqual(['Any entity', 'Result', 'Election', 'Seat', 'Party', 'Person', 'Candidate']);
+    expect(options('Entity')).toEqual([
+      'Any entity', 'Result', 'Election', 'Seat', 'Party', 'Person', 'Candidate', 'User', 'Seat analysis', 'Image', 'Feedback',
+    ]);
     fireEvent.change(screen.getByLabelText('Action'), { target: { value: 'SEAT_LOCK_TAKEOVER' } });
     await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: 'SEAT_LOCK_TAKEOVER', entity_type: '', from: '', to: '' }));
   });
 
   it('a stale stored filter (old fake actions) is reset to Any (Review Focus 3)', async () => {
-    localStorage.setItem('audit_logs_filters', JSON.stringify({ action: 'MANIFEST_PUBLISH', entity_type: 'manifest', from: 'yesterday', to: '' }));
+    localStorage.setItem('audit_logs_filters', JSON.stringify({ action: 'MANIFEST_DELETE', entity_type: 'manifest', from: 'yesterday', to: '' }));
     renderAt();
     await within(table()).findByText('Priya S');
     expect(svc.getAuditLogs).toHaveBeenCalledWith({ action: '', entity_type: '', from: '', to: '' });

@@ -6,7 +6,8 @@ describe('AuthService.login', () => {
   const jwt = { sign: jest.fn().mockReturnValue('signed-token') };
   const findUnique = jest.fn();
   const prisma = { users: { findUnique } };
-  const service = new AuthService(prisma as any, jwt as any);
+  const attempts = { isLocked: jest.fn(async () => false), recordFailure: jest.fn(async () => undefined), reset: jest.fn(async () => undefined) };
+  const service = new AuthService(prisma as any, jwt as any, attempts as any);
 
   afterEach(() => jest.restoreAllMocks());
 
@@ -29,10 +30,20 @@ describe('AuthService.login', () => {
 
   it('returns a token for valid credentials', async () => {
     const password_hash = await bcrypt.hash('correct-horse', 4);
-    findUnique.mockResolvedValueOnce({ id: 'u1', email: 'a@b.c', role: 'EDITOR', name: 'A', password_hash });
+    findUnique.mockResolvedValueOnce({ id: 'u1', email: 'a@b.c', role: 'EDITOR', name: 'A', password_hash, token_version: 3 });
     const out = await service.login('a@b.c', 'correct-horse');
     expect(out.access_token).toBe('signed-token');
-    expect(jwt.sign).toHaveBeenCalledWith({ sub: 'u1', role: 'EDITOR' });
+    // The token carries the user's current token_version (U1), so a logout or password change revokes it.
+    expect(jwt.sign).toHaveBeenCalledWith({ sub: 'u1', role: 'EDITOR', tv: 3 });
+  });
+});
+
+describe('AuthService.logout (U1)', () => {
+  it('bumps the user\'s token_version, revoking every token issued before', async () => {
+    const updateMany = jest.fn().mockResolvedValue({ count: 1 });
+    const svc = new AuthService({ users: { updateMany } } as any, {} as any, {} as any);
+    await svc.logout('u1');
+    expect(updateMany).toHaveBeenCalledWith({ where: { id: 'u1' }, data: { token_version: { increment: 1 } } });
   });
 });
 
@@ -48,12 +59,48 @@ describe('AuthService logging (no PII)', () => {
       .mockResolvedValueOnce(null)
       .mockResolvedValueOnce({ id: 'u1', email: 'secret@b.c', role: 'EDITOR', name: 'A', password_hash })
       .mockResolvedValueOnce({ id: 'u1', email: 'secret@b.c', role: 'EDITOR', name: 'A', password_hash });
-    const svc = new AuthService({ users: { findUnique } } as any, { sign: () => 't' } as any);
+    const attempts = { isLocked: async () => false, recordFailure: async () => undefined, reset: async () => undefined };
+    const svc = new AuthService({ users: { findUnique } } as any, { sign: () => 't' } as any, attempts as any);
     await svc.login('ghost@b.c', 'whatever-pass').catch(() => undefined);
     await svc.login('secret@b.c', 'wrong-pass').catch(() => undefined);
     await svc.login('secret@b.c', 'correct-horse');
     expect(lines.join('\n')).not.toMatch(/@b\.c/);
     expect(lines.join('\n')).toMatch(/u1/);
     jest.restoreAllMocks();
+  });
+});
+
+describe('AuthService.login failed-login lockout (U5)', () => {
+  async function make(locked: boolean) {
+    const password_hash = await bcrypt.hash('correct-horse', 4);
+    const findUnique = jest.fn().mockResolvedValue({ id: 'u1', email: 'a@b.c', role: 'EDITOR', name: 'A', password_hash, token_version: 0 });
+    const attempts = { isLocked: jest.fn(async () => locked), recordFailure: jest.fn(async () => undefined), reset: jest.fn(async () => undefined) };
+    const svc = new AuthService({ users: { findUnique } } as any, { sign: () => 't' } as any, attempts as any);
+    return { svc, attempts, findUnique };
+  }
+  afterEach(() => jest.restoreAllMocks());
+
+  it('a locked email gets the same generic error even with the right password, after the same DB + bcrypt work', async () => {
+    const { svc, attempts, findUnique } = await make(true);
+    const compare = jest.spyOn(bcrypt, 'compare');
+    await expect(svc.login('a@b.c', 'correct-horse')).rejects.toBeInstanceOf(InvalidCredentialsException);
+    expect(findUnique).toHaveBeenCalled();
+    expect(compare).toHaveBeenCalled();
+    expect(attempts.reset).not.toHaveBeenCalled();
+  });
+
+  it('records a failure for a wrong password and for an unknown email', async () => {
+    const { svc, attempts, findUnique } = await make(false);
+    await expect(svc.login('a@b.c', 'wrong-password')).rejects.toBeInstanceOf(InvalidCredentialsException);
+    findUnique.mockResolvedValueOnce(null);
+    await expect(svc.login('ghost@b.c', 'whatever-pw')).rejects.toBeInstanceOf(InvalidCredentialsException);
+    expect(attempts.recordFailure.mock.calls).toEqual([['a@b.c'], ['ghost@b.c']]);
+  });
+
+  it('a successful login clears the failure count', async () => {
+    const { svc, attempts } = await make(false);
+    await svc.login('a@b.c', 'correct-horse');
+    expect(attempts.reset).toHaveBeenCalledWith('a@b.c');
+    expect(attempts.recordFailure).not.toHaveBeenCalled();
   });
 });

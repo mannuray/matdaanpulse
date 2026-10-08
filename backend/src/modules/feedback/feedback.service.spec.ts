@@ -23,12 +23,13 @@ function make(env: Record<string, string | undefined> = { FEEDBACK_IP_SALT: 'tes
       create: jest.fn(async () => ({ id: 'f1' })),
       count: jest.fn(async () => 1),
       findMany: jest.fn(async () => [ROW]),
-      findUnique: jest.fn(async ({ where }: any) => (where.id === 'f1' ? { id: 'f1' } : null)),
+      findUnique: jest.fn(async ({ where }: any) => (where.id === 'f1' ? { id: 'f1', status: 'new' } : null)),
       update: jest.fn(async ({ data }: any) => ({ ...ROW, ...data })),
     },
   };
   const config: any = { get: (k: string) => env[k] };
-  return { svc: new FeedbackService(prisma, config), prisma };
+  const audit = { log: jest.fn(async () => undefined) };
+  return { svc: new FeedbackService(prisma, config, audit as any), prisma, audit };
 }
 
 /** DTO as the global ValidationPipe produces it (transform + whitelist). */
@@ -139,5 +140,13 @@ describe('FeedbackController', () => {
     const body = { kind: 'bug', message: 'hello there' } as CreateFeedbackDto;
     await new FeedbackController(service as any).create(body, { ip: '203.0.113.5', headers: { 'user-agent': 'UA' } } as any);
     expect(service.submit).toHaveBeenCalledWith(body, { ip: '203.0.113.5', userAgent: 'UA' });
+  });
+});
+
+describe('FeedbackService.updateStatus audit (U2)', () => {
+  it('writes FEEDBACK_UPDATE with the old and new status', async () => {
+    const { svc, audit } = make();
+    await svc.updateStatus('f1', 'resolved', 'u1');
+    expect(audit.log).toHaveBeenCalledWith({ userId: 'u1', action: 'FEEDBACK_UPDATE', entityType: 'feedback', entityId: 'f1', oldValue: { status: 'new' }, newValue: { status: 'resolved' } });
   });
 });

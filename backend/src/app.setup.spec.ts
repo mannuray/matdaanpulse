@@ -24,6 +24,7 @@ import { JwtService } from '@nestjs/jwt';
 import { LiveSseTokenService } from './modules/live/live-sse-token.service';
 import { FeedbackController } from './modules/feedback/feedback.controller';
 import { FeedbackService } from './modules/feedback/feedback.service';
+import { AuditLogService } from './modules/audit-log/audit-log.service';
 
 // Stand-ins only where the real controller can't run without a DB/guards:
 // a plain public route, and the ingest path (real one needs key guards).
@@ -93,6 +94,7 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
         { provide: PrismaService, useValue: prisma },
         { provide: RedisService, useValue: redis },
         FeedbackService,
+        { provide: AuditLogService, useValue: { log: jest.fn() } },
       ],
     }).compile();
     app = moduleRef.createNestApplication<NestExpressApplication>({ bodyParser: false, logger: false });

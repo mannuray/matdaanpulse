@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../prisma/prisma.service';
 import { user_role } from '@prisma/client';
 import { InvalidCredentialsException, UserAlreadyExistsException } from '../../common/exceptions';
+import { LoginAttemptsService } from './login-attempts.service';
 
 /**
  * Pre-computed bcrypt hash (cost 10) of a random throwaway string. Compared
@@ -19,24 +20,34 @@ export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
+    private readonly attempts: LoginAttemptsService,
   ) {}
 
   async login(email: string, password: string) {
+    const locked = await this.attempts.isLocked(email);
     const user = await this.prisma.users.findUnique({ where: { email } });
     // Always run a bcrypt comparison (against a dummy hash if the user is
     // missing) to keep response timing independent of user existence.
     const valid = await bcrypt.compare(password, user?.password_hash ?? DUMMY_PASSWORD_HASH);
+    // A locked email (too many failures) gets the same error after the same work, even with the right password.
+    if (locked) {
+      this.logger.warn(`Login refused: too many failed attempts${user ? ` [user=${user.id}]` : ''}`);
+      throw new InvalidCredentialsException();
+    }
     if (!user) {
+      await this.attempts.recordFailure(email);
       this.logger.warn('Failed login attempt: unknown user');
       throw new InvalidCredentialsException();
     }
     if (!valid) {
+      await this.attempts.recordFailure(email);
       this.logger.warn(`Failed login attempt: incorrect password [user=${user.id}]`);
       throw new InvalidCredentialsException();
     }
+    await this.attempts.reset(email);
     
     this.logger.log(`User logged in [user=${user.id}] [${user.role}]`);
-    const token = this.jwtService.sign({ sub: user.id, role: user.role });
+    const token = this.sessionToken(user);
     return { access_token: token, user: { id: user.id, email: user.email, role: user.role, name: user.name } };
   }
 
@@ -51,7 +62,18 @@ export class AuthService {
     });
     
     this.logger.log(`New user registered [user=${user.id}] [${role}]`);
-    const token = this.jwtService.sign({ sub: user.id, role: user.role });
+    const token = this.sessionToken(user);
     return { access_token: token, user: { id: user.id, email: user.email, role: user.role, name: user.name } };
+  }
+
+  /** Revokes every session token of the user (bumps token_version; JwtStrategy refuses older ones). */
+  async logout(userId: string): Promise<void> {
+    await this.prisma.users.updateMany({ where: { id: userId }, data: { token_version: { increment: 1 } } });
+    this.logger.log(`User logged out, sessions revoked [user=${userId}]`);
+  }
+
+  /** A session JWT: `tv` is the user's token_version, checked on every request by JwtStrategy. */
+  private sessionToken(user: { id: string; role: user_role; token_version: number }): string {
+    return this.jwtService.sign({ sub: user.id, role: user.role, tv: user.token_version });
   }
 }

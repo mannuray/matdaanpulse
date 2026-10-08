@@ -1,4 +1,4 @@
-import { apiFetch } from './api-client';
+import { apiFetch, API_BASE_URL } from './api-client';
 import { clearToken, setToken } from './auth.service';
 import type { User } from '../types';
 
@@ -32,6 +32,20 @@ export function login(email: string, password: string) {
     method: 'POST',
     body: JSON.stringify({ email, password }),
   });
+}
+
+/**
+ * Revokes the session server-side (POST /auth/logout bumps the user's token version, so this token and every
+ * other copy stop working). Best effort: a plain fetch (not apiFetch, whose 401 handler redirects), errors ignored;
+ * the caller clears the local session either way.
+ */
+export async function revokeSession(token: string | null): Promise<void> {
+  if (!token) return;
+  try {
+    await fetch(`${API_BASE_URL}/auth/logout`, { method: 'POST', headers: { Authorization: `Bearer ${token}` } });
+  } catch {
+    // Offline or the API is down: the token still expires on its own (JWT_TTL, default 8 h).
+  }
 }
 
 export { clearToken, setToken };

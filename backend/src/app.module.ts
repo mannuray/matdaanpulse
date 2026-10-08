@@ -24,20 +24,22 @@ import { AuditLogModule } from './modules/audit-log/audit-log.module';
 import { HealthModule } from './modules/health/health.module';
 import { FeedbackModule } from './modules/feedback/feedback.module';
 import { LoggingMiddleware } from './common/logger/logging.middleware';
-import { buildThrottlerOptions } from './common/throttle/throttle.config';
+import { buildThrottlerModuleOptions } from './common/throttle/throttle.config';
+import { RedisService } from './modules/redis/redis.service';
 import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    // Counts in Redis (RedisModule is global) so the limits hold across instances; in-process while Redis is down.
     ThrottlerModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) =>
-        buildThrottlerOptions({
+      inject: [ConfigService, RedisService],
+      useFactory: (config: ConfigService, redis: RedisService) =>
+        buildThrottlerModuleOptions({
           THROTTLE_PUBLIC_PER_MIN: config.get<string>('THROTTLE_PUBLIC_PER_MIN'),
           THROTTLE_AUTH_PER_MIN: config.get<string>('THROTTLE_AUTH_PER_MIN'),
           THROTTLE_FEEDBACK_PER_MIN: config.get<string>('THROTTLE_FEEDBACK_PER_MIN'),
-        }),
+        }, redis),
     }),
     PrismaModule,
     RedisModule,

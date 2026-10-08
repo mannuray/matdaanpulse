@@ -25,6 +25,20 @@ export const AUDIT_ACTIONS = [
   { value: 'INGEST_SHARD_UPDATE', label: 'Ingest shard saved' },
   { value: 'INGEST_SHARD_DELETE', label: 'Ingest shard deleted' },
   { value: 'INGEST_HOLD_RELEASE', label: 'Seat hold released' },
+  // Users, elections, manifests, analysis, media and feedback (security audit, 2026-10-08).
+  { value: 'USER_CREATE', label: 'User created' },
+  { value: 'USER_UPDATE', label: 'User edited' },
+  { value: 'USER_ROLE_CHANGE', label: 'User role changed' },
+  { value: 'USER_PASSWORD_RESET', label: 'Password reset' },
+  { value: 'USER_DELETE', label: 'User deleted' },
+  { value: 'ELECTION_CREATE', label: 'Election created' },
+  { value: 'ELECTION_UPDATE', label: 'Election edited' },
+  { value: 'MANIFEST_SAVE', label: 'Manifest draft saved' },
+  { value: 'MANIFEST_PUBLISH', label: 'Manifest published' },
+  { value: 'ANALYSIS_COMPUTE', label: 'Seat analysis computed' },
+  { value: 'ANALYSIS_NOTES_UPDATE', label: 'Analysis notes edited' },
+  { value: 'MEDIA_UPLOAD', label: 'Image uploaded' },
+  { value: 'FEEDBACK_UPDATE', label: 'Feedback status changed' },
 ] as const;
 
 /** Entity types of those actions: a result row, an election (bulk save), a constituency (lock, seat edit), and the record-page entities. */
@@ -35,6 +49,10 @@ export const AUDIT_ENTITIES = [
   { value: 'party', label: 'Party' },
   { value: 'person', label: 'Person' },
   { value: 'candidate', label: 'Candidate' },
+  { value: 'user', label: 'User' },
+  { value: 'constituency_analysis', label: 'Seat analysis' },
+  { value: 'media', label: 'Image' },
+  { value: 'feedback', label: 'Feedback' },
 ] as const;
 
 const humanise = (v: string) => {
