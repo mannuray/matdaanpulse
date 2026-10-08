@@ -42,5 +42,5 @@ export function usePartyMap(partyId: string, color: string, years: { electionId:
       features, seatOf: ready ? matchFeaturesToSeats(features, seats, { byNumber: true }) : new Map(),
       fills: partySeatFills(partyId, rows ?? [], color), seatName: displayNameFromConstId,
     };
-  }, [electionId, years, results.data, results.error, geo.data, geo.error, manifest.error, partyId, color]);
+  }, [electionId, years, results.data, results.isStale, results.error, geo.data, geo.error, manifest.error, partyId, color]);
 }
