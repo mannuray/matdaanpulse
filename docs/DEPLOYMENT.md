@@ -378,6 +378,20 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
    - `/elections` → `HIT` on repeat, `Cache-Control: public, max-age=0, s-maxage=60, …`.
    If any of these is `DYNAMIC`/`MISS` every time, the Cache Rule is not matching (check the expression and "respect origin") or the plan ignores the origin TTL — fix before counting day; it is the whole scaling plan.
    `X-Request-ID` on a CDN-cached public response is the id of the request that filled the cache and is replayed to every viewer: use it to correlate origin logs, not to identify a viewer's request.
+   **Cache key and query strings.** The CDN keys on the whole query string, so any extra parameter (`?x=1`) is a guaranteed miss. The query parameters the public dashboard actually sends (grepped from `frontend/src/model/api`, 2026-10-08) are:
+
+   | Route | Parameters |
+   |---|---|
+   | `/elections` | `type`, `status`, `state_id`, `year` |
+   | `/elections/:id/results` | `v` |
+   | `/elections/:id/constituencies/:constId` | `v` (new: the constituency page fetches seat detail by version) |
+   | `/parties/:id/record` | `state` |
+   | `/search/constituencies`, `/search/candidates` | `q`, `election_id`, `district_id` |
+   | `/elections/:id/compare` (API only; the dashboard does not call it today) | `from`, `to` |
+   | every other public GET (`/live`, `/parties`, `/parties/lineage`, `/credits`, `/states`, analysis, baseline, …) | none |
+
+   The admin panel also sends `page`, `limit`, `q`, `election_id`, `state_id`, `eci_recognition`, … plus the cache-buster `_`, always with `Authorization`, so those responses are `no-store` and never cached. Whitelist = the union above **plus `_`** (keep `_` in the key: if it were dropped, an admin read could be answered from the public cached copy). A query-string include list in the cache key is **Enterprise-only** on Cloudflare (Cache Rules → Cache key); on Free/Pro keep the default (full query string) and instead normalise the hottest URLs with a **URL Rewrite (Transform) Rule**, which runs before the cache: `/api/v1/elections/<id>/live` → rewrite the query to empty; `…/results` and `…/constituencies/<constId>` → rewrite the query to `concat("v=", http.request.uri.args["v"][0])` when `v` is present (verify the dynamic expression is accepted on the plan; skip it otherwise). Elsewhere the origin already rejects unknown parameters cheaply: routes with a query DTO answer `400 no-store` (`forbidNonWhitelisted`), and the rate-limit rule above bounds the rest.
+
 5. **Origin shield + client IP** (do this after DNS, Pages and the Cache Rule work). Render has no inbound IP allowlist, so anyone could call `<service>.onrender.com` directly — bypassing the CDN and forging `X-Forwarded-For` / `CF-Connecting-IP` to pick their own rate-limit bucket. Close it, **in this order**:
    1. Cloudflare first: `openssl rand -hex 32` → Rules → **Transform Rules → Modify Request Header** (free plan): expression `http.host eq "api.<domain>"`, action **Set static** `X-Origin-Secret` = `<secret>` ("Set" overwrites anything a client sends; the header only travels edge → origin). `api.<domain>` must already be proxied (orange cloud) and serving the API (step 3).
    2. Render env `ORIGIN_SHARED_SECRETS=<secret>` (comma list for rotation: add the new value at origin, switch the Transform Rule, then remove the old one), redeploy. Every request without a matching header now gets `403 no-store` before any other work; only `GET/HEAD /api/v1/health/live` is exempt (Render's health checker). The header is stripped before logging. Check: `curl -si https://<service>.onrender.com/api/v1/elections` → 403; `curl -si https://api.<domain>/api/v1/elections` → 200; the boot log says `Origin shield on (1 secret)`. If the second call is 403 the Transform Rule is not matching (host expression, or the record is not proxied).
