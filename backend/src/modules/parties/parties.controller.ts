@@ -39,8 +39,13 @@ export class PartiesController {
     return this.partiesService.findLineage();
   }
 
-  /** The party's record across Finalized VS elections; `?state=` adds that state's MLAs, seat flow and regions (party page). */
+  /**
+   * The party's record across Finalized VS elections; `?state=` adds that state's MLAs, seat flow and regions (party page).
+   * Built only from Finalized elections, so it always gets the long finished-election TTL (a newly finalized election
+   * shows within the hour; purge the CDN after editing a finished election).
+   */
   @Get(':id/record')
+  @CacheControl(CACHE_CONTROL.FINISHED)
   @UseInterceptors(new MapToDtoInterceptor(PartyRecordDto))
   record(@Param('id') id: string, @Query('state') state?: string) {
     return this.partiesService.record(id, state);

@@ -41,7 +41,7 @@ const ELECTION_ROW = {
 
 async function makeApp(env: Record<string, string>, opts: { publicPerMin?: number } = {}) {
   const live = { version: 100, status: 'Live', updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 };
-  const liveState = { get: jest.fn(async () => ({ ...live })) };
+  const liveState = { get: jest.fn(async () => ({ ...live })), currentVersion: jest.fn(async () => live.version) };
   const rows = [{ const_id: 'A', party_id: 'P', candidate_name: 'x', votes: 1, status: 'WON', margin: 1, const_type: 'GEN' }];
   const resultsService = {
     getResults: jest.fn(async () => rows),
@@ -49,6 +49,10 @@ async function makeApp(env: Record<string, string>, opts: { publicPerMin?: numbe
     getElectionSummary: jest.fn(async () => []),
     getVoteShare: jest.fn(async () => []),
     getSeatRounds: jest.fn(async () => [{ seq: 1, r: 1, rt: 20, lp: 'BJP', m: 120, v: 900, declared: false, at: '2027-02-27T04:00:00.000Z' }]),
+    getRegionShares: jest.fn(async () => []),
+    getDistrictResults: jest.fn(async () => []),
+    compareConstituencies: jest.fn(async () => ({})),
+    getConstituencyDetail: jest.fn(async (_e: string, constId: string) => ({ id: constId, name: 'Seat A', candidates: [], secret: 'x' })),
   };
   const throttled = opts.publicPerMin !== undefined;
   const bodies = new SnapshotBodyCache();
@@ -63,10 +67,11 @@ async function makeApp(env: Record<string, string>, opts: { publicPerMin?: numbe
           findAll: jest.fn(async () => [ELECTION_ROW]),
           findOne: jest.fn(async () => ELECTION_ROW),
           comparableManifest: jest.fn(async (_e: unknown, m: unknown) => m),
+          getManifest: jest.fn(async () => ({})),
         },
       },
       { provide: ResultsService, useValue: resultsService },
-      { provide: ConstituenciesService, useValue: {} },
+      { provide: ConstituenciesService, useValue: { getPublicAnalysis: jest.fn(async () => []), getConstituencyAnalysisDetail: jest.fn(async () => ({})) } },
       { provide: LiveStateService, useValue: liveState },
       { provide: SnapshotBodyCache, useValue: bodies },
       { provide: SeatAnalysisService, useValue: { summary: jest.fn(async (id: string) => ({ election_id: id, parties: [] })), baseline: jest.fn(async (id: string) => (id === EID ? { election_id: id, seats: [], computed_at: '2027-02-26T10:00:00.000Z' } : null)) } },
@@ -218,6 +223,88 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect((await get(`/elections/${EID}/results?v=100`)).headers.get('cache-control')).toBe('no-store');
     expect((await get(`/elections/${EID}/results?v=100`)).headers.get('cache-control')).toBe(CACHE_CONTROL.IMMUTABLE);
     expect(ctx.resultsService.getSnapshot).toHaveBeenCalledTimes(2);
+  });
+
+  describe('finished elections: unversioned election reads get the long CDN TTL', () => {
+    const reads = [
+      `/elections/${EID}`, `/elections/${EID}/manifest`, `/elections/${EID}/results`, `/elections/${EID}/alliances`,
+      `/elections/${EID}/vote-share`, `/elections/${EID}/region-shares`, `/elections/${EID}/baseline`,
+      `/elections/${EID}/analysis/summary`, `/elections/${EID}/analysis`, `/elections/${EID}/constituencies/A/analysis`,
+      `/elections/${EID}/districts/3/results`, `/elections/${EID}/constituencies/A/rounds`, `/elections/${EID}/constituencies/A`,
+      `/elections/${EID}/compare?from=A&to=B`,
+    ];
+    it('Finalized → s-maxage=3600, stale-while-revalidate=86400', async () => {
+      ctx.live.status = 'Finalized';
+      expect(CACHE_CONTROL.FINISHED).toBe('public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
+      for (const path of reads) {
+        const res = await get(path);
+        expect([path, res.status, res.headers.get('cache-control')]).toEqual([path, 200, CACHE_CONTROL.FINISHED]);
+      }
+    });
+    it('Live: results, seat detail and rounds use the short results TTL; the rest keep the default', async () => {
+      const short = new Set([`/elections/${EID}/results`, `/elections/${EID}/constituencies/A/rounds`, `/elections/${EID}/constituencies/A`]);
+      for (const path of reads) {
+        const res = await get(path);
+        expect([path, res.headers.get('cache-control')]).toEqual([path, short.has(path) ? CACHE_CONTROL.RESULTS_LATEST : CACHE_CONTROL.PUBLIC]);
+      }
+    });
+    it('Upcoming: the default policy (rounds keep the short one)', async () => {
+      ctx.live.status = 'Upcoming';
+      for (const path of reads) {
+        const res = await get(path);
+        const want = path.endsWith('/rounds') ? CACHE_CONTROL.RESULTS_LATEST : CACHE_CONTROL.PUBLIC;
+        expect([path, res.headers.get('cache-control')]).toEqual([path, want]);
+      }
+    });
+    it('/live keeps its own policy when Finalized', async () => {
+      ctx.live.status = 'Finalized';
+      expect((await get(`/elections/${EID}/live`)).headers.get('cache-control')).toBe(CACHE_CONTROL.LIVE_IDLE);
+    });
+  });
+
+  describe('seat detail ?v= (versioned like results?v=)', () => {
+    const seat = (q = '') => get(`/elections/${EID}/constituencies/A${q}`);
+    it('v = current while Live → immutable, mapped through the public DTO', async () => {
+      const res = await seat('?v=100');
+      expect(res.status).toBe(200);
+      expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.IMMUTABLE);
+      const body = await res.json();
+      expect(body.success).toBe(true);
+      expect(body.data.id).toBe('A');
+      expect(body.data).not.toHaveProperty('secret');
+    });
+    it('v = current but the version moved while reading → no-store (never labelled with a version it may not match)', async () => {
+      ctx.liveState.currentVersion.mockResolvedValueOnce(101);
+      const res = await seat('?v=100');
+      expect(res.status).toBe(200);
+      expect(res.headers.get('cache-control')).toBe('no-store');
+    });
+    it('v older → short-cached 302 to the current version, nothing loaded', async () => {
+      const res = await seat('?v=99');
+      expect(res.status).toBe(302);
+      expect(res.headers.get('location')).toBe(`/api/v1/elections/${EID}/constituencies/A?v=100`);
+      expect(res.headers.get('cache-control')).toBe(CACHE_CONTROL.REDIRECT);
+      expect(ctx.resultsService.getConstituencyDetail).not.toHaveBeenCalled();
+    });
+    it('v newer than current → 404 no-store, nothing loaded', async () => {
+      const res = await seat('?v=101');
+      expect(res.status).toBe(404);
+      expect(res.headers.get('cache-control')).toBe('no-store');
+      expect(ctx.resultsService.getConstituencyDetail).not.toHaveBeenCalled();
+    });
+    it('not counting: v = current is not immutable (photos/affidavits can change without a version bump)', async () => {
+      ctx.live.status = 'Finalized';
+      expect((await seat('?v=100')).headers.get('cache-control')).toBe(CACHE_CONTROL.FINISHED);
+      ctx.live.status = 'Upcoming';
+      expect((await seat('?v=100')).headers.get('cache-control')).toBe(CACHE_CONTROL.PUBLIC);
+    });
+    it('an unknown seat is a 404 no-store; v=abc is a 400', async () => {
+      ctx.resultsService.getConstituencyDetail.mockRejectedValueOnce(new NotFoundException());
+      const missing = await seat('?v=100');
+      expect(missing.status).toBe(404);
+      expect(missing.headers.get('cache-control')).toBe('no-store');
+      expect((await seat('?v=abc')).status).toBe(400);
+    });
   });
 
   it('results?v=<older> → short-cached 302 to the current version, never old data', async () => {

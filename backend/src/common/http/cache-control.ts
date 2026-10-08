@@ -11,13 +11,19 @@ import { Observable, tap } from 'rxjs';
 export const CACHE_CONTROL = {
   /** Default for public GETs (elections, constituencies, parties, …). */
   PUBLIC: 'public, max-age=0, s-maxage=60, stale-while-revalidate=300',
+  /**
+   * Unversioned reads of a Finalized election (results, aggregates, seat detail, analysis, baseline, …) and the party
+   * record (built only from Finalized elections). Its data no longer changes; after a reopen or an edit of a finished
+   * election, purge the CDN (docs/DEPLOYMENT.md §5.4).
+   */
+  FINISHED: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400',
   /** GET /elections/:id/live — polled by every viewer. */
   LIVE: 'public, max-age=0, s-maxage=5, stale-while-revalidate=10',
   /** GET /elections/:id/live while the election is not counting (Upcoming/Finalized). */
   LIVE_IDLE: 'public, max-age=0, s-maxage=30, stale-while-revalidate=60',
-  /** GET /elections/:id/results without ?v= (latest, unversioned). */
+  /** GET /elections/:id/results and seat detail without ?v= while counting (latest, unversioned). */
   RESULTS_LATEST: 'public, max-age=0, s-maxage=10, stale-while-revalidate=30',
-  /** GET /elections/:id/results?v=<current version>. */
+  /** GET /elections/:id/results?v=<current version>; seat detail ?v=<current> while Live. */
   IMMUTABLE: 'public, max-age=31536000, immutable',
   /** Redirect from an older ?v= to the current one: only for a few seconds. */
   REDIRECT: 'public, max-age=0, s-maxage=5',
