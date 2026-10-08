@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Query, UseInterceptors } from '@nestjs/common';
 import { PartiesService } from './parties.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
-import { PartySummaryDto, PartyDetailDto, LineageEventDto } from './dto/party-response.dto';
+import { PartySummaryDto, PartyDetailDto, LineageEventDto, PartyRecordDto } from './dto/party-response.dto';
 import { paginated } from '../../common/paginated';
 import { PartiesQueryDto } from '../../common/dto/query.dto';
 import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
@@ -37,6 +37,13 @@ export class PartiesController {
   @UseInterceptors(new MapToDtoInterceptor(LineageEventDto))
   findLineage() {
     return this.partiesService.findLineage();
+  }
+
+  /** The party's record across Finalized VS elections; `?state=` adds that state's MLAs, seat flow and regions (party page). */
+  @Get(':id/record')
+  @UseInterceptors(new MapToDtoInterceptor(PartyRecordDto))
+  record(@Param('id') id: string, @Query('state') state?: string) {
+    return this.partiesService.record(id, state);
   }
 
   @Get(':id')

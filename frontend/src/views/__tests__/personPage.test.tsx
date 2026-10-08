@@ -73,3 +73,11 @@ describe('PersonPageView', () => {
     expect(screen.getByText(/Non-binary/)).toBeTruthy();
   });
 });
+
+describe('PersonPageView header party', () => {
+  it('the current party chip links to the party page', () => {
+    render(<MemoryRouter><PersonPageView vm={{ ...base, currentParty: { label: 'BJP', name: 'Bharatiya Janata Party', mark: null, color: '#f80', href: '/party/BJP' } }} /></MemoryRouter>);
+    const chip = screen.getAllByRole('link').find(a => a.getAttribute('href') === '/party/BJP' && a.textContent?.includes('Bharatiya Janata Party · BJP'));
+    expect(chip).toBeTruthy();
+  });
+});

@@ -235,12 +235,17 @@ export function PersonPageView({ vm }: { vm: PersonPageVM }) {
               <h1 className="font-display text-3xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-4xl lg:text-5xl">{vm.name}</h1>
               <div className="flex flex-wrap items-center gap-2">
                 {vm.incumbent && <span className="rounded-lg border border-accent/40 px-2.5 py-1 text-xs font-semibold text-accent-text">{t('seat_incumbent')}</span>}
-                {party && (
-                  <span className="inline-flex items-center gap-2 rounded-lg border px-3 py-1.5" style={{ background: tint(party.color, 10), borderColor: tint(party.color, 30) }}>
+                {party && (() => {
+                  const chip = <>
                     <PartyMark mark={party.mark} color={party.color} label={party.label} size={16} />
                     <span className="text-xs font-bold tracking-wide" style={{ color: party.color }}>{party.name && party.name !== party.label ? `${party.name} · ${party.label}` : party.label}</span>
-                  </span>
-                )}
+                  </>;
+                  const style = { background: tint(party.color, 10), borderColor: tint(party.color, 30) };
+                  // The chip opens the party page (independents have none).
+                  return party.href
+                    ? <Link to={party.href} className="inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 hover:brightness-125" style={style}>{chip}</Link>
+                    : <span className="inline-flex items-center gap-2 rounded-lg border px-3 py-1.5" style={style}>{chip}</span>;
+                })()}
               </div>
             </div>
             {facts.length > 0 && (

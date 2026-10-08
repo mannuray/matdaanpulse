@@ -62,6 +62,8 @@ export interface LineageEvent {
   state_id: number | null;
   is_successor: boolean;
   note: string | null;
+  /** Where the event is documented. */
+  source_url?: string | null;
 }
 
 export interface PartyUnitRole {
@@ -70,6 +72,8 @@ export interface PartyUnitRole {
   person_name: string;
   from_date: string | null;
   to_date: string | null;
+  /** The holder's photo (from their person record). */
+  photo_url?: string | null;
 }
 
 export interface PartyUnit {
@@ -425,4 +429,45 @@ export interface AnalysisEntry {
 
 export interface ConstituencyAnalysisDetail extends AnalysisEntry {
   notes: string | null;
+}
+
+/** GET /parties/:id/record: one row per Finalized VS election the party contested (party page spec §2). */
+export interface PartyRecordElection {
+  election_id: string; state_id: number; state_code: string; state_name: string; year: number;
+  /** Counting day (else mid-year): the lineage comparison window. */
+  date: string;
+  delimitation: string | null;
+  contested: number; won: number; votes: number; share: number;
+  held: number; gained: number; lost: number; split_gained: number; split_lost: number;
+  seats_total: number; largest: boolean; formed_government: boolean | null;
+  /** Lineage-family members (not the party) in the same election: earlier totals across a merger. */
+  family: { party_id: string; won: number; share: number }[];
+}
+
+/** An election in one of the party's states where it did not run but a lineage relative did. */
+export interface PartyRecordFamilyElection {
+  election_id: string; state_id: number; year: number; date: string; delimitation: string | null;
+  family: { party_id: string; won: number; share: number }[];
+}
+
+/** An election held in one of the party's states (contested or not): what "the previous election" means there. */
+export interface PartyRecordStateElection { election_id: string; state_id: number; year: number; date: string; delimitation: string | null }
+
+export interface PartyRecordMla { person_id: string | null; name: string; photo_url: string | null; const_id: string; const_name: string; margin: number | null }
+
+export interface PartyRecord {
+  party_id: string;
+  /** Newest first. */
+  elections: PartyRecordElection[];
+  /** Missing on an older backend. */
+  family_elections?: PartyRecordFamilyElection[];
+  /** Missing on an older backend. */
+  state_elections?: PartyRecordStateElection[];
+  lineage: LineageEvent[];
+  /** With `?state=`: that state's latest election. */
+  state?: {
+    code: string; election_id: string; mlas: PartyRecordMla[];
+    flow: { from: string; to: string; seats: number; split: boolean }[];
+    regions: { region: string; seats: number; won: number }[] | null;
+  };
 }

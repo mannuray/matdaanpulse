@@ -205,7 +205,7 @@ describe('PartiesService lineage and state units (migration 023)', () => {
   it('findLineage returns every event, oldest first', async () => {
     const findMany = jest.fn().mockResolvedValue([lineageRow]);
     const { svc } = make({ party_lineage: { findMany } });
-    expect(await svc.findLineage()).toEqual([{ party_id: 'SSUBT', predecessor_id: 'SHS', kind: 'split', effective_date: '2022-10-10', state_id: null, is_successor: false, note: 'n' }]);
+    expect(await svc.findLineage()).toEqual([{ party_id: 'SSUBT', predecessor_id: 'SHS', kind: 'split', effective_date: '2022-10-10', state_id: null, is_successor: false, note: 'n', source_url: 's' }]);
     expect(findMany.mock.calls[0][0]).toMatchObject({ orderBy: [{ effective_date: 'asc' }, { id: 'asc' }] });
   });
   it('findOne adds the state units (current roles first) and the lineage on both sides', async () => {
@@ -215,8 +215,75 @@ describe('PartiesService lineage and state units (migration 023)', () => {
     const { svc } = make({ party_units: { findMany: jest.fn().mockResolvedValue([unit]) }, party_lineage: { findMany: jest.fn().mockResolvedValue([lineageRow]) } });
     const p = await svc.findOne('BJP');
     expect(p.units).toEqual([{ state_id: 5, state_name: 'Bihar', eci_recognition: 'National', office: 'Patna', website: null,
-      roles: [{ role: 'state_president', person_id: 'p1', person_name: 'New', from_date: '2023-03-01', to_date: null },
-              { role: 'state_president', person_id: null, person_name: 'Old', from_date: '2020-01-01', to_date: '2023-03-01' }] }]);
+      roles: [{ role: 'state_president', person_id: 'p1', person_name: 'New', from_date: '2023-03-01', to_date: null, photo_url: null },
+              { role: 'state_president', person_id: null, person_name: 'Old', from_date: '2020-01-01', to_date: '2023-03-01', photo_url: null }] }]);
     expect(p.lineage).toHaveLength(1);
+  });
+});
+
+describe('PartiesService.findOne', () => {
+  it('roles carry the person photo; lineage carries its source', async () => {
+    const { svc } = make({
+      party_units: { findMany: jest.fn().mockResolvedValue([{ party_id: 'BJP', state_id: 9, eci_recognition: 'State', office: null, website: null,
+        states: { name: 'Jharkhand' }, roles: [{ role: 'state_president', person_id: 'p1', person_name: 'A', from_date: null, to_date: null, persons: { photo_url: '/m/a.jpg' } }] }]) },
+      party_lineage: { findMany: jest.fn().mockResolvedValue([{ party_id: 'BJP', predecessor_id: 'JVM', kind: 'merger', effective_date: new Date('2020-02-17'), state_id: 9, is_successor: true, note: null, source_url: 'https://x' }]) },
+    });
+    const r = await svc.findOne('BJP');
+    expect(r.units[0].roles[0].photo_url).toBe('/m/a.jpg');
+    expect(r.lineage[0].source_url).toBe('https://x');
+  });
+});
+
+describe('PartiesService.record', () => {
+  const analysis = { parties: [{ party_id: 'BJP', contested: 68, won: 21, votes: 100, share: 33.2, prev: null, held: 14, gained: 7, lost: 9, split_gained: 0, split_lost: 0 }],
+    flow: [{ from: 'JMM', to: 'BJP', seats: 4, split: false }], breakdowns: { region: [] } };
+  const election = { id: 'e24', state_id: 9, year: 2024, tentative_next_date: new Date('2024-11-23'), delimitation: '2008', manifest_url: '{"government":{"parties":["JMM"]}}',
+    states: { code: 'JH', name: 'Jharkhand' }, _count: { constituencies: 81 } };
+  // Raw reads: every election's party rows; the flow and region breakdown only for the state election.
+  const queryRaw = jest.fn(async (strings: TemplateStringsArray) => (strings.join('?').includes("'flow'")
+    ? [{ flow: analysis.flow, region: analysis.breakdowns.region }]
+    : [{ election_id: 'e24', parties: analysis.parties }]));
+  const base = () => ({
+    $queryRaw: queryRaw,
+    elections: { findMany: jest.fn().mockResolvedValue([election]) },
+    party_lineage: { findMany: jest.fn().mockResolvedValue([]) },
+    results: { findMany: jest.fn().mockResolvedValue([
+      { margin: 500, const_id: 'C1', constituencies: { name: 'Ranchi' }, candidates: { name: 'A', person_id: 'p1', persons: { photo_url: '/a.jpg' } } },
+      { margin: 9000, const_id: 'C2', constituencies: { name: 'Hatia' }, candidates: { name: 'B', person_id: null, persons: null } },
+    ]) },
+  });
+  it('reads only the party rows of each analysis (never the whole JSON); flow and regions only for the state election', async () => {
+    const { svc, prisma } = make(base());
+    await svc.record('BJP');
+    const select = (prisma as any).elections.findMany.mock.calls[0][0].select;
+    expect(select.election_analysis).toBeUndefined();
+    const sqls = queryRaw.mock.calls.map(c => (c[0] as unknown as string[]).join('?'));
+    expect(sqls.some(q => q.includes("data->'parties'"))).toBe(true);
+    expect(sqls.some(q => q.includes("'flow'"))).toBe(false);
+  });
+  it('unknown party: PartyNotFoundException', async () => {
+    const { svc } = make({ ...base(), parties: { findUnique: jest.fn().mockResolvedValue(null) } });
+    await expect(svc.record('NOPE')).rejects.toThrow();
+  });
+  it('one row per election with the counting date and assembly size; no state extras without ?state', async () => {
+    const { svc } = make(base());
+    const r = await svc.record('BJP');
+    expect(r.elections).toHaveLength(1);
+    expect(r.elections[0]).toMatchObject({ date: '2024-11-23', seats_total: 81, state_code: 'JH', won: 21, formed_government: false });
+    expect((r as any).state).toBeUndefined();
+  });
+  it('?state (any case): MLAs by margin, flow and regions of the latest election there', async () => {
+    const { svc, prisma } = make(base());
+    const r: any = await svc.record('BJP', 'jh');
+    expect(r.state.code).toBe('JH');
+    expect(r.state.mlas.map((m: any) => m.const_id)).toEqual(['C2', 'C1']);
+    expect(r.state.mlas[1]).toEqual({ person_id: 'p1', name: 'A', photo_url: '/a.jpg', const_id: 'C1', const_name: 'Ranchi', margin: 500 });
+    expect(r.state.flow).toHaveLength(1);
+    expect(r.state.regions).toBeNull();
+    expect((prisma as any).results.findMany.mock.calls[0][0].where).toMatchObject({ election_id: 'e24', status: 'WON', candidates: { party_id: 'BJP' } });
+  });
+  it('?state the party never contested: no state extras', async () => {
+    const { svc } = make(base());
+    expect(((await svc.record('BJP', 'KL')) as any).state).toBeUndefined();
   });
 });

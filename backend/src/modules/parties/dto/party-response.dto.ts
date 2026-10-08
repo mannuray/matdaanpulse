@@ -20,6 +20,7 @@ export class LineageEventDto {
   @Expose() state_id: number | null;
   @Expose() is_successor: boolean;
   @Expose() note: string | null;
+  @Expose() source_url: string | null;
 }
 
 export class PartyUnitRoleDto {
@@ -28,6 +29,7 @@ export class PartyUnitRoleDto {
   @Expose() person_name: string;
   @Expose() from_date: string | null;
   @Expose() to_date: string | null;
+  @Expose() photo_url: string | null;
 }
 
 /** A party's unit in one state: recognition there, office, leadership terms (current first). */
@@ -49,4 +51,90 @@ export class PartyDetailDto extends PartySummaryDto {
   @Expose() website: string | null;
   @Expose() wikipedia_url: string | null;
   @Expose() description: string | null;
+}
+
+/** GET /parties/:id/record (party page spec §2). */
+export class PartyRecordFamilyDto {
+  @Expose() party_id: string;
+  @Expose() won: number;
+  @Expose() share: number;
+}
+
+export class PartyRecordElectionDto {
+  @Expose() election_id: string;
+  @Expose() state_id: number;
+  @Expose() state_code: string;
+  @Expose() state_name: string;
+  @Expose() year: number;
+  @Expose() date: string;
+  @Expose() delimitation: string | null;
+  @Expose() contested: number;
+  @Expose() won: number;
+  @Expose() votes: number;
+  @Expose() share: number;
+  @Expose() held: number;
+  @Expose() gained: number;
+  @Expose() lost: number;
+  @Expose() split_gained: number;
+  @Expose() split_lost: number;
+  @Expose() seats_total: number;
+  @Expose() largest: boolean;
+  @Expose() formed_government: boolean | null;
+  @Expose() @Type(() => PartyRecordFamilyDto) family: PartyRecordFamilyDto[];
+}
+
+export class PartyRecordFamilyElectionDto {
+  @Expose() election_id: string;
+  @Expose() state_id: number;
+  @Expose() year: number;
+  @Expose() date: string;
+  @Expose() delimitation: string | null;
+  @Expose() @Type(() => PartyRecordFamilyDto) family: PartyRecordFamilyDto[];
+}
+
+export class PartyRecordStateElectionDto {
+  @Expose() election_id: string;
+  @Expose() state_id: number;
+  @Expose() year: number;
+  @Expose() date: string;
+  @Expose() delimitation: string | null;
+}
+
+export class PartyRecordMlaDto {
+  @Expose() person_id: string | null;
+  @Expose() name: string;
+  @Expose() photo_url: string | null;
+  @Expose() const_id: string;
+  @Expose() const_name: string;
+  @Expose() margin: number | null;
+}
+
+export class PartyRecordFlowDto {
+  @Expose() from: string;
+  @Expose() to: string;
+  @Expose() seats: number;
+  @Expose() split: boolean;
+}
+
+export class PartyRecordRegionDto {
+  @Expose() region: string;
+  @Expose() seats: number;
+  @Expose() won: number;
+}
+
+export class PartyRecordStateDto {
+  @Expose() code: string;
+  @Expose() election_id: string;
+  @Expose() @Type(() => PartyRecordMlaDto) mlas: PartyRecordMlaDto[];
+  @Expose() @Type(() => PartyRecordFlowDto) flow: PartyRecordFlowDto[];
+  @Expose() @Type(() => PartyRecordRegionDto) regions: PartyRecordRegionDto[] | null;
+}
+
+export class PartyRecordDto {
+  @Expose() party_id: string;
+  @Expose() @Type(() => PartyRecordElectionDto) elections: PartyRecordElectionDto[];
+  @Expose() @Type(() => PartyRecordFamilyElectionDto) family_elections: PartyRecordFamilyElectionDto[];
+  @Expose() @Type(() => PartyRecordStateElectionDto) state_elections: PartyRecordStateElectionDto[];
+  @Expose() @Type(() => LineageEventDto) lineage: LineageEventDto[];
+  @Expose() @Type(() => PartyRecordStateDto) state?: PartyRecordStateDto;
 }

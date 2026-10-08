@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { partyPageHref } from '../../model/derive/partyRecord';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { useApi } from '../data/useApi';
@@ -19,6 +20,8 @@ export interface PartyDialogVM {
   /** Adds or removes the seat on the dashboard watchlist. */
   onToggleTrack(constId: string, label: string): void;
   onClose(): void; onSelectSeat(id: string): void;
+  /** The party page, on this election's state (null for independents and NOTA). */
+  pageHref: string | null;
   /** The party's unit in this election's state: recognition there and its current leaders (party model). */
   unit?: PartyUnitSummary | null;
   /** Its lineage in plain terms (renames, mergers, splits, breakaways). */
@@ -74,6 +77,7 @@ export function usePartyDialogVM(): PartyDialogVM | null {
   if (!m && src.partyMeta.size > 0 && stats.contested === 0) return null;
   return {
     id,
+    pageHref: partyPageHref(id, src.election.state?.code),
     name: m?.name ?? src.data.partyNameMap.get(id) ?? id,
     abbreviation: m?.abbreviation ?? null,
     mark: m?.mark ?? null,

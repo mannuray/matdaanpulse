@@ -786,6 +786,13 @@ first result, and once every seat is declared, the dashboard is the ordinary res
 - [x] `PartyIcon.tsx` simplified: DB `symbol_url` is primary source, hand-drawn SVGs as fallback, no hardcoded `SYMBOL_FILES` set
 - [x] `KeyBattlesTicker` supports `party_id` and `party_symbol_url` for proper icon display
 
+### Party page (2026-10-08)
+- [x] `/party/:id`: national view: profile header (mark, recognition, founded, HQ, leader, links), headline at each state's latest election (seats held of seats, states, governs, largest party), state chips, every state with won / contested, vote share, change since the previous comparable election (lineage applied; "—" for seats across a redraw), seats sparkline and state president; lineage timeline with sources; about
+- [x] `/party/:id?state=XX`: state view: state unit (president, legislature leader, past presidents), election record (chart + table; lineage events inline, only where the other party ran; redraw dividers; "vs BJP + JVM(P) 2019" after a merger), where-it-won map (the election's own map, year picker, click → seat page), seat changes (held / gained from / lost to, splits tagged), its MLAs (all, with search), strongest regions; sticky jump links. A party that contested one state opens on it
+- [x] API `GET /parties/:id/record` (from stored seat analysis; `?state=` adds MLAs, seat flow and regions); role holder photos and lineage sources on `GET /parties/:id` and `/parties/lineage`
+- [x] Entry points: "Full party page →" in the dashboard party dialog; party names on the person and constituency pages (none for IND / NOTA)
+- Spec `docs/superpowers/specs/2026-10-08-party-page-design.md`; e2e `frontend/e2e/party.spec.ts`
+
 ### Live viewer e2e, layer 1 (2026-10-08)
 - [x] `npm run e2e:live` (frontend; own config `playwright.live.config.ts`, kept out of `npm run e2e`): mock ECI + the real worker + Playwright play a counting day and check the dashboard against the backend snapshot of the version on screen (`e2e/live/`; oracle `e2e/live/oracle.ts` = `useLiveAnalysis`' input to `analyseLive`)
 - [x] Checkpoints C0–C6 on desktop (before results → Finalized), a phone pass (390×844) and a light-theme screenshot; screenshots in `frontend/e2e/artifacts/live/` (gitignored)
