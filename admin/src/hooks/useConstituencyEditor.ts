@@ -1,11 +1,10 @@
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import { useState, useMemo, type SetStateAction } from 'react';
 import { getAdminConstituencyDetail, updateConstituency } from '../services/constituency.service';
 import { getDistricts, getRegions } from '../services/geo.service';
-import { useToast } from '../context/ToastContext';
-import { fieldErrorMap } from '../services/api-client';
 import { parseSeatNumber, toOptionalNumber } from '../utils/numbers';
 import { blankToNull } from '../utils/record-payload';
-import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
+import { type RecordLoadErrorKind } from './useRecordQuery';
+import { useRecordForm } from './useRecordForm';
 import type { Constituency } from '../types';
 
 export const SEAT_NUMBER_ERROR = 'Enter a whole number, 1 or more';
@@ -106,66 +105,67 @@ const toSnapshot = (data: Constituency): Snapshot => {
  * validated live (a field is checked only once it differs from the saved text, so old stored values never block a save).
  */
 export function useConstituencyEditor(id?: string) {
-  const { toast, toastError } = useToast();
-
-  const [constituency, setConstituency] = useState<Constituency | null>(null);
   const [districts, setDistricts] = useState<any[]>([]);
   const [regions, setRegions] = useState<any[]>([]);
-  const [loading, setLoading] = useState(!!id);
-  const [loadError, setLoadError] = useState<LoadError | null>(null);
-  const [saving, setSaving] = useState(false);
-  const [serverErrors, setServerErrors] = useState<Record<string, string>>({});
 
-  const [editDemographics, setEditDemographics] = useState<Demographics>(EMPTY.demo);
-  const [adminInfo, setAdminInfo] = useState<AdminInfo>(EMPTY.admin);
-  const [tags, setTags] = useState<string[]>([]);
-  const [saved, setSaved] = useState<Snapshot>(EMPTY);
-  const current = useRef<Snapshot>(EMPTY);
-  current.current = { demo: editDemographics, admin: adminInfo, tags };
+  const rf = useRecordForm<Constituency, Snapshot>({
+    id,
+    load: getAdminConstituencyDetail,
+    toForm: toSnapshot,
+    empty: EMPTY,
+    canSave: (form, record) => !!record && parseSeatNumber(form.admin.const_no) !== null,
+    onLoaded: async (data) => {
+      if (!data.state_id) return;
+      const [d, r] = await Promise.all([
+        getDistricts(data.state_id).catch(() => []),
+        getRegions(data.state_id).catch(() => []),
+      ]);
+      setDistricts(d);
+      setRegions(r);
+    },
+    save: async (cid, submitted, { base: saved, record, setRecord }) => {
+      const constituency = record!;
+      const constNo = parseSeatNumber(submitted.admin.const_no)!;
+      // `valid` (checked by handleSave) already rejects an edited out-of-range phase.
+      const phase = parsePhase(submitted.admin.phase) ?? null;
+      // Edited tags merge with the server's current tags (a re-read; the loaded copy if that fails).
+      const serverTags = tagsEdited(submitted, saved)
+        ? tagsOf((await getAdminConstituencyDetail(cid).catch(() => null))?.metadata ?? constituency.metadata)
+        : [];
+      const metadata = metadataPatch(submitted, saved, serverTags);
+      await updateConstituency(cid, {
+        district_id: submitted.admin.district_id ? Number(submitted.admin.district_id) : null,
+        region_id: submitted.admin.region_id ? Number(submitted.admin.region_id) : null,
+        const_no: constNo,
+        // Phase and reservation only when edited: an old out-of-range phase must not block an unrelated save.
+        ...(submitted.admin.phase !== saved.admin.phase ? { phase } : {}),
+        ...(submitted.admin.type !== saved.admin.type ? { type: submitted.admin.type } : {}),
+        metadata,
+      });
+      // If the re-read after the save fails, the next save still diffs against what was just written.
+      setRecord({
+        ...constituency,
+        phase: submitted.admin.phase !== saved.admin.phase ? phase : constituency.phase,
+        type: submitted.admin.type, metadata: { ...(constituency.metadata ?? {}), ...metadata },
+      });
+    },
+    messages: { loadFailed: 'Failed to load constituency details', saveFailed: 'Update failed', saved: 'Constituency updated' },
+  });
+  const { form, setForm, saved } = rf;
+  const editDemographics = form.demo;
+  const adminInfo = form.admin;
+  const tags = form.tags;
 
-  const apply = (s: Snapshot) => {
-    setEditDemographics(s.demo);
-    setAdminInfo(s.admin);
-    setTags(s.tags);
-    setSaved(s);
-  };
-
-  const loadData = useCallback(async () => {
-    if (!id) return;
-    setLoading(true);
-    setLoadError(null);
-    try {
-      const data = await getAdminConstituencyDetail(id);
-      setConstituency(data);
-      apply(toSnapshot(data));
-      setServerErrors({});
-      if (data.state_id) {
-        const [d, r] = await Promise.all([
-          getDistricts(data.state_id).catch(() => []),
-          getRegions(data.state_id).catch(() => []),
-        ]);
-        setDistricts(d);
-        setRegions(r);
-      }
-    } catch (err) {
-      const kind = recordLoadErrorKind(err);
-      setLoadError(kind);
-      // "Not found" is said on the page ("Constituency not found"); only other failures toast.
-      if (kind === 'failed') toastError(err, 'Failed to load constituency details');
-    } finally {
-      setLoading(false);
-    }
-  }, [id, toastError]);
-
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
+  const part = <K extends keyof Snapshot>(key: K) => (v: SetStateAction<Snapshot[K]>) =>
+    setForm((f) => ({ ...f, [key]: typeof v === 'function' ? (v as (p: Snapshot[K]) => Snapshot[K])(f[key]) : v }));
+  const setEditDemographics = part('demo');
+  const setAdminInfo = part('admin');
 
   const addTag = (tag: string) => {
     if (!tag || tags.includes(tag)) return;
-    setTags([...tags, tag]);
+    setForm((f) => ({ ...f, tags: [...f.tags, tag] }));
   };
-  const removeTag = (tag: string) => setTags(tags.filter((t) => t !== tag));
+  const removeTag = (tag: string) => setForm((f) => ({ ...f, tags: f.tags.filter((t) => t !== tag) }));
 
   const liveErrors = useMemo(() => {
     const e: Record<string, string> = {};
@@ -181,65 +181,15 @@ export function useConstituencyEditor(id?: string) {
   }, [editDemographics, adminInfo.const_no, adminInfo.phase, saved]);
 
   // Server-side field errors show until the next save; they never block retrying.
-  const fieldErrors = { ...serverErrors, ...liveErrors };
+  const fieldErrors = { ...rf.fieldErrors, ...liveErrors };
   const valid = Object.keys(liveErrors).length === 0;
-  const isDirty = JSON.stringify(current.current) !== JSON.stringify(saved);
 
-  const handleSave = async (): Promise<boolean> => {
-    if (!id || !constituency || !valid) return false;
-    const submitted = current.current;
-    const constNo = parseSeatNumber(submitted.admin.const_no);
-    // `valid` (checked above) already rejects an edited out-of-range phase.
-    const phase = parsePhase(submitted.admin.phase) ?? null;
-    if (constNo === null) return false;
-    setServerErrors({});
-    setSaving(true);
-    try {
-      // Edited tags merge with the server's current tags (a re-read; the loaded copy if that fails).
-      const serverTags = tagsEdited(submitted, saved)
-        ? tagsOf((await getAdminConstituencyDetail(id).catch(() => null))?.metadata ?? constituency.metadata)
-        : [];
-      const metadata = metadataPatch(submitted, saved, serverTags);
-      await updateConstituency(id, {
-        district_id: submitted.admin.district_id ? Number(submitted.admin.district_id) : null,
-        region_id: submitted.admin.region_id ? Number(submitted.admin.region_id) : null,
-        const_no: constNo,
-        // Phase and reservation only when edited: an old out-of-range phase must not block an unrelated save.
-        ...(submitted.admin.phase !== saved.admin.phase ? { phase } : {}),
-        ...(submitted.admin.type !== saved.admin.type ? { type: submitted.admin.type } : {}),
-        metadata,
-      });
-      toast('Constituency updated');
-      // The submitted values are now the saved baseline; edits typed while saving stay dirty.
-      setSaved(submitted);
-      // If the re-read below fails, the next save still diffs against what was just written.
-      setConstituency({
-        ...constituency,
-        phase: submitted.admin.phase !== saved.admin.phase ? phase : constituency.phase,
-        type: submitted.admin.type, metadata: { ...(constituency.metadata ?? {}), ...metadata },
-      });
-      try {
-        const data = await getAdminConstituencyDetail(id);
-        setConstituency(data);
-        if (JSON.stringify(current.current) === JSON.stringify(submitted)) apply(toSnapshot(data));
-      } catch { /* saved fine; the list refresh and next open show server state */ }
-      return true;
-    } catch (err) {
-      setServerErrors(fieldErrorMap(err));
-      toastError(err, 'Update failed');
-      return false;
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  /** Drop unsaved edits (panel Cancel). */
-  const reset = () => { apply(saved); setServerErrors({}); };
+  const handleSave = async (): Promise<boolean> => (valid ? rf.save() : false);
 
   return {
-    constituency, election: constituency?.election, districts, regions,
-    loading, loadError, saving, isDirty, fieldErrors, valid,
+    constituency: rf.record, election: rf.record?.election, districts, regions,
+    loading: rf.loading, loadError: rf.loadError, saving: rf.saving, isDirty: rf.dirty, fieldErrors, valid,
     editDemographics, setEditDemographics, adminInfo, setAdminInfo, tags,
-    handleSave, addTag, removeTag, reset, refresh: loadData
+    handleSave, addTag, removeTag, reset: rf.reset, refresh: rf.refresh,
   };
 }
