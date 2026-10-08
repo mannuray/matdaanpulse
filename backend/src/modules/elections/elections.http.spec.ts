@@ -9,6 +9,8 @@ import { ConstituenciesService } from '../constituencies/constituencies.service'
 import { LiveStateService } from '../results/live-state.service';
 import { SeatAnalysisService } from '../constituencies/seat-analysis.service';
 import { CACHE_CONTROL } from '../../common/http/cache-control';
+import { SnapshotBodyCache } from '../results/snapshot-body-cache';
+import { request as httpRequest } from 'http';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { buildThrottlerOptions } from '../../common/throttle/throttle.config';
@@ -49,6 +51,7 @@ async function makeApp(env: Record<string, string>, opts: { publicPerMin?: numbe
     getSeatRounds: jest.fn(async () => [{ seq: 1, r: 1, rt: 20, lp: 'BJP', m: 120, v: 900, declared: false, at: '2027-02-27T04:00:00.000Z' }]),
   };
   const throttled = opts.publicPerMin !== undefined;
+  const bodies = new SnapshotBodyCache();
   const moduleRef = await Test.createTestingModule({
     imports: throttled ? [ThrottlerModule.forRoot(buildThrottlerOptions({ THROTTLE_PUBLIC_PER_MIN: String(opts.publicPerMin) }))] : [],
     controllers: [ElectionsController, AdminLikeController],
@@ -65,6 +68,7 @@ async function makeApp(env: Record<string, string>, opts: { publicPerMin?: numbe
       { provide: ResultsService, useValue: resultsService },
       { provide: ConstituenciesService, useValue: {} },
       { provide: LiveStateService, useValue: liveState },
+      { provide: SnapshotBodyCache, useValue: bodies },
       { provide: SeatAnalysisService, useValue: { summary: jest.fn(async (id: string) => ({ election_id: id, parties: [] })), baseline: jest.fn(async (id: string) => (id === EID ? { election_id: id, seats: [], computed_at: '2027-02-26T10:00:00.000Z' } : null)) } },
     ],
   }).compile();
@@ -72,7 +76,7 @@ async function makeApp(env: Record<string, string>, opts: { publicPerMin?: numbe
   configureApp(app as NestExpressApplication, env);
   await app.listen(0);
   const base = `${await app.getUrl()}/api/v1`.replace('[::1]', 'localhost');
-  return { app, base, live, liveState, resultsService };
+  return { app, base, live, liveState, resultsService, bodies };
 }
 
 describe('CDN-ready live endpoints (HTTP)', () => {
@@ -82,6 +86,7 @@ describe('CDN-ready live endpoints (HTTP)', () => {
   beforeEach(() => {
     ctx.live.version = 100;
     ctx.live.status = 'Live';
+    ctx.bodies.clear();
     jest.clearAllMocks();
   });
 
@@ -168,6 +173,51 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect(body.data.results).toHaveLength(1);
     expect(Object.keys(body.data).sort()).toEqual(['results', 'summary', 'version', 'voteShare']);
     expect(ctx.resultsService.getSnapshot).toHaveBeenCalledWith(EID, 100);
+  });
+
+  /** Raw HTTP GET (no automatic decompression), to see exactly what the CDN receives. */
+  function raw(path: string, headers: Record<string, string> = {}): Promise<{ status: number; headers: Record<string, any>; body: Buffer }> {
+    return new Promise((resolve, reject) => {
+      const u = new URL(`${ctx.base}${path}`);
+      httpRequest({ hostname: u.hostname, port: u.port, path: u.pathname + u.search, headers }, (res) => {
+        const chunks: Buffer[] = [];
+        res.on('data', (c) => chunks.push(c));
+        res.on('end', () => resolve({ status: res.statusCode ?? 0, headers: res.headers, body: Buffer.concat(chunks) }));
+      }).on('error', reject).end();
+    });
+  }
+
+  it('results?v=<current>: the gzipped body is built once per version and replayed byte-identical (same ETag, 304s)', async () => {
+    const { gunzipSync } = require('zlib');
+    const a = await raw(`/elections/${EID}/results?v=100`, { 'Accept-Encoding': 'gzip, br' });
+    const b = await raw(`/elections/${EID}/results?v=100`, { 'Accept-Encoding': 'gzip' });
+    expect(ctx.resultsService.getSnapshot).toHaveBeenCalledTimes(1);
+    for (const r of [a, b]) {
+      expect(r.status).toBe(200);
+      expect(r.headers['content-encoding']).toBe('gzip');
+      expect(r.headers['vary']).toMatch(/Accept-Encoding/i);
+      expect(r.headers['content-type']).toBe('application/json; charset=utf-8');
+      expect(r.headers['cache-control']).toBe(CACHE_CONTROL.IMMUTABLE);
+      expect(r.headers['access-control-allow-origin']).toBe('*');
+    }
+    expect(a.body.equals(b.body)).toBe(true);
+    expect(a.headers['etag']).toBe(b.headers['etag']);
+    const body = JSON.parse(gunzipSync(a.body).toString('utf8'));
+    expect(body).toEqual({ success: true, data: { version: 100, results: expect.any(Array), summary: [], voteShare: [] } });
+    const plain = await raw(`/elections/${EID}/results?v=100`, { 'Accept-Encoding': 'identity' });
+    expect(plain.headers['content-encoding']).toBeUndefined();
+    expect(JSON.parse(plain.body.toString('utf8'))).toEqual(body);
+    expect(plain.headers['etag']).not.toBe(a.headers['etag']);
+    const notModified = await raw(`/elections/${EID}/results?v=100`, { 'Accept-Encoding': 'gzip', 'If-None-Match': a.headers['etag'] });
+    expect(notModified.status).toBe(304);
+    expect(ctx.resultsService.getSnapshot).toHaveBeenCalledTimes(1);
+  });
+
+  it('a snapshot that moved on is not kept: the next request for v loads again', async () => {
+    ctx.resultsService.getSnapshot.mockImplementationOnce(async () => ({ version: 101, results: [], summary: [], voteShare: [] }));
+    expect((await get(`/elections/${EID}/results?v=100`)).headers.get('cache-control')).toBe('no-store');
+    expect((await get(`/elections/${EID}/results?v=100`)).headers.get('cache-control')).toBe(CACHE_CONTROL.IMMUTABLE);
+    expect(ctx.resultsService.getSnapshot).toHaveBeenCalledTimes(2);
   });
 
   it('results?v=<older> → short-cached 302 to the current version, never old data', async () => {

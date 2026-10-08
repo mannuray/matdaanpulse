@@ -14,6 +14,7 @@ import { LiveStateService } from '../results/live-state.service';
 import { parseManifest } from '../../common/manifest';
 import { SkipThrottle } from '@nestjs/throttler';
 import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
+import { SnapshotBodyCache, sendSnapshotBody } from '../results/snapshot-body-cache';
 
 @Controller('elections')
 @CacheControl(CACHE_CONTROL.PUBLIC)
@@ -24,6 +25,7 @@ export class ElectionsController {
     private readonly constituenciesService: ConstituenciesService,
     private readonly liveState: LiveStateService,
     private readonly seatAnalysis: SeatAnalysisService,
+    private readonly snapshotBodies: SnapshotBodyCache,
   ) {}
 
   /**
@@ -97,11 +99,24 @@ export class ElectionsController {
       res.redirect(302, `${path}?v=${version}`);
       return;
     }
-    // Read consistently (version + rows in one transaction). Immutable only when the
+    // v = current. A version's body never changes: replay the serialized + gzipped one when this process has it.
+    const key = `${id}:${query.v}`;
+    const cached = this.snapshotBodies.get(key);
+    if (cached) {
+      applyCacheControl(req, res, CACHE_CONTROL.IMMUTABLE);
+      await sendSnapshotBody(req, res, cached);
+      return;
+    }
+    // Read consistently (version + rows in one transaction). Immutable (and kept) only when the
     // snapshot really is version v; otherwise (the data moved on since the memo) no-store.
     const snapshot = await this.resultsService.getSnapshot(id, version);
-    applyCacheControl(req, res, snapshot.version === query.v ? CACHE_CONTROL.IMMUTABLE : CACHE_CONTROL.NO_STORE);
-    res.json(successEnvelope(snapshot));
+    if (snapshot.version !== query.v) {
+      applyCacheControl(req, res, CACHE_CONTROL.NO_STORE);
+      res.json(successEnvelope(snapshot));
+      return;
+    }
+    applyCacheControl(req, res, CACHE_CONTROL.IMMUTABLE);
+    await sendSnapshotBody(req, res, await this.snapshotBodies.put(key, successEnvelope(snapshot)));
   }
 
   @Get(':id/alliances')
