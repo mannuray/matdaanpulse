@@ -37,3 +37,23 @@ describe('id-array caps fit the 100 kb body limit (review M8)', () => {
     expect(JSON.stringify({ ids: Array(2000).fill(uuid) }).length).toBeLessThan(100 * 1024);
   });
 });
+
+import { LoginDto, RegisterDto } from '../../modules/auth/dto/auth.dto';
+import { CreateUserDto, UpdateUserDto } from '../../modules/admin/dto/user.dto';
+
+describe("password fields stop at bcrypt's 72-byte limit (U7)", () => {
+  const base: Record<string, Record<string, unknown>> = {
+    LoginDto: { email: 'a@b.co' },
+    RegisterDto: { email: 'a@b.co', name: 'A' },
+    CreateUserDto: { email: 'a@b.co', name: 'A', role: 'EDITOR' },
+    UpdateUserDto: {},
+  };
+  const dtos: Record<string, unknown> = { LoginDto, RegisterDto, CreateUserDto, UpdateUserDto };
+  it.each(Object.keys(dtos))('%s accepts 72 chars and rejects 73 chars or more than 72 bytes', async (name) => {
+    const dto = dtos[name];
+    await expect(body(dto, { ...base[name], password: 'a'.repeat(72) })).resolves.toBeDefined();
+    await expect(body(dto, { ...base[name], password: 'a'.repeat(73) })).rejects.toBeInstanceOf(BadRequestException);
+    // 30 three-byte characters = 90 bytes: bcrypt would silently ignore the tail.
+    await expect(body(dto, { ...base[name], password: 'अ'.repeat(30) })).rejects.toBeInstanceOf(BadRequestException);
+  });
+});

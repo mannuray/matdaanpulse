@@ -471,6 +471,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` Â
 
 ### Security hardening (2026-10-08)
 - [x] JWT pinned to HS256 (signing, `JwtService.verify`, passport strategy); startup fails when `JWT_SECRET` is shorter than 32 chars (except `NODE_ENV=test`)
+- [x] Password fields capped at 72 characters and 72 UTF-8 bytes (bcrypt ignores the rest): login, register, admin user create/update, `create-admin`
 
 ### Live Toast Notifications
 - [x] New component `LiveToast` (`frontend/src/components/atoms/LiveToast.tsx`)
