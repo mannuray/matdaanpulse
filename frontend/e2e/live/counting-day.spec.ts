@@ -6,7 +6,7 @@
 import { execSync } from 'node:child_process';
 import { test, expect, type Page } from '@playwright/test';
 import { fileEnv, SCRAPER, SIM } from './env';
-import { adminSeats, advanceTo, correct, holds, liveState, mockReset, releaseHold, setStatus, shot, snapshot, waitForViewer, type Snapshot } from './sim';
+import { adminSeats, advanceTo, correct, holds, liveState, mockPartywise, mockReset, releaseHold, setStatus, shot, snapshot, tallyMismatch, waitForViewer, type Snapshot } from './sim';
 import { baseline, leadersOf, liveOf } from './oracle';
 
 test.describe.configure({ mode: 'serial' });
@@ -177,6 +177,14 @@ test('counting day, desktop', async ({ page, request }) => {
       const n = (p.won ?? 0) + (p.leading ?? 0);
       await expect(page.getByRole('button', { name: new RegExp(`^${p.party_id} .* ${n}$`) }).first(), `C4: standings ${p.party_id} = ${n}`).toBeVisible();
     }
+    // The source's party-wise tally (mock ECI page) agrees with ours: same totals, and the worker's tally check is clean.
+    const ours = new Map<string, number>();
+    for (const l of leadersOf(snap).values()) ours.set(`${l.won ? 'won' : 'leading'}`, (ours.get(l.won ? 'won' : 'leading') ?? 0) + 1);
+    const theirs = await mockPartywise();
+    expect(theirs.reduce((n, r) => n + r.won, 0), 'C4: mock party-wise won total vs snapshot').toBe(ours.get('won') ?? 0);
+    expect(theirs.reduce((n, r) => n + r.leading, 0), 'C4: mock party-wise leading total vs snapshot').toBe(ours.get('leading') ?? 0);
+    await expect.poll(() => tallyMismatch(request), { message: 'C4: the worker\'s tally check reports no mismatch', timeout: 45_000, intervals: [3000] }).toBeNull();
+
     // Key leaders follow the count: a leader whose seat is counting or declared is not "Pending".
     const leader = page.getByRole('button', { name: /^Samrat Choudhary · / }).first();
     await expect(leader, 'C4: Samrat Choudhary (Tarapur) shows a live status, not Pending').toHaveAccessibleName(/ · (Leading|Trailing|Won|Lost)$/);

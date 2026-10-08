@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useSources } from '../sources/DashboardSourcesProvider';
+import { useSources, useLivePulseState } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { intentFor } from '../store/hoverIntent';
 import { deriveStandingRows, type StandingRow } from '../../model/derive/standings';
@@ -20,6 +20,7 @@ export interface StandingsVM {
 
 export function useStandingsVM(): StandingsVM {
   const src = useSources();
+  const pulse = useLivePulseState();
   const { state, dispatch } = useDashboardStore();
   const alliances = useMemo(() => src.data.manifestData?.alliances ?? [], [src.data.manifestData]);
   const rows = useMemo(() => deriveStandingRows(src.data.mapPartyList, src.votePct, alliances), [src.data.mapPartyList, src.votePct, alliances]);
@@ -27,7 +28,7 @@ export function useStandingsVM(): StandingsVM {
   return {
     rows,
     allRows,
-    pulse: src.recentSeats.size > 0,
+    pulse: pulse.recentSeats.size > 0,
     lockedId: state.locked?.chipId.startsWith('party:') ? state.locked.chipId.slice(6) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'standings' }),
     onHoverParty: id => intentFor(dispatch)(id ? { parties: [id], seats: [] } : null),

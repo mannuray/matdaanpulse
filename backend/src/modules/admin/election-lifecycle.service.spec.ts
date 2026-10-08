@@ -8,7 +8,7 @@ function make(status: string) {
     update: jest.fn(async (_id: string, b: any) => { calls.push(`status:${b.status}`); return { id: 'e', status: b.status }; }),
   };
   const analysis: any = { compute: jest.fn(async () => { calls.push('compute'); }), computeBaseline: jest.fn(async () => { calls.push('baseline'); }) };
-  const results: any = { purgeElectionCache: jest.fn(async () => { calls.push('purge'); }) };
+  const results: any = { purgeElection: jest.fn(async () => { calls.push('purge'); }) };
   const liveState: any = { invalidate: jest.fn(() => calls.push('invalidate')) };
   const audit: any = { log: jest.fn(async () => undefined) };
   return { svc: new ElectionLifecycleService(elections, analysis, results, liveState, audit), elections, analysis, audit, calls };

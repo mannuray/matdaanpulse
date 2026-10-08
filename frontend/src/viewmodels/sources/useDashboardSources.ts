@@ -1,6 +1,6 @@
 import { majorityOf } from '../../model/derive/majority';
 import { usePartyComparer } from '../data/usePartyComparer';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useDashboardData } from '../data/useDashboardData';
 import { useHistoryAnalysis } from '../data/useHistoryAnalysis';
 import { useHistoricalResults } from '../data/useHistoricalResults';
@@ -14,13 +14,10 @@ import { useLocalStorage } from '../data/useLocalStorage';
 import { usePartyMeta } from '../data/usePartyMeta';
 import type { CustomWatch } from '../../model/derive/leaders';
 import type { PartyMeta } from '../../model/derive/partyMeta';
-import { appendTicker, type TickerEvent } from '../../model/live/ticker';
-import { liveStep, type LiveStepState, type PulseKind } from '../../model/live/pulse';
 import type { Election, SwingEntry, DominanceEntry, IncumbencyEntry, PartySwitchEntry, MarginTrendPoint, PartyTrendPoint } from '../../model/types';
 import type { LayerId } from '../../model/types/dashboard';
 import type { DashboardViewModel } from '../data/useDashboardData';
 
-const RECENT_CHANGE_MS = 3000;
 const EMPTY_YEARS: number[] = [];
 const EMPTY_WATCH: CustomWatch[] = [];
 const EMPTY_MAPS: { swing: Map<string, SwingEntry>; dominance: Map<string, DominanceEntry>; incumbency: IncumbencyEntry[]; partySwitches: PartySwitchEntry[] } = { swing: new Map(), dominance: new Map(), incumbency: [], partySwitches: [] };
@@ -41,9 +38,6 @@ export interface DashboardSources {
   /** null: no majority line (part of a larger assembly). */
   majority: number | null;
   votePct: Map<string, number>;
-  ticker: TickerEvent[];
-  /** Seats that changed in the last few seconds, with the change kind (map pulse colour). */
-  recentSeats: Map<string, PulseKind>;
   /** Live election: the last poll succeeded. */
   liveConnected: boolean;
   availableLayers: LayerId[];
@@ -63,7 +57,7 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const data = useDashboardData(pageElection);
   const { setLiveConnected } = useElection();
   const partyMeta = usePartyMeta();
-  const { manifestData, results, mapRegions, voteShare, liveConnected, liveStatus, liveVersion } = data;
+  const { manifestData, results, mapRegions, voteShare, liveConnected, liveStatus } = data;
   // The election as the tiles should see it: its status follows /live (Upcoming → Live → Finalized
   // without a reload).
   const election = useMemo(
@@ -92,39 +86,6 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const majority = majorityOf(manifestData, totalSeats);
   const votePct = useMemo(() => new Map(voteShare.map(v => [v.party_id, Number(v.percentage)])), [voteShare]);
 
-  // Live: ticker + recent-change pulses.
-  const [ticker, setTicker] = useState<TickerEvent[]>([]);
-  const [recentSeats, setRecentSeats] = useState<Map<string, PulseKind>>(() => new Map());
-  const timers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
-  useEffect(() => {
-    const t = timers.current;
-    return () => { t.forEach(clearTimeout); t.clear(); };
-  }, []);
-  const markRecent = useCallback((kinds: Map<string, PulseKind>) => {
-    if (kinds.size === 0) return;
-    setRecentSeats(prev => new Map([...prev, ...kinds]));
-    for (const id of kinds.keys()) {
-      clearTimeout(timers.current.get(id));
-      timers.current.set(id, setTimeout(() => {
-        timers.current.delete(id);
-        setRecentSeats(prev => { const n = new Map(prev); n.delete(id); return n; });
-      }, RECENT_CHANGE_MS));
-    }
-  }, []);
-  // Each new live snapshot is diffed against the previous snapshot of the same election:
-  // seats whose leader changed feed the ticker and pulse on the map. The first snapshot
-  // (and the first after switching elections) is the baseline, not news. Snapshots only
-  // move forward (the poller drops older versions), so events are never replayed backwards.
-  const liveState = useRef<LiveStepState | null>(null);
-  useEffect(() => {
-    if (liveVersion === null) { liveState.current = null; return; }
-    const upsets = new Map([...(liveAnalysis?.seats.values() ?? [])].filter(s => s.upsets.length).map(s => [s.const_id, s.upsets]));
-    const step = liveStep(liveState.current, { electionId: election.id, version: liveVersion, results, upsets });
-    liveState.current = step.state;
-    if (step.kinds.size === 0) return;
-    markRecent(step.kinds);
-    setTicker(p => appendTicker(p, step.changes, Date.now(), step.ups));
-  }, [results, liveVersion, election.id, markRecent, liveAnalysis]);
   useEffect(() => { setLiveConnected(liveConnected); }, [liveConnected, setLiveConnected]);
   // Leaving the dashboard: the legacy header must not keep showing a stale "connected".
   useEffect(() => () => setLiveConnected(false), [setLiveConnected]);
@@ -150,9 +111,11 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
     setStored(prev => (prev || []).filter(w => w.const_id !== constId));
   }, [setStored]);
 
-  return {
+  // One object per data change (the live pulse lives in its own context): tile VMs memoised on it skip their work between polls.
+  return useMemo(() => ({
     election, data, swing, dominance, incumbency, partySwitches, marginTrend: ha.marginTrend, partyTrend: ha.partyTrend, historyPartyIds, prevYear,
-    totalSeats, majority, votePct, ticker, recentSeats, liveConnected, availableLayers, partyMeta, liveAnalysis, baselineSeats,
+    totalSeats, majority, votePct, liveConnected, availableLayers, partyMeta, liveAnalysis, baselineSeats,
     watchlist, addWatch, removeWatch,
-  };
+  }), [election, data, swing, dominance, incumbency, partySwitches, ha.marginTrend, ha.partyTrend, historyPartyIds, prevYear,
+    totalSeats, majority, votePct, liveConnected, availableLayers, partyMeta, liveAnalysis, baselineSeats, watchlist, addWatch, removeWatch]);
 }

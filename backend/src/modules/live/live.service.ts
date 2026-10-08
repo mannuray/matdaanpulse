@@ -1,4 +1,5 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { electionKeys } from '../redis/election-cache.service';
 import { Observable, map, filter } from 'rxjs';
 import { RedisService } from '../redis/redis.service';
 import { MetricsService } from '../metrics/metrics.service';
@@ -31,7 +32,7 @@ export class LiveService extends LivePublisher implements OnModuleInit {
   }
 
   private channelFor(electionId: string): string {
-    return `election:${electionId}:events`;
+    return electionKeys.events(electionId);
   }
 
   /** Never throws (RedisService.publish logs and swallows failures). */

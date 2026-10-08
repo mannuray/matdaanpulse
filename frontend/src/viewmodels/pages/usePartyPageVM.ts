@@ -81,11 +81,9 @@ export function usePartyPageVM(id: string): PartyPageVM {
   const party = useApi(() => getParty(id).catch((e): Missing => { if (e instanceof ApiError && e.status === 404) return { id, notFound: true }; throw e; }), [id], { key: `party_${id}` });
   const record = useApi(() => getPartyRecord(id, wanted ?? undefined), [id, wanted], { key: `party_record_${id}_${wanted ?? ''}` });
 
-  const mineParty = party.data && party.data.id === id ? party.data : null;
-  // useApi keeps the previous payload while the next loads: use it only if it answers this party and this view
-  // (a state view needs that state's extras; the backend leaves them out for a state the party never contested).
-  const fits = (d: PartyRecord) => d.party_id === id && (wanted ? d.state?.code === wanted || !d.elections.some(e => e.state_code === wanted) : !d.state);
-  const rec: PartyRecord | null = record.data && fits(record.data) ? record.data : null;
+  const mineParty = party.isStale ? null : party.data;
+  // useApi keeps the previous payload while the next loads (isStale): never show it as this party's or this view's.
+  const rec: PartyRecord | null = record.isStale ? null : record.data;
   const latest = useMemo(() => (rec ? latestByState(rec) : []), [rec]);
 
   const contestedHere = !!wanted && latest.some(r => r.state_code === wanted);

@@ -23,6 +23,11 @@ function getDeduplicatedPromise<T>(key: string, fetcher: () => Promise<T>): Prom
 
 interface UseApiResult<T> {
   data: T | null;
+  /**
+   * True while `data` belongs to the previous inputs (deps changed, this request has not answered yet): the old data
+   * stays visible meanwhile, so check this before treating it as the answer to the current inputs.
+   */
+  isStale: boolean;
   loading: boolean;
   error: string | null;
   refetch: () => void;
@@ -38,6 +43,8 @@ export function useApi<T>(
   options: { key?: string } = {}
 ): UseApiResult<T> {
   const [data, setData] = useState<T | null>(null);
+  // The fetch (one per deps) whose answer `data` is.
+  const [dataFor, setDataFor] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
@@ -59,6 +66,7 @@ export function useApi<T>(
       .then((result) => {
         if (requestIdRef.current === id) {
           setData(result);
+          setDataFor(() => doFetchRef.current);
         }
       })
       .catch((e) => {
@@ -74,9 +82,12 @@ export function useApi<T>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
+  const doFetchRef = useRef(doFetch);
+  doFetchRef.current = doFetch;
+
   useEffect(() => {
     doFetch();
   }, [doFetch]);
 
-  return { data, loading, error, refetch: doFetch };
+  return { data, isStale: data !== null && dataFor !== doFetch, loading, error, refetch: doFetch };
 }

@@ -5,7 +5,7 @@ describe('ResultChangeNotifier.afterCommit', () => {
 
   function make() {
     const order: string[] = [];
-    const results = { purgeElectionCache: jest.fn(async () => { order.push('purge'); return true; }) };
+    const results = { purgeResults: jest.fn(async () => { order.push('purge'); return true; }) };
     const live = { publish: jest.fn(async () => { order.push('publish'); }) };
     const metrics = {
       resultOverrides: { add: jest.fn(() => { order.push('metrics'); }) },
@@ -33,7 +33,7 @@ describe('ResultChangeNotifier.afterCommit', () => {
   it('never throws and keeps going when metrics, purge or publish fail', async () => {
     const { notifier, order, results, live, metrics } = make();
     metrics.resultOverrides.add.mockImplementation(() => { throw new Error('otel'); });
-    results.purgeElectionCache.mockRejectedValue(new Error('redis'));
+    results.purgeResults.mockRejectedValue(new Error('redis'));
     live.publish.mockRejectedValue(new Error('redis'));
     await expect(notifier.afterCommit('e1', [row], { kind: 'batch', overrideCount: 1, status: 'bulk' })).resolves.toBeUndefined();
     expect(live.publish).toHaveBeenCalled();
@@ -42,7 +42,7 @@ describe('ResultChangeNotifier.afterCommit', () => {
 
   it('a failed purge does not stop the publish', async () => {
     const { notifier, results, live } = make();
-    results.purgeElectionCache.mockRejectedValue(new Error('redis'));
+    results.purgeResults.mockRejectedValue(new Error('redis'));
     await notifier.afterCommit('e1', [row], { kind: 'batch', overrideCount: 1, status: 'bulk' });
     expect(live.publish).toHaveBeenCalledTimes(1);
   });
@@ -62,7 +62,7 @@ describe('ResultChangeNotifier.afterCommit', () => {
     await expect(
       notifier.afterCommit('e1', [row], { kind: 'single', overrideCount: 1, status: 'x', skippedMissingParty: { resultId: 'r1' } }),
     ).resolves.toBeUndefined();
-    expect(results.purgeElectionCache).toHaveBeenCalled(); // a failed memo invalidation does not skip the purge
+    expect(results.purgeResults).toHaveBeenCalled(); // a failed memo invalidation does not skip the purge
   });
 
   it('a change that is not an override (no overrideCount) skips the override counter but still invalidates, purges and publishes', async () => {

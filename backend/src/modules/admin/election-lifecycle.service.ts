@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable, Logger } from '@nestjs/common';
 import { ElectionsService } from '../elections/elections.service';
 import { SeatAnalysisService } from '../constituencies/seat-analysis.service';
-import { ResultsService } from '../results/results.service';
+import { ElectionCacheService } from '../redis/election-cache.service';
 import { LiveStateService } from '../results/live-state.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
 
@@ -21,7 +21,7 @@ export class ElectionLifecycleService {
   constructor(
     private readonly elections: ElectionsService,
     private readonly seatAnalysis: SeatAnalysisService,
-    private readonly results: ResultsService,
+    private readonly electionCache: ElectionCacheService,
     private readonly liveState: LiveStateService,
     private readonly audit: AuditLogService,
   ) {}
@@ -42,7 +42,7 @@ export class ElectionLifecycleService {
       : { userId: actor.id ?? null, action: 'ELECTION_STATUS', entityType: 'election', entityId: id, oldValue: { status: from }, newValue: { status: to } });
     // Status is part of GET /elections/:id/live: show the change at once (the version does not move).
     this.liveState.invalidate(id);
-    await this.results.purgeElectionCache(id);
+    await this.electionCache.purgeElection(id);
     return updated;
   }
 

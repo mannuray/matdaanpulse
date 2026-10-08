@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useSources } from '../sources/DashboardSourcesProvider';
+import { useSources, useLivePulseState } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { deriveScoreboard, type Scoreboard, type ScoreBloc } from '../../model/derive/scoreboard';
 import { intentFor } from '../store/hoverIntent';
@@ -30,6 +30,7 @@ export interface ScoreboardVM extends Omit<Scoreboard, 'blocs'> {
 
 export function useScoreboardVM(): ScoreboardVM {
   const src = useSources();
+  const pulse = useLivePulseState();
   const { state, dispatch } = useDashboardStore();
   const { theme } = useTheme();
   const alliances = useMemo(() => src.data.manifestData?.alliances ?? [], [src.data.manifestData]);
@@ -47,7 +48,7 @@ export function useScoreboardVM(): ScoreboardVM {
     ...board,
     blocs: board.blocs.map(b => ({ ...b, label: shortLabel(b), textColor: forTheme(b.color, theme, 'text') })),
     status,
-    pulse: src.recentSeats.size > 0,
+    pulse: pulse.recentSeats.size > 0,
     breakdown,
     lockedId: state.locked?.chipId.startsWith('bloc:') ? state.locked.chipId.slice(5) : null,
     onFocus: () => dispatch({ type: 'focus', tile: 'scoreboard' }),

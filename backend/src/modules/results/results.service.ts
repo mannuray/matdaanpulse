@@ -1,4 +1,5 @@
 import { ElectionNotFoundException } from '../../common/exceptions';
+import { electionKeys } from '../redis/election-cache.service';
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -21,12 +22,12 @@ export class ResultsService {
 
   /**
    * Results-derived cache keys carry the election's live version, so any results
-   * write — including direct SQL that never calls purgeElectionCache — moves
+   * write — including direct SQL that never purges the cache — moves
    * readers to a fresh key (the DB trigger bumps the version).
    */
   private async versionedKey(id: string, name: string): Promise<string> {
     const { version } = await this.liveState.get(id);
-    return `election:${id}:${name}:v${version}`;
+    return electionKeys.versioned(id, name, version);
   }
 
   async getElectionSummary(id: string) {
@@ -156,7 +157,7 @@ export class ResultsService {
    */
   async getSnapshot(id: string, expectedVersion: number): Promise<ResultsSnapshot> {
     try {
-      return await this.cache.getOrSet(`election:${id}:snapshot:v${expectedVersion}`, CACHE_TTL.RESULTS_SNAPSHOT, async () => {
+      return await this.cache.getOrSet(electionKeys.snapshot(id, expectedVersion), CACHE_TTL.RESULTS_SNAPSHOT, async () => {
         const snapshot = await this.loadSnapshot(id);
         if (snapshot.version !== expectedVersion) throw new VersionMoved(snapshot);
         return snapshot;
@@ -373,23 +374,7 @@ export class ResultsService {
   }
 
   /** Drop every cached view of an election. Never throws (a Redis outage is logged). */
-  /**
-   * Drops the election's cached derived data. The content-addressed snapshot keys
-   * (`…:snapshot:v<n>`) are deliberately kept: they never change meaning, and a
-   * wildcard purge right after a commit could delete the snapshot a fast reader
-   * had just cached for the new version (one extra DB load per override). Old
-   * snapshots fall away with their TTL.
-   */
-  async purgeElectionCache(electionId: string): Promise<boolean> {
-    const base = `election:${electionId}`;
-    const outcomes = await Promise.all([
-      this.cache.delByPattern(`${base}:summary:*`),
-      this.cache.delByPattern(`${base}:vote-share:*`),
-      this.cache.delByPattern(`${base}:full-results:*`),
-      this.cache.del(`${base}:public-analysis`),
-    ]);
-    return outcomes.every(Boolean);
-  }
+
 }
 
 /** A seat's counting trail in a snapshot: points oldest → newest (round, leader party, margin, votes counted). */

@@ -115,3 +115,17 @@ export async function shot(page: Page, checkpoint: string, viewport: string): Pr
   // animations: 'disabled' finishes CSS transitions (e.g. colours fading after a theme switch) before the shot.
   await page.screenshot({ path: join(ARTIFACTS, `${checkpoint}-${viewport}.png`), animations: 'disabled' });
 }
+
+/** The admin ingest status: per shard, the latest tally mismatch (null when the source agrees). */
+export async function tallyMismatch(request: APIRequestContext, shard = 'rest'): Promise<unknown[] | null> {
+  const res = await request.get(`${API}/admin/elections/${SIM}/ingest`, { headers: await auth() });
+  expect(res.ok(), `GET ingest status HTTP ${res.status()}`).toBe(true);
+  const body = (await res.json()) as { data: { shards: { name: string; tally_mismatch: unknown[] | null }[] } };
+  return body.data.shards.find(s => s.name === shard)?.tally_mismatch ?? null;
+}
+
+/** The mock ECI's party-wise page as rows (party name, won, leading). */
+export async function mockPartywise(): Promise<{ party: string; won: number; leading: number }[]> {
+  const html = await (await fetch(`${MOCK}/partywiseresult-S04.htm`)).text();
+  return [...html.matchAll(/<tr><td>([^<]+)<\/td><td>(\d+)<\/td><td>(\d+)<\/td>/g)].map(m => ({ party: m[1].replace(/&amp;/g, '&'), won: Number(m[2]), leading: Number(m[3]) }));
+}

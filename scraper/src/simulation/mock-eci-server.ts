@@ -15,6 +15,7 @@ import {
   DB_CONFIG,
   PARTY_ID_TO_NAME,
 } from './config';
+import { partywiseRows, renderPartywise } from './mock-partywise';
 
 // --- Types ---
 
@@ -382,6 +383,19 @@ async function main() {
       );
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(html);
+      return;
+    }
+
+    // Party-wise tally: /partywiseresult-S04.htm (seats won / leading per party at the current round)
+    if (url.pathname === '/partywiseresult-S04.htm') {
+      const seatsNow = constituencies.map(c => {
+        const startR = constStartRound.get(c.constNo) || 1;
+        const snaps = allSnapshots.get(c.constNo);
+        if (!snaps || currentRound < startR) return null;
+        return snaps[Math.min(currentRound - startR + 1, snaps.length) - 1];
+      });
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(renderPartywise(partywiseRows(seatsNow)));
       return;
     }
 
