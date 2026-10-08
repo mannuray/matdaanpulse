@@ -786,6 +786,13 @@ first result, and once every seat is declared, the dashboard is the ordinary res
 - [x] `PartyIcon.tsx` simplified: DB `symbol_url` is primary source, hand-drawn SVGs as fallback, no hardcoded `SYMBOL_FILES` set
 - [x] `KeyBattlesTicker` supports `party_id` and `party_symbol_url` for proper icon display
 
+### Live viewer e2e, layer 1 (2026-10-08)
+- [x] `npm run e2e:live` (frontend; own config `playwright.live.config.ts`, kept out of `npm run e2e`): mock ECI + the real worker + Playwright play a counting day and check the dashboard against the backend snapshot of the version on screen (`e2e/live/`; oracle `e2e/live/oracle.ts` = `useLiveAnalysis`' input to `analyseLive`)
+- [x] Checkpoints C0–C6 on desktop (before results → Finalized), a phone pass (390×844) and a light-theme screenshot; screenshots in `frontend/e2e/artifacts/live/` (gitignored)
+- [x] Test hooks: `data-seat` on map seats, `data-chip` on insight chips, `data-live-version` (the snapshot version on screen) on the dashboard
+- [x] Found and fixed on its first runs: the Too close chip clipped off the end of the Overview strip (now first); a countermanded / adjourned seat's dialog showed a "Not started" call; the picker kept a finalized election pinned as Live; `sim:setup` left the manifest's seat ids pointing at the source election (key leaders stayed Pending)
+- Spec `docs/superpowers/specs/2026-10-08-live-e2e-layer1-design.md`; how to run: `docs/LIVE_RUNBOOK.md` §5. Layers 2–5 (network, background tab, restarts, load, admin drills, real ECI adapter): `2026-10-07-live-dashboard-testing-notes.md`
+
 ### Live Election Simulation System
 - [x] Simulation config with shared constants (`scraper/src/simulation/config.ts`)
 - [x] Setup script: clones Bihar 2025 → fictional Bihar 2027 Live election (`scraper/src/simulation/setup.ts`)
