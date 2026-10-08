@@ -110,7 +110,7 @@ export function usePartyPageVM(id: string): PartyPageVM {
       const pres = currentRole(unitOf(r.state_id), 'state_president');
       return {
         code: r.state_code, name: r.state_name, year: r.year, won: r.won, contested: r.contested, seatsTotal: r.seats_total, share: r.share,
-        delta: deltaOf(id, rec.elections, r, rec.lineage, nameOf, rec.family_elections ?? []), spark: sparkline(rec, r.state_id),
+        delta: deltaOf(id, rec.elections, r, rec.lineage, nameOf, rec.family_elections ?? [], rec.state_elections ?? []), spark: sparkline(rec, r.state_id),
         president: pres ? { name: pres.name, personId: pres.personId, photo: pres.photo } : null, href: href(r.state_code),
       };
     }) : [];
@@ -138,7 +138,11 @@ function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUni
   if (!latest) return null;
   const unit = units?.find(u => u.state_id === latest.state_id);
   const flow = rec.state?.code === code ? rec.state.flow : [];
-  const changes = previousComparable(rows, latest) ? {
+  // Seat changes compare with the state's previous election (as the stored analysis does), contested or not;
+  // none when the boundaries changed in between or there is no earlier election.
+  const stateEls = (rec.state_elections ?? []).filter(e => e.state_id === latest.state_id && e.date < latest.date).sort((a, b) => b.date.localeCompare(a.date));
+  const comparable = rec.state_elections ? !!stateEls[0] && stateEls[0].delimitation != null && stateEls[0].delimitation === latest.delimitation : !!previousComparable(rows, latest);
+  const changes = comparable ? {
     held: latest.held, gained: latest.gained, lost: latest.lost,
     gainedFrom: flow.filter(f => f.to === id).map(f => ({ party: f.from, seats: f.seats, split: f.split })),
     lostTo: flow.filter(f => f.from === id).map(f => ({ party: f.to, seats: f.seats, split: f.split })),
@@ -149,7 +153,7 @@ function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUni
   const sections: StateSection[] = ['record', 'map', ...(changes ? ['changes' as const] : []), ...(mlas.length ? ['mlas' as const] : []), ...(regions?.length ? ['regions' as const] : [])];
   return {
     code, name: latest.state_name, electionId: latest.election_id, year: latest.year, won: latest.won, seatsTotal: latest.seats_total, share: latest.share,
-    delta: deltaOf(id, rows, latest, rec.lineage, nameOf, rec.family_elections ?? []),
+    delta: deltaOf(id, rows, latest, rec.lineage, nameOf, rec.family_elections ?? [], rec.state_elections ?? []),
     recognition: unit?.eci_recognition ?? null, office: unit?.office ?? null, website: unit?.website ?? null,
     president: currentRole(unit, 'state_president'), leader: currentRole(unit, 'legislature_leader'),
     pastPresidents: (unit?.roles ?? []).filter(r => r.role === 'state_president' && r.to_date != null).map(r => ({ name: r.person_name, from: r.from_date, to: r.to_date })),

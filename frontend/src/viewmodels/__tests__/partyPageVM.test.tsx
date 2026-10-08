@@ -137,3 +137,16 @@ describe('usePartyPageVM, switching views', () => {
     expect(result.current.stateView).toBeNull();
   });
 });
+
+describe('usePartyPageVM, skipped elections', () => {
+  it('the seat-changes card follows the state\'s previous election, even one the party skipped', async () => {
+    api.getPartyRecord.mockResolvedValue({ party_id: 'BJP', lineage: [],
+      elections: [{ ...el('a', 9, 'JH', 'Jharkhand', 2024, 21), gained: 21 }, el('c', 9, 'JH', 'Jharkhand', 2014, 37)],
+      state_elections: [{ election_id: 'a', state_id: 9, year: 2024, date: '2024-12-01', delimitation: '2008' }, { election_id: 'b', state_id: 9, year: 2019, date: '2019-12-01', delimitation: '2008' }, { election_id: 'c', state_id: 9, year: 2014, date: '2014-12-01', delimitation: '2008' }],
+      state: { code: 'JH', election_id: 'a', mlas: [], flow: [], regions: null } });
+    const { result } = hook('BJP', '/party/BJP?state=JH');
+    await waitFor(() => expect(result.current.stateView).not.toBeNull());
+    expect(result.current.stateView!.changes).toMatchObject({ gained: 21 });
+    expect(result.current.stateView!.delta).toEqual({ seats: null, share: null, vsLabel: null, notContested: 2019 });
+  });
+});

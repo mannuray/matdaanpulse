@@ -62,6 +62,11 @@ describe('PartyPageView, national', () => {
     renderIt(vm({ recordError: true, states: [], chips: [] }));
     expect(screen.getByRole('button', { name: /retry/i })).toBeTruthy();
   });
+  it('a state whose previous election the party skipped: "not contested in 2017", no change', () => {
+    const v = vm();
+    renderIt(vm({ states: [{ ...v.states[1], delta: { seats: null, share: null, vsLabel: null, notContested: 2017 } }] }));
+    expect(screen.getAllByText(/not contested in 2017/).length).toBeGreaterThan(0);
+  });
   it('missing state note', () => {
     renderIt(vm({ missingState: 'KL' }));
     expect(screen.getByText(/has no results in KL yet/)).toBeTruthy();

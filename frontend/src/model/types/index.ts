@@ -450,6 +450,9 @@ export interface PartyRecordFamilyElection {
   family: { party_id: string; won: number; share: number }[];
 }
 
+/** An election held in one of the party's states (contested or not): what "the previous election" means there. */
+export interface PartyRecordStateElection { election_id: string; state_id: number; year: number; date: string; delimitation: string | null }
+
 export interface PartyRecordMla { person_id: string | null; name: string; photo_url: string | null; const_id: string; const_name: string; margin: number | null }
 
 export interface PartyRecord {
@@ -458,6 +461,8 @@ export interface PartyRecord {
   elections: PartyRecordElection[];
   /** Missing on an older backend. */
   family_elections?: PartyRecordFamilyElection[];
+  /** Missing on an older backend. */
+  state_elections?: PartyRecordStateElection[];
   lineage: LineageEvent[];
   /** With `?state=`: that state's latest election. */
   state?: {

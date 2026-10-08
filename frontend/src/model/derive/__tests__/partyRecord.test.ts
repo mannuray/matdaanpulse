@@ -65,6 +65,17 @@ describe('partyRecord', () => {
     expect(d.share).toBeCloseTo(-0.7, 6);
     expect(d.vsLabel).toBe('LJP 2020');
   });
+  it('the state\'s previous election, not the party\'s last contest: skipped → no change, "not contested in 2017"', () => {
+    const rows = [e('g22', 3, 2022, 2, { share: 6.8 }), e('g12', 3, 2012, 0, { share: 1 })];
+    const stateEls = [2022, 2017, 2012].map(y => ({ election_id: `g${y % 100}`, state_id: 3, year: y, date: `${y}-12-01`, delimitation: '2008' }));
+    expect(deltaOf('AAP', rows, rows[0], [], nameOf, [], stateEls)).toEqual({ seats: null, share: null, vsLabel: null, notContested: 2017 });
+    expect(previousComparable(rows, rows[0], stateEls)).toBeNull();
+  });
+  it('the state\'s previous election, contested: compares with it as before', () => {
+    const rows = [e('a', 9, 2024, 21), e('b', 9, 2019, 25)];
+    const stateEls = [{ election_id: 'a', state_id: 9, year: 2024, date: '2024-12-01', delimitation: '2008' }, { election_id: 'b', state_id: 9, year: 2019, date: '2019-12-01', delimitation: '2008' }];
+    expect(deltaOf('BJP', rows, rows[0], [], nameOf, [], stateEls)).toEqual({ seats: -4, share: 0, vsLabel: null });
+  });
   it('a party with no elections: empty everything, no crash', () => {
     const r = rec([]);
     expect(latestByState(r)).toEqual([]);

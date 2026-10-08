@@ -30,7 +30,7 @@ export function PartyPageView({ vm }: { vm: PartyPageVM }) {
       <div className="shrink-0 text-left md:text-right">
         <p className="text-[11px] uppercase tracking-wider text-muted">{sv.name} · {sv.year}</p>
         <p className="tabular font-display text-3xl font-bold" style={{ color: vm.color }}>{t('pty_seats_of', { won: sv.won, seats: sv.seatsTotal })}</p>
-        <p className="tabular text-xs text-muted">{t('pty_vote_share')} {fmtShare(sv.share)}{sv.delta ? ` (${signed(sv.delta.share, 1)} ${t('pty_pts')})` : ''}</p>
+        <p className="tabular text-xs text-muted">{t('pty_vote_share')} {fmtShare(sv.share)}{sv.delta?.share != null ? ` (${signed(sv.delta.share, 1)} ${t('pty_pts')})` : ''}</p>
       </div>
     );
     return (

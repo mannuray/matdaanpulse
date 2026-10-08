@@ -685,5 +685,6 @@
   "pty_map_none": "लढवली नाही",
   "pty_map_click": "जागेच्या पानासाठी क्लिक करा",
   "pty_map_unavailable": "या निवडणुकीचा नकाशा उपलब्ध नाही",
-  "party_full_page": "पक्षाचे पूर्ण पान"
+  "party_full_page": "पक्षाचे पूर्ण पान",
+  "pty_not_contested_in": "{{year}} मध्ये लढवली नाही"
 }

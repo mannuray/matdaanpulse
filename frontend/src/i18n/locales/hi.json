@@ -685,5 +685,6 @@
   "pty_map_none": "नहीं लड़ी",
   "pty_map_click": "सीट के पेज के लिए क्लिक करें",
   "pty_map_unavailable": "इस चुनाव का नक्शा उपलब्ध नहीं",
-  "party_full_page": "पूरा दल पेज"
+  "party_full_page": "पूरा दल पेज",
+  "pty_not_contested_in": "{{year}} में नहीं लड़ा"
 }
