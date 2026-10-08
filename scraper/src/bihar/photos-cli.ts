@@ -10,20 +10,18 @@ import { mediaStoreFromEnv } from '../media-store';
 import { parseCandidateDetailPage } from '../adapters/eci-vs-adapter';
 import { electionOf, parseState } from './elections';
 import { latestYear, trackOf } from './current-track';
-import { rawDir } from './load';
 import { DB_DIR, loadSeeded } from './seeded';
-import { BIHAR_PHOTOS, emitPhotosSeed, matchPhoto, shrinkPhoto, topCandidates } from './photos';
+import { emitPhotosSeed, matchPhoto, shrinkPhoto, topCandidates } from './photos';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126 Safari/537.36';
 const ST = parseState(process.argv[2] ?? 'BR');
 const track = trackOf(ST);
 const YEAR = latestYear(track);
 const site = electionOf(ST, YEAR).resultsSite!;
-// Bihar keeps its original cache and Blob paths.
-const RAW = ST === 'BR' ? path.resolve(__dirname, '../../data/raw/eci2025') : path.join(rawDir(ST), String(YEAR), 'cand');
+const RAW = track.photosRaw(YEAR);
 const OUT = path.join(track.dir, `photos-${YEAR}.json`);
 const PAGE = (n: number) => `${site.base}candidateswise-${site.eciCode}${n}.htm`;
-const KEY_PATH = (n: number, serial: number) => (ST === 'BR' ? `persons/eci2025/${n}-${serial}.jpg` : `persons/eci${YEAR}/${track.state.slug}-${n}-${serial}.jpg`);
+const KEY_PATH = (n: number, serial: number) => track.photoKey(YEAR, n, serial);
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 interface Entry { constNo: number; serial: number; candidateId: string; name: string; url: string; eciUrl: string; sourceUrl: string }
@@ -115,7 +113,6 @@ const get = async (url: string) => ({ text: async () => (await fetchBody(url)).t
     console.log(`seat ${n}: ${done.filter(e => e.constNo === n).length} photos`);
   }
   save();
-  const opts = ST === 'BR' ? BIHAR_PHOTOS : { seedName: track.photosSeed, label: `${track.state.name} ${YEAR}` };
-  fs.writeFileSync(path.join(DB_DIR, `${track.photosSeed}.sql`), emitPhotosSeed(done.map(e => ({ candidateId: e.candidateId, url: e.url, sourceUrl: e.sourceUrl })), opts) + '\n');
+  fs.writeFileSync(path.join(DB_DIR, `${track.photosSeed}.sql`), emitPhotosSeed(done.map(e => ({ candidateId: e.candidateId, url: e.url, sourceUrl: e.sourceUrl })), track.photosOpts(YEAR)) + '\n');
   console.log(`done: ${done.length} photos, ${unmatched.length} unmatched`);
 })().catch(e => { console.error(e); process.exit(1); });

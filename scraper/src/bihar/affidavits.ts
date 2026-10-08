@@ -5,10 +5,12 @@
 import * as cheerio from 'cheerio';
 import { parseRupeeAmount } from '../adapters/myneta-adapter';
 import { runOnce } from '../seed-run-once';
+import { STATES } from './elections';
 import { normName, similarity } from './names';
 import { q } from './sql';
 
-export const MYNETA_SLUGS: Record<number, string> = { 2010: 'bih2010', 2015: 'bihar2015', 2020: 'bihar2020', 2025: 'Bihar2025' };
+/** Bihar's MyNeta slugs (registry override). */
+export const MYNETA_SLUGS: Record<number, string> = STATES.BR.currentTrack!.myneta;
 export const winnersUrl = (slug: string) => `https://myneta.info/${slug}/index.php?action=show_winners&sort=default`;
 
 export interface WinnerRow { name: string; constituency: string; party: string; criminalCases: number | null; education: string | null; assets: number | null; liabilities: number | null; sourceUrl: string }
