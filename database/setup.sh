@@ -229,5 +229,7 @@ echo "==> Seeds: manifest leader seats (run-once; after every person link, so th
 run seed_manifest_leader_seats_v1.sql
 # Run-once: leaders split across several persons (after the leader seats, which add person ids it may remap)
 run seed_leader_person_merges_v1.sql
+# Run-once: the person-link review queue of GA/MN/PB/UK/UP, decided 2026-10-08
+run seed_links_review_2027_states_v1.sql
 
 echo "==> Done. Create an admin user with: cd backend && npm run create-admin"
