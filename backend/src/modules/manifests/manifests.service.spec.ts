@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 import { ManifestsService } from './manifests.service';
-import { ManifestNoDraftException, ManifestNotFoundException } from '../../common/exceptions';
+import { ElectionNotFoundException, ManifestNoDraftException } from '../../common/exceptions';
 
 /** Minimal in-memory stand-in for prisma.elections covering the fields the service uses. */
 function fakePrisma() {
@@ -45,8 +45,8 @@ describe('ManifestsService (DB-persisted drafts)', () => {
     await expect(svc.publish('e1')).rejects.toBeInstanceOf(ManifestNoDraftException);
   });
 
-  it('throws for an unknown election', async () => {
+  it("an unknown election is ELECTION_2001 (election not found), not a manifest error", async () => {
     const svc = new ManifestsService(fakePrisma() as any);
-    await expect(svc.getManifest('nope')).rejects.toBeInstanceOf(ManifestNotFoundException);
+    await expect(svc.getManifest('nope')).rejects.toBeInstanceOf(ElectionNotFoundException);
   });
 });
