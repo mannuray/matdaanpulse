@@ -679,5 +679,10 @@
   "pty_mlas": "அதன் எம்எல்ஏக்கள்",
   "pty_search_mlas": "{{count}} எம்எல்ஏக்களைத் தேடு",
   "pty_regions": "வலுவான பகுதிகள்",
-  "pty_seats_of": "{{won}} / {{seats}} இடங்கள்"
+  "pty_seats_of": "{{won}} / {{seats}} இடங்கள்",
+  "pty_map_won": "வென்றது",
+  "pty_map_lost": "போட்டி, தோல்வி",
+  "pty_map_none": "போட்டியிடவில்லை",
+  "pty_map_click": "இடத்தின் பக்கத்திற்கு கிளிக் செய்யவும்",
+  "pty_map_unavailable": "இந்தத் தேர்தலுக்கு வரைபடம் இல்லை"
 }

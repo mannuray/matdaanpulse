@@ -679,5 +679,10 @@
   "pty_mlas": "Its MLAs",
   "pty_search_mlas": "Search {{count}} MLAs",
   "pty_regions": "Strongest regions",
-  "pty_seats_of": "{{won}} / {{seats}} seats"
+  "pty_seats_of": "{{won}} / {{seats}} seats",
+  "pty_map_won": "Won",
+  "pty_map_lost": "Contested, lost",
+  "pty_map_none": "Not contested",
+  "pty_map_click": "Click a seat for its page",
+  "pty_map_unavailable": "Map not available for this election"
 }

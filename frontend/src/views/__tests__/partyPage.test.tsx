@@ -19,7 +19,7 @@ const vm = (over: Partial<PartyPageVM> = {}): PartyPageVM => ({
     { code: 'GA', name: 'Goa', year: 2022, won: 20, contested: 40, seatsTotal: 40, share: 33.3, delta: { seats: null, share: 1.2, vsLabel: null }, spark: [20], president: null, href: '/party/BJP?state=GA' },
   ],
   lineage: [{ party_id: 'BJP', predecessor_id: 'BJS', kind: 'rename', effective_date: '1980-04-06', state_id: null, is_successor: true, note: 'Re-formed', source_url: 'https://src' }],
-  noResults: false, stateView: null, recordError: false, retry: vi.fn(), nameOf: id => id, ...over,
+  noResults: false, stateView: null, map: null, recordError: false, retry: vi.fn(), nameOf: id => id, ...over,
 });
 const renderIt = (v: PartyPageVM) => render(<MemoryRouter><PartyPageView vm={v} /></MemoryRouter>);
 

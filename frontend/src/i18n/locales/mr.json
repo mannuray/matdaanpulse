@@ -679,5 +679,10 @@
   "pty_mlas": "त्याचे आमदार",
   "pty_search_mlas": "{{count}} आमदार शोधा",
   "pty_regions": "सर्वात मजबूत प्रदेश",
-  "pty_seats_of": "{{won}} / {{seats}} जागा"
+  "pty_seats_of": "{{won}} / {{seats}} जागा",
+  "pty_map_won": "जिंकली",
+  "pty_map_lost": "लढवली, हरली",
+  "pty_map_none": "लढवली नाही",
+  "pty_map_click": "जागेच्या पानासाठी क्लिक करा",
+  "pty_map_unavailable": "या निवडणुकीचा नकाशा उपलब्ध नाही"
 }

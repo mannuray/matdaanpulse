@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useApi } from '../data/useApi';
 import { usePartyMeta } from '../data/usePartyMeta';
+import { usePartyMap, type PartyMapVM } from './usePartyMap';
 import { getParty } from '../../model/api/geo.service';
 import { getPartyRecord } from '../../model/api/party.service';
 import { ApiError } from '../../model/api/api-client';
@@ -9,6 +10,7 @@ import { deltaOf, headline, latestByState, previousComparable, recordLines, spar
 import type { LineageEvent, PartyDetail, PartyRecord, PartyUnit } from '../../model/types';
 
 export type { Delta, Headline, RecordLine };
+export type { PartyMapVM, PartySeatFill } from './usePartyMap';
 export type { LineageEvent } from '../../model/types';
 
 interface Missing { id: string; notFound: true }
@@ -56,6 +58,8 @@ export interface PartyPageVM {
   lineage: LineageEvent[];
   noResults: boolean;
   stateView: PartyStateView | null;
+  /** The state view's map (null on the national view). */
+  map: PartyMapVM | null;
   recordError: boolean;
   retry(): void;
   nameOf(partyId: string): string;
@@ -80,6 +84,11 @@ export function usePartyPageVM(id: string): PartyPageVM {
   const mineParty = party.data && party.data.id === id ? party.data : null;
   const rec: PartyRecord | null = record.data && record.data.party_id === id ? record.data : null;
   const latest = useMemo(() => (rec ? latestByState(rec) : []), [rec]);
+
+  const contestedHere = !!wanted && latest.some(r => r.state_code === wanted);
+  const mapYears = useMemo(() => (rec && contestedHere ? rec.elections.filter(r => r.state_code === wanted).map(r => ({ electionId: r.election_id, year: r.year })) : []), [rec, contestedHere, wanted]);
+  const partyColor = (mineParty && !('notFound' in mineParty) ? (mineParty as PartyDetail).color : null) || meta.get(id)?.color || 'var(--color-fallback)';
+  const map = usePartyMap(id, partyColor, mapYears);
 
   // A party that contested one state opens on its state view.
   useEffect(() => {
@@ -113,9 +122,10 @@ export function usePartyPageVM(id: string): PartyPageVM {
       missingState: wanted && rec && !contested ? wanted : null,
       chips, headline: headline(rec ?? { party_id: id, elections: [], lineage: [] }), states,
       lineage: rec?.lineage ?? p?.lineage ?? [], noResults: !!rec && rec.elections.length === 0,
+      map,
       stateView: contested && rec ? stateViewOf(id, rec, wanted!, p?.units, nameOf, query, setQuery) : null, recordError: !!record.error && !rec, retry: record.refetch, nameOf,
     };
-  }, [mineParty, party.error, rec, record.error, record.refetch, latest, wanted, id, meta, query]);
+  }, [mineParty, party.error, rec, record.error, record.refetch, latest, wanted, id, meta, query, map]);
 }
 
 function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUnit[] | undefined, nameOf: (pid: string) => string,

@@ -679,5 +679,10 @@
   "pty_mlas": "इसके विधायक",
   "pty_search_mlas": "{{count}} विधायक खोजें",
   "pty_regions": "सबसे मज़बूत क्षेत्र",
-  "pty_seats_of": "{{won}} / {{seats}} सीटें"
+  "pty_seats_of": "{{won}} / {{seats}} सीटें",
+  "pty_map_won": "जीती",
+  "pty_map_lost": "लड़ी, हारी",
+  "pty_map_none": "नहीं लड़ी",
+  "pty_map_click": "सीट के पेज के लिए क्लिक करें",
+  "pty_map_unavailable": "इस चुनाव का नक्शा उपलब्ध नहीं"
 }

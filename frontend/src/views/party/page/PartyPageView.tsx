@@ -13,7 +13,8 @@ import { RecordCard } from './RecordCard';
 import { SeatChangesCard } from './SeatChangesCard';
 import { MlasCard } from './MlasCard';
 import { RegionsCard } from './RegionsCard';
-import { fmtShare, heading, signed, tile } from './ui';
+import { PartyMapCard } from './PartyMapCard';
+import { fmtShare, signed, tile } from './ui';
 
 /** The party page (spec docs/superpowers/specs/2026-10-08-party-page-design.md): national view, or one state's view. */
 export function PartyPageView({ vm }: { vm: PartyPageVM }) {
@@ -43,7 +44,7 @@ export function PartyPageView({ vm }: { vm: PartyPageVM }) {
         <div className="flex flex-col gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
           <div className="max-lg:contents lg:flex lg:min-w-0 lg:flex-col lg:gap-3">
             <div className="max-lg:order-2"><RecordCard sv={sv} color={vm.color} nameOf={vm.nameOf} /></div>
-            <section id="pty-map" className={`${tile} scroll-mt-28 p-4 max-lg:order-3`} aria-label={t('pty_map')}><h2 className={heading}>{t('pty_map')}</h2></section>
+            <div className="max-lg:order-3"><PartyMapCard map={vm.map} color={vm.color} /></div>
             <div className="max-lg:order-5"><MlasCard sv={sv} /></div>
           </div>
           <div className="max-lg:contents lg:flex lg:min-w-0 lg:flex-col lg:gap-3">
