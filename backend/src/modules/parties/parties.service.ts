@@ -7,9 +7,9 @@ import { PartyNotFoundException } from '../../common/exceptions';
 import type { CreatePartyDto, UpdatePartyDto, EciRecognitionFilter } from './dto/party-input.dto';
 
 const ymd = (d: Date | null): string => (d ? d.toISOString().slice(0, 10) : '');
-const toLineageEvent = (r: { party_id: string; predecessor_id: string; kind: string; effective_date: Date; state_id: number | null; is_successor: boolean; note: string | null }) => ({
+export const toLineageEvent = (r: { party_id: string; predecessor_id: string; kind: string; effective_date: Date; state_id: number | null; is_successor: boolean; note: string | null; source_url?: string | null }) => ({
   party_id: r.party_id, predecessor_id: r.predecessor_id, kind: r.kind, effective_date: ymd(r.effective_date),
-  state_id: r.state_id, is_successor: r.is_successor, note: r.note,
+  state_id: r.state_id, is_successor: r.is_successor, note: r.note, source_url: r.source_url ?? null,
 });
 
 @Injectable()
@@ -32,7 +32,7 @@ export class PartiesService {
     });
     if (!party) throw new PartyNotFoundException(id);
     const [units, lineage] = await Promise.all([
-      this.prisma.party_units.findMany({ where: { party_id: id }, include: { states: { select: { name: true } }, roles: true }, orderBy: { state_id: 'asc' } }),
+      this.prisma.party_units.findMany({ where: { party_id: id }, include: { states: { select: { name: true } }, roles: { include: { persons: { select: { photo_url: true } } } } }, orderBy: { state_id: 'asc' } }),
       this.prisma.party_lineage.findMany({ where: { OR: [{ party_id: id }, { predecessor_id: id }] }, orderBy: [{ effective_date: 'asc' }, { id: 'asc' }] }),
     ]);
     return {
@@ -41,7 +41,7 @@ export class PartiesService {
         state_id: u.state_id, state_name: u.states.name, eci_recognition: u.eci_recognition, office: u.office, website: u.website,
         // Current holders (no end date) first, then the most recent terms.
         roles: [...u.roles].sort((a, b) => Number(a.to_date !== null) - Number(b.to_date !== null) || ymd(b.from_date).localeCompare(ymd(a.from_date)))
-          .map(r => ({ role: r.role, person_id: r.person_id, person_name: r.person_name, from_date: r.from_date ? ymd(r.from_date) : null, to_date: r.to_date ? ymd(r.to_date) : null })),
+          .map(r => ({ role: r.role, person_id: r.person_id, person_name: r.person_name, from_date: r.from_date ? ymd(r.from_date) : null, to_date: r.to_date ? ymd(r.to_date) : null, photo_url: r.persons?.photo_url ?? null })),
       })),
       lineage: lineage.map(toLineageEvent),
     };

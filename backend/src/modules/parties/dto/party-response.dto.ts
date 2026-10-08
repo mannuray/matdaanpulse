@@ -20,6 +20,7 @@ export class LineageEventDto {
   @Expose() state_id: number | null;
   @Expose() is_successor: boolean;
   @Expose() note: string | null;
+  @Expose() source_url: string | null;
 }
 
 export class PartyUnitRoleDto {
@@ -28,6 +29,7 @@ export class PartyUnitRoleDto {
   @Expose() person_name: string;
   @Expose() from_date: string | null;
   @Expose() to_date: string | null;
+  @Expose() photo_url: string | null;
 }
 
 /** A party's unit in one state: recognition there, office, leadership terms (current first). */

@@ -62,6 +62,8 @@ export interface LineageEvent {
   state_id: number | null;
   is_successor: boolean;
   note: string | null;
+  /** Where the event is documented. */
+  source_url?: string | null;
 }
 
 export interface PartyUnitRole {
@@ -70,6 +72,8 @@ export interface PartyUnitRole {
   person_name: string;
   from_date: string | null;
   to_date: string | null;
+  /** The holder's photo (from their person record). */
+  photo_url?: string | null;
 }
 
 export interface PartyUnit {
