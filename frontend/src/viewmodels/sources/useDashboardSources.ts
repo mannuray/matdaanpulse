@@ -8,6 +8,7 @@ import { useAnalysis } from '../data/useAnalysis';
 import { useBaseline } from '../data/useBaseline';
 import { useLiveAnalysis } from '../data/useLiveAnalysis';
 import { liveMaps, prevYearOf } from '../../model/derive/liveMaps';
+import { availableLayers as layersFor } from '../../model/derive/layers';
 import type { SeatLive, LiveTally, SeatBaseline } from '../../model/derive/seatAnalysis';
 import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
@@ -90,16 +91,10 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   // Leaving the dashboard: the legacy header must not keep showing a stale "connected".
   useEffect(() => () => setLiveConnected(false), [setLiveConnected]);
 
-  const availableLayers = useMemo((): LayerId[] => {
-    const l: LayerId[] = ['overview', 'battle'];
-    if (swing.size > 0) l.push('swing');
-    if (dominance.size > 0) l.push('history');
-    // Regions: every Vidhan Sabha election (its seats carry regions; the layer shows an empty summary otherwise).
-    if (election.type === 'VS') l.push('regions');
-    l.push('demographics', 'insights');
-    if (election.type === 'LS') l.push('states');
-    return l;
-  }, [swing.size, dominance.size, election.type]);
+  const availableLayers = useMemo(
+    () => layersFor({ electionType: election.type, hasSwing: swing.size > 0, hasHistory: dominance.size > 0 }),
+    [swing.size, dominance.size, election.type],
+  );
 
   // Same storage key as the baseline WatchlistPanel, so users keep their watchlist.
   const [stored, setStored] = useLocalStorage<CustomWatch[]>(`watchlist_${election.id}`, []);
