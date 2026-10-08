@@ -1,5 +1,6 @@
 import { ExecutionContext, SetMetadata } from '@nestjs/common';
-import type { ThrottlerModuleOptions } from '@nestjs/throttler';
+import type { ThrottlerOptions, ThrottlerStorage } from '@nestjs/throttler';
+import { CounterStore, RateLimitCounters, RedisThrottlerStorage } from './rate-limit-counters';
 
 type Env = Record<string, string | undefined>;
 
@@ -46,7 +47,7 @@ function perMinute(raw: string | undefined, fallback: number): number {
  * - auth:     strict limit, applied only to @AuthRateLimited() controllers;
  * - feedback: strict limit, applied only to @FeedbackRateLimited() routes.
  */
-export function buildThrottlerOptions(env: Env): ThrottlerModuleOptions {
+export function buildThrottlerOptions(env: Env): ThrottlerOptions[] {
   return [
     {
       name: 'public',
@@ -66,4 +67,12 @@ export function buildThrottlerOptions(env: Env): ThrottlerModuleOptions {
       skipIf: (context) => !isFeedbackRoute(context),
     },
   ];
+}
+
+/**
+ * The AppModule's throttler options: the three throttlers above, with counts kept in Redis (shared by every
+ * instance) and an in-process fallback while Redis is down (RateLimitCounters).
+ */
+export function buildThrottlerModuleOptions(env: Env, redis: CounterStore): { throttlers: ThrottlerOptions[]; storage: ThrottlerStorage } {
+  return { throttlers: buildThrottlerOptions(env), storage: new RedisThrottlerStorage(new RateLimitCounters(redis)) };
 }

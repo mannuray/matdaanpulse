@@ -6,6 +6,7 @@ import { MetricsService } from '../metrics/metrics.service';
 import { buildRedisConnection } from './redis-options';
 import { RateLimitedLog } from '../../common/util/rate-limited-log';
 import type { KeyValueStore, OwnedLockStore, PubSub, RedisHealth, RedisLifecycle } from './redis.ports';
+import type { CounterStore, ThrottleHit } from '../../common/throttle/rate-limit-counters';
 
 interface ChannelState {
   subject: Subject<string>;
@@ -15,7 +16,7 @@ interface ChannelState {
 const ENV_KEYS = ['REDIS_URL', 'REDIS_HOST', 'REDIS_PORT', 'REDIS_PASSWORD'] as const;
 
 @Injectable()
-export class RedisService implements OnModuleInit, KeyValueStore, PubSub, OwnedLockStore, RedisHealth, RedisLifecycle {
+export class RedisService implements OnModuleInit, KeyValueStore, PubSub, OwnedLockStore, RedisHealth, RedisLifecycle, CounterStore {
   private readonly logger = new Logger(RedisService.name);
   private readonly logGate = new RateLimitedLog(60_000);
   private pub: Redis;
@@ -180,6 +181,46 @@ export class RedisService implements OnModuleInit, KeyValueStore, PubSub, OwnedL
       if ok and parsed.user_id == ARGV[1] then return redis.call('DEL', KEYS[1]) end
       return 0`;
     return (await this.pub.eval(script, 1, key, owner)) === 1;
+  }
+
+  /**
+   * One throttler hit (fixed window). KEYS: hit counter, block flag (one hash tag, so one slot). Returns
+   * [hits, window ms left, block ms left]; while blocked the hit is not counted.
+   */
+  async throttleHit(key: string, ttlMs: number, limit: number, blockMs: number): Promise<ThrottleHit> {
+    const script = `
+      local blocked = redis.call('PTTL', KEYS[2])
+      if blocked > 0 then
+        return { tonumber(redis.call('GET', KEYS[1]) or '0'), math.max(redis.call('PTTL', KEYS[1]), 0), blocked }
+      end
+      local hits = redis.call('INCR', KEYS[1])
+      local ttl = redis.call('PTTL', KEYS[1])
+      if hits == 1 or ttl < 0 then redis.call('PEXPIRE', KEYS[1], ARGV[1]); ttl = tonumber(ARGV[1]) end
+      if hits > tonumber(ARGV[2]) then
+        redis.call('SET', KEYS[2], '1', 'PX', ARGV[3])
+        return { hits, ttl, tonumber(ARGV[3]) }
+      end
+      return { hits, ttl, 0 }`;
+    const [hits, ttl, block] = (await this.pub.eval(script, 2, `${key}:hits`, `${key}:block`, String(ttlMs), String(limit), String(blockMs))) as number[];
+    return { hits: Number(hits), ttlMs: Number(ttl), blockMs: Number(block) };
+  }
+
+  /** +1 on a counter that expires `windowMs` after its first hit; the `extendAt`-th hit resets its expiry to `extendMs`. */
+  async incrCounter(key: string, windowMs: number, extendAt: number, extendMs: number): Promise<number> {
+    const script = `
+      local n = redis.call('INCR', KEYS[1])
+      if n == tonumber(ARGV[2]) then redis.call('PEXPIRE', KEYS[1], ARGV[3])
+      elseif n == 1 or redis.call('PTTL', KEYS[1]) < 0 then redis.call('PEXPIRE', KEYS[1], ARGV[1]) end
+      return n`;
+    return Number(await this.pub.eval(script, 1, key, String(windowMs), String(extendAt), String(extendMs)));
+  }
+
+  async getCounter(key: string): Promise<number> {
+    return Number((await this.pub.get(key)) ?? 0) || 0;
+  }
+
+  async delCounter(key: string): Promise<void> {
+    await this.pub.del(key);
   }
 
   /** Overwrite a key (take-over) and return what was there. */
