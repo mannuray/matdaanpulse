@@ -62,6 +62,47 @@ describe('IngestKeysService', () => {
     await expect(svc.revoke('nope')).rejects.toBeInstanceOf(IngestKeyNotFoundException);
   });
 
+  it('caches a successful lookup for 30 s (no DB hit per request), then reads the DB again', async () => {
+    const { svc, prisma } = make();
+    const { key } = await svc.create('w', null, { electionId: 'e1' });
+    const t0 = Date.now();
+    await svc.verify(key, t0); await svc.verify(key, t0 + 29_000);
+    expect(prisma.ingest_keys.findUnique).toHaveBeenCalledTimes(1);
+    await svc.verify(key, t0 + 31_000);
+    expect(prisma.ingest_keys.findUnique).toHaveBeenCalledTimes(2);
+  });
+
+  it('never caches a failed lookup (an attacker cannot fill the cache)', async () => {
+    const { svc, prisma } = make();
+    await svc.verify('mpk_nope'); await svc.verify('mpk_nope');
+    expect(prisma.ingest_keys.findUnique).toHaveBeenCalledTimes(2);
+  });
+
+  it('a revoke on this instance takes effect at once; another instance sees it within the cache window', async () => {
+    const { svc, prisma, rows } = make();
+    const { key, row } = await svc.create('w', null, { electionId: 'e1' });
+    const other = new IngestKeysService(prisma);
+    const t0 = Date.now();
+    expect(await svc.verify(key, t0)).not.toBeNull();
+    expect(await other.verify(key, t0)).not.toBeNull();
+    await svc.revoke(row.id);
+    expect(await svc.verify(key, t0 + 1)).toBeNull();
+    expect(await other.verify(key, t0 + 1)).not.toBeNull(); // still cached there…
+    expect(await other.verify(key, t0 + 30_001)).toBeNull(); // …for at most 30 s
+    expect(rows[0].revoked_at).toBeTruthy();
+  });
+
+  it('recentlyValid: a key verified in the last 10 minutes (for the failed-check limiter), not an unknown one', async () => {
+    const { svc } = make();
+    const { key } = await svc.create('w', null, { electionId: 'e1' });
+    const t0 = Date.now();
+    expect(svc.recentlyValid(key, t0)).toBe(false);
+    await svc.verify(key, t0);
+    expect(svc.recentlyValid(key, t0 + 9 * 60_000)).toBe(true);
+    expect(svc.recentlyValid(key, t0 + 11 * 60_000)).toBe(false);
+    expect(svc.recentlyValid('mpk_nope', t0)).toBe(false);
+  });
+
   it('touches last_used_at at most once a minute', async () => {
     const { svc, prisma } = make();
     const { key } = await svc.create('w', null, { electionId: 'e1' });

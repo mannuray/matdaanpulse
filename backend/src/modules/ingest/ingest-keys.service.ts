@@ -9,6 +9,10 @@ const sha = (s: string) => createHash('sha256').update(s).digest('hex');
 const pub = ({ id, name, election_id, expires_at, created_at, last_used_at, revoked_at }: any): IngestKeyRow =>
   ({ id, name, election_id: election_id ?? null, expires_at: expires_at ?? null, created_at, last_used_at, revoked_at });
 const TOUCH_MS = 60_000;
+/** A successful lookup is reused for 30 s: a revoke on another instance takes effect within that window (this one: at once). */
+export const KEY_CACHE_MS = 30_000;
+/** How long a verified key keeps bypassing the failed-check limiter (IngestAuthLimiter) on this instance. */
+const RECENTLY_VALID_MS = 10 * 60_000;
 const DAY_MS = 86_400_000;
 export const KEY_DEFAULT_TTL_DAYS = 7;
 export const KEY_MAX_TTL_DAYS = 90;
@@ -17,6 +21,8 @@ export const KEY_MAX_TTL_DAYS = 90;
 @Injectable()
 export class IngestKeysService {
   private readonly touched = new Map<string, number>();
+  /** sha256 → row, successful lookups only (bounded by the number of valid keys; failures are never cached). */
+  private readonly cache = new Map<string, { row: IngestKeyRow; at: number }>();
   constructor(private readonly prisma: PrismaService) {}
 
   /** A key for one election, expiring at `expiresAt` (default now + 7 days, at most 90 days ahead). */
@@ -35,15 +41,29 @@ export class IngestKeysService {
     }
   }
 
-  async verify(raw: string): Promise<IngestKeyRow | null> {
-    const row = await this.prisma.ingest_keys.findUnique({ where: { key_hash: sha(raw) } });
-    if (!row || row.revoked_at) return null;
-    const now = Date.now();
+  /** The key's row if it exists and is not revoked (expiry and election are checked by the guard on every request). */
+  async verify(raw: string, now = Date.now()): Promise<IngestKeyRow | null> {
+    const hash = sha(raw);
+    const hit = this.cache.get(hash);
+    let row: IngestKeyRow;
+    if (hit && now - hit.at < KEY_CACHE_MS) row = hit.row;
+    else {
+      const found = await this.prisma.ingest_keys.findUnique({ where: { key_hash: hash } });
+      if (!found || found.revoked_at) { this.cache.delete(hash); return null; }
+      row = pub(found);
+      this.cache.set(hash, { row, at: now });
+    }
     if (now - (this.touched.get(row.id) ?? 0) > TOUCH_MS) {
       this.touched.set(row.id, now);
       await this.prisma.ingest_keys.update({ where: { id: row.id }, data: { last_used_at: new Date(now) } });
     }
-    return pub(row);
+    return row;
+  }
+
+  /** True when this instance verified the key in the last 10 minutes and it has not expired (limiter bypass only, never auth). */
+  recentlyValid(raw: string, now = Date.now()): boolean {
+    const hit = this.cache.get(sha(raw));
+    return !!hit && now - hit.at < RECENTLY_VALID_MS && (!hit.row.expires_at || hit.row.expires_at.getTime() > now);
   }
 
   async list(): Promise<IngestKeyRow[]> {
@@ -53,5 +73,6 @@ export class IngestKeysService {
   async revoke(id: string): Promise<void> {
     const { count } = await this.prisma.ingest_keys.updateMany({ where: { id }, data: { revoked_at: new Date() } });
     if (!count) throw new IngestKeyNotFoundException(id);
+    for (const [hash, c] of this.cache) if (c.row.id === id) this.cache.delete(hash);
   }
 }

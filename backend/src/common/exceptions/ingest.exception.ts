@@ -41,3 +41,7 @@ export class IngestKeyScopeException extends BusinessException {
 export class IngestKeyNameTakenException extends BusinessException {
   constructor(name: string) { super(ErrorCodes.INGEST_KEY_NAME_TAKEN, `An ingest key named ${name} already exists`, HttpStatus.CONFLICT, { name }); }
 }
+/** Too many failed ingest key checks from this IP in the last minute (IngestAuthLimiter). */
+export class IngestRateLimitedException extends BusinessException {
+  constructor(retryAfterS: number) { super(ErrorCodes.INGEST_RATE_LIMITED, 'Too many failed ingest key checks; retry later', HttpStatus.TOO_MANY_REQUESTS, { retry_after_s: retryAfterS }); }
+}

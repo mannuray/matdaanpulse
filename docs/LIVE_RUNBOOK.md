@@ -45,13 +45,14 @@ Dry runs against the real ECI site, then drills. Do each drill and confirm the r
    - **Refused (`no_lease` / `inactive_source` ×N in last 5 min)**: a worker is posting without the lease or for the wrong source. `no_lease`: two hosts share a holder name or one lost its lease (check `LIVE_HOLDER`, stop the extra worker). `inactive_source`: a worker still runs the old source after a switch — stop it or switch it.
    - **Tally mismatch**: compare with ECI's party-wise page (the `rest` loop's tally covers the whole election); a mismatch with all seats matching usually means an unmapped party (the worker logs `tally: N unmapped parties`; add `partyAliases`) or a held seat.
 6. Held seats show in the Holds panel; Release returns them to the feed.
+7. `/ingest` answers 401 to anything but a well-formed `Bearer mpk_…` key, and 429 (`INGEST_0012`, `Retry-After`) to an IP after 10 failed key checks in a minute (`INGEST_AUTH_FAIL_LIMIT`). A worker whose key was accepted in the last 10 minutes is never blocked by that limit; a worker that starts with a wrong key should be stopped, not left retrying.
 
 ## 4. After
 
 1. Every seat is declared and the tally matches ECI.
 2. Elections -> Finalize.
 3. Stop workers (`Ctrl-C` releases the leases). Set Source = Paused.
-4. Admin -> Ingest keys: revoke the keys (they also expire on their own).
+4. Admin -> Ingest keys: revoke the keys (they also expire on their own). A revoke takes effect at once on the instance that handled it and within 30 s on the others (successful key lookups are cached for 30 s).
 5. Review manual corrections in Audit logs and note them. A correction after Finalize needs Elections -> Reopen for corrections (SUPER_ADMIN), then Finalize again.
 
 ## 5. Simulation

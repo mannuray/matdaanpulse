@@ -1,5 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { IngestKeysService } from './ingest-keys.service';
+import { IngestAuthLimiter } from './ingest-auth-limiter';
 import { IngestKeyExpiredException, IngestKeyScopeException, IngestUnauthorizedException } from '../../common/exceptions';
 
 /**
@@ -9,13 +10,14 @@ import { IngestKeyExpiredException, IngestKeyScopeException, IngestUnauthorizedE
  */
 @Injectable()
 export class IngestKeyGuard implements CanActivate {
-  constructor(private readonly keys: IngestKeysService) {}
+  constructor(private readonly keys: IngestKeysService, private readonly limiter: IngestAuthLimiter) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest();
     const m = /^Bearer (\S+)$/.exec(req.headers?.authorization ?? '');
     const row = m ? await this.keys.verify(m[1]) : null;
-    if (!row) throw new IngestUnauthorizedException();
-    if (row.expires_at && row.expires_at.getTime() <= Date.now()) throw new IngestKeyExpiredException();
+    // Unknown, revoked and expired keys count against the IP (the gate in app.setup answers 429 past the limit).
+    if (!row) { this.limiter.fail(req.ip ?? ''); throw new IngestUnauthorizedException(); }
+    if (row.expires_at && row.expires_at.getTime() <= Date.now()) { this.limiter.fail(req.ip ?? ''); throw new IngestKeyExpiredException(); }
     // Compared as strings: the guard runs before ParseUUIDPipe.
     if (row.election_id && row.election_id !== String(req.params?.electionId ?? '')) throw new IngestKeyScopeException();
     req.ingestKey = row;

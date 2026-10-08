@@ -64,6 +64,8 @@ ingest_log               id, election_id, shard_id, key_id, source, dry_run BOOL
 ## 4. Ingest API (machine key: `Authorization: Bearer <key>`)
 
 All under `/api/v1/ingest/elections/:electionId`. Keys are not admin JWTs; they can call only these routes.
+Before the 5 MB body parser a gate refuses anything but `Bearer mpk_<43 base64url chars>` (401) and IPs with 10+ failed key
+checks in the last minute (429, in memory per instance); successful key lookups are cached 30 s (2026-10-08 security review).
 Every route is `no-store`.
 
 ### 4.1 `GET …/roster`
