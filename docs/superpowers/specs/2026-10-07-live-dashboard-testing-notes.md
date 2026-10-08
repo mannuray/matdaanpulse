@@ -1,5 +1,7 @@
 # Live dashboard testing: handoff notes
 
+> **Superseded for planning by `docs/LIVE_READINESS_2027.md` (2026-10-08):** the checklist to pick up when the 2027 schedule is announced (decisions, setup, data, test layers 2–5). This file keeps the background.
+
 Status: **not started.** Written on 2026-10-07 for a fresh session. These are notes, not an approved spec or plan.
 Resume at §6: agree the scope and the open questions, then write the test plan.
 
