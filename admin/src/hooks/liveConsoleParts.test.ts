@@ -4,7 +4,7 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 
 const ingest = vi.hoisted(() => ({ getHolds: vi.fn(), releaseHold: vi.fn(async () => undefined), correctSeat: vi.fn() }));
 vi.mock('../services/ingest.service', () => ingest);
-vi.mock('../services/election.service', () => ({ getSeatLocks: vi.fn(async () => []), getLiveResults: vi.fn(async () => []), subscribeLiveUpdates: vi.fn(() => () => {}) }));
+vi.mock('../services/live.service', () => ({ getSeatLocks: vi.fn(async () => []), getLiveResults: vi.fn(async () => []), subscribeLiveUpdates: vi.fn(() => () => {}) }));
 vi.mock('../context/ToastContext', () => ({ useToast: () => ({ toast: vi.fn(), toastError: vi.fn() }) }));
 import { useHolds, HOLDS_POLL_MS } from './live/useHolds';
 import { useSeatSelection } from './live/useSeatSelection';

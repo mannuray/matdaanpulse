@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { getManifest, saveManifestDraft, publishManifest, getElections } from '../services/election.service';
-import { getParties } from '../services/geo.service';
+import { getManifest, saveManifestDraft, publishManifest } from '../services/manifest.service';
+import { getElections } from '../services/election.service';
+import { getParties } from '../services/party.service';
 import { getConstituencies } from '../services/constituency.service';
 import { useToast } from '../context/ToastContext';
 import { ApiError } from '../services/api-client';

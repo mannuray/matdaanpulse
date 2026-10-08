@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { NAV_GROUPS } from '../utils/navigation.config';
 import { searchCandidatesAll, searchSeats, type CandidateHit, type SeatHit } from '../services/search.service';
-import { getPartiesPaginated } from '../services/geo.service';
+import { getPartiesPaginated } from '../services/party.service';
 import { getPersons } from '../services/person.api';
 import { shortElectionName } from '../components/shell/ElectionPicker';
 import type { Election, Party, PersonWithStats } from '../types';

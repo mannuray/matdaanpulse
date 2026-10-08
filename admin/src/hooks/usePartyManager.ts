@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getPartiesPaginated, createParty } from '../services/geo.service';
+import { getPartiesPaginated, createParty } from '../services/party.service';
 import { getElections } from '../services/election.service';
 import { getStates } from '../services/geo.service';
 import { useResourceList } from './useResourceList';

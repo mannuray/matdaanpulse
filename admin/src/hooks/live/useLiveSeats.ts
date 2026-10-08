@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getLiveResults, subscribeLiveUpdates } from '../../services/election.service';
+import { getLiveResults, subscribeLiveUpdates } from '../../services/live.service';
 import { useShellStatus } from '../../context/ShellStatusContext';
 import { useToast } from '../../context/ToastContext';
 import type { LiveConstituency, SeatLock } from '../../types';

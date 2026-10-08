@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { EMPTY_AFFIDAVIT, INDEPENDENT, candidateAffidavit, candidateNumbersValid, type CandidateForm } from '../../../hooks/useCandidateEdit';
 import type { NewCandidate } from '../../../hooks/useCandidateManager';
-import { getParties } from '../../../services/geo.service';
+import { getParties } from '../../../services/party.service';
 import { FormDialog } from '../../ui/FormDialog';
 import { EmptyState } from '../../ui/EmptyState';
 import { Field } from '../../ui/Field';

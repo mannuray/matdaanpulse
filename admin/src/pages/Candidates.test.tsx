@@ -29,7 +29,7 @@ const people = vi.hoisted(() => ({
 }));
 vi.mock('../services/person.api', () => people);
 vi.mock('../services/constituency.service', () => ({ getConstituencies: vi.fn(async (eid: string) => data.seats[eid] ?? []) }));
-vi.mock('../services/geo.service', () => ({ getParties: vi.fn(async () => [{ id: 'BJP', name: 'Bharatiya Janata Party' }, { id: 'IND', name: 'Independent' }]) }));
+vi.mock('../services/party.service', () => ({ getParties: vi.fn(async () => [{ id: 'BJP', name: 'Bharatiya Janata Party' }, { id: 'IND', name: 'Independent' }]) }));
 // A tiny stateful stand-in for the global election, so "Switch election" really re-renders the page.
 const ctx = vi.hoisted(() => {
   const listeners = new Set<() => void>();

@@ -3,7 +3,7 @@ import {
   getCandidate, updateCandidate, changeCandidatePerson, splitCandidate, type CandidateAffidavit,
 } from '../services/candidate.service';
 import { getPersons, updatePerson } from '../services/person.api';
-import { getParties } from '../services/geo.service';
+import { getParties } from '../services/party.service';
 import { useToast } from '../context/ToastContext';
 import { fieldErrorMap } from '../services/api-client';
 import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';

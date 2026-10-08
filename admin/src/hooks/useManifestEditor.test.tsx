@@ -4,16 +4,16 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { ToastProvider } from '../context/ToastContext';
 
-vi.mock('../services/election.service', () => ({
+vi.mock('../services/manifest.service', () => ({
   getManifest: vi.fn(async () => ({ draft: { alliances: [], milestones: [{ label: 'Majority', value: 272 }] }, manifest_url: null })),
   saveManifestDraft: vi.fn(async () => ({})),
   publishManifest: vi.fn(async () => ({})),
-  getElections: vi.fn(async () => []),
 }));
-vi.mock('../services/geo.service', () => ({ getParties: vi.fn(async () => []) }));
+vi.mock('../services/election.service', () => ({ getElections: vi.fn(async () => []) }));
+vi.mock('../services/party.service', () => ({ getParties: vi.fn(async () => []) }));
 vi.mock('../services/constituency.service', () => ({ getConstituencies: vi.fn(async () => []) }));
 import { useManifestEditor } from './useManifestEditor';
-import { saveManifestDraft, publishManifest, getManifest } from '../services/election.service';
+import { saveManifestDraft, publishManifest, getManifest } from '../services/manifest.service';
 
 const wrapper = ({ children }: { children: ReactNode }) => <ToastProvider>{children}</ToastProvider>;
 afterEach(() => vi.clearAllMocks());

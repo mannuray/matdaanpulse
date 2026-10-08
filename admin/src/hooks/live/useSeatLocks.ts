@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getSeatLocks } from '../../services/election.service';
+import { getSeatLocks } from '../../services/live.service';
 import { isLockLapsed } from '../../utils/seat-math';
 import type { SeatLock } from '../../types';
 

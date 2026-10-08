@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { getParty, updateParty } from '../services/geo.service';
+import { getParty, updateParty } from '../services/party.service';
 import { useToast } from '../context/ToastContext';
 import { fieldErrorMap } from '../services/api-client';
 import { blankToNull } from '../utils/record-payload';

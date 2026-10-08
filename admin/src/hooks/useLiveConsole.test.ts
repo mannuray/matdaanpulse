@@ -17,7 +17,7 @@ const { handlers, svc, ingest } = vi.hoisted(() => {
   };
   return { handlers, svc, ingest };
 });
-vi.mock('../services/election.service', () => svc);
+vi.mock('../services/live.service', () => svc);
 vi.mock('../services/ingest.service', () => ingest);
 const ctx = vi.hoisted(() => ({ electionId: 'e1' }));
 vi.mock('../context/ElectionContext', () => ({ useElection: () => ({ electionId: ctx.electionId, election: { name: 'Bihar VS 2025' }, error: null }) }));

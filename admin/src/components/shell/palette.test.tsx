@@ -9,7 +9,7 @@ const search = vi.hoisted(() => ({
   searchCandidatesAll: vi.fn(async (_q: string): Promise<unknown[]> => []),
 }));
 vi.mock('../../services/search.service', () => search);
-vi.mock('../../services/geo.service', () => ({
+vi.mock('../../services/party.service', () => ({
   getPartiesPaginated: vi.fn(async () => ({ success: true, data: [{ id: 'BJP', name: 'Bharatiya Janata Party' }], pagination: { page: 1, limit: 6, total: 1, totalPages: 1 } })),
 }));
 vi.mock('../../services/person.api', () => ({
