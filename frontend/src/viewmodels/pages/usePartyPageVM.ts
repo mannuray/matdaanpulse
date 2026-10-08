@@ -6,7 +6,7 @@ import { usePartyMap, type PartyMapVM } from './usePartyMap';
 import { getParty } from '../../model/api/geo.service';
 import { getPartyRecord } from '../../model/api/party.service';
 import { ApiError } from '../../model/api/api-client';
-import { deltaOf, headline, latestByState, previousComparable, recordLines, sparkline, type Delta, type Headline, type RecordLine } from '../../model/derive/partyRecord';
+import { deltaOf, headline, latestByState, recordLines, statePreviousSameBoundaries, sparkline, type Delta, type Headline, type RecordLine } from '../../model/derive/partyRecord';
 import type { LineageEvent, PartyDetail, PartyRecord, PartyUnit } from '../../model/types';
 
 export type { Delta, Headline, RecordLine };
@@ -138,9 +138,7 @@ function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUni
   const flow = rec.state?.code === code ? rec.state.flow : [];
   // Seat changes compare with the state's previous election (as the stored analysis does), contested or not;
   // none when the boundaries changed in between or there is no earlier election.
-  const stateEls = (rec.state_elections ?? []).filter(e => e.state_id === latest.state_id && e.date < latest.date).sort((a, b) => b.date.localeCompare(a.date));
-  const comparable = rec.state_elections ? !!stateEls[0] && stateEls[0].delimitation != null && stateEls[0].delimitation === latest.delimitation : !!previousComparable(rows, latest);
-  const changes = comparable ? {
+  const changes = statePreviousSameBoundaries(rows, latest, rec.state_elections) ? {
     held: latest.held, gained: latest.gained, lost: latest.lost,
     gainedFrom: flow.filter(f => f.to === id).map(f => ({ party: f.from, seats: f.seats, split: f.split })),
     lostTo: flow.filter(f => f.from === id).map(f => ({ party: f.to, seats: f.seats, split: f.split })),
