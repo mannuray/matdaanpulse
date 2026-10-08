@@ -24,6 +24,18 @@ const vm = (over: Partial<SeatDialogVM> = {}): SeatDialogVM => ({
 
 const renderIt = (v: SeatDialogVM) => render(<MemoryRouter><SeatDialog vm={v} /></MemoryRouter>);
 
+describe('SeatDialog on a phone', () => {
+  it('the candidate table fits 390 px: share bars and avatars only from sm up, names may wrap', () => {
+    renderIt(vm());
+    const bar = document.querySelector('[data-share-bar]')!;
+    expect(bar.className).toMatch(/\bhidden\b/);
+    expect(bar.className).toMatch(/\bsm:inline-block\b/);
+    const avatar = document.querySelector('[data-avatar-cell]')!;
+    expect(avatar.className).toMatch(/\bhidden\b/);
+    expect(avatar.className).toMatch(/\bsm:block\b/);
+  });
+});
+
 describe('SeatDialog live block', () => {
   const liveSeat = { call: 'too_close', momentum: 'narrowing' } as unknown as NonNullable<SeatDialogVM['liveSeat']>;
   const trend = [1, 2, 3, 4].map(x => ({ seq: x, x, y: 400 - x * 50, party: x < 3 ? 'BJP' : 'RJD', switched: x === 3 }));

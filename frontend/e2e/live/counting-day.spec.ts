@@ -62,7 +62,10 @@ test('counting day, desktop', async ({ page, request }) => {
   await waitForViewer(page, snap.version, 'C1:');
   const lead1 = leadersOf(snap);
   expect(lead1.size, 'C1: snapshot has leads').toBeGreaterThan(0);
-  expect(new Set(await colouredSeats(page)), 'C1: coloured seats = seats with a leader in the snapshot').toEqual(new Set(lead1.keys()));
+  // Coloured = every seat with votes counted: a leader's colour, or the tied grey for an exact tie.
+  const counted1 = new Set(snap.results.filter(r => r.votes > 0).map(r => r.const_id));
+  expect(new Set(await colouredSeats(page)), 'C1: coloured seats = seats with votes counted in the snapshot').toEqual(counted1);
+  for (const id of counted1) if (!lead1.has(id)) await expect(page.locator(`path.pc[data-seat="${id}"]`), `C1: tied seat ${id} is dashed`).toHaveCSS('stroke-dasharray', /\d/);
   // The ticker shows its newest event (one line) instead of the waiting line.
   await expect(page.getByText('Waiting for updates'), 'C1: ticker left the waiting line').toHaveCount(0);
   await expect(page.getByText(/ leads in | wins |^Lead switch: |^Upset: /).first(), 'C1: ticker shows a live event').toBeVisible();

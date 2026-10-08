@@ -129,7 +129,8 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
             <tr key={c.key} className="border-b border-line/60">
               <td className="py-2"><div className="flex items-center gap-2">
                 <span className="w-6 text-xs text-muted">#{i + 1}</span>
-                <Avatar name={c.name} photo={c.photo} size={36} />
+                {/* Phones: no avatar or share bar, so the table fits 390 px (the % stays). */}
+                <span data-avatar-cell className="hidden shrink-0 sm:block"><Avatar name={c.name} photo={c.photo} size={36} /></span>
                 {c.nota ? <span className="font-semibold text-ink">{t('seat_nota')}</span> : c.personId ? <Link to={vm.personHref(c.personId)} className="font-semibold text-ink hover:underline">{c.name}</Link> : <span className="font-semibold text-ink">{c.name}</span>}
                 {c.incumbent && <span className="rounded-full border border-accent/50 px-1.5 text-[10px] text-accent">{t('seat_incumbent')}</span>}
               </div></td>
@@ -139,7 +140,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
                 </button>) : null}</td>
               <td className="tabular text-right font-semibold text-ink">{formatIN(c.votes)}</td>
               <td className="pl-3"><div className="flex items-center gap-2"><span className="tabular w-12 text-xs text-ink">{c.share}%</span>
-                <span className="h-1.5 w-20 overflow-hidden rounded-full bg-page"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></span></div></td>
+                <span data-share-bar className="hidden h-1.5 w-20 overflow-hidden rounded-full bg-page sm:inline-block"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></span></div></td>
               <td className="text-right">{c.pill && <span className={cn('rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.pill])}>{t(`studio_status_${c.pill.toLowerCase()}`)}</span>}</td>
             </tr>
           ))}
