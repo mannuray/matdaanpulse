@@ -85,7 +85,7 @@ function overview(ctx: InsightContext): LayerInsight {
     layer: 'overview',
     headlineKey: othersCount > 0 ? 'studio_insight_overview_others' : 'studio_insight_overview',
     headlineParams: { text: parts.join(' · '), others: othersCount },
-    chips: [...partyChips(ctx, seats), ...tooCloseChip(ctx)],
+    chips: [...tooCloseChip(ctx), ...partyChips(ctx, seats)], // too close first: the footer strip clips overflow
   };
 }
 

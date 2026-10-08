@@ -13,6 +13,10 @@ const live = new Map<string, SeatLive>([
 const base = { electionType: 'VS' as const, seats, alliances: [], partyColor: new Map([['BJP', '#f80']]) };
 
 describe('live insights', () => {
+  it('the Too close chip comes first, so a strip that clips overflow never cuts it (live e2e C4)', () => {
+    expect(deriveLayerInsight('overview', { ...base, live })!.chips[0].id).toBe('too_close');
+  });
+
   it('Overview adds a Too close chip while live (and only while live)', () => {
     const chip = deriveLayerInsight('overview', { ...base, live })!.chips.find(c => c.id === 'too_close')!;
     expect(chip).toMatchObject({ count: 2, seatIds: ['A', 'B'], labelKey: 'studio_chip_too_close' });
