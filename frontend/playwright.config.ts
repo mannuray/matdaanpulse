@@ -1,2 +1,3 @@
 import { defineConfig } from '@playwright/test';
-export default defineConfig({ testDir: 'e2e', use: { baseURL: 'http://localhost:3080' }, reporter: 'list' });
+// The live counting-day suite (e2e/live) has its own config: playwright.live.config.ts.
+export default defineConfig({ testDir: 'e2e', testIgnore: 'live/**', use: { baseURL: 'http://localhost:3080' }, reporter: 'list' });

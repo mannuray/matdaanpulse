@@ -24,7 +24,7 @@ seats declare between rounds 16 and 24, and all are declared at round 24 (`TOTAL
 
 Countermanded, adjourned and held seats do not come from the mock; the test sets them through the admin seat
 correction (`PUT /admin/elections/:id/seats/:constId`, states from `SEAT_STATES` in
-`backend/src/modules/ingest/seat-rules.ts`), as an admin would on counting day. A correction places a hold.
+`backend/src/modules/ingest/seat-rules.ts`), as an admin would on counting day. A correction places a hold, which releases itself when the source reports a later round (ingest spec D4); the mock keeps reporting rounds for every seat, so the corrected seats rejoin the count at round 11.
 
 ## 3. The oracle
 
@@ -43,7 +43,7 @@ counts main-frame navigations: exactly one through C5).
 | C0 | 0, election Live | before results | Live chip; "Waiting for updates" / 0 declared; every seat pending on the map; tallies 0; no ticker events; the picker pins the election |
 | C1 | 2 | first leads | "leading" tallies equal the snapshot; leading seats in party colour; not-started seats pending; the ticker has lead lines |
 | C2 | 8 | mid-count | Overview: "Too close · N" chip with N from the snapshot (`analyseLive` on baseline + snapshot), dashed seats present; Battle: momentum fills and "N lead changes so far" with N from the snapshot; a switched seat's dialog: round bar, Switched badge, margin trend with ≥ 2 points; a `data-pulse="switch"` seen after a round with a switch; the person page of a candidate in a counting seat shows the live state |
-| C3 | 10 | special states | the test corrects three seats: countermanded, adjourned, and a vote correction (held). Each seat's dialog and hover card show its state; the held seat keeps the corrected numbers through later rounds |
+| C3 | 10 | special states | the test corrects three seats: countermanded, adjourned, and a vote correction (held). Each seat's dialog shows its state; while the source stays at round 10 the holds keep all three corrections (two worker cycles); at round 11 the source's later round releases the holds (ingest spec D4) and the seats follow the source again |
 | C4 | 18 | partial declarations | alliance tally "won + leading" against the majority line equals the snapshot; declared seats solid; the ticker has won lines; the constituency page of a declared seat and of a counting seat |
 | C5 | 24 | all declared | declared = total; no live styling on the map (`countingLive` false); Battle back to margin buckets |
 | C6 | — | Finalized | the test sets the election Finalized (admin API); the Live chip is gone; the picker no longer pins it |

@@ -70,6 +70,25 @@ Practice without ECI: clones Bihar 2025 into a fictional Live election and repla
 (`set -a && . ../.env && set +a`). The simulation election copies its source's `delimitation`, so it has comparable
 history and a baseline (compute it with the admin compute endpoint once it is set up).
 
+### Viewer e2e (layer 1): `npm run e2e:live`
+
+An automated counting day seen by a viewer. Run it before every release that touches the live path, and weekly from
+January 2027.
+
+1. Postgres up; backend on :3082 started with `THROTTLE_PUBLIC_PER_MIN=100000` (e.g.
+   `cd backend && THROTTLE_PUBLIC_PER_MIN=100000 npm run start`); frontend on :3080; admin credentials in `.env`
+   (`ADMIN_EMAIL` / `ADMIN_PASSWORD`) or `E2E_ADMIN_TOKEN`. Nothing may listen on :4444.
+2. `cd frontend && npm run e2e:live` (about 5 minutes). It clones the sim election, sets it Live (baseline computed),
+   starts the mock ECI and the worker, plays the 24 rounds and checks the dashboard against the backend snapshot at
+   each checkpoint: before results, first leads, mid-count (too close, Battle, pulse, seat dialog, person page),
+   countermanded / adjourned / held seats under their holds and released by the next round, partial declarations
+   (standings, key leaders, constituency pages), all declared, Finalized (picker). Then a phone pass and a light-theme
+   screenshot. It cleans up after itself; `KEEP_SIM=1` keeps the sim election.
+3. Review the screenshots in `frontend/e2e/artifacts/live/` (mock and worker logs are next to them). The checks prove
+   the numbers; the screenshots are for what checks cannot see (clipping, contrast, layout).
+
+It refuses a non-local `DATABASE_URL`. Spec: `docs/superpowers/specs/2026-10-08-live-e2e-layer1-design.md`.
+
 ### Live map checks (simulation)
 
 With a replay running (`ROUND_DELAY_MS=10000`–`15000`), check on the dashboard:

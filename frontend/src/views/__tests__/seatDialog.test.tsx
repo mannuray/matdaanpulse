@@ -38,6 +38,12 @@ describe('SeatDialog live block', () => {
     expect(screen.getByText('Stronghold at risk · held by BJP since 2005')).toBeTruthy();
     expect(screen.getByText('Lead narrowed from 2,890 to 342 over the last 3 rounds')).toBeTruthy();
   });
+  it('a countermanded or adjourned seat shows its state, not a call or momentum badge (live e2e C3)', () => {
+    renderIt(vm({ live: { kind: 'countermanded' }, liveSeat: { call: 'not_started', momentum: 'switched' } as unknown as NonNullable<SeatDialogVM['liveSeat']> }));
+    expect(screen.getByText('Countermanded')).toBeTruthy();
+    expect(screen.queryByText('Not started')).toBeNull();
+    expect(screen.queryByText('Switched')).toBeNull();
+  });
   it('labels only the latest lead switch (neighbouring switches do not stack labels); every switch keeps a marker', () => {
     const many = [1, 2, 3, 4, 5].map(x => ({ seq: x, x, y: 300, party: x % 2 ? 'BJP' : 'RJD', switched: x > 1 }));
     renderIt(vm({ liveSeat, trend: many }));

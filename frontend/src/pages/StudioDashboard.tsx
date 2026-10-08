@@ -48,7 +48,10 @@ function Loaded({ election }: { election: Election }) {
   return (
     <DashboardSourcesProvider value={sources}>
       <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={knownSeats} knownParties={knownParties}>
-        <Wall />
+        {/* data-live-version: the snapshot version on screen (the live e2e waits on it); no box of its own. */}
+        <div data-live-version={sources.data.liveVersion ?? ''} style={{ display: 'contents' }}>
+          <Wall />
+        </div>
       </DashboardStoreProvider>
     </DashboardSourcesProvider>
   );

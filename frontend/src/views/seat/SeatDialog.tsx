@@ -28,6 +28,8 @@ function LiveBlock({ vm }: { vm: SeatDialogVM }) {
   const s = vm.liveSeat;
   if (!s) return null;
   const round = vm.live?.kind === 'counting' ? vm.live.round : null;
+  // A countermanded / adjourned seat: its state chip says it all; a call or momentum would read as a live count.
+  const halted = vm.live?.kind === 'countermanded' || vm.live?.kind === 'adjourned';
   const colorOf = (party: string | null) => (party ? vm.partyMeta.get(party)?.color : null) ?? 'var(--color-fallback)';
   return (
     <div className="mb-4">
@@ -37,8 +39,8 @@ function LiveBlock({ vm }: { vm: SeatDialogVM }) {
             <span className="block h-full bg-ok-text" style={{ width: `${(round.current / round.total) * 100}%` }} />
           </span>
         )}
-        <span className={cn('rounded-md px-2 py-0.5 text-[11px] font-bold uppercase text-ink', s.call === 'too_close' ? 'border border-dashed border-warn-text text-warn-text' : 'border border-line')}>{t(`seat_call_${s.call}`)}</span>
-        {s.momentum && s.momentum !== 'stable' && (
+        {!halted && <span className={cn('rounded-md px-2 py-0.5 text-[11px] font-bold uppercase text-ink', s.call === 'too_close' ? 'border border-dashed border-warn-text text-warn-text' : 'border border-line')}>{t(`seat_call_${s.call}`)}</span>}
+        {!halted && s.momentum && s.momentum !== 'stable' && (
           <span className="rounded-md px-2 py-0.5 text-[11px] font-bold uppercase text-white" style={{ background: MOMENTUM_COLOR[s.momentum] }}>{t(`map_legend_${s.momentum}`)}</span>
         )}
       </div>

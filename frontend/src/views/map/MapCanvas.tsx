@@ -51,6 +51,7 @@ export function MapCanvas({ vm }: { vm: MapVM }) {
         .style('stroke', outlined ? 'var(--color-ink)' : dashed ? fill!.color : 'var(--color-map-stroke)')
         .style('stroke-width', outlined ? '1.5px' : dashed ? '1px' : '0.4px')
         .style('stroke-dasharray', dashed ? '3 2' : 'none')
+        .attr('data-seat', id ?? null)
         .attr('data-highlighted', fill?.highlighted ? 'true' : null)
         .attr('data-pulse', id ? vm.recentSeats.get(id) ?? null : null)
         .classed('studio-seat-pulse', !!id && vm.recentSeats.has(id));

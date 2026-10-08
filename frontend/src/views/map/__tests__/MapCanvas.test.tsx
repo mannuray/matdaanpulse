@@ -44,6 +44,11 @@ describe('MapCanvas', () => {
     expect(path.classList.contains('studio-seat-pulse')).toBe(true);
   });
 
+  it('tags each seat path with its const_id (live e2e hook)', () => {
+    const { container } = render(<MapCanvas vm={makeVM()} />);
+    expect(container.querySelector('path.pc')!.getAttribute('data-seat')).toBe('S1');
+  });
+
   it('redraws when the features change while the map stays loaded (cached geojson on return)', () => {
     const vm = makeVM();
     const { container, rerender } = render(<MapCanvas vm={vm} />);
