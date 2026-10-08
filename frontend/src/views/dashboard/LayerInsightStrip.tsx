@@ -7,7 +7,7 @@ function Chip({ c, vm }: { c: InsightChip; vm: LayerInsightVM }) {
   const { t } = useTranslation();
   const label = c.labelKey ? t(c.labelKey) : c.label;
   return (
-    <button type="button" onClick={() => vm.onLockChip(c)} onMouseEnter={() => vm.onHoverChip(c)} onMouseLeave={() => vm.onHoverChip(null)} onFocus={onKbdFocus(() => vm.onHoverChip(c))} onBlur={() => vm.onHoverChip(null)}
+    <button type="button" data-chip={c.id} onClick={() => vm.onLockChip(c)} onMouseEnter={() => vm.onHoverChip(c)} onMouseLeave={() => vm.onHoverChip(null)} onFocus={onKbdFocus(() => vm.onHoverChip(c))} onBlur={() => vm.onHoverChip(null)}
       aria-pressed={vm.lockedChipId === c.id}
       className={cn('inline-flex h-8 shrink-0 items-center gap-2 rounded-full border border-line bg-page/60 px-3 text-sm hover:border-accent', vm.lockedChipId === c.id && 'border-accent bg-tile-raised')}>
       {c.fromColor && <span className="h-2 w-2 rounded-full" style={{ background: c.fromColor }} />}
