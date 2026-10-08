@@ -10,7 +10,7 @@ import { ElectionService } from '../../model/api/election.service';
 import { makeSources } from './fixtures';
 import '../../i18n';
 
-vi.spyOn(ElectionService, 'getGeoJSON').mockResolvedValue({ type: 'FeatureCollection', features: [] });
+const getGeoJSON = vi.spyOn(ElectionService, 'getGeoJSON').mockResolvedValue({ type: 'FeatureCollection', features: [] });
 
 const wrapper = ({ children }: { children: ReactNode }) => (
   <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><DashboardSourcesProvider value={makeSources()}><DashboardStoreProvider allowedLayers={['overview', 'battle']} knownSeats={null} knownParties={null}>{children}</DashboardStoreProvider></DashboardSourcesProvider></MemoryRouter>
@@ -63,5 +63,45 @@ describe('useMapVM', () => {
     const { result } = renderHook(() => useMapVM(), { wrapper: w });
     await waitFor(() => expect(result.current.status).toBe('ready'));
     expect(result.current.seatInfo('BR_VS_1_SANDESH')).toMatchObject({ status: 'Tied', live: { call: 'Too close' } });
+  });
+
+  describe('which map file (never India for a state election)', () => {
+    const run = (over: Parameters<typeof makeSources>[0]) => {
+      const src = makeSources(over);
+      const w = ({ children }: { children: ReactNode }) => (
+        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><DashboardSourcesProvider value={src}><DashboardStoreProvider allowedLayers={['overview']} knownSeats={null} knownParties={null}>{children}</DashboardStoreProvider></DashboardSourcesProvider></MemoryRouter>
+      );
+      return renderHook(() => useMapVM(), { wrapper: w });
+    };
+    const base = makeSources();
+
+    it('a state election whose manifest is still loading stays "loading" and fetches no map (no India flash)', async () => {
+      getGeoJSON.mockClear();
+      const { result } = run({ data: { ...base.data, manifestData: null, manifestLoaded: false } });
+      await new Promise(r => setTimeout(r, 20));
+      expect(result.current.status).toBe('loading');
+      expect(getGeoJSON).not.toHaveBeenCalled();
+    });
+
+    it('a state election whose manifest names no map is "unavailable", not India', async () => {
+      getGeoJSON.mockClear();
+      const { result } = run({ data: { ...base.data, manifestData: { alliances: [] }, manifestLoaded: true } });
+      await waitFor(() => expect(result.current.status).toBe('unavailable'));
+      expect(getGeoJSON).not.toHaveBeenCalled();
+    });
+
+    it('a state election loads exactly its own map file', async () => {
+      getGeoJSON.mockClear();
+      const { result } = run({});
+      await waitFor(() => expect(result.current.status).toBe('ready'));
+      expect(getGeoJSON.mock.calls.map(c => c[0])).toEqual(['/geo/bihar_ac_2008.geojson']);
+    });
+
+    it('Lok Sabha still falls back to the India PC map without a manifest map', async () => {
+      getGeoJSON.mockClear();
+      const { result } = run({ election: { ...base.election, type: 'LS', state_id: null, state: null }, data: { ...base.data, manifestData: null, manifestLoaded: false } });
+      await waitFor(() => expect(result.current.status).toBe('ready'));
+      expect(getGeoJSON.mock.calls.map(c => c[0])).toContain('/geo/india_pc_2008.geojson');
+    });
   });
 });

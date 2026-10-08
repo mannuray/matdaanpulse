@@ -43,6 +43,8 @@ export interface DashboardViewModel {
   /** Per-seat counting trail of the live snapshot (empty without one). */
   trails: Record<string, SeatTrail>;
   manifestData: ManifestData | null;
+  /** The manifest request has finished (found, absent or failed): until then the map file is not known. */
+  manifestLoaded: boolean;
   constCandidates: Map<string, ResultRow[]>;
   currentWinnerMap: Map<string, ResultRow>;
   partyColorMap: Map<string, string>;
@@ -105,7 +107,7 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
   const rawVoteShare = snap ? snap.voteShare : isLive ? null : fetchedVoteShare;
   const results = snap ? snap.results : isLive ? null : fetchedResults;
 
-  const { data: rawManifest } = useApi(
+  const { data: rawManifest, loading: manifestLoading } = useApi(
     () => election ? getManifest(election.id) : Promise.resolve(null),
     [election?.id],
     { key: election ? ElectionService.getCacheKey(election.id, 'manifest') : undefined }
@@ -235,6 +237,7 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     seats: snap?.seats ?? NO_SEATS,
     trails: snap?.trail ?? NO_TRAILS,
     manifestData,
+    manifestLoaded: !!election && !manifestLoading,
     constCandidates,
     currentWinnerMap,
     partyColorMap,

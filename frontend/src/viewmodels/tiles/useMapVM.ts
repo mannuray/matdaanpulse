@@ -18,7 +18,8 @@ import { useRegionShares } from '../data/useRegionShares';
 const LS_STATES = '/geo/india_states.geojson';
 
 export interface MapVM {
-  status: 'loading' | 'error' | 'ready';
+  /** 'unavailable': the election's manifest names no map file. */
+  status: 'loading' | 'error' | 'unavailable' | 'ready';
   features: GeoFeature[];
   stateFeatures: GeoFeature[] | null;
   isVS: boolean;
@@ -56,7 +57,9 @@ export function useMapVM(): MapVM {
   const { state, dispatch } = useDashboardStore();
   const geo = src.data.manifestData?.geo;
   const isVS = src.election.type === 'VS';
-  const url = geo?.map_url || LS_MAP_URL;
+  // A state election draws only its own map (manifest geo.map_url): no India fallback while the manifest loads.
+  const url = geo?.map_url || (isVS ? null : LS_MAP_URL);
+  const manifestLoaded = src.data.manifestLoaded;
   const [status, setStatus] = useState<MapVM['status']>('loading');
   const [features, setFeatures] = useState<GeoFeature[]>([]);
   const [stateFeatures, setStateFeatures] = useState<GeoFeature[] | null>(null);
@@ -64,6 +67,12 @@ export function useMapVM(): MapVM {
   useEffect(() => {
     let active = true;
     setStatus('loading');
+    if (!url) {
+      // Still loading the manifest → keep "loading"; loaded without a map → "unavailable".
+      setFeatures([]);
+      if (manifestLoaded) setStatus('unavailable');
+      return;
+    }
     Promise.all([ElectionService.getGeoJSON(url), isVS ? Promise.resolve(null) : ElectionService.getGeoJSON(LS_STATES)])
       .then(([pc, st]) => {
         if (!active) return;
@@ -73,7 +82,7 @@ export function useMapVM(): MapVM {
       })
       .catch(() => { if (active) setStatus('error'); });
     return () => { active = false; };
-  }, [url, isVS]);
+  }, [url, isVS, manifestLoaded]);
 
   const seats = src.data.mapRegions;
   const seatOf = useMemo(() => matchFeaturesToSeats(features, seats, { byNumber: isVS }), [features, seats, isVS]);

@@ -12,6 +12,11 @@ const vm = (over: Partial<MapVM> = {}): MapVM => ({
 } as MapVM);
 
 describe('MapTile', () => {
+  it('an election without a map says so calmly (not the red load failure)', () => {
+    render(<MapTile vm={vm({ status: 'unavailable' })} variant="focus" />);
+    expect(screen.getByText('Map not available for this election')).toBeTruthy();
+    expect(screen.queryByText(/failed/i)).toBeNull();
+  });
   it('has no Map / Hex toggle even when a hex file is configured (no hex renderer yet)', () => {
     render(<MapTile vm={vm()} variant="focus" />);
     expect(screen.queryByText('Hex')).toBeNull();
