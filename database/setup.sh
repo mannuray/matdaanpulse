@@ -232,5 +232,7 @@ run seed_leader_person_merges_v1.sql
 # Run-once: the person-link review queue of GA/MN/PB/UK/UP, decided 2026-10-08
 run seed_links_review_2027_states_v1.sql
 run seed_links_review_2027_states_v2.sql
+# Run-once: the person-link review queue of every other state, decided 2026-10-08
+run seed_links_review_other_states_v1.sql
 
 echo "==> Done. Create an admin user with: cd backend && npm run create-admin"
