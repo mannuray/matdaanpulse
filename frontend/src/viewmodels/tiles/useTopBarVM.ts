@@ -58,7 +58,7 @@ export function useTopBarVM(): TopBarVM {
   const src = useSources();
   const { theme, setTheme, toggle } = useTheme();
   const { dispatch } = useDashboardStore();
-  const { setElection, setElectionType, setSelectedStateId } = useElection();
+  const { setElection } = useElection();
   const { data: elections, error: electionsError, refetch: refetchElections } = useApi(() => getElections(), []);
   const { data: states } = useApi(() => getStates(), []);
   // A throttled or failed /elections is retried once, so the pickers do not stay empty.
@@ -75,11 +75,9 @@ export function useTopBarVM(): TopBarVM {
 
   const go = useCallback((el: Election | null, type: 'LS' | 'VS') => {
     setElection(el);
-    setElectionType(type);
     remember(type, el?.id ?? null);
-    if (el?.state_id) setSelectedStateId(el.state_id);
     navigate(el ? `/election/${el.id}` : '/');
-  }, [navigate, setElection, setElectionType, setSelectedStateId]);
+  }, [navigate, setElection]);
 
   const vsStates = useMemo(() => {
     const ids = new Set(all.filter(e => e.type === 'VS' && e.state_id != null).map(e => e.state_id!));

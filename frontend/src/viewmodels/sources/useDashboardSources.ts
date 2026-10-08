@@ -1,6 +1,6 @@
 import { majorityOf } from '../../model/derive/majority';
 import { usePartyComparer } from '../data/usePartyComparer';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDashboardData } from '../data/useDashboardData';
 import { useHistoryAnalysis } from '../data/useHistoryAnalysis';
 import { useHistoricalResults } from '../data/useHistoricalResults';
@@ -10,7 +10,6 @@ import { useLiveAnalysis } from '../data/useLiveAnalysis';
 import { liveMaps, prevYearOf } from '../../model/derive/liveMaps';
 import { availableLayers as layersFor } from '../../model/derive/layers';
 import type { SeatLive, LiveTally, SeatBaseline } from '../../model/derive/seatAnalysis';
-import { useElection } from '../data/useElection';
 import { useLocalStorage } from '../data/useLocalStorage';
 import { usePartyMeta } from '../data/usePartyMeta';
 import type { CustomWatch } from '../../model/derive/leaders';
@@ -56,7 +55,6 @@ export interface DashboardSources {
 
 export function useDashboardSources(pageElection: Election): DashboardSources {
   const data = useDashboardData(pageElection);
-  const { setLiveConnected } = useElection();
   const partyMeta = usePartyMeta();
   const { manifestData, results, mapRegions, voteShare, liveConnected, liveStatus } = data;
   // The election as the tiles should see it: its status follows /live (Upcoming → Live → Finalized
@@ -87,9 +85,6 @@ export function useDashboardSources(pageElection: Election): DashboardSources {
   const majority = majorityOf(manifestData, totalSeats);
   const votePct = useMemo(() => new Map(voteShare.map(v => [v.party_id, Number(v.percentage)])), [voteShare]);
 
-  useEffect(() => { setLiveConnected(liveConnected); }, [liveConnected, setLiveConnected]);
-  // Leaving the dashboard: the legacy header must not keep showing a stale "connected".
-  useEffect(() => () => setLiveConnected(false), [setLiveConnected]);
 
   const availableLayers = useMemo(
     () => layersFor({ electionType: election.type, hasSwing: swing.size > 0, hasHistory: dominance.size > 0 }),
