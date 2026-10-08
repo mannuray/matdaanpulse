@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { PartyPageVM } from '../../../viewmodels/pages/usePartyPageVM';
+import type { MlaSearchVM } from '../../../viewmodels/pages/useMlaSearch';
 import { PageShell } from '../../page/PageShell';
 import { PartyHeader } from './PartyHeader';
 import { HeadlineStrip } from './HeadlineStrip';
@@ -17,7 +18,7 @@ import { PartyMapCard } from './PartyMapCard';
 import { fmtShare, signed, tile } from './ui';
 
 /** The party page (spec docs/superpowers/specs/2026-10-08-party-page-design.md): national view, or one state's view. */
-export function PartyPageView({ vm }: { vm: PartyPageVM }) {
+export function PartyPageView({ vm, mlaSearch }: { vm: PartyPageVM; mlaSearch: MlaSearchVM }) {
   const { t } = useTranslation();
   const back = { href: '/', label: t('back') };
   if (vm.status !== 'ready' || !vm.party) {
@@ -45,7 +46,7 @@ export function PartyPageView({ vm }: { vm: PartyPageVM }) {
           <div className="max-lg:contents lg:flex lg:min-w-0 lg:flex-col lg:gap-3">
             <div className="max-lg:order-2"><RecordCard sv={sv} color={vm.color} nameOf={vm.nameOf} /></div>
             <div className="max-lg:order-3"><PartyMapCard map={vm.map} color={vm.color} /></div>
-            <div className="max-lg:order-5"><MlasCard sv={sv} /></div>
+            <div className="max-lg:order-5"><MlasCard sv={sv} search={mlaSearch} /></div>
           </div>
           <div className="max-lg:contents lg:flex lg:min-w-0 lg:flex-col lg:gap-3">
             <div className="max-lg:order-1"><UnitCard sv={sv} /></div>
