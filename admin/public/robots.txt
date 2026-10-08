@@ -1,0 +1,3 @@
+# Admin panel: keep every page out of search engines.
+User-agent: *
+Disallow: /
