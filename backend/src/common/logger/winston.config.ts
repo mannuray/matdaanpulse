@@ -11,14 +11,17 @@ export function resolveLogLevel(raw = process.env.LOG_LEVEL): string {
   return level && LEVELS.includes(level) ? level : 'info';
 }
 
-/** Adds the current requestId (AsyncLocalStorage) and OTel trace_id to every log line. */
+/** Adds the current requestId (AsyncLocalStorage) and the OTel trace_id / span_id to every log line. */
 export const correlationFormat = winston.format((info) => {
   const requestId = requestContext.getStore()?.requestId;
   if (requestId && info.requestId === undefined) info.requestId = requestId;
   const span = trace.getActiveSpan();
   if (span) {
     const ctx = span.spanContext();
-    if (isSpanContextValid(ctx)) info.trace_id = ctx.traceId;
+    if (isSpanContextValid(ctx)) {
+      info.trace_id = ctx.traceId;
+      info.span_id = ctx.spanId;
+    }
   }
   return info;
 });

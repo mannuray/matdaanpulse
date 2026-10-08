@@ -1,4 +1,5 @@
-import { Controller, Post, Patch, Get, Put, Body, Param, UseGuards, ParseUUIDPipe, Req } from '@nestjs/common';
+import { Controller, Post, Patch, Get, Put, Body, Param, Query, UseGuards, ParseUUIDPipe, Req } from '@nestjs/common';
+import { ElectionsQueryDto } from '../../../common/dto/query.dto';
 import { ManifestDraftDto, manifestDraftToJson } from '../../manifests/dto/manifest-draft.dto';
 import { ValidationFailedException } from '../../../common/validation/validation-failed.exception';
 import { ElectionsService } from '../../elections/elections.service';
@@ -26,6 +27,13 @@ export class AdminElectionsController {
     private readonly lifecycle: ElectionLifecycleService,
     private readonly audit: AuditLogService,
   ) {}
+
+  /** Every election with `manifest_published` (the public list carries neither the flag nor all elections). */
+  @Get('elections')
+  @Roles('SUPER_ADMIN', 'EDITOR')
+  listElections(@Query() query: ElectionsQueryDto) {
+    return this.electionsService.findAllForAdmin({ type: query.type, status: query.status, state_id: query.state_id, year: query.year });
+  }
 
   @Post('elections')
   @Roles('SUPER_ADMIN', 'EDITOR')

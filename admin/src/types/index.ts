@@ -16,7 +16,8 @@ export interface Election {
   tentative_next_date: string | null;
   /** Delimitation order year the seats follow, e.g. "2008"; null = not known. */
   delimitation: string | null;
-  manifest_url: string | null;
+  /** A published manifest exists (GET /admin/elections; the manifest itself comes from /admin/elections/:id/manifest). */
+  manifest_published: boolean;
 }
 
 /** Newest audit row of a record, from the admin detail responses. */

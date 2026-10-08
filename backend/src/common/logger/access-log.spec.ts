@@ -1,4 +1,5 @@
-import { electionIdOf, redactUrl } from './logging.middleware';
+import { EventEmitter } from 'events';
+import { accessLog, accessLogSampleRate, electionIdOf, redactUrl } from './logging.middleware';
 
 describe('access log helpers', () => {
   it('picks the election id out of a public /elections/:id path, lower-cased', () => {
@@ -12,5 +13,37 @@ describe('access log helpers', () => {
 
   it('masks credential-like query params', () => {
     expect(redactUrl('/x?token=abc&v=2&api_key=k')).toBe('/x?token=[REDACTED]&v=2&api_key=[REDACTED]');
+  });
+
+  describe('sampling (ACCESS_LOG_SAMPLE)', () => {
+    it('reads 0..1, default 1 (log everything)', () => {
+      expect(accessLogSampleRate({})).toBe(1);
+      expect(accessLogSampleRate({ ACCESS_LOG_SAMPLE: '0.1' })).toBe(0.1);
+      expect(accessLogSampleRate({ ACCESS_LOG_SAMPLE: '5' })).toBe(1);
+      expect(accessLogSampleRate({ ACCESS_LOG_SAMPLE: 'x' })).toBe(1);
+    });
+
+    function hit(mw: ReturnType<typeof accessLog>, method: string, statusCode: number, auth = false) {
+      const res: any = Object.assign(new EventEmitter(), { statusCode, setHeader: () => undefined });
+      const req: any = { method, originalUrl: '/api/v1/elections', headers: auth ? { authorization: 'Bearer x' } : {}, ip: '1.2.3.4' };
+      mw(req, res, () => undefined);
+      res.emit('finish');
+    }
+
+    it('drops sampled-out successful anonymous GETs only; errors, writes and authenticated calls are always logged', () => {
+      const logger = { log: jest.fn(), debug: jest.fn() };
+      const mw = accessLog(logger as any, { sampleRate: 0.1, random: () => 0.5 });
+      hit(mw, 'GET', 200);
+      hit(mw, 'GET', 304);
+      expect(logger.log).not.toHaveBeenCalled();
+      hit(mw, 'GET', 404);
+      hit(mw, 'GET', 503);
+      hit(mw, 'POST', 201);
+      hit(mw, 'GET', 200, true);
+      expect(logger.log).toHaveBeenCalledTimes(4);
+      const kept = accessLog(logger as any, { sampleRate: 0.1, random: () => 0.05 });
+      hit(kept, 'GET', 200);
+      expect(logger.log).toHaveBeenCalledTimes(5);
+    });
   });
 });

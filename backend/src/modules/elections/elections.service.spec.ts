@@ -36,3 +36,20 @@ describe('ElectionsService.getManifest (public)', () => {
     expect(out).not.toHaveProperty('manifest_url');
   });
 });
+
+describe('ElectionsService.findAllForAdmin', () => {
+  it('every election (no 100 cap) with a manifest_published flag, without loading any manifest text', async () => {
+    const rows = [{ id: 'a', year: 2026 }, { id: 'b', year: 2021 }];
+    const findMany = jest.fn()
+      .mockResolvedValueOnce(rows)
+      .mockResolvedValueOnce([{ id: 'b' }]);
+    const svc = new ElectionsService({ elections: { findMany } } as any);
+    const out = await svc.findAllForAdmin({ type: 'VS' as any });
+    expect(out).toEqual([{ id: 'a', year: 2026, manifest_published: false }, { id: 'b', year: 2021, manifest_published: true }]);
+    const [list, published] = findMany.mock.calls.map((c) => c[0]);
+    expect(list.take).toBeUndefined();
+    expect(list.where).toMatchObject({ type: 'VS' });
+    expect(JSON.stringify(list)).not.toMatch(/manifest/);
+    expect(published).toEqual({ where: { manifest_url: { not: null } }, select: { id: true } });
+  });
+});

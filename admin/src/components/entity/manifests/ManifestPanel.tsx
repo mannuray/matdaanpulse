@@ -126,7 +126,7 @@ export function ManifestPanel({ electionId, election, onClose, onPublished }: Ma
 
   const status = c.isDraft
     ? <Badge tone="warn">Draft</Badge>
-    : election?.manifest_url ? <Badge tone="ok">Published</Badge> : <Badge tone="muted">Not published</Badge>;
+    : election?.manifest_published ? <Badge tone="ok">Published</Badge> : <Badge tone="muted">Not published</Badge>;
 
   return (
     <Sheet

@@ -82,7 +82,7 @@ const columns = (states: State[], a: RowActions): Column<Election>[] => [
   {
     key: 'manifest',
     header: 'Manifest',
-    cell: (e) => (e.manifest_url ? <Badge tone="ok">Published</Badge> : <span className="text-xs text-muted">Not published</span>),
+    cell: (e) => (e.manifest_published ? <Badge tone="ok">Published</Badge> : <span className="text-xs text-muted">Not published</span>),
   },
   { key: 'actions', header: <span className="sr-only">Actions</span>, className: 'text-right', cell: (e) => <ActionsCell e={e} a={a} /> },
 ];

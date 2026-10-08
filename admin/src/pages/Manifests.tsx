@@ -20,7 +20,7 @@ const COLUMNS: Column<Election>[] = [
   { key: 'type', header: 'Type', className: 'text-ink-2', cell: (e) => electionTypeLabel(e.type) },
   { key: 'year', header: 'Year', className: 'tabular-nums text-ink-2', cell: (e) => e.year },
   { key: 'status', header: 'Status', cell: (e) => <ElectionStatusBadge status={e.status} /> },
-  { key: 'manifest', header: 'Manifest', cell: (e) => (e.manifest_url ? <Badge tone="ok">Published</Badge> : <Badge tone="muted">Not published</Badge>) },
+  { key: 'manifest', header: 'Manifest', cell: (e) => (e.manifest_published ? <Badge tone="ok">Published</Badge> : <Badge tone="muted">Not published</Badge>) },
 ];
 
 /** PAGE: Manifests — one per election; the full-width manifest panel opens at /manifests/:electionId. */

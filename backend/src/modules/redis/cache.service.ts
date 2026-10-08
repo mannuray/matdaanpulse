@@ -104,12 +104,18 @@ export class CacheService {
       await op();
       return true;
     } catch (err) {
-      this.logger.warn(`Cache invalidation of ${target} failed, retrying once in ${INVALIDATION_RETRY_MS}ms: ${(err as Error).message}`);
+      // Redis down fails every invalidation (two per ingest batch): one line a minute each for failures and retries.
+      if (this.logGate.shouldLog('invalidate')) {
+        this.logger.warn(`Cache invalidation of ${target} failed, retrying once in ${INVALIDATION_RETRY_MS}ms (logged once a minute): ${(err as Error).message}`);
+      }
       const timer = setTimeout(() => {
         op().then(
-          () => this.logger.log(`Cache invalidation of ${target} succeeded on retry`),
-          (e: Error) =>
-            this.logger.warn(`Cache invalidation retry of ${target} failed; entries expire with their TTL: ${e.message}`),
+          () => undefined,
+          (e: Error) => {
+            if (this.logGate.shouldLog('invalidate-retry')) {
+              this.logger.warn(`Cache invalidation retry of ${target} failed; entries expire with their TTL (logged once a minute): ${e.message}`);
+            }
+          },
         );
       }, INVALIDATION_RETRY_MS);
       timer.unref?.();

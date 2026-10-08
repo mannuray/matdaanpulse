@@ -4,8 +4,8 @@ import { cleanup, fireEvent, screen, waitFor, within } from '@testing-library/re
 
 const data = vi.hoisted(() => ({
   elections: [
-    { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, status: 'Live', state_id: 1, tentative_next_date: null, manifest_url: null },
-    { id: 'e2', name: 'Lok Sabha 2024', type: 'LS', year: 2024, status: 'Finalized', state_id: null, tentative_next_date: null, manifest_url: 'https://cdn.example/ls2024.json' },
+    { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, status: 'Live', state_id: 1, tentative_next_date: null, manifest_published: false },
+    { id: 'e2', name: 'Lok Sabha 2024', type: 'LS', year: 2024, status: 'Finalized', state_id: null, tentative_next_date: null, manifest_published: true },
   ],
 }));
 const svc = vi.hoisted(() => ({

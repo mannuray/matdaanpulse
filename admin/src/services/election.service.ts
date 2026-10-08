@@ -1,12 +1,13 @@
 import { apiFetch } from './api-client';
 import type { Election } from '../types';
 
+/** The admin list: every election, with `manifest_published` (the public /elections list has neither). */
 export async function getElections(filters?: { type?: string; status?: string }) {
   const params = new URLSearchParams();
   if (filters?.type) params.set('type', filters.type);
   if (filters?.status) params.set('status', filters.status);
   const qs = params.toString();
-  return (await apiFetch<Election[]>(`/elections${qs ? `?${qs}` : ''}`)) || [];
+  return (await apiFetch<Election[]>(`/admin/elections${qs ? `?${qs}` : ''}`)) || [];
 }
 
 export function getElection(id: string) {

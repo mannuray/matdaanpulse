@@ -37,6 +37,16 @@ describe('AdminElectionsController: status changes', () => {
   });
 });
 
+describe('AdminElectionsController: list', () => {
+  it('GET /admin/elections lists every election with manifest_published, through the admin service method', async () => {
+    const rows = [{ id: 'e', name: 'X', manifest_published: true }];
+    const electionsService: any = { findAllForAdmin: jest.fn(async () => rows) };
+    const ctrl = new AdminElectionsController(electionsService, {} as any, {} as any, {} as any, {} as any);
+    expect(await ctrl.listElections({ type: 'VS' } as any)).toEqual(rows);
+    expect(electionsService.findAllForAdmin).toHaveBeenCalledWith({ type: 'VS', status: undefined, state_id: undefined, year: undefined });
+  });
+});
+
 describe('AdminElectionsController: audit rows (U2)', () => {
   const req = { user: { id: 'u1', role: 'EDITOR' } };
   function make() {

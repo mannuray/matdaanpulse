@@ -62,16 +62,29 @@ describe('CacheService invalidation', () => {
     jest.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
     await expect(svc.del('k')).resolves.toBe(false);
     await expect(svc.delByPattern('election:1:*')).resolves.toBe(false);
-    expect(warn).toHaveBeenCalledTimes(2);
+    expect(warn).toHaveBeenCalledTimes(1); // one warn a minute for failed invalidations, however many
     expect(del).toHaveBeenCalledTimes(1);
     jest.advanceTimersByTime(2000);
     await Promise.resolve();
     await Promise.resolve();
     expect(del).toHaveBeenCalledTimes(2);
     expect(delByPattern).toHaveBeenCalledTimes(2);
-    expect(warn).toHaveBeenCalledTimes(3); // pattern retry failed too; only one retry each
+    expect(warn).toHaveBeenCalledTimes(2); // the pattern retry failed too (its own once-a-minute line); one retry each
     jest.advanceTimersByTime(10_000);
     expect(delByPattern).toHaveBeenCalledTimes(2);
+    jest.useRealTimers();
+  });
+
+  it('Redis down during a burst of ingest batches: failed invalidations are one warn line a minute, all still retried', async () => {
+    jest.useFakeTimers();
+    const delByPattern = jest.fn().mockRejectedValue(new Error('down'));
+    const { svc, warn } = make({ delByPattern });
+    for (let i = 0; i < 40; i++) await svc.delByPattern(`election:${i}:*`);
+    expect(warn).toHaveBeenCalledTimes(1);
+    jest.advanceTimersByTime(2000);
+    for (let i = 0; i < 5; i++) await Promise.resolve();
+    expect(delByPattern).toHaveBeenCalledTimes(80);
+    expect(warn).toHaveBeenCalledTimes(2);
     jest.useRealTimers();
   });
 

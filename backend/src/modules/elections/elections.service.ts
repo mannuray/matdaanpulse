@@ -28,6 +28,23 @@ export class ElectionsService {
     });
   }
 
+  /**
+   * Admin list: every election (no cap) with `manifest_published`. Only summary columns are read; the published
+   * manifest (`manifest_url`, the whole JSON text) is checked by a second id-only query, never loaded.
+   */
+  async findAllForAdmin(filters: { type?: election_type; status?: election_status; state_id?: number; year?: number }) {
+    const [rows, published] = await Promise.all([
+      this.prisma.elections.findMany({
+        where: { type: filters.type, status: filters.status, state_id: filters.state_id, year: filters.year },
+        select: { id: true, name: true, type: true, state_id: true, year: true, status: true, tentative_next_date: true, delimitation: true },
+        orderBy: [{ year: 'desc' }, { name: 'asc' }],
+      }),
+      this.prisma.elections.findMany({ where: { manifest_url: { not: null } }, select: { id: true } }),
+    ]);
+    const isPublished = new Set(published.map((p) => p.id));
+    return rows.map((r) => ({ ...r, manifest_published: isPublished.has(r.id) }));
+  }
+
   async findOne(id: string) {
     const election = await this.prisma.elections.findUnique({
       where: { id },
