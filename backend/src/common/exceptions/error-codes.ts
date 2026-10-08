@@ -17,14 +17,12 @@ export const ErrorCodes = {
 
   // Auth (1xxx)
   AUTH_INVALID_CREDENTIALS: 'AUTH_1001',
-  AUTH_TOKEN_EXPIRED: 'AUTH_1002',
   AUTH_UNAUTHORIZED: 'AUTH_1003',
   AUTH_FORBIDDEN: 'AUTH_1004',
   AUTH_USER_EXISTS: 'AUTH_1005',
 
   // Election (2xxx)
   ELECTION_NOT_FOUND: 'ELECTION_2001',
-  ELECTION_ALREADY_FINALIZED: 'ELECTION_2002',
   /** The election is Finalized (archived): no new candidates. */
   ELECTION_FINALIZED: 'ELECTION_2003',
   /** Reopen was asked for an election that is not Finalized. */
@@ -54,7 +52,6 @@ export const ErrorCodes = {
   CANDIDATE_SOLE_CONTEST: 'CANDIDATE_7002',
 
   // Manifest (8xxx)
-  MANIFEST_NOT_FOUND: 'MANIFEST_8001',
   MANIFEST_NO_DRAFT: 'MANIFEST_8002',
 
   // Feedback

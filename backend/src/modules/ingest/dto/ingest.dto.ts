@@ -1,4 +1,4 @@
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsIn, IsInt, IsISO8601, IsObject, IsOptional, IsString, Matches, Max, MaxLength, Min, ValidateNested } from 'class-validator';
 import { PG_INT_MAX, SEAT_STATES, type SeatState } from '../seat-rules';
 
@@ -42,4 +42,15 @@ export class TallyBody {
   @IsArray() @ArrayMaxSize(200) @ValidateNested({ each: true }) @Type(() => TallyPartyDto) parties: TallyPartyDto[];
   /** 'election': compare against every seat of the election (always so for the rest shard); default: the shard's seats. */
   @IsOptional() @IsIn(['shard', 'election']) scope?: 'shard' | 'election';
+}
+
+const emptyAsUndefined = Transform(({ value }) => (value === '' ? undefined : value));
+
+/** ?shard= on GET roster / config (absent or empty = all seats / the rest shard). */
+export class ShardQuery {
+  @IsOptional() @emptyAsUndefined @Matches(SHARD) shard?: string;
+}
+/** ?shard=&holder= on DELETE lease. */
+export class LeaseReleaseQuery extends ShardQuery {
+  @IsOptional() @IsString() @MaxLength(80) holder?: string;
 }

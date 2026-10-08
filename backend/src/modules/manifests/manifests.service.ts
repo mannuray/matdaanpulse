@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import { ManifestNotFoundException, ManifestNoDraftException } from '../../common/exceptions';
+import { ElectionNotFoundException, ManifestNoDraftException } from '../../common/exceptions';
 
 /**
  * Manifest drafts are persisted in `elections.manifest_draft` (JSONB).
@@ -17,7 +17,7 @@ export class ManifestsService {
       where: { id: electionId },
       select: { id: true, manifest_url: true, manifest_draft: true },
     });
-    if (!election) throw new ManifestNotFoundException(electionId);
+    if (!election) throw new ElectionNotFoundException(electionId);
     return election;
   }
 

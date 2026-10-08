@@ -74,10 +74,12 @@ export function currentRole(unit: PartyUnit | undefined, role: 'state_president'
 export function usePartyPageVM(id: string): PartyPageVM {
   const [params] = useSearchParams();
   const navigate = useNavigate();
-  const wanted = params.get('state')?.trim().toUpperCase() || null;
+  // Only a 2-letter state code: the API refuses anything else (400), so a mistyped ?state= shows the national view.
+  const rawState = params.get('state')?.trim().toUpperCase() ?? '';
+  const wanted = /^[A-Z]{2}$/.test(rawState) ? rawState : null;
   const meta = usePartyMeta();
-  // useApi's error is a string, so a 404 is turned into a value here.
-  const party = useApi(() => getParty(id).catch((e): Missing => { if (e instanceof ApiError && e.status === 404) return { id, notFound: true }; throw e; }), [id], { key: `party_${id}` });
+  // useApi's error is a string, so a 404 (or a 400 for an id that cannot exist) is turned into a value here.
+  const party = useApi(() => getParty(id).catch((e): Missing => { if (e instanceof ApiError && (e.status === 404 || e.status === 400)) return { id, notFound: true }; throw e; }), [id], { key: `party_${id}` });
   const record = useApi(() => getPartyRecord(id, wanted ?? undefined), [id, wanted], { key: `party_record_${id}_${wanted ?? ''}` });
 
   const mineParty = party.isStale ? null : party.data;

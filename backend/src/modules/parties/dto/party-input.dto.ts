@@ -1,4 +1,5 @@
-import { IsString, IsNotEmpty, IsOptional, IsInt, MaxLength, Min, Max, IsUrl, IsIn } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsInt, MaxLength, Min, Max, IsUrl, IsIn, Matches } from 'class-validator';
+import { PARTY_ID_MAX, PARTY_ID_RE } from '../../../common/validation/ids';
 import { Transform } from 'class-transformer';
 import { IsSafeUrl, MAX_URL_LENGTH } from '../../../common/validation/safe-url';
 import { emptyToNull, HTTP_URL } from '../../../common/validation/dto-helpers';
@@ -55,7 +56,8 @@ export class UpdatePartyDto extends PartyFieldsDto {
 }
 
 export class CreatePartyDto extends PartyFieldsDto {
-  @IsString() @IsNotEmpty() @MaxLength(20)
+  /** Same shape as the /parties/:id param (PartyIdParamDto), so every party stays reachable. */
+  @IsString() @IsNotEmpty() @MaxLength(PARTY_ID_MAX) @Matches(PARTY_ID_RE, { message: 'id may use letters, digits and _ & ( ) . + - only' })
   id: string;
 
   @IsString() @IsNotEmpty() @MaxLength(255)

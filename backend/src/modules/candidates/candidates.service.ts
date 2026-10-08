@@ -23,14 +23,16 @@ export class CandidatesService {
     private readonly merges: PersonMergeService,
   ) {}
 
-  /** `includeAffidavit` is for the admin list only (the affidavit columns); the public list never selects them. */
-  findAll(filters?: { election_id?: string; const_id?: string }, take = 1000, includeAffidavit = false) {
+  /**
+   * One seat's candidates (optionally of one election), so the list is small and complete: no row cap.
+   * `includeAffidavit` is for the admin list only (the affidavit columns); the public list never selects them.
+   */
+  findAll(filters: { election_id?: string; const_id: string }, includeAffidavit = false) {
     return this.prisma.candidates.findMany({
       where: {
-        election_id: filters?.election_id,
-        const_id: filters?.const_id,
+        election_id: filters.election_id,
+        const_id: filters.const_id,
       },
-      take,
       select: {
         id: true,
         name: true,

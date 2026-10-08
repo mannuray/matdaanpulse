@@ -54,7 +54,7 @@ describe('admin detail responses: updated_at + last_edit', () => {
     expect(candidate).toMatchObject({ updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
     const seats = { findOneWithAnalysis: jest.fn().mockResolvedValue({ id: 'BR_VS_1', name: 'V', phase: 2, updated_at }) };
-    const seat = map(AdminConstituencyDto, await new AdminConstituenciesController(seats as any, audit, {} as any).getConstituencyDetail('BR_VS_1'));
+    const seat = map(AdminConstituencyDto, await new AdminConstituenciesController(seats as any, audit, {} as any).getConstituencyDetail({ id: 'BR_VS_1' }));
     expect(seat).toMatchObject({ phase: 2, updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
     expect(prisma.audit_logs.findFirst.mock.calls.map((c: any) => c[0].where.entity_type)).toEqual(['person', 'candidate', 'constituency']);
@@ -108,7 +108,7 @@ describe('admin derived read endpoints: response mapping keeps every field', () 
       rows: [{ election_id: 'e1', year: 2025, type: 'VS', winner: 'A', party_id: 'BJP', margin: 10, turnout: 61.2, is_current: true }],
     };
     const svc = { history: jest.fn().mockResolvedValue(out) };
-    expect(map(AdminSeatHistoryDto, await new AdminConstituenciesController(svc as any, audit, {} as any).history('BR_VS_1'))).toEqual(out);
+    expect(map(AdminSeatHistoryDto, await new AdminConstituenciesController(svc as any, audit, {} as any).history({ id: 'BR_VS_1' }))).toEqual(out);
   });
 });
 
@@ -198,9 +198,12 @@ describe('admin candidates list and same-name search: the person link and affida
     };
     const prisma = { candidates: { findMany: jest.fn().mockResolvedValue([listRow]) } };
     const svc = new CandidatesService(prisma as any, {} as any, {} as any, {} as any);
-    const rows = await new AdminCandidatesController(svc, {} as any).findAll('e1', 's1');
+    const rows = await new AdminCandidatesController(svc, {} as any).findAll({ election_id: 'e1', const_id: 's1' });
+    // One seat, complete: filtered by the seat, never cut at an arbitrary row count.
+    expect(prisma.candidates.findMany.mock.calls[0][0].where).toEqual({ election_id: 'e1', const_id: 's1' });
+    expect(prisma.candidates.findMany.mock.calls[0][0]).not.toHaveProperty('take');
     expect(prisma.candidates.findMany.mock.calls[0][0].select).toMatchObject({ person_id: true, age: true, assets: true, liabilities: true, criminal_cases: true });
-    await svc.findAll({ election_id: 'e1' }); // the public path
+    await svc.findAll({ election_id: 'e1', const_id: 's1' }); // the public path
     const publicSelect = prisma.candidates.findMany.mock.calls[1][0].select;
     expect(publicSelect.person_id).toBe(true);
     expect(publicSelect).not.toHaveProperty('age');

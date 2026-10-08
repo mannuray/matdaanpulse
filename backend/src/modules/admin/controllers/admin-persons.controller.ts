@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, HttpCode, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { PersonsService } from '../../candidates/persons.service';
 import { PersonMergeService } from '../../candidates/person-merge.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
@@ -8,7 +8,7 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminPersonDto } from '../dto/admin-response.dto';
 import { CreatePersonDto, UpdatePersonDto, MergePersonsDto } from '../../candidates/dto/person-input.dto';
-import { AdminPersonsQueryDto } from '../../../common/dto/query.dto';
+import { AdminPersonsQueryDto, PersonSearchQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/persons')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -28,7 +28,9 @@ export class AdminPersonsController {
   @Get('search')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPersonDto))
-  searchPersons(@Query('q') q: string) {
+  async searchPersons(@Query() { q }: PersonSearchQueryDto) {
+    // Too short to mean anything (the admin picker waits for 2 characters): no rows, rather than 50 arbitrary persons.
+    if (q.length < 2) return [];
     return this.personsService.search(q);
   }
 
@@ -60,12 +62,14 @@ export class AdminPersonsController {
   }
 
   @Post('merge')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN')
   mergePersons(@Req() req: any, @Body() body: MergePersonsDto) {
     return this.merges.merge(body.source_id, body.target_id, req.user?.id);
   }
 
   @Post('merges/:id/undo')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN')
   undoMerge(@Req() req: any, @Param('id', ParseUUIDPipe) id: string) {
     return this.merges.undoMerge(id, req.user?.id);

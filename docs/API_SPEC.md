@@ -12,7 +12,7 @@
       "fields": [ { "field": "limit", "message": "limit must not be greater than 200" } ], "details": { } } }
     ```
     `message` is one human string (5xx: always "Internal server error"). `fields` is present only for validation errors (query and body), one entry per failed constraint, with nested paths such as `items[1].name`. `details` is present only for business exceptions that carry data. There is no `validationErrors` array.
-*   **Error codes:** `GEN_0001` internal, `GEN_0002` not found, `GEN_0003` bad request, `GEN_0004` conflict; `AUTH_1001` invalid credentials, `AUTH_1002` token expired, `AUTH_1003` unauthorized, `AUTH_1004` forbidden, `AUTH_1005` user exists; `ELECTION_2001/2002`, `CONST_3001/3002`, `USER_4001/4002`, `PARTY_5001`, `RESULT_6001`, `CANDIDATE_7001`, `MANIFEST_8001/8002` (not found / state errors per resource); `VALIDATION_9001` validation failed.
+*   **Error codes:** `GEN_0001` internal, `GEN_0002` not found, `GEN_0003` bad request, `GEN_0004` conflict; `AUTH_1001` invalid credentials, `AUTH_1003` unauthorized, `AUTH_1004` forbidden, `AUTH_1005` user exists; `ELECTION_2001/2003/2004`, `CONST_3001/3002`, `USER_4001/4002`, `PARTY_5001`, `RESULT_6001`, `CANDIDATE_7001/7002` (not found / state errors per resource), `MANIFEST_8002` (no draft to publish, 409; a missing election is `ELECTION_2001`); `VALIDATION_9001` validation failed.
 *   **Localization:** Support for `?lang=en|hi|mr|ta` in all GET requests.
 
 ---

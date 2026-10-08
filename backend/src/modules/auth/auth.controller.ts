@@ -15,6 +15,7 @@ export class AuthController {
   ) {}
 
   @Post('login')
+  @HttpCode(200)
   login(@Body() body: LoginDto) {
     return this.authService.login(body.email, body.password);
   }

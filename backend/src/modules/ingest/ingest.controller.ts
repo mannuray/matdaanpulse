@@ -3,7 +3,7 @@ import { SkipThrottle } from '@nestjs/throttler';
 import { IngestKeyGuard } from './ingest-key.guard';
 import { IngestService } from './ingest.service';
 import { LeaseService } from './lease.service';
-import { LeaseBody, SeatsBody, TallyBody } from './dto/ingest.dto';
+import { LeaseBody, LeaseReleaseQuery, SeatsBody, ShardQuery, TallyBody } from './dto/ingest.dto';
 import { REST, ShardsService } from './shards.service';
 import { IngestNoLeaseException } from '../../common/exceptions';
 import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
@@ -21,12 +21,12 @@ export class IngestController {
   ) {}
 
   @Get('roster')
-  roster(@Param('electionId', ParseUUIDPipe) id: string, @Query('shard') shard?: string) {
+  roster(@Param('electionId', ParseUUIDPipe) id: string, @Query() { shard }: ShardQuery) {
     return this.ingest.roster(id, shard || undefined);
   }
 
   @Get('config')
-  config(@Param('electionId', ParseUUIDPipe) id: string, @Query('shard') shard?: string) {
+  config(@Param('electionId', ParseUUIDPipe) id: string, @Query() { shard }: ShardQuery) {
     return this.ingest.config(id, shard || REST);
   }
 
@@ -46,7 +46,7 @@ export class IngestController {
   }
 
   @Delete('lease')
-  async release(@Param('electionId', ParseUUIDPipe) id: string, @Query('shard') shard: string, @Query('holder') holder: string, @Req() req: any) {
+  async release(@Param('electionId', ParseUUIDPipe) id: string, @Query() { shard, holder }: LeaseReleaseQuery, @Req() req: any) {
     await this.leases.release(id, shard || REST, req.ingestKey.id, holder ?? '');
     return { released: true };
   }
