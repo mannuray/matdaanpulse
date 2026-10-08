@@ -243,7 +243,7 @@ describe('StandingsTile summary tab', () => {
   it('the card title follows the tab and the expand button opens that tab\'s focus', () => {
     height(300);
     const onFocus = vi.fn(); const onSummaryFocus = vi.fn();
-    const watchlist = { leaders: [], watchlist: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop };
+    const watchlist = { leaders: [], watchlist: [], lists: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop };
     render(<StandingsTile vm={{ ...st, onFocus }} variant="tile" summary={mk({ onFocus: onSummaryFocus })} watchlist={watchlist} />);
     expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('Election summary');
     fireEvent.click(screen.getByRole('button', { name: /expand election summary/i }));

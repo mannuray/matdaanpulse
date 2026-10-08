@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { TopBar } from './TopBar';
 import { ScoreboardTile } from './ScoreboardTile';
-import { StandingsTile, StandingsPreview, WatchlistPreview, type StandingsTab } from './StandingsTile';
+import { StandingsTile, StandingsPreview, WatchlistPreview, watchTabLabel, type StandingsTab } from './StandingsTile';
 import { LayerInsightStrip } from './LayerInsightStrip';
 import { SummaryFocus } from './SummaryFocus';
 import { SummaryPreview } from './SummaryTab';
@@ -36,6 +36,8 @@ export interface DashboardViewProps {
 export function DashboardGrid(p: DashboardViewProps) {
   const { t } = useTranslation();
   const [standingsTab, setStandingsTab] = useState<StandingsTab>('parties');
+  // The Watchlist sub-tab, shared by the tile and its focus view (null: the default, the first manifest list).
+  const [watchList, setWatchList] = useState<string | null>(null);
   const desktop = useMediaQuery('(min-width: 1024px)');
   const titles: Record<FocusTile, string> = {
     map: t('constituency_map'), scoreboard: t('studio_results'), standings: t(standingsTab === 'watchlist' ? 'studio_title_watchlist' : 'party_standings'),
@@ -46,7 +48,7 @@ export function DashboardGrid(p: DashboardViewProps) {
       switch (tile) {
         case 'map': return <MapTile vm={p.map} variant="focus" />;
         case 'scoreboard': return <ScoreboardTile vm={p.scoreboard} variant="focus" />;
-        case 'standings': return <StandingsTile vm={p.standings} variant="focus" watchlist={p.leaders} initialTab={standingsTab} onTabChange={setStandingsTab} />;
+        case 'standings': return <StandingsTile vm={p.standings} variant="focus" watchlist={p.leaders} initialTab={standingsTab} onTabChange={setStandingsTab} initialList={watchList} onListChange={setWatchList} />;
         case 'insight': return p.summary ? <SummaryFocus vm={p.summary} /> : null;
         case 'leaders': return <LeadersStrip vm={p.leaders} variant="focus" />;
         case 'stats': return <StatsStrip vm={p.stats} variant="focus" />;
@@ -63,7 +65,7 @@ export function DashboardGrid(p: DashboardViewProps) {
         <MobileCardRail cards={[
           { id: 'insight', title: titles.insight, node: p.summary ? <SummaryPreview vm={p.summary} /> : <LayerInsightStrip vm={p.insight} variant="tile" />, onOpen: p.summary?.onFocus ?? p.insight.onFocus },
           { id: 'standings', title: t('party_standings'), node: <StandingsPreview vm={p.standings} />, onOpen: () => { setStandingsTab('parties'); p.standings.onFocus(); } },
-          { id: 'watchlist', title: t('studio_tab_watchlist', { count: p.leaders.watchlist.length }), node: <WatchlistPreview vm={p.leaders} />, onOpen: () => { setStandingsTab('watchlist'); p.standings.onFocus(); } },
+          { id: 'watchlist', title: watchTabLabel(p.leaders, t), node: <WatchlistPreview vm={p.leaders} />, onOpen: () => { setStandingsTab('watchlist'); p.standings.onFocus(); } },
           { id: 'leaders', title: titles.leaders, node: <LeadersStrip vm={p.leaders} variant="tile" />, onOpen: p.leaders.onFocus },
           { id: 'stats', title: titles.stats, node: <StatsStrip vm={p.stats} variant="tile" />, onOpen: p.stats.onFocus },
         ]} />
@@ -80,7 +82,7 @@ export function DashboardGrid(p: DashboardViewProps) {
       <MapTile vm={p.map} variant="tile" footer={<LayerInsightStrip vm={p.insight} variant="footer" />} />
       <div className="grid min-h-0 grid-rows-[148px_minmax(0,1fr)] gap-3">
         <ScoreboardTile vm={p.scoreboard} variant="tile" />
-        <StandingsTile vm={p.standings} variant="tile" watchlist={p.leaders} summary={p.summary} onTabChange={setStandingsTab} />
+        <StandingsTile vm={p.standings} variant="tile" watchlist={p.leaders} summary={p.summary} onTabChange={setStandingsTab} initialList={watchList} onListChange={setWatchList} />
       </div>
       <div className="col-span-2 grid min-h-0"><LeadersStrip vm={p.leaders} variant="tile" /></div>
       <div className="col-span-2 grid min-h-0"><StatsStrip vm={p.stats} variant="tile" /></div>

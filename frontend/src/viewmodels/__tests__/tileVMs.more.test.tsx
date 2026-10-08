@@ -147,6 +147,19 @@ describe('shared watchlist (seat dialog + leaders)', () => {
     vi.spyOn(electionApi, 'getConstituencyAnalysis').mockResolvedValue(null as never);
   });
 
+  it('useLeadersVM().lists: the manifest\'s own watchlists, each with live cards; a seatless entry gets its seat from the results', () => {
+    const base = makeSources();
+    const sources = makeSources({ data: { ...base.data, manifestData: { ...base.data.manifestData, watchlists: [
+      { id: 'faces', name: 'Faces to watch', entries: [{ name: 'Mahesh Paswan', party_id: 'BJP', const_id: '' }, { name: 'Radha Charan Sah', party_id: 'JDU', const_id: 'BR_VS_1_SANDESH' }] },
+      { id: 'empty', name: 'Draft', entries: [] },
+      { id: 'big', name: 'Big wins', entries: [{ name: 'Kaladhar Prasad Mandal', party_id: 'JDU', const_id: 'BR_VS_2_RUPAULI' }] },
+    ] } } });
+    const { result } = renderHook(() => useLeadersVM(), { wrapper: wrap(sources) });
+    expect(result.current.lists.map(l => [l.id, l.name, l.cards.length])).toEqual([['faces', 'Faces to watch', 2], ['big', 'Big wins', 1]]);
+    expect(result.current.lists[0].cards[0]).toMatchObject({ constId: 'BR_VS_3_AGIAON', status: 'WON', custom: false });
+    expect(result.current.lists[1].cards[0]).toMatchObject({ constId: 'BR_VS_2_RUPAULI', status: 'WON', margin: 73572 });
+  });
+
   it('track from the seat dialog shows in useLeadersVM().watchlist; leaders exclude custom; remove works', () => {
     const { result } = renderHook(() => ({ leaders: useLeadersVM(), seat: useSeatDialogVM(), store: useDashboardStore() }), { wrapper: sharedWatchWrap() });
     act(() => result.current.store.dispatch({ type: 'selectSeat', seat: 'BR_VS_3_AGIAON' }));

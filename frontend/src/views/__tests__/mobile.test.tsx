@@ -94,7 +94,7 @@ describe('mobile rail titles', () => {
     search: { query: '', open: false, seats: [], candidates: [], onQuery: noop, onOpen: noop, onPick: noop },
     scoreboard: { blocs: [], others: { seats: 0, votePct: null }, totalSeats: 1, majority: 1, countedSeats: 0, winnerId: null, marginOverMajority: null, status: 'final', pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop },
     standings: { ...standings([row('BJP', 5)]), onFocus },
-    insight: { onFocus: noop }, leaders: { watchlist: [], leaders: [], partyColor: new Map(), seatOptions: [], onFocus: noop }, stats: { onFocus: noop },
+    insight: { onFocus: noop }, leaders: { watchlist: [], lists: [], leaders: [], partyColor: new Map(), seatOptions: [], onFocus: noop }, stats: { onFocus: noop },
     map: {}, seatDialog: null, focus, onCloseFocus: noop,
   }) as unknown as DashboardViewProps;
   const grid = (p: DashboardViewProps) => <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><DashboardGrid {...p} /></MemoryRouter>;

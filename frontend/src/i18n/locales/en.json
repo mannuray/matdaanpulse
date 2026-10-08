@@ -686,5 +686,7 @@
   "pty_map_click": "Click a seat for its page",
   "pty_map_unavailable": "Map not available for this election",
   "party_full_page": "Full party page",
-  "pty_not_contested_in": "not contested in {{year}}"
+  "pty_not_contested_in": "not contested in {{year}}",
+  "studio_watchlists": "Watchlists",
+  "studio_my_seats": "My seats"
 }
