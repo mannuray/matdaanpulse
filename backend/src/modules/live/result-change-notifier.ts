@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ResultsService } from '../results/results.service';
+import { ElectionCacheService } from '../redis/election-cache.service';
 import { LiveStateService } from '../results/live-state.service';
 import { LivePublisher } from './live.service';
 import { MetricsService } from '../metrics/metrics.service';
@@ -37,7 +37,7 @@ export class ResultChangeNotifier {
   private readonly logger = new Logger(ResultChangeNotifier.name);
 
   constructor(
-    private readonly results: ResultsService,
+    private readonly electionCache: ElectionCacheService,
     private readonly live: LivePublisher,
     private readonly metrics: MetricsService,
     private readonly liveState: LiveStateService,
@@ -58,7 +58,7 @@ export class ResultChangeNotifier {
       this.logger.warn(`Live-state memo invalidation failed for election ${electionId}: ${(err as Error).message}`);
     }
     try {
-      await this.results.purgeElectionCache(electionId);
+      await this.electionCache.purgeResults(electionId);
     } catch (err) {
       this.logger.warn(`Cache invalidation failed for election ${electionId}: ${(err as Error).message}`);
     }

@@ -2,12 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
+import { electionKeys } from '../redis/election-cache.service';
 import { analyse, baselineOf, SCHEMA_VERSION, type Baseline, type ElectionAnalysis } from '../../common/seat-analysis';
 import { SeatAnalysisLoader } from './seat-analysis.loader';
 
-export const publicAnalysisKey = (id: string) => `election:${id}:public-analysis`;
-export const analysisSummaryKey = (id: string) => `election:${id}:analysis-summary`;
-export const baselineKey = (id: string) => `election:${id}:baseline`;
+export const publicAnalysisKey = electionKeys.publicAnalysis;
+export const analysisSummaryKey = electionKeys.analysisSummary;
+export const baselineKey = electionKeys.baseline;
 
 /**
  * The one path that computes and stores the seat analysis (spec §4.5): the admin button, the compute endpoint, the CLI
