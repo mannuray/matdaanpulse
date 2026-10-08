@@ -1,5 +1,6 @@
 import { BadRequestException, ConflictException, HttpException, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { ServiceBusyException } from '../exceptions/base.exception';
 
 /**
  * Translate Prisma client errors into safe HTTP errors (review E-M1). Messages
@@ -16,9 +17,12 @@ export function mapPrismaError(err: unknown): HttpException | null {
       case 'P2003':
         return new BadRequestException('A referenced record does not exist');
       case 'P2034':
-      case 'P2028':
-        // Transaction write conflict / timeout or expired interactive transaction: safe to retry.
+        // Transaction write conflict / deadlock: safe to retry.
         return new ConflictException('The request conflicted with another operation; please retry');
+      case 'P2028': // interactive transaction could not start within maxWait, or ran past its timeout
+      case 'P2024': // timed out waiting for a pooled connection
+        // Load, not a client error: 503 + Retry-After so workers and CDNs back off instead of hammering a full pool.
+        return new ServiceBusyException();
       case 'P2023':
         return new BadRequestException('Malformed identifier');
       default:

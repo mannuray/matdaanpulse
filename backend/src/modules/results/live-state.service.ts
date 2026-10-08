@@ -48,6 +48,16 @@ export class LiveStateService {
     return promise;
   }
 
+  /**
+   * The committed version straight from the DB (no memo; one indexed read). Used to confirm that data read after
+   * get() still belongs to that version before labelling it immutable. 0 when the election has no live-state row.
+   */
+  async currentVersion(electionId: string): Promise<number> {
+    const [row] = await this.prisma.$queryRaw<{ version: bigint }[]>`
+      SELECT version FROM election_live_state WHERE election_id = ${electionId}::uuid`;
+    return row ? Number(row.version) : 0;
+  }
+
   /** Forget the memo and detach any in-flight read (call after committing a results write). */
   invalidate(electionId: string): void {
     this.memo.delete(electionId);

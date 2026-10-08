@@ -19,6 +19,19 @@ function deps(over: Partial<{ status: string; source: string | null; lease: 'ok'
   return { d, client, adapter, log };
 }
 
+describe('runCycle posting', () => {
+  it('posts a whole state (UP, 403 seats) in ONE request per cycle (one snapshot version), chunking only above the API max', async () => {
+    expect(POST_CHUNK).toBe(500); // = backend MAX_SEATS_PER_REQUEST (backend/src/modules/ingest/dto/ingest.dto.ts)
+    const up = deps({ seats: 403 });
+    await runCycle('e', 'rest', newLoopState(), up.d);
+    expect(up.client.seats).toHaveBeenCalledTimes(1);
+    expect(up.client.seats.mock.calls[0][1].seats).toHaveLength(403);
+    const big = deps({ seats: 1001 });
+    await runCycle('e', 'rest', newLoopState(), big.d);
+    expect(big.client.seats.mock.calls.map((c: any[]) => c[1].seats.length)).toEqual([500, 500, 1]);
+  });
+});
+
 describe('runCycle commit', () => {
   it('commits each delivered chunk with its const_ids; nothing for a chunk that failed', async () => {
     const { d, client, adapter } = deps({ seats: POST_CHUNK + 1 });

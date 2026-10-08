@@ -17,10 +17,10 @@ describe('electionKeys: every election cache key, built in one place', () => {
 });
 
 describe('ElectionCacheService', () => {
-  it('purgeResults: the results-derived views (after every results write); immutable snapshots are kept', async () => {
+  it('purgeResults: only the unversioned public analysis; no SCAN (results views are keyed by version, never served stale)', async () => {
     const { svc, cache } = make();
     await expect(svc.purgeResults('e')).resolves.toBe(true);
-    expect(cache.delByPattern.mock.calls.map((c: any) => c[0]).sort()).toEqual(['election:e:full-results:*', 'election:e:summary:*', 'election:e:vote-share:*']);
+    expect(cache.delByPattern).not.toHaveBeenCalled();
     expect(cache.del.mock.calls.map((c: any) => c[0])).toEqual(['election:e:public-analysis']);
   });
   it('purgeElection: everything (a status change), including the analysis summary and the baseline', async () => {
@@ -30,7 +30,7 @@ describe('ElectionCacheService', () => {
   });
   it('reports a failed delete', async () => {
     const { svc, cache } = make();
-    cache.delByPattern.mockResolvedValueOnce(false);
+    cache.del.mockResolvedValueOnce(false);
     await expect(svc.purgeResults('e')).resolves.toBe(false);
   });
 });

@@ -12,24 +12,19 @@ export const electionKeys = {
   events: (id: string) => `election:${id}:events`,
 };
 
-const RESULT_VIEWS = ['summary', 'vote-share', 'full-results'] as const;
-
 /** Invalidation of an election's cached views (the one place that knows which keys exist). */
 @Injectable()
 export class ElectionCacheService {
   constructor(private readonly cache: CacheService) {}
 
   /**
-   * After a results write: the results-derived views and the public analysis. Snapshots (`…:snapshot:v<n>`) are kept:
-   * they never change meaning, and a wildcard purge right after a commit could delete the snapshot a fast reader had just
-   * cached for the new version. Old snapshots fall away with their TTL.
+   * After a results write: the public analysis, the only unversioned results-derived key. The other results views
+   * (summary, vote-share, full-results, region-shares, snapshots) are keyed by the live version (`…:v<n>`), which the
+   * write's DB trigger has already moved, so they are never served stale and need no SCAN; old versions fall away
+   * with their TTL. (A wildcard purge right after a commit could even delete what a fast reader had just cached.)
    */
-  async purgeResults(id: string): Promise<boolean> {
-    const outcomes = await Promise.all([
-      ...RESULT_VIEWS.map(v => this.cache.delByPattern(`election:${id}:${v}:*`)),
-      this.cache.del(electionKeys.publicAnalysis(id)),
-    ]);
-    return outcomes.every(Boolean);
+  purgeResults(id: string): Promise<boolean> {
+    return this.cache.del(electionKeys.publicAnalysis(id));
   }
 
   /** After a status change: everything, including the stored seat analysis summary and the baseline. */

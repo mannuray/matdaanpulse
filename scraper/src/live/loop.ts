@@ -6,7 +6,13 @@ export interface LoopDeps { client: Pick<IngestClient, 'config' | 'lease' | 'rel
   /** Post the source's party-wise tally from this loop (default: only the rest shard's loop, as the tally covers the whole election). */
   tally?: boolean }
 export interface LoopState { adapter: SourceAdapter | null; source: string | null; preparedAt: number; cycle: number; leased: boolean; failures: number }
-export const POST_CHUNK = 100;
+/**
+ * Seats per ingest request = the API maximum (backend MAX_SEATS_PER_REQUEST in backend/src/modules/ingest/dto/ingest.dto.ts;
+ * the scraper cannot import it). Each request is one transaction and so one new snapshot version that every viewer
+ * re-downloads, so a state (UP: 403 seats) goes in one request per cycle; only a shard above the max is chunked.
+ * Measured locally: 403 UP seats ≈ 0.7–2 s server-side, ~260 KB body (500 seats ≲ 0.7 MB of the 5 MB limit).
+ */
+export const POST_CHUNK = 500;
 export const REPREPARE_MS = 30 * 60_000;
 export const TALLY_EVERY = 5;
 /** The server's 409 names only when the other job's lease ends, never its holder. */
