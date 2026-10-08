@@ -24,8 +24,8 @@ export class ElectionSummaryDto {
   state?: StateSummaryDto;
 }
 
-export class ElectionDetailDto extends ElectionSummaryDto {
-  @Expose() manifest_url: string | null;
-  @Expose() manifest: any;
-  @Expose() summary: any[];
-}
+/**
+ * Public election detail: the summary fields only. The manifest (raw `manifest_url` or parsed) and the seat tally
+ * are not sent here; they have their own routes (`:id/manifest`, `:id/alliances`) and no client read them from this one.
+ */
+export class ElectionDetailDto extends ElectionSummaryDto {}

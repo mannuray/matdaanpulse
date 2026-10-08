@@ -1264,6 +1264,10 @@ Spec `docs/superpowers/specs/2026-10-03-live-ingest-design.md`; operations in `d
   - `unhandledRejection` / `uncaughtException` → one JSON `fatal` line with the stack, traces flushed (≤ 2 s), exit 1 (`common/lifecycle/process-handlers.ts`).
   - `/health/ready`: 503 `unhealthy` only when the DB fails; Redis down → 200 `degraded`; one answer shared for 2 s (`HEALTH_MEMO_MS`).
   - Tracing (when enabled): `ParentBased(TraceIdRatio)` sampler (`OTEL_TRACE_SAMPLE_RATIO`, default 0.05), health probes and preflights not traced, no Express middleware spans, `request.id` on the server span.
+- [x] API shape fixes (2026-10-08): `GET /search/constituencies` returns the public seat summary (`ConstituencySearchHitDto`: no `metadata` / `updated_at` / `region_id`, `voter_turnout` a number, `district: { id, name }`, so the dashboard search shows the district again)
+- [x] API shape fixes (2026-10-08): `GET /elections/:id/manifest` returns `{ election_id, draft }` only (`draft` = the published manifest, parsed and comparable-filtered; the raw `manifest_url` text is no longer sent); `GET /elections/:id` returns the election summary fields only (no `manifest_url` / `manifest` / `summary`, which no client read there; two fewer queries per miss)
+- [x] API shape fixes (2026-10-08): `GET /parties?q=` alone is honoured (bare array filtered by name / id / abbreviation); no params → bare array of every party (CDN-cached); any of `page` / `limit` / `election_id` / `state_id` / `eci_recognition` → paged envelope (also filtered by `q`)
+- [x] API shape fixes (2026-10-08): unversioned `GET /elections/:id/results` rows carry `person_id`, like the `?v=` snapshot rows
 - [x] Simulation runs through ingest: `sim:mock-eci`, `sim:setup`, `sim:live`, `sim:replay`, `sim:smoke`, `sim:cleanup`
 - [x] Removed: `/admin/results/override` and `/admin/results/override-bulk`; the old scraper stubs (`scheduler/`, `normalizer/`, `eci-adapter.ts`, `cache/`)
 

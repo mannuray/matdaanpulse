@@ -125,6 +125,7 @@ export class ResultsService {
           select: {
             party_id: true,
             name: true,
+            person_id: true,
           }
         },
         constituencies: {
@@ -138,6 +139,8 @@ export class ResultsService {
       const_id: r.const_id,
       party_id: r.candidates.party_id,
       candidate_name: r.candidates.name,
+      // Same row shape as the snapshot's results (buildSnapshot): the live analysis matches persons by it.
+      person_id: r.candidates.person_id ?? null,
       votes: r.votes,
       status: r.status,
       margin: r.margin,

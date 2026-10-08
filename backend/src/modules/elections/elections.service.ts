@@ -37,10 +37,15 @@ export class ElectionsService {
     return election;
   }
 
+  /**
+   * Public manifest. `draft` is the PUBLISHED manifest, parsed and filtered by comparableManifest (the name is
+   * historical; every frontend reader uses it). The raw stored text (`manifest_url`) is never sent: it would ship
+   * the manifest twice and skip the comparable-elections filter. The admin reads drafts via /admin/elections/:id/manifest.
+   */
   async getManifest(id: string) {
     const election = await this.findOne(id);
     const draft = await this.comparableManifest(election, parseManifest(election.manifest_url));
-    return { election_id: id, manifest_url: election.manifest_url, draft };
+    return { election_id: id, draft };
   }
 
   /**

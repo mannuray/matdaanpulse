@@ -11,6 +11,13 @@ import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
 export class PartiesController {
   constructor(private readonly partiesService: PartiesService) {}
 
+  /**
+   * Two response shapes, chosen by the query:
+   * - any of page / limit / election_id / state_id / eci_recognition → the paged envelope `{ data, meta }`
+   *   (admin Parties list), filtered by `q` too;
+   * - otherwise → a bare array of every party (frontend party meta, admin party picker; CDN-cached with the
+   *   long reference TTL), filtered by `q` when it is sent alone.
+   */
   @Get()
   @CacheControl(CACHE_CONTROL.REFERENCE) // the admin's paged reads carry Authorization and stay no-store
   @UseInterceptors(new MapToDtoInterceptor(PartySummaryDto))
@@ -29,7 +36,7 @@ export class PartiesController {
         result.meta,
       );
     }
-    const allParties = await this.partiesService.findAll();
+    const allParties = await this.partiesService.findAll(q);
     return allParties || [];
   }
 

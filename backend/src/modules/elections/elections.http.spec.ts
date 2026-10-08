@@ -34,7 +34,7 @@ const ELECTION_ROW = {
   state_id: null,
   tentative_next_date: new Date('2029-05-01T00:00:00.000Z'),
   delimitation: '2008',
-  manifest_url: null,
+  manifest_url: '{"leaders":[]}',
   states: null,
   secret_internal: 'x',
 };
@@ -112,6 +112,15 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     const one = (await (await get(`/elections/${EID}`)).json()).data;
     expect(one.delimitation).toBe('2008');
     expect(one.tentative_next_date).toBe('2029-05-01T00:00:00.000Z');
+  });
+
+  it('the public election detail sends no manifest (raw or parsed) and no summary: no client reads them there', async () => {
+    const one = (await (await get(`/elections/${EID}`)).json()).data;
+    expect(one).not.toHaveProperty('manifest_url');
+    expect(one).not.toHaveProperty('manifest');
+    expect(one).not.toHaveProperty('summary');
+    expect(one).not.toHaveProperty('secret_internal');
+    expect(ctx.resultsService.getElectionSummary).not.toHaveBeenCalled();
   });
 
   it('GET /elections/:id/constituencies/:constId/rounds returns the seat timeline with the short results cache', async () => {

@@ -240,6 +240,26 @@ describe('PartiesService.findOne', () => {
   });
 });
 
+describe('PartiesService.findAll', () => {
+  it('without q: every party, no filter', async () => {
+    const { svc, prisma } = make();
+    await svc.findAll();
+    expect(prisma.parties.findMany.mock.calls[0][0].where).toBeUndefined();
+  });
+
+  it('with q: matches name, id or abbreviation (case-insensitive), as the paged search does', async () => {
+    const { svc, prisma } = make();
+    await svc.findAll('bjp');
+    expect(prisma.parties.findMany.mock.calls[0][0].where).toEqual({
+      OR: [
+        { name: { contains: 'bjp', mode: 'insensitive' } },
+        { id: { contains: 'bjp', mode: 'insensitive' } },
+        { abbreviation: { contains: 'bjp', mode: 'insensitive' } },
+      ],
+    });
+  });
+});
+
 describe('PartiesService.record', () => {
   const analysis = { parties: [{ party_id: 'BJP', contested: 68, won: 21, votes: 100, share: 33.2, prev: null, held: 14, gained: 7, lost: 9, split_gained: 0, split_lost: 0 }],
     flow: [{ from: 'JMM', to: 'BJP', seats: 4, split: false }], breakdowns: { region: [] } };

@@ -18,7 +18,7 @@ export function makeSources(over: Partial<DashboardSources> = {}): DashboardSour
     color: '#fff', candidate: w.candidate_name, partyColor: '#fff', recentChange: false,
   }));
   return {
-    election: { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 4, state: { id: 4, name: 'Bihar', code: 'BR', total_assembly_seats: 243, total_ls_seats: 40 }, year: 2025, status: 'Finalized', tentative_next_date: null, manifest_url: null },
+    election: { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 4, state: { id: 4, name: 'Bihar', code: 'BR', total_assembly_seats: 243, total_ls_seats: 40 }, year: 2025, status: 'Finalized', tentative_next_date: null },
     data: {
       results: rows, seats: {}, trails: {}, manifestData: { alliances: [{ id: 'NDA', name: 'NDA', color: '#FF7A1A', parties: ['BJP', 'JDU'] }, { id: 'MGB', name: 'MGB', color: '#7BD34A', parties: ['RJD'] }] },
       constCandidates: cc, currentWinnerMap: winners,

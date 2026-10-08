@@ -12,6 +12,29 @@ describe('PartiesController.findAll', () => {
     expect(out.meta).toEqual({ page: 1, limit: 2, total: 9 });
     expect(out.data[0].name).toBe('A');
   });
+
+  it('no params → the bare array of every party (the CDN-cached public lookup)', async () => {
+    const service = { findPaginated: jest.fn(), findAll: jest.fn().mockResolvedValue([{ id: 'BJP' }]) };
+    const out = await new PartiesController(service as any).findAll({} as any);
+    expect(out).toEqual([{ id: 'BJP' }]);
+    expect(service.findAll).toHaveBeenCalledWith(undefined);
+    expect(service.findPaginated).not.toHaveBeenCalled();
+  });
+
+  it('?q= alone is honoured: the bare array, filtered by q (it used to be ignored)', async () => {
+    const service = { findPaginated: jest.fn(), findAll: jest.fn().mockResolvedValue([{ id: 'BJP' }]) };
+    const out = await new PartiesController(service as any).findAll({ q: 'bhar' } as any);
+    expect(out).toEqual([{ id: 'BJP' }]);
+    expect(service.findAll).toHaveBeenCalledWith('bhar');
+    expect(service.findPaginated).not.toHaveBeenCalled();
+  });
+
+  it('?q= with paging params → the paged envelope, filtered by q', async () => {
+    const service = { findPaginated: jest.fn().mockResolvedValue(paginated([], { page: 1, limit: 25, total: 0 })), findAll: jest.fn() };
+    const out: any = await new PartiesController(service as any).findAll({ q: 'bhar', page: 1 } as any);
+    expect(out).toBeInstanceOf(Paginated);
+    expect(service.findPaginated).toHaveBeenCalledWith(1, 25, 'bhar', undefined, undefined, undefined);
+  });
 });
 
 describe('PartiesController cache policies', () => {

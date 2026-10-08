@@ -1,5 +1,28 @@
 import { ResultsService } from './results.service';
 
+describe('ResultsService.getResults (unversioned rows)', () => {
+  it('each row carries person_id, like the versioned snapshot rows (both are ResultRow on the frontend)', async () => {
+    const prisma = {
+      results: {
+        findMany: jest.fn().mockResolvedValue([
+          { const_id: 'A', votes: 900, status: 'WON', margin: 120, candidates: { party_id: 'BJP', name: 'X', person_id: 'p1' }, constituencies: { type: 'GEN' } },
+          { const_id: 'A', votes: 780, status: 'LOST', margin: null, candidates: { party_id: null, name: 'Y', person_id: null }, constituencies: { type: 'GEN' } },
+        ]),
+      },
+    };
+    const svc = Object.create(ResultsService.prototype) as ResultsService;
+    (svc as any).prisma = prisma;
+    (svc as any).liveState = { get: jest.fn(async () => ({ version: 3 })) };
+    (svc as any).cache = { getOrSet: jest.fn((_k: string, _t: number, load: () => unknown) => load()) };
+    const rows = await svc.getResults('e1');
+    expect(rows).toEqual([
+      { const_id: 'A', party_id: 'BJP', candidate_name: 'X', person_id: 'p1', votes: 900, status: 'WON', margin: 120, const_type: 'GEN' },
+      { const_id: 'A', party_id: null, candidate_name: 'Y', person_id: null, votes: 780, status: 'LOST', margin: null, const_type: 'GEN' },
+    ]);
+    expect(prisma.results.findMany.mock.calls[0][0].select.candidates.select).toMatchObject({ person_id: true });
+  });
+});
+
 describe('ResultsService.getLiveResults', () => {
   it('includes the constituency round fields', async () => {
     const prisma = {

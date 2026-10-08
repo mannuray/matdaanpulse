@@ -21,3 +21,18 @@ describe('ElectionsService.comparableManifest', () => {
     expect(prisma.elections.findMany).not.toHaveBeenCalled();
   });
 });
+
+describe('ElectionsService.getManifest (public)', () => {
+  it('returns only the parsed, comparable-filtered manifest as `draft`: never the raw stored text', async () => {
+    const stored = { history: ['e10', 'e20'], history_years: [2010, 2020], geo: { map_url: '/geo/x.geojson' } };
+    const prisma: any = {
+      elections: {
+        findUnique: jest.fn().mockResolvedValue({ id: 'e25', type: 'VS', state_id: 5, delimitation: '2008', manifest_url: JSON.stringify(stored), states: null }),
+        findMany: jest.fn().mockResolvedValue([{ id: 'e20' }]),
+      },
+    };
+    const out = await new ElectionsService(prisma).getManifest('e25');
+    expect(out).toEqual({ election_id: 'e25', draft: { history: ['e20'], history_years: [2020], geo: stored.geo } });
+    expect(out).not.toHaveProperty('manifest_url');
+  });
+});
