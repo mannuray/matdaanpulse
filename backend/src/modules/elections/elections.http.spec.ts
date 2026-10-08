@@ -50,8 +50,6 @@ async function makeApp(env: Record<string, string>, opts: { publicPerMin?: numbe
     getVoteShare: jest.fn(async () => []),
     getSeatRounds: jest.fn(async () => [{ seq: 1, r: 1, rt: 20, lp: 'BJP', m: 120, v: 900, declared: false, at: '2027-02-27T04:00:00.000Z' }]),
     getRegionShares: jest.fn(async () => []),
-    getDistrictResults: jest.fn(async () => []),
-    compareConstituencies: jest.fn(async () => ({})),
     getConstituencyDetail: jest.fn(async (_e: string, constId: string) => ({ id: constId, name: 'Seat A', candidates: [], secret: 'x' })),
   };
   const throttled = opts.publicPerMin !== undefined;
@@ -234,13 +232,17 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect(ctx.resultsService.getSnapshot).toHaveBeenCalledTimes(2);
   });
 
+  it('routes with no consumer are gone: /compare and district results', async () => {
+    expect((await get(`/elections/${EID}/compare?from=A&to=B`)).status).toBe(404);
+    expect((await get(`/elections/${EID}/districts/3/results`)).status).toBe(404);
+  });
+
   describe('finished elections: unversioned election reads get the long CDN TTL', () => {
     const reads = [
       `/elections/${EID}`, `/elections/${EID}/manifest`, `/elections/${EID}/results`, `/elections/${EID}/alliances`,
       `/elections/${EID}/vote-share`, `/elections/${EID}/region-shares`, `/elections/${EID}/baseline`,
       `/elections/${EID}/analysis/summary`, `/elections/${EID}/analysis`, `/elections/${EID}/constituencies/A/analysis`,
-      `/elections/${EID}/districts/3/results`, `/elections/${EID}/constituencies/A/rounds`, `/elections/${EID}/constituencies/A`,
-      `/elections/${EID}/compare?from=A&to=B`,
+      `/elections/${EID}/constituencies/A/rounds`, `/elections/${EID}/constituencies/A`,
     ];
     it('Finalized → s-maxage=3600, stale-while-revalidate=86400', async () => {
       ctx.live.status = 'Finalized';

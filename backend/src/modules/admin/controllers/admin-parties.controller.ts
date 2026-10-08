@@ -1,3 +1,5 @@
+import { IdParamPipe } from '../../../common/validation/id-param.pipe';
+import { PARTY_ID_MAX, PARTY_ID_RE } from '../../../common/validation/ids';
 import { Controller, Post, Put, Get, Body, Param, Req, UseGuards, UseInterceptors } from '@nestjs/common';
 import { PartiesService } from '../../parties/parties.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
@@ -27,7 +29,7 @@ export class AdminPartiesController {
   @Get('parties/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPartyDto))
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', new IdParamPipe(PARTY_ID_RE, PARTY_ID_MAX, 'party id')) id: string) {
     const [party, last_edit] = await Promise.all([this.partiesService.findOne(id), this.audit.lastEdit('party', id)]);
     return { ...party, last_edit };
   }
@@ -36,14 +38,14 @@ export class AdminPartiesController {
   @Get('parties/:id/usage')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPartyUsageDto))
-  usage(@Param('id') id: string) {
+  usage(@Param('id', new IdParamPipe(PARTY_ID_RE, PARTY_ID_MAX, 'party id')) id: string) {
     return this.partiesService.usage(id);
   }
 
   @Put('parties/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPartyDto))
-  async updateParty(@Req() req: any, @Param('id') id: string, @Body() body: UpdatePartyDto) {
+  async updateParty(@Req() req: any, @Param('id', new IdParamPipe(PARTY_ID_RE, PARTY_ID_MAX, 'party id')) id: string, @Body() body: UpdatePartyDto) {
     const party = await this.partiesService.update(id, body, req.user?.id);
     return { ...party, last_edit: await this.audit.lastEdit('party', id) };
   }

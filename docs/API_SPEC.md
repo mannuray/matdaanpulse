@@ -39,7 +39,6 @@
 ### 2.4 Search & Analysis
 *   **`GET /search/constituencies?q={query}&district_id={id}`**: Search by name or PIN code.
 *   **`GET /search/candidates?q={query}`**: Direct search for VIP candidates.
-*   **`GET /elections/{id}/compare?to={prev_id}`**: Swing analysis between two election years.
 
 ---
 

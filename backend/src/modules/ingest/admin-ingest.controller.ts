@@ -1,3 +1,5 @@
+import { IdParamPipe } from '../../common/validation/id-param.pipe';
+import { CONST_ID_MAX, CONST_ID_RE, SHARD_NAME_RE } from '../../common/validation/ids';
 import { Body, Controller, Delete, Get, HttpCode, Param, ParseUUIDPipe, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
@@ -39,7 +41,7 @@ export class AdminIngestController {
   }
 
   @Put('elections/:id/ingest/shards/:name') @Roles('SUPER_ADMIN', 'EDITOR')
-  async putShard(@Param('id', ParseUUIDPipe) id: string, @Param('name') name: string, @Body() b: ShardBody, @Req() req: any) {
+  async putShard(@Param('id', ParseUUIDPipe) id: string, @Param('name', new IdParamPipe(SHARD_NAME_RE, 40, 'shard name')) name: string, @Body() b: ShardBody, @Req() req: any) {
     const out = await this.shards.upsert(id, name, { selector: b.selector, source_override: b.source_override ?? null });
     await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_SHARD_UPDATE', entityType: 'election', entityId: id,
       newValue: { shard: name, selector: b.selector, source_override: b.source_override ?? null } });
@@ -47,7 +49,7 @@ export class AdminIngestController {
   }
 
   @Delete('elections/:id/ingest/shards/:name') @Roles('SUPER_ADMIN', 'EDITOR')
-  async delShard(@Param('id', ParseUUIDPipe) id: string, @Param('name') name: string, @Req() req: any) {
+  async delShard(@Param('id', ParseUUIDPipe) id: string, @Param('name', new IdParamPipe(SHARD_NAME_RE, 40, 'shard name')) name: string, @Req() req: any) {
     await this.shards.remove(id, name);
     await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_SHARD_DELETE', entityType: 'election', entityId: id, oldValue: { shard: name } });
     return { deleted: true };
@@ -57,14 +59,14 @@ export class AdminIngestController {
   listHolds(@Param('id', ParseUUIDPipe) id: string) { return this.holds.list(id); }
 
   @Delete('elections/:id/holds/:constId') @Roles('SUPER_ADMIN', 'EDITOR')
-  async release(@Param('id', ParseUUIDPipe) id: string, @Param('constId') constId: string, @Req() req: any) {
+  async release(@Param('id', ParseUUIDPipe) id: string, @Param('constId', new IdParamPipe(CONST_ID_RE, CONST_ID_MAX, 'constituency id')) constId: string, @Req() req: any) {
     await this.holds.release(id, constId);
     await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_HOLD_RELEASE', entityType: 'constituency', entityId: constId, newValue: { election_id: id } });
     return { released: true };
   }
 
   @Put('elections/:id/seats/:constId') @Roles('SUPER_ADMIN', 'EDITOR')
-  correct(@Param('id', ParseUUIDPipe) id: string, @Param('constId') constId: string, @Body() b: SeatCorrectionBody, @Req() req: any) {
+  correct(@Param('id', ParseUUIDPipe) id: string, @Param('constId', new IdParamPipe(CONST_ID_RE, CONST_ID_MAX, 'constituency id')) constId: string, @Body() b: SeatCorrectionBody, @Req() req: any) {
     return this.correction.correct(id, constId, { state: b.state, round: b.round ?? null, votes: b.votes }, req.user?.id ?? null);
   }
 

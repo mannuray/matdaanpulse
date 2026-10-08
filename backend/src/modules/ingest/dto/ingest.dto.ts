@@ -1,8 +1,9 @@
+import { SHARD_NAME_RE } from '../../../common/validation/ids';
 import { Transform, Type } from 'class-transformer';
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsIn, IsInt, IsISO8601, IsObject, IsOptional, IsString, Matches, Max, MaxLength, Min, ValidateNested } from 'class-validator';
 import { PG_INT_MAX, SEAT_STATES, type SeatState } from '../seat-rules';
 
-const SHARD = /^[a-z0-9][a-z0-9_-]{0,39}$/;
+const SHARD = SHARD_NAME_RE;
 export const MAX_SEATS_PER_REQUEST = 500;
 
 export class RoundDto {

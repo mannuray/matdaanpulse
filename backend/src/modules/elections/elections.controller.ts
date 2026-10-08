@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe, BadRequestException, Req, Res } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseInterceptors, ParseUUIDPipe, Req, Res } from '@nestjs/common';
 import { VersionNotReadyException } from '../../common/exceptions/base.exception';
 import type { Request, Response } from 'express';
 import { plainToInstance } from 'class-transformer';
@@ -186,16 +186,6 @@ export class ElectionsController {
     return this.withPolicy(id, req, res, () => this.constituenciesService.getConstituencyAnalysisDetail(id, constId));
   }
 
-  @Get(':id/districts/:districtId/results')
-  getDistrictResults(
-    @Param('id', ParseUUIDPipe) id: string,
-    @Param('districtId', ParseIntPipe) districtId: number,
-    @Req() req: Request,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    return this.withPolicy(id, req, res, () => this.resultsService.getDistrictResults(id, districtId));
-  }
-
   /** A seat's counting timeline (seat dialog sparkline); short CDN cache until the election is Finalized. */
   @Get(':id/constituencies/:constId/rounds')
   getSeatRounds(@Param('id', ParseUUIDPipe) id: string, @Param('constId') constId: string, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
@@ -244,18 +234,5 @@ export class ElectionsController {
     // afterwards, is exactly version v.
     const after = await this.liveState.currentVersion(id);
     send(data, after === query.v ? CACHE_CONTROL.IMMUTABLE : CACHE_CONTROL.NO_STORE);
-  }
-
-  /** Compare two constituencies of this election: /elections/:id/compare?from=<constId>&to=<constId> */
-  @Get(':id/compare')
-  compare(
-    @Param('id', ParseUUIDPipe) id: string,
-    @Query('from') from: string,
-    @Query('to') to: string,
-    @Req() req: Request,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    if (!from || !to) throw new BadRequestException('Both "from" and "to" constituency ids are required');
-    return this.withPolicy(id, req, res, () => this.resultsService.compareConstituencies(id, from, to));
   }
 }

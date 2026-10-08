@@ -1,4 +1,4 @@
-import { Controller, Post, Patch, Get, Put, Body, Param, Query, UseGuards, ParseUUIDPipe, Req } from '@nestjs/common';
+import { Controller, Post, Patch, Get, Put, Body, Param, Query, UseGuards, ParseUUIDPipe, Req, HttpCode } from '@nestjs/common';
 import { ElectionsQueryDto } from '../../../common/dto/query.dto';
 import { ManifestDraftDto, manifestDraftToJson } from '../../manifests/dto/manifest-draft.dto';
 import { ValidationFailedException } from '../../../common/validation/validation-failed.exception';
@@ -65,6 +65,7 @@ export class AdminElectionsController {
   }
 
   @Post('elections/:id/finalize')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN')
   finalizeElection(@Param('id', ParseUUIDPipe) id: string, @Req() req: any) {
     return this.lifecycle.transition(id, 'Finalized', req.user ?? {});
@@ -72,6 +73,7 @@ export class AdminElectionsController {
 
   /** A late correction after Finalize (spec §6): SUPER_ADMIN only, audited; Live again until re-finalized. */
   @Post('elections/:id/reopen')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN')
   async reopenElection(@Param('id', ParseUUIDPipe) id: string, @Req() req: any) {
     const election = await this.electionsService.findOne(id);
@@ -108,6 +110,7 @@ export class AdminElectionsController {
   }
 
   @Post('elections/:id/manifest/publish')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN')
   async publishManifest(@Param('id', ParseUUIDPipe) id: string, @Req() req: any) {
     const out = await this.manifestsService.publish(id);

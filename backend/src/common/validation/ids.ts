@@ -13,3 +13,6 @@ export const PARTY_ID_MAX = 20;
 
 /** A state code (`BR`, `wb`): two letters, any case. */
 export const STATE_CODE_RE = /^[A-Za-z]{2}$/;
+
+/** Ingest shard names (`north`, `rest`): lower-case letters, digits, `_` and `-`, starting with a letter or digit, ≤ 40. */
+export const SHARD_NAME_RE = /^[a-z0-9][a-z0-9_-]{0,39}$/;
