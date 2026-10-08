@@ -75,6 +75,13 @@ describe('health probes and shield rejections', () => {
     s.recordShieldRejection();
     expect(s.snapshot().http).toMatchObject({ total: 0, shieldRejected403: 1 });
   });
+
+  it('counts DB-pool rejections (503 GEN_0005) apart from other 5xx', () => {
+    const s = new StatusService();
+    s.recordServiceBusy();
+    s.recordServiceBusy();
+    expect(s.snapshot().http).toMatchObject({ serviceBusy503: 2 });
+  });
 });
 
 describe('StatusService', () => {

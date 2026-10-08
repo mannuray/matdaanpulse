@@ -1,10 +1,19 @@
-import { tracingStatus } from './tracing'; // must stay the first import (instrumentation patching)
+import { shutdownTracing, tracingStatus } from './tracing'; // must stay the first import (instrumentation patching)
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { winstonLogger } from './common/logger/winston.config';
 import { configureApp } from './app.setup';
+import { installProcessHandlers } from './common/lifecycle/process-handlers';
+
+// winstonLogger directly: also covers a crash before Nest has replaced its default logger.
+installProcessHandlers({
+  proc: process,
+  logger: { error: (message, stack) => winstonLogger.error(message, stack, 'Process') },
+  flush: shutdownTracing,
+  exit: (code) => process.exit(code),
+});
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {

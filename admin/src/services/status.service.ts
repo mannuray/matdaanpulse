@@ -14,6 +14,8 @@ export interface SystemStatus {
     throttled429: number;
     /** Origin-shield 403s (direct-to-origin traffic); not part of `total`. */
     shieldRejected403?: number;
+    /** 503 GEN_0005: refused because the DB pool was full (also counted in 5xx). */
+    serviceBusy503?: number;
     last5m: Window;
     last60m: Window;
     /** 10 slowest routes by p95 of their last <=200 requests within 60 min (not a full-hour p95). */

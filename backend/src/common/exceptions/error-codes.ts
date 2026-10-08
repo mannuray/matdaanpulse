@@ -8,6 +8,12 @@ export const ErrorCodes = {
   SERVICE_BUSY: 'GEN_0005',
   /** A ?v= newer than this server's current results version (a poll raced ahead): 404 no-store; retry on the next poll. */
   VERSION_NOT_READY: 'GEN_0006',
+  /** Body over the size limit (413). */
+  PAYLOAD_TOO_LARGE: 'GEN_0007',
+  /** Rate limited (429, with Retry-After). */
+  TOO_MANY_REQUESTS: 'GEN_0008',
+  /** Load shedding other than the DB pool (the live stream cap): 503 with Retry-After. */
+  SERVICE_UNAVAILABLE: 'GEN_0009',
 
   // Auth (1xxx)
   AUTH_INVALID_CREDENTIALS: 'AUTH_1001',

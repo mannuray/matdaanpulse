@@ -1,6 +1,6 @@
 import {
   BadRequestException, Body, CanActivate, Controller, ExecutionContext, HttpCode, Injectable, Logger, Post, Query, Req,
-  ServiceUnavailableException, Sse, UseGuards,
+  Sse, UseGuards,
 } from '@nestjs/common';
 import { Observable, finalize } from 'rxjs';
 import { SkipThrottle } from '@nestjs/throttler';
@@ -11,6 +11,7 @@ import { MetricsService } from '../metrics/metrics.service';
 import { LiveSseTokenService } from './live-sse-token.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
+import { LiveStreamCapacityException } from '../../common/exceptions/base.exception';
 import { Roles } from '../auth/decorators/roles.decorator';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -57,7 +58,7 @@ export class LiveSseAccessGuard implements CanActivate {
     if (!UUID_RE.test(electionId)) throw new BadRequestException('Valid election_id query parameter is required');
     this.tokens.verify(typeof query.token === 'string' ? query.token : undefined, electionId);
     // Claims the slot here; the handler's stream releases it (finalize) when the client goes away.
-    if (!this.connections.tryAcquire()) throw new ServiceUnavailableException('Too many live stream connections');
+    if (!this.connections.tryAcquire()) throw new LiveStreamCapacityException();
     return true;
   }
 }

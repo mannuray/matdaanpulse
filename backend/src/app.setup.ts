@@ -10,6 +10,7 @@ import { buildCorsDelegate } from './common/config/cors';
 import { resolveTrustProxyHops } from './common/config/trust-proxy';
 import { cfConnectingIp, trustCfConnectingIp } from './common/config/client-ip';
 import { StatusService } from './modules/status/status.service';
+import { accessLog } from './common/logger/logging.middleware';
 import { assertOriginConfig, originShield, parseOriginSecrets } from './common/config/origin-shield';
 import { CacheControlInterceptor } from './common/http/cache-control';
 import { IngestRateLimitedException, IngestUnauthorizedException } from './common/exceptions';
@@ -91,18 +92,16 @@ function optional<T>(app: NestExpressApplication, token: new (...args: any[]) =>
  */
 export function configureApp(app: NestExpressApplication, env: Env = process.env) {
   const logger = new Logger('Bootstrap');
+  const status = optional(app, StatusService);
 
-  // Origin shield first: requests that did not come through Cloudflare cost nothing.
+  // Request id + access log before anything can answer, so early rejections are logged with their request id.
+  app.use(accessLog());
+
+  // Origin shield next: requests that did not come through Cloudflare cost nothing.
   assertOriginConfig(env);
   const originSecrets = parseOriginSecrets(env);
   if (originSecrets.length > 0) {
     // Shield 403s are answered before the Nest middleware, so count them explicitly (System status page).
-    let status: StatusService | undefined;
-    try {
-      status = app.get(StatusService, { strict: false });
-    } catch {
-      /* apps without the status module (some tests) simply do not count */
-    }
     app.use(originShield(originSecrets, () => status?.recordShieldRejection()));
   }
   logger.log(
@@ -134,7 +133,7 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
   app.use(compression());
 
   app.useGlobalInterceptors(new CacheControlInterceptor(), new TransformInterceptor());
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new HttpExceptionFilter(status));
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

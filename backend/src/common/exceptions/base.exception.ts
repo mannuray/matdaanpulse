@@ -14,10 +14,24 @@ export abstract class BusinessException extends HttpException {
   }
 }
 
+/** Deliberate load shedding (503 + Retry-After): expected under a spike, so logged as a rate-limited warn, not an error. */
+export abstract class LoadSheddingException extends BusinessException {
+  constructor(code: ErrorCode, message: string, public readonly retryAfterSeconds: number) {
+    super(code, message, HttpStatus.SERVICE_UNAVAILABLE);
+  }
+}
+
 /** The database is saturated (pool timeout, transaction could not start in time): retry after `retryAfterSeconds`. */
-export class ServiceBusyException extends BusinessException {
-  constructor(public readonly retryAfterSeconds = 2) {
-    super(ErrorCodes.SERVICE_BUSY, 'The server is busy; please retry shortly', HttpStatus.SERVICE_UNAVAILABLE);
+export class ServiceBusyException extends LoadSheddingException {
+  constructor(retryAfterSeconds = 2) {
+    super(ErrorCodes.SERVICE_BUSY, 'The server is busy; please retry shortly', retryAfterSeconds);
+  }
+}
+
+/** The per-process cap on live stream (SSE) connections is reached. */
+export class LiveStreamCapacityException extends LoadSheddingException {
+  constructor() {
+    super(ErrorCodes.SERVICE_UNAVAILABLE, 'Too many live stream connections', 5);
   }
 }
 

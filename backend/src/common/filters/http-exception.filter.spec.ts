@@ -16,14 +16,14 @@ function known(code: string) {
   });
 }
 
-function run(exception: unknown) {
+function run(exception: unknown, status?: { recordServiceBusy(): void }) {
   const res: any = { headers: {} as Record<string, string> };
   res.setHeader = (k: string, v: string) => (res.headers[k] = v);
   res.status = (s: number) => ((res.statusCode = s), res);
   res.json = (b: unknown) => ((res.body = b), res);
   const req = { headers: { 'x-request-id': 'rid-1' }, method: 'POST', url: '/api/v1/x?token=secret', originalUrl: '/api/v1/x?token=secret' };
   const host = { switchToHttp: () => ({ getResponse: () => res, getRequest: () => req }) } as unknown as ArgumentsHost;
-  new HttpExceptionFilter().catch(exception, host);
+  new HttpExceptionFilter(status).catch(exception, host);
   return res;
 }
 
@@ -57,8 +57,8 @@ describe('HttpExceptionFilter', () => {
     ['P2002', 409, 'GEN_0004'],
     ['P2034', 409, 'GEN_0004'],
     ['P2025', 404, 'GEN_0002'],
-    ['P2003', 400, 'VALIDATION_9001'],
-    ['P2023', 400, 'VALIDATION_9001'],
+    ['P2003', 400, 'GEN_0003'],
+    ['P2023', 400, 'GEN_0003'],
   ])('maps Prisma %s to %i without leaking internals', (code, status, errCode) => {
     const res = run(known(code));
     expect(res.statusCode).toBe(status);
@@ -81,14 +81,76 @@ describe('HttpExceptionFilter', () => {
     expect(run(new MediaNotConfiguredException()).headers['Retry-After']).toBeUndefined();
   });
 
-  it('maps PrismaClientValidationError to 400 but logs it at error level with the stack', () => {
-    const err = new Prisma.PrismaClientValidationError('Argument `id`: invalid value in prisma.users.findMany()', { clientVersion: 'test' });
+  it('maps PrismaClientValidationError to 400 and logs it at error level: class and first line only, never the query arguments', () => {
+    const err = new Prisma.PrismaClientValidationError('Invalid `prisma.users.findMany()` invocation:\n{ where: { email: "voter@example.com", password_hash: "$2b$10$abc" } }', { clientVersion: 'test' });
     const res = run(err);
     expect(res.statusCode).toBe(400);
     expect(JSON.stringify(res.body)).not.toMatch(/prisma\.users/);
     expect(errorSpy).toHaveBeenCalledTimes(1);
-    expect(errorSpy.mock.calls[0][0]).toMatch(/→ 400/);
-    expect(errorSpy.mock.calls[0][1]).toBe(err.stack);
+    const [msg, stack] = errorSpy.mock.calls[0];
+    expect(msg).toMatch(/→ 400: PrismaClientValidationError: Invalid `prisma.users.findMany\(\)` invocation:/);
+    expect(JSON.stringify(errorSpy.mock.calls)).not.toMatch(/voter@example|password_hash|\$2b/);
+    expect(stack).toBeUndefined();
+  });
+
+  it('an unmapped Prisma error (DB down) logs its class, code and first line, without the stack', () => {
+    const err = new Prisma.PrismaClientKnownRequestError('Can\'t reach database server\nat db.internal:5432 with params ["secret"]', { code: 'P1001', clientVersion: 'test' });
+    run(err);
+    const [msg, stack] = errorSpy.mock.calls[0];
+    expect(msg).toMatch(/→ 500: PrismaClientKnownRequestError P1001: Can't reach database server/);
+    expect(msg).not.toMatch(/secret/);
+    expect(stack).toBeUndefined();
+  });
+
+  describe('load shedding (pool full, stream cap): warn without a stack, at most once a minute, counted', () => {
+    let warnSpy: jest.SpyInstance;
+    beforeEach(() => (warnSpy = jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined)));
+
+    it('GEN_0005 is a rate-limited warn, never an error line, and each one is counted', () => {
+      const status = { recordServiceBusy: jest.fn() };
+      const filter = new HttpExceptionFilter(status);
+      const once = () => {
+        const res: any = { headers: {} };
+        res.setHeader = (k: string, v: string) => (res.headers[k] = v);
+        res.status = (s: number) => ((res.statusCode = s), res);
+        res.json = (b: unknown) => ((res.body = b), res);
+        const req = { headers: {}, method: 'GET', url: '/api/v1/x', originalUrl: '/api/v1/x' };
+        filter.catch(known('P2024'), { switchToHttp: () => ({ getResponse: () => res, getRequest: () => req }) } as unknown as ArgumentsHost);
+        return res;
+      };
+      for (let i = 0; i < 50; i++) expect(once().statusCode).toBe(503);
+      expect(errorSpy).not.toHaveBeenCalled();
+      expect(warnSpy).toHaveBeenCalledTimes(1);
+      expect(warnSpy.mock.calls[0][1]).toBeUndefined();
+      expect(status.recordServiceBusy).toHaveBeenCalledTimes(50);
+    });
+
+    it('the live stream cap keeps its message, gets GEN_0009 and Retry-After, and is a warn', () => {
+      const { LiveStreamCapacityException } = require('../exceptions/base.exception');
+      const res = run(new LiveStreamCapacityException());
+      expect(res.statusCode).toBe(503);
+      expect(res.body.error).toMatchObject({ code: 'GEN_0009', message: 'Too many live stream connections' });
+      expect(res.headers['Retry-After']).toBe('5');
+      expect(errorSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  it('a 429 has its own code and a readable message (not GEN_0001 "ThrottlerException: …")', () => {
+    const { ThrottlerException } = require('@nestjs/throttler');
+    const res = run(new ThrottlerException());
+    expect(res.body.error).toMatchObject({ code: 'GEN_0008', message: 'Too many requests; please wait and try again' });
+  });
+
+  it('a 413 (body over the limit) has its own code and keeps its message', () => {
+    const res = run({ status: 413, expose: true, type: 'entity.too.large', message: 'request entity too large' });
+    expect(res.statusCode).toBe(413);
+    expect(res.body.error).toMatchObject({ code: 'GEN_0007', message: 'Request body too large' });
+  });
+
+  it('a bare 400 is GEN_0003 (VALIDATION_9001 is only for DTO validation, which carries fields)', () => {
+    const { BadRequestException } = require('@nestjs/common');
+    const res = run(new BadRequestException('Both "from" and "to" constituency ids are required'));
+    expect(res.body.error).toMatchObject({ code: 'GEN_0003', message: 'Both "from" and "to" constituency ids are required' });
   });
 
   it('unknown errors → generic 500, logged with stack, request id, method and redacted path', () => {

@@ -333,7 +333,7 @@ Create a Redis database in **ap-southeast-1** (TLS on). Copy the `rediss://defau
 - Root directory: `backend`
 - Build: `npm ci --include=dev && npx prisma generate && npm run build`
 - Start: `node dist/main`
-- Health check path: `/api/v1/health/live` (no I/O; the only route exempt from the origin shield, §5.4). Readiness (DB + Redis, 503 when degraded): `/api/v1/health/ready` — monitored through Cloudflare (`https://api.<domain>/…`, since the shield rejects direct calls) during the election window only; off-season the monitor uses `/health/live` (§5.7).
+- Health check path: `/api/v1/health/live` (no I/O; the only route exempt from the origin shield, §5.4). Readiness: `/api/v1/health/ready` (503 `unhealthy` only when the DB fails; Redis down is 200 `degraded`, since Redis is optional; one answer shared for 2 s) — monitored through Cloudflare (`https://api.<domain>/…`, since the shield rejects direct calls) during the election window only; off-season the monitor uses `/health/live` (§5.7).
 - **Order of operations (read before starting):** (1) deploy on Render **without** the origin shield (this section) and confirm it on `<service>.onrender.com`; (2) §5.4: DNS `api → onrender.com` proxied, Pages, Cache Rule, then the Cloudflare **Transform Rule** that adds `X-Origin-Secret`; (3) only then set `ORIGIN_SHARED_SECRETS`, and after that `TRUST_CF_CONNECTING_IP=true` on Render (§5.4 step 5). Setting the secret before the rule exists makes every call except `/health/live` answer 403.
 - Environment for the first deploy (shield **off**, so the service is reachable on `onrender.com`):
   ```
@@ -451,7 +451,7 @@ Without a CDN (e.g. against `localhost` or `<service>.onrender.com`) every simul
 
 - **Uptime (split by season, §3.1):** UptimeRobot / Better Stack free monitor through Cloudflare (`https://api.<domain>/…`; the shield rejects direct calls).
   - **Off-season:** `https://api.<domain>/api/v1/health/live` (no DB, no Redis). `/ready` does `SELECT 1` and a Redis PING; probing it every 5 min would keep Neon from ever suspending (it suspends after ~5 min idle) and burn its monthly compute allowance.
-  - **Election window** (same calendar reminders as the Render Starter switch): `https://api.<domain>/api/v1/health/ready` every 5 min → email/phone alert. Switch back afterwards.
+  - **Election window** (same calendar reminders as the Render Starter switch): `https://api.<domain>/api/v1/health/ready` every 5 min → email/phone alert. Switch back afterwards. It alerts only when the DB is down; to catch Redis outages too, alert on the body keyword `"degraded"`.
   - Either monitor keeps the Render free instance awake; one always-pinged free service is what the monthly free instance-hour allowance is sized for (verify against Render's current terms, and do not put a second free service on the account).
   - Health probes are excluded from the System status traffic counters and logged at `debug`.
 - **Counting-day view:** admin → System status (in-memory counters since restart: traffic, 4xx/5xx/429, origin-shield 403s, slowest routes, cache hit rate, Redis state, live connections, result changes/min, DB latency). Shield 403s are counted separately and are not part of the request total.

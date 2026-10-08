@@ -23,7 +23,6 @@ import { PrismaModule } from './modules/prisma/prisma.module';
 import { AuditLogModule } from './modules/audit-log/audit-log.module';
 import { HealthModule } from './modules/health/health.module';
 import { FeedbackModule } from './modules/feedback/feedback.module';
-import { LoggingMiddleware } from './common/logger/logging.middleware';
 import { buildThrottlerModuleOptions } from './common/throttle/throttle.config';
 import { RedisService } from './modules/redis/redis.service';
 import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.service';
@@ -72,6 +71,6 @@ import { GracefulShutdownService } from './common/lifecycle/graceful-shutdown.se
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggingMiddleware, StatusMiddleware).forRoutes('*');
+    consumer.apply(StatusMiddleware).forRoutes('*'); // the access log is the first Express middleware (configureApp)
   }
 }

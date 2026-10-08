@@ -12,7 +12,8 @@ import { PaginationQueryDto } from './common/dto/query.dto';
 import { configureApp } from './app.setup';
 import { buildThrottlerOptions } from './common/throttle/throttle.config';
 import { ElectionsQueryDto } from './common/dto/query.dto';
-import { HealthController } from './modules/health/health.controller';
+import { HEALTH_MEMO_MS, HealthController } from './modules/health/health.controller';
+import { Logger } from '@nestjs/common';
 import { AuthController } from './modules/auth/auth.controller';
 import { AuthService } from './modules/auth/auth.service';
 import { LiveController, LiveSseAccessGuard, SseConnections } from './modules/live/live.controller';
@@ -95,6 +96,7 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
         { provide: RedisService, useValue: redis },
         FeedbackService,
         { provide: AuditLogService, useValue: { log: jest.fn() } },
+        { provide: HEALTH_MEMO_MS, useValue: 0 },
       ],
     }).compile();
     app = moduleRef.createNestApplication<NestExpressApplication>({ bodyParser: false, logger: false });
@@ -189,6 +191,8 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
         const res = await get(`/admin/live/updates?election_id=${EID}&token=${sseToken}`, '10.0.8.3');
         expect(res.status).toBe(503);
         expect(res.headers.get('cache-control')).toBe('no-store');
+        expect(res.headers.get('retry-after')).toBe('5');
+        expect((await res.json()).error).toMatchObject({ code: 'GEN_0009', message: 'Too many live stream connections' });
       } finally {
         sseConnections.open = 0;
       }
@@ -348,26 +352,38 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
       expect(redis.ping).not.toHaveBeenCalled();
     });
 
-    it('/health/ready and /health return 503 without error text when Redis is down', async () => {
+    it('/health/ready and /health stay 200 "degraded" without error text when Redis is down (Redis is optional)', async () => {
       prisma.$queryRaw.mockResolvedValue([1]);
       redis.ping.mockRejectedValue(new Error('connect ECONNREFUSED secret-host:6379'));
       for (const path of ['/health/ready', '/health']) {
         const res = await get(path, '10.0.5.2');
-        expect(res.status).toBe(503);
+        expect(res.status).toBe(200);
         const text = await res.text();
         expect(text).not.toMatch(/secret-host|ECONNREFUSED/);
-        expect(JSON.parse(text).data.checks.redis.status).toBe('unhealthy');
-        expect(JSON.parse(text).data.checks.database.status).toBe('healthy');
+        const data = JSON.parse(text).data;
+        expect(data.status).toBe('degraded');
+        expect(data.checks.redis.status).toBe('unhealthy');
+        expect(data.checks.database.status).toBe('healthy');
       }
     });
 
-    it('/health/ready returns 503 when the Redis subscriber is not ready', async () => {
+    it('/health/ready is "degraded" (200) when the Redis subscriber is not ready', async () => {
       prisma.$queryRaw.mockResolvedValue([1]);
       redis.ping.mockResolvedValue(undefined);
       redis.isSubscriberReady.mockReturnValueOnce(false);
       const res = await get('/health/ready', '10.0.5.4');
+      expect(res.status).toBe(200);
+      expect((await res.json()).data).toMatchObject({ status: 'degraded', checks: { redis: { status: 'unhealthy' } } });
+    });
+
+    it('/health/ready returns 503 "unhealthy" when the database is down', async () => {
+      prisma.$queryRaw.mockRejectedValue(new Error('P1001 at db.internal'));
+      redis.ping.mockResolvedValue(undefined);
+      const res = await get('/health/ready', '10.0.5.5');
       expect(res.status).toBe(503);
-      expect((await res.json()).data.checks.redis.status).toBe('unhealthy');
+      const text = await res.text();
+      expect(text).not.toMatch(/db\.internal/);
+      expect(JSON.parse(text).data.status).toBe('unhealthy');
     });
 
     it('/health/ready returns 503 when the DB check exceeds the timeout', async () => {
@@ -375,6 +391,34 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
       redis.ping.mockResolvedValue(undefined);
       const res = await get('/health/ready', '10.0.5.3');
       expect(res.status).toBe(503);
+    });
+  });
+
+  describe('access log', () => {
+    let logSpy: jest.SpyInstance;
+    beforeEach(() => (logSpy = jest.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined)));
+    afterEach(() => logSpy.mockRestore());
+    const accessLines = () => logSpy.mock.calls.map((c) => c[0]).filter((m) => m && typeof m === 'object' && 'route' in m && 'statusCode' in m);
+    const waitForLine = async (pred: (l: any) => boolean) => {
+      for (let i = 0; i < 50 && !accessLines().some(pred); i++) await new Promise((r) => setTimeout(r, 10));
+      return accessLines().find(pred);
+    };
+
+    it('one flat line per request: route template, status, duration, request id; no user agent', async () => {
+      const res = await fetch(`${base}/pub`, { headers: { 'X-Forwarded-For': '10.0.11.1', 'User-Agent': 'SecretBrowser/1.0' } });
+      const line = await waitForLine((l) => l.url === '/api/v1/pub');
+      expect(line).toMatchObject({ route: 'GET /api/v1/pub', statusCode: 200, method: 'GET', requestId: res.headers.get('x-request-id') });
+      expect(typeof line.duration).toBe('number');
+      expect(JSON.stringify(line)).not.toMatch(/SecretBrowser/);
+    });
+
+    it('a request rejected before Nest (malformed ingest key → 401) is logged with the request id it was answered with', async () => {
+      const res = await post('/ingest/results', '10.0.11.2', { blob: 'x' }, { Authorization: 'Bearer nope' });
+      expect(res.status).toBe(401);
+      const rid = res.headers.get('x-request-id');
+      expect((await res.json()).error.requestId).toBe(rid);
+      const line = await waitForLine((l) => l.url === '/api/v1/ingest/results' && l.requestId === rid);
+      expect(line).toMatchObject({ statusCode: 401 });
     });
   });
 });

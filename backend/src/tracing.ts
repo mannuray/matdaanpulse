@@ -10,16 +10,18 @@
  * - Instruments only http, express, ioredis and Prisma. Propagation is the
  *   provider default (W3C tracecontext + baggage); no Jaeger propagator.
  * - No signal handlers here: Nest's shutdown hooks call shutdownTracing().
+ * - Volume control: root traces are sampled by ratio (OTEL_TRACE_SAMPLE_RATIO, default 0.05), health probes and CORS
+ *   preflights are not traced, and Express middleware layers get no spans (only route handlers).
  */
 import { metrics } from '@opentelemetry/api';
 import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node';
-import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
+import { BatchSpanProcessor, ParentBasedSampler, Sampler, TraceIdRatioBasedSampler } from '@opentelemetry/sdk-trace-base';
 import { MeterProvider, PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
-import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
+import { ExpressInstrumentation, ExpressLayerType } from '@opentelemetry/instrumentation-express';
 import { IORedisInstrumentation } from '@opentelemetry/instrumentation-ioredis';
 import { PrismaInstrumentation } from '@prisma/instrumentation';
 import { resourceFromAttributes } from '@opentelemetry/resources';
@@ -30,6 +32,27 @@ type Env = Record<string, string | undefined>;
 export function isTracingEnabled(env: Env = process.env): boolean {
   if ((env.OTEL_SDK_DISABLED ?? '').trim().toLowerCase() === 'true') return false;
   return !!env.OTEL_EXPORTER_OTLP_ENDPOINT?.trim();
+}
+
+const DEFAULT_SAMPLE_RATIO = 0.05;
+
+/** Share of root traces kept (OTEL_TRACE_SAMPLE_RATIO, 0..1, default 5%). */
+export function traceSampleRatio(env: Env = process.env): number {
+  const raw = env.OTEL_TRACE_SAMPLE_RATIO?.trim();
+  const n = raw ? Number(raw) : NaN;
+  if (!Number.isFinite(n)) return DEFAULT_SAMPLE_RATIO;
+  return Math.min(1, Math.max(0, n));
+}
+
+/** Keeps a child's parent decision (one trace stays whole) and samples new traces by ratio. */
+export function buildSampler(env: Env = process.env): Sampler {
+  return new ParentBasedSampler({ root: new TraceIdRatioBasedSampler(traceSampleRatio(env)) });
+}
+
+/** Incoming requests that never get a span: health probes (every few seconds) and CORS preflights. */
+export function isIgnoredIncoming(req: { url?: string; method?: string }): boolean {
+  if (req.method === 'OPTIONS') return true;
+  return (req.url ?? '').split('?')[0].startsWith('/api/v1/health');
 }
 
 let tracerProvider: NodeTracerProvider | undefined;
@@ -51,6 +74,7 @@ export function startTracing(env: Env = process.env): boolean {
 
   tracerProvider = new NodeTracerProvider({
     resource,
+    sampler: buildSampler(env),
     spanProcessors: [new BatchSpanProcessor(new OTLPTraceExporter())],
   });
   tracerProvider.register();
@@ -70,8 +94,8 @@ export function startTracing(env: Env = process.env): boolean {
     tracerProvider,
     meterProvider,
     instrumentations: [
-      new HttpInstrumentation(),
-      new ExpressInstrumentation(),
+      new HttpInstrumentation({ ignoreIncomingRequestHook: (req) => isIgnoredIncoming(req) }),
+      new ExpressInstrumentation({ ignoreLayersType: [ExpressLayerType.MIDDLEWARE] }),
       new IORedisInstrumentation(),
       new PrismaInstrumentation(),
     ],

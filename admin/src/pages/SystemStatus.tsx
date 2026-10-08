@@ -80,6 +80,7 @@ function Cards({ s }: { s: Status }) {
         <Row k="5xx" v={num(http.byClass['5xx'])} bad={http.byClass['5xx'] > 0} />
         <Row k="429 throttled" v={num(http.throttled429)} />
         <Row k="Origin shield 403" v={num(http.shieldRejected403 ?? 0)} />
+        <Row k="DB pool full 503" v={num(http.serviceBusy503 ?? 0)} bad={(http.serviceBusy503 ?? 0) > 0} />
       </Card>
       <Card title="Cache">
         <Row k="Hit rate" v={pct(cache.hitRate)} />
