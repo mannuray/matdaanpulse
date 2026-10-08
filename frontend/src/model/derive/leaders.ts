@@ -11,7 +11,8 @@ export interface LeaderEntry {
   personId?: string;
 }
 
-export type LeaderStatus = 'WON' | 'LEADING' | 'LOST' | 'TRAILING' | 'PENDING';
+/** NOT_CONTESTING: a seatless leader once the election's candidates are known (e.g. a CM in the upper house). */
+export type LeaderStatus = 'WON' | 'LEADING' | 'LOST' | 'TRAILING' | 'PENDING' | 'NOT_CONTESTING';
 
 export interface LeaderCard {
   key: string;
@@ -65,7 +66,13 @@ const tokens = (name: string) => name.toUpperCase().replace(/[^\p{L}\p{M}\s]/gu,
  */
 export function resolveLeaderSeats<E extends LeaderEntry>(entries: E[], results: ResultRow[]): E[] {
   return entries.map(e => {
-    if (e.constId || !e.partyId || e.personId) return e;
+    if (e.constId) return e;
+    // A known person: their own candidate row (no name guessing).
+    if (e.personId) {
+      const own = new Set(results.filter(r => r.person_id === e.personId).map(r => r.const_id));
+      return own.size === 1 ? { ...e, constId: [...own][0] } : e;
+    }
+    if (!e.partyId) return e;
     const want = tokens(e.name);
     if (!want.length) return e;
     const hits = new Set(results.filter(r => r.party_id === e.partyId && want.every(t => tokens(r.candidate_name).includes(t))).map(r => r.const_id));
@@ -73,10 +80,11 @@ export function resolveLeaderSeats<E extends LeaderEntry>(entries: E[], results:
   });
 }
 
-export function deriveLeaderCards(entries: Entry[], winners: Map<string, ResultRow>): LeaderCard[] {
+/** `candidatesKnown`: the election has candidate rows, so a leader still without a seat is not standing. */
+export function deriveLeaderCards(entries: Entry[], winners: Map<string, ResultRow>, candidatesKnown = false): LeaderCard[] {
   return entries.map(e => {
     const w = winners.get(e.constId);
-    let status: LeaderStatus = 'PENDING';
+    let status: LeaderStatus = !e.constId && !e.custom && candidatesKnown ? 'NOT_CONTESTING' : 'PENDING';
     if (w) {
       const isEntryParty = !e.partyId || e.partyId === w.party_id;
       const declared = w.status === 'WON';

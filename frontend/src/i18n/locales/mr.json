@@ -612,5 +612,7 @@
   "studio_tip_lead_switch": "आघाडी बदलली",
   "seat_upset_sitting_trailing_plain": "विद्यमान आमदार पिछाडीवर",
   "seat_upset_stronghold_trailing_plain": "बालेकिल्ला धोक्यात",
-  "seat_upset_heavyweight_trailing_plain": "दिग्गज पिछाडीवर"
+  "seat_upset_heavyweight_trailing_plain": "दिग्गज पिछाडीवर",
+  "seat_tied": "बरोबरी",
+  "studio_status_not_contesting": "निवडणूक लढवत नाहीत"
 }

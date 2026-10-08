@@ -612,5 +612,7 @@
   "studio_tip_lead_switch": "முன்னிலை மாற்றம்",
   "seat_upset_sitting_trailing_plain": "தற்போதைய எம்எல்ஏ பின்னடைவு",
   "seat_upset_stronghold_trailing_plain": "கோட்டை ஆபத்தில்",
-  "seat_upset_heavyweight_trailing_plain": "முக்கிய தலைவர் பின்னடைவு"
+  "seat_upset_heavyweight_trailing_plain": "முக்கிய தலைவர் பின்னடைவு",
+  "seat_tied": "சமநிலை",
+  "studio_status_not_contesting": "போட்டியிடவில்லை"
 }

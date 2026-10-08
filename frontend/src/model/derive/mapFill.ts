@@ -26,6 +26,8 @@ export interface FillContext {
 
 export const MAP_FILL = {
   pending: 'var(--color-map-pending)',
+  /** Counting, but exactly tied (no leader): neutral, clearly not "not started". */
+  tied: 'var(--color-map-tied)',
   swing: 'var(--color-map-swing)',
   threeWay: 'var(--color-map-threeway)',
 };
@@ -95,8 +97,15 @@ function layerFill(seat: SeatResult, ctx: FillContext): LayerFill {
   }
 }
 
+/** A tied seat while live: Battle keeps its momentum colour; elsewhere the tied grey, dashed on the Overview. */
+function tiedFill(seat: SeatResult, ctx: FillContext): LayerFill {
+  if (ctx.layer === 'battle') return layerFill(seat, ctx);
+  return ctx.layer === 'overview' ? { color: MAP_FILL.tied, opacity: 1, dashed: true } : { color: MAP_FILL.tied, opacity: 1 };
+}
+
 export function seatFill(seat: SeatResult, ctx: FillContext): SeatFill {
-  const fill = !seat.party ? { color: MAP_FILL.pending, opacity: 1 } : layerFill(seat, ctx);
+  const tied = !seat.party && ctx.live?.get(seat.id)?.call === 'too_close';
+  const fill = tied ? tiedFill(seat, ctx) : !seat.party ? { color: MAP_FILL.pending, opacity: 1 } : layerFill(seat, ctx);
   const { parties, seats } = ctx.highlight;
   if (parties.size === 0 && seats.size === 0) return { ...fill, highlighted: false };
   // Highlighted seats keep the layer colour but ignore its opacity (Battle's faint close seats included).

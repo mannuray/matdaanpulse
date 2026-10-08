@@ -24,6 +24,7 @@
   --color-map-bg: #0D1428;
   --color-map-stroke: #0A0F1E;
   --color-map-pending: #2A3452;
+  --color-map-tied: #6B7594;
   --color-map-swing: #E8C547;
   --color-map-mo-switched: #8A80FF;
   --color-map-mo-narrowing: #E04FB0;
@@ -63,6 +64,7 @@
   --color-map-bg: #EAEEF6;
   --color-map-stroke: #FFFFFF;
   --color-map-pending: #C9D0E0;
+  --color-map-tied: #8A93AA;
   --color-map-swing: #B8930F;
   --color-map-mo-switched: #5B4BE0;
   --color-map-mo-narrowing: #C2378F;

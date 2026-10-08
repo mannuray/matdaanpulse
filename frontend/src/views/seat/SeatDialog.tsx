@@ -30,6 +30,8 @@ function LiveBlock({ vm }: { vm: SeatDialogVM }) {
   const round = vm.live?.kind === 'counting' ? vm.live.round : null;
   // A countermanded / adjourned seat: its state chip says it all; a call or momentum would read as a live count.
   const halted = vm.live?.kind === 'countermanded' || vm.live?.kind === 'adjourned';
+  // Counted but nobody leads: an exact tie (the closest call there is).
+  const tied = s.call === 'too_close' && !vm.view.candidates.some(c => c.pill === 'LEADING' || c.pill === 'WON');
   const colorOf = (party: string | null) => (party ? vm.partyMeta.get(party)?.color : null) ?? 'var(--color-fallback)';
   return (
     <div className="mb-4">
@@ -39,7 +41,7 @@ function LiveBlock({ vm }: { vm: SeatDialogVM }) {
             <span className="block h-full bg-ok-text" style={{ width: `${(round.current / round.total) * 100}%` }} />
           </span>
         )}
-        {!halted && <span className={cn('rounded-md px-2 py-0.5 text-[11px] font-bold uppercase text-ink', s.call === 'too_close' ? 'border border-dashed border-warn-text text-warn-text' : 'border border-line')}>{t(`seat_call_${s.call}`)}</span>}
+        {!halted && <span className={cn('rounded-md px-2 py-0.5 text-[11px] font-bold uppercase text-ink', s.call === 'too_close' ? 'border border-dashed border-warn-text text-warn-text' : 'border border-line')}>{t(tied ? 'seat_tied' : `seat_call_${s.call}`)}</span>}
         {!halted && s.momentum && s.momentum !== 'stable' && (
           <span className="rounded-md px-2 py-0.5 text-[11px] font-bold uppercase text-white" style={{ background: MOMENTUM_COLOR[s.momentum] }}>{t(`map_legend_${s.momentum}`)}</span>
         )}
@@ -127,7 +129,8 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
             <tr key={c.key} className="border-b border-line/60">
               <td className="py-2"><div className="flex items-center gap-2">
                 <span className="w-6 text-xs text-muted">#{i + 1}</span>
-                <Avatar name={c.name} photo={c.photo} size={36} />
+                {/* Phones: no avatar or share bar, so the table fits 390 px (the % stays). */}
+                <span data-avatar-cell className="hidden shrink-0 sm:block"><Avatar name={c.name} photo={c.photo} size={36} /></span>
                 {c.nota ? <span className="font-semibold text-ink">{t('seat_nota')}</span> : c.personId ? <Link to={vm.personHref(c.personId)} className="font-semibold text-ink hover:underline">{c.name}</Link> : <span className="font-semibold text-ink">{c.name}</span>}
                 {c.incumbent && <span className="rounded-full border border-accent/50 px-1.5 text-[10px] text-accent">{t('seat_incumbent')}</span>}
               </div></td>
@@ -137,7 +140,7 @@ export function SeatDialog({ vm }: { vm: SeatDialogVM | null }) {
                 </button>) : null}</td>
               <td className="tabular text-right font-semibold text-ink">{formatIN(c.votes)}</td>
               <td className="pl-3"><div className="flex items-center gap-2"><span className="tabular w-12 text-xs text-ink">{c.share}%</span>
-                <span className="h-1.5 w-20 overflow-hidden rounded-full bg-page"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></span></div></td>
+                <span data-share-bar className="hidden h-1.5 w-20 overflow-hidden rounded-full bg-page sm:inline-block"><span className="block h-full" style={{ width: `${c.share}%`, background: c.color }} /></span></div></td>
               <td className="text-right">{c.pill && <span className={cn('rounded-md px-1.5 py-0.5 text-[11px] font-bold', STATUS_STYLE[c.pill])}>{t(`studio_status_${c.pill.toLowerCase()}`)}</span>}</td>
             </tr>
           ))}

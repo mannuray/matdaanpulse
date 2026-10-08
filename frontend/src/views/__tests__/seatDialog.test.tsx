@@ -24,6 +24,18 @@ const vm = (over: Partial<SeatDialogVM> = {}): SeatDialogVM => ({
 
 const renderIt = (v: SeatDialogVM) => render(<MemoryRouter><SeatDialog vm={v} /></MemoryRouter>);
 
+describe('SeatDialog on a phone', () => {
+  it('the candidate table fits 390 px: share bars and avatars only from sm up, names may wrap', () => {
+    renderIt(vm());
+    const bar = document.querySelector('[data-share-bar]')!;
+    expect(bar.className).toMatch(/\bhidden\b/);
+    expect(bar.className).toMatch(/\bsm:inline-block\b/);
+    const avatar = document.querySelector('[data-avatar-cell]')!;
+    expect(avatar.className).toMatch(/\bhidden\b/);
+    expect(avatar.className).toMatch(/\bsm:block\b/);
+  });
+});
+
 describe('SeatDialog live block', () => {
   const liveSeat = { call: 'too_close', momentum: 'narrowing' } as unknown as NonNullable<SeatDialogVM['liveSeat']>;
   const trend = [1, 2, 3, 4].map(x => ({ seq: x, x, y: 400 - x * 50, party: x < 3 ? 'BJP' : 'RJD', switched: x === 3 }));
@@ -37,6 +49,13 @@ describe('SeatDialog live block', () => {
     expect(screen.getByText('Sitting MLA trailing · Asha Devi (BJP) −200')).toBeTruthy();
     expect(screen.getByText('Stronghold at risk · held by BJP since 2005')).toBeTruthy();
     expect(screen.getByText('Lead narrowed from 2,890 to 342 over the last 3 rounds')).toBeTruthy();
+  });
+  it('a tied seat (no candidate leading) shows a Tied call badge', () => {
+    const base = vm();
+    const view = { ...base.view, margin: 0, candidates: base.view.candidates.map(c => ({ ...c, votes: 500, pill: null })) };
+    renderIt(vm({ view, liveSeat: { call: 'too_close', momentum: null } as unknown as NonNullable<SeatDialogVM['liveSeat']> }));
+    expect(screen.getByText('Tied')).toBeTruthy();
+    expect(screen.queryByText('Too close')).toBeNull();
   });
   it('a countermanded or adjourned seat shows its state, not a call or momentum badge (live e2e C3)', () => {
     renderIt(vm({ live: { kind: 'countermanded' }, liveSeat: { call: 'not_started', momentum: 'switched' } as unknown as NonNullable<SeatDialogVM['liveSeat']> }));
