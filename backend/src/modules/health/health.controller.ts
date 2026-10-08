@@ -1,8 +1,9 @@
-import { Controller, Get, HttpStatus, Logger, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Inject, Logger, Res } from '@nestjs/common';
 import { SkipThrottle } from '@nestjs/throttler';
 import type { Response } from 'express';
 import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
+import type { RedisHealth } from '../redis/redis.ports';
 import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
 import { withTimeout } from '../../common/util/with-timeout';
 
@@ -25,7 +26,7 @@ export class HealthController {
 
   constructor(
     private readonly prisma: PrismaService,
-    private readonly redis: RedisService,
+    @Inject(RedisService) private readonly redis: RedisHealth,
   ) {}
 
   @Get('live')

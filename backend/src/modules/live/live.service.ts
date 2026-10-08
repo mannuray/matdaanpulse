@@ -1,7 +1,8 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { electionKeys } from '../redis/election-cache.service';
 import { Observable, map, filter } from 'rxjs';
 import { RedisService } from '../redis/redis.service';
+import type { PubSub } from '../redis/redis.ports';
 import { MetricsService } from '../metrics/metrics.service';
 import { sharedSseStream, withReconnectHint } from '../../common/sse/shared-sse-stream';
 
@@ -21,7 +22,7 @@ export class LiveService extends LivePublisher implements OnModuleInit {
   private readonly sharedStreams = new Map<string, Observable<MessageEvent>>();
 
   constructor(
-    private readonly redis: RedisService,
+    @Inject(RedisService) private readonly redis: PubSub,
     private readonly metrics: MetricsService,
   ) {
     super();

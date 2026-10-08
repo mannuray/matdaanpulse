@@ -1,5 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { RedisService } from './redis.service';
+import type { KeyValueStore } from './redis.ports';
 import { StatusService } from '../status/status.service';
 import { RateLimitedLog } from '../../common/util/rate-limited-log';
 
@@ -40,7 +41,7 @@ export class CacheService {
   private readonly invalidatedPrefixes = new Map<string, number>();
 
   constructor(
-    private readonly redis: RedisService,
+    @Inject(RedisService) private readonly redis: KeyValueStore,
     private readonly status: StatusService,
   ) {}
 

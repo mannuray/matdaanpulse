@@ -1,9 +1,10 @@
-import { Controller, Get, Header, UseGuards } from '@nestjs/common';
+import { Controller, Get, Header, Inject, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
+import type { RedisHealth } from '../redis/redis.ports';
 import { StatusService } from './status.service';
 import { withTimeout } from '../../common/util/with-timeout';
 import { buildProcessInfo, poolConfig } from './process-info';
@@ -17,7 +18,7 @@ export class StatusController {
   constructor(
     private readonly status: StatusService,
     private readonly prisma: PrismaService,
-    private readonly redis: RedisService,
+    @Inject(RedisService) private readonly redis: RedisHealth,
   ) {}
 
   @Get()

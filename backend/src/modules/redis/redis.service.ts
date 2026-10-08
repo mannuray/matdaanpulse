@@ -5,6 +5,7 @@ import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { MetricsService } from '../metrics/metrics.service';
 import { buildRedisConnection } from './redis-options';
 import { RateLimitedLog } from '../../common/util/rate-limited-log';
+import type { KeyValueStore, OwnedLockStore, PubSub, RedisHealth, RedisLifecycle } from './redis.ports';
 
 interface ChannelState {
   subject: Subject<string>;
@@ -14,7 +15,7 @@ interface ChannelState {
 const ENV_KEYS = ['REDIS_URL', 'REDIS_HOST', 'REDIS_PORT', 'REDIS_PASSWORD'] as const;
 
 @Injectable()
-export class RedisService implements OnModuleInit {
+export class RedisService implements OnModuleInit, KeyValueStore, PubSub, OwnedLockStore, RedisHealth, RedisLifecycle {
   private readonly logger = new Logger(RedisService.name);
   private readonly logGate = new RateLimitedLog(60_000);
   private pub: Redis;
