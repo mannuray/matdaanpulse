@@ -79,4 +79,29 @@ describe('manifest seat references (DB)', () => {
       ORDER BY 1, 3`;
     expect(wrong).toEqual([]);
   });
+
+  it('every person id a manifest names (published or draft) exists (a person merge must remap them)', async () => {
+    if (!prisma) {
+      if (REQUIRE_DB) throw new Error('database required');
+      console.warn('SKIPPED: no database');
+      return;
+    }
+    const missing = await prisma.$queryRaw<{ election_id: string; source: string; name: string; person_id: string }[]>`
+      WITH m AS (
+        SELECT id, 'manifest' AS source, manifest_url::jsonb AS doc FROM elections WHERE manifest_url LIKE '{%'
+        UNION ALL
+        SELECT id, 'draft', manifest_draft FROM elections WHERE jsonb_typeof(manifest_draft) = 'object'
+      ), entries AS (
+        SELECT m.id, m.source, x FROM m, jsonb_array_elements(COALESCE(m.doc->'leaders', '[]')) x
+        UNION ALL
+        SELECT m.id, m.source || ':' || (w->>'id'), x FROM m,
+          jsonb_array_elements(COALESCE(m.doc->'watchlists', '[]')) w, jsonb_array_elements(COALESCE(w->'entries', '[]')) x
+      )
+      SELECT e.id::text AS election_id, e.source, e.x->>'name' AS name, e.x->>'person_id' AS person_id
+      FROM entries e
+      WHERE COALESCE(e.x->>'person_id', '') <> ''
+        AND NOT EXISTS (SELECT 1 FROM persons p WHERE p.id::text = e.x->>'person_id')
+      ORDER BY 1, 2, 4`;
+    expect(missing).toEqual([]);
+  });
 });
