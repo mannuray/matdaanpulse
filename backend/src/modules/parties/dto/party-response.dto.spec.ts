@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { plainToInstance } from 'class-transformer';
-import { PartyDetailDto } from './party-response.dto';
+import { PartyDetailDto, PartyRecordDto } from './party-response.dto';
 
 describe('PartyDetailDto', () => {
   it('keeps units with their roles and the lineage events', () => {
@@ -21,5 +21,19 @@ describe('PartyDetailDto', () => {
     }, { excludeExtraneousValues: true });
     expect(dto.units[0].roles[0].photo_url).toBe('/m/a.jpg');
     expect(dto.lineage[0].source_url).toBe('https://x');
+  });
+});
+
+describe('PartyRecordDto', () => {
+  it('keeps every record field, the family rows and the state extras; drops extras', () => {
+    const el = { election_id: 'e', state_id: 9, state_code: 'JH', state_name: 'Jharkhand', year: 2024, date: '2024-11-23', delimitation: '2008',
+      contested: 68, won: 21, votes: 1, share: 33.2, held: 14, gained: 7, lost: 9, split_gained: 0, split_lost: 0, seats_total: 81, largest: false,
+      formed_government: false, family: [{ party_id: 'JVM', won: 3, share: 5 }] };
+    const state = { code: 'JH', election_id: 'e', mlas: [{ person_id: 'p', name: 'A', photo_url: null, const_id: 'C', const_name: 'X', margin: 1 }],
+      flow: [{ from: 'JMM', to: 'BJP', seats: 4, split: false }], regions: [{ region: 'Kolhan', seats: 14, won: 3 }] };
+    const dto = plainToInstance(PartyRecordDto, { party_id: 'BJP', junk: 1, elections: [{ ...el, junk: 1 }], lineage: [], state }, { excludeExtraneousValues: true });
+    expect((dto as any).junk).toBeUndefined();
+    expect(dto.elections[0]).toEqual(el);
+    expect(dto.state).toEqual(state);
   });
 });

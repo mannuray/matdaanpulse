@@ -52,3 +52,70 @@ export class PartyDetailDto extends PartySummaryDto {
   @Expose() wikipedia_url: string | null;
   @Expose() description: string | null;
 }
+
+/** GET /parties/:id/record (party page spec §2). */
+export class PartyRecordFamilyDto {
+  @Expose() party_id: string;
+  @Expose() won: number;
+  @Expose() share: number;
+}
+
+export class PartyRecordElectionDto {
+  @Expose() election_id: string;
+  @Expose() state_id: number;
+  @Expose() state_code: string;
+  @Expose() state_name: string;
+  @Expose() year: number;
+  @Expose() date: string;
+  @Expose() delimitation: string | null;
+  @Expose() contested: number;
+  @Expose() won: number;
+  @Expose() votes: number;
+  @Expose() share: number;
+  @Expose() held: number;
+  @Expose() gained: number;
+  @Expose() lost: number;
+  @Expose() split_gained: number;
+  @Expose() split_lost: number;
+  @Expose() seats_total: number;
+  @Expose() largest: boolean;
+  @Expose() formed_government: boolean | null;
+  @Expose() @Type(() => PartyRecordFamilyDto) family: PartyRecordFamilyDto[];
+}
+
+export class PartyRecordMlaDto {
+  @Expose() person_id: string | null;
+  @Expose() name: string;
+  @Expose() photo_url: string | null;
+  @Expose() const_id: string;
+  @Expose() const_name: string;
+  @Expose() margin: number | null;
+}
+
+export class PartyRecordFlowDto {
+  @Expose() from: string;
+  @Expose() to: string;
+  @Expose() seats: number;
+  @Expose() split: boolean;
+}
+
+export class PartyRecordRegionDto {
+  @Expose() region: string;
+  @Expose() seats: number;
+  @Expose() won: number;
+}
+
+export class PartyRecordStateDto {
+  @Expose() code: string;
+  @Expose() election_id: string;
+  @Expose() @Type(() => PartyRecordMlaDto) mlas: PartyRecordMlaDto[];
+  @Expose() @Type(() => PartyRecordFlowDto) flow: PartyRecordFlowDto[];
+  @Expose() @Type(() => PartyRecordRegionDto) regions: PartyRecordRegionDto[] | null;
+}
+
+export class PartyRecordDto {
+  @Expose() party_id: string;
+  @Expose() @Type(() => PartyRecordElectionDto) elections: PartyRecordElectionDto[];
+  @Expose() @Type(() => LineageEventDto) lineage: LineageEventDto[];
+  @Expose() @Type(() => PartyRecordStateDto) state?: PartyRecordStateDto;
+}

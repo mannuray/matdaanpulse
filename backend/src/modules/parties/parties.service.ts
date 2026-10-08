@@ -4,6 +4,8 @@ import { PrismaService } from '../prisma/prisma.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { changedFields, createdFields } from '../audit-log/audit-diff';
 import { PartyNotFoundException } from '../../common/exceptions';
+import { buildPartyRecord, stateExtras, type LoadedElection } from './party-record';
+import { manifestBits } from '../constituencies/seat-analysis.loader';
 import type { CreatePartyDto, UpdatePartyDto, EciRecognitionFilter } from './dto/party-input.dto';
 
 const ymd = (d: Date | null): string => (d ? d.toISOString().slice(0, 10) : '');
@@ -45,6 +47,46 @@ export class PartiesService {
       })),
       lineage: lineage.map(toLineageEvent),
     };
+  }
+
+  /**
+   * The party's record across Finalized VS elections, from stored seat analysis (party page spec §2). With `stateCode`
+   * (any case) also the latest election there: its MLAs, the seat flow touching the party and its seats per region.
+   */
+  async record(id: string, stateCode?: string) {
+    const party = await this.prisma.parties.findUnique({ where: { id }, select: { id: true } });
+    if (!party) throw new PartyNotFoundException(id);
+    const [els, lineageRows] = await Promise.all([
+      this.prisma.elections.findMany({
+        where: { type: 'VS', status: 'Finalized', state_id: { not: null } },
+        select: { id: true, state_id: true, year: true, tentative_next_date: true, delimitation: true, manifest_url: true,
+          states: { select: { code: true, name: true } }, election_analysis: { select: { data: true } }, _count: { select: { constituencies: true } } },
+      }),
+      this.prisma.party_lineage.findMany({ orderBy: [{ effective_date: 'asc' }, { id: 'asc' }] }),
+    ]);
+    const loaded: LoadedElection[] = els.filter(e => e.states).map(e => ({
+      id: e.id, state_id: e.state_id!, state_code: e.states!.code, state_name: e.states!.name, year: e.year,
+      date: e.tentative_next_date ? ymd(e.tentative_next_date) : `${e.year}-07-01`,
+      delimitation: e.delimitation, seats_total: e._count.constituencies,
+      government: manifestBits(e.manifest_url).government, analysis: (e.election_analysis?.data ?? null) as LoadedElection['analysis'],
+    }));
+    const rec = buildPartyRecord(id, loaded, lineageRows.map(toLineageEvent));
+    const latest = stateCode ? rec.elections.find(e => e.state_code.toUpperCase() === stateCode.toUpperCase()) : undefined;
+    if (!latest) return rec;
+    const winners = await this.prisma.results.findMany({
+      where: { election_id: latest.election_id, status: 'WON', candidates: { party_id: id } },
+      select: { margin: true, const_id: true, constituencies: { select: { name: true } },
+        candidates: { select: { name: true, person_id: true, persons: { select: { photo_url: true } } } } },
+    });
+    const mlas = winners.map(w => ({
+      person_id: w.candidates.person_id, name: w.candidates.name, photo_url: w.candidates.persons?.photo_url ?? null,
+      const_id: w.const_id, const_name: w.constituencies.name, margin: w.margin,
+    })).sort((a, b) => (b.margin ?? 0) - (a.margin ?? 0));
+    const regionIds = [...new Set((loaded.find(l => l.id === latest.election_id)?.analysis?.breakdowns?.region ?? []).map(r => Number(r.group)).filter(Number.isInteger))];
+    const names = new Map((regionIds.length ? await this.prisma.regions.findMany({ where: { id: { in: regionIds } }, select: { id: true, name: true } }) : [])
+      .map(r => [String(r.id), r.name]));
+    const extras = stateExtras(id, loaded.find(l => l.id === latest.election_id)!, g => names.get(g) ?? g);
+    return { ...rec, state: { code: latest.state_code, election_id: latest.election_id, mlas, ...extras } };
   }
 
   /** Every lineage event (renames, mergers, splits), oldest first: the comparison rule's input on the public site. */

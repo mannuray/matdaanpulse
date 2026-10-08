@@ -233,3 +233,43 @@ describe('PartiesService.findOne', () => {
     expect(r.lineage[0].source_url).toBe('https://x');
   });
 });
+
+describe('PartiesService.record', () => {
+  const analysis = { parties: [{ party_id: 'BJP', contested: 68, won: 21, votes: 100, share: 33.2, prev: null, held: 14, gained: 7, lost: 9, split_gained: 0, split_lost: 0 }],
+    flow: [{ from: 'JMM', to: 'BJP', seats: 4, split: false }], breakdowns: { region: [] } };
+  const election = { id: 'e24', state_id: 9, year: 2024, tentative_next_date: new Date('2024-11-23'), delimitation: '2008', manifest_url: '{"government":{"parties":["JMM"]}}',
+    states: { code: 'JH', name: 'Jharkhand' }, election_analysis: { data: analysis }, _count: { constituencies: 81 } };
+  const base = () => ({
+    elections: { findMany: jest.fn().mockResolvedValue([election]) },
+    party_lineage: { findMany: jest.fn().mockResolvedValue([]) },
+    results: { findMany: jest.fn().mockResolvedValue([
+      { margin: 500, const_id: 'C1', constituencies: { name: 'Ranchi' }, candidates: { name: 'A', person_id: 'p1', persons: { photo_url: '/a.jpg' } } },
+      { margin: 9000, const_id: 'C2', constituencies: { name: 'Hatia' }, candidates: { name: 'B', person_id: null, persons: null } },
+    ]) },
+  });
+  it('unknown party: PartyNotFoundException', async () => {
+    const { svc } = make({ ...base(), parties: { findUnique: jest.fn().mockResolvedValue(null) } });
+    await expect(svc.record('NOPE')).rejects.toThrow();
+  });
+  it('one row per election with the counting date and assembly size; no state extras without ?state', async () => {
+    const { svc } = make(base());
+    const r = await svc.record('BJP');
+    expect(r.elections).toHaveLength(1);
+    expect(r.elections[0]).toMatchObject({ date: '2024-11-23', seats_total: 81, state_code: 'JH', won: 21, formed_government: false });
+    expect((r as any).state).toBeUndefined();
+  });
+  it('?state (any case): MLAs by margin, flow and regions of the latest election there', async () => {
+    const { svc, prisma } = make(base());
+    const r: any = await svc.record('BJP', 'jh');
+    expect(r.state.code).toBe('JH');
+    expect(r.state.mlas.map((m: any) => m.const_id)).toEqual(['C2', 'C1']);
+    expect(r.state.mlas[1]).toEqual({ person_id: 'p1', name: 'A', photo_url: '/a.jpg', const_id: 'C1', const_name: 'Ranchi', margin: 500 });
+    expect(r.state.flow).toHaveLength(1);
+    expect(r.state.regions).toBeNull();
+    expect((prisma as any).results.findMany.mock.calls[0][0].where).toMatchObject({ election_id: 'e24', status: 'WON', candidates: { party_id: 'BJP' } });
+  });
+  it('?state the party never contested: no state extras', async () => {
+    const { svc } = make(base());
+    expect(((await svc.record('BJP', 'KL')) as any).state).toBeUndefined();
+  });
+});
