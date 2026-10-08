@@ -211,6 +211,8 @@
   "studio_status_label_final": "अंतिम निकाल · {{declared}}/{{total}} जाहीर",
   "studio_status_label_live": "थेट · {{declared}}/{{total}} जाहीर",
   "studio_status_label_upcoming": "आगामी",
+  "studio_status_short_live": "थेट · {{declared}}/{{total}}",
+  "studio_status_short_final": "अंतिम",
   "studio_open": "{{name}} उघडा",
   "studio_no_elections": "अद्याप निवडणुका उपलब्ध नाहीत",
   "studio_tab_parties": "पक्ष",

@@ -34,8 +34,13 @@ export function ScoreboardTile({ vm, variant }: { vm: ScoreboardVM; variant: 'ti
               <div style={{ width: `${(vm.others.seats / total) * 100}%` }} className="bg-muted/60" />
             </div>
             {vm.majority != null && <div className="absolute -top-1.5 h-5 w-0.5 bg-ink" style={{ left: `${(vm.majority / total) * 100}%` }} aria-hidden />}
-            <div className="mt-1 flex justify-between text-xs leading-none text-muted">
-              <span>0</span>
+            <div className="mt-1 flex items-center justify-between text-xs leading-none text-muted">
+              {vm.status === 'upcoming' ? <span>0</span> : (
+                <span data-status-pill className="inline-flex items-center gap-1.5 whitespace-nowrap font-semibold text-ink">
+                  <span aria-hidden className={vm.status === 'live' ? 'h-2 w-2 animate-pulse rounded-full bg-live' : 'h-2 w-2 rounded-full bg-ok'} />
+                  {vm.status === 'live' ? t('studio_status_short_live', { declared: vm.declared, total: vm.totalSeats }) : t('studio_status_short_final')}
+                </span>
+              )}
               {vm.majority != null && <span className="font-semibold text-ink">{t('studio_to_win', { count: vm.majority })}</span>}
               <span>{vm.totalSeats}</span>
             </div>

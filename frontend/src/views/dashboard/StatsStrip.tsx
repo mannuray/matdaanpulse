@@ -16,12 +16,36 @@ function SeatList({ title, seats, vm }: { title: string; seats: SeatRef[]; vm: S
   const { t } = useTranslation();
   return (
     <div><h3 className="mb-2 font-display text-lg font-bold uppercase text-ink">{title}</h3>
-      <ol className="flex flex-col gap-1">{seats.map(s => (
+      <ol className="flex list-decimal flex-col gap-1 pl-7">{seats.map(s => (
         <li key={s.id}><button type="button" onClick={() => vm.onSelectSeat(s.id)} className="flex w-full items-center gap-2 rounded-[0.5rem] px-2 py-1 text-sm hover:bg-tile-raised">
           <span className="h-2 w-2 rounded-full" style={{ background: vm.partyColor.get(s.party) ?? 'var(--color-fallback)' }} />
           <span className="flex-1 truncate text-left">{s.name}</span><span className="text-muted">{s.party}</span><span className="tabular font-semibold">{s.margin != null ? s.margin.toLocaleString() : t('studio_unopposed')}</span>
         </button></li>
       ))}</ol>
+    </div>
+  );
+}
+
+function PreviewStat({ label, value, onClick }: { label: string; value: string; onClick?(): void }) {
+  return (
+    <button type="button" data-preview-stat onClick={onClick} disabled={!onClick} aria-label={`${label} ${value}`}
+      className="flex min-w-0 flex-col justify-center rounded-xl border border-line bg-page/50 px-2.5 py-1 text-left enabled:hover:border-accent">
+      <span className="truncate text-[10px] uppercase tracking-wider text-muted">{label}</span>
+      <span className="tabular truncate font-display text-lg font-bold leading-tight text-ink">{value}</span>
+    </button>
+  );
+}
+
+/** The phone rail card: the strip's four stats in a 2x2 grid (the strip's single row does not fit the card). */
+export function StatsPreview({ vm }: { vm: StatsVM }) {
+  const { t } = useTranslation();
+  const { stats } = vm;
+  return (
+    <div className="grid grid-cols-2 gap-1.5">
+      <PreviewStat label={t('studio_declared')} value={`${stats.declared}/${stats.total}`} />
+      <PreviewStat label={t('studio_seats_flipped')} value={stats.flipped != null ? String(stats.flipped) : '—'} />
+      <PreviewStat label={t('studio_closest_contest')} value={stats.closest?.margin != null ? stats.closest.margin.toLocaleString() : '—'} onClick={stats.closest ? () => vm.onSelectSeat(stats.closest!.id) : undefined} />
+      <PreviewStat label={t('studio_biggest_win')} value={stats.biggest?.margin != null ? stats.biggest.margin.toLocaleString() : '—'} onClick={stats.biggest ? () => vm.onSelectSeat(stats.biggest!.id) : undefined} />
     </div>
   );
 }

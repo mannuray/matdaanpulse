@@ -5,6 +5,7 @@ import { deriveScoreboard, type Scoreboard, type ScoreBloc } from '../../model/d
 import { intentFor } from '../store/hoverIntent';
 import { useThemedColor } from '../theme/useThemedColor';
 import { deriveStandingRows, type StandingRow } from '../../model/derive/standings';
+import { countDeclared } from '../../model/derive/marginStats';
 
 export type { Scoreboard, ScoreBloc };
 
@@ -17,6 +18,8 @@ export type ScoreBlocVM = ScoreBloc & { label: string; textColor: string };
 export interface ScoreboardVM extends Omit<Scoreboard, 'blocs'> {
   blocs: ScoreBlocVM[];
   status: 'final' | 'live' | 'upcoming';
+  /** Seats declared so far (the phone's status pill). */
+  declared: number;
   /** Pulse the tile once when live results changed a seat. */
   pulse: boolean;
   /** Member parties per bloc, for the expanded view. */
@@ -38,6 +41,7 @@ export function useScoreboardVM(): ScoreboardVM {
     [alliances, src.data.mapPartyList, src.votePct, src.totalSeats, src.majority],
   );
   const partiesOf = (id: string) => alliances.find(a => a.id === id)?.parties ?? [id];
+  const declared = useMemo(() => countDeclared(src.data.mapRegions), [src.data.mapRegions]);
   const status = src.election.status === 'Live' ? 'live' : src.election.status === 'Finalized' ? 'final' : 'upcoming';
   const breakdown = useMemo(() => {
     const rows = deriveStandingRows(src.data.mapPartyList, src.votePct, alliances, { includeZero: true });
@@ -47,6 +51,7 @@ export function useScoreboardVM(): ScoreboardVM {
     ...board,
     blocs: board.blocs.map(b => ({ ...b, label: shortLabel(b), textColor: themed.color(b.color, 'text') })),
     status,
+    declared,
     pulse: pulse.recentSeats.size > 0,
     breakdown,
     lockedId: state.locked?.chipId.startsWith('bloc:') ? state.locked.chipId.slice(5) : null,

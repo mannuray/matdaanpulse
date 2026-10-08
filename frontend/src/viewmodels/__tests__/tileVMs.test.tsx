@@ -6,6 +6,7 @@ import type { ReactNode } from 'react';
 import { DashboardStoreProvider, useDashboardStore } from '../store/DashboardStoreProvider';
 import { DashboardSourcesProvider } from '../sources/DashboardSourcesProvider';
 import { useScoreboardVM } from '../tiles/useScoreboardVM';
+import { countDeclared } from '../../model/derive/marginStats';
 import { useStandingsVM } from '../tiles/useStandingsVM';
 import { useStatsVM } from '../tiles/useStatsVM';
 import { useLayerInsightVM } from '../tiles/useLayerInsightVM';
@@ -27,6 +28,7 @@ describe('tile view-models', () => {
     const { result } = renderHook(() => ({ vm: useScoreboardVM(), store: useDashboardStore() }), { wrapper: wrap() });
     expect(result.current.vm.blocs.map(b => [b.id, b.seats])).toEqual([['NDA', 3], ['MGB', 0]]);
     expect(result.current.vm.status).toBe('final');
+    expect(result.current.vm.declared).toBe(countDeclared(makeSources().data.mapRegions));
     act(() => result.current.vm.onFocus());
     expect(result.current.store.state.focus).toBe('scoreboard');
   });
