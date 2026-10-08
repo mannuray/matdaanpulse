@@ -1,0 +1,12 @@
+# Security headers for Cloudflare Pages (keep identical to the "headers" block in vercel.json;
+# src/__tests__/securityHeaders.test.ts checks both).
+# connect-src: the API origin baked in as VITE_API_BASE_URL. When the API moves behind Cloudflare
+# (https://api.matdaanpulse.in, docs/DEPLOYMENT.md section 5.4), add that origin here and in vercel.json.
+# style-src 'unsafe-inline': Radix's scroll lock (react-remove-scroll) injects a <style> element.
+# Scripts never get 'unsafe-inline': the pre-paint theme script is the file /theme-init.js.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://matdaanpulse-media.s3.ap-south-1.amazonaws.com; font-src 'self'; connect-src 'self' https://matdaanpulse-api.onrender.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains

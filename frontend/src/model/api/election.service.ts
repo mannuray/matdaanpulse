@@ -92,8 +92,9 @@ export function getManifest(electionId: string) {
   return apiFetch<Manifest>(`/elections/${electionId}/manifest`);
 }
 
-export function getConstituency(electionId: string, constId: string) {
-  return apiFetch<Constituency>(`/elections/${electionId}/constituencies/${constId}`);
+/** `version`: the live results version (from /live) the detail should reflect; each version is its own CDN-cacheable URL. */
+export function getConstituency(electionId: string, constId: string, version?: number | null) {
+  return apiFetch<Constituency>(`/elections/${electionId}/constituencies/${constId}${version != null ? `?v=${version}` : ''}`);
 }
 
 export function getConstituencyAnalysis(electionId: string, constId: string) {

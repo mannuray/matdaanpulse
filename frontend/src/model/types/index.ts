@@ -133,6 +133,8 @@ export interface Constituency {
   metadata?: Record<string, unknown>;
   region?: { id: number; name: string } | null;
   last_updated?: string | null;
+  /** Live seat state (ingest); sent with the detail by a backend that has it, else absent. */
+  seat_state?: SeatLiveState['state'] | null;
 }
 
 export interface Candidate {
