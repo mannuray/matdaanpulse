@@ -12,6 +12,7 @@ export class PartiesController {
   constructor(private readonly partiesService: PartiesService) {}
 
   @Get()
+  @CacheControl(CACHE_CONTROL.REFERENCE) // the admin's paged reads carry Authorization and stay no-store
   @UseInterceptors(new MapToDtoInterceptor(PartySummaryDto))
   async findAll(@Query() { page, limit, q, election_id, state_id, eci_recognition }: PartiesQueryDto) {
     if (page || limit || election_id || state_id || eci_recognition) {

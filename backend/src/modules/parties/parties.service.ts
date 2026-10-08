@@ -22,9 +22,13 @@ export class PartiesService {
     private readonly audit: AuditLogService,
   ) {}
 
-  /** Every party: the public lookup that colours and marks every result (no cap; there are ~800). */
+  /**
+   * Every party: the public lookup that colours and marks every result (no cap; ~1,800 rows). Only the PartySummaryDto
+   * columns are read (the DTO drops the rest anyway; the admin edits through /admin/parties).
+   */
   findAll() {
     return this.prisma.parties.findMany({
+      select: { id: true, name: true, abbreviation: true, color: true, symbol_url: true, eci_symbol_url: true, eci_recognition: true },
       orderBy: { name: 'asc' },
     });
   }

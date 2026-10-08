@@ -17,6 +17,8 @@ export const CACHE_CONTROL = {
    * election, purge the CDN (docs/DEPLOYMENT.md §5.4).
    */
   FINISHED: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400',
+  /** Slow-changing reference data read by every page (GET /parties): an admin party edit shows within the hour (or purge). */
+  REFERENCE: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400',
   /** GET /elections/:id/live — polled by every viewer. */
   LIVE: 'public, max-age=0, s-maxage=5, stale-while-revalidate=10',
   /** GET /elections/:id/live while the election is not counting (Upcoming/Finalized). */

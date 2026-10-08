@@ -60,7 +60,8 @@ Per-viewer SSE does not scale behind a CDN (every open tab holds an origin conne
 | `GET /api/v1/elections/:id/constituencies/:constId?v=<version>` | seat detail for that version | like `results?v=`: `v` = current while `Live` → `immutable` (only if the DB version is still `v` after the read, else `no-store`); `v` older → `302` to `?v=<current>` (`s-maxage=5`); `v` newer → `404 no-store`; not counting → the status policy below (never `immutable`) |
 | Election reads without `?v=` (`/elections/:id`, `/manifest`, `/results`, `/alliances`, `/vote-share`, `/region-shares`, `/baseline`, `/analysis`, `/analysis/summary`, seat detail, seat analysis, district results, `/compare`) | as today | `Finalized` → `public, max-age=0, s-maxage=3600, stale-while-revalidate=86400`; `Live` → results and seat detail `s-maxage=10, stale-while-revalidate=30`, the rest the default; otherwise the default. `/rounds`: `s-maxage=10` until `Finalized`, then the long TTL |
 | `GET /api/v1/parties/:id/record` | party record (built only from Finalized elections) | always the long `s-maxage=3600, stale-while-revalidate=86400` |
-| Other public GETs (elections list, states, parties, candidates, …) | as today | `public, max-age=0, s-maxage=60, stale-while-revalidate=300` |
+| `GET /api/v1/parties` (full list, no paging params) | every party's id, name, abbreviation, colour, marks, ECI recognition (~1,800 rows, ~290 KB raw / ~31 KB gzip; only those columns are read) | `public, max-age=0, s-maxage=3600, stale-while-revalidate=86400` — an admin party edit reaches the site within the hour, or purge |
+| Other public GETs (elections list, states, party detail, candidates, …) | as today | `public, max-age=0, s-maxage=60, stale-while-revalidate=300` |
 | Admin, auth, SSE, health | — | `no-store` / not cached |
 
 - The backend bumps `version` on every committed results batch (an ingest post or a seat correction).
