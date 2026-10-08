@@ -12,6 +12,8 @@ import { successEnvelope } from '../../common/interceptors/transform.interceptor
 import { SeatAnalysisService } from '../constituencies/seat-analysis.service';
 import { LiveStateService } from '../results/live-state.service';
 import { parseManifest } from '../../common/manifest';
+import { SkipThrottle } from '@nestjs/throttler';
+import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
 
 @Controller('elections')
 @CacheControl(CACHE_CONTROL.PUBLIC)
@@ -26,9 +28,11 @@ export class ElectionsController {
 
   /**
    * Polled by viewers (via the CDN): `{ version, status, updatedAt, declared, total }`.
-   * CDN-cached 5 s while counting (Live), 30 s otherwise.
+   * CDN-cached 5 s while counting (Live), 30 s otherwise. Not throttled per IP: every viewer behind one carrier
+   * NAT polls it, and the CDN answers almost all of them (its rate-limit rule bounds cache-busting misses).
    */
   @Get(':id/live')
+  @SkipThrottle(SKIP_ALL_THROTTLERS)
   async getLive(@Param('id', ParseUUIDPipe) id: string, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
     const state = await this.liveState.get(id);
     applyCacheControl(req, res, state.status === 'Live' ? CACHE_CONTROL.LIVE : CACHE_CONTROL.LIVE_IDLE);
@@ -70,6 +74,7 @@ export class ElectionsController {
    * - v > current (poll raced ahead of this instance): current data, not stored.
    */
   @Get(':id/results')
+  @SkipThrottle(SKIP_ALL_THROTTLERS) // versioned snapshots are fetched by every viewer on each version change (see getLive)
   async getResults(
     @Param('id', ParseUUIDPipe) id: string,
     @Query() query: ResultsQueryDto,

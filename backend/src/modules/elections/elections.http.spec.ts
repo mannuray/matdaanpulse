@@ -9,6 +9,9 @@ import { ConstituenciesService } from '../constituencies/constituencies.service'
 import { LiveStateService } from '../results/live-state.service';
 import { SeatAnalysisService } from '../constituencies/seat-analysis.service';
 import { CACHE_CONTROL } from '../../common/http/cache-control';
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { buildThrottlerOptions } from '../../common/throttle/throttle.config';
 
 @Controller('admin/thing')
 class AdminLikeController {
@@ -34,7 +37,7 @@ const ELECTION_ROW = {
   secret_internal: 'x',
 };
 
-async function makeApp(env: Record<string, string>) {
+async function makeApp(env: Record<string, string>, opts: { publicPerMin?: number } = {}) {
   const live = { version: 100, status: 'Live', updatedAt: '2026-09-30T00:00:00.000Z', declared: 2, total: 243 };
   const liveState = { get: jest.fn(async () => ({ ...live })) };
   const rows = [{ const_id: 'A', party_id: 'P', candidate_name: 'x', votes: 1, status: 'WON', margin: 1, const_type: 'GEN' }];
@@ -45,9 +48,12 @@ async function makeApp(env: Record<string, string>) {
     getVoteShare: jest.fn(async () => []),
     getSeatRounds: jest.fn(async () => [{ seq: 1, r: 1, rt: 20, lp: 'BJP', m: 120, v: 900, declared: false, at: '2027-02-27T04:00:00.000Z' }]),
   };
+  const throttled = opts.publicPerMin !== undefined;
   const moduleRef = await Test.createTestingModule({
+    imports: throttled ? [ThrottlerModule.forRoot(buildThrottlerOptions({ THROTTLE_PUBLIC_PER_MIN: String(opts.publicPerMin) }))] : [],
     controllers: [ElectionsController, AdminLikeController],
     providers: [
+      ...(throttled ? [{ provide: APP_GUARD, useClass: ThrottlerGuard }] : []),
       {
         provide: ElectionsService,
         useValue: {
@@ -221,6 +227,27 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect(pub.headers.get('access-control-expose-headers')).toBe('Retry-After,X-Request-ID');
     const adm = await get('/admin/thing', { headers: { Origin: 'http://localhost:3081' } });
     expect(adm.headers.get('access-control-allow-origin')).toBe('http://localhost:3081');
+  });
+});
+
+describe('viewer polling is not rate-limited at origin (the CDN rate-limits)', () => {
+  let ctx: Awaited<ReturnType<typeof makeApp>>;
+  beforeAll(async () => (ctx = await makeApp({ TRUST_PROXY_HOPS: '1' }, { publicPerMin: 3 })));
+  afterAll(() => ctx.app.close());
+  const get = (path: string) => fetch(`${ctx.base}${path}`, { redirect: 'manual', headers: { 'X-Forwarded-For': '198.51.100.9' } });
+
+  it('/live and /results (with and without ?v=) never answer 429 from one IP', async () => {
+    for (let i = 0; i < 6; i++) {
+      for (const path of [`/elections/${EID}/live`, `/elections/${EID}/results?v=100`, `/elections/${EID}/results`]) {
+        expect((await get(path)).status).toBe(200);
+      }
+    }
+  });
+
+  it('other election reads still count against the public throttler', async () => {
+    const statuses: number[] = [];
+    for (let i = 0; i < 5; i++) statuses.push((await get(`/elections/${EID}/analysis/summary`)).status);
+    expect(statuses).toContain(429);
   });
 });
 
