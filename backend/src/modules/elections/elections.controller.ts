@@ -11,6 +11,7 @@ import { CACHE_CONTROL, CacheControl, applyCacheControl } from '../../common/htt
 import { successEnvelope } from '../../common/interceptors/transform.interceptor';
 import { SeatAnalysisService } from '../constituencies/seat-analysis.service';
 import { LiveStateService } from '../results/live-state.service';
+import { parseManifest } from '../../common/manifest';
 
 @Controller('elections')
 @CacheControl(CACHE_CONTROL.PUBLIC)
@@ -50,7 +51,7 @@ export class ElectionsController {
   async findOne(@Param('id', new ParseUUIDPipe()) id: string) {
     const election = await this.electionsService.findOne(id);
     const summary = await this.resultsService.getElectionSummary(id);
-    const manifest = await this.electionsService.comparableManifest(election, this.electionsService.parseManifest(election.manifest_url));
+    const manifest = await this.electionsService.comparableManifest(election, parseManifest(election.manifest_url));
 
     return { ...election, manifest, summary };
   }
