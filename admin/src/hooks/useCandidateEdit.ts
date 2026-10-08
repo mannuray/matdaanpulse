@@ -3,11 +3,11 @@ import {
   getCandidate, updateCandidate, changeCandidatePerson, splitCandidate, type CandidateAffidavit,
 } from '../services/candidate.service';
 import { getPersons, updatePerson } from '../services/person.api';
-import { getParties } from '../services/party.service';
+import { useParties } from './useParties';
 import { useToast } from '../context/ToastContext';
 import { fieldErrorMap } from '../services/api-client';
 import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
-import type { Candidate, Party, PersonWithStats } from '../types';
+import type { Candidate, PersonWithStats } from '../types';
 
 /** The create and edit form. The affidavit fields are text as typed; `candidateAffidavit` turns them into numbers. */
 export interface CandidateForm {
@@ -96,7 +96,7 @@ export function useCandidateEdit(id?: string) {
 
   // Data State
   const [candidate, setCandidate] = useState<Candidate | null>(null);
-  const [parties, setParties] = useState<Party[]>([]);
+  const parties = useParties();
   const [loading, setLoading] = useState(!!id);
   const [loadError, setLoadError] = useState<LoadError | null>(null);
   const [saving, setSaving] = useState(false);
@@ -122,12 +122,8 @@ export function useCandidateEdit(id?: string) {
     setLoading(true);
     setLoadError(null);
     try {
-      const [c, p] = await Promise.all([
-        getCandidate(id),
-        getParties().catch(() => [])
-      ]);
+      const c = await getCandidate(id);
       setCandidate(c);
-      setParties(p);
 
       const next = toForm(c);
       setForm(next);

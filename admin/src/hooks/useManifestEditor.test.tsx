@@ -9,7 +9,7 @@ vi.mock('../services/manifest.service', () => ({
   saveManifestDraft: vi.fn(async () => ({})),
   publishManifest: vi.fn(async () => ({})),
 }));
-vi.mock('../services/election.service', () => ({ getElections: vi.fn(async () => []) }));
+vi.mock('../context/ElectionContext', () => ({ useElection: () => ({ elections: [] }) }));
 vi.mock('../services/party.service', () => ({ getParties: vi.fn(async () => []) }));
 vi.mock('../services/constituency.service', () => ({ getConstituencies: vi.fn(async () => []) }));
 import { useManifestEditor } from './useManifestEditor';

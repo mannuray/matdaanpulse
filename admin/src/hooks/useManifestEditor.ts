@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { getManifest, saveManifestDraft, publishManifest } from '../services/manifest.service';
-import { getElections } from '../services/election.service';
-import { getParties } from '../services/party.service';
+import { useElection } from '../context/ElectionContext';
+import { useParties } from './useParties';
 import { getConstituencies } from '../services/constituency.service';
 import { useToast } from '../context/ToastContext';
 import { ApiError } from '../services/api-client';
@@ -35,8 +35,9 @@ export function useManifestEditor(electionId: string | null) {
   const selectedId = electionId ?? '';
   const { toast, toastError } = useToast();
 
-  const [elections, setElections] = useState<Election[]>([]);
-  const [parties, setParties] = useState<Party[]>([]);
+  // The election list comes from ElectionContext (loaded once, reloaded after lifecycle changes).
+  const { elections } = useElection();
+  const parties = useParties();
   const [constituencies, setConstituencies] = useState<Constituency[]>([]);
   
   const [manifest, setManifest] = useState<ManifestData>(DEFAULT_MANIFEST);
@@ -51,11 +52,6 @@ export function useManifestEditor(electionId: string | null) {
   const loadedIdRef = useRef<string | null>(null);
   // Bumped on every local edit, so a save/publish that was in flight can tell whether the user typed meanwhile.
   const editVersionRef = useRef(0);
-
-  useEffect(() => {
-    getElections().then(setElections).catch(() => {});
-    getParties().then(setParties).catch(() => []);
-  }, []);
 
   const loadManifest = useCallback(async (eid: string) => {
     if (!eid) return;
