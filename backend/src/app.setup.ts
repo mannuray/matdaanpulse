@@ -1,5 +1,5 @@
 import { validationExceptionFactory } from './common/validation/validation-failed.exception';
-import { Logger, UnauthorizedException, ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { json, urlencoded, Request, Response, NextFunction } from 'express';
 import * as compression from 'compression';
@@ -10,8 +10,12 @@ import { buildCorsDelegate } from './common/config/cors';
 import { resolveTrustProxyHops } from './common/config/trust-proxy';
 import { cfConnectingIp, trustCfConnectingIp } from './common/config/client-ip';
 import { StatusService } from './modules/status/status.service';
+import { accessLog } from './common/logger/logging.middleware';
 import { assertOriginConfig, originShield, parseOriginSecrets } from './common/config/origin-shield';
 import { CacheControlInterceptor } from './common/http/cache-control';
+import { IngestRateLimitedException, IngestUnauthorizedException } from './common/exceptions';
+import { IngestAuthLimiter, readAuthFailLimit } from './modules/ingest/ingest-auth-limiter';
+import { IngestKeysService } from './modules/ingest/ingest-keys.service';
 
 type Env = Record<string, string | undefined>;
 
@@ -52,15 +56,34 @@ function dropCacheBuster(req: Request, _res: Response, next: NextFunction) {
   next();
 }
 
+/** `Bearer mpk_` + base64url of 32 random bytes (43 chars), the only format IngestKeysService.create issues. */
+export const INGEST_KEY_HEADER = /^Bearer (mpk_[A-Za-z0-9_-]{43})$/;
+
 /**
- * Cheap gate before the 5 MB parser: anonymous clients can't make the server
- * parse large bodies. The real JWT + roles check still runs in the guards.
+ * Cheap gate before the 5 MB ingest parser (the ingest routes skip the throttlers):
+ * - an IP with too many failed key checks this minute (IngestAuthLimiter) gets 429 + Retry-After, unless its key was
+ *   verified recently on this instance (so an attacker sharing the worker's egress IP cannot lock it out);
+ * - anything but a well-formed machine key (`Bearer mpk_…`) gets 401 and counts as a failure.
+ * IngestKeyGuard then checks the key itself (unknown / revoked / expired also count as failures).
  */
-export function requireBearerHeader(req: Request, _res: Response, next: NextFunction) {
-  if (req.method === 'OPTIONS') return next(); // CORS preflight carries no Authorization
-  const auth = req.headers.authorization;
-  if (typeof auth === 'string' && /^Bearer \S+$/.test(auth)) return next();
-  next(new UnauthorizedException());
+export function ingestKeyGate(limiter: IngestAuthLimiter, keys?: Pick<IngestKeysService, 'recentlyValid'>) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    if (req.method === 'OPTIONS') return next(); // CORS preflight carries no Authorization
+    const ip = req.ip ?? '';
+    const m = INGEST_KEY_HEADER.exec(req.headers.authorization ?? '');
+    if (limiter.blocked(ip) && !(m && keys?.recentlyValid(m[1]))) {
+      const wait = limiter.retryAfterS(ip);
+      res.setHeader('Retry-After', String(wait));
+      return next(new IngestRateLimitedException(wait));
+    }
+    if (!m) { limiter.fail(ip); return next(new IngestUnauthorizedException()); }
+    next();
+  };
+}
+
+/** The app's instance of a provider, or undefined when the module is not loaded (some HTTP tests). */
+function optional<T>(app: NestExpressApplication, token: new (...args: any[]) => T): T | undefined {
+  try { return app.get(token, { strict: false }); } catch { return undefined; }
 }
 
 /**
@@ -69,18 +92,16 @@ export function requireBearerHeader(req: Request, _res: Response, next: NextFunc
  */
 export function configureApp(app: NestExpressApplication, env: Env = process.env) {
   const logger = new Logger('Bootstrap');
+  const status = optional(app, StatusService);
 
-  // Origin shield first: requests that did not come through Cloudflare cost nothing.
+  // Request id + access log before anything can answer, so early rejections are logged with their request id.
+  app.use(accessLog());
+
+  // Origin shield next: requests that did not come through Cloudflare cost nothing.
   assertOriginConfig(env);
   const originSecrets = parseOriginSecrets(env);
   if (originSecrets.length > 0) {
     // Shield 403s are answered before the Nest middleware, so count them explicitly (System status page).
-    let status: StatusService | undefined;
-    try {
-      status = app.get(StatusService, { strict: false });
-    } catch {
-      /* apps without the status module (some tests) simply do not count */
-    }
     app.use(originShield(originSecrets, () => status?.recordShieldRejection()));
   }
   logger.log(
@@ -100,7 +121,8 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
 
   // Body limits (review S-M3): 5 MB only for the ingest route, registered
   // first; the global parsers then skip the already-parsed body.
-  app.use(INGEST_PATH, requireBearerHeader, json({ limit: INGEST_BODY_LIMIT }));
+  const ingestLimiter = optional(app, IngestAuthLimiter) ?? new IngestAuthLimiter(readAuthFailLimit(env));
+  app.use(INGEST_PATH, ingestKeyGate(ingestLimiter, optional(app, IngestKeysService)), json({ limit: INGEST_BODY_LIMIT }));
   app.use(json({ limit: DEFAULT_BODY_LIMIT }));
   app.use(urlencoded({ extended: true, limit: DEFAULT_BODY_LIMIT }));
 
@@ -111,7 +133,7 @@ export function configureApp(app: NestExpressApplication, env: Env = process.env
   app.use(compression());
 
   app.useGlobalInterceptors(new CacheControlInterceptor(), new TransformInterceptor());
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new HttpExceptionFilter(status));
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

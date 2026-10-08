@@ -3,7 +3,7 @@ import type { Election } from '../../types';
 import { electionGroup, groupElections, matchesElection, pinnedElections } from './electionGrid';
 
 const el = (id: string, name: string, type: 'LS' | 'VS', year: number, status: Election['status'] = 'Finalized'): Election =>
-  ({ id, name, type, year, status, state_id: null, tentative_next_date: null, delimitation: null, manifest_url: null });
+  ({ id, name, type, year, status, state_id: null, tentative_next_date: null, delimitation: null, manifest_published: false });
 
 const all = [
   el('wb21', 'West Bengal Vidhan Sabha 2021', 'VS', 2021),

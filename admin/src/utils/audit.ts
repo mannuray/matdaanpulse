@@ -20,6 +20,25 @@ export const AUDIT_ACTIONS = [
   // No longer written (every candidate has a person since migration 018); kept so older entries stay filterable.
   { value: 'CANDIDATE_UNLINK_PERSON', label: 'Candidate unlinked (legacy)' },
   { value: 'CONSTITUENCY_UPDATE', label: 'Seat edited' },
+  // Live ingest: a worker's shard lease changing hands (written by the system, no user), shard edits, hold releases.
+  { value: 'INGEST_LEASE_TAKEOVER', label: 'Ingest lease take-over' },
+  { value: 'INGEST_SHARD_UPDATE', label: 'Ingest shard saved' },
+  { value: 'INGEST_SHARD_DELETE', label: 'Ingest shard deleted' },
+  { value: 'INGEST_HOLD_RELEASE', label: 'Seat hold released' },
+  // Users, elections, manifests, analysis, media and feedback (security audit, 2026-10-08).
+  { value: 'USER_CREATE', label: 'User created' },
+  { value: 'USER_UPDATE', label: 'User edited' },
+  { value: 'USER_ROLE_CHANGE', label: 'User role changed' },
+  { value: 'USER_PASSWORD_RESET', label: 'Password reset' },
+  { value: 'USER_DELETE', label: 'User deleted' },
+  { value: 'ELECTION_CREATE', label: 'Election created' },
+  { value: 'ELECTION_UPDATE', label: 'Election edited' },
+  { value: 'MANIFEST_SAVE', label: 'Manifest draft saved' },
+  { value: 'MANIFEST_PUBLISH', label: 'Manifest published' },
+  { value: 'ANALYSIS_COMPUTE', label: 'Seat analysis computed' },
+  { value: 'ANALYSIS_NOTES_UPDATE', label: 'Analysis notes edited' },
+  { value: 'MEDIA_UPLOAD', label: 'Image uploaded' },
+  { value: 'FEEDBACK_UPDATE', label: 'Feedback status changed' },
 ] as const;
 
 /** Entity types of those actions: a result row, an election (bulk save), a constituency (lock, seat edit), and the record-page entities. */
@@ -30,6 +49,10 @@ export const AUDIT_ENTITIES = [
   { value: 'party', label: 'Party' },
   { value: 'person', label: 'Person' },
   { value: 'candidate', label: 'Candidate' },
+  { value: 'user', label: 'User' },
+  { value: 'constituency_analysis', label: 'Seat analysis' },
+  { value: 'media', label: 'Image' },
+  { value: 'feedback', label: 'Feedback' },
 ] as const;
 
 const humanise = (v: string) => {
@@ -42,7 +65,7 @@ export const entityLabel = (t: string) => AUDIT_ENTITIES.find((x) => x.value ===
 export const isAuditAction = (v: unknown) => AUDIT_ACTIONS.some((x) => x.value === v);
 export const isAuditEntity = (v: unknown) => AUDIT_ENTITIES.some((x) => x.value === v);
 
-const TONE: Record<string, Tone> = { RESULT_OVERRIDE: 'accent', RESULT_BULK_OVERRIDE: 'accent', SEAT_LOCK_TAKEOVER: 'warn' };
+const TONE: Record<string, Tone> = { RESULT_OVERRIDE: 'accent', RESULT_BULK_OVERRIDE: 'accent', SEAT_LOCK_TAKEOVER: 'warn', INGEST_LEASE_TAKEOVER: 'warn' };
 export const actionTone = (a: string): Tone => TONE[a] ?? 'muted';
 
 /** Who did it: the user's name, else their email, else "Deleted user" (the entry outlives the account). */
@@ -65,6 +88,12 @@ export function describeAudit(log: AuditLog, lookup?: Partial<SeatLookup>): stri
   const before = record(log.old_value);
   const after = record(log.new_value);
   switch (log.action) {
+    case 'INGEST_LEASE_TAKEOVER': {
+      const shard = typeof after.shard === 'string' ? after.shard : 'a shard';
+      const to = typeof after.holder === 'string' ? ` by ${after.holder}` : '';
+      const from = typeof before.holder === 'string' ? ` from ${before.holder}` : '';
+      return `Shard ${shard} lease taken over${to}${from}`;
+    }
     case 'SEAT_LOCK_TAKEOVER': {
       const seat = lookup?.seatForConst?.(log.entity_id) ?? 'a seat';
       const from = typeof before.user_name === 'string' && before.user_name ? ` from ${before.user_name}` : '';

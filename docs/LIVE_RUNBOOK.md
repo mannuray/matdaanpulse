@@ -8,7 +8,7 @@ Shorthand: `<id>` is the election id; `API` is the backend base URL (`…/api/v1
 
 1. Election record is complete: `delimitation`, map, result date (Admin -> Elections).
 2. Candidates are seeded from ECI's own candidate lists (the roster the worker matches against).
-3. Admin -> Ingest keys (SUPER_ADMIN): create `worker-<host>` (the cloud worker) and `laptop` (backup). Each key (`mpk_...`) is shown once; store it in the host's secrets.
+3. Admin -> Ingest keys (SUPER_ADMIN): create one key per host for **this election**, e.g. `<st><year>-cloud-1` (the cloud worker) and `<st><year>-laptop` (backup); key names are unique across all elections. Pick the **Election** (a key works only for that election: any other election answers 403 `INGEST_0010`) and an **Expires after** that outlasts counting day plus a margin — at T-7 choose 14 days or more (default 7, at most 90; an expired key answers 401 `INGEST_0009`). Each key (`mpk_...`) is shown once; store it in the host's secrets.
 4. Live Console -> Feed -> Shards...: add one shard per region if the state is large; otherwise none (the implicit `rest` shard covers every seat).
 5. Copy `scraper/live.config.example.json` to `live.config.json`; set `apiBaseUrl`, `holder`, the task's `election` id, and the `eci-web` options (`baseUrl`, `stateCode`, e.g. `https://results.eci.gov.in/ResultAcGenMay2026` / `S25`; `partyAliases` JSON if ECI party names differ from ours). Only the `rest` loop posts the party-wise tally (it is compared against every seat of the election); set `"tally": true` on a task only if a shard's source publishes its own tally.
    Every host needs its own holder name: set `LIVE_HOLDER` (or `holder`) per host, e.g. `cloud-1`, `laptop`. Two hosts with the same holder and key would share one lease.
@@ -25,7 +25,7 @@ Dry runs against the real ECI site, then drills. Do each drill and confirm the r
    READY with no `baseline:` line; any later candidate change makes it NOT READY until the baseline is recomputed.
    Going Live recomputes it automatically.
 1. Dry run: `npm run live -- --config live.config.json` against ECI with the feed Paused or on a test election; watch lag and rejected seats.
-2. Drill (a), failover: stop the cloud worker; the laptop's loop takes the shard lease within 90 s. A running worker renews its lease every 30 s during a cycle and before every chunk, so a slow poll does not lose it; if another job takes the shard, the worker logs `lease lost to <holder>` and stops that cycle.
+2. Drill (a), failover: stop the cloud worker; the laptop's loop takes the shard lease within 90 s. A running worker renews its lease every 30 s during a cycle and before every chunk, so a slow poll does not lose it; if another job takes the shard, the worker logs `lease lost to another job (held until …)` and stops that cycle (the API never names the other holder; the Live Console's Feed panel shows it).
 3. Drill (b), source switch: switch Source to another and back (Apply asks for confirmation on a switch).
 4. Drill (c), correction: correct a seat (seat editor) -> it shows "On hold until ..." -> a later round from the source releases it (or press Release in the Holds panel).
 5. Drill (d): Pause (Source = Paused) -> Resume.
@@ -37,21 +37,23 @@ Dry runs against the real ECI site, then drills. Do each drill and confirm the r
 1. At counting start: Elections -> status Live.
 2. Live Console -> Feed -> Source = `eci-web` -> Apply.
 3. Start the worker: `npm run live -- --config live.config.json` (env `INGEST_KEY`, `INGEST_API_URL`, `LIVE_HOLDER` — set it, one name per host). Each cycle logs its duration; `WARN slow cycle` (over 60 s) means the shard is too big for one worker: split it into shards.
-4. Watch the Feed panel: per shard the job, lease, lag, recent counts, rejected seats and the tally badge. `GET /api/v1/health/ingest` gives counts for monitors (refreshed at most every 10 s, no holder names).
+4. Watch the Feed panel: per shard the job, lease, lag, recent counts, rejected seats and the tally badge. `GET /api/v1/health/ingest` gives counts for monitors (refreshed at most every 10 s, no holder or source names; `paused` per shard).
 5. Alerts:
    - **Lag**: check ECI is reachable from the worker; if it is down, switch Source (or start the laptop on another source) and Apply. A Live shard with a source that has never posted lags from the moment the feed settings were last applied, so a worker that never started also raises it.
    - **Lease lapsed**: no worker holds the shard; start the laptop worker (it takes the lease within 90 s).
    - **Rejected seats**: a seat stays listed until the source next sends it in a form that is applied or unchanged (the worker re-sends rejected seats every poll). Fix the mapping (`partyAliases` in `live.config.json`, restart the worker) or correct the seat by hand (seat editor; the correction holds the seat, but the rejection stays listed until the source's data is accepted).
    - **Refused (`no_lease` / `inactive_source` ×N in last 5 min)**: a worker is posting without the lease or for the wrong source. `no_lease`: two hosts share a holder name or one lost its lease (check `LIVE_HOLDER`, stop the extra worker). `inactive_source`: a worker still runs the old source after a switch — stop it or switch it.
+   - **Shard changed hands** (warn, for 10 min): another job took the shard's lease, after it expired (failover) or after a release. Expected during drill (a) or a planned switch; otherwise find out why the previous worker stopped (its logs) and that the new holder is one of ours. Every take-over is in Audit logs (`Ingest lease take-over`).
    - **Tally mismatch**: compare with ECI's party-wise page (the `rest` loop's tally covers the whole election); a mismatch with all seats matching usually means an unmapped party (the worker logs `tally: N unmapped parties`; add `partyAliases`) or a held seat.
 6. Held seats show in the Holds panel; Release returns them to the feed.
+7. `/ingest` answers 401 to anything but a well-formed `Bearer mpk_…` key, and 429 (`INGEST_0012`, `Retry-After`) to an IP after 10 failed key checks in a minute (`INGEST_AUTH_FAIL_LIMIT`). A worker whose key was accepted in the last 10 minutes is never blocked by that limit; a worker that starts with a wrong key should be stopped, not left retrying.
 
 ## 4. After
 
 1. Every seat is declared and the tally matches ECI.
 2. Elections -> Finalize.
 3. Stop workers (`Ctrl-C` releases the leases). Set Source = Paused.
-4. Admin -> Ingest keys: revoke the keys.
+4. Admin -> Ingest keys: revoke the keys (they also expire on their own). A revoke takes effect at once on the instance that handled it and within 30 s on the others (successful key lookups are cached for 30 s).
 5. Review manual corrections in Audit logs and note them. A correction after Finalize needs Elections -> Reopen for corrections (SUPER_ADMIN), then Finalize again.
 
 ## 5. Simulation

@@ -27,6 +27,15 @@ describe('MediaService (S3)', () => {
     expect(out).toEqual({ url: `${S3.S3_PUBLIC_BASE_URL}/${input.Key}`, pathname: input.Key, content_type: 'image/png', size: PNG.length });
   });
 
+  it('serves an uploaded SVG as an attachment (never rendered as a page on the bucket origin); rasters stay inline', async () => {
+    send.mockResolvedValue({});
+    const SVG = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"><rect/></svg>');
+    await new MediaService(config(S3)).upload({ buffer: SVG, size: SVG.length }, 'party-logo', 'BJP');
+    expect(send.mock.calls[0][0].input).toMatchObject({ ContentType: 'image/svg+xml', ContentDisposition: 'attachment' });
+    await new MediaService(config(S3)).upload({ buffer: PNG, size: PNG.length }, 'party-logo', 'BJP');
+    expect(send.mock.calls[1][0].input.ContentDisposition).toBeUndefined();
+  });
+
   it('502 MEDIA_0002 when S3 fails, keeping the original error as cause', async () => {
     const boom = new Error('s3 down');
     send.mockRejectedValue(boom);

@@ -1,0 +1,15 @@
+# Security headers for Cloudflare Pages (keep identical to the "headers" block in vercel.json;
+# src/theme/security-headers.test.ts checks both).
+# connect-src: the API origin baked in as VITE_API_BASE_URL (also the Live Console SSE stream). When the
+# API moves behind Cloudflare (https://api.matdaanpulse.in, docs/DEPLOYMENT.md section 5.4), add that
+# origin here and in vercel.json.
+# img-src: uploads live in the S3 bucket; seeded party symbols are /symbols/... on the public site
+# (VITE_PUBLIC_SITE_URL): add its origin here when it changes (e.g. https://app.<domain>).
+# style-src 'unsafe-inline': Radix's scroll lock (react-remove-scroll) injects a <style> element.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://matdaanpulse-media.s3.ap-south-1.amazonaws.com https://matdaanpulse.vercel.app https://www.matdaanpulse.in; font-src 'self'; connect-src 'self' https://matdaanpulse-api.onrender.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Robots-Tag: noindex

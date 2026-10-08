@@ -21,3 +21,15 @@ describe('AuthController.register (ALLOW_REGISTRATION)', () => {
     expect(auth.register).toHaveBeenCalledWith('a@b.c', 'password123', 'A', 'VIEWER');
   });
 });
+
+describe('AuthController.logout (U1)', () => {
+  it('revokes the caller\'s tokens and needs a valid session', async () => {
+    const { JwtAuthGuard } = await import('./guards/jwt-auth.guard');
+    const auth = { logout: jest.fn().mockResolvedValue(undefined) };
+    const ctrl = new AuthController(auth as any, { get: () => undefined } as any);
+    await ctrl.logout({ user: { id: 'u1' } });
+    expect(auth.logout).toHaveBeenCalledWith('u1');
+    expect(Reflect.getMetadata('__guards__', AuthController.prototype.logout)).toContain(JwtAuthGuard);
+    expect(Reflect.getMetadata('__httpCode__', AuthController.prototype.logout)).toBe(204);
+  });
+});

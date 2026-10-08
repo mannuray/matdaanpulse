@@ -21,9 +21,9 @@ vi.mock('../services/feedback.service', () => ({ getFeedback: svc.getFeedback })
 vi.mock('../services/user.service', () => ({ getUsers: svc.getUsers }));
 
 const ELECTIONS: Election[] = [
-  { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, delimitation: null, manifest_url: null },
-  { id: 'e2', name: 'Kerala Vidhan Sabha 2026', type: 'VS', state_id: 2, year: 2026, status: 'Upcoming', tentative_next_date: '2026-04-20T00:00:00.000Z', delimitation: null, manifest_url: null },
-  { id: 'e3', name: 'Lok Sabha 2024', type: 'LS', state_id: null, year: 2024, status: 'Finalized', tentative_next_date: null, delimitation: null, manifest_url: null },
+  { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, delimitation: null, manifest_published: false },
+  { id: 'e2', name: 'Kerala Vidhan Sabha 2026', type: 'VS', state_id: 2, year: 2026, status: 'Upcoming', tentative_next_date: '2026-04-20T00:00:00.000Z', delimitation: null, manifest_published: false },
+  { id: 'e3', name: 'Lok Sabha 2024', type: 'LS', state_id: null, year: 2024, status: 'Finalized', tentative_next_date: null, delimitation: null, manifest_published: false },
 ];
 const ctx = vi.hoisted(() => ({ electionId: 'e1', loading: false, error: null as string | null, reload: vi.fn(async () => {}), list: [] as unknown[] }));
 vi.mock('../context/ElectionContext', () => ({
@@ -76,10 +76,10 @@ beforeEach(() => {
   ctx.electionId = 'e1'; ctx.loading = false; ctx.error = null; ctx.list = ELECTIONS;
   svc.getLiveResults.mockImplementation(async () => seats());
   svc.getSeatLocks.mockImplementation(async () => [{ const_id: 'k3', user_id: 'u1', user_name: 'Priya S', acquired_at: new Date().toISOString() }]);
-  svc.getAuditLogs.mockImplementation(async () => [{
+  svc.getAuditLogs.mockImplementation(async () => ({ success: true, pagination: { page: 1, limit: 10, total: 1, totalPages: 1 }, data: [{
     id: 'l1', user_id: 'u1', users: { id: 'u1', email: 'p@x.in', name: 'Priya S', role: 'EDITOR' },
     action: 'SEAT_LOCK_TAKEOVER', entity_type: 'constituency', entity_id: 'k3', old_value: { user_name: 'Rahul M' }, new_value: null, timestamp: ago(270_000),
-  }]);
+  }] }));
   svc.getSystemStatus.mockImplementation(async () => STATUS);
   svc.getReadiness.mockImplementation(async () => ({ status: 'healthy', checks: { database: { status: 'healthy', latencyMs: 4 }, redis: { status: 'healthy', latencyMs: 2 } } }));
   svc.getFeedback.mockImplementation(async () => FEEDBACK());
@@ -110,6 +110,8 @@ describe('Dashboard — SUPER_ADMIN', () => {
     const activity = region('Recent activity');
     expect(await within(activity).findByText('Priya S took over 145 Bikram from Rahul M')).toBeTruthy();
     expect(within(activity).getByText('4 min ago')).toBeTruthy();
+    // Only the rows it shows: one small page, not the full log.
+    expect(svc.getAuditLogs).toHaveBeenCalledWith({}, 1, 10);
     expect(within(activity).getByRole('link', { name: /View audit log/ }).getAttribute('href')).toBe('/logs');
 
     const health = region('System health');

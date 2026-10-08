@@ -3,9 +3,9 @@ import { SHOWN_HOUSES } from '../../model/config/houses';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useApi } from '../data/useApi';
+import { useElectionList } from '../data/useElectionList';
 import { useElection } from '../data/useElection';
 import { recallElectionId, rememberElection } from '../data/lastElection';
-import { getElections } from '../../model/api/election.service';
 import { getStates } from '../../model/api/geo.service';
 import type { Election } from '../../model/types';
 import { useSources } from '../sources/DashboardSourcesProvider';
@@ -56,7 +56,7 @@ export function useTopBarVM(): TopBarVM {
   const { theme, setTheme, toggle } = useTheme();
   const { dispatch } = useDashboardStore();
   const { setElection } = useElection();
-  const { data: elections, error: electionsError, refetch: refetchElections } = useApi(() => getElections(), []);
+  const { data: elections, error: electionsError, refetch: refetchElections } = useElectionList();
   const { data: states } = useApi(() => getStates(), []);
   // A throttled or failed /elections is retried once, so the pickers do not stay empty.
   const retried = useRef(false);

@@ -9,6 +9,8 @@ import { DashboardStoreProvider, useDashboardStore } from '../store/DashboardSto
 import { DashboardSourcesProvider } from '../sources/DashboardSourcesProvider';
 import { ElectionProvider } from '../data/useElection';
 import { useTopBarVM } from '../tiles/useTopBarVM';
+import { useDefaultElectionId } from '../tiles/useDefaultElectionId';
+import { forgetElectionList } from '../data/useElectionList';
 import { useLeadersVM } from '../tiles/useLeadersVM';
 import { useSeatDialogVM } from '../tiles/useSeatDialogVM';
 import { useLocalStorage } from '../data/useLocalStorage';
@@ -41,6 +43,7 @@ function wrap(sources = makeSources()) {
 
 beforeEach(() => {
   localStorage.clear();
+  forgetElectionList();
   vi.spyOn(electionApi, 'getElections').mockResolvedValue(ELECTIONS as never);
   vi.spyOn(geoApi, 'getStates').mockResolvedValue(STATES as never);
 });
@@ -54,6 +57,15 @@ async function topBar(type: 'LS' | 'VS') {
 }
 
 describe('useTopBarVM', () => {
+  it('reuses the /elections list the landing page loaded: one request for landing + dashboard', async () => {
+    const spy = vi.spyOn(electionApi, 'getElections').mockResolvedValue(ELECTIONS as never);
+    const landing = renderHook(() => useDefaultElectionId(), { wrapper: wrap() });
+    await waitFor(() => expect(landing.result.current.id).toBe('ls2024'));
+    landing.unmount();
+    await topBar('LS');
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
   it('electionLabel combines type, state and year (LS has no state)', async () => {
     const vs = makeSources({ election: { ...base, type: 'VS', year: 2025, state_id: 4 } });
     const h1 = renderHook(() => useTopBarVM(), { wrapper: wrap(vs) });

@@ -10,13 +10,37 @@ export interface ShardStatus { name: string; seat_count: number; source: string 
   rejected: { const_id: string; reason: string }[];
   /** Requests refused as a whole in the last 5 minutes, by reason (no_lease / inactive_source / not_live). */
   refused: Record<string, number>;
-  tally_mismatch: TallyMismatch[] | null }
+  tally_mismatch: TallyMismatch[] | null;
+  /** The latest change of lease holder in the last 10 minutes (audit INGEST_LEASE_TAKEOVER), or null. */
+  takeover: LeaseTakeover | null }
+export interface LeaseTakeover { from: string | null; to: string | null; at: Date; after: 'expiry' | 'release' }
 export interface IngestAlert { key: string; level: 'warn' | 'error'; election_id: string; shard: string; message: string }
 
 const LAG_S = 180;
 const LEASE_GRACE_MS = 120_000;
 const RECENT_POSTS = 10;
 export const REFUSED_WINDOW_MS = 5 * 60_000;
+export const TAKEOVER_WINDOW_MS = 10 * 60_000;
+
+type AuditReader = { audit_logs: { findMany: (args: any) => Promise<{ timestamp: Date; old_value: unknown; new_value: unknown }[]> } };
+const str = (v: unknown) => (typeof v === 'string' ? v : null);
+
+/** Lease takeovers of the last 10 minutes, the latest per shard (written by IngestController.lease). */
+export async function recentTakeovers(prisma: AuditReader, electionId: string, now: Date): Promise<Map<string, LeaseTakeover>> {
+  const rows = await prisma.audit_logs.findMany({
+    where: { action: 'INGEST_LEASE_TAKEOVER', entity_type: 'election', entity_id: electionId, timestamp: { gte: new Date(now.getTime() - TAKEOVER_WINDOW_MS) } },
+    orderBy: { timestamp: 'desc' }, take: 50, select: { timestamp: true, old_value: true, new_value: true },
+  });
+  const out = new Map<string, LeaseTakeover>();
+  for (const r of rows) {
+    const before = (r.old_value ?? {}) as Record<string, unknown>;
+    const after = (r.new_value ?? {}) as Record<string, unknown>;
+    const shard = str(after.shard) ?? str(before.shard);
+    if (!shard || out.has(shard)) continue;
+    out.set(shard, { from: str(before.holder), to: str(after.holder), at: r.timestamp, after: before.expires_at ? 'expiry' : 'release' });
+  }
+  return out;
+}
 
 /** Spec §5 banners; pure so the thresholds are tested. */
 export function alertsFor(s: ShardStatus, electionId: string, live: boolean, now: Date, prevTallyMismatch: boolean): IngestAlert[] {
@@ -29,6 +53,9 @@ export function alertsFor(s: ShardStatus, electionId: string, live: boolean, now
   const refused = Object.entries(s.refused).filter(([, n]) => n > 0).sort(([x], [y]) => x.localeCompare(y));
   if (refused.length) a('refused', 'error', `Shard ${s.name} refused: ${refused.map(([r, n]) => `${r} ×${n}`).join(', ')} in last 5 min`);
   if (s.tally_mismatch?.length && prevTallyMismatch) a('tally', 'warn', `Source tally differs from ours in shard ${s.name}`);
+  // Keyed per takeover, so the webhook posts each one once.
+  if (s.takeover) a(`takeover:${s.takeover.at.toISOString()}`, 'warn',
+    `Shard ${s.name} changed hands: ${s.takeover.from ?? '?'} → ${s.takeover.to ?? '?'} (${s.takeover.after === 'expiry' ? 'after the lease expired' : 'after a release'})`);
   return out;
 }
 
@@ -43,6 +70,7 @@ export class IngestStatusService {
     const live = election.status === 'Live';
     const shards: ShardStatus[] = [];
     const alerts: IngestAlert[] = [];
+    const takeovers = await recentTakeovers(this.prisma, electionId, now);
     for (const sh of await this.shards.list(electionId)) {
       // Refused requests are counted separately; they are not posts (no counts, and they must not hide lag).
       const posts = await this.prisma.ingest_log.findMany({ where: { election_id: electionId, shard: sh.name, kind: 'seats', dry_run: false, refused: null }, orderBy: { received_at: 'desc' }, take: RECENT_POSTS });
@@ -63,6 +91,7 @@ export class IngestStatusService {
         recent, rejected: rejected.map(r => ({ const_id: r.const_id, reason: r.last_rejected_reason! })),
         refused: Object.fromEntries(refusedRows.map(r => [r.refused!, r._count._all])),
         tally_mismatch: (tallies[0]?.tally_mismatch as TallyMismatch[] | null) ?? null,
+        takeover: takeovers.get(sh.name) ?? null,
       };
       shards.push(s);
       alerts.push(...alertsFor(s, electionId, live, now, !!(tallies[1]?.tally_mismatch as unknown[] | null)?.length));

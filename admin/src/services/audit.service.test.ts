@@ -1,10 +1,12 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 
-const api = vi.hoisted(() => ({ apiFetch: vi.fn(async (_path: string) => [] as unknown[]) }));
+const PAGE = { success: true, data: [], pagination: { page: 1, limit: 100, total: 0, totalPages: 0 } };
+const api = vi.hoisted(() => ({ apiFetch: vi.fn(async (_path: string) => ({}) as unknown) }));
 vi.mock('./api-client', () => api);
 import { getAuditLogs } from './audit.service';
 
 afterEach(() => api.apiFetch.mockClear());
+api.apiFetch.mockImplementation(async () => PAGE);
 const query = () => new URL(`http://x${api.apiFetch.mock.calls[0][0]}`).searchParams;
 
 describe('getAuditLogs (Review Focus 3)', () => {
@@ -18,11 +20,17 @@ describe('getAuditLogs (Review Focus 3)', () => {
     expect(api.apiFetch.mock.calls[0][0]).toContain('%2B05%3A30');
   });
 
-  it('no filters → no query string; a value that is not a day is dropped', async () => {
+  it('no filters → only the page; a value that is not a day is dropped', async () => {
     await getAuditLogs();
-    expect(api.apiFetch).toHaveBeenLastCalledWith('/admin/audit-logs');
+    expect(api.apiFetch).toHaveBeenLastCalledWith('/admin/audit-logs?page=1&limit=100');
     api.apiFetch.mockClear();
     await getAuditLogs({ from: '01/10/2026', to: '' });
-    expect(api.apiFetch).toHaveBeenLastCalledWith('/admin/audit-logs');
+    expect(api.apiFetch).toHaveBeenLastCalledWith('/admin/audit-logs?page=1&limit=100');
+  });
+
+  it('asks for one page (page + limit) and returns the paged response, so rows past the first page are reachable', async () => {
+    await expect(getAuditLogs({ action: 'RESULT_OVERRIDE' }, 3, 50)).resolves.toBe(PAGE);
+    expect(query().get('page')).toBe('3');
+    expect(query().get('limit')).toBe('50');
   });
 });

@@ -13,10 +13,12 @@ vi.mock('../../model/api/election.service', async (orig) => ({
   getConstituencyAnalysis: (...a: unknown[]) => api.getConstituencyAnalysis(...a), getManifest: (...a: unknown[]) => api.getManifest(...a),
   ElectionService: { getCacheKey: (id: string, s?: string) => `e_${id}_${s}`, getConstituencyCacheKey: (e: string, c: string) => `c_${e}_${c}`, getGeoJSON: (u: string) => api.getGeoJSON(u) },
 }));
-type Live = { snapshot: { version: number; results: unknown[] } | null; connected: boolean; status: string | null; error: null; pollNow(): void };
-const live = { value: { snapshot: null, connected: false, status: null, error: null, pollNow: () => {} } as Live };
-const useLiveSnapshot = vi.fn((_id: string, _enabled: boolean) => live.value);
-vi.mock('../data/useLiveSnapshot', () => ({ useLiveSnapshot: (id: string, enabled: boolean) => useLiveSnapshot(id, enabled) }));
+type Live = { version: number | null; status: string | null };
+const live = { value: { version: null, status: null } as Live };
+const useLiveVersion = vi.fn((_id: string, _enabled: boolean) => live.value);
+vi.mock('../data/useLiveVersion', () => ({ useLiveVersion: (id: string, enabled: boolean) => useLiveVersion(id, enabled) }));
+// The page must not poll the full results snapshot (only /live, via useLiveVersion).
+vi.mock('../data/useLiveSnapshot', () => ({ useLiveSnapshot: () => { throw new Error('the constituency page must not load the results snapshot'); } }));
 vi.mock('../data/usePartyMeta', () => ({ usePartyMeta: () => new Map() }));
 
 import { useConstituencyPageVM } from '../pages/useConstituencyPageVM';
@@ -33,7 +35,7 @@ const detail = {
 };
 
 describe('useConstituencyPageVM', () => {
-  beforeEach(() => { live.value = { snapshot: null, connected: false, status: null, error: null, pollNow: () => {} }; useLiveSnapshot.mockClear(); api.getConstituency.mockReset(); });
+  beforeEach(() => { live.value = { version: null, status: null }; useLiveVersion.mockClear(); api.getConstituency.mockReset(); });
 
   it('builds facts, the full ranked table with NOTA last, and history', async () => {
     api.getElection.mockResolvedValue({ id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', status: 'Finalized', year: 2025 });
@@ -76,20 +78,48 @@ describe('useConstituencyPageVM', () => {
     const { result, rerender } = renderHook(() => useConstituencyPageVM('e1', 'S2'));
     await waitFor(() => expect(result.current.status).toBe('ready'));
     // Upcoming: the poller is on, the chip hidden.
-    expect(useLiveSnapshot).toHaveBeenLastCalledWith('e1', true);
+    expect(useLiveVersion).toHaveBeenLastCalledWith('e1', true);
     expect(result.current.live).toBeNull();
     const calls = api.getConstituency.mock.calls.length;
-    // Counting starts: /live says Live and a snapshot arrives — the chip counts and the detail refetches for the round.
-    live.value = { ...live.value, status: 'Live', snapshot: { version: 7, results: [{ const_id: 'S2', party_id: 'BJP', candidate_name: 'A', votes: 10, status: 'LEADING', margin: 4 }] } };
+    // Counting starts: /live says Live at version 7 — the chip counts and the detail refetches for that version.
+    live.value = { status: 'Live', version: 7 };
     rerender();
     // Generous timeouts: under a loaded test runner the refetch can take longer than waitFor's default 1 s.
     await waitFor(() => expect(api.getConstituency.mock.calls.length).toBe(calls + 1), { timeout: 4000 });
+    expect(api.getConstituency).toHaveBeenLastCalledWith('e1', 'S2', 7);
     expect(result.current.live).toEqual({ kind: 'counting', round: { current: 3, total: 20 } });
     // A newer version refetches again.
-    live.value = { ...live.value, snapshot: { ...live.value.snapshot!, version: 8 } };
+    live.value = { ...live.value, version: 8 };
     rerender();
     await waitFor(() => expect(api.getConstituency.mock.calls.length).toBe(calls + 2), { timeout: 4000 });
+    expect(api.getConstituency).toHaveBeenLastCalledWith('e1', 'S2', 8);
   }, 15_000);
+
+  it('a version this server does not have yet (404 GEN_0006) loads the unversioned detail, never "not found"', async () => {
+    api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Live', year: 2025 });
+    api.getConstituency.mockImplementation(async (_e: string, _c: string, v?: number | null) => {
+      if (v != null) throw new ApiError('This version is not available yet', 404, 'GEN_0006');
+      return { ...detail, id: 'S5' };
+    });
+    api.getConstituencyAnalysis.mockResolvedValue(null);
+    api.getManifest.mockResolvedValue(null);
+    live.value = { status: 'Live', version: 9 };
+    const { result } = renderHook(() => useConstituencyPageVM('e1', 'S5'));
+    await waitFor(() => expect(result.current.status).toBe('ready'));
+    expect(api.getConstituency).toHaveBeenCalledWith('e1', 'S5', 9);
+    expect(api.getConstituency).toHaveBeenLastCalledWith('e1', 'S5');
+  });
+
+  it('a countermanded / adjourned seat state comes from the detail (seat_state), as the snapshot is not loaded', async () => {
+    api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Live', year: 2025 });
+    api.getConstituency.mockResolvedValue({ ...detail, id: 'S4', seat_state: 'countermanded', candidates: detail.candidates.map(c => ({ ...c, status: 'LEADING' })) });
+    api.getConstituencyAnalysis.mockResolvedValue(null);
+    api.getManifest.mockResolvedValue(null);
+    live.value = { status: 'Live', version: 3 };
+    const { result } = renderHook(() => useConstituencyPageVM('e1', 'S4'));
+    await waitFor(() => expect(result.current.status).toBe('ready'));
+    expect(result.current.live).toEqual({ kind: 'countermanded' });
+  });
 
   it('does not poll a finalized election', async () => {
     api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Finalized', year: 2025 });
@@ -98,6 +128,6 @@ describe('useConstituencyPageVM', () => {
     api.getManifest.mockResolvedValue(null);
     const { result } = renderHook(() => useConstituencyPageVM('e1', 'S'));
     await waitFor(() => expect(result.current.status).toBe('ready'));
-    expect(useLiveSnapshot).toHaveBeenLastCalledWith('e1', false);
+    expect(useLiveVersion).toHaveBeenLastCalledWith('e1', false);
   });
 });

@@ -1,7 +1,8 @@
 import { apiFetch } from './api-client';
 
-/** Rows from the public /search endpoints: seats are raw Prisma rows; candidates are the public summary
- * (CandidateSearchHitDto: no affidavit), so neither is the admin `Candidate`. */
+/** Rows from the public /search endpoints: seats are the public seat summary (ConstituencySearchHitDto, with
+ * `district: { id, name }`); candidates are the public summary (CandidateSearchHitDto: no affidavit), so neither is
+ * the admin `Constituency` / `Candidate`. */
 export interface SeatHit { id: string; name: string; const_no: number; election_id: string; type: string }
 export interface CandidateHit { id: string; name: string; election_id: string; const_id: string; party_id: string | null }
 

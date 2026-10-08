@@ -8,8 +8,8 @@ const data = vi.hoisted(() => {
   return {
     seats: { e1: [seat('s142', 142, 'Patna Sahib'), seat('s1', 1, 'Valmiki Nagar')], e2: [seat('k5', 5, 'Kochi', 'e2')] } as Record<string, ReturnType<typeof seat>[]>,
     elections: [
-      { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, status: 'Live', state_id: 1, tentative_next_date: null, manifest_url: null },
-      { id: 'e2', name: 'Kerala Vidhan Sabha 2021', type: 'VS', year: 2021, status: 'Finalized', state_id: 2, tentative_next_date: null, manifest_url: null },
+      { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, status: 'Live', state_id: 1, tentative_next_date: null, manifest_published: false },
+      { id: 'e2', name: 'Kerala Vidhan Sabha 2021', type: 'VS', year: 2021, status: 'Finalized', state_id: 2, tentative_next_date: null, manifest_published: false },
     ],
   };
 });

@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  // App traffic. On Neon: the pooled (PgBouncer) URL with pgbouncer=true&connection_limit=5.
+  // App traffic. On Neon: the pooled (PgBouncer) URL with pgbouncer=true&connection_limit=15 (docs/DEPLOYMENT.md §5.1).
   url       = env("DATABASE_URL")
   // Direct (non-pooler) URL, used by Prisma CLI commands that need a session
   // (migrate diff, db pull). Locally it may equal DATABASE_URL.
@@ -147,6 +147,7 @@ model elections {
   seatIngestStates      seat_ingest_state[]
   seatHolds             seat_holds[]
   ingestLogs            ingest_log[]
+  ingestKeys            ingest_keys[]
 
   @@unique([type, state_id, year], map: "uq_elections_type_state_year")
   @@index([type, year], map: "idx_elections_type_year")
@@ -285,6 +286,8 @@ model users {
   role          user_role         @default(VIEWER)
   name          String            @db.VarChar(255)
   created_at    DateTime          @default(now()) @db.Timestamp(6)
+  /// Migration 026: the `tv` claim of every session JWT; bumped on logout and password change to revoke tokens.
+  token_version Int               @default(0)
   audit_logs    audit_logs[]
   merges_made   person_merges[]   @relation("person_merges_merged_by")
   merges_undone person_merges[]   @relation("person_merges_undone_by")
@@ -398,10 +401,16 @@ model ingest_keys {
   created_at         DateTime          @default(now()) @db.Timestamptz(6)
   last_used_at       DateTime?         @db.Timestamptz(6)
   revoked_at         DateTime?         @db.Timestamptz(6)
+  /// Migration 026: the one election the key may post to (NULL = legacy key, any election) and its expiry (NULL = never, legacy).
+  election_id        String?           @db.Uuid
+  expires_at         DateTime?         @db.Timestamptz(6)
   creator            users?            @relation("ingest_keys_created_by", fields: [created_by], references: [id], onDelete: SetNull, onUpdate: NoAction)
+  election           elections?        @relation(fields: [election_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   electionRestLeases election_ingest[]
   shardLeases        ingest_shards[]
   logs               ingest_log[]
+
+  @@index([election_id], map: "ingest_keys_election")
 }
 
 model ingest_shards {

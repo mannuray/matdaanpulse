@@ -77,7 +77,9 @@ describe('IngestService.ingestSeats — refusals are logged for the alerts', () 
   it('a failing refusal log never hides the 409', async () => {
     const { svc, prisma } = make({ lease: false });
     prisma.ingest_log.create.mockRejectedValueOnce(new Error('db down'));
-    await expect(svc.ingestSeats('e', { id: 'k' }, body([s1]), NOW)).rejects.toBeInstanceOf(IngestNoLeaseException);
+    const err = await svc.ingestSeats('e', { id: 'k' }, body([s1]), NOW).catch(e => e);
+    expect(err).toBeInstanceOf(IngestNoLeaseException);
+    expect(JSON.stringify(err.getResponse())).not.toContain('"other"'); // the current holder is not disclosed
   });
   it('tally refusals are logged as kind tally', async () => {
     const { svc, prisma } = make({ lease: false });
@@ -87,14 +89,14 @@ describe('IngestService.ingestSeats — refusals are logged for the alerts', () 
 });
 
 describe('IngestService.ingestSeats — under the seat locks', () => {
-  it('locks the shard seats in sorted order inside the transaction, then reads and writes', async () => {
+  it('locks the shard seats in sorted order inside the transaction (one statement), then reads and writes', async () => {
     const { svc, prisma } = make();
     const order: string[] = [];
-    prisma.$executeRaw = jest.fn(async (strings: TemplateStringsArray, ...vals: unknown[]) => { order.push(strings.join('?').includes('pg_advisory_xact_lock') ? `lock:${vals[1]}` : 'write'); return 1; });
+    prisma.$executeRaw = jest.fn(async (strings: TemplateStringsArray, ...vals: unknown[]) => { order.push(strings.join('?').includes('pg_advisory_xact_lock') ? `lock:${(vals[1] as string[]).join(',')}` : 'write'); return 1; });
     prisma.seat_ingest_state.findMany = jest.fn(async () => { order.push('read'); return []; });
     const s2 = { const_id: 'S2', state: 'counting', votes: { c: 3, d: 1 } };
     await svc.ingestSeats('e', { id: 'k' }, body([s2, s1]), NOW);
-    expect(order.slice(0, 3)).toEqual(['lock:S1', 'lock:S2', 'read']);
+    expect(order.slice(0, 2)).toEqual(['lock:S1,S2', 'read']);
     expect(order).toContain('write');
   });
   it('a seat rejected by the seat rules is recorded on seat_ingest_state; not_in_shard / duplicate are not', async () => {
@@ -128,5 +130,16 @@ describe('IngestService.tally', () => {
       parties: [{ party_id: 'BJP', won: 1, leading: 0 }, { party_id: 'INC', won: 0, leading: 2 }] } as any, NOW);
     expect(out.mismatch).toEqual([{ party_id: 'INC', ours: { won: 0, leading: 1 }, theirs: { won: 0, leading: 2 } }]);
     expect(prisma.ingest_log.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ kind: 'tally' }) }));
+  });
+});
+
+describe('IngestService.config', () => {
+  it('returns the lease expiry but not the holder name', async () => {
+    const { svc } = make();
+    const exp = new Date(NOW.getTime() + 60_000);
+    (svc as any).shards.get = jest.fn(async () => ({ name: 'rest', source_override: null, seat_ids: ['S1'], lease_holder: 'cloud-1', lease_expires_at: exp }));
+    const cfg = await svc.config('e', 'rest');
+    expect(cfg.lease).toEqual({ expires_at: exp });
+    expect(JSON.stringify(cfg)).not.toContain('cloud-1');
   });
 });

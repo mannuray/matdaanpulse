@@ -23,7 +23,7 @@ import Elections from './Elections';
 import { renderEntityPage } from '../test-utils/entity-harness';
 
 const E = (id: string, name: string, type: 'LS' | 'VS', status: Election['status']): Election => ({
-  id, name, type, state_id: type === 'VS' ? 1 : null, year: 2025, status, tentative_next_date: null, delimitation: null, manifest_url: null,
+  id, name, type, state_id: type === 'VS' ? 1 : null, year: 2025, status, tentative_next_date: null, delimitation: null, manifest_published: false,
 });
 const ELECTIONS = [E('e1', 'Bihar Vidhan Sabha 2025', 'VS', 'Upcoming'), E('e2', 'Lok Sabha 2024', 'LS', 'Live'), E('e3', 'Kerala Vidhan Sabha 2026', 'VS', 'Upcoming')];
 
@@ -132,7 +132,7 @@ describe('Elections page', () => {
   });
 
   it('shows year, next date, manifest and the current election in the table', async () => {
-    ctx.elections = ELECTIONS.map((e) => (e.id === 'e2' ? { ...e, manifest_url: 'https://cdn/x.json', tentative_next_date: '2029-04-15' } : e));
+    ctx.elections = ELECTIONS.map((e) => (e.id === 'e2' ? { ...e, manifest_published: true, tentative_next_date: '2029-04-15' } : e));
     svc.getElections.mockImplementation(async () => ctx.elections);
     renderAt();
     const row = (await within(table()).findByText('Lok Sabha 2024')).closest('tr')!;

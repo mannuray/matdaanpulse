@@ -10,7 +10,7 @@ const fixture: SystemStatus = {
   generatedAt: '2026-09-30T10:00:00.000Z',
   process: { startedAt: '2026-09-30T08:00:00.000Z', uptimeSeconds: 7265, nodeVersion: 'v20.1.0', appVersion: '0.1.0', gitSha: 'abc123def456', memory: { rssMb: 210, heapUsedMb: 90 } },
   http: {
-    total: 1234, byClass: { '2xx': 1100, '3xx': 4, '4xx': 120, '5xx': 10, other: 0 }, throttled429: 7, shieldRejected403: 3,
+    total: 1234, byClass: { '2xx': 1100, '3xx': 4, '4xx': 120, '5xx': 10, other: 0 }, throttled429: 7, shieldRejected403: 3, serviceBusy503: 37,
     last5m: { requests: 50, requestsPerMin: 10, errors5xx: 0, errors5xxPerMin: 0 },
     last60m: { requests: 600, requestsPerMin: 10, errors5xx: 3, errors5xxPerMin: 0.05 },
     slowestRoutes: [{ route: 'GET /api/v1/elections/:id/results', p95Ms: 842, samples: 40 }],
@@ -39,6 +39,8 @@ describe('SystemStatusView', () => {
     expect(screen.getByText('4 ms')).toBeTruthy();
     expect(screen.getByText(/Since restart/)).toBeTruthy();
     expect(screen.getByText('Origin shield 403')).toBeTruthy();
+    expect(screen.getByText('DB pool full 503')).toBeTruthy();
+    expect(screen.getByText('37')).toBeTruthy();
   });
 
   it('manual refresh calls onRefresh; the button is sentence case; a first-load error is an alert', () => {

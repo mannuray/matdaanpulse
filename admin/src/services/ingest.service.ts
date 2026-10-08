@@ -12,6 +12,6 @@ export const releaseHold = (id: string, constId: string) => apiFetch(`/admin/ele
 export const correctSeat = (id: string, constId: string, b: { state: string; round?: { current: number; total: number } | null; votes: Record<string, number> }) =>
   apiFetch<{ outcome: 'applied' | 'unchanged'; hold_expires_at: string }>(`/admin/elections/${id}/seats/${e(constId)}`, { method: 'PUT', body: JSON.stringify(b) });
 export const getIngestKeys = async () => (await apiFetch<IngestKeyRow[]>('/admin/ingest-keys')) ?? [];
-export const createIngestKey = (name: string) => apiFetch<{ key: string; row: IngestKeyRow }>('/admin/ingest-keys', { method: 'POST', body: JSON.stringify({ name }) });
+export const createIngestKey = (name: string, election_id: string, expires_at: string) => apiFetch<{ key: string; row: IngestKeyRow }>('/admin/ingest-keys', { method: 'POST', body: JSON.stringify({ name, election_id, expires_at }) });
 export const revokeIngestKey = (id: string) => apiFetch(`/admin/ingest-keys/${id}`, { method: 'DELETE' });
 export const reopenElection = (id: string) => apiFetch(`/admin/elections/${id}/reopen`, { method: 'POST' });

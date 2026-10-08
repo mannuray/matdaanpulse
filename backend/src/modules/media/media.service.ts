@@ -27,7 +27,12 @@ export class MediaService {
     const key = path.replace(/(\.[a-z0-9]+)$/i, `-${randomBytes(4).toString('hex')}$1`);
     try {
       this.client ??= new S3Client({ region });
-      await this.client.send(new PutObjectCommand({ Bucket: bucket, Key: key, Body: file!.buffer, ContentType: contentType, CacheControl: 'public, max-age=31536000, immutable' }));
+      // An SVG opened directly on the bucket origin downloads instead of rendering as a page (defence in depth on
+      // top of the active-content check); <img> ignores Content-Disposition. S3 cannot set a CSP header per object.
+      await this.client.send(new PutObjectCommand({
+        Bucket: bucket, Key: key, Body: file!.buffer, ContentType: contentType, CacheControl: 'public, max-age=31536000, immutable',
+        ...(contentType === 'image/svg+xml' && { ContentDisposition: 'attachment' }),
+      }));
     } catch (err) {
       throw new MediaStorageFailedException(err instanceof Error ? err : new Error(String(err)));
     }

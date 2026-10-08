@@ -6,9 +6,18 @@ export interface LoopDeps { client: Pick<IngestClient, 'config' | 'lease' | 'rel
   /** Post the source's party-wise tally from this loop (default: only the rest shard's loop, as the tally covers the whole election). */
   tally?: boolean }
 export interface LoopState { adapter: SourceAdapter | null; source: string | null; preparedAt: number; cycle: number; leased: boolean; failures: number }
-export const POST_CHUNK = 100;
+/**
+ * Seats per ingest request = the API maximum (backend MAX_SEATS_PER_REQUEST in backend/src/modules/ingest/dto/ingest.dto.ts;
+ * the scraper cannot import it). Each request is one transaction and so one new snapshot version that every viewer
+ * re-downloads, so a state (UP: 403 seats) goes in one request per cycle; only a shard above the max is chunked.
+ * Measured locally: 403 UP seats ≈ 0.7–2 s server-side, ~260 KB body (500 seats ≲ 0.7 MB of the 5 MB limit).
+ */
+export const POST_CHUNK = 500;
 export const REPREPARE_MS = 30 * 60_000;
 export const TALLY_EVERY = 5;
+/** The server's 409 names only when the other job's lease ends, never its holder. */
+const heldUntil = (e: IngestApiError) => { const at = (e.details as { expires_at?: string } | null)?.expires_at; return at ? ` until ${at}` : ''; };
+
 /** Lease renewal while a cycle runs (the server's lease TTL is 90 s). */
 export const HEARTBEAT_MS = 30_000;
 export const SLOW_CYCLE_MS = 60_000;
@@ -37,13 +46,13 @@ export async function runCycle(electionId: string, shard: string, st: LoopState,
   try { await d.client.lease(electionId, shard, d.holder); st.leased = true; }
   catch (e) {
     st.leased = false;
-    if (e instanceof IngestApiError && e.status === 409) { st.failures = 0; d.log(`${tag} lease held by ${(e.details as any)?.holder ?? 'another job'}`, undefined); return cfg.poll_hint_ms; }
+    if (e instanceof IngestApiError && e.status === 409) { st.failures = 0; d.log(`${tag} lease held by another job${heldUntil(e)}`, undefined); return cfg.poll_hint_ms; }
     d.log(`${tag} lease failed: ${(e as Error).message}`); return cfg.poll_hint_ms;
   }
 
   // Keep the lease while the cycle runs (a large shard's poll can outlast the TTL); a lost lease ends the cycle at the next chunk.
   let lostTo: string | null = null;
-  const lost = (e: unknown) => { if (e instanceof IngestApiError && e.status === 409) { lostTo = (e.details as any)?.holder ?? 'another job'; return true; } return false; };
+  const lost = (e: unknown) => { if (e instanceof IngestApiError && e.status === 409) { lostTo = `another job${e.details && (e.details as any).expires_at ? ` (held until ${(e.details as any).expires_at})` : ''}`; return true; } return false; };
   const heartbeat = setInterval(() => {
     d.client.lease(electionId, shard, d.holder).catch(e => { if (!lost(e)) d.log(`${tag} lease renewal failed: ${(e as Error).message}`); });
   }, HEARTBEAT_MS);

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Patch, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Patch, Query, Req, UseGuards } from '@nestjs/common';
 import { FeedbackService } from '../../feedback/feedback.service';
 import { UpdateFeedbackStatusDto } from '../../feedback/dto/feedback.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
@@ -19,7 +19,7 @@ export class AdminFeedbackController {
 
   @Patch(':id')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  updateStatus(@Param('id', ParseUUIDPipe) id: string, @Body() { status }: UpdateFeedbackStatusDto) {
-    return this.feedbackService.updateStatus(id, status);
+  updateStatus(@Param('id', ParseUUIDPipe) id: string, @Body() { status }: UpdateFeedbackStatusDto, @Req() req: any) {
+    return this.feedbackService.updateStatus(id, status, req.user?.id);
   }
 }

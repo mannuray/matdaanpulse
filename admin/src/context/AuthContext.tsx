@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { login } from '../services/user.service';
+import { login, revokeSession } from '../services/user.service';
 import { setToken, clearToken, getToken } from '../services/auth.service';
 import { isTokenExpired } from '../utils/jwt';
 import type { User } from '../types';
@@ -37,10 +37,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('admin_user', JSON.stringify(result.user));
   };
 
-  const logout = () => {
+  /** Local only: forget the token and user (an expired token needs nothing more). */
+  const clearSession = () => {
     clearToken();
     setUser(null);
     localStorage.removeItem('admin_user');
+  };
+
+  /** The user's explicit logout: revoke the token server-side (best effort, not awaited), then clear locally. */
+  const logout = () => {
+    void revokeSession(getToken());
+    clearSession();
   };
 
   // Re-checked on every render so a token that expires mid-session logs the user out
@@ -48,7 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isAuthenticated = !!user && !!token && !isTokenExpired(token);
 
   useEffect(() => {
-    if (user && !isAuthenticated) logout();
+    if (user && !isAuthenticated) clearSession();
   }, [user, isAuthenticated]);
 
   const hasRole = (...roles: string[]) => {

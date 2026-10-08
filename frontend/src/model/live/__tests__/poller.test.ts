@@ -173,6 +173,19 @@ describe('LivePoller', () => {
     t.poller.stop();
   });
 
+  it('a snapshot this server does not have yet (404 GEN_0006) is not a failure: retried on the next normal poll', async () => {
+    const t = setup();
+    t.fetchSnapshot.mockRejectedValueOnce(Object.assign(new Error('not yet'), { status: 404, code: 'GEN_0006' }));
+    t.poller.start();
+    await flush();
+    expect(t.onSnapshot).not.toHaveBeenCalled();
+    expect(t.onStatus).not.toHaveBeenCalledWith(false, expect.anything(), expect.anything());
+    expect(t.onStatus).toHaveBeenLastCalledWith(true, 0);
+    await vi.advanceTimersByTimeAsync(POLL.intervalMs + 5);
+    expect(t.onSnapshot).toHaveBeenCalledWith({ version: 1 }, live(1));
+    t.poller.stop();
+  });
+
   it('stop() cancels timers and ignores in-flight responses', async () => {
     const t = setup();
     let release!: (s: LiveState) => void;

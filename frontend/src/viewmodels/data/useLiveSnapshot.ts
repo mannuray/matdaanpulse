@@ -1,17 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getLiveState, getResultsSnapshot } from '../../model/api/election.service';
 import { describeApiError } from '../../model/api/api-client';
-import { LivePoller, type LiveElectionStatus, type Visibility } from '../../model/live/poller';
+import { LivePoller, type LiveElectionStatus } from '../../model/live/poller';
+import { documentVisibility } from './documentVisibility';
 import type { ResultsSnapshot } from '../../model/types';
-
-const documentVisibility: Visibility = {
-  isHidden: () => typeof document !== 'undefined' && document.visibilityState === 'hidden',
-  subscribe: (onChange) => {
-    if (typeof document === 'undefined') return () => undefined;
-    document.addEventListener('visibilitychange', onChange);
-    return () => document.removeEventListener('visibilitychange', onChange);
-  },
-};
 
 /** Consecutive failures before a dashboard that has no snapshot yet shows an error (with Retry). */
 export const LIVE_FAILURES_BEFORE_ERROR = 3;

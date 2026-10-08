@@ -1,5 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength, IsOptional, IsEnum } from 'class-validator';
 import { user_role } from '@prisma/client';
+import { PasswordMaxLength } from '../../../common/validation/dto-helpers';
 
 export class LoginDto {
   @IsEmail()
@@ -9,6 +10,7 @@ export class LoginDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
+  @PasswordMaxLength()
   password: string;
 }
 
@@ -20,6 +22,7 @@ export class RegisterDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(8, { message: 'Password must be at least 8 characters long' })
+  @PasswordMaxLength()
   password: string;
 
   @IsString()

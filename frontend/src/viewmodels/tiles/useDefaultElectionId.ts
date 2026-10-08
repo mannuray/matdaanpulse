@@ -1,6 +1,5 @@
-import { useApi } from '../data/useApi';
+import { useElectionList } from '../data/useElectionList';
 import { recallElectionId } from '../data/lastElection';
-import { getElections } from '../../model/api/election.service';
 import { pickLatestElection } from '../../model/derive/electionPick';
 import type { Election } from '../../model/types';
 
@@ -10,7 +9,7 @@ function remembered(type: 'LS' | 'VS', elections: Election[]): string | null {
 }
 
 export function useDefaultElectionId(): { id: string | null; loading: boolean } {
-  const { data, loading, error } = useApi(() => getElections(), []);
+  const { data, loading, error } = useElectionList();
   if (loading) return { id: null, loading: true };
   if (error || !data) return { id: null, loading: false };
   const id = remembered('LS', data)

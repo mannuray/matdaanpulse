@@ -14,7 +14,7 @@ const feature = (no: number, name: string) => ({ type: 'Feature', properties: { 
 
 describe('usePartyMap', () => {
   it('loads the election map and results, colours seats, and refetches when another year is picked', async () => {
-    api.getManifest.mockImplementation((id: string) => Promise.resolve({ election_id: id, manifest_url: null, draft: { geo: { map_url: `/geo/${id}.geojson` } } }));
+    api.getManifest.mockImplementation((id: string) => Promise.resolve({ election_id: id, draft: { geo: { map_url: `/geo/${id}.geojson` } } }));
     api.getGeoJSON.mockResolvedValue({ type: 'FeatureCollection', features: [feature(1, 'Rajmahal'), feature(2, 'Borio')] });
     api.getResults.mockImplementation((id: string) => Promise.resolve(id === 'e24'
       ? [{ const_id: 'JH_VS24_1_RAJMAHAL', party_id: 'BJP', candidate_name: 'a', votes: 1, status: 'WON', margin: 1 }, { const_id: 'JH_VS24_2_BORIO', party_id: 'JMM', candidate_name: 'b', votes: 1, status: 'WON', margin: 1 }]
@@ -33,7 +33,7 @@ describe('usePartyMap', () => {
     await waitFor(() => expect(api.getResults).toHaveBeenCalledWith('e19'));
   });
   it('switching to a year on the same map file stays loading until that year\'s results arrive (no old colours)', async () => {
-    api.getManifest.mockImplementation((id: string) => Promise.resolve({ election_id: id, manifest_url: null, draft: { geo: { map_url: '/geo/same.geojson' } } }));
+    api.getManifest.mockImplementation((id: string) => Promise.resolve({ election_id: id, draft: { geo: { map_url: '/geo/same.geojson' } } }));
     api.getGeoJSON.mockResolvedValue({ type: 'FeatureCollection', features: [feature(1, 'Rajmahal')] });
     let release: (rows: unknown[]) => void = () => {};
     api.getResults.mockImplementation((id: string) => (id === 'x24'

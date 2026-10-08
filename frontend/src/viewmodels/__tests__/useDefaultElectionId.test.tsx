@@ -5,8 +5,9 @@ import { MemoryRouter } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import * as electionApi from '../../model/api/election.service';
 import { useDefaultElectionId } from '../tiles/useDefaultElectionId';
+import { forgetElectionList } from '../data/useElectionList';
 
-const el = (id: string, type: 'LS' | 'VS', year: number) => ({ id, name: id, type, year, state_id: null, state: null, status: 'Finalized', tentative_next_date: null, manifest_url: null });
+const el = (id: string, type: 'LS' | 'VS', year: number) => ({ id, name: id, type, year, state_id: null, state: null, status: 'Finalized', tentative_next_date: null });
 
 function wrapper({ children }: { children: ReactNode }) {
   return <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>{children}</MemoryRouter>;
@@ -19,7 +20,7 @@ async function run(list: unknown[]) {
   return hook.result.current.id;
 }
 
-beforeEach(() => { localStorage.clear(); });
+beforeEach(() => { localStorage.clear(); forgetElectionList(); });
 afterEach(() => { vi.restoreAllMocks(); });
 
 const LIST = [el('ls2019', 'LS', 2019), el('ls2024', 'LS', 2024), el('br2025', 'VS', 2025)];

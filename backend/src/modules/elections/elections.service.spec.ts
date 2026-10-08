@@ -21,3 +21,35 @@ describe('ElectionsService.comparableManifest', () => {
     expect(prisma.elections.findMany).not.toHaveBeenCalled();
   });
 });
+
+describe('ElectionsService.getManifest (public)', () => {
+  it('returns only the parsed, comparable-filtered manifest as `draft`: never the raw stored text', async () => {
+    const stored = { history: ['e10', 'e20'], history_years: [2010, 2020], geo: { map_url: '/geo/x.geojson' } };
+    const prisma: any = {
+      elections: {
+        findUnique: jest.fn().mockResolvedValue({ id: 'e25', type: 'VS', state_id: 5, delimitation: '2008', manifest_url: JSON.stringify(stored), states: null }),
+        findMany: jest.fn().mockResolvedValue([{ id: 'e20' }]),
+      },
+    };
+    const out = await new ElectionsService(prisma).getManifest('e25');
+    expect(out).toEqual({ election_id: 'e25', draft: { history: ['e20'], history_years: [2020], geo: stored.geo } });
+    expect(out).not.toHaveProperty('manifest_url');
+  });
+});
+
+describe('ElectionsService.findAllForAdmin', () => {
+  it('every election (no 100 cap) with a manifest_published flag, without loading any manifest text', async () => {
+    const rows = [{ id: 'a', year: 2026 }, { id: 'b', year: 2021 }];
+    const findMany = jest.fn()
+      .mockResolvedValueOnce(rows)
+      .mockResolvedValueOnce([{ id: 'b' }]);
+    const svc = new ElectionsService({ elections: { findMany } } as any);
+    const out = await svc.findAllForAdmin({ type: 'VS' as any });
+    expect(out).toEqual([{ id: 'a', year: 2026, manifest_published: false }, { id: 'b', year: 2021, manifest_published: true }]);
+    const [list, published] = findMany.mock.calls.map((c) => c[0]);
+    expect(list.take).toBeUndefined();
+    expect(list.where).toMatchObject({ type: 'VS' });
+    expect(JSON.stringify(list)).not.toMatch(/manifest/);
+    expect(published).toEqual({ where: { manifest_url: { not: null } }, select: { id: true } });
+  });
+});

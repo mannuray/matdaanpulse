@@ -26,8 +26,6 @@ export interface Election {
   tentative_next_date: string | null;
   /** Delimitation order year the seats follow ("2008"); null = not known (compared with nothing). */
   delimitation?: string | null;
-  manifest_url: string | null;
-  summary?: PartySummary[];
 }
 
 export interface Party {
@@ -133,6 +131,25 @@ export interface Constituency {
   metadata?: Record<string, unknown>;
   region?: { id: number; name: string } | null;
   last_updated?: string | null;
+  /** Live seat state (ingest); sent with the detail by a backend that has it, else absent. */
+  seat_state?: SeatLiveState['state'] | null;
+}
+
+/** A seat hit from GET /search/constituencies (backend ConstituencySearchHitDto). */
+export interface ConstituencySearchHit {
+  id: string;
+  election_id: string;
+  district_id: number | null;
+  state_id: number | null;
+  name: string;
+  const_no: number;
+  type: 'GEN' | 'SC' | 'ST';
+  voter_turnout: number | null;
+  phase: number | null;
+  total_electors: number | null;
+  current_round: number | null;
+  total_rounds: number | null;
+  district: { id: number; name: string } | null;
 }
 
 export interface Candidate {
@@ -217,7 +234,7 @@ export interface ResultRow {
   status: string;
   margin: number;
   const_type?: 'GEN' | 'SC' | 'ST';
-  /** The candidate's person (live snapshots; matches sitting MLAs and heavyweights). Missing on older backends. */
+  /** The candidate's person (snapshots and unversioned rows; matches sitting MLAs and heavyweights). Missing on older backends. */
   person_id?: string | null;
 }
 
@@ -269,9 +286,10 @@ export interface StandingsData {
   independents: PartyStanding[];
 }
 
+/** GET /elections/:id/manifest. */
 export interface Manifest {
   election_id: string;
-  manifest_url: string | null;
+  /** The PUBLISHED manifest (parsed, history/compare_with limited to comparable elections); the name is historical. */
   draft: ManifestData | null;
 }
 

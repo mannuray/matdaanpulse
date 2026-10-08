@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, HttpCode, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { CandidatesService } from '../../candidates/candidates.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
@@ -7,6 +7,7 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminCandidateDto, AdminCandidateResultDto } from '../dto/admin-response.dto';
 import { CreateCandidateDto, UpdateCandidateDto, LinkPersonDto } from '../../candidates/dto/candidate-input.dto';
+import { CandidatesQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/candidates')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -19,11 +20,8 @@ export class AdminCandidatesController {
   @Get()
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminCandidateDto))
-  findAll(
-    @Query('election_id') election_id?: string,
-    @Query('const_id') const_id?: string,
-  ) {
-    return this.candidatesService.findAll({ election_id, const_id }, undefined, true);
+  findAll(@Query() { election_id, const_id }: CandidatesQueryDto) {
+    return this.candidatesService.findAll({ election_id, const_id }, true);
   }
 
   @Get(':id')
@@ -77,6 +75,7 @@ export class AdminCandidatesController {
 
   /** Split: move this candidacy to a new person created from it. Returns the new person's id. */
   @Post(':id/split')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN', 'EDITOR')
   split(@Req() req: any, @Param('id', ParseUUIDPipe) id: string) {
     return this.candidatesService.split(id, req.user?.id);

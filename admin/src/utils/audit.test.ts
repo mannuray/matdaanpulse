@@ -8,14 +8,33 @@ const log = (over: Partial<AuditLog>): AuditLog => ({
   timestamp: '2026-10-01T08:00:00.000Z', ...over,
 });
 
+describe('ingest audit entries', () => {
+  it('a lease take-over is written by the system (no user) and names the shard and both holders', () => {
+    const l = log({ action: 'INGEST_LEASE_TAKEOVER', user_id: null, users: null, entity_type: 'election', entity_id: 'e1',
+      old_value: { shard: 'rest', holder: 'cloud-1', expires_at: '2027-02-27T04:00:00Z' }, new_value: { shard: 'rest', holder: 'laptop' } });
+    expect(describeAudit(l)).toBe('Shard rest lease taken over by laptop from cloud-1');
+    expect(actionTone('INGEST_LEASE_TAKEOVER')).toBe('warn');
+    expect(actionLabel('INGEST_HOLD_RELEASE')).toBe('Seat hold released');
+  });
+});
+
 describe('audit vocabulary', () => {
   it('lists exactly the actions and entities the backend writes', () => {
     expect(AUDIT_ACTIONS.map((a) => a.value)).toEqual([
       'RESULT_OVERRIDE', 'RESULT_BULK_OVERRIDE', 'SEAT_LOCK_TAKEOVER',
       'PARTY_CREATE', 'PARTY_UPDATE', 'PERSON_UPDATE', 'PERSON_MERGE', 'PERSON_MERGE_UNDO', 'PERSON_DELETE',
       'CANDIDATE_CREATE', 'CANDIDATE_UPDATE', 'CANDIDATE_LINK_PERSON', 'CANDIDATE_SPLIT', 'CANDIDATE_UNLINK_PERSON', 'CONSTITUENCY_UPDATE',
+      'INGEST_LEASE_TAKEOVER', 'INGEST_SHARD_UPDATE', 'INGEST_SHARD_DELETE', 'INGEST_HOLD_RELEASE',
+      'USER_CREATE', 'USER_UPDATE', 'USER_ROLE_CHANGE', 'USER_PASSWORD_RESET', 'USER_DELETE',
+      'ELECTION_CREATE', 'ELECTION_UPDATE', 'MANIFEST_SAVE', 'MANIFEST_PUBLISH',
+      'ANALYSIS_COMPUTE', 'ANALYSIS_NOTES_UPDATE', 'MEDIA_UPLOAD', 'FEEDBACK_UPDATE',
     ]);
-    expect(AUDIT_ENTITIES.map((e) => e.value)).toEqual(['result', 'election', 'constituency', 'party', 'person', 'candidate']);
+    expect(AUDIT_ENTITIES.map((e) => e.value)).toEqual([
+      'result', 'election', 'constituency', 'party', 'person', 'candidate', 'user', 'constituency_analysis', 'media', 'feedback',
+    ]);
+    expect(actionLabel('USER_PASSWORD_RESET')).toBe('Password reset');
+    expect(actionLabel('MANIFEST_PUBLISH')).toBe('Manifest published');
+    expect(entityLabel('constituency_analysis')).toBe('Seat analysis');
     expect(actionLabel('PERSON_MERGE')).toBe('Persons merged');
     expect(actionLabel('CANDIDATE_LINK_PERSON')).toBe('Candidate moved to person');
     expect(actionLabel('PERSON_MERGE_UNDO')).toBe('Merge undone');
@@ -23,14 +42,14 @@ describe('audit vocabulary', () => {
     expect(actionLabel('PERSON_DELETE')).toBe('Person deleted (no contests left)');
     expect(actionLabel('CONSTITUENCY_UPDATE')).toBe('Seat edited');
     expect(isAuditAction('SEAT_LOCK_TAKEOVER')).toBe(true);
-    expect(isAuditAction('MANIFEST_PUBLISH')).toBe(false);
+    expect(isAuditAction('SOMETHING_NEW')).toBe(false);
     expect(isAuditEntity('constituency')).toBe(true);
     expect(isAuditEntity('manifest')).toBe(false);
   });
 
   it('labels are sentence case; unknown values are humanised', () => {
     expect(actionLabel('RESULT_BULK_OVERRIDE')).toBe('Seat save (bulk)');
-    expect(actionLabel('MANIFEST_PUBLISH')).toBe('Manifest publish');
+    expect(actionLabel('SOMETHING_NEW')).toBe('Something new');
     expect(entityLabel('constituency')).toBe('Seat');
     expect(entityLabel('party')).toBe('Party');
     expect(actionTone('SEAT_LOCK_TAKEOVER')).toBe('warn');
@@ -70,7 +89,7 @@ describe('describeAudit', () => {
   });
 
   it('any other action is still readable', () => {
-    expect(describeAudit(log({ action: 'MANIFEST_PUBLISH', entity_type: 'manifest', entity_id: 'e1', users: null, user_id: null })))
-      .toBe('Deleted user: Manifest publish · Manifest e1');
+    expect(describeAudit(log({ action: 'MANIFEST_DELETE', entity_type: 'manifest', entity_id: 'e1', users: null, user_id: null })))
+      .toBe('Deleted user: Manifest delete · Manifest e1');
   });
 });

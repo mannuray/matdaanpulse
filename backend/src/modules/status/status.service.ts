@@ -25,6 +25,7 @@ export class StatusService {
   private byClass = { '2xx': 0, '3xx': 0, '4xx': 0, '5xx': 0, other: 0 };
   private throttled = 0;
   private shieldRejected = 0;
+  private serviceBusy = 0;
 
   private cache = { hits: 0, misses: 0, fallbacks: 0 };
   private redis = { publishes: 0, published: 0, publishErrors: 0 };
@@ -54,6 +55,9 @@ export class StatusService {
 
   /** A request refused by the origin shield (no/wrong X-Origin-Secret), answered before the Nest middleware. */
   recordShieldRejection() { this.shieldRejected++; }
+
+  /** A request refused with 503 GEN_0005 because the DB pool was full (counted apart from other 5xx). */
+  recordServiceBusy() { this.serviceBusy++; }
 
   recordCacheHit() { this.cache.hits++; }
   recordCacheMiss() { this.cache.misses++; }
@@ -97,6 +101,7 @@ export class StatusService {
         throttled429: this.throttled,
         /** Origin-shield 403s (direct-to-origin traffic); not included in `total`. */
         shieldRejected403: this.shieldRejected,
+        serviceBusy503: this.serviceBusy,
         last5m: window(5),
         last60m: window(60),
         /** 10 slowest routes by p95 of their last <=200 requests within 60 min. */

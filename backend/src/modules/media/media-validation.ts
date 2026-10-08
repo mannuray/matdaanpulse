@@ -32,6 +32,60 @@ export function sniffImage(buf: Buffer): ImageType | null {
   return null;
 }
 
+/** Elements that run script, embed other documents or define handlers: refused anywhere in an uploaded SVG. */
+const BLOCKED_ELEMENTS = new Set(['script', 'foreignobject', 'iframe', 'embed', 'object', 'handler', 'listener', 'frame', 'frameset', 'applet', 'meta', 'link', 'base']);
+const NAMED_ENTITIES: Record<string, string> = { colon: ':', tab: '\t', newline: '\n', sol: '/', lpar: '(', rpar: ')', amp: '&' };
+
+function decodeEntities(s: string): string {
+  return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);?/gi, (m, e: string) => {
+    if (e[0] !== '#') return NAMED_ENTITIES[e.toLowerCase()] ?? m;
+    const code = e[1] === 'x' || e[1] === 'X' ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
+    return Number.isFinite(code) && code >= 0 && code <= 0x10ffff ? String.fromCodePoint(code) : '';
+  });
+}
+
+/** An href that stays inside the file: a fragment (#id) or an embedded raster image. */
+const SAFE_HREF = /^(#|data:image\/(?:png|jpe?g|gif|webp);base64,)/i;
+
+/**
+ * Why an SVG is unsafe to host, or null. SVGs are refused (not rewritten) when they carry active content or
+ * external references: script-capable elements, on* handlers, javascript:/vbscript: URLs (also entity-encoded or
+ * split by whitespace), entity declarations, external hrefs, CSS @import / external url(), xml-stylesheet, or an
+ * animated href. Scans the whole file with linear-time patterns (tags are tokenised, never backtracked across).
+ */
+export function svgActiveContent(buf: Buffer): string | null {
+  const raw = buf.toString('utf8');
+  // Illustrator exports declare namespace URLs as entities (seed BSP.svg); anything else (external SYSTEM/PUBLIC
+  // entities, parameter entities, nested references, billion-laughs chains) is refused. Counted first so the
+  // declaration pattern runs at most 20 times.
+  const declared = (raw.match(/<!ENTITY/gi) ?? []).length;
+  if (declared > 20) return 'an entity declaration';
+  if (declared) {
+    const entities = [...raw.matchAll(/<!ENTITY\s+([^\s>]+)\s+("[^"]*"|'[^']*'|[^>]*)>/gi)];
+    if (entities.length !== declared || entities.some(([, , value]) => !/^["']https?:\/\/[^\s"'<>&%]*["']$/.test(value.trim()))) {
+      return 'an entity declaration';
+    }
+  }
+  if (/<\?xml-stylesheet/i.test(raw)) return 'an external stylesheet';
+  if (/@import/i.test(raw)) return 'a CSS @import';
+  if (/url\(\s*(?!\s|['"]?\s*#)/i.test(decodeEntities(raw))) return 'an external url() reference';
+  const compact = decodeEntities(raw).replace(/[\s\u0000-\u001f]+/g, '').toLowerCase();
+  if (/(?:java|vb|live)script:/.test(compact)) return 'a script URL';
+  for (const tag of raw.match(/<[^<>]*>?/g) ?? []) {
+    const name = /^<\s*\/?\s*([a-z0-9_.:-]+)/i.exec(tag)?.[1];
+    if (!name) continue; // comment, doctype, processing instruction
+    const local = name.toLowerCase().split(':').pop()!;
+    if (BLOCKED_ELEMENTS.has(local)) return `a <${local}> element`;
+    const attrs = decodeEntities(tag.slice(1 + name.length));
+    if (/[\s"'/]on[a-z]+\s*=/i.test(attrs)) return 'an event handler attribute';
+    if (/attributename\s*=\s*["']\s*(?:xlink:)?href/i.test(attrs)) return 'an animated link';
+    for (const m of attrs.matchAll(/(?:^|[\s"'/])(?:xlink:)?href\s*=\s*(?:"([^"]*)"|'([^']*)')/gi)) {
+      if (!SAFE_HREF.test((m[1] ?? m[2] ?? '').trim())) return 'an external link';
+    }
+  }
+  return null;
+}
+
 const NAMES: Record<MediaKind, string> = { 'party-logo': 'logo', 'party-eci': 'eci', 'person-photo': 'photo' };
 export function blobPath(kind: MediaKind, ownerId: string, ext: string): string {
   // Party ids may hold any character; keep only path-safe ones so `../x` can't traverse.
@@ -53,5 +107,9 @@ export function validateUpload(
   }
   const type = sniffImage(file.buffer);
   if (!type) throw new BadRequestException('Use a PNG, JPEG, WebP or SVG image');
+  if (type.ext === 'svg') {
+    const why = svgActiveContent(file.buffer);
+    if (why) throw new BadRequestException(`This SVG has active content (${why}); export it as a plain SVG or a PNG`);
+  }
   return { ...type, path: blobPath(kind, ownerId, type.ext) };
 }

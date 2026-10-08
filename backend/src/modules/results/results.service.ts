@@ -8,11 +8,6 @@ import { LiveStateService } from './live-state.service';
 import { ConstituencyNotFoundException } from '../../common/exceptions';
 import { seatTally } from '../../common/tally';
 
-/** Candidate fields of a compare row (the affidavit's BigInt columns are not JSON-serialisable). */
-const COMPARE_CANDIDATE = {
-  id: true, name: true, party_id: true, const_id: true, election_id: true, person_id: true, is_incumbent: true, parties: true,
-} as const;
-
 @Injectable()
 export class ResultsService {
   constructor(
@@ -125,6 +120,7 @@ export class ResultsService {
           select: {
             party_id: true,
             name: true,
+            person_id: true,
           }
         },
         constituencies: {
@@ -138,6 +134,8 @@ export class ResultsService {
       const_id: r.const_id,
       party_id: r.candidates.party_id,
       candidate_name: r.candidates.name,
+      // Same row shape as the snapshot's results (buildSnapshot): the live analysis matches persons by it.
+      person_id: r.candidates.person_id ?? null,
       votes: r.votes,
       status: r.status,
       margin: r.margin,
@@ -204,36 +202,6 @@ export class ResultsService {
       WHERE s.election_id = ${electionId}::uuid AND s.const_id = ${constId} ORDER BY s.seq`;
   }
 
-  async getDistrictResults(electionId: string, districtId: number) {
-    const data = await this.prisma.results.findMany({
-      where: {
-        election_id: electionId,
-        constituencies: { district_id: districtId }
-      },
-      include: {
-        candidates: {
-          include: { parties: true }
-        },
-        constituencies: true
-      },
-      orderBy: {
-        constituencies: { const_no: 'asc' }
-      }
-    });
-
-    return data.map(r => ({
-      const_id: r.const_id,
-      const_name: r.constituencies.name,
-      candidate_name: r.candidates.name,
-      party_id: r.candidates.party_id,
-      party_name: r.candidates.parties?.name || 'Independent',
-      color: r.candidates.parties?.color || '#6b7280',
-      votes: r.votes,
-      status: r.status,
-      margin: r.margin,
-    }));
-  }
-
   async getConstituencyDetail(electionId: string, constId: string) {
     const constituency = await this.prisma.constituencies.findFirst({
       where: { id: constId, election_id: electionId },
@@ -241,6 +209,7 @@ export class ResultsService {
         districts: true,
         states: true,
         regions: { select: { id: true, name: true } },
+        seatIngestStates: { select: { state: true } },
         candidates: {
           include: {
             parties: { select: { id: true, name: true, abbreviation: true, color: true, symbol_url: true, eci_symbol_url: true } },
@@ -276,8 +245,11 @@ export class ResultsService {
       })
       .sort((a, b) => b.votes - a.votes);
 
+    const { seatIngestStates, ...rest } = constituency;
     return {
-      ...constituency,
+      ...rest,
+      // Live seat state (ingest), so the seat page needs only /live plus this detail; null before any ingest.
+      seat_state: seatIngestStates?.[0]?.state ?? null,
       // Prisma Decimal is a class instance: class-transformer would try to rebuild it (DecimalError), so send a number.
       voter_turnout: constituency.voter_turnout == null ? null : Number(constituency.voter_turnout),
       district: constituency.districts,
@@ -351,27 +323,6 @@ export class ResultsService {
         last_updated: r.last_updated,
       }))
     }));
-  }
-
-  // compareConstituencies selects candidate columns explicitly: a full row carries the BigInt affidavit columns.
-  async compareConstituencies(electionId: string, id1: string, id2: string) {
-    const [r1, r2] = await Promise.all([
-      this.prisma.results.findMany({
-        where: { election_id: electionId, const_id: id1 },
-        include: { candidates: { select: COMPARE_CANDIDATE } },
-        orderBy: { votes: 'desc' },
-      }),
-      this.prisma.results.findMany({
-        where: { election_id: electionId, const_id: id2 },
-        include: { candidates: { select: COMPARE_CANDIDATE } },
-        orderBy: { votes: 'desc' },
-      })
-    ]);
-
-    return {
-      constituency_1: { const_id: id1, results: r1 },
-      constituency_2: { const_id: id2, results: r2 }
-    };
   }
 
   /** Drop every cached view of an election. Never throws (a Redis outage is logged). */

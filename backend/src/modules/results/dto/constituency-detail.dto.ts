@@ -49,6 +49,8 @@ export class ConstituencyDetailDto {
   @Expose() total_electors: number | null;
   @Expose() current_round: number | null;
   @Expose() total_rounds: number | null;
+  /** Live seat state from ingest (null before any). */
+  @Expose() seat_state: string | null;
   @Expose() @Transform(({ value }) => (value instanceof Date ? value.toISOString() : value ?? null)) last_updated: string | null;
   @Expose() @Type(() => PlaceDto) state: PlaceDto | null;
   @Expose() @Type(() => PlaceDto) district: PlaceDto | null;

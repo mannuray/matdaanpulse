@@ -18,7 +18,7 @@ import { createElection, updateElection } from '../services/election.service';
 const wrapper = ({ children }: { children: ReactNode }) => <ToastProvider>{children}</ToastProvider>;
 afterEach(() => { vi.clearAllMocks(); localStorage.clear(); });
 
-const bihar: Election = { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 10, year: 2025, status: 'Upcoming', tentative_next_date: '2030-10-01T00:00:00.000Z', delimitation: null, manifest_url: null };
+const bihar: Election = { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 10, year: 2025, status: 'Upcoming', tentative_next_date: '2030-10-01T00:00:00.000Z', delimitation: null, manifest_published: false };
 
 describe('useElectionManager', () => {
   it('startEdit is clean, an edit is dirty, revert is clean again; dates fit the date input', () => {

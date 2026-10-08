@@ -10,7 +10,7 @@ const data = vi.hoisted(() => {
   return {
     C,
     page1: [C('a', 1, 'Patna Sahib', 'Patna', ['urban']), C('b', 2, 'Bankipur', 'Patna'), C('c', 3, 'Gaya Town', 'Gaya')],
-    elections: [{ id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, status: 'Live', state_id: 1, tentative_next_date: null, manifest_url: null }],
+    elections: [{ id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', year: 2025, status: 'Live', state_id: 1, tentative_next_date: null, manifest_published: false }],
   };
 });
 const svc = vi.hoisted(() => ({

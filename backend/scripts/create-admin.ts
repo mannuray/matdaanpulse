@@ -14,6 +14,7 @@ import { PrismaClient } from '@prisma/client';
 loadEnv({ path: path.resolve(__dirname, '..', '.env') });
 
 const MIN_PASSWORD_LENGTH = 8; // must match LoginDto's MinLength
+const MAX_PASSWORD_BYTES = 72; // must match LoginDto's PasswordMaxLength (bcrypt's input limit)
 
 async function main() {
   const email = process.env.ADMIN_EMAIL?.trim(); // stored as-is: login matches email exactly
@@ -28,6 +29,10 @@ async function main() {
   }
   if (password.length < MIN_PASSWORD_LENGTH) {
     throw new Error(`ADMIN_PASSWORD must be at least ${MIN_PASSWORD_LENGTH} characters`);
+  }
+  if (password.length > MAX_PASSWORD_BYTES || Buffer.byteLength(password, 'utf8') > MAX_PASSWORD_BYTES) {
+    // bcrypt ignores everything past 72 bytes, and LoginDto refuses longer passwords.
+    throw new Error(`ADMIN_PASSWORD must be at most ${MAX_PASSWORD_BYTES} characters / bytes`);
   }
 
   const prisma = new PrismaClient();

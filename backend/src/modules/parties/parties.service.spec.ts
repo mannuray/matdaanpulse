@@ -198,6 +198,12 @@ describe('PartiesService.findAll', () => {
     await svc.findAll();
     expect(prisma.parties.findMany.mock.calls[0][0]).not.toHaveProperty('take');
   });
+  it('reads only the columns the public summary sends (no profile/leader/timestamp columns)', async () => {
+    const { svc, prisma } = make();
+    await svc.findAll();
+    expect(Object.keys(prisma.parties.findMany.mock.calls[0][0].select).sort()).toEqual(
+      ['abbreviation', 'color', 'eci_recognition', 'eci_symbol_url', 'id', 'name', 'symbol_url']);
+  });
 });
 
 describe('PartiesService lineage and state units (migration 023)', () => {
@@ -231,6 +237,26 @@ describe('PartiesService.findOne', () => {
     const r = await svc.findOne('BJP');
     expect(r.units[0].roles[0].photo_url).toBe('/m/a.jpg');
     expect(r.lineage[0].source_url).toBe('https://x');
+  });
+});
+
+describe('PartiesService.findAll', () => {
+  it('without q: every party, no filter', async () => {
+    const { svc, prisma } = make();
+    await svc.findAll();
+    expect(prisma.parties.findMany.mock.calls[0][0].where).toBeUndefined();
+  });
+
+  it('with q: matches name, id or abbreviation (case-insensitive), as the paged search does', async () => {
+    const { svc, prisma } = make();
+    await svc.findAll('bjp');
+    expect(prisma.parties.findMany.mock.calls[0][0].where).toEqual({
+      OR: [
+        { name: { contains: 'bjp', mode: 'insensitive' } },
+        { id: { contains: 'bjp', mode: 'insensitive' } },
+        { abbreviation: { contains: 'bjp', mode: 'insensitive' } },
+      ],
+    });
   });
 });
 

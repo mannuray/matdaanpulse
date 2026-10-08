@@ -1,7 +1,8 @@
 import 'reflect-metadata';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import { SeatsBody, TallyBody } from './dto/ingest.dto';
+import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { LeaseReleaseQuery, SeatsBody, ShardQuery, TallyBody } from './dto/ingest.dto';
 
 const body = (over: Record<string, unknown> = {}) => plainToInstance(SeatsBody, {
   shard: 'rest', source: 'eci-web', holder: 'w1', observed_at: '2027-02-27T09:41:05+05:30',
@@ -28,5 +29,22 @@ describe('round and tally bounds', () => {
     expect(await t({})).toEqual([]);
     expect(await t({ scope: 'election' })).toEqual([]);
     expect((await t({ scope: 'state' })).length).toBeGreaterThan(0);
+  });
+});
+
+describe('ingest query DTOs (roster, config, lease release)', () => {
+  const pipe = new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true });
+  const q = (metatype: any, value: Record<string, unknown>) => pipe.transform(value, { type: 'query', metatype });
+  it('a shard is optional, empty means not sent, and must be a shard name', async () => {
+    expect(((await q(ShardQuery, {})) as ShardQuery).shard).toBeUndefined();
+    expect(((await q(ShardQuery, { shard: '' })) as ShardQuery).shard).toBeUndefined();
+    await expect(q(ShardQuery, { shard: 'north-1' })).resolves.toMatchObject({ shard: 'north-1' });
+    await expect(q(ShardQuery, { shard: 'Bad Name' })).rejects.toBeInstanceOf(BadRequestException);
+    await expect(q(ShardQuery, { shard: ['rest', 'north'] })).rejects.toBeInstanceOf(BadRequestException);
+  });
+  it('lease release takes shard + holder; arrays and oversized holders are 400s', async () => {
+    await expect(q(LeaseReleaseQuery, { shard: 'rest', holder: 'w1' })).resolves.toMatchObject({ shard: 'rest', holder: 'w1' });
+    await expect(q(LeaseReleaseQuery, { holder: ['a', 'b'] })).rejects.toBeInstanceOf(BadRequestException);
+    await expect(q(LeaseReleaseQuery, { holder: 'h'.repeat(81) })).rejects.toBeInstanceOf(BadRequestException);
   });
 });

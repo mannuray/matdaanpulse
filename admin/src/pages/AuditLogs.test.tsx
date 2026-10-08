@@ -30,7 +30,9 @@ const LOGS: AuditLog[] = [
   },
 ];
 
-beforeEach(() => { svc.getAuditLogs.mockImplementation(async () => LOGS); });
+const page = (data: AuditLog[], total = data.length, p = 1, limit = 100) =>
+  ({ success: true, data, pagination: { page: p, limit, total, totalPages: Math.ceil(total / limit) } });
+beforeEach(() => { svc.getAuditLogs.mockImplementation(async () => page(LOGS)); });
 afterEach(() => { cleanup(); localStorage.clear(); vi.clearAllMocks(); vi.restoreAllMocks(); });
 
 const renderAt = (at = '/logs') => renderEntityPage('/logs', <AuditLogs />, at);
@@ -58,17 +60,23 @@ describe('Audit logs page', () => {
       'Party created', 'Party edited', 'Person edited', 'Persons merged', 'Merge undone', 'Person deleted (no contests left)',
       'Candidate created', 'Candidate edited', 'Candidate moved to person', 'Contest split to new person',
       'Candidate unlinked (legacy)', 'Seat edited',
+      'Ingest lease take-over', 'Ingest shard saved', 'Ingest shard deleted', 'Seat hold released',
+      'User created', 'User edited', 'User role changed', 'Password reset', 'User deleted',
+      'Election created', 'Election edited', 'Manifest draft saved', 'Manifest published',
+      'Seat analysis computed', 'Analysis notes edited', 'Image uploaded', 'Feedback status changed',
     ]);
-    expect(options('Entity')).toEqual(['Any entity', 'Result', 'Election', 'Seat', 'Party', 'Person', 'Candidate']);
+    expect(options('Entity')).toEqual([
+      'Any entity', 'Result', 'Election', 'Seat', 'Party', 'Person', 'Candidate', 'User', 'Seat analysis', 'Image', 'Feedback',
+    ]);
     fireEvent.change(screen.getByLabelText('Action'), { target: { value: 'SEAT_LOCK_TAKEOVER' } });
-    await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: 'SEAT_LOCK_TAKEOVER', entity_type: '', from: '', to: '' }));
+    await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: 'SEAT_LOCK_TAKEOVER', entity_type: '', from: '', to: '' }, 1, 100));
   });
 
   it('a stale stored filter (old fake actions) is reset to Any (Review Focus 3)', async () => {
-    localStorage.setItem('audit_logs_filters', JSON.stringify({ action: 'MANIFEST_PUBLISH', entity_type: 'manifest', from: 'yesterday', to: '' }));
+    localStorage.setItem('audit_logs_filters', JSON.stringify({ action: 'MANIFEST_DELETE', entity_type: 'manifest', from: 'yesterday', to: '' }));
     renderAt();
     await within(table()).findByText('Priya S');
-    expect(svc.getAuditLogs).toHaveBeenCalledWith({ action: '', entity_type: '', from: '', to: '' });
+    expect(svc.getAuditLogs).toHaveBeenCalledWith({ action: '', entity_type: '', from: '', to: '' }, 1, 100);
     expect((screen.getByLabelText('Action') as HTMLSelectElement).value).toBe('');
   });
 
@@ -77,14 +85,14 @@ describe('Audit logs page', () => {
     await within(table()).findByText('Priya S');
     fireEvent.change(screen.getByLabelText('From (IST)'), { target: { value: '2026-10-01' } });
     fireEvent.change(screen.getByLabelText('To (IST)'), { target: { value: '2026-10-01' } });
-    await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: '', entity_type: '', from: '2026-10-01', to: '2026-10-01' }));
+    await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: '', entity_type: '', from: '2026-10-01', to: '2026-10-01' }, 1, 100));
     const calls = svc.getAuditLogs.mock.calls.length;
     fireEvent.change(screen.getByLabelText('From (IST)'), { target: { value: '2026-10-05' } });
     expect(await screen.findByText(RANGE_ERROR)).toBeTruthy();
     await new Promise((r) => setTimeout(r, 0));
     expect(svc.getAuditLogs.mock.calls.length).toBe(calls);
     fireEvent.click(screen.getByRole('button', { name: 'Clear filters' }));
-    await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: '', entity_type: '', from: '', to: '' }));
+    await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: '', entity_type: '', from: '', to: '' }, 1, 100));
   });
 
   it('Refresh keeps the rows on screen while it reloads', async () => {
@@ -133,7 +141,7 @@ describe('Audit logs page', () => {
     renderAt();
     await within(table()).findByText('Priya S');
     const button = screen.getByRole('button', { name: 'Download CSV' });
-    expect(button.getAttribute('title')).toBe('Exports the rows shown (up to 200)');
+    expect(button.getAttribute('title')).toBe('Exports the rows on this page');
     fireEvent.click(button);
     expect(name).toBe('audit-logs-2026-10-02.csv');
   });
@@ -154,9 +162,15 @@ describe('Audit logs page', () => {
     expect(await within(screen.getByRole('dialog')).findByText('Audit entry not found')).toBeTruthy();
   });
 
-  it('says "Showing latest 200" when the cap is reached', async () => {
-    svc.getAuditLogs.mockImplementation(async () => Array.from({ length: 200 }, (_, i) => ({ ...LOGS[2], id: `x${i}` })));
+  it('pages through the whole log: total in the toolbar, Next loads page 2 (no silent 200 cap)', async () => {
+    svc.getAuditLogs.mockImplementation(async (_f: unknown, p: number) =>
+      page(p === 1 ? Array.from({ length: 100 }, (_, i) => ({ ...LOGS[2], id: `x${i}` })) : [{ ...LOGS[0], id: 'older' }], 101, p));
     renderAt();
-    expect(await screen.findByText('Showing latest 200')).toBeTruthy();
+    expect(await screen.findByText('101 entries')).toBeTruthy();
+    expect(screen.getByText('Showing 1–100 of 101 entries')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }));
+    await waitFor(() => expect(svc.getAuditLogs).toHaveBeenLastCalledWith({ action: '', entity_type: '', from: '', to: '' }, 2, 100));
+    expect(await within(table()).findByText('Priya S')).toBeTruthy();
+    expect(screen.getByText('Page 2 of 2')).toBeTruthy();
   });
 });

@@ -61,6 +61,19 @@ describe('usePartyPageVM', () => {
     expect(result.current.view).toBe('national');
     expect(result.current.missingState).toBe('KL');
   });
+  it('a ?state= that is not a 2-letter code is ignored (the API would refuse it): national view, record asked without it', async () => {
+    const { result } = hook('BJP', '/party/BJP?state=Bihar');
+    await waitFor(() => expect(result.current.states).toHaveLength(2));
+    expect(result.current.view).toBe('national');
+    expect(result.current.missingState).toBeNull();
+    expect(api.getPartyRecord).toHaveBeenCalledWith('BJP', undefined);
+    expect(api.getPartyRecord).not.toHaveBeenCalledWith('BJP', 'BIHAR');
+  });
+  it('a malformed party id (400 from the API) is not found, like a 404', async () => {
+    api.getParty.mockRejectedValueOnce(new ApiError('bad id', 400));
+    const { result } = hook('B J P', '/party/B%20J%20P');
+    await waitFor(() => expect(result.current.status).toBe('notFound'));
+  });
   it('a one-state party opens on its state view', async () => {
     api.getPartyRecord.mockResolvedValue({ party_id: 'JMM', lineage: [], elections: [el('a', 9, 'JH', 'Jharkhand', 2024, 34)] });
     const { loc } = hook('JMM', '/party/JMM');

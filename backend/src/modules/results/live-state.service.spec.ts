@@ -27,6 +27,15 @@ describe('LiveStateService', () => {
     });
   });
 
+  it('currentVersion reads the committed version from the DB every time (no memo); 0 without a row', async () => {
+    const prisma = { $queryRaw: jest.fn().mockResolvedValueOnce([{ version: 7n }]).mockResolvedValueOnce([{ version: 8n }]).mockResolvedValueOnce([]) };
+    const svc = new LiveStateService(prisma as any);
+    expect(await svc.currentVersion('e1')).toBe(7);
+    expect(await svc.currentVersion('e1')).toBe(8);
+    expect(await svc.currentVersion('e1')).toBe(0);
+    expect(prisma.$queryRaw.mock.calls[0][0].join('?')).toMatch(/SELECT version FROM election_live_state WHERE election_id = \?::uuid/);
+  });
+
   it('single-flights concurrent reads and memoises briefly', async () => {
     const { prisma, readRow } = makePrisma();
     const svc = new LiveStateService(prisma as any);

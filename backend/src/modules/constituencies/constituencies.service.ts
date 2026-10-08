@@ -222,12 +222,17 @@ export class ConstituenciesService {
   }
 
   /** Admin notes only: every computed field comes from SeatAnalysisService and a recompute keeps the notes. */
-  async updateAnalysis(id: string, data: UpdateAnalysisDto) {
+  async updateAnalysis(id: string, data: UpdateAnalysisDto, userId?: string) {
     const existing = await this.prisma.constituency_analysis.findUnique({ where: { id } });
     if (!existing) throw new AnalysisNotFoundException(id);
     const updated = await this.prisma.constituency_analysis.update({
       where: { id },
       data: { notes: data.notes, updated_at: new Date() },
+    });
+    // Its own entity type: an operational row must not count as the seat's last record edit.
+    await this.audit.log({
+      userId, action: 'ANALYSIS_NOTES_UPDATE', entityType: 'constituency_analysis', entityId: id,
+      oldValue: { notes: existing.notes ?? null }, newValue: { notes: updated.notes ?? null },
     });
     await this.cache.del(publicAnalysisKey(existing.election_id));
     return updated;

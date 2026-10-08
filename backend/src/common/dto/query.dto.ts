@@ -1,6 +1,7 @@
 import { Transform } from 'class-transformer';
-import { IsEnum, IsIn, IsInt, IsISO8601, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
+import { IsEnum, IsIn, IsInt, IsISO8601, IsNotEmpty, IsOptional, IsString, Matches, Max, MaxLength, Min } from 'class-validator';
 import { IsUuidLike } from '../validation/uuid-like';
+import { CONST_ID_MAX, CONST_ID_RE, STATE_CODE_RE } from '../validation/ids';
 import { election_status, election_type } from '@prisma/client';
 import { ECI_RECOGNITIONS, type EciRecognitionFilter } from '../../modules/parties/dto/party-input.dto';
 
@@ -47,9 +48,27 @@ export class ElectionIdQueryDto {
   election_id?: string;
 }
 
+/**
+ * GET /candidates and /admin/candidates: one seat's candidates (the largest seat has ~80), optionally of one election.
+ * The seat is required, so the list is never an arbitrary slice (one election can have ~7,000 candidates).
+ */
 export class CandidatesQueryDto extends ElectionIdQueryDto {
-  @IsOptional() @EmptyAsUndefined() @IsString() @MaxLength(MAX_QUERY_LENGTH)
-  const_id?: string;
+  @IsString() @IsNotEmpty() @MaxLength(CONST_ID_MAX) @Matches(CONST_ID_RE, { message: 'const_id must be a constituency id' })
+  const_id!: string;
+}
+
+/** GET /admin/persons/search: q is required; the controller answers [] when it is shorter than 2 characters. */
+export class PersonSearchQueryDto {
+  // Trim strings only, so an array still reaches @IsString and fails.
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
+  @IsString() @MaxLength(MAX_QUERY_LENGTH)
+  q!: string;
+}
+
+/** GET /parties/:id/record?state= — a 2-letter state code (any case) or absent; anything else would be an unbounded cache key. */
+export class PartyRecordQueryDto {
+  @IsOptional() @EmptyAsUndefined() @IsString() @Matches(STATE_CODE_RE, { message: 'state must be a 2-letter state code' })
+  state?: string;
 }
 
 export class SearchQueryDto extends ElectionIdQueryDto {
@@ -97,7 +116,8 @@ export class AdminPersonsQueryDto extends PaginationQueryDto {
   contests?: '0' | '1' | '2plus';
 }
 
-export class AuditLogsQueryDto {
+/** Without page/limit the latest 200 rows come back as a bare array (older admin builds); with either, a page. */
+export class AuditLogsQueryDto extends PaginationQueryDto {
   @IsOptional() @EmptyAsUndefined() @IsUuidLike()
   user_id?: string;
 

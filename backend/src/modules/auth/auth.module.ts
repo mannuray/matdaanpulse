@@ -5,6 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
+import { LoginAttemptsService } from './login-attempts.service';
+import { jwtModuleOptions } from './jwt-config';
 
 @Module({
   imports: [
@@ -12,15 +14,12 @@ import { JwtStrategy } from './jwt.strategy';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        // Required: throws at bootstrap if JWT_SECRET is not set (no insecure fallback).
-        secret: config.getOrThrow<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '24h' },
-      }),
+      // Throws at bootstrap if JWT_SECRET is missing or too short (no insecure fallback); HS256 pinned.
+      useFactory: (config: ConfigService) => jwtModuleOptions(config),
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, LoginAttemptsService],
   exports: [AuthService, JwtModule],
 })
 export class AuthModule {}
