@@ -45,7 +45,9 @@ function remainingOf(counted: number, round: SeatLiveIn['round'], base: SeatBase
 
 function callOf(rk: ReturnType<typeof rank>, counted: number, remaining: number | null): Call {
   if (rk.winner?.status === 'WON') return 'declared';
-  if (counted <= 0 || !rk.winner) return 'not_started';
+  if (counted <= 0) return 'not_started';
+  // Votes but no leader: an exact tie (ECI marks both TRAILING) — as close as a seat can be.
+  if (!rk.winner) return 'too_close';
   // No estimate, or one that ran out before the seat is declared (all rounds in, turnout above last time's): unknown.
   if (remaining == null || remaining <= 0) return 'counting';
   const f = (rk.margin ?? 0) / remaining;

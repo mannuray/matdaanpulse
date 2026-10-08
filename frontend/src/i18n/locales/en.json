@@ -612,5 +612,7 @@
   "studio_tip_lead_switch": "Lead switch",
   "seat_upset_sitting_trailing_plain": "Sitting MLA trailing",
   "seat_upset_stronghold_trailing_plain": "Stronghold at risk",
-  "seat_upset_heavyweight_trailing_plain": "Heavyweight trailing"
+  "seat_upset_heavyweight_trailing_plain": "Heavyweight trailing",
+  "seat_tied": "Tied",
+  "studio_status_not_contesting": "Not contesting"
 }

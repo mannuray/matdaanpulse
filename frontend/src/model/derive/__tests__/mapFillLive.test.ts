@@ -18,6 +18,12 @@ describe('live fills', () => {
     expect(seatFill(seat('D'), c).opacity).toBe(1);
     expect(seatFill(seat('E'), c).opacity).toBe(0.6);
   });
+  it('a tied seat (counting, no leader) is the tied grey with the too-close dash, not pending', () => {
+    const tied = { id: 'T', party: '', margin: 0, status: 'TRAILING', name: 'T' } as unknown as SeatResult;
+    expect(seatFill(tied, ctx('overview', [live('T', 'too_close')]))).toEqual({ color: MAP_FILL.tied, opacity: 1, dashed: true, highlighted: false });
+    expect(seatFill(tied, ctx('battle', [live('T', 'too_close', 'switched')])).color).toBe(MOMENTUM_FILL.switched);
+    expect(seatFill(tied, ctx('overview')).color).toBe(MAP_FILL.pending);
+  });
   it('Overview without live data is unchanged (opacity 1, no dash)', () => {
     expect(seatFill(seat('A'), ctx('overview'))).toEqual({ color: '#f80', opacity: 1, highlighted: false });
   });

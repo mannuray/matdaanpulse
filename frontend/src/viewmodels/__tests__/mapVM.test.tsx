@@ -51,4 +51,17 @@ describe('useMapVM', () => {
     expect(r.result.current.seatInfo(ls.data.mapRegions[0].id)?.state).toBe('Uttar Pradesh');
     expect(r.result.current.seatInfo(ls.data.mapRegions[1].id)?.state).toBeNull();
   });
+
+  it('a tied counting seat (no leader) reads "Tied" in the hover card, with the Too close call', async () => {
+    const base = makeSources();
+    const regions = base.data.mapRegions.map(r => (r.id === 'BR_VS_1_SANDESH' ? { ...r, party: '', status: 'TRAILING', candidate: '' } : r));
+    const live = new Map([['BR_VS_1_SANDESH', { const_id: 'BR_VS_1_SANDESH', call: 'too_close', momentum: null }], ['BR_VS_2_RUPAULI', { const_id: 'BR_VS_2_RUPAULI', call: 'likely', momentum: null }]]);
+    const tied = makeSources({ election: { ...base.election, status: 'Live' }, data: { ...base.data, mapRegions: regions }, liveAnalysis: { seats: live, tally: {} } as never });
+    const w = ({ children }: { children: ReactNode }) => (
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><DashboardSourcesProvider value={tied}><DashboardStoreProvider allowedLayers={['overview']} knownSeats={null} knownParties={null}>{children}</DashboardStoreProvider></DashboardSourcesProvider></MemoryRouter>
+    );
+    const { result } = renderHook(() => useMapVM(), { wrapper: w });
+    await waitFor(() => expect(result.current.status).toBe('ready'));
+    expect(result.current.seatInfo('BR_VS_1_SANDESH')).toMatchObject({ status: 'Tied', live: { call: 'Too close' } });
+  });
 });

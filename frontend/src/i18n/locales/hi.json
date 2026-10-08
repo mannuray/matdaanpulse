@@ -612,5 +612,7 @@
   "studio_tip_lead_switch": "बढ़त बदली",
   "seat_upset_sitting_trailing_plain": "मौजूदा विधायक पीछे",
   "seat_upset_stronghold_trailing_plain": "गढ़ खतरे में",
-  "seat_upset_heavyweight_trailing_plain": "दिग्गज पीछे"
+  "seat_upset_heavyweight_trailing_plain": "दिग्गज पीछे",
+  "seat_tied": "बराबरी",
+  "studio_status_not_contesting": "चुनाव नहीं लड़ रहे"
 }

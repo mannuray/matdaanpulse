@@ -15,6 +15,11 @@ describe('analyseLive', () => {
     const s = analyseLive(base(), [live([c('A', 'BJP', 0), c('B', 'JMM', 0)])]).seats[0];
     expect(s).toMatchObject({ call: 'not_started', outcome: null, sitting: 'not_started', upsets: [] });
   });
+  it('an exact tie while counting (no LEADING row) is too close, not not_started', () => {
+    const s = analyseLive(base(), [live([c('A', 'BJP', 35), c('B', 'JMM', 35)], { current: 2, total: 24 })]).seats[0];
+    expect(s.call).toBe('too_close');
+    expect(s.outcome).toBeNull();
+  });
   it('a lead is a provisional outcome; remaining from rounds; call by lead / remaining', () => {
     const s = analyseLive(base(), [live([c('B', 'JMM', 5200, 'LEADING'), c('A', 'BJP', 5000)], { current: 5, total: 20 })]).seats[0];
     expect(s.outcome).toEqual({ kind: 'gained', from: 'BJP', from_raw: 'JVM' });

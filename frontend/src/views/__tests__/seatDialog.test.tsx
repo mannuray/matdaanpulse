@@ -38,6 +38,13 @@ describe('SeatDialog live block', () => {
     expect(screen.getByText('Stronghold at risk · held by BJP since 2005')).toBeTruthy();
     expect(screen.getByText('Lead narrowed from 2,890 to 342 over the last 3 rounds')).toBeTruthy();
   });
+  it('a tied seat (no candidate leading) shows a Tied call badge', () => {
+    const base = vm();
+    const view = { ...base.view, margin: 0, candidates: base.view.candidates.map(c => ({ ...c, votes: 500, pill: null })) };
+    renderIt(vm({ view, liveSeat: { call: 'too_close', momentum: null } as unknown as NonNullable<SeatDialogVM['liveSeat']> }));
+    expect(screen.getByText('Tied')).toBeTruthy();
+    expect(screen.queryByText('Too close')).toBeNull();
+  });
   it('a countermanded or adjourned seat shows its state, not a call or momentum badge (live e2e C3)', () => {
     renderIt(vm({ live: { kind: 'countermanded' }, liveSeat: { call: 'not_started', momentum: 'switched' } as unknown as NonNullable<SeatDialogVM['liveSeat']> }));
     expect(screen.getByText('Countermanded')).toBeTruthy();

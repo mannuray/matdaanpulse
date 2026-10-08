@@ -111,7 +111,7 @@ export function useMapVM(): MapVM {
     seatInfo: id => {
       const s = byId.get(id);
       if (!s) return null;
-      return { name: s.name, state: (isVS ? src.election.state?.name : s.state) || null, candidate: s.candidate, party: s.party, status: s.party ? t(s.status.toLowerCase(), s.status) : t('results_pending'), margin: s.margin, color: s.partyColor, mark: s.party ? src.partyMeta.get(s.party)?.mark ?? null : null, type: s.type ?? null,
+      return { name: s.name, state: (isVS ? src.election.state?.name : s.state) || null, candidate: s.candidate, party: s.party, status: s.party ? t(s.status.toLowerCase(), s.status) : live?.get(id)?.call === 'too_close' ? t('seat_tied') : t('results_pending'), margin: s.margin, color: s.partyColor, mark: s.party ? src.partyMeta.get(s.party)?.mark ?? null : null, type: s.type ?? null,
         ...(live?.get(id) ? { live: { call: t(`seat_call_${live.get(id)!.call}`), leadSwitch: live.get(id)!.momentum === 'switched' } } : {}) };
     },
     onLayer: l => dispatch({ type: 'setLayer', layer: l }),
