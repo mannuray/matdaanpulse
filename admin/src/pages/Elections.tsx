@@ -18,13 +18,14 @@ import { ConfirmDialog } from '../components/ui/ConfirmDialog';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { formatIstDate } from '../utils/time';
+import { lifecycleActions, type LifecycleKind } from '../utils/lifecycle';
 import type { Election, State } from '../types';
 
-type Lifecycle = { kind: 'live' | 'finalize' | 'reopen'; election: Election };
+type Lifecycle = { kind: LifecycleKind; election: Election };
 
 interface RowActions {
   currentId: string;
-  canFinalize: boolean;
+  role: string | undefined;
   onEdit: (e: Election) => void;
   onLifecycle: (l: Lifecycle) => void;
   onMakeCurrent: (e: Election) => void;
@@ -37,12 +38,9 @@ const MENU_ITEM = 'cursor-pointer rounded-control px-2.5 py-1.5 text-sm text-ink
 function ActionsCell({ e, a }: { e: Election; a: RowActions }) {
   return (
     <div className="flex items-center justify-end gap-2">
-      {e.status === 'Upcoming' && (
-        <Button size="sm" variant="outline" onClick={() => a.onLifecycle({ kind: 'live', election: e })}>Go live</Button>
-      )}
-      {e.status === 'Live' && a.canFinalize && (
-        <Button size="sm" variant="outline" onClick={() => a.onLifecycle({ kind: 'finalize', election: e })}>Finalize</Button>
-      )}
+      {lifecycleActions(e, a.role).map((l) => (
+        <Button key={l.kind} size="sm" variant="outline" onClick={() => a.onLifecycle({ kind: l.kind, election: e })}>{l.label}</Button>
+      ))}
       <Menu.Root>
         <Menu.Trigger aria-label={`More actions for ${e.name}`} className="rounded-control p-1.5 text-muted hover:bg-subtle hover:text-ink">
           <MoreHorizontal size={16} aria-hidden />
@@ -91,7 +89,7 @@ const columns = (states: State[], a: RowActions): Column<Election>[] => [
 
 /** PAGE: Elections — full-width table with row actions; create/edit in a dialog at /elections/:id (create at /elections/new). */
 export default function Elections() {
-  const { hasRole } = useAuth();
+  const { user, hasRole } = useAuth();
   const canFinalize = hasRole('SUPER_ADMIN');
   const ctx = useElection();
   const { editorDirty } = useShellStatus();
@@ -118,7 +116,7 @@ export default function Elections() {
 
   const actions: RowActions = {
     currentId: ctx.electionId,
-    canFinalize,
+    role: user?.role,
     onEdit: (e) => route.open(e.id),
     onLifecycle: setConfirm,
     onMakeCurrent: (e) => ctx.setElectionId(e.id),
@@ -183,13 +181,10 @@ export default function Elections() {
             loadingElections={ctx.loading}
             loadFailed={!!ctx.error}
             onRetry={() => { void ctx.reload(); }}
-            canFinalize={canFinalize}
-            canReopen={canFinalize}
+            role={user?.role}
             onClose={() => route.close()}
             onSave={save}
-            onGoLive={() => { if (target) setConfirm({ kind: 'live', election: target }); }}
-            onFinalize={() => { if (target) setConfirm({ kind: 'finalize', election: target }); }}
-            onReopen={() => { if (target) setConfirm({ kind: 'reopen', election: target }); }}
+            onLifecycle={(kind) => { if (target) setConfirm({ kind, election: target }); }}
           />
       )}
       <ConfirmDialog

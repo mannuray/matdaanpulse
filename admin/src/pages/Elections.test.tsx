@@ -165,6 +165,21 @@ describe('Elections page', () => {
     await waitFor(() => expect(svc.finalizeElection).toHaveBeenCalledWith('e2'));
   });
 
+  it('Reopen in the row is for a SUPER_ADMIN only, on a Finalized election', async () => {
+    ctx.elections = [...ELECTIONS, E('e4', 'Goa Vidhan Sabha 2022', 'VS', 'Finalized')];
+    svc.getElections.mockImplementation(async () => ctx.elections);
+    renderAt();
+    const row = (await within(table()).findByText('Goa Vidhan Sabha 2022')).closest('tr')!;
+    expect(within(row).queryByRole('button', { name: /Reopen/ })).toBeNull();
+    cleanup();
+    auth.role = 'SUPER_ADMIN';
+    renderAt();
+    const row2 = (await within(table()).findByText('Goa Vidhan Sabha 2022')).closest('tr')!;
+    fireEvent.click(within(row2).getByRole('button', { name: 'Reopen for corrections' }));
+    expect(where()).toBe('/elections');
+    expect(screen.getByRole('dialog', { name: 'Reopen election?' })).toBeTruthy();
+  });
+
   it('the ⋯ menu makes an election current without opening the edit dialog', async () => {
     renderAt();
     await within(table()).findByText('Lok Sabha 2024');
