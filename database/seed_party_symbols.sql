@@ -225,3 +225,9 @@ UPDATE parties SET symbol_url = '/symbols/logos/AP1.jpg', eci_symbol_url = '/sym
 UPDATE parties SET eci_symbol_url = '/symbols/eci/JLKM.png' WHERE id = 'JLKM';
 UPDATE parties SET eci_symbol_url = '/symbols/eci/PPA.svg' WHERE id = 'PPA';
 UPDATE parties SET symbol_url = '/symbols/logos/MNS.jpg', eci_symbol_url = '/symbols/eci/MNS.png' WHERE id = 'MNS';
+UPDATE parties SET eci_symbol_url = '/symbols/eci/MAG.png' WHERE id = 'MAG';
+UPDATE parties SET eci_symbol_url = '/symbols/eci/GFP.svg' WHERE id = 'GFP';
+UPDATE parties SET eci_symbol_url = '/symbols/eci/SBSP.svg' WHERE id = 'SBSP';
+UPDATE parties SET eci_symbol_url = '/symbols/eci/NPF.png' WHERE id = 'NPF';
+UPDATE parties SET eci_symbol_url = '/symbols/eci/MSCP.png' WHERE id = 'MSCP';
+UPDATE parties SET eci_symbol_url = '/symbols/eci/KPA.png' WHERE id = 'KPA';
