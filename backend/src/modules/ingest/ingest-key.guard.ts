@@ -18,8 +18,8 @@ export class IngestKeyGuard implements CanActivate {
     // Unknown, revoked and expired keys count against the IP (the gate in app.setup answers 429 past the limit).
     if (!row) { this.limiter.fail(req.ip ?? ''); throw new IngestUnauthorizedException(); }
     if (row.expires_at && row.expires_at.getTime() <= Date.now()) { this.limiter.fail(req.ip ?? ''); throw new IngestKeyExpiredException(); }
-    // Compared as strings: the guard runs before ParseUUIDPipe.
-    if (row.election_id && row.election_id !== String(req.params?.electionId ?? '')) throw new IngestKeyScopeException();
+    // Compared as lower-case strings: the guard runs before ParseUUIDPipe, which also accepts an upper-case id.
+    if (row.election_id && row.election_id.toLowerCase() !== String(req.params?.electionId ?? '').toLowerCase()) throw new IngestKeyScopeException();
     req.ingestKey = row;
     return true;
   }

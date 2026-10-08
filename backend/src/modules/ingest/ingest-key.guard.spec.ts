@@ -33,6 +33,10 @@ describe('IngestKeyGuard', () => {
     expect(err).toBeInstanceOf(IngestKeyScopeException);
     expect(err.getStatus()).toBe(403);
   });
+  it('compares the election id case-insensitively (ParseUUIDPipe accepts an upper-case id)', async () => {
+    const keys: any = { verify: jest.fn(async () => row()) };
+    await expect(new IngestKeyGuard(keys, new IngestAuthLimiter(10)).canActivate(ctx(`Bearer ${KEY}`, EID.toUpperCase()).ctx)).resolves.toBe(true);
+  });
   it('a legacy key (no election, no expiry) is accepted for any election', async () => {
     const keys: any = { verify: jest.fn(async () => row({ election_id: null, expires_at: null })) };
     await expect(new IngestKeyGuard(keys, new IngestAuthLimiter(10)).canActivate(ctx(`Bearer ${KEY}`, 'any-election').ctx)).resolves.toBe(true);
