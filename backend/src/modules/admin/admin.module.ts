@@ -18,6 +18,7 @@ import { ConstituenciesModule } from '../constituencies/constituencies.module';
 import { AuthModule } from '../auth/auth.module';
 import { LiveModule } from '../live/live.module';
 import { AuditLogModule } from '../audit-log/audit-log.module';
+import { ElectionLifecycleService } from './election-lifecycle.service';
 import { FeedbackModule } from '../feedback/feedback.module';
 import { MediaModule } from '../media/media.module';
 
@@ -46,7 +47,7 @@ import { MediaModule } from '../media/media.module';
     AdminFeedbackController,
     AdminMediaController,
   ],
-  providers: [UserService],
+  providers: [UserService, ElectionLifecycleService],
   exports: [UserService],
 })
 export class AdminModule {}

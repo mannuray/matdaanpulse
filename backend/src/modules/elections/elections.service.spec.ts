@@ -33,17 +33,3 @@ describe('ElectionsService.comparableManifest', () => {
     expect(prisma.elections.findMany).not.toHaveBeenCalled();
   });
 });
-
-describe('ElectionsService.reopen', () => {
-  it('sets a Finalized election back to Live and audits it; refuses any other status', async () => {
-    const prisma: any = {
-      elections: { findUnique: jest.fn(async () => ({ id: 'e', status: 'Finalized', states: null })), update: jest.fn(async () => ({ id: 'e', status: 'Live' })) },
-      audit_logs: { create: jest.fn(async () => ({})) },
-    };
-    const svc = new ElectionsService(prisma);
-    await expect(svc.reopen('e', 'u1')).resolves.toMatchObject({ status: 'Live' });
-    expect(prisma.audit_logs.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ action: 'ELECTION_REOPEN' }) }));
-    prisma.elections.findUnique.mockResolvedValue({ id: 'e', status: 'Live', states: null });
-    await expect(svc.reopen('e', 'u1')).rejects.toThrow(/not finalized/i);
-  });
-});

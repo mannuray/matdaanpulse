@@ -66,6 +66,21 @@ describe('AuditLogService.record', () => {
   });
 });
 
+describe('AuditLogService.log (operational actions)', () => {
+  let warn: jest.SpyInstance;
+  beforeEach(() => { warn = jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined); });
+  afterEach(() => warn.mockRestore());
+
+  it('writes any action and never throws; inside a transaction it uses a savepoint', async () => {
+    const prisma = { audit_logs: { create: jest.fn().mockRejectedValue(new Error('db down')) } };
+    await expect(new AuditLogService(prisma as any).log({ userId: null, action: 'INGEST_KEY_CREATE', entityType: 'ingest_key', entityId: 'k1' })).resolves.toBeUndefined();
+    expect(warn).toHaveBeenCalled();
+    const tx = { audit_logs: { create: jest.fn().mockRejectedValue(new Error('bad')) }, $executeRawUnsafe: jest.fn().mockResolvedValue(0) };
+    await new AuditLogService({} as any).log({ userId: 'u', action: 'RESULT_SEAT_CORRECTION', entityType: 'constituency', entityId: 'C' }, tx as any);
+    expect(tx.$executeRawUnsafe.mock.calls.map(c => c[0])).toEqual(['SAVEPOINT audit_row', 'ROLLBACK TO SAVEPOINT audit_row']);
+  });
+});
+
 describe('AuditLogService.lastEdit', () => {
   it('is null when the entity has no audit rows', async () => {
     const prisma = { audit_logs: { findFirst: jest.fn().mockResolvedValue(null) } };

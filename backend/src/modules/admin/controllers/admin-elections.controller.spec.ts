@@ -1,52 +1,37 @@
+import { ForbiddenException } from '@nestjs/common';
 import { AdminElectionsController } from './admin-elections.controller';
+import { ElectionNotFinalizedException } from '../../../common/exceptions';
 
-/** Finalizing an election stores its final seat analysis (spec 2026-10-07-seat-analysis-design.md §4.5). */
-describe('AdminElectionsController: seat analysis on finalize', () => {
-  function make(status: string, compute: jest.Mock) {
-    const electionsService: any = {
-      findOne: jest.fn(async () => ({ id: 'e', status })),
-      finalize: jest.fn(async () => ({ id: 'e', status: 'Finalized' })),
-      update: jest.fn(async (_id: string, body: any) => ({ id: 'e', status: body.status ?? status })),
-    };
-    const resultsService: any = { purgeElectionCache: jest.fn(async () => undefined) };
-    const liveState: any = { invalidate: jest.fn() };
-    return new AdminElectionsController(electionsService, {} as any, resultsService, liveState, { compute, computeBaseline: compute } as any);
+/** Status changes go through ElectionLifecycleService (its rules are tested there); the routes only delegate. */
+describe('AdminElectionsController: status changes', () => {
+  function make(status = 'Live', transition = jest.fn(async (_id: string, to: string) => ({ id: 'e', status: to }))) {
+    const electionsService: any = { findOne: jest.fn(async () => ({ id: 'e', status })), update: jest.fn(async (_id: string, b: any) => ({ id: 'e', status, ...b })) };
+    const ctrl = new AdminElectionsController(electionsService, {} as any, {} as any, { transition } as any);
+    return { ctrl, electionsService, transition };
   }
+  const editor = { user: { id: 'u1', role: 'EDITOR' } }, admin = { user: { id: 'u2', role: 'SUPER_ADMIN' } };
 
-  it('finalize computes once; a compute failure does not fail the finalize', async () => {
-    const compute = jest.fn().mockRejectedValueOnce(new Error('boom'));
-    await expect(make('Live', compute).finalizeElection('e')).resolves.toMatchObject({ status: 'Finalized' });
-    expect(compute).toHaveBeenCalledTimes(1);
-    expect(compute).toHaveBeenCalledWith('e');
+  it('PATCH with a status goes through the lifecycle with the caller; other fields update without it', async () => {
+    const m = make();
+    await m.ctrl.updateElection('e', { status: 'Finalized', name: 'X' } as any, editor);
+    expect(m.transition).toHaveBeenCalledWith('e', 'Finalized', editor.user);
+    expect(m.electionsService.update).toHaveBeenCalledWith('e', { name: 'X' });
+    const n = make();
+    await n.ctrl.updateElection('e', { name: 'Y' } as any, editor);
+    expect(n.transition).not.toHaveBeenCalled();
   });
-
-  it('an update to Finalized computes; other updates and re-finalizing do not', async () => {
-    const compute = jest.fn(async () => ({ computed: 1 }));
-    await make('Live', compute).updateElection('e', { status: 'Finalized' } as any);
-    await make('Live', compute).updateElection('e', { name: 'x' } as any);
-    await make('Finalized', compute).updateElection('e', { status: 'Finalized' } as any);
-    expect(compute).toHaveBeenCalledTimes(1);
+  it('a refused status change saves nothing', async () => {
+    const m = make('Live', jest.fn().mockRejectedValue(new ForbiddenException()));
+    await expect(m.ctrl.updateElection('e', { status: 'Finalized', name: 'X' } as any, editor)).rejects.toBeInstanceOf(ForbiddenException);
+    expect(m.electionsService.update).not.toHaveBeenCalled();
   });
-
-  it('going Live computes the baseline once; a failure does not fail the update', async () => {
-    const computeBaseline = jest.fn().mockRejectedValueOnce(new Error('boom'));
-    const electionsService: any = { findOne: jest.fn(async () => ({ id: 'e', status: 'Upcoming' })), update: jest.fn(async (_id: string, b: any) => ({ id: 'e', status: b.status })) };
-    const ctrl = new AdminElectionsController(electionsService, {} as any, { purgeElectionCache: jest.fn(async () => undefined) } as any, { invalidate: jest.fn() } as any, { compute: jest.fn(), computeBaseline } as any);
-    await expect(ctrl.updateElection('e', { status: 'Live' } as any)).resolves.toMatchObject({ status: 'Live' });
-    await ctrl.updateElection('e', { name: 'x' } as any);
-    expect(computeBaseline).toHaveBeenCalledTimes(1);
-  });
-
-  it('the final analysis is computed before the status flips to Finalized (viewers never see Finalized without it)', async () => {
-    const order: string[] = [];
-    const electionsService: any = { findOne: jest.fn(async () => ({ id: 'e', status: 'Live' })),
-      finalize: jest.fn(async () => { order.push('finalize'); return { id: 'e', status: 'Finalized' }; }),
-      update: jest.fn(async () => { order.push('update'); return { id: 'e', status: 'Finalized' }; }) };
-    const seatAnalysis: any = { compute: jest.fn(async () => { order.push('compute'); }), computeBaseline: jest.fn() };
-    const ctrl = new AdminElectionsController(electionsService, {} as any, { purgeElectionCache: jest.fn(async () => undefined) } as any, { invalidate: jest.fn() } as any, seatAnalysis);
-    await ctrl.finalizeElection('e');
-    await ctrl.updateElection('e', { status: 'Finalized' } as any);
-    expect(order).toEqual(['compute', 'finalize', 'compute', 'update']);
+  it('finalize and reopen delegate; reopening an election that is not Finalized is refused', async () => {
+    const m = make('Live');
+    await m.ctrl.finalizeElection('e', admin);
+    expect(m.transition).toHaveBeenCalledWith('e', 'Finalized', admin.user);
+    await expect(m.ctrl.reopenElection('e', admin)).rejects.toBeInstanceOf(ElectionNotFinalizedException);
+    const f = make('Finalized');
+    await f.ctrl.reopenElection('e', admin);
+    expect(f.transition).toHaveBeenCalledWith('e', 'Live', admin.user);
   });
 });
-
