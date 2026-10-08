@@ -9,7 +9,7 @@ const search = vi.hoisted(() => ({
   searchCandidatesAll: vi.fn(async (_q: string): Promise<unknown[]> => []),
 }));
 vi.mock('../../services/search.service', () => search);
-vi.mock('../../services/geo.service', () => ({
+vi.mock('../../services/party.service', () => ({
   getPartiesPaginated: vi.fn(async () => ({ success: true, data: [{ id: 'BJP', name: 'Bharatiya Janata Party' }], pagination: { page: 1, limit: 6, total: 1, totalPages: 1 } })),
 }));
 vi.mock('../../services/person.api', () => ({
@@ -28,9 +28,9 @@ vi.mock('../../context/AuthContext', () => ({
 }));
 const shell = vi.hoisted(() => ({ editorDirty: false }));
 const roleState = vi.hoisted(() => ({ roles: ['EDITOR'] as string[] }));
-vi.mock('../../context/ShellStatusContext', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../context/ShellStatusContext')>()),
-  useShellStatus: () => ({ live: 'idle', setLive: () => {}, editorDirty: shell.editorDirty, markDirty: () => {} }),
+vi.mock('../../context/UnsavedEditsContext', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../../context/UnsavedEditsContext')>()),
+  useUnsavedEdits: () => ({ editorDirty: shell.editorDirty, markDirty: () => {} }),
 }));
 import { CommandPalette } from './CommandPalette';
 import { TopBar } from './TopBar';

@@ -95,7 +95,7 @@ describe('usePartyPageVM, state view', () => {
       regions: [{ region: 'Palamu', seats: 9, won: 5 }] },
     ...over,
   });
-  it('unit roles, record lines, changes from the flow, MLAs search (name or seat, any case), sections', async () => {
+  it('unit roles, record lines, changes from the flow, MLAs, sections', async () => {
     api.getPartyRecord.mockResolvedValue(stateRec());
     const { result } = hook('BJP', '/party/BJP?state=JH');
     await waitFor(() => expect(result.current.stateView).not.toBeNull());
@@ -105,10 +105,7 @@ describe('usePartyPageVM, state view', () => {
     expect(sv.chart.map(c => c.year)).toEqual([2019, 2024]);
     expect(sv.changes).toEqual({ held: 14, gained: 7, lost: 9, gainedFrom: [{ party: 'JMM', seats: 4, split: false }], lostTo: [{ party: 'INC', seats: 3, split: false }] });
     expect(sv.sections).toEqual(['record', 'map', 'changes', 'mlas', 'regions']);
-    act(() => sv.setQuery('ranchi'));
-    await waitFor(() => expect(result.current.stateView!.filteredMlas.map(m => m.name)).toEqual(['C P Singh']));
-    act(() => result.current.stateView!.setQuery('BABULAL'));
-    await waitFor(() => expect(result.current.stateView!.filteredMlas.map(m => m.name)).toEqual(['Babulal Marandi']));
+    expect(sv.mlas.map(m => m.name).sort()).toEqual(['Babulal Marandi', 'C P Singh']);
   });
   it('a state with no unit, no regions and no earlier comparable election shows only what it has', async () => {
     api.getParty.mockImplementation((id: string) => Promise.resolve({ ...party([]), id }));

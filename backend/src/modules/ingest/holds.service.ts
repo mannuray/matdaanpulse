@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 
 export interface HoldRow { const_id: string; const_no: number; name: string; round_at_hold: number | null; expires_at: Date; created_by_name: string | null }
@@ -20,7 +21,7 @@ export class HoldsService {
   }
 
   /** Creates or refreshes the hold; returns its expiry. */
-  async upsert(tx: PrismaService, electionId: string, constId: string, roundAtHold: number | null, minutes: number, userId: string | null, now: Date): Promise<Date> {
+  async upsert(tx: Pick<Prisma.TransactionClient, 'seat_holds'>, electionId: string, constId: string, roundAtHold: number | null, minutes: number, userId: string | null, now: Date): Promise<Date> {
     const expires_at = new Date(now.getTime() + minutes * 60_000);
     await tx.seat_holds.upsert({
       where: { election_id_const_id: { election_id: electionId, const_id: constId } },

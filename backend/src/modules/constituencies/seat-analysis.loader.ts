@@ -1,26 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { earlierComparableElectionIds } from '../../common/comparable-elections';
-import type { AllianceIn, AnalysisInput, ElectionIn, HeavyweightIn, HeavyweightReason, SeatIn, VoteSplitIn } from '../../common/seat-analysis';
+import type { AnalysisInput, ElectionIn, HeavyweightIn, HeavyweightReason, SeatIn } from '../../common/seat-analysis';
+import { electionDate, manifestBits } from '../../common/manifest';
 import { ElectionNotFoundException } from '../../common/exceptions';
-
-type Json = Record<string, unknown>;
-const arr = (v: unknown): Json[] => (Array.isArray(v) ? v.filter((x): x is Json => !!x && typeof x === 'object') : []);
-const str = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
-
-/** What the analysis reads from a manifest (`elections.manifest_url` holds JSON text). Bad / missing JSON = empty. */
-export function manifestBits(raw: string | null) {
-  let m: Json = {};
-  try { const v = raw ? JSON.parse(raw) : {}; if (v && typeof v === 'object' && !Array.isArray(v)) m = v; } catch { /* empty */ }
-  const alliances: AllianceIn[] = arr(m.alliances).map(a => ({ id: String(a.id ?? ''), parties: Array.isArray(a.parties) ? a.parties.map(String) : [] })).filter(a => a.id);
-  const g = m.government as Json | undefined;
-  const government = g && Array.isArray(g.parties) && g.parties.length ? g.parties.map(String) : null;
-  const voteSplits: VoteSplitIn[] = arr(m.vote_splits).filter(v => str(v.spoiler) && str(v.hurts))
-    .map(v => ({ spoiler: String(v.spoiler), hurts: String(v.hurts), ...(str(v.label) ? { label: String(v.label) } : {}) }));
-  const hw = (list: unknown, reason: HeavyweightReason): HeavyweightIn[] =>
-    arr(list).filter(x => str(x.name)).map(x => ({ person_id: str(x.person_id), name: String(x.name), party_id: str(x.party_id), reason }));
-  return { alliances, government, voteSplits, heavyweights: [...hw(m.leaders, 'leader'), ...hw(m.cabinet, 'cabinet')] };
-}
 
 interface RoleRow { party_id: string; role: string; person_id: string | null; person_name: string; from_date: Date | null; to_date: Date | null }
 /** Party unit roles held on `date` (YYYY-MM-DD) as heavyweights. */
@@ -81,7 +64,7 @@ export class SeatAnalysisLoader {
     }
     const bits = manifestBits(e.manifest_url);
     return {
-      id: e.id, year: e.year, date: e.tentative_next_date ? e.tentative_next_date.toISOString().slice(0, 10) : `${e.year}-07-01`,
+      id: e.id, year: e.year, date: electionDate(e.tentative_next_date, e.year),
       seats: consts.map(c => ({
         const_id: c.id, const_no: c.const_no, reserved: String(c.type) as SeatIn['reserved'], region_id: c.region_id,
         turnout: c.voter_turnout == null ? null : Number(c.voter_turnout), electors: c.total_electors ?? null, candidates: byConst.get(c.id) ?? [],

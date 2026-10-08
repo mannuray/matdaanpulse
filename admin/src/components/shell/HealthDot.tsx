@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { API_BASE_URL } from '../../services/api-client';
-import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusContext';
+import { confirmDiscardEdits, useUnsavedEdits } from '../../context/UnsavedEditsContext';
 import { cn } from '../ui/cn';
 
 type Health = 'unknown' | 'ok' | 'degraded';
@@ -9,7 +9,7 @@ const POLL_MS = 30_000;
 
 export function HealthDot({ canOpenStatus }: { canOpenStatus: boolean }) {
   const [health, setHealth] = useState<Health>('unknown');
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   useEffect(() => {
     let alive = true;
     const check = () => fetch(`${API_BASE_URL}/health/ready`)

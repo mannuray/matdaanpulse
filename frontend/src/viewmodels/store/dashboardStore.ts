@@ -1,4 +1,5 @@
 import type { LayerId, Highlight } from '../../model/types/dashboard';
+import { LAYER_IDS } from '../../model/derive/layers';
 
 export type FocusTile = 'map' | 'scoreboard' | 'standings' | 'insight' | 'leaders' | 'stats';
 export type MapMode = 'map' | 'hex';
@@ -52,7 +53,7 @@ export function activeHighlight(s: DashboardUiState): { parties: Set<string>; se
   return { parties: new Set(h?.parties ?? []), seats: new Set(h?.seats ?? []) };
 }
 
-export const ALL_LAYERS: LayerId[] = ['overview', 'battle', 'swing', 'history', 'regions', 'demographics', 'insights', 'states'];
+export const ALL_LAYERS: readonly LayerId[] = LAYER_IDS;
 
 export function parseUiParams(params: URLSearchParams, knownSeats: Set<string> | null, knownParties: Set<string> | null = null): Partial<DashboardUiState> {
   const layer = params.get('layer') as LayerId | null;

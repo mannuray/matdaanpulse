@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { partywiseRows, renderPartywise } from '../simulation/mock-partywise';
-import { parsePartywisePage } from '../adapters/eci-vs-adapter';
+import { parsePartywisePage } from '../live/adapters/eci-parse';
 
 const snap = (status: string, cands: [string, number][]) => ({ status, candidates: cands.map(([partyName, votes]) => ({ partyName, votes })) });
 

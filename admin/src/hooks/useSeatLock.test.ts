@@ -5,7 +5,7 @@ import { ApiError } from '../services/api-client';
 
 const acquire = vi.fn();
 const release = vi.fn(async (..._a: unknown[]) => {});
-vi.mock('../services/election.service', () => ({
+vi.mock('../services/live.service', () => ({
   acquireSeatLock: (...a: unknown[]) => acquire(...a),
   releaseSeatLock: (...a: unknown[]) => release(...a),
 }));

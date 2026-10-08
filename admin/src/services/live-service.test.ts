@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { acquireSeatLock, releaseSeatLock } from './election.service';
+import { acquireSeatLock, releaseSeatLock } from './live.service';
 import { ApiError } from './api-client';
 
 function mockFetch(status: number, body: unknown) {

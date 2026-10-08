@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { RedisService } from '../redis/redis.service';
+import type { OwnedLockStore } from '../redis/redis.ports';
 import { LivePublisher } from './live.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { PrismaService } from '../prisma/prisma.service';
@@ -31,7 +32,7 @@ function parse(raw: string | null): SeatLock | null {
 @Injectable()
 export class SeatLockService {
   constructor(
-    private readonly redis: RedisService,
+    @Inject(RedisService) private readonly redis: OwnedLockStore,
     private readonly live: LivePublisher,
     private readonly audit: AuditLogService,
     private readonly prisma: PrismaService,

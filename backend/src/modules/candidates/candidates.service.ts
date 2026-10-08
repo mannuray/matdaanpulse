@@ -9,7 +9,7 @@ import { AuditLogService } from '../audit-log/audit-log.service';
 import { changedFields, createdFields } from '../audit-log/audit-diff';
 import { seatResult } from './seat-result';
 import { auditIfPersonDeleted } from './person-orphan';
-import { PersonsService } from './persons.service';
+import { PersonMergeService } from './person-merge.service';
 import type { CreateCandidateDto, UpdateCandidateDto } from './dto/candidate-input.dto';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class CandidatesService {
     private readonly prisma: PrismaService,
     private readonly notifier: ResultChangeNotifier,
     private readonly audit: AuditLogService,
-    private readonly persons: PersonsService,
+    private readonly merges: PersonMergeService,
   ) {}
 
   /** `includeAffidavit` is for the admin list only (the affidavit columns); the public list never selects them. */
@@ -194,7 +194,7 @@ export class CandidatesService {
    * Change person: move this candidacy to another existing person (CANDIDATE_LINK_PERSON). The same person
    * is a no-op with no audit row. One transaction.
    *  - When it is the old person's last contest, the move is a merge of the old person into the target
-   *    (PersonsService.mergeInTx): logged in person_merges, the target's empty fields filled, undoable by a
+   *    (PersonMergeService.mergeInTx): logged in person_merges, the target's empty fields filled, undoable by a
    *    super admin from the target's merge history. `merge_id` is set and `old_person_deleted` is true.
    *  - Otherwise it is a plain move (`merge_id` null). Should a concurrent move have emptied the old person
    *    anyway, the orphan trigger deletes it and PERSON_DELETE records its last state.
@@ -215,7 +215,7 @@ export class CandidatesService {
       );
 
       if ((await tx.candidates.count({ where: { person_id: candidate.person_id } })) <= 1) {
-        const { merge_id } = await this.persons.mergeInTx(tx, candidate.person_id, personId, userId);
+        const { merge_id } = await this.merges.mergeInTx(tx, candidate.person_id, personId, userId);
         await link(merge_id);
         const moved = await tx.candidates.findUnique({ where: { id: candidateId } });
         return { ...moved!, old_person_deleted: true, merge_id };

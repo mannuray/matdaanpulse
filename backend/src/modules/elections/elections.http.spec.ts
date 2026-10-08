@@ -53,7 +53,6 @@ async function makeApp(env: Record<string, string>) {
         useValue: {
           findAll: jest.fn(async () => [ELECTION_ROW]),
           findOne: jest.fn(async () => ELECTION_ROW),
-          parseManifest: jest.fn(() => null),
           comparableManifest: jest.fn(async (_e: unknown, m: unknown) => m),
         },
       },

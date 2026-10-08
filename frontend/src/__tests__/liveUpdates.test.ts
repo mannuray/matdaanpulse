@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { diffLeaders, leaderMap } from '../utils/liveUpdates';
-import type { ResultRow } from '../types';
+import { diffLeaders, leaderMap } from '../model/live/liveUpdates';
+import type { ResultRow } from '../model/types';
 
 const r = (const_id: string, party_id: string, votes: number, status: string, margin = 0): ResultRow =>
   ({ const_id, party_id, candidate_name: `${party_id}-c`, votes, status, margin });

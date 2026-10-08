@@ -6,7 +6,7 @@ import { changedFields, createdFields } from '../audit-log/audit-diff';
 import { PartyNotFoundException } from '../../common/exceptions';
 import { buildPartyRecord, stateExtras, type LoadedElection } from './party-record';
 import type { BreakdownRow, FlowRow, PartyRow } from '../../common/seat-analysis/types';
-import { manifestBits } from '../constituencies/seat-analysis.loader';
+import { electionDate, manifestBits } from '../../common/manifest';
 import type { CreatePartyDto, UpdatePartyDto, EciRecognitionFilter } from './dto/party-input.dto';
 
 const ymd = (d: Date | null): string => (d ? d.toISOString().slice(0, 10) : '');
@@ -73,7 +73,7 @@ export class PartiesService {
     const partiesOf = new Map(partyRows.map(r => [r.election_id, r.parties ?? []]));
     const loaded: LoadedElection[] = els.filter(e => e.states).map(e => ({
       id: e.id, state_id: e.state_id!, state_code: e.states!.code, state_name: e.states!.name, year: e.year,
-      date: e.tentative_next_date ? ymd(e.tentative_next_date) : `${e.year}-07-01`,
+      date: electionDate(e.tentative_next_date, e.year),
       delimitation: e.delimitation, seats_total: e._count.constituencies,
       government: manifestBits(e.manifest_url).government,
       analysis: partiesOf.has(e.id) ? { parties: partiesOf.get(e.id)!, flow: [], breakdowns: { region: [] } } as unknown as LoadedElection['analysis'] : null,

@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { useShellStatus } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 import { useResourceList } from '../hooks/useResourceList';
 import { useEntityRoute } from '../hooks/useEntityRoute';
 import { getPersons, type ContestsFilter } from '../services/person.api';
@@ -55,7 +55,7 @@ const COLUMNS: Column<PersonWithStats>[] = [
  */
 export default function Persons() {
   const [params] = useSearchParams();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const route = useEntityRoute('/persons', editorDirty);
   const list = useResourceList<PersonFilters>({
     key: 'persons',

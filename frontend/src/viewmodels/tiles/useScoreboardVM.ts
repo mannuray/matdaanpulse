@@ -3,8 +3,7 @@ import { useSources, useLivePulseState } from '../sources/DashboardSourcesProvid
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { deriveScoreboard, type Scoreboard, type ScoreBloc } from '../../model/derive/scoreboard';
 import { intentFor } from '../store/hoverIntent';
-import { useTheme } from '../theme/useTheme';
-import { forTheme } from '../../model/derive/themeColor';
+import { useThemedColor } from '../theme/useThemedColor';
 import { deriveStandingRows, type StandingRow } from '../../model/derive/standings';
 
 export type { Scoreboard, ScoreBloc };
@@ -32,7 +31,7 @@ export function useScoreboardVM(): ScoreboardVM {
   const src = useSources();
   const pulse = useLivePulseState();
   const { state, dispatch } = useDashboardStore();
-  const { theme } = useTheme();
+  const themed = useThemedColor();
   const alliances = useMemo(() => src.data.manifestData?.alliances ?? [], [src.data.manifestData]);
   const board = useMemo(
     () => deriveScoreboard(alliances, src.data.mapPartyList, src.votePct, src.totalSeats, src.majority),
@@ -42,11 +41,11 @@ export function useScoreboardVM(): ScoreboardVM {
   const status = src.election.status === 'Live' ? 'live' : src.election.status === 'Finalized' ? 'final' : 'upcoming';
   const breakdown = useMemo(() => {
     const rows = deriveStandingRows(src.data.mapPartyList, src.votePct, alliances, { includeZero: true });
-    return board.blocs.map(b => ({ id: b.id, name: b.name, color: b.color, textColor: forTheme(b.color, theme, 'text'), rows: b.kind === 'alliance' ? rows.filter(r => r.allianceId === b.id) : rows.filter(r => r.id === b.id) }));
-  }, [board.blocs, src.data.mapPartyList, src.votePct, alliances, theme]);
+    return board.blocs.map(b => ({ id: b.id, name: b.name, color: b.color, textColor: themed.color(b.color, 'text'), rows: b.kind === 'alliance' ? rows.filter(r => r.allianceId === b.id) : rows.filter(r => r.id === b.id) }));
+  }, [board.blocs, src.data.mapPartyList, src.votePct, alliances, themed]);
   return {
     ...board,
-    blocs: board.blocs.map(b => ({ ...b, label: shortLabel(b), textColor: forTheme(b.color, theme, 'text') })),
+    blocs: board.blocs.map(b => ({ ...b, label: shortLabel(b), textColor: themed.color(b.color, 'text') })),
     status,
     pulse: pulse.recentSeats.size > 0,
     breakdown,

@@ -1,17 +1,19 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { getManifest, saveManifestDraft, publishManifest, getElections } from '../services/election.service';
-import { getParties } from '../services/geo.service';
+import { getManifest, saveManifestDraft, publishManifest } from '../services/manifest.service';
+import { useElection } from '../context/ElectionContext';
+import { useParties } from './useParties';
 import { getConstituencies } from '../services/constituency.service';
 import { useToast } from '../context/ToastContext';
 import { ApiError } from '../services/api-client';
 import { resolvePublishedManifest } from '../utils/manifest-helpers';
-import type { Election, ManifestData, Party, Constituency } from '../types';
+import type { Election, ManifestData, Milestone, Party, Constituency } from '../types';
 
 const DEFAULT_MANIFEST: ManifestData = {
   alliances: [],
   watchlists: [],
   tracked: [],
-  milestones: [{ label: 'Majority', value: 272 }],
+  // No fixed majority (272 is only the Lok Sabha's): defaultMilestones derives it from the election's seats.
+  milestones: [],
   compare_with: [],
   history: [],
   history_years: [],
@@ -21,6 +23,11 @@ const DEFAULT_MANIFEST: ManifestData = {
   live_tabs: [],
   geo: {}
 };
+
+/** The majority of `seats` (floor(seats/2)+1) as the default milestone; none when the seat count is unknown. */
+export function defaultMilestones(seats: number): Milestone[] {
+  return seats > 0 ? [{ label: 'Majority', value: Math.floor(seats / 2) + 1 }] : [];
+}
 
 /** 'not_found' only for a 404; anything else (network, 5xx) is a retryable failure. */
 export type ManifestLoadError = 'not_found' | 'failed';
@@ -34,8 +41,9 @@ export function useManifestEditor(electionId: string | null) {
   const selectedId = electionId ?? '';
   const { toast, toastError } = useToast();
 
-  const [elections, setElections] = useState<Election[]>([]);
-  const [parties, setParties] = useState<Party[]>([]);
+  // The election list comes from ElectionContext (loaded once, reloaded after lifecycle changes).
+  const { elections } = useElection();
+  const parties = useParties();
   const [constituencies, setConstituencies] = useState<Constituency[]>([]);
   
   const [manifest, setManifest] = useState<ManifestData>(DEFAULT_MANIFEST);
@@ -50,11 +58,6 @@ export function useManifestEditor(electionId: string | null) {
   const loadedIdRef = useRef<string | null>(null);
   // Bumped on every local edit, so a save/publish that was in flight can tell whether the user typed meanwhile.
   const editVersionRef = useRef(0);
-
-  useEffect(() => {
-    getElections().then(setElections).catch(() => {});
-    getParties().then(setParties).catch(() => []);
-  }, []);
 
   const loadManifest = useCallback(async (eid: string) => {
     if (!eid) return;
@@ -76,7 +79,7 @@ export function useManifestEditor(electionId: string | null) {
         data = (await resolvePublishedManifest(m.manifest_url)) || DEFAULT_MANIFEST;
         setIsDraft(false);
       } else {
-        data = DEFAULT_MANIFEST;
+        data = { ...DEFAULT_MANIFEST, milestones: defaultMilestones(c.length) };
         setIsDraft(false);
       }
 
@@ -96,7 +99,7 @@ export function useManifestEditor(electionId: string | null) {
         alliances: data.alliances || [],
         watchlists: watchlists.map(w => ({ ...w, entries: w.entries || [] })),
         tracked: data.tracked || [],
-        milestones: data.milestones || DEFAULT_MANIFEST.milestones,
+        milestones: data.milestones || defaultMilestones(c.length),
         compare_with: data.compare_with || [],
         history: data.history || [],
         history_years: data.history_years || [],

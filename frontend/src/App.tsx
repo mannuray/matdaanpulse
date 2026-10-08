@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './theme/ThemeProvider';
-import { ElectionProvider } from './hooks/useElection';
+import { ElectionProvider } from './viewmodels/data/useElection';
 import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 import ElectionView from './pages/ElectionView';

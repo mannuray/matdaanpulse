@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { useShellStatus } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 import { NEW_ID, useEntityRoute } from '../hooks/useEntityRoute';
 import { roleLabel, useUserManager, USER_LIST_CAP } from '../hooks/useUserManager';
 import { EntityPage } from '../components/entity/EntityPage';
@@ -20,7 +20,7 @@ const ROLE_TONE: Record<User['role'], Tone> = { SUPER_ADMIN: 'accent', EDITOR: '
 /** PAGE: Users (SUPER_ADMIN) — accounts table + panel at /users/:id, create at /users/new. */
 export default function Users() {
   const { user: me } = useAuth();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const route = useEntityRoute('/users', editorDirty);
   const m = useUserManager();
   const id = route.id;

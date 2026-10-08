@@ -46,6 +46,20 @@ export interface StateConfig {
   stripHonorifics?: boolean;
   /** Person links ignore word order and spaced initials (Telugu names: "Nara Chandrababu Naidu" / "Chandrababu Naidu Nara"). */
   looseNames?: boolean;
+  /** Overrides for the current-track tools (current-track.ts), so a state's seeds and media paths stay as first generated (Bihar). */
+  currentTrack?: CurrentTrackOverrides;
+}
+export interface CurrentTrackOverrides {
+  /** Fixed current-track years (leaders/affidavits), instead of the elections with a results site / MyNeta page; also the leaders seed's years. */
+  years: number[];
+  /** Candidate-page cache for photos-cli, under scraper/data/raw. */
+  photosRaw: string;
+  /** S3 key of a candidate photo. */
+  photoKey: (constNo: number, serial: number) => string;
+  /** MyNeta slug per year. */
+  myneta: Record<number, string>;
+  /** Label in the affidavits seed header. */
+  affidavitsLabel: string;
 }
 
 export const ECI_RESULTS_2026 = 'https://results.eci.gov.in/ResultAcGenMay2026/';
@@ -60,7 +74,9 @@ const state = (code: StateCode, slug: string, name: string, stateId: number, sea
 
 export const STATES: Record<StateCode, StateConfig> = {
   BR: { ...state('BR', 'bihar', 'Bihar', 5, 243, 38, 2),
-    partiesSeed: 'seed_bihar_parties.sql', linksSeed: 'seed_bihar_person_links_v2.sql', linksSeedName: 'seed_bihar_person_links_v2' },
+    partiesSeed: 'seed_bihar_parties.sql', linksSeed: 'seed_bihar_person_links_v2.sql', linksSeedName: 'seed_bihar_person_links_v2',
+    currentTrack: { years: [2010, 2015, 2020, 2025], photosRaw: 'eci2025', photoKey: (n, serial) => `persons/eci2025/${n}-${serial}.jpg`,
+      myneta: { 2010: 'bih2010', 2015: 'bihar2015', 2020: 'bihar2020', 2025: 'Bihar2025' }, affidavitsLabel: 'Bihar VS 2010-2025' } },
   WB: state('WB', 'wb', 'West Bengal', 36, 294, 68, 16),
   TN: state('TN', 'tn', 'Tamil Nadu', 31, 234, 44, 2),
   KL: state('KL', 'kl', 'Kerala', 16, 140, 14, 2),

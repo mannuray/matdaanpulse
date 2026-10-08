@@ -1,7 +1,6 @@
-import { parseCandidateDetailPage, parseConstituencyListPage, type ConstituencySummary } from '../../adapters/eci-vs-adapter';
+import { parseCandidateDetailPage, parseConstituencyListPage, parsePartywisePage, type ConstituencySummary } from './eci-parse';
 import { mapCandidates, seatStateFrom } from './eci-mapping';
 import type { MappingReport, PartyTally, Roster, SeatState, SourceAdapter } from '../types';
-import { parsePartywisePage } from '../../adapters/eci-vs-adapter';
 import { mapParty } from './eci-mapping';
 
 type FetchText = (url: string, ifModifiedSince?: string) => Promise<{ status: number; text: string; lastModified: string | null }>;
@@ -20,6 +19,8 @@ export class EciWebAdapter implements SourceAdapter {
   readonly id: string;
   readonly intervalMs: number;
   private readonly fetchText: FetchText;
+  private readonly now: () => number;
+  private readonly log: (msg: string, data?: unknown) => void;
   private roster: Roster | null = null;
   private pages = new Map<number, { lastModified: string | null; rows: ConstituencySummary[] }>();
   private signature = new Map<number, string>();
@@ -28,10 +29,16 @@ export class EciWebAdapter implements SourceAdapter {
   /** Bookkeeping from the latest poll() by const_no; promoted per seat by commit(constIds) once delivered, discarded by the next poll(). */
   private pending = { signature: new Map<number, string>(), declaredAt: new Map<number, number>(), rechecked: new Set<number>() };
 
-  constructor(private readonly opts: { id: string; baseUrl: string; stateCode: string; intervalMs?: number; concurrency?: number; partyAliases?: Record<string, string>; fetchText?: FetchText; fetchTimeoutMs?: number }) {
+  constructor(private readonly opts: { id: string; baseUrl: string; stateCode: string; intervalMs?: number; concurrency?: number; partyAliases?: Record<string, string>; fetchText?: FetchText; fetchTimeoutMs?: number;
+    /** Clock for the declared-seat recheck (default Date.now). */
+    now?: () => number;
+    /** Warnings (default console.warn). */
+    log?: (msg: string, data?: unknown) => void }) {
     this.id = opts.id;
     this.intervalMs = opts.intervalMs ?? 45_000;
     this.fetchText = opts.fetchText ?? makeDefaultFetch(opts.fetchTimeoutMs ?? DEFAULT_FETCH_TIMEOUT_MS);
+    this.now = opts.now ?? Date.now;
+    this.log = opts.log ?? ((msg, data) => (data === undefined ? console.warn(msg) : console.warn(msg, data)));
   }
 
   async prepare(roster: Roster): Promise<MappingReport> {
@@ -62,7 +69,7 @@ export class EciWebAdapter implements SourceAdapter {
     const pending = this.pending = { signature: new Map<number, string>(), declaredAt: new Map<number, number>(), rechecked: new Set<number>() };
     const rows = await this.listRows();
     const byNo = new Map(this.roster.seats.map(s => [s.const_no, s]));
-    const now = Date.now();
+    const now = this.now();
     const due = rows.filter(r => {
       if (!byNo.has(r.constNo)) return false;
       const sig = `${r.winnerName}|${r.winnerParty}|${r.margin}|${r.rounds}|${r.status}`;
@@ -80,7 +87,7 @@ export class EciWebAdapter implements SourceAdapter {
         const page = await this.fetchText(`${this.opts.baseUrl}/candidateswise-${this.opts.stateCode}${r.constNo}.htm`);
         if (page.status !== 200) return;
         const mapped = mapCandidates(seat, parseCandidateDetailPage(page.text), this.roster!.parties, this.opts.partyAliases ?? {});
-        if ('reason' in mapped) { console.warn(`[${this.id}] seat ${r.constNo} ${seat.name}: ${mapped.reason}`); return; }
+        if ('reason' in mapped) { this.log(`[${this.id}] seat ${r.constNo} ${seat.name}: ${mapped.reason}`); return; }
         pending.signature.set(r.constNo, sig);
         if (state === 'declared') {
           if (!this.declaredAt.has(r.constNo)) pending.declaredAt.set(r.constNo, now);
@@ -88,7 +95,7 @@ export class EciWebAdapter implements SourceAdapter {
         }
         out.push({ const_id: seat.const_id, state, round, votes: mapped.votes });
       } catch (e) {
-        console.warn(`[${this.id}] seat ${r.constNo} ${seat.name}: fetch failed: ${(e as Error).message}`);
+        this.log(`[${this.id}] seat ${r.constNo} ${seat.name}: fetch failed: ${(e as Error).message}`);
       }
     });
     return out.sort((a, b) => a.const_id.localeCompare(b.const_id));
@@ -106,7 +113,7 @@ export class EciWebAdapter implements SourceAdapter {
       else if (r.won || r.leading) unmapped.push(`${r.party} (${r.won}/${r.leading})`);
     }
     // An unmapped party's seats would otherwise show as a silent tally mismatch; add a partyAliases entry for it.
-    if (unmapped.length) console.warn(`[${this.id}] tally: ${unmapped.length} unmapped part${unmapped.length === 1 ? 'y' : 'ies'} (won/leading): ${unmapped.join(', ')}`);
+    if (unmapped.length) this.log(`[${this.id}] tally: ${unmapped.length} unmapped part${unmapped.length === 1 ? 'y' : 'ies'} (won/leading): ${unmapped.join(', ')}`);
     return out;
   }
 

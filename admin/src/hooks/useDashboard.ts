@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useElection } from '../context/ElectionContext';
-import { getLiveResults, getSeatLocks } from '../services/election.service';
+import { getLiveResults, getSeatLocks } from '../services/live.service';
 import { getAuditLogs } from '../services/audit.service';
 import { getSystemStatus } from '../services/status.service';
 import { getReadiness } from '../services/health.service';

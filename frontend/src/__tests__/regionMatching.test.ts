@@ -4,8 +4,8 @@ import { resolve } from 'node:path';
 import {
   STATE_CODE_TO_ST_NAME, parseConstId, stateFromConstId, buildRegionLookup,
   findRegionForFeature, buildStateByConstId, groupRegionsByState, displayNameFromConstId,
-} from '../utils/regionMatching';
-import type { FeatureProperties } from '../utils/geoHelpers';
+} from '../model/geo/regionMatching';
+import type { FeatureProperties } from '../model/geo/geoHelpers';
 
 const geo = JSON.parse(readFileSync(resolve(__dirname, '../../public/geo/india_pc_2008.geojson'), 'utf8')) as {
   features: { properties: FeatureProperties }[];

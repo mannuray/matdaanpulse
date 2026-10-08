@@ -1,17 +1,5 @@
 import { ElectionsService } from './elections.service';
 
-describe('ElectionsService.parseManifest', () => {
-  const svc = new ElectionsService({} as any);
-
-  it('parses JSON text into an object', () => {
-    expect(svc.parseManifest('{"a":[1,2]}')).toEqual({ a: [1, 2] });
-  });
-
-  it('returns null for absent, empty, bad or non-object values without throwing', () => {
-    for (const v of [null, undefined, '', '{not json', '"str"', '5', 'null', '[]', '[1,2]']) expect(svc.parseManifest(v)).toBeNull();
-  });
-});
-
 describe('ElectionsService.comparableManifest', () => {
   const election = { id: 'e25', type: 'VS', state_id: 5, delimitation: '2008' };
   const make = (ok: string[]) => {

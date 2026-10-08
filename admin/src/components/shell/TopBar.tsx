@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import * as Menu from '@radix-ui/react-dropdown-menu';
 import { Search } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import { confirmDiscardEdits, useShellStatus, type LiveStreamState } from '../../context/ShellStatusContext';
+import { confirmDiscardEdits, useUnsavedEdits } from '../../context/UnsavedEditsContext';
+import { useLiveStatus, type LiveStreamState } from '../../context/LiveStatusContext';
 import { ElectionPicker } from './ElectionPicker';
 import { HealthDot } from './HealthDot';
 import { ShortcutsDialog } from './ShortcutsDialog';
@@ -23,7 +24,8 @@ const isMac = () => typeof navigator !== 'undefined'
 
 export function TopBar() {
   const { user, logout, hasRole } = useAuth();
-  const { live, editorDirty } = useShellStatus();
+  const { live } = useLiveStatus();
+  const { editorDirty } = useUnsavedEdits();
   const [paletteOpen, setPaletteOpen] = useState(false);
   const initials = (user?.name ?? '?').split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase();
   const canSeeFeedback = hasRole('SUPER_ADMIN') || hasRole('EDITOR');

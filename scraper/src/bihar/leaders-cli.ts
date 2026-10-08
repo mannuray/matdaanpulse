@@ -11,7 +11,6 @@ import { stableUuid } from './match';
 import { similarity } from './names';
 import { electionOf, electionsOf, parseState } from './elections';
 import { trackOf } from './current-track';
-import { BIHAR_LEADERS } from './leaders-seed';
 import type { Profile } from './profiles';
 import type { Year } from './types';
 
@@ -69,8 +68,7 @@ const people: ResolvedPerson[] = leaders.people.map(p => {
 });
 
 const ids = Object.fromEntries(years.map(y => [String(y), electionOf(ST, y).electionId]));
-const opts = ST === 'BR' ? BIHAR_LEADERS : { stateId: track.state.stateId, stateName: track.state.name, slug: track.state.slug, seedName: track.leadersSeed, years: years.map(String) };
-fs.writeFileSync(path.join(DB_DIR, `${track.leadersSeed}.sql`), emitLeadersSeed(leaders, people, ids, opts) + '\n');
+fs.writeFileSync(path.join(DB_DIR, `${track.leadersSeed}.sql`), emitLeadersSeed(leaders, people, ids, track.leadersOpts(years)) + '\n');
 const entries = (y: string) => leaders.elections[y].leaders.length + leaders.elections[y].cabinet.length;
 console.log(`${people.length} leaders, ${people.reduce((a, p) => a + p.candidateIds.length, 0)} candidacies, ${people.filter(p => p.profile?.photo_url).length} photos;`,
   `manifest entries ${years.map(y => `${y} ${entries(String(y))}`).join(', ')}`);

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { acquireSeatLock, releaseSeatLock } from '../services/election.service';
+import { acquireSeatLock, releaseSeatLock } from '../services/live.service';
 import { ApiError } from '../services/api-client';
 import type { SeatLock } from '../types';
 

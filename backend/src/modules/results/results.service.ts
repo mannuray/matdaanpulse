@@ -6,6 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CacheService, CACHE_TTL } from '../redis/cache.service';
 import { LiveStateService } from './live-state.service';
 import { ConstituencyNotFoundException } from '../../common/exceptions';
+import { seatTally } from '../../common/tally';
 
 /** Candidate fields of a compare row (the affidavit's BigInt columns are not JSON-serialisable). */
 const COMPARE_CANDIDATE = {
@@ -457,18 +458,18 @@ export function buildSnapshot(
     const_type: r.constituencies.type,
   }));
 
+  const withParty = rows.filter((r) => r.candidates.party_id && r.candidates.parties);
+  const tally = seatTally(withParty.map((r) => ({ party_id: r.candidates.party_id, status: r.status })));
   const byParty = new Map<string, { party_id: string; party_name: string; color: string | null; won: number; leading: number; total_votes: number }>();
-  for (const r of rows) {
-    const pid = r.candidates.party_id;
-    const party = r.candidates.parties;
-    if (!pid || !party) continue;
+  for (const r of withParty) {
+    const pid = r.candidates.party_id!;
+    const party = r.candidates.parties!;
     let e = byParty.get(pid);
     if (!e) {
-      e = { party_id: pid, party_name: party.name, color: party.color, won: 0, leading: 0, total_votes: 0 };
+      const { won, leading } = tally.get(pid) ?? { won: 0, leading: 0 };
+      e = { party_id: pid, party_name: party.name, color: party.color, won, leading, total_votes: 0 };
       byParty.set(pid, e);
     }
-    if (r.status === 'WON') e.won++;
-    else if (r.status === 'LEADING') e.leading++;
     e.total_votes += Number(r.votes) || 0;
   }
   const parties = [...byParty.values()];

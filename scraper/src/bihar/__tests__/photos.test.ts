@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
-import { parseCandidateDetailPage } from '../../adapters/eci-vs-adapter';
+import { parseCandidateDetailPage } from '../../live/adapters/eci-parse';
 import { topCandidates, matchPhoto, emitPhotosSeed, ECI_CREDIT } from '../photos';
 import type { SeatJson } from '../types';
 

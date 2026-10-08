@@ -6,6 +6,7 @@ import { ResultChangeNotifier, type ChangedRow } from '../live/result-change-not
 import { ShardsService, REST } from './shards.service';
 import { LeaseService } from './lease.service';
 import { lockSeats } from './seat-lock';
+import { seatTally } from '../../common/tally';
 import { evaluateSeat, type IncomingSeat, type RosterCandidate, type SeatOutcome, type SeatState, type StoredRow, type StoredSeat } from './seat-rules';
 import { ElectionNotFoundException, IngestBadRequestException, IngestInactiveSourceException, IngestNoLeaseException, IngestNotLiveException } from '../../common/exceptions';
 import type { SeatsBody, TallyBody } from './dto/ingest.dto';
@@ -32,7 +33,7 @@ type Evaluated = { seat: IncomingSeat; outcome: SeatOutcome | { kind: 'rejected'
 type Loaded = { stateOf: Map<string, { state: string | null; round_current: number | null; round_total: number | null; last_source: string | null; last_observed_at: Date | null }>;
   rowsOf: Map<string, StoredRow[]>; holdOf: Map<string, { round_at_hold: number | null; expires_at: Date }> };
 
-async function loadSeats(db: PrismaService, electionId: string, ids: string[]): Promise<Loaded> {
+async function loadSeats(db: Pick<Prisma.TransactionClient, 'seat_ingest_state' | 'results' | 'seat_holds'>, electionId: string, ids: string[]): Promise<Loaded> {
   const [states, rows, holds] = await Promise.all([
     db.seat_ingest_state.findMany({ where: { election_id: electionId, const_id: { in: ids } } }),
     db.results.findMany({ where: { election_id: electionId, const_id: { in: ids } }, select: { candidate_id: true, const_id: true, votes: true, status: true, margin: true } }),
@@ -141,11 +142,11 @@ export class IngestService {
     let evaluated: Evaluated[] = [];
     let response!: SeatsResponse;
     await this.prisma.$transaction(async tx => {
-      await lockSeats(tx as any, electionId, ids);
-      evaluated = evaluate(await loadSeats(tx as any, electionId, ids), ctx);
+      await lockSeats(tx, electionId, ids);
+      evaluated = evaluate(await loadSeats(tx, electionId, ids), ctx);
       response = summarise(evaluated);
-      await this.write(tx as any, electionId, evaluated, body.source, observedAt, now);
-      await (tx as any).ingest_log.create({ data: logRow(response) });
+      await this.write(tx, electionId, evaluated, body.source, observedAt, now);
+      await tx.ingest_log.create({ data: logRow(response) });
     }, TX);
 
     const changed = changedRows(evaluated, rosterOf);
@@ -165,12 +166,7 @@ export class IngestService {
       where: { election_id: electionId, ...(wholeElection ? {} : { const_id: { in: shard.seat_ids } }), status: { in: ['WON', 'LEADING'] } },
       select: { status: true, candidates: { select: { party_id: true } } },
     });
-    const ours = new Map<string, { won: number; leading: number }>();
-    for (const r of rows) {
-      const p = r.candidates.party_id; if (!p) continue;
-      const e = ours.get(p) ?? ours.set(p, { won: 0, leading: 0 }).get(p)!;
-      if (r.status === 'WON') e.won++; else e.leading++;
-    }
+    const ours = seatTally(rows.map(r => ({ party_id: r.candidates.party_id, status: String(r.status) })));
     const theirs = new Map(body.parties.map(p => [p.party_id, { won: p.won, leading: p.leading }]));
     const mismatch: TallyMismatch[] = [];
     for (const id of new Set([...ours.keys(), ...theirs.keys()])) {
@@ -201,7 +197,7 @@ export class IngestService {
   }
 
   /** One transaction: the results write (writeSeats: rows, rounds, seat state, timeline), released holds, seat rejections. */
-  async write(tx: PrismaService, electionId: string, evaluated: Evaluated[], source: string, observedAt: Date, now: Date): Promise<void> {
+  async write(tx: Pick<Prisma.TransactionClient, '$executeRaw'>, electionId: string, evaluated: Evaluated[], source: string, observedAt: Date, now: Date): Promise<void> {
     const applied = evaluated.filter(e => e.outcome.kind === 'applied') as { seat: IncomingSeat; outcome: Extract<SeatOutcome, { kind: 'applied' }> }[];
     const touched = evaluated.filter(e => e.outcome.kind === 'applied' || e.outcome.kind === 'unchanged');
     const released = evaluated.filter(e => (e.outcome.kind === 'applied' || e.outcome.kind === 'unchanged') && (e.outcome as any).releaseHold).map(e => e.seat.const_id);

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getLiveResults, subscribeLiveUpdates } from '../../services/election.service';
-import { useShellStatus } from '../../context/ShellStatusContext';
+import { getLiveResults, subscribeLiveUpdates } from '../../services/live.service';
+import { useLiveStatus } from '../../context/LiveStatusContext';
 import { useToast } from '../../context/ToastContext';
 import type { LiveConstituency, SeatLock } from '../../types';
 
@@ -15,7 +15,7 @@ export function useLiveSeats(electionId: string, on: { seatLock(constId: string,
   const [all, setAll] = useState<LiveConstituency[]>([]);
   const [loading, setLoading] = useState(false);
   const [flashIds, setFlashIds] = useState<Set<string>>(new Set());
-  const { setLive } = useShellStatus();
+  const { setLive } = useLiveStatus();
   const toastRef = useRef(useToast());
   const onRef = useRef(on);
   onRef.current = on;

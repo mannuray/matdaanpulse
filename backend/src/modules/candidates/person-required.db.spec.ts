@@ -311,7 +311,7 @@ describe('migration 018: every candidate has a person (DB)', () => {
       -- Split: one of ALOK RANJAN's four contests moves to a new person.
       WITH np AS (INSERT INTO persons (name, state_id) VALUES ('ALOK RANJAN', 5) RETURNING id)
       UPDATE candidates SET person_id = (SELECT id FROM np) WHERE id = 'b5da2bcd-3cf5-48d0-914a-efbffc2d0e2d';
-      -- Merge: AMRENDRA KUMAR PANDEY into ANANT KUMAR SINGH, logged as PersonsService.merge does.
+      -- Merge: AMRENDRA KUMAR PANDEY into ANANT KUMAR SINGH, logged as PersonMergeService.merge does.
       INSERT INTO person_merges (keeper_id, keeper_ref, duplicate, candidate_ids)
       SELECT 'e63ec8a1-64f4-4f5e-a69b-72405c2511c9', 'e63ec8a1-64f4-4f5e-a69b-72405c2511c9', to_jsonb(p),
              ARRAY(SELECT id FROM candidates WHERE person_id = p.id)

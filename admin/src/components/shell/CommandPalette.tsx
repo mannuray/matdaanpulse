@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useElection } from '../../context/ElectionContext';
-import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusContext';
+import { confirmDiscardEdits, useUnsavedEdits } from '../../context/UnsavedEditsContext';
 import { MIN_QUERY, useCommandSearch, type CommandItem } from '../../hooks/useCommandSearch';
 import { Kbd } from '../ui/Kbd';
 import { cn } from '../ui/cn';
@@ -14,7 +14,7 @@ export function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenCh
   const navigate = useNavigate();
   const { hasRole } = useAuth();
   const { electionId, elections, setElectionId } = useElection();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
   const listId = useId();

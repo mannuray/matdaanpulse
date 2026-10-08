@@ -1,7 +1,5 @@
-import type { MapTab } from './index';
-
-/** Map layer identifiers. Same values as the legacy MapTab. */
-export type LayerId = MapTab;
+/** Map layer identifiers (the registry of layers: model/derive/layers.ts). */
+export type LayerId = 'overview' | 'battle' | 'demographics' | 'states' | 'swing' | 'insights' | 'history' | 'regions';
 
 /** A party with its current seat count (won + leading). */
 export interface PartySeats {

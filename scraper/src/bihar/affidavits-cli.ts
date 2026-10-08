@@ -4,11 +4,10 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { electionOf, parseState } from './elections';
+import { parseState } from './elections';
 import { trackOf } from './current-track';
-import { BIHAR_AFFIDAVITS } from './affidavits';
 import { DB_DIR, loadSeeded } from './seeded';
-import { MYNETA_SLUGS, emitAffidavitsSeed, matchWinners, parseWinners, winnersUrl, type Affidavit, type WinnerSeat } from './affidavits';
+import { emitAffidavitsSeed, matchWinners, parseWinners, winnersUrl, type Affidavit, type WinnerSeat } from './affidavits';
 import type { Year } from './types';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126 Safari/537.36';
@@ -30,7 +29,7 @@ async function page(slug: string): Promise<string> {
 (async () => {
   const ST = parseState(process.argv[2] ?? 'BR');
   const track = trackOf(ST);
-  const slugOf = (y: number) => (ST === 'BR' ? MYNETA_SLUGS[y] : electionOf(ST, y).myneta!);
+  const slugOf = track.mynetaSlug;
   const byYear: Record<string, Affidavit[]> = {};
   for (const y of track.years as Year[]) {
     const s = loadSeeded(ST, y);
@@ -45,6 +44,5 @@ async function page(slug: string): Promise<string> {
     console.log(`${y}: ${rows.length} MyNeta winners, ${matched.length} matched, ${unmatched.length} unmatched`);
     for (const u of unmatched) console.log(`    ${u}`);
   }
-  const opts = ST === 'BR' ? BIHAR_AFFIDAVITS : { seedName: track.affidavitsSeed, label: `${track.state.name} VS ${track.years.join(', ')}` };
-  fs.writeFileSync(path.join(DB_DIR, `${track.affidavitsSeed}.sql`), emitAffidavitsSeed(byYear, opts) + '\n');
+  fs.writeFileSync(path.join(DB_DIR, `${track.affidavitsSeed}.sql`), emitAffidavitsSeed(byYear, track.affidavitsOpts()) + '\n');
 })().catch(e => { console.error(e); process.exit(1); });

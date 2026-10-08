@@ -1,4 +1,4 @@
-import { getPartyUsage } from '../services/geo.service';
+import { getPartyUsage } from '../services/party.service';
 import { useRecordQuery } from './useRecordQuery';
 
 /**

@@ -1,13 +1,15 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import {
   getCandidate, updateCandidate, changeCandidatePerson, splitCandidate, type CandidateAffidavit,
 } from '../services/candidate.service';
 import { getPersons, updatePerson } from '../services/person.api';
-import { getParties } from '../services/geo.service';
+import { useParties } from './useParties';
 import { useToast } from '../context/ToastContext';
-import { fieldErrorMap } from '../services/api-client';
-import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
-import type { Candidate, Party, PersonWithStats } from '../types';
+import { type RecordLoadErrorKind } from './useRecordQuery';
+import { useRecordForm } from './useRecordForm';
+import { usePersonSearch } from './usePersonSearch';
+import type { Candidate, PersonWithStats } from '../types';
+
 
 /** The create and edit form. The affidavit fields are text as typed; `candidateAffidavit` turns them into numbers. */
 export interface CandidateForm {
@@ -86,6 +88,7 @@ const sameName = (a: string, b: string) => a.trim().replace(/\s+/g, ' ').toUpper
 /** See RecordLoadErrorKind: 'not_found' (404 or 400) or a retryable 'failed'. */
 export type LoadError = RecordLoadErrorKind;
 
+
 /**
  * CONTROLLER: Candidate Edit (MVC)
  * The candidacy form (name, party, incumbent, affidavit) and its person: change person, split into a new person,
@@ -93,90 +96,33 @@ export type LoadError = RecordLoadErrorKind;
  */
 export function useCandidateEdit(id?: string) {
   const { toast, toastError } = useToast();
-
-  // Data State
-  const [candidate, setCandidate] = useState<Candidate | null>(null);
-  const [parties, setParties] = useState<Party[]>([]);
-  const [loading, setLoading] = useState(!!id);
-  const [loadError, setLoadError] = useState<LoadError | null>(null);
-  const [saving, setSaving] = useState(false);
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const parties = useParties();
   const [photoError, setPhotoError] = useState<string | null>(null);
 
   // photo_url is the person's photo: shown and edited here, saved with PUT /admin/persons/:id.
-  const [form, setForm] = useState<CandidateEditForm>(EMPTY_FORM);
-  const [saved, setSaved] = useState<CandidateEditForm>(EMPTY_FORM);
-  const formRef = useRef(form);
-  formRef.current = form;
-
-  // Person State
-  const [personSearch, setPersonSearch] = useState('');
-  const [personMatches, setPersonMatches] = useState<PersonWithStats[]>([]);
-  const [isLinking, setIsLinking] = useState(false);
-  const searchTimer = useRef<ReturnType<typeof setTimeout>>();
-  const [sameNamePersons, setSameNamePersons] = useState<PersonWithStats[]>([]);
-
-  // 1. Initial Load
-  const loadData = useCallback(async () => {
-    if (!id) return;
-    setLoading(true);
-    setLoadError(null);
-    try {
-      const [c, p] = await Promise.all([
-        getCandidate(id),
-        getParties().catch(() => [])
-      ]);
-      setCandidate(c);
-      setParties(p);
-
-      const next = toForm(c);
-      setForm(next);
-      setSaved(next);
-    } catch (err) {
-      const kind = recordLoadErrorKind(err);
-      setLoadError(kind);
-      // "Not found" is said on the page ("Candidate not found"); only other failures toast.
-      if (kind === 'failed') toastError(err, 'Failed to load candidate data');
-    } finally {
-      setLoading(false);
-    }
-  }, [id, toastError]);
-
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
-
-  // 2. Save Logic
-  const handleSave = async () => {
-    if (!id || !form.name.trim() || !candidateNumbersValid(form)) return false;
-    const submitted = form;
-    const base = saved;
-    const { photo_url: _p, ...fields } = submitted;
-    const { photo_url: _b, ...baseFields } = base;
-    const fieldsChanged = JSON.stringify(fields) !== JSON.stringify(baseFields);
-    const photoChanged = submitted.photo_url !== base.photo_url;
-    setSaving(true);
-    setFieldErrors({});
-    setPhotoError(null);
-    try {
-      if (fieldsChanged) {
-        try {
-          // Only the keys the backend accepts (it refuses metadata, gender, education, person_id…).
-          await updateCandidate(id, {
-            name: submitted.name,
-            party_id: submitted.party_id || INDEPENDENT,
-            is_incumbent: submitted.is_incumbent,
-            ...candidateAffidavit(submitted),
-          });
-        } catch (err) {
-          setFieldErrors(fieldErrorMap(err));
-          toastError(err, 'Failed to update profile');
-          return false;
-        }
+  const rf = useRecordForm<Candidate, CandidateEditForm>({
+    id,
+    load: getCandidate,
+    toForm,
+    empty: EMPTY_FORM,
+    canSave: (f) => !!f.name.trim() && candidateNumbersValid(f),
+    save: async (cid, submitted, { base, record, setSaved }) => {
+      setPhotoError(null);
+      const { photo_url: _p, ...fields } = submitted;
+      const { photo_url: _b, ...baseFields } = base;
+      if (JSON.stringify(fields) !== JSON.stringify(baseFields)) {
+        // Only the keys the backend accepts (it refuses metadata, gender, education, person_id…).
+        // A failure here throws: field errors + 'Failed to update profile'.
+        await updateCandidate(cid, {
+          name: submitted.name,
+          party_id: submitted.party_id || INDEPENDENT,
+          is_incumbent: submitted.is_incumbent,
+          ...candidateAffidavit(submitted),
+        });
       }
-      if (photoChanged && candidate?.person_id) {
+      if (submitted.photo_url !== base.photo_url && record?.person_id) {
         try {
-          await updatePerson(candidate.person_id, { photo_url: submitted.photo_url || null });
+          await updatePerson(record.person_id, { photo_url: submitted.photo_url || null });
         } catch (err) {
           // The candidate fields (if any) are saved; only the photo stays unsaved, so Save retries just that.
           setSaved({ ...submitted, photo_url: base.photo_url });
@@ -185,47 +131,28 @@ export function useCandidateEdit(id?: string) {
           return false;
         }
       }
-      toast(photoChanged && !fieldsChanged ? 'Photo updated' : 'Candidate profile updated');
-      // The submitted values are now the saved baseline; edits typed while saving stay dirty.
-      setSaved(submitted);
-      try {
-        const c = await getCandidate(id);
-        setCandidate(c);
-        if (JSON.stringify(formRef.current) === JSON.stringify(submitted)) {
-          const next = toForm(c);
-          setForm(next);
-          setSaved(next);
-        }
-      } catch { /* saved fine; the list refresh and next open will show server state */ }
-      return true;
-    } finally {
-      setSaving(false);
-    }
-  };
+    },
+    messages: {
+      loadFailed: 'Failed to load candidate data',
+      saveFailed: 'Failed to update profile',
+      saved: (submitted, base) => {
+        const { photo_url: _p, ...fields } = submitted;
+        const { photo_url: _b, ...baseFields } = base;
+        const photoOnly = submitted.photo_url !== base.photo_url && JSON.stringify(fields) === JSON.stringify(baseFields);
+        return photoOnly ? 'Photo updated' : 'Candidate profile updated';
+      },
+    },
+  });
+  const candidate = rf.record;
 
-  // 3. Change person: the person search (the record's own person is never offered).
-  useEffect(() => {
-    if (searchTimer.current) clearTimeout(searchTimer.current);
-    if (!personSearch || personSearch.trim().length < 2) {
-      setPersonMatches([]);
-      return;
-    }
-
-    searchTimer.current = setTimeout(async () => {
-      try {
-        const response = await getPersons(1, 10, personSearch.trim());
-        setPersonMatches(response.data);
-      } catch {
-        setPersonMatches([]);
-      }
-    }, 400);
-
-    return () => { if (searchTimer.current) clearTimeout(searchTimer.current); };
-  }, [personSearch]);
+  // Change person: the person search (the record's own person is never offered).
+  const [personSearch, setPersonSearch] = useState('');
   const personId = candidate?.person_id;
-  const personResults = useMemo(() => personMatches.filter((p) => p.id !== personId), [personMatches, personId]);
+  const personResults = usePersonSearch(personSearch, { excludeId: personId });
+  const [isLinking, setIsLinking] = useState(false);
+  const [sameNamePersons, setSameNamePersons] = useState<PersonWithStats[]>([]);
 
-  // 4. Possible duplicates: other persons with this ballot name (or the person's name). One lookup per record.
+  // Possible duplicates: other persons with this ballot name (or the person's name). One lookup per record.
   const ballotName = candidate?.name;
   const personName = candidate?.person?.name;
   useEffect(() => {
@@ -247,13 +174,13 @@ export function useCandidateEdit(id?: string) {
     setIsLinking(true);
     try {
       const merge_id = (await changeCandidatePerson(id, newPersonId))?.merge_id;
-      const target = personMatches.find((p) => p.id === newPersonId)?.name ?? 'another person';
+      const target = personResults.find((p) => p.id === newPersonId)?.name ?? 'another person';
       const from = candidate?.person?.name ?? candidate?.name ?? 'the old person';
       toast(merge_id
         ? `Merged ${from} into ${target}. A super admin can undo it from ${target}'s merge history.`
         : `Contest moved to ${target}`);
       setPersonSearch('');
-      await loadData();
+      await rf.refresh();
       return true;
     } catch (err) {
       toastError(err, 'Change person failed');
@@ -270,7 +197,7 @@ export function useCandidateEdit(id?: string) {
     try {
       const { person_id } = await splitCandidate(id);
       toast('Contest moved to a new person record');
-      await loadData();
+      await rf.refresh();
       return person_id;
     } catch (err) {
       toastError(err, 'Split failed');
@@ -280,14 +207,14 @@ export function useCandidateEdit(id?: string) {
     }
   };
 
-  const dirty = JSON.stringify(form) !== JSON.stringify(saved);
   /** Drop unsaved edits (panel Cancel). */
-  const reset = () => { setForm(saved); setFieldErrors({}); setPhotoError(null); };
+  const reset = () => { rf.reset(); setPhotoError(null); };
 
   return {
-    fieldErrors, photoError,
-    candidate, parties, loading, loadError, saving, form, setForm, dirty, reset, refresh: loadData,
+    fieldErrors: rf.fieldErrors, photoError,
+    candidate, parties, loading: rf.loading, loadError: rf.loadError, saving: rf.saving,
+    form: rf.form, setForm: rf.setForm, dirty: rf.dirty, reset, refresh: rf.refresh,
     personSearch, setPersonSearch, personResults, isLinking, sameNamePersons,
-    handleSave, changePerson, split
+    handleSave: rf.save, changePerson, split,
   };
 }

@@ -31,7 +31,7 @@ export class SeatCorrectionService {
     // Under the seat lock (shared with ingest), so an ingest batch for this seat either finished before this read or waits for the hold.
     let expires: Date = now;
     let changed = false;
-    await this.prisma.$transaction(async (tx: any) => {
+    await this.prisma.$transaction(async (tx) => {
       await lockSeats(tx, electionId, [constId]);
       const storedRows = (await tx.results.findMany({ where: { election_id: electionId, const_id: constId }, select: { candidate_id: true, votes: true, status: true, margin: true } })) as StoredRow[];
       const missing = missingResultRows(roster, storedRows);
