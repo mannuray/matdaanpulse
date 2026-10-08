@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { houseShown } from '../model/config/houses';
-import { useElection } from '../hooks/useElection';
-import { useApi } from '../hooks/useApi';
-import { getElection } from '../services/api';
+import { useElection } from '../viewmodels/data/useElection';
+import { useApi } from '../viewmodels/data/useApi';
+import { getElection } from '../model/api/election.service';
 import StudioDashboard from './StudioDashboard';
 import { useTranslation } from 'react-i18next';
 

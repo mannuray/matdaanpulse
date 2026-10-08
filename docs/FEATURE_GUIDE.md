@@ -497,10 +497,9 @@ Election data is loaded via SQL seed files in `database/`:
 | `frontend/src/components/organisms/WatchlistPanel.tsx` | Leaders & VIP watchlist |
 | `frontend/src/components/organisms/StatesMiniMap.tsx` | Per-state zoomed mini-map |
 | `frontend/src/components/atoms/LiveToast.tsx` | Toast notification stack |
-| `frontend/src/types/index.ts` | All shared TypeScript types |
-| `frontend/src/services/api.ts` | API client functions |
-| `frontend/src/hooks/useSSE.ts` | SSE subscription hook |
-| `frontend/src/hooks/useApi.ts` | Generic data-fetching hook |
+| `frontend/src/model/types/index.ts` | All shared TypeScript types |
+| `frontend/src/model/api/*.service.ts` | API client functions |
+| `frontend/src/viewmodels/data/useApi.ts` | Generic data-fetching hook |
 | `frontend/src/theme/index.css` | All styles (map-tabs, battle-chips, legends, etc.) |
 | `frontend/public/geo/*.geojson` | Map boundary files |
 | `database/seed*.sql` | Election seed data |

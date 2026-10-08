@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { normalizeConstId } from '../utils/normalizeConstId';
+import { normalizeConstId } from '../model/geo/normalizeConstId';
 
 const PAIRS: [string, string][] = [
   ['BR_AURANGABAD', 'MH_AURANGABAD'],

@@ -4,7 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', 'src/components/**', 'src/hooks/**', 'src/services/**', 'src/utils/**', 'src/types/**', 'src/pages/ConstituencyDetail.tsx', 'src/pages/PersonDetail.tsx', 'src/theme/ThemeProvider.tsx', 'e2e/**'] },
+  { ignores: ['dist', 'node_modules', 'src/components/**', 'src/pages/ConstituencyDetail.tsx', 'src/pages/PersonDetail.tsx', 'src/theme/ThemeProvider.tsx', 'e2e/**'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
