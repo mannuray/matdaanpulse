@@ -1,6 +1,6 @@
 import { resolveLeaderSeats } from '../leaders';
 import { describe, it, expect } from 'vitest';
-import { collectLeaderEntries, deriveLeaderCards } from '../leaders';
+import { manifestWatchlists, collectLeaderEntries, deriveLeaderCards } from '../leaders';
 import type { ManifestData, ResultRow } from '../../types';
 
 const winners = new Map<string, ResultRow>([
@@ -24,6 +24,35 @@ describe('collectLeaderEntries', () => {
   });
   it('returns an empty list without a manifest', () => {
     expect(collectLeaderEntries(null, [])).toEqual([]);
+  });
+});
+
+describe('manifestWatchlists (one sub-tab per manifest list)', () => {
+  const e = (name: string, const_id = '', party_id = 'BJP') => ({ name, party_id, const_id });
+  it('keeps every non-empty list with its own name, in manifest order (nothing hard-coded)', () => {
+    const m = { watchlists: [
+      { id: 'cm', name: 'CM faces', entries: [e('A', 'S1'), e('B', 'S2')] },
+      { id: 'empty', name: 'Draft list', entries: [] },
+      { id: 'turn', name: 'Turncoats', entries: [e('C', 'S3')] },
+    ] };
+    expect(manifestWatchlists(m).map(w => [w.id, w.name, w.entries.map(x => x.name)])).toEqual([
+      ['cm', 'CM faces', ['A', 'B']],
+      ['turn', 'Turncoats', ['C']],
+    ]);
+  });
+  it('a person in two lists appears in both; a duplicate inside one list appears once', () => {
+    const m = { watchlists: [
+      { id: 'l', name: 'Leaders', entries: [e('Nitish Kumar'), e('Nitish Kumar')] },
+      { id: 'c', name: 'Cabinet', entries: [e('Nitish Kumar'), e('Samrat', 'S9')] },
+    ] };
+    const out = manifestWatchlists(m);
+    expect(out[0].entries.map(x => x.name)).toEqual(['Nitish Kumar']);
+    expect(out[1].entries.map(x => x.name)).toEqual(['Nitish Kumar', 'Samrat']);
+    expect(out[1].entries[1]).toMatchObject({ partyId: 'BJP', constId: 'S9', custom: false });
+  });
+  it('no manifest or no lists → none', () => {
+    expect(manifestWatchlists(null)).toEqual([]);
+    expect(manifestWatchlists({ alliances: [] })).toEqual([]);
   });
 });
 

@@ -52,7 +52,7 @@ describe('tile behaviour', () => {
     const onSelectSeat = vi.fn();
     const onHoverSeat = vi.fn();
     const vm: LeadersVM = {
-      leaders: [{ key: 'k', name: 'Test Leader', constId: 'C7', constName: 'Seat', partyId: 'BJP', status: 'LEADING', margin: 100, custom: false }], watchlist: [],
+      leaders: [{ key: 'k', name: 'Test Leader', constId: 'C7', constName: 'Seat', partyId: 'BJP', status: 'LEADING', margin: 100, custom: false }], watchlist: [], lists: [],
       partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat, onHoverSeat, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop,
     };
     render(<LeadersStrip vm={vm} variant="tile" />);
@@ -67,7 +67,7 @@ describe('tile behaviour', () => {
 
   it('a leader who won unopposed shows "Unopposed", not a margin', () => {
     const vm: LeadersVM = {
-      leaders: [{ key: 'k', name: 'Pema Khandu', constId: 'C3', constName: 'Mukto', partyId: 'BJP', status: 'WON', margin: null, unopposed: true, custom: false }], watchlist: [],
+      leaders: [{ key: 'k', name: 'Pema Khandu', constId: 'C3', constName: 'Mukto', partyId: 'BJP', status: 'WON', margin: null, unopposed: true, custom: false }], watchlist: [], lists: [],
       partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop,
     };
     const { container } = render(<LeadersStrip vm={vm} variant="tile" />);
@@ -77,7 +77,7 @@ describe('tile behaviour', () => {
 
   it('a seatless leader with a person links to the person page', () => {
     const vm: LeadersVM = {
-      leaders: [{ key: 'k', name: 'Nitish Kumar', constId: '', constName: '', partyId: 'JDU', status: 'PENDING', margin: null, custom: false, personId: 'p-nk' }], watchlist: [],
+      leaders: [{ key: 'k', name: 'Nitish Kumar', constId: '', constName: '', partyId: 'JDU', status: 'PENDING', margin: null, custom: false, personId: 'p-nk' }], watchlist: [], lists: [],
       partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop,
     };
     render(<MemoryRouter><LeadersStrip vm={vm} variant="focus" /></MemoryRouter>);
@@ -89,7 +89,7 @@ describe('tile behaviour', () => {
     // 3 cards + 3 gaps (incl. the one before the chip) + 96px chip = 3*248 + 96; 92px wide is 4px short.
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, get: () => 3 * 248 + 92 });
     const leaders = Array.from({ length: 6 }, (_, i) => ({ key: `k${i}`, name: `Leader ${i}`, constId: `C${i}`, constName: 'Seat', partyId: 'BJP', status: 'LEADING' as const, margin: 10, custom: false }));
-    const vm: LeadersVM = { leaders, watchlist: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop };
+    const vm: LeadersVM = { leaders, watchlist: [], lists: [], partyColor: new Map(), seatOptions: [], onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop };
     render(<LeadersStrip vm={vm} variant="tile" />);
     expect(screen.getAllByRole('button', { name: /Leader \d/ })).toHaveLength(2);
     expect(screen.getByText('+4 more')).toBeTruthy();

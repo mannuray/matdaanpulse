@@ -37,6 +37,32 @@ export interface CustomWatch {
 
 type Entry = LeaderEntry & { custom: boolean };
 
+export interface ManifestWatchlist {
+  id: string;
+  name: string;
+  entries: Entry[];
+}
+
+/**
+ * The manifest's own watchlists, each kept apart (one Watchlist sub-tab per list): names, order and number are
+ * whatever this election's manifest has. Empty lists are left out; a duplicate inside one list appears once.
+ */
+export function manifestWatchlists(manifest: ManifestData | null): ManifestWatchlist[] {
+  return (manifest?.watchlists ?? [])
+    .filter(w => w.entries.length > 0)
+    .map(w => {
+      const seen = new Set<string>();
+      const entries: Entry[] = [];
+      for (const x of w.entries) {
+        const key = `${x.const_id}|${x.person_id ?? x.name.toLowerCase()}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        entries.push({ name: x.name, partyId: x.party_id, constId: x.const_id, role: x.role, personId: x.person_id, custom: false });
+      }
+      return { id: w.id, name: w.name, entries };
+    });
+}
+
 export function collectLeaderEntries(manifest: ManifestData | null, custom: CustomWatch[]): Entry[] {
   const out: Entry[] = [];
   const seen = new Set<string>();

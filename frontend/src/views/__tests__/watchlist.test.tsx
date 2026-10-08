@@ -2,6 +2,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup, within } from '@testing-library/react';
 import '../../i18n';
+import { MemoryRouter } from 'react-router-dom';
 import { StandingsTile, WatchlistPreview } from '../dashboard/StandingsTile';
 import { LeadersStrip } from '../dashboard/LeadersStrip';
 import { fitCount } from '../../viewmodels/tiles/fit';
@@ -22,7 +23,7 @@ const card = (i: number, over: Partial<LeaderCard> = {}): LeaderCard => ({
   key: `k${i}`, name: `Leader ${i}`, constId: `C${i}`, constName: `Seat ${i}`, partyId: 'BJP', status: 'LEADING', margin: 100 + i, custom: false, ...over,
 });
 const leadersVM = (over: Partial<LeadersVM> = {}): LeadersVM => ({
-  leaders: [], watchlist: [], partyColor: new Map(), seatOptions: [{ id: 'C9', name: 'Nine' }],
+  leaders: [], watchlist: [], lists: [], partyColor: new Map(), seatOptions: [{ id: 'C9', name: 'Nine' }],
   onFocus: noop, onSelectSeat: noop, onHoverSeat: noop, onAddCustom: noop, onRemoveCustom: noop, markOf: () => null, onOpenParty: noop, ...over,
 });
 const standingsVM: StandingsVM = { rows: [{ id: 'BJP', name: 'Party', color: '#fff', seats: 3, votePct: null, allianceId: null }], allRows: [], pulse: false, lockedId: null, onFocus: noop, onHoverParty: noop, onLockParty: noop, markOf: () => null, onOpenParty: noop };
@@ -165,5 +166,75 @@ describe('party mark in standings', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Party details: Party' }));
     expect(onOpenParty).toHaveBeenCalledWith('BJP');
     expect(onLockParty).not.toHaveBeenCalled();
+  });
+});
+
+describe('Watchlist tab: one sub-tab per manifest watchlist, then My seats', () => {
+  const lists = [
+    { id: 'faces', name: 'Faces to watch', cards: [card(1), card(2, { name: 'Leader Two' })] },
+    { id: 'turn', name: 'Turncoats', cards: [card(3)] },
+  ];
+  const open = (vm: LeadersVM, variant: 'tile' | 'focus' = 'focus') =>
+    render(<StandingsTile vm={standingsVM} variant={variant} watchlist={vm} initialTab="watchlist" />);
+
+  it('sub-tabs carry the manifest names and counts, in manifest order, with My seats last; the first list is shown', () => {
+    open(leadersVM({ lists, watchlist: [card(9, { custom: true })] }));
+    const subs = screen.getByRole('radiogroup', { name: 'Watchlists' });
+    expect(within(subs).getAllByRole('radio').map(r => r.textContent)).toEqual(['Faces to watch 2', 'Turncoats 1', 'My seats 1']);
+    expect(within(subs).getByRole('radio', { name: 'Faces to watch 2' }).getAttribute('aria-checked')).toBe('true');
+    expect(screen.getByText('Leader 1')).toBeTruthy();
+    expect(screen.queryByText('Leader 3')).toBeNull();
+  });
+
+  it('a manifest list is read-only (no remove, no add-seat); My seats keeps add and remove', () => {
+    open(leadersVM({ lists, watchlist: [card(9, { custom: true, constName: 'Mine' })] }));
+    expect(screen.queryByRole('button', { name: /Remove/ })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Add' })).toBeNull();
+    fireEvent.click(screen.getByRole('radio', { name: 'My seats 1' }));
+    expect(screen.getByRole('button', { name: /Remove Mine/ })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Add' })).toBeTruthy();
+  });
+
+  it('switching to another manifest list shows its people', () => {
+    open(leadersVM({ lists }));
+    fireEvent.click(screen.getByRole('radio', { name: 'Turncoats 1' }));
+    expect(screen.getByText('Leader 3')).toBeTruthy();
+    expect(screen.queryByText('Leader 1')).toBeNull();
+  });
+
+  it('with manifest lists the tab is plain "Watchlist"; without, no sub-tabs and the old "Watchlist (N)"', () => {
+    open(leadersVM({ lists }), 'tile');
+    expect(screen.getByRole('radio', { name: 'Watchlist' })).toBeTruthy();
+    cleanup();
+    open(leadersVM({ watchlist: [card(9, { custom: true })] }), 'tile');
+    expect(screen.getByRole('radio', { name: 'Watchlist (1)' })).toBeTruthy();
+    expect(screen.queryByRole('radiogroup', { name: 'Watchlists' })).toBeNull();
+  });
+
+  it('the picked sub-tab is reported and restored (tile → focus keeps it)', () => {
+    const onListChange = vi.fn();
+    render(<StandingsTile vm={standingsVM} variant="focus" watchlist={leadersVM({ lists })} initialTab="watchlist" initialList="turn" onListChange={onListChange} />);
+    expect(screen.getByRole('radio', { name: 'Turncoats 1' }).getAttribute('aria-checked')).toBe('true');
+    fireEvent.click(screen.getByRole('radio', { name: 'Faces to watch 2' }));
+    expect(onListChange).toHaveBeenCalledWith('faces');
+  });
+
+  it('the phone rail preview shows the first manifest list when there is one', () => {
+    render(<WatchlistPreview vm={leadersVM({ lists })} />);
+    expect(screen.getByText('Seat 1')).toBeTruthy();
+    expect(screen.queryByText('Track seats from the map to follow them here')).toBeNull();
+  });
+
+  it('a seatless entry links to the person page (no empty seat click); one without a person is plain text', () => {
+    const onSelectSeat = vi.fn();
+    const seatless = [{ id: 'l', name: 'Leaders', cards: [
+      card(1, { constId: '', constName: '', name: 'Nitish Kumar', personId: 'p-nk', status: 'NOT_CONTESTING', margin: null }),
+      card(2, { constId: '', constName: '', name: 'No Person', status: 'PENDING', margin: null }),
+    ] }];
+    render(<MemoryRouter><StandingsTile vm={standingsVM} variant="focus" watchlist={leadersVM({ lists: seatless, onSelectSeat })} initialTab="watchlist" /></MemoryRouter>);
+    expect(screen.getByRole('link', { name: /Nitish Kumar/ }).getAttribute('href')).toBe('/person/p-nk');
+    expect(screen.queryByRole('button', { name: /No Person/ })).toBeNull();
+    expect(screen.getByText('No Person')).toBeTruthy();
+    expect(onSelectSeat).not.toHaveBeenCalled();
   });
 });

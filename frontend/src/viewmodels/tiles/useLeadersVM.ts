@@ -2,15 +2,24 @@ import { useMemo } from 'react';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { intentFor } from '../store/hoverIntent';
-import { collectLeaderEntries, deriveLeaderCards, resolveLeaderSeats, type LeaderCard } from '../../model/derive/leaders';
+import { collectLeaderEntries, deriveLeaderCards, manifestWatchlists, resolveLeaderSeats, type LeaderCard } from '../../model/derive/leaders';
 
 export type { LeaderCard };
+
+/** One of the manifest's own watchlists (a Watchlist sub-tab): its name as the manifest has it, and live cards. */
+export interface WatchlistGroup {
+  id: string;
+  name: string;
+  cards: LeaderCard[];
+}
 
 export interface LeadersVM {
   /** Manifest leaders only, in manifest order. */
   leaders: LeaderCard[];
   /** The user's own tracked seats only. */
   watchlist: LeaderCard[];
+  /** The manifest's watchlists, non-empty ones in manifest order (none → the Watchlist tab shows only the user's seats). */
+  lists: WatchlistGroup[];
   partyColor: Map<string, string>;
   seatOptions: { id: string; name: string }[];
   onFocus(): void;
@@ -31,6 +40,13 @@ export function useLeadersVM(): LeadersVM {
     () => deriveLeaderCards(resolveLeaderSeats(collectLeaderEntries(manifestData, []), results), currentWinnerMap, (results?.length ?? 0) > 0),
     [manifestData, currentWinnerMap, results],
   );
+  const lists = useMemo(
+    () => manifestWatchlists(manifestData).map(w => ({
+      id: w.id, name: w.name,
+      cards: deriveLeaderCards(resolveLeaderSeats(w.entries, results), currentWinnerMap, (results?.length ?? 0) > 0),
+    })),
+    [manifestData, currentWinnerMap, results],
+  );
   const watchlist = useMemo(
     () => deriveLeaderCards(collectLeaderEntries(null, src.watchlist), currentWinnerMap),
     [src.watchlist, currentWinnerMap],
@@ -39,6 +55,7 @@ export function useLeadersVM(): LeadersVM {
   return {
     leaders,
     watchlist,
+    lists,
     partyColor: src.data.partyColorMap,
     seatOptions,
     onFocus: () => dispatch({ type: 'focus', tile: 'leaders' }),
