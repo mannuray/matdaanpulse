@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { PersonsService } from '../../candidates/persons.service';
+import { PersonMergeService } from '../../candidates/person-merge.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
@@ -14,6 +15,7 @@ import { AdminPersonsQueryDto } from '../../../common/dto/query.dto';
 export class AdminPersonsController {
   constructor(
     private readonly personsService: PersonsService,
+    private readonly merges: PersonMergeService,
     private readonly audit: AuditLogService,
   ) {}
 
@@ -38,7 +40,7 @@ export class AdminPersonsController {
       this.personsService.findWithCandidates(id),
       this.audit.lastEdit('person', id),
     ]);
-    const merges = await this.personsService.mergeHistory(id, person.candidates.map((c) => c.id));
+    const merges = await this.merges.mergeHistory(id, person.candidates.map((c) => c.id));
     return { ...person, last_edit, merges };
   }
 
@@ -60,12 +62,12 @@ export class AdminPersonsController {
   @Post('merge')
   @Roles('SUPER_ADMIN')
   mergePersons(@Req() req: any, @Body() body: MergePersonsDto) {
-    return this.personsService.merge(body.source_id, body.target_id, req.user?.id);
+    return this.merges.merge(body.source_id, body.target_id, req.user?.id);
   }
 
   @Post('merges/:id/undo')
   @Roles('SUPER_ADMIN')
   undoMerge(@Req() req: any, @Param('id', ParseUUIDPipe) id: string) {
-    return this.personsService.undoMerge(id, req.user?.id);
+    return this.merges.undoMerge(id, req.user?.id);
   }
 }

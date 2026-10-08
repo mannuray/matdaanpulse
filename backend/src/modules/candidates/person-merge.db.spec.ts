@@ -11,6 +11,7 @@
 import { config } from 'dotenv';
 import { join } from 'path';
 import { PrismaClient } from '@prisma/client';
+import { PersonMergeService } from './person-merge.service';
 import { PersonsService } from './persons.service';
 import { CandidatesService } from './candidates.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
@@ -75,8 +76,8 @@ describe('person merge, undo, change person and split (DB)', () => {
       },
     });
     const audit = new AuditLogService(client as any);
-    const persons = new PersonsService(client as any, audit);
-    return { persons, candidates: new CandidatesService(client as any, {} as any, audit, persons) };
+    const persons = new PersonMergeService(client as any, audit);
+    return { persons, personRecords: new PersonsService(client as any, audit), candidates: new CandidatesService(client as any, {} as any, audit, persons) };
   }
 
   async function inRollbackTx(name: string, body: (tx: any, s: Seat) => Promise<void>) {
@@ -152,10 +153,10 @@ describe('person merge, undo, change person and split (DB)', () => {
 
   it('undo leaves a field the keeper changed after the merge alone', async () => {
     await inRollbackTx('edited keeper', async (tx, s) => {
-      const { persons } = services(tx);
+      const { persons, personRecords } = services(tx);
       const { keeper, duplicate } = await setup(tx, s);
       const { merge_id } = await persons.merge(duplicate.id, keeper.id);
-      await persons.update(keeper.id, { caste: 'Edited caste' });
+      await personRecords.update(keeper.id, { caste: 'Edited caste' });
       await persons.undoMerge(merge_id);
       expect(await person(tx, keeper.id)).toMatchObject({ caste: 'Edited caste', religion: null, date_of_birth: null, wikipedia_url: null });
     });
