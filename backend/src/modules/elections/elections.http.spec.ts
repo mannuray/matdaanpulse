@@ -290,6 +290,8 @@ describe('CDN-ready live endpoints (HTTP)', () => {
       const res = await seat('?v=101');
       expect(res.status).toBe(404);
       expect(res.headers.get('cache-control')).toBe('no-store');
+      // Its own code: the page retries instead of saying the seat does not exist.
+      expect((await res.json()).error.code).toBe('GEN_0006');
       expect(ctx.resultsService.getConstituencyDetail).not.toHaveBeenCalled();
     });
     it('not counting: v = current is not immutable (photos/affidavits can change without a version bump)', async () => {
@@ -326,7 +328,7 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     const res = await get(`/elections/${EID}/results?v=101`);
     expect(res.status).toBe(404);
     expect(res.headers.get('cache-control')).toBe('no-store');
-    expect((await res.json()).error.code).toBe('GEN_0002');
+    expect((await res.json()).error.code).toBe('GEN_0006');
     expect(ctx.resultsService.getSnapshot).not.toHaveBeenCalled();
   });
 

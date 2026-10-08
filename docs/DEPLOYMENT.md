@@ -292,6 +292,20 @@ and column.
    and stray-seat handling).
 6. The 2027 elections' baselines are computed at T-1 (LIVE_RUNBOOK §2 step 0).
 
+### 5.0d Security and scale fixes (migrations 026 + 027, 2026-10-08)
+
+1. Render env, **before** the deploy: `JWT_SECRET` must be at least 32 characters (the backend refuses to start
+   otherwise). Optional: `JWT_TTL` (default `8h`), `LOGIN_MAX_FAILURES` (10), `LOGIN_LOCK_MINUTES` (15).
+2. Neon backup, then `setup.sh` with the direct URL: 026 (`ingest_keys.election_id`, `expires_at`) and 027
+   (`users.token_version`). The old backend ignores both.
+3. Merge and push (Vercel: CSP and security headers, lazy routes, compacted maps).
+4. Backend by CLI, then check `/health/ready`. Every admin session ends (tokens without `tv` are refused): log in again.
+5. Existing ingest keys are legacy (no election, no expiry; they still work). Before counting day, create a key per
+   election with an expiry (Admin → Live Console → Keys) and revoke the legacy ones.
+6. CSP `connect-src` names the API origin (`https://matdaanpulse-api.onrender.com`) in `frontend/vercel.json`,
+   `admin/vercel.json` and both `public/_headers`. When the API moves to `api.<domain>` behind Cloudflare (§5.4), change
+   all four in the same change as `VITE_API_BASE_URL`, or every API call is blocked by the browser.
+
 ### 5.1 Neon
 
 1. Create project in the region chosen in D1. Note both connection strings:

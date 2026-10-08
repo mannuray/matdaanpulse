@@ -95,6 +95,21 @@ describe('useConstituencyPageVM', () => {
     expect(api.getConstituency).toHaveBeenLastCalledWith('e1', 'S2', 8);
   }, 15_000);
 
+  it('a version this server does not have yet (404 GEN_0006) loads the unversioned detail, never "not found"', async () => {
+    api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Live', year: 2025 });
+    api.getConstituency.mockImplementation(async (_e: string, _c: string, v?: number | null) => {
+      if (v != null) throw new ApiError('This version is not available yet', 404, 'GEN_0006');
+      return { ...detail, id: 'S5' };
+    });
+    api.getConstituencyAnalysis.mockResolvedValue(null);
+    api.getManifest.mockResolvedValue(null);
+    live.value = { status: 'Live', version: 9 };
+    const { result } = renderHook(() => useConstituencyPageVM('e1', 'S5'));
+    await waitFor(() => expect(result.current.status).toBe('ready'));
+    expect(api.getConstituency).toHaveBeenCalledWith('e1', 'S5', 9);
+    expect(api.getConstituency).toHaveBeenLastCalledWith('e1', 'S5');
+  });
+
   it('a countermanded / adjourned seat state comes from the detail (seat_state), as the snapshot is not loaded', async () => {
     api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Live', year: 2025 });
     api.getConstituency.mockResolvedValue({ ...detail, id: 'S4', seat_state: 'countermanded', candidates: detail.candidates.map(c => ({ ...c, status: 'LEADING' })) });

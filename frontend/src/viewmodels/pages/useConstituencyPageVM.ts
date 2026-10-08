@@ -8,6 +8,7 @@ import { usePartyMeta } from '../data/usePartyMeta';
 import { useLocalStorage } from '../data/useLocalStorage';
 import { getElection, getConstituency, getConstituencyAnalysis, getManifest, ElectionService } from '../../model/api/election.service';
 import { ApiError } from '../../model/api/api-client';
+import { isVersionNotReady } from '../../model/live/poller';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
 import { seatInsights, type SeatInsight } from '../../model/derive/seatInsights';
@@ -62,7 +63,10 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   const version = live.version;
   // useApi's error is a string, so a 404 is turned into a value here.
   const detailRes = useApi(
-    () => getConstituency(electionId, constId, version).catch(e => { if (e instanceof ApiError && e.status === 404) return NOT_FOUND; throw e; }),
+    () => getConstituency(electionId, constId, version)
+      // A version this server has not reached yet (the poll raced ahead): the unversioned detail, not "not found".
+      .catch(e => { if (isVersionNotReady(e)) return getConstituency(electionId, constId); throw e; })
+      .catch(e => { if (e instanceof ApiError && e.status === 404) return NOT_FOUND; throw e; }),
     [electionId, constId, version], { key: `${ElectionService.getConstituencyCacheKey(electionId, constId)}_v${version ?? ''}` },
   );
   const notFound = detailRes.data === NOT_FOUND;

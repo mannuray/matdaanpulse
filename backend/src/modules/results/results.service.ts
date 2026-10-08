@@ -241,6 +241,7 @@ export class ResultsService {
         districts: true,
         states: true,
         regions: { select: { id: true, name: true } },
+        seatIngestStates: { select: { state: true } },
         candidates: {
           include: {
             parties: { select: { id: true, name: true, abbreviation: true, color: true, symbol_url: true, eci_symbol_url: true } },
@@ -276,8 +277,11 @@ export class ResultsService {
       })
       .sort((a, b) => b.votes - a.votes);
 
+    const { seatIngestStates, ...rest } = constituency;
     return {
-      ...constituency,
+      ...rest,
+      // Live seat state (ingest), so the seat page needs only /live plus this detail; null before any ingest.
+      seat_state: seatIngestStates?.[0]?.state ?? null,
       // Prisma Decimal is a class instance: class-transformer would try to rebuild it (DecimalError), so send a number.
       voter_turnout: constituency.voter_turnout == null ? null : Number(constituency.voter_turnout),
       district: constituency.districts,

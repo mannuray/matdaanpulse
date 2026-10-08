@@ -6,6 +6,8 @@ export const ErrorCodes = {
   CONFLICT: 'GEN_0004',
   /** DB pool / transaction slot exhausted (Prisma P2024 / P2028): 503 with Retry-After; safe to retry. */
   SERVICE_BUSY: 'GEN_0005',
+  /** A ?v= newer than this server's current results version (a poll raced ahead): 404 no-store; retry on the next poll. */
+  VERSION_NOT_READY: 'GEN_0006',
 
   // Auth (1xxx)
   AUTH_INVALID_CREDENTIALS: 'AUTH_1001',

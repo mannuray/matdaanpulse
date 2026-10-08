@@ -46,6 +46,16 @@ describe('getConstituencyDetail', () => {
     expect(json.metadata).toBeUndefined();
   });
 
+  it('carries the live seat state from ingest (null without one), so the seat page polls only /live', async () => {
+    const { s, prisma } = svc();
+    prisma.constituencies.findFirst.mockResolvedValue({ ...row, seatIngestStates: [{ state: 'counting' }] });
+    const json = JSON.parse(JSON.stringify(plainToInstance(ConstituencyDetailDto, await s.getConstituencyDetail('e1', 'BR_VS_100_X'), { excludeExtraneousValues: true })));
+    expect(json.seat_state).toBe('counting');
+    expect(prisma.constituencies.findFirst.mock.calls[0][0].include.seatIngestStates).toEqual({ select: { state: true } });
+    prisma.constituencies.findFirst.mockResolvedValue({ ...row, seatIngestStates: [] });
+    expect((await s.getConstituencyDetail('e1', 'BR_VS_100_X')).seat_state).toBeNull();
+  });
+
   it('a seat with no results has last_updated null', async () => {
     const { s, prisma } = svc();
     prisma.constituencies.findFirst.mockResolvedValue({ ...row, candidates: row.candidates.map(c => ({ ...c, results: [] })) });

@@ -160,10 +160,14 @@ export class LivePoller<S extends { version: number }> {
           await this.sleep(this.random() * POLL.snapshotJitterMs);
           if (run !== this.run) return;
         }
-        const snapshot = await this.deps.fetchSnapshot(live.version);
+        const snapshot = await this.deps.fetchSnapshot(live.version).catch((err) => {
+          // The server has not reached this version yet (a poll raced ahead of it): not a failure, try next poll.
+          if (isVersionNotReady(err)) return null;
+          throw err;
+        });
         if (run !== this.run) return;
         // Forward only: a stale colo may still redirect/serve an older version.
-        if (this.version === null || snapshot.version > this.version) {
+        if (snapshot && (this.version === null || snapshot.version > this.version)) {
           this.version = snapshot.version;
           this.deps.onSnapshot(snapshot, live);
         }
@@ -235,4 +239,10 @@ export function shouldPoll(
   if (Number.isNaN(at)) return true;
   const day = 86_400_000;
   return now >= at - UPCOMING_POLL_WINDOW.beforeDays * day && now <= at + UPCOMING_POLL_WINDOW.afterDays * day;
+}
+
+/** 404 GEN_0006 from `results?v=` / seat `?v=`: that version is not on this server yet (retry), unlike a real 404. */
+export function isVersionNotReady(err: unknown): boolean {
+  const e = err as { status?: number; code?: string } | null;
+  return e?.status === 404 && e.code === 'GEN_0006';
 }

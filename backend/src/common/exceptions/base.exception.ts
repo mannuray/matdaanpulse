@@ -20,3 +20,10 @@ export class ServiceBusyException extends BusinessException {
     super(ErrorCodes.SERVICE_BUSY, 'The server is busy; please retry shortly', HttpStatus.SERVICE_UNAVAILABLE);
   }
 }
+
+/** `?v=` names a results version this server does not have yet: not "missing", so clients retry instead of giving up. */
+export class VersionNotReadyException extends BusinessException {
+  constructor() {
+    super(ErrorCodes.VERSION_NOT_READY, 'This version is not available yet', HttpStatus.NOT_FOUND);
+  }
+}

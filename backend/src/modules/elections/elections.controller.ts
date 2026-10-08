@@ -1,4 +1,5 @@
-import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe, BadRequestException, NotFoundException, Req, Res } from '@nestjs/common';
+import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe, BadRequestException, Req, Res } from '@nestjs/common';
+import { VersionNotReadyException } from '../../common/exceptions/base.exception';
 import type { Request, Response } from 'express';
 import { plainToInstance } from 'class-transformer';
 import { ElectionsService } from './elections.service';
@@ -120,7 +121,7 @@ export class ElectionsController {
       return;
     }
     const { version } = await this.liveState.get(id);
-    if (query.v > version) throw new NotFoundException('This version is not available yet');
+    if (query.v > version) throw new VersionNotReadyException();
     if (query.v < version) {
       applyCacheControl(req, res, CACHE_CONTROL.REDIRECT);
       res.redirect(302, versionUrl(req, version));
@@ -233,7 +234,7 @@ export class ElectionsController {
       return;
     }
     const { version, status } = await this.liveState.get(id);
-    if (query.v > version) throw new NotFoundException('This version is not available yet');
+    if (query.v > version) throw new VersionNotReadyException();
     if (query.v < version) {
       applyCacheControl(req, res, CACHE_CONTROL.REDIRECT);
       res.redirect(302, versionUrl(req, version));
