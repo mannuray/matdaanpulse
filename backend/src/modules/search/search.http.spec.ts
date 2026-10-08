@@ -27,7 +27,7 @@ describe('GET /search/constituencies (HTTP)', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       controllers: [SearchController],
-      providers: [{ provide: SearchService, useValue: { searchCandidates: jest.fn(async () => []), searchConstituencies: jest.fn(async () => [SEAT]) } }],
+      providers: [{ provide: SearchService, useValue: { searchCandidates: jest.fn(async () => []), searchConstituencies: jest.fn(async () => [SEAT, { ...SEAT, id: 'BR_VS_183', district_id: null, districts: null, voter_turnout: null }]) } }],
     }).compile();
     app = moduleRef.createNestApplication<NestExpressApplication>({ bodyParser: false, logger: false });
     configureApp(app, {});
@@ -39,7 +39,8 @@ describe('GET /search/constituencies (HTTP)', () => {
   it('a seat hit is the public summary with `district: { id, name }` and a numeric turnout; no internal columns', async () => {
     const res = await fetch(`${base}/search/constituencies?q=patna`);
     expect(res.status).toBe(200);
-    const [hit] = (await res.json()).data;
+    const [hit, noDistrict] = (await res.json()).data;
+    expect(noDistrict).toMatchObject({ id: 'BR_VS_183', district_id: null, district: null, voter_turnout: null });
     expect(hit).toEqual({
       id: 'BR_VS_182', election_id: 'e1', district_id: 7, state_id: 4, name: 'Patna Sahib', const_no: 182, type: 'GEN',
       voter_turnout: 56.34, phase: 3, total_electors: 281234, current_round: null, total_rounds: null,
