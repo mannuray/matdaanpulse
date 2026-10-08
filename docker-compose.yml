@@ -1,4 +1,5 @@
 # DEV ONLY — Do NOT use these credentials or exposed ports in production.
+# Host ports bind to 127.0.0.1 only (not reachable from the LAN / public wifi).
 # Production: use strong passwords via env vars, remove host port bindings,
 # add Redis requirepass, and put services behind a private network.
 version: '3.8'
@@ -14,7 +15,7 @@ services:
       POSTGRES_DB: ${DB_NAME:-election_tracker}
       ET_DB_INIT_ARGS: ${ET_DB_INIT_ARGS:-}
     ports:
-      - "${DB_PORT:-5432}:5432"  # DEV ONLY — remove in production
+      - "127.0.0.1:${DB_PORT:-5432}:5432"  # DEV ONLY (loopback only) — remove in production
     volumes:
       # First boot of an empty volume runs database/setup.sh (schema → migrations → seeds).
       # Set ET_DB_INIT_ARGS=--schema-only to skip seed data. Existing volumes are untouched:
@@ -28,7 +29,7 @@ services:
     container_name: election_tracker_redis
     restart: always
     ports:
-      - "${REDIS_PORT:-6379}:6379"  # DEV ONLY — remove in production, add requirepass
+      - "127.0.0.1:${REDIS_PORT:-6379}:6379"  # DEV ONLY (loopback only) — remove in production, add requirepass
 
   otel-collector:
     # Pinned (latest release on Docker Hub as of 2026-09-25); verified to start with
@@ -43,8 +44,9 @@ services:
       - SIGNOZ_INGESTION_KEY=${SIGNOZ_INGESTION_KEY}
     command: ["--config", "/etc/otel/config.yaml"]
     ports:
-      - "4317:4317"
-      - "4318:4318"
+      # Loopback only: the backend runs on the host and exports to localhost:4318.
+      - "127.0.0.1:4317:4317"
+      - "127.0.0.1:4318:4318"
 
 volumes:
   postgres_data:
