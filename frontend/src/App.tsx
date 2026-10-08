@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import ElectionView from './pages/ElectionView';
 import ConstituencyDetail from './pages/ConstituencyDetail';
 import PersonDetail from './pages/PersonDetail';
+import PartyDetail from './pages/PartyDetail';
 import About from './pages/About';
 
 /** Every route is a studio screen with its own header; each page decides whether it scrolls (dashboard: no, detail pages: yes). */
@@ -18,6 +19,7 @@ function AppLayout() {
           <Route path="/election/:id" element={<ElectionView />} />
           <Route path="/election/:electionId/constituency/:constId" element={<ConstituencyDetail />} />
           <Route path="/person/:id" element={<PersonDetail />} />
+          <Route path="/party/:id" element={<PartyDetail />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
