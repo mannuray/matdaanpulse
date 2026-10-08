@@ -55,6 +55,9 @@ export function buildPartyRecord(partyId: string, elections: LoadedElection[], l
     party_id: partyId,
     elections: rows,
     family_elections: familyElections,
+    // Every election held in its states: what "the previous election" means there, contested or not.
+    state_elections: elections.filter(e => states.has(e.state_id)).sort((a, b) => b.date.localeCompare(a.date))
+      .map(e => ({ election_id: e.id, state_id: e.state_id, year: e.year, date: e.date, delimitation: e.delimitation })),
     lineage: lineage.filter(e => family.has(e.party_id) || family.has(e.predecessor_id)).sort((a, b) => a.effective_date.localeCompare(b.effective_date)),
   };
 }

@@ -238,14 +238,28 @@ describe('PartiesService.record', () => {
   const analysis = { parties: [{ party_id: 'BJP', contested: 68, won: 21, votes: 100, share: 33.2, prev: null, held: 14, gained: 7, lost: 9, split_gained: 0, split_lost: 0 }],
     flow: [{ from: 'JMM', to: 'BJP', seats: 4, split: false }], breakdowns: { region: [] } };
   const election = { id: 'e24', state_id: 9, year: 2024, tentative_next_date: new Date('2024-11-23'), delimitation: '2008', manifest_url: '{"government":{"parties":["JMM"]}}',
-    states: { code: 'JH', name: 'Jharkhand' }, election_analysis: { data: analysis }, _count: { constituencies: 81 } };
+    states: { code: 'JH', name: 'Jharkhand' }, _count: { constituencies: 81 } };
+  // Raw reads: every election's party rows; the flow and region breakdown only for the state election.
+  const queryRaw = jest.fn(async (strings: TemplateStringsArray) => (strings.join('?').includes("'flow'")
+    ? [{ flow: analysis.flow, region: analysis.breakdowns.region }]
+    : [{ election_id: 'e24', parties: analysis.parties }]));
   const base = () => ({
+    $queryRaw: queryRaw,
     elections: { findMany: jest.fn().mockResolvedValue([election]) },
     party_lineage: { findMany: jest.fn().mockResolvedValue([]) },
     results: { findMany: jest.fn().mockResolvedValue([
       { margin: 500, const_id: 'C1', constituencies: { name: 'Ranchi' }, candidates: { name: 'A', person_id: 'p1', persons: { photo_url: '/a.jpg' } } },
       { margin: 9000, const_id: 'C2', constituencies: { name: 'Hatia' }, candidates: { name: 'B', person_id: null, persons: null } },
     ]) },
+  });
+  it('reads only the party rows of each analysis (never the whole JSON); flow and regions only for the state election', async () => {
+    const { svc, prisma } = make(base());
+    await svc.record('BJP');
+    const select = (prisma as any).elections.findMany.mock.calls[0][0].select;
+    expect(select.election_analysis).toBeUndefined();
+    const sqls = queryRaw.mock.calls.map(c => (c[0] as unknown as string[]).join('?'));
+    expect(sqls.some(q => q.includes("data->'parties'"))).toBe(true);
+    expect(sqls.some(q => q.includes("'flow'"))).toBe(false);
   });
   it('unknown party: PartyNotFoundException', async () => {
     const { svc } = make({ ...base(), parties: { findUnique: jest.fn().mockResolvedValue(null) } });

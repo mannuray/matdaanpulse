@@ -41,6 +41,14 @@ describe('buildPartyRecord family-only elections', () => {
   });
 });
 
+describe('buildPartyRecord state elections', () => {
+  it('lists every election held in the party\'s states (newest first), contested or not', () => {
+    const r = buildPartyRecord('AAP', [el('g22', 2022, [row('AAP', 2)]), el('g17', 2017, [row('BJP', 13)]), el('g12', 2012, [row('AAP', 0)]), { ...el('x', 2020, [row('BJP', 1)]), state_id: 3 }], []);
+    expect(r.state_elections.map(e => e.election_id)).toEqual(['g22', 'g17', 'g12']);
+    expect(r.state_elections[1]).toEqual({ election_id: 'g17', state_id: 9, year: 2017, date: '2017-12-01', delimitation: '2008' });
+  });
+});
+
 describe('familyIds', () => {
   it('follows predecessors and successors transitively', () => {
     expect([...familyIds('BJP', [ev('BJP', 'JVM'), ev('JVM', 'JVMX', 'rename', '2006-01-01'), ev('OTHER', 'ZZ')])].sort()).toEqual(['BJP', 'JVM', 'JVMX']);

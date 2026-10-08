@@ -5,6 +5,7 @@ import { AuditLogService } from '../audit-log/audit-log.service';
 import { changedFields, createdFields } from '../audit-log/audit-diff';
 import { PartyNotFoundException } from '../../common/exceptions';
 import { buildPartyRecord, stateExtras, type LoadedElection } from './party-record';
+import type { BreakdownRow, FlowRow, PartyRow } from '../../common/seat-analysis/types';
 import { manifestBits } from '../constituencies/seat-analysis.loader';
 import type { CreatePartyDto, UpdatePartyDto, EciRecognitionFilter } from './dto/party-input.dto';
 
@@ -60,15 +61,22 @@ export class PartiesService {
       this.prisma.elections.findMany({
         where: { type: 'VS', status: 'Finalized', state_id: { not: null } },
         select: { id: true, state_id: true, year: true, tentative_next_date: true, delimitation: true, manifest_url: true,
-          states: { select: { code: true, name: true } }, election_analysis: { select: { data: true } }, _count: { select: { constituencies: true } } },
+          states: { select: { code: true, name: true } }, _count: { select: { constituencies: true } } },
       }),
       this.prisma.party_lineage.findMany({ orderBy: [{ effective_date: 'asc' }, { id: 'asc' }] }),
     ]);
+    // Only each analysis's party rows (a fraction of the stored JSON); flow and regions are read for one election below.
+    const ids = els.map(e => e.id);
+    const partyRows = ids.length ? await this.prisma.$queryRaw<{ election_id: string; parties: PartyRow[] | null }[]>`
+      SELECT election_id::text AS election_id, data->'parties' AS parties FROM election_analysis
+      WHERE election_id = ANY(${ids}::uuid[]) AND data IS NOT NULL` : [];
+    const partiesOf = new Map(partyRows.map(r => [r.election_id, r.parties ?? []]));
     const loaded: LoadedElection[] = els.filter(e => e.states).map(e => ({
       id: e.id, state_id: e.state_id!, state_code: e.states!.code, state_name: e.states!.name, year: e.year,
       date: e.tentative_next_date ? ymd(e.tentative_next_date) : `${e.year}-07-01`,
       delimitation: e.delimitation, seats_total: e._count.constituencies,
-      government: manifestBits(e.manifest_url).government, analysis: (e.election_analysis?.data ?? null) as LoadedElection['analysis'],
+      government: manifestBits(e.manifest_url).government,
+      analysis: partiesOf.has(e.id) ? { parties: partiesOf.get(e.id)!, flow: [], breakdowns: { region: [] } } as unknown as LoadedElection['analysis'] : null,
     }));
     const rec = buildPartyRecord(id, loaded, lineageRows.map(toLineageEvent));
     const latest = stateCode ? rec.elections.find(e => e.state_code.toUpperCase() === stateCode.toUpperCase()) : undefined;
@@ -82,10 +90,14 @@ export class PartiesService {
       person_id: w.candidates.person_id, name: w.candidates.name, photo_url: w.candidates.persons?.photo_url ?? null,
       const_id: w.const_id, const_name: w.constituencies.name, margin: w.margin,
     })).sort((a, b) => (b.margin ?? 0) - (a.margin ?? 0));
-    const regionIds = [...new Set((loaded.find(l => l.id === latest.election_id)?.analysis?.breakdowns?.region ?? []).map(r => Number(r.group)).filter(Number.isInteger))];
+    const [extra] = await this.prisma.$queryRaw<{ flow: FlowRow[] | null; region: BreakdownRow[] | null }[]>`
+      SELECT data->'flow' AS flow, data->'breakdowns'->'region' AS region FROM election_analysis WHERE election_id = ${latest.election_id}::uuid`;
+    const one = loaded.find(l => l.id === latest.election_id)!;
+    const withExtras = { ...one, analysis: { ...(one.analysis as object), flow: extra?.flow ?? [], breakdowns: { region: extra?.region ?? [] } } as unknown as LoadedElection['analysis'] };
+    const regionIds = [...new Set((extra?.region ?? []).map(r => Number(r.group)).filter(Number.isInteger))];
     const names = new Map((regionIds.length ? await this.prisma.regions.findMany({ where: { id: { in: regionIds } }, select: { id: true, name: true } }) : [])
       .map(r => [String(r.id), r.name]));
-    const extras = stateExtras(id, loaded.find(l => l.id === latest.election_id)!, g => names.get(g) ?? g);
+    const extras = stateExtras(id, withExtras, g => names.get(g) ?? g);
     return { ...rec, state: { code: latest.state_code, election_id: latest.election_id, mlas, ...extras } };
   }
 
