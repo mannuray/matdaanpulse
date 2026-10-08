@@ -3,8 +3,6 @@ import { isThreeWay, seatSplits } from '../../model/derive/voteSplits';
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useApi } from './useApi';
 import { getAlliances, getVoteShare, getResults, getManifest, ElectionService } from '../../model/api/election.service';
-import { DashboardService } from '../../model/api/dashboard.service';
-import { useLocalStorage } from './useLocalStorage';
 import { useTheme } from '../theme/useTheme';
 import { forTheme, type ThemeName } from '../../model/derive/themeColor';
 import { leaderMap } from '../../model/live/liveUpdates';
@@ -12,7 +10,7 @@ import { useLiveSnapshot } from './useLiveSnapshot';
 import { shouldPoll, type LiveElectionStatus } from '../../model/live/poller';
 import { buildStateByConstId, displayNameFromConstId } from '../../model/geo/regionMatching';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
-import type { Election, MapTab, ResultRow, ManifestData, StandingsData, VoteShare, SeatLiveState } from '../../model/types';
+import type { Election, ResultRow, ManifestData, VoteShare, SeatLiveState } from '../../model/types';
 import type { PartySeats, SeatResult } from '../../model/types/dashboard';
 import type { SeatTrail } from '../../model/derive/seatAnalysis';
 import { LS_MAP_URL } from '../../model/geo/maps';
@@ -46,7 +44,6 @@ export interface DashboardViewModel {
   /** Per-seat counting trail of the live snapshot (empty without one). */
   trails: Record<string, SeatTrail>;
   manifestData: ManifestData | null;
-  standings: StandingsData;
   constCandidates: Map<string, ResultRow[]>;
   currentWinnerMap: Map<string, ResultRow>;
   partyColorMap: Map<string, string>;
@@ -55,19 +52,8 @@ export interface DashboardViewModel {
   mapRegions: MapRegionViewModel[];
   voteShare: VoteShare[];
   spoilerData: SpoilerViewModel;
-  addableItems: AddableItem[];
   loading: boolean;
   error: string | null;
-  modalConstId: string | null;
-  setModalConstId: (id: string | null) => void;
-  mapTab: MapTab;
-  setMapTab: (tab: MapTab) => void;
-  userTracked: string[];
-  setUserTracked: (ids: string[]) => void;
-  /** Remove an alliance/party from the standings panel. */
-  untrack: (id: string) => void;
-  spoilerFilter: string | null;
-  setSpoilerFilter: (id: string | null) => void;
   refreshAll: () => void;
   /** Live election: true while polling succeeds (false for elections that are not live). */
   liveConnected: boolean;
@@ -91,10 +77,6 @@ function recolor<R extends { color: string }[] | null | undefined>(rows: R, them
  * Standardizes primary dashboard data flow and derived state processing.
  */
 export function useDashboardData(election: Election | null): DashboardViewModel {
-  const [modalConstId, setModalConstId] = useState<string | null>(null);
-  const [mapTab, setMapTab] = useState<MapTab>('overview');
-  const [userTracked, setUserTracked] = useLocalStorage<string[]>(election ? `tracked_${election.id}` : null, []);
-  const [spoilerFilter, setSpoilerFilter] = useState<string | null>(null);
 
   // 1. Data Fetching (SOLID: DIP - Cache keys managed by Service)
   // A live (or soon-live) election polls a versioned snapshot: results, seat tally and vote
@@ -158,12 +140,6 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
   }, [isLS]);
 
   const manifestData = useMemo(() => manifest?.draft || null, [manifest]);
-  const trackedIds = useMemo(() => new Set(userTracked || []), [userTracked]);
-  const manifestIds = useMemo(() => {
-    const ids = new Set<string>();
-    manifestData?.alliances?.forEach(a => a.parties.forEach(p => ids.add(p)));
-    return ids;
-  }, [manifestData]);
 
   // 2. Computed Models (SRP: Logic moved out of View)
 
@@ -180,27 +156,14 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
 
   const currentWinnerMap = useMemo(() => leaderMap(results || []), [results]);
 
-  const standings = useMemo(() => {
-    if (!partySeats || !voteShare) return { groups: [], independents: [] };
-    return DashboardService.buildStandings(
-      partySeats,
-      voteShare,
-      manifestData?.alliances || [],
-      trackedIds,
-      manifestIds
-    );
-  }, [partySeats, voteShare, manifestData, trackedIds, manifestIds]);
-
-  // Colour / name lookup over all parties (not just the tracked subset shown in standings).
+  // Colour / name lookup over all parties.
   const { partyColorMap, partyNameMap } = useMemo(() => {
     const colors = new Map<string, string>();
     const names = new Map<string, string>();
     (voteShare || []).forEach(v => { colors.set(v.party_id, v.color); names.set(v.party_id, v.party_name); });
     (partySeats || []).forEach(a => { colors.set(a.party_id, a.color); names.set(a.party_id, a.party_name); });
-    standings.groups.forEach(g => g.parties.forEach(p => { colors.set(p.id, p.color); names.set(p.id, p.name); }));
-    standings.independents.forEach(p => { colors.set(p.id, p.color); names.set(p.id, p.name); });
     return { partyColorMap: colors, partyNameMap: names };
-  }, [standings, voteShare, partySeats]);
+  }, [voteShare, partySeats]);
 
   const stateByConst = useMemo(
     () => (isLS && lsFeatures ? buildStateByConstId(constCandidates.keys(), lsFeatures) : new Map<string, string>()),
@@ -264,34 +227,6 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     return list.sort((a, b) => b.seats - a.seats);
   }, [partySeats, voteShare, partyNameMap, partyColorMap, partySeatCounts]);
 
-  // Everything that could appear in the standings panel, for the "+" (add) picker.
-  const allStandingItems = useMemo((): AddableItem[] => {
-    const items: AddableItem[] = [];
-    (manifestData?.alliances || []).forEach(a => items.push({ id: a.id, name: a.name, color: a.color, type: 'alliance' }));
-    mapPartyList
-      .filter(p => !manifestIds.has(p.id))
-      .forEach(p => items.push({ id: p.id, name: p.name, color: p.color, type: 'party' }));
-    return items;
-  }, [manifestData, mapPartyList, manifestIds]);
-
-  const displayedIds = useMemo(() => {
-    const ids = new Set<string>();
-    standings.groups.forEach(g => ids.add(g.id));
-    standings.independents.forEach(p => ids.add(p.id));
-    return ids;
-  }, [standings]);
-
-  const addableItems = useMemo(
-    () => allStandingItems.filter(i => !displayedIds.has(i.id)).slice(0, 40),
-    [allStandingItems, displayedIds]
-  );
-
-  const untrack = useCallback((id: string) => {
-    // With nothing tracked, everything is shown: start tracking all displayed items minus this one.
-    const base = (userTracked && userTracked.length > 0) ? userTracked : [...displayedIds];
-    setUserTracked(base.filter(x => x !== id));
-  }, [userTracked, displayedIds, setUserTracked]);
-
   const { pollNow } = live;
   const refreshAll = useCallback(() => {
     if (polling) pollNow();
@@ -306,7 +241,6 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     seats: snap?.seats ?? NO_SEATS,
     trails: snap?.trail ?? NO_TRAILS,
     manifestData,
-    standings,
     constCandidates,
     currentWinnerMap,
     partyColorMap,
@@ -315,19 +249,9 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     mapRegions,
     voteShare: voteShare || [],
     spoilerData,
-    addableItems,
     // Live: loading until the first snapshot; after repeated poll failures an error (with Retry).
     loading: snap ? false : isLive ? !live.error : aLoading || vLoading || rLoading,
     error: snap ? null : isLive ? live.error : aError || rError,
-    modalConstId,
-    setModalConstId,
-    mapTab,
-    setMapTab,
-    userTracked: userTracked || [],
-    setUserTracked,
-    untrack,
-    spoilerFilter,
-    setSpoilerFilter,
     refreshAll,
     liveConnected: live.connected,
     liveStatus: live.status ?? election?.status ?? null,
