@@ -61,3 +61,9 @@ export function forTheme(hex: string, theme: ThemeName, use: ColorUse = 'fill'):
   }
   return toHex(fromHsl(h, sat, lo));
 }
+
+/** Rows with their `color` adapted to the theme (fill use); the same rows on dark, null / undefined passed through. */
+export function recolorRows<R extends { color: string }[] | null | undefined>(rows: R, theme: ThemeName): R {
+  if (!rows || theme === 'dark') return rows;
+  return rows.map(r => ({ ...r, color: forTheme(r.color, theme) })) as R;
+}

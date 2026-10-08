@@ -3,11 +3,10 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSources } from '../sources/DashboardSourcesProvider';
 import { useApi } from '../data/useApi';
-import { useTheme } from '../theme/useTheme';
+import { useThemedColor } from '../theme/useThemedColor';
 import { useRegionShares } from '../data/useRegionShares';
 import { getElections, getManifest, getRegionShares } from '../../model/api/election.service';
 import { compareRegions, type Alliance, type RegionRow } from '../../model/derive/regionComparison';
-import { forTheme } from '../../model/derive/themeColor';
 
 export type RegionMode = 'party' | 'alliance';
 export type { RegionRow };
@@ -29,7 +28,7 @@ export interface RegionComparisonVM {
  */
 export function useRegionComparisonVM(enabled = true): RegionComparisonVM | null {
   const { t } = useTranslation();
-  const { theme } = useTheme();
+  const themed = useThemedColor();
   const src = useSources();
   const election = src.election;
   const [mode, setMode] = useState<RegionMode>('party');
@@ -49,7 +48,7 @@ export function useRegionComparisonVM(enabled = true): RegionComparisonVM | null
     const labels = { statewide: t('regions_statewide', 'Statewide'), others: t('regions_others', 'Others') };
     const prevShares = prev && old.data && old.data.regions.length ? old.data : null;
     const partyMeta = new Map([...src.partyMeta].map(([id, m]) => [id, { label: m.abbreviation ?? id, color: src.data.partyColorMap.get(id) ?? m.color ?? 'var(--color-fallback)' }]));
-    const prevAlliances = ((oldManifest.data?.draft?.alliances ?? []) as Alliance[]).map(a => ({ ...a, color: theme === 'dark' ? a.color : forTheme(a.color, theme) }));
+    const prevAlliances = themed.rows((oldManifest.data?.draft?.alliances ?? []) as Alliance[]);
     const rows = compareRegions(curShares, prevShares, mode === 'party'
       ? { mode: 'party', partyMeta, labels, carry: (p: string) => (prev ? cmp.carry(p, prev.year, election.year) : p) }
       : { mode: 'alliance', curAlliances, prevAlliances, labels });
@@ -59,5 +58,5 @@ export function useRegionComparisonVM(enabled = true): RegionComparisonVM | null
       approximate: !!(prevShares && prev!.delimitation && election.delimitation && prev!.delimitation !== election.delimitation),
       mode, onMode: setMode, rows,
     };
-  }, [isVS, curShares, list.loading, prev, old.loading, old.data, oldManifest.loading, oldManifest.data, curAlliances, src.partyMeta, src.data.partyColorMap, mode, theme, t, election.year, election.delimitation, cmp]);
+  }, [isVS, curShares, list.loading, prev, old.loading, old.data, oldManifest.loading, oldManifest.data, curAlliances, src.partyMeta, src.data.partyColorMap, mode, themed, t, election.year, election.delimitation, cmp]);
 }
