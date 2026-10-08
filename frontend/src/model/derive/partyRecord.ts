@@ -78,3 +78,12 @@ export function recordLines(partyId: string, rec: PartyRecord, stateId: number, 
   });
   return out;
 }
+
+/** Independents and NOTA are not parties: no party page. */
+const NOT_A_PARTY = new Set(['IND', 'NOTA']);
+
+/** The party page link (with a state view when `stateCode` is given), or null for independents, NOTA or no party. */
+export function partyPageHref(partyId: string | null | undefined, stateCode?: string | null): string | null {
+  if (!partyId || NOT_A_PARTY.has(partyId.toUpperCase())) return null;
+  return `/party/${encodeURIComponent(partyId)}${stateCode ? `?state=${stateCode.toUpperCase()}` : ''}`;
+}

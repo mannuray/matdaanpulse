@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { previousComparable, deltaOf, latestByState, headline, sparkline, recordLines } from '../partyRecord';
+import { previousComparable, deltaOf, latestByState, headline, sparkline, recordLines, partyPageHref } from '../partyRecord';
 import type { PartyRecord, PartyRecordElection, LineageEvent } from '../../types';
 
 const e = (id: string, state_id: number, year: number, won: number, over: Partial<PartyRecordElection> = {}): PartyRecordElection => ({
@@ -61,5 +61,12 @@ describe('partyRecord', () => {
     expect(latestByState(r)).toEqual([]);
     expect(headline(r)).toEqual({ won: 0, seats: 0, statesWon: 0, statesContested: 0, governs: null, largest: 0 });
     expect(recordLines('BJP', r, 9, nameOf)).toEqual([]);
+  });
+  it('party page links: /party/:id (optionally ?state=), none for independents, NOTA or a blank id', () => {
+    expect(partyPageHref('BJP')).toBe('/party/BJP');
+    expect(partyPageHref('BJP', 'br')).toBe('/party/BJP?state=BR');
+    expect(partyPageHref('IND')).toBeNull();
+    expect(partyPageHref('NOTA')).toBeNull();
+    expect(partyPageHref('')).toBeNull();
   });
 });

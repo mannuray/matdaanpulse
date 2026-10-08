@@ -1,4 +1,5 @@
 import { RAW_COMPARER, type PartyComparer } from './partyComparer';
+import { partyPageHref } from './partyRecord';
 import type { PersonCandidate } from '../types';
 import { partyMark } from './partyMeta';
 
@@ -34,7 +35,7 @@ export function contestViews(cands: PersonCandidate[]): ContestView[] {
   return [...cands].sort(byYearDesc).map(c => ({
     key: c.id + c.election_id, year: c.election_year, electionName: c.election_name ?? '', constituency: c.constituency_name ?? '',
     constHref: `/election/${c.election_id}/constituency/${c.const_id}`,
-    partyId: c.party_id, partyHref: c.party_id ? `/election/${c.election_id}?party=${encodeURIComponent(c.party_id)}` : null, partyLabel: c.party_abbreviation ?? c.party_id ?? '',
+    partyId: c.party_id, partyHref: partyPageHref(c.party_id), partyLabel: c.party_abbreviation ?? c.party_id ?? '',
     partyName: c.party_name ?? c.party_abbreviation ?? c.party_id ?? '', house: c.election_type ?? null,
     mark: partyMark({ symbol_url: c.party_symbol_url, eci_symbol_url: c.party_eci_symbol_url }),
     color: c.party_color ?? 'var(--color-fallback)', status: contestStatus(c), votes: c.votes, share: c.vote_share ?? null,

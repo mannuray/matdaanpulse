@@ -684,5 +684,6 @@
   "pty_map_lost": "Contested, lost",
   "pty_map_none": "Not contested",
   "pty_map_click": "Click a seat for its page",
-  "pty_map_unavailable": "Map not available for this election"
+  "pty_map_unavailable": "Map not available for this election",
+  "party_full_page": "Full party page"
 }

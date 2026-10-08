@@ -33,7 +33,10 @@ function CandidateName({ c, vm, strong }: { c: Cand; vm: ConstituencyPageVM; str
 
 function PartyCell({ c, vm, size }: { c: Cand; vm: ConstituencyPageVM; size: 16 | 24 }) {
   if (!c.partyId) return null;
-  return <Link to={vm.partyHref(c.partyId)} className="flex items-center gap-2 font-semibold text-ink/85 hover:underline"><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={size} />{c.partyLabel}</Link>;
+  const href = vm.partyHref(c.partyId);
+  const body = <><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} size={size} />{c.partyLabel}</>;
+  // Independents and NOTA have no party page: the label only.
+  return href ? <Link to={href} className="flex items-center gap-2 font-semibold text-ink/85 hover:underline">{body}</Link> : <span className="flex items-center gap-2 font-semibold text-ink/85">{body}</span>;
 }
 
 /** Status pill: WON/LEADING tinted; other statuses get no pill (design notes). */
@@ -86,7 +89,9 @@ function Contender({ c, vm, rank, right }: { c: Cand; vm: ConstituencyPageVM; ra
           <h3 className="mt-1 truncate text-base font-bold text-ink">
             {c.personId ? <Link to={vm.personHref(c.personId)} className="text-ink hover:underline">{c.name}</Link> : c.name}
           </h3>
-          {c.partyId && <Link to={vm.partyHref(c.partyId)} className={cn('mt-0.5 flex items-center gap-1.5 text-xs font-semibold text-ink/80 hover:underline', right && 'flex-row-reverse')}><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} />{c.partyLabel}</Link>}
+          {c.partyId && (vm.partyHref(c.partyId)
+            ? <Link to={vm.partyHref(c.partyId)!} className={cn('mt-0.5 flex items-center gap-1.5 text-xs font-semibold text-ink/80 hover:underline', right && 'flex-row-reverse')}><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} />{c.partyLabel}</Link>
+            : <span className={cn('mt-0.5 flex items-center gap-1.5 text-xs font-semibold text-ink/80', right && 'flex-row-reverse')}><PartyMark mark={c.mark} color={c.color} label={c.partyLabel} />{c.partyLabel}</span>)}
         </div>
       </div>
       <div>

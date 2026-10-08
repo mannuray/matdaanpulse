@@ -25,6 +25,7 @@ describe('usePartyDialogVM', () => {
   it('combines meta, this election and the profile', async () => {
     getParty.mockResolvedValue({ id: 'JDU', name: 'Janata Dal (United)', leader_name: 'Nitish Kumar', founded_year: 2003, headquarters: null, website: null, wikipedia_url: null, description: null });
     const { result } = renderHook(() => usePartyDialogVM(), { wrapper: wrap('/?party=JDU') });
+    expect(result.current?.pageHref).toBe('/party/JDU?state=BR');
     expect(result.current).toMatchObject({ id: 'JDU', abbreviation: 'JD(U)', stats: { won: 2, contested: 2, alliance: { id: 'NDA' } }, totalSeats: 243, majority: 122 });
     await waitFor(() => expect(result.current?.profile?.leader).toBe('Nitish Kumar'));
     expect(result.current?.profile).toMatchObject({ founded: 2003, hq: null });

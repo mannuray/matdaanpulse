@@ -37,7 +37,7 @@ describe('contestViews', () => {
     const v = contestViews([c({ election_year: 2009, party_id: 'RJD', const_id: 'A', election_id: 'e09' }), c({ election_year: 2014, party_id: 'BJP', party_symbol_url: '/b.svg', vote_share: 39.1 })]);
     expect(v.map(x => x.year)).toEqual([2014, 2009]);
     expect(v[0]).toMatchObject({ firstUnderParty: true, mark: '/b.svg', share: 39.1 });
-    expect(v[1]).toMatchObject({ firstUnderParty: false, constHref: '/election/e09/constituency/A', partyHref: '/election/e09?party=RJD' });
+    expect(v[1]).toMatchObject({ firstUnderParty: false, constHref: '/election/e09/constituency/A', partyHref: '/party/RJD' });
   });
   it('a party-less contest has no party link', () => {
     expect(contestViews([c({ party_id: null })])[0].partyHref).toBeNull();

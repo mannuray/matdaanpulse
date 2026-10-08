@@ -38,9 +38,10 @@ export function PartyDialog({ vm }: { vm: PartyDialogVM | null }) {
     </span>
   );
   const titleSuffix = vm.abbreviation && vm.abbreviation !== vm.name ? <span className="font-display text-lg font-bold uppercase tracking-wider text-muted">{vm.abbreviation}</span> : null;
-  const header = vm.recognition ? (
-    <div className="mt-1.5 flex items-center gap-2">
-      <span className="inline-flex items-center rounded border px-2 py-0.5 text-[11px] font-medium" style={{ color, borderColor: tint(color, 40), background: tint(color, 12) }}>{t(`party_recognition_${vm.recognition}`)}</span>
+  const header = vm.recognition || vm.pageHref ? (
+    <div className="mt-1.5 flex items-center gap-3">
+      {vm.recognition && <span className="inline-flex items-center rounded border px-2 py-0.5 text-[11px] font-medium" style={{ color, borderColor: tint(color, 40), background: tint(color, 12) }}>{t(`party_recognition_${vm.recognition}`)}</span>}
+      {vm.pageHref && <Link to={vm.pageHref} className="text-xs font-semibold text-accent-text hover:underline">{t('party_full_page')} →</Link>}
     </div>
   ) : null;
   return (

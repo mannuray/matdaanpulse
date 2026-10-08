@@ -130,3 +130,12 @@ describe('ConstituencyPageView', () => {
     expect(within(box as HTMLElement).getByText('Incumbent behind')).toBeTruthy();
   });
 });
+
+describe('ConstituencyPageView party links', () => {
+  it('an independent (no party page) shows its label without a link', () => {
+    const v = vm({ partyHref: (id: string) => (id === 'IND' ? null : `/party/${id}`) });
+    const ind = { ...v.view.candidates[0], partyId: 'IND', partyLabel: 'IND' };
+    renderIt({ ...v, view: { ...v.view, candidates: [ind, ...v.view.candidates.slice(1)] } } as never);
+    expect(screen.queryAllByRole('link').filter(a => a.textContent === 'IND')).toHaveLength(0);
+  });
+});

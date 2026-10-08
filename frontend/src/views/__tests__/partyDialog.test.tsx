@@ -18,7 +18,7 @@ const vm = (over: Partial<PartyDialogVM> = {}): PartyDialogVM => ({
   stats: { won: 52, leading: 23, contested: 143, votePct: 23.1, alliance: { id: 'MGB', name: 'Mahagathbandhan' } }, totalSeats: 243, majority: 122,
   profile: { leader: 'Tejashwi Yadav', founded: 1997, hq: null, website: 'https://rjd.co.in', wikipedia: null, description: null },
   keyCandidates: [{ key: 'k', name: 'Tejashwi Yadav', constId: 'S', constName: 'Raghopur', constNo: 128, status: 'WON', margin: 10, leader: true, photo: null, tracked: false }, { key: 'n', name: 'Lalu Prasad Yadav', constId: '', constName: '', constNo: null, status: null, margin: null, leader: true, photo: null, tracked: false }],
-  onClose: vi.fn(), onSelectSeat: vi.fn(), onToggleTrack: vi.fn(), ...over,
+  onClose: vi.fn(), onSelectSeat: vi.fn(), onToggleTrack: vi.fn(), pageHref: '/party/RJD?state=BR', ...over,
 });
 
 describe('PartyDialog', () => {
@@ -75,5 +75,15 @@ describe('PartyDialog — state unit, lineage, family (party model)', () => {
       family: { rootLabel: 'SHS', members: [{ label: 'SHS', seats: 57 }, { label: 'SS(UBT)', seats: 20 }], total: 77 } })} />);
     expect(screen.getByText('A faction of SHS since the 2022 split.')).toBeTruthy();
     expect(screen.getByText(/SHS family: SHS 57 · SS\(UBT\) 20 = 77/)).toBeTruthy();
+  });
+});
+
+describe('PartyDialog party page link', () => {
+  it('links to the full party page on this election\'s state; none without a page', () => {
+    render(<PartyDialog vm={vm()} />);
+    expect(screen.getByRole('link', { name: /Full party page/ }).getAttribute('href')).toBe('/party/RJD?state=BR');
+    cleanup();
+    render(<PartyDialog vm={vm({ pageHref: null })} />);
+    expect(screen.queryByRole('link', { name: /Full party page/ })).toBeNull();
   });
 });
