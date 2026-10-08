@@ -87,14 +87,14 @@ describe('IngestService.ingestSeats — refusals are logged for the alerts', () 
 });
 
 describe('IngestService.ingestSeats — under the seat locks', () => {
-  it('locks the shard seats in sorted order inside the transaction, then reads and writes', async () => {
+  it('locks the shard seats in sorted order inside the transaction (one statement), then reads and writes', async () => {
     const { svc, prisma } = make();
     const order: string[] = [];
-    prisma.$executeRaw = jest.fn(async (strings: TemplateStringsArray, ...vals: unknown[]) => { order.push(strings.join('?').includes('pg_advisory_xact_lock') ? `lock:${vals[1]}` : 'write'); return 1; });
+    prisma.$executeRaw = jest.fn(async (strings: TemplateStringsArray, ...vals: unknown[]) => { order.push(strings.join('?').includes('pg_advisory_xact_lock') ? `lock:${(vals[1] as string[]).join(',')}` : 'write'); return 1; });
     prisma.seat_ingest_state.findMany = jest.fn(async () => { order.push('read'); return []; });
     const s2 = { const_id: 'S2', state: 'counting', votes: { c: 3, d: 1 } };
     await svc.ingestSeats('e', { id: 'k' }, body([s2, s1]), NOW);
-    expect(order.slice(0, 3)).toEqual(['lock:S1', 'lock:S2', 'read']);
+    expect(order.slice(0, 2)).toEqual(['lock:S1,S2', 'read']);
     expect(order).toContain('write');
   });
   it('a seat rejected by the seat rules is recorded on seat_ingest_state; not_in_shard / duplicate are not', async () => {

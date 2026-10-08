@@ -10,7 +10,7 @@ import { Request, Response } from 'express';
 import { SpanStatusCode, trace } from '@opentelemetry/api';
 import { Prisma } from '@prisma/client';
 import { ErrorCodes } from '../exceptions/error-codes';
-import { BusinessException } from '../exceptions/base.exception';
+import { BusinessException, ServiceBusyException } from '../exceptions/base.exception';
 import { resolveRequestId } from '../logger/request-context';
 import { mapExposedHttpError, mapPrismaError } from './prisma-error.mapper';
 import { FieldError, ValidationFailedException } from '../validation/validation-failed.exception';
@@ -55,6 +55,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     // Errors are never cacheable (a public route's policy is only set on success).
     response.setHeader('Cache-Control', 'no-store');
     if (status === HttpStatus.TOO_MANY_REQUESTS) copyRetryAfter(response);
+    if (httpException instanceof ServiceBusyException) response.setHeader('Retry-After', String(httpException.retryAfterSeconds));
 
     // A PrismaClientValidationError is answered with 400 but almost always means a
     // server-side query bug, so it is logged like a 5xx (review M9).

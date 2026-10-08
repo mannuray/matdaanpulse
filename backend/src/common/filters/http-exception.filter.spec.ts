@@ -56,7 +56,6 @@ describe('HttpExceptionFilter', () => {
   it.each([
     ['P2002', 409, 'GEN_0004'],
     ['P2034', 409, 'GEN_0004'],
-    ['P2028', 409, 'GEN_0004'],
     ['P2025', 404, 'GEN_0002'],
     ['P2003', 400, 'VALIDATION_9001'],
     ['P2023', 400, 'VALIDATION_9001'],
@@ -66,6 +65,20 @@ describe('HttpExceptionFilter', () => {
     expect(res.body.error.code).toBe(errCode);
     expect(JSON.stringify(res.body)).not.toMatch(/users|internal detail/);
     expect(errorSpy).not.toHaveBeenCalled();
+  });
+
+  it.each(['P2028', 'P2024'])('maps Prisma %s (transaction could not start / timed out, pool timeout) to 503 + Retry-After, generic body', (code) => {
+    const res = run(known(code));
+    expect(res.statusCode).toBe(503);
+    expect(res.headers['Retry-After']).toBe('2');
+    expect(res.headers['Cache-Control']).toBe('no-store');
+    expect(res.body.error.code).toBe('GEN_0005');
+    expect(res.body.error.message).toBe('The server is busy; please retry shortly');
+    expect(JSON.stringify(res.body)).not.toMatch(/users|internal detail/);
+  });
+
+  it('other 503s carry no Retry-After', () => {
+    expect(run(new MediaNotConfiguredException()).headers['Retry-After']).toBeUndefined();
   });
 
   it('maps PrismaClientValidationError to 400 but logs it at error level with the stack', () => {

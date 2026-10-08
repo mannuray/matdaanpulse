@@ -291,10 +291,11 @@ and column.
 1. Create project in the region chosen in D1. Note both connection strings:
    ```
    # App (PgBouncer pooler)
-   DATABASE_URL=postgresql://<user>:<pw>@ep-<id>-pooler.<region>.aws.neon.tech/neondb?sslmode=require&pgbouncer=true&connection_limit=5&pool_timeout=20&connect_timeout=15
+   DATABASE_URL=postgresql://<user>:<pw>@ep-<id>-pooler.<region>.aws.neon.tech/neondb?sslmode=require&pgbouncer=true&connection_limit=15&pool_timeout=20&connect_timeout=15
    # DDL / seeding only (direct host)
    DIRECT_URL=postgresql://<user>:<pw>@ep-<id>.<region>.aws.neon.tech/neondb?sslmode=require
    ```
+   **Why `connection_limit=15` (was 5):** on counting day the one instance holds several connections for whole transactions at once — one ingest batch per worker shard (up to ~500 seats, a few seconds each; the advisory seat locks are now one statement), a seat correction, a `REPEATABLE READ` snapshot load per new version, plus the cache-miss reads behind the CDN. With 5, four shard posts in flight left one connection for every viewer-facing miss, and the rest waited `pool_timeout` and failed (P2024 / P2028, now answered `503` + `Retry-After: 2`, which the worker and the browser poller back off on). The client side is cheap: these are PgBouncer (transaction mode) client slots, which Neon's pooler accepts by the thousand and multiplexes onto the compute's own connections, so 15 costs nothing on Neon's side; keep `connection_limit` × instances well under the pooler's `default_pool_size` for the compute (≈ 0.9 × `max_connections`, ~100 even on the smallest compute). Watch the System status page (pool limit, DB latency) and the 503 count during the load test (§5.6); raise it further only if 503s appear with low DB CPU.
 2. Build the database from a laptop or CI with the **direct** URL:
    ```bash
    DATABASE_URL="$DIRECT_URL" database/setup.sh
