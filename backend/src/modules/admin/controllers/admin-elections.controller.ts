@@ -1,4 +1,6 @@
 import { Controller, Post, Patch, Get, Put, Body, Param, UseGuards, ParseUUIDPipe, Req } from '@nestjs/common';
+import { ManifestDraftDto, manifestDraftToJson } from '../../manifests/dto/manifest-draft.dto';
+import { ValidationFailedException } from '../../../common/validation/validation-failed.exception';
 import { ElectionsService } from '../../elections/elections.service';
 import { ManifestsService } from '../../manifests/manifests.service';
 import { ResultsService } from '../../results/results.service';
@@ -77,8 +79,12 @@ export class AdminElectionsController {
 
   @Put('elections/:id/manifest')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  async saveManifestDraft(@Param('id', ParseUUIDPipe) id: string, @Body() body: object, @Req() req: any) {
-    const out = await this.manifestsService.saveDraft(id, body);
+  async saveManifestDraft(@Param('id', ParseUUIDPipe) id: string, @Body() body: ManifestDraftDto, @Req() req: any) {
+    // The ValidationPipe checks a JSON array element by element; a manifest is one object.
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      throw new ValidationFailedException([{ field: 'body', message: 'manifest must be a JSON object' }]);
+    }
+    const out = await this.manifestsService.saveDraft(id, manifestDraftToJson(body));
     // A summary, not the draft itself (up to ~100 kb); the draft stays readable on the election until published.
     await this.audit.log({
       userId: req.user?.id, action: 'MANIFEST_SAVE', entityType: 'election', entityId: id,

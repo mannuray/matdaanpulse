@@ -1,6 +1,7 @@
 import { IsString, IsOptional, IsInt, IsObject, IsArray, MaxLength, Min, Max, ArrayMaxSize, IsIn, ValidateIf } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { emptyToNull, MAX_IDS_PER_REQUEST } from '../../../common/validation/dto-helpers';
+import { IsBoundedJsonObject } from '../../../common/validation/bounded-json';
 
 /** Request-body DTOs (moved out of admin/ so domain services do not depend on the admin module). */
 
@@ -22,7 +23,8 @@ export class UpdateConstituencyDto {
   @ValidateIf((_, v) => v !== undefined) @IsIn(['GEN', 'SC', 'ST'])
   type?: 'GEN' | 'SC' | 'ST';
 
-  @IsOptional() @IsObject()
+  /** Free-form but bounded (8 KB, 4 levels, 50 keys per object). */
+  @IsOptional() @IsObject() @IsBoundedJsonObject()
   metadata?: Record<string, unknown>;
 }
 

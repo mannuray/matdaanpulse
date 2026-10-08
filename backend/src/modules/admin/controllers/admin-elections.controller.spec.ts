@@ -80,3 +80,26 @@ describe('AdminElectionsController: audit rows (U2)', () => {
     ]);
   });
 });
+
+describe('AdminElectionsController: manifest draft body (U3)', () => {
+  it('the route validates against ManifestDraftDto and stores plain JSON', async () => {
+    const { ManifestDraftDto } = await import('../../manifests/dto/manifest-draft.dto');
+    const types = Reflect.getMetadata('design:paramtypes', AdminElectionsController.prototype, 'saveManifestDraft');
+    expect(types[1]).toBe(ManifestDraftDto);
+    const manifests: any = { saveDraft: jest.fn(async () => ({})) };
+    const ctrl = new AdminElectionsController({} as any, manifests, {} as any, {} as any, { log: jest.fn() } as any);
+    const dto = Object.assign(new ManifestDraftDto(), { tracked: ['BJP'] });
+    await ctrl.saveManifestDraft('e', dto, { user: { id: 'u1' } });
+    const stored = manifests.saveDraft.mock.calls[0][1];
+    expect(stored).toEqual({ tracked: ['BJP'] });
+    expect(Object.getPrototypeOf(stored)).toBe(Object.prototype);
+  });
+
+  it('a JSON array body is refused (the ValidationPipe validates arrays element-wise)', async () => {
+    const { BadRequestException } = await import('@nestjs/common');
+    const manifests: any = { saveDraft: jest.fn() };
+    const ctrl = new AdminElectionsController({} as any, manifests, {} as any, {} as any, { log: jest.fn() } as any);
+    await expect(ctrl.saveManifestDraft('e', [] as any, { user: { id: 'u1' } })).rejects.toBeInstanceOf(BadRequestException);
+    expect(manifests.saveDraft).not.toHaveBeenCalled();
+  });
+});
