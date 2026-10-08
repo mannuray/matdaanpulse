@@ -172,6 +172,9 @@ test('counting day, desktop', async ({ page, request }) => {
       const n = (p.won ?? 0) + (p.leading ?? 0);
       await expect(page.getByRole('button', { name: new RegExp(`^${p.party_id} .* ${n}$`) }).first(), `C4: standings ${p.party_id} = ${n}`).toBeVisible();
     }
+    // Key leaders follow the count: a leader whose seat is counting or declared is not "Pending".
+    const leader = page.getByRole('button', { name: /^Samrat Choudhary · / }).first();
+    await expect(leader, 'C4: Samrat Choudhary (Tarapur) shows a live status, not Pending').toHaveAccessibleName(/ · (Leading|Trailing|Won|Lost)$/);
     await shot(page, 'C4', 'desktop');
     await page.getByRole('radio', { name: 'Summary · Overview' }).click();
 

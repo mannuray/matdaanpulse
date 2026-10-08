@@ -28,10 +28,11 @@ async function main() {
       FROM elections WHERE id = $2
     `, [SIM_ELECTION_ID, SOURCE_ELECTION_ID]);
 
-    // Update manifest: replace source election ID references with sim ID
+    // Update manifest: replace source election ID references with sim ID, and seat ids (watchlists, leaders,
+    // vip_seats) with the cloned seats' (BR_VS_ → BR_VS27_, as in step 3), or leader cards never match a seat.
     await pool.query(`
       UPDATE elections
-      SET manifest_url = REPLACE(manifest_url::text, $2::text, $1::text)
+      SET manifest_url = REPLACE(REPLACE(manifest_url::text, $2::text, $1::text), '"BR_VS_', '"BR_VS27_')::jsonb
       WHERE id = $1
     `, [SIM_ELECTION_ID, SOURCE_ELECTION_ID]);
 
