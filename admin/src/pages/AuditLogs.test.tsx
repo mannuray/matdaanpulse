@@ -58,6 +58,7 @@ describe('Audit logs page', () => {
       'Party created', 'Party edited', 'Person edited', 'Persons merged', 'Merge undone', 'Person deleted (no contests left)',
       'Candidate created', 'Candidate edited', 'Candidate moved to person', 'Contest split to new person',
       'Candidate unlinked (legacy)', 'Seat edited',
+      'Ingest lease take-over', 'Ingest shard saved', 'Ingest shard deleted', 'Seat hold released',
     ]);
     expect(options('Entity')).toEqual(['Any entity', 'Result', 'Election', 'Seat', 'Party', 'Person', 'Candidate']);
     fireEvent.change(screen.getByLabelText('Action'), { target: { value: 'SEAT_LOCK_TAKEOVER' } });

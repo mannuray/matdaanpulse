@@ -380,7 +380,9 @@ export interface ConstituencyAnalysis {
 }
 
 export interface ShardSelector { state_ids?: number[]; region_ids?: number[]; district_ids?: number[]; const_no_ranges?: [number, number][] }
-export interface IngestShardStatus { name: string; seat_count: number; source: string | null; lease_holder: string | null; lease_expires_at: string | null; last_post_at: string | null; last_applied_at: string | null; lag_s: number | null; recent: Record<string, number>; rejected: { const_id: string; reason: string }[]; tally_mismatch: { party_id: string }[] | null }
+export interface IngestShardStatus { name: string; seat_count: number; source: string | null; lease_holder: string | null; lease_expires_at: string | null; last_post_at: string | null; last_applied_at: string | null; lag_s: number | null; recent: Record<string, number>; rejected: { const_id: string; reason: string }[]; tally_mismatch: { party_id: string }[] | null;
+  /** The latest change of lease holder in the last 10 minutes (also raised as a warn alert). */
+  takeover?: { from: string | null; to: string | null; at: string; after: 'expiry' | 'release' } | null }
 export interface IngestAlert { key: string; level: 'warn' | 'error'; shard: string; message: string }
 export interface IngestStatus { election_id: string; status: string; active_source: string | null; hold_minutes: number; shards: IngestShardStatus[]; alerts: IngestAlert[] }
 export interface HoldRow { const_id: string; const_no: number; name: string; round_at_hold: number | null; expires_at: string; created_by_name: string | null }

@@ -152,7 +152,7 @@ No lease holder (final review) and no source name (2026-10-08: a forged post nee
   hold (`round_at_hold` = the seat's stored round; `expires_at` = now + hold minutes).
 - **Machine keys** (SUPER_ADMIN): create for one election with an expiry (key shown once), list with election, expiry and last use, revoke.
 - **Banners:** shard lag > 3 min, lease lapsed with no new holder for > 2 min, rejected seats > 0, tally mismatch for
-  2+ checks. The same alerts go to an optional webhook (`INGEST_ALERT_WEBHOOK_URL`, Telegram or Slack format).
+  2+ checks, a lease that changed hands in the last 10 min (warn; audit `INGEST_LEASE_TAKEOVER`, 2026-10-08). The same alerts go to an optional webhook (`INGEST_ALERT_WEBHOOK_URL`, Telegram or Slack format).
 - Roles: SUPER_ADMIN and EDITOR operate feed and holds; SUPER_ADMIN manages keys and reopens a Finalized election.
 
 ## 6. Admin corrections and Finalized elections

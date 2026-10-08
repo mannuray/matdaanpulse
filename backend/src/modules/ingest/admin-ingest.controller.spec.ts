@@ -28,4 +28,20 @@ describe('AdminIngestController audit', () => {
     expect(keys.create).toHaveBeenLastCalledWith('cloud2', 'u1', { electionId: 'e1', expiresAt: undefined });
     expect(prisma.audit_logs.create.mock.calls[0][0].data.new_value).toMatchObject({ name: 'cloud', election_id: 'e1' });
   });
+  it('shard put / delete and hold release each write an audit row', async () => {
+    jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
+    const prisma: any = { audit_logs: { create: jest.fn(async () => ({})) } };
+    const shards: any = { upsert: jest.fn(async () => ({ name: 'north' })), remove: jest.fn(async () => undefined) };
+    const holds: any = { release: jest.fn(async () => undefined) };
+    const ctrl = new AdminIngestController(prisma, {} as any, shards, holds, {} as any, {} as any, new AuditLogService(prisma));
+    await ctrl.putShard('e', 'north', { selector: { state_ids: [1] }, source_override: null } as any, req);
+    await ctrl.delShard('e', 'north', req);
+    await expect(ctrl.release('e', 'S1', req)).resolves.toEqual({ released: true });
+    const rows = prisma.audit_logs.create.mock.calls.map((c: any) => c[0].data);
+    expect(rows.map((r: any) => [r.action, r.user_id, r.entity_type, r.entity_id])).toEqual([
+      ['INGEST_SHARD_UPDATE', 'u1', 'election', 'e'], ['INGEST_SHARD_DELETE', 'u1', 'election', 'e'], ['INGEST_HOLD_RELEASE', 'u1', 'constituency', 'S1']]);
+    expect(rows[0].new_value).toEqual({ shard: 'north', selector: { state_ids: [1] }, source_override: null });
+    expect(rows[1].old_value).toEqual({ shard: 'north' });
+    expect(rows[2].new_value).toEqual({ election_id: 'e' });
+  });
 });

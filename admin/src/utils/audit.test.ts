@@ -8,12 +8,23 @@ const log = (over: Partial<AuditLog>): AuditLog => ({
   timestamp: '2026-10-01T08:00:00.000Z', ...over,
 });
 
+describe('ingest audit entries', () => {
+  it('a lease take-over is written by the system (no user) and names the shard and both holders', () => {
+    const l = log({ action: 'INGEST_LEASE_TAKEOVER', user_id: null, users: null, entity_type: 'election', entity_id: 'e1',
+      old_value: { shard: 'rest', holder: 'cloud-1', expires_at: '2027-02-27T04:00:00Z' }, new_value: { shard: 'rest', holder: 'laptop' } });
+    expect(describeAudit(l)).toBe('Shard rest lease taken over by laptop from cloud-1');
+    expect(actionTone('INGEST_LEASE_TAKEOVER')).toBe('warn');
+    expect(actionLabel('INGEST_HOLD_RELEASE')).toBe('Seat hold released');
+  });
+});
+
 describe('audit vocabulary', () => {
   it('lists exactly the actions and entities the backend writes', () => {
     expect(AUDIT_ACTIONS.map((a) => a.value)).toEqual([
       'RESULT_OVERRIDE', 'RESULT_BULK_OVERRIDE', 'SEAT_LOCK_TAKEOVER',
       'PARTY_CREATE', 'PARTY_UPDATE', 'PERSON_UPDATE', 'PERSON_MERGE', 'PERSON_MERGE_UNDO', 'PERSON_DELETE',
       'CANDIDATE_CREATE', 'CANDIDATE_UPDATE', 'CANDIDATE_LINK_PERSON', 'CANDIDATE_SPLIT', 'CANDIDATE_UNLINK_PERSON', 'CONSTITUENCY_UPDATE',
+      'INGEST_LEASE_TAKEOVER', 'INGEST_SHARD_UPDATE', 'INGEST_SHARD_DELETE', 'INGEST_HOLD_RELEASE',
     ]);
     expect(AUDIT_ENTITIES.map((e) => e.value)).toEqual(['result', 'election', 'constituency', 'party', 'person', 'candidate']);
     expect(actionLabel('PERSON_MERGE')).toBe('Persons merged');

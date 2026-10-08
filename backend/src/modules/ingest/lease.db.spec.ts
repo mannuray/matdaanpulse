@@ -51,4 +51,33 @@ describe('LeaseService (DB)', () => {
       expect(await svc.claim(eid!, 'rest', k1, 'b', t0)).toMatchObject({ ok: true });
     });
   });
+  it('previous: set only when the lease changes hands (to another key or holder), never on a first claim or a renew', async () => {
+    await run('takeover', async (svc, _tx, [k1, k2]) => {
+      const t0 = new Date('2027-02-27T09:00:00Z');
+      const at = (s: number) => new Date(t0.getTime() + s * 1000);
+      expect(await svc.claim(eid!, 'north', k1, 'cloud', t0)).toMatchObject({ ok: true, previous: null });
+      expect(await svc.claim(eid!, 'north', k1, 'cloud', at(30))).toMatchObject({ ok: true, previous: null }); // renew
+      expect(await svc.claim(eid!, 'north', k1, 'cloud', at(200))).toMatchObject({ ok: true, previous: null }); // own lease, after expiry
+      const take = await svc.claim(eid!, 'north', k2, 'laptop', at(400));
+      expect(take).toMatchObject({ ok: true, previous: { holder: 'cloud', key_id: k1 } });
+      expect((take as any).previous.expires_at).toEqual(at(290));
+      await svc.release(eid!, 'north', k2, 'laptop');
+      expect(await svc.claim(eid!, 'north', k1, 'cloud', at(401))).toMatchObject({ ok: true, previous: { holder: 'laptop', key_id: k2, expires_at: null } });
+      // rest shard: same rule
+      expect(await svc.claim(eid!, 'rest', k1, 'a', t0)).toMatchObject({ ok: true });
+      expect(await svc.claim(eid!, 'rest', k1, 'b', at(100))).toMatchObject({ ok: true, previous: { holder: 'a', key_id: k1 } });
+    });
+  });
+
+  it('a takeover audit row written by AuditLogService.log is found by the status window (timestamp column is UTC)', async () => {
+    await run('takeover audit', async (_svc, tx) => {
+      const { AuditLogService } = await import('../audit-log/audit-log.service');
+      const { recentTakeovers } = await import('./ingest-status.service');
+      await new AuditLogService(tx).log({ userId: null, action: 'INGEST_LEASE_TAKEOVER', entityType: 'election', entityId: eid!,
+        oldValue: { shard: 'north', holder: 'cloud', expires_at: null }, newValue: { shard: 'north', holder: 'laptop' } });
+      const found = await recentTakeovers(tx, eid!, new Date());
+      expect(found.get('north')).toMatchObject({ from: 'cloud', to: 'laptop', after: 'release' });
+      expect((await recentTakeovers(tx, eid!, new Date(Date.now() + 11 * 60_000))).size).toBe(0);
+    });
+  });
 });

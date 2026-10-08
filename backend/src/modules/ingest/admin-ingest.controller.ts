@@ -39,18 +39,29 @@ export class AdminIngestController {
   }
 
   @Put('elections/:id/ingest/shards/:name') @Roles('SUPER_ADMIN', 'EDITOR')
-  putShard(@Param('id', ParseUUIDPipe) id: string, @Param('name') name: string, @Body() b: ShardBody) {
-    return this.shards.upsert(id, name, { selector: b.selector, source_override: b.source_override ?? null });
+  async putShard(@Param('id', ParseUUIDPipe) id: string, @Param('name') name: string, @Body() b: ShardBody, @Req() req: any) {
+    const out = await this.shards.upsert(id, name, { selector: b.selector, source_override: b.source_override ?? null });
+    await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_SHARD_UPDATE', entityType: 'election', entityId: id,
+      newValue: { shard: name, selector: b.selector, source_override: b.source_override ?? null } });
+    return out;
   }
 
   @Delete('elections/:id/ingest/shards/:name') @Roles('SUPER_ADMIN', 'EDITOR')
-  async delShard(@Param('id', ParseUUIDPipe) id: string, @Param('name') name: string) { await this.shards.remove(id, name); return { deleted: true }; }
+  async delShard(@Param('id', ParseUUIDPipe) id: string, @Param('name') name: string, @Req() req: any) {
+    await this.shards.remove(id, name);
+    await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_SHARD_DELETE', entityType: 'election', entityId: id, oldValue: { shard: name } });
+    return { deleted: true };
+  }
 
   @Get('elections/:id/holds') @Roles('SUPER_ADMIN', 'EDITOR')
   listHolds(@Param('id', ParseUUIDPipe) id: string) { return this.holds.list(id); }
 
   @Delete('elections/:id/holds/:constId') @Roles('SUPER_ADMIN', 'EDITOR')
-  async release(@Param('id', ParseUUIDPipe) id: string, @Param('constId') constId: string) { await this.holds.release(id, constId); return { released: true }; }
+  async release(@Param('id', ParseUUIDPipe) id: string, @Param('constId') constId: string, @Req() req: any) {
+    await this.holds.release(id, constId);
+    await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_HOLD_RELEASE', entityType: 'constituency', entityId: constId, newValue: { election_id: id } });
+    return { released: true };
+  }
 
   @Put('elections/:id/seats/:constId') @Roles('SUPER_ADMIN', 'EDITOR')
   correct(@Param('id', ParseUUIDPipe) id: string, @Param('constId') constId: string, @Body() b: SeatCorrectionBody, @Req() req: any) {
