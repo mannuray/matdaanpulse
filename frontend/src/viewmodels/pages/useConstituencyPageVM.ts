@@ -2,10 +2,11 @@ import { usePartyComparer } from '../data/usePartyComparer';
 import { partyPageHref } from '../../model/derive/partyRecord';
 import { useEffect, useMemo, useState } from 'react';
 import { useApi } from '../data/useApi';
+import { loadElectionList } from '../data/useElectionList';
 import { useLiveSnapshot } from '../data/useLiveSnapshot';
 import { usePartyMeta } from '../data/usePartyMeta';
 import { useLocalStorage } from '../data/useLocalStorage';
-import { getElection, getElections, getConstituency, getConstituencyAnalysis, getManifest, ElectionService } from '../../model/api/election.service';
+import { getElection, getConstituency, getConstituencyAnalysis, getManifest, ElectionService } from '../../model/api/election.service';
 import { ApiError } from '../../model/api/api-client';
 import { matchFeaturesToSeats } from '../../model/geo/featureMatch';
 import type { GeoFeature } from '../../model/geo/geoHelpers';
@@ -69,7 +70,7 @@ export function useConstituencyPageVM(electionId: string, constId: string): Cons
   const analysisRes = useApi(() => getConstituencyAnalysis(electionId, constId).catch(() => null), [electionId, constId], { key: `${ElectionService.getConstituencyCacheKey(electionId, constId)}_analysis` });
   const analysis = analysisRes.data && (!analysisRes.data.const_id || analysisRes.data.const_id === constId) ? analysisRes.data : null;
   const manifest = useApi(() => getManifest(electionId).catch(() => null), [electionId], { key: ElectionService.getCacheKey(electionId, 'manifest') });
-  const elections = useApi(() => getElections().catch(() => null), []);
+  const elections = useApi(() => loadElectionList().catch(() => null), [], { key: 'elections_all_or_null' });
   // Same key as the dashboard watchlist, so tracking is shared.
   const [watch, setWatch] = useLocalStorage<CustomWatch[]>(`watchlist_${electionId}`, []);
 
