@@ -185,11 +185,12 @@ describe('CDN-ready live endpoints (HTTP)', () => {
     expect((await res.json()).data.version).toBe(100);
   });
 
-  it('results?v=<newer than current> (race) → current data with no-store', async () => {
+  it('results?v=<newer than current> (a poll raced ahead of this instance) → cheap 404 no-store, no snapshot load', async () => {
     const res = await get(`/elections/${EID}/results?v=101`);
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(404);
     expect(res.headers.get('cache-control')).toBe('no-store');
-    expect((await res.json()).data.version).toBe(100);
+    expect((await res.json()).error.code).toBe('GEN_0002');
+    expect(ctx.resultsService.getSnapshot).not.toHaveBeenCalled();
   });
 
   it('results without v → the unchanged rows array, short CDN cache', async () => {

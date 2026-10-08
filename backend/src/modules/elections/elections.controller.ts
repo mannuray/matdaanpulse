@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe, BadRequestException, Req, Res } from '@nestjs/common';
+import { Controller, Get, Param, Query, ParseIntPipe, UseInterceptors, ParseUUIDPipe, BadRequestException, NotFoundException, Req, Res } from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { ElectionsService } from './elections.service';
 import { ResultsService } from '../results/results.service';
@@ -71,7 +71,8 @@ export class ElectionsController {
    * - v = current: immutable (a version never changes).
    * - v < current: short-cached redirect to the current version's URL; old data is
    *   never served under a URL that claims to be a version.
-   * - v > current (poll raced ahead of this instance): current data, not stored.
+   * - v > current (a poll raced ahead of this instance's 1 s memo, or a made-up v): 404 no-store, answered from the
+   *   memo without loading anything (these routes are not throttled); the client retries on its next poll.
    */
   @Get(':id/results')
   @SkipThrottle(SKIP_ALL_THROTTLERS) // versioned snapshots are fetched by every viewer on each version change (see getLive)
@@ -88,6 +89,7 @@ export class ElectionsController {
       return;
     }
     const { version } = await this.liveState.get(id);
+    if (query.v > version) throw new NotFoundException('This version is not available yet');
     if (query.v < version) {
       applyCacheControl(req, res, CACHE_CONTROL.REDIRECT);
       // Same path the request came in on (whatever prefix it is mounted under), current version.
@@ -96,7 +98,7 @@ export class ElectionsController {
       return;
     }
     // Read consistently (version + rows in one transaction). Immutable only when the
-    // snapshot really is version v; otherwise (v ahead of us, or the data moved on) no-store.
+    // snapshot really is version v; otherwise (the data moved on since the memo) no-store.
     const snapshot = await this.resultsService.getSnapshot(id, version);
     applyCacheControl(req, res, snapshot.version === query.v ? CACHE_CONTROL.IMMUTABLE : CACHE_CONTROL.NO_STORE);
     res.json(successEnvelope(snapshot));
