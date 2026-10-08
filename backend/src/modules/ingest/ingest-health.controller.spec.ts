@@ -7,9 +7,9 @@ describe('IngestHealthController', () => {
       rejected: [{ const_id: 'S1', reason: 'roster_mismatch' }], refused: { no_lease: 2, inactive_source: 1 }, tally_mismatch: null }] })) };
     return { ctl: new IngestHealthController(prisma, status), status };
   };
-  it('is public-safe: no lease holder, seat ids or reasons — only counts', async () => {
+  it('is public-safe: no lease holder, source name, seat ids or reasons — only counts', async () => {
     const { ctl } = make();
-    expect(await ctl.memoised(0)).toEqual([{ election_id: 'e', shard: 'rest', source: 'eci-web', lease_expires_at: null, last_applied_at: null, lag_s: 5, rejected_seats: 1, refused_5m: 3, tally_mismatch: false }]);
+    expect(await ctl.memoised(0)).toEqual([{ election_id: 'e', shard: 'rest', paused: false, lease_expires_at: null, last_applied_at: null, lag_s: 5, rejected_seats: 1, refused_5m: 3, tally_mismatch: false }]);
   });
   it('memoises the response for 10 s', async () => {
     const { ctl, status } = make();

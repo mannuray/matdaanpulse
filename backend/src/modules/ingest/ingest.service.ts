@@ -18,7 +18,7 @@ export interface Roster {
   /** Seat analysis baseline: when computed, and whether a candidate changed since (live:check refuses a stale one). */
   baseline: { computed_at: string | null; stale: boolean };
 }
-export interface IngestConfig { status: string; source: string | null; poll_hint_ms: number; shard: { name: string; seat_count: number }; lease: { holder: string | null; expires_at: Date | null } }
+export interface IngestConfig { status: string; source: string | null; poll_hint_ms: number; shard: { name: string; seat_count: number }; lease: { expires_at: Date | null } }
 export type SeatOutcomeName = 'applied' | 'unchanged' | 'stale' | 'held' | 'rejected';
 export interface SeatsResponse { counts: Record<SeatOutcomeName, number>; seats: { const_id: string; outcome: SeatOutcomeName; reason?: string; detail?: Record<string, unknown> }[] }
 
@@ -110,7 +110,7 @@ export class IngestService {
     return {
       status: String(election.status), source: await this.effectiveSource(electionId, shard), poll_hint_ms: POLL_HINT_MS,
       shard: { name: shard.name, seat_count: shard.seat_ids.length },
-      lease: { holder: shard.lease_holder, expires_at: shard.lease_expires_at },
+      lease: { expires_at: shard.lease_expires_at }, // no holder name: any key could read it
     };
   }
 
@@ -187,7 +187,7 @@ export class IngestService {
       if (source !== active) refused = { reason: 'inactive_source', error: new IngestInactiveSourceException(active) };
       else if (!(await this.leases.holds(electionId, shard.name, key.id, holder, now))) {
         const cur = await this.leases.current(electionId, shard.name);
-        refused = { reason: 'no_lease', error: new IngestNoLeaseException(cur?.holder ?? null, cur?.expires ?? null) };
+        refused = { reason: 'no_lease', error: new IngestNoLeaseException(cur?.expires ?? null) };
       }
     }
     if (!refused) return;

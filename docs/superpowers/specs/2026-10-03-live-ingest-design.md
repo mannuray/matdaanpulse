@@ -78,11 +78,11 @@ Our identifiers for the election, for the job to build its mapping:
 
 ### 4.2 `GET …/config?shard=<name>`
 `{ status, source (shard override or election source; null = paused), poll_hint_ms, shard: { name, seat_count },
-lease: { holder, expires_at } }`. The job reads it every cycle; a source switch takes effect on the next cycle.
+lease: { expires_at } }` (no holder name). The job reads it every cycle; a source switch takes effect on the next cycle.
 
 ### 4.3 `POST …/lease`
 Body `{ shard, holder }` (`holder` = free text naming the instance, e.g. `worker-sg-1`, `laptop`). Claims the shard's
-lease if free or expired, or renews it if the caller holds it; 90 s TTL. `409 lease_held { holder, expires_at }` otherwise.
+lease if free or expired, or renews it if the caller holds it; 90 s TTL. `409 lease_held { expires_at }` otherwise (the current holder's name is not returned; 2026-10-08 security review).
 `DELETE …/lease?shard=` releases it (clean shutdown).
 
 ### 4.4 `POST …/seats`
@@ -136,9 +136,9 @@ party-wise page). The server compares them with our tally for the same scope and
 Console / alerts; nothing is written to results.
 
 ### 4.6 `GET /api/v1/health/ingest`
-Public-safe summary per Live election and shard: `{ election_id, shard, source, lease_expires_at,
+Public-safe summary per Live election and shard: `{ election_id, shard, paused, lease_expires_at,
 last_applied_at, lag_s (now − latest observed_at), rejected_seats, refused_5m, tally_mismatch }`. For an uptime monitor.
-No lease holder (final review); memoised 10 s in-process since the route is unthrottled.
+No lease holder (final review) and no source name (2026-10-08: a forged post needs it; `paused` = the shard has no source); memoised 10 s in-process since the route is unthrottled.
 
 ## 5. Admin (Live Console, per election)
 

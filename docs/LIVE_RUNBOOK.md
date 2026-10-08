@@ -25,7 +25,7 @@ Dry runs against the real ECI site, then drills. Do each drill and confirm the r
    READY with no `baseline:` line; any later candidate change makes it NOT READY until the baseline is recomputed.
    Going Live recomputes it automatically.
 1. Dry run: `npm run live -- --config live.config.json` against ECI with the feed Paused or on a test election; watch lag and rejected seats.
-2. Drill (a), failover: stop the cloud worker; the laptop's loop takes the shard lease within 90 s. A running worker renews its lease every 30 s during a cycle and before every chunk, so a slow poll does not lose it; if another job takes the shard, the worker logs `lease lost to <holder>` and stops that cycle.
+2. Drill (a), failover: stop the cloud worker; the laptop's loop takes the shard lease within 90 s. A running worker renews its lease every 30 s during a cycle and before every chunk, so a slow poll does not lose it; if another job takes the shard, the worker logs `lease lost to another job (held until …)` and stops that cycle (the API never names the other holder; the Live Console's Feed panel shows it).
 3. Drill (b), source switch: switch Source to another and back (Apply asks for confirmation on a switch).
 4. Drill (c), correction: correct a seat (seat editor) -> it shows "On hold until ..." -> a later round from the source releases it (or press Release in the Holds panel).
 5. Drill (d): Pause (Source = Paused) -> Resume.
@@ -37,7 +37,7 @@ Dry runs against the real ECI site, then drills. Do each drill and confirm the r
 1. At counting start: Elections -> status Live.
 2. Live Console -> Feed -> Source = `eci-web` -> Apply.
 3. Start the worker: `npm run live -- --config live.config.json` (env `INGEST_KEY`, `INGEST_API_URL`, `LIVE_HOLDER` — set it, one name per host). Each cycle logs its duration; `WARN slow cycle` (over 60 s) means the shard is too big for one worker: split it into shards.
-4. Watch the Feed panel: per shard the job, lease, lag, recent counts, rejected seats and the tally badge. `GET /api/v1/health/ingest` gives counts for monitors (refreshed at most every 10 s, no holder names).
+4. Watch the Feed panel: per shard the job, lease, lag, recent counts, rejected seats and the tally badge. `GET /api/v1/health/ingest` gives counts for monitors (refreshed at most every 10 s, no holder or source names; `paused` per shard).
 5. Alerts:
    - **Lag**: check ECI is reachable from the worker; if it is down, switch Source (or start the laptop on another source) and Apply. A Live shard with a source that has never posted lags from the moment the feed settings were last applied, so a worker that never started also raises it.
    - **Lease lapsed**: no worker holds the shard; start the laptop worker (it takes the lease within 90 s).

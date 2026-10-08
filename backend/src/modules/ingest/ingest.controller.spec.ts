@@ -17,7 +17,12 @@ describe('IngestController.lease', () => {
     const exp = new Date();
     const leases: any = { claim: jest.fn().mockResolvedValueOnce({ ok: false, holder: 'x', expires_at: exp }).mockResolvedValueOnce({ ok: true, expires_at: exp }) };
     const c = new IngestController({} as any, leases, shards);
-    await expect(c.lease('e', { shard: 'rest', holder: 'h' }, req)).rejects.toBeInstanceOf(IngestNoLeaseException);
+    const err = await c.lease('e', { shard: 'rest', holder: 'h' }, req).catch(e => e);
+    expect(err).toBeInstanceOf(IngestNoLeaseException);
+    // The current holder's name is not returned (it would help forge a post); only when the lease ends.
+    expect(JSON.stringify(err.getResponse())).not.toContain('"x"');
+    expect(JSON.stringify(err.getResponse())).not.toContain('holder');
+    expect(JSON.stringify(err.getResponse())).toContain(exp.toISOString());
     expect(await c.lease('e', { shard: 'rest', holder: 'h' }, req)).toEqual({ expires_at: exp });
   });
 });

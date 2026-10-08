@@ -14,8 +14,9 @@ export class IngestInactiveSourceException extends BusinessException {
   }
 }
 export class IngestNoLeaseException extends BusinessException {
-  constructor(holder: string | null, expires_at: Date | null) {
-    super(ErrorCodes.INGEST_NO_LEASE, 'Another job holds this shard', HttpStatus.CONFLICT, { holder, expires_at });
+  /** Only when the lease ends: the holder's name is never returned (the worker knows its own; another key must not learn it). */
+  constructor(expires_at: Date | null) {
+    super(ErrorCodes.INGEST_NO_LEASE, 'Another job holds this shard', HttpStatus.CONFLICT, { expires_at });
   }
 }
 export class IngestBadRequestException extends BusinessException {

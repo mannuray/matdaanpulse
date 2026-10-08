@@ -30,7 +30,7 @@ export class IngestController {
   async lease(@Param('electionId', ParseUUIDPipe) id: string, @Body() body: LeaseBody, @Req() req: any) {
     await this.shards.get(id, body.shard); // unknown shard: 404, not 409
     const r = await this.leases.claim(id, body.shard, req.ingestKey.id, body.holder);
-    if (!r.ok) throw new IngestNoLeaseException(r.holder, r.expires_at);
+    if (!r.ok) throw new IngestNoLeaseException(r.expires_at);
     return { expires_at: r.expires_at };
   }
 
