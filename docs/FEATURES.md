@@ -472,6 +472,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` Â
 ### Security hardening (2026-10-08)
 - [x] JWT pinned to HS256 (signing, `JwtService.verify`, passport strategy); startup fails when `JWT_SECRET` is shorter than 32 chars (except `NODE_ENV=test`)
 - [x] Password fields capped at 72 characters and 72 UTF-8 bytes (bcrypt ignores the rest): login, register, admin user create/update, `create-admin`
+- [x] Revocable admin sessions: `users.token_version` (migration `026_users_token_version.sql`) is the `tv` claim of every session JWT and is checked on each request; `POST /auth/logout` (authenticated, 204) and a password change/reset bump it, revoking every earlier token (tokens without `tv` are refused, so everyone logs in once after the deploy). Token lifetime `JWT_TTL` (default 8 h, was 24 h). The admin's Log out calls the endpoint (best effort) and always clears the local session
 
 ### Live Toast Notifications
 - [x] New component `LiveToast` (`frontend/src/components/atoms/LiveToast.tsx`)

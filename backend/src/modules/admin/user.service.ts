@@ -53,7 +53,8 @@ export class UserService {
       // Map the DTO onto real columns; `password` is hashed into `password_hash`.
       return tx.users.update({
         where: { id },
-        data: { ...rest, ...(password_hash ? { password_hash } : {}) },
+        // A new password also bumps token_version: every session token issued before is revoked (U1).
+        data: { ...rest, ...(password_hash ? { password_hash, token_version: { increment: 1 } } : {}) },
         select: { id: true, email: true, name: true, role: true },
       });
     });

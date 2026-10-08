@@ -18,11 +18,21 @@ export function readJwtSecret(config: ConfigService): string {
   return secret;
 }
 
-/** JwtModule options: HS256 pinned for signing and for JwtService.verify (the live SSE token). */
+/** Session token lifetime when JWT_TTL is unset (a jsonwebtoken duration: '8h', '30m', or seconds). */
+export const DEFAULT_JWT_TTL = '8h';
+
+/** JWT_TTL as jsonwebtoken expects it: a plain number is seconds, anything else a duration string ('8h'). */
+function jwtTtl(config: ConfigService): string | number {
+  const raw = config.get<string>('JWT_TTL')?.trim();
+  if (!raw) return DEFAULT_JWT_TTL;
+  return /^\d+$/.test(raw) ? Number(raw) : raw;
+}
+
+/** JwtModule options: HS256 pinned for signing and for JwtService.verify (the live SSE token); JWT_TTL lifetime. */
 export function jwtModuleOptions(config: ConfigService): JwtModuleOptions {
   return {
     secret: readJwtSecret(config),
-    signOptions: { algorithm: JWT_ALGORITHM, expiresIn: '24h' },
+    signOptions: { algorithm: JWT_ALGORITHM, expiresIn: jwtTtl(config) },
     verifyOptions: { algorithms: [JWT_ALGORITHM] },
   };
 }

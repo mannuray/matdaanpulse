@@ -45,3 +45,13 @@ describe('JWT algorithm pinning (U6)', () => {
     expect(strategy._verifOpts.algorithms).toEqual(['HS256']);
   });
 });
+
+describe('session token lifetime (U1)', () => {
+  it('defaults to 8 h and follows JWT_TTL', () => {
+    expect(jwtModuleOptions(config({ JWT_SECRET: LONG })).signOptions?.expiresIn).toBe('8h');
+    expect(jwtModuleOptions(config({ JWT_SECRET: LONG, JWT_TTL: '2h' })).signOptions?.expiresIn).toBe('2h');
+    const token = new JwtService(jwtModuleOptions(config({ JWT_SECRET: LONG }))).sign({ sub: 'u1' });
+    const { iat, exp } = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString());
+    expect(exp - iat).toBe(8 * 3600);
+  });
+});

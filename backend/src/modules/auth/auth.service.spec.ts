@@ -29,10 +29,20 @@ describe('AuthService.login', () => {
 
   it('returns a token for valid credentials', async () => {
     const password_hash = await bcrypt.hash('correct-horse', 4);
-    findUnique.mockResolvedValueOnce({ id: 'u1', email: 'a@b.c', role: 'EDITOR', name: 'A', password_hash });
+    findUnique.mockResolvedValueOnce({ id: 'u1', email: 'a@b.c', role: 'EDITOR', name: 'A', password_hash, token_version: 3 });
     const out = await service.login('a@b.c', 'correct-horse');
     expect(out.access_token).toBe('signed-token');
-    expect(jwt.sign).toHaveBeenCalledWith({ sub: 'u1', role: 'EDITOR' });
+    // The token carries the user's current token_version (U1), so a logout or password change revokes it.
+    expect(jwt.sign).toHaveBeenCalledWith({ sub: 'u1', role: 'EDITOR', tv: 3 });
+  });
+});
+
+describe('AuthService.logout (U1)', () => {
+  it('bumps the user\'s token_version, revoking every token issued before', async () => {
+    const updateMany = jest.fn().mockResolvedValue({ count: 1 });
+    const svc = new AuthService({ users: { updateMany } } as any, {} as any);
+    await svc.logout('u1');
+    expect(updateMany).toHaveBeenCalledWith({ where: { id: 'u1' }, data: { token_version: { increment: 1 } } });
   });
 });
 

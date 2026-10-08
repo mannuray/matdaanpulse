@@ -61,3 +61,16 @@ describe('UserService guard runs inside the write transaction', () => {
     expect(prisma.$transaction).toHaveBeenCalledTimes(2);
   });
 });
+
+describe('UserService password reset revokes sessions (U1)', () => {
+  it('bumps token_version when the password changes, and only then', async () => {
+    const { svc, prisma } = make([{ id: 'e', role: 'EDITOR' }]);
+    await svc.update('e', { password: 'new-password-1' });
+    const data = prisma.users.update.mock.calls[0][0].data;
+    expect(data.token_version).toEqual({ increment: 1 });
+    expect(data.password).toBeUndefined();
+    expect(typeof data.password_hash).toBe('string');
+    await svc.update('e', { name: 'N' });
+    expect(prisma.users.update.mock.calls[1][0].data.token_version).toBeUndefined();
+  });
+});

@@ -36,7 +36,7 @@ export class AuthService {
     }
     
     this.logger.log(`User logged in [user=${user.id}] [${user.role}]`);
-    const token = this.jwtService.sign({ sub: user.id, role: user.role });
+    const token = this.sessionToken(user);
     return { access_token: token, user: { id: user.id, email: user.email, role: user.role, name: user.name } };
   }
 
@@ -51,7 +51,18 @@ export class AuthService {
     });
     
     this.logger.log(`New user registered [user=${user.id}] [${role}]`);
-    const token = this.jwtService.sign({ sub: user.id, role: user.role });
+    const token = this.sessionToken(user);
     return { access_token: token, user: { id: user.id, email: user.email, role: user.role, name: user.name } };
+  }
+
+  /** Revokes every session token of the user (bumps token_version; JwtStrategy refuses older ones). */
+  async logout(userId: string): Promise<void> {
+    await this.prisma.users.updateMany({ where: { id: userId }, data: { token_version: { increment: 1 } } });
+    this.logger.log(`User logged out, sessions revoked [user=${userId}]`);
+  }
+
+  /** A session JWT: `tv` is the user's token_version, checked on every request by JwtStrategy. */
+  private sessionToken(user: { id: string; role: user_role; token_version: number }): string {
+    return this.jwtService.sign({ sub: user.id, role: user.role, tv: user.token_version });
   }
 }
