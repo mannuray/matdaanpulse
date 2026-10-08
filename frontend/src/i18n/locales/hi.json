@@ -211,6 +211,8 @@
   "studio_status_label_final": "अंतिम परिणाम · {{declared}}/{{total}} घोषित",
   "studio_status_label_live": "लाइव · {{declared}}/{{total}} घोषित",
   "studio_status_label_upcoming": "आगामी",
+  "studio_status_short_live": "लाइव · {{declared}}/{{total}}",
+  "studio_status_short_final": "अंतिम",
   "studio_open": "{{name}} खोलें",
   "studio_no_elections": "अभी कोई चुनाव उपलब्ध नहीं",
   "studio_tab_parties": "दल",

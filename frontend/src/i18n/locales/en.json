@@ -211,6 +211,8 @@
   "studio_status_label_final": "Final result · {{declared}}/{{total}} declared",
   "studio_status_label_live": "Live · {{declared}}/{{total}} declared",
   "studio_status_label_upcoming": "Upcoming",
+  "studio_status_short_live": "Live · {{declared}}/{{total}}",
+  "studio_status_short_final": "Final",
   "studio_open": "Open {{name}}",
   "studio_no_elections": "No elections available yet",
   "studio_tab_parties": "Parties",

@@ -19,7 +19,7 @@ import { LayerInsightStrip } from './LayerInsightStrip';
 import { SummaryFocus } from './SummaryFocus';
 import { SummaryPreview } from './SummaryTab';
 import { LeadersStrip } from './LeadersStrip';
-import { StatsStrip } from './StatsStrip';
+import { StatsStrip, StatsPreview } from './StatsStrip';
 import { FocusOverlay } from './FocusOverlay';
 import { MobileCardRail } from './MobileCardRail';
 import { MapTile } from '../map/MapTile';
@@ -67,7 +67,7 @@ export function DashboardGrid(p: DashboardViewProps) {
           { id: 'standings', title: t('party_standings'), node: <StandingsPreview vm={p.standings} />, onOpen: () => { setStandingsTab('parties'); p.standings.onFocus(); } },
           { id: 'watchlist', title: watchTabLabel(p.leaders, t), node: <WatchlistPreview vm={p.leaders} />, onOpen: () => { setStandingsTab('watchlist'); p.standings.onFocus(); } },
           { id: 'leaders', title: titles.leaders, node: <LeadersStrip vm={p.leaders} variant="tile" />, onOpen: p.leaders.onFocus },
-          { id: 'stats', title: titles.stats, node: <StatsStrip vm={p.stats} variant="tile" />, onOpen: p.stats.onFocus },
+          { id: 'stats', title: titles.stats, node: <StatsPreview vm={p.stats} />, onOpen: p.stats.onFocus },
         ]} />
         {overlay}
         <SeatDialog vm={p.seatDialog} />

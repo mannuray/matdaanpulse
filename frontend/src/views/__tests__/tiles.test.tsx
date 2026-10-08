@@ -13,7 +13,7 @@ const noop = () => {};
 const board: ScoreboardVM = {
   blocs: [{ id: 'NDA', name: 'NDA', color: '#FF7A1A', seats: 202, votePct: 48.1, kind: 'alliance', label: 'NDA', textColor: '#FF7A1A' }, { id: 'MGB', name: 'MGB', color: '#7BD34A', seats: 34, votePct: 37.1, kind: 'alliance', label: 'MGB', textColor: '#7BD34A' }],
   others: { seats: 7, votePct: 14.8 }, totalSeats: 243, majority: 122, countedSeats: 243, winnerId: 'NDA', marginOverMajority: 80,
-  status: 'final', pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop,
+  status: 'final', declared: 3, pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop,
 };
 
 describe('dashboard tiles', () => {

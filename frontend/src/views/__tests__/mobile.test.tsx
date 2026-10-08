@@ -6,6 +6,8 @@ import '../../i18n';
 import { StandingsPreview } from '../dashboard/StandingsTile';
 import { ScoreboardTile } from '../dashboard/ScoreboardTile';
 import { SummaryPreview } from '../dashboard/SummaryTab';
+import { StatsPreview } from '../dashboard/StatsStrip';
+import type { StatsVM } from '../../viewmodels/tiles/useStatsVM';
 import { DashboardGrid, type DashboardViewProps } from '../dashboard/DashboardGrid';
 import type { StandingsVM, StandingRow } from '../../viewmodels/tiles/useStandingsVM';
 import type { ScoreboardVM } from '../../viewmodels/tiles/useScoreboardVM';
@@ -13,7 +15,7 @@ import type { SummaryVM, SummarySection } from '../../viewmodels/tiles/useSummar
 import type { FocusTile } from '../../viewmodels/store/dashboardStore';
 
 vi.mock('../map/MapTile', () => ({ MapTile: () => <div data-testid="map" /> }));
-vi.mock('../dashboard/StatsStrip', () => ({ StatsStrip: () => null }));
+vi.mock('../dashboard/StatsStrip', async orig => ({ ...(await orig<typeof import('../dashboard/StatsStrip')>()), StatsStrip: () => null }));
 vi.mock('../dashboard/LeadersStrip', () => ({ LeadersStrip: () => null }));
 vi.mock('../dashboard/LayerInsightStrip', () => ({ LayerInsightStrip: () => null }));
 vi.mock('../seat/SeatDialog', () => ({ SeatDialog: () => null }));
@@ -44,11 +46,32 @@ describe('StandingsPreview', () => {
   });
 });
 
+describe('StatsPreview', () => {
+  const stats = (onSelectSeat = vi.fn()): StatsVM => ({
+    stats: { declared: 243, total: 243, closest: { id: 'S1', name: 'Sandesh', party: 'JDU', margin: 27 }, biggest: { id: 'S2', name: 'Patna Sahib', party: 'BJP', margin: 98000 }, flipped: 31 },
+    closest10: [], biggest10: [], flipped: [], ticker: [], isLive: false, partyColor: new Map(), onFocus: noop, onSelectSeat,
+  });
+  it('fits the phone card: four stats in a 2x2 grid with the smaller number size, never the strip\'s 3xl', () => {
+    const { container } = render(<StatsPreview vm={stats()} />);
+    expect(container.querySelectorAll('[data-preview-stat]')).toHaveLength(4);
+    expect(container.innerHTML).not.toContain('text-3xl');
+    expect(container.textContent).toContain('243/243');
+    expect(container.textContent).toContain('27');
+    expect(container.textContent).toContain('31');
+  });
+  it('the closest contest and biggest win open their seat', () => {
+    const onSelectSeat = vi.fn();
+    render(<StatsPreview vm={stats(onSelectSeat)} />);
+    fireEvent.click(screen.getByRole('button', { name: /27/ }));
+    expect(onSelectSeat).toHaveBeenCalledWith('S1');
+  });
+});
+
 describe('ScoreboardTile compact', () => {
   const board: ScoreboardVM = {
     blocs: [{ id: 'NDA', name: 'National Democratic Alliance', color: '#FF7A1A', seats: 202, votePct: 48.1, kind: 'alliance', label: 'NDA', textColor: '#FF7A1A' }, { id: 'MGB', name: 'Mahagathbandhan', color: '#7BD34A', seats: 34, votePct: 37.1, kind: 'alliance', label: 'MGB', textColor: '#7BD34A' }],
     others: { seats: 7, votePct: 14.8 }, totalSeats: 243, majority: 122, countedSeats: 243, winnerId: 'NDA', marginOverMajority: 80,
-    status: 'final', pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop,
+    status: 'final', declared: 243, pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop,
   };
   it('uses the short bloc label, keeping the full name in title and aria-label', () => {
     render(<ScoreboardTile vm={board} variant="compact" />);
@@ -62,6 +85,17 @@ describe('ScoreboardTile compact', () => {
     const { container } = render(<ScoreboardTile vm={board} variant="compact" />);
     expect(container.querySelector('[data-bloc-row]')).toBeTruthy();
     expect(container.innerHTML).not.toContain('text-5xl');
+  });
+  it('shows the count status on the phone: pulsing Live with declared/total, Final when finalized, nothing before counting', () => {
+    const { container, rerender } = render(<ScoreboardTile vm={{ ...board, status: 'live', declared: 120 }} variant="compact" />);
+    const pill = container.querySelector('[data-status-pill]')!;
+    expect(pill.textContent).toBe('Live · 120/243');
+    expect(pill.querySelector('.animate-pulse')).toBeTruthy();
+    rerender(<ScoreboardTile vm={board} variant="compact" />);
+    expect(container.querySelector('[data-status-pill]')!.textContent).toBe('Final');
+    expect(container.querySelector('[data-status-pill] .animate-pulse')).toBeNull();
+    rerender(<ScoreboardTile vm={{ ...board, status: 'upcoming', declared: 0 }} variant="compact" />);
+    expect(container.querySelector('[data-status-pill]')).toBeNull();
   });
   it('the focus variant still spells the names out', () => {
     render(<ScoreboardTile vm={board} variant="focus" />);
@@ -94,7 +128,7 @@ describe('mobile rail titles', () => {
     search: { query: '', open: false, seats: [], candidates: [], onQuery: noop, onOpen: noop, onPick: noop },
     scoreboard: { blocs: [], others: { seats: 0, votePct: null }, totalSeats: 1, majority: 1, countedSeats: 0, winnerId: null, marginOverMajority: null, status: 'final', pulse: false, breakdown: [], lockedId: null, onFocus: noop, onHoverBloc: noop, onLockBloc: noop },
     standings: { ...standings([row('BJP', 5)]), onFocus },
-    insight: { onFocus: noop }, leaders: { watchlist: [], lists: [], leaders: [], partyColor: new Map(), seatOptions: [], onFocus: noop }, stats: { onFocus: noop },
+    insight: { onFocus: noop }, leaders: { watchlist: [], lists: [], leaders: [], partyColor: new Map(), seatOptions: [], onFocus: noop }, stats: { stats: { declared: 0, total: 0, closest: null, biggest: null, flipped: null }, onFocus: noop, onSelectSeat: noop },
     map: {}, seatDialog: null, focus, onCloseFocus: noop,
   }) as unknown as DashboardViewProps;
   const grid = (p: DashboardViewProps) => <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><DashboardGrid {...p} /></MemoryRouter>;
