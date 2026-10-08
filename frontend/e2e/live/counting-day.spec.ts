@@ -5,7 +5,7 @@
  */
 import { test, expect, type Page } from '@playwright/test';
 import { SIM } from './env';
-import { adminSeats, advanceTo, correct, holds, liveState, releaseHold, shot, snapshot, waitForViewer, type Snapshot } from './sim';
+import { adminSeats, advanceTo, correct, holds, liveState, releaseHold, setStatus, shot, snapshot, waitForViewer, type Snapshot } from './sim';
 import { baseline, leadersOf, liveOf } from './oracle';
 
 test.describe.configure({ mode: 'serial' });
@@ -16,7 +16,7 @@ const PENDING = 'var(--color-map-pending)';
 const colouredSeats = (page: Page) => page.locator('path.pc[data-seat]').evaluateAll((ps, pending) =>
   ps.filter(p => (p as SVGPathElement).style.fill !== pending).map(p => p.getAttribute('data-seat')!), PENDING);
 
-/** The picker's pinned (Live/Upcoming) entry for the sim election, or null. */
+/** Whether the picker pins the sim election as Live (other 2027 elections are pinned as Upcoming). */
 /** Seats drawn with the too-close dashed outline (the browser normalises "3 2" to e.g. "3, 2"). */
 const dashedSeats = (page: Page) => page.locator('path.pc[data-seat]').evaluateAll(ps =>
   ps.filter(p => { const d = (p as SVGPathElement).style.strokeDasharray; return !!d && d !== 'none'; }).length);
@@ -30,7 +30,7 @@ async function chipCount(page: Page, id: string): Promise<number> {
 
 async function pinnedSim(page: Page): Promise<boolean> {
   await page.getByRole('button', { name: /^Choose election/ }).click();
-  const pinned = await page.getByRole('button', { name: /2027 · / }).count();
+  const pinned = await page.getByRole('button', { name: /^Bihar 2027 · Live$/ }).count();
   await page.keyboard.press('Escape');
   return pinned > 0;
 }
@@ -191,4 +191,26 @@ test('counting day, desktop', async ({ page, request }) => {
   } finally {
     for (const id of [cmId, adjId, heldId]) await releaseHold(request, id);
   }
+
+  // C5: every seat declared (the corrected seats rejoined the count when their holds released).
+  snap = await advanceTo(request, 24, excluded);
+  await waitForViewer(page, snap.version, 'C5:');
+  const live5 = await liveState(request);
+  expect(live5.declared, 'C5: declared = total').toBe(live5.total);
+  await expect(page.getByText(`${live5.total}/${live5.total}`).first(), 'C5: declared count on the page').toBeVisible();
+  expect(await dashedSeats(page), 'C5: no too-close dashes once all are declared').toBe(0);
+  expect(await chipCount(page, 'too_close'), 'C5: no Too close chip').toBe(0);
+  await page.getByRole('radio', { name: 'Battle', exact: true }).click();
+  await expect(page.getByText(/lead changes so far/), 'C5: Battle back to margin buckets').toHaveCount(0);
+  await shot(page, 'C5-battle', 'desktop');
+  await page.getByRole('radio', { name: 'Overview', exact: true }).click();
+  await shot(page, 'C5', 'desktop');
+  expect(loads, 'C0–C5: the dashboard was loaded once').toBe(1);
+
+  // C6: Finalized. The viewer's poll picks up the status (Live polls every 10 s + jitter).
+  await setStatus(request, 'Finalized');
+  await expect(page.getByText(/^Final result · /).first(), 'C6: final-result status').toBeVisible({ timeout: 45_000 });
+  await expect(page.getByText(/^Live · \d+\/\d+ declared/), 'C6: Live chip gone').toHaveCount(0);
+  expect(await pinnedSim(page), 'C6: the picker no longer pins the election').toBe(false);
+  await shot(page, 'C6', 'desktop');
 });

@@ -69,8 +69,9 @@ export function useTopBarVM(): TopBarVM {
     const id = setTimeout(refetchElections, 1500);
     return () => clearTimeout(id);
   }, [electionsError, refetchElections]);
-  const all = useMemo(() => elections ?? [], [elections]);
   const current = src.election;
+  // The open election's status follows the live poll (e.g. finalized while open); the fetched list is loaded once.
+  const all = useMemo(() => (elections ?? []).map(e => (e.id === current.id && e.status !== current.status ? { ...e, status: current.status } : e)), [elections, current.id, current.status]);
 
   const go = useCallback((el: Election | null, type: 'LS' | 'VS') => {
     setElection(el);

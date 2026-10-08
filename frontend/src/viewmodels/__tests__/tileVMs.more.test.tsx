@@ -63,6 +63,14 @@ describe('useTopBarVM', () => {
     await waitFor(() => expect(h2.result.current.electionLabel).toBe('LS · 2024'));
   });
 
+  it('the picker follows the open election\'s live status (finalized while open: no longer pinned; live e2e C6)', async () => {
+    vi.spyOn(electionApi, 'getElections').mockResolvedValue(ELECTIONS.map(e => (e.id === 'br2025' ? { ...e, status: 'Live' } : e)) as never);
+    const vs = makeSources({ election: { ...base, id: 'br2025', type: 'VS', year: 2025, state_id: 4, status: 'Finalized' } });
+    const { result } = renderHook(() => useTopBarVM(), { wrapper: wrap(vs) });
+    await waitFor(() => expect(result.current.years.length).toBe(2));
+    expect(result.current.choices('').pinned.map(p => p.id)).toEqual([]);
+  });
+
   it('a failed /elections still offers the current state and year, and is retried once', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     const spy = vi.spyOn(electionApi, 'getElections').mockRejectedValueOnce(new Error('429')).mockResolvedValue(ELECTIONS as never);
