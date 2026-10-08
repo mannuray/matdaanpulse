@@ -3,7 +3,8 @@ import { PartiesService } from './parties.service';
 import { MapToDtoInterceptor } from '../common/interceptors/map-to-dto.interceptor';
 import { PartySummaryDto, PartyDetailDto, LineageEventDto, PartyRecordDto } from './dto/party-response.dto';
 import { paginated } from '../../common/paginated';
-import { PartiesQueryDto } from '../../common/dto/query.dto';
+import { PartiesQueryDto, PartyRecordQueryDto } from '../../common/dto/query.dto';
+import { PartyIdParamDto } from '../../common/dto/param.dto';
 import { CACHE_CONTROL, CacheControl } from '../../common/http/cache-control';
 
 @Controller('parties')
@@ -55,13 +56,13 @@ export class PartiesController {
   @Get(':id/record')
   @CacheControl(CACHE_CONTROL.FINISHED)
   @UseInterceptors(new MapToDtoInterceptor(PartyRecordDto))
-  record(@Param('id') id: string, @Query('state') state?: string) {
+  record(@Param() { id }: PartyIdParamDto, @Query() { state }: PartyRecordQueryDto) {
     return this.partiesService.record(id, state);
   }
 
   @Get(':id')
   @UseInterceptors(new MapToDtoInterceptor(PartyDetailDto))
-  findOne(@Param('id') id: string) {
+  findOne(@Param() { id }: PartyIdParamDto) {
     return this.partiesService.findOne(id);
   }
 }

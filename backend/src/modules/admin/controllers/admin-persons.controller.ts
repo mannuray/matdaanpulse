@@ -8,7 +8,7 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminPersonDto } from '../dto/admin-response.dto';
 import { CreatePersonDto, UpdatePersonDto, MergePersonsDto } from '../../candidates/dto/person-input.dto';
-import { AdminPersonsQueryDto } from '../../../common/dto/query.dto';
+import { AdminPersonsQueryDto, PersonSearchQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/persons')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -28,7 +28,9 @@ export class AdminPersonsController {
   @Get('search')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminPersonDto))
-  searchPersons(@Query('q') q: string) {
+  async searchPersons(@Query() { q }: PersonSearchQueryDto) {
+    // Too short to mean anything (the admin picker waits for 2 characters): no rows, rather than 50 arbitrary persons.
+    if (q.length < 2) return [];
     return this.personsService.search(q);
   }
 

@@ -11,6 +11,7 @@ import {
   UpdateConstituencyDto, BulkTagDto, UpdateAnalysisDto,
 } from '../../constituencies/dto/constituency-input.dto';
 import { AdminConstituenciesQueryDto } from '../../../common/dto/query.dto';
+import { ConstIdParamDto } from '../../../common/dto/param.dto';
 import { BoundedJsonObjectPipe } from '../../../common/validation/bounded-json';
 
 @Controller('admin/constituencies')
@@ -35,7 +36,7 @@ export class AdminConstituenciesController {
   @Get('detail/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
-  async getConstituencyDetail(@Param('id') id: string) {
+  async getConstituencyDetail(@Param() { id }: ConstIdParamDto) {
     const [constituency, last_edit] = await Promise.all([
       this.constituenciesService.findOneWithAnalysis(id),
       this.audit.lastEdit('constituency', id),
@@ -47,14 +48,14 @@ export class AdminConstituenciesController {
   @Get(':id/history')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminSeatHistoryDto))
-  history(@Param('id') id: string) {
+  history(@Param() { id }: ConstIdParamDto) {
     return this.constituenciesService.history(id);
   }
 
   @Patch(':id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
-  async updateConstituency(@Req() req: any, @Param('id') id: string, @Body() body: UpdateConstituencyDto) {
+  async updateConstituency(@Req() req: any, @Param() { id }: ConstIdParamDto, @Body() body: UpdateConstituencyDto) {
     const constituency = await this.constituenciesService.updateConstituency(id, body, req.user?.id);
     return { ...constituency, last_edit: await this.audit.lastEdit('constituency', id) };
   }
@@ -62,7 +63,7 @@ export class AdminConstituenciesController {
   @Patch(':id/metadata')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
-  async updateMetadata(@Req() req: any, @Param('id') id: string, @Body(new BoundedJsonObjectPipe()) body: Record<string, unknown>) {
+  async updateMetadata(@Req() req: any, @Param() { id }: ConstIdParamDto, @Body(new BoundedJsonObjectPipe()) body: Record<string, unknown>) {
     const constituency = await this.constituenciesService.updateMetadata(id, body, req.user?.id);
     return { ...constituency, last_edit: await this.audit.lastEdit('constituency', id) };
   }

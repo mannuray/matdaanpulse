@@ -7,6 +7,7 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { MapToDtoInterceptor } from '../../common/interceptors/map-to-dto.interceptor';
 import { AdminCandidateDto, AdminCandidateResultDto } from '../dto/admin-response.dto';
 import { CreateCandidateDto, UpdateCandidateDto, LinkPersonDto } from '../../candidates/dto/candidate-input.dto';
+import { CandidatesQueryDto } from '../../../common/dto/query.dto';
 
 @Controller('admin/candidates')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -19,11 +20,8 @@ export class AdminCandidatesController {
   @Get()
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminCandidateDto))
-  findAll(
-    @Query('election_id') election_id?: string,
-    @Query('const_id') const_id?: string,
-  ) {
-    return this.candidatesService.findAll({ election_id, const_id }, undefined, true);
+  findAll(@Query() { election_id, const_id }: CandidatesQueryDto) {
+    return this.candidatesService.findAll({ election_id, const_id }, true);
   }
 
   @Get(':id')
