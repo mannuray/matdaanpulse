@@ -8,6 +8,7 @@ function make(users: Array<{ id: string; role: string }>) {
       count: jest.fn(),
       update: jest.fn(async ({ where, data }: any) => ({ ...users.find((u) => u.id === where.id), ...data })),
       delete: jest.fn(async () => ({})),
+      create: jest.fn(async ({ data }: any) => ({ id: 'new', email: data.email, name: data.name, role: data.role })),
     },
   };
   // Raw row-locking query used by the guard: SELECT id FROM users WHERE role = 'SUPER_ADMIN' FOR UPDATE
@@ -16,7 +17,8 @@ function make(users: Array<{ id: string; role: string }>) {
     return users.filter((u) => u.role === 'SUPER_ADMIN').map((u) => ({ id: u.id }));
   });
   prisma.$transaction = jest.fn(async (fn: any) => fn(prisma));
-  return { svc: new UserService(prisma), prisma };
+  const audit = { log: jest.fn(async (..._args: unknown[]) => undefined) };
+  return { svc: new UserService(prisma, audit as any), prisma, audit };
 }
 
 describe('UserService last SUPER_ADMIN guard', () => {
@@ -72,5 +74,41 @@ describe('UserService password reset revokes sessions (U1)', () => {
     expect(typeof data.password_hash).toBe('string');
     await svc.update('e', { name: 'N' });
     expect(prisma.users.update.mock.calls[1][0].data.token_version).toBeUndefined();
+  });
+});
+
+describe('UserService audit rows (U2)', () => {
+  const users = () => [{ id: 'a', role: 'SUPER_ADMIN', email: 'a@x.in', name: 'A' }, { id: 'e', role: 'EDITOR', email: 'e@x.in', name: 'E' }];
+  const rows = (audit: any) => audit.log.mock.calls.map((c: any[]) => c[0]);
+
+  it('USER_CREATE with email, name and role, never the password or its hash', async () => {
+    const { svc, audit } = make(users());
+    await svc.create({ email: 'n@x.in', password: 'secret-pass-1', name: 'N', role: 'EDITOR' }, 'a');
+    expect(rows(audit)).toEqual([{ userId: 'a', action: 'USER_CREATE', entityType: 'user', entityId: 'new', newValue: { email: 'n@x.in', name: 'N', role: 'EDITOR' } }]);
+    expect(JSON.stringify(rows(audit))).not.toMatch(/secret-pass|\$2b\$/);
+  });
+
+  it('a role change and a password reset in one PATCH write two rows; the password is never logged', async () => {
+    const { svc, audit } = make(users());
+    await svc.update('e', { role: 'SUPER_ADMIN', password: 'new-secret-1' }, 'a');
+    expect(rows(audit)).toEqual([
+      { userId: 'a', action: 'USER_ROLE_CHANGE', entityType: 'user', entityId: 'e', oldValue: { role: 'EDITOR' }, newValue: { role: 'SUPER_ADMIN' } },
+      { userId: 'a', action: 'USER_PASSWORD_RESET', entityType: 'user', entityId: 'e' },
+    ]);
+    expect(JSON.stringify(rows(audit))).not.toMatch(/new-secret|\$2b\$/);
+    // Inside the write transaction (savepoint-safe): the tx client is passed.
+    expect(audit.log.mock.calls[0][1]).toBeDefined();
+  });
+
+  it('a name/email edit is USER_UPDATE with only the changed fields; an unchanged role writes nothing', async () => {
+    const { svc, audit } = make(users());
+    await svc.update('e', { name: 'E2', email: 'e@x.in', role: 'EDITOR' }, 'a');
+    expect(rows(audit)).toEqual([{ userId: 'a', action: 'USER_UPDATE', entityType: 'user', entityId: 'e', oldValue: { name: 'E' }, newValue: { name: 'E2' } }]);
+  });
+
+  it('USER_DELETE keeps who the account was', async () => {
+    const { svc, audit } = make(users());
+    await svc.delete('e', 'a');
+    expect(rows(audit)).toEqual([{ userId: 'a', action: 'USER_DELETE', entityType: 'user', entityId: 'e', oldValue: { email: 'e@x.in', name: 'E', role: 'EDITOR' } }]);
   });
 });

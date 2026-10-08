@@ -116,9 +116,24 @@ describe('ConstituenciesService.updateAnalysis', () => {
     const update = jest.fn(async ({ data }) => ({ id: 'a', ...data }));
     const prisma: any = { constituency_analysis: { findUnique: jest.fn(async () => ({ id: 'a', election_id: 'e' })), update } };
     const cache: any = { del: jest.fn(async () => undefined) };
-    await new ConstituenciesService(prisma, cache, {} as any).updateAnalysis('a', { notes: 'n', dominance: 'swing' } as any);
+    await new ConstituenciesService(prisma, cache, { log: jest.fn() } as any).updateAnalysis('a', { notes: 'n', dominance: 'swing' } as any);
     expect(Object.keys(update.mock.calls[0][0].data).sort()).toEqual(['notes', 'updated_at']);
     expect(cache.del).toHaveBeenCalledWith('election:e:public-analysis');
+  });
+
+  it('writes ANALYSIS_NOTES_UPDATE (entity constituency_analysis, so the seat\'s last edit is unaffected) (U2)', async () => {
+    const prisma: any = {
+      constituency_analysis: {
+        findUnique: jest.fn(async () => ({ id: 'a', election_id: 'e', const_id: 'c1', notes: 'old' })),
+        update: jest.fn(async ({ data }: any) => ({ id: 'a', ...data })),
+      },
+    };
+    const audit = { log: jest.fn(async () => undefined) };
+    await new ConstituenciesService(prisma, { del: jest.fn() } as any, audit as any).updateAnalysis('a', { notes: 'new' } as any, 'u1');
+    expect(audit.log).toHaveBeenCalledWith({
+      userId: 'u1', action: 'ANALYSIS_NOTES_UPDATE', entityType: 'constituency_analysis', entityId: 'a',
+      oldValue: { notes: 'old' }, newValue: { notes: 'new' },
+    });
   });
 });
 

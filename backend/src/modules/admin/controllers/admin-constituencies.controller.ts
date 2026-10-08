@@ -82,14 +82,16 @@ export class AdminConstituenciesController {
 
   @Post('analysis/compute/:electionId')
   @Roles('SUPER_ADMIN', 'EDITOR')
-  computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string) {
-    return this.seatAnalysis.computeFor(electionId);
+  async computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string, @Req() req: any) {
+    const out = await this.seatAnalysis.computeFor(electionId);
+    await this.audit.log({ userId: req.user?.id, action: 'ANALYSIS_COMPUTE', entityType: 'election', entityId: electionId, newValue: out });
+    return out;
   }
 
   @Patch('analysis/:id')
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminAnalysisDto))
-  updateAnalysis(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateAnalysisDto) {
-    return this.constituenciesService.updateAnalysis(id, body);
+  updateAnalysis(@Param('id', ParseUUIDPipe) id: string, @Body() body: UpdateAnalysisDto, @Req() req: any) {
+    return this.constituenciesService.updateAnalysis(id, body, req.user?.id);
   }
 }

@@ -473,6 +473,7 @@ Source: `docs/reviews/2026-09-30-backend-review.md`, plan `docs/DEPLOYMENT.md` Â
 - [x] JWT pinned to HS256 (signing, `JwtService.verify`, passport strategy); startup fails when `JWT_SECRET` is shorter than 32 chars (except `NODE_ENV=test`)
 - [x] Password fields capped at 72 characters and 72 UTF-8 bytes (bcrypt ignores the rest): login, register, admin user create/update, `create-admin`
 - [x] Revocable admin sessions: `users.token_version` (migration `026_users_token_version.sql`) is the `tv` claim of every session JWT and is checked on each request; `POST /auth/logout` (authenticated, 204) and a password change/reset bump it, revoking every earlier token (tokens without `tv` are refused, so everyone logs in once after the deploy). Token lifetime `JWT_TTL` (default 8 h, was 24 h). The admin's Log out calls the endpoint (best effort) and always clears the local session
+- [x] Audit rows (`AuditLogService.log`, never passwords or hashes) for USER_CREATE / USER_UPDATE (name, email) / USER_ROLE_CHANGE / USER_PASSWORD_RESET / USER_DELETE, ELECTION_CREATE / ELECTION_UPDATE (changed fields; status changes stay with the lifecycle), MANIFEST_SAVE (keys + size summary) / MANIFEST_PUBLISH, MEDIA_UPLOAD, ANALYSIS_COMPUTE, ANALYSIS_NOTES_UPDATE (entity `constituency_analysis`, so a seat's last edit is unaffected), FEEDBACK_UPDATE; the admin Audit logs filters list them
 
 ### Live Toast Notifications
 - [x] New component `LiveToast` (`frontend/src/components/atoms/LiveToast.tsx`)
