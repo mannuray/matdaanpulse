@@ -14,12 +14,15 @@ import { IngestHealthController } from './ingest-health.controller';
 import { HoldsService } from './holds.service';
 import { SeatCorrectionService } from './seat-correction.service';
 import { AdminIngestController } from './admin-ingest.controller';
+import { IngestAuthLimiter, readAuthFailLimit } from './ingest-auth-limiter';
 
 @Module({
   imports: [LiveModule, AuthModule, AuditLogModule],
   controllers: [IngestController, IngestHealthController, AdminIngestController],
   providers: [IngestService, IngestKeysService, IngestKeyGuard, ShardsService, LeaseService, IngestStatusService, IngestAlertsService, HoldsService, SeatCorrectionService,
-    { provide: ALERT_WEBHOOK_URL, useFactory: () => process.env.INGEST_ALERT_WEBHOOK_URL || undefined }],
-  exports: [IngestService, IngestStatusService, IngestKeysService, ShardsService, LeaseService],
+    { provide: ALERT_WEBHOOK_URL, useFactory: () => process.env.INGEST_ALERT_WEBHOOK_URL || undefined },
+    // One instance shared with the pre-parser gate (configureApp gets it with app.get).
+    { provide: IngestAuthLimiter, useFactory: () => new IngestAuthLimiter(readAuthFailLimit(process.env)) }],
+  exports: [IngestService, IngestStatusService, IngestKeysService, ShardsService, LeaseService, IngestAuthLimiter],
 })
 export class IngestModule {}

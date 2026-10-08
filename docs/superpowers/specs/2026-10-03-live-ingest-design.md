@@ -49,7 +49,8 @@ seat_ingest_state        (election_id, const_id) PK, state TEXT  -- not_started|
                          round_current INT NULL, round_total INT NULL,
                          last_source TEXT NULL, last_observed_at TIMESTAMPTZ NULL, last_applied_at TIMESTAMPTZ NULL
 seat_holds               (election_id, const_id) PK, round_at_hold INT NULL, expires_at TIMESTAMPTZ, created_by → users
-ingest_keys              id, name UNIQUE, key_hash, created_by, created_at, last_used_at, revoked_at
+ingest_keys              id, name UNIQUE, key_hash, created_by, created_at, last_used_at, revoked_at,
+                         election_id → elections NULL (CASCADE), expires_at NULL   -- migration 026; NULL = legacy key
 ingest_log               id, election_id, shard_id, key_id, source, dry_run BOOL, received_at,
                          counts JSONB {applied, unchanged, stale, held, rejected}, rejected JSONB [{const_id, reason}]
                          -- kept 30 days
@@ -63,6 +64,8 @@ ingest_log               id, election_id, shard_id, key_id, source, dry_run BOOL
 ## 4. Ingest API (machine key: `Authorization: Bearer <key>`)
 
 All under `/api/v1/ingest/elections/:electionId`. Keys are not admin JWTs; they can call only these routes.
+Before the 5 MB body parser a gate refuses anything but `Bearer mpk_<43 base64url chars>` (401) and IPs with 10+ failed key
+checks in the last minute (429, in memory per instance); successful key lookups are cached 30 s (2026-10-08 security review).
 Every route is `no-store`.
 
 ### 4.1 `GET …/roster`
@@ -78,11 +81,11 @@ Our identifiers for the election, for the job to build its mapping:
 
 ### 4.2 `GET …/config?shard=<name>`
 `{ status, source (shard override or election source; null = paused), poll_hint_ms, shard: { name, seat_count },
-lease: { holder, expires_at } }`. The job reads it every cycle; a source switch takes effect on the next cycle.
+lease: { expires_at } }` (no holder name). The job reads it every cycle; a source switch takes effect on the next cycle.
 
 ### 4.3 `POST …/lease`
 Body `{ shard, holder }` (`holder` = free text naming the instance, e.g. `worker-sg-1`, `laptop`). Claims the shard's
-lease if free or expired, or renews it if the caller holds it; 90 s TTL. `409 lease_held { holder, expires_at }` otherwise.
+lease if free or expired, or renews it if the caller holds it; 90 s TTL. `409 lease_held { expires_at }` otherwise (the current holder's name is not returned; 2026-10-08 security review).
 `DELETE …/lease?shard=` releases it (clean shutdown).
 
 ### 4.4 `POST …/seats`
@@ -95,7 +98,7 @@ lease if free or expired, or renews it if the caller holds it; 90 s TTL. `409 le
 Up to 500 seats per request.
 
 **Request-level checks** (whole request refused, nothing written; dry runs skip the starred ones):
-1. Key valid, not revoked.
+1. Key valid, not revoked, not expired (401), and created for this election (403; migration 026).
 2. Election exists and is `Live` (`409 not_live`).*
 3. `source` equals the shard's effective source (`409 inactive_source`).*
 4. Caller (key + holder from the lease) holds the shard's lease (`409 no_lease`).*
@@ -136,9 +139,9 @@ party-wise page). The server compares them with our tally for the same scope and
 Console / alerts; nothing is written to results.
 
 ### 4.6 `GET /api/v1/health/ingest`
-Public-safe summary per Live election and shard: `{ election_id, shard, source, lease_expires_at,
+Public-safe summary per Live election and shard: `{ election_id, shard, paused, lease_expires_at,
 last_applied_at, lag_s (now − latest observed_at), rejected_seats, refused_5m, tally_mismatch }`. For an uptime monitor.
-No lease holder (final review); memoised 10 s in-process since the route is unthrottled.
+No lease holder (final review) and no source name (2026-10-08: a forged post needs it; `paused` = the shard has no source); memoised 10 s in-process since the route is unthrottled.
 
 ## 5. Admin (Live Console, per election)
 
@@ -147,9 +150,9 @@ No lease holder (final review); memoised 10 s in-process since the route is unth
   shard: lease holder, last post, lag, last cycles' counts, rejected seats with reasons, tally mismatch.
 - **Holds:** seats on hold with countdown and **Release**. An edit in the existing seat editor creates/refreshes the
   hold (`round_at_hold` = the seat's stored round; `expires_at` = now + hold minutes).
-- **Machine keys** (SUPER_ADMIN): create (key shown once), list with last use, revoke.
+- **Machine keys** (SUPER_ADMIN): create for one election with an expiry (key shown once), list with election, expiry and last use, revoke.
 - **Banners:** shard lag > 3 min, lease lapsed with no new holder for > 2 min, rejected seats > 0, tally mismatch for
-  2+ checks. The same alerts go to an optional webhook (`INGEST_ALERT_WEBHOOK_URL`, Telegram or Slack format).
+  2+ checks, a lease that changed hands in the last 10 min (warn; audit `INGEST_LEASE_TAKEOVER`, 2026-10-08). The same alerts go to an optional webhook (`INGEST_ALERT_WEBHOOK_URL`, Telegram or Slack format).
 - Roles: SUPER_ADMIN and EDITOR operate feed and holds; SUPER_ADMIN manages keys and reopens a Finalized election.
 
 ## 6. Admin corrections and Finalized elections

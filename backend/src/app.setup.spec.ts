@@ -210,8 +210,9 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
       expect(authService.login).toHaveBeenLastCalledWith('a@b.cd', 'password123');
     });
 
-    it('accepts a 1 MB body on the ingest route (with a Bearer header)', async () => {
-      const res = await post('/ingest/results', '10.0.4.3', { blob: 'x'.repeat(1024 * 1024) }, { Authorization: 'Bearer abc' });
+    const KEY = `mpk_${'A'.repeat(43)}`;
+    it('accepts a 1 MB body on the ingest route (with a well-formed machine key)', async () => {
+      const res = await post('/ingest/results', '10.0.4.3', { blob: 'x'.repeat(1024 * 1024) }, { Authorization: `Bearer ${KEY}` });
       expect(res.status).toBe(201);
       expect((await res.json()).data.length).toBe(1024 * 1024);
     });
@@ -219,7 +220,26 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
     it('rejects an anonymous ingest post with 401 before parsing the body', async () => {
       const res = await post('/ingest/results', '10.0.4.4', { blob: 'x'.repeat(1024 * 1024) });
       expect(res.status).toBe(401);
-      expect((await res.json()).error.code).toBe('AUTH_1003');
+      expect((await res.json()).error.code).toBe('INGEST_0001');
+    });
+
+    it.each(['Bearer abc', 'Bearer mpk_short', `Bearer ${KEY}x`, `Bearer ${KEY.slice(0, -1)}=`, 'Bearer eyJhbGciOiJIUzI1NiJ9.e30.sig'])(
+      'rejects a Bearer header that is not a machine key (%s) with 401 before parsing', async (auth) => {
+        const res = await post('/ingest/results', '10.0.4.5', { blob: 'x'.repeat(10) }, { Authorization: auth });
+        expect(res.status).toBe(401);
+        expect((await res.json()).error.code).toBe('INGEST_0001');
+      });
+  });
+
+  describe('ingest failed-key limiter', () => {
+    const KEY = `mpk_${'B'.repeat(43)}`;
+    it('after 10 failed key checks a minute the IP gets 429 with Retry-After, even with a well-formed key; other IPs are unaffected', async () => {
+      for (let i = 0; i < 10; i++) expect((await post('/ingest/results', '10.0.10.1', { blob: 'x' }, { Authorization: 'Bearer nope' })).status).toBe(401);
+      const res = await post('/ingest/results', '10.0.10.1', { blob: 'x'.repeat(1024 * 1024) }, { Authorization: `Bearer ${KEY}` });
+      expect(res.status).toBe(429);
+      expect((await res.json()).error.code).toBe('INGEST_0012');
+      expect(Number(res.headers.get('retry-after'))).toBeGreaterThan(0);
+      expect((await post('/ingest/results', '10.0.10.2', { blob: 'x' }, { Authorization: `Bearer ${KEY}` })).status).toBe(201);
     });
   });
 

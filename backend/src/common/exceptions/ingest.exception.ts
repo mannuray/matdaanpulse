@@ -14,8 +14,9 @@ export class IngestInactiveSourceException extends BusinessException {
   }
 }
 export class IngestNoLeaseException extends BusinessException {
-  constructor(holder: string | null, expires_at: Date | null) {
-    super(ErrorCodes.INGEST_NO_LEASE, 'Another job holds this shard', HttpStatus.CONFLICT, { holder, expires_at });
+  /** Only when the lease ends: the holder's name is never returned (the worker knows its own; another key must not learn it). */
+  constructor(expires_at: Date | null) {
+    super(ErrorCodes.INGEST_NO_LEASE, 'Another job holds this shard', HttpStatus.CONFLICT, { expires_at });
   }
 }
 export class IngestBadRequestException extends BusinessException {
@@ -29,4 +30,18 @@ export class IngestShardOverlapException extends BusinessException {
 }
 export class IngestKeyNotFoundException extends BusinessException {
   constructor(id: string) { super(ErrorCodes.INGEST_KEY_NOT_FOUND, `Ingest key ${id} not found`, HttpStatus.NOT_FOUND, { id }); }
+}
+export class IngestKeyExpiredException extends BusinessException {
+  constructor() { super(ErrorCodes.INGEST_KEY_EXPIRED, 'Ingest key has expired', HttpStatus.UNAUTHORIZED); }
+}
+/** A valid key used for an election it was not created for. */
+export class IngestKeyScopeException extends BusinessException {
+  constructor() { super(ErrorCodes.INGEST_KEY_SCOPE, 'Ingest key is not valid for this election', HttpStatus.FORBIDDEN); }
+}
+export class IngestKeyNameTakenException extends BusinessException {
+  constructor(name: string) { super(ErrorCodes.INGEST_KEY_NAME_TAKEN, `An ingest key named ${name} already exists`, HttpStatus.CONFLICT, { name }); }
+}
+/** Too many failed ingest key checks from this IP in the last minute (IngestAuthLimiter). */
+export class IngestRateLimitedException extends BusinessException {
+  constructor(retryAfterS: number) { super(ErrorCodes.INGEST_RATE_LIMITED, 'Too many failed ingest key checks; retry later', HttpStatus.TOO_MANY_REQUESTS, { retry_after_s: retryAfterS }); }
 }

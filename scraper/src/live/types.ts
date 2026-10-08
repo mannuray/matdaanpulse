@@ -11,5 +11,5 @@ export interface SourceAdapter { id: string; intervalMs: number; prepare(roster:
    *  bookkeeping pending until then, so a seat that was not delivered, or was held or rejected, is sent again on the next poll(). */
   commit?(constIds: string[]): void }
 export type AdapterFactory = (opts: Record<string, string>) => SourceAdapter;
-export interface IngestConfig { status: string; source: string | null; poll_hint_ms: number; shard: { name: string; seat_count: number }; lease: { holder: string | null; expires_at: string | null } }
+export interface IngestConfig { status: string; source: string | null; poll_hint_ms: number; shard: { name: string; seat_count: number }; lease: { expires_at: string | null } }
 export interface SeatsResponse { counts: Record<'applied' | 'unchanged' | 'stale' | 'held' | 'rejected', number>; seats: { const_id: string; outcome: string; reason?: string; detail?: unknown }[] }

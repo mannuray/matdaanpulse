@@ -7,8 +7,8 @@ function deps(over: Partial<{ status: string; source: string | null; lease: 'ok'
   const adapter = { id: 'fake', intervalMs: 30_000, prepare: vi.fn(async () => ({ seats_total: 1, seats_mapped: 1, unmapped: [] })),
     poll: vi.fn(async () => Array.from({ length: over.seats ?? 1 }, (_, i) => ({ const_id: `S${i}`, state: 'counting' as const, votes: {} }))) };
   const client = {
-    config: vi.fn(async () => ({ status: over.status ?? 'Live', source: over.source === undefined ? 'fake' : over.source, poll_hint_ms: 10_000, shard: { name: 'rest', seat_count: 1 }, lease: { holder: null, expires_at: null } })),
-    lease: vi.fn(async () => { if (over.lease === 'held') throw new IngestApiError('held', 409, 'INGEST_0004', { holder: 'laptop' }); return { expires_at: 't' }; }),
+    config: vi.fn(async () => ({ status: over.status ?? 'Live', source: over.source === undefined ? 'fake' : over.source, poll_hint_ms: 10_000, shard: { name: 'rest', seat_count: 1 }, lease: { expires_at: null } })),
+    lease: vi.fn(async () => { if (over.lease === 'held') throw new IngestApiError('held', 409, 'INGEST_0004', { expires_at: '2027-02-27T04:01:30Z' }); return { expires_at: 't' }; }),
     release: vi.fn(async () => undefined),
     roster: vi.fn(async () => roster),
     seats: vi.fn(async (_e: string, b: any) => ({ counts: { applied: b.seats.length, unchanged: 0, stale: 0, held: 0, rejected: 0 }, seats: [] })),
@@ -66,18 +66,18 @@ describe('runCycle lease', () => {
   it('a 409 on the re-claim before a chunk ends the cycle cleanly: no post, no backoff, lease marked lost', async () => {
     const { d, client, log } = deps({ seats: POST_CHUNK + 1 });
     client.lease.mockResolvedValueOnce({ expires_at: 't' }).mockResolvedValueOnce({ expires_at: 't' })
-      .mockRejectedValueOnce(new IngestApiError('held', 409, 'INGEST_0004', { holder: 'laptop' }));
+      .mockRejectedValueOnce(new IngestApiError('held', 409, 'INGEST_0004', { expires_at: '2027-02-27T04:01:30Z' }));
     const st = newLoopState();
     expect(await runCycle('e', 'rest', st, d)).toBe(10_000);
     expect(client.seats).toHaveBeenCalledTimes(1);
     expect(st).toMatchObject({ leased: false, failures: 0 });
-    expect(log).toHaveBeenCalledWith(expect.stringContaining('lease lost to laptop'));
+    expect(log).toHaveBeenCalledWith(expect.stringContaining('lease lost to another job (held until 2027-02-27T04:01:30Z)'));
   });
   it('a heartbeat 409 stops the cycle before its next chunk', async () => {
     vi.useFakeTimers();
     const { d, client, adapter } = deps({ seats: 1 });
     adapter.poll.mockImplementation(() => new Promise(r => setTimeout(() => r([{ const_id: 'S0', state: 'counting', votes: {} }]), 40_000)));
-    client.lease.mockResolvedValueOnce({ expires_at: 't' }).mockRejectedValue(new IngestApiError('held', 409, 'INGEST_0004', { holder: 'laptop' }));
+    client.lease.mockResolvedValueOnce({ expires_at: 't' }).mockRejectedValue(new IngestApiError('held', 409, 'INGEST_0004', { expires_at: '2027-02-27T04:01:30Z' }));
     const p = runCycle('e', 'rest', newLoopState(), d);
     await vi.advanceTimersByTimeAsync(40_000);
     expect(await p).toBe(10_000);
@@ -130,7 +130,7 @@ describe('runCycle', () => {
     const { d, adapter, log } = deps({ lease: 'held' });
     expect(await runCycle('e', 'rest', newLoopState(), d)).toBe(10_000);
     expect(adapter.poll).not.toHaveBeenCalled();
-    expect(log).toHaveBeenCalledWith(expect.stringContaining('laptop'), undefined);
+    expect(log).toHaveBeenCalledWith(expect.stringContaining('lease held by another job until 2027-02-27T04:01:30Z'), undefined);
   });
   it('a failing config call backs off and never throws', async () => {
     const { d, client } = deps();
@@ -152,7 +152,7 @@ describe('runCycle', () => {
     const st = newLoopState();
     await runCycle('e', 'rest', st, d);
     expect(adapter.prepare).toHaveBeenCalledTimes(1);
-    client.config.mockResolvedValue({ status: 'Live', source: 'fake2', poll_hint_ms: 10_000, shard: { name: 'rest', seat_count: 1 }, lease: { holder: null, expires_at: null } });
+    client.config.mockResolvedValue({ status: 'Live', source: 'fake2', poll_hint_ms: 10_000, shard: { name: 'rest', seat_count: 1 }, lease: { expires_at: null } });
     const adapter2 = { ...adapter, prepare: vi.fn().mockRejectedValueOnce(new Error('roster')).mockResolvedValue({ seats_total: 1, seats_mapped: 1, unmapped: [] }), poll: vi.fn(async () => []) };
     d.adapters.fake2 = () => adapter2;
     await runCycle('e', 'rest', st, d);

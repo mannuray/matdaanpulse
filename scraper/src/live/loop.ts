@@ -9,6 +9,9 @@ export interface LoopState { adapter: SourceAdapter | null; source: string | nul
 export const POST_CHUNK = 100;
 export const REPREPARE_MS = 30 * 60_000;
 export const TALLY_EVERY = 5;
+/** The server's 409 names only when the other job's lease ends, never its holder. */
+const heldUntil = (e: IngestApiError) => { const at = (e.details as { expires_at?: string } | null)?.expires_at; return at ? ` until ${at}` : ''; };
+
 /** Lease renewal while a cycle runs (the server's lease TTL is 90 s). */
 export const HEARTBEAT_MS = 30_000;
 export const SLOW_CYCLE_MS = 60_000;
@@ -37,13 +40,13 @@ export async function runCycle(electionId: string, shard: string, st: LoopState,
   try { await d.client.lease(electionId, shard, d.holder); st.leased = true; }
   catch (e) {
     st.leased = false;
-    if (e instanceof IngestApiError && e.status === 409) { st.failures = 0; d.log(`${tag} lease held by ${(e.details as any)?.holder ?? 'another job'}`, undefined); return cfg.poll_hint_ms; }
+    if (e instanceof IngestApiError && e.status === 409) { st.failures = 0; d.log(`${tag} lease held by another job${heldUntil(e)}`, undefined); return cfg.poll_hint_ms; }
     d.log(`${tag} lease failed: ${(e as Error).message}`); return cfg.poll_hint_ms;
   }
 
   // Keep the lease while the cycle runs (a large shard's poll can outlast the TTL); a lost lease ends the cycle at the next chunk.
   let lostTo: string | null = null;
-  const lost = (e: unknown) => { if (e instanceof IngestApiError && e.status === 409) { lostTo = (e.details as any)?.holder ?? 'another job'; return true; } return false; };
+  const lost = (e: unknown) => { if (e instanceof IngestApiError && e.status === 409) { lostTo = `another job${e.details && (e.details as any).expires_at ? ` (held until ${(e.details as any).expires_at})` : ''}`; return true; } return false; };
   const heartbeat = setInterval(() => {
     d.client.lease(electionId, shard, d.holder).catch(e => { if (!lost(e)) d.log(`${tag} lease renewal failed: ${(e as Error).message}`); });
   }, HEARTBEAT_MS);
