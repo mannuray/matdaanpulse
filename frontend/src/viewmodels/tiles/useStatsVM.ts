@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useSources } from '../sources/DashboardSourcesProvider';
+import { useSources, useLivePulseState } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { deriveStats, rankSeats, flippedSeatRefs, type DashboardStats, type SeatRef } from '../../model/derive/stats';
 import type { TickerEvent } from '../../model/live/ticker';
@@ -20,6 +20,7 @@ export interface StatsVM {
 
 export function useStatsVM(): StatsVM {
   const src = useSources();
+  const pulse = useLivePulseState();
   const { dispatch } = useDashboardStore();
   const seats = src.data.mapRegions;
   return {
@@ -27,7 +28,7 @@ export function useStatsVM(): StatsVM {
     closest10: useMemo(() => rankSeats(seats, 'closest', 10), [seats]),
     biggest10: useMemo(() => rankSeats(seats, 'biggest', 10), [seats]),
     flipped: useMemo(() => flippedSeatRefs(seats, src.swing), [seats, src.swing]),
-    ticker: src.ticker,
+    ticker: pulse.ticker,
     isLive: src.election.status === 'Live',
     partyColor: src.data.partyColorMap,
     onFocus: () => dispatch({ type: 'focus', tile: 'stats' }),

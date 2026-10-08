@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useElection } from '../viewmodels/data/useElection';
 import { useDashboardSources } from '../viewmodels/sources/useDashboardSources';
-import { DashboardSourcesProvider } from '../viewmodels/sources/DashboardSourcesProvider';
+import { DashboardSourcesProvider, LivePulseProvider } from '../viewmodels/sources/DashboardSourcesProvider';
+import { useLivePulse } from '../viewmodels/sources/useLivePulse';
 import { DashboardStoreProvider, useDashboardStore } from '../viewmodels/store/DashboardStoreProvider';
 import { useTopBarVM } from '../viewmodels/tiles/useTopBarVM';
 import { useSearchVM } from '../viewmodels/tiles/useSearchVM';
@@ -34,6 +35,7 @@ function Wall() {
 
 function Loaded({ election }: { election: Election }) {
   const sources = useDashboardSources(election);
+  const pulse = useLivePulse(sources.election.id, sources.data.results, sources.data.liveVersion, sources.liveAnalysis?.seats);
   const { t } = useTranslation();
   const knownParties = useMemo(() => (sources.partyMeta.size ? new Set(sources.partyMeta.keys()) : null), [sources.partyMeta]);
   const knownSeats = useMemo(() => (sources.data.mapRegions.length ? new Set(sources.data.mapRegions.map(r => r.id)) : null), [sources.data.mapRegions]);
@@ -47,12 +49,14 @@ function Loaded({ election }: { election: Election }) {
   }
   return (
     <DashboardSourcesProvider value={sources}>
+      <LivePulseProvider value={pulse}>
       <DashboardStoreProvider allowedLayers={sources.availableLayers} knownSeats={knownSeats} knownParties={knownParties}>
         {/* data-live-version: the snapshot version on screen (the live e2e waits on it); no box of its own. */}
         <div data-live-version={sources.data.liveVersion ?? ''} style={{ display: 'contents' }}>
           <Wall />
         </div>
       </DashboardStoreProvider>
+      </LivePulseProvider>
     </DashboardSourcesProvider>
   );
 }

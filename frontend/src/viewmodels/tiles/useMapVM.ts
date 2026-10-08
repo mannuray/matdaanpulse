@@ -3,7 +3,7 @@ export type { LegendItem };
 import type { PulseKind } from '../../model/live/pulse';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSources } from '../sources/DashboardSourcesProvider';
+import { useSources, useLivePulseState } from '../sources/DashboardSourcesProvider';
 import { useDashboardStore } from '../store/DashboardStoreProvider';
 import { activeHighlight, type MapMode } from '../store/dashboardStore';
 import { ElectionService } from '../../model/api/election.service';
@@ -52,6 +52,7 @@ export interface MapVM {
 export function useMapVM(): MapVM {
   const { t } = useTranslation();
   const src = useSources();
+  const pulse = useLivePulseState();
   const { state, dispatch } = useDashboardStore();
   const geo = src.data.manifestData?.geo;
   const isVS = src.election.type === 'VS';
@@ -105,7 +106,7 @@ export function useMapVM(): MapVM {
 
   return {
     status, features, stateFeatures, isVS, geoConfig: geo, seatOf, fills, outline: outline && !onRegions, regionOutlines: regionLines,
-    recentSeats: src.recentSeats, legend, selectedSeat: state.selectedSeat,
+    recentSeats: pulse.recentSeats, legend, selectedSeat: state.selectedSeat,
     layer: state.layer, layers: src.availableLayers, mapMode: state.mapMode, hexAvailable: Boolean(geo?.hex_url),
     lockedLabel: state.locked?.label ?? null,
     seatInfo: id => {
