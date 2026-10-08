@@ -16,7 +16,7 @@ import { HealthController } from './modules/health/health.controller';
 import { AuthController } from './modules/auth/auth.controller';
 import { AuthService } from './modules/auth/auth.service';
 import { LiveController, LiveSseAccessGuard, SseConnections } from './modules/live/live.controller';
-import { LivePublisher } from './modules/live/live.service';
+import { LivePublisher, LiveStream } from './modules/live/live.service';
 import { MetricsService } from './modules/metrics/metrics.service';
 import { PrismaService } from './modules/prisma/prisma.service';
 import { RedisService } from './modules/redis/redis.service';
@@ -84,6 +84,7 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
         { provide: AuthService, useValue: authService },
         { provide: ConfigService, useValue: { get: () => undefined } },
         { provide: LivePublisher, useValue: livePublisher },
+        { provide: LiveStream, useValue: livePublisher },
         { provide: LiveSseTokenService, useValue: sseTokens },
         { provide: SseConnections, useValue: sseConnections },
         LiveSseAccessGuard,

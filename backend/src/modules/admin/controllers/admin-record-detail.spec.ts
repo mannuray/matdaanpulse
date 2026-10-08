@@ -44,11 +44,9 @@ describe('admin detail responses: updated_at + last_edit', () => {
     const edited = { timestamp: new Date('2026-10-01T10:00:00Z'), users: { name: 'Priya S' } };
     const { audit, prisma } = auditWith(edited);
 
-    const persons = {
-      findWithCandidates: jest.fn().mockResolvedValue({ id: 'p1', name: 'N', updated_at, candidates: [] }),
-      mergeHistory: jest.fn().mockResolvedValue([]),
-    };
-    const person = map(AdminPersonDto, await new AdminPersonsController(persons as any, audit).findPersonDetail('p1'));
+    const persons = { findWithCandidates: jest.fn().mockResolvedValue({ id: 'p1', name: 'N', updated_at, candidates: [] }) };
+    const merges = { mergeHistory: jest.fn().mockResolvedValue([]) };
+    const person = map(AdminPersonDto, await new AdminPersonsController(persons as any, merges as any, audit).findPersonDetail('p1'));
     expect(person).toMatchObject({ updated_at: '2026-10-01T09:30:00.000Z', last_edit: { by: 'Priya S' } });
 
     const candidates = { findOne: jest.fn().mockResolvedValue({ id: 'c1', name: 'R', person_id: 'p1', updated_at }), personContests: jest.fn().mockResolvedValue(null) };
@@ -249,15 +247,16 @@ describe('person responses: identity columns and merge history', () => {
   it('GET /admin/persons/:id lists the merges with the person\'s current candidate ids, merged_at as ISO', async () => {
     const { audit } = auditWith(null);
     const merges = [{ id: 'm1', duplicate_name: 'N. K', candidate_count: 2, merged_at: updated_at, merged_by: null, undoable: true }];
-    const persons = { findWithCandidates: jest.fn().mockResolvedValue(personRow), mergeHistory: jest.fn().mockResolvedValue(merges) };
-    const out = map(AdminPersonDto, await new AdminPersonsController(persons as any, audit).findPersonDetail('p1'));
-    expect(persons.mergeHistory).toHaveBeenCalledWith('p1', ['c1', 'c2']);
+    const persons = { findWithCandidates: jest.fn().mockResolvedValue(personRow) };
+    const mergeService = { mergeHistory: jest.fn().mockResolvedValue(merges) };
+    const out = map(AdminPersonDto, await new AdminPersonsController(persons as any, mergeService as any, audit).findPersonDetail('p1'));
+    expect(mergeService.mergeHistory).toHaveBeenCalledWith('p1', ['c1', 'c2']);
     expect(out.merges).toEqual([{ id: 'm1', duplicate_name: 'N. K', candidate_count: 2, merged_at: '2026-10-01T09:30:00.000Z', merged_by: null, undoable: true }]);
   });
 
   it('the persons list passes the contests filter through', async () => {
     const persons = { findAll: jest.fn().mockResolvedValue({}) };
-    await new AdminPersonsController(persons as any, {} as any).findAllPersons({ page: 2, contests: '2plus', state_id: 5 } as any);
+    await new AdminPersonsController(persons as any, {} as any, {} as any).findAllPersons({ page: 2, contests: '2plus', state_id: 5 } as any);
     expect(persons.findAll).toHaveBeenCalledWith(2, 100, '', { state_id: 5, region_id: undefined, contests: '2plus' });
   });
 });
@@ -277,9 +276,9 @@ describe('change person, split and undo routes', () => {
     await expect(new AdminCandidatesController(candidates as any, {} as any).split({ user: { id: 'u1' } }, 'c1'))
       .resolves.toEqual({ person_id: 'p-new', old_person_deleted: false });
     expect(candidates.split).toHaveBeenCalledWith('c1', 'u1');
-    const persons = { undoMerge: jest.fn().mockResolvedValue({ undone: true }) };
-    await new AdminPersonsController(persons as any, {} as any).undoMerge({ user: { id: 'u9' } }, 'm1');
-    expect(persons.undoMerge).toHaveBeenCalledWith('m1', 'u9');
+    const merges = { undoMerge: jest.fn().mockResolvedValue({ undone: true }) };
+    await new AdminPersonsController({} as any, merges as any, {} as any).undoMerge({ user: { id: 'u9' } }, 'm1');
+    expect(merges.undoMerge).toHaveBeenCalledWith('m1', 'u9');
   });
 
   it('the unlink and link-person routes and auto-link are gone', () => {

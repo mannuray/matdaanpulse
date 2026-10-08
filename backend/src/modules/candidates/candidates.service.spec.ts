@@ -235,18 +235,18 @@ describe('CandidatesService.changePerson / split', () => {
       $executeRawUnsafe: jest.fn().mockResolvedValue(0),
     };
     const prisma = { $transaction: jest.fn(async (fn: (t: typeof tx) => unknown) => fn(tx)), audit_logs: { create: jest.fn() } };
-    const persons = { mergeInTx: jest.fn(async () => { moved = true; return { merged: true, target_id: 'p-new', merge_id: 'm1' }; }) };
-    const svc = new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any), persons as any);
+    const merges = { mergeInTx: jest.fn(async () => { moved = true; return { merged: true, target_id: 'p-new', merge_id: 'm1' }; }) };
+    const svc = new CandidatesService(prisma as any, {} as any, new AuditLogService(prisma as any), merges as any);
     const audit = () => tx.audit_logs.create.mock.calls.map((c: any) => c[0].data);
-    return { svc, tx, prisma, audit, persons };
+    return { svc, tx, prisma, audit, merges };
   }
 
   it('change person moves the candidacy and writes CANDIDATE_LINK_PERSON, in one transaction', async () => {
-    const { svc, tx, prisma, audit, persons } = make();
+    const { svc, tx, prisma, audit, merges } = make();
     await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ person_id: 'p-new', old_person_deleted: false, merge_id: null });
     expect(prisma.$transaction).toHaveBeenCalledTimes(1);
     expect(tx.candidates.count).toHaveBeenCalledWith({ where: { person_id: 'p-old' } });
-    expect(persons.mergeInTx).not.toHaveBeenCalled();
+    expect(merges.mergeInTx).not.toHaveBeenCalled();
     expect(tx.candidates.update).toHaveBeenCalledWith({ where: { id: 'c1' }, data: { person_id: 'p-new' } });
     expect(audit()).toEqual([{
       user_id: 'u1', action: 'CANDIDATE_LINK_PERSON', entity_type: 'candidate', entity_id: 'c1',
@@ -255,10 +255,10 @@ describe('CandidatesService.changePerson / split', () => {
   });
 
   it("change person of the old person's last contest is a merge of the old person into the target, in the same transaction", async () => {
-    const { svc, tx, audit, persons } = make({ contests: 1 });
+    const { svc, tx, audit, merges } = make({ contests: 1 });
     tx.candidates.findUnique.mockResolvedValueOnce(candidate).mockResolvedValueOnce({ ...candidate, person_id: 'p-new' });
     await expect(svc.changePerson('c1', 'p-new', 'u1')).resolves.toMatchObject({ person_id: 'p-new', old_person_deleted: true, merge_id: 'm1' });
-    expect(persons.mergeInTx).toHaveBeenCalledWith(tx, 'p-old', 'p-new', 'u1');
+    expect(merges.mergeInTx).toHaveBeenCalledWith(tx, 'p-old', 'p-new', 'u1');
     // The merge moved the contest; no separate update, no PERSON_DELETE (the merge log keeps the old person).
     expect(tx.candidates.update).not.toHaveBeenCalled();
     expect(audit()).toEqual([{
@@ -285,11 +285,11 @@ describe('CandidatesService.changePerson / split', () => {
   });
 
   it('change person to an unknown person is a 404 and moves or merges nothing', async () => {
-    const { svc, tx, persons } = make({ target: null, contests: 1 });
+    const { svc, tx, merges } = make({ target: null, contests: 1 });
     const err = await svc.changePerson('c1', 'p-new', 'u1').catch((e) => e);
     expect(err.getStatus()).toBe(404);
     expect(tx.candidates.update).not.toHaveBeenCalled();
-    expect(persons.mergeInTx).not.toHaveBeenCalled();
+    expect(merges.mergeInTx).not.toHaveBeenCalled();
   });
 
   it('change person or split of an unknown candidate is a 404', async () => {

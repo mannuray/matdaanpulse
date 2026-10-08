@@ -1,4 +1,4 @@
-import type { PrismaService } from '../prisma/prisma.service';
+import type { Prisma } from '@prisma/client';
 
 /**
  * Seat timeline (migration 025): for each seat in `constIds`, append a row when its leader, runner-up, margin or
@@ -6,7 +6,7 @@ import type { PrismaService } from '../prisma/prisma.service';
  * seat lock (`lockSeats`) and after the results write, so `seq = latest + 1` cannot race.
  * Leader = the WON/LEADING row, else the most votes; NOTA is never leader or runner-up; votes_counted includes NOTA.
  */
-export async function appendSeatRounds(tx: Pick<PrismaService, '$executeRaw'>, electionId: string, constIds: string[], source: string, observedAt: Date): Promise<number> {
+export async function appendSeatRounds(tx: Pick<Prisma.TransactionClient, '$executeRaw'>, electionId: string, constIds: string[], source: string, observedAt: Date): Promise<number> {
   const ids = [...new Set(constIds)];
   if (!ids.length) return 0;
   return tx.$executeRaw`

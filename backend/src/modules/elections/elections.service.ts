@@ -1,14 +1,13 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma, election_status, election_type } from '@prisma/client';
 import { ElectionNotFoundException } from '../../common/exceptions';
 import type { CreateElectionDto, UpdateElectionDto } from './dto/election-input.dto';
 import { comparableElectionIds } from '../../common/comparable-elections';
+import { parseManifest } from '../../common/manifest';
 
 @Injectable()
 export class ElectionsService {
-  private readonly logger = new Logger(ElectionsService.name);
-
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(filters: { type?: election_type; status?: election_status; state_id?: number; year?: number }) {
@@ -40,7 +39,7 @@ export class ElectionsService {
 
   async getManifest(id: string) {
     const election = await this.findOne(id);
-    const draft = await this.comparableManifest(election, this.parseManifest(election.manifest_url));
+    const draft = await this.comparableManifest(election, parseManifest(election.manifest_url));
     return { election_id: id, manifest_url: election.manifest_url, draft };
   }
 
@@ -67,25 +66,6 @@ export class ElectionsService {
     }
     if (compare) out.compare_with = compare.filter(c => keep.has(c));
     return out;
-  }
-
-  /**
-   * The single place `elections.manifest_url` (JSON text in a column that is misnamed
-   * "url") is parsed. Returns the manifest object (arrays and scalars are not manifests), or null when absent or not valid
-   * JSON (logged, never thrown, so one bad row cannot break a page).
-   */
-  parseManifest(raw: unknown): Record<string, unknown> | null {
-    if (raw === null || raw === undefined || raw === '') return null;
-    let value: unknown = raw;
-    if (typeof raw === 'string') {
-      try {
-        value = JSON.parse(raw);
-      } catch {
-        this.logger.warn('manifest_url is not valid JSON; treating the manifest as absent');
-        return null;
-      }
-    }
-    return value !== null && typeof value === 'object' && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
   }
 
   private toElectionData<T extends { tentative_next_date?: string | null }>(data: T) {

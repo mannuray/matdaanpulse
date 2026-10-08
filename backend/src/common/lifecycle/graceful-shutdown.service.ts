@@ -1,5 +1,6 @@
-import { BeforeApplicationShutdown, Injectable, Logger, OnApplicationShutdown } from '@nestjs/common';
+import { BeforeApplicationShutdown, Inject, Injectable, Logger, OnApplicationShutdown } from '@nestjs/common';
 import { RedisService } from '../../modules/redis/redis.service';
+import type { RedisLifecycle } from '../../modules/redis/redis.ports';
 import { PrismaService } from '../../modules/prisma/prisma.service';
 import { shutdownTracing } from '../../tracing';
 
@@ -17,7 +18,7 @@ export class GracefulShutdownService implements BeforeApplicationShutdown, OnApp
   private readonly logger = new Logger('Shutdown');
 
   constructor(
-    private readonly redis: RedisService,
+    @Inject(RedisService) private readonly redis: RedisLifecycle,
     private readonly prisma: PrismaService,
   ) {}
 
