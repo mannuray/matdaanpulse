@@ -2,9 +2,10 @@ BEGIN;
 
 -- Run once (seed_runs). The 2011-2021 manifests of Tamil Nadu, Kerala, Assam and Puducherry name their key leaders'
 -- seats by the seat ids of the data replaced on 2026-10-03, so those leader cards found no seat ("Pending" in a
--- finished election). Points each one at the seat the leader actually contested (checked against the candidates)
--- and adds that candidacy's person when the entry has none. V. Narayanasamy did not contest in 2016 (he entered
--- through a by-election), so his entry loses its seat. An entry moves only while it still has the old id, so admin
+-- finished election), and Jayalalithaa 2016 pointed at Gummidipoondi instead of Dr. Radhakrishnan Nagar. Points each
+-- one at the seat the leader actually contested (checked against the candidates) and adds that candidacy's person
+-- when the entry has none. V. Narayanasamy (Puducherry 2016) and Mamata Banerjee (West Bengal 2011) did not contest
+-- the general election (both entered through a by-election), so their entries lose their seat. An entry moves only while it still has the old id, so admin
 -- edits stand. Published manifests and drafts alike.
 SELECT NOT EXISTS (SELECT 1 FROM seed_runs WHERE name = 'seed_manifest_leader_seats_v1')
    AS seed_apply \gset
@@ -29,7 +30,9 @@ INSERT INTO leader_seat_fix (election_id, old_const, new_const, party_id) VALUES
   ('f6a7b8c9-d0e1-2345-f012-567890122021', 'AS_VS21_40_JALUKBARI', 'AS_VS21_51_JALUKBARI', 'BJP'),
   ('b1c2d3e4-f5a6-7890-1234-567890ab2016', 'PY_VS16_14_NELLITHOPE', '', 'INC'),
   ('b1c2d3e4-f5a6-7890-1234-567890ab2016', 'PY_VS16_19_YANAM', 'PY_VS16_8_INDIRA_NAGAR', 'AINRC'),
-  ('b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_19_YANAM', 'PY_VS21_9_THATTANCHAVADY', 'AINRC');
+  ('b1c2d3e4-f5a6-7890-1234-567890ab2021', 'PY_VS21_19_YANAM', 'PY_VS21_9_THATTANCHAVADY', 'AINRC'),
+  ('e5f6a7b8-c9d0-1234-ef01-456789012016', 'TN_VS16_1_GUMMIDIPOONDI', 'TN_VS16_11_DRRADHAKRISHNAN_NAGA', 'AIADMK'),
+  ('d4e5f6a7-b8c9-0123-def0-345678901011', 'WB_VS11_159_BHABANIPUR', '', 'TMC');
 
 -- The fixed leaders array of one manifest document (entries without a fix are kept as they are, in order).
 CREATE FUNCTION pg_temp.fix_leader_seats(eid uuid, doc jsonb) RETURNS jsonb LANGUAGE sql AS $$

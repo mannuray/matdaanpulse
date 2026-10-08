@@ -51,4 +51,32 @@ describe('manifest seat references (DB)', () => {
       ORDER BY 1, 2, 4`;
     expect(stale).toEqual([]);
   });
+
+  it('a named entry\'s seat has that person, or a candidate sharing a word of their name (catches a seat that exists but is wrong)', async () => {
+    if (!prisma) {
+      if (REQUIRE_DB) throw new Error('database required');
+      console.warn('SKIPPED: no database');
+      return;
+    }
+    const wrong = await prisma.$queryRaw<{ election_id: string; name: string; const_id: string }[]>`
+      WITH entries AS (
+        SELECT e.id, x FROM elections e, jsonb_array_elements(COALESCE(e.manifest_url::jsonb->'leaders', '[]')) x WHERE e.manifest_url LIKE '{%'
+        UNION ALL
+        SELECT e.id, x FROM elections e, jsonb_array_elements(COALESCE(e.manifest_url::jsonb->'watchlists', '[]')) w,
+          jsonb_array_elements(COALESCE(w->'entries', '[]')) x WHERE e.manifest_url LIKE '{%'
+      ), named AS (
+        SELECT id, x->>'name' AS name, x->>'const_id' AS const_id, x->>'person_id' AS person_id,
+          ARRAY(SELECT w FROM unnest(regexp_split_to_array(lower(regexp_replace(x->>'name', '[^A-Za-z ]', '', 'g')), '[[:space:]]+')) w
+                WHERE length(w) >= 4) AS words
+        FROM entries WHERE COALESCE(x->>'const_id', '') <> '' AND COALESCE(x->>'name', '') <> ''
+      )
+      SELECT n.id::text AS election_id, n.name, n.const_id FROM named n
+      WHERE cardinality(n.words) > 0
+        AND EXISTS (SELECT 1 FROM constituencies c WHERE c.id = n.const_id AND c.election_id = n.id)
+        AND NOT EXISTS (SELECT 1 FROM candidates ca WHERE ca.const_id = n.const_id
+          AND (ca.person_id::text = n.person_id
+            OR EXISTS (SELECT 1 FROM unnest(n.words) w WHERE lower(regexp_replace(ca.name, '[^A-Za-z]', '', 'g')) LIKE '%' || w || '%')))
+      ORDER BY 1, 3`;
+    expect(wrong).toEqual([]);
+  });
 });
