@@ -1,4 +1,5 @@
 import type { ManifestAlliance, SwingEntry, DominanceEntry, IncumbencyEntry, VoteSplitConfig, ResultRow } from '../types';
+import { seatSplits } from './voteSplits';
 import type { LayerId, SeatResult } from '../types/dashboard';
 import { median } from './marginStats';
 import { MOMENTUM_FILL } from './mapColors';
@@ -185,10 +186,7 @@ function insights(ctx: InsightContext): LayerInsight {
     const chips = splits.map((cfg): InsightChip => {
       const ids: string[] = [];
       for (const [id, cands] of ctx.constCandidates!) {
-        if (cands.length < 2) continue;
-        const [w, r] = cands;
-        const spoiler = cands.find(c => c.party_id === cfg.spoiler);
-        if (spoiler && spoiler !== w && spoiler.votes > w.votes - r.votes && al.get(r.party_id)?.id === cfg.hurts) ids.push(id);
+        if (seatSplits(cands, splits, p => al.get(p)?.id ?? null).includes(cfg.spoiler)) ids.push(id);
       }
       ids.forEach(i => union.add(i));
       return { id: cfg.spoiler, label: cfg.label, color: colorOf(ctx, cfg.spoiler), count: ids.length, seatIds: ids };

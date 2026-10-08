@@ -1,4 +1,5 @@
 import { allianceByParty, colorOf, compact, seatLabel, shortName } from './shared';
+import { isThreeWay, seatSplits } from '../voteSplits';
 import type { SummaryContext, SummaryRow, SummarySection } from './types';
 
 const SEATS_PER_SPLIT = 10;
@@ -31,29 +32,20 @@ export function insightsSummary(ctx: SummaryContext): SummarySection[] {
     analyzed++;
     const total = cands.reduce((s, c) => s + (c.votes || 0), 0);
     if (total === 0) continue;
-    const thirdShare = (cands[2].votes / total) * 100;
     const topTwoShare = ((cands[0].votes + cands[1].votes) / total) * 100;
     if (topTwoShare >= 80) two.push(constId);
-    else if (thirdShare >= 15) three.push(constId);
+    else if (isThreeWay(cands)) three.push(constId);
     if (cands.filter(c => (c.votes / total) * 100 >= 10).length >= 3) multi.push(constId);
 
     if (splits.length === 0) continue;
     const winner = cands[0];
     const winnerMargin = winner.votes - cands[1].votes;
-    const runnerUpParty = up(cands[1].party_id);
-    const runnerUpAlliance = al.get(runnerUpParty)?.id;
+    // The one vote-split rule (model/derive/voteSplits), as the map and the insight chips use.
+    const costly = seatSplits(cands, splits, p => al.get(up(p))?.id ?? null);
     for (const sr of results) {
-      const hurts = up(sr.config.hurts);
-      // The split config may target the runner-up party directly or its alliance.
-      if (!(hurts === runnerUpParty || (runnerUpAlliance && hurts === up(runnerUpAlliance)))) continue;
-      const spoiler = cands.find(c => up(c.party_id) === up(sr.config.spoiler));
-      if (!spoiler) continue;
-      // Cumulative: all configured spoilers hurting the same alliance count together.
-      const cumulative = splits.filter(v => up(v.hurts) === hurts)
-        .reduce((sum, v) => sum + (cands.find(c => up(c.party_id) === up(v.spoiler))?.votes ?? 0), 0);
-      if (spoiler.votes > winnerMargin || cumulative > winnerMargin) {
-        sr.seats.push({ constId, winnerAlliance: al.get(up(winner.party_id))?.name ?? winner.party_id, margin: winnerMargin, spoilerVotes: spoiler.votes });
-      }
+      if (!costly.includes(sr.config.spoiler)) continue;
+      const spoiler = cands.find(c => up(c.party_id) === up(sr.config.spoiler))!;
+      sr.seats.push({ constId, winnerAlliance: al.get(up(winner.party_id))?.name ?? winner.party_id, margin: winnerMargin, spoilerVotes: spoiler.votes });
     }
   }
   results.forEach(r => r.seats.sort((a, b) => a.margin - b.margin));

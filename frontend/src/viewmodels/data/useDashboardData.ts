@@ -1,4 +1,5 @@
 import { headlineMargin } from '../../model/derive/uncontested';
+import { isThreeWay, seatSplits } from '../../model/derive/voteSplits';
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useApi } from './useApi';
 import { getAlliances, getVoteShare, getResults, getManifest, ElectionService } from '../../model/api/election.service';
@@ -233,27 +234,12 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     const threeWaySeats = new Set<string>();
 
     const partyToAlliance = new Map<string, string>();
-    (manifestData?.alliances || []).forEach(a => a.parties.forEach(pid => partyToAlliance.set(pid, a.id)));
-
+    (manifestData?.alliances || []).forEach(a => a.parties.forEach(pid => partyToAlliance.set(pid.toUpperCase(), a.id)));
+    const allianceOf = (p: string) => partyToAlliance.get(p.toUpperCase()) ?? null;
+    // The one vote-split rule (model/derive/voteSplits), as the insight chips and the summary use.
     for (const [constId, cands] of constCandidates) {
-      if (cands.length < 3) continue;
-      const total = cands.reduce((s, c) => s + c.votes, 0);
-      if (total === 0) continue;
-
-      const thirdShare = (cands[2].votes / total) * 100;
-      if (thirdShare >= 15) threeWaySeats.add(constId);
-
-      const winner = cands[0];
-      const runnerUp = cands[1];
-      const winnerMargin = winner.votes - runnerUp.votes;
-      const runnerUpAlliance = partyToAlliance.get(runnerUp.party_id);
-
-      (manifestData?.vote_splits || []).forEach(vs => {
-        const spoilerCand = cands.find(c => c.party_id === vs.spoiler);
-        if (spoilerCand && spoilerCand.votes > winnerMargin && runnerUpAlliance === vs.hurts) {
-          spoilerSeats.add(constId);
-        }
-      });
+      if (isThreeWay(cands)) threeWaySeats.add(constId);
+      if (seatSplits(cands, manifestData?.vote_splits || [], allianceOf).length) spoilerSeats.add(constId);
     }
     return { spoilerSeats, threeWaySeats, hasData: true };
   }, [constCandidates, manifestData]);
