@@ -5,7 +5,7 @@ import {
 import { Observable, finalize } from 'rxjs';
 import { SkipThrottle } from '@nestjs/throttler';
 import { IsUuidLike } from '../../common/validation/uuid-like';
-import { LivePublisher } from './live.service';
+import { LiveStream } from './live.service';
 import { SKIP_ALL_THROTTLERS } from '../../common/throttle/throttle.config';
 import { MetricsService } from '../metrics/metrics.service';
 import { LiveSseTokenService } from './live-sse-token.service';
@@ -76,7 +76,7 @@ export class LiveController {
   private readonly logger = new Logger(LiveController.name);
 
   constructor(
-    private readonly live: LivePublisher,
+    private readonly live: LiveStream,
     private readonly metrics: MetricsService,
     private readonly tokens: LiveSseTokenService,
     private readonly connections: SseConnections,

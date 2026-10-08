@@ -11,22 +11,25 @@ export interface LiveEvent {
   data: unknown;
 }
 
+/** Publishes live events for an election (DI token; LiveService provides it). */
 export abstract class LivePublisher {
   abstract publish(electionId: string, event: LiveEvent): Promise<void>;
+}
+
+/** The per-election SSE stream of live events (DI token; LiveService provides it). */
+export abstract class LiveStream {
   abstract streamEvents(electionId: string): Observable<MessageEvent>;
 }
 
 @Injectable()
-export class LiveService extends LivePublisher implements OnModuleInit {
+export class LiveService implements LivePublisher, LiveStream, OnModuleInit {
   private readonly logger = new Logger(LiveService.name);
   private readonly sharedStreams = new Map<string, Observable<MessageEvent>>();
 
   constructor(
     @Inject(RedisService) private readonly redis: PubSub,
     private readonly metrics: MetricsService,
-  ) {
-    super();
-  }
+  ) {}
 
   onModuleInit() {
     this.metrics.observeActiveStreams(() => this.sharedStreams.size);
