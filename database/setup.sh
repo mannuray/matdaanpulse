@@ -183,6 +183,7 @@ run seed_bihar_affidavits.sql
 
 echo "==> Seeds: party symbols (must follow all party inserts)"
 run seed_party_symbols.sql
+run seed_party_symbol_credits_v1.sql
 
 echo "==> Seeds: party ECI recognition (must follow all party inserts)"
 run seed_party_recognition.sql
