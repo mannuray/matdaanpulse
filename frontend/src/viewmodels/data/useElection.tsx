@@ -1,29 +1,17 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
 import type { Election } from '../../model/types';
 
 interface ElectionContextValue {
   election: Election | null;
   setElection: (e: Election | null) => void;
-  electionType: 'LS' | 'VS';
-  setElectionType: (t: 'LS' | 'VS') => void;
-  selectedStateId: number | null;
-  setSelectedStateId: (id: number | null) => void;
-  liveConnected: boolean;
-  setLiveConnected: (v: boolean) => void;
 }
 
 const ElectionContext = createContext<ElectionContextValue | undefined>(undefined);
 
 export function ElectionProvider({ children }: { children: ReactNode }) {
   const [election, setElection] = useState<Election | null>(null);
-  const [electionType, setElectionType] = useState<'LS' | 'VS'>('LS');
-  const [selectedStateId, setSelectedStateId] = useState<number | null>(null);
-  const [liveConnected, setLiveConnected] = useState(false);
-  return (
-    <ElectionContext.Provider value={{ election, setElection, electionType, setElectionType, selectedStateId, setSelectedStateId, liveConnected, setLiveConnected }}>
-      {children}
-    </ElectionContext.Provider>
-  );
+  const value = useMemo(() => ({ election, setElection }), [election]);
+  return <ElectionContext.Provider value={value}>{children}</ElectionContext.Provider>;
 }
 
 export function useElection() {

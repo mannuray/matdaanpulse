@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useApi } from '../data/useApi';
 import { usePartyMeta } from '../data/usePartyMeta';
@@ -6,7 +6,7 @@ import { usePartyMap, type PartyMapVM } from './usePartyMap';
 import { getParty } from '../../model/api/geo.service';
 import { getPartyRecord } from '../../model/api/party.service';
 import { ApiError } from '../../model/api/api-client';
-import { deltaOf, headline, latestByState, previousComparable, recordLines, sparkline, type Delta, type Headline, type RecordLine } from '../../model/derive/partyRecord';
+import { deltaOf, headline, latestByState, recordLines, statePreviousSameBoundaries, sparkline, type Delta, type Headline, type RecordLine } from '../../model/derive/partyRecord';
 import type { LineageEvent, PartyDetail, PartyRecord, PartyUnit } from '../../model/types';
 
 export type { Delta, Headline, RecordLine };
@@ -36,8 +36,8 @@ export interface PartyStateView {
   chart: { year: number; won: number; share: number }[];
   /** Null when there is no earlier election on the same boundaries. */
   changes: { held: number; gained: number; lost: number; gainedFrom: { party: string; seats: number; split: boolean }[]; lostTo: { party: string; seats: number; split: boolean }[] } | null;
+  /** The search box over them: useMlaSearch. */
   mlas: MlaView[];
-  query: string; setQuery(q: string): void; filteredMlas: MlaView[];
   regions: { region: string; seats: number; won: number }[] | null;
   /** Jump links: sections that have something to show. */
   sections: StateSection[];
@@ -76,7 +76,6 @@ export function usePartyPageVM(id: string): PartyPageVM {
   const navigate = useNavigate();
   const wanted = params.get('state')?.trim().toUpperCase() || null;
   const meta = usePartyMeta();
-  const [query, setQuery] = useState('');
   // useApi's error is a string, so a 404 is turned into a value here.
   const party = useApi(() => getParty(id).catch((e): Missing => { if (e instanceof ApiError && e.status === 404) return { id, notFound: true }; throw e; }), [id], { key: `party_${id}` });
   const record = useApi(() => getPartyRecord(id, wanted ?? undefined), [id, wanted], { key: `party_record_${id}_${wanted ?? ''}` });
@@ -124,13 +123,12 @@ export function usePartyPageVM(id: string): PartyPageVM {
       chips, headline: headline(rec ?? { party_id: id, elections: [], lineage: [] }), states,
       lineage: rec?.lineage ?? p?.lineage ?? [], noResults: !!rec && rec.elections.length === 0,
       map,
-      stateView: contested && rec ? stateViewOf(id, rec, wanted!, p?.units, nameOf, query, setQuery) : null, recordError: !!record.error && !rec, retry: record.refetch, nameOf,
+      stateView: contested && rec ? stateViewOf(id, rec, wanted!, p?.units, nameOf) : null, recordError: !!record.error && !rec, retry: record.refetch, nameOf,
     };
-  }, [mineParty, party.error, rec, record.error, record.refetch, latest, wanted, id, meta, query, map]);
+  }, [mineParty, party.error, rec, record.error, record.refetch, latest, wanted, id, meta, map]);
 }
 
-function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUnit[] | undefined, nameOf: (pid: string) => string,
-  query: string, setQuery: (q: string) => void): PartyStateView | null {
+function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUnit[] | undefined, nameOf: (pid: string) => string): PartyStateView | null {
   const rows = rec.elections.filter(r => r.state_code === code);
   const latest = rows[0];
   if (!latest) return null;
@@ -138,15 +136,12 @@ function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUni
   const flow = rec.state?.code === code ? rec.state.flow : [];
   // Seat changes compare with the state's previous election (as the stored analysis does), contested or not;
   // none when the boundaries changed in between or there is no earlier election.
-  const stateEls = (rec.state_elections ?? []).filter(e => e.state_id === latest.state_id && e.date < latest.date).sort((a, b) => b.date.localeCompare(a.date));
-  const comparable = rec.state_elections ? !!stateEls[0] && stateEls[0].delimitation != null && stateEls[0].delimitation === latest.delimitation : !!previousComparable(rows, latest);
-  const changes = comparable ? {
+  const changes = statePreviousSameBoundaries(rows, latest, rec.state_elections) ? {
     held: latest.held, gained: latest.gained, lost: latest.lost,
     gainedFrom: flow.filter(f => f.to === id).map(f => ({ party: f.from, seats: f.seats, split: f.split })),
     lostTo: flow.filter(f => f.from === id).map(f => ({ party: f.to, seats: f.seats, split: f.split })),
   } : null;
   const mlas: MlaView[] = (rec.state?.code === code ? rec.state.mlas : []).map(m => ({ personId: m.person_id, name: m.name, photo: m.photo_url, constId: m.const_id, constName: m.const_name, margin: m.margin }));
-  const q = query.trim().toLowerCase();
   const regions = rec.state?.code === code ? rec.state.regions : null;
   // The seat-changes card always shows (it says when there is nothing to compare with), so it always has a link.
   const sections: StateSection[] = ['record', 'map', 'changes', ...(mlas.length ? ['mlas' as const] : []), ...(regions?.length ? ['regions' as const] : [])];
@@ -158,8 +153,6 @@ function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUni
     pastPresidents: (unit?.roles ?? []).filter(r => r.role === 'state_president' && r.to_date != null).map(r => ({ name: r.person_name, from: r.from_date, to: r.to_date })),
     lines: recordLines(id, rec, latest.state_id, nameOf),
     chart: rows.map(r => ({ year: r.year, won: r.won, share: r.share })).reverse(),
-    changes, mlas, query, setQuery,
-    filteredMlas: q ? mlas.filter(m => m.name.toLowerCase().includes(q) || m.constName.toLowerCase().includes(q)) : mlas,
-    regions, sections,
+    changes, mlas, regions, sections,
   };
 }

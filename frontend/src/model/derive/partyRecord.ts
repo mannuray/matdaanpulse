@@ -32,6 +32,17 @@ export function previousComparable(rows: PartyRecordElection[], row: PartyRecord
 }
 
 /**
+ * Whether the state's previous election (as the stored analysis compares), contested by the party or not, was on the
+ * same boundaries as `row`: false with a redraw in between or no earlier election. Without the state's election list,
+ * falls back to the party's previous comparable contest.
+ */
+export function statePreviousSameBoundaries(rows: PartyRecordElection[], row: PartyRecordElection, stateEls: PartyRecordStateElection[] | undefined): boolean {
+  if (!stateEls) return !!previousComparable(rows, row);
+  const sp = statePrevious(stateEls, row);
+  return !!sp && sp.delimitation != null && sp.delimitation === row.delimitation;
+}
+
+/**
  * Change since the previous election in the state: the party's own earlier contest plus parties that became it
  * (mergers, a successor's predecessor), or, before its first contest, its predecessors' earlier total (`familyOnly`).
  * Seats null across a redraw; null with nothing earlier.

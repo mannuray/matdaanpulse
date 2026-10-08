@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import '../../i18n';
 import { PartyPageView } from '../party/page/PartyPageView';
 import type { PartyPageVM, PartyStateView } from '../../viewmodels/pages/usePartyPageVM';
+import type { MlaSearchVM } from '../../viewmodels/pages/useMlaSearch';
 
 afterEach(cleanup);
 
@@ -21,7 +22,9 @@ const vm = (over: Partial<PartyPageVM> = {}): PartyPageVM => ({
   lineage: [{ party_id: 'BJP', predecessor_id: 'BJS', kind: 'rename', effective_date: '1980-04-06', state_id: null, is_successor: true, note: 'Re-formed', source_url: 'https://src' }],
   noResults: false, stateView: null, map: null, recordError: false, retry: vi.fn(), nameOf: id => id, ...over,
 });
-const renderIt = (v: PartyPageVM) => render(<MemoryRouter><PartyPageView vm={v} /></MemoryRouter>);
+const noSearch: MlaSearchVM = { query: '', setQuery: vi.fn(), filtered: [] };
+const renderIt = (v: PartyPageVM, search: MlaSearchVM = { ...noSearch, filtered: v.stateView?.mlas ?? [] }) =>
+  render(<MemoryRouter><PartyPageView vm={v} mlaSearch={search} /></MemoryRouter>);
 
 describe('PartyPageView, national', () => {
   it('header: name, abbreviation, recognition and only the profile fields it has', () => {
@@ -88,7 +91,7 @@ const sv = (over: Partial<PartyStateView> = {}): PartyStateView => ({
   ],
   chart: [{ year: 2005, won: 30, share: 23 }, { year: 2019, won: 25, share: 33 }, { year: 2024, won: 21, share: 33 }],
   changes: { held: 14, gained: 7, lost: 9, gainedFrom: [{ party: 'JMM', seats: 4, split: false }], lostTo: [{ party: 'INC', seats: 3, split: true }] },
-  mlas: [], query: '', setQuery: vi.fn(), filteredMlas: [], regions: [{ region: 'Palamu', seats: 9, won: 5 }],
+  mlas: [], regions: [{ region: 'Palamu', seats: 9, won: 5 }],
   sections: ['record', 'map', 'changes', 'mlas', 'regions'], ...over,
 });
 const mlas = Array.from({ length: 300 }, (_, i) => ({ personId: `p${i}`, name: `MLA ${i}`, photo: null, constId: `C${i}`, constName: `Seat ${i}`, margin: 1000 - i }));
@@ -119,7 +122,7 @@ describe('PartyPageView, state', () => {
   });
   it('a 300-MLA state lists every MLA (no "show more"); typing searches', () => {
     const setQuery = vi.fn();
-    renderIt(vm({ view: 'state', stateCode: 'JH', stateView: sv({ mlas, filteredMlas: mlas, setQuery }) }));
+    renderIt(vm({ view: 'state', stateCode: 'JH', stateView: sv({ mlas }) }), { query: '', setQuery, filtered: mlas });
     expect(document.querySelectorAll('#pty-mlas li')).toHaveLength(300);
     expect(screen.queryByText(/show more|view all/i)).toBeNull();
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'seat 1' } });

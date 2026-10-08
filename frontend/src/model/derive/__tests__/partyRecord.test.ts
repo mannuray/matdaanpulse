@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { previousComparable, deltaOf, latestByState, headline, sparkline, recordLines, partyPageHref } from '../partyRecord';
+import { previousComparable, statePreviousSameBoundaries, deltaOf, latestByState, headline, sparkline, recordLines, partyPageHref } from '../partyRecord';
 import type { PartyRecord, PartyRecordElection, LineageEvent } from '../../types';
 
 const e = (id: string, state_id: number, year: number, won: number, over: Partial<PartyRecordElection> = {}): PartyRecordElection => ({
@@ -15,6 +15,24 @@ describe('partyRecord', () => {
     const rows = [e('a', 9, 2024, 21), e('b', 9, 2019, 25), e('g', 3, 2022, 20), e('c', 9, 2005, 30, { delimitation: '1976' })];
     expect(previousComparable(rows, rows[0])?.election_id).toBe('b');
     expect(previousComparable(rows, rows[1])).toBeNull();
+  });
+  it('state previous on the same boundaries: the state\'s previous election, contested by the party or not', () => {
+    const rows = [e('g22', 3, 2022, 2), e('g12', 3, 2012, 0)];
+    const se = (y: number, delimitation: string | null = '2008') => ({ election_id: `g${y % 100}`, state_id: 3, year: y, date: `${y}-12-01`, delimitation });
+    // 2017 was skipped by the party but is on the same boundaries: seat changes still compare.
+    expect(statePreviousSameBoundaries(rows, rows[0], [se(2022), se(2017), se(2012)])).toBe(true);
+    // A redraw in between, an unknown delimitation, or no earlier election: nothing to compare with.
+    expect(statePreviousSameBoundaries(rows, rows[0], [se(2022), se(2017, '1976')])).toBe(false);
+    expect(statePreviousSameBoundaries(rows, rows[0], [se(2022), se(2017, null)])).toBe(false);
+    expect(statePreviousSameBoundaries(rows, rows[0], [se(2022)])).toBe(false);
+    expect(statePreviousSameBoundaries(rows, rows[0], [])).toBe(false);
+    // Another state's election does not count.
+    expect(statePreviousSameBoundaries(rows, rows[0], [se(2022), { ...se(2017), state_id: 9 }])).toBe(false);
+  });
+  it('state previous on the same boundaries without the state list: the party\'s previous comparable contest', () => {
+    const rows = [e('a', 9, 2024, 21), e('b', 9, 2019, 25), e('c', 9, 2005, 30, { delimitation: '1976' })];
+    expect(statePreviousSameBoundaries(rows, rows[0], undefined)).toBe(true);
+    expect(statePreviousSameBoundaries(rows, rows[1], undefined)).toBe(false);
   });
   it('delta adds merged predecessors to the earlier total and names them', () => {
     const rows = [e('a', 9, 2024, 21, { share: 33.2 }), e('b', 9, 2019, 25, { share: 33.4, family: [{ party_id: 'JVM', won: 3, share: 5.5 }] })];

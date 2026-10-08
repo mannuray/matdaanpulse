@@ -131,6 +131,7 @@ function InsightCard({ i, vm }: { i: Insight; vm: ConstituencyPageVM }) {
     case 'threeWay': tone = 'warn'; icon = WARN_PATH; title = t('cp_three_way_title'); body = t('cp_three_way_body', { margin: formatIN(i.margin), name: i.thirdName, votes: formatIN(i.thirdVotes) }); break;
     case 'spoiler': tone = 'warn'; icon = WARN_PATH; title = t('cp_spoiler_title'); body = t('seat_spoiler', { party: party(i.party), votes: formatIN(i.votes), margin: formatIN(i.margin) }); break;
     case 'affidavit': title = t('ins_aff_title'); body = [t('ins_aff_cases', { withCases: i.withCases, total: i.total }), i.winnerCases != null ? t('ins_aff_winner', { n: i.winnerCases }) : null, i.richest ? t('ins_aff_richest', { name: i.richest.name, assets: formatRupees(i.richest.assets) }) : null].filter(Boolean).join(' '); break;
+    default: { const _unhandled: never = i; void _unhandled; break; }
   }
   if (tone === 'warn') color = 'var(--color-warn-text)';
   const style = tone === 'warn' ? undefined : { borderColor: tint(color, 35), background: tint(color, 7) };

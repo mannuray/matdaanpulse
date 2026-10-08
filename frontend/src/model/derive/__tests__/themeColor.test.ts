@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { forTheme, contrastOnWhite } from '../themeColor';
+import { forTheme, contrastOnWhite, recolorRows } from '../themeColor';
 
 describe('forTheme', () => {
   it('passes every colour through on dark', () => {
@@ -44,5 +44,19 @@ describe('forTheme', () => {
     expect(forTheme('var(--map-default-fill)', 'light')).toBe('var(--map-default-fill)');
     expect(forTheme('red', 'light')).toBe('red');
     expect(forTheme('', 'light')).toBe('');
+  });
+});
+
+describe('recolorRows', () => {
+  const rows = [{ id: 'A', color: '#FFEB3B' }, { id: 'B', color: 'var(--color-fallback)' }];
+  it('keeps the same rows on dark and passes null / undefined through', () => {
+    expect(recolorRows(rows, 'dark')).toBe(rows);
+    expect(recolorRows(null, 'light')).toBeNull();
+    expect(recolorRows(undefined, 'light')).toBeUndefined();
+  });
+  it('adapts each row\'s colour (fill) on light, keeping the other fields and leaving the input untouched', () => {
+    const out = recolorRows(rows, 'light');
+    expect(out).toEqual([{ id: 'A', color: forTheme('#FFEB3B', 'light') }, { id: 'B', color: 'var(--color-fallback)' }]);
+    expect(rows[0].color).toBe('#FFEB3B');
   });
 });

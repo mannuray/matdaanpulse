@@ -1,11 +1,11 @@
 import { useApi } from '../data/useApi';
+import { recallElectionId } from '../data/lastElection';
 import { getElections } from '../../model/api/election.service';
 import { pickLatestElection } from '../../model/derive/electionPick';
 import type { Election } from '../../model/types';
 
 function remembered(type: 'LS' | 'VS', elections: Election[]): string | null {
-  let id: string | null = null;
-  try { id = localStorage.getItem(`lastElection_${type}`); } catch { id = null; }
+  const id = recallElectionId(type);
   return id && elections.some(e => e.id === id) ? id : null;
 }
 

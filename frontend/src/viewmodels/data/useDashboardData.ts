@@ -3,8 +3,7 @@ import { isThreeWay, seatSplits } from '../../model/derive/voteSplits';
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useApi } from './useApi';
 import { getAlliances, getVoteShare, getResults, getManifest, ElectionService } from '../../model/api/election.service';
-import { useTheme } from '../theme/useTheme';
-import { forTheme, type ThemeName } from '../../model/derive/themeColor';
+import { useThemedColor } from '../theme/useThemedColor';
 import { leaderMap } from '../../model/live/liveUpdates';
 import { useLiveSnapshot } from './useLiveSnapshot';
 import { shouldPoll, type LiveElectionStatus } from '../../model/live/poller';
@@ -67,11 +66,6 @@ const NO_SEATS: Record<string, SeatLiveState> = {};
 const NO_TRAILS: Record<string, SeatTrail> = {};
 const PENDING_FILL = 'var(--map-default-fill)';
 
-function recolor<R extends { color: string }[] | null | undefined>(rows: R, theme: ThemeName): R {
-  if (!rows || theme === 'dark') return rows;
-  return rows.map(r => ({ ...r, color: forTheme(r.color, theme) })) as R;
-}
-
 /**
  * CONTROLLER: Dashboard Data (MVC)
  * Standardizes primary dashboard data flow and derived state processing.
@@ -117,15 +111,15 @@ export function useDashboardData(election: Election | null): DashboardViewModel 
     { key: election ? ElectionService.getCacheKey(election.id, 'manifest') : undefined }
   );
 
-  // The one place party colours are adapted to the theme: every colour the views, map and model see comes from these.
-  const { theme } = useTheme();
-  const partySeats = useMemo(() => recolor(rawPartySeats, theme), [rawPartySeats, theme]);
-  const voteShare = useMemo(() => recolor(rawVoteShare, theme), [rawVoteShare, theme]);
+  // Party colours fitted to the theme (useThemedColor): every colour the views, map and model see comes from these.
+  const themed = useThemedColor();
+  const partySeats = useMemo(() => themed.rows(rawPartySeats), [rawPartySeats, themed]);
+  const voteShare = useMemo(() => themed.rows(rawVoteShare), [rawVoteShare, themed]);
   const manifest = useMemo(() => {
     const draft = rawManifest?.draft;
     if (!rawManifest || !draft?.alliances) return rawManifest;
-    return { ...rawManifest, draft: { ...draft, alliances: recolor(draft.alliances, theme) } };
-  }, [rawManifest, theme]);
+    return { ...rawManifest, draft: { ...draft, alliances: themed.rows(draft.alliances) } };
+  }, [rawManifest, themed]);
 
   // LS results carry no state info; resolve it from the PC GeoJSON (shared, cached fetch with the map).
   const isLS = election?.type === 'LS';
