@@ -82,15 +82,14 @@ describe('useConstituencyPageVM', () => {
     // Counting starts: /live says Live and a snapshot arrives — the chip counts and the detail refetches for the round.
     live.value = { ...live.value, status: 'Live', snapshot: { version: 7, results: [{ const_id: 'S2', party_id: 'BJP', candidate_name: 'A', votes: 10, status: 'LEADING', margin: 4 }] } };
     rerender();
-    // Generous timeout: under a loaded test runner the refetch can take longer than waitFor's default 1 s.
-    await waitFor(() => expect(api.getConstituency.mock.calls.length).toBeGreaterThanOrEqual(calls + 1), { timeout: 5000 });
+    // Generous timeouts: under a loaded test runner the refetch can take longer than waitFor's default 1 s.
+    await waitFor(() => expect(api.getConstituency.mock.calls.length).toBe(calls + 1), { timeout: 4000 });
     expect(result.current.live).toEqual({ kind: 'counting', round: { current: 3, total: 20 } });
     // A newer version refetches again.
     live.value = { ...live.value, snapshot: { ...live.value.snapshot!, version: 8 } };
     rerender();
-    const afterFirst = api.getConstituency.mock.calls.length;
-    await waitFor(() => expect(api.getConstituency.mock.calls.length).toBeGreaterThanOrEqual(afterFirst + 1), { timeout: 5000 });
-  });
+    await waitFor(() => expect(api.getConstituency.mock.calls.length).toBe(calls + 2), { timeout: 4000 });
+  }, 15_000);
 
   it('does not poll a finalized election', async () => {
     api.getElection.mockResolvedValue({ id: 'e1', name: 'x', type: 'VS', status: 'Finalized', year: 2025 });
