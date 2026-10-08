@@ -6,6 +6,7 @@ import { ResultChangeNotifier, type ChangedRow } from '../live/result-change-not
 import { ShardsService, REST } from './shards.service';
 import { LeaseService } from './lease.service';
 import { lockSeats } from './seat-lock';
+import { seatTally } from '../../common/tally';
 import { evaluateSeat, type IncomingSeat, type RosterCandidate, type SeatOutcome, type SeatState, type StoredRow, type StoredSeat } from './seat-rules';
 import { ElectionNotFoundException, IngestBadRequestException, IngestInactiveSourceException, IngestNoLeaseException, IngestNotLiveException } from '../../common/exceptions';
 import type { SeatsBody, TallyBody } from './dto/ingest.dto';
@@ -165,12 +166,7 @@ export class IngestService {
       where: { election_id: electionId, ...(wholeElection ? {} : { const_id: { in: shard.seat_ids } }), status: { in: ['WON', 'LEADING'] } },
       select: { status: true, candidates: { select: { party_id: true } } },
     });
-    const ours = new Map<string, { won: number; leading: number }>();
-    for (const r of rows) {
-      const p = r.candidates.party_id; if (!p) continue;
-      const e = ours.get(p) ?? ours.set(p, { won: 0, leading: 0 }).get(p)!;
-      if (r.status === 'WON') e.won++; else e.leading++;
-    }
+    const ours = seatTally(rows.map(r => ({ party_id: r.candidates.party_id, status: String(r.status) })));
     const theirs = new Map(body.parties.map(p => [p.party_id, { won: p.won, leading: p.leading }]));
     const mismatch: TallyMismatch[] = [];
     for (const id of new Set([...ours.keys(), ...theirs.keys()])) {
