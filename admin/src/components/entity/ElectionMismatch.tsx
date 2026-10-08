@@ -1,5 +1,5 @@
 import { useElection } from '../../context/ElectionContext';
-import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusContext';
+import { confirmDiscardEdits, useUnsavedEdits } from '../../context/UnsavedEditsContext';
 import { shortElectionName } from '../shell/ElectionPicker';
 import { Button } from '../ui/Button';
 
@@ -7,7 +7,7 @@ import { Button } from '../ui/Button';
  * (through the unsaved guard, like the top-bar picker). */
 export function ElectionMismatch({ recordElectionId }: { recordElectionId: string }) {
   const { electionId, elections, setElectionId } = useElection();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   if (!recordElectionId || !electionId || recordElectionId === electionId) return null;
   const e = elections.find((x) => x.id === recordElectionId);
   const name = e ? shortElectionName(e.name, e.type, e.year) : 'another election';

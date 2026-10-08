@@ -4,7 +4,7 @@ import * as Menu from '@radix-ui/react-dropdown-menu';
 import { MoreHorizontal, Plus } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useElection } from '../context/ElectionContext';
-import { useShellStatus } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 import { useElectionManager } from '../hooks/useElectionManager';
 import { NEW_ID, useEntityRoute } from '../hooks/useEntityRoute';
 import { EntityPage } from '../components/entity/EntityPage';
@@ -92,7 +92,7 @@ export default function Elections() {
   const { user, hasRole } = useAuth();
   const canFinalize = hasRole('SUPER_ADMIN');
   const ctx = useElection();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const route = useEntityRoute('/elections', editorDirty);
   const m = useElectionManager({ onChanged: ctx.reload });
   const navigate = useNavigate();

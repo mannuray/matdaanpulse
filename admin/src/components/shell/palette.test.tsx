@@ -28,9 +28,9 @@ vi.mock('../../context/AuthContext', () => ({
 }));
 const shell = vi.hoisted(() => ({ editorDirty: false }));
 const roleState = vi.hoisted(() => ({ roles: ['EDITOR'] as string[] }));
-vi.mock('../../context/ShellStatusContext', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../context/ShellStatusContext')>()),
-  useShellStatus: () => ({ live: 'idle', setLive: () => {}, editorDirty: shell.editorDirty, markDirty: () => {} }),
+vi.mock('../../context/UnsavedEditsContext', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../../context/UnsavedEditsContext')>()),
+  useUnsavedEdits: () => ({ editorDirty: shell.editorDirty, markDirty: () => {} }),
 }));
 import { CommandPalette } from './CommandPalette';
 import { TopBar } from './TopBar';

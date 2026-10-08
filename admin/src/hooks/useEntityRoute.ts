@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { confirmDiscardEdits } from '../context/ShellStatusContext';
+import { confirmDiscardEdits } from '../context/UnsavedEditsContext';
 
 /** Route id for create mode: `/parties/new`. */
 export const NEW_ID = 'new';

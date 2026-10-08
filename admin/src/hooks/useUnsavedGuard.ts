@@ -1,5 +1,5 @@
 import { useEffect, useId } from 'react';
-import { useShellStatus } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 
 /**
  * Unsaved-changes guard for one editor (a record panel or the Live Console seat editor).
@@ -8,7 +8,7 @@ import { useShellStatus } from '../context/ShellStatusContext';
  * browser Back button is not guarded.
  */
 export function useUnsavedGuard(dirty: boolean): void {
-  const { markDirty } = useShellStatus();
+  const { markDirty } = useUnsavedEdits();
   const owner = useId();
 
   useEffect(() => { markDirty(owner, dirty); }, [dirty, owner, markDirty]);

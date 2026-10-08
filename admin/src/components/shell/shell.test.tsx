@@ -12,9 +12,13 @@ import { notifyFeedbackChanged } from '../../utils/feedback';
 const auth = { user: { id: 'u', name: 'Mannu K', role: 'EDITOR', email: 'x' }, logout: vi.fn(), hasRole: (r: string) => r === auth.user.role };
 vi.mock('../../context/AuthContext', () => ({ useAuth: () => auth }));
 const shell = vi.hoisted(() => ({ editorDirty: false, live: 'idle' as 'idle' | 'connecting' | 'open' | 'reconnecting' | 'offline' }));
-vi.mock('../../context/ShellStatusContext', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../context/ShellStatusContext')>()),
-  useShellStatus: () => ({ live: shell.live, setLive: () => {}, editorDirty: shell.editorDirty, markDirty: () => {} }),
+vi.mock('../../context/UnsavedEditsContext', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../../context/UnsavedEditsContext')>()),
+  useUnsavedEdits: () => ({ editorDirty: shell.editorDirty, markDirty: () => {} }),
+}));
+vi.mock('../../context/LiveStatusContext', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../../context/LiveStatusContext')>()),
+  useLiveStatus: () => ({ live: shell.live, setLive: () => {} }),
 }));
 const election = vi.hoisted(() => ({
   setElectionId: vi.fn(),

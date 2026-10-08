@@ -22,7 +22,7 @@ vi.mock('../services/ingest.service', () => ingest);
 const ctx = vi.hoisted(() => ({ electionId: 'e1' }));
 vi.mock('../context/ElectionContext', () => ({ useElection: () => ({ electionId: ctx.electionId, election: { name: 'Bihar VS 2025' }, error: null }) }));
 const setLive = vi.fn();
-vi.mock('../context/ShellStatusContext', () => ({ useShellStatus: () => ({ live: 'idle', setLive }) }));
+vi.mock('../context/LiveStatusContext', () => ({ useLiveStatus: () => ({ live: 'idle', setLive }) }));
 vi.mock('../context/ToastContext', () => ({ useToast: () => ({ toast: vi.fn(), toastError: vi.fn() }) }));
 import { useLiveConsole } from './useLiveConsole';
 

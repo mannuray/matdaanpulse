@@ -4,7 +4,7 @@ import { useIngestFeed } from '../hooks/useIngestFeed';
 import { useSeatLock } from '../hooks/useSeatLock';
 import { useUnsavedGuard } from '../hooks/useUnsavedGuard';
 import { useAuth } from '../context/AuthContext';
-import { confirmDiscardEdits } from '../context/ShellStatusContext';
+import { confirmDiscardEdits } from '../context/UnsavedEditsContext';
 import { LiveHeader } from '../components/live/LiveHeader';
 import { FeedPanel } from '../components/live/FeedPanel';
 import { HoldsPanel } from '../components/live/HoldsPanel';
