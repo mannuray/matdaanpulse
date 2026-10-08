@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { paginated } from '../../common/paginated';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 
@@ -42,6 +43,10 @@ export interface LastEdit {
   at: string;
   by: string | null;
 }
+
+export interface AuditLogFilters { user_id?: string; action?: string; entity_type?: string; from?: string; to?: string }
+/** Rows per request when no limit is sent (the old fixed cap). */
+export const AUDIT_LOGS_DEFAULT_LIMIT = 200;
 
 @Injectable()
 export class AuditLogService {
@@ -117,7 +122,11 @@ export class AuditLogService {
     return row ? { at: row.timestamp.toISOString(), by: row.users?.name ?? null } : null;
   }
 
-  async getLogs(filters: { user_id?: string; action?: string; entity_type?: string; from?: string; to?: string }) {
+  /** Newest first; `id` breaks timestamp ties so pages never overlap or skip a row. */
+  private static readonly LOG_ORDER: Prisma.audit_logsOrderByWithRelationInput[] = [{ timestamp: 'desc' }, { id: 'desc' }];
+  private static readonly LOG_INCLUDE = { users: { select: { id: true, email: true, name: true, role: true } } } as const;
+
+  private logsWhere(filters: AuditLogFilters): Prisma.audit_logsWhereInput {
     const where: Prisma.audit_logsWhereInput = {};
     if (filters.user_id) where.user_id = filters.user_id;
     if (filters.action) where.action = filters.action;
@@ -127,17 +136,33 @@ export class AuditLogService {
       if (filters.from) where.timestamp.gte = new Date(filters.from);
       if (filters.to) where.timestamp.lte = new Date(filters.to);
     }
+    return where;
+  }
 
+  /** The latest AUDIT_LOGS_DEFAULT_LIMIT rows as a bare array (callers that send no page/limit). */
+  async getLogs(filters: AuditLogFilters) {
     return this.prisma.audit_logs.findMany({
-      where,
-      include: {
-        users: {
-          select: { id: true, email: true, name: true, role: true },
-        },
-      },
-      orderBy: { timestamp: 'desc' },
-      take: 200,
+      where: this.logsWhere(filters),
+      include: AuditLogService.LOG_INCLUDE,
+      orderBy: AuditLogService.LOG_ORDER,
+      take: AUDIT_LOGS_DEFAULT_LIMIT,
     });
+  }
+
+  /** One page of the log with the total, so rows past the first page stay reachable. */
+  async getLogsPage(filters: AuditLogFilters, page: number, limit: number) {
+    const where = this.logsWhere(filters);
+    const [total, rows] = await Promise.all([
+      this.prisma.audit_logs.count({ where }),
+      this.prisma.audit_logs.findMany({
+        where,
+        include: AuditLogService.LOG_INCLUDE,
+        orderBy: AuditLogService.LOG_ORDER,
+        skip: (page - 1) * limit,
+        take: limit,
+      }),
+    ]);
+    return paginated(rows, { page, limit, total });
   }
 
   /**

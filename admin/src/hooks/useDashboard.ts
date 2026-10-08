@@ -82,7 +82,7 @@ export function useDashboard() {
     'Could not load seat locks',
   );
   const activity = useCard<AuditLog[]>(
-    isSuper ? async () => (await getAuditLogs()).slice(0, RECENT_ACTIVITY) : null,
+    isSuper ? async () => (await getAuditLogs({}, 1, RECENT_ACTIVITY)).data ?? [] : null,
     `activity:${isSuper}`,
     'Could not load recent activity',
   );

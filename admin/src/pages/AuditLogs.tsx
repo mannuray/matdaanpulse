@@ -1,5 +1,5 @@
 import { Download, RefreshCw } from 'lucide-react';
-import { AUDIT_LIMIT, getAuditLogs } from '../services/audit.service';
+import { AUDIT_PAGE_SIZE, getAuditLogs } from '../services/audit.service';
 import { useResourceList } from '../hooks/useResourceList';
 import { useEntityRoute } from '../hooks/useEntityRoute';
 import { EntityPage } from '../components/entity/EntityPage';
@@ -11,6 +11,7 @@ import { DataTable, type Column } from '../components/ui/DataTable';
 import { EmptyState } from '../components/ui/EmptyState';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
+import { Pager } from '../components/ui/Pager';
 import { AUDIT_ACTIONS, AUDIT_ENTITIES, actionLabel, actionTone, auditActor, entityLabel, isAuditAction, isAuditEntity } from '../utils/audit';
 import { auditCsv, downloadCsv } from '../utils/csv';
 import { formatIst, isIsoDay, todayIst } from '../utils/time';
@@ -45,11 +46,12 @@ const COLUMNS: Column<AuditLog>[] = [
   },
 ];
 
-/** PAGE: Audit logs (SUPER_ADMIN) — the latest 200 entries, filterable; panel at /logs/:id. */
+/** PAGE: Audit logs (SUPER_ADMIN) — the whole log, newest first, paged and filterable; panel at /logs/:id. */
 export default function AuditLogs() {
   const route = useEntityRoute('/logs');
   const list = useResourceList<Filters>({
     key: 'audit_logs',
+    pageSize: AUDIT_PAGE_SIZE,
     initialFilters: NO_FILTERS,
     // Older builds stored actions the backend never writes; an unknown value would silently return nothing.
     sanitizeFilters: (f) => ({
@@ -58,10 +60,10 @@ export default function AuditLogs() {
       from: isIsoDay(f.from) ? f.from : '',
       to: isIsoDay(f.to) ? f.to : '',
     }),
-    onLoad: async (_page, _search, f) => {
+    onLoad: async (page, _search, f) => {
       if (rangeError(f)) return { data: [], total: 0 };
-      const data = await getAuditLogs(f);
-      return { data, total: data.length };
+      const res = await getAuditLogs(f, page, AUDIT_PAGE_SIZE);
+      return { data: res.data || [], total: res.pagination?.total || 0 };
     },
   });
   const logs = list.items as AuditLog[];
@@ -79,7 +81,7 @@ export default function AuditLogs() {
           subtitle="Result overrides, seat saves and lock take-overs · times in IST"
           actions={
             <>
-              <Button variant="outline" title="Exports the rows shown (up to 200)" disabled={logs.length === 0} onClick={exportCsv}><Download size={14} aria-hidden />Download CSV</Button>
+              <Button variant="outline" title="Exports the rows on this page" disabled={logs.length === 0} onClick={exportCsv}><Download size={14} aria-hidden />Download CSV</Button>
               <Button variant="outline" disabled={list.loading} onClick={() => { void list.refresh(); }}><RefreshCw size={14} aria-hidden />Refresh</Button>
             </>
           }
@@ -105,7 +107,7 @@ export default function AuditLogs() {
           </label>
           {hasFilters && <Button size="sm" variant="ghost" onClick={() => list.updateFilters(NO_FILTERS)}>Clear filters</Button>}
           <span className="ml-auto text-xs text-muted">
-            {logs.length >= AUDIT_LIMIT ? `Showing latest ${AUDIT_LIMIT}` : `${logs.length.toLocaleString('en-IN')} ${logs.length === 1 ? 'entry' : 'entries'}`}
+            {`${list.total.toLocaleString('en-IN')} ${list.total === 1 ? 'entry' : 'entries'}`}
           </span>
         </Toolbar>
       }
@@ -133,6 +135,7 @@ export default function AuditLogs() {
                 : hasFilters
                   ? <EmptyState title="No entries match" description="Try other filters, or clear them." />
                   : <EmptyState title="No audit entries yet" description="Result overrides, seat saves and lock take-overs appear here." />}
+            footer={list.total > 0 ? <Pager page={list.page} totalPages={list.totalPages} total={list.total} pageSize={AUDIT_PAGE_SIZE} noun="entries" onPage={list.loadPage} /> : undefined}
           />
         </>
       }

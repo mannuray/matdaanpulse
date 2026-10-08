@@ -1,9 +1,9 @@
-import { apiFetch } from './api-client';
+import { apiFetch, type PaginatedResponse } from './api-client';
 import { istDayEnd, istDayStart } from '../utils/time';
 import type { AuditLog } from '../types';
 
-/** GET /admin/audit-logs returns at most this many entries, newest first. */
-export const AUDIT_LIMIT = 200;
+/** Rows per page of GET /admin/audit-logs (newest first; the backend allows up to 200). */
+export const AUDIT_PAGE_SIZE = 100;
 
 export interface AuditFilters {
   user_id?: string;
@@ -15,8 +15,9 @@ export interface AuditFilters {
   to?: string;
 }
 
-export async function getAuditLogs(filters: AuditFilters = {}) {
-  const params = new URLSearchParams();
+/** One page of the audit log with its total (page + limit are always sent, so the backend returns the paged shape). */
+export async function getAuditLogs(filters: AuditFilters = {}, page = 1, limit = AUDIT_PAGE_SIZE) {
+  const params = new URLSearchParams({ page: String(page), limit: String(limit) });
   if (filters.user_id) params.set('user_id', filters.user_id);
   if (filters.action) params.set('action', filters.action);
   if (filters.entity_type) params.set('entity_type', filters.entity_type);
@@ -24,6 +25,5 @@ export async function getAuditLogs(filters: AuditFilters = {}) {
   const to = filters.to ? istDayEnd(filters.to) : '';
   if (from) params.set('from', from);
   if (to) params.set('to', to);
-  const qs = params.toString();
-  return (await apiFetch<AuditLog[]>(`/admin/audit-logs${qs ? `?${qs}` : ''}`)) || [];
+  return apiFetch<PaginatedResponse<AuditLog>>(`/admin/audit-logs?${params.toString()}`);
 }
