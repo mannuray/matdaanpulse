@@ -430,3 +430,31 @@ export interface AnalysisEntry {
 export interface ConstituencyAnalysisDetail extends AnalysisEntry {
   notes: string | null;
 }
+
+/** GET /parties/:id/record: one row per Finalized VS election the party contested (party page spec §2). */
+export interface PartyRecordElection {
+  election_id: string; state_id: number; state_code: string; state_name: string; year: number;
+  /** Counting day (else mid-year): the lineage comparison window. */
+  date: string;
+  delimitation: string | null;
+  contested: number; won: number; votes: number; share: number;
+  held: number; gained: number; lost: number; split_gained: number; split_lost: number;
+  seats_total: number; largest: boolean; formed_government: boolean | null;
+  /** Lineage-family members (not the party) in the same election: earlier totals across a merger. */
+  family: { party_id: string; won: number; share: number }[];
+}
+
+export interface PartyRecordMla { person_id: string | null; name: string; photo_url: string | null; const_id: string; const_name: string; margin: number | null }
+
+export interface PartyRecord {
+  party_id: string;
+  /** Newest first. */
+  elections: PartyRecordElection[];
+  lineage: LineageEvent[];
+  /** With `?state=`: that state's latest election. */
+  state?: {
+    code: string; election_id: string; mlas: PartyRecordMla[];
+    flow: { from: string; to: string; seats: number; split: boolean }[];
+    regions: { region: string; seats: number; won: number }[] | null;
+  };
+}
