@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useApi } from '../data/useApi';
 import { useElection } from '../data/useElection';
+import { recallElectionId, rememberElection } from '../data/lastElection';
 import { getElections } from '../../model/api/election.service';
 import { getStates } from '../../model/api/geo.service';
 import type { Election } from '../../model/types';
@@ -16,12 +17,8 @@ import { electionChoices, type ElectionChoices } from '../../model/derive/electi
 
 const LANGS = ['en', 'hi', 'ta', 'mr'];
 
-function remember(type: 'LS' | 'VS', id: string | null) {
-  try { if (id) localStorage.setItem(`lastElection_${type}`, id); else localStorage.removeItem(`lastElection_${type}`); } catch { /* best effort */ }
-}
 function recall(type: 'LS' | 'VS', elections: Election[]): Election | null {
-  let id: string | null = null;
-  try { id = localStorage.getItem(`lastElection_${type}`); } catch { id = null; }
+  const id = recallElectionId(type);
   return elections.find(e => e.id === id && e.type === type) ?? null;
 }
 
@@ -75,7 +72,7 @@ export function useTopBarVM(): TopBarVM {
 
   const go = useCallback((el: Election | null, type: 'LS' | 'VS') => {
     setElection(el);
-    remember(type, el?.id ?? null);
+    rememberElection(type, el?.id ?? null);
     navigate(el ? `/election/${el.id}` : '/');
   }, [navigate, setElection]);
 
