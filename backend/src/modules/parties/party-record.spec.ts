@@ -32,6 +32,15 @@ describe('buildPartyRecord', () => {
   });
 });
 
+describe('buildPartyRecord family-only elections', () => {
+  it('elections in its states where only a lineage relative ran (a successor\'s predecessor) are kept for comparisons', () => {
+    const lineage = [ev('LJPRV', 'LJP', 'split', '2021-06-14', null)];
+    const r = buildPartyRecord('LJPRV', [el('b20', 2020, [row('LJP', 1, 5.7), row('JDU', 43)]), el('b25', 2025, [row('LJPRV', 19, 5.0)]), el('x', 2015, [row('JDU', 71)])], lineage);
+    expect(r.elections.map(e => e.election_id)).toEqual(['b25']);
+    expect(r.family_elections).toEqual([{ election_id: 'b20', state_id: 9, year: 2020, date: '2020-12-01', delimitation: '2008', family: [{ party_id: 'LJP', won: 1, share: 5.7 }] }]);
+  });
+});
+
 describe('familyIds', () => {
   it('follows predecessors and successors transitively', () => {
     expect([...familyIds('BJP', [ev('BJP', 'JVM'), ev('JVM', 'JVMX', 'rename', '2006-01-01'), ev('OTHER', 'ZZ')])].sort()).toEqual(['BJP', 'JVM', 'JVMX']);

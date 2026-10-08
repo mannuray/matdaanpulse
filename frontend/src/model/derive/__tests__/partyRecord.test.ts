@@ -56,6 +56,15 @@ describe('partyRecord', () => {
     const events = recordLines('BJP', r, 9, nameOf).filter(l => l.kind === 'event').map(l => (l.kind === 'event' ? l.event.predecessor_id : ''));
     expect(events).toEqual(['JVM']);
   });
+  it('a successor\'s first election compares with its predecessor\'s earlier total (family-only election)', () => {
+    const split: LineageEvent = { party_id: 'LJPRV', predecessor_id: 'LJP', kind: 'split', effective_date: '2021-06-14', state_id: null, is_successor: true, note: null };
+    const rows = [e('b25', 5, 2025, 19, { share: 5.0 })];
+    const famOnly = [{ election_id: 'b20', state_id: 5, year: 2020, date: '2020-12-01', delimitation: '2008', family: [{ party_id: 'LJP', won: 1, share: 5.7 }] }];
+    const d = deltaOf('LJPRV', rows, rows[0], [split], id => id, famOnly)!;
+    expect(d.seats).toBe(18);
+    expect(d.share).toBeCloseTo(-0.7, 6);
+    expect(d.vsLabel).toBe('LJP 2020');
+  });
   it('a party with no elections: empty everything, no crash', () => {
     const r = rec([]);
     expect(latestByState(r)).toEqual([]);

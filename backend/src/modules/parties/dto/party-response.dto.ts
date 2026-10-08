@@ -83,6 +83,15 @@ export class PartyRecordElectionDto {
   @Expose() @Type(() => PartyRecordFamilyDto) family: PartyRecordFamilyDto[];
 }
 
+export class PartyRecordFamilyElectionDto {
+  @Expose() election_id: string;
+  @Expose() state_id: number;
+  @Expose() year: number;
+  @Expose() date: string;
+  @Expose() delimitation: string | null;
+  @Expose() @Type(() => PartyRecordFamilyDto) family: PartyRecordFamilyDto[];
+}
+
 export class PartyRecordMlaDto {
   @Expose() person_id: string | null;
   @Expose() name: string;
@@ -116,6 +125,7 @@ export class PartyRecordStateDto {
 export class PartyRecordDto {
   @Expose() party_id: string;
   @Expose() @Type(() => PartyRecordElectionDto) elections: PartyRecordElectionDto[];
+  @Expose() @Type(() => PartyRecordFamilyElectionDto) family_elections: PartyRecordFamilyElectionDto[];
   @Expose() @Type(() => LineageEventDto) lineage: LineageEventDto[];
   @Expose() @Type(() => PartyRecordStateDto) state?: PartyRecordStateDto;
 }

@@ -44,9 +44,17 @@ export function buildPartyRecord(partyId: string, elections: LoadedElection[], l
       family: parties.filter(p => p.party_id !== partyId && family.has(p.party_id)).map(p => ({ party_id: p.party_id, won: p.won, share: p.share })),
     }];
   }).sort((a, b) => b.date.localeCompare(a.date));
+  // Elections in its states where the party did not run but a lineage relative did (e.g. a successor's predecessor):
+  // the earlier total its first election compares with.
+  const states = new Set(rows.map(r => r.state_id));
+  const familyElections = elections.filter(e => states.has(e.state_id) && !rows.some(r => r.election_id === e.id)).flatMap(e => {
+    const fam = (e.analysis?.parties ?? []).filter(p => p.party_id !== partyId && family.has(p.party_id) && p.contested > 0);
+    return fam.length ? [{ election_id: e.id, state_id: e.state_id, year: e.year, date: e.date, delimitation: e.delimitation, family: fam.map(p => ({ party_id: p.party_id, won: p.won, share: p.share })) }] : [];
+  }).sort((a, b) => b.date.localeCompare(a.date));
   return {
     party_id: partyId,
     elections: rows,
+    family_elections: familyElections,
     lineage: lineage.filter(e => family.has(e.party_id) || family.has(e.predecessor_id)).sort((a, b) => a.effective_date.localeCompare(b.effective_date)),
   };
 }

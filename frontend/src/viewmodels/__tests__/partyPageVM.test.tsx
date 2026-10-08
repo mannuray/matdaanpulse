@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
-import { MemoryRouter, useLocation } from 'react-router-dom';
+import { MemoryRouter, useLocation, useNavigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
 
 const api = { getParty: vi.fn(), getParties: vi.fn(), getPartyRecord: vi.fn() };
@@ -46,6 +46,9 @@ describe('usePartyPageVM', () => {
     expect(result.current.headline.won).toBe(41);
   });
   it('?state in lower case opens the state view', async () => {
+    api.getPartyRecord.mockImplementation((_id: string, state?: string) => Promise.resolve({ party_id: 'BJP', lineage: [],
+      elections: [el('a', 9, 'JH', 'Jharkhand', 2024, 21), el('g', 3, 'GA', 'Goa', 2022, 20)],
+      ...(state ? { state: { code: state, election_id: 'a', mlas: [], flow: [], regions: null } } : {}) }));
     const { result } = hook('BJP', '/party/BJP?state=jh');
     await waitFor(() => expect(result.current.status).toBe('ready'));
     await waitFor(() => expect(result.current.view).toBe('state'));
@@ -117,5 +120,20 @@ describe('usePartyPageVM, state view', () => {
     expect(sv.pastPresidents).toEqual([]);
     expect(sv.changes).toBeNull();
     expect(sv.sections).toEqual(['record', 'map']);
+  });
+});
+
+describe('usePartyPageVM, switching views', () => {
+  it('moving to a state never shows the previous payload as that state; a failed state request is an error with retry', async () => {
+    api.getPartyRecord.mockImplementation((_id: string, state?: string) => (state ? Promise.reject(new Error('boom'))
+      : Promise.resolve({ party_id: 'BJP', lineage: [], elections: [el('a', 9, 'JH', 'Jharkhand', 2024, 21), el('g', 3, 'GA', 'Goa', 2022, 20)] })));
+    let go: (to: string) => void = () => {};
+    const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter initialEntries={['/party/BJP']}>{children}</MemoryRouter>;
+    const { result } = renderHook(() => { go = useNavigate(); return usePartyPageVM('BJP'); }, { wrapper });
+    await waitFor(() => expect(result.current.states).toHaveLength(2));
+    act(() => go('/party/BJP?state=JH'));
+    expect(result.current.stateView).toBeNull();
+    await waitFor(() => expect(result.current.recordError).toBe(true));
+    expect(result.current.stateView).toBeNull();
   });
 });

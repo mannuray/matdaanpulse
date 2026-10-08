@@ -82,7 +82,10 @@ export function usePartyPageVM(id: string): PartyPageVM {
   const record = useApi(() => getPartyRecord(id, wanted ?? undefined), [id, wanted], { key: `party_record_${id}_${wanted ?? ''}` });
 
   const mineParty = party.data && party.data.id === id ? party.data : null;
-  const rec: PartyRecord | null = record.data && record.data.party_id === id ? record.data : null;
+  // useApi keeps the previous payload while the next loads: use it only if it answers this party and this view
+  // (a state view needs that state's extras; the backend leaves them out for a state the party never contested).
+  const fits = (d: PartyRecord) => d.party_id === id && (wanted ? d.state?.code === wanted || !d.elections.some(e => e.state_code === wanted) : !d.state);
+  const rec: PartyRecord | null = record.data && fits(record.data) ? record.data : null;
   const latest = useMemo(() => (rec ? latestByState(rec) : []), [rec]);
 
   const contestedHere = !!wanted && latest.some(r => r.state_code === wanted);
@@ -107,7 +110,7 @@ export function usePartyPageVM(id: string): PartyPageVM {
       const pres = currentRole(unitOf(r.state_id), 'state_president');
       return {
         code: r.state_code, name: r.state_name, year: r.year, won: r.won, contested: r.contested, seatsTotal: r.seats_total, share: r.share,
-        delta: deltaOf(id, rec.elections, r, rec.lineage, nameOf), spark: sparkline(rec, r.state_id),
+        delta: deltaOf(id, rec.elections, r, rec.lineage, nameOf, rec.family_elections ?? []), spark: sparkline(rec, r.state_id),
         president: pres ? { name: pres.name, personId: pres.personId, photo: pres.photo } : null, href: href(r.state_code),
       };
     }) : [];
@@ -146,7 +149,7 @@ function stateViewOf(id: string, rec: PartyRecord, code: string, units: PartyUni
   const sections: StateSection[] = ['record', 'map', ...(changes ? ['changes' as const] : []), ...(mlas.length ? ['mlas' as const] : []), ...(regions?.length ? ['regions' as const] : [])];
   return {
     code, name: latest.state_name, electionId: latest.election_id, year: latest.year, won: latest.won, seatsTotal: latest.seats_total, share: latest.share,
-    delta: deltaOf(id, rows, latest, rec.lineage, nameOf),
+    delta: deltaOf(id, rows, latest, rec.lineage, nameOf, rec.family_elections ?? []),
     recognition: unit?.eci_recognition ?? null, office: unit?.office ?? null, website: unit?.website ?? null,
     president: currentRole(unit, 'state_president'), leader: currentRole(unit, 'legislature_leader'),
     pastPresidents: (unit?.roles ?? []).filter(r => r.role === 'state_president' && r.to_date != null).map(r => ({ name: r.person_name, from: r.from_date, to: r.to_date })),

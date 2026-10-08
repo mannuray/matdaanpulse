@@ -444,12 +444,20 @@ export interface PartyRecordElection {
   family: { party_id: string; won: number; share: number }[];
 }
 
+/** An election in one of the party's states where it did not run but a lineage relative did. */
+export interface PartyRecordFamilyElection {
+  election_id: string; state_id: number; year: number; date: string; delimitation: string | null;
+  family: { party_id: string; won: number; share: number }[];
+}
+
 export interface PartyRecordMla { person_id: string | null; name: string; photo_url: string | null; const_id: string; const_name: string; margin: number | null }
 
 export interface PartyRecord {
   party_id: string;
   /** Newest first. */
   elections: PartyRecordElection[];
+  /** Missing on an older backend. */
+  family_elections?: PartyRecordFamilyElection[];
   lineage: LineageEvent[];
   /** With `?state=`: that state's latest election. */
   state?: {

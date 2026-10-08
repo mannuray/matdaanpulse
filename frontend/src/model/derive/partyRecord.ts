@@ -1,5 +1,5 @@
 import { carryForward } from './comparableParties';
-import type { LineageEvent, PartyRecord, PartyRecordElection } from '../types';
+import type { LineageEvent, PartyRecord, PartyRecordElection, PartyRecordFamilyElection } from '../types';
 
 /**
  * The party page's numbers from GET /parties/:id/record (spec docs/superpowers/specs/2026-10-08-party-page-design.md
@@ -21,18 +21,27 @@ export function previousComparable(rows: PartyRecordElection[], row: PartyRecord
   return prev && prev.delimitation != null && prev.delimitation === row.delimitation ? prev : null;
 }
 
-/** Change since the previous election in the state; seats null across a redraw; null with no earlier election. */
-export function deltaOf(partyId: string, rows: PartyRecordElection[], row: PartyRecordElection, events: LineageEvent[], nameOf: (id: string) => string): Delta | null {
-  const prev = older(rows, row)[0];
+/**
+ * Change since the previous election in the state: the party's own earlier contest plus parties that became it
+ * (mergers, a successor's predecessor), or, before its first contest, its predecessors' earlier total (`familyOnly`).
+ * Seats null across a redraw; null with nothing earlier.
+ */
+export function deltaOf(partyId: string, rows: PartyRecordElection[], row: PartyRecordElection, events: LineageEvent[], nameOf: (id: string) => string,
+  familyOnly: PartyRecordFamilyElection[] = []): Delta | null {
+  const own = older(rows, row)[0];
+  const fam = familyOnly.filter(f => f.state_id === row.state_id && f.date < row.date).sort((a, b) => b.date.localeCompare(a.date))[0];
+  const prev = own && (!fam || own.date >= fam.date) ? own : fam;
   if (!prev) return null;
+  const isOwn = prev === own;
   const merged = prev.family.filter(f => carryForward(events, f.party_id, prev.date, row.date, row.state_id) === partyId);
-  const prevWon = prev.won + merged.reduce((s, f) => s + f.won, 0);
-  const prevShare = prev.share + merged.reduce((s, f) => s + f.share, 0);
+  if (!isOwn && !merged.length) return null;
+  const prevWon = (isOwn ? own!.won : 0) + merged.reduce((s, f) => s + f.won, 0);
+  const prevShare = (isOwn ? own!.share : 0) + merged.reduce((s, f) => s + f.share, 0);
   const sameBoundaries = prev.delimitation != null && prev.delimitation === row.delimitation;
   return {
     seats: sameBoundaries ? row.won - prevWon : null,
     share: row.share - prevShare,
-    vsLabel: merged.length ? `${[partyId, ...merged.map(f => f.party_id)].map(nameOf).join(' + ')} ${prev.year}` : null,
+    vsLabel: merged.length ? `${[...(isOwn ? [partyId] : []), ...merged.map(f => f.party_id)].map(nameOf).join(' + ')} ${prev.year}` : null,
   };
 }
 
@@ -69,7 +78,7 @@ export function recordLines(partyId: string, rec: PartyRecord, stateId: number, 
     || (ev.state_id == null && ranHere.has(ev.party_id === partyId ? ev.predecessor_id : ev.party_id));
   const out: RecordLine[] = [];
   rows.forEach((row, i) => {
-    out.push({ kind: 'election', row, delta: deltaOf(partyId, rows, row, rec.lineage, nameOf) });
+    out.push({ kind: 'election', row, delta: deltaOf(partyId, rows, row, rec.lineage, nameOf, rec.family_elections ?? []) });
     const prev = rows[i + 1];
     if (!prev) return;
     rec.lineage.filter(ev => relevant(ev) && ev.effective_date > prev.date && ev.effective_date <= row.date)
