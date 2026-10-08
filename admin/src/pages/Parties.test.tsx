@@ -13,6 +13,7 @@ const api = vi.hoisted(() => ({
   getStates: vi.fn(async () => [{ id: 1, name: 'Bihar', code: 'BR' }]),
 }));
 vi.mock('../services/geo.service', () => api);
+vi.mock('../services/party.service', () => api);
 const ELECTIONS = vi.hoisted((): Election[] => [
   { id: 'e1', name: 'Bihar Vidhan Sabha 2025', type: 'VS', state_id: 1, year: 2025, status: 'Live', tentative_next_date: null, delimitation: null, manifest_url: null },
   { id: 'e2', name: 'Kerala Vidhan Sabha 2021', type: 'VS', state_id: 2, year: 2021, status: 'Finalized', tentative_next_date: null, delimitation: null, manifest_url: null },

@@ -1,7 +1,7 @@
 import type { MouseEvent, ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useElection } from '../../context/ElectionContext';
-import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusContext';
+import { confirmDiscardEdits, useUnsavedEdits } from '../../context/UnsavedEditsContext';
 
 interface RecordLinkProps {
   to: string;
@@ -18,7 +18,7 @@ interface RecordLinkProps {
  */
 export function RecordLink({ to, electionId, className, children }: RecordLinkProps) {
   const navigate = useNavigate();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const election = useElection();
   const href = electionId ? `${to}${to.includes('?') ? '&' : '?'}election=${encodeURIComponent(electionId)}` : to;
 

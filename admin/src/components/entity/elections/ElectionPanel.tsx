@@ -7,6 +7,7 @@ import { Badge } from '../../ui/Badge';
 import { Button } from '../../ui/Button';
 import { EmptyState } from '../../ui/EmptyState';
 import { PanelFooter } from '../PanelFooter';
+import { lifecycleActions, type LifecycleKind } from '../../../utils/lifecycle';
 import type { Election } from '../../../types';
 
 const TONE: Record<Election['status'], 'accent' | 'ok' | 'muted'> = { Upcoming: 'accent', Live: 'ok', Finalized: 'muted' };
@@ -31,18 +32,15 @@ interface ElectionPanelProps {
   /** The global election list failed to load (distinct from an unknown id). */
   loadFailed: boolean;
   onRetry: () => void;
-  canFinalize: boolean;
-  /** SUPER_ADMIN: a Finalized election can be reopened for corrections. */
-  canReopen?: boolean;
+  /** The signed-in user's role: decides the status actions offered (utils/lifecycle). */
+  role: string | undefined;
   onClose: () => void;
   onSave: () => void | Promise<void>;
-  onGoLive: () => void;
-  onFinalize: () => void;
-  onReopen?: () => void;
+  onLifecycle: (kind: LifecycleKind) => void;
 }
 
 /** Elections have no detail page: a centred dialog holds the create/edit form plus the lifecycle actions. */
-export function ElectionPanel({ mode, election, manager, loadingElections, loadFailed, onRetry, canFinalize, canReopen, onClose, onSave, onGoLive, onFinalize, onReopen }: ElectionPanelProps) {
+export function ElectionPanel({ mode, election, manager, loadingElections, loadFailed, onRetry, role, onClose, onSave, onLifecycle }: ElectionPanelProps) {
   const { form, setForm, states, fieldErrors } = manager;
   useUnsavedGuard(manager.dirty);
   const set = (patch: Partial<ElectionFormState>) => setForm({ ...form, ...patch });
@@ -79,9 +77,9 @@ export function ElectionPanel({ mode, election, manager, loadingElections, loadF
               <div className="flex items-center justify-between gap-3">
                 <ElectionStatusBadge status={election.status} />
                 <div className="flex gap-2">
-                  {election.status === 'Upcoming' && <Button size="sm" variant="primary" onClick={onGoLive}>Go live</Button>}
-                  {election.status === 'Live' && canFinalize && <Button size="sm" variant="danger" onClick={onFinalize}>Finalize</Button>}
-                  {election.status === 'Finalized' && canReopen && onReopen && <Button size="sm" variant="danger" onClick={onReopen}>Reopen for corrections</Button>}
+                  {lifecycleActions(election, role).map((l) => (
+                    <Button key={l.kind} size="sm" variant={l.kind === 'live' ? 'primary' : 'danger'} onClick={() => onLifecycle(l.kind)}>{l.label}</Button>
+                  ))}
                 </div>
               </div>
               <p className="text-xs text-muted">{HELP[election.status]}</p>

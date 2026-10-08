@@ -1,11 +1,13 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { getPerson, updatePerson, mergePersons, getPersons, undoMerge } from '../services/person.api';
+import { useState } from 'react';
+import { getPerson, updatePerson, mergePersons, undoMerge } from '../services/person.api';
 import { PersonService } from '../services/person.service';
 import { useToast } from '../context/ToastContext';
-import { ApiError, fieldErrorMap } from '../services/api-client';
+import { ApiError } from '../services/api-client';
 import { blankToNull } from '../utils/record-payload';
 import { recordLoadErrorKind, type RecordLoadErrorKind } from './useRecordQuery';
-import type { PersonWithCandidates, PersonWithStats } from '../types';
+import { useRecordForm } from './useRecordForm';
+import { usePersonSearch } from './usePersonSearch';
+import type { PersonWithCandidates } from '../types';
 
 export type PersonForm = ReturnType<typeof PersonService.prepareFormState>;
 
@@ -29,92 +31,24 @@ export type LoadError = RecordLoadErrorKind;
 export function usePersonEdit(id?: string) {
   const { toast, toastError } = useToast();
 
-  const [person, setPerson] = useState<PersonWithCandidates | null>(null);
-  const [loading, setLoading] = useState(!!id);
-  const [loadError, setLoadError] = useState<LoadError | null>(null);
-  const [saving, setSaving] = useState(false);
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const [form, setForm] = useState<PersonForm>(EMPTY_FORM);
-  const [saved, setSaved] = useState<PersonForm>(EMPTY_FORM);
-  const formRef = useRef(form);
-  formRef.current = form;
-
-  const [mergeSearch, setMergeSearch] = useState('');
-  const [mergeResults, setMergeResults] = useState<PersonWithStats[]>([]);
-  const [merging, setMerging] = useState(false);
-  const searchTimer = useRef<ReturnType<typeof setTimeout>>();
-
-  const loadPerson = useCallback(async () => {
-    if (!id) return;
-    setLoading(true);
-    setLoadError(null);
-    try {
-      const data = await getPerson(id);
-      const next = PersonService.prepareFormState(data);
-      setPerson(data);
-      setForm(next);
-      setSaved(next);
-    } catch (err) {
-      const kind = recordLoadErrorKind(err);
-      setLoadError(kind);
-      // "Not found" is said on the page ("Person not found"); only other failures toast.
-      if (kind === 'failed') toastError(err, 'Failed to load person record');
-    } finally {
-      setLoading(false);
-    }
-  }, [id, toastError]);
-
-  useEffect(() => {
-    loadPerson();
-  }, [loadPerson]);
-
-  const handleSave = async () => {
-    if (!id || !person || !isValidDob(form.date_of_birth)) return false;
-    const submitted = form;
-    setSaving(true);
-    setFieldErrors({});
-    try {
+  const rf = useRecordForm<PersonWithCandidates, PersonForm>({
+    id,
+    load: getPerson,
+    toForm: PersonService.prepareFormState,
+    empty: EMPTY_FORM,
+    canSave: (f, person) => !!person && isValidDob(f.date_of_birth),
+    save: async (pid, submitted) => {
       // Emptied fields clear the value (null), never store ''. Name is required (Save is disabled without it).
       // Every field is a column (bio, wikipedia_url, caste and religion too); the backend refuses `metadata`.
-      await updatePerson(id, { ...blankToNull(submitted), name: submitted.name });
-      toast('Person record updated');
-      // The submitted values are now the saved baseline; edits typed while saving stay dirty.
-      setSaved(submitted);
-      try {
-        const data = await getPerson(id);
-        setPerson(data);
-        if (JSON.stringify(formRef.current) === JSON.stringify(submitted)) {
-          const next = PersonService.prepareFormState(data);
-          setForm(next);
-          setSaved(next);
-        }
-      } catch { /* saved fine; the list refresh and next open will show server state */ }
-      return true;
-    } catch (err) {
-      setFieldErrors(fieldErrorMap(err));
-      toastError(err, 'Failed to update record');
-      return false;
-    } finally {
-      setSaving(false);
-    }
-  };
+      await updatePerson(pid, { ...blankToNull(submitted), name: submitted.name });
+    },
+    messages: { loadFailed: 'Failed to load person record', saveFailed: 'Failed to update record', saved: 'Person record updated' },
+  });
+  const person = rf.record;
 
-  useEffect(() => {
-    if (searchTimer.current) clearTimeout(searchTimer.current);
-    if (!mergeSearch || mergeSearch.trim().length < 2) {
-      setMergeResults([]);
-      return;
-    }
-    searchTimer.current = setTimeout(async () => {
-      try {
-        const response = await getPersons(1, 20, mergeSearch.trim());
-        setMergeResults(response.data.filter(p => p.id !== id));
-      } catch {
-        setMergeResults([]);
-      }
-    }, 400);
-    return () => { if (searchTimer.current) clearTimeout(searchTimer.current); };
-  }, [mergeSearch, id]);
+  const [mergeSearch, setMergeSearch] = useState('');
+  const mergeResults = usePersonSearch(mergeSearch, { excludeId: id, limit: 20 });
+  const [merging, setMerging] = useState(false);
 
   /** Merge a duplicate record INTO the person being viewed: the duplicate's contests move here and it is deleted. */
   const handleMerge = async (duplicateId: string, duplicateName: string): Promise<boolean> => {
@@ -127,7 +61,7 @@ export function usePersonEdit(id?: string) {
       await mergePersons(duplicateId, id);
       toast('Records merged. You can undo it from Merge history.');
       setMergeSearch('');
-      loadPerson();
+      void rf.refresh();
       return true;
     } catch (err) {
       toastError(err, 'Merge failed');
@@ -150,15 +84,11 @@ export function usePersonEdit(id?: string) {
       const res = await undoMerge(mergeId);
       toast(duplicateName ? `Merge undone: ${duplicateName} is its own record again` : 'Merge undone');
       try {
-        const data = await getPerson(id);
-        const next = PersonService.prepareFormState(data);
-        setPerson(data);
-        setForm(next);
-        setSaved(next);
-        setLoadError(null);
+        rf.applyRecord(await getPerson(id));
+        rf.setLoadError(null);
       } catch (err) {
         if (err instanceof ApiError && err.status === 404) return { restoredId: res.person_id, keeperGone: true };
-        setLoadError(recordLoadErrorKind(err));
+        rf.setLoadError(recordLoadErrorKind(err));
       }
       return { restoredId: res.person_id, keeperGone: false };
     } catch (err) {
@@ -169,14 +99,11 @@ export function usePersonEdit(id?: string) {
     }
   };
 
-  const dirty = JSON.stringify(form) !== JSON.stringify(saved);
-  /** Drop unsaved edits (panel Cancel). */
-  const reset = () => { setForm(saved); setFieldErrors({}); };
-
   return {
-    fieldErrors,
-    person, loading, loadError, saving, form, setForm, dirty, reset,
+    fieldErrors: rf.fieldErrors,
+    person, loading: rf.loading, loadError: rf.loadError, saving: rf.saving,
+    form: rf.form, setForm: rf.setForm, dirty: rf.dirty, reset: rf.reset,
     mergeSearch, setMergeSearch, mergeResults, merging, undoing,
-    handleSave, handleMerge, handleUndo, refresh: loadPerson
+    handleSave: rf.save, handleMerge, handleUndo, refresh: rf.refresh,
   };
 }

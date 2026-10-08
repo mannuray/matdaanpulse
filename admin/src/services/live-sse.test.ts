@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
-import { subscribeLiveUpdates, sseRetryDelay } from './election.service';
+import { subscribeLiveUpdates, sseRetryDelay } from './live.service';
 
 class FakeEventSource {
   static instances: FakeEventSource[] = [];

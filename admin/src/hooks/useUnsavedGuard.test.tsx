@@ -2,12 +2,13 @@
 import { describe, it, expect, afterEach } from 'vitest';
 import type { ReactNode } from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
-import { ShellStatusProvider, useShellStatus, DISCARD_EDITS_PROMPT } from '../context/ShellStatusContext';
+import { ShellStatusProvider } from '../context/ShellStatusContext';
+import { useUnsavedEdits, DISCARD_EDITS_PROMPT } from '../context/UnsavedEditsContext';
 import { useUnsavedGuard } from './useUnsavedGuard';
 
 afterEach(cleanup);
 
-function Probe() { return <output data-testid="dirty">{String(useShellStatus().editorDirty)}</output>; }
+function Probe() { return <output data-testid="dirty">{String(useUnsavedEdits().editorDirty)}</output>; }
 function Guarded({ dirty }: { dirty: boolean }) { useUnsavedGuard(dirty); return null; }
 const unload = () => { const e = new Event('beforeunload', { cancelable: true }); window.dispatchEvent(e); return e.defaultPrevented; };
 

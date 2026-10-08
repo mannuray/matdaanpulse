@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { getPartiesPaginated, createParty } from '../services/geo.service';
-import { getElections } from '../services/election.service';
+import { useElection } from '../context/ElectionContext';
+import { getPartiesPaginated, createParty } from '../services/party.service';
 import { getStates } from '../services/geo.service';
 import { useResourceList } from './useResourceList';
 import { useToast } from '../context/ToastContext';
 import { isEciFilter, type EciFilter } from '../components/entity/parties/eciRecognition';
-import type { Election, Party, State } from '../types';
+import type { Party, State } from '../types';
 
 interface PartyFilters {
   stateId: number | '';
@@ -21,12 +21,11 @@ interface PartyFilters {
  */
 export function usePartyManager() {
   const { toast, toastError } = useToast();
-  const [elections, setElections] = useState<Election[]>([]);
+  const { elections } = useElection();
   const [states, setStates] = useState<State[]>([]);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    getElections().then(setElections).catch(() => {});
     getStates().then(setStates).catch(() => {});
   }, []);
 

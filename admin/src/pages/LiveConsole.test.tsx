@@ -32,9 +32,10 @@ vi.mock('../hooks/useIngestFeed', () => ({
 vi.mock('../hooks/useSeatLock', () => ({ useSeatLock: () => lockState.value }));
 vi.mock('../context/AuthContext', () => ({ useAuth: () => ({ user: { id: 'me', name: 'Mannu K' } }) }));
 import LiveConsole from './LiveConsole';
-import { ShellStatusProvider, useShellStatus } from '../context/ShellStatusContext';
+import { ShellStatusProvider } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 
-function DirtyProbe() { return <output data-testid="dirty">{String(useShellStatus().editorDirty)}</output>; }
+function DirtyProbe() { return <output data-testid="dirty">{String(useUnsavedEdits().editorDirty)}</output>; }
 // The page reports unsaved edits to the shell (sidebar/picker guards), so render it inside the real provider.
 const renderPage = (page = <LiveConsole />) => render(<ShellStatusProvider>{page}<DirtyProbe /></ShellStatusProvider>);
 

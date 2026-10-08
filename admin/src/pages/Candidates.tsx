@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Plus } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import { useElection } from '../context/ElectionContext';
-import { useShellStatus } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 import { useCandidateManager, type NewCandidate } from '../hooks/useCandidateManager';
 import { NEW_ID, useEntityRoute } from '../hooks/useEntityRoute';
 import { shortElectionName } from '../components/shell/ElectionPicker';
@@ -28,7 +28,7 @@ import type { Candidate } from '../types';
  */
 export default function Candidates() {
   const { electionId, election, loading: electionsLoading, error } = useElection();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const route = useEntityRoute('/candidates', editorDirty);
   const [params, setParams] = useSearchParams();
   const seatParam = params.get('seat');

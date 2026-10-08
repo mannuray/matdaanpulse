@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useElection } from '../context/ElectionContext';
-import { useShellStatus } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 import { CONSTITUENCY_PAGE_SIZE, useConstituencyManager } from '../hooks/useConstituencyManager';
 import { useEntityRoute } from '../hooks/useEntityRoute';
 import { shortElectionName } from '../components/shell/ElectionPicker';
@@ -26,7 +26,7 @@ import type { Constituency } from '../types';
  */
 export default function Constituencies() {
   const { electionId, election, loading: electionsLoading, error } = useElection();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const route = useEntityRoute('/constituencies', editorDirty);
   const m = useConstituencyManager(electionId);
   const sel = m.selection;

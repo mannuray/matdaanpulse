@@ -18,7 +18,8 @@ const svc = vi.hoisted(() => ({
   publishManifest: vi.fn(async () => ({})),
 }));
 vi.mock('../services/election.service', () => svc);
-vi.mock('../services/geo.service', () => ({ getParties: vi.fn(async () => [{ id: 'BJP', name: 'Bharatiya Janata Party', color: '#f97316' }]) }));
+vi.mock('../services/manifest.service', () => svc);
+vi.mock('../services/party.service', () => ({ getParties: vi.fn(async () => [{ id: 'BJP', name: 'Bharatiya Janata Party', color: '#f97316' }]) }));
 vi.mock('../services/constituency.service', () => ({ getConstituencies: vi.fn(async () => []) }));
 vi.mock('../services/candidate.service', () => ({ searchCandidates: vi.fn(async () => []) }));
 const ctx = vi.hoisted(() => ({ reload: vi.fn(async () => {}) }));

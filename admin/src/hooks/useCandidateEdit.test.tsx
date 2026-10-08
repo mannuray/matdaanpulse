@@ -19,7 +19,7 @@ vi.mock('../services/person.api', () => ({
   updatePerson: vi.fn(async () => ({})),
   getPersons: vi.fn(async () => ({ success: true, data: [], pagination: { page: 1, limit: 10, total: 0, totalPages: 1 } })),
 }));
-vi.mock('../services/geo.service', () => ({ getParties: vi.fn(async () => []) }));
+vi.mock('../services/party.service', () => ({ getParties: vi.fn(async () => []) }));
 import { useCandidateEdit, candidateAffidavit, candidateNumbersValid } from './useCandidateEdit';
 import { updatePerson } from '../services/person.api';
 import { ApiError } from '../services/api-client';

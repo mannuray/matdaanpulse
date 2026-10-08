@@ -1,5 +1,5 @@
 import { Plus } from 'lucide-react';
-import { useShellStatus } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 import { usePartyManager } from '../hooks/usePartyManager';
 import { NEW_ID, useEntityRoute } from '../hooks/useEntityRoute';
 import { EntityPage } from '../components/entity/EntityPage';
@@ -58,7 +58,7 @@ const COLUMNS: Column<PartyRow>[] = [
  * filters and page survive the round trip to a record.
  */
 export default function Parties() {
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const route = useEntityRoute('/parties', editorDirty);
   const list = usePartyManager();
   const rows = list.items as PartyRow[];

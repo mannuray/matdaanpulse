@@ -2,14 +2,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { useUnsavedGuard } from '../../../hooks/useUnsavedGuard';
 import { EMPTY_AFFIDAVIT, INDEPENDENT, candidateAffidavit, candidateNumbersValid, type CandidateForm } from '../../../hooks/useCandidateEdit';
 import type { NewCandidate } from '../../../hooks/useCandidateManager';
-import { getParties } from '../../../services/geo.service';
+import { useParties } from '../../../hooks/useParties';
 import { FormDialog } from '../../ui/FormDialog';
 import { EmptyState } from '../../ui/EmptyState';
 import { Field } from '../../ui/Field';
 import { Combobox } from '../../ui/Combobox';
 import { PanelFooter } from '../PanelFooter';
 import { CandidateFields } from './CandidateFields';
-import type { Constituency, Party } from '../../../types';
+import type { Constituency } from '../../../types';
 
 type CreateForm = CandidateForm & { const_id: string };
 const EMPTY: CreateForm = { name: '', party_id: INDEPENDENT, const_id: '', ...EMPTY_AFFIDAVIT };
@@ -40,15 +40,9 @@ export function CandidateCreateArchived({ onClose }: { onClose: () => void }) {
 export function CandidateCreateDialog({ electionId, seats, defaultSeat, saving, onCreate, onClose }: CandidateCreateDialogProps) {
   const [initial, setInitial] = useState<CreateForm>(() => ({ ...EMPTY, const_id: defaultSeat }));
   const [form, setForm] = useState<CreateForm>(initial);
-  const [parties, setParties] = useState<Party[]>([]);
+  const parties = useParties();
   const dirty = JSON.stringify(form) !== JSON.stringify(initial);
   useUnsavedGuard(dirty);
-
-  useEffect(() => {
-    let cancelled = false;
-    getParties().then((p) => { if (!cancelled) setParties(p); }).catch(() => {});
-    return () => { cancelled = true; };
-  }, []);
 
   // Opened before the seats loaded: start at the page's seat once it is known (not an edit).
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useElection } from '../context/ElectionContext';
-import { useShellStatus } from '../context/ShellStatusContext';
+import { useUnsavedEdits } from '../context/UnsavedEditsContext';
 import { useEntityRoute } from '../hooks/useEntityRoute';
 import { EntityPage } from '../components/entity/EntityPage';
 import { NoElection } from '../components/entity/NoElection';
@@ -26,7 +26,7 @@ const COLUMNS: Column<Election>[] = [
 /** PAGE: Manifests — one per election; the full-width manifest panel opens at /manifests/:electionId. */
 export default function Manifests() {
   const { elections, loading, error, reload } = useElection();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const route = useEntityRoute('/manifests', editorDirty);
   const [search, setSearch] = useState('');
   const [type, setType] = useState<TypeFilter>('');

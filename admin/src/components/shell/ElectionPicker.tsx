@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboa
 import * as Popover from '@radix-ui/react-popover';
 import { ChevronDown, Search } from 'lucide-react';
 import { useElection } from '../../context/ElectionContext';
-import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusContext';
+import { confirmDiscardEdits, useUnsavedEdits } from '../../context/UnsavedEditsContext';
 import type { Election } from '../../types';
 import { cn } from '../ui/cn';
 import { Kbd } from '../ui/Kbd';
@@ -46,7 +46,7 @@ function isTyping(target: EventTarget | null) {
  */
 export function ElectionPicker() {
   const { elections, electionId, setElectionId } = useElection();
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);

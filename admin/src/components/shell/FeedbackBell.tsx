@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bell } from 'lucide-react';
 import { getFeedback } from '../../services/feedback.service';
-import { confirmDiscardEdits, useShellStatus } from '../../context/ShellStatusContext';
+import { confirmDiscardEdits, useUnsavedEdits } from '../../context/UnsavedEditsContext';
 import { FEEDBACK_CHANGED_EVENT } from '../../utils/feedback';
 
 const POLL_MS = 60_000;
@@ -10,7 +10,7 @@ const POLL_MS = 60_000;
 /** Top-bar bell: count of unread (status=new) public feedback. Only mounted for roles that may open /feedback. */
 export function FeedbackBell() {
   const [count, setCount] = useState(0);
-  const { editorDirty } = useShellStatus();
+  const { editorDirty } = useUnsavedEdits();
 
   useEffect(() => {
     let alive = true;

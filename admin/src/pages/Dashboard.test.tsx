@@ -13,7 +13,7 @@ const svc = vi.hoisted(() => ({
   getFeedback: vi.fn(),
   getUsers: vi.fn(),
 }));
-vi.mock('../services/election.service', () => ({ getLiveResults: svc.getLiveResults, getSeatLocks: svc.getSeatLocks }));
+vi.mock('../services/live.service', () => ({ getLiveResults: svc.getLiveResults, getSeatLocks: svc.getSeatLocks }));
 vi.mock('../services/audit.service', () => ({ getAuditLogs: svc.getAuditLogs }));
 vi.mock('../services/status.service', () => ({ getSystemStatus: svc.getSystemStatus }));
 vi.mock('../services/health.service', () => ({ getReadiness: svc.getReadiness }));
