@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, HttpCode, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { PersonsService } from '../../candidates/persons.service';
 import { PersonMergeService } from '../../candidates/person-merge.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
@@ -62,12 +62,14 @@ export class AdminPersonsController {
   }
 
   @Post('merge')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN')
   mergePersons(@Req() req: any, @Body() body: MergePersonsDto) {
     return this.merges.merge(body.source_id, body.target_id, req.user?.id);
   }
 
   @Post('merges/:id/undo')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN')
   undoMerge(@Req() req: any, @Param('id', ParseUUIDPipe) id: string) {
     return this.merges.undoMerge(id, req.user?.id);

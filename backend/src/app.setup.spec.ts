@@ -143,13 +143,13 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
     it('the real /auth/login uses the strict auth limit', async () => {
       const statuses: number[] = [];
       for (let i = 0; i < 3; i++) statuses.push((await post('/auth/login', '10.0.1.1', login)).status);
-      expect(statuses).toEqual([201, 201, 429]);
+      expect(statuses).toEqual([200, 200, 429]);
     });
 
     it('a spoofed leftmost X-Forwarded-For entry does not create new buckets', async () => {
       const statuses: number[] = [];
       for (let i = 0; i < 3; i++) statuses.push((await post('/auth/login', `1.2.3.${i}, 10.0.1.9`, login)).status);
-      expect(statuses).toEqual([201, 201, 429]);
+      expect(statuses).toEqual([200, 200, 429]);
     });
 
     it('the auth limit does not apply to public routes', async () => {
@@ -212,7 +212,7 @@ describe('HTTP wiring (configureApp + throttlers)', () => {
 
     it('still parses a normal small body', async () => {
       const res = await post('/auth/login', '10.0.4.2', login);
-      expect(res.status).toBe(201);
+      expect(res.status).toBe(200);
       expect(authService.login).toHaveBeenLastCalledWith('a@b.cd', 'password123');
     });
 

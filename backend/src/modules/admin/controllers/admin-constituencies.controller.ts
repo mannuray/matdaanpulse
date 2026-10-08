@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Post, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, HttpCode, Get, Patch, Post, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { ConstituenciesService } from '../../constituencies/constituencies.service';
 import { SeatAnalysisService } from '../../constituencies/seat-analysis.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
@@ -69,6 +69,7 @@ export class AdminConstituenciesController {
   }
 
   @Post('bulk-tag')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN', 'EDITOR')
   @UseInterceptors(new MapToDtoInterceptor(AdminConstituencyDto))
   bulkTag(@Req() req: any, @Body() body: BulkTagDto) {
@@ -83,6 +84,7 @@ export class AdminConstituenciesController {
   }
 
   @Post('analysis/compute/:electionId')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN', 'EDITOR')
   async computeAnalysis(@Param('electionId', ParseUUIDPipe) electionId: string, @Req() req: any) {
     const out = await this.seatAnalysis.computeFor(electionId);

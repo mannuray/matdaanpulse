@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, HttpCode, Get, Post, Put, Body, Param, Query, Req, UseGuards, UseInterceptors, ParseUUIDPipe } from '@nestjs/common';
 import { CandidatesService } from '../../candidates/candidates.service';
 import { AuditLogService } from '../../audit-log/audit-log.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
@@ -75,6 +75,7 @@ export class AdminCandidatesController {
 
   /** Split: move this candidacy to a new person created from it. Returns the new person's id. */
   @Post(':id/split')
+  @HttpCode(200)
   @Roles('SUPER_ADMIN', 'EDITOR')
   split(@Req() req: any, @Param('id', ParseUUIDPipe) id: string) {
     return this.candidatesService.split(id, req.user?.id);
