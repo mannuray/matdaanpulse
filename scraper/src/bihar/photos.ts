@@ -3,7 +3,7 @@
  * showed on its candidate-wise results page, stored once in our Blob store and credited to ECI. Older elections have
  * no ECI photos; a person who also ran in 2025 shows that photo on every contest.
  */
-import type { CandidateDetail } from '../adapters/eci-vs-adapter';
+import type { CandidateDetail } from '../live/adapters/eci-parse';
 import { runOnce } from '../seed-run-once';
 import { similarity } from './names';
 import { q } from './sql';

@@ -2,7 +2,8 @@ import { describe, it, expect, vi } from 'vitest';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { EciWebAdapter } from '../adapters/eci-web';
-import { parseCandidateDetailPage, parseConstituencyListPage, parsePartywisePage } from '../../adapters/eci-vs-adapter';
+import { adaptersFor } from '../registry';
+import { parseCandidateDetailPage, parseConstituencyListPage, parsePartywisePage } from '../adapters/eci-parse';
 
 const fx = (f: string) => readFileSync(join(__dirname, 'fixtures', f), 'utf8');
 // Real ECI list page 6 (the one that lists seat 100, HABRA); the fake serves it as page 1.
@@ -151,5 +152,47 @@ describe('EciWebAdapter on real ECI pages', () => {
     expect(t).toHaveBeenCalledWith(1234);
     expect((g.mock.calls[0][1] as any).signal).toBeInstanceOf(AbortSignal);
     g.mockRestore(); t.mockRestore();
+  });
+  it('rechecks a declared seat once, 10 minutes after it was declared, by the injected clock', async () => {
+    const { roster } = rosterFromFixtures();
+    let t = 1_000_000;
+    const a = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText: fakeFetch().fetchText, now: () => t });
+    await a.prepare(roster as any);
+    expect(await a.poll()).toHaveLength(1);
+    a.commit(['WB_100']);                     // declared at t
+    t += 10 * 60_000;
+    expect(await a.poll()).toEqual([]);      // not yet past 10 minutes
+    t += 1;
+    expect(await a.poll()).toHaveLength(1);  // the recheck
+    a.commit(['WB_100']);
+    t += 60 * 60_000;
+    expect(await a.poll()).toEqual([]);      // only once
+  });
+  it('logs through the injected log, not console.warn', async () => {
+    const { roster } = rosterFromFixtures();
+    const pw = fx('eci-partywise.htm');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const log = vi.fn();
+    const a = new EciWebAdapter({ id: 'eci-web', baseUrl: 'https://eci', stateCode: 'S25', fetchText: async () => ({ status: 200, text: pw, lastModified: null }), log });
+    await a.prepare({ ...roster, parties: [] } as any);
+    await a.tally();
+    expect(log).toHaveBeenCalledWith(expect.stringMatching(/^\[eci-web\] tally: \d+ unmapped part/));
+    expect(warn).not.toHaveBeenCalled();
+    warn.mockRestore();
+  });
+});
+
+describe('adaptersFor', () => {
+  it('eci-web takes its default base URL from the caller, not process.env', () => {
+    const prev = process.env.ECI_VS_BASE_URL;
+    process.env.ECI_VS_BASE_URL = 'https://from-env';
+    const a = adaptersFor({ eciBaseUrl: 'https://from-caller', log: () => undefined })['eci-web']({ stateCode: 'S25' }) as any;
+    expect(a.opts.baseUrl).toBe('https://from-caller');
+    expect(adaptersFor({ log: () => undefined })['eci-web']({ stateCode: 'S25', baseUrl: 'https://opt' }) as any).toMatchObject({ opts: { baseUrl: 'https://opt' } });
+    if (prev === undefined) delete process.env.ECI_VS_BASE_URL; else process.env.ECI_VS_BASE_URL = prev;
+  });
+  it('passes the worker log to the adapters', () => {
+    const log = vi.fn();
+    expect((adaptersFor({ log })['mock-eci']({}) as any).opts.log).toBe(log);
   });
 });

@@ -4,7 +4,7 @@
  */
 import { existsSync, readFileSync } from 'fs';
 import { IngestClient } from './client';
-import { ADAPTERS } from './registry';
+import { adaptersFor } from './registry';
 import type { Roster } from './types';
 
 function arg(name: string): string | undefined { const i = process.argv.indexOf(`--${name}`); return i >= 0 ? process.argv[i + 1] : undefined; }
@@ -22,8 +22,9 @@ async function main() {
   if (!election || !source) throw new Error('--election and --source are required');
   const file = arg('config') ?? 'live.config.json';
   const cfg = existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : {};
-  const factory = ADAPTERS[source];
-  if (!factory) throw new Error(`no adapter "${source}" (have: ${Object.keys(ADAPTERS).join(', ')})`);
+  const adapters = adaptersFor({ eciBaseUrl: process.env.ECI_VS_BASE_URL, log: (msg, data) => (data === undefined ? console.warn(msg) : console.warn(msg, data)) });
+  const factory = adapters[source];
+  if (!factory) throw new Error(`no adapter "${source}" (have: ${Object.keys(adapters).join(', ')})`);
   const client = new IngestClient({ baseUrl: process.env.INGEST_API_URL ?? cfg.apiBaseUrl ?? 'http://localhost:3082/api/v1', key: process.env.INGEST_KEY ?? '' });
   const adapter = factory(cfg.adapters?.[source] ?? {});
   const roster = await client.roster(election, shard);

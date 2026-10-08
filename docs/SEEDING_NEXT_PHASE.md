@@ -31,7 +31,7 @@ Known data bug: Assam 2021 manifest leader `AS_VS21_40_JALUKBARI` points at seat
 ### A. 2026 elections (highest value)
 - Create the five elections (VS, year 2026, Finalized, result date, `delimitation`): WB/KL/TN/PY `'2008'`, **Assam `'2023'`**.
 - Scrape full results from the ECI archive (all candidates + NOTA, votes, rounds, status) with the existing parsers
-  (`scraper/src/adapters/eci-vs-adapter.ts`; real-page fixtures in `scraper/src/live/__tests__/fixtures/`; page
+  (`scraper/src/live/adapters/eci-parse.ts`; real-page fixtures in `scraper/src/live/__tests__/fixtures/`; page
   structure and request budget in `docs/reviews/2026-09-30-election-day-pipeline-review.md` §4; browser User-Agent,
   ~2 s between requests). Map ECI party labels with `scraper/src/live/adapters/eci-mapping.ts` (`mapParty`), extend
   the parties seeds for new parties.

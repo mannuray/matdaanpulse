@@ -7,7 +7,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { mediaStoreFromEnv } from '../media-store';
-import { parseCandidateDetailPage } from '../adapters/eci-vs-adapter';
+import { parseCandidateDetailPage } from '../live/adapters/eci-parse';
 import { electionOf, parseState } from './elections';
 import { latestYear, trackOf } from './current-track';
 import { DB_DIR, loadSeeded } from './seeded';
