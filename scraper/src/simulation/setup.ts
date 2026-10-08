@@ -138,7 +138,9 @@ async function main() {
     // 6. Ingest feed + key (the sim is a dev tool that writes SQL directly; production keys come from the admin)
     const simKey = `mpk_${randomBytes(32).toString('base64url')}`;
     await pool.query(`DELETE FROM ingest_keys WHERE name = 'simulation'`);
-    await pool.query(`INSERT INTO ingest_keys (name, key_hash) VALUES ('simulation', $1)`, [createHash('sha256').update(simKey).digest('hex')]);
+    // Scoped to the sim election and expiring like an admin-made key (migration 026).
+    await pool.query(`INSERT INTO ingest_keys (name, key_hash, election_id, expires_at) VALUES ('simulation', $1, $2, now() + interval '7 days')`,
+      [createHash('sha256').update(simKey).digest('hex'), SIM_ELECTION_ID]);
     await pool.query(`INSERT INTO election_ingest (election_id, active_source) VALUES ($1, 'mock-eci')
                       ON CONFLICT (election_id) DO UPDATE SET active_source = 'mock-eci'`, [SIM_ELECTION_ID]);
     writeFileSync(join(__dirname, '../../.sim-ingest-key'), simKey);

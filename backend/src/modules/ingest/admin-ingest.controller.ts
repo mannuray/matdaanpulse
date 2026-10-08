@@ -62,8 +62,9 @@ export class AdminIngestController {
 
   @Post('ingest-keys') @HttpCode(201) @Roles('SUPER_ADMIN')
   async createKey(@Body() b: IngestKeyBody, @Req() req: any) {
-    const out = await this.keys.create(b.name, req.user?.id ?? null);
-    await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_KEY_CREATE', entityType: 'ingest_key', entityId: out.row.id, newValue: { name: b.name } });
+    const out = await this.keys.create(b.name, req.user?.id ?? null, { electionId: b.election_id, expiresAt: b.expires_at ? new Date(b.expires_at) : undefined });
+    await this.audit.log({ userId: req.user?.id ?? null, action: 'INGEST_KEY_CREATE', entityType: 'ingest_key', entityId: out.row.id,
+      newValue: { name: b.name, election_id: b.election_id, expires_at: out.row.expires_at } });
     return out;
   }
 

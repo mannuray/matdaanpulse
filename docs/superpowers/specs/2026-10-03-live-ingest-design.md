@@ -49,7 +49,8 @@ seat_ingest_state        (election_id, const_id) PK, state TEXT  -- not_started|
                          round_current INT NULL, round_total INT NULL,
                          last_source TEXT NULL, last_observed_at TIMESTAMPTZ NULL, last_applied_at TIMESTAMPTZ NULL
 seat_holds               (election_id, const_id) PK, round_at_hold INT NULL, expires_at TIMESTAMPTZ, created_by → users
-ingest_keys              id, name UNIQUE, key_hash, created_by, created_at, last_used_at, revoked_at
+ingest_keys              id, name UNIQUE, key_hash, created_by, created_at, last_used_at, revoked_at,
+                         election_id → elections NULL (CASCADE), expires_at NULL   -- migration 026; NULL = legacy key
 ingest_log               id, election_id, shard_id, key_id, source, dry_run BOOL, received_at,
                          counts JSONB {applied, unchanged, stale, held, rejected}, rejected JSONB [{const_id, reason}]
                          -- kept 30 days
@@ -95,7 +96,7 @@ lease if free or expired, or renews it if the caller holds it; 90 s TTL. `409 le
 Up to 500 seats per request.
 
 **Request-level checks** (whole request refused, nothing written; dry runs skip the starred ones):
-1. Key valid, not revoked.
+1. Key valid, not revoked, not expired (401), and created for this election (403; migration 026).
 2. Election exists and is `Live` (`409 not_live`).*
 3. `source` equals the shard's effective source (`409 inactive_source`).*
 4. Caller (key + holder from the lease) holds the shard's lease (`409 no_lease`).*
@@ -147,7 +148,7 @@ No lease holder (final review) and no source name (2026-10-08: a forged post nee
   shard: lease holder, last post, lag, last cycles' counts, rejected seats with reasons, tally mismatch.
 - **Holds:** seats on hold with countdown and **Release**. An edit in the existing seat editor creates/refreshes the
   hold (`round_at_hold` = the seat's stored round; `expires_at` = now + hold minutes).
-- **Machine keys** (SUPER_ADMIN): create (key shown once), list with last use, revoke.
+- **Machine keys** (SUPER_ADMIN): create for one election with an expiry (key shown once), list with election, expiry and last use, revoke.
 - **Banners:** shard lag > 3 min, lease lapsed with no new holder for > 2 min, rejected seats > 0, tally mismatch for
   2+ checks. The same alerts go to an optional webhook (`INGEST_ALERT_WEBHOOK_URL`, Telegram or Slack format).
 - Roles: SUPER_ADMIN and EDITOR operate feed and holds; SUPER_ADMIN manages keys and reopens a Finalized election.

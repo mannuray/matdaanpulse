@@ -31,3 +31,13 @@ export class IngestShardOverlapException extends BusinessException {
 export class IngestKeyNotFoundException extends BusinessException {
   constructor(id: string) { super(ErrorCodes.INGEST_KEY_NOT_FOUND, `Ingest key ${id} not found`, HttpStatus.NOT_FOUND, { id }); }
 }
+export class IngestKeyExpiredException extends BusinessException {
+  constructor() { super(ErrorCodes.INGEST_KEY_EXPIRED, 'Ingest key has expired', HttpStatus.UNAUTHORIZED); }
+}
+/** A valid key used for an election it was not created for. */
+export class IngestKeyScopeException extends BusinessException {
+  constructor() { super(ErrorCodes.INGEST_KEY_SCOPE, 'Ingest key is not valid for this election', HttpStatus.FORBIDDEN); }
+}
+export class IngestKeyNameTakenException extends BusinessException {
+  constructor(name: string) { super(ErrorCodes.INGEST_KEY_NAME_TAKEN, `An ingest key named ${name} already exists`, HttpStatus.CONFLICT, { name }); }
+}

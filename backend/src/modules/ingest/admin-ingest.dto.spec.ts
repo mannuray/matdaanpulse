@@ -27,7 +27,13 @@ describe('admin ingest DTOs', () => {
     expect((await ok('x')).length).toBeGreaterThan(0);
   });
   it('key names', async () => {
-    expect(await validate(plainToInstance(IngestKeyBody, { name: 'worker-sg-1' }))).toEqual([]);
-    expect((await validate(plainToInstance(IngestKeyBody, { name: 'x' }))).length).toBe(1);
+    expect(await validate(plainToInstance(IngestKeyBody, { name: 'worker-sg-1', election_id: 'b2c3d4e5-f6a7-8901-bcde-f12345678901' }))).toEqual([]);
+    expect((await validate(plainToInstance(IngestKeyBody, { name: 'x', election_id: 'b2c3d4e5-f6a7-8901-bcde-f12345678901' }))).length).toBe(1);
+  });
+  it('key: election_id is required (a UUID); expires_at is an optional ISO timestamp', async () => {
+    expect((await validate(plainToInstance(IngestKeyBody, { name: 'worker-sg-1' }))).map(e => e.property)).toEqual(['election_id']);
+    expect((await validate(plainToInstance(IngestKeyBody, { name: 'worker-sg-1', election_id: 'nope' }))).map(e => e.property)).toEqual(['election_id']);
+    expect(await validate(plainToInstance(IngestKeyBody, { name: 'w1', election_id: 'b2c3d4e5-f6a7-8901-bcde-f12345678901', expires_at: '2027-03-01T00:00:00Z' }))).toEqual([]);
+    expect((await validate(plainToInstance(IngestKeyBody, { name: 'w1', election_id: 'b2c3d4e5-f6a7-8901-bcde-f12345678901', expires_at: 'tomorrow' }))).map(e => e.property)).toEqual(['expires_at']);
   });
 });

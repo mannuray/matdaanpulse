@@ -8,7 +8,7 @@ Shorthand: `<id>` is the election id; `API` is the backend base URL (`…/api/v1
 
 1. Election record is complete: `delimitation`, map, result date (Admin -> Elections).
 2. Candidates are seeded from ECI's own candidate lists (the roster the worker matches against).
-3. Admin -> Ingest keys (SUPER_ADMIN): create `worker-<host>` (the cloud worker) and `laptop` (backup). Each key (`mpk_...`) is shown once; store it in the host's secrets.
+3. Admin -> Ingest keys (SUPER_ADMIN): create one key per host for **this election**, e.g. `<st><year>-cloud-1` (the cloud worker) and `<st><year>-laptop` (backup); key names are unique across all elections. Pick the **Election** (a key works only for that election: any other election answers 403 `INGEST_0010`) and an **Expires after** that outlasts counting day plus a margin — at T-7 choose 14 days or more (default 7, at most 90; an expired key answers 401 `INGEST_0009`). Each key (`mpk_...`) is shown once; store it in the host's secrets.
 4. Live Console -> Feed -> Shards...: add one shard per region if the state is large; otherwise none (the implicit `rest` shard covers every seat).
 5. Copy `scraper/live.config.example.json` to `live.config.json`; set `apiBaseUrl`, `holder`, the task's `election` id, and the `eci-web` options (`baseUrl`, `stateCode`, e.g. `https://results.eci.gov.in/ResultAcGenMay2026` / `S25`; `partyAliases` JSON if ECI party names differ from ours). Only the `rest` loop posts the party-wise tally (it is compared against every seat of the election); set `"tally": true` on a task only if a shard's source publishes its own tally.
    Every host needs its own holder name: set `LIVE_HOLDER` (or `holder`) per host, e.g. `cloud-1`, `laptop`. Two hosts with the same holder and key would share one lease.
@@ -51,7 +51,7 @@ Dry runs against the real ECI site, then drills. Do each drill and confirm the r
 1. Every seat is declared and the tally matches ECI.
 2. Elections -> Finalize.
 3. Stop workers (`Ctrl-C` releases the leases). Set Source = Paused.
-4. Admin -> Ingest keys: revoke the keys.
+4. Admin -> Ingest keys: revoke the keys (they also expire on their own).
 5. Review manual corrections in Audit logs and note them. A correction after Finalize needs Elections -> Reopen for corrections (SUPER_ADMIN), then Finalize again.
 
 ## 5. Simulation

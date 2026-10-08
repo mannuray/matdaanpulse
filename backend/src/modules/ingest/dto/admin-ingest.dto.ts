@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { ArrayMaxSize, IsArray, IsIn, IsInt, IsObject, IsOptional, IsString, Matches, Max, MaxLength, Min, ValidateBy, ValidateIf, ValidateNested } from 'class-validator';
+import { ArrayMaxSize, IsArray, IsIn, IsInt, IsISO8601, IsObject, IsOptional, IsString, IsUUID, Matches, Max, MaxLength, Min, ValidateBy, ValidateIf, ValidateNested } from 'class-validator';
 import { SEAT_STATES, type SeatState } from '../seat-rules';
 import { RoundDto } from './ingest.dto';
 
@@ -34,4 +34,8 @@ export class SeatCorrectionBody {
 }
 export class IngestKeyBody {
   @IsString() @Matches(/^[A-Za-z0-9 _-]{2,80}$/) name: string;
+  /** The one election the key may post to (migration 026). */
+  @IsUUID() election_id: string;
+  /** Default: 7 days from now; at most 90 days ahead (IngestKeysService). */
+  @IsOptional() @IsISO8601({ strict: true }) expires_at?: string;
 }

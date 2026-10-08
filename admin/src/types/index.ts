@@ -384,4 +384,5 @@ export interface IngestShardStatus { name: string; seat_count: number; source: s
 export interface IngestAlert { key: string; level: 'warn' | 'error'; shard: string; message: string }
 export interface IngestStatus { election_id: string; status: string; active_source: string | null; hold_minutes: number; shards: IngestShardStatus[]; alerts: IngestAlert[] }
 export interface HoldRow { const_id: string; const_no: number; name: string; round_at_hold: number | null; expires_at: string; created_by_name: string | null }
-export interface IngestKeyRow { id: string; name: string; created_at: string; last_used_at: string | null; revoked_at: string | null }
+/** `election_id` / `expires_at` are null only on keys created before migration 026 (valid for any election, never expire). */
+export interface IngestKeyRow { id: string; name: string; election_id: string | null; expires_at: string | null; created_at: string; last_used_at: string | null; revoked_at: string | null }
