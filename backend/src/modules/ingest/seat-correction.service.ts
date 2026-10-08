@@ -1,6 +1,5 @@
-import { appendSeatRounds } from './seat-rounds';
+import { leaderRow, writeSeats } from './seat-writer';
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { ResultChangeNotifier } from '../live/result-change-notifier';
@@ -42,22 +41,7 @@ export class SeatCorrectionService {
       changed = !sameAsStored(rows, seat, storedRows, stored);
       const roundAtHold = seat.round?.current ?? st?.round_current ?? null;
       if (changed) {
-        await tx.$executeRaw`
-          UPDATE results AS r SET votes = u.votes, status = u.status::result_status, margin = u.margin,
-                 round_no = COALESCE(${seat.round?.current ?? null}::int, r.round_no), last_updated = ${now}
-          FROM UNNEST(${rows.map(r => r.candidate_id)}::uuid[], ${rows.map(r => r.votes)}::int[], ${rows.map(r => r.status)}::text[], ${rows.map(r => r.margin)}::int[]) AS u(cid, votes, status, margin)
-          WHERE r.candidate_id = u.cid AND r.election_id = ${electionId}::uuid`;
-        if (seat.round) {
-          await tx.$executeRaw`UPDATE constituencies SET current_round = ${seat.round.current}, total_rounds = ${seat.round.total} WHERE id = ${constId} AND election_id = ${electionId}::uuid`;
-        }
-        await tx.$executeRaw`
-          INSERT INTO seat_ingest_state (election_id, const_id, state, round_current, round_total, last_source, last_observed_at, last_applied_at)
-          VALUES (${electionId}::uuid, ${constId}, ${seat.state}, ${seat.round?.current ?? null}, ${seat.round?.total ?? null}, ${ADMIN_SOURCE}, ${now}, ${now})
-          ON CONFLICT (election_id, const_id) DO UPDATE SET state = EXCLUDED.state,
-            round_current = COALESCE(EXCLUDED.round_current, seat_ingest_state.round_current),
-            round_total = COALESCE(EXCLUDED.round_total, seat_ingest_state.round_total),
-            last_source = EXCLUDED.last_source, last_observed_at = EXCLUDED.last_observed_at, last_applied_at = EXCLUDED.last_applied_at`;
-        await appendSeatRounds(tx, electionId, [constId], 'correction', now);
+        await writeSeats(tx, electionId, { applied: [{ const_id: constId, state: seat.state, round: seat.round ?? null, rows }], unchanged: [] }, ADMIN_SOURCE, now, now, 'correction');
         // Never throws, and runs under a savepoint: a failed audit insert must not abort the correction.
         await this.audit.log({ userId, action: 'RESULT_SEAT_CORRECTION', entityType: 'constituency', entityId: constId,
           oldValue: Object.fromEntries(storedRows.map(r => [r.candidate_id, r.votes])),
@@ -68,7 +52,7 @@ export class SeatCorrectionService {
 
     if (changed) {
       const party = new Map(roster.map(c => [c.candidate_id, c.party_id]));
-      const lead = rows.filter(r => party.get(r.candidate_id) !== 'NOTA').sort((a, b) => b.votes - a.votes)[0];
+      const lead = leaderRow(rows, party);
       const p = lead ? party.get(lead.candidate_id) : null;
       if (lead && p) await this.notifier.afterCommit(electionId, [{ const_id: constId, p, m: lead.margin, s: lead.status, ...(seat.round ? { cr: seat.round.current, tr: seat.round.total } : {}) }], { kind: 'single' });
     }
