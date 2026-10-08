@@ -81,6 +81,16 @@ describe('person_id on leader entries', () => {
     const results = [{ const_id: 'BR_VS10_1_X', party_id: 'JDU', candidate_name: 'Rajesh Singh', votes: 1, status: 'WON', margin: 1 }];
     expect(resolveLeaderSeats([e], results)[0].constId).toBe('');
   });
+  it('finds the seat of an entry with a person_id from the candidate rows (person_id match, not names)', () => {
+    const e = { name: 'Rajesh Singh', partyId: 'JDU', constId: '', personId: 'p1', custom: false };
+    const results = [{ const_id: 'BR_VS10_7_Y', party_id: 'JDU', candidate_name: 'R. SINGH', votes: 0, status: 'TRAILING', margin: 0, person_id: 'p1' }];
+    expect(resolveLeaderSeats([e], results)[0].constId).toBe('BR_VS10_7_Y');
+  });
+  it('a seatless leader is Not contesting once the candidates are known, Pending before', () => {
+    const e = { name: 'Nitish Kumar', partyId: 'JDU', constId: '', personId: 'p-nk', custom: false };
+    expect(deriveLeaderCards([e], new Map(), true)[0]).toMatchObject({ status: 'NOT_CONTESTING', margin: null });
+    expect(deriveLeaderCards([e], new Map(), false)[0].status).toBe('PENDING');
+  });
   it('custom watch cards have no person', () => {
     expect(deriveLeaderCards(collectLeaderEntries(null, [{ const_id: 'X', label: 'X' }]), new Map())[0].personId).toBeNull();
   });

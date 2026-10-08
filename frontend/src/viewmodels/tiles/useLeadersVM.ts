@@ -28,7 +28,7 @@ export function useLeadersVM(): LeadersVM {
   const { manifestData, currentWinnerMap, mapRegions, results } = src.data;
   // Manifest leaders without a seat get it from this election's results (name match within the party).
   const leaders = useMemo(
-    () => deriveLeaderCards(resolveLeaderSeats(collectLeaderEntries(manifestData, []), results), currentWinnerMap),
+    () => deriveLeaderCards(resolveLeaderSeats(collectLeaderEntries(manifestData, []), results), currentWinnerMap, (results?.length ?? 0) > 0),
     [manifestData, currentWinnerMap, results],
   );
   const watchlist = useMemo(
