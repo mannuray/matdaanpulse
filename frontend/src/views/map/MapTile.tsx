@@ -14,6 +14,7 @@ export function MapTile({ vm, variant, footer, stackActions }: { vm: MapVM; vari
     <div className={variant === 'focus' ? 'relative h-full min-h-0 overflow-hidden' : 'relative min-h-0 flex-1'}>
       {vm.status === 'loading' && <p className="absolute inset-0 grid place-items-center text-sm text-muted">{t('loading_map')}</p>}
       {vm.status === 'error' && <p className="absolute inset-0 grid place-items-center text-sm text-live">{t('map_load_failed')}</p>}
+      {vm.status === 'unavailable' && <p className="absolute inset-0 grid place-items-center text-sm text-muted">{t('pty_map_unavailable')}</p>}
       <MapCanvas vm={vm} />
       {vm.legend && <MapLegend items={vm.legend} />}
       {vm.lockedLabel && (

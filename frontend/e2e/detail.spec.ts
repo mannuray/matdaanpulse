@@ -5,8 +5,11 @@ const BIHAR = 'c3d4e5f6-a7b8-9012-cdef-234567890abc';
 test('clicking a seat on the map opens the seat dialog, not the map focus', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/election/${BIHAR}`);
-  await page.locator('path.pc').nth(80).click({ force: true });
-  await expect(page.getByRole('dialog')).toBeVisible();
+  // Paths can be drawn a moment before seats are matched to them (cold dev server): retry the click until it opens.
+  await expect(async () => {
+    await page.locator('path.pc').nth(80).click({ force: true });
+    await expect(page.getByRole('dialog')).toBeVisible({ timeout: 1000 });
+  }).toPass({ timeout: 15000 });
   await expect(page).toHaveURL(/seat=/);
   await expect(page).not.toHaveURL(/focus=map/);
   await expect(page.getByRole('dialog').getByRole('link', { name: /Full constituency page/ })).toBeVisible();
