@@ -1,0 +1,57 @@
+import { houseShown } from '../../../src/model/config/houses';
+import { partyPageHref } from '../../../src/model/derive/partyRecord';
+import type { CandidateResult } from '../../../src/model/types';
+import type { SeoApi } from '../api';
+import { breadcrumbs, esc, houseWord, int, link, pct, seatLabel, shell, table } from '../html';
+import { DEFAULT_OG_IMAGE } from '../site';
+import { ttlFor, type SeoPage } from '../types';
+import { notFoundPage } from './simple';
+
+const SUFFIX = ' | MatdaanPulse';
+const partyLabel = (c: CandidateResult): string => c.party?.abbreviation || c.party?.id || 'IND';
+
+export async function constituencyPage(api: SeoApi, electionId: string, constId: string): Promise<SeoPage> {
+  const [e, c, analysis] = await Promise.all([api.election(electionId), api.constituency(electionId, constId), api.seatAnalysis(electionId, constId)]);
+  if (!houseShown(e.type)) return notFoundPage();
+
+  const cands = [...(c.candidates ?? [])].sort((a, b) => b.votes - a.votes);
+  const seat = seatLabel(c);
+  const house = houseWord(e.type);
+  const [top, second] = cands;
+  const counted = !!top && top.votes > 0;
+  const won = counted && (top.status === 'WON' || (e.status === 'Finalized' && top.status !== 'LEADING'));
+  const leads = counted && !won && top.status === 'LEADING';
+  const margin = top ? (top.margin > 0 ? top.margin : top.votes - (second?.votes ?? 0)) : 0;
+  const round = c.current_round && c.total_rounds ? ` after round ${c.current_round} of ${c.total_rounds}` : '';
+
+  const sentence = won && cands.length === 1 ? `${top.name} (${partyLabel(top)}) won ${seat} unopposed in ${e.year}.`
+    : won ? `${top.name} (${partyLabel(top)}) won ${seat} in ${e.year} by ${int(margin)} votes over ${second.name} (${partyLabel(second)}).`
+    : leads ? `Counting: ${top.name} (${partyLabel(top)}) leads in ${seat} by ${int(margin)} votes${round}.`
+    : `${seat} ${house} constituency, ${e.name}: ${cands.length} candidates.`;
+  const title = won ? `${seat} ${house} Election Result ${e.year} — Winner, Margin & Votes${SUFFIX}`
+    : leads ? `${seat} Live Result ${e.year} — ${top.name} leads${SUFFIX}`
+    : `${seat} ${house} Election ${e.year} — Candidates${SUFFIX}`;
+  const description = counted ? `${sentence} All ${cands.length} candidates with votes and vote share.` : sentence;
+
+  const rows = cands.map(x => [
+    link(x.person_id ? `/person/${x.person_id}` : null, x.name),
+    link(partyPageHref(x.party?.id), partyLabel(x)),
+    int(x.votes),
+    pct(x.vote_share),
+  ]);
+  const history = analysis?.data?.history ?? [];
+  const historyHtml = history.length
+    ? `<h2>Earlier results</h2><ul>${history.map(h => `<li>${h.year}: ${link(h.person_id ? `/person/${h.person_id}` : null, h.candidate)} (${esc(h.party ?? 'IND')})</li>`).join('')}</ul>`
+    : '';
+  const path = `/election/${e.id}/constituency/${c.id}`;
+
+  return {
+    status: 200, title, description, path, ogType: 'website', image: DEFAULT_OG_IMAGE,
+    jsonLd: [breadcrumbs([{ name: 'Home', path: '/' }, { name: e.name, path: `/election/${e.id}` }, { name: seat, path }])],
+    body: shell(
+      `<h1>${esc(seat)} — ${esc(e.name)}</h1><p>${esc(sentence)}</p><p>${link(`/election/${e.id}`, e.name)}</p>` +
+      table(['Candidate', 'Party', 'Votes', 'Vote share'], rows) + historyHtml,
+    ),
+    noindex: false, ttl: ttlFor(e.status),
+  };
+}
