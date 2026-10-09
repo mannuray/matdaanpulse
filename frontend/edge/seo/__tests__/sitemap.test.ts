@@ -38,6 +38,12 @@ describe('sitemaps', () => {
     expect(s.xml.match(/<url>/g)).toHaveLength(5);
   });
 
+  it('NOTA rows add no person URL', async () => {
+    const withNota = [...results, { const_id: 'BR-123', party_id: 'NOTA', candidate_name: 'NOTA', votes: 10, status: 'LOST', margin: 0, person_id: 'nota-person' }];
+    const s = (await buildSitemap({ kind: 'sitemapElection', electionId: E_ID }, api({ ...routes, [`/elections/${E_ID}/results`]: withNota })))!;
+    expect(s.xml).not.toContain('nota-person');
+  });
+
   it('hidden-house election sitemap is a 404', async () => {
     expect(await buildSitemap({ kind: 'sitemapElection', electionId: LS_ID }, api(routes))).toBeNull();
   });

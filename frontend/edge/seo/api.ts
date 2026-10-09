@@ -19,7 +19,8 @@ export function makeGet(base: string, fetchImpl: typeof fetch, signal: AbortSign
   };
 }
 
-const optional = <T>(p: Promise<T>): Promise<T | null> => p.catch(() => null);
+/** Absent (404) reads as null; a server error or timeout still fails, so an incomplete page is never cached long. */
+const optional = <T>(p: Promise<T>): Promise<T | null> => p.catch(err => { if (err instanceof NotFound) return null; throw err; });
 
 export function seoApi(get: Get) {
   return {

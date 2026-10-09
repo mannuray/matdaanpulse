@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { handle, type Deps, type Env } from '../handler';
+import { serve, type Deps, type Env } from '../handler';
 import { BASE, apiFrom, constituency, election, seatAnalysis, E_ID } from '../seo/__tests__/fixtures';
 
 const SHELL = '<!doctype html><html lang="en"><head><title>MatdaanPulse</title></head><body><div id="root"></div></body></html>';
@@ -20,12 +20,12 @@ function memoryCache() {
   };
 }
 
-function setup(over: Partial<Deps> = {}, env: Partial<Env> = {}) {
+function setup(over: Partial<Deps> = {}, env: Partial<Env> = {}, shell: () => Response = () => new Response(SHELL, { headers: { 'Content-Type': 'text/html' } })) {
   const waits: Promise<unknown>[] = [];
   const cache = memoryCache();
-  const assets = vi.fn(async () => new Response(SHELL, { headers: { 'Content-Type': 'text/html' } }));
+  const assets = vi.fn(async (_req?: unknown) => shell());
   const run = async (url: string, method = 'GET') => {
-    const res = await handle(
+    const res = await serve(
       { request: new Request(url, { method }), env: { ASSETS: { fetch: assets }, SEO_API_BASE_URL: BASE, CF_PAGES_COMMIT_SHA: 'abc', ...env }, waitUntil: p => { waits.push(p); } },
       { fetchImpl: apiFrom(routes), cache, timeoutMs: 50, ...over },
     );
@@ -86,13 +86,14 @@ describe('handle', () => {
     expect(await res.text()).toContain('<meta name="robots" content="noindex" />');
   });
 
-  it('API timeout: generic page fast, cached for at most 30 s', async () => {
+  it('API timeout: generic page fast as a 503 crawlers retry, cached for at most 30 s', async () => {
     const hang = ((_: unknown, init?: RequestInit) => new Promise<Response>((_, reject) => {
       init?.signal?.addEventListener('abort', () => reject(init.signal!.reason));
     })) as typeof fetch;
     const { run, cache } = setup({ fetchImpl: hang, timeoutMs: 20 });
     const res = await run(`https://matdaanpulse.in${SEAT}`);
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(503);
+    expect(res.headers.get('Retry-After')).toBe('120');
     expect(await res.text()).toContain('<title>MatdaanPulse — Live Indian election results');
     expect([...cache.store.values()][0].headers.get('Cache-Control')).toBe('public, max-age=30');
   });
@@ -111,6 +112,32 @@ describe('handle', () => {
     const res = await setup({}, { SEO_API_BASE_URL: undefined }).run(`https://matdaanpulse.in${SEAT}`);
     expect(res.status).toBe(200);
     expect(await res.text()).toContain('<title>MatdaanPulse — Live Indian election results');
+  });
+
+  it('fails open: any error in the function serves the plain static page', async () => {
+    const { run, assets } = setup({ cache: { match: async () => { throw new Error('cache down'); }, put: async () => undefined } });
+    const res = await run(`https://matdaanpulse.in${SEAT}`);
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe(SHELL);
+    expect(assets).toHaveBeenCalled();
+  });
+
+  it('a failed shell fetch is passed through untouched and not cached', async () => {
+    const { run, cache } = setup({}, {}, () => new Response('upstream error', { status: 500 }));
+    const res = await run(`https://matdaanpulse.in${SEAT}`);
+    expect(res.status).toBe(500);
+    expect(await res.text()).toBe('upstream error');
+    expect(cache.put).not.toHaveBeenCalled();
+  });
+
+  it('a new deploy (new asset hashes) never serves HTML cached by the old one', async () => {
+    const fetchImpl = vi.fn(apiFrom(routes));
+    let shell = SHELL.replace('</body>', '<script type="module" src="/assets/index-OLD.js"></script></body>');
+    const { run } = setup({ fetchImpl }, { CF_PAGES_COMMIT_SHA: undefined }, () => new Response(shell));
+    await run(`https://matdaanpulse.in${SEAT}`);
+    shell = shell.replace('index-OLD.js', 'index-NEW.js');
+    const res = await run(`https://matdaanpulse.in${SEAT}`);
+    expect(await res.text()).toContain('index-NEW.js');
   });
 
   it('non-GET requests go straight to the static assets', async () => {

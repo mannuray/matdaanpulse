@@ -52,7 +52,7 @@ describe('electionPage', () => {
     expect(p.title).toBe('Bihar Vidhan Sabha 2025 — Constituencies & Candidates | MatdaanPulse');
     expect(p.description).toBe('Bihar Vidhan Sabha 2025: all 2 constituencies, candidates and past results.');
     expect(p.body).not.toMatch(/won|—\s*\(/);
-    expect(p.ttl).toBe(3_600);
+    expect(p.ttl).toBe(60);
   });
 
   it('hidden house (Lok Sabha) is a 404', async () => {

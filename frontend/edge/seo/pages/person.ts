@@ -1,15 +1,19 @@
 import { houseShown } from '../../../src/model/config/houses';
+import { isNota } from '../../../src/model/derive/partyMeta';
 import { contestViews, personStats, type ContestStatus } from '../../../src/model/derive/personPage';
 import type { SeoApi } from '../api';
 import { abs, breadcrumbs, esc, int, link, shell, table } from '../html';
 import { DEFAULT_OG_IMAGE } from '../site';
 import { TTL, type SeoPage } from '../types';
+import { notFoundPage } from './simple';
 
 const WORD: Record<ContestStatus, string> = { WON: 'won', LOST: 'lost', LEADING: 'leading', TRAILING: 'trailing', PENDING: 'contesting' };
 
 export async function personPage(api: SeoApi, id: string): Promise<SeoPage> {
   const p = await api.person(id);
-  const cands = p.candidates.filter(c => houseShown(c.election_type ?? 'VS'));
+  // Hidden houses (Lok Sabha) and NOTA's auto-created "person" are not pages.
+  const cands = p.candidates.filter(c => houseShown(c.election_type ?? 'VS') && !isNota(c.party_id, c.name));
+  if (cands.length === 0) return notFoundPage();
   const views = contestViews(cands);
   const stats = personStats(cands);
   const latest = views[0];
@@ -21,7 +25,7 @@ export async function personPage(api: SeoApi, id: string): Promise<SeoPage> {
     esc(v.year ?? ''), link(v.constHref, v.constituency), link(v.partyHref, v.partyLabel), esc(WORD[v.status]), int(v.votes),
   ]);
   const path = `/person/${p.id}`;
-  const counting = views.some(v => v.status === 'LEADING' || v.status === 'TRAILING');
+  const counting = views.some(v => v.status !== 'WON' && v.status !== 'LOST');
   return {
     status: 200, title: `${p.name} — Election History, Wins & Constituencies | MatdaanPulse`, description, path,
     ogType: 'profile', image: DEFAULT_OG_IMAGE,

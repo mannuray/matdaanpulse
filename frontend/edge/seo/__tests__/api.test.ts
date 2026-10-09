@@ -39,6 +39,12 @@ describe('seoApi', () => {
     await expect(api.seatAnalysis(E_ID, 'BR-1')).resolves.toBeNull();
   });
 
+  it('optional reads still fail on a server error or timeout (no incomplete page gets cached)', async () => {
+    const api = seoApi(makeGet(BASE, (async () => new Response('{}', { status: 503 })) as typeof fetch, signal()));
+    await expect(api.manifest(E_ID)).rejects.toThrow();
+    await expect(api.seatAnalysis(E_ID, 'BR-1')).rejects.toThrow();
+  });
+
   it('encodes party ids and the state filter', async () => {
     const f = vi.fn(async () => new Response('{}', { status: 200 }));
     const api = seoApi(makeGet(BASE, f as unknown as typeof fetch, signal()));

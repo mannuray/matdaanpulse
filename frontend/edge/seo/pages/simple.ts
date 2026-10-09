@@ -16,7 +16,7 @@ export async function homePage(api: SeoApi): Promise<SeoPage> {
     path: '/',
     jsonLd: [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: `${SITE_ORIGIN}/` }],
     body: shell(`<h1>${esc(SITE_NAME)}</h1><p>${esc(DEFAULT_DESCRIPTION)}</p><h2>Elections</h2><ul>${items}</ul>`),
-    ttl: list.some(e => e.status === 'Live') ? TTL.live : TTL.normal,
+    ttl: list.some(e => e.status !== 'Finalized') ? TTL.live : TTL.normal,
   });
 }
 
@@ -31,3 +31,6 @@ export const notFoundPage = (): SeoPage => base({ status: 404, title: `Page not 
 
 /** The API failed or timed out: generic tags, the app loads normally, cached only briefly. */
 export const fallbackPage = (): SeoPage => base({ ttl: TTL.fallback });
+
+/** Same, as a 503 so crawlers retry later instead of indexing the generic page (the app loads normally from the body). */
+export const unavailablePage = (): SeoPage => base({ status: 503, ttl: TTL.fallback });

@@ -1,7 +1,7 @@
 import { makeGet, NotFound, seoApi, type SeoApi } from './seo/api';
 import { injectIntoShell } from './seo/head';
 import { buildPage } from './seo/pages';
-import { fallbackPage, notFoundPage } from './seo/pages/simple';
+import { fallbackPage, notFoundPage, unavailablePage } from './seo/pages/simple';
 import { matchRoute, routeKey, type Route } from './seo/routes';
 import { SITE_HOST } from './seo/site';
 import { buildSitemap, type Sitemap } from './seo/sitemap';
@@ -35,7 +35,7 @@ async function page(route: Route, api: SeoApi | null): Promise<SeoPage> {
   try {
     return await buildPage(route, api);
   } catch (err) {
-    return err instanceof NotFound ? notFoundPage() : fallbackPage();
+    return err instanceof NotFound ? notFoundPage() : unavailablePage();
   }
 }
 
@@ -48,7 +48,19 @@ export async function handle(ctx: Ctx, deps: Deps): Promise<Response> {
   const route = matchRoute(url.pathname, url.search);
   // Keyed on the route, not the raw URL: shared links carry fbclid/utm_* and must still hit one entry.
   const keyPath = routeKey(route);
-  const key = new Request(`${url.origin}${keyPath}${keyPath.includes('?') ? '&' : '?'}__seo=${env.CF_PAGES_COMMIT_SHA ?? 'dev'}`);
+  const sitemap = isSitemap(route);
+
+  // Pages serves index.html at "/" (a request for /index.html would redirect). A failed shell passes through untouched.
+  let shell = '';
+  if (!sitemap) {
+    const shellRes = await env.ASSETS.fetch(new Request(new URL('/', url)));
+    if (!shellRes.ok) return shellRes;
+    shell = await shellRes.text();
+  }
+  // The build's entry-script hash is in the key, so a deploy never serves HTML that names deleted asset files
+  // (whether or not CF_PAGES_COMMIT_SHA reaches the Function at runtime).
+  const build = `${env.CF_PAGES_COMMIT_SHA ?? 'dev'}-${/\/assets\/([\w.-]+)\.js/.exec(shell)?.[1] ?? 'none'}`;
+  const key = new Request(`${url.origin}${keyPath}${keyPath.includes('?') ? '&' : '?'}__seo=${encodeURIComponent(build)}`);
 
   const hit = deps.cache ? await deps.cache.match(key) : undefined;
   if (hit) return finalize(hit, canonicalHost, head);
@@ -62,7 +74,7 @@ export async function handle(ctx: Ctx, deps: Deps): Promise<Response> {
   let type: string;
   let ttl: number;
   let noindex = false;
-  if (isSitemap(route)) {
+  if (sitemap) {
     if (!api) return finalize(new Response('Not found', { status: 404 }), canonicalHost, head);
     let map: Sitemap | null;
     try {
@@ -76,8 +88,6 @@ export async function handle(ctx: Ctx, deps: Deps): Promise<Response> {
     status = 200;
     type = XML;
   } else {
-    // Pages serves index.html at "/" (a request for /index.html would redirect).
-    const shell = await (await env.ASSETS.fetch(new Request(new URL('/', url)))).text();
     const p = await page(route, api);
     body = injectIntoShell(shell, p);
     ({ status, ttl, noindex } = p);
@@ -86,9 +96,19 @@ export async function handle(ctx: Ctx, deps: Deps): Promise<Response> {
 
   const headers: Record<string, string> = { ...SECURITY_HEADERS, 'Content-Type': type };
   if (noindex) headers['X-Robots-Tag'] = 'noindex';
+  if (status === 503) headers['Retry-After'] = '120';
   if (deps.cache && ttl > 0) {
     const stored = new Response(body, { status, headers: { ...headers, 'Cache-Control': `public, max-age=${ttl}` } });
     ctx.waitUntil(deps.cache.put(key, stored));
   }
   return finalize(new Response(body, { status, headers }), canonicalHost, head);
+}
+
+/** Fail open: this sits in front of every page load, so any error serves the plain static SPA instead. */
+export async function serve(ctx: Ctx, deps: Deps): Promise<Response> {
+  try {
+    return await handle(ctx, deps);
+  } catch {
+    return ctx.env.ASSETS.fetch(ctx.request);
+  }
 }

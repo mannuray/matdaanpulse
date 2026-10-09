@@ -18,10 +18,20 @@ describe('personPage', () => {
     expect(p.jsonLd[0]).toMatchObject({ '@type': 'Person', name: 'Awadhesh Singh', url: `https://matdaanpulse.in/person/${P_ID}`, image: person.photo_url });
   });
 
-  it('a person with no shown contests still gets a page', async () => {
+  it('a person with only hidden-house contests is a 404', async () => {
     const p = await personPage(api({ [`/candidates/persons/${P_ID}`]: { ...person, candidates: [person.candidates[1]] } }), P_ID);
-    expect(p.status).toBe(200);
-    expect(p.description).toBe('Awadhesh Singh: election record on MatdaanPulse.');
+    expect(p.status).toBe(404);
+    expect(p.noindex).toBe(true);
+  });
+
+  it('a NOTA "person" is a 404', async () => {
+    const nota = { ...person, name: 'NOTA', candidates: [{ ...person.candidates[0], name: 'NOTA', party_id: 'NOTA', party_abbreviation: 'NOTA', party_name: 'None of the Above' }] };
+    expect((await personPage(api({ [`/candidates/persons/${P_ID}`]: nota }), P_ID)).status).toBe(404);
+  });
+
+  it('a person still contesting an upcoming election refreshes every minute', async () => {
+    const pending = { ...person, candidates: [{ ...person.candidates[0], election_status: 'Upcoming', status: null, votes: 0 }] };
+    expect((await personPage(api({ [`/candidates/persons/${P_ID}`]: pending }), P_ID)).ttl).toBe(60);
   });
 });
 
