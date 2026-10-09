@@ -36,7 +36,9 @@ describe('constituencyPage', () => {
   it('counting seat: leads wording with the round, 60 s TTL', async () => {
     const live = { ...election, status: 'Live' };
     const c = { ...constituency, current_round: 12, total_rounds: 30, candidates: constituency.candidates.map(x => ({ ...x, status: x.id === 'c1' ? 'LEADING' : 'TRAILING' })) };
-    const p = await constituencyPage(api({ ...routes, [`/elections/${E_ID}`]: live, [`/elections/${E_ID}/constituencies/BR-123`]: c }), E_ID, 'BR-123');
+    const p = await constituencyPage(api({ ...routes, [`/elections/${E_ID}`]: live,
+      [`/elections/${E_ID}/live`]: { version: 7, status: 'Live', updatedAt: '', declared: 0, total: 2 },
+      [`/elections/${E_ID}/constituencies/BR-123?v=7`]: c }), E_ID, 'BR-123');
     expect(p.title).toBe('Hajipur Live Result 2025 — Awadhesh Singh leads | MatdaanPulse');
     expect(p.description.startsWith('Counting: Awadhesh Singh (BJP) leads in Hajipur by 2,340 votes after round 12 of 30.')).toBe(true);
     expect(p.ttl).toBe(60);
@@ -74,6 +76,12 @@ describe('constituencyPage', () => {
     const c = { ...constituency, candidates: [constituency.candidates[1], nota] };
     const p = await constituencyPage(api({ ...routes, [`/elections/${E_ID}/constituencies/BR-123`]: c }), E_ID, 'BR-123');
     expect(p.description.startsWith('Awadhesh Singh (BJP) won Hajipur in 2025 with 90,000 votes.')).toBe(true);
+  });
+
+  it('an exact tie is not "won by 0 votes"', async () => {
+    const tie = { ...constituency, candidates: constituency.candidates.map(x => ({ ...x, votes: 90000, margin: 0 })) };
+    const p = await constituencyPage(api({ ...routes, [`/elections/${E_ID}/constituencies/BR-123`]: tie }), E_ID, 'BR-123');
+    expect(p.description.startsWith('Awadhesh Singh (BJP) won Hajipur in 2025 over Dev Kumar Chaurasia (RJD) after a tie.')).toBe(true);
   });
 
   it('a single candidate is "1 candidate"', async () => {

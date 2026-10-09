@@ -14,10 +14,10 @@ const routes = {
 };
 
 describe('sitemaps', () => {
-  it('index lists parties and each shown election only', async () => {
+  it('index lists each shown election only', async () => {
     const s = (await buildSitemap({ kind: 'sitemapIndex' }, api(routes)))!;
     expect(s.xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')).toBe(true);
-    expect(s.xml).toContain('<loc>https://matdaanpulse.in/sitemaps/parties.xml</loc>');
+    expect(s.xml).not.toContain('parties.xml');
     expect(s.xml).toContain(`<loc>https://matdaanpulse.in/sitemaps/election-${E_ID}.xml</loc>`);
     expect(s.xml).not.toContain(LS_ID);
     expect(s.ttl).toBe(86_400);
@@ -35,7 +35,7 @@ describe('sitemaps', () => {
     expect(s.xml).toContain(`<loc>https://matdaanpulse.in/election/${E_ID}/constituency/BR-124</loc>`);
     expect(s.xml.match(new RegExp(`/person/${P_ID}<`, 'g'))).toHaveLength(1);
     expect(s.xml).toContain(`/person/${P2_ID}<`);
-    expect(s.xml.match(/<url>/g)).toHaveLength(5);
+    expect(s.xml.match(/<url>/g)).toHaveLength(8);
   });
 
   it('NOTA rows add no person URL', async () => {
@@ -48,9 +48,12 @@ describe('sitemaps', () => {
     expect(await buildSitemap({ kind: 'sitemapElection', electionId: LS_ID }, api(routes))).toBeNull();
   });
 
-  it('parties sitemap skips IND/NOTA and encodes ids like the app', async () => {
-    const s = (await buildSitemap({ kind: 'sitemapParties' }, api(routes)))!;
-    expect(s.xml).toContain('<loc>https://matdaanpulse.in/party/BJP</loc>');
+  it('election sitemap lists each party that contested it once, never IND/NOTA', async () => {
+    const extra = [...results, { const_id: 'BR-124', party_id: 'IND', candidate_name: 'X', votes: 5, status: 'LOST', margin: 0, person_id: null },
+      { const_id: 'BR-124', party_id: 'CPI(M)', candidate_name: 'Y', votes: 6, status: 'LOST', margin: 0, person_id: null },
+      { const_id: 'BR-123', party_id: 'BJP', candidate_name: 'Z', votes: 1, status: 'LOST', margin: 0, person_id: null }];
+    const s = (await buildSitemap({ kind: 'sitemapElection', electionId: E_ID }, api({ ...routes, [`/elections/${E_ID}/results`]: extra })))!;
+    expect(s.xml.match(/\/party\/BJP</g)).toHaveLength(1);
     expect(s.xml).toContain('<loc>https://matdaanpulse.in/party/CPI(M)</loc>');
     expect(s.xml).not.toContain('/party/IND');
   });

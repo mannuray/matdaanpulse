@@ -111,7 +111,8 @@ Rules:
 - **`/sitemap.xml`** (function): sitemap index →
   - `/sitemaps/election-<id>.xml` per shown election: the election page, every seat page and every candidate's person
     page (the largest, UP 2022, is ~5,250 URLs; limit 50,000). Persons of hidden (LS) elections only are not listed.
-  - `/sitemaps/parties.xml` (no IND/NOTA).
+  - Party pages are listed in each election's sitemap (every party that contested it; no IND/NOTA), so Lok Sabha-only
+    parties never appear.
   - No `lastmod` (no reliable date in the API; optional in the protocol).
 
 ## Caching

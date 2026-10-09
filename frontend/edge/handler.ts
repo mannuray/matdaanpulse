@@ -20,7 +20,7 @@ interface Ctx { request: Request; env: Env; waitUntil(p: Promise<unknown>): void
 
 const HTML = 'text/html; charset=utf-8';
 const XML = 'application/xml; charset=utf-8';
-const isSitemap = (r: Route) => r.kind === 'sitemapIndex' || r.kind === 'sitemapParties' || r.kind === 'sitemapElection';
+const isSitemap = (r: Route) => r.kind === 'sitemapIndex' || r.kind === 'sitemapElection';
 
 /** Browsers always revalidate; crawlers on other hosts (previews) never index. */
 function finalize(res: Response, canonicalHost: boolean, head: boolean): Response {
@@ -75,15 +75,15 @@ export async function handle(ctx: Ctx, deps: Deps): Promise<Response> {
   let ttl: number;
   let noindex = false;
   if (sitemap) {
-    if (!api) return finalize(new Response('Not found', { status: 404 }), canonicalHost, head);
+    if (!api) return finalize(new Response('Not found', { status: 404, headers: SECURITY_HEADERS }), canonicalHost, head);
     let map: Sitemap | null;
     try {
       map = await buildSitemap(route, api);
     } catch (err) {
-      if (!(err instanceof NotFound)) return finalize(new Response('Unavailable', { status: 503, headers: { 'Retry-After': '60' } }), canonicalHost, head);
+      if (!(err instanceof NotFound)) return finalize(new Response('Unavailable', { status: 503, headers: { ...SECURITY_HEADERS, 'Retry-After': '60' } }), canonicalHost, head);
       map = null;
     }
-    if (!map) return finalize(new Response('Not found', { status: 404 }), canonicalHost, head);
+    if (!map) return finalize(new Response('Not found', { status: 404, headers: SECURITY_HEADERS }), canonicalHost, head);
     ({ xml: body, ttl } = map);
     status = 200;
     type = XML;

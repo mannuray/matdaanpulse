@@ -23,5 +23,8 @@ export const TTL = { live: 60, final: 86_400, normal: 3_600, notFound: 300, fall
 /** Upcoming refreshes like Live: the status flips on counting morning, when sharing peaks. */
 export const ttlFor = (s: ElectionStatus): number => (s === 'Finalized' ? TTL.final : TTL.live);
 
+/** GET /elections/:id/live (src/model/live/poller.ts LiveState). */
+export interface LiveState { version: number; status: ElectionStatus; updatedAt: string; declared: number; total: number }
+
 /** GET /constituencies?election_id= row (backend ConstituencySummaryDto). */
 export interface SeatSummary { id: string; election_id: string; name: string; const_no: number; type: 'GEN' | 'SC' | 'ST' }

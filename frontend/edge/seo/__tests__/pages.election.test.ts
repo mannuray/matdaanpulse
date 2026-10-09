@@ -37,10 +37,13 @@ describe('electionPage', () => {
     expect(p.body).toContain('Some &lt;Name&gt; $&amp; (INC)');
   });
 
-  it('counting election: live wording, declared count and a 60 s TTL', async () => {
+  it('counting election reads the versioned snapshot the app uses: live wording, declared count, 60 s TTL', async () => {
     const live = { ...election, status: 'Live' };
     const tally = alliances.map((a, i) => (i === 0 ? { ...a, won: 80, leading: 9 } : a));
-    const p = await electionPage(api({ ...full, [`/elections/${E_ID}`]: live, [`/elections/${E_ID}/alliances`]: tally }), E_ID);
+    const { [`/elections/${E_ID}/alliances`]: _a, [`/elections/${E_ID}/results`]: _r, ...rest } = full;
+    const p = await electionPage(api({ ...rest, [`/elections/${E_ID}`]: live,
+      [`/elections/${E_ID}/live`]: { version: 7, status: 'Live', updatedAt: '', declared: 2, total: 2 },
+      [`/elections/${E_ID}/results?v=7`]: { version: 7, results, summary: tally, voteShare: [] } }), E_ID);
     expect(p.title).toBe('Bihar Vidhan Sabha 2025 Live Results — NDA 174, MGB 31 | MatdaanPulse');
     expect(p.description).toBe('Counting live: NDA 174, MGB 31, AIMIM 5 (won + leading) of 2 seats; 2 declared. Constituency-wise live results.');
     expect(p.ttl).toBe(60);

@@ -105,6 +105,10 @@ describe('handle', () => {
     const failing = setup({ fetchImpl: (async () => new Response('{}', { status: 500 })) as typeof fetch });
     const bad = await failing.run('https://matdaanpulse.in/sitemap.xml');
     expect(bad.status).toBe(503);
+    expect(bad.headers.get('X-Frame-Options')).toBe('DENY');
+    const missing = await setup().run('https://matdaanpulse.in/sitemaps/election-99999999-9999-4999-8999-999999999999.xml');
+    expect(missing.status).toBe(404);
+    expect(missing.headers.get('Content-Security-Policy')).toContain("default-src 'self'");
     expect(failing.cache.put).not.toHaveBeenCalled();
   });
 
@@ -138,6 +142,14 @@ describe('handle', () => {
     shell = shell.replace('index-OLD.js', 'index-NEW.js');
     const res = await run(`https://matdaanpulse.in${SEAT}`);
     expect(await res.text()).toContain('index-NEW.js');
+  });
+
+  it('the API time budget starts after the static shell is read', async () => {
+    const s = setup({ timeoutMs: 30 });
+    s.assets.mockImplementation(() => new Promise<Response>(r => setTimeout(() => r(new Response(SHELL)), 40)));
+    const res = await s.run(`https://matdaanpulse.in${SEAT}`);
+    expect(res.status).toBe(200);
+    expect(await res.text()).toContain('<title>Hajipur');
   });
 
   it('non-GET requests go straight to the static assets', async () => {

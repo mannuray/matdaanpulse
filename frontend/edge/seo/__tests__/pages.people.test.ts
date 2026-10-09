@@ -56,6 +56,17 @@ describe('partyPage', () => {
     expect(p.body).not.toContain('Bihar 2025');
   });
 
+  it('a state the party never contested falls back to the national canonical', async () => {
+    const p = await partyPage(api({ ...routes, '/parties/BJP/record?state=KL': partyRecord }), 'BJP', 'KL');
+    expect(p.path).toBe('/party/BJP');
+    expect(p.title).toBe('Bharatiya Janata Party (BJP) — Election Results & Seat History | MatdaanPulse');
+  });
+
+  it('a party with no shown elections (Lok Sabha only) is a 404', async () => {
+    const empty = { ...partyRecord, elections: [], family_elections: [] };
+    expect((await partyPage(api({ ...routes, '/parties/BJP/record': empty }), 'BJP', null)).status).toBe(404);
+  });
+
   it('IND and NOTA have no party page', async () => {
     expect((await partyPage(api(routes), 'IND', null)).status).toBe(404);
     expect((await partyPage(api(routes), 'nota', null)).status).toBe(404);

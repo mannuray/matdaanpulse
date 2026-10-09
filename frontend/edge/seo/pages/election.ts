@@ -35,7 +35,10 @@ function leaders(results: ResultRow[]): Map<string, ResultRow> {
 export async function electionPage(api: SeoApi, id: string): Promise<SeoPage> {
   const e = await api.election(id);
   if (!houseShown(e.type)) return notFoundPage();
-  const [manifest, tally, seats, results] = await Promise.all([api.manifest(id), api.alliances(id), api.constituencies(id), api.results(id)]);
+  const [manifest, seats, liveState] = await Promise.all([api.manifest(id), api.constituencies(id), api.live(id)]);
+  // While counting, read the versioned snapshot every viewer's dashboard reads (immutable, CDN-cached per version).
+  const snap = liveState?.status === 'Live' ? await api.snapshot(id, liveState.version) : null;
+  const [tally, results] = snap ? [snap.summary, snap.results] : await Promise.all([api.alliances(id), api.results(id)]);
   const groups = groupTally(tally, manifest?.draft?.alliances ?? []);
   const total = seats.length;
   const top2 = groups.slice(0, 2).map(g => `${g.name} ${g.seats}`).join(', ');

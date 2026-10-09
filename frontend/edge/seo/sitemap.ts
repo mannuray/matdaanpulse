@@ -21,33 +21,28 @@ const index = (paths: string[]): string =>
 async function sitemapIndex(api: SeoApi): Promise<Sitemap> {
   const list = visibleElections(await api.elections());
   return {
-    xml: index(['/sitemaps/parties.xml', ...list.map(e => `/sitemaps/election-${e.id}.xml`)]),
+    xml: index(list.map(e => `/sitemaps/election-${e.id}.xml`)),
     ttl: list.some(e => e.status === 'Live') ? TTL.sitemapLive : TTL.sitemap,
   };
 }
 
-/** The election, every seat, and every candidate's person page (from the results rows). */
+/** The election, every seat, every candidate's person page and every party that contested (from the results rows). */
 async function electionSitemap(api: SeoApi, id: string): Promise<Sitemap | null> {
   const e = await api.election(id);
   if (!houseShown(e.type)) return null;
   const [seats, results] = await Promise.all([api.constituencies(id), api.results(id)]);
+  const parties = [...new Set(results.map(r => partyPageHref(r.party_id)).filter((p): p is string => !!p))];
   const persons = [...new Set(results.filter(r => !isNota(r.party_id, r.candidate_name)).map(r => r.person_id).filter((p): p is string => !!p))];
   return {
-    xml: urlset([`/election/${e.id}`, ...seats.map(s => `/election/${e.id}/constituency/${s.id}`), ...persons.map(p => `/person/${p}`)]),
+    xml: urlset([`/election/${e.id}`, ...seats.map(s => `/election/${e.id}/constituency/${s.id}`), ...persons.map(p => `/person/${p}`), ...parties]),
     ttl: e.status === 'Live' ? TTL.sitemapLive : TTL.sitemap,
   };
-}
-
-async function partiesSitemap(api: SeoApi): Promise<Sitemap> {
-  const paths = (await api.parties()).map(p => partyPageHref(p.id)).filter((p): p is string => !!p);
-  return { xml: urlset(paths), ttl: TTL.sitemap };
 }
 
 export function buildSitemap(route: Route, api: SeoApi): Promise<Sitemap | null> {
   switch (route.kind) {
     case 'sitemapIndex': return sitemapIndex(api);
     case 'sitemapElection': return electionSitemap(api, route.electionId);
-    case 'sitemapParties': return partiesSitemap(api);
     default: return Promise.resolve(null);
   }
 }

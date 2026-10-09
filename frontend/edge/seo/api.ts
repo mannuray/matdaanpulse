@@ -1,7 +1,7 @@
 import type {
-  Alliance, Constituency, ConstituencyAnalysisDetail, Election, Manifest, Party, PartyDetail, PartyRecord, PersonDetail, ResultRow,
+  Alliance, Constituency, ConstituencyAnalysisDetail, Election, Manifest, PartyDetail, PartyRecord, PersonDetail, ResultRow, ResultsSnapshot,
 } from '../../src/model/types';
-import type { SeatSummary } from './types';
+import type { LiveState, SeatSummary } from './types';
 
 /** The API answered 404 (unknown id) or 400 (malformed id): the page does not exist. */
 export class NotFound extends Error {}
@@ -30,14 +30,18 @@ export function seoApi(get: Get) {
     alliances: (id: string) => get<Alliance[]>(`/elections/${id}/alliances`),
     constituencies: (id: string) => get<SeatSummary[]>(`/constituencies?election_id=${id}`),
     results: (id: string) => get<ResultRow[]>(`/elections/${id}/results`),
-    constituency: (id: string, constId: string) => get<Constituency>(`/elections/${id}/constituencies/${encodeURIComponent(constId)}`),
+    /** The election's live version and status (null when the backend has none). */
+    live: (id: string) => optional(get<LiveState>(`/elections/${id}/live`)),
+    /** Immutable per version: the same snapshot every viewer's dashboard reads while counting. */
+    snapshot: (id: string, version: number) => get<ResultsSnapshot>(`/elections/${id}/results?v=${version}`),
+    constituency: (id: string, constId: string, version?: number) =>
+      get<Constituency>(`/elections/${id}/constituencies/${encodeURIComponent(constId)}${version != null ? `?v=${version}` : ''}`),
     seatAnalysis: (id: string, constId: string) =>
       optional(get<ConstituencyAnalysisDetail>(`/elections/${id}/constituencies/${encodeURIComponent(constId)}/analysis`)),
     person: (id: string) => get<PersonDetail>(`/candidates/persons/${id}`),
     party: (id: string) => get<PartyDetail>(`/parties/${encodeURIComponent(id)}`),
     partyRecord: (id: string, state: string | null) =>
       get<PartyRecord>(`/parties/${encodeURIComponent(id)}/record${state ? `?state=${encodeURIComponent(state)}` : ''}`),
-    parties: () => get<Party[]>('/parties'),
   };
 }
 

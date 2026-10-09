@@ -18,7 +18,7 @@ describe('matchRoute', () => {
     ['/party/CPI%28M%29', '?state=WB&x=1', { kind: 'party', partyId: 'CPI(M)', state: 'WB' }],
     ['/party/BJP', '?state=Bihar', { kind: 'party', partyId: 'BJP', state: null }],
     ['/sitemap.xml', '', { kind: 'sitemapIndex' }],
-    ['/sitemaps/parties.xml', '', { kind: 'sitemapParties' }],
+    ['/party/A+B', '', { kind: 'party', partyId: 'A+B', state: null }],
     [`/sitemaps/election-${E}.xml`, '', { kind: 'sitemapElection', electionId: E }],
   ])('%s%s', (path, search, expected) => {
     expect(matchRoute(path, search)).toEqual(expected);
@@ -31,6 +31,9 @@ describe('matchRoute', () => {
     '/person/123',
     '/party/%3Cscript%3E',
     '/sitemaps/election-x.xml',
+    '/sitemaps/parties.xml',
+    "/party/O'NEIL",
+    '/party/ABCDEFGHIJKLMNOPQRSTU',
     '/nope',
     `/election/${E}/extra/segments/here`,
   ])('%s is not found', path => {

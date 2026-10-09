@@ -13,10 +13,13 @@ const SUFFIX = ' | MatdaanPulse';
 const partyLabel = (c: CandidateResult): string => c.party?.abbreviation || c.party?.id || 'IND';
 
 export async function constituencyPage(api: SeoApi, electionId: string, constId: string): Promise<SeoPage> {
-  const [e, c, analysis] = await Promise.all([api.election(electionId), api.constituency(electionId, constId), api.seatAnalysis(electionId, constId)]);
+  const [e, live, analysis] = await Promise.all([api.election(electionId), api.live(electionId), api.seatAnalysis(electionId, constId)]);
+  // While counting, the seat detail of the current version (the URL the dashboard reads).
+  const c = await api.constituency(electionId, constId, live?.status === 'Live' ? live.version : undefined);
   if (!houseShown(e.type)) return notFoundPage();
 
-  const all = [...(c.candidates ?? [])].sort((a, b) => b.votes - a.votes);
+  // Most votes first; on a tie the declared winner first.
+  const all = [...(c.candidates ?? [])].sort((a, b) => b.votes - a.votes || Number(b.status === 'WON') - Number(a.status === 'WON'));
   /** NOTA is a row in the table, never a person or a contender. */
   const cands = all.filter(x => !isNota(x.party?.id, x.name));
   const unopposed = isUncontested(all.map(x => ({ party_id: x.party?.id ?? null, votes: x.votes, status: x.status })));
@@ -33,6 +36,7 @@ export async function constituencyPage(api: SeoApi, electionId: string, constId:
   const round = c.current_round && c.total_rounds ? ` after round ${c.current_round} of ${c.total_rounds}` : '';
 
   const sentence = unopposed ? `${top.name} (${partyLabel(top)}) won ${seat} unopposed in ${e.year}.`
+    : won && second && margin === 0 ? `${top.name} (${partyLabel(top)}) won ${seat} in ${e.year} over ${second.name} (${partyLabel(second)}) after a tie.`
     : won && !second ? `${top.name} (${partyLabel(top)}) won ${seat} in ${e.year} with ${int(top.votes)} votes.`
     : won ? `${top.name} (${partyLabel(top)}) won ${seat} in ${e.year} by ${int(margin)} votes over ${second.name} (${partyLabel(second)}).`
     : leads ? `Counting: ${top.name} (${partyLabel(top)}) leads in ${seat} by ${int(margin)} votes${round}.`
