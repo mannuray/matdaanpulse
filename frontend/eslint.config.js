@@ -24,4 +24,19 @@ export default tseslint.config(
       }],
     },
   },
+  {
+    files: ['edge/**/*.ts', 'functions/**/*.ts'],
+    plugins: { import: importPlugin },
+    settings: { 'import/resolver': { typescript: true, node: { extensions: ['.ts', '.tsx'] } } },
+    rules: {
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      'import/no-restricted-paths': ['error', {
+        zones: [{
+          target: ['./edge', './functions'],
+          from: ['./src/viewmodels', './src/views', './src/pages', './src/components', './src/i18n', './src/theme', './src/model/api', './src/model/live', './src/model/geo'],
+          message: 'Edge code may import only pure model code (src/model/derive, src/model/config, src/model/types).',
+        }],
+      }],
+    },
+  },
 );
