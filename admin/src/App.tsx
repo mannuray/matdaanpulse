@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import ErrorBoundary from './components/atoms/ErrorBoundary';
@@ -63,6 +64,7 @@ function App() {
               </Route>
             </Routes>
           </BrowserRouter>
+          <Analytics />
         </ErrorBoundary>
       </ToastProvider>
     </AuthProvider>
