@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { ElectionProvider } from './viewmodels/data/useElection';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -40,6 +41,7 @@ function App() {
           <BrowserRouter>
             <AppLayout />
           </BrowserRouter>
+          <Analytics />
         </ErrorBoundary>
       </ElectionProvider>
     </ThemeProvider>
