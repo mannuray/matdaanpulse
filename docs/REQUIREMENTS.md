@@ -56,7 +56,7 @@ A reusable, metadata-driven election tracking platform designed specifically for
 *   **Accessibility (a11y):** ARIA labels on SVG map regions, keyboard navigation for map drill-down, screen-reader-friendly tally tables.
 *   **Error/Empty States:** Graceful UI for: no live election active, scraper down/stale data (show "last updated" timestamp), no results yet for a constituency.
 *   **GeoJSON Source:** Constituency boundary maps sourced from DataMeet/open-source community datasets. Admin can upload/replace GeoJSON files per election via the admin panel.
-*   **SEO:** Consciously deferred — the app is a pure SPA (React + Vite). Users discover via direct links and social sharing, not search indexing.
+*   **SEO:** Share previews and search indexing are served by a Cloudflare Pages Function: per-page title, description, Open Graph tags, JSON-LD and readable HTML for crawlers, plus `robots.txt` and sitemaps (`docs/superpowers/specs/2026-10-09-seo-design.md`). English only for now; the app itself stays a pure SPA.
 
 ## 5. Data & Integrity
 *   **Source of Truth:** Dual-storage model:

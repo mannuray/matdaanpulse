@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { SECURITY_HEADERS } from '../../edge/securityHeaders';
 
 const root = resolve(__dirname, '../..');
 const read = (p: string) => readFileSync(resolve(root, p), 'utf8');
@@ -35,6 +36,10 @@ describe('security headers (vercel.json = public/_headers)', () => {
   it('both hosts send the same headers', () => {
     expect(Object.keys(vercelHeaders()).length).toBeGreaterThan(0);
     expect(pagesHeaders()).toEqual(vercelHeaders());
+  });
+
+  it('the Pages Function sends the same headers (Pages does not apply _headers to Functions)', () => {
+    expect(SECURITY_HEADERS).toEqual(pagesHeaders());
   });
 
   it('sends the hardening headers; the public site is indexable', () => {

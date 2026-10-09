@@ -59,6 +59,11 @@ call. It is named in four files:
 
 `DEPLOYMENT.md` §5.0d step 6 has the details.
 
+**SEO Function:** set the Pages env `SEO_API_BASE_URL` to the Cloudflare-fronted API before the origin shield goes on
+(DEPLOYMENT §5.4 step 2). About a week before counting day (≈ 20 Feb 2027) switch the Cloudflare account to
+**Workers Paid** ($5/month) and load-check a few page routes on `matdaanpulse.in`; the free plan's 100k Function
+requests/day will not cover counting-day traffic.
+
 ### 3.2 Live worker host
 
 The worker (`scraper`, `npm run live`, adapters `eci-web` / `mock-eci`) has no production host yet. The candidates
