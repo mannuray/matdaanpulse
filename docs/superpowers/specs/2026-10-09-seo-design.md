@@ -1,6 +1,6 @@
 # SEO and share previews — design
 
-Date: 2026-10-09 · Status: approved in brainstorming, awaiting spec review
+Date: 2026-10-09 · Status: implemented (plan `docs/superpowers/plans/2026-10-09-seo.md`)
 
 ## Goal
 
@@ -36,7 +36,7 @@ Cloudflare Pages
           1. edge cache hit? → return it
           2. fetch index.html (env.ASSETS) + page data from the API (2.5 s timeout)
           3. build SeoPage {status, title, description, canonical, og, jsonLd, bodyHtml}
-          4. HTMLRewriter: inject tags into <head>, bodyHtml into #root, set <html lang="en">
+          4. string replacement (index.html is small): tags replace <title>, bodyHtml fills #root
           5. cache with the page type's TTL → return
    on API error / timeout → plain index.html + generic tags (the site never breaks)
 ```
@@ -76,9 +76,7 @@ Existing public endpoints:
 | party | `GET /parties/:id/record` (`?state=XX` honoured) |
 | sitemaps | `GET /elections`, election results/constituency lists, party list `GET /parties` |
 
-If no existing endpoint lists all person ids cheaply, add **one** public endpoint
-`GET /seo/persons?page=N` → `{ items: [{ id, updated_at }], next }` (ids only, cached). That is the only backend change.
-The implementation plan checks the existing endpoints' shapes first.
+No backend change: person URLs come from `GET /elections/:id/results`, whose rows carry `person_id`.
 
 ## What each page sends
 
@@ -86,7 +84,7 @@ The implementation plan checks the existing endpoints' shapes first.
 |-------|-------------------------|----------------------|---------|
 | `/` | "MatdaanPulse — Live Indian election results, maps & constituency history" | H1, list of shown elections (links), one-line about | `WebSite` |
 | `/election/:id` | "Bihar Assembly Election 2025 Results — NDA 202, MGB 35 \| MatdaanPulse"; description: alliance/party seat tally, turnout, counting date | H1, alliance + party tally table, every seat with winner and party (links to each seat) | `BreadcrumbList` |
-| `/election/:id/constituency/:c` | "Hajipur Assembly Result 2025 — Winner, Margin, Votes \| MatdaanPulse"; description: "X (BJP) won by N votes over Y (RJD)…" | H1, result sentence, candidates table (name → person link, party → party link, votes, %), earlier elections of the seat (links) | `BreadcrumbList` |
+| `/election/:id/constituency/:c` | "Hajipur Assembly Election Result 2025 — Winner, Margin & Votes \| MatdaanPulse"; description: "X (BJP) won Hajipur in 2025 by N votes over Y (RJD)…" | H1, result sentence, candidates table (name → person link, party → party link, votes, % (derived from votes when the API sends none)), earlier winners of the seat (person links; history entries carry no seat ids) | `BreadcrumbList` |
 | `/person/:id` | "Name — Election history, wins & constituencies \| MatdaanPulse"; description: party, contests, wins | H1, contest list (year, seat, party, result) with links | `Person`, `BreadcrumbList` |
 | `/party/:id` | "Party Name (ABBR) — Election results & seat history \| MatdaanPulse"; description: recent tallies | H1, per-election seats table with links | `Organization`, `BreadcrumbList` |
 | `/about` | static title and description | none (the SPA renders it) | — |
@@ -111,20 +109,22 @@ Rules:
 - **`robots.txt`** (static): allow all; `Disallow:` the hidden Lok Sabha routes if they are path-distinguishable
   (otherwise they rely on 404 + `noindex`); `Sitemap: https://matdaanpulse.in/sitemap.xml`.
 - **`/sitemap.xml`** (function): sitemap index →
-  - `sitemap-election-<id>.xml` per shown election: the election page plus every seat page.
-  - `sitemap-parties.xml`.
-  - `sitemap-persons-<n>.xml`, chunked at 45,000 URLs (protocol limit 50,000).
-  - `lastmod` = the election's result date or latest version bump; persons/parties `updated_at` where available.
+  - `/sitemaps/election-<id>.xml` per shown election: the election page, every seat page and every candidate's person
+    page (the largest, UP 2022, is ~5,250 URLs; limit 50,000). Persons of hidden (LS) elections only are not listed.
+  - `/sitemaps/parties.xml` (no IND/NOTA).
+  - No `lastmod` (no reliable date in the API; optional in the protocol).
 
 ## Caching
 
-Edge cache (`caches.default`), keyed on the canonical URL plus the build id (`CF_PAGES_COMMIT_SHA`), so a deploy
-invalidates it:
+Edge cache (`caches.default`), keyed on the page's canonical path (`routeKey`: tracking parameters such as `fbclid` /
+`utm_*`, trailing slashes and id case share one entry; every not-found path shares one key) plus the build id
+(`CF_PAGES_COMMIT_SHA`), so a deploy invalidates it. The key does not include the results version; the 60 s TTL bounds
+staleness while counting:
 
 | Page | TTL |
 |------|-----|
 | Finished election and its seats | 1 day |
-| Election that is counting, and its seats | 60 s, key includes the results version |
+| Election that is counting, and its seats | 60 s |
 | Person, party, home | 1 h |
 | Sitemaps | 1 day; 10 min while any shown election is counting |
 | Fallback after API error/timeout | not cached (or 30 s at most) |
@@ -151,6 +151,14 @@ and a new deploy's asset hashes are picked up at once.
 - Risk before then: a viral spike over 100k page loads in a day on the free plan can make page loads fail until the
   quota resets (00:00 UTC). Response: upgrade immediately.
 - Only full page loads hit the function; in-app navigation is client-side.
+
+## Measured and found during implementation
+
+- CPU (largest election, UP 2022): own code 0.4 ms (election page) / 1.4 ms (sitemap); with JSON parsing 2.9 / 4.0 ms;
+  8–9 ms in Node including its fetch/Response machinery. Estimated ~3–4 ms on Workers, under the free plan's ~10 ms;
+  confirm with the dashboard's CPU-time metric after the first deploy.
+- Once the origin shield is on, `SEO_API_BASE_URL` must be the Cloudflare-fronted API. All Function subrequests that miss
+  the API's CDN cache share one throttle bucket (keyed on IP); a 429 gives the generic page, not an error.
 
 ## Testing
 

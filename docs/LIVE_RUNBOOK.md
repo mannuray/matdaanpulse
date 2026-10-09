@@ -15,6 +15,7 @@ Shorthand: `<id>` is the election id; `API` is the backend base URL (`…/api/v1
 6. Run until it prints `READY`:
    `INGEST_KEY=mpk_... npm run live:check -- --election <id> --source eci-web` (add `--shard <name>` per shard). `NOT READY` lists what is unmapped or rejected; fix `partyAliases` or the roster. `missing_result_rows` means a candidate has no `results` row (re-run the election's result seed or add the row) — such a seat would never be written.
 7. Deploy the worker (see `docs/DEPLOYMENT.md` -> Live worker), left stopped.
+8. Cloudflare account is on **Workers Paid** (the SEO Function runs on every full page load; free = 100k/day).
 
 ## 2. T-1 day
 
@@ -46,6 +47,7 @@ Dry runs against the real ECI site, then drills. Do each drill and confirm the r
    - **Shard changed hands** (warn, for 10 min): another job took the shard's lease, after it expired (failover) or after a release. Expected during drill (a) or a planned switch; otherwise find out why the previous worker stopped (its logs) and that the new holder is one of ours. Every take-over is in Audit logs (`Ingest lease take-over`).
    - **Tally mismatch**: compare with ECI's party-wise page (the `rest` loop's tally covers the whole election); a mismatch with all seats matching usually means an unmapped party (the worker logs `tally: N unmapped parties`; add `partyAliases`) or a held seat.
 6. Held seats show in the Holds panel; Release returns them to the feed.
+   - **Page loads fail with a Cloudflare error (1027 / "Worker exceeded")**: the SEO Function hit the free plan's quota or CPU limit. Upgrade to Workers Paid in the Cloudflare dashboard at once (no deploy needed).
 7. `/ingest` answers 401 to anything but a well-formed `Bearer mpk_…` key, and 429 (`INGEST_0012`, `Retry-After`) to an IP after 10 failed key checks in a minute (`INGEST_AUTH_FAIL_LIMIT`). A worker whose key was accepted in the last 10 minutes is never blocked by that limit; a worker that starts with a wrong key should be stopped, not left retrying.
 
 ## 4. After
