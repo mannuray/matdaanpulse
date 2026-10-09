@@ -3,3 +3,4 @@ test-results/
 .vercel
 .env*
 e2e/artifacts/
+.wrangler/
