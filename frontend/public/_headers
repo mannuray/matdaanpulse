@@ -1,5 +1,6 @@
-# Security headers for Cloudflare Pages (keep identical to the "headers" block in vercel.json;
-# src/__tests__/securityHeaders.test.ts checks both).
+# Security headers for Cloudflare Pages (keep identical to the "headers" block in vercel.json and to
+# edge/securityHeaders.ts, which the SEO Function sends because Pages does not apply this file to Functions;
+# src/__tests__/securityHeaders.test.ts checks all three).
 # connect-src: the API origin baked in as VITE_API_BASE_URL. When the API moves behind Cloudflare
 # (https://api.matdaanpulse.in, docs/DEPLOYMENT.md section 5.4), add that origin here and in vercel.json.
 # style-src 'unsafe-inline': Radix's scroll lock (react-remove-scroll) injects a <style> element.

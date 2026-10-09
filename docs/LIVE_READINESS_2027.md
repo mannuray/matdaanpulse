@@ -51,11 +51,14 @@ Follow DEPLOYMENT §5.4: domain `matdaanpulse.in`, Pages, API proxy, Cache Rule,
 IP steps in order.
 
 **Change the API origin in the CSP in the same change as `VITE_API_BASE_URL`,** or the browser blocks every API
-call. It is named in four files:
+call. It is named in five files:
 - `frontend/vercel.json`
 - `admin/vercel.json`
 - `frontend/public/_headers`
 - `admin/public/_headers`
+- `frontend/edge/securityHeaders.ts` (the SEO Function's copy; a test keeps it equal to `frontend/public/_headers`)
+
+In the same step, set the Pages env `SEO_API_BASE_URL` to the new API address (see the SEO Function note below).
 
 `DEPLOYMENT.md` §5.0d step 6 has the details.
 

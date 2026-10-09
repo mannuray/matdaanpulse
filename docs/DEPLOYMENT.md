@@ -303,8 +303,10 @@ and column.
 5. Existing ingest keys are legacy (no election, no expiry; they still work). Before counting day, create a key per
    election with an expiry (Admin → Live Console → Keys) and revoke the legacy ones.
 6. CSP `connect-src` names the API origin (`https://matdaanpulse-api.onrender.com`) in `frontend/vercel.json`,
-   `admin/vercel.json` and both `public/_headers`. When the API moves to `api.<domain>` behind Cloudflare (§5.4), change
-   all four in the same change as `VITE_API_BASE_URL`, or every API call is blocked by the browser.
+   `admin/vercel.json`, both `public/_headers` and `frontend/edge/securityHeaders.ts` (the SEO Function's copy; a test
+   keeps it equal to `frontend/public/_headers`). When the API moves to `api.<domain>` behind Cloudflare (§5.4), change
+   all five in the same change as `VITE_API_BASE_URL`, or every API call is blocked by the browser, and set the Pages
+   env `SEO_API_BASE_URL` to the same new address (§5.4 step 2).
 
 ### 5.1 Neon
 
