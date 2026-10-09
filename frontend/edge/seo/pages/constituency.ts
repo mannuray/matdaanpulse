@@ -15,6 +15,9 @@ export async function constituencyPage(api: SeoApi, electionId: string, constId:
   if (!houseShown(e.type)) return notFoundPage();
 
   const cands = [...(c.candidates ?? [])].sort((a, b) => b.votes - a.votes);
+  const totalVotes = cands.reduce((s, x) => s + x.votes, 0);
+  /** The seat detail may omit vote_share; derive it from the votes. */
+  const share = (x: CandidateResult): number | null => x.vote_share ?? (totalVotes > 0 ? (x.votes / totalVotes) * 100 : null);
   const seat = seatLabel(c);
   const house = houseWord(e.type);
   const [top, second] = cands;
@@ -37,9 +40,10 @@ export async function constituencyPage(api: SeoApi, electionId: string, constId:
     link(x.person_id ? `/person/${x.person_id}` : null, x.name),
     link(partyPageHref(x.party?.id), partyLabel(x)),
     int(x.votes),
-    pct(x.vote_share),
+    pct(share(x)),
   ]);
-  const history = analysis?.data?.history ?? [];
+  // The analysis history includes the current election itself.
+  const history = (analysis?.data?.history ?? []).filter(h => h.year < e.year);
   const historyHtml = history.length
     ? `<h2>Earlier results</h2><ul>${history.map(h => `<li>${h.year}: ${link(h.person_id ? `/person/${h.person_id}` : null, h.candidate)} (${esc(h.party ?? 'IND')})</li>`).join('')}</ul>`
     : '';

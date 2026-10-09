@@ -52,6 +52,20 @@ describe('constituencyPage', () => {
     expect(p.description.startsWith('Awadhesh Singh (BJP) won Hajipur unopposed in 2025.')).toBe(true);
   });
 
+  it('computes vote share from votes when the API sends none', async () => {
+    const c = { ...constituency, candidates: constituency.candidates.map(({ vote_share: _, ...x }) => x) };
+    const p = await constituencyPage(api({ ...routes, [`/elections/${E_ID}/constituencies/BR-123`]: c }), E_ID, 'BR-123');
+    expect(p.body).toContain('50.7%');
+    expect(p.body).toContain('49.3%');
+  });
+
+  it('earlier results leave out the current election', async () => {
+    const a = { ...seatAnalysis, data: { history: [...seatAnalysis.data.history, { ...seatAnalysis.data.history[0], year: 2025, candidate: 'Current Winner' }] } };
+    const p = await constituencyPage(api({ ...routes, [`/elections/${E_ID}/constituencies/BR-123/analysis`]: a }), E_ID, 'BR-123');
+    expect(p.body).toContain('2020: ');
+    expect(p.body).not.toContain('Current Winner');
+  });
+
   it('works without seat analysis', async () => {
     const { [`/elections/${E_ID}/constituencies/BR-123/analysis`]: _, ...rest } = routes;
     const p = await constituencyPage(api(rest), E_ID, 'BR-123');
